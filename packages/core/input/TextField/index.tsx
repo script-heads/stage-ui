@@ -30,6 +30,10 @@ const TextField: FC<ButtonTypes.Props> = (props, ref) => {
     }, []);
 
     useEffect(() => {
+        setEmpty(
+            !props.value && props.value != 0 &&
+            !props.defaultValue && props.defaultValue != 0
+        );
         if (typeof props.value != 'undefined') {
             if (props.masked) {
                 elements[id].value = props.value.toString()
@@ -40,14 +44,14 @@ const TextField: FC<ButtonTypes.Props> = (props, ref) => {
     }, [props.value])
 
     function onChange(event) {
-        setEmpty(event.target.value === '' ? true : false);
+        setEmpty(event.target.value === '');
         props.onChange && props.onChange(event)
     }
 
     return (
         <Field
             {...props}
-            value={typeof props.value === 'undefined' ? isEmpty && undefined : props.value}
+            isEmpty={isEmpty}
             cursor='text'
             onLabelOverlay={(state) => setUnderOverlay(state)}
             onClick={(e) => {

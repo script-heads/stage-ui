@@ -122,7 +122,7 @@ function getSizes(size, theme) {
         case 'xsmall':
             return {
                 item: {
-                    padding: '0.25rem 0',
+                    // padding: '0.25rem 0',
                 },
                 itemContent: {
                     padding: '0 .25rem',
@@ -135,7 +135,7 @@ function getSizes(size, theme) {
         case 'small':
             return {
                 item: {
-                    padding: '0.375rem 0',
+                    // padding: '0.375rem 0',
                 },
                 itemContent: {
                     padding: '0 .5rem',
@@ -149,7 +149,7 @@ function getSizes(size, theme) {
         default:
             return {
                 item: {
-                    padding: '0.5rem 0',
+                    // padding: '0.5rem 0',
                 },
                 itemContent: {
                     padding: '0 .75rem',
@@ -162,7 +162,7 @@ function getSizes(size, theme) {
         case 'large':
             return {
                 item: {
-                    padding: '0.625rem 0',
+                    // padding: '0.625rem 0',
                 },
                 itemContent: {
                     padding: '0 1rem',

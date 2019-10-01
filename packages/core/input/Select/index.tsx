@@ -54,6 +54,7 @@ const Select = (props: SelectTypes.Props, ref) => {
         <Field
             {...props}
             ref={ref}
+            isEmpty={selectedOptions.length > 0}
             fieldStyles={styles.fieldStyles(open)}
             onClick={(e) => { setOpen(!open) }}
             onEnter={() => setOpen(!open)}
@@ -70,7 +71,6 @@ const Select = (props: SelectTypes.Props, ref) => {
                 setSelectedOptions([]);
                 setSearchValue('')
             }}
-            value={selectedOptions.length}
         >
             {
                 !underOverlay && (selectedOptions.length > 0
