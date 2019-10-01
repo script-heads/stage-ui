@@ -9,7 +9,9 @@ const options = {
     port: 9050,
     host: '0.0.0.0',
     hot: true,
-    contentBase: __dirname + "/../public"
+    contentBase: __dirname + "/../public",
+    compress: true,
+    public: 'flowui.abr.tech'
 }
 
 webpackDevServer.addDevServerEntrypoints(config, options);
