@@ -2,6 +2,8 @@ import { IConfig, IPluginProps } from '../../types'
 import React from 'react';
 import PluginRender from './pluginRender';
 
+declare const $_WORKDIR_$: string
+
 class Core {
     static instance: Core;
     static getInstance() {
@@ -19,9 +21,7 @@ class Core {
     protected reactContext: any = React.createContext(null);
 
     constructor() {
-        //@ts-ignore
         this.context = require['context']($_WORKDIR_$ + '/cases', true, /\.case$/);
-        //@ts-ignore
         const config = require($_WORKDIR_$ + '/showcase.config');
 
         if (config && config.default) {
