@@ -1,0 +1,39 @@
+{
+  "name": "@flow-ui/lab",
+  "author": "ABR Tech",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "yarn type-check -- --watch",
+    "build": "rm -fR dist && yarn build:types && yarn build:js && cp package.json dist/package.json",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "babel ./ --out-dir dist --extensions \".ts,.tsx\" --ignore \"node_modules/\",\"dist/\""
+  },
+  "dependencies": {
+    "@types/chart.js": "^2.7.40",
+    "@flow-ui/core": "~0.1.0",
+    "@emotion/core": "^10.0.14",
+    "chart.js": "^2.7.3",
+    "csstype": "^2.6.6",
+    "emotion-theming": "^10.0.10",
+    "randomcolor": "^0.5.4",
+    "react-chartjs-2": "^2.7.4",
+    "react-transition-group": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.5.0",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "@emotion/babel-preset-css-prop": "^10.0.14",
+    "babel-loader": "^8.0.6",
+    "csstype": "^2.6.6",
+    "typescript": "^3.5.2"
+  }
+}

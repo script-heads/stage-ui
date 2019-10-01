@@ -1,0 +1,1078 @@
+[
+  {
+    "timeStamp": 1565704714015,
+    "time": 13029,
+    "hash": "43b1003b4354fbd6050e",
+    "errors": [],
+    "size": 6984369,
+    "assets": [
+      {
+        "name": "showcase.js",
+        "chunks": [
+          "app"
+        ],
+        "size": 3558310,
+        "miniSize": 3121239,
+        "minified": false
+      },
+      {
+        "name": "showcase.js.map",
+        "chunks": [
+          "app"
+        ],
+        "size": 3426059
+      }
+    ],
+    "chunks": [
+      {
+        "size": 3187944,
+        "files": [
+          "showcase.js",
+          "showcase.js.map"
+        ],
+        "modules": [
+          {
+            "name": "multi (webpack)-dev-server/client?http://0.0.0.0:9050 (webpack)/hot/dev-server.js ../showcase/src/index.tsx",
+            "size": 52,
+            "id": 0
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/helpers/arrayWithHoles.js",
+            "size": 106,
+            "id": "../../node_modules/@babel/runtime/helpers/arrayWithHoles.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/helpers/arrayWithoutHoles.js",
+            "size": 227,
+            "id": "../../node_modules/@babel/runtime/helpers/arrayWithoutHoles.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/helpers/assertThisInitialized.js",
+            "size": 219,
+            "id": "../../node_modules/@babel/runtime/helpers/assertThisInitialized.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/helpers/asyncToGenerator.js",
+            "size": 809,
+            "id": "../../node_modules/@babel/runtime/helpers/asyncToGenerator.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/helpers/classCallCheck.js",
+            "size": 196,
+            "id": "../../node_modules/@babel/runtime/helpers/classCallCheck.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/helpers/createClass.js",
+            "size": 596,
+            "id": "../../node_modules/@babel/runtime/helpers/createClass.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/helpers/defineProperty.js",
+            "size": 289,
+            "id": "../../node_modules/@babel/runtime/helpers/defineProperty.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/helpers/extends.js",
+            "size": 427,
+            "id": "../../node_modules/@babel/runtime/helpers/extends.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/helpers/getPrototypeOf.js",
+            "size": 267,
+            "id": "../../node_modules/@babel/runtime/helpers/getPrototypeOf.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/helpers/inherits.js",
+            "size": 505,
+            "id": "../../node_modules/@babel/runtime/helpers/inherits.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/helpers/inheritsLoose.js",
+            "size": 223,
+            "id": "../../node_modules/@babel/runtime/helpers/inheritsLoose.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/helpers/iterableToArray.js",
+            "size": 200,
+            "id": "../../node_modules/@babel/runtime/helpers/iterableToArray.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/helpers/iterableToArrayLimit.js",
+            "size": 523,
+            "id": "../../node_modules/@babel/runtime/helpers/iterableToArrayLimit.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/helpers/nonIterableRest.js",
+            "size": 146,
+            "id": "../../node_modules/@babel/runtime/helpers/nonIterableRest.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/helpers/nonIterableSpread.js",
+            "size": 145,
+            "id": "../../node_modules/@babel/runtime/helpers/nonIterableSpread.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js",
+            "size": 343,
+            "id": "../../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/helpers/setPrototypeOf.js",
+            "size": 237,
+            "id": "../../node_modules/@babel/runtime/helpers/setPrototypeOf.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/helpers/slicedToArray.js",
+            "size": 319,
+            "id": "../../node_modules/@babel/runtime/helpers/slicedToArray.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/helpers/toConsumableArray.js",
+            "size": 321,
+            "id": "../../node_modules/@babel/runtime/helpers/toConsumableArray.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/helpers/typeof.js",
+            "size": 817,
+            "id": "../../node_modules/@babel/runtime/helpers/typeof.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/node_modules/regenerator-runtime/runtime.js",
+            "size": 24076,
+            "id": "../../node_modules/@babel/runtime/node_modules/regenerator-runtime/runtime.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@babel/runtime/regenerator/index.js",
+            "size": 49,
+            "id": "../../node_modules/@babel/runtime/regenerator/index.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@emotion/cache/dist/cache.browser.esm.js",
+            "size": 5332,
+            "id": "../../node_modules/@emotion/cache/dist/cache.browser.esm.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@emotion/core/dist/core.browser.esm.js",
+            "size": 10284,
+            "id": "../../node_modules/@emotion/core/dist/core.browser.esm.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@emotion/css/dist/css.browser.esm.js",
+            "size": 259,
+            "id": "../../node_modules/@emotion/css/dist/css.browser.esm.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@emotion/hash/dist/hash.browser.esm.js",
+            "size": 1117,
+            "id": "../../node_modules/@emotion/hash/dist/hash.browser.esm.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@emotion/memoize/dist/memoize.browser.esm.js",
+            "size": 178,
+            "id": "../../node_modules/@emotion/memoize/dist/memoize.browser.esm.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@emotion/serialize/dist/serialize.browser.esm.js",
+            "size": 8924,
+            "id": "../../node_modules/@emotion/serialize/dist/serialize.browser.esm.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@emotion/sheet/dist/sheet.browser.esm.js",
+            "size": 4072,
+            "id": "../../node_modules/@emotion/sheet/dist/sheet.browser.esm.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@emotion/stylis/dist/stylis.browser.esm.js",
+            "size": 15944,
+            "id": "../../node_modules/@emotion/stylis/dist/stylis.browser.esm.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@emotion/unitless/dist/unitless.browser.esm.js",
+            "size": 899,
+            "id": "../../node_modules/@emotion/unitless/dist/unitless.browser.esm.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@emotion/utils/dist/utils.browser.esm.js",
+            "size": 1573,
+            "id": "../../node_modules/@emotion/utils/dist/utils.browser.esm.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/@emotion/weak-memoize/dist/weak-memoize.browser.esm.js",
+            "size": 372,
+            "id": "../../node_modules/@emotion/weak-memoize/dist/weak-memoize.browser.esm.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/ansi-html/index.js",
+            "size": 4263,
+            "id": "../../node_modules/ansi-html/index.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/chroma-js/chroma.js",
+            "size": 98277,
+            "id": "../../node_modules/chroma-js/chroma.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/css-loader/dist/cjs.js!../showcase/src/UI/styles/main.css",
+            "size": 1513,
+            "id": "../../node_modules/css-loader/dist/cjs.js!../showcase/src/UI/styles/main.css"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/css-loader/dist/cjs.js!../showcase/src/UI/styles/panel.css",
+            "size": 1634,
+            "id": "../../node_modules/css-loader/dist/cjs.js!../showcase/src/UI/styles/panel.css"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/css-loader/dist/runtime/api.js",
+            "size": 2406,
+            "id": "../../node_modules/css-loader/dist/runtime/api.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/emotion-theming/dist/emotion-theming.browser.esm.js",
+            "size": 2068,
+            "id": "../../node_modules/emotion-theming/dist/emotion-theming.browser.esm.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/events/events.js",
+            "size": 13604,
+            "id": "../../node_modules/events/events.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/fakerator/dist/fakerator.js",
+            "size": 760699,
+            "id": "../../node_modules/fakerator/dist/fakerator.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js",
+            "size": 2887,
+            "id": "../../node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/html-entities/index.js",
+            "size": 231,
+            "id": "../../node_modules/html-entities/index.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/html-entities/lib/html4-entities.js",
+            "size": 6587,
+            "id": "../../node_modules/html-entities/lib/html4-entities.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/html-entities/lib/html5-entities.js",
+            "size": 48986,
+            "id": "../../node_modules/html-entities/lib/html5-entities.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/html-entities/lib/xml-entities.js",
+            "size": 2993,
+            "id": "../../node_modules/html-entities/lib/xml-entities.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/invariant/browser.js",
+            "size": 1397,
+            "id": "../../node_modules/invariant/browser.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/loglevel/lib/loglevel.js",
+            "size": 7862,
+            "id": "../../node_modules/loglevel/lib/loglevel.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/node-libs-browser/node_modules/punycode/punycode.js",
+            "size": 14670,
+            "id": "../../node_modules/node-libs-browser/node_modules/punycode/punycode.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/object-assign/index.js",
+            "size": 2108,
+            "id": "../../node_modules/object-assign/index.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/prop-types/checkPropTypes.js",
+            "size": 3781,
+            "id": "../../node_modules/prop-types/checkPropTypes.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/prop-types/lib/ReactPropTypesSecret.js",
+            "size": 314,
+            "id": "../../node_modules/prop-types/lib/ReactPropTypesSecret.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/querystring-es3/decode.js",
+            "size": 2510,
+            "id": "../../node_modules/querystring-es3/decode.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/querystring-es3/encode.js",
+            "size": 2544,
+            "id": "../../node_modules/querystring-es3/encode.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/querystring-es3/index.js",
+            "size": 127,
+            "id": "../../node_modules/querystring-es3/index.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/react-dom/cjs/react-dom.development.js",
+            "size": 786521,
+            "id": "../../node_modules/react-dom/cjs/react-dom.development.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/react-dom/index.js",
+            "size": 1363,
+            "id": "../../node_modules/react-dom/index.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/react-input-mask/index.js",
+            "size": 197,
+            "id": "../../node_modules/react-input-mask/index.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/react-input-mask/lib/react-input-mask.development.js",
+            "size": 34259,
+            "id": "../../node_modules/react-input-mask/lib/react-input-mask.development.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/react-is/cjs/react-is.development.js",
+            "size": 8066,
+            "id": "../../node_modules/react-is/cjs/react-is.development.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/react-is/index.js",
+            "size": 196,
+            "id": "../../node_modules/react-is/index.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/react/cjs/react.development.js",
+            "size": 63843,
+            "id": "../../node_modules/react/cjs/react.development.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/react/index.js",
+            "size": 190,
+            "id": "../../node_modules/react/index.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/scheduler/cjs/scheduler-tracing.development.js",
+            "size": 10550,
+            "id": "../../node_modules/scheduler/cjs/scheduler-tracing.development.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/scheduler/cjs/scheduler.development.js",
+            "size": 23870,
+            "id": "../../node_modules/scheduler/cjs/scheduler.development.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/scheduler/index.js",
+            "size": 198,
+            "id": "../../node_modules/scheduler/index.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/scheduler/tracing.js",
+            "size": 214,
+            "id": "../../node_modules/scheduler/tracing.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/sockjs-client/dist/sockjs.js",
+            "size": 184789,
+            "id": "../../node_modules/sockjs-client/dist/sockjs.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/strip-ansi/index.js",
+            "size": 161,
+            "id": "../../node_modules/strip-ansi/index.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/strip-ansi/node_modules/ansi-regex/index.js",
+            "size": 135,
+            "id": "../../node_modules/strip-ansi/node_modules/ansi-regex/index.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/style-loader/lib/addStyles.js",
+            "size": 10399,
+            "id": "../../node_modules/style-loader/lib/addStyles.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/style-loader/lib/urls.js",
+            "size": 3013,
+            "id": "../../node_modules/style-loader/lib/urls.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/url/url.js",
+            "size": 23317,
+            "id": "../../node_modules/url/url.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/url/util.js",
+            "size": 314,
+            "id": "../../node_modules/url/util.js"
+          },
+          {
+            "name": "/Users/heetrew/Projects/Smorodina/UI/node_modules/warning/warning.js",
+            "size": 1772,
+            "id": "../../node_modules/warning/warning.js"
+          },
+          {
+            "name": "(webpack)-dev-server/client/clients/BaseClient.js",
+            "size": 1059,
+            "id": "../../node_modules/webpack-dev-server/client/clients/BaseClient.js"
+          },
+          {
+            "name": "(webpack)-dev-server/client/clients/SockJSClient.js",
+            "size": 3225,
+            "id": "../../node_modules/webpack-dev-server/client/clients/SockJSClient.js"
+          },
+          {
+            "name": "(webpack)-dev-server/client?http://0.0.0.0:9050",
+            "size": 4390,
+            "id": "../../node_modules/webpack-dev-server/client/index.js?http://0.0.0.0:9050"
+          },
+          {
+            "name": "(webpack)-dev-server/client/overlay.js",
+            "size": 3596,
+            "id": "../../node_modules/webpack-dev-server/client/overlay.js"
+          },
+          {
+            "name": "(webpack)-dev-server/client/socket.js",
+            "size": 1568,
+            "id": "../../node_modules/webpack-dev-server/client/socket.js"
+          },
+          {
+            "name": "(webpack)-dev-server/client/utils/createSocketUrl.js",
+            "size": 2838,
+            "id": "../../node_modules/webpack-dev-server/client/utils/createSocketUrl.js"
+          },
+          {
+            "name": "(webpack)-dev-server/client/utils/getCurrentScriptSource.js",
+            "size": 658,
+            "id": "../../node_modules/webpack-dev-server/client/utils/getCurrentScriptSource.js"
+          },
+          {
+            "name": "(webpack)-dev-server/client/utils/log.js",
+            "size": 964,
+            "id": "../../node_modules/webpack-dev-server/client/utils/log.js"
+          },
+          {
+            "name": "(webpack)-dev-server/client/utils/reloadApp.js",
+            "size": 1673,
+            "id": "../../node_modules/webpack-dev-server/client/utils/reloadApp.js"
+          },
+          {
+            "name": "(webpack)-dev-server/client/utils/sendMessage.js",
+            "size": 402,
+            "id": "../../node_modules/webpack-dev-server/client/utils/sendMessage.js"
+          },
+          {
+            "name": "(webpack)/buildin/global.js",
+            "size": 472,
+            "id": "../../node_modules/webpack/buildin/global.js"
+          },
+          {
+            "name": "(webpack)/buildin/module.js",
+            "size": 497,
+            "id": "../../node_modules/webpack/buildin/module.js"
+          },
+          {
+            "name": "(webpack)/hot sync nonrecursive ^\\.\\/log$",
+            "size": 170,
+            "id": "../../node_modules/webpack/hot sync ^\\.\\/log$"
+          },
+          {
+            "name": "(webpack)/hot/dev-server.js",
+            "size": 1632,
+            "id": "../../node_modules/webpack/hot/dev-server.js"
+          },
+          {
+            "name": "(webpack)/hot/emitter.js",
+            "size": 75,
+            "id": "../../node_modules/webpack/hot/emitter.js"
+          },
+          {
+            "name": "(webpack)/hot/log-apply-result.js",
+            "size": 1302,
+            "id": "../../node_modules/webpack/hot/log-apply-result.js"
+          },
+          {
+            "name": "(webpack)/hot/log.js",
+            "size": 1372,
+            "id": "../../node_modules/webpack/hot/log.js"
+          },
+          {
+            "name": "../core/action/Button/index.tsx",
+            "size": 1097,
+            "id": "../core/action/Button/index.tsx"
+          },
+          {
+            "name": "../core/action/Button/styles.ts",
+            "size": 41545,
+            "id": "../core/action/Button/styles.ts"
+          },
+          {
+            "name": "../core/action/Menu/Item.tsx",
+            "size": 503,
+            "id": "../core/action/Menu/Item.tsx"
+          },
+          {
+            "name": "../core/action/Menu/index.tsx",
+            "size": 1377,
+            "id": "../core/action/Menu/index.tsx"
+          },
+          {
+            "name": "../core/action/Menu/styles.ts",
+            "size": 25785,
+            "id": "../core/action/Menu/styles.ts"
+          },
+          {
+            "name": "../core/content/Divider/index.tsx",
+            "size": 7492,
+            "id": "../core/content/Divider/index.tsx"
+          },
+          {
+            "name": "../core/content/Icon/index.tsx",
+            "size": 932,
+            "id": "../core/content/Icon/index.tsx"
+          },
+          {
+            "name": "../core/content/Icon/styles.ts",
+            "size": 5813,
+            "id": "../core/content/Icon/styles.ts"
+          },
+          {
+            "name": "../core/content/Spinner/index.tsx",
+            "size": 1881,
+            "id": "../core/content/Spinner/index.tsx"
+          },
+          {
+            "name": "../core/content/Spinner/styles.ts",
+            "size": 5634,
+            "id": "../core/content/Spinner/styles.ts"
+          },
+          {
+            "name": "../core/content/Typography/A.tsx",
+            "size": 1595,
+            "id": "../core/content/Typography/A.tsx"
+          },
+          {
+            "name": "../core/content/Typography/C.tsx",
+            "size": 1387,
+            "id": "../core/content/Typography/C.tsx"
+          },
+          {
+            "name": "../core/content/Typography/D.tsx",
+            "size": 1543,
+            "id": "../core/content/Typography/D.tsx"
+          },
+          {
+            "name": "../core/content/Typography/H.tsx",
+            "size": 1354,
+            "id": "../core/content/Typography/H.tsx"
+          },
+          {
+            "name": "../core/content/Typography/T.tsx",
+            "size": 1528,
+            "id": "../core/content/Typography/T.tsx"
+          },
+          {
+            "name": "../core/content/Typography/Typography.tsx",
+            "size": 2018,
+            "id": "../core/content/Typography/Typography.tsx"
+          },
+          {
+            "name": "../core/content/Typography/index.ts",
+            "size": 176,
+            "id": "../core/content/Typography/index.ts"
+          },
+          {
+            "name": "../core/data/Table/TableActions.tsx",
+            "size": 700,
+            "id": "../core/data/Table/TableActions.tsx"
+          },
+          {
+            "name": "../core/data/Table/TableColumns.tsx",
+            "size": 765,
+            "id": "../core/data/Table/TableColumns.tsx"
+          },
+          {
+            "name": "../core/data/Table/TableForm.tsx",
+            "size": 2015,
+            "id": "../core/data/Table/TableForm.tsx"
+          },
+          {
+            "name": "../core/data/Table/TablePagination.tsx",
+            "size": 1351,
+            "id": "../core/data/Table/TablePagination.tsx"
+          },
+          {
+            "name": "../core/data/Table/TableRow.tsx",
+            "size": 1051,
+            "id": "../core/data/Table/TableRow.tsx"
+          },
+          {
+            "name": "../core/data/Table/index.tsx",
+            "size": 7798,
+            "id": "../core/data/Table/index.tsx"
+          },
+          {
+            "name": "../core/data/Table/styles.ts",
+            "size": 161148,
+            "id": "../core/data/Table/styles.ts"
+          },
+          {
+            "name": "../core/input/Checkbox/index.tsx",
+            "size": 1614,
+            "id": "../core/input/Checkbox/index.tsx"
+          },
+          {
+            "name": "../core/input/Checkbox/styles.ts",
+            "size": 21940,
+            "id": "../core/input/Checkbox/styles.ts"
+          },
+          {
+            "name": "../core/input/Select/SelectItems.tsx",
+            "size": 435,
+            "id": "../core/input/Select/SelectItems.tsx"
+          },
+          {
+            "name": "../core/input/Select/index.tsx",
+            "size": 10212,
+            "id": "../core/input/Select/index.tsx"
+          },
+          {
+            "name": "../core/input/Select/styles.ts",
+            "size": 12446,
+            "id": "../core/input/Select/styles.ts"
+          },
+          {
+            "name": "../core/input/Range/index.tsx",
+            "size": 2787,
+            "id": "../core/input/Range/index.tsx"
+          },
+          {
+            "name": "../core/input/Range/styles.ts",
+            "size": 12989,
+            "id": "../core/input/Range/styles.ts"
+          },
+          {
+            "name": "../core/input/TextField/Field.tsx",
+            "size": 3096,
+            "id": "../core/input/TextField/Field.tsx"
+          },
+          {
+            "name": "../core/input/TextField/formats/decimal.ts",
+            "size": 277,
+            "id": "../core/input/TextField/formats/decimal.ts"
+          },
+          {
+            "name": "../core/input/TextField/index.tsx",
+            "size": 4110,
+            "id": "../core/input/TextField/index.tsx"
+          },
+          {
+            "name": "../core/input/TextField/styles.ts",
+            "size": 121928,
+            "id": "../core/input/TextField/styles.ts"
+          },
+          {
+            "name": "../core/layout/Badge/index.tsx",
+            "size": 716,
+            "id": "../core/layout/Badge/index.tsx"
+          },
+          {
+            "name": "../core/layout/Badge/styles.ts",
+            "size": 12300,
+            "id": "../core/layout/Badge/styles.ts"
+          },
+          {
+            "name": "../core/layout/Block/index.tsx",
+            "size": 1359,
+            "id": "../core/layout/Block/index.tsx"
+          },
+          {
+            "name": "../core/layout/Block/styles.ts",
+            "size": 6227,
+            "id": "../core/layout/Block/styles.ts"
+          },
+          {
+            "name": "../core/layout/Drop/index.tsx",
+            "size": 5023,
+            "id": "../core/layout/Drop/index.tsx"
+          },
+          {
+            "name": "../core/layout/Drop/styles.ts",
+            "size": 1479,
+            "id": "../core/layout/Drop/styles.ts"
+          },
+          {
+            "name": "../core/layout/Flexbox/index.tsx",
+            "size": 1732,
+            "id": "../core/layout/Flexbox/index.tsx"
+          },
+          {
+            "name": "../core/layout/Modal/ModalHeader.tsx",
+            "size": 973,
+            "id": "../core/layout/Modal/ModalHeader.tsx"
+          },
+          {
+            "name": "../core/layout/Modal/ModalOverlay.tsx",
+            "size": 344,
+            "id": "../core/layout/Modal/ModalOverlay.tsx"
+          },
+          {
+            "name": "../core/layout/Modal/ModalPortal.tsx",
+            "size": 202,
+            "id": "../core/layout/Modal/ModalPortal.tsx"
+          },
+          {
+            "name": "../core/layout/Modal/ModalWindow.tsx",
+            "size": 681,
+            "id": "../core/layout/Modal/ModalWindow.tsx"
+          },
+          {
+            "name": "../core/layout/Modal/index.tsx",
+            "size": 4079,
+            "id": "../core/layout/Modal/index.tsx"
+          },
+          {
+            "name": "../core/layout/Modal/styles.ts",
+            "size": 19727,
+            "id": "../core/layout/Modal/styles.ts"
+          },
+          {
+            "name": "../core/layout/Notification/Content.tsx",
+            "size": 1196,
+            "id": "../core/layout/Notification/Content.tsx"
+          },
+          {
+            "name": "../core/layout/Notification/index.tsx",
+            "size": 472,
+            "id": "../core/layout/Notification/index.tsx"
+          },
+          {
+            "name": "../core/layout/Panel/index.tsx",
+            "size": 509,
+            "id": "../core/layout/Panel/index.tsx"
+          },
+          {
+            "name": "../core/layout/Panel/styles.ts",
+            "size": 4179,
+            "id": "../core/layout/Panel/styles.ts"
+          },
+          {
+            "name": "../core/layout/Popover/index.tsx",
+            "size": 583,
+            "id": "../core/layout/Popover/index.tsx"
+          },
+          {
+            "name": "../core/layout/Popover/styles.ts",
+            "size": 19923,
+            "id": "../core/layout/Popover/styles.ts"
+          },
+          {
+            "name": "../core/layout/Viewport/MountArea.tsx",
+            "size": 780,
+            "id": "../core/layout/Viewport/MountArea.tsx"
+          },
+          {
+            "name": "../core/layout/Viewport/index.tsx",
+            "size": 1308,
+            "id": "../core/layout/Viewport/index.tsx"
+          },
+          {
+            "name": "../core/layout/Viewport/styles.ts",
+            "size": 24062,
+            "id": "../core/layout/Viewport/styles.ts"
+          },
+          {
+            "name": "../core/misc/hooks/useBrowser.ts",
+            "size": 1316,
+            "id": "../core/misc/hooks/useBrowser.ts"
+          },
+          {
+            "name": "../core/misc/hooks/useContainer.ts",
+            "size": 2840,
+            "id": "../core/misc/hooks/useContainer.ts"
+          },
+          {
+            "name": "../core/misc/hooks/useFlow.ts",
+            "size": 171,
+            "id": "../core/misc/hooks/useFlow.ts"
+          },
+          {
+            "name": "../core/misc/hooks/useStyleProps.ts",
+            "size": 814,
+            "id": "../core/misc/hooks/useStyleProps.ts"
+          },
+          {
+            "name": "../core/misc/icons/filled.tsx",
+            "size": 124892,
+            "id": "../core/misc/icons/filled.tsx"
+          },
+          {
+            "name": "../core/misc/icons/index.ts",
+            "size": 93,
+            "id": "../core/misc/icons/index.ts"
+          },
+          {
+            "name": "../core/misc/icons/outline.tsx",
+            "size": 137394,
+            "id": "../core/misc/icons/outline.tsx"
+          },
+          {
+            "name": "../core/misc/themes/index.ts",
+            "size": 43,
+            "id": "../core/misc/themes/index.ts"
+          },
+          {
+            "name": "../core/misc/themes/light.ts",
+            "size": 3870,
+            "id": "../core/misc/themes/light.ts"
+          },
+          {
+            "name": "../core/misc/typography.ts",
+            "size": 1352,
+            "id": "../core/misc/typography.ts"
+          },
+          {
+            "name": "../core/misc/utils/callProp.ts",
+            "size": 98,
+            "id": "../core/misc/utils/callProp.ts"
+          },
+          {
+            "name": "../core/misc/utils/createID.ts",
+            "size": 102,
+            "id": "../core/misc/utils/createID.ts"
+          },
+          {
+            "name": "../core/misc/utils/createTheme.ts",
+            "size": 2008,
+            "id": "../core/misc/utils/createTheme.ts"
+          },
+          {
+            "name": "../core/misc/utils/mergeObjects.ts",
+            "size": 525,
+            "id": "../core/misc/utils/mergeObjects.ts"
+          },
+          {
+            "name": "../core/misc/utils/notify.tsx",
+            "size": 962,
+            "id": "../core/misc/utils/notify.tsx"
+          },
+          {
+            "name": "../extra/misc/themes/index.ts",
+            "size": 71,
+            "id": "../extra/misc/themes/index.ts"
+          },
+          {
+            "name": "../extra/misc/themes/whiteCurrant.ts",
+            "size": 737,
+            "id": "../extra/misc/themes/whiteCurrant.ts"
+          },
+          {
+            "name": "../showcase/src/UI/components/Icon/Icon.tsx",
+            "size": 30970,
+            "id": "../showcase/src/UI/components/Icon/Icon.tsx"
+          },
+          {
+            "name": "../showcase/src/UI/components/Icon/index.ts",
+            "size": 41,
+            "id": "../showcase/src/UI/components/Icon/index.ts"
+          },
+          {
+            "name": "../showcase/src/UI/components/Menu/Menu.tsx",
+            "size": 2188,
+            "id": "../showcase/src/UI/components/Menu/Menu.tsx"
+          },
+          {
+            "name": "../showcase/src/UI/components/Menu/index.ts",
+            "size": 41,
+            "id": "../showcase/src/UI/components/Menu/index.ts"
+          },
+          {
+            "name": "../showcase/src/UI/components/Panel/MenuItem.tsx",
+            "size": 1319,
+            "id": "../showcase/src/UI/components/Panel/MenuItem.tsx"
+          },
+          {
+            "name": "../showcase/src/UI/components/Panel/Panel.tsx",
+            "size": 4150,
+            "id": "../showcase/src/UI/components/Panel/Panel.tsx"
+          },
+          {
+            "name": "../showcase/src/UI/components/Panel/index.ts",
+            "size": 43,
+            "id": "../showcase/src/UI/components/Panel/index.ts"
+          },
+          {
+            "name": "../showcase/src/UI/components/Welcome/Welcome.tsx",
+            "size": 546,
+            "id": "../showcase/src/UI/components/Welcome/Welcome.tsx"
+          },
+          {
+            "name": "../showcase/src/UI/components/Welcome/index.ts",
+            "size": 47,
+            "id": "../showcase/src/UI/components/Welcome/index.ts"
+          },
+          {
+            "name": "../showcase/src/UI/components/index.ts",
+            "size": 131,
+            "id": "../showcase/src/UI/components/index.ts"
+          },
+          {
+            "name": "../showcase/src/UI/index.tsx",
+            "size": 6461,
+            "id": "../showcase/src/UI/index.tsx"
+          },
+          {
+            "name": "../showcase/src/UI/styles/main.css",
+            "size": 1126,
+            "id": "../showcase/src/UI/styles/main.css"
+          },
+          {
+            "name": "../showcase/src/UI/styles/panel.css",
+            "size": 1129,
+            "id": "../showcase/src/UI/styles/panel.css"
+          },
+          {
+            "name": "../showcase/src/core/index.ts",
+            "size": 4969,
+            "id": "../showcase/src/core/index.ts"
+          },
+          {
+            "name": "../showcase/src/core/pluginRender.tsx",
+            "size": 220,
+            "id": "../showcase/src/core/pluginRender.tsx"
+          },
+          {
+            "name": "../showcase/src/index.tsx",
+            "size": 226,
+            "id": "../showcase/src/index.tsx"
+          },
+          {
+            "name": "./cases sync \\.case$",
+            "size": 786,
+            "id": "./cases sync recursive \\.case$"
+          },
+          {
+            "name": "./cases/Action/Button/button.case.tsx",
+            "size": 1068,
+            "id": "./cases/Action/Button/button.case.tsx"
+          },
+          {
+            "name": "./cases/Action/Menu/menu.case.tsx",
+            "size": 1325,
+            "id": "./cases/Action/Menu/menu.case.tsx"
+          },
+          {
+            "name": "./cases/Content/Divider/divider.case.tsx",
+            "size": 1066,
+            "id": "./cases/Content/Divider/divider.case.tsx"
+          },
+          {
+            "name": "./cases/Content/Icon/icon.case.tsx",
+            "size": 1367,
+            "id": "./cases/Content/Icon/icon.case.tsx"
+          },
+          {
+            "name": "./cases/Content/Spinner/index.case.tsx",
+            "size": 989,
+            "id": "./cases/Content/Spinner/index.case.tsx"
+          },
+          {
+            "name": "./cases/Content/Typography/typography.case.tsx",
+            "size": 2307,
+            "id": "./cases/Content/Typography/typography.case.tsx"
+          },
+          {
+            "name": "./cases/Data/Table/index.case.tsx",
+            "size": 3199,
+            "id": "./cases/Data/Table/index.case.tsx"
+          },
+          {
+            "name": "./cases/Input/Checkbox/index.case.tsx",
+            "size": 1361,
+            "id": "./cases/Input/Checkbox/index.case.tsx"
+          },
+          {
+            "name": "./cases/Input/Select/index.case.tsx",
+            "size": 2375,
+            "id": "./cases/Input/Select/index.case.tsx"
+          },
+          {
+            "name": "./cases/Input/Range/index.case.tsx",
+            "size": 465,
+            "id": "./cases/Input/Range/index.case.tsx"
+          },
+          {
+            "name": "./cases/Input/TextField/index.case.tsx",
+            "size": 1800,
+            "id": "./cases/Input/TextField/index.case.tsx"
+          },
+          {
+            "name": "./cases/Layout/Badge/index.case.tsx",
+            "size": 951,
+            "id": "./cases/Layout/Badge/index.case.tsx"
+          },
+          {
+            "name": "./cases/Layout/Block/index.case.tsx",
+            "size": 1001,
+            "id": "./cases/Layout/Block/index.case.tsx"
+          },
+          {
+            "name": "./cases/Layout/Drop/index.case.tsx",
+            "size": 2895,
+            "id": "./cases/Layout/Drop/index.case.tsx"
+          },
+          {
+            "name": "./cases/Layout/Flexbox/index.case.tsx",
+            "size": 516,
+            "id": "./cases/Layout/Flexbox/index.case.tsx"
+          },
+          {
+            "name": "./cases/Layout/Modal/index.case.tsx",
+            "size": 2298,
+            "id": "./cases/Layout/Modal/index.case.tsx"
+          },
+          {
+            "name": "./cases/Layout/Panel/index.case.tsx",
+            "size": 1187,
+            "id": "./cases/Layout/Panel/index.case.tsx"
+          },
+          {
+            "name": "./cases/Layout/Popover/index.case.tsx",
+            "size": 944,
+            "id": "./cases/Layout/Popover/index.case.tsx"
+          },
+          {
+            "name": "./cases/Layout/Viewport/index.case.tsx",
+            "size": 613,
+            "id": "./cases/Layout/Viewport/index.case.tsx"
+          },
+          {
+            "name": "./cases/Util/notify/index.case.tsx",
+            "size": 1022,
+            "id": "./cases/Util/notify/index.case.tsx"
+          },
+          {
+            "name": "./plugins/ThemeChanger.tsx",
+            "size": 2814,
+            "id": "./plugins/ThemeChanger.tsx"
+          },
+          {
+            "name": "./plugins/CaseWrapper.tsx",
+            "size": 7378,
+            "id": "./plugins/CaseWrapper.tsx"
+          },
+          {
+            "name": "./plugins/getColor.ts",
+            "size": 221,
+            "id": "./plugins/getColor.ts"
+          },
+          {
+            "name": "./showcase.config.ts",
+            "size": 158,
+            "id": "./showcase.config.ts"
+          }
+        ]
+      }
+    ]
+  }
+]

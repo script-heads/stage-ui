@@ -1,0 +1,19 @@
+{
+  "name": "flow-ui",
+  "author": "ABR Tech",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "docs": "yarn workspace @flow-ui/docs showcase",
+    "typedoc": "yarn typedoc:create && yarn typedoc:convert",
+    "typedoc:create": "cd ./packages/docs && typedoc -mode file --json ./typedoc/original.json ./cases",
+    "typedoc:convert": "cd ./packages/docs && node ./typedoc/corvert.js",
+    "pub:core": "git pull && cd ./packages/core && npm version patch && yarn build && cd ./dist && npm publish && cd .. && rm -rf ./dist && yarn push",
+    "pub:lab": "git pull cd ./packages/lab && npm version patch && yarn build && cd ./dist && npm publish && cd .. && rm -rf ./dist && yarn push",
+    "push": "git commit . -m 'Update version' && npm version patch && git push"
+  }
+}

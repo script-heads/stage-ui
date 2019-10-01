@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitReturns": true,
+    "strictNullChecks": true,
+    "allowJs": false,
+    "declaration": true,
+    "lib": [
+      "es7",
+      "es2018",
+      "dom"
+    ],
+    "target": "es5",
+    "module": "commonjs",
+    "types": [
+      "node"
+    ],
+    "jsx": "react",
+    "outDir": "./dist/"
+  },
+  "include": [
+    "./cases/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
