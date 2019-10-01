@@ -1,6 +1,13 @@
 import * as React from "react";
 import { Welcome } from '../Welcome'
 
+declare const $_WORKDIR_$: string
+
+let config = require(`${$_WORKDIR_$}/showcase.config`);
+if (config && config.default) {
+  config = config.default;
+}
+
 export interface MenuProps {
   cases: any,
   onChange: (currentCase: React.ReactNode, currentCaseID: string) => void
@@ -33,9 +40,10 @@ export default class Menu extends React.Component<MenuProps> {
   }
 
   render() {
+
     return (
       <div className='showcase-menu'>
-        <h1 className='showcase-logo' onClick={() => this.props.onChange(Welcome, 'null')}>Showcase</h1>
+        <h1 className='showcase-logo' onClick={() => this.props.onChange(Welcome, 'null')}>{config.title || 'Showcase'}</h1>
         <div className='showcase-menu-content'>
           {this.casesList(this.props.cases)}
         </div>
