@@ -104,6 +104,7 @@ class Core {
 
                 if (contextItem.match('.case')) {
                     objectLink.node = this.context(currentContext).default;
+                    objectLink.playground = this.context(currentContext).playground;
                 } else {
                     if (!objectLink[contextItem]) {
                         objectLink[contextItem] = {
@@ -144,7 +145,7 @@ class Core {
             }
 
             if (group && group.id === id) {
-                return group.node
+                return group
             }
         }
     }

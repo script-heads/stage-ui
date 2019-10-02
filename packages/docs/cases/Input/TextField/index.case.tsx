@@ -5,9 +5,7 @@ import UICaseBlock from '../../../plugins/UICaseBlock';
 import UICaseDocumentation from "../../../plugins/UICaseDocumentation";
 import Block from '@flow-ui/core/layout/Block';
 
-export default (props: CaseProps) => {
-
-    const TextFieldTypes = useState<any>({})
+export const playground = (props: CaseProps) => {
 
     const [value, setValue] = useState<string>('');
     const [value1, setValue1] = useState<string>('');
@@ -60,7 +58,18 @@ export default (props: CaseProps) => {
                     }}
                 />
             </Block>
-            {/* <UICaseBlock
+        </Fragment>
+    )
+}
+
+export default (props: CaseProps) => {
+
+    const TextFieldTypes = useState<any>({})
+    const [value, setValue] = useState<string>('');
+
+    return (
+        <Fragment>
+            <UICaseBlock
                 title="Simple case"
                 subtitle={``}
                 scope={{ TextField }}
@@ -102,7 +111,7 @@ export default (props: CaseProps) => {
                     `@flow-ui/core/input/TextField`,
                 ]}
             />
-            <UICaseDocumentation ns="TextFieldTypes" /> */}
+            <UICaseDocumentation ns="TextFieldTypes" />
         </Fragment>
     )
 }
