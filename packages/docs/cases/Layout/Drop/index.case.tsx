@@ -26,9 +26,7 @@ export default (props: CaseProps) => {
 								<Button>Trigger Popup</Button>
 							)}
 							children={(
-								<Popover>
-									<a>Hello world!</a>
-								</Popover>
+								<Popover>Hello world!</Popover>
 							)}
 						/>
 					</Block>
