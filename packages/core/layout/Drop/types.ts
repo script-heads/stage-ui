@@ -9,7 +9,7 @@ declare namespace DropTypes {
   }
 
   interface Props extends Global.StyleSelfProps {
-    target: React.RefObject<HTMLElement>
+    target: React.ReactNode
     align?: "top" | "bottom" | "left" | "right"
     justify?: "start" | "center" | "end" | "start-outside" | "end-outside"
     distance?: number

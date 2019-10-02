@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useRef } from "react";
+import React, { forwardRef, useEffect, useRef, Fragment } from "react";
 import ReactDOM from "react-dom";
 import Types from "./types";
 import createStyles from "./styles";
@@ -7,11 +7,11 @@ import useContainer from "../../misc/hooks/useContainer";
 const Drop = (props: Types.Props, ref) => {
 
     const { attributes } = useContainer(props);
-    const { children, align, onClickOutside, distance = 8 } = props;
+    const { children, align, target, onClickOutside, distance = 8 } = props;
     const styles = createStyles(props);
-    const target = props.target.current;
     const drop = useRef<HTMLDivElement>(null);
-
+    const targetRef = useRef<HTMLSpanElement>(null);
+    
     useEffect(() => {
         if (props.visibility != 'hidden' && props.display != 'none') {
             setPosition();
@@ -25,14 +25,14 @@ const Drop = (props: Types.Props, ref) => {
     });
 
     function handleClickOutside(event) {
-        target &&
-            !target.contains(event.target) &&
+        targetRef.current &&
+            !targetRef.current.contains(event.target) &&
             onClickOutside && onClickOutside();
     }
 
     function setPosition() {
         if (target && drop.current) {
-            const tr = target.getBoundingClientRect();
+            const tr = targetRef.current!.getBoundingClientRect();
             const dr = drop.current.getBoundingClientRect();
             const style = drop.current.style;
 
@@ -103,17 +103,27 @@ const Drop = (props: Types.Props, ref) => {
         }
     }
 
-    return ReactDOM.createPortal(
-        <div
-            {...attributes}
-            ref={drop}
-            css={styles.container}
-            style={{ top: 0, left: 0, ...attributes.style }}
-            children={children}
-
-        />,
-        document.body
-    );
+    return (
+        <Fragment>
+            {
+                React.cloneElement(target as any, {
+                    ref: targetRef
+                })
+            }
+            {
+                ReactDOM.createPortal(
+                    <div
+                        {...attributes}
+                        ref={drop}
+                        css={styles.container}
+                        style={{ top: 0, left: 0, ...attributes.style }}
+                        children={children}
+                    />,
+                    document.body
+                )
+            }
+        </Fragment>
+    )
 };
 
 function toStyle(value: number) {

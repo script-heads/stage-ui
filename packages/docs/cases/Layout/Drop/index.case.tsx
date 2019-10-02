@@ -11,33 +11,29 @@ export default (props: CaseProps) => {
 
 	const DropTypes = useState<any>({})
 
-	let _ref = useRef(null)
 	return (
 		<Fragment>
-			<Block>
-				<Button ref={_ref}>Trigger Popup</Button>
-				{_ref && <Drop {...DropTypes[0]} target={_ref} align='bottom'>
-					<Popover>
-						<a>Hello world!</a>
-					</Popover>
-				</Drop>}
-			</Block>
-			{/* <UICaseBlock
+			<UICaseBlock
 				title="Simple case"
 				subtitle={``}
-				scope={{ Block, Drop, Popover, Button, _ref }}
+				scope={{ Block, Drop, Popover, Button }}
 				props={{ DropTypes }}
 				children={
 					<Block>
-						<Button ref={fakeValue("_ref")}>Trigger Popup</Button>
-						<Drop {...DropTypes[0]} target={fakeValue("_ref")}>
-							<Popover>
-								<a>Hello world!</a>
-							</Popover>
-						</Drop>
+						<Drop
+							{...DropTypes[0]}
+							target={(
+								<Button>Trigger Popup</Button>
+							)}
+							children={(
+								<Popover>
+									<a>Hello world!</a>
+								</Popover>
+							)}
+						/>
 					</Block>
 				}
-			/> */}
+			/>
 			<UICaseDocumentation ns="DropTypes" />
 		</Fragment>
 	)
