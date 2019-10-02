@@ -7,7 +7,7 @@ import useContainer from "../../misc/hooks/useContainer";
 const Drop = (props: Types.Props, ref) => {
 
     const { attributes } = useContainer(props);
-    const { children, align, target, onClickOutside, distance = 8 } = props;
+    const { children, target, onClickOutside, distance = 8 } = props;
     const styles = createStyles(props);
     const drop = useRef<HTMLDivElement>(null);
     const targetRef = useRef<HTMLSpanElement>(null);
@@ -36,12 +36,15 @@ const Drop = (props: Types.Props, ref) => {
             const dr = drop.current.getBoundingClientRect();
             const style = drop.current.style;
 
-            const { align, justify } = props;
+            const { 
+                align = "bottom", 
+                justify = "center" 
+            } = props;
 
+            style.visibility = "visible";
             style.top = toStyle(tr.bottom + distance);
             style.left = toStyle((tr.left + tr.width / 2) - dr.width / 2);
 
-            //TODO: outside justify
             switch (align) {
                 case "top":
                     style.top = toStyle(tr.top - dr.height - distance);
@@ -54,6 +57,12 @@ const Drop = (props: Types.Props, ref) => {
                             break;
                         case "end":
                             style.left = toStyle(tr.right - dr.width);
+                            break;
+                        case "start-outside":
+                            style.left = toStyle(tr.left - tr.width);
+                            break;
+                        case "end-outside":
+                            style.left = toStyle(tr.left + tr.width);
                             break;
                     }
                     break;
@@ -69,6 +78,12 @@ const Drop = (props: Types.Props, ref) => {
                         case "end":
                             style.left = toStyle(tr.right - dr.width);
                             break;
+                        case "start-outside":
+                            style.left = toStyle(tr.left - tr.width);
+                            break;
+                        case "end-outside":
+                            style.left = toStyle(tr.left + tr.width);
+                            break;
                     }
                     break;
                 case "left":
@@ -81,7 +96,10 @@ const Drop = (props: Types.Props, ref) => {
                             style.top = toStyle((tr.top + tr.height / 2) - dr.height / 2);
                             break;
                         case "start":
-                            style.top = toStyle(tr.bottom - dr.height);
+                                style.top = toStyle(tr.bottom - dr.height);
+                                break;
+                        case "start-outside":
+                            style.top = toStyle(tr.top - tr.height);
                             break;
                     }
                     break;
@@ -97,6 +115,9 @@ const Drop = (props: Types.Props, ref) => {
                         case "start":
                             style.top = toStyle(tr.bottom - dr.height);
                             break;
+                        case "start-outside":
+                            style.top = toStyle(tr.top - tr.height);
+                            break;
                     }
                     break;
             }
@@ -110,13 +131,19 @@ const Drop = (props: Types.Props, ref) => {
                     ref: targetRef
                 })
             }
+
             {
-                ReactDOM.createPortal(
+               ReactDOM.createPortal(
                     <div
                         {...attributes}
                         ref={drop}
                         css={styles.container}
-                        style={{ top: 0, left: 0, ...attributes.style }}
+                        style={{ 
+                            top: 0, 
+                            left: 0, 
+                            visibility: "hidden",
+                            ...attributes.style 
+                        }}
                         children={children}
                     />,
                     document.body
