@@ -64,7 +64,6 @@ export default (props: DatePickerTypes.Props) => {
                         {...props}
                         cursor='text'
                         label={props.label}
-                        value={value.format(props.format || "YYYY-MM-DD")}
                         onClick={() => setActive(true)}
                         rightChild={<Icon type={i => !isActive ? i.outline.calendar : undefined} />}
                         children={(

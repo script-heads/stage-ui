@@ -16,7 +16,7 @@ declare namespace TextFieldTypes {
         'url'
 
     interface Props extends Global.FieldProps, Global.Props, InputProps, TextAreaProps {
-        defaultValue?: string
+        defaultValue?: string | number
         align?: "left" | "right"
         multiline?: boolean
         masked?: IMask.AnyMaskedOptions

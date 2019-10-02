@@ -11,20 +11,14 @@ const Field: FC<FieldTypes.Props> = (props, ref) => {
         size = 'medium',
         name,
         label,
-        value,
-        defaultValue,
         clearable,
-        onClear
+        onClear,
+        isEmpty
     } = props;
     const { attributes, focus } = useContainer(props, true, decoration != 'none');
     const styles = getStyles(props);
     const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xlarge');
-    const isLabelOverlay =
-        typeof label != 'undefined' &&
-        typeof value === 'undefined' &&
-        typeof defaultValue === 'undefined' &&
-        !focus &&
-        !isLabelOutside
+    const isLabelOverlay = (isEmpty && !focus && !isLabelOutside) ? true : false
 
     props.onLabelOverlay && props.onLabelOverlay(isLabelOverlay);
 
