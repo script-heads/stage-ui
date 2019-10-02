@@ -41,7 +41,7 @@ export default (props: CaseProps) => {
 						gridTemplateColumns: "repeat(auto-fill, 10rem)"
 					}}
 				>
-					{Object.keys(icons[props.params.set || 'outline']).map(key => (
+					{Object.keys(icons.outline).map(key => (
 						<Flexbox
 							column
 							key={key}
@@ -51,7 +51,7 @@ export default (props: CaseProps) => {
 							alignContent="center"
 						>
 							<Icon
-								type={icons[props.params.set || 'outline'][key]}
+								type={t => t.outline[key]}
 								shape="oval"
 								size="2rem"
 								background={c => c.lightest.css()}
