@@ -19,10 +19,18 @@ export default (props: CaseProps) => {
                     <Menu
                         {...props.params}
                         {...MenuTypes[0]}
-                        defaultValue={0}>
-                        <span>Home</span>
-                        <Icon type={(i) => i.outline.cube} />
-                    </Menu>
+                        defaultValue={0}
+                        items={[
+                            {
+                                value: 'home',
+                                content: 'Home'
+                            },
+                            {
+                                value: 'icon',
+                                content: <Icon type={(i) => i.outline.cube} />
+                            }
+                        ]}
+                    />
                 }
                 paths={[
                     `@flow-ui/core/action/Menu`,

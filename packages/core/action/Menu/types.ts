@@ -3,10 +3,10 @@ import Global from '../../types';
 declare namespace MenuTypes {
 
     export interface Props extends Global.Props {
-        defaultValue?: number
-        value?: number
-        onChange?: (value: number) => void
-        children?: React.ReactNode
+        defaultValue?: string
+        value?: string
+        onChange?: (id: string) => void
+        items: Item[]
 
         size?: Global.Size
         decoration?:
@@ -28,12 +28,16 @@ declare namespace MenuTypes {
         disabled?: boolean
     }
 
-    export interface Item extends Global.HTMLAttributes, Global.EventHandlers {
-        styles?: any
-        active?: boolean
-        onEnter?: Function
-        children?: React.ReactNode
+    export interface Item extends Global.EventHandlers {
+        content: React.ReactNode
+        value: string
         disabled?: boolean
+    }
+
+    export interface ItemProps extends Item {
+        active?: boolean
+        styles?: any
+        onEnter?: () => void
     }
 
     export interface Overrides {

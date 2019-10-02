@@ -15,52 +15,35 @@ export default (props: MenuProps) => {
 
 	const casesList = (cases: any) => {
 		return Object.keys(cases).map(name => {
-			if (typeof cases[name] === 'object') {
-				if (cases[name].node) {
-					return (
-						<Block
-							flex={1}
-							key={name}
-							onClick={() => {
-								const c = cases[name]
-								setCurrentCase(c.id);
-								props.onChange(c.id)
-							}}
-							children={
-								<C2>{name}</C2>
-							}
-						/>
-					)
-				}
-				
-				let counter = 0
-				let index = -1
 
-				for (let cname of Object.keys(cases[name])) {
-					const child = cases[name][cname];
-					if (child.node) {
-						counter++;
-						if (child.id === currentCase) {
-							index = counter
-							break;
-						}
+			if (typeof cases[name] === 'object') {
+
+				if (cases[name].node) {
+					return {
+						value: cases[name].id,
+						content: name
 					}
 				}
 
 				return (
 					<Block key={name} m="1rem">
-						<C2 
+						<C2
 							// ml={'0.75rem'}
-							weight={500} 
+							weight={500}
 							color={c => c.light.css()}
 							children={name}
 						/>
 						<Menu
-							value={index} 
+							value={currentCase}
 							decoration="color"
-							direction="column">
-							{casesList(cases[name])}
-						</Menu>
+							direction="column"
+							onChange={(value) => {
+								setCurrentCase(value);
+								props.onChange(value)
+							}}
+							//@ts-ignore
+							items={casesList(cases[name]).filter(c => c != null)}
+						/>
 					</Block>
 				);
 			}
@@ -70,7 +53,7 @@ export default (props: MenuProps) => {
 
 	return (
 		<Block css={{
-			marginTop:"1rem",
+			marginTop: "1rem",
 			borderTopRightRadius: theme.radius.default,
 			borderBottomRightRadius: theme.radius.default,
 			borderRight: `1px solid ${theme.color.lightest.css()}`,
