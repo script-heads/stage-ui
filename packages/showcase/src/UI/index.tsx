@@ -2,8 +2,9 @@ import * as React from "react";
 import core from '../core';
 import Block from '@flow-ui/core/layout/Block';
 import Flexbox from '@flow-ui/core/layout/Flexbox';
+import Spinner from '@flow-ui/core/content/Spinner';
 import { Menu, Panel } from './components';
-import './styles/main.css';
+
 import { PanelRenderProps, ToolRenderItem, PanelRenderItem } from "../../types";
 import { A, H4, T2 } from "@flow-ui/core/content/Typography";
 import Icon from "@flow-ui/core/content/Icon";
@@ -126,10 +127,16 @@ class UI extends React.Component<{}, State>  {
 
 	changeCase(CurrentCase: React.SFC<{}>, currentCaseID: string) {
 		this.setState({
-			CurrentCase: CurrentCase,
+			CurrentCase: null,
 			isMenuOpen: false
 		});
-		localStorage.setItem('currentCaseID', currentCaseID);
+		setTimeout(() => {
+			this.setState({
+				CurrentCase: CurrentCase,
+				isMenuOpen: false
+			});
+			localStorage.setItem('currentCaseID', currentCaseID);
+		})
 	}
 
 	componentWillUnmount() {
@@ -175,6 +182,7 @@ class UI extends React.Component<{}, State>  {
 									</Block>
 								)
 							}
+							{!CurrentCase && <Spinner m="2rem" />}
 							{core.config.hidePanel !== true && (
 								<Panel items={panelItems} tools={panelTools} />
 							)}

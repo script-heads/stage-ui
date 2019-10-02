@@ -23,8 +23,8 @@ export default (props: MenuProps) => {
 							key={name}
 							onClick={() => {
 								const c = cases[name]
-								props.onChange(c.node, c.id)
 								setCurrentCase(c.id);
+								props.onChange(c.node, c.id)
 							}}
 							children={
 								<C2>{name}</C2>
