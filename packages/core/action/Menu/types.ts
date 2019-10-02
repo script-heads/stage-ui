@@ -2,10 +2,12 @@ import Global from '../../types';
 
 declare namespace MenuTypes {
 
+    type Value = string | number;
+
     export interface Props extends Global.Props {
-        defaultValue?: string
-        value?: string
-        onChange?: (id: string) => void
+        defaultValue?: Value
+        value?: Value
+        onChange?: (value: Value) => void
         items: Item[]
 
         size?: Global.Size
@@ -30,7 +32,7 @@ declare namespace MenuTypes {
 
     export interface Item extends Global.EventHandlers {
         content: React.ReactNode
-        value: string
+        value: Value
         disabled?: boolean
     }
 

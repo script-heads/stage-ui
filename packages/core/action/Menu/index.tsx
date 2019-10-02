@@ -6,11 +6,13 @@ import useContainer from '../../misc/hooks/useContainer';
 import createID from '../../misc/utils/createID';
 
 const Menu: FC<MenuTypes.Props> = (props, ref) => {
-    const { items, defaultValue, separator } = props;
+    const { items, defaultValue = '', separator } = props;
     const { attributes } = useContainer(props);
     const styles = getStyles(props);
-    const [value, setValue] = useState<string>(defaultValue || '');
-    const currentValue = props.value || value
+    const [value, setValue] = useState<MenuTypes.Value>(defaultValue);
+    const currentValue = (typeof props.value === 'undefined' || props.value === '')
+        ? value
+        : props.value
 
     function handleSwitch(item: MenuTypes.Item) {
         if (!item.disabled) {
