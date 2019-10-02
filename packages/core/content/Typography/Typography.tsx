@@ -40,7 +40,16 @@ const Typography = (props: Types.Props, ref) => {
                 props.animated && {
                     transition: "all .15s"
                 }
-            ]
+            ],
+            download: props.download,
+            href: props.href,
+            hrefLang: props.hrefLang,
+            media: props.media,
+            ping: props.ping,
+            rel: props.rel,
+            target: props.target,
+            type: props.type,
+            referrerPolicy: props.referrerPolicy,
         },
         data
     );

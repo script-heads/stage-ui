@@ -3,10 +3,10 @@ import CSS from 'csstype';
 
 declare namespace TypographyTypes {
 
-	export interface Props extends TextProps {
+	export interface Props extends AnchorProps {
 		defaultStyles: any
 		tag: string
-		theme: any
+		theme: any,
 	}
 
 	export interface AnchorProps extends TextProps {
