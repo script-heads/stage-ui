@@ -58,29 +58,36 @@ const UICaseDocumentation = (props: { ns: string, filter?: string[], openInterfa
         setBlockOpenState(blockOpenState);
     }, [nameSpaceDocumentation]);
 
-    return nameSpaceDocumentation.map((data: TypeInterface, index: number) => {
+    return nameSpaceDocumentation.map((data: TypeInterface, nsIndex: number) => {
         if (props.filter && props.filter.find(f => f !== data.name)) {
             return null
         }
         return (
-            <Block key={index} css={{ margin: "0 4rem", marginBottom: "1rem" }} >
+            <Block key={nsIndex} css={{ margin: "0 2rem", marginBottom: "1rem" }} >
                 <Flexbox justifyContent="space-between" onClick={() => {
                     setBlockOpenState({
-                        [index]: !blockOpenState[index]
+                        [nsIndex]: !blockOpenState[nsIndex]
                     })
                 }}>
-                    <H4 weight={500}>{data.name}</H4>
-                    <Icon type={t => blockOpenState[index] ? t.outline.minus : t.outline.plus} />
+                    <H4 
+                        color={c => c.hardest.css()}
+                        weight={500} 
+                        children={data.name}
+                    />
+                    <Icon 
+                        color={c => c.hard.css()}
+                        type={t => blockOpenState[nsIndex] ? t.outline.minus : t.outline.plus} 
+                    />
                 </Flexbox>
 
-                {blockOpenState[index] !== true && (
+                {blockOpenState[nsIndex] !== true && (
                     <Divider dash={2} />
                 )}
-                {blockOpenState[index] === true && (
+                {blockOpenState[nsIndex] === true && (
                     <Fragment>
-                        <C1 weight={400} color={c => c.light.css()}>{data.comment}</C1>
-                        <Block surface="minor" mt={"0.5rem"}>
-                            {data.children.map(child => {
+                        <C1 weight={500} color={c => c.light.css()}>{data.comment}</C1>
+                        <Block surface="major" mt={"0.5rem"}>
+                            {data.children.map((child: TypeInterfaceChild, childIndex: number) => {
                                 let color = "#f3f3f3"
                                 if (child.type === "reference") {
                                     color = "#fadeff"
@@ -104,6 +111,7 @@ const UICaseDocumentation = (props: { ns: string, filter?: string[], openInterfa
                                                         size="1.5rem"
                                                         type={i => i.outline.cube}
                                                         color={c => c.secondary.css()}
+
                                                     />
                                                     <C1 weight={500}>{child.name}: </C1>
                                                     {child.values.map(value =>
@@ -155,7 +163,7 @@ const UICaseDocumentation = (props: { ns: string, filter?: string[], openInterfa
                                             </Fragment>
                                         )}
                                         {
-                                            (index + 1) !== nameSpaceDocumentation.length && (
+                                            (childIndex + 1) !== data.children.length && (
                                                 <Divider />
                                             )
                                         }
