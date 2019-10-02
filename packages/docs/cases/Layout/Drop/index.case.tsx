@@ -33,6 +33,9 @@ export default (props: CaseProps) => {
 						/>
 					</Block>
 				}
+				paths={[
+                    `@flow-ui/core/misc/layout/Drop`,
+                ]}
 			/>
 			<UICaseDocumentation ns="DropTypes" />
 		</Fragment>
