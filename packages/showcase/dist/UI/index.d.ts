@@ -1,5 +1,5 @@
 import * as React from "react";
-import './styles/main.css';
+
 interface State {
     CurrentCase: React.SFC<{}>;
     isMenuOpen: boolean;

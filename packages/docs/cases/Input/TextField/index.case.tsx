@@ -1,9 +1,20 @@
 import TextField from '@flow-ui/core/input/TextField';
-import React, { Fragment, useState, useMemo, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
 import { CaseProps } from "../../../plugins/CaseWrapper";
 import UICaseBlock from '../../../plugins/UICaseBlock';
 import UICaseDocumentation from "../../../plugins/UICaseDocumentation";
 import Block from '@flow-ui/core/layout/Block';
+
+export const playground = (props: CaseProps) => {
+
+    return (
+        <Fragment>
+            <Block>
+                Hello
+            </Block>
+        </Fragment>
+    )
+}
 
 export default (props: CaseProps) => {
 

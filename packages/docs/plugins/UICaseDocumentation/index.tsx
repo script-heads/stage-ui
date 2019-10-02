@@ -1,6 +1,6 @@
 import Divider from '@flow-ui/core/content/Divider';
 import Icon from '@flow-ui/core/content/Icon';
-import { C1, C2, H2, T2, H4 } from '@flow-ui/core/content/Typography';
+import { C1, C2, H2, T2, H4, H1 } from '@flow-ui/core/content/Typography';
 import Block from '@flow-ui/core/layout/Block';
 import Flexbox from '@flow-ui/core/layout/Flexbox';
 import React, { Fragment, useLayoutEffect, useState } from 'react';
@@ -62,127 +62,132 @@ const UICaseDocumentation = (props: { ns: string, filter?: string[], openInterfa
         return null
     }
 
-    return nameSpaceDocumentation.map((data: TypeInterface, nsIndex: number) => {
-        if (props.filter && props.filter.find(f => f !== data.name)) {
-            return null
-        }
-        return (
-            <Block key={nsIndex} css={{ margin: "0 2rem", marginBottom: "1rem" }} >
-                <Flexbox justifyContent="space-between" onClick={() => {
-                    setBlockOpenState({
-                        [nsIndex]: !blockOpenState[nsIndex]
-                    })
-                }}>
-                    <H4 
-                        color={c => c.hardest.css()}
-                        weight={500} 
-                        children={data.name}
-                    />
-                    <Icon 
-                        color={c => c.hard.css()}
-                        type={t => blockOpenState[nsIndex] ? t.outline.minus : t.outline.plus} 
-                    />
-                </Flexbox>
+    return (
+        <Fragment>
+            <H1 css={{userSelect:"none"}} ml="2rem" mb="1rem">Properties</H1>
+            {nameSpaceDocumentation.map((data: TypeInterface, nsIndex: number) => {
+                if (props.filter && props.filter.find(f => f !== data.name)) {
+                    return null
+                }
+                return (
+                    <Block key={nsIndex} css={{ margin: "0 2rem", marginBottom: "1rem" }} >
+                        <Flexbox justifyContent="space-between" onClick={() => {
+                            setBlockOpenState({
+                                [nsIndex]: !blockOpenState[nsIndex]
+                            })
+                        }}>
+                            <H4
+                                color={c => c.hardest.css()}
+                                weight={500}
+                                children={data.name}
+                            />
+                            <Icon
+                                color={c => c.hard.css()}
+                                type={t => blockOpenState[nsIndex] ? t.outline.minus : t.outline.plus}
+                            />
+                        </Flexbox>
 
-                {blockOpenState[nsIndex] !== true && (
-                    <Divider dash={2} />
-                )}
-                {blockOpenState[nsIndex] === true && (
-                    <Fragment>
-                        <C1 weight={500} color={c => c.light.css()}>{data.comment}</C1>
-                        <Block surface="major" mt={"0.5rem"}>
-                            {data.children.map((child: TypeInterfaceChild, childIndex: number) => {
-                                let color = "#f3f3f3"
-                                if (child.type === "reference") {
-                                    color = "#fadeff"
-                                }
-                                if (child.type === "stringLiteral") {
-                                    color = "#ffdede"
-                                }
-                                if (child.type === "intrinsic") {
-                                    color = "#deffe4"
-                                }
-                                if (child.type === "reflection") {
-                                    color = "#fdffde"
-                                }
-                                return (
-                                    <Block key={child.id}>
-                                        <Block m="1rem">
-                                            <Flexbox>
-                                                <Flexbox flex={1} alignItems="center" wrap="wrap">
-                                                    <Icon
-                                                        css={{ marginRight: "0.25rem" }}
-                                                        size="1.5rem"
-                                                        type={i => i.outline.cube}
-                                                        color={c => c.secondary.css()}
+                        {blockOpenState[nsIndex] !== true && (
+                            <Divider dash={2} />
+                        )}
+                        {blockOpenState[nsIndex] === true && (
+                            <Fragment>
+                                <C1 weight={500} color={c => c.light.css()}>{data.comment}</C1>
+                                <Block surface="major" mt={"0.5rem"}>
+                                    {data.children.map((child: TypeInterfaceChild, childIndex: number) => {
+                                        let color = "#f3f3f3"
+                                        if (child.type === "reference") {
+                                            color = "#fadeff"
+                                        }
+                                        if (child.type === "stringLiteral") {
+                                            color = "#ffdede"
+                                        }
+                                        if (child.type === "intrinsic") {
+                                            color = "#deffe4"
+                                        }
+                                        if (child.type === "reflection") {
+                                            color = "#fdffde"
+                                        }
+                                        return (
+                                            <Block key={child.id}>
+                                                <Block m="1rem">
+                                                    <Flexbox>
+                                                        <Flexbox flex={1} alignItems="center" wrap="wrap">
+                                                            <Icon
+                                                                css={{ marginRight: "0.25rem" }}
+                                                                size="1.5rem"
+                                                                type={i => i.outline.cube}
+                                                                color={c => c.secondary.css()}
 
-                                                    />
-                                                    <C1 weight={500}>{child.name}: </C1>
-                                                    {Array.isArray(child.values) &&  child.values.map(value =>
-                                                        <C2
-                                                            key={value}
+                                                            />
+                                                            <C1 weight={500}>{child.name}: </C1>
+                                                            {Array.isArray(child.values) && child.values.map(value =>
+                                                                <C2
+                                                                    key={value}
+                                                                    weight={500}
+                                                                    background={color}
+                                                                    p={"0.125rem"}
+                                                                    pl={"0.35rem"}
+                                                                    pr={"0.35rem"}
+                                                                    css={{ color: "#000", margin: "0 2px", borderRadius: "4px" }}
+                                                                    children={`${value}`}
+                                                                />
+                                                            )}
+                                                            {!Array.isArray(child.values) && (
+                                                                <C2 color={c => c.hard.css()}>Not documented yet</C2>
+                                                            )}
+                                                        </Flexbox>
+                                                        {child.deprecated !== void 0 && (
+                                                            <C1
+                                                                weight={500}
+                                                                p={"0.125rem"}
+                                                                pl={"0.35rem"}
+                                                                pr={"0.35rem"}
+                                                                mr={"0.25rem"}
+                                                                children={"Deprecated"}
+                                                                background={"#000"}
+                                                                color={"#fff"}
+                                                                css={{ borderRadius: "0.35rem" }}
+                                                            />
+                                                        )}
+                                                        <C1
                                                             weight={500}
-                                                            background={color}
                                                             p={"0.125rem"}
                                                             pl={"0.35rem"}
                                                             pr={"0.35rem"}
-                                                            css={{ color: "#000", margin: "0 2px", borderRadius: "4px" }}
-                                                            children={`${value}`}
+                                                            children={child.isOptional ? "Optional" : "Required"}
+                                                            background={c => child.isOptional ? c.lightest.css() : c.accent.red.css()}
+                                                            color={c => c.onPrimary.css()}
+                                                            alignSelf="flex-start"
+                                                            css={{ borderRadius: "0.35rem" }}
                                                         />
-                                                    )}
-                                                    {!Array.isArray(child.values) && (
-                                                        <C2 color={c => c.hard.css()}>Not documented yet</C2>
-                                                    )}
-                                                </Flexbox>
-                                                {child.deprecated !== void 0 && (
-                                                    <C1
-                                                        weight={500}
-                                                        p={"0.125rem"}
-                                                        pl={"0.35rem"}
-                                                        pr={"0.35rem"}
-                                                        mr={"0.25rem"}
-                                                        children={"Deprecated"}
-                                                        background={"#000"}
-                                                        color={"#fff"}
-                                                        css={{ borderRadius: "0.35rem" }}
-                                                    />
-                                                )}
-                                                <C1
-                                                    weight={500}
-                                                    p={"0.125rem"}
-                                                    pl={"0.35rem"}
-                                                    pr={"0.35rem"}
-                                                    children={child.isOptional ? "Optional" : "Required"}
-                                                    background={c => child.isOptional ? c.lightest.css() : c.accent.red.css()}
-                                                    color={c => c.onPrimary.css()}
-                                                    alignSelf="flex-start"
-                                                    css={{ borderRadius: "0.35rem" }}
-                                                />
-                                            </Flexbox>
-                                        </Block>
-                                        {typeof child.comment === "string" && (
-                                            <Fragment>
-                                                <Block m="1rem" mt="0">
-                                                    {child.comment.split("\n").map((text, index) => (
-                                                        <T2 color={c => c.hard.css()} key={index}>{text}</T2>
-                                                    ))}
+                                                    </Flexbox>
                                                 </Block>
-                                            </Fragment>
-                                        )}
-                                        {
-                                            (childIndex + 1) !== data.children.length && (
-                                                <Divider />
-                                            )
-                                        }
-                                    </Block>
-                                )
-                            })}
-                        </Block>
-                    </Fragment>
-                )}
-            </Block>
-        )
-    }) as any
+                                                {typeof child.comment === "string" && (
+                                                    <Fragment>
+                                                        <Block m="1rem" mt="0">
+                                                            {child.comment.split("\n").map((text, index) => (
+                                                                <T2 color={c => c.hard.css()} key={index}>{text}</T2>
+                                                            ))}
+                                                        </Block>
+                                                    </Fragment>
+                                                )}
+                                                {
+                                                    (childIndex + 1) !== data.children.length && (
+                                                        <Divider />
+                                                    )
+                                                }
+                                            </Block>
+                                        )
+                                    })}
+                                </Block>
+                            </Fragment>
+                        )}
+                    </Block>
+                )
+            })}
+        </Fragment>
+    )
 }
 
 export default UICaseDocumentation

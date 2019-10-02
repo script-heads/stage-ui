@@ -2,8 +2,9 @@ import * as React from "react";
 import core from '../core';
 import Block from '@flow-ui/core/layout/Block';
 import Flexbox from '@flow-ui/core/layout/Flexbox';
+import Spinner from '@flow-ui/core/content/Spinner';
 import { Menu, Panel } from './components';
-import './styles/main.css';
+
 import { PanelRenderProps, ToolRenderItem, PanelRenderItem } from "../../types";
 import { A, H4, T2 } from "@flow-ui/core/content/Typography";
 import Icon from "@flow-ui/core/content/Icon";
@@ -40,10 +41,22 @@ class UI extends React.Component<{}, State>  {
 	constructor(props: any) {
 		super(props);
 		this.handleMouseClick = this.handleMouseClick.bind(this);
-		this.changeCase = this.changeCase.bind(this);
+		this.playgroundModeHandle = this.playgroundModeHandle.bind(this);
+		this.setCase = this.setCase.bind(this);
 		this.addPanel = this.addPanel.bind(this);
 		this.setWrapper = this.setWrapper.bind(this);
 		this.setContext = this.setContext.bind(this);
+	}
+
+	playgroundModeHandle(event) {
+		if (event.keyCode === 80 && event.altKey) {
+			const mode = localStorage.getItem("mode") || "default";
+			localStorage.setItem("mode", mode === "default" ? "playground" : "default")
+			let currentCase = localStorage.getItem('currentCaseID');
+			if (currentCase) {
+				this.setCase(currentCase)
+			}
+		}
 	}
 
 	UNSAFE_componentWillMount() {
@@ -55,11 +68,10 @@ class UI extends React.Component<{}, State>  {
 			},
 		});
 		document.addEventListener('mousedown', this.handleMouseClick);
-		const Case = core.getCaseById(localStorage.getItem('currentCaseID'));
-		if (Case) {
-			this.setState({
-				CurrentCase: Case
-			});
+		document.addEventListener('keyup', this.playgroundModeHandle);
+		const savedCaseID = localStorage.getItem('currentCaseID')
+		if (savedCaseID) {
+			this.setCase(savedCaseID)
 		}
 	};
 
@@ -123,17 +135,42 @@ class UI extends React.Component<{}, State>  {
 			Wrapper: Wrapper
 		})
 	}
+	
+	setCase(currentCaseID: string) {
 
-	changeCase(CurrentCase: React.SFC<{}>, currentCaseID: string) {
+		const Case = core.getCaseById(currentCaseID);
+
 		this.setState({
-			CurrentCase: CurrentCase,
+			CurrentCase: null,
 			isMenuOpen: false
 		});
-		localStorage.setItem('currentCaseID', currentCaseID);
+		
+		let currentCaseNode = Case.node;
+
+		const mode = localStorage.getItem('mode');
+		if (mode === "playground") {
+			if (Case.playground) {
+				currentCaseNode = Case.playground
+			} else {
+				currentCaseNode = () => {
+					return (
+						<Block m="2rem">There is no playground export for this case.</Block>
+					)
+				}
+			}
+		}
+		setTimeout(() => {
+			this.setState({
+				CurrentCase: currentCaseNode,
+				isMenuOpen: false
+			});
+			localStorage.setItem('currentCaseID', currentCaseID);
+		})
 	}
 
 	componentWillUnmount() {
 		document.removeEventListener('mousedown', this.handleMouseClick);
+		document.removeEventListener('keydown', this.playgroundModeHandle);
 	}
 
 	render() {
@@ -164,7 +201,7 @@ class UI extends React.Component<{}, State>  {
 
 						</Flexbox>
 						<Flexbox alignItems="flex-start">
-							<Menu cases={core.cases} onChange={this.changeCase} />
+							<Menu cases={core.cases} onChange={this.setCase} />
 							{
 								CurrentCase && (
 									<Block flex={1} css={{
@@ -175,6 +212,7 @@ class UI extends React.Component<{}, State>  {
 									</Block>
 								)
 							}
+							{!CurrentCase && <Spinner m="2rem" />}
 							{core.config.hidePanel !== true && (
 								<Panel items={panelItems} tools={panelTools} />
 							)}

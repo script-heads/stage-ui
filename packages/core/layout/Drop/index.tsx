@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useRef } from "react";
+import React, { forwardRef, useEffect, useRef, Fragment } from "react";
 import ReactDOM from "react-dom";
 import Types from "./types";
 import createStyles from "./styles";
@@ -7,11 +7,11 @@ import useContainer from "../../misc/hooks/useContainer";
 const Drop = (props: Types.Props, ref) => {
 
     const { attributes } = useContainer(props);
-    const { children, align, onClickOutside, distance = 8 } = props;
+    const { children, target, onClickOutside, distance = 8 } = props;
     const styles = createStyles(props);
-    const target = props.target.current;
     const drop = useRef<HTMLDivElement>(null);
-
+    const targetRef = useRef<HTMLSpanElement>(null);
+    
     useEffect(() => {
         if (props.visibility != 'hidden' && props.display != 'none') {
             setPosition();
@@ -25,23 +25,26 @@ const Drop = (props: Types.Props, ref) => {
     });
 
     function handleClickOutside(event) {
-        target &&
-            !target.contains(event.target) &&
+        targetRef.current &&
+            !targetRef.current.contains(event.target) &&
             onClickOutside && onClickOutside();
     }
 
     function setPosition() {
         if (target && drop.current) {
-            const tr = target.getBoundingClientRect();
+            const tr = targetRef.current!.getBoundingClientRect();
             const dr = drop.current.getBoundingClientRect();
             const style = drop.current.style;
 
-            const { align, justify } = props;
+            const { 
+                align = "bottom", 
+                justify = "center" 
+            } = props;
 
+            style.visibility = "visible";
             style.top = toStyle(tr.bottom + distance);
             style.left = toStyle((tr.left + tr.width / 2) - dr.width / 2);
 
-            //TODO: outside justify
             switch (align) {
                 case "top":
                     style.top = toStyle(tr.top - dr.height - distance);
@@ -54,6 +57,12 @@ const Drop = (props: Types.Props, ref) => {
                             break;
                         case "end":
                             style.left = toStyle(tr.right - dr.width);
+                            break;
+                        case "start-outside":
+                            style.left = toStyle(tr.left - tr.width);
+                            break;
+                        case "end-outside":
+                            style.left = toStyle(tr.left + tr.width);
                             break;
                     }
                     break;
@@ -69,6 +78,12 @@ const Drop = (props: Types.Props, ref) => {
                         case "end":
                             style.left = toStyle(tr.right - dr.width);
                             break;
+                        case "start-outside":
+                            style.left = toStyle(tr.left - tr.width);
+                            break;
+                        case "end-outside":
+                            style.left = toStyle(tr.left + tr.width);
+                            break;
                     }
                     break;
                 case "left":
@@ -81,7 +96,10 @@ const Drop = (props: Types.Props, ref) => {
                             style.top = toStyle((tr.top + tr.height / 2) - dr.height / 2);
                             break;
                         case "start":
-                            style.top = toStyle(tr.bottom - dr.height);
+                                style.top = toStyle(tr.bottom - dr.height);
+                                break;
+                        case "start-outside":
+                            style.top = toStyle(tr.top - tr.height);
                             break;
                     }
                     break;
@@ -97,23 +115,42 @@ const Drop = (props: Types.Props, ref) => {
                         case "start":
                             style.top = toStyle(tr.bottom - dr.height);
                             break;
+                        case "start-outside":
+                            style.top = toStyle(tr.top - tr.height);
+                            break;
                     }
                     break;
             }
         }
     }
 
-    return ReactDOM.createPortal(
-        <div
-            {...attributes}
-            ref={drop}
-            css={styles.container}
-            style={{ top: 0, left: 0, ...attributes.style }}
-            children={children}
+    return (
+        <Fragment>
+            {
+                React.cloneElement(target as any, {
+                    ref: targetRef
+                })
+            }
 
-        />,
-        document.body
-    );
+            {
+               ReactDOM.createPortal(
+                    <div
+                        {...attributes}
+                        ref={drop}
+                        css={styles.container}
+                        style={{ 
+                            top: 0, 
+                            left: 0, 
+                            visibility: "hidden",
+                            ...attributes.style 
+                        }}
+                        children={children}
+                    />,
+                    document.body
+                )
+            }
+        </Fragment>
+    )
 };
 
 function toStyle(value: number) {

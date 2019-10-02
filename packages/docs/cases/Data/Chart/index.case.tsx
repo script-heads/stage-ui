@@ -10,7 +10,7 @@ export default (props: CaseProps) => {
     return (
         <Fragment>
             <UICaseBlock
-                minHeight="320px"
+                minHeight="350px"
                 title="Simple case"
                 subtitle={``}
                 scope={{ Chart }}
@@ -31,7 +31,7 @@ export default (props: CaseProps) => {
                 ]}
             />
             <UICaseBlock
-                minHeight="320px"
+                minHeight="350px"
                 title="Advanced case"
                 subtitle={``}
                 scope={{ Chart }}
@@ -60,7 +60,7 @@ export default (props: CaseProps) => {
             />
 
             <UICaseBlock
-                minHeight="320px"
+                minHeight="350px"
                 title="Pie case"
                 subtitle={``}
                 scope={{ Chart }}

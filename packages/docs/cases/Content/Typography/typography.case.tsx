@@ -6,13 +6,14 @@ import { H1, H2, H3, H4, D1, D2, D3, D4, T1, T2, T3, T4, C1, C2, C3, C4, A } fro
 import Flexbox from '@flow-ui/core/layout/Flexbox';
 import UICaseBlock from '../../../plugins/UICaseBlock';
 import UICaseDocumentation from '../../../plugins/UICaseDocumentation';
+import Block from '@flow-ui/core/layout/Block';
 
 export default (props: CaseProps) => {
 
     const TextProps = useState<any>({})
 
     return (
-        <Flexbox p='4rem' column >
+        <Flexbox column >
             <UICaseBlock
                 title="Header case"
                 // subtitle={``}
@@ -34,6 +35,8 @@ export default (props: CaseProps) => {
             />
             <UICaseDocumentation ns="TypographyTypes" />
 
+            <H1 ml="2rem" mt="2rem" mb="1rem">Typography</H1>
+            <Block surface="major" m="2rem" mt="0" p="2rem">
             <div>
                 <H1>h1. Header</H1>
                 <H2>h2. Header</H2>
@@ -82,6 +85,7 @@ export default (props: CaseProps) => {
                     <li>Milk</li>
                 </ol>
             </div>
+            </Block>
         </Flexbox>
     )
 }

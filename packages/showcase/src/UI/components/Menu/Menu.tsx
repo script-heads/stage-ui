@@ -6,7 +6,7 @@ import useFlow from '@flow-ui/core/misc/hooks/useFlow';
 
 export interface MenuProps {
 	cases: any,
-	onChange: (currentCase: React.ReactNode, currentCaseID: string) => void
+	onChange: (currentCaseID: string) => void
 }
 
 export default (props: MenuProps) => {
@@ -23,8 +23,8 @@ export default (props: MenuProps) => {
 							key={name}
 							onClick={() => {
 								const c = cases[name]
-								props.onChange(c.node, c.id)
 								setCurrentCase(c.id);
+								props.onChange(c.id)
 							}}
 							children={
 								<C2>{name}</C2>

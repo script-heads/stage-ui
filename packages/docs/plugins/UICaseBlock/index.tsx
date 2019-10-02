@@ -108,8 +108,8 @@ const UICaseBlock = (props: UICaseBlockProps) => {
             language={"jsx"}
             scope={props.scope} code={code}>
             <Flexbox p='2rem' column alignItems="flex-start">
-                <H1>{props.title}</H1>
-                <T1>{props.subtitle}</T1>
+                <H1 css={{userSelect:"none"}}>{props.title}</H1>
+                <T1 css={{userSelect:"none"}}>{props.subtitle}</T1>
                 {typeof props.paths !== 'undefined' && (
                     <Block>
                         {props.paths.map((path, index) => (
