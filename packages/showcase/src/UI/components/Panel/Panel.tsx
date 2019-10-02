@@ -1,6 +1,5 @@
 import * as React from "react";
 import MenuItem from './MenuItem';
-import '../../styles/panel.css'
 
 interface PanelItem {
   id: string

@@ -1,5 +1,5 @@
 import * as React from "react";
-import '../../styles/panel.css';
+
 interface PanelItem {
     id: string;
     name: string;
