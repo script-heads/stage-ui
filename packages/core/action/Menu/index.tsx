@@ -10,10 +10,13 @@ const Menu: FC<MenuTypes.Props> = (props, ref) => {
     const { attributes } = useContainer(props);
     const styles = getStyles(props);
     const [value, setValue] = useState<string>(defaultValue || '');
+    const currentValue = props.value || value
 
     function handleSwitch(item: MenuTypes.Item) {
         if (!item.disabled) {
-            setValue(item.value);
+            if (!props.value) {
+                setValue(item.value);
+            }
             props.onChange && props.onChange(item.value);
         }
     }
@@ -31,7 +34,7 @@ const Menu: FC<MenuTypes.Props> = (props, ref) => {
                     <Fragment key={createID()}>
                         <Item
                             {...item}
-                            active={item.value === value}
+                            active={item.value === currentValue}
                             onClick={() => handleSwitch(item)}
                             onEnter={() => handleSwitch(item)}
                             styles={styles}
