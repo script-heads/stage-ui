@@ -10,8 +10,8 @@ const options = {
     host: '0.0.0.0',
     hot: true,
     contentBase: __dirname + "/../public",
-    compress: true,
-    public: 'flowui.abr.tech'
+    compress: process.env.HOST ? true : false,
+    public: process.env.HOST || undefined
 }
 
 webpackDevServer.addDevServerEntrypoints(config, options);
