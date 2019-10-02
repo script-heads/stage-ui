@@ -38,7 +38,7 @@ export const fakeValue = (value: string): any => {
 }
 
 const UICaseBlock = (props: UICaseBlockProps) => {
-    const [displayProps, setDisplayProps] = useState(0);
+    const [displayProps, setDisplayProps] = useState("0");
     const code = ReactToJsxString(props.children, {
         displayName: (e) => {
             if (e.type.displayName) {
@@ -143,12 +143,23 @@ const UICaseBlock = (props: UICaseBlockProps) => {
                                     }} />
                                     <Block flex={1} />
                                     {props.props && (
-                                        <Menu flexBasis={"4rem"} decoration="color" css={{ color: "#fff", fontSize: "1.5rem" }} defaultValue={displayProps} onChange={index => {
-                                            setDisplayProps(index)
-                                        }}>
-                                            <Icon css={{ fontSize: "1.5rem" }} type={t => t.outline.code} />
-                                            <Icon css={{ fontSize: "1.5rem" }} type={t => t.outline.cube} />
-                                        </Menu>
+                                        <Menu 
+                                            flexBasis={"4rem"} 
+                                            decoration="color" 
+                                            css={{ color: "#fff", fontSize: "1.5rem" }} 
+                                            defaultValue={displayProps} 
+                                            onChange={setDisplayProps}
+                                            items={[
+                                                {
+                                                    value: "0",
+                                                    content: <Icon css={{ fontSize: "1.5rem" }} type={t => t.outline.code} />
+                                                },
+                                                {
+                                                    value: "1",
+                                                    content: <Icon css={{ fontSize: "1.5rem" }} type={t => t.outline.cube} />
+                                                }
+                                            ]}
+                                        />
                                     )}
                                     <Icon
                                         p="0.75rem"
@@ -171,11 +182,11 @@ const UICaseBlock = (props: UICaseBlockProps) => {
                                     />
                                 </Flexbox>
 
-                                {displayProps === 0 && (
+                                {displayProps === "0" && (
                                     <LiveEditor css={{ " textarea": { outline: "none" } }} />
                                 )}
 
-                                {displayProps === 1 && props.props && (
+                                {displayProps === "1" && props.props && (
                                     <Block p={"1rem"}>
                                         <Divider color="#333" mb="0.75rem" />
                                         {
@@ -280,7 +291,7 @@ const UICaseBlock = (props: UICaseBlockProps) => {
                                     </Block>
                                 )}
                             </Block>
-                            {displayProps === 0 && (
+                            {displayProps === "0" && (
                                 <Block>
                                     <LiveError style={{
                                         margin: "10px",
