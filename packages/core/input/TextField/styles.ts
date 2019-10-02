@@ -29,6 +29,7 @@ export default (props: TextFieldTypes.Props) => {
                 backgroundColor: 'transparent',
                 resize: 'vertical',
                 boxShadow: 'none',
+                color: 'inherit',
                 font: 'inherit',
                 cursor: 'inherit',
                 '&::placeholder': {

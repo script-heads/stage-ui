@@ -10,7 +10,10 @@ const elements: { [key: string]: IMask.InputMask<IMask.AnyMaskedOptions> } = {};
 
 const TextField: FC<ButtonTypes.Props> = (props, ref) => {
 
-    const [isEmpty, setEmpty] = useState<boolean>(true);
+    const [isEmpty, setEmpty] = useState<boolean>(
+        props.defaultValue === '' ||
+        typeof props.defaultValue === 'undefined'
+    );
     const [underOverlay, setUnderOverlay] = useState<boolean>(false);
     const styles = getStyles(props);
     const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
@@ -30,22 +33,19 @@ const TextField: FC<ButtonTypes.Props> = (props, ref) => {
     }, []);
 
     useEffect(() => {
-        setEmpty(
-            !props.value && props.value != 0 &&
-            !props.defaultValue && props.defaultValue != 0
-        );
         if (typeof props.value != 'undefined') {
             if (props.masked) {
                 elements[id].value = props.value.toString()
             } else if (inputRef.current) {
                 inputRef.current.value = props.value.toString()
             }
+            setEmpty(props.value === '');
         }
     }, [props.value])
 
     function onChange(event) {
-        setEmpty(event.target.value === '');
         props.onChange && props.onChange(event)
+        setEmpty(event.target.value === '');
     }
 
     return (
@@ -54,10 +54,7 @@ const TextField: FC<ButtonTypes.Props> = (props, ref) => {
             isEmpty={isEmpty}
             cursor='text'
             onLabelOverlay={(state) => setUnderOverlay(state)}
-            onClick={(e) => {
-                props.onClick && props.onClick(e)
-                inputRef.current!.focus()
-            }}
+            onFocus={e => inputRef.current!.focus()}
             onClear={() => inputRef.current!.value = ''}
             manyLines={props.multiline}
             overlayLabelAlign={props.multiline ? 'top' : 'bottom'}

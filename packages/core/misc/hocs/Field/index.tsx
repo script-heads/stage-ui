@@ -34,7 +34,9 @@ const Field: FC<FieldTypes.Props> = (props, ref) => {
         <div
             {...attributes}
             ref={ref}
-            css={styles.container}>
+            css={styles.container}
+            tabIndex={0}
+        >
             {label && isLabelOutside && Label}
             {
                 //@ts-ignore
