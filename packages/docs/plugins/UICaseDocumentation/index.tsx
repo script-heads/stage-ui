@@ -124,7 +124,6 @@ const UICaseDocumentation = (props: { ns: string, filter?: string[], openInterfa
                                                             {Array.isArray(child.values) && child.values.map(value =>
                                                                 <C2
                                                                     key={value}
-                                                                    weight={500}
                                                                     background={color}
                                                                     p={"0.125rem"}
                                                                     pl={"0.35rem"}
@@ -139,7 +138,6 @@ const UICaseDocumentation = (props: { ns: string, filter?: string[], openInterfa
                                                         </Flexbox>
                                                         {child.deprecated !== void 0 && (
                                                             <C1
-                                                                weight={500}
                                                                 p={"0.125rem"}
                                                                 pl={"0.35rem"}
                                                                 pr={"0.35rem"}
@@ -151,13 +149,12 @@ const UICaseDocumentation = (props: { ns: string, filter?: string[], openInterfa
                                                             />
                                                         )}
                                                         <C1
-                                                            weight={500}
                                                             p={"0.125rem"}
                                                             pl={"0.35rem"}
                                                             pr={"0.35rem"}
                                                             children={child.isOptional ? "Optional" : "Required"}
                                                             background={c => child.isOptional ? c.lightest.css() : c.accent.red.css()}
-                                                            color={c => c.onPrimary.css()}
+                                                            color={c => c.hardest.css()}
                                                             alignSelf="flex-start"
                                                             css={{ borderRadius: "0.35rem" }}
                                                         />
