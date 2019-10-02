@@ -6,12 +6,6 @@ import UICaseDocumentation from "../../../plugins/UICaseDocumentation";
 
 export default (props: CaseProps) => {
 
-    useLayoutEffect(() => {
-        props.registerParams({
-            align: ['top', 'right', 'bottom', 'left']
-        })
-    }, [])
-
     const PanelTypes = useState<any>({})
 
     return (
