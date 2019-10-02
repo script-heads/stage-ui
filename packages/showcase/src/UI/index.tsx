@@ -1,10 +1,15 @@
 import * as React from "react";
 import core from '../core';
-import { Menu, Panel, Welcome } from './components';
+import Block from '@flow-ui/core/layout/Block';
+import Flexbox from '@flow-ui/core/layout/Flexbox';
+import { Menu, Panel } from './components';
 import './styles/main.css';
+import { PanelRenderProps, ToolRenderItem, PanelRenderItem } from "../../types";
+import { A, H4, T2 } from "@flow-ui/core/content/Typography";
+import Icon from "@flow-ui/core/content/Icon";
 
 interface State {
-	CurrentCase: React.SFC<{}>
+	CurrentCase: React.SFC<{}> | null
 	isMenuOpen: boolean,
 	panelItems: {
 		id: string
@@ -23,7 +28,7 @@ interface State {
 class UI extends React.Component<{}, State>  {
 
 	state: Readonly<State> = {
-		CurrentCase: Welcome,
+		CurrentCase: null,
 		isMenuOpen: false,
 		panelItems: [],
 		panelTools: [],
@@ -32,7 +37,7 @@ class UI extends React.Component<{}, State>  {
 		context: {}
 	}
 
-	constructor(props) {
+	constructor(props: any) {
 		super(props);
 		this.handleMouseClick = this.handleMouseClick.bind(this);
 		this.changeCase = this.changeCase.bind(this);
@@ -67,13 +72,13 @@ class UI extends React.Component<{}, State>  {
 		}
 	};
 
-	setContext(nextContext) {
+	setContext(nextContext: any) {
 		this.setState({
 			context: nextContext
 		})
 	}
 
-	addPanel(add) {
+	addPanel(add: PanelRenderProps) {
 		if (add.item) {
 			add.item = Object.assign(add.item, { id: add.item.id || core.getId('panel') });
 		}
@@ -88,9 +93,9 @@ class UI extends React.Component<{}, State>  {
 				panelItems: state.panelItems
 			};
 
-			if (state.panelTools.findIndex(item => item.id === add.item.id) >= 0) {
-				newState.panelTools = newState.panelTools.map(tool => {
-					if (tool.id === add.tool.id) {
+			if (state.panelTools.findIndex(item => item.id === add.item!.id) >= 0) {
+				newState.panelTools = newState.panelTools.map((tool: ToolRenderItem) => {
+					if (tool.id === add.tool!.id) {
 						return add.tool;
 					}
 					return tool;
@@ -99,9 +104,9 @@ class UI extends React.Component<{}, State>  {
 				newState.panelTools = add.tool ? [...state.panelTools, add.tool] : state.panelTools;
 			}
 
-			if (state.panelItems.findIndex(item => item.id === add.item.id) >= 0) {
-				newState.panelItems = newState.panelItems.map(item => {
-					if (item.id === add.item.id) {
+			if (state.panelItems.findIndex(item => item.id === add.item!.id) >= 0) {
+				newState.panelItems = newState.panelItems.map((item: PanelRenderItem) => {
+					if (item.id === add.item!.id) {
 						return add.item;
 					}
 					return item;
@@ -119,7 +124,7 @@ class UI extends React.Component<{}, State>  {
 		})
 	}
 
-	changeCase(CurrentCase: any, currentCaseID: string) {
+	changeCase(CurrentCase: React.SFC<{}>, currentCaseID: string) {
 		this.setState({
 			CurrentCase: CurrentCase,
 			isMenuOpen: false
@@ -133,25 +138,50 @@ class UI extends React.Component<{}, State>  {
 
 	render() {
 
-		const { isMenuOpen, CurrentCase, panelItems, panelTools, Wrapper, context } = this.state;
+		const { CurrentCase, panelItems, panelTools, Wrapper, context } = this.state;
 		const Context = core.getReactContext;
-
-		if (isMenuOpen) {
-			return (
-				<Menu cases={core.cases} onChange={this.changeCase} />
-			)
-		}
 
 		const Wrap = Wrapper || ((props: any) => props.children)
 
 		return (
 			<Context.Provider value={{ ...context, setContext: this.setContext }}>
 				<Wrap>
-					<CurrentCase />
+					<Block>
+						<Flexbox css={{
+							padding: '1rem',
+							background: "#222",
+							color: "#fff"
+						}}>
+							<H4>{(core.config && core.config.title) || "Showcase"}</H4>
+							<Block flex={1}/>
+							{(core.config && core.config.giturl) && (
+								<T2>
+									<A target="_blank" href={core.config.giturl}>
+										<Icon size={"1.5rem"} type={t => t.outline.github} />
+									</A>
+								</T2>
+							)}
+
+						</Flexbox>
+						<Flexbox alignItems="flex-start">
+							<Menu cases={core.cases} onChange={this.changeCase} />
+							{
+								CurrentCase && (
+									<Block flex={1} css={{
+										position: "sticky",
+										top: 0
+									}}>
+										<CurrentCase />
+									</Block>
+								)
+							}
+							{core.config.hidePanel !== true && (
+								<Panel items={panelItems} tools={panelTools} />
+							)}
+						</Flexbox>
+					</Block>
 				</Wrap>
-				{core.config.hidePanel !== true && (
-					<Panel items={panelItems} tools={panelTools} />
-				)}
+
 			</Context.Provider>
 		)
 	}

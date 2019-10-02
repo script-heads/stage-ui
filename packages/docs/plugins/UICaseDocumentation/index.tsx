@@ -58,6 +58,10 @@ const UICaseDocumentation = (props: { ns: string, filter?: string[], openInterfa
         setBlockOpenState(blockOpenState);
     }, [nameSpaceDocumentation]);
 
+    if (!Array.isArray(nameSpaceDocumentation)) {
+        return null
+    }
+
     return nameSpaceDocumentation.map((data: TypeInterface, nsIndex: number) => {
         if (props.filter && props.filter.find(f => f !== data.name)) {
             return null
@@ -114,7 +118,7 @@ const UICaseDocumentation = (props: { ns: string, filter?: string[], openInterfa
 
                                                     />
                                                     <C1 weight={500}>{child.name}: </C1>
-                                                    {child.values.map(value =>
+                                                    {Array.isArray(child.values) &&  child.values.map(value =>
                                                         <C2
                                                             key={value}
                                                             weight={500}
@@ -125,6 +129,9 @@ const UICaseDocumentation = (props: { ns: string, filter?: string[], openInterfa
                                                             css={{ color: "#000", margin: "0 2px", borderRadius: "4px" }}
                                                             children={`${value}`}
                                                         />
+                                                    )}
+                                                    {!Array.isArray(child.values) && (
+                                                        <C2 color={c => c.hard.css()}>Not documented yet</C2>
                                                     )}
                                                 </Flexbox>
                                                 {child.deprecated !== void 0 && (

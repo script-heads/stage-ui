@@ -64,12 +64,6 @@ class Wrapper extends React.Component {
 
         return (
             <Viewport theme={themes[this.state.currentTheme]}>
-                <Flexbox justifyContent="space-between" p="2rem" pl={"3rem"}>
-                    <Button decoration="text" onClick={OpenMenu}>
-                        <Icon size="1rem" pr={"0.5rem"} type={t => t.outline.arrowBack} />
-                        Back
-                    </Button>
-                </Flexbox>
                 {
                     React.cloneElement(this.props.children as any, {
                         params: currentParams,

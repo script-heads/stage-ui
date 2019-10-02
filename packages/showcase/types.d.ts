@@ -2,6 +2,8 @@ import { ReactNode } from "react";
 import React from 'react';
 
 export interface IConfig {
+    title?: string
+    giturl?: string
     hidePanel?: boolean
     plugins?: ((props: IPluginProps) => void)[]
 }

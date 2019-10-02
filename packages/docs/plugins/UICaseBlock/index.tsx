@@ -107,7 +107,7 @@ const UICaseBlock = (props: UICaseBlockProps) => {
             theme={theme}
             language={"jsx"}
             scope={props.scope} code={code}>
-            <Flexbox p='4rem' pt={"1rem"} column alignItems="flex-start">
+            <Flexbox p='2rem' column alignItems="flex-start">
                 <H1>{props.title}</H1>
                 <T1>{props.subtitle}</T1>
                 {typeof props.paths !== 'undefined' && (
