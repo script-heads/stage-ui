@@ -1,13 +1,13 @@
-import * as React from "react";
-import core from '../core';
+import Icon from "@flow-ui/core/content/Icon";
+import Spinner from '@flow-ui/core/content/Spinner';
+import { A, H3, T2 } from "@flow-ui/core/content/Typography";
 import Block from '@flow-ui/core/layout/Block';
 import Flexbox from '@flow-ui/core/layout/Flexbox';
-import Spinner from '@flow-ui/core/content/Spinner';
+import * as React from "react";
+import { PanelRenderItem, PanelRenderProps, ToolRenderItem } from "../../types";
+import core from '../core';
 import { Menu, Panel } from './components';
 
-import { PanelRenderProps, ToolRenderItem, PanelRenderItem } from "../../types";
-import { A, H4, T2 } from "@flow-ui/core/content/Typography";
-import Icon from "@flow-ui/core/content/Icon";
 
 interface State {
 	CurrentCase: React.SFC<{}> | null
@@ -201,7 +201,7 @@ class UI extends React.Component<{}, State>  {
 							)}
 							<Block>
 								<Flexbox pt="1rem" pl="1.25rem" pr="1rem">
-									<H4
+									<H3
 										css={{cursor:"default"}}
 										weight={800}
 										color={c => c.primary.css()}
