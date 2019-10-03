@@ -108,28 +108,32 @@ const UICaseBlock = (props: UICaseBlockProps) => {
             theme={theme}
             language={"jsx"}
             scope={props.scope} code={code}>
-            <Flexbox p='2rem' column alignItems="flex-start">
+            <Flexbox pr='4rem' pl='4rem' pt='2rem' pb='1rem' column alignItems="flex-start">
                 <H1 css={{userSelect:"none", fontSize: "2.5rem"}} weight={800}>{props.title}</H1>
-                <T1 css={{userSelect:"none"}}>{props.subtitle}</T1>
+                <T1 color={c => c.light.css()} css={{userSelect:"none"}} pt={"0.25rem"} pb={"0.5rem"}>{props.subtitle}</T1>
                 {typeof props.paths !== 'undefined' && (
                     <Block>
                         {props.paths.map((path, index) => (
                             <Block
                                 key={index}
+                                mb={"0.5rem"}
                                 css={{
-                                    padding: "0.125rem 0.5rem",
-                                    marginBottom: "0.25rem",
-                                    background: flow.theme.color.lightest.css(),
-                                    color: flow.theme.color.hardest.css(),
-                                    borderRadius: "10rem",
-                                    ...flow.theme.typography.text[3]
+                                    color: flow.theme.color.primary.css(),
+                                    ...flow.theme.typography.text[2]
                                 }}
                                 children={path}
                             />
                         ))}
                     </Block>
                 )}
-                <Block surface="major" css={{ width: "100%", overflow: "hidden" }}>
+                <Block css={{ 
+                    width: "100%", 
+                    overflow: "hidden",
+                    borderWidth: "1px",
+                    borderStyle: "solid",
+                    borderColor: flow.theme.color.lightest.css(),
+                    borderRadius: flow.theme.radius.default
+                }}>
                     <Flexbox style={{
                         height: props.height,
                         minHeight: props.minHeight,

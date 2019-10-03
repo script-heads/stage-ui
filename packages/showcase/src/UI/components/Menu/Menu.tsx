@@ -22,6 +22,7 @@ export default (props: MenuProps) => {
 					return {
 						css: {
 							fontWeight: "700",
+							paddingLeft:"0.5rem"
 						},
 						value: cases[name].id,
 						content: name
@@ -29,16 +30,16 @@ export default (props: MenuProps) => {
 				}
 
 				return (
-					<Block key={name} m="1rem">
+					<Block key={name} mt="1rem" mb="1rem">
 						<C2
-							// ml={'0.75rem'}
+							ml={'1.25rem'}
 							weight={500}
 							color={c => c.light.css()}
 							children={name}
 						/>
 						<Menu
 							value={currentCase}
-							// decoration="color"
+							decoration="filled-underline"
 							direction="column"
 							onChange={(value) => {
 								setCurrentCase(value.toString());

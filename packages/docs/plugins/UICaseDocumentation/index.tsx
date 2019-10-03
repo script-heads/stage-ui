@@ -1,6 +1,6 @@
 import Divider from '@flow-ui/core/content/Divider';
 import Icon from '@flow-ui/core/content/Icon';
-import { C1, C2, H2, T2, H4, H1 } from '@flow-ui/core/content/Typography';
+import { C1, C2, H2, T2, H4, H1, C4 } from '@flow-ui/core/content/Typography';
 import Block from '@flow-ui/core/layout/Block';
 import Flexbox from '@flow-ui/core/layout/Flexbox';
 import React, { Fragment, useLayoutEffect, useState } from 'react';
@@ -63,14 +63,14 @@ const UICaseDocumentation = (props: { ns: string, filter?: string[], openInterfa
     }
 
     return (
-        <Fragment>
-            <H1 css={{userSelect:"none", fontSize: "2.5rem"}} weight={800} ml="2rem" mb="1rem">Properties</H1>
+        <Block pr='4rem' pl='4rem' pt='2rem' pb='1rem'>
+            <H1 css={{userSelect:"none", fontSize: "2.5rem"}} mb={"1rem"} weight={800}>Properties</H1>
             {nameSpaceDocumentation.map((data: TypeInterface, nsIndex: number) => {
                 if (props.filter && props.filter.find(f => f !== data.name)) {
                     return null
                 }
                 return (
-                    <Block key={nsIndex} css={{ margin: "0 2rem", marginBottom: "1rem" }} >
+                    <Block key={nsIndex} css={{ marginBottom: "1rem" }} >
                         <Flexbox justifyContent="space-between" onClick={() => {
                             setBlockOpenState({
                                 [nsIndex]: !blockOpenState[nsIndex]
@@ -78,7 +78,7 @@ const UICaseDocumentation = (props: { ns: string, filter?: string[], openInterfa
                         }}>
                             <H4
                                 color={c => c.hardest.css()}
-                                weight={500}
+                                weight={600}
                                 children={data.name}
                             />
                             <Icon
@@ -137,7 +137,7 @@ const UICaseDocumentation = (props: { ns: string, filter?: string[], openInterfa
                                                             )}
                                                         </Flexbox>
                                                         {child.deprecated !== void 0 && (
-                                                            <C1
+                                                            <C2
                                                                 p={"0.125rem"}
                                                                 pl={"0.35rem"}
                                                                 pr={"0.35rem"}
@@ -148,13 +148,13 @@ const UICaseDocumentation = (props: { ns: string, filter?: string[], openInterfa
                                                                 css={{ borderRadius: "0.35rem" }}
                                                             />
                                                         )}
-                                                        <C1
+                                                        <C2
                                                             p={"0.125rem"}
                                                             pl={"0.35rem"}
                                                             pr={"0.35rem"}
                                                             children={child.isOptional ? "Optional" : "Required"}
                                                             background={c => child.isOptional ? c.lightest.css() : c.accent.red.css()}
-                                                            color={c => child.isOptional ? c.hardest.css() : c.onSurface.css()}
+                                                            color={c => child.isOptional ? c.hardest.css() : c.onPrimary.css()}
                                                             alignSelf="flex-start"
                                                             css={{ borderRadius: "0.35rem" }}
                                                         />
@@ -183,7 +183,7 @@ const UICaseDocumentation = (props: { ns: string, filter?: string[], openInterfa
                     </Block>
                 )
             })}
-        </Fragment>
+        </Block>
     )
 }
 
