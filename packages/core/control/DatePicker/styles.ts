@@ -96,14 +96,14 @@ export default (props: DatePickerTypes.Props) => {
              * It is current day
              */
             if (isCurrent) {
-                st.background = theme.color.primary.css();
-                st.color = theme.color.onPrimary.css();
+                st.borderColor = theme.color.primary.css();
             }
             /**
              * This day is selected
              */
             if (isActive) {
-                st.borderColor = theme.color.primary.css();
+                st.background = theme.color.primary.css();
+                st.color = theme.color.onPrimary.css();
             }
             /**
              * This day is disabled to select
@@ -112,6 +112,11 @@ export default (props: DatePickerTypes.Props) => {
                 st.opacity = 0.3;
             }
             return css(st, overrides && overrides.day);
-        }
+        },
+
+        drop: (isActive: boolean) => css({
+            opacity: isActive ? 1 : 0,
+            visibility: isActive ? "visible" : "hidden"
+        })
     }
 }

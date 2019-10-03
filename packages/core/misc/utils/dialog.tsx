@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../action/Button';
+import Button from '../../control/Button';
 import Block from '../../layout/Block';
 import Flexbox from '../../layout/Flexbox';
 import Modal, { ModalRef } from '../../layout/Modal';

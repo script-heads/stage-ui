@@ -1,5 +1,5 @@
-import Button from '@flow-ui/core/action/Button'
-import Menu from '@flow-ui/core/action/Menu'
+import Button from '@flow-ui/core/control/Button'
+import Menu from '@flow-ui/core/control/Menu'
 import Divider from '@flow-ui/core/content/Divider'
 import Icon from '@flow-ui/core/content/Icon'
 import { H1, T1, T3 } from '@flow-ui/core/content/Typography'
@@ -11,7 +11,7 @@ import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
 import theme from './theme'
 import { GetPropsForType } from '../UICaseDocumentation'
 import useFlow from '@flow-ui/core/misc/hooks/useFlow'
-import MenuTypes from '@flow-ui/core/action/Menu/types'
+import MenuTypes from '@flow-ui/core/control/Menu/types'
 
 interface UICaseBlockProps {
     title: string

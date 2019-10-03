@@ -1,4 +1,4 @@
-import Range from '@flow-ui/core/input/Range';
+import Range from '@flow-ui/core/control/Range';
 import React, { useState, Fragment } from 'react';
 import { CaseProps } from '../../../plugins/CaseWrapper';
 import UICaseBlock from '@flow-ui/showcase/src/UI/components/UICaseBlock';
@@ -24,7 +24,7 @@ export default (props: CaseProps) => {
                     />
                 )}
                 paths={[
-                    `@flow-ui/core/input/Range`,
+                    `@flow-ui/core/control/Range`,
                 ]}
             />
             <UICaseDocumentation ns="RangeTypes" />

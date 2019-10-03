@@ -1,4 +1,4 @@
-import Button from '@flow-ui/core/action/Button';
+import Button from '@flow-ui/core/control/Button';
 import Meter from '@flow-ui/core/data/Meter';
 import dialog from '@flow-ui/core/misc/utils/dialog';
 import React, { Fragment } from 'react';

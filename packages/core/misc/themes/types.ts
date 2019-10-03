@@ -5,12 +5,12 @@ import TableTypes from '../../data/Table/types';
 import ModalTypes from '../../layout/Modal/types';
 import PanelTypes from '../../layout/Panel/types';
 import PopoverTypes from '../../layout/Popover/types';
-import CheckboxTypes from '../../input/Checkbox/types';
-import DatePickerTypes from '../../input/DatePicker/types'
+import CheckboxTypes from '../../control/Checkbox/types';
+import DatePickerTypes from '../../control/DatePicker/types'
 import SelectTypes from '../../input/Select/types';
-import ButtonTypes from '../../action/Button/types';
+import ButtonTypes from '../../control/Button/types';
 import IconTypes from '../../content/Icon/types';
-import RangeTypes from '../../input/Range/types';
+import RangeTypes from '../../control/Range/types';
 import { ObjectInterpolation } from '@emotion/core';
 
 declare namespace ThemeTypes {

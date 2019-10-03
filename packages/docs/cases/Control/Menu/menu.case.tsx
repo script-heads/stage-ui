@@ -1,4 +1,4 @@
-import Menu from '@flow-ui/core/action/Menu';
+import Menu from '@flow-ui/core/control/Menu';
 import Icon from '@flow-ui/core/content/Icon';
 import React, { Fragment, useState } from 'react';
 import { CaseProps } from "../../../plugins/CaseWrapper";
@@ -33,7 +33,7 @@ export default (props: CaseProps) => {
                     />
                 }
                 paths={[
-                    `@flow-ui/core/action/Menu`,
+                    `@flow-ui/core/control/Menu`,
                 ]}
             />
             <UICaseDocumentation ns="MenuTypes" />

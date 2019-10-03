@@ -1,7 +1,7 @@
 /**
  * author: I.Trikoz
  */
-import Button from '@flow-ui/core/action/Button';
+import Button from '@flow-ui/core/control/Button';
 import Divider from '@flow-ui/core/content/Divider';
 import Flexbox from '@flow-ui/core/layout/Flexbox';
 import Modal, { ModalRef } from '@flow-ui/core/layout/Modal';

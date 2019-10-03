@@ -8,7 +8,7 @@ import DatePickerTypes from './types';
 import Flexbox from '../../layout/Flexbox';
 import Icon from '../../content/Icon';
 
-export default (props: DatePickerTypes.MonthGridTitleProps) => {
+const MonthGridTitle = (props: DatePickerTypes.MonthGridTitleProps) => {
 
     const styles = props.styles;
 
@@ -52,3 +52,5 @@ export default (props: DatePickerTypes.MonthGridTitleProps) => {
         </Fragment>
     )
 };
+
+export default MonthGridTitle;

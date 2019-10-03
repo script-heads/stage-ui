@@ -1,4 +1,4 @@
-import Button from "@flow-ui/core/action/Button";
+import Button from "@flow-ui/core/control/Button";
 import { C1 } from "@flow-ui/core/content/Typography/C";
 import Table from "@flow-ui/core/data/Table";
 import TableTypes from "@flow-ui/core/data/Table/types";

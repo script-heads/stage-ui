@@ -1,4 +1,4 @@
-import TextField from '@flow-ui/core/input/TextField';
+import TextField from '@flow-ui/core/control/TextField';
 import React, { Fragment, useState } from 'react';
 import { CaseProps } from "../../../plugins/CaseWrapper";
 import UICaseBlock from '@flow-ui/showcase/src/UI/components/UICaseBlock';
@@ -40,7 +40,7 @@ export default (props: CaseProps) => {
                     />
                 }
                 paths={[
-                    `@flow-ui/core/input/TextField`,
+                    `@flow-ui/core/control/TextField`,
                 ]}
             />
             <UICaseBlock
@@ -60,7 +60,7 @@ export default (props: CaseProps) => {
                     />
                 }
                 paths={[
-                    `@flow-ui/core/input/TextField`,
+                    `@flow-ui/core/control/TextField`,
                 ]}
             />
             <UICaseDocumentation ns="TextFieldTypes" />

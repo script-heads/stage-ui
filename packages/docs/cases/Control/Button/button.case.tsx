@@ -1,4 +1,4 @@
-import Button from '@flow-ui/core/action/Button';
+import Button from '@flow-ui/core/control/Button';
 import Icon from '@flow-ui/core/content/Icon';
 import Flexbox from '@flow-ui/core/layout/Flexbox';
 import UICaseBlock from '@flow-ui/showcase/src/UI/components/UICaseBlock';
@@ -31,7 +31,7 @@ export default (props: CaseProps) => {
                     />
                 }
                 paths={[
-                    `@flow-ui/core/action/Button`,
+                    `@flow-ui/core/control/Button`,
                 ]}
             />
             <UICaseBlock
@@ -55,7 +55,7 @@ export default (props: CaseProps) => {
                     </Flexbox>
                 }
                 paths={[
-                    `@flow-ui/core/action/Button`,
+                    `@flow-ui/core/control/Button`,
                 ]}
             />
             <UICaseDocumentation ns="ButtonTypes" />

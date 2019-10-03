@@ -7,7 +7,7 @@ import moment from 'moment';
 import DatePickerTypes from './types';
 import Flexbox from '../../layout/Flexbox';
 
-export default (props: DatePickerTypes.MonthGridDayProps) => {
+const MonthGridDay = (props: DatePickerTypes.MonthGridDayProps) => {
     const { active, day, onClick, minValue, maxValue } = props;
 
     const isDisabled = (minValue && minValue > day) || (maxValue && maxValue < day) || false;
@@ -32,3 +32,5 @@ export default (props: DatePickerTypes.MonthGridDayProps) => {
 
     )
 };
+
+export default MonthGridDay;

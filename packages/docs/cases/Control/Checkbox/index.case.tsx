@@ -1,4 +1,4 @@
-import Switch from '@flow-ui/core/input/Switch';
+import Checkbox from '@flow-ui/core/control/Checkbox';
 import React, { Fragment, useState } from 'react';
 import { CaseProps } from "../../../plugins/CaseWrapper";
 import UICaseBlock from '@flow-ui/showcase/src/UI/components/UICaseBlock';
@@ -6,25 +6,25 @@ import UICaseDocumentation from "@flow-ui/showcase/src/UI/components/UICaseDocum
 
 export default (props: CaseProps) => {
 
-    const SwitchTypes = useState<any>({})
+    const CheckboxTypes = useState<any>({})
 
     return (
         <Fragment>
             <UICaseBlock
-                title="Switch"
-                scope={{ Switch }}
-                props={{ SwitchTypes }}
+                title="Checkbox"
+                scope={{ Checkbox }}
+                props={{ CheckboxTypes }}
                 children={
-                    <Switch
+                    <Checkbox
                         label="Check me"
-                        {...SwitchTypes[0]}
+                        {...CheckboxTypes[0]}
                     />
                 }
                 paths={[
-                    `@flow-ui/core/input/Switch`,
+                    `@flow-ui/core/control/Checkbox`,
                 ]}
             />
-            <UICaseDocumentation ns="SwitchTypes" />
+            <UICaseDocumentation ns="CheckboxTypes" />
         </Fragment>
     )
 }

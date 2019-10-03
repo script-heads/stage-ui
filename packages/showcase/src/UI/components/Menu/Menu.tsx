@@ -1,5 +1,5 @@
 import Block from '@flow-ui/core/layout/Block';
-import Menu from '@flow-ui/core/action/Menu';
+import Menu from '@flow-ui/core/control/Menu';
 import { C2, C1 } from '@flow-ui/core/content/Typography';
 import * as React from "react";
 import useFlow from '@flow-ui/core/misc/hooks/useFlow';

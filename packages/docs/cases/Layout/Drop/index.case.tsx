@@ -1,4 +1,4 @@
-import Button from "@flow-ui/core/action/Button";
+import Button from "@flow-ui/core/control/Button";
 import Block from "@flow-ui/core/layout/Block";
 import Drop from "@flow-ui/core/layout/Drop";
 import Popover from "@flow-ui/core/layout/Popover";

@@ -497,29 +497,29 @@
             "id": "../../node_modules/webpack/hot/log.js"
           },
           {
-            "name": "../core/action/Button/index.tsx",
+            "name": "../core/control/Button/index.tsx",
             "size": 1097,
-            "id": "../core/action/Button/index.tsx"
+            "id": "../core/control/Button/index.tsx"
           },
           {
-            "name": "../core/action/Button/styles.ts",
+            "name": "../core/control/Button/styles.ts",
             "size": 41545,
-            "id": "../core/action/Button/styles.ts"
+            "id": "../core/control/Button/styles.ts"
           },
           {
-            "name": "../core/action/Menu/Item.tsx",
+            "name": "../core/control/Menu/Item.tsx",
             "size": 503,
-            "id": "../core/action/Menu/Item.tsx"
+            "id": "../core/control/Menu/Item.tsx"
           },
           {
-            "name": "../core/action/Menu/index.tsx",
+            "name": "../core/control/Menu/index.tsx",
             "size": 1377,
-            "id": "../core/action/Menu/index.tsx"
+            "id": "../core/control/Menu/index.tsx"
           },
           {
-            "name": "../core/action/Menu/styles.ts",
+            "name": "../core/control/Menu/styles.ts",
             "size": 25785,
-            "id": "../core/action/Menu/styles.ts"
+            "id": "../core/control/Menu/styles.ts"
           },
           {
             "name": "../core/content/Divider/index.tsx",
@@ -617,14 +617,14 @@
             "id": "../core/data/Table/styles.ts"
           },
           {
-            "name": "../core/input/Checkbox/index.tsx",
+            "name": "../core/control/Checkbox/index.tsx",
             "size": 1614,
-            "id": "../core/input/Checkbox/index.tsx"
+            "id": "../core/control/Checkbox/index.tsx"
           },
           {
-            "name": "../core/input/Checkbox/styles.ts",
+            "name": "../core/control/Checkbox/styles.ts",
             "size": 21940,
-            "id": "../core/input/Checkbox/styles.ts"
+            "id": "../core/control/Checkbox/styles.ts"
           },
           {
             "name": "../core/input/Select/SelectItems.tsx",
@@ -642,34 +642,34 @@
             "id": "../core/input/Select/styles.ts"
           },
           {
-            "name": "../core/input/Range/index.tsx",
+            "name": "../core/control/Range/index.tsx",
             "size": 2787,
-            "id": "../core/input/Range/index.tsx"
+            "id": "../core/control/Range/index.tsx"
           },
           {
-            "name": "../core/input/Range/styles.ts",
+            "name": "../core/control/Range/styles.ts",
             "size": 12989,
-            "id": "../core/input/Range/styles.ts"
+            "id": "../core/control/Range/styles.ts"
           },
           {
-            "name": "../core/input/TextField/Field.tsx",
+            "name": "../core/control/TextField/Field.tsx",
             "size": 3096,
-            "id": "../core/input/TextField/Field.tsx"
+            "id": "../core/control/TextField/Field.tsx"
           },
           {
-            "name": "../core/input/TextField/formats/decimal.ts",
+            "name": "../core/control/TextField/formats/decimal.ts",
             "size": 277,
-            "id": "../core/input/TextField/formats/decimal.ts"
+            "id": "../core/control/TextField/formats/decimal.ts"
           },
           {
-            "name": "../core/input/TextField/index.tsx",
+            "name": "../core/control/TextField/index.tsx",
             "size": 4110,
-            "id": "../core/input/TextField/index.tsx"
+            "id": "../core/control/TextField/index.tsx"
           },
           {
-            "name": "../core/input/TextField/styles.ts",
+            "name": "../core/control/TextField/styles.ts",
             "size": 121928,
-            "id": "../core/input/TextField/styles.ts"
+            "id": "../core/control/TextField/styles.ts"
           },
           {
             "name": "../core/layout/Badge/index.tsx",
@@ -952,14 +952,14 @@
             "id": "./cases sync recursive \\.case$"
           },
           {
-            "name": "./cases/Action/Button/button.case.tsx",
+            "name": "./cases/control/Button/button.case.tsx",
             "size": 1068,
-            "id": "./cases/Action/Button/button.case.tsx"
+            "id": "./cases/control/Button/button.case.tsx"
           },
           {
-            "name": "./cases/Action/Menu/menu.case.tsx",
+            "name": "./cases/control/Menu/menu.case.tsx",
             "size": 1325,
-            "id": "./cases/Action/Menu/menu.case.tsx"
+            "id": "./cases/control/Menu/menu.case.tsx"
           },
           {
             "name": "./cases/Content/Divider/divider.case.tsx",
@@ -987,24 +987,24 @@
             "id": "./cases/Data/Table/index.case.tsx"
           },
           {
-            "name": "./cases/Input/Checkbox/index.case.tsx",
+            "name": "./cases/control/Checkbox/index.case.tsx",
             "size": 1361,
-            "id": "./cases/Input/Checkbox/index.case.tsx"
+            "id": "./cases/control/Checkbox/index.case.tsx"
           },
           {
-            "name": "./cases/Input/Select/index.case.tsx",
+            "name": "./cases/input/Select/index.case.tsx",
             "size": 2375,
-            "id": "./cases/Input/Select/index.case.tsx"
+            "id": "./cases/input/Select/index.case.tsx"
           },
           {
-            "name": "./cases/Input/Range/index.case.tsx",
+            "name": "./cases/control/Range/index.case.tsx",
             "size": 465,
-            "id": "./cases/Input/Range/index.case.tsx"
+            "id": "./cases/control/Range/index.case.tsx"
           },
           {
-            "name": "./cases/Input/TextField/index.case.tsx",
+            "name": "./cases/control/TextField/index.case.tsx",
             "size": 1800,
-            "id": "./cases/Input/TextField/index.case.tsx"
+            "id": "./cases/control/TextField/index.case.tsx"
           },
           {
             "name": "./cases/Layout/Badge/index.case.tsx",

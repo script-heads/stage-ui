@@ -34,7 +34,7 @@ declare namespace DatePickerTypes {
          * Callback function will with Moment object
          * or string if format property was passed.
          */
-        onChange?: (date: Moment | string) => void
+        onChange?: (date: Moment, formatedValue: string) => void
     }
 
     export interface MonthGridProps {
