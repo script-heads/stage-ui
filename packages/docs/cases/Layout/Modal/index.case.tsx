@@ -7,8 +7,8 @@ import Flexbox from '@flow-ui/core/layout/Flexbox';
 import Modal, { ModalRef } from '@flow-ui/core/layout/Modal';
 import React, { Fragment, useState, useRef } from 'react';
 import { CaseProps } from "../../../plugins/CaseWrapper";
-import UICaseBlock, { fakeValue } from '../../../plugins/UICaseBlock';
-import UICaseDocumentation from "../../../plugins/UICaseDocumentation";
+import UICaseBlock, { fakeValue } from '@flow-ui/showcase/src/UI/components/UICaseBlock';
+import UICaseDocumentation from "@flow-ui/showcase/src/UI/components/UICaseDocumentation";
 
 export default (props: CaseProps) => {
 

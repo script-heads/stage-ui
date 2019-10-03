@@ -1,12 +1,10 @@
-import React, { useLayoutEffect, useState, Fragment } from 'react';
-import { CaseProps } from "../../../plugins/CaseWrapper";
-import UICaseBlock from '../../../plugins/UICaseBlock';
 import Button from '@flow-ui/core/action/Button';
 import Icon from '@flow-ui/core/content/Icon';
-import { C2 } from '@flow-ui/core/content/Typography';
-import Block from '@flow-ui/core/layout/Block';
 import Flexbox from '@flow-ui/core/layout/Flexbox';
-import UICaseDocumentation from '../../../plugins/UICaseDocumentation';
+import UICaseBlock from '@flow-ui/showcase/src/UI/components/UICaseBlock';
+import UICaseDocumentation from '@flow-ui/showcase/src/UI/components/UICaseDocumentation';
+import React, { Fragment, useState } from 'react';
+import { CaseProps } from "../../../plugins/CaseWrapper";
 
 export default (props: CaseProps) => {
 

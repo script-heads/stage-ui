@@ -2,8 +2,8 @@
 import Select from '@flow-ui/core/input/Select';
 import React, { Fragment, useState } from 'react';
 import { CaseProps } from "../../../plugins/CaseWrapper";
-import UICaseBlock, { fakeValue } from '../../../plugins/UICaseBlock';
-import UICaseDocumentation from '../../../plugins/UICaseDocumentation';
+import UICaseBlock, { fakeValue } from '@flow-ui/showcase/src/UI/components/UICaseBlock';
+import UICaseDocumentation from '@flow-ui/showcase/src/UI/components/UICaseDocumentation';
 
 const options = [
     { text: "Gregory Oberbrunner MD", value: "greg" },

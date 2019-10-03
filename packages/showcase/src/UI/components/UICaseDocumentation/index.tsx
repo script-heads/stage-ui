@@ -1,6 +1,6 @@
 import Divider from '@flow-ui/core/content/Divider';
 import Icon from '@flow-ui/core/content/Icon';
-import { C1, C2, H2, T2, H4, H1, C4 } from '@flow-ui/core/content/Typography';
+import { C1, C2, H1, H4, T2 } from '@flow-ui/core/content/Typography';
 import Block from '@flow-ui/core/layout/Block';
 import Flexbox from '@flow-ui/core/layout/Flexbox';
 import React, { Fragment, useLayoutEffect, useState } from 'react';

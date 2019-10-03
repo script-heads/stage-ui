@@ -1,8 +1,8 @@
 import Range from '@flow-ui/core/input/Range';
 import React, { useState, Fragment } from 'react';
 import { CaseProps } from '../../../plugins/CaseWrapper';
-import UICaseBlock from '../../../plugins/UICaseBlock';
-import UICaseDocumentation from "../../../plugins/UICaseDocumentation";
+import UICaseBlock from '@flow-ui/showcase/src/UI/components/UICaseBlock';
+import UICaseDocumentation from "@flow-ui/showcase/src/UI/components/UICaseDocumentation";
 
 export default (props: CaseProps) => {
 

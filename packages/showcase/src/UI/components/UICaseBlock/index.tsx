@@ -10,7 +10,6 @@ import ReactToJsxString from 'react-element-to-jsx-string'
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
 import theme from './theme'
 import { GetPropsForType } from '../UICaseDocumentation'
-import ThemeSwitch from './ThemeSwitch';
 import useFlow from '@flow-ui/core/misc/hooks/useFlow'
 import MenuTypes from '@flow-ui/core/action/Menu/types'
 
@@ -74,12 +73,12 @@ const UICaseBlock = (props: UICaseBlockProps) => {
     })
 
     let hasProps: boolean = false;
+    const flow = useFlow()
 
-    // const [currentTheme, setTheme] = useState("light")
     const savedGridState = localStorage.getItem('case_grid') || ''
-    const [dark, setDark] = useState(window.currentTheme.toUpperCase().match("DARK") ? true : false)
     const [grid, setGrid] = useState(savedGridState.length !== 5)
 
+    const dark = flow.theme.name.toUpperCase().match("DARK");
     const gridColor1 = dark ? "#333333" : "#f4f4f4";
     const gridColor2 = dark ? "#222222" : "#ffffff";
     const gridBackground = `
@@ -101,7 +100,6 @@ const UICaseBlock = (props: UICaseBlockProps) => {
             })
         } catch (error) { }
     }, [])
-    const flow = useFlow()
 
     return (
         <LiveProvider
@@ -111,21 +109,53 @@ const UICaseBlock = (props: UICaseBlockProps) => {
             <Flexbox pr='4rem' pl='4rem' pt='2rem' pb='1rem' column alignItems="flex-start">
                 <H1 css={{userSelect:"none", fontSize: "2.5rem"}} weight={800}>{props.title}</H1>
                 <T1 color={c => c.light.css()} css={{userSelect:"none"}} pt={"0.25rem"} pb={"0.5rem"}>{props.subtitle}</T1>
-                {typeof props.paths !== 'undefined' && (
-                    <Block>
-                        {props.paths.map((path, index) => (
-                            <Block
-                                key={index}
-                                mb={"0.5rem"}
-                                css={{
-                                    color: flow.theme.color.primary.css(),
-                                    ...flow.theme.typography.text[2]
-                                }}
-                                children={path}
+                <Flexbox w={"100%"} alignItems="flex-end">
+                    {typeof props.paths !== 'undefined' && (
+                        <Block flex={1}>
+                            {props.paths.map((path, index) => (
+                                <Block
+                                    key={index}
+                                    mb={"0.5rem"}
+                                    css={{
+                                        color: flow.theme.color.primary.css(),
+                                        ...flow.theme.typography.text[2]
+                                    }}
+                                    children={path}
+                                />
+                            ))}
+                        </Block>
+                    )}
+                    <Flexbox>
+                        {props.props && (
+                            <Menu
+                                decoration="color"
+                                defaultValue={displayProps}
+                                onChange={setDisplayProps}
+                                items={[
+                                    {
+                                        value: "0",
+                                        content: <Icon css={{ fontSize: "1.5rem" }} type={t => t.outline.code} />
+                                    },
+                                    {
+                                        value: "1",
+                                        content: <Icon css={{ fontSize: "1.5rem" }} type={t => t.outline.cube} />
+                                    }
+                                ]}
                             />
-                        ))}
-                    </Block>
-                )}
+                        )}
+                        <Icon
+                            p="0.75rem"
+                            pr="0rem"
+                            size="1.25rem"
+                            color={grid ? c => c.primary.css() : c => c.onSurface.css()}
+                            onClick={() => {
+                                localStorage.setItem('case_grid', !grid ? 'true' : 'false')
+                                setGrid(!grid)
+                            }}
+                            type={t => t.outline.grid}
+                        />
+                    </Flexbox>
+                </Flexbox>
                 <Block css={{ 
                     width: "100%", 
                     overflow: "hidden",
@@ -141,59 +171,12 @@ const UICaseBlock = (props: UICaseBlockProps) => {
                     }}>
                         <Block background={"#222222"} flex={1}>
                             <Block flex={1}>
-                                <Flexbox alignItems="center">
-                                    <ThemeSwitch onChange={(theme) => {
-                                        window.setTheme(theme);
-                                        setDark(theme.toUpperCase().match("DARK") ? true : false)
-                                    }} />
-                                    <Block flex={1} />
-                                    {props.props && (
-                                        <Menu 
-                                            flexBasis={"4rem"} 
-                                            decoration="color" 
-                                            css={{ color: "#fff", fontSize: "1.5rem" }} 
-                                            defaultValue={displayProps} 
-                                            onChange={setDisplayProps}
-                                            items={[
-                                                {
-                                                    value: "0",
-                                                    content: <Icon css={{ fontSize: "1.5rem" }} type={t => t.outline.code} />
-                                                },
-                                                {
-                                                    value: "1",
-                                                    content: <Icon css={{ fontSize: "1.5rem" }} type={t => t.outline.cube} />
-                                                }
-                                            ]}
-                                        />
-                                    )}
-                                    <Icon
-                                        p="0.75rem"
-                                        pr="0.5rem"
-                                        size="1.25rem"
-                                        color={dark ? c => c.primary.css() : "#555"}
-                                        onClick={() => setDark(!dark)}
-                                        type={t => t.outline.moon}
-                                    />
-                                    <Icon
-                                        p="0.75rem"
-                                        pr="1.25rem"
-                                        size="1.25rem"
-                                        color={grid ? c => c.primary.css() : "#555"}
-                                        onClick={() => {
-                                            localStorage.setItem('case_grid', !grid ? 'true' : 'false')
-                                            setGrid(!grid)
-                                        }}
-                                        type={t => t.outline.grid}
-                                    />
-                                </Flexbox>
-
                                 {displayProps === "0" && (
                                     <LiveEditor css={{ " textarea": { outline: "none" } }} />
                                 )}
 
                                 {displayProps === "1" && props.props && (
                                     <Block p={"1rem"}>
-                                        <Divider color="#333" mb="0.75rem" />
                                         {
                                             Object.keys(props.props).map(typeName => {
                                                 const types = GetPropsForType(typeName, props.interfaces || ["Props"])

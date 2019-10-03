@@ -2,8 +2,8 @@ import Icon from '@flow-ui/core/content/Icon';
 import Spinner from '@flow-ui/core/content/Spinner';
 import React, { Fragment, useLayoutEffect, useState } from 'react';
 import { CaseProps } from "../../../plugins/CaseWrapper";
-import UICaseBlock from '../../../plugins/UICaseBlock';
-import UICaseDocumentation from "../../../plugins/UICaseDocumentation";
+import UICaseBlock from '@flow-ui/showcase/src/UI/components/UICaseBlock';
+import UICaseDocumentation from "@flow-ui/showcase/src/UI/components/UICaseDocumentation";
 
 export default (props: CaseProps) => {
 

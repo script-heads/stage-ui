@@ -1,8 +1,8 @@
 import Panel from '@flow-ui/core/layout/Panel';
 import React, { Fragment, useLayoutEffect, useState } from 'react';
 import { CaseProps } from "../../../plugins/CaseWrapper";
-import UICaseBlock from '../../../plugins/UICaseBlock';
-import UICaseDocumentation from "../../../plugins/UICaseDocumentation";
+import UICaseBlock from '@flow-ui/showcase/src/UI/components/UICaseBlock';
+import UICaseDocumentation from "@flow-ui/showcase/src/UI/components/UICaseDocumentation";
 
 export default (props: CaseProps) => {
 

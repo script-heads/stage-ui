@@ -1,8 +1,8 @@
 import Chart from "../../../../lab/data/Chart";
 import React, { Fragment } from "react";
 import { CaseProps } from "../../../plugins/CaseWrapper";
-import UICaseBlock, { fakeValue } from "../../../plugins/UICaseBlock";
-import UICaseDocumentation from "../../../plugins/UICaseDocumentation";
+import UICaseBlock, { fakeValue } from "@flow-ui/showcase/src/UI/components/UICaseBlock";
+import UICaseDocumentation from "@flow-ui/showcase/src/UI/components/UICaseDocumentation";
 
 
 export const tag = "🧪"

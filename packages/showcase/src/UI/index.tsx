@@ -7,6 +7,7 @@ import * as React from "react";
 import { PanelRenderItem, PanelRenderProps, ToolRenderItem } from "../../types";
 import core from '../core';
 import { Menu, Panel } from './components';
+import ThemeSwitch from "./components/ThemeSwitch";
 
 
 interface State {
@@ -139,7 +140,7 @@ class UI extends React.Component<{}, State>  {
 	setCase(currentCaseID: string) {
 
 		window.scrollTo(0, 0);
-		
+
 		const Case = core.getCaseById(currentCaseID);
 
 		this.setState({
@@ -218,6 +219,7 @@ class UI extends React.Component<{}, State>  {
 										</T2>
 									)}
 								</Flexbox>
+								<ThemeSwitch />
 								<Menu cases={core.cases} onChange={this.setCase} />
 							</Block>
 							

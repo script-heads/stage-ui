@@ -4,8 +4,8 @@ import Drop from "@flow-ui/core/layout/Drop";
 import Popover from "@flow-ui/core/layout/Popover";
 import React, { useLayoutEffect, useRef, useState, Fragment } from "react";
 import { CaseProps } from "../../../plugins/CaseWrapper";
-import UICaseDocumentation from "../../../plugins/UICaseDocumentation";
-import UICaseBlock, { fakeValue } from "../../../plugins/UICaseBlock";
+import UICaseDocumentation from "@flow-ui/showcase/src/UI/components/UICaseDocumentation";
+import UICaseBlock, { fakeValue } from "@flow-ui/showcase/src/UI/components/UICaseBlock";
 
 export default (props: CaseProps) => {
 

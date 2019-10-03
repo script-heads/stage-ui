@@ -3,8 +3,8 @@ import Meter from '@flow-ui/core/data/Meter';
 import dialog from '@flow-ui/core/misc/utils/dialog';
 import React, { Fragment } from 'react';
 import { CaseProps } from "../../../plugins/CaseWrapper";
-import UICaseBlock, { fakeValue } from '../../../plugins/UICaseBlock';
-import UICaseDocumentation from '../../../plugins/UICaseDocumentation';
+import UICaseBlock, { fakeValue } from '@flow-ui/showcase/src/UI/components/UICaseBlock';
+import UICaseDocumentation from '@flow-ui/showcase/src/UI/components/UICaseDocumentation';
 
 export default (props: CaseProps) => {
 

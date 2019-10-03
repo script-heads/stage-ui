@@ -1,13 +1,10 @@
-import Button from '@flow-ui/core/action/Button';
-import Icon from '@flow-ui/core/content/Icon';
-import Flexbox from '@flow-ui/core/layout/Flexbox';
+import Block from '@flow-ui/core/layout/Block';
 import Viewport from '@flow-ui/core/layout/Viewport';
 import * as themesCore from '@flow-ui/core/misc/themes';
-import * as themesExtra from '../../../lab/misc/themes';
 import { IPluginProps, PanelRenderProps } from '@flow-ui/showcase/types';
-import React, { useState } from 'react';
+import React from 'react';
+import * as themesExtra from '../../../lab/misc/themes';
 import ParamDialog from './ParamDialog';
-import Block from '@flow-ui/core/layout/Block';
 
 declare global {
     interface Window {
@@ -30,7 +27,6 @@ export interface RegisterParam {
 }
 
 let AddPanel: (props: PanelRenderProps) => void;
-let OpenMenu: () => void;
 
 export const themes = { ...themesCore, ...themesExtra }
 
@@ -102,6 +98,5 @@ class Wrapper extends React.Component {
 export default (props: IPluginProps) => {
     Wrapper.contextType = props.context;
     AddPanel = props.addPanel;
-    OpenMenu = props.openMenu;
     props.wrapper(Wrapper);
 };

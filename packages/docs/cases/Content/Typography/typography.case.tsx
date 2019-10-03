@@ -4,8 +4,8 @@ import Divider from '@flow-ui/core/content/Divider'
 import { H1, H2, H3, H4, D1, D2, D3, D4, T1, T2, T3, T4, C1, C2, C3, C4, A } from '@flow-ui/core/content/Typography';
 
 import Flexbox from '@flow-ui/core/layout/Flexbox';
-import UICaseBlock from '../../../plugins/UICaseBlock';
-import UICaseDocumentation from '../../../plugins/UICaseDocumentation';
+import UICaseBlock from '@flow-ui/showcase/src/UI/components/UICaseBlock';
+import UICaseDocumentation from '@flow-ui/showcase/src/UI/components/UICaseDocumentation';
 import Block from '@flow-ui/core/layout/Block';
 
 export default (props: CaseProps) => {

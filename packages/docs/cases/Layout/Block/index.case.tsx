@@ -2,8 +2,8 @@ import Block from '@flow-ui/core/layout/Block';
 import Flexbox from '@flow-ui/core/layout/Flexbox';
 import React, { Fragment, useState } from 'react';
 import { CaseProps } from "../../../plugins/CaseWrapper";
-import UICaseBlock from '../../../plugins/UICaseBlock';
-import UICaseDocumentation from "../../../plugins/UICaseDocumentation";
+import UICaseBlock from '@flow-ui/showcase/src/UI/components/UICaseBlock';
+import UICaseDocumentation from "@flow-ui/showcase/src/UI/components/UICaseDocumentation";
 
 export default (props: CaseProps) => {
 
