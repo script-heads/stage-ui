@@ -6,6 +6,7 @@ import Select from '@flow-ui/core/input/Select';
 
 const ThemeSwitch = () => {
 
+    console.log(themes)
     const currentTheme = localStorage.getItem('theme');
 
     return (
@@ -17,7 +18,7 @@ const ThemeSwitch = () => {
                     text: themes[currentTheme].name!,
                     value: currentTheme!
                 }] : [{
-                    text: themes[0].name,
+                    text: themes[Object.keys(themes)[0]].name,
                     value: Object.keys(themes)[0]
                 }]}
                 options={
@@ -35,7 +36,7 @@ const ThemeSwitch = () => {
             <Icon
                 pl="0.5rem"
                 size={"1.25rem"}
-                type={t => t.outline.colorPalette} 
+                type={t => t.outline.colorPalette}
                 color={c => c.light.css()}
             />
         </Flexbox>
