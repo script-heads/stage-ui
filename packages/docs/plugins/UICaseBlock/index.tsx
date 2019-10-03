@@ -12,6 +12,7 @@ import theme from './theme'
 import { GetPropsForType } from '../UICaseDocumentation'
 import ThemeSwitch from './ThemeSwitch';
 import useFlow from '@flow-ui/core/misc/hooks/useFlow'
+import MenuTypes from '@flow-ui/core/action/Menu/types'
 
 interface UICaseBlockProps {
     title: string
@@ -38,7 +39,7 @@ export const fakeValue = (value: string): any => {
 }
 
 const UICaseBlock = (props: UICaseBlockProps) => {
-    const [displayProps, setDisplayProps] = useState("0");
+    const [displayProps, setDisplayProps] = useState<MenuTypes.Value>("0");
     const code = ReactToJsxString(props.children, {
         displayName: (e) => {
             if (e.type.displayName) {
@@ -108,7 +109,7 @@ const UICaseBlock = (props: UICaseBlockProps) => {
             language={"jsx"}
             scope={props.scope} code={code}>
             <Flexbox p='2rem' column alignItems="flex-start">
-                <H1 css={{userSelect:"none"}}>{props.title}</H1>
+                <H1 css={{userSelect:"none", fontSize: "2.5rem"}} weight={800}>{props.title}</H1>
                 <T1 css={{userSelect:"none"}}>{props.subtitle}</T1>
                 {typeof props.paths !== 'undefined' && (
                     <Block>

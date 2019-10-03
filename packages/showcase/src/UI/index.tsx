@@ -184,12 +184,12 @@ class UI extends React.Component<{}, State>  {
 			<Context.Provider value={{ ...context, setContext: this.setContext }}>
 				<Wrap>
 					<Block>
-						<Flexbox css={{
-							padding: '1rem',
-							background: "#222",
-							color: "#fff"
-						}}>
-							<H4>{(core.config && core.config.title) || "Showcase"}</H4>
+						<Flexbox p={"1rem"}>
+							<H4 
+								weight={800} 
+								color={c => c.primary.css()}
+								children={(core.config && core.config.title) || "Showcase"}	
+							/>
 							<Block flex={1}/>
 							{(core.config && core.config.giturl) && (
 								<T2>

@@ -64,7 +64,7 @@ const UICaseDocumentation = (props: { ns: string, filter?: string[], openInterfa
 
     return (
         <Fragment>
-            <H1 css={{userSelect:"none"}} ml="2rem" mb="1rem">Properties</H1>
+            <H1 css={{userSelect:"none", fontSize: "2.5rem"}} weight={800} ml="2rem" mb="1rem">Properties</H1>
             {nameSpaceDocumentation.map((data: TypeInterface, nsIndex: number) => {
                 if (props.filter && props.filter.find(f => f !== data.name)) {
                     return null
@@ -93,7 +93,7 @@ const UICaseDocumentation = (props: { ns: string, filter?: string[], openInterfa
                         {blockOpenState[nsIndex] === true && (
                             <Fragment>
                                 <C1 weight={500} color={c => c.light.css()}>{data.comment}</C1>
-                                <Block surface="major" mt={"0.5rem"}>
+                                <Block mt={"0.5rem"}>
                                     {data.children.map((child: TypeInterfaceChild, childIndex: number) => {
                                         let color = "#f3f3f3"
                                         if (child.type === "reference") {
@@ -110,7 +110,7 @@ const UICaseDocumentation = (props: { ns: string, filter?: string[], openInterfa
                                         }
                                         return (
                                             <Block key={child.id}>
-                                                <Block m="1rem">
+                                                <Block mt="1rem" mb="1rem">
                                                     <Flexbox>
                                                         <Flexbox flex={1} alignItems="center" wrap="wrap">
                                                             <Icon
@@ -154,7 +154,7 @@ const UICaseDocumentation = (props: { ns: string, filter?: string[], openInterfa
                                                             pr={"0.35rem"}
                                                             children={child.isOptional ? "Optional" : "Required"}
                                                             background={c => child.isOptional ? c.lightest.css() : c.accent.red.css()}
-                                                            color={c => c.hardest.css()}
+                                                            color={c => child.isOptional ? c.hardest.css() : c.onSurface.css()}
                                                             alignSelf="flex-start"
                                                             css={{ borderRadius: "0.35rem" }}
                                                         />

@@ -7,6 +7,7 @@ import * as themesExtra from '../../../lab/misc/themes';
 import { IPluginProps, PanelRenderProps } from '@flow-ui/showcase/types';
 import React, { useState } from 'react';
 import ParamDialog from './ParamDialog';
+import Block from '@flow-ui/core/layout/Block';
 
 declare global {
     interface Window {
@@ -64,33 +65,35 @@ class Wrapper extends React.Component {
 
         return (
             <Viewport theme={themes[this.state.currentTheme]}>
-                {
-                    React.cloneElement(this.props.children as any, {
-                        params: currentParams,
-                        registerParams: (paramKeys: ParamKeys) => {
-                            const params: RegisterParam[] = [];
-                            Object.keys(paramKeys).forEach(key => {
-                                params.push({
-                                    key,
-                                    values: paramKeys[key]
-                                });
-                            })
-                            AddPanel({
-                                item: {
-                                    id: 'Props',
-                                    name: 'Props',
-                                    render: () => (
-                                        <ParamDialog
-                                            onUpdate={this.forceUpdate.bind(this)}
-                                            currentParams={currentParams}
-                                            params={params}
-                                        />
-                                    )
-                                },
-                            })
-                        }
-                    })
-                }
+                <Block background={c => c.surface.css()}>
+                    {
+                        React.cloneElement(this.props.children as any, {
+                            params: currentParams,
+                            registerParams: (paramKeys: ParamKeys) => {
+                                const params: RegisterParam[] = [];
+                                Object.keys(paramKeys).forEach(key => {
+                                    params.push({
+                                        key,
+                                        values: paramKeys[key]
+                                    });
+                                })
+                                AddPanel({
+                                    item: {
+                                        id: 'Props',
+                                        name: 'Props',
+                                        render: () => (
+                                            <ParamDialog
+                                                onUpdate={this.forceUpdate.bind(this)}
+                                                currentParams={currentParams}
+                                                params={params}
+                                            />
+                                        )
+                                    },
+                                })
+                            }
+                        })
+                    }
+                </Block>
             </Viewport>
         )
     }

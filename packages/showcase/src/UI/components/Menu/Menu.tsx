@@ -20,6 +20,9 @@ export default (props: MenuProps) => {
 
 				if (cases[name].node) {
 					return {
+						css: {
+							fontWeight: "700",
+						},
 						value: cases[name].id,
 						content: name
 					}
@@ -35,11 +38,11 @@ export default (props: MenuProps) => {
 						/>
 						<Menu
 							value={currentCase}
-							decoration="color"
+							// decoration="color"
 							direction="column"
 							onChange={(value) => {
-								setCurrentCase(value);
-								props.onChange(value)
+								setCurrentCase(value.toString());
+								props.onChange(value.toString())
 							}}
 							//@ts-ignore
 							items={casesList(cases[name]).filter(c => c != null)}
@@ -52,15 +55,7 @@ export default (props: MenuProps) => {
 	}
 
 	return (
-		<Block css={{
-			marginTop: "1rem",
-			borderTopRightRadius: theme.radius.default,
-			borderBottomRightRadius: theme.radius.default,
-			borderRight: `1px solid ${theme.color.lightest.css()}`,
-			borderBottom: `1px solid ${theme.color.lightest.css()}`,
-			borderTop: `1px solid ${theme.color.lightest.css()}`,
-			background: theme.color.surface.css(),
-		}}>
+		<Block>
 			{casesList(props.cases)}
 		</Block>
 	)
