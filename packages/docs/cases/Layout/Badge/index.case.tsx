@@ -12,7 +12,7 @@ export default (props: CaseProps) => {
     return (
         <Fragment>
             <UICaseBlock
-                title="Simple case"
+                title="Badge"
                 subtitle={`Badge wrap thier children and put on it any React Element, string or number. String and number always have round background.`}
                 scope={{ Badge, Block }}
                 props={{ BadgeTypes }}

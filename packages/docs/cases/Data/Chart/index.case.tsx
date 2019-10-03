@@ -13,15 +13,17 @@ export default (props: CaseProps) => {
         <Fragment>
             <UICaseBlock
                 minHeight="350px"
-                title="Simple case"
+                title="Chart"
                 subtitle={``}
                 scope={{ Chart }}
                 children={
                     <Chart
                         type="line"
                         labels={labels}
+                    
                         data={fakeValue("[[0, 17, 28, 41, 83, 94, 100]]")}
                         options={{
+                            maintainAspectRatio: false,
                             legend: {
                                 display: false
                             }

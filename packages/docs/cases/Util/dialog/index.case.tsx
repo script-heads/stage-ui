@@ -11,7 +11,7 @@ export default (props: CaseProps) => {
     return (
         <Fragment>
             <UICaseBlock
-                title="Simple case"
+                title="Dialog"
                 subtitle={`Function will create dialog in modal`}
                 scope={{ Button, dialog }}
 
@@ -34,7 +34,7 @@ export default (props: CaseProps) => {
                 ]}
             />
             <UICaseBlock
-                title="Custom content case"
+                title="With custom content"
                 subtitle={`Useful when need instant custom modal`}
                 scope={{ Button, Meter, dialog }}
 

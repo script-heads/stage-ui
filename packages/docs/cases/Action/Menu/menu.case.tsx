@@ -12,7 +12,7 @@ export default (props: CaseProps) => {
     return (
         <Fragment>
             <UICaseBlock
-                title="Simple case"
+                title="Menu"
                 scope={{ Menu, Icon }}
                 props={{ MenuTypes }}
                 children={

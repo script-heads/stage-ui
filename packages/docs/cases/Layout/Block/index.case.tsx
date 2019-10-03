@@ -12,7 +12,7 @@ export default (props: CaseProps) => {
     return (
         <Fragment>
             <UICaseBlock
-                title="Simple case"
+                title="Block"
                 subtitle={`Block — minimal layout component. For example this case wrap in block.`}
                 scope={{ Block }}
                 props={{ BlockTypes }}
@@ -24,7 +24,7 @@ export default (props: CaseProps) => {
                 ]}
             />
             <UICaseBlock
-                title="Surface case"
+                title="With surface"
                 subtitle={`Also block can be surface.`}
                 scope={{ Block }}
                 children={
@@ -38,7 +38,7 @@ export default (props: CaseProps) => {
                 ]}
             />
             <UICaseBlock
-                title="Hover surface case"
+                title="With hover"
                 subtitle={`If we need more accent on hover element`}
                 scope={{ Block, Flexbox }}
                 children={

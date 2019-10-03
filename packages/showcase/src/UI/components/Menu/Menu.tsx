@@ -24,7 +24,8 @@ export default (props: MenuProps) => {
 							fontWeight: "700",
 							paddingLeft:"0.5rem",
 							minWidth: "14rem",
-							
+							borderTopLeftRadius: "10rem",
+							borderBottomLeftRadius: "10rem",
 						},
 						value: cases[name].id,
 						content: (

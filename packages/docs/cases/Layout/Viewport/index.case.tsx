@@ -11,7 +11,7 @@ export default (props: CaseProps) => {
     return (
         <Fragment>
             <UICaseBlock
-                title="Viewport case"
+                title="Viewport"
                 subtitle={`It's theme provider, you should wrap entry application`}
                 scope={{ Viewport }}
                 props={{ ViewportTypes }}

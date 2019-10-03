@@ -19,7 +19,7 @@ export default (props: CaseProps) => {
     return (
         <Fragment>
             <UICaseBlock
-                title="Simple case"
+                title="Modal"
                 subtitle={``}
                 scope={{ Modal, Divider, Flexbox, Button, _ref }}
                 props={{ ModalTypes }}

@@ -11,7 +11,7 @@ export default (props: CaseProps) => {
     return (
         <Fragment>
             <UICaseBlock
-                title="Simple case"
+                title="Meter"
                 subtitle={``}
                 scope={{ Meter }}
                 props={{ MeterTypes }}
@@ -26,7 +26,7 @@ export default (props: CaseProps) => {
                 ]}
             />
             <UICaseBlock
-                title="Animated case"
+                title="With animation"
                 subtitle={``}
                 scope={{ Meter }}
                 children={

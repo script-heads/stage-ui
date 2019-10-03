@@ -23,7 +23,7 @@ export default (props: CaseProps) => {
     return (
         <Fragment>
             <UICaseBlock
-                title="Simple case"
+                title="TextField"
                 subtitle={``}
                 scope={{ TextField }}
                 props={{ TextFieldTypes }}
@@ -44,7 +44,7 @@ export default (props: CaseProps) => {
                 ]}
             />
             <UICaseBlock
-                title="Mask input case"
+                title="With mask"
                 subtitle={``}
                 scope={{ TextField }}
                 props={{ TextFieldTypes }}

@@ -12,7 +12,7 @@ export default (props: CaseProps) => {
     return (
         <Fragment>
             <UICaseBlock
-                title="Simple case"
+                title="Flexbox"
                 subtitle={`Just a flexbox`}
                 scope={{ Flexbox, Block }}
                 props={{ FlexboxTypes }}

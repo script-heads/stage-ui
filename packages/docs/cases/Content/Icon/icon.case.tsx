@@ -17,7 +17,7 @@ export default (props: CaseProps) => {
 	return (
 		<Fragment>
 			<UICaseBlock
-				title="Simple case"
+				title="Icon"
 				scope={{ Icon }}
 				props={{ IconTypes }}
 				children={
@@ -31,7 +31,7 @@ export default (props: CaseProps) => {
 					`@flow-ui/core/content/Icon`,
 				]}
 			/>
-			<H1 pl={"4rem"}>Icon set</H1>
+			<H1 pl={"4rem"}>All set</H1>
 			<Flexbox pt='1rem'>
 				<div
 					style={{

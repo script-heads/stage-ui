@@ -11,7 +11,7 @@ export default (props: CaseProps) => {
     return (
         <Fragment>
             <UICaseBlock
-                title="Simple case"
+                title="Panel"
                 subtitle={`Could be use as main menu in complex apps`}
                 scope={{ Panel }}
                 props={{ PanelTypes }}
