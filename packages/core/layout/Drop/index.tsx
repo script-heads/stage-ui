@@ -29,10 +29,10 @@ const Drop = (props: Types.Props, ref) => {
         };
     });
 
-    function handleClickOutside(event) {
+    function handleClickOutside(event: any) {
         drop.current &&
             !drop.current.contains(event.target) &&
-            onClickOutside && onClickOutside();
+            onClickOutside && onClickOutside(event);
     }
 
     function setPosition() {

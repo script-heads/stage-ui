@@ -9,10 +9,6 @@ import Global from '../../types';
 declare namespace DatePickerTypes {
     export interface Props extends Global.FieldProps {
         /**
-         * Type of render
-         */
-        type?: 'textfield' | 'display'
-        /**
          * Property value could be a string
          * if you pass format property aswell
          * otherwise value should be instance of Moment
@@ -35,6 +31,10 @@ declare namespace DatePickerTypes {
          * or string if format property was passed.
          */
         onChange?: (date: Moment, formatedValue: string) => void
+        /**
+         * Enable mask input
+         */
+        masked?: boolean
     }
 
     export interface MonthGridProps {

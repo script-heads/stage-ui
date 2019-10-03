@@ -14,32 +14,11 @@ export default (props: DatePickerTypes.Props) => {
     const styleProps = useStyleProps(props);
 
     return {
-        textFieldWrapper: css(
-            {
-                padding: '0.25rem',
-                background: theme.color.surface.css(),
-                borderWidth: theme.assets.border.width,
-                borderStyle: theme.assets.border.style,
-                borderColor: theme.assets.border.color,
-                borderRadius: theme.radius.narrow,
-                borderTop: 0,
-                position: 'relative',
-                top: "-" + theme.radius.narrow,
-            },
-            overrides && overrides.textFieldWrapper
-        ),
-
-        textFieldOkButton: css({
-            position: 'absolute',
-            right: 10,
-            top: -28,
-        }, overrides && overrides.textFieldOkButton),
 
         monthGrid: css({
             position: "relative",
-            background: theme.color.backgroundVariant.css(),
+            background: theme.color.surface.css(),
             color: theme.color.onSurface.css(),
-            borderRadius: theme.radius.narrow,
         }, overrides && overrides.monthGrid),
 
         weekDay: css({
@@ -49,9 +28,7 @@ export default (props: DatePickerTypes.Props) => {
         }, overrides && overrides.weekDay),
 
         title: css({
-            background: theme.color.backgroundVariant.css(),
             color: theme.color.onSurface.css(),
-            borderRadius: theme.radius.narrow,
             padding: '0.25rem'
         }, overrides && overrides.title),
 
@@ -77,10 +54,10 @@ export default (props: DatePickerTypes.Props) => {
                 height: '2rem',
                 cursor: "pointer",
                 opacity: 1,
-                background: theme.color.surface.css(),
+                background: theme.color.background.css(),
                 borderWidth: theme.assets.border.width,
                 borderStyle: theme.assets.border.style,
-                borderColor: theme.color.backgroundVariant.css(),
+                borderColor: theme.color.surface.css(),
                 borderRadius: theme.radius.narrow,
                 color: theme.color.onSurface.css(),
                 userSelect: "none" as "none",
@@ -89,8 +66,8 @@ export default (props: DatePickerTypes.Props) => {
             /**
              * This day is from current month
              */
-            if (isCurrentMonth) {
-                st.background = theme.color.surface.alpha(0.3).css()
+            if (!isCurrentMonth) {
+                st.background = theme.color.background.alpha(0.5).css()
             }
             /**
              * It is current day

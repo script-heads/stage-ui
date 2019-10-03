@@ -10,7 +10,7 @@ export const playground = () => {
     return (
         <div>
             <DatePicker
-                label={'Label'}
+                label={'Pick date'}
             />
         </div>
     )
@@ -27,10 +27,12 @@ export default (props: CaseProps) => {
                 subtitle={``}
                 scope={{ DatePicker }}
                 props={{ DatePickerTypes }}
+                minHeight={"5rem"}
                 // interfaces={["Props", "InputProps", "TextAreaProps", "FieldProps"]}
                 children={
                     <DatePicker
-                        label={'Label'}
+                        masked
+                        label={'Pick date'}
                     />
                 }
                 paths={[

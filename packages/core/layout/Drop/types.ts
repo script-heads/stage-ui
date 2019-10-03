@@ -13,7 +13,7 @@ declare namespace DropTypes {
     align?: "top" | "bottom" | "left" | "right"
     justify?: "start" | "center" | "end" | "start-outside" | "end-outside"
     distance?: number
-    onClickOutside?: () => void
+    onClickOutside?: (event: any) => void
     onEsc?: () => void
     children?: React.ReactNode
   }
