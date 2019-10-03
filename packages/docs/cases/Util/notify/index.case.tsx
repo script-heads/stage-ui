@@ -66,7 +66,7 @@ export default (props: CaseProps) => {
             <UICaseDocumentation
                 ns="NotificationTypes"
                 filter={["NotifyOptions"]}
-                openInterfaces={["NotifyOptions"]}
+                // openInterfaces={["NotifyOptions"]}
             />
         </Fragment>
     )

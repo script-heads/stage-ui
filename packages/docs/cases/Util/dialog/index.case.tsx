@@ -60,7 +60,7 @@ export default (props: CaseProps) => {
             <UICaseDocumentation
                 ns="ViewportTypes"
                 filter={["DialogOptions"]}
-                openInterfaces={["DialogOptions"]}
+                // openInterfaces={["DialogOptions"]}
             />
         </Fragment>
     )

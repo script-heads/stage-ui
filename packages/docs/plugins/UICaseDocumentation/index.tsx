@@ -38,7 +38,7 @@ export interface TypeInterfaceChild {
 
 const UICaseDocumentation = (props: { ns: string, filter?: string[], openInterfaces?: string[] }) => {
 
-    const openInterfaces = props.openInterfaces || ["Props"]
+    const openInterfaces = props.openInterfaces || []
     const nameSpaceDocumentation = typedoc[props.ns] || []
 
     if (nameSpaceDocumentation.length === 0) {
