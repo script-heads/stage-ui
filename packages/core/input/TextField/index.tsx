@@ -54,7 +54,10 @@ const TextField: FC<ButtonTypes.Props> = (props, ref) => {
             isEmpty={isEmpty}
             cursor='text'
             onLabelOverlay={(state) => setUnderOverlay(state)}
-            onFocus={e => inputRef.current!.focus()}
+            onFocus={e => {
+                inputRef.current!.focus()
+                props.onFocus && props.onFocus(e)
+            }}
             onClear={() => inputRef.current!.value = ''}
             manyLines={props.multiline}
             overlayLabelAlign={props.multiline ? 'top' : 'bottom'}
