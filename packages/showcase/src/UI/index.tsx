@@ -138,6 +138,8 @@ class UI extends React.Component<{}, State>  {
 	
 	setCase(currentCaseID: string) {
 
+		window.scrollTo(0, 0);
+		
 		const Case = core.getCaseById(currentCaseID);
 
 		this.setState({
