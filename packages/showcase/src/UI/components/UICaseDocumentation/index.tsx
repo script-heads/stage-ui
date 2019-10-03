@@ -5,7 +5,7 @@ import Block from '@flow-ui/core/layout/Block';
 import Flexbox from '@flow-ui/core/layout/Flexbox';
 import React, { Fragment, useLayoutEffect, useState } from 'react';
 
-export const typedoc = require('../../typedoc/types.json');
+export const typedoc = require('../../../../../docs/typedoc/types.json');
 
 export const GetPropsForType = (name: string, interfaces: string[]): TypeInterfaceChild[] | null => {
     let types = typedoc[name]
