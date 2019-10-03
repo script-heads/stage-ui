@@ -53,10 +53,6 @@ class UI extends React.Component<{}, State>  {
 		if (event.keyCode === 80 && event.altKey) {
 			const mode = localStorage.getItem("mode") || "default";
 			localStorage.setItem("mode", mode === "default" ? "playground" : "default")
-			let currentCase = localStorage.getItem('currentCaseID');
-			if (currentCase) {
-				this.setCase(currentCase)
-			}
 		}
 	}
 
@@ -70,9 +66,16 @@ class UI extends React.Component<{}, State>  {
 		});
 		document.addEventListener('mousedown', this.handleMouseClick);
 		document.addEventListener('keyup', this.playgroundModeHandle);
-		const savedCaseID = localStorage.getItem('currentCaseID')
-		if (savedCaseID) {
-			this.setCase(savedCaseID)
+		const path = window.location.pathname
+		if (path) {
+			const currentCase = core.getCaseByUrl(path)
+			if (currentCase) {
+				this.setCase(currentCase.id)
+			} else {
+				this.setCase(
+					core.getFirstCase().id
+				)
+			}
 		}
 	};
 
@@ -143,6 +146,8 @@ class UI extends React.Component<{}, State>  {
 
 		const Case = core.getCaseById(currentCaseID);
 
+		window.history.pushState({}, Case.name, "/" + Case.url);
+
 		this.setState({
 			CurrentCase: null,
 			isMenuOpen: false
@@ -167,7 +172,6 @@ class UI extends React.Component<{}, State>  {
 				CurrentCase: currentCaseNode,
 				isMenuOpen: false
 			});
-			localStorage.setItem('currentCaseID', currentCaseID);
 		})
 	}
 

@@ -9,9 +9,11 @@ const options = {
     port: 9050,
     host: '0.0.0.0',
     hot: true,
+    historyApiFallback: true,
     contentBase: __dirname + "/../public",
     compress: process.env.HOST ? true : false,
-    public: process.env.HOST || undefined
+    public: process.env.HOST || undefined,
+
 }
 
 webpackDevServer.addDevServerEntrypoints(config, options);

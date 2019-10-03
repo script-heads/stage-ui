@@ -101,11 +101,13 @@ class Core {
 
             currentContext.split('/').map((contextItem: any, index: number) => {
                 if (!index) return;
-
                 if (contextItem.match('.case')) {
+
                     objectLink.node = this.context(currentContext).default;
                     objectLink.playground = this.context(currentContext).playground;
                     objectLink.tag = this.context(currentContext).tag;
+                    objectLink.url = currentContext.split('/').slice(1, -1).join("/");
+
                 } else {
                     if (!objectLink[contextItem]) {
                         objectLink[contextItem] = {
@@ -128,6 +130,27 @@ class Core {
         }
     }
 
+    public getFirstCase(cases?: any) {
+        if (!cases) {
+            cases = this.cases;
+        }
+
+        const keys = Object.keys(cases);
+        for (let i = 0; i < keys.length; i++) {
+            const group: any = cases[keys[i]];
+
+            if (typeof group === "object" && !group.node) {
+                const node = this.getFirstCase(group);
+                if (node) {
+                    return node;
+                }
+            }
+            if (group.node) {
+                return group
+            }
+        }
+    }
+
     public getCaseById(id: string | null, cases?: any) {
         if (!id) return null;
         if (!cases) {
@@ -146,6 +169,31 @@ class Core {
             }
 
             if (group && group.id === id) {
+                return group
+            }
+        }
+    }
+
+    public getCaseByUrl(url: string | null, cases?: any) {
+        if (!url) return null;
+        if (!cases) {
+            cases = this.cases;
+        }
+        if (url[0] === "/") {
+            url = url.slice(1);
+        }
+
+        const keys = Object.keys(cases);
+        for (let i = 0; i < keys.length; i++) {
+            const group: any = cases[keys[i]];
+
+            if (typeof group === "object" && !group.node) {
+                const node = this.getCaseByUrl(url, group);
+                if (node) {
+                    return node;
+                }
+            }
+            if (group && group.url === url) {
                 return group
             }
         }
