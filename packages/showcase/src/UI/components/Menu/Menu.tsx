@@ -23,7 +23,7 @@ export default (props: MenuProps) => {
 						css: {
 							fontWeight: "700",
 							paddingLeft:"0.5rem",
-							minWidth: "12rem",
+							minWidth: "14rem",
 							
 						},
 						value: cases[name].id,
