@@ -7,7 +7,7 @@ import PanelTypes from '../../layout/Panel/types';
 import PopoverTypes from '../../layout/Popover/types';
 import CheckboxTypes from '../../control/Checkbox/types';
 import DatePickerTypes from '../../control/DatePicker/types'
-import SelectTypes from '../../input/Select/types';
+import SelectTypes from '../../control/Select/types';
 import ButtonTypes from '../../control/Button/types';
 import IconTypes from '../../content/Icon/types';
 import RangeTypes from '../../control/Range/types';

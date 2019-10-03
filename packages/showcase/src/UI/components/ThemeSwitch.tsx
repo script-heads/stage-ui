@@ -5,8 +5,6 @@ import { themes } from '@flow-ui/docs/plugins/CaseWrapper/';
 import Select from '@flow-ui/core/input/Select';
 
 const ThemeSwitch = () => {
-
-    console.log(themes)
     const currentTheme = localStorage.getItem('theme');
 
     return (

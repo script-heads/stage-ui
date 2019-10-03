@@ -133,13 +133,17 @@ export default (props: SelectTypes.Props) => {
                 cursor: 'pointer',
                 padding: '0.5rem 0.75rem',
                 height: 'fit-content',
-                ':hover': {
-                    background: theme.color.background.css()
+
+            },
+            underCursor ?
+                {
+                    background: theme.color.primary.css()
                 }
-            },
-            underCursor && {
-                background: theme.color.primary.css()
-            },
+                : {
+                    ':hover': {
+                        background: theme.color.background.css()
+                    }
+                },
             overrides && overrides.dropItem
         ),
 

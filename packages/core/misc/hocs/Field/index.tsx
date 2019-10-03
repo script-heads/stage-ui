@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, useRef, useState } from 'react';
+import React, { FC, forwardRef, useRef, useState, useEffect } from 'react';
 import getStyles from './styles';
 import FieldTypes from './types';
 import useContainer from '../../hooks/useContainer';
@@ -20,7 +20,9 @@ const Field: FC<FieldTypes.Props> = (props, ref) => {
     const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xlarge');
     const isLabelOverlay = (isEmpty && !focus && !isLabelOutside) ? true : false
 
-    props.onLabelOverlay && props.onLabelOverlay(isLabelOverlay);
+    useEffect(() => {
+        props.onLabelOverlay && props.onLabelOverlay(isLabelOverlay);
+    }, [isLabelOverlay])
 
     const Label = (
         <label

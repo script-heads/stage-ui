@@ -1,5 +1,5 @@
 
-import Select from '@flow-ui/core/input/Select';
+import Select from '@flow-ui/core/control/Select';
 import React, { Fragment, useState } from 'react';
 import { CaseProps } from "../../../plugins/CaseWrapper";
 import UICaseBlock, { fakeValue } from '@flow-ui/showcase/src/UI/components/UICaseBlock';

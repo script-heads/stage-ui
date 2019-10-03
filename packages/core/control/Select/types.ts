@@ -13,8 +13,9 @@ declare namespace SelectTypes {
         placeholder?: string
         options: Option[]
         multiselect?: boolean
+        searchable?: boolean
         values?: Option[]
-        defaultValue?: Option[]
+        defaultValues?: Option[]
         onChange?: (values: Option[], changedValue: Option) => void
     }
 
