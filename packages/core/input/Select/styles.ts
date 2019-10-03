@@ -128,7 +128,7 @@ export default (props: SelectTypes.Props) => {
             overrides && overrides.dropMenu
         ),
 
-        dropItem: css(
+        dropItem: (underCursor: boolean) => css(
             {
                 cursor: 'pointer',
                 padding: '0.5rem 0.75rem',
@@ -136,6 +136,9 @@ export default (props: SelectTypes.Props) => {
                 ':hover': {
                     background: theme.color.background.css()
                 }
+            },
+            underCursor && {
+                background: theme.color.primary.css()
             },
             overrides && overrides.dropItem
         ),

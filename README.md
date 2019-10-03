@@ -9,8 +9,8 @@ npm i @flow-ui/core
 
 ```
 import React from 'react'
-import { Viewport } from '@flow-ui/core/layout/viewport'
-import { Block } from '@flow-ui/core/layout/block'
+import { Viewport } from '@flow-ui/core/layout/Viewport'
+import { Block } from '@flow-ui/core/layout/Block'
 import { H1 } from '@flow-ui/core/content/typography/H'
 import { T1 } from '@flow-ui/core/content/typography/T'
 
@@ -24,7 +24,7 @@ const Hello props =>
 ```
 
 ## Experimental
-More components availible from [lab](https://github.com/abr-tech/FlowUI/tree/master/packages/lab) package.
+More components available from [lab](https://github.com/abr-tech/FlowUI/tree/master/packages/lab) package.
 
 ```
 npm i @flow-ui/lab

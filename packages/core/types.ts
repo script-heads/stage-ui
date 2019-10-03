@@ -70,6 +70,14 @@ declare namespace Global {
          * @deprecated This feature is no longer recommended.
          */
         onKeyPress?: EventProp<React.KeyboardEvent<HTMLElement>>
+        /**
+         * Event is fired when a key is pressed.
+         */
+        onKeyDown?: EventProp<React.KeyboardEvent<HTMLElement>>
+        /**
+         * Event is fired when a key is released.
+         */
+        onKeyUp?: EventProp<React.KeyboardEvent<HTMLElement>>
     }
 
     /**

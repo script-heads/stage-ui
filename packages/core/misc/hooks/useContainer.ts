@@ -39,7 +39,8 @@ export default (props, mouseFocus?: boolean, disableDecoration?: boolean) => {
             isMouseDown = false
             props.onMouseUp && props.onMouseUp(event);
         },
-        onKeyPress: (event) => {
+        onKeyPress: props.onKeyPress,
+        onKeyDown: (event) => {
             props.onKeyPress && props.onKeyPress(event);
             if (event.key === 'Enter' && props.onEnter) {
                 props.onEnter(event);
@@ -47,7 +48,9 @@ export default (props, mouseFocus?: boolean, disableDecoration?: boolean) => {
             if (event.key === 'Esc' && props.onEsc) {
                 props.onEsc(event);
             }
+            props.onKeyDown && props.onKeyDown(event)
         },
+        onKeyUp: props.onKeyUp,
         onClick: props.onClick,
         onMouseEnter: props.onMouseEnter,
         onMouseLeave: props.onMouseLeave,
