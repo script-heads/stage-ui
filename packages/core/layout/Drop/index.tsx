@@ -10,7 +10,12 @@ const Drop = (props: Types.Props, ref) => {
     const { children, target, onClickOutside, distance = 8 } = props;
     const styles = createStyles(props);
     const drop = useRef<HTMLDivElement>(null);
-    const targetRef = useRef<HTMLSpanElement>(null);
+    /**
+     * We're reusing ref if target is an 
+     * React Element and have reference on
+     */
+    //@ts-ignore
+    const targetRef = (target && target.ref) ? target.ref : useRef<HTMLSpanElement>(null);
     
     useEffect(() => {
         if (props.visibility != 'hidden' && props.display != 'none') {
@@ -24,10 +29,10 @@ const Drop = (props: Types.Props, ref) => {
         };
     });
 
-    function handleClickOutside(event) {
-        targetRef.current &&
-            !targetRef.current.contains(event.target) &&
-            onClickOutside && onClickOutside();
+    function handleClickOutside(event: any) {
+        drop.current &&
+            !drop.current.contains(event.target) &&
+            onClickOutside && onClickOutside(event);
     }
 
     function setPosition() {

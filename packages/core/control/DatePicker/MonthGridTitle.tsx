@@ -21,7 +21,7 @@ const MonthGridTitle = (props: DatePickerTypes.MonthGridTitleProps) => {
                     props.date.clone().add(actionProps.previous ? -1 : 1, "month")
                 )
             }}
-            children={<Icon type={i => actionProps.previous ? i.outline.chevronLeft : i.outline.chevronRight} />}
+            children={<Icon size={"2rem"} type={i => actionProps.previous ? i.outline.chevronLeft : i.outline.chevronRight} />}
         />
     );
 
