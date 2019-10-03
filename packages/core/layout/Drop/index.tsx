@@ -30,8 +30,8 @@ const Drop = (props: Types.Props, ref) => {
     });
 
     function handleClickOutside(event) {
-        targetRef.current &&
-            !targetRef.current.contains(event.target) &&
+        drop.current &&
+            !drop.current.contains(event.target) &&
             onClickOutside && onClickOutside();
     }
 
