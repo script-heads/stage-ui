@@ -184,7 +184,7 @@ class UI extends React.Component<{}, State>  {
 			<Context.Provider value={{ ...context, setContext: this.setContext }}>
 				<Wrap>
 					<Block>
-						<Flexbox p={"1rem"}>
+						{/* <Flexbox p={"1rem"}>
 							<H4 
 								weight={800} 
 								color={c => c.primary.css()}
@@ -199,9 +199,28 @@ class UI extends React.Component<{}, State>  {
 								</T2>
 							)}
 
-						</Flexbox>
+						</Flexbox> */}
 						<Flexbox alignItems="flex-start">
-							<Menu cases={core.cases} onChange={this.setCase} />
+							<Block>
+								<Flexbox pt="1rem" pl="1rem">
+									<H4
+										css={{cursor:"default"}}
+										weight={800}
+										color={c => c.primary.css()}
+										children={(core.config && core.config.title) || "Showcase"}
+									/>
+									<Block flex={1}/>
+									{(core.config && core.config.giturl) && (
+										<T2>
+											<A target="_blank" href={core.config.giturl}>
+												<Icon size={"1.5rem"} type={t => t.outline.github} />
+											</A>
+										</T2>
+									)}
+								</Flexbox>
+								<Menu cases={core.cases} onChange={this.setCase} />
+
+							</Block>
 							{
 								CurrentCase && (
 									<Block flex={1} css={{
