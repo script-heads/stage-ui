@@ -1,8 +1,9 @@
 import Block from '@flow-ui/core/layout/Block';
 import Menu from '@flow-ui/core/action/Menu';
-import { C2 } from '@flow-ui/core/content/Typography';
+import { C2, C1 } from '@flow-ui/core/content/Typography';
 import * as React from "react";
 import useFlow from '@flow-ui/core/misc/hooks/useFlow';
+import Flexbox from '@flow-ui/core/layout/Flexbox';
 
 export interface MenuProps {
 	cases: any,
@@ -11,7 +12,6 @@ export interface MenuProps {
 
 export default (props: MenuProps) => {
 	const [currentCase, setCurrentCase] = React.useState(localStorage.getItem('currentCaseID') || '')
-	const { theme } = useFlow()
 
 	const casesList = (cases: any) => {
 		return Object.keys(cases).map(name => {
@@ -22,10 +22,17 @@ export default (props: MenuProps) => {
 					return {
 						css: {
 							fontWeight: "700",
-							paddingLeft:"0.5rem"
+							paddingLeft:"0.5rem",
+							minWidth: "12rem",
+							
 						},
 						value: cases[name].id,
-						content: name
+						content: (
+							<Flexbox flex={1}>
+								<C1 ellipsis flex={1}>{name}</C1>
+								{cases[name].tag && <Block>{cases[name].tag}</Block>}
+							</Flexbox>
+						)
 					}
 				}
 
@@ -37,7 +44,7 @@ export default (props: MenuProps) => {
 							color={c => c.light.css()}
 							children={name}
 						/>
-						<Menu
+						<Menu 
 							value={currentCase}
 							decoration="filled-underline"
 							direction="column"

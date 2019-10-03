@@ -4,6 +4,8 @@ import { CaseProps } from "../../../plugins/CaseWrapper";
 import UICaseBlock, { fakeValue } from "../../../plugins/UICaseBlock";
 import UICaseDocumentation from "../../../plugins/UICaseDocumentation";
 
+
+export const tag = "🧪"
 export default (props: CaseProps) => {
     const labels = fakeValue('["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]');
 

@@ -185,8 +185,22 @@ class UI extends React.Component<{}, State>  {
 				<Wrap>
 					<Block>
 						<Flexbox alignItems="flex-start">
+							{
+								CurrentCase && (
+									<Block flex={1} css={{
+										position: "sticky",
+										top: 0
+									}}>
+										<CurrentCase />
+									</Block>
+								)
+							}
+							{!CurrentCase && <Spinner flex={1} m="2rem" />}
+							{core.config.hidePanel !== true && (
+								<Panel items={panelItems} tools={panelTools} />
+							)}
 							<Block>
-								<Flexbox pt="1rem" pl="1rem">
+								<Flexbox pt="1rem" pl="1.25rem" pr="1rem">
 									<H4
 										css={{cursor:"default"}}
 										weight={800}
@@ -204,20 +218,7 @@ class UI extends React.Component<{}, State>  {
 								</Flexbox>
 								<Menu cases={core.cases} onChange={this.setCase} />
 							</Block>
-							{
-								CurrentCase && (
-									<Block flex={1} css={{
-										position: "sticky",
-										top: 0
-									}}>
-										<CurrentCase />
-									</Block>
-								)
-							}
-							{!CurrentCase && <Spinner m="2rem" />}
-							{core.config.hidePanel !== true && (
-								<Panel items={panelItems} tools={panelTools} />
-							)}
+							
 						</Flexbox>
 					</Block>
 				</Wrap>

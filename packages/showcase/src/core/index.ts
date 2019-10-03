@@ -105,6 +105,7 @@ class Core {
                 if (contextItem.match('.case')) {
                     objectLink.node = this.context(currentContext).default;
                     objectLink.playground = this.context(currentContext).playground;
+                    objectLink.tag = this.context(currentContext).tag;
                 } else {
                     if (!objectLink[contextItem]) {
                         objectLink[contextItem] = {
