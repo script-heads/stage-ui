@@ -2,7 +2,7 @@ import Icon from '@flow-ui/core/content/Icon';
 import Flexbox from '@flow-ui/core/layout/Flexbox';
 import React from 'react';
 import { themes } from '@flow-ui/docs/plugins/CaseWrapper/';
-import Select from '@flow-ui/core/input/Select';
+import Select from '@flow-ui/core/control/Select';
 
 const ThemeSwitch = () => {
     const currentTheme = localStorage.getItem('theme');

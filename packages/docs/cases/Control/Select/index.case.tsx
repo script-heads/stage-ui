@@ -35,7 +35,7 @@ export default (props: CaseProps) => {
                     </Fragment>
                 }
                 paths={[
-                    `@flow-ui/core/input/Select`,
+                    `@flow-ui/core/control/Select`,
                 ]}
             />
             <UICaseDocumentation ns="SelectTypes" />

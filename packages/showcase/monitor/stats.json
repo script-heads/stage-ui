@@ -627,19 +627,19 @@
             "id": "../core/control/Checkbox/styles.ts"
           },
           {
-            "name": "../core/input/Select/SelectItems.tsx",
+            "name": "../core/control/Select/SelectItems.tsx",
             "size": 435,
-            "id": "../core/input/Select/SelectItems.tsx"
+            "id": "../core/control/Select/SelectItems.tsx"
           },
           {
-            "name": "../core/input/Select/index.tsx",
+            "name": "../core/control/Select/index.tsx",
             "size": 10212,
-            "id": "../core/input/Select/index.tsx"
+            "id": "../core/control/Select/index.tsx"
           },
           {
-            "name": "../core/input/Select/styles.ts",
+            "name": "../core/control/Select/styles.ts",
             "size": 12446,
-            "id": "../core/input/Select/styles.ts"
+            "id": "../core/control/Select/styles.ts"
           },
           {
             "name": "../core/control/Range/index.tsx",
@@ -992,9 +992,9 @@
             "id": "./cases/control/Checkbox/index.case.tsx"
           },
           {
-            "name": "./cases/input/Select/index.case.tsx",
+            "name": "./cases/control/Select/index.case.tsx",
             "size": 2375,
-            "id": "./cases/input/Select/index.case.tsx"
+            "id": "./cases/control/Select/index.case.tsx"
           },
           {
             "name": "./cases/control/Range/index.case.tsx",
