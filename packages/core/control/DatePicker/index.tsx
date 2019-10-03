@@ -11,6 +11,7 @@ import TextField from '../TextField';
 import MonthGrid from './MonthGrid';
 import createStyles from './styles';
 import DatePickerTypes from './types';
+import Icon from '../../content/Icon';
 
 const DatePicker: FC<DatePickerTypes.Props> = (props, ref: RefObject<HTMLDivElement>) => {
 
@@ -114,6 +115,9 @@ const DatePicker: FC<DatePickerTypes.Props> = (props, ref: RefObject<HTMLDivElem
                     onClick={() => {
                         setActive(true)
                     }}
+                    rightChild={(
+                        <Icon type={t => t.outline.calendar}/>
+                    )}
                 />
             )}
             children={(
