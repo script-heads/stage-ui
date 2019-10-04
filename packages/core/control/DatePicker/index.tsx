@@ -3,49 +3,58 @@
  * author: I.Trikoz
  */
 import IMask from 'imask';
-import moment from 'moment';
 import React, { FC, forwardRef, RefObject, useLayoutEffect, useState, useRef } from 'react';
 import Drop from '../../layout/Drop';
 import Popover from '../../layout/Popover';
 import TextField from '../TextField';
-import MonthGrid from './MonthGrid';
+import DateGrid from './DateGrid';
 import createStyles from './styles';
 import DatePickerTypes from './types';
 import Icon from '../../content/Icon';
+import { DateTime } from 'luxon';
+import { useDateFormat } from './utils';
 
 const DatePicker: FC<DatePickerTypes.Props> = (props, ref: RefObject<HTMLDivElement>) => {
 
-    const [value, setValue] = useState(moment());
+    const [value, setValue] = useState(DateTime.local());
     const [isActive, setActive] = useState(false);
-    const styles = createStyles(props);
+    const styles = createStyles();
     const fieldRef = useRef<any>(null)
 
     const {
-        format = "YYYY-MM-DD"
+        locale = "ru",
+        format = "yyyy-MM-dd"
     } = props;
 
-    useLayoutEffect(() => {
-        moment.locale("ru_RU");
+    const minValue = props.minValue
+        ? DateTime.fromJSDate(props.minValue)
+        : DateTime.local().minus({ year: 500 })
 
+    const maxValue = props.maxValue
+        ? DateTime.fromJSDate(props.maxValue)
+        : DateTime.local().plus({ year: 500 })
+
+    useLayoutEffect(() => {
         if (props.value) {
-            if (moment.isMoment(props.value)) {
-                setValue(props.value);
+            if (typeof props.value === "string") {
+                setValue(DateTime.fromString(props.value, format));
             } else {
-                setValue(moment(props.value, format));
+                setValue(DateTime.fromJSDate(props.value));
             }
         }
     }, []);
 
-    function onChange(value: moment.Moment) {
-        if (!value.isValid()) {
+    function onChange(value: DateTime) {
+        if (!value.isValid) {
             return;
         }
-        
-        fieldRef.current!.value = value.format(format)
+        const dateFormat = useDateFormat(value, locale)
+        fieldRef.current!.value = dateFormat(format)
         
         setValue(value);
+
         if (props.onChange) {
-            props.onChange(value, value.format(format));
+            props.onChange(value.toJSDate(), dateFormat(format), value);
         }
     }
 
@@ -62,53 +71,47 @@ const DatePicker: FC<DatePickerTypes.Props> = (props, ref: RefObject<HTMLDivElem
                 <TextField
                     ref={fieldRef}
                     label={props.label}
-                    defaultValue={value.format(format || "YYYY-MM-DD")}
+                    defaultValue={useDateFormat(value, locale)(format)}
                     //@ts-ignore
-                    masked={props.masked && {
-                        mask: Date,
-                        pattern: format,
-                        lazy: false,
-                        min: new Date(1970, 0, 1),
-                        max: new Date(2030, 0, 1),
-
-                        format: function (date) {
-                            return moment(date).format(format);
-                        },
-                        parse: function (str) {
-                            return moment(str, format);
-                        },
-
-                        blocks: {
-                            YYYY: {
-                                mask: IMask.MaskedRange,
-                                from: 1970,
-                                to: 2030
-                            },
-                            MM: {
-                                mask: IMask.MaskedRange,
-                                from: 1,
-                                to: 12
-                            },
-                            DD: {
-                                mask: IMask.MaskedRange,
-                                from: 1,
-                                to: 31
-                            },
-                            HH: {
-                                mask: IMask.MaskedRange,
-                                from: 0,
-                                to: 23
-                            },
-                            mm: {
-                                mask: IMask.MaskedRange,
-                                from: 0,
-                                to: 59
-                            }
-                        }
-                    }}
+                    // masked={props.masked && {
+                    //     mask: DateTime,
+                    //     pattern: format,
+                    //     lazy: false,
+                    //     min: minValue.toJSDate(),
+                    //     max: maxValue.toJSDate(),
+                    //     format: function (date) {
+                    //         return DateTime.fromJSDate(date).toFormat(format)
+                    //     },
+                    //     parse: function (str) {
+                    //         return DateTime.fromString(str, format)
+                    //     },
+                    //     blocks: {
+                    //         yyyy: {
+                    //             mask: IMask.MaskedRange,  from: 1, to: 3000
+                    //         },
+                    //         yy: {
+                    //             mask: IMask.MaskedRange,  from: 0, to: 99
+                    //         },
+                    //         MM: {
+                    //             mask: IMask.MaskedRange, from: 1, to: 12
+                    //         },
+                    //         dd: {
+                    //             mask: IMask.MaskedRange, from: 0, to: 31
+                    //         },
+                    //         HH: {
+                    //             mask: IMask.MaskedRange, from: 0, to: 23
+                    //         },
+                    //         mm: {
+                    //             mask: IMask.MaskedRange, from: 0, to: 59
+                    //         },
+                    //         ss: {
+                    //             mask: IMask.MaskedRange, from: 0, to: 59
+                    //         }
+                    //     }
+                    // }}
                     onChange={(e) => {
-                        const date = moment(e.target.value, format);
-                        if (date.isValid()) {
+                        const date = DateTime.fromString(e.target.value, format)
+                        if (date.isValid && date > minValue && date < maxValue) {
                             setValue(date);
                         }
                     }}
@@ -122,12 +125,13 @@ const DatePicker: FC<DatePickerTypes.Props> = (props, ref: RefObject<HTMLDivElem
             )}
             children={(
                 <Popover css={styles.drop(isActive)}>
-                    <MonthGrid
-                        value={value}
-                        minValue={props.minValue}
-                        maxValue={props.maxValue}
+                    <DateGrid
+                        date={value}
+                        minValue={minValue}
+                        maxValue={maxValue}
                         onChange={onChange}
                         styles={styles}
+                        locale={locale}
                     />
                 </Popover>
             )}
