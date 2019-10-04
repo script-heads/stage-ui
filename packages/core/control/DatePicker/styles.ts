@@ -20,7 +20,9 @@ export default () => {
         weekDay: css({
             userSelect: "none",
             ...theme.typography.caption[2],
-            fontWeight: 500,
+            marginTop: "0.25rem",
+            marginBottom: "0.5rem",
+            fontWeight: 400,
         }, overrides && overrides.weekDay),
 
         title: css({
@@ -33,10 +35,12 @@ export default () => {
          */
         gridBlock: (isActive: Boolean, isCurrent: boolean, isDisabled: boolean, isCurrentMonth: boolean) => {
             const st = {
+                transition: 'all 0.2s',
                 fontWeight: 500,
                 minWidth: '2rem',
                 height: '2rem',
                 cursor: "pointer",
+                margin:"0.125rem",
                 opacity: 1,
                 background: theme.color.background.css(),
                 borderWidth: theme.assets.border.width,
@@ -76,6 +80,8 @@ export default () => {
         },
 
         drop: (isActive: boolean) => css({
+            transition: 'all 0.2s',
+            transform: `translateY(${isActive ? 0 : '-1rem'}) scale(${isActive ? 1 : 0.9})`,
             opacity: isActive ? 1 : 0,
             visibility: isActive ? "visible" : "hidden"
         })

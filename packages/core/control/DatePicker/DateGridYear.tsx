@@ -11,8 +11,8 @@ const DateGridYear = (props: DatePickerTypes.DateGridCalendarProps) => {
     const { value, active, onClick, minValue, maxValue } = props;
 
     const isDisabled =
-        (minValue && minValue.valueOf() > value.valueOf()) ||
-        (maxValue && maxValue.valueOf() < value.valueOf()) ||
+        minValue.valueOf() > value.valueOf() ||
+        maxValue.valueOf() < value.valueOf() ||
         false;
 
     const now = moment()

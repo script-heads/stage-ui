@@ -17,7 +17,7 @@ let toDayWord = '';
 
 const DateGrid = (props: DatePickerTypes.DateGridProps) => {
     
-    const { date } = props;
+    const { value } = props;
     const now = moment();
 
     if (!toDayWord) {
@@ -30,7 +30,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
     }
 
     const [gridType, setGridType] = useState<"year" | "month" | "day">("day");
-    const [tmpDate, setTmpDate] = useState(date);
+    const [tmpDate, setTmpDate] = useState(value);
 
     const monthOffset = gridType === "day" ? 1 : 9;
     const grid: Moment[][] = [];
@@ -47,7 +47,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
         )
     }
 
-    useEffect(() => setTmpDate(date), [date])
+    useEffect(() => setTmpDate(value), [value])
 
     return (
         <Flexbox column css={props.styles.dateGrind}>
@@ -55,7 +55,9 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                 styles={props.styles}
                 gridType={gridType}
                 onGridTypeChange={setGridType}
-                date={tmpDate}
+                value={tmpDate}
+                minValue={props.minValue}
+                maxValue={props.maxValue}
                 onPrevious={() => {
                     const clone = tmpDate.clone();
                     if (gridType === "day") {
@@ -105,7 +107,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                         styles={props.styles}
                                         key={day.valueOf()}
                                         value={day}
-                                        active={date}
+                                        active={value}
                                         minValue={props.minValue}
                                         maxValue={props.maxValue}
                                         onClick={() => {
@@ -141,7 +143,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                     key={index}
                                     value={clone}
                                     style={{ padding: "0 0.5rem"}}
-                                    active={date}
+                                    active={value}
                                     minValue={props.minValue}
                                     maxValue={props.maxValue}
                                     onClick={() => {
@@ -166,7 +168,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                     key={index}
                                     value={clone}
                                     style={{ padding: "0 1rem"}}
-                                    active={date}
+                                    active={value}
                                     minValue={props.minValue}
                                     maxValue={props.maxValue}
                                     onClick={() => {

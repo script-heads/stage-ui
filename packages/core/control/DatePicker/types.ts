@@ -50,24 +50,26 @@ declare namespace DatePickerTypes {
 
     export interface DateGridProps {
         hideToday: boolean
-        date: Moment
+        value: Moment
         minValue: Moment
         maxValue: Moment
         onChange: (date: Moment) => void
         styles: any
     }
     export interface DateGridCalendarProps {
-        active: Moment
+        value: Moment
         minValue: Moment
         maxValue: Moment
+        active: Moment
         onClick?: () => void
         style?: CSSProperties
-        value: Moment
         styles: any
     }
 
     export interface DateGridTitleProps {
-        date: Moment
+        value: Moment
+        minValue: Moment
+        maxValue: Moment
         gridType: GridType
         onNext: () => void
         onPrevious: () => void

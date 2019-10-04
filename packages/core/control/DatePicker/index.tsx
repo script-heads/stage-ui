@@ -81,6 +81,9 @@ const DatePicker: FC<DatePickerTypes.Props> = (props, ref: RefObject<HTMLDivElem
                     onClick={() => {
                         setActive(true)
                     }}
+                    onFocus={() => {
+                        setActive(true)
+                    }}
                     rightChild={(
                         <Icon type={t => t.outline.calendar}/>
                     )}
@@ -90,7 +93,7 @@ const DatePicker: FC<DatePickerTypes.Props> = (props, ref: RefObject<HTMLDivElem
                 <Popover css={styles.drop(isActive)}>
                     <DateGrid
                         styles={styles}
-                        date={value}
+                        value={value}
                         minValue={minValue}
                         maxValue={maxValue}
                         onChange={onChange}
