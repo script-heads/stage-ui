@@ -146,7 +146,7 @@ const Drop = (props: Types.Props, ref) => {
             }
 
             {
-                ReactDOM.createPortal(
+                children && ReactDOM.createPortal(
                     <div
                         {...attributes}
                         ref={drop}
