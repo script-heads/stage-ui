@@ -20,6 +20,7 @@ export default (props: FieldTypes.Props) => {
     const { theme } = useFlow();
     const styleProps = useStyleProps(props);
     let color = callProp(props.color, theme.color);
+    let backgroundColor = callProp(props.backgroundColor, theme.color);
 
     const shapeStyles = variant(shape, {
         'rounded': {
@@ -66,6 +67,7 @@ export default (props: FieldTypes.Props) => {
                 position: 'relative',
                 flexShrink: 0,
                 flexGrow: 1,
+                background: theme.color.surface.css(),
                 flexBasis: theme.assets.fieldHeight[size],
                 borderColor: theme.color.lightest.css(),
                 outline: 'none',
@@ -73,6 +75,7 @@ export default (props: FieldTypes.Props) => {
                 display: 'flex',
                 alignItems: 'stretch',
                 boxSizing: 'border-box',
+                overflow: 'hidden',
                 '&[disabled]': {
                     color: theme.color.light.css(),
                     cursor: 'not-allowed'
@@ -106,32 +109,38 @@ export default (props: FieldTypes.Props) => {
                 'outline': {
                     borderWidth: '1px',
                     borderStyle: 'solid',
-                    background: theme.color.surface.css(),
                     ...shapeStyles,
                     '&[disabled]': {
-                        background: 'transparent',
+                        background: theme.color.lightest.css(),
                     }
                 },
                 'filled': {
                     borderWidth: '1px',
                     borderStyle: 'solid',
                     borderColor: 'transparent',
-                    background: theme.color.lightest.css(),
+                    '&[disabled]': {
+                        background: theme.color.lightest.css(),
+                    },
                     ...shapeStyles
                 },
                 'underline': {
                     borderBottomWidth: '1px',
                     borderBottomStyle: 'solid',
+                    background: 'transparent',
                     paddingLeft: 0,
                     paddingRight: 0,
                 },
+                'none': {
+                    background: 'transparent',
+                }
             }),
             fieldStyles,
             focus && {
                 borderColor: theme.color.primary.css()
             },
             {
-                borderColor: color
+                borderColor: color,
+                background: backgroundColor,
             },
             styleProps.self,
             props.animated && {

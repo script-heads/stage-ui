@@ -1,10 +1,9 @@
-import React, { useState, useEffect, forwardRef, useRef, useReducer, Fragment } from 'react'
+import React, { useEffect, forwardRef, useReducer } from 'react'
 import SelectTypes from './types'
 import createStyles from './styles'
 import Field from '../../misc/hocs/Field'
 import Icon from '../../content/Icon'
-
-//TODO: Открывать вариативно вверх или вниз
+import Drop from '../../layout/Drop'
 
 const Select = (props: SelectTypes.Props, ref) => {
 
@@ -38,11 +37,10 @@ const Select = (props: SelectTypes.Props, ref) => {
                 return {
                     ...state,
                     selectedOptions: action.payload,
-                    availableOptions: options.filter(option =>
-                        !action.payload.includes(option) &&
-                        option.text
-                            .toLocaleUpperCase()
-                            .includes(state.searchValue.toLocaleUpperCase())
+                    availableOptions: getAvailibleOptions(
+                        options,
+                        action.payload,
+                        state.searchValue
                     ),
                     cursor: -1
                 };
@@ -68,11 +66,10 @@ const Select = (props: SelectTypes.Props, ref) => {
                     searchValue: '',
                     empty: nextSelectedOptions.length === 0,
                     selectedOptions: nextSelectedOptions,
-                    availableOptions: options.filter(option =>
-                        !nextSelectedOptions.includes(option) &&
-                        option.text
-                            .toLocaleUpperCase()
-                            .includes(state.searchValue.toLocaleUpperCase())
+                    availableOptions: getAvailibleOptions(
+                        options,
+                        nextSelectedOptions,
+                        state.searchValue
                     ),
                     cursor: -1
                 };
@@ -90,12 +87,12 @@ const Select = (props: SelectTypes.Props, ref) => {
                 return {
                     ...state,
                     open: true,
+                    empty: state.length === 0 && action.payload === '',
                     searchValue: action.payload,
-                    availableOptions: options.filter(option =>
-                        !state.selectedOptions.includes(option) &&
-                        option.text
-                            .toLocaleUpperCase()
-                            .includes(action.payload.toLocaleUpperCase())
+                    availableOptions: getAvailibleOptions(
+                        options,
+                        state.selectedOptions,
+                        action.payload
                     ),
                     cursor: -1
                 }
@@ -105,11 +102,10 @@ const Select = (props: SelectTypes.Props, ref) => {
                 return {
                     ...state,
                     selectedOptions: nextSelectedOptions,
-                    availableOptions: options.filter(option =>
-                        !nextSelectedOptions.includes(option) &&
-                        option.text
-                            .toLocaleUpperCase()
-                            .includes(state.searchValue.toLocaleUpperCase())
+                    availableOptions: getAvailibleOptions(
+                        options,
+                        nextSelectedOptions,
+                        state.searchValue
                     ),
                     empty: nextSelectedOptions.length === 0 ? true : false
                 }
@@ -184,6 +180,7 @@ const Select = (props: SelectTypes.Props, ref) => {
                 !searchable && dispatch({ type: 'reduceSelectedOptions' })
                 break;
         }
+        props.onKeyDown && props.onKeyDown(event)
     }
 
     // console.log(state);
@@ -207,7 +204,7 @@ const Select = (props: SelectTypes.Props, ref) => {
     }
 
     if (!multiselect) {
-        if (searchable && state.empty) {
+        if (searchable) {
             fieldValue =
                 <Search
                     styles={styles}
@@ -221,52 +218,61 @@ const Select = (props: SelectTypes.Props, ref) => {
     }
 
     return (
-        <Field
-            {...props}
-            ref={ref}
-            fieldStyles={styles.fieldStyles(state.open)}
+        <Drop
+            onClickOutside={() => dispatch({
+                type: 'toggleOpen',
+                payload: false
+            })}
+            stretchWidth
+            target={(
+                <Field
+                    {...props}
+                    ref={ref}
+                    fieldStyles={styles.fieldStyles(state.open)}
 
-            isEmpty={state.empty}
-            manyLines={multiselect && !state.empty}
-            insideLabelStyles={multiselect && !state.empty && styles.insideLabelStyles}
+                    isEmpty={state.empty}
+                    manyLines={multiselect && !state.empty}
+                    insideLabelStyles={multiselect && !state.empty && styles.insideLabelStyles}
 
-            onClick={() => dispatch({ type: 'toggleOpen' })}
-            onClear={() => dispatch({ type: 'clear' })}
-            onKeyDown={(e) => handleKeyDown(e)}
+                    onClick={(e) => {
+                        dispatch({ type: 'toggleOpen' })
+                        props.onClick && props.onClick(e);
+                    }}
+                    onClear={() => dispatch({ type: 'clear' })}
+                    onKeyDown={(e) => handleKeyDown(e)}
+                    onLabelOverlay={(state) => dispatch({
+                        type: 'setOverlay',
+                        payload: state
+                    })}
 
-            onBlur={() => dispatch({ type: 'toggleOpen', payload: false })}
-            onLabelOverlay={(state) => dispatch({ type: 'setOverlay', payload: state })}
+                    children={!state.underOverlay && fieldValue}
 
-            children={(
-                <Fragment>
-                    {!state.underOverlay && fieldValue}
-                    {state.open && (
-                        <div css={styles.dropMenu}>
-                            {state.availableOptions
-                                .map((option, i) => (
-                                    <div
-                                        key={option.value}
-                                        css={styles.dropItem(i === state.cursor)}
-                                        children={option.text}
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            console.log('happen');
-                                            dispatch({ type: 'toggleOption', payload: option });
-                                            dispatch({ type: 'toggleOpen', payload: false })
-                                        }}
-                                    />
-                                ))}
-                        </div>
+                    rightChild={(
+                        <Icon type={i =>
+                            i.filled[state.open ? 'arrowIosUpward' : 'arrowIosDownward']
+                        } />
                     )}
-                </Fragment>
+                />
             )}
-
-            rightChild={(
-                <Icon type={i =>
-                    i.filled[state.open ? 'arrowIosUpward' : 'arrowIosDownward']
-                } />
-            )}
-        />
+        >
+            {state.open &&
+                <div css={styles.dropMenu}>
+                    {state.availableOptions
+                        .map((option, i) => (
+                            <div
+                                key={option.value}
+                                css={styles.dropItem(i === state.cursor)}
+                                children={option.text}
+                                onMouseDown={(e) => {
+                                    e.stopPropagation();
+                                    dispatch({ type: 'toggleOption', payload: option });
+                                    dispatch({ type: 'toggleOpen', payload: false })
+                                }}
+                            />
+                        ))}
+                </div>
+            }
+        </Drop>
     )
 }
 
@@ -324,4 +330,12 @@ const Search = (props: {
     )
 }
 
+function getAvailibleOptions(options, selectedOptions, search) {
+    return options.filter(option =>
+        !selectedOptions.includes(option) &&
+        option.text
+            .toLocaleUpperCase()
+            .includes(search.toLocaleUpperCase())
+    )
+}
 export default forwardRef(Select);

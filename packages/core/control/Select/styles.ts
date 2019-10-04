@@ -2,17 +2,29 @@ import { css } from '@emotion/core';
 import SelectTypes from './types';
 import useFlow from '../../misc/hooks/useFlow';
 import variant from '../../misc/utils/variant';
+import callProp from '../../misc/utils/callProp';
 
 export default (props: SelectTypes.Props) => {
-    const { size = 'medium', shape = 'rounded' } = props;
+    const { size = 'medium', shape = 'rounded', decoration = 'outline' } = props;
     const { theme } = useFlow();
     const overrides = theme.overrides.select;
+    let color = callProp(props.color, theme.color);
+    let backgroundColor = callProp(props.backgroundColor, theme.color);
 
     const multilineAdditionalPadding = variant(size, {
         'medium': '.25rem',
         'large': '.25rem',
         'xlarge': '.5rem'
     })
+
+    const shapeStyles = variant(shape, {
+        'rounded': {
+            borderRadius: theme.radius.narrow
+        },
+        'round': {
+            borderRadius: '4rem'
+        }
+    });
 
     return {
         fieldStyles: (open) => css(
@@ -35,21 +47,24 @@ export default (props: SelectTypes.Props) => {
             border: 'none',
             backgroundImage: 'none',
             backgroundColor: 'transparent',
-            resize: 'vertical',
             boxShadow: 'none',
             font: 'inherit',
+            color: 'inherit',
             cursor: 'inherit',
-            flex: 1
+            flex: 1,
+            '&::placeholder': {
+                color: theme.color.light.css()
+            }
         }),
 
-        options: css({
+        options: (empty) => css({
             display: 'flex',
             flexWrap: 'wrap',
-            marginTop: '-.25rem',
+            marginBottom: '-.25rem',
             marginRight: '-.25rem',
             padding: multilineAdditionalPadding,
             '> *': {
-                marginTop: '.25rem !important',
+                marginBottom: '.25rem !important',
                 marginRight: '.25rem',
             }
         }),
@@ -111,19 +126,34 @@ export default (props: SelectTypes.Props) => {
 
         dropMenu: css(
             {
-                position: 'absolute',
                 overflow: 'auto',
-                left: '-1px',
-                right: '-1px',
-                top: '100%',
-                background: 'inherit',
                 maxHeight: '10rem',
-                borderWidth: '1px',
                 borderStyle: 'solid',
-                borderColor: 'inherit',
+                borderWidth: '1px',
+                borderColor: theme.color.primary.css(),
                 borderTop: 'none',
-                borderBottomLeftRadius: theme.radius.narrow,
-                borderBottomRightRadius: theme.radius.narrow,
+                background: backgroundColor || theme.color.surface.css(),
+                ...shapeStyles,
+                borderTopLeftRadius: 0,
+                borderTopRightRadius: 0,
+            },
+            variant(decoration, {
+                'outline': {
+                },
+                'filled': {
+                    borderColor: 'transparent',
+                },
+                'underline': {
+                    borderColor: 'transparent',
+                    paddingLeft: 0,
+                    paddingRight: 0,
+                },
+                'none': {
+                    borderColor: 'transparent',
+                }
+            }),
+            {
+                borderColor: color
             },
             overrides && overrides.dropMenu
         ),
