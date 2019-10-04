@@ -17,7 +17,7 @@ export default (props: CaseProps) => {
                 scope={{ Grid, Block }}
                 props={{ GridTypes }}
                 children={(
-                    <Grid {...GridTypes[0]}>
+                    <Grid {...GridTypes[0]} templateColumns="50% 50%">
                         <Block p="2rem" m="1rem" surface="minor">Alice</Block>
                         <Block p="2rem" m="1rem" surface="minor">Bob</Block>
                         <Block p="2rem" m="1rem" surface="minor">Baker</Block>
