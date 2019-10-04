@@ -11,6 +11,8 @@ import { DateTime, Info } from 'luxon';
 import DateGridMonth from './DateGridMonth';
 import Block from '../../layout/Block';
 import DateGridYear from './DateGridYear';
+import Grid from '../../layout/Grid';
+import createStyles from './styles';
 
 const DateGrid = (props: DatePickerTypes.DateGridProps) => {
 
@@ -37,12 +39,12 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
         setTmpDate(date)
     }, [date])
 
-    const styles = props.styles;
+    const styles = createStyles();
     
     const monthOffset = gridType === "day" ? 1 : 9;
 
     return (
-        <Flexbox column css={styles.DateGrid}>
+        <Flexbox column css={styles.dateGrind}>
             <DateGridTitle
                 gridType={gridType}
                 onGridTypeChange={setGridType}
@@ -64,7 +66,6 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                         })
                     )
                 }}
-                styles={styles}
             />
             {gridType === "day" && (
                 <Fragment>
@@ -88,7 +89,6 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                         locale={locale}
                                         key={index}
                                         day={day}
-                                        styles={styles}
                                         active={date}
                                         minValue={props.minValue}
                                         maxValue={props.maxValue}
@@ -115,7 +115,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                 locale={locale}
                                 key={index}
                                 month={tmpDate.set({month: index + 1})}
-                                styles={styles}
+                                style={{ padding: "0 0.5rem"}}
                                 active={date}
                                 minValue={props.minValue}
                                 maxValue={props.maxValue}
@@ -144,7 +144,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                 locale={locale}
                                 key={index}
                                 year={tmpDate.set({year: tmpDate.year - 4 + index})}
-                                styles={styles}
+                                style={{ padding: "0 1rem"}}
                                 active={date}
                                 minValue={props.minValue}
                                 maxValue={props.maxValue}
@@ -158,7 +158,6 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                         ))
                     }
                 </Block>
-
             )}
         </Flexbox>
     )

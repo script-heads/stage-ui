@@ -3,8 +3,8 @@
  * author: I.Trikoz
  */
 import { DateTime } from 'luxon';
-
 import { Interpolation } from '@emotion/core';
+import { CSSProperties } from 'react';
 import Global from '../../types';
 
 declare namespace DatePickerTypes {
@@ -50,7 +50,6 @@ declare namespace DatePickerTypes {
         minValue: DateTime
         maxValue: DateTime
         onChange: (date: DateTime) => void
-        styles: any
     }
     export interface DateGridDayProps {
         locale: Locale
@@ -59,7 +58,7 @@ declare namespace DatePickerTypes {
         minValue: DateTime
         maxValue: DateTime
         onClick?: () => void
-        styles: any
+        style?: CSSProperties
     }
     export interface DateGridMonthProps {
         locale: Locale
@@ -67,7 +66,7 @@ declare namespace DatePickerTypes {
         minValue: DateTime
         maxValue: DateTime
         onClick?: () => void
-        styles: any
+        style?: CSSProperties
         month: DateTime
     }
     export interface DateGridYearProps {
@@ -76,7 +75,7 @@ declare namespace DatePickerTypes {
         minValue: DateTime
         maxValue: DateTime
         onClick?: () => void
-        styles: any
+        style?: CSSProperties
         year: DateTime
     }
 
@@ -87,7 +86,6 @@ declare namespace DatePickerTypes {
         onNext: () => void
         onPrevious: () => void
         onGridTypeChange: (type: GridType) => void
-        styles: any
     }
 
     export interface Overrides {

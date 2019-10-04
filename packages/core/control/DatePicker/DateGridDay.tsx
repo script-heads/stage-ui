@@ -38,6 +38,7 @@ const DateGridDay = (props: DatePickerTypes.DateGridDayProps) => {
                 }
             }}
             css={css}
+            style={props.style}
             children={props.day.day}
         />
 

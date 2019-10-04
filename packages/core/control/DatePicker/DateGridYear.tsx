@@ -37,6 +37,7 @@ const DateGridYear = (props: DatePickerTypes.DateGridYearProps) => {
                 }
             }}
             css={css}
+            style={props.style}
             children={props.year.toFormat("yyyy")}
         />
 
