@@ -4,22 +4,18 @@
  */
 import { css } from '@emotion/core';
 import useFlow from '../../misc/hooks/useFlow';
-import DatePickerTypes from './types';
-import useStyleProps from '../../misc/hooks/useStyleProps';
 
-export default (props: DatePickerTypes.Props) => {
+export default () => {
 
     const { theme } = useFlow();
     const overrides = theme.overrides.datePicker;
-    const styleProps = useStyleProps(props);
 
     return {
-
-        monthGrid: css({
+        dateGrind: css({
             position: "relative",
             background: theme.color.surface.css(),
             color: theme.color.onSurface.css(),
-        }, overrides && overrides.monthGrid),
+        }, overrides && overrides.dateGrind),
 
         weekDay: css({
             userSelect: "none",
@@ -32,25 +28,16 @@ export default (props: DatePickerTypes.Props) => {
             padding: '0.25rem'
         }, overrides && overrides.title),
 
-        monthTitle: css({
-            userSelect: "none",
-            ...theme.typography.caption[1],
-            fontWeight: 500,
-        }, overrides && overrides.monthTitle),
-
-        yearTitle: css({
-            userSelect: "none",
-            ...theme.typography.caption[2],
-        }, overrides && overrides.yearTitle),
-
         /**
-         * Styles for day squire
+         * Styles for day/month/year squire
          */
-        day: (isActive: Boolean, isCurrent: boolean, isDisabled: boolean, isCurrentMonth: boolean) => {
+        gridBlock: (isActive: Boolean, isCurrent: boolean, isDisabled: boolean, isCurrentMonth: boolean) => {
             const st = {
                 transition: "all 0.3s",
                 fontWeight: 500,
-                width: '2rem',
+                minWidth: '2rem',
+                paddingLeft: "0.25rem",
+                paddingRight: "0.25rem",
                 height: '2rem',
                 cursor: "pointer",
                 opacity: 1,
@@ -64,31 +51,31 @@ export default (props: DatePickerTypes.Props) => {
                 ...theme.typography.text[1]
             };
             /**
-             * This day is from current month
+             * This block is from current month
              */
             if (!isCurrentMonth) {
                 st.background = theme.color.background.alpha(0.5).css()
             }
             /**
-             * It is current day
+             * It is current block
              */
             if (isCurrent) {
                 st.borderColor = theme.color.primary.css();
             }
             /**
-             * This day is selected
+             * This block is selected
              */
             if (isActive) {
                 st.background = theme.color.primary.css();
                 st.color = theme.color.onPrimary.css();
             }
             /**
-             * This day is disabled to select
+             * This block is disabled to select
              */
             if (isDisabled) {
                 st.opacity = 0.3;
             }
-            return css(st, overrides && overrides.day);
+            return css(st, overrides && overrides.gridBlock);
         },
 
         drop: (isActive: boolean) => css({

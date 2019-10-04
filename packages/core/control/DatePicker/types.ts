@@ -2,18 +2,23 @@
  * types.tsx
  * author: I.Trikoz
  */
-import { Moment } from 'moment';
+import { DateTime } from 'luxon';
+
 import { Interpolation } from '@emotion/core';
 import Global from '../../types';
 
 declare namespace DatePickerTypes {
+
+    export type GridType = "year" | "month" | "day"
+    export type Locale = 'en' | 'ru' | 'it' | 'fr' | 'de'
+
     export interface Props extends Global.FieldProps {
         /**
          * Property value could be a string
          * if you pass format property aswell
-         * otherwise value should be instance of Moment
+         * otherwise value should be instance of Date
          */
-        value?: Moment | string
+        value?: Date | string
         /**
          * String like YYYY-MM-DD etc
          */
@@ -21,71 +26,77 @@ declare namespace DatePickerTypes {
         /**
          * Min datetime that could be selected
          */
-        minValue?: Moment
+        minValue?: Date
         /**
          * Max datetime that could be selected
          */
-        maxValue?: Moment
+        maxValue?: Date
         /**
-         * Callback function will with Moment object
+         * Callback function will with Date object
          * or string if format property was passed.
          */
-        onChange?: (date: Moment, formatedValue: string) => void
+        onChange?: (date: Date, formatedValue: string, luxon: DateTime) => void
         /**
          * Enable mask input
          */
         masked?: boolean
+
+        locale?: Locale
     }
 
-    export interface MonthGridProps {
-        value: Moment,
-        minValue?: Moment
-        maxValue?: Moment
-        onChange: (date: Moment) => void
+    export interface DateGridProps {
+        locale: Locale
+        date: DateTime,
+        minValue: DateTime
+        maxValue: DateTime
+        onChange: (date: DateTime) => void
         styles: any
     }
-    export interface MonthGridDayProps {
-        /**
-         * Currect active day
-         * should be moment object
-         */
-        active: Moment
-        /**
-         * Day that should be render
-         */
-        day: Moment
-        minValue?: Moment
-        maxValue?: Moment
+    export interface DateGridDayProps {
+        locale: Locale
+        active: DateTime
+        day: DateTime
+        minValue: DateTime
+        maxValue: DateTime
         onClick?: () => void
         styles: any
     }
+    export interface DateGridMonthProps {
+        locale: Locale
+        active: DateTime
+        minValue: DateTime
+        maxValue: DateTime
+        onClick?: () => void
+        styles: any
+        month: DateTime
+    }
+    export interface DateGridYearProps {
+        locale: Locale
+        active: DateTime
+        minValue: DateTime
+        maxValue: DateTime
+        onClick?: () => void
+        styles: any
+        year: DateTime
+    }
 
-    export interface MonthGridTitleProps {
-        /**
-         * Current date
-         */
-        date: Moment
-        /**
-         * Turn off weeks
-         */
-        disaplayWeeks?: boolean
-        /**
-         * Callback function with Moment object
-         * of changed date, calls after Next or Prev pressed
-         */
-        onChange?: (date: Moment) => void
+    export interface DateGridTitleProps {
+        locale: Locale
+        date: DateTime
+        gridType: GridType
+        onNext: () => void
+        onPrevious: () => void
+        onGridTypeChange: (type: GridType) => void
         styles: any
     }
 
     export interface Overrides {
         textFieldWrapper?: Interpolation
         textFieldOkButton?: Interpolation
-        monthGrid?: Interpolation
+        dateGrind?: Interpolation
         weekDay?: Interpolation
         title?: Interpolation
-        monthTitle?: Interpolation
-        yearTitle?: Interpolation
-        day?: Interpolation
+        gridBlock?: Interpolation
     }
 }
 
