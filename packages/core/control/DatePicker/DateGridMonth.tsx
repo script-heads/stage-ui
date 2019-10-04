@@ -38,6 +38,7 @@ const DateGridMonth = (props: DatePickerTypes.DateGridMonthProps) => {
                 }
             }}
             css={css}
+            style={props.style}
             children={props.month.toFormat("LLLL")}
         />
 

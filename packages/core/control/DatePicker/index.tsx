@@ -130,7 +130,6 @@ const DatePicker: FC<DatePickerTypes.Props> = (props, ref: RefObject<HTMLDivElem
                         minValue={minValue}
                         maxValue={maxValue}
                         onChange={onChange}
-                        styles={styles}
                         locale={locale}
                     />
                 </Popover>

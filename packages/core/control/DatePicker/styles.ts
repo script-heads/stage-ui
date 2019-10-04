@@ -36,8 +36,6 @@ export default () => {
                 transition: "all 0.3s",
                 fontWeight: 500,
                 minWidth: '2rem',
-                paddingLeft: "0.25rem",
-                paddingRight: "0.25rem",
                 height: '2rem',
                 cursor: "pointer",
                 opacity: 1,
