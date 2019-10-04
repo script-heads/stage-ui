@@ -34,6 +34,14 @@ export default (props: Props) => {
         flexShrink: props.flexShrink,
         alignSelf: props.alignSelf,
         justifySelf: props.justifySelf,
+        gridColumnStart: props.gridColumnStart,
+        gridColumnEnd: props.gridColumnEnd,
+        gridRowStart: props.gridRowStart,
+        gridRowEnd: props.gridRowEnd,
+        gridColumn: props.gridColumn,
+        gridRow: props.gridRow,
+        gridArea: props.gridArea,
+        placeSelf: props.placeSelf,
     } as Interpolation
 
     if (props.onClick && self) {
