@@ -2,8 +2,8 @@
  * types.tsx
  * author: I.Trikoz
  */
-import { DateTime } from 'luxon';
 import { Interpolation } from '@emotion/core';
+import { Moment } from 'moment';
 import { CSSProperties } from 'react';
 import Global from '../../types';
 
@@ -18,7 +18,7 @@ declare namespace DatePickerTypes {
          * if you pass format property aswell
          * otherwise value should be instance of Date
          */
-        value?: Date | string
+        value?: Moment | Date | string
         /**
          * String like YYYY-MM-DD etc
          */
@@ -26,66 +26,53 @@ declare namespace DatePickerTypes {
         /**
          * Min datetime that could be selected
          */
-        minValue?: Date
+        minValue?: Moment | Date | string
         /**
          * Max datetime that could be selected
          */
-        maxValue?: Date
+        maxValue?: Moment | Date | string
         /**
          * Callback function will with Date object
          * or string if format property was passed.
          */
-        onChange?: (date: Date, formatedValue: string, luxon: DateTime) => void
+        onChange?: (moment: Moment, value: string) => void
         /**
          * Enable mask input
          */
         masked?: boolean
 
         locale?: Locale
+        /**
+         * Hide today button
+         */
+        hideToday?: boolean
     }
 
     export interface DateGridProps {
-        locale: Locale
-        date: DateTime,
-        minValue: DateTime
-        maxValue: DateTime
-        onChange: (date: DateTime) => void
+        hideToday: boolean
+        date: Moment
+        minValue: Moment
+        maxValue: Moment
+        onChange: (date: Moment) => void
+        styles: any
     }
-    export interface DateGridDayProps {
-        locale: Locale
-        active: DateTime
-        day: DateTime
-        minValue: DateTime
-        maxValue: DateTime
+    export interface DateGridCalendarProps {
+        active: Moment
+        minValue: Moment
+        maxValue: Moment
         onClick?: () => void
         style?: CSSProperties
-    }
-    export interface DateGridMonthProps {
-        locale: Locale
-        active: DateTime
-        minValue: DateTime
-        maxValue: DateTime
-        onClick?: () => void
-        style?: CSSProperties
-        month: DateTime
-    }
-    export interface DateGridYearProps {
-        locale: Locale
-        active: DateTime
-        minValue: DateTime
-        maxValue: DateTime
-        onClick?: () => void
-        style?: CSSProperties
-        year: DateTime
+        value: Moment
+        styles: any
     }
 
     export interface DateGridTitleProps {
-        locale: Locale
-        date: DateTime
+        date: Moment
         gridType: GridType
         onNext: () => void
         onPrevious: () => void
         onGridTypeChange: (type: GridType) => void
+        styles: any
     }
 
     export interface Overrides {

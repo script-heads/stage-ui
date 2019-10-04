@@ -6,9 +6,7 @@ import React, { Fragment } from 'react';
 import Icon from '../../content/Icon';
 import { T1 } from '../../content/Typography';
 import Flexbox from '../../layout/Flexbox';
-import createStyles from './styles';
 import DatePickerTypes from './types';
-import { useDateFormat } from './utils';
 
 const Arrow = (props: { onClick: () => void, icon: "chevronLeft" | "chevronRight" }) => (
     <Flexbox
@@ -23,25 +21,21 @@ const Arrow = (props: { onClick: () => void, icon: "chevronLeft" | "chevronRight
 
 const DateGridTitle = (props: DatePickerTypes.DateGridTitleProps) => {
 
-    const { locale, date, gridType } = props;
+    const { date, gridType } = props;
     
-    const format = useDateFormat(date, locale);
-
-    const styles = createStyles();
-
     return (
         <Fragment>
-            <Flexbox css={styles.title}>
+            <Flexbox css={props.styles.title}>
                 <Arrow onClick={props.onPrevious} icon="chevronLeft" />
                 <Flexbox column flex={1} alignItems="center" justifyContent="center">
                     {gridType === "day" && (
                         <T1 weight={500} css={{ cursor: "pointer" }} onClick={() => props.onGridTypeChange("month")}>
-                            {format('LLLL')}
+                            {date.format('MMMM')}
                         </T1>
                     )}
                     {gridType === "month" && (
                         <T1 weight={500} css={{ cursor: "pointer" }} onClick={() => props.onGridTypeChange("year")}>
-                            {format('yyyy')}
+                            {date.format('YYYY')}
                         </T1>
                     )}
                     {gridType === "year" && (

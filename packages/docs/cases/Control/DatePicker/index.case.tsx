@@ -31,7 +31,6 @@ export default (props: CaseProps) => {
                 // interfaces={["Props", "InputProps", "TextAreaProps", "FieldProps"]}
                 children={
                     <DatePicker
-                        masked
                         label={'Pick date'}
                     />
                 }

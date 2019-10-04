@@ -33,7 +33,6 @@ export default () => {
          */
         gridBlock: (isActive: Boolean, isCurrent: boolean, isDisabled: boolean, isCurrentMonth: boolean) => {
             const st = {
-                transition: "all 0.3s",
                 fontWeight: 500,
                 minWidth: '2rem',
                 height: '2rem',

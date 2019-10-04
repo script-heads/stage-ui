@@ -2,31 +2,29 @@
  * DateGridDay.tsx
  * author: I.Trikoz
  */
+import moment from 'moment';
 import React from 'react';
-import DatePickerTypes from './types';
 import Flexbox from '../../layout/Flexbox';
-import { DateTime } from 'luxon';
-import { useDateFormat } from './utils';
-import createStyles from './styles';
+import DatePickerTypes from './types';
 
-const DateGridDay = (props: DatePickerTypes.DateGridDayProps) => {
-    const { locale, onClick, minValue, maxValue } = props;
-
-    const day = useDateFormat(props.day, locale);
-    const active = useDateFormat(props.active, locale);
-    const now = useDateFormat(DateTime.local(), locale)
+const DateGridDay = (props: DatePickerTypes.DateGridCalendarProps) => {
+    const { value, active, onClick, minValue, maxValue } = props;
 
     const isDisabled =
-        (minValue && minValue.toMillis() > props.day.toMillis()) ||
-        (maxValue && maxValue.toMillis() < props.day.toMillis()) ||
+        (minValue && minValue.valueOf() > value.valueOf()) ||
+        (maxValue && maxValue.valueOf() < value.valueOf()) ||
         false;
 
-    const isActive = (day("yyyyMMdd") === active("yyyyMMdd"));
-    const isCurrent = (day("yyyyMMdd") === active("yyyyMMdd"));
-    const isCurrentMonth = (day("MM") === now("MM"));
+    const now = moment()
+    const dayValue = value.startOf("day").valueOf()
+    const nowValue = now.startOf("day").valueOf()
+    const activeValue = active.startOf("day").valueOf()
 
-    const styles = createStyles();
-    const css = styles.gridBlock(isActive, isCurrent, isDisabled, isCurrentMonth);
+    const isActive = (activeValue === dayValue);
+    const isCurrent = (dayValue === nowValue);
+    const isCurrentMonth = (value.month === now.month);
+
+    const css = props.styles.gridBlock(isActive, isCurrent, isDisabled, isCurrentMonth);
 
     return (
         <Flexbox
@@ -39,9 +37,8 @@ const DateGridDay = (props: DatePickerTypes.DateGridDayProps) => {
             }}
             css={css}
             style={props.style}
-            children={props.day.day}
+            children={value.date()}
         />
-
     )
 };
 
