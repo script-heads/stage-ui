@@ -186,6 +186,39 @@ declare namespace Global {
          * Sets the way a box is justified inside its alignment container along the appropriate axis.
          */
         justifySelf?: CSS.Properties["justifySelf"]
+
+        /**
+         * Specifies a grid item’s start position within the grid column by contributing a line, a span, or nothing (automatic) to its grid placement. This start position defines the block-start edge of the grid area.
+         */
+        gridColumnStart?: CSS.Properties["gridColumnStart"]
+        /**
+         * Specifies a grid item’s end position within the grid column by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the block-end edge of its grid area.
+         */
+        gridColumnEnd?: CSS.Properties["gridColumnEnd"]
+        /**
+         * Specifies a grid item’s start position within the grid row by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the inline-start edge of its grid area.
+         */
+        gridRowStart?: CSS.Properties["gridRowStart"]
+        /**
+         * Specifies a grid item’s end position within the grid row by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the inline-end edge of its grid area.
+         */
+        gridRowEnd?: CSS.Properties["gridRowEnd"]
+        /**
+         * Shorthand property for grid-column-start and grid-column-end specifying a grid item's size and location within the grid column by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the inline-start and inline-end edge of its grid area.
+         */
+        gridColumn?: CSS.Properties["gridColumn"]
+        /**
+         * Shorthand property for grid-row-start and grid-row-end specifying a grid item’s size and location within the grid row by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the inline-start and inline-end edge of its grid area.
+         */
+        gridRow?: CSS.Properties["gridRow"]
+        /**
+         * Shorthand property for grid-row-start, grid-column-start, grid-row-end and grid-column-end, specifying a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the edges of its grid area.
+         */
+        gridArea?: CSS.Properties["gridArea"]
+        /**
+         * Shorthand property sets both the align-self and justify-self properties. The first value is the align-self property value, the second the justify-self one. If the second value is not present, the first value is also used for it.
+         */
+        placeSelf?: CSS.Properties["placeSelf"]
     }
 
 
@@ -214,6 +247,7 @@ declare namespace Global {
         size?: Global.Size
         decoration?: 'none' | 'filled' | 'underline' | 'outline'
         color?: Global.ColorProp,
+        backgroundColor?: Global.ColorProp,
         shape?: 'round' | 'rounded' | 'square'
         disabled?: boolean
         rightChild?: React.ReactNode
