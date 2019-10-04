@@ -7,7 +7,7 @@ import useContainer from "../../misc/hooks/useContainer";
 const Drop = (props: Types.Props, ref) => {
 
     const { attributes } = useContainer(props);
-    const { children, target, onClickOutside, distance = 8 } = props;
+    const { children, target, onClickOutside, distance = 0 } = props;
     const styles = createStyles(props);
     const drop = useRef<HTMLDivElement>(null);
     /**
@@ -16,7 +16,7 @@ const Drop = (props: Types.Props, ref) => {
      */
     //@ts-ignore
     const targetRef = (target && target.ref) ? target.ref : useRef<HTMLSpanElement>(null);
-    
+
     useEffect(() => {
         if (props.visibility != 'hidden' && props.display != 'none') {
             setPosition();
@@ -41,9 +41,9 @@ const Drop = (props: Types.Props, ref) => {
             const dr = drop.current.getBoundingClientRect();
             const style = drop.current.style;
 
-            const { 
-                align = "bottom", 
-                justify = "center" 
+            const {
+                align = "bottom",
+                justify = "center"
             } = props;
 
             style.visibility = "visible";
@@ -101,8 +101,8 @@ const Drop = (props: Types.Props, ref) => {
                             style.top = toStyle((tr.top + tr.height / 2) - dr.height / 2);
                             break;
                         case "start":
-                                style.top = toStyle(tr.bottom - dr.height);
-                                break;
+                            style.top = toStyle(tr.bottom - dr.height);
+                            break;
                         case "start-outside":
                             style.top = toStyle(tr.top - tr.height);
                             break;
@@ -126,6 +126,14 @@ const Drop = (props: Types.Props, ref) => {
                     }
                     break;
             }
+
+            if (props.stretchHeight) {
+                style.height = toStyle(tr.height);
+            }
+
+            if (props.stretchWidth) {
+                style.width = toStyle(tr.width);
+            }
         }
     }
 
@@ -138,16 +146,16 @@ const Drop = (props: Types.Props, ref) => {
             }
 
             {
-               ReactDOM.createPortal(
+                ReactDOM.createPortal(
                     <div
                         {...attributes}
                         ref={drop}
                         css={styles.container}
-                        style={{ 
-                            top: 0, 
-                            left: 0, 
+                        style={{
+                            top: 0,
+                            left: 0,
                             visibility: "hidden",
-                            ...attributes.style 
+                            ...attributes.style
                         }}
                         children={children}
                     />,
