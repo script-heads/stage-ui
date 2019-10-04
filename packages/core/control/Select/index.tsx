@@ -224,6 +224,7 @@ const Select = (props: SelectTypes.Props, ref) => {
                 payload: false
             })}
             stretchWidth
+            justify='start'
             target={(
                 <Field
                     {...props}
