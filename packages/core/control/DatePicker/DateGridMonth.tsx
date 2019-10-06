@@ -2,31 +2,28 @@
  * DateGridMonth.tsx
  * author: I.Trikoz
  */
+import moment from 'moment';
 import React from 'react';
-import DatePickerTypes from './types';
 import Flexbox from '../../layout/Flexbox';
-import { DateTime } from 'luxon';
-import { useDateFormat } from './utils';
-import createStyles from './styles';
+import DatePickerTypes from './types';
 
-const DateGridMonth = (props: DatePickerTypes.DateGridMonthProps) => {
-    const { locale, onClick, minValue, maxValue } = props;
-
-    const day = useDateFormat(props.month, locale);
-    const active = useDateFormat(props.active, locale);
-    const now = useDateFormat(DateTime.local(), locale)
+const DateGridMonth = (props: DatePickerTypes.DateGridCalendarProps) => {
+    const { value, active, onClick, minValue, maxValue } = props;
 
     const isDisabled =
-        (minValue && minValue.toMillis() > props.month.toMillis()) ||
-        (maxValue && maxValue.toMillis() < props.month.toMillis()) ||
+        minValue.valueOf() > value.valueOf() ||
+        maxValue.valueOf() < value.valueOf() ||
         false;
 
-    const isActive = (day("yyyyMM") === active("yyyyMM"));
-    const isCurrent = (day("yyyyMM") === active("yyyyMM"));
-    const isCurrentMonth = (day("MM") === now("MM"));
+    const now = moment()
+    const monthValue = value.startOf("month").valueOf()
+    const nowValue = now.startOf("month").valueOf()
+    const activeValue = active.startOf("month").valueOf()
 
-    const styles = createStyles();
-    const css = styles.gridBlock(isActive, isCurrent, isDisabled, isCurrentMonth);
+    const isActive = (activeValue === monthValue);
+    const isCurrent = (monthValue === nowValue);
+
+    const css = props.styles.gridBlock(isActive, isCurrent, isDisabled, true);
 
     return (
         <Flexbox
@@ -39,7 +36,7 @@ const DateGridMonth = (props: DatePickerTypes.DateGridMonthProps) => {
             }}
             css={css}
             style={props.style}
-            children={props.month.toFormat("LLLL")}
+            children={value.format("MMMM")}
         />
 
     )

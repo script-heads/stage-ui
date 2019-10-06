@@ -2,30 +2,28 @@
  * DateGridYear.tsx
  * author: I.Trikoz
  */
+import moment from 'moment';
 import React from 'react';
-import DatePickerTypes from './types';
 import Flexbox from '../../layout/Flexbox';
-import { DateTime } from 'luxon';
-import { useDateFormat } from './utils';
-import createStyles from './styles';
+import DatePickerTypes from './types';
 
-const DateGridYear = (props: DatePickerTypes.DateGridYearProps) => {
-    const { locale, onClick, minValue, maxValue } = props;
-
-    const day = useDateFormat(props.year, locale);
-    const active = useDateFormat(props.active, locale);
-    const now = useDateFormat(DateTime.local(), locale)
+const DateGridYear = (props: DatePickerTypes.DateGridCalendarProps) => {
+    const { value, active, onClick, minValue, maxValue } = props;
 
     const isDisabled =
-        (minValue && minValue.toMillis() > props.year.toMillis()) ||
-        (maxValue && maxValue.toMillis() < props.year.toMillis()) ||
+        minValue.valueOf() > value.valueOf() ||
+        maxValue.valueOf() < value.valueOf() ||
         false;
 
-    const isActive = (day("yyyy") === active("yyyy"));
-    const isCurrent = (day("yyyy") === active("yyyy"));
+    const now = moment()
+    const yearValue = value.startOf("year").valueOf()
+    const nowValue = now.startOf("year").valueOf()
+    const activeValue = active.startOf("year").valueOf()
 
-    const styles = createStyles();
-    const css = styles.gridBlock(isActive, isCurrent, isDisabled, true);
+    const isActive = (activeValue === yearValue);
+    const isCurrent = (yearValue === nowValue);
+
+    const css = props.styles.gridBlock(isActive, isCurrent, isDisabled, true);
 
     return (
         <Flexbox
@@ -38,7 +36,7 @@ const DateGridYear = (props: DatePickerTypes.DateGridYearProps) => {
             }}
             css={css}
             style={props.style}
-            children={props.year.toFormat("yyyy")}
+            children={value.format("YYYY")}
         />
 
     )
