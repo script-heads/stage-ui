@@ -25,14 +25,12 @@ export default (props: CaseProps) => {
                 props={{ SelectTypes }}
                 interfaces={["Props", "FieldProps"]}
                 children={
-                    <Fragment>
-                        <Select
-                            {...SelectTypes[0]}
-                            label="Label"
-                            placeholder="Placeholder"
-                            options={fakeValue("options")}
-                        />
-                    </Fragment>
+                    <Select
+                        {...SelectTypes[0]}
+                        label="Label"
+                        placeholder="Placeholder"
+                        options={fakeValue("options")}
+                    />
                 }
                 paths={[
                     `@flow-ui/core/control/Select`,

@@ -32,7 +32,7 @@ const Drop = (props: Types.Props, ref) => {
     function handleClickOutside(event: any) {
         drop.current &&
             !drop.current.contains(event.target) &&
-            onClickOutside && onClickOutside(event);
+            onClickOutside && onClickOutside(event, targetRef && !targetRef.current.contains(event.target));
     }
 
     function setPosition() {

@@ -32,6 +32,7 @@ const Select = (props: SelectTypes.Props, ref) => {
     let nextSelectedOptions
 
     function reducer(state, action) {
+        console.log(action.type);
         switch (action.type) {
             case 'setSelectedOptions':
                 return {
@@ -141,10 +142,11 @@ const Select = (props: SelectTypes.Props, ref) => {
     const styles = createStyles(props);
 
     useEffect(() => {
+        console.log(values);
         if (values) {
             dispatch({ type: 'setSelectedOptions', payload: values });
         }
-    }, [props.values])
+    }, [values])
 
 
     /*
@@ -217,12 +219,16 @@ const Select = (props: SelectTypes.Props, ref) => {
         }
     }
 
+    console.log('render');
+
     return (
         <Drop
-            onClickOutside={() => dispatch({
-                type: 'toggleOpen',
-                payload: false
-            })}
+            onClickOutside={(e, ot) => {
+                ot && dispatch({
+                    type: 'toggleOpen',
+                    payload: false
+                })
+            }}
             stretchWidth
             justify='start'
             target={(
@@ -236,7 +242,7 @@ const Select = (props: SelectTypes.Props, ref) => {
                     insideLabelStyles={multiselect && !state.empty && styles.insideLabelStyles}
 
                     onClick={(e) => {
-                        dispatch({ type: 'toggleOpen' })
+                        dispatch({ type: 'toggleOpen', payload: true })
                         props.onClick && props.onClick(e);
                     }}
                     onClear={() => dispatch({ type: 'clear' })}
@@ -249,9 +255,15 @@ const Select = (props: SelectTypes.Props, ref) => {
                     children={!state.underOverlay && fieldValue}
 
                     rightChild={(
-                        <Icon type={i =>
-                            i.filled[state.open ? 'arrowIosUpward' : 'arrowIosDownward']
-                        } />
+                        <Icon
+                            type={i =>
+                                i.filled[state.open ? 'arrowIosUpward' : 'arrowIosDownward']
+                            }
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                dispatch({ type: 'toggleOpen' })
+                            }}
+                        />
                     )}
                 />
             )}
@@ -265,7 +277,6 @@ const Select = (props: SelectTypes.Props, ref) => {
                                 css={styles.dropItem(i === state.cursor)}
                                 children={option.text}
                                 onMouseDown={(e) => {
-                                    e.stopPropagation();
                                     dispatch({ type: 'toggleOption', payload: option });
                                     dispatch({ type: 'toggleOpen', payload: false })
                                 }}
