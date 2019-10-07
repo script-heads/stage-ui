@@ -42,20 +42,24 @@ export default () => {
                 cursor: "pointer",
                 margin:"0.125rem",
                 opacity: 1,
-                background: theme.color.surface.css(),
+                background: theme.color.background.css(),
                 borderWidth: theme.assets.border.width,
                 borderStyle: theme.assets.border.style,
                 borderColor: theme.color.surface.css(),
                 borderRadius: theme.radius.narrow,
                 color: theme.color.onSurface.css(),
                 userSelect: "none" as "none",
-                ...theme.typography.text[1]
+                ...theme.typography.text[1],
+                ':hover': {
+                    background: theme.color.lightest.css()
+                }
             };
             /**
              * This block is from current month
              */
             if (!isCurrentMonth) {
-                st.background = theme.color.background.css()
+                st.color = theme.color.hardest.css()
+                st.background = theme.color.surface.css()
             }
             /**
              * It is current block
@@ -69,12 +73,14 @@ export default () => {
             if (isActive) {
                 st.background = theme.color.primary.css();
                 st.color = theme.color.onPrimary.css();
+                delete st[':hover']
             }
             /**
              * This block is disabled to select
              */
             if (isDisabled) {
                 st.opacity = 0.3;
+                delete st[':hover']
             }
             return css(st, overrides && overrides.gridBlock);
         },

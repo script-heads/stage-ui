@@ -12,6 +12,7 @@ import DateGrid from './DateGrid';
 import createStyles from './styles';
 import DatePickerTypes from './types';
 import mask from './mask';
+import FieldTypes from '../../misc/hocs/Field/types';
 
 const DatePicker: FC<DatePickerTypes.Props> = (props, ref: RefObject<HTMLDivElement>) => {
 
@@ -68,8 +69,8 @@ const DatePicker: FC<DatePickerTypes.Props> = (props, ref: RefObject<HTMLDivElem
             }}
             target={(
                 <TextField
+                    {...(props as FieldTypes.Props)}
                     ref={fieldRef}
-                    label={props.label}
                     defaultValue={value.format(format)}
                     masked={props.masked && mask(format, minValue, maxValue)}
                     onChange={(e) => {
@@ -79,12 +80,16 @@ const DatePicker: FC<DatePickerTypes.Props> = (props, ref: RefObject<HTMLDivElem
                         }
                     }}
                     onClick={() => {
-                        setActive(true)
+                        if (!props.disabled) {
+                            setActive(true)
+                        }
                     }}
                     onFocus={() => {
-                        setActive(true)
+                        if (!props.disabled) {
+                            setActive(true)
+                        }
                     }}
-                    rightChild={(
+                    rightChild={props.rightChild || (
                         <Icon type={t => t.outline.calendar}/>
                     )}
                 />

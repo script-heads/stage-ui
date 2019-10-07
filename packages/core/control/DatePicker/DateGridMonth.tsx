@@ -16,9 +16,9 @@ const DateGridMonth = (props: DatePickerTypes.DateGridCalendarProps) => {
         false;
 
     const now = moment()
-    const monthValue = value.startOf("month").valueOf()
-    const nowValue = now.startOf("month").valueOf()
-    const activeValue = active.startOf("month").valueOf()
+    const monthValue = value.clone().startOf("month").valueOf()
+    const nowValue = now.clone().startOf("month").valueOf()
+    const activeValue = active.clone().startOf("month").valueOf()
 
     const isActive = (activeValue === monthValue);
     const isCurrent = (monthValue === nowValue);

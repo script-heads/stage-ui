@@ -7,6 +7,7 @@ import Icon from '../../content/Icon';
 import { T1 } from '../../content/Typography';
 import Flexbox from '../../layout/Flexbox';
 import DatePickerTypes from './types';
+import Block from '../../layout/Block';
 
 const Arrow = (props: { onClick: () => void, icon: "chevronLeft" | "chevronRight", disabled: boolean }) => (
     <Flexbox
@@ -48,10 +49,17 @@ const DateGridTitle = (props: DatePickerTypes.DateGridTitleProps) => {
                 <Arrow onClick={props.onPrevious} icon="chevronLeft" disabled={minValue.valueOf() > value.valueOf()} />
                 <Flexbox column flex={1} alignItems="center" justifyContent="center">
                     {gridType === "day" && (
-                        <Title 
-                            onClick={() => props.onGridTypeChange("month")}
-                            value={value.format('MMMM')}
-                        />
+                        <Flexbox>
+                            <Title 
+                                onClick={() => props.onGridTypeChange("month")}
+                                value={value.format('MMMM')}
+                            />
+                            <T1>{`\u00A0`}</T1>
+                            <Title 
+                                onClick={() => props.onGridTypeChange("year")}
+                                value={value.format('YYYY')}
+                            />
+                        </Flexbox>
                     )}
                     {gridType === "month" && (
                         <Title 
