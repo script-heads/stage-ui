@@ -3,7 +3,6 @@ import React, { Fragment, useState } from 'react';
 import { CaseProps } from "../../../plugins/CaseWrapper";
 import UICaseBlock from '@flow-ui/showcase/src/UI/components/UICaseBlock';
 import UICaseDocumentation from "@flow-ui/showcase/src/UI/components/UICaseDocumentation";
-import Block from '@flow-ui/core/layout/Block';
 
 export const playground = () => {
 
@@ -27,10 +26,12 @@ export default (props: CaseProps) => {
                 subtitle={``}
                 scope={{ DatePicker }}
                 props={{ DatePickerTypes }}
+                interfaces={["Props", "FieldProps"]}
                 minHeight={"5rem"}
                 // interfaces={["Props", "InputProps", "TextAreaProps", "FieldProps"]}
                 children={
                     <DatePicker
+                        {...DatePickerTypes[0]}
                         label={'Pick date'}
                     />
                 }

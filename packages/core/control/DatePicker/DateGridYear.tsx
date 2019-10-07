@@ -16,9 +16,9 @@ const DateGridYear = (props: DatePickerTypes.DateGridCalendarProps) => {
         false;
 
     const now = moment()
-    const yearValue = value.startOf("year").valueOf()
-    const nowValue = now.startOf("year").valueOf()
-    const activeValue = active.startOf("year").valueOf()
+    const yearValue = value.clone().startOf("year").valueOf()
+    const nowValue = now.clone().startOf("year").valueOf()
+    const activeValue = active.clone().startOf("year").valueOf()
 
     const isActive = (activeValue === yearValue);
     const isCurrent = (yearValue === nowValue);

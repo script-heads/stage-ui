@@ -107,6 +107,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                         styles={props.styles}
                                         key={day.valueOf()}
                                         value={day}
+                                        tmp={tmpDate}
                                         active={value}
                                         minValue={props.minValue}
                                         maxValue={props.maxValue}
@@ -142,6 +143,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                     styles={props.styles}
                                     key={index}
                                     value={clone}
+                                    tmp={tmpDate}
                                     style={{ padding: "0 0.5rem"}}
                                     active={value}
                                     minValue={props.minValue}
@@ -167,6 +169,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                     styles={props.styles}
                                     key={index}
                                     value={clone}
+                                    tmp={tmpDate}
                                     style={{ padding: "0 1rem"}}
                                     active={value}
                                     minValue={props.minValue}

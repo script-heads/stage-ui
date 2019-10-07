@@ -58,6 +58,7 @@ declare namespace DatePickerTypes {
     }
     export interface DateGridCalendarProps {
         value: Moment
+        tmp: Moment
         minValue: Moment
         maxValue: Moment
         active: Moment

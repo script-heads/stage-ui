@@ -8,7 +8,7 @@ import Flexbox from '../../layout/Flexbox';
 import DatePickerTypes from './types';
 
 const DateGridDay = (props: DatePickerTypes.DateGridCalendarProps) => {
-    const { value, active, onClick, minValue, maxValue } = props;
+    const { value, tmp, active, onClick, minValue, maxValue } = props;
 
     const isDisabled =
         minValue.valueOf() > value.valueOf() ||
@@ -22,7 +22,7 @@ const DateGridDay = (props: DatePickerTypes.DateGridCalendarProps) => {
 
     const isActive = (activeValue === dayValue);
     const isCurrent = (dayValue === nowValue);
-    const isCurrentMonth = (value.month() === now.month());
+    const isCurrentMonth = (value.month() === tmp.month());
     
     const css = props.styles.gridBlock(isActive, isCurrent, isDisabled, isCurrentMonth);
 
