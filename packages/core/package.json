@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@emotion/core": "^10.0.14",
+    "@types/chroma-js": "^1.4.1",
     "chroma-js": "^2.0.4",
     "emotion-theming": "^10.0.10",
     "imask": "^5.2.1",
@@ -27,7 +28,6 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
     "@emotion/babel-preset-css-prop": "^10.0.14",
-    "@types/chroma-js": "^1.4.1",
     "@types/luxon": "^1.15.2",
     "babel-loader": "^8.0.6",
     "csstype": "^2.6.6",

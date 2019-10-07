@@ -5,54 +5,60 @@ import Field from '../../misc/hocs/Field'
 import Icon from '../../content/Icon'
 import Drop from '../../layout/Drop'
 
+let nextSelectedOptions
+
 const Select = (props: SelectTypes.Props, ref) => {
 
     const {
         multiselect,
         onChange,
-        options,
-        values,
-        defaultValues,
+        options = [],
+        values = [],
+        defaultValues = [],
         placeholder,
         searchable
     } = props;
 
-    if (!options) return null
+    const styles = createStyles(props);
+    let approvedDefaultValues = defaultValues 
+        ? options.filter(option => includeOption(defaultValues, option)) 
+        : [];
 
-    const approvedDefaultValues = defaultValues ? options.filter(option => defaultValues.includes(option)) : [];
+    if (!multiselect && approvedDefaultValues.length != 0) {
+        approvedDefaultValues = [approvedDefaultValues[0]]
+    }
 
-    const initialState = {
-        selectedOptions: multiselect 
-            ? approvedDefaultValues 
-            : approvedDefaultValues[0],
-        availableOptions: options,
+    const initialState: SelectTypes.State = {
+        selectedOptions: approvedDefaultValues,
+        availableOptions: getAvailableOptions(
+            options,
+            approvedDefaultValues,
+            ''
+        ),
         underOverlay: false,
-        opened: false,
+        open: false,
         searchValue: '',
-        empty: true,
+        empty: approvedDefaultValues.length === 0,
         cursor: -1
     }
 
-    let nextSelectedOptions
-
-    function reducer(state, action) {
+    function reducer(state: SelectTypes.State, action: SelectTypes.Actions) {
         switch (action.type) {
             case 'setSelectedOptions':
                 return {
                     ...state,
                     selectedOptions: action.payload,
-                    availableOptions: getAvailibleOptions(
+                    availableOptions: getAvailableOptions(
                         options,
                         action.payload,
                         state.searchValue
                     ),
+                    empty: action.payload.length === 0,
                     cursor: -1
                 };
 
-            // Set selected and available options when user select one and clear cursor position
             case 'toggleOption':
                 nextSelectedOptions = state.selectedOptions;
-
                 if (multiselect) {
                     state.selectedOptions.includes(action.payload)
                         ? nextSelectedOptions = state.selectedOptions.filter(selectedOption =>
@@ -62,14 +68,12 @@ const Select = (props: SelectTypes.Props, ref) => {
                 } else {
                     nextSelectedOptions = [action.payload];
                 }
-
                 onChange && onChange(nextSelectedOptions, action.payload);
-
                 return {
                     ...state,
                     empty: nextSelectedOptions.length === 0,
                     selectedOptions: nextSelectedOptions,
-                    availableOptions: getAvailibleOptions(
+                    availableOptions: getAvailableOptions(
                         options,
                         nextSelectedOptions,
                         state.searchValue
@@ -77,7 +81,6 @@ const Select = (props: SelectTypes.Props, ref) => {
                     cursor: -1
                 };
 
-            // Open or close and clear cursor position
             case 'toggleOpen':
                 return {
                     ...state,
@@ -85,13 +88,12 @@ const Select = (props: SelectTypes.Props, ref) => {
                     cursor: -1
                 };
 
-            // Set available options when user search one and clear cursor position
             case 'search':
                 return {
                     ...state,
                     open: true,
                     searchValue: action.payload,
-                    availableOptions: getAvailibleOptions(
+                    availableOptions: getAvailableOptions(
                         options,
                         state.selectedOptions,
                         action.payload
@@ -105,7 +107,7 @@ const Select = (props: SelectTypes.Props, ref) => {
                 return {
                     ...state,
                     selectedOptions: nextSelectedOptions,
-                    availableOptions: getAvailibleOptions(
+                    availableOptions: getAvailableOptions(
                         options,
                         nextSelectedOptions,
                         state.searchValue
@@ -120,7 +122,7 @@ const Select = (props: SelectTypes.Props, ref) => {
                 }
 
             case 'clear':
-                    onChange && onChange([]);
+                onChange && onChange([]);
                 return {
                     ...state,
                     searchValue: '',
@@ -143,10 +145,9 @@ const Select = (props: SelectTypes.Props, ref) => {
     }
 
     const [state, dispatch] = useReducer(reducer, initialState);
-    const styles = createStyles(props);
 
     useEffect(() => {
-        if (values) {
+        if (values.length != 0) {
             dispatch({ type: 'setSelectedOptions', payload: values });
         }
     }, [values])
@@ -292,15 +293,7 @@ const Select = (props: SelectTypes.Props, ref) => {
     )
 }
 
-const Options = (props: {
-    selected: SelectTypes.Option[],
-    onClose: (option) => void,
-    styles: any,
-    searchValue: string,
-    placeholder?: string
-    onSearch: (searchValue: string) => void
-    searchable?: boolean
-}) => {
+const Options = (props: SelectTypes.OptionsProps ) => {
 
     const { selected, onClose, styles, searchable } = props;
 
@@ -323,14 +316,7 @@ const Options = (props: {
     )
 }
 
-const Search = (props: {
-    searchValue: string,
-    onSearch: (searchValue: string) => void
-    size?: number
-    styles: any
-    placeholder?: string
-    defaultValue?: string
-}) => {
+const Search = (props: SelectTypes.SearchProps) => {
     const { searchValue, onSearch, styles, defaultValue, placeholder } = props;
 
     return (
@@ -346,12 +332,22 @@ const Search = (props: {
     )
 }
 
-function getAvailibleOptions(options, selectedOptions, search) {
+function getAvailableOptions(options: SelectTypes.Option[], selectedOptions: SelectTypes.Option[], search: string) {
     return options.filter(option =>
         !selectedOptions.includes(option) &&
         option.text
             .toLocaleUpperCase()
             .includes(search.toLocaleUpperCase())
     )
+}
+
+function includeOption(options: SelectTypes.Option[], option: SelectTypes.Option) {
+    let includes = false
+    options.map(o => {
+        if(o.value === option.value) {
+            includes = true
+        }
+    })
+    return includes
 }
 export default forwardRef(Select);
