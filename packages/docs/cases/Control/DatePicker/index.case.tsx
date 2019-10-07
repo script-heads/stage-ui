@@ -28,7 +28,6 @@ export default (props: CaseProps) => {
                 props={{ DatePickerTypes }}
                 interfaces={["Props", "FieldProps"]}
                 minHeight={"5rem"}
-                // interfaces={["Props", "InputProps", "TextAreaProps", "FieldProps"]}
                 children={
                     <DatePicker
                         {...DatePickerTypes[0]}
@@ -39,7 +38,7 @@ export default (props: CaseProps) => {
                     `@flow-ui/core/control/DatePicker`,
                 ]}
             />
-            <UICaseDocumentation ns="DatePickerTypes" />
+            <UICaseDocumentation ns="DatePickerTypes" filter={["Props", "FieldProps"]} />
         </Fragment>
     )
 }
