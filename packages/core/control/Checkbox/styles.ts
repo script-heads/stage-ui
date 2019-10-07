@@ -15,15 +15,18 @@ export default (props: CheckboxTypes.Props, checked: boolean) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                color: theme.color.primary.css(),
-                backgroundColor: theme.color.backgroundVariant.css(),
+                color: disabled
+                    ? theme.color.hardest.css()
+                    : theme.color.surface.css(),
+                backgroundColor: disabled
+                    ? theme.color.lightest.css()
+                    : theme.color.primary.css(),
+                borderColor: disabled
+                    ? theme.color.lightest.css()
+                    : theme.color.primary.css(),
                 borderWidth: theme.assets.border.width,
                 borderStyle: theme.assets.border.style,
-                borderColor: theme.assets.border.color,
                 borderRadius: theme.radius.narrow,
-                opacity: disabled
-                    ? 0.7
-                    : 1
             },
             variant<Global.Size>(size, {
                 xsmall: {
@@ -53,7 +56,9 @@ export default (props: CheckboxTypes.Props, checked: boolean) => {
         ),
         icon: css(
             {
-                opacity: checked ? 1 : 0
+                transition: 'all 0.2s',
+                opacity: checked ? 1 : 0,
+                transform: `scale(${checked ? 1 : 0.5})`,
             },
             variant<Global.Size>(size, {
                 xsmall: {

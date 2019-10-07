@@ -16,10 +16,12 @@ export default (props: SwitchTypes.Props, checked: boolean) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                backgroundColor: checked ? theme.color.primary.css() : theme.color.lightest.css(),
-                opacity: disabled
-                    ? 0.7
-                    : 1,
+                backgroundColor: 
+                    checked 
+                    ? disabled
+                        ? theme.color.lightest.css()
+                        : theme.color.primary.css() 
+                    : theme.color.lightest.css(),
             },
             variant<Global.Size>(size, {
                 xsmall: {
@@ -59,7 +61,9 @@ export default (props: SwitchTypes.Props, checked: boolean) => {
                 boxSizing: "border-box",
                 borderRadius: "50%",
                 borderStyle: "solid",
-                borderColor: theme.color.primary.css(),
+                borderColor: disabled
+                    ? theme.color.lightest.css()
+                    : theme.color.primary.css(),
                 background: theme.color.surface.css(),
                 boxShadow: theme.assets.shadow.default,
             },

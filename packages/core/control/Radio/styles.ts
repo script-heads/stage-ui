@@ -15,15 +15,18 @@ export default (props: RadioTypes.Props, checked: boolean) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                color: theme.color.primary.css(),
-                backgroundColor: theme.color.primary.css(),
+                color: disabled
+                    ? theme.color.hardest.css()
+                    : theme.color.surface.css(),
+                backgroundColor: disabled
+                    ? theme.color.lightest.css()
+                    : theme.color.primary.css(),
+                borderColor: disabled
+                    ? theme.color.lightest.css()
+                    : theme.color.primary.css(),
                 borderWidth: theme.assets.border.width,
                 borderStyle: theme.assets.border.style,
-                borderColor: theme.color.primary.css(),
-                borderRadius: '50%',
-                opacity: disabled
-                    ? 0.7
-                    : 1,
+                borderRadius: '50%'
             },
             variant<Global.Size>(size, {
                 xsmall: {
@@ -68,9 +71,13 @@ export default (props: RadioTypes.Props, checked: boolean) => {
                     xlarge: "0.375rem",
                 }),
                 borderStyle: "solid",
-                borderColor: theme.color.primary.css(),
-                background: theme.color.surface.css(),
-                boxShadow: theme.assets.shadow.default,
+                borderColor: disabled
+                    ? theme.color.lightest.css()
+                    : theme.color.primary.css(),
+                backgroundColor: theme.color.surface.css(),
+                boxShadow: !disabled
+                    ? theme.assets.shadow.default
+                    : 'none',
             },
             animated && {
                 transition: "all .15s"
