@@ -7,12 +7,12 @@ import Flexbox from '@flow-ui/core/layout/Flexbox';
 
 export interface MenuProps {
 	cases: any,
+	current: string | null
 	onChange: (currentCaseID: string) => void
 }
 
 export default (props: MenuProps) => {
 	const [currentCase, setCurrentCase] = React.useState(localStorage.getItem('currentCaseID') || '')
-
 	const casesList = (cases: any) => {
 		return Object.keys(cases).map(name => {
 
@@ -46,12 +46,13 @@ export default (props: MenuProps) => {
 							children={name}
 						/>
 						<Menu 
-							value={currentCase}
+							value={props.current || -1}
 							decoration="filled-underline"
 							direction="column"
 							onChange={(value) => {
-								setCurrentCase(value.toString());
-								props.onChange(value.toString())
+								const caseId = value.toString()
+								setCurrentCase(caseId)
+								props.onChange(caseId)
 							}}
 							//@ts-ignore
 							items={casesList(cases[name]).filter(c => c != null)}

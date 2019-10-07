@@ -83,6 +83,13 @@ for (const namespace of doc.children) {
                             if (deprecated) {
                                 child.deprecated = deprecated.text || true
                             }
+                            for (const i of Object.keys(child.comment.tags)) {
+                                const tag = child.comment.tags[i];
+                                if (!child.tags) {
+                                    child.tags = {}
+                                }
+                                child.tags[tag.tag] = tag.text.replace('\n', '')
+                            }
                         }
                         if (child.comment.shortText) {
                             child.comment = child.comment.shortText

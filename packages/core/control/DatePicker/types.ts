@@ -20,7 +20,8 @@ declare namespace DatePickerTypes {
          */
         value?: Moment | Date | string
         /**
-         * String like YYYY-MM-DD etc
+         * Format moment YYYY-MM-DD 
+         * @default YYYY-MM-DD
          */
         format?: string
         /**
@@ -40,7 +41,9 @@ declare namespace DatePickerTypes {
          * Enable mask input
          */
         masked?: boolean
-
+        /**
+         * @default ru
+         */
         locale?: Locale
         /**
          * Hide today button

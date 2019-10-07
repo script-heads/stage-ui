@@ -12,6 +12,7 @@ import theme from './theme'
 import { GetPropsForType } from '../UICaseDocumentation'
 import useFlow from '@flow-ui/core/misc/hooks/useFlow'
 import MenuTypes from '@flow-ui/core/control/Menu/types'
+import { TextField } from '@flow-ui/core'
 
 interface UICaseBlockProps {
     title: string
@@ -205,9 +206,10 @@ const UICaseBlock = (props: UICaseBlockProps) => {
                                                             needDisplay = false;
                                                             if (value === "true") value = true
                                                             if (value === "false") value = false
-                                                            if (value === "any" || value === "string" || value === "number" || value.toString().match(/\[/)) {
+                                                            if (value === "any" || value === "number" || value.toString().match(/\[/)) {
                                                                 return null
                                                             }
+
                                                             if (type.type === "reference" || type.type === "reflection") {
                                                                 return null
                                                             }
@@ -216,6 +218,38 @@ const UICaseBlock = (props: UICaseBlockProps) => {
 
                                                             const [propsState, setPropsState] = props.props![typeName];
 
+                                                            if (value === "string" && type.values.length === 1) {
+                                                                
+                                                                return (
+                                                                    <TextField
+                                                                        key={value}
+                                                                        size="xsmall"
+                                                                        decoration="none"
+                                                                        value={propsState[type.name] || ""}
+                                                                        placeholder="String"
+                                                                        css={{
+                                                                            color: "#ffffff"
+                                                                        }}
+                                                                        onChange={(e) => {
+                                                                            let value = e.target.value
+                                                                            if (!value && type.tags && type.tags.default) {
+                                                                                value = type.tags.default
+                                                                            }                                                                            
+                                                                            let state = {
+                                                                                ...propsState,
+                                                                                [type.name]: value
+                                                                            }
+                                                                            if (!value) {
+                                                                                state = {
+                                                                                    ...propsState,
+                                                                                }
+                                                                            }
+                                                                            setPropsState(state)
+                                                                            localStorage.setItem('case_props_' + typeName, JSON.stringify(state))
+                                                                        }}
+                                                                    />
+                                                                )
+                                                            }
                                                             return (
                                                                 <Button
                                                                     key={value}
