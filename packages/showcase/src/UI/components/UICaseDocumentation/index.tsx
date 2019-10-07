@@ -31,6 +31,7 @@ export interface TypeInterfaceChild {
     isOptional: boolean
     name: string
     comment?: string
+    tags?: {[key: string]: string}
     deprecated?: string | true
     type: "stringLiteral" | "intrinsic" | "reference" | "reflection"
     values: string[]
