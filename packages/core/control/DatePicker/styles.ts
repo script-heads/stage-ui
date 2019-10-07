@@ -42,7 +42,7 @@ export default () => {
                 cursor: "pointer",
                 margin:"0.125rem",
                 opacity: 1,
-                background: theme.color.background.css(),
+                background: theme.color.surface.css(),
                 borderWidth: theme.assets.border.width,
                 borderStyle: theme.assets.border.style,
                 borderColor: theme.color.surface.css(),
@@ -55,7 +55,7 @@ export default () => {
              * This block is from current month
              */
             if (!isCurrentMonth) {
-                st.background = theme.color.background.alpha(0.5).css()
+                st.background = theme.color.background.css()
             }
             /**
              * It is current block

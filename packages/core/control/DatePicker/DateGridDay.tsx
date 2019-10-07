@@ -22,8 +22,8 @@ const DateGridDay = (props: DatePickerTypes.DateGridCalendarProps) => {
 
     const isActive = (activeValue === dayValue);
     const isCurrent = (dayValue === nowValue);
-    const isCurrentMonth = (value.month === now.month);
-
+    const isCurrentMonth = (value.month() === now.month());
+    
     const css = props.styles.gridBlock(isActive, isCurrent, isDisabled, isCurrentMonth);
 
     return (
