@@ -37,7 +37,7 @@ const Field: FC<FieldTypes.Props> = (props, ref) => {
             {...attributes}
             ref={ref}
             css={styles.container}
-            tabIndex={0}
+            tabIndex={props.tabIndex}
         >
             {label && isLabelOutside && Label}
             {

@@ -16,7 +16,8 @@ const Select = (props: SelectTypes.Props, ref) => {
         values = [],
         defaultValues = [],
         placeholder,
-        searchable
+        searchable,
+        disabled
     } = props;
 
     const styles = createStyles(props);
@@ -60,7 +61,7 @@ const Select = (props: SelectTypes.Props, ref) => {
             case 'toggleOption':
                 nextSelectedOptions = state.selectedOptions;
                 if (multiselect) {
-                    state.selectedOptions.includes(action.payload)
+                    includeOption(state.selectedOptions, action.payload)
                         ? nextSelectedOptions = state.selectedOptions.filter(selectedOption =>
                             selectedOption.value != action.payload.value
                         )
@@ -73,10 +74,11 @@ const Select = (props: SelectTypes.Props, ref) => {
                     ...state,
                     empty: nextSelectedOptions.length === 0,
                     selectedOptions: nextSelectedOptions,
+                    searchValue: '',
                     availableOptions: getAvailableOptions(
                         options,
                         nextSelectedOptions,
-                        state.searchValue
+                        ''
                     ),
                     cursor: -1
                 };
@@ -84,7 +86,7 @@ const Select = (props: SelectTypes.Props, ref) => {
             case 'toggleOpen':
                 return {
                     ...state,
-                    open: typeof action.payload === 'undefined' ? !state.open : action.payload,
+                    open: !disabled ? action.payload : false,
                     cursor: -1
                 };
 
@@ -164,7 +166,7 @@ const Select = (props: SelectTypes.Props, ref) => {
                         payload: state.availableOptions[state.cursor]
                     })
                 }
-                dispatch({ type: 'toggleOpen' });
+                dispatch({ type: 'toggleOpen', payload: !state.open });
                 break;
             case 'ArrowUp':
                 event.preventDefault();
@@ -198,6 +200,7 @@ const Select = (props: SelectTypes.Props, ref) => {
                 styles={styles}
                 selected={state.selectedOptions}
                 searchable={searchable}
+                disabled={disabled}
                 placeholder={state.empty ? placeholder : ''}
                 searchValue={state.searchValue}
                 onSearch={(value) => dispatch({ type: 'search', payload: value })}
@@ -210,6 +213,7 @@ const Select = (props: SelectTypes.Props, ref) => {
             fieldValue =
                 <Search
                     styles={styles}
+                    disabled={disabled}
                     placeholder={placeholder}
                     searchValue={state.empty 
                         ? state.searchValue 
@@ -238,6 +242,7 @@ const Select = (props: SelectTypes.Props, ref) => {
             target={(
                 <Field
                     {...props}
+                    tabIndex={props.tabIndex || 0}
                     ref={ref}
                     fieldStyles={styles.fieldStyles(state.open)}
 
@@ -256,7 +261,6 @@ const Select = (props: SelectTypes.Props, ref) => {
                         payload: state
                     })}
 
-                    onBlur={() => state.empty && dispatch({ type: 'search', payload: '' })}
                     children={!state.underOverlay && fieldValue}
 
                     rightChild={(
@@ -266,7 +270,7 @@ const Select = (props: SelectTypes.Props, ref) => {
                             }
                             onClick={(e) => {
                                 e.stopPropagation();
-                                dispatch({ type: 'toggleOpen' })
+                                dispatch({ type: 'toggleOpen', payload: !state.open })
                             }}
                         />
                     )}
@@ -295,7 +299,7 @@ const Select = (props: SelectTypes.Props, ref) => {
 
 const Options = (props: SelectTypes.OptionsProps ) => {
 
-    const { selected, onClose, styles, searchable } = props;
+    const { selected, onClose, styles, searchable, disabled } = props;
 
     return (
         <div css={styles.options}>
@@ -317,12 +321,13 @@ const Options = (props: SelectTypes.OptionsProps ) => {
 }
 
 const Search = (props: SelectTypes.SearchProps) => {
-    const { searchValue, onSearch, styles, defaultValue, placeholder } = props;
+    const { searchValue, onSearch, styles, defaultValue, placeholder, disabled } = props;
 
     return (
         <input
             defaultValue={defaultValue}
             placeholder={placeholder}
+            disabled={disabled}
             value={searchValue}
             css={styles.input}
             size={props.size}
@@ -334,7 +339,7 @@ const Search = (props: SelectTypes.SearchProps) => {
 
 function getAvailableOptions(options: SelectTypes.Option[], selectedOptions: SelectTypes.Option[], search: string) {
     return options.filter(option =>
-        !selectedOptions.includes(option) &&
+        !includeOption(selectedOptions, option) &&
         option.text
             .toLocaleUpperCase()
             .includes(search.toLocaleUpperCase())

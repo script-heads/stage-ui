@@ -122,27 +122,27 @@ export default (props: ButtonTypes.Props) => {
             variant(size, {
                 'xsmall': {
                     padding: '0 .25rem',
-                    height: theme.assets.fieldHeight.xsmall,
+                    minHeight: theme.assets.fieldHeight.xsmall,
                     ...theme.typography.caption[4]
                 },
                 'small': {
                     padding: '0 .5rem',
-                    height: theme.assets.fieldHeight.small,
+                    minHeight: theme.assets.fieldHeight.small,
                     ...theme.typography.caption[3]
                 },
                 'medium': {
                     padding: '0 .75rem',
-                    height: theme.assets.fieldHeight.medium,
+                    minHeight: theme.assets.fieldHeight.medium,
                     ...theme.typography.caption[2]
                 },
                 'large': {
                     padding: '0 1rem',
-                    height: theme.assets.fieldHeight.large,
+                    minHeight: theme.assets.fieldHeight.large,
                     ...theme.typography.caption[1]
                 },
                 'xlarge': {
                     padding: '0 1.25rem',
-                    height: theme.assets.fieldHeight.xlarge,
+                    minHeight: theme.assets.fieldHeight.xlarge,
                     fontSize: theme.typography.header[4].fontSize,
                     lineHeight: theme.typography.header[4].lineHeight
                 }

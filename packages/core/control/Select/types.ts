@@ -30,7 +30,7 @@ declare namespace SelectTypes {
     } |
     {
         type: 'toggleOpen'
-        payload?: boolean
+        payload: boolean
     } |
     {
         type: 'search'
@@ -73,6 +73,7 @@ declare namespace SelectTypes {
         styles: any
         placeholder?: string
         defaultValue?: string
+        disabled?: boolean
     }
     export interface Overrides {
         container: Interpolation

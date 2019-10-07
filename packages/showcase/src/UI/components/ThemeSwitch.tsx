@@ -6,7 +6,7 @@ import Select from '@flow-ui/core/control/Select';
 
 const ThemeSwitch = () => {
     const currentTheme = localStorage.getItem('theme');
-    console.log('render');
+    
     return (
         <Flexbox p="1rem" alignItems="center">
             <Select
