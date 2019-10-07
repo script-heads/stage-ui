@@ -11,6 +11,7 @@ import ThemeSwitch from "./components/ThemeSwitch";
 
 
 interface State {
+	currentCaseID: string | null
 	CurrentCase: React.SFC<{}> | null
 	isMenuOpen: boolean,
 	panelItems: {
@@ -30,6 +31,7 @@ interface State {
 class UI extends React.Component<{}, State>  {
 
 	state: Readonly<State> = {
+		currentCaseID: null,
 		CurrentCase: null,
 		isMenuOpen: false,
 		panelItems: [],
@@ -151,6 +153,7 @@ class UI extends React.Component<{}, State>  {
 		// window.history.pushState({}, Case.name, "/" + Case.url);
 
 		this.setState({
+			currentCaseID,
 			CurrentCase: null,
 			isMenuOpen: false
 		});
@@ -171,6 +174,7 @@ class UI extends React.Component<{}, State>  {
 		}
 		setTimeout(() => {
 			this.setState({
+				currentCaseID: currentCaseID,
 				CurrentCase: currentCaseNode,
 				isMenuOpen: false
 			});
@@ -226,7 +230,7 @@ class UI extends React.Component<{}, State>  {
 									)}
 								</Flexbox>
 								<ThemeSwitch />
-								<Menu cases={core.cases} onChange={this.setCase} />
+								<Menu current={this.state.currentCaseID} cases={core.cases} onChange={this.setCase} />
 							</Block>
 							
 						</Flexbox>
