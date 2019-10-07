@@ -6,13 +6,13 @@ import Select from '@flow-ui/core/control/Select';
 
 const ThemeSwitch = () => {
     const currentTheme = localStorage.getItem('theme');
-
+    
     return (
         <Flexbox p="1rem" alignItems="center">
             <Select
                 flex={1}
                 size="small"
-                values={currentTheme ? [{
+                defaultValues={currentTheme ? [{
                     text: themes[currentTheme].name!,
                     value: currentTheme!
                 }] : [{
