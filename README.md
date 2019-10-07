@@ -24,14 +24,12 @@ npm i @flow-ui/core
 
 ```
 import React from 'react'
-import { Viewport, Block } from '@flow-ui/core'
+import { Viewport, Button } from '@flow-ui/core'
 
 const App () => (
-	<Viewport>
-		<Block>
-			Hello World
-		</Block>
-	</Viewport>
+  <Viewport>
+    <Button>Hello world</Button>
+  </Viewport>
 )
 ```
 
