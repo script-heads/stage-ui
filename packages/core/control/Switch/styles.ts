@@ -11,11 +11,12 @@ export default (props: SwitchTypes.Props, checked: boolean) => {
     return {
         check: css(
             {
+                transition: 'all 0.2s',
                 boxSizing: "border-box",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                backgroundColor: theme.color.primary.css(),
+                backgroundColor: checked ? theme.color.primary.css() : theme.color.lightest.css(),
                 opacity: disabled
                     ? 0.7
                     : 1,
@@ -53,6 +54,7 @@ export default (props: SwitchTypes.Props, checked: boolean) => {
         ),
         switch: css(
             {
+                transition: 'all 0.2s',
                 position: "relative",
                 boxSizing: "border-box",
                 borderRadius: "50%",

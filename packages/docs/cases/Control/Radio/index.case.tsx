@@ -13,30 +13,40 @@ export default (props: CaseProps) => {
         <Fragment>
             <UICaseBlock
                 title="Radio"
-                subtitle="Recommended to use with useState for control state of Radio"
-                scope={{ Radio, Flexbox, setValue, value}}
+                scope={{ Radio }}
                 props={{ RadioTypes }}
+                children={
+                    <Radio
+                        label="Radio"
+                        {...RadioTypes[0]}
+                    />
+                }
+                paths={[
+                    `@flow-ui/core/control/Radio`,
+                ]}
+            />
+            <UICaseBlock
+                title="Group with state"
+                subtitle="useState for control Radio"
+                scope={{ Radio, Flexbox, setValue, value }}
                 children={
                     <Flexbox column>
                         <Radio
                             checked={value === 1}
                             label="Winter"
                             m={"0.5rem"}
-                            {...RadioTypes[0]}
                             onChange={fakeValue('() => setValue(1)')}
                         />
                         <Radio
                             checked={value === 2}
                             label="Summer"
                             m={"0.5rem"}
-                            {...RadioTypes[0]}
                             onChange={fakeValue('() => setValue(2)')}
                         />
                         <Radio
                             checked={value === 3}
                             label="Spring"
                             m={"0.5rem"}
-                            {...RadioTypes[0]}
                             onChange={fakeValue('() => setValue(3)')}
                         />
                     </Flexbox>

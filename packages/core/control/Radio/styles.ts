@@ -16,10 +16,10 @@ export default (props: RadioTypes.Props, checked: boolean) => {
                 alignItems: "center",
                 justifyContent: "center",
                 color: theme.color.primary.css(),
-                backgroundColor: theme.color.backgroundVariant.css(),
+                backgroundColor: theme.color.primary.css(),
                 borderWidth: theme.assets.border.width,
                 borderStyle: theme.assets.border.style,
-                borderColor: theme.assets.border.color,
+                borderColor: theme.color.primary.css(),
                 borderRadius: '50%',
                 opacity: disabled
                     ? 0.7
@@ -53,6 +53,8 @@ export default (props: RadioTypes.Props, checked: boolean) => {
         ),
         radio: css(
             {
+                transition: 'all 0.2s',
+                transform: `scale(${checked ? 1 : 0.5})`,
                 opacity: checked ? 1 : 0,
                 boxSizing: "border-box",
                 height: "100%",
@@ -66,8 +68,9 @@ export default (props: RadioTypes.Props, checked: boolean) => {
                     xlarge: "0.375rem",
                 }),
                 borderStyle: "solid",
-                borderColor: theme.color.backgroundVariant.css(),
-                background: theme.color.primary.css(),
+                borderColor: theme.color.primary.css(),
+                background: theme.color.surface.css(),
+                boxShadow: theme.assets.shadow.default,
             },
             animated && {
                 transition: "all .15s"
