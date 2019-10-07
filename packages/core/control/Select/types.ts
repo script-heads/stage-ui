@@ -16,7 +16,7 @@ declare namespace SelectTypes {
         searchable?: boolean
         values?: Option[]
         defaultValues?: Option[]
-        onChange?: (values: Option[], changedValue: Option) => void
+        onChange?: (values: Option[], changedValue?: Option) => void
     }
 
     export interface Overrides {

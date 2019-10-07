@@ -19,8 +19,12 @@ const Select = (props: SelectTypes.Props, ref) => {
 
     if (!options) return null
 
+    const approvedDefaultValues = defaultValues ? options.filter(option => defaultValues.includes(option)) : [];
+
     const initialState = {
-        selectedOptions: defaultValues || [],
+        selectedOptions: multiselect 
+            ? approvedDefaultValues 
+            : approvedDefaultValues[0],
         availableOptions: options,
         underOverlay: false,
         opened: false,
@@ -32,7 +36,6 @@ const Select = (props: SelectTypes.Props, ref) => {
     let nextSelectedOptions
 
     function reducer(state, action) {
-        console.log(action.type);
         switch (action.type) {
             case 'setSelectedOptions':
                 return {
@@ -64,7 +67,6 @@ const Select = (props: SelectTypes.Props, ref) => {
 
                 return {
                     ...state,
-                    searchValue: '',
                     empty: nextSelectedOptions.length === 0,
                     selectedOptions: nextSelectedOptions,
                     availableOptions: getAvailibleOptions(
@@ -88,7 +90,6 @@ const Select = (props: SelectTypes.Props, ref) => {
                 return {
                     ...state,
                     open: true,
-                    empty: state.length === 0 && action.payload === '',
                     searchValue: action.payload,
                     availableOptions: getAvailibleOptions(
                         options,
@@ -100,6 +101,7 @@ const Select = (props: SelectTypes.Props, ref) => {
 
             case 'reduceSelectedOptions':
                 nextSelectedOptions = state.selectedOptions.slice(0, -1)
+                onChange && onChange(nextSelectedOptions);
                 return {
                     ...state,
                     selectedOptions: nextSelectedOptions,
@@ -108,7 +110,7 @@ const Select = (props: SelectTypes.Props, ref) => {
                         nextSelectedOptions,
                         state.searchValue
                     ),
-                    empty: nextSelectedOptions.length === 0 ? true : false
+                    empty: nextSelectedOptions.length === 0,
                 }
 
             case 'setCursor':
@@ -118,11 +120,13 @@ const Select = (props: SelectTypes.Props, ref) => {
                 }
 
             case 'clear':
+                    onChange && onChange([]);
                 return {
                     ...state,
                     searchValue: '',
-                    selectedOption: [],
+                    selectedOptions: [],
                     availableOptions: options,
+                    empty: true,
                     cursor: -1
                 }
 
@@ -142,17 +146,14 @@ const Select = (props: SelectTypes.Props, ref) => {
     const styles = createStyles(props);
 
     useEffect(() => {
-        console.log(values);
         if (values) {
             dispatch({ type: 'setSelectedOptions', payload: values });
         }
     }, [values])
 
-
     /*
     * Keyboard control
     */
-
     function handleKeyDown(event: React.KeyboardEvent<HTMLElement>) {
         switch (event.key) {
             case 'Enter':
@@ -179,17 +180,15 @@ const Select = (props: SelectTypes.Props, ref) => {
                 })
                 break;
             case 'Backspace':
-                !searchable && dispatch({ type: 'reduceSelectedOptions' })
+                !searchable || !state.searchValue && dispatch({ type: 'reduceSelectedOptions' })
                 break;
         }
         props.onKeyDown && props.onKeyDown(event)
     }
-
-    // console.log(state);
+    
     /*
     * Set field value
     */
-
     let fieldValue = <span css={styles.placeholder}>{placeholder}</span>
 
     if (multiselect && (!state.empty || searchable)) {
@@ -198,7 +197,7 @@ const Select = (props: SelectTypes.Props, ref) => {
                 styles={styles}
                 selected={state.selectedOptions}
                 searchable={searchable}
-                placeholder={placeholder}
+                placeholder={state.empty ? placeholder : ''}
                 searchValue={state.searchValue}
                 onSearch={(value) => dispatch({ type: 'search', payload: value })}
                 onClose={(option) => dispatch({ type: 'toggleOption', payload: option })}
@@ -211,15 +210,19 @@ const Select = (props: SelectTypes.Props, ref) => {
                 <Search
                     styles={styles}
                     placeholder={placeholder}
-                    searchValue={state.selectedOptions[0] ? state.selectedOptions[0].text : state.searchValue}
-                    onSearch={(value) => dispatch({ type: 'search', payload: value })}
+                    searchValue={state.empty 
+                        ? state.searchValue 
+                        : state.selectedOptions[0].text
+                    }
+                    onSearch={(value) => {
+                        !state.empty && dispatch({ type: 'clear' })
+                        dispatch({ type: 'search', payload: value })
+                    }}
                 />
         } else if (!state.empty) {
             fieldValue = <span>{state.selectedOptions[0].text}</span>
         }
     }
-
-    console.log('render');
 
     return (
         <Drop
@@ -252,6 +255,7 @@ const Select = (props: SelectTypes.Props, ref) => {
                         payload: state
                     })}
 
+                    onBlur={() => state.empty && dispatch({ type: 'search', payload: '' })}
                     children={!state.underOverlay && fieldValue}
 
                     rightChild={(
