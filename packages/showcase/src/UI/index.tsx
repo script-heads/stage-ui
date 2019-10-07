@@ -66,7 +66,8 @@ class UI extends React.Component<{}, State>  {
 		});
 		document.addEventListener('mousedown', this.handleMouseClick);
 		document.addEventListener('keyup', this.playgroundModeHandle);
-		const path = window.location.pathname
+		// const path = window.location.pathname
+		const path = window.location.hash.slice(1)
 		if (path) {
 			const currentCase = core.getCaseByUrl(path)
 			if (currentCase) {
@@ -146,7 +147,8 @@ class UI extends React.Component<{}, State>  {
 
 		const Case = core.getCaseById(currentCaseID);
 
-		window.history.pushState({}, Case.name, "/" + Case.url);
+		window.location.hash = `/${Case.url}`;
+		// window.history.pushState({}, Case.name, "/" + Case.url);
 
 		this.setState({
 			CurrentCase: null,

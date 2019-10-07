@@ -1,6 +1,7 @@
 var path = require("path");
 const webpack = require("webpack");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = function (dir) {
 
@@ -11,9 +12,8 @@ module.exports = function (dir) {
         },
         output: {
             filename: "showcase.js",
-            path: __dirname + "/public"
+            path: __dirname + "/public",
         },
-
         // Enable sourcemaps for debugging webpack's output.
         devtool: "source-map",
 
@@ -44,6 +44,13 @@ module.exports = function (dir) {
                         }
                     }
                 },
+                {
+                    test: /\.css$/,
+                    use: [
+                        'style-loader',
+                        "css-loader"
+                    ]
+                },
 
                 // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
                 { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
@@ -54,6 +61,7 @@ module.exports = function (dir) {
             new webpack.DefinePlugin({
                 '$_WORKDIR_$': JSON.stringify(dir)
             }),
+            new MonacoWebpackPlugin()
             // new BundleAnalyzerPlugin()
         ]
     }

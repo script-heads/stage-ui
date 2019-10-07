@@ -12,10 +12,16 @@
     "build": "webpack"
   },
   "dependencies": {
+    "monaco-editor": "^0.17.1",
+    "monaco-editor-webpack-plugin": "^1.7.0",
+    "typescript": "^3.2.2"
+  },
+  "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.5.0",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
@@ -27,16 +33,14 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-emotion": "^10.0.13",
     "commander": "^2.19.0",
+    "css-loader": "^2.1.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "source-map-loader": "^0.2.4",
-    "typescript": "^3.2.2",
+    "style-loader": "^0.23.1",
     "webpack": "^4.27.1",
+    "webpack-bundle-analyzer": "^3.4.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
-  },
-  "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.5.0",
-    "webpack-bundle-analyzer": "^3.4.1"
   }
 }
