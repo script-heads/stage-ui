@@ -12,8 +12,6 @@ export default (props: CaseProps) => {
         <Fragment>
             <UICaseBlock
                 title="Popover"
-                subtitle={``}
-                scope={{ Popover }}
                 props={{ PopoverTypes }}
                 children={
                     <Popover {...PopoverTypes[0]}>

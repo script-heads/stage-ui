@@ -57,7 +57,7 @@ export default (props: CaseProps) => {
                 minHeight="250px"
                 title="Table"
                 subtitle={`Generic table component, can be used in async mode`}
-                scope={{ Table, fakeData, tableColumns }}
+                scope={{ fakeData, tableColumns }}
                 props={{ TableTypes }}
                 children={
                     <Table
@@ -73,7 +73,7 @@ export default (props: CaseProps) => {
             <UICaseBlock
                 title="With actions"
                 subtitle={``}
-                scope={{ Table, fakeData, tableColumns, Form }}
+                scope={{ fakeData, tableColumns, Form }}
                 children={
                     <Table
                         {...TableTypes[0]}

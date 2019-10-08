@@ -16,8 +16,6 @@ export default (props: CaseProps) => {
         <Flexbox column >
             <UICaseBlock
                 title="Typography"
-                // subtitle={``}
-                scope={{ H1, H2, H3, H4 }}
                 props={{ TextProps }}
                 interfaces={["Props", "TextProps"]}
 

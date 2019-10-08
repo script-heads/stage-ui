@@ -15,7 +15,6 @@ export default (props: CaseProps) => {
                 minHeight="350px"
                 title="Chart"
                 subtitle={``}
-                scope={{ Chart }}
                 children={
                     <Chart
                         type="line"
@@ -38,7 +37,6 @@ export default (props: CaseProps) => {
                 minHeight="350px"
                 title="Advanced case"
                 subtitle={``}
-                scope={{ Chart }}
                 children={
                     <Chart
                         type="verticalBar"
@@ -67,7 +65,6 @@ export default (props: CaseProps) => {
                 minHeight="350px"
                 title="Pie case"
                 subtitle={``}
-                scope={{ Chart }}
                 children={
                     <Chart
                         labels={fakeValue('["Earth", "Moon", "Mars"]')}

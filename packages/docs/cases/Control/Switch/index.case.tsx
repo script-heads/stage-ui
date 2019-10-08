@@ -12,7 +12,6 @@ export default (props: CaseProps) => {
         <Fragment>
             <UICaseBlock
                 title="Switch"
-                scope={{ Switch }}
                 props={{ SwitchTypes }}
                 children={
                     <Switch

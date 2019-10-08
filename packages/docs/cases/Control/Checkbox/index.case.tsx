@@ -12,7 +12,6 @@ export default (props: CaseProps) => {
         <Fragment>
             <UICaseBlock
                 title="Checkbox"
-                scope={{ Checkbox }}
                 props={{ CheckboxTypes }}
                 children={
                     <Checkbox

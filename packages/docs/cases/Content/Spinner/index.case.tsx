@@ -13,7 +13,6 @@ export default (props: CaseProps) => {
         <Fragment>
             <UICaseBlock
                 title="Spinner"
-                scope={{ Spinner }}
                 props={{ SpinnerTypes }}
                 children={(
                     <Spinner mr='2rem' {...SpinnerTypes[0]} />
@@ -24,7 +23,6 @@ export default (props: CaseProps) => {
             />
             <UICaseBlock
                 title="Another case"
-                scope={{ Spinner, Icon }}
                 children={(
                     <Spinner mr='2rem' >
                         <Icon type={i => i.outline.settings} />

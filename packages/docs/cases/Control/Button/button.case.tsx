@@ -76,7 +76,6 @@ export default (props: CaseProps) => {
         <Fragment>
             <UICaseBlock
                 title="Button"
-                scope={{ Button }}
                 props={{ ButtonTypes }}
                 filter={["type", "formNoValidate"]}
                 customProps={[
@@ -98,7 +97,6 @@ export default (props: CaseProps) => {
             />
             <UICaseBlock
                 title="With icon"
-                scope={{ Flexbox, Button, Icon }}
                 children={
                     <Flexbox>
                         <Button

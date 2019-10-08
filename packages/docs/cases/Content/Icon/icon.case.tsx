@@ -18,7 +18,6 @@ export default (props: CaseProps) => {
 		<Fragment>
 			<UICaseBlock
 				title="Icon"
-				scope={{ Icon }}
 				props={{ IconTypes }}
 				children={
 					<Icon

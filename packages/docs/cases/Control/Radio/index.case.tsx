@@ -13,7 +13,6 @@ export default (props: CaseProps) => {
         <Fragment>
             <UICaseBlock
                 title="Radio"
-                scope={{ Radio }}
                 props={{ RadioTypes }}
                 children={
                     <Radio
@@ -28,7 +27,7 @@ export default (props: CaseProps) => {
             <UICaseBlock
                 title="Group with state"
                 subtitle="useState for control Radio"
-                scope={{ Radio, Flexbox, setValue, value }}
+                scope={{ setValue, value }}
                 children={
                     <Flexbox column>
                         <Radio
