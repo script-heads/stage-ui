@@ -56,6 +56,7 @@ const CodePreviewView = (props: { dark: boolean, code: string, showGrid: boolean
     let Render = null;
 
     try {
+// console.log(presetEnv)
         Render = eval(
             transform(code, { presets: ["react"] }).code.split('export default ')[1].slice(0, -1) + '()'
         )

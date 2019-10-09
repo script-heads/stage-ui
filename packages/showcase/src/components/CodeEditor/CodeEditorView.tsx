@@ -70,7 +70,8 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
             minimap: {
                 enabled: false
             },
-            lineNumbers: 'off'
+            lineNumbers: 'off',
+            automaticLayout: true
         });
 
         // setTimeout( () => {

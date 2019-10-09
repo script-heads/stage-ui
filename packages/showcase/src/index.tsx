@@ -27,6 +27,7 @@ interface State {
 	caseObject: Case | null
 	caseIndex: number
 	showGrid: boolean
+	fullscreen: boolean
 	context: any
 	currentTheme: string
 }
@@ -38,6 +39,7 @@ class Showcase extends React.Component<{}, State>  {
 		caseObject: null,
 		caseIndex: 0,
 		showGrid: localStorage.getItem('case_grid') ? true : false,
+		fullscreen: false,
 		context: {},
 		currentTheme: localStorage.getItem('theme') || 'light',
 	}
@@ -115,7 +117,7 @@ class Showcase extends React.Component<{}, State>  {
 			<Context.Provider value={{ ...context, setContext: this.setContext }}>
 				<Viewport theme={themes[this.state.currentTheme]}>
 					<Flexbox alignItems="flex-start">
-						<Block flex={1} css={{ padding: '2rem 4rem', position: "sticky", top: 0 }}>
+						<Block flex={1} css={{ padding: '2rem 4rem', position: "sticky", top: 0, zIndex:1 }}>
 							{caseObject && caseObject.title && (
 								<H1
 									css={{
@@ -142,7 +144,10 @@ class Showcase extends React.Component<{}, State>  {
 												key={caseIndex}
 												size="small"
 												mr={'0.25rem'}
-												decoration={caseIndex == this.state.caseIndex ? 'filled' : 'text'}
+												decoration={'text'}
+												textColor={c => caseIndex == this.state.caseIndex 
+													? c.primary.css()
+													: c.hardest.css()}
 												children={c.label}
 												onClick={() => this.setState({ caseIndex })}
 											/>
@@ -164,11 +169,29 @@ class Showcase extends React.Component<{}, State>  {
 											}}
 											type={t => t.outline.grid}
 										/>
+										<Icon
+											p="0.75rem"
+											pr="0.5rem"
+											size="1.25rem"
+											color={c => c.onSurface.css()}
+											onClick={() => {
+												this.setState({
+													fullscreen: true
+												})
+											}}
+											type={t => t.outline.expand}
+										/>
 									</Flexbox>
 									<CodeEditor
 										caseObject={caseObject}
 										caseIndex={this.state.caseIndex}
 										showGrid={this.state.showGrid}
+										fullscreen={this.state.fullscreen}
+										onExitFullscreen={() => {
+											this.setState({
+												fullscreen: false
+											})
+										}}
 									/>
 								</React.Fragment>
 							)}
