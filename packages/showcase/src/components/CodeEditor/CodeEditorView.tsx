@@ -14,10 +14,11 @@ interface CodeEditorViewProps {
     onChange: (value: string) => any
 }
 
+let model: monaco.editor.ITextModel
+
 class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorViewState> {
 
     editor: monaco.editor.IStandaloneCodeEditor
-    model: monaco.editor.ITextModel
 
     state = {
         dark: true,
@@ -52,20 +53,21 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
 
         let code = this.props.code || '';
 
-        this.model = monaco.editor.createModel(
-            code, 
-            'typescript',
-            monaco.Uri.parse(location.origin + '/main.tsx')
-        )
-
-        this.model.onDidChangeContent(event => {
-            this.props.onChange(
-                this.model.getValue()
+        if (!model) {
+            model = monaco.editor.createModel(
+                code, 
+                'typescript',
+                monaco.Uri.parse(location.origin + '/main.tsx')
             )
-        })
+            model.onDidChangeContent(event => {
+                this.props.onChange(
+                    model.getValue()
+                )
+            })
+        }
 
         this.editor = monaco.editor.create(document.getElementById(CONTAINER_ID)!, { 
-            model: this.model, 
+            model: model, 
             theme: this.props.dark ? 'vs-dark' : 'vs',
             minimap: {
                 enabled: false
@@ -73,18 +75,14 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
             lineNumbers: 'off',
             automaticLayout: true
         });
-
-        // setTimeout( () => {
-        //     this.editor.getAction('editor.action.formatDocument').run()
-        // }, 1000)
-        // window.editor = this.editor
     }
-
+    componentWillUnmount() {
+        this.editor.dispose()
+    }
     UNSAFE_componentWillReceiveProps(nextProps: CodeEditorViewProps) {
         const codeValue = nextProps.code || '';
         if (this.props.code !== codeValue) {
-            this.model.setValue(codeValue)
-            
+            model && model.setValue(codeValue)
         }
         if (this.props.dark !== nextProps.dark) {
             this.setState({ 
@@ -97,7 +95,7 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
     render() {
         return (
             <Block
-                flex={1}
+                w="55%"
                 id={CONTAINER_ID}
                 css={{
                     zIndex: 1,
