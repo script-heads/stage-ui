@@ -79,7 +79,7 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
         // window.editor = this.editor
     }
 
-    componentWillReceiveProps(nextProps: CodeEditorViewProps) {
+    UNSAFE_componentWillReceiveProps(nextProps: CodeEditorViewProps) {
         const codeValue = nextProps.code || '';
         if (this.props.code !== codeValue) {
             this.model.setValue(codeValue)
