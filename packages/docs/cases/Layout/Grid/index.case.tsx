@@ -14,7 +14,6 @@ export default (props: CaseProps) => {
             <UICaseBlock
                 title="Flexbox"
                 subtitle={`Just a flexbox`}
-                scope={{ Grid, Block }}
                 props={{ GridTypes }}
                 children={(
                     <Grid {...GridTypes[0]} templateColumns="50% 50%">

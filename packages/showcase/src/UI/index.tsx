@@ -212,27 +212,28 @@ class UI extends React.Component<{}, State>  {
 							{core.config.hidePanel !== true && (
 								<Panel items={panelItems} tools={panelTools} />
 							)}
-							<Block>
-								<Flexbox pt="1rem" pl="1.25rem" pr="1rem">
-									<H3
-										css={{cursor:"default"}}
-										weight={800}
-										color={c => c.primary.css()}
-										children={(core.config && core.config.title) || "Showcase"}
-									/>
-									<Block flex={1}/>
-									{(core.config && core.config.giturl) && (
-										<T2>
-											<A target="_blank" href={core.config.giturl}>
-												<Icon size={"1.5rem"} type={t => t.outline.github} />
-											</A>
-										</T2>
-									)}
-								</Flexbox>
-								<ThemeSwitch />
-								<Menu current={this.state.currentCaseID} cases={core.cases} onChange={this.setCase} />
-							</Block>
-							
+							{core.config.hideMenu !== true && (
+								<Block>
+									<Flexbox pt="1rem" pl="1.25rem" pr="1rem">
+										<H3
+											css={{cursor:"default"}}
+											weight={800}
+											color={c => c.primary.css()}
+											children={(core.config && core.config.title) || "Showcase"}
+										/>
+										<Block flex={1}/>
+										{(core.config && core.config.giturl) && (
+											<T2>
+												<A target="_blank" href={core.config.giturl}>
+													<Icon size={"1.5rem"} type={t => t.outline.github} />
+												</A>
+											</T2>
+										)}
+									</Flexbox>
+									<ThemeSwitch />
+									<Menu current={this.state.currentCaseID} cases={core.cases} onChange={this.setCase} />
+								</Block>
+							)}
 						</Flexbox>
 					</Block>
 				</Wrap>

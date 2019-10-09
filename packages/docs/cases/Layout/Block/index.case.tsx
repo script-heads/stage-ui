@@ -14,7 +14,6 @@ export default (props: CaseProps) => {
             <UICaseBlock
                 title="Block"
                 subtitle={`Block — minimal layout component. For example this case wrap in block.`}
-                scope={{ Block }}
                 props={{ BlockTypes }}
                 children={
                     <Block p={"1rem"} {...BlockTypes[0]}>Hello world</Block>
@@ -26,7 +25,6 @@ export default (props: CaseProps) => {
             <UICaseBlock
                 title="With surface"
                 subtitle={`Also block can be surface.`}
-                scope={{ Block }}
                 children={
                     <Block
                         surface='major'
@@ -40,7 +38,6 @@ export default (props: CaseProps) => {
             <UICaseBlock
                 title="With hover"
                 subtitle={`If we need more accent on hover element`}
-                scope={{ Block, Flexbox }}
                 children={
                     <Flexbox>
                         <Block

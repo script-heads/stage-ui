@@ -16,13 +16,14 @@ const Check = (props: CheckTypes.Props, ref: RefObject<HTMLDivElement>) => {
         }
     }, [props.checked]);
 
-    function onClick() {
+    function onClick(e: Event) {
         if (!props.disabled) {
             props.onChange && props.onChange(!checked);
             if (typeof props.checked === "undefined") {
                 setChecked(!checked);
             }
         }
+        attributes.onClick && attributes.onClick(e)
     }
 
     const containerProps = {

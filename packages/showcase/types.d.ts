@@ -5,6 +5,7 @@ export interface IConfig {
     title?: string
     giturl?: string
     hidePanel?: boolean
+    hideMenu?: boolean
     plugins?: ((props: IPluginProps) => void)[]
 }
 

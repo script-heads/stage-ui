@@ -12,7 +12,6 @@ export default (props: CaseProps) => {
         <Fragment>
             <UICaseBlock
                 title="Divider"
-                scope={{ Divider }}
                 props={{ DividerTypes }}
                 children={(
                     <Divider

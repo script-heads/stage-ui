@@ -16,7 +16,6 @@ export default (props: CaseProps) => {
             <UICaseBlock
                 title="Simple case"
                 subtitle={`Function will create notification view in portal`}
-                scope={{ Button, notify }}
 
                 children={
                     <Button
@@ -39,8 +38,6 @@ export default (props: CaseProps) => {
             <UICaseBlock
                 title="Custom content case"
                 subtitle={`Useful when need custom notification`}
-                scope={{ Button, Meter, Block, H4, notify }}
-
                 children={
                     <Button
                         onClick={fakeValue(`

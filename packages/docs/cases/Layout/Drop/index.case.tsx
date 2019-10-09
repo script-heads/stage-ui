@@ -16,7 +16,6 @@ export default (props: CaseProps) => {
 			<UICaseBlock
 				title="Drop"
 				subtitle={``}
-				scope={{ Block, Drop, Popover, Button }}
 				props={{ DropTypes }}
 				children={
 					<Block>

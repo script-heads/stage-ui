@@ -24,7 +24,6 @@ export default (props: CaseProps) => {
             <UICaseBlock
                 title="DatePicker"
                 subtitle={``}
-                scope={{ DatePicker }}
                 props={{ DatePickerTypes }}
                 interfaces={["Props", "FieldProps"]}
                 minHeight={"5rem"}

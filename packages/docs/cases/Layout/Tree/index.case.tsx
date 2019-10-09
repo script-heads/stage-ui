@@ -13,7 +13,6 @@ export default (props: CaseProps) => {
         <Fragment>
             <UICaseBlock
                 title="Tree"
-                scope={{ Tree }}
                 props={{ TreeTypes }}
                 children={
                     <Tree {...TreeTypes[0]} label="House">
@@ -29,7 +28,6 @@ export default (props: CaseProps) => {
             />
             <UICaseBlock
                 title="With custom label"
-                scope={{ Tree, C1 }}
                 children={
                     <Tree label={(<C1 color={c => c.primary.css()}>House</C1>)}>
                         <Tree label="First floor">

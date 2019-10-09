@@ -13,7 +13,6 @@ export default (props: CaseProps) => {
             <UICaseBlock
                 title="Panel"
                 subtitle={`Could be use as main menu in complex apps`}
-                scope={{ Panel }}
                 props={{ PanelTypes }}
                 children={(
                     <Panel

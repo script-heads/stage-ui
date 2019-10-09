@@ -25,7 +25,6 @@ export default (props: CaseProps) => {
             <UICaseBlock
                 title="TextField"
                 subtitle={``}
-                scope={{ TextField }}
                 props={{ TextFieldTypes }}
                 interfaces={["Props", "InputProps", "TextAreaProps", "FieldProps"]}
                 children={
@@ -46,7 +45,6 @@ export default (props: CaseProps) => {
             <UICaseBlock
                 title="With mask"
                 subtitle={``}
-                scope={{ TextField }}
                 props={{ TextFieldTypes }}
                 interfaces={["Props", "InputProps", "TextAreaProps"]}
                 children={

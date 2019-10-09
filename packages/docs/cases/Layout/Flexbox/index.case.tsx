@@ -14,7 +14,6 @@ export default (props: CaseProps) => {
             <UICaseBlock
                 title="Flexbox"
                 subtitle={`Just a flexbox`}
-                scope={{ Flexbox, Block }}
                 props={{ FlexboxTypes }}
                 children={(
                     <Flexbox {...FlexboxTypes[0]}>

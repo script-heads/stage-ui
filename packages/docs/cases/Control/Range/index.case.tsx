@@ -13,7 +13,6 @@ export default (props: CaseProps) => {
             <UICaseBlock
                 title="Range"
                 subtitle={``}
-                scope={{ Range }}
                 props={{ RangeTypes }}
                 children={(
                     <Range

@@ -1,18 +1,12 @@
-import Button from '@flow-ui/core/control/Button'
-import Menu from '@flow-ui/core/control/Menu'
-import Divider from '@flow-ui/core/content/Divider'
-import Icon from '@flow-ui/core/content/Icon'
-import { H1, T1, T3 } from '@flow-ui/core/content/Typography'
-import Block from '@flow-ui/core/layout/Block'
-import Flexbox from '@flow-ui/core/layout/Flexbox'
-import React, { useState, Fragment, useEffect, useLayoutEffect } from 'react'
+import * as CoreScope from '@flow-ui/core'
+import { Block, Button, Divider, Flexbox, H1, Icon, Menu, T1, T3, TextField, useFlow } from '@flow-ui/core'
+import MenuTypes from '@flow-ui/core/control/Menu/types'
+import * as LabScope from '@flow-ui/lab'
+import React, { Fragment, useLayoutEffect, useState } from 'react'
 import ReactToJsxString from 'react-element-to-jsx-string'
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
-import theme from './theme'
 import { GetPropsForType } from '../UICaseDocumentation'
-import useFlow from '@flow-ui/core/misc/hooks/useFlow'
-import MenuTypes from '@flow-ui/core/control/Menu/types'
-import { TextField } from '@flow-ui/core'
+import theme from './theme'
 
 interface UICaseBlockProps {
     title: string
@@ -106,10 +100,14 @@ const UICaseBlock = (props: UICaseBlockProps) => {
         <LiveProvider
             theme={theme}
             language={"jsx"}
-            scope={props.scope} code={code}>
+            scope={{
+                ...(CoreScope || {}),
+                ...(LabScope || {}),
+                ...(props.scope || {})
+            }} code={code}>
             <Flexbox pr='4rem' pl='4rem' pt='2rem' pb='1rem' column alignItems="flex-start">
-                <H1 css={{userSelect:"none", fontSize: "2.5rem"}} weight={800}>{props.title}</H1>
-                <T1 color={c => c.light.css()} css={{userSelect:"none"}} pt={"0.25rem"} pb={"0.5rem"}>{props.subtitle}</T1>
+                <H1 css={{ userSelect: "none", fontSize: "2.5rem" }} weight={800}>{props.title}</H1>
+                <T1 color={c => c.light.css()} css={{ userSelect: "none" }} pt={"0.25rem"} pb={"0.5rem"}>{props.subtitle}</T1>
                 <Flexbox w={"100%"} alignItems="flex-end">
                     {typeof props.paths !== 'undefined' && (
                         <Block flex={1}>
@@ -157,8 +155,8 @@ const UICaseBlock = (props: UICaseBlockProps) => {
                         />
                     </Flexbox>
                 </Flexbox>
-                <Block css={{ 
-                    width: "100%", 
+                <Block css={{
+                    width: "100%",
                     overflow: "hidden",
                     borderWidth: "1px",
                     borderStyle: "solid",
@@ -219,7 +217,7 @@ const UICaseBlock = (props: UICaseBlockProps) => {
                                                             const [propsState, setPropsState] = props.props![typeName];
 
                                                             if (value === "string" && type.values.length === 1) {
-                                                                
+
                                                                 return (
                                                                     <TextField
                                                                         key={value}
@@ -234,7 +232,7 @@ const UICaseBlock = (props: UICaseBlockProps) => {
                                                                             let value = e.target.value
                                                                             if (!value && type.tags && type.tags.default) {
                                                                                 value = type.tags.default
-                                                                            }                                                                            
+                                                                            }
                                                                             let state = {
                                                                                 ...propsState,
                                                                                 [type.name]: value

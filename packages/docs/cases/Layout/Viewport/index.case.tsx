@@ -13,7 +13,6 @@ export default (props: CaseProps) => {
             <UICaseBlock
                 title="Viewport"
                 subtitle={`It's theme provider, you should wrap entry application`}
-                scope={{ Viewport }}
                 props={{ ViewportTypes }}
                 children={
                     <Viewport />
