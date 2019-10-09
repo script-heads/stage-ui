@@ -38,10 +38,11 @@ const CodeEditor = (props: CodeEditorProps) => {
         margin: 0,
         borderRadius: 0,
         zIndex: 10,
+        height: '100%',
     } : {}
     return (
         <Flexbox flex={1} mb="2rem" css={{  
-            minHeight: '20rem',
+            height: '24rem',
             overflow: "hidden",
             borderWidth: "1px",
             borderStyle: "solid",
