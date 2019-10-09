@@ -73,7 +73,16 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
                 enabled: false
             },
             lineNumbers: 'off',
-            automaticLayout: true
+            automaticLayout: true,
+            fontSize: 14,
+            fontWeight: "600",
+        });
+        this.editor.changeViewZones((changeAccessor) => {
+            changeAccessor.addZone({
+                afterLineNumber: 0,
+                heightInLines: 1,
+                domNode: document.createElement("div")
+            });
         });
     }
     
