@@ -25,11 +25,21 @@ declare namespace BlockTypes {
     }
 
     export interface Overrides {
-        containter?: Interpolation
-        decoration?: {
-            minor?: SurfaceStyles
-            medium?: SurfaceStyles
-            major?: SurfaceStyles
+        items?: {
+            container?: any[]
+        }
+        variants?: {
+            surface: {
+                minor?: {
+                    container?: any[]
+                }
+                medium?: {
+                    container?: any[]
+                }
+                major?: {
+                    container?: any[]
+                }
+            }
         }
     }
 }

@@ -14,7 +14,7 @@ const Block = (props: BlockTypes.Props, ref) => {
             position: "relative",
             ...attributes,
             ref: ref,
-            css: styles.container,
+            css: styles.container(),
         },
         props.children
     );

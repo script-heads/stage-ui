@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useRef, Fragment } from "react";
+import React, { forwardRef, useEffect, useRef, Fragment, useState, RefObject } from "react";
 import ReactDOM from "react-dom";
 import Types from "./types";
 import createStyles from "./styles";
@@ -9,13 +9,12 @@ const Drop = (props: Types.Props, ref) => {
     const { attributes } = useContainer(props);
     const { children, target, onClickOutside, distance = 0 } = props;
     const styles = createStyles(props);
-    const drop = useRef<HTMLDivElement>(null);
-    /**
-     * We're reusing ref if target is an 
-     * React Element and have reference on
-     */
-    //@ts-ignore
-    const targetRef = (target && target.ref) ? target.ref : useRef<HTMLSpanElement>(null);
+    const dropRef = useRef<HTMLDivElement>(null);
+    const [targetRef, setTargetRef] = useState<React.RefObject<any> | null>(null)
+
+    useEffect(()=>{
+        setTargetRef(target)
+    },[target])
 
     useEffect(() => {
         if (props.visibility != 'hidden' && props.display != 'none') {
@@ -30,16 +29,16 @@ const Drop = (props: Types.Props, ref) => {
     });
 
     function handleClickOutside(event: any) {
-        drop.current &&
-            !drop.current.contains(event.target) &&
-            onClickOutside && onClickOutside(event, targetRef && !targetRef.current.contains(event.target));
+        dropRef.current &&
+            !dropRef.current.contains(event.target) &&
+            onClickOutside && onClickOutside(event, targetRef ? !targetRef.current.contains(event.target) : undefined);
     }
 
     function setPosition() {
-        if (target && drop.current) {
+        if (targetRef && dropRef.current) {
             const tr = targetRef.current!.getBoundingClientRect();
-            const dr = drop.current.getBoundingClientRect();
-            const style = drop.current.style;
+            const dr = dropRef.current.getBoundingClientRect();
+            const style = dropRef.current.style;
 
             const {
                 align = "bottom",
@@ -137,32 +136,20 @@ const Drop = (props: Types.Props, ref) => {
         }
     }
 
-    return (
-        <Fragment>
-            {
-                React.cloneElement(target as any, {
-                    ref: targetRef
-                })
-            }
-
-            {
-                children && ReactDOM.createPortal(
-                    <div
-                        {...attributes}
-                        ref={drop}
-                        css={styles.container}
-                        style={{
-                            top: 0,
-                            left: 0,
-                            visibility: "hidden",
-                            ...attributes.style
-                        }}
-                        children={children}
-                    />,
-                    document.body
-                )
-            }
-        </Fragment>
+    return ReactDOM.createPortal(
+        <div
+            {...attributes}
+            ref={dropRef}
+            css={styles.container}
+            style={{
+                top: 0,
+                left: 0,
+                visibility: "hidden",
+                ...attributes.style
+            }}
+            children={children}
+        />,
+        document.body
     )
 };
 

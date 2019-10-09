@@ -74,4 +74,23 @@ const assets = (variables): Theme.Assets => ({
     }
 })
 
-export default createTheme(variables, assets) as Theme.Index
+const components = {
+    block: {
+        items: {
+            container: [{
+                // background: 'green'
+            }]
+        },
+        variants: {
+            surface: {
+                major: {
+                    container: [{
+                        // background: 'red'
+                    }]
+                }
+            }
+        }
+    }
+}
+
+export default createTheme(variables, assets, components) as Theme.Index

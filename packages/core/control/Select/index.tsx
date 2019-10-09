@@ -1,4 +1,4 @@
-import React, { useEffect, forwardRef, useReducer } from 'react'
+import React, { useEffect, forwardRef, useReducer, useRef, Fragment, useImperativeHandle } from 'react'
 import SelectTypes from './types'
 import createStyles from './styles'
 import Field from '../../misc/hocs/Field'
@@ -148,6 +148,11 @@ const Select = (props: SelectTypes.Props, ref) => {
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
+    const targetRef = useRef(null);
+    useImperativeHandle(ref, () => {
+        return targetRef.current
+    });
+
     useEffect(() => {
         if (values.length != 0) {
             dispatch({ type: 'setSelectedOptions', payload: values });
@@ -230,6 +235,42 @@ const Select = (props: SelectTypes.Props, ref) => {
     }
 
     return (
+        <Fragment>
+            <Field
+            {...props}
+            tabIndex={props.tabIndex || 0}
+            ref={targetRef}
+            fieldStyles={styles.fieldStyles(state.open)}
+
+            isEmpty={state.empty}
+            manyLines={multiselect && !state.empty}
+            insideLabelStyles={multiselect && !state.empty && styles.insideLabelStyles}
+
+            onClick={(e) => {
+                dispatch({ type: 'toggleOpen', payload: true })
+                props.onClick && props.onClick(e);
+            }}
+            onClear={() => dispatch({ type: 'clear' })}
+            onKeyDown={(e) => handleKeyDown(e)}
+            onLabelOverlay={(state) => dispatch({
+                type: 'setOverlay',
+                payload: state
+            })}
+
+            children={!state.underOverlay && fieldValue}
+
+            rightChild={(
+                <Icon
+                    type={i =>
+                        i.filled[state.open ? 'arrowIosUpward' : 'arrowIosDownward']
+                    }
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        dispatch({ type: 'toggleOpen', payload: !state.open })
+                    }}
+                />
+            )}
+        />
         <Drop
             onClickOutside={(e, ot) => {
                 ot && dispatch({
@@ -239,43 +280,7 @@ const Select = (props: SelectTypes.Props, ref) => {
             }}
             stretchWidth
             justify='start'
-            target={(
-                <Field
-                    {...props}
-                    tabIndex={props.tabIndex || 0}
-                    ref={ref}
-                    fieldStyles={styles.fieldStyles(state.open)}
-
-                    isEmpty={state.empty}
-                    manyLines={multiselect && !state.empty}
-                    insideLabelStyles={multiselect && !state.empty && styles.insideLabelStyles}
-
-                    onClick={(e) => {
-                        dispatch({ type: 'toggleOpen', payload: true })
-                        props.onClick && props.onClick(e);
-                    }}
-                    onClear={() => dispatch({ type: 'clear' })}
-                    onKeyDown={(e) => handleKeyDown(e)}
-                    onLabelOverlay={(state) => dispatch({
-                        type: 'setOverlay',
-                        payload: state
-                    })}
-
-                    children={!state.underOverlay && fieldValue}
-
-                    rightChild={(
-                        <Icon
-                            type={i =>
-                                i.filled[state.open ? 'arrowIosUpward' : 'arrowIosDownward']
-                            }
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                dispatch({ type: 'toggleOpen', payload: !state.open })
-                            }}
-                        />
-                    )}
-                />
-            )}
+            target={targetRef}
         >
             {state.open &&
                 <div css={styles.dropMenu}>
@@ -294,6 +299,7 @@ const Select = (props: SelectTypes.Props, ref) => {
                 </div>
             }
         </Drop>
+        </Fragment>
     )
 }
 
