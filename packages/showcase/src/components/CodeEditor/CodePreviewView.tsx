@@ -2,10 +2,7 @@ import React from 'react';
 import * as LabScope from '@flow-ui/lab'
 import * as CoreScope from '@flow-ui/core'
 import { Block } from '@flow-ui/core'
-import { transform} from '@babel/standalone'
-import { assign } from 'core-js/es/object';
-
-const _poly = { assign };
+import { transform } from '@babel/standalone'
 
 Object.assign(window, {
     React,
@@ -57,18 +54,18 @@ const CodePreviewView = (props: { dark: boolean, code: string, showGrid: boolean
     const matchReturn = code.match('return')
 
     let Render = null;
-    
+
     try {
         Render = eval(
-            transform(code, { presets: ["react"] }).code.split('export default ')[1].slice(0,-1) + '()'
+            transform(code, { presets: ["react"] }).code.split('export default ')[1].slice(0, -1) + '()'
         )
-    } catch (error) {}
+    } catch (error) { }
 
     if (matchReturn && matchReturn.index) {
         return (
             <Block flex={1}>
                 <GridBackground set={props.showGrid} dark={dark}>
-                    <Block m="1rem" css={{position:'relative', zIndex:1}}>
+                    <Block m="1rem" css={{ position: 'relative', zIndex: 1 }}>
                         {Render}
                     </Block>
                 </GridBackground>

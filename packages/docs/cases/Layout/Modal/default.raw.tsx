@@ -1,16 +1,19 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useRef } from 'react';
 import { Modal, Button } from '@flow-ui/core';
 
 export default () => {
+    
+    const modal = useRef()
+
     return (
         <Fragment>
             <Modal
                 title="Hello"
                 subtitle="I'm modal window, please do not close me 🙄"
-                // ref={fakeValue("_ref")}
+                ref={modal}
             />
             <Button
-                // onClick={() => _ref.current!.open()}
+                onClick={() => modal.current.open()}
                 children="Open up"
             />
         </Fragment>
