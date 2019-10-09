@@ -1,38 +1,9 @@
-import Icon from '@flow-ui/core/content/Icon';
-import Spinner from '@flow-ui/core/content/Spinner';
-import React, { Fragment, useLayoutEffect, useState } from 'react';
-import { CaseProps } from "../../../plugins/CaseWrapper";
-import UICaseBlock from '@flow-ui/showcase/src/UI/components/UICaseBlock';
-import UICaseDocumentation from "@flow-ui/showcase/src/UI/components/UICaseDocumentation";
+import code from './default.raw';
+import another from './another.raw';
 
-export default (props: CaseProps) => {
-
-    const SpinnerTypes = useState<any>({})
-
-    return (
-        <Fragment>
-            <UICaseBlock
-                title="Spinner"
-                props={{ SpinnerTypes }}
-                children={(
-                    <Spinner mr='2rem' {...SpinnerTypes[0]} />
-                )}
-                paths={[
-                    `@flow-ui/core/content/Spinner`,
-                ]}
-            />
-            <UICaseBlock
-                title="Another case"
-                children={(
-                    <Spinner mr='2rem' >
-                        <Icon type={i => i.outline.settings} />
-                    </Spinner>
-                )}
-                paths={[
-                    `@flow-ui/core/content/Spinner`,
-                ]}
-            />
-            <UICaseDocumentation ns="SpinnerTypes" />
-        </Fragment>
-    )
-}
+export const title = 'Spinner'
+export const ns = 'SpinnerTypes'
+export const cases = [
+    { label: 'Default', code },
+    { label: 'Spin anything', code: another }
+]

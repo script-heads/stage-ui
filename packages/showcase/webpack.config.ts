@@ -24,25 +24,33 @@ module.exports = function (dir) {
 
         module: {
             rules: [
-                // All files with a '.ts' or '.tsx' extension will be handled by 'babel-loader'.
                 {
                     test: /\.tsx?$/,
-                    use: {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: [
-                                "@babel/preset-env",
-                                "@babel/preset-typescript",
-                                "@babel/preset-react",
-                                "@emotion/babel-preset-css-prop"
-                            ],
-                            plugins: [
-                                "@babel/proposal-class-properties",
-                                "@babel/proposal-object-rest-spread",
-                                "@babel/plugin-transform-runtime"
-                            ]
+                    oneOf: [
+                        {
+                            test: /\.raw\.tsx?$/,
+                            use: 'raw-loader',
+                        },
+                        {
+                            test: /\.tsx?$/,
+                            use: {
+                                loader: 'babel-loader',
+                                options: {
+                                    presets: [
+                                        "@babel/preset-env",
+                                        "@babel/preset-typescript",
+                                        "@babel/preset-react",
+                                        "@emotion/babel-preset-css-prop"
+                                    ],
+                                    plugins: [
+                                        "@babel/proposal-class-properties",
+                                        "@babel/proposal-object-rest-spread",
+                                        "@babel/plugin-transform-runtime"
+                                    ]
+                                }
+                            }
                         }
-                    }
+                    ]
                 },
                 {
                     test: /\.css$/,

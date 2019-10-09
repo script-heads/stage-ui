@@ -22,8 +22,5 @@
   },
   "include": [
     "./cases/**/*"
-  ],
-  "exclude": [
-    "node_modules"
   ]
 }

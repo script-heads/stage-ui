@@ -6,17 +6,21 @@
   "scripts": {
     "showcase": "showcase"
   },
-  "dependencies": {
-    "@emotion/core": "^10.0.14",
-    "@flow-ui/core": "~0.1.0",
-    "@flow-ui/lab": "~0.1.0",
-    "@flow-ui/showcase": "~0.1.0",
+  "devDependencies": {
     "@types/react": "^16.8.17",
     "@types/react-dom": "^16.8.4",
+    "dts-generator": "^3.0.0",
     "fakerator": "^0.3.0",
     "randomcolor": "^0.5.4",
     "react-element-to-jsx-string": "^14.1.0",
     "react-live": "^2.2.0",
     "typedoc": "^0.15.0"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.14",
+    "@flow-ui/core": "~0.1.0",
+    "@flow-ui/lab": "~0.1.0",
+    "@flow-ui/showcase": "~0.1.0",
+    "dts-bundle-generator": "^3.2.0"
   }
 }

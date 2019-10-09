@@ -1,7 +1,5 @@
-import React from 'react';
+export const title = 'Hello :)'
 
-export default () => {
-    return (
-        <div></div>
-    )
-}
+export default () => (
+    null
+)

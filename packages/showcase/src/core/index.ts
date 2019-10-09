@@ -1,8 +1,34 @@
-import { IConfig, IPluginProps } from '../../types'
 import React from 'react';
 import PluginRender from './pluginRender';
 
 declare const $_WORKDIR_$: string
+
+export interface IConfig {
+    title?: string
+    giturl?: string
+    plugins?: ((props: IPluginProps) => void)[]
+}
+
+export interface IPluginProps {
+    cases: any
+    config: any
+    selfContainer: HTMLElement
+    render: (Body: React.SFC<{}>) => void
+    context: any
+}
+
+export interface Case {
+    id?: string
+    url?: string
+    title?: string
+    subtitle?: string
+    ns?: string
+    cases?: {
+        label: string
+        code: string
+    }[],
+    default?: React.SFC<{}>
+}
 
 class Core {
     static instance: Core;
@@ -72,9 +98,6 @@ class Core {
             id: pluginId,
             executer: plugin,
             render: (Body: () => JSX.Element) => PluginRender(Body, selfContainer),
-            addPanel: this.userInterface.addPanel,
-            openMenu: this.userInterface.openMenu,
-            wrapper: this.userInterface.setWrapper,
             context: this.reactContext
         };
 
@@ -85,9 +108,6 @@ class Core {
             config: this.config,
             selfContainer,
             render: pluginObject.render,
-            addPanel: pluginObject.addPanel,
-            openMenu: pluginObject.openMenu,
-            wrapper: pluginObject.wrapper,
             context: pluginObject.context
         });
     }
@@ -102,12 +122,9 @@ class Core {
             currentContext.split('/').map((contextItem: any, index: number) => {
                 if (!index) return;
                 if (contextItem.match('.case')) {
-
-                    objectLink.node = this.context(currentContext).default;
-                    objectLink.playground = this.context(currentContext).playground;
-                    objectLink.tag = this.context(currentContext).tag;
-                    objectLink.url = currentContext.split('/').slice(1, -1).join("/");
-
+                    Object.assign(objectLink, this.context(currentContext), {
+                        url: currentContext.split('/').slice(1, -1).join("/")
+                    })
                 } else {
                     if (!objectLink[contextItem]) {
                         objectLink[contextItem] = {
@@ -139,13 +156,13 @@ class Core {
         for (let i = 0; i < keys.length; i++) {
             const group: any = cases[keys[i]];
 
-            if (typeof group === "object" && !group.node) {
+            if (typeof group === "object" && !group.cases) {
                 const node = this.getFirstCase(group);
                 if (node) {
                     return node;
                 }
             }
-            if (group.node) {
+            if (group.title || group.cases || group.default) {
                 return group
             }
         }
@@ -161,7 +178,7 @@ class Core {
         for (let i = 0; i < keys.length; i++) {
             const group: any = cases[keys[i]];
 
-            if (typeof group === "object" && !group.node) {
+            if (typeof group === "object" && !group.cases) {
                 const node = this.getCaseById(id, group);
                 if (node) {
                     return node;
@@ -187,7 +204,7 @@ class Core {
         for (let i = 0; i < keys.length; i++) {
             const group: any = cases[keys[i]];
 
-            if (typeof group === "object" && !group.node) {
+            if (typeof group === "object" && !group.cases) {
                 const node = this.getCaseByUrl(url, group);
                 if (node) {
                     return node;

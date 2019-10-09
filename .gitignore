@@ -1,7 +1,6 @@
 # dependencies
 node_modules
 packages/mobile/**/build
-packages/docs/typedoc/*.json
 
 # Logs & Locks
 yarn.lock
