@@ -3,7 +3,7 @@
  * author: I.Trikoz
  */
 import moment, { Moment } from 'moment';
-import React, { FC, forwardRef, RefObject, useLayoutEffect, useRef, useState } from 'react';
+import React, { FC, forwardRef, RefObject, useLayoutEffect, useRef, useState, Fragment } from 'react';
 import Icon from '../../content/Icon';
 import Drop from '../../layout/Drop';
 import Popover from '../../layout/Popover';
@@ -58,43 +58,43 @@ const DatePicker: FC<DatePickerTypes.Props> = (props, ref: RefObject<HTMLDivElem
     }
 
     return (
-        <Drop
-            distance={9}
-            align="bottom"
-            justify="start"
-            onClickOutside={(event) => {
-                if (event.target !== fieldRef.current!) {
-                    setActive(false)
-                }
-            }}
-            target={(
-                <TextField
-                    {...(props as FieldTypes.Props)}
-                    ref={fieldRef}
-                    defaultValue={value.format(format)}
-                    masked={props.masked && mask(format, minValue, maxValue)}
-                    onChange={(e) => {
-                        const date = moment(e.target.value, format)
-                        if (date.isValid() && date > minValue && date < maxValue) {
-                            setValue(date);
-                        }
-                    }}
-                    onClick={() => {
-                        if (!props.disabled) {
-                            setActive(true)
-                        }
-                    }}
-                    onFocus={() => {
-                        if (!props.disabled) {
-                            setActive(true)
-                        }
-                    }}
-                    rightChild={props.rightChild || (
-                        <Icon type={t => t.outline.calendar}/>
-                    )}
-                />
-            )}
-            children={(
+        <Fragment>
+            <TextField
+                {...(props as FieldTypes.Props)}
+                ref={fieldRef}
+                defaultValue={value.format(format)}
+                masked={props.masked && mask(format, minValue, maxValue)}
+                onChange={(e) => {
+                    const date = moment(e.target.value, format)
+                    if (date.isValid() && date > minValue && date < maxValue) {
+                        setValue(date);
+                    }
+                }}
+                onClick={() => {
+                    if (!props.disabled) {
+                        setActive(true)
+                    }
+                }}
+                onFocus={() => {
+                    if (!props.disabled) {
+                        setActive(true)
+                    }
+                }}
+                rightChild={props.rightChild || (
+                    <Icon type={t => t.outline.calendar}/>
+                )}
+            />
+            <Drop
+                distance={9}
+                align="bottom"
+                justify="start"
+                onClickOutside={(event) => {
+                    if (event.target !== fieldRef.current!) {
+                        setActive(false)
+                    }
+                }}
+                target={fieldRef}
+            >
                 <Popover css={styles.drop(isActive)}>
                     <DateGrid
                         styles={styles}
@@ -105,8 +105,9 @@ const DatePicker: FC<DatePickerTypes.Props> = (props, ref: RefObject<HTMLDivElem
                         hideToday={props.hideToday || false}
                     />
                 </Popover>
-            )}
-        />
+            </Drop>
+        </Fragment>
+        
     )
 };
 
