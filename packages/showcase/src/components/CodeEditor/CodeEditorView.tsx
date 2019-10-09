@@ -76,9 +76,15 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
             automaticLayout: true
         });
     }
+    
     componentWillUnmount() {
         this.editor.dispose()
     }
+    
+    shouldComponentUpdate() {
+        return false
+    }
+
     UNSAFE_componentWillReceiveProps(nextProps: CodeEditorViewProps) {
         const codeValue = nextProps.code || '';
         if (this.props.code !== codeValue) {
