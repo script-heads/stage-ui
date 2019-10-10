@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Children } from 'react';
 import * as LabScope from '@flow-ui/lab'
 import * as CoreScope from '@flow-ui/core'
 import { Block } from '@flow-ui/core'
@@ -49,6 +49,15 @@ const GridBackground = (props: { set?: boolean, dark: boolean, children: any }) 
     )
 }
 
+class Renderer extends React.Component<{children: any}> {
+    componentDidCatch() {
+        return false
+    }
+    render() {
+        return this.props.children
+    }
+}
+
 const CodePreviewView = (props: { dark: boolean, code: string, showGrid: boolean }) => {
     let { code, dark } = props;
     const matchReturn = code.match('return')
@@ -69,7 +78,9 @@ const CodePreviewView = (props: { dark: boolean, code: string, showGrid: boolean
             <Block w="45%" background={c => c.surface.css()}>
                 <GridBackground set={props.showGrid} dark={dark}>
                     <Block m="2rem" css={{ position: 'relative', zIndex: 1 }}>
-                        {render}
+                        <Renderer>
+                            {render}
+                        </Renderer>
                     </Block>
                 </GridBackground>
             </Block>
