@@ -13,8 +13,8 @@
     "gen:createTypes": "cd ./packages/showcase && typedoc -mode file --json ./generated/original.json ../docs/cases",
     "gen:convertTypes": "cd ./packages/showcase && node ./tools/TypeDoc.js",
     "gen:generateTypes": "cd ./packages/showcase && node ./tools/TypeGenerator.js",
-    "pub:core": "git pull && cd ./packages/core && npm version patch && yarn build && cd ./dist && npm publish && cd .. && rm -rf ./dist && yarn push",
-    "pub:lab": "git pull cd ./packages/lab && npm version patch && yarn build && cd ./dist && npm publish && cd .. && rm -rf ./dist && yarn push",
-    "push": "git commit . -m 'Update version' && npm version patch && git push"
+    "pub:core": "git pull && cd ./packages/core && npm version patch && yarn build && cd ./dist && npm publish && cd .. && rm -rf ./dist && cd ../.. && yarn gitpush",
+    "pub:lab": "git pull cd ./packages/lab && npm version patch && yarn build && cd ./dist && npm publish && cd .. && rm -rf ./dist && cd ../.. && yarn gitpush",
+    "gitpush": "git commit . -m 'Update version' && git push"
   }
 }

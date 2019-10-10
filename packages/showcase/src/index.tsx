@@ -117,7 +117,12 @@ class Showcase extends React.Component<{}, State>  {
 			<Context.Provider value={{ ...context, setContext: this.setContext }}>
 				<Viewport theme={themes[this.state.currentTheme]}>
 					<Flexbox alignItems="flex-start">
-						<Block flex={1} css={{ padding: '2rem 4rem', position: "sticky", top: 0, zIndex:1 }}>
+						<Block flex={1} css={{ 
+							padding: '2rem 4rem', 
+							position: (caseObject && caseObject.sticky) ? "block" : "sticky", 
+							top: 0, 
+							zIndex:1 
+						}}>
 							{caseObject && caseObject.title && (
 								<H1
 									css={{
