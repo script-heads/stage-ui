@@ -48,6 +48,7 @@ const CodeEditor = (props: CodeEditorProps) => {
             borderStyle: "solid",
             borderColor: flow.theme.color.lightest.css(),
             borderRadius: flow.theme.radius.default,
+            backgroundColor: flow.theme.color.surface.css(),
             ...fullscreenStyle
         }}>
             <CodeEditorView 
