@@ -119,7 +119,7 @@ class Showcase extends React.Component<{}, State>  {
 					<Flexbox alignItems="flex-start">
 						<Block flex={1} css={{ 
 							padding: '2rem 4rem', 
-							position: (caseObject && caseObject.sticky) ? "block" : "sticky", 
+							position: (caseObject && caseObject.sticky) ? "relative" : "sticky", 
 							top: 0, 
 							zIndex:1 
 						}}>
