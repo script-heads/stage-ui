@@ -113,7 +113,7 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
                 w="55%"
                 id={CONTAINER_ID}
                 css={{
-                    zIndex: 1,
+                    zIndex: 999,
                     boxShadow: "none !important",
                     position: "relative",
                 }}
