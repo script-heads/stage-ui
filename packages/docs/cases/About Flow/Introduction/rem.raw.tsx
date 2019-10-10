@@ -3,7 +3,7 @@ import { Block } from "@flow-ui/core";
 
 const ExampleRem = () => (
     <Block 
-        css={{
+        style={{
             width: "10rem"
         }}
     />

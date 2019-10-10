@@ -1,5 +1,5 @@
 import React from 'react';
-import { Block, H1, T1, useFlow, H2, Divider } from "@flow-ui/core";
+import { Block, H1, T1, useFlow, H2, Divider, A } from "@flow-ui/core";
 import Syntax from './Syntax';
 import ViewportCode from './viewport.raw';
 import BlockCode from './block.raw';
@@ -7,6 +7,7 @@ import RemCode from './rem.raw';
 import ColorCode from './color.raw';
 import IconCode from './icon.raw';
 import FlowCode from './flow.raw';
+import EmotionCode from './emotion.raw';
 
 export const title = ' '
 export const sticky = true;
@@ -41,7 +42,9 @@ export default () => (
         <T1>For example let's see Button component</T1>
         <T1>Button have prop color you can just give it a string like "#000000" which apparently makes it black</T1>
         <T1>But more usefull will be give it a function which will provide typed color object for you</T1>
+        <T1>We using theme color object as first argument of function then each color are instance of Chroma.js</T1>
         <Syntax code={ColorCode} />
+        <T1 pb="1rem">For more information you may also check <noindex><A href="https://vis4.net/chromajs/" target="_blank">https://vis4.net/chromajs/</A></noindex></T1>
 
         <H2 p="1rem 0">Icon</H2>
         <T1>Icon also support functional props</T1>
@@ -59,6 +62,16 @@ export default () => (
         <T1>height: h</T1>
         <T1>width: w</T1>
         <Syntax code={FlowCode} />
+
+        <T1 p="2rem 0">Thats is all rules we have :)</T1>
+
+        <H1 p="1rem 0">CSS</H1>
+        <T1>We also using Emotion.js to make css works great</T1>
+        <T1>It provides powerful and predictable style composition in addition to a great developer experience with features such as source maps, labels, and testing utilities.</T1>
+        
+        <H2 p="1rem 0">Emotion</H2>
+        <Syntax code={EmotionCode} />
+        <T1 pb="1rem">For more information you may also check <noindex><A href="https://emotion.sh" target="_blank">https://emotion.sh</A></noindex></T1>
 
     </Block>
 )
