@@ -36,7 +36,7 @@ const useStyleProps = (props: Props): InjectedStyleProps => {
     }
 
     const padding = {
-        padding: props.p || props.px && `0 ${props.px}` || props.py && `${props.py} 0`,
+        padding: props.p || (props.px || props.py) && `${props.py || '0'} ${props.px || '0'}`,
         paddingTop: props.pt,
         paddingLeft: props.pl,
         paddingRight: props.pr,
@@ -44,7 +44,7 @@ const useStyleProps = (props: Props): InjectedStyleProps => {
     }
 
     const margin = {
-        margin: props.m || props.mx && `0 ${props.mx}` || props.my && `${props.my} 0`,
+        margin: props.m || (props.mx || props.my) && `${props.my || '0'} ${props.mx || '0'}`,
         marginTop: props.mt,
         marginLeft: props.ml,
         marginRight: props.mr,
