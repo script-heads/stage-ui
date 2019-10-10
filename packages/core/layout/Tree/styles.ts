@@ -24,7 +24,6 @@ export default (props: TreeTypes.Props, lvl: number, isOpen: boolean, hasTreeChi
     return {
         container: css(
             styleProps.all,
-            overrides && overrides.containter,
             getIndent(),
             variant(decoration, {
                 inline: {
