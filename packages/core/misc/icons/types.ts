@@ -1,6 +1,6 @@
 declare namespace IconsetTypes {
 
-    export type Filled = {
+    type Filled = {
         activity: React.ReactElement
         alertCircle: React.ReactElement
         alertTriangle: React.ReactElement
@@ -494,7 +494,7 @@ declare namespace IconsetTypes {
         wifi: React.ReactElement
     }
 
-    export interface Index {
+    interface Index {
         filled: Filled
         outline: Outline
     }
