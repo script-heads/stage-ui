@@ -12,6 +12,33 @@ export default (props: BlockTypes.Props) => {
     const background = callProp(props.background, theme.color);
     const color = callProp(props.color, theme.color);
 
+    const surfaceVariants = {
+        'minor': [{
+            borderWidth: theme.assets.border.width,
+            borderStyle: theme.assets.border.style,
+            borderColor: theme.assets.border.color,
+            borderRadius: theme.radius.default,
+            background: theme.color.surface.css(),
+            boxShadow: theme.assets.shadow.short
+        }],
+        'medium': [{
+            borderWidth: theme.assets.border.width,
+            borderStyle: theme.assets.border.style,
+            borderColor: theme.assets.border.color,
+            borderRadius: theme.radius.default,
+            background: theme.color.surface.css(),
+            boxShadow: theme.assets.shadow.default
+        }],
+        'major': [{
+            borderWidth: theme.assets.border.width,
+            borderStyle: theme.assets.border.style,
+            borderColor: theme.assets.border.color,
+            borderRadius: theme.radius.default,
+            background: theme.color.surface.css(),
+            boxShadow: theme.assets.shadow.long
+        }]
+    }
+
     return componentStyles({
         props,
         overrides,
@@ -21,38 +48,13 @@ export default (props: BlockTypes.Props) => {
                     position: props.position,
                     background: background && background,
                     color: color,
-                    // '&:hover': getDecoration(props.hoverSurface),
+                    '&:hover': variant('hoverSurface', surfaceVariants),
                     overflow: props.overflow
                 },
                 props.animated && {
                     transition: "all .15s"
                 },
-                variant('surface', {
-                    'minor': [{
-                        borderWidth: theme.assets.border.width,
-                        borderStyle: theme.assets.border.style,
-                        borderColor: theme.assets.border.color,
-                        borderRadius: theme.radius.default,
-                        background: theme.color.surface.css(),
-                        boxShadow: theme.assets.shadow.short
-                    }],
-                    'medium': [{
-                        borderWidth: theme.assets.border.width,
-                        borderStyle: theme.assets.border.style,
-                        borderColor: theme.assets.border.color,
-                        borderRadius: theme.radius.default,
-                        background: theme.color.surface.css(),
-                        boxShadow: theme.assets.shadow.default
-                    }],
-                    'major': [{
-                        borderWidth: theme.assets.border.width,
-                        borderStyle: theme.assets.border.style,
-                        borderColor: theme.assets.border.color,
-                        borderRadius: theme.radius.default,
-                        background: theme.color.surface.css(),
-                        boxShadow: theme.assets.shadow.long
-                    }]
-                }),
+                variant('surface', surfaceVariants),
                 styleProps.all,
             ]
         }

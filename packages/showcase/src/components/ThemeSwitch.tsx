@@ -12,7 +12,7 @@ const ThemeSwitch = () => {
             <Select
                 flex={1}
                 size="small"
-                defaultValues={currentTheme ? [{
+                defaultValues={currentTheme && themes[currentTheme] ? [{
                     text: themes[currentTheme].name!,
                     value: currentTheme!
                 }] : [{
