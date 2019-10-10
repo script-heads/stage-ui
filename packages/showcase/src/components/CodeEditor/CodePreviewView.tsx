@@ -75,9 +75,9 @@ const CodePreviewView = (props: { dark: boolean, code: string, showGrid: boolean
 
     if (matchReturn && matchReturn.index) {
         return (
-            <Block w="45%" background={c => c.surface.css()}>
+            <Block w="45%" background={c => c.surface.css()} css={{ position: 'relative' }}>
                 <GridBackground set={props.showGrid} dark={dark}>
-                    <Block m="2rem" css={{ position: 'relative', zIndex: 1 }}>
+                    <Block m="2rem" css={{ position: 'absolute', zIndex: 1, top: 0, left: 0, right: 0, bottom: 0 }}>
                         <Renderer>
                             {render}
                         </Renderer>
