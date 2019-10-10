@@ -11,7 +11,6 @@ export interface MenuProps {
 }
 
 export default (props: MenuProps) => {
-	const [currentCase, setCurrentCase] = React.useState(localStorage.getItem('currentCaseID') || '')
 	const casesList = (cases: any) => {
 		return Object.keys(cases).map(name => {
 
@@ -50,7 +49,6 @@ export default (props: MenuProps) => {
 							direction="column"
 							onChange={(value) => {
 								const caseId = value.toString()
-								setCurrentCase(caseId)
 								props.onChange(caseId)
 							}}
 							//@ts-ignore
