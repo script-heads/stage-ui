@@ -314,7 +314,7 @@ declare namespace Global {
         GridProps {}
 
     type ColorProp = FunctionalProp<ThemeTypes.Colors<chroma.Color>, CSS.Properties["color"]>
-    type IconProp = FunctionalProp<IconsetTypes.Index, React.ReactElement | undefined>
+    type IconProp = FunctionalProp<IconsetTypes.Index, JSX.IntrinsicElements["g"]>
 
 
     /**
