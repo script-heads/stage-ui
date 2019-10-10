@@ -18,6 +18,10 @@ let model: monaco.editor.ITextModel
 
 class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorViewState> {
 
+    restoring: boolean = false;
+    undoStates: any[] = [];
+    redoStates: any[] = [];
+
     editor: monaco.editor.IStandaloneCodeEditor
 
     state = {
@@ -25,7 +29,49 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
         codeValue: ''
     }
 
+    undo() {
+        if (this.undoStates.length > 1) {
+            this.restoring = true;
+            const state = this.undoStates[this.undoStates.length - 2];
+            this.editor.setValue(state.code)
+            this.editor.restoreViewState(state.state);
+            this.redoStates.push(this.undoStates[this.undoStates.length - 1])
+            this.undoStates = this.undoStates.slice(0, -1);
+        }
+    }
+
+    redo() {
+        if (this.redoStates.length > 0) {
+            this.restoring = true;
+            const state = this.redoStates[this.redoStates.length - 1];
+            this.editor.setValue(state.code)
+            this.editor.restoreViewState(state.state);
+            this.undoStates.push(this.redoStates[this.redoStates.length - 1])
+            this.redoStates = this.redoStates.slice(0, -1);
+        }
+    }
+
+    keydown(e: KeyboardEvent) {
+        const isMac = navigator.platform.toUpperCase().indexOf('MAC')>=0;
+        if ((isMac && e.metaKey) || (!isMac && e.ctrlKey)) {
+            if (e.keyCode === 90){
+                if (e.shiftKey) {
+                    this.redo()
+                } else {
+                    this.undo()
+                }
+            }
+        }
+    }
+
+    constructor(props: CodeEditorViewProps) {
+        super(props);
+        this.keydown = this.keydown.bind(this)
+    }
+
     async componentDidMount() {
+
+        const domNode = document.createElement("div")!;
 
         const defineLib = async (name: string) => {
             monaco.languages.typescript.typescriptDefaults.addExtraLib((
@@ -52,6 +98,7 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
         });
 
         let code = this.props.code || '';
+        let codeBefore = code;
 
         if (!model) {
             model = monaco.editor.createModel(
@@ -60,9 +107,22 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
                 monaco.Uri.parse(location.origin + '/main.tsx')
             )
             model.onDidChangeContent(event => {
-                this.props.onChange(
-                    model.getValue()
-                )
+                setTimeout(() => {
+                    const code = model.getValue()
+                    if (codeBefore === code) {
+                        return;
+                    }
+                    codeBefore = code;
+                    if (!this.restoring) {
+                        this.redoStates = []
+                        this.undoStates.push({
+                            state: this.editor.saveViewState(),
+                            code
+                        })
+                    }
+                    this.props.onChange(code)
+                    this.restoring = false
+                })
             })
         }
 
@@ -81,13 +141,21 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
             changeAccessor.addZone({
                 afterLineNumber: 0,
                 heightInLines: 1,
-                domNode: document.createElement("div")
+                domNode
             });
         });
+
+        this.undoStates.push({
+            state: this.editor.saveViewState(),
+            code: codeBefore
+        })
+
+        addEventListener('keydown', this.keydown)
     }
     
     componentWillUnmount() {
         this.editor.dispose()
+        removeEventListener('keydown', this.keydown)
     }
     
     shouldComponentUpdate() {
@@ -95,10 +163,6 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
     }
 
     UNSAFE_componentWillReceiveProps(nextProps: CodeEditorViewProps) {
-        const codeValue = nextProps.code || '';
-        if (this.props.code !== codeValue) {
-            model && model.setValue(codeValue)
-        }
         if (this.props.dark !== nextProps.dark) {
             this.setState({ 
                 dark: nextProps.dark
