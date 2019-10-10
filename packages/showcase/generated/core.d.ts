@@ -1,8 +1,7 @@
 declare module 'layout/Block/types' {
 	/// <reference types="react" />
 	import Global from 'types';
-	import CSS from 'csstype';
-	import { Interpolation } from '@emotion/css'; namespace BlockTypes {
+	import CSS from 'csstype'; namespace BlockTypes {
 	    interface Props extends Global.Props {
 	        tag?: "div" | "span" | "header" | "footer" | "article" | "section" | "aside" | "main";
 	        surface?: "major" | "medium" | "minor";
@@ -23,11 +22,21 @@ declare module 'layout/Block/types' {
 	        boxShadow?: CSS.Properties["boxShadow"];
 	    };
 	    interface Overrides {
-	        containter?: Interpolation;
-	        decoration?: {
-	            minor?: SurfaceStyles;
-	            medium?: SurfaceStyles;
-	            major?: SurfaceStyles;
+	        items?: {
+	            container?: any[];
+	        };
+	        variants?: {
+	            surface: {
+	                minor?: {
+	                    container?: any[];
+	                };
+	                medium?: {
+	                    container?: any[];
+	                };
+	                major?: {
+	                    container?: any[];
+	                };
+	            };
 	        };
 	    }
 	}
@@ -128,7 +137,6 @@ declare module 'data/Table/types' {
 	        columns: TableColumn[];
 	        Form: any;
 	        children?: any;
-	        styles: any;
 	    }
 	    interface InjectForm {
 	        data: {
@@ -385,7 +393,6 @@ declare module 'control/DatePicker/types' {
 
 }
 declare module 'control/Select/types' {
-	import { CSSProperties } from 'react';
 	import Global from 'types';
 	import { Interpolation } from '@emotion/css'; namespace SelectTypes {
 	    interface Option {
@@ -393,7 +400,6 @@ declare module 'control/Select/types' {
 	        value: any;
 	    }
 	    interface Props extends Global.FieldProps, Global.Props {
-	        style?: CSSProperties;
 	        placeholder?: string;
 	        options: Option[];
 	        multiselect?: boolean;
@@ -483,8 +489,6 @@ declare module 'control/Button/types' {
 	        shape?: 'square' | 'rounded' | 'round';
 	        uppercase?: boolean;
 	        color?: Global.ColorProp;
-	        textColor?: Global.ColorProp;
-	        borderColor?: Global.ColorProp;
 	        children?: React.ReactNode;
 	    }
 	    interface Overrides {
@@ -1198,6 +1202,19 @@ declare module 'types' {
 	    interface Props extends HTMLAttributes, EventHandlers, SelfProps, FlowProps {
 	    }
 	    /**
+	     * Default attributes
+	     * @name HTMLAttributes
+	     * @weight 200
+	     */
+	    interface HTMLAttributes extends React.AriaAttributes {
+	        className?: string;
+	        id?: string;
+	        style?: React.CSSProperties;
+	        tabIndex?: number;
+	        role?: string;
+	        attrs?: Object;
+	    }
+	    /**
 	     * Default events
 	     * @name Events
 	     * @weight 500
@@ -1254,31 +1271,31 @@ declare module 'types' {
 	        onKeyUp?: EventProp<React.KeyboardEvent<HTMLElement>>;
 	    }
 	    /**
-	     * Styles inside the component. Paddings, visibility and display props
-	     * @name StyleSelf
+	     * Color styles
+	     * @name StyleColors
 	     * @weight 400
 	     */
-	    interface SelfProps {
-	        /**
-	         * Padding alias
-	         */
-	        p?: CSS.Properties["padding"];
-	        /**
-	         * PaddingRight alias
-	         */
-	        pr?: CSS.Properties["paddingRight"];
-	        /**
-	         * PaddingLeft alias
-	         */
-	        pl?: CSS.Properties["paddingLeft"];
-	        /**
-	         * PaddingTop alias
-	         */
-	        pt?: CSS.Properties["paddingTop"];
-	        /**
-	         * PaddingBottom alias
-	         */
-	        pb?: CSS.Properties["paddingBottom"];
+	    interface ColorProps {
+	        textColor?: ColorProp;
+	        backgroundColor?: ColorProp;
+	    }
+	    /**
+	     * Border styles
+	     * @name StyleBorder
+	     * @weight 400
+	     */
+	    interface BorderProps {
+	        borderWidth?: CSS.Properties["borderWidth"];
+	        borderStyle?: CSS.Properties["borderStyle"];
+	        borderColor?: CSS.Properties["borderColor"];
+	        borderRadius?: CSS.Properties["borderRadius"];
+	    }
+	    /**
+	     * Layout styles
+	     * @name StyleLayout
+	     * @weight 400
+	     */
+	    interface LayoutProps {
 	        /**
 	         * Width alias
 	         */
@@ -1296,24 +1313,63 @@ declare module 'types' {
 	         */
 	        display?: CSS.Properties["display"];
 	        /**
-	         * Sets what to do when an element's content is too big to fit in its block formatting context. It is a shorthand for overflow-x and overflow-y.
-	         */
-	        overflow?: CSS.Properties["overflow"];
-	        /**
 	         * Enables transition animation
 	         */
 	        animated?: boolean;
 	    }
 	    /**
-	     * Style outsize the component. Margins, flex, positions
-	     * @name SelfFlow
-	     * @weight 300
+	     * Padding styles
+	     * @name StylePadding
+	     * @weight 400
 	     */
-	    interface FlowProps {
+	    interface PaddingProps {
+	        /**
+	         * Padding alias
+	         */
+	        p?: CSS.Properties["padding"];
+	        /**
+	         * Padding horizontal alias
+	         */
+	        px?: CSS.Properties["padding"];
+	        /**
+	         * Padding vertical alias
+	         */
+	        py?: CSS.Properties["padding"];
+	        /**
+	         * PaddingRight alias
+	         */
+	        pr?: CSS.Properties["paddingRight"];
+	        /**
+	         * PaddingLeft alias
+	         */
+	        pl?: CSS.Properties["paddingLeft"];
+	        /**
+	         * PaddingTop alias
+	         */
+	        pt?: CSS.Properties["paddingTop"];
+	        /**
+	         * PaddingBottom alias
+	         */
+	        pb?: CSS.Properties["paddingBottom"];
+	    }
+	    /**
+	     * Grid children styles
+	     * @name StyleGrid
+	     * @weight 400
+	     */
+	    interface MarginProps {
 	        /**
 	         * Margin alias
 	         */
 	        m?: CSS.Properties["margin"];
+	        /**
+	         * Margin horizontal alias
+	         */
+	        mx?: CSS.Properties["margin"];
+	        /**
+	         * Margin vertical alias
+	         */
+	        my?: CSS.Properties["margin"];
 	        /**
 	         * MarginRight alias
 	         */
@@ -1330,10 +1386,13 @@ declare module 'types' {
 	         * MarginBottom alias
 	         */
 	        mb?: CSS.Properties["marginBottom"];
-	        /**
-	         * Sets how an element is positioned in a document. The top, right, bottom, and left properties determine the final location of positioned elements.
-	         */
-	        position?: CSS.Properties["position"];
+	    }
+	    /**
+	     * Flexbox children styles
+	     * @name StyleFlex
+	     * @weight 400
+	     */
+	    interface FlexProps {
 	        /**
 	         * Sets how a flex item will grow or shrink to fit the space available in its flex container.
 	         */
@@ -1358,6 +1417,13 @@ declare module 'types' {
 	         * Sets the way a box is justified inside its alignment container along the appropriate axis.
 	         */
 	        justifySelf?: CSS.Properties["justifySelf"];
+	    }
+	    /**
+	     * Grid children styles
+	     * @name StyleGrid
+	     * @weight 400
+	     */
+	    interface GridProps {
 	        /**
 	         * Specifies a grid item’s start position within the grid column by contributing a line, a span, or nothing (automatic) to its grid placement. This start position defines the block-start edge of the grid area.
 	         */
@@ -1392,20 +1458,23 @@ declare module 'types' {
 	        placeSelf?: CSS.Properties["placeSelf"];
 	    }
 	    /**
-	     * Default attributes
-	     * @name HTMLAttributes
-	     * @weight 200
+	     * Styles inside the component. Paddings, layout, border and color props
+	     * @name StyleSelf
+	     * @weight 400
 	     */
-	    interface HTMLAttributes extends React.AriaAttributes {
-	        className?: string;
-	        id?: string;
-	        style?: React.CSSProperties;
-	        tabIndex?: number;
-	        role?: string;
-	        attrs?: Object;
+	    interface SelfProps extends ColorProps, BorderProps, PaddingProps, LayoutProps {
 	    }
 	    /**
-	     * Stuff for something
+	     * Style outsize the component. Margins, flex, grid
+	     * @name StyleFlow
+	     * @weight 300
+	     */
+	    interface FlowProps extends MarginProps, FlexProps, GridProps {
+	    }
+	    type ColorProp = FunctionalProp<ThemeTypes.Colors<chroma.Color>, CSS.Properties["color"]>;
+	    type IconProp = FunctionalProp<IconsetTypes.Index, React.ReactElement | undefined>;
+	    /**
+	     * Props for text form fields
 	     * @name FieldProps
 	     * @weight 100
 	     */
@@ -1415,15 +1484,12 @@ declare module 'types' {
 	        size?: Global.Size;
 	        decoration?: 'none' | 'filled' | 'underline' | 'outline';
 	        color?: Global.ColorProp;
-	        backgroundColor?: Global.ColorProp;
 	        shape?: 'round' | 'rounded' | 'square';
 	        disabled?: boolean;
 	        rightChild?: React.ReactNode;
 	        leftChild?: React.ReactNode;
 	        clearable?: boolean;
 	    }
-	    type ColorProp = FunctionalProp<ThemeTypes.Colors<chroma.Color>, CSS.Properties["color"]>;
-	    type IconProp = FunctionalProp<IconsetTypes.Index, React.ReactElement | undefined>;
 	    type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 	}
 	export default Global;
@@ -1659,12 +1725,20 @@ declare module 'misc/hooks/useStyleProps' {
 	import { Interpolation } from '@emotion/core';
 	interface Props extends Global.SelfProps, Global.FlowProps {
 	    [key: string]: any;
-	} const _default: (props: Props) => {
-	    self: Interpolation<undefined>;
-	    flow: Interpolation<undefined>;
-	    all: (string | number | boolean | import("@emotion/serialize").ComponentSelector | import("@emotion/utils").SerializedStyles | import("@emotion/serialize").ArrayInterpolation<undefined> | import("@emotion/serialize").ObjectInterpolation<undefined> | null | undefined)[];
-	};
-	export default _default;
+	}
+	interface InjectedStyleProps {
+	    color: Interpolation;
+	    border: Interpolation;
+	    padding: Interpolation;
+	    margin: Interpolation;
+	    layout: Interpolation;
+	    flex: Interpolation;
+	    grid: Interpolation;
+	    flow: Interpolation;
+	    self: Interpolation;
+	    all: Interpolation;
+	} const useStyleProps: (props: Props) => InjectedStyleProps;
+	export default useStyleProps;
 
 }
 declare module 'content/Divider' {
@@ -1855,10 +1929,22 @@ declare module 'control/Button' {
 	export default _default;
 
 }
+declare module 'misc/utils/createStyles' {
+	 type styles = any[]; type variant = (key: string, variants: {
+	    [x: string]: styles;
+	} | styles) => styles;
+	interface params {
+	    props: {};
+	    override?: string;
+	    styles: {
+	        [x: string]: ((variant: variant) => styles) | styles;
+	    };
+	} const _default: (params: params) => any;
+	export default _default;
+
+}
 declare module 'layout/Block/styles' {
-	import BlockTypes from 'layout/Block/types'; const _default: (props: BlockTypes.Props) => {
-	    container: import("@emotion/utils").SerializedStyles;
-	};
+	import BlockTypes from 'layout/Block/types'; const _default: (props: BlockTypes.Props) => any;
 	export default _default;
 
 }
@@ -1927,7 +2013,7 @@ declare module 'layout/Drop/types' {
 	        right: number;
 	    }
 	    interface Props extends Global.SelfProps {
-	        target: React.ReactNode;
+	        target: any;
 	        align?: "top" | "bottom" | "left" | "right";
 	        justify?: "start" | "center" | "end" | "start-outside" | "end-outside";
 	        stretchWidth?: boolean;
@@ -2113,22 +2199,14 @@ declare module 'misc/hocs/Field/styles' {
 	    field: (focus: any) => import("@emotion/utils").SerializedStyles;
 	    content: (isLabelOverlay: any) => import("@emotion/utils").SerializedStyles;
 	    label: (isLabelOutside: any, isLabelOverlay: any) => import("@emotion/utils").SerializedStyles;
-	    child: (align: any) => (false | {
+	    child: (align: any) => {
 	        [x: string]: any;
 	        color: string;
 	        flexGrow: number;
 	        flexShrink: number;
 	        display: string;
 	        alignItems: string;
-	        transition?: undefined;
-	    } | {
-	        transition: string;
-	        color?: undefined;
-	        flexGrow?: undefined;
-	        flexShrink?: undefined;
-	        display?: undefined;
-	        alignItems?: undefined;
-	    } | undefined)[];
+	    }[];
 	    hint: any;
 	};
 	export default _default;
@@ -2507,7 +2585,6 @@ declare module 'data/Table/TableForm' {
 	    defaultData?: {
 	        [key: string]: any;
 	    };
-	    styles?: any;
 	} const TableFormHOC: (props: TableFormHOCProps) => JSX.Element;
 	export default TableFormHOC;
 
@@ -2537,10 +2614,7 @@ declare module 'data/Table' {
 
 }
 declare module 'layout/Badge/styles' {
-	import BadgeTypes from 'layout/Badge/types'; const _default: (props: BadgeTypes.Props) => {
-	    container: import("@emotion/utils").SerializedStyles;
-	    holder: (isElement: boolean) => import("@emotion/utils").SerializedStyles;
-	};
+	import BadgeTypes from 'layout/Badge/types'; const _default: (props: BadgeTypes.Props) => any;
 	export default _default;
 
 }
