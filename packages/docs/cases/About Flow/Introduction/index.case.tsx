@@ -7,6 +7,9 @@ import RemCode from './rem.raw';
 import ColorCode from './color.raw';
 import IconCode from './icon.raw';
 import FlowCode from './flow.raw';
+import UseFlowCode from './useFlow.raw';
+import UtilsCode from './utils.raw';
+
 import EmotionCode from './emotion.raw';
 
 export const title = ' '
@@ -63,7 +66,19 @@ export default () => (
         <T1>width: w</T1>
         <Syntax code={FlowCode} />
 
-        <T1 p="2rem 0">Thats is all rules we have :)</T1>
+        <H1 p="1rem 0">Hooks and utils</H1>
+        <T1>We also have some hooks and utils</T1>
+
+        <H1 p="1rem 0">useFlow</H1>
+        <T1>Provides theme object anywhere inside Viewport</T1>
+        <T1>Ofc it supports intellisense</T1>
+        <Syntax code={UseFlowCode} />
+
+        <H1 p="1rem 0">Dialog and Notify</H1>
+        <T1>Simple utilities makes possible create Modal view</T1>
+        <T1>or notification block with no jsx at all</T1>
+        <Syntax code={UtilsCode} />
+        <T1 pb="1rem">But if you like you may give it custom content.</T1>
 
         <H1 p="1rem 0">CSS</H1>
         <T1>We also using Emotion.js to make css works great</T1>
