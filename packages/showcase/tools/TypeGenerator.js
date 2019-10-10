@@ -9,7 +9,7 @@ function copyTypes(path, package, declareModule) {
         fs.copyFileSync(srcType, dstType)
         if (declareModule) {
             console.log(`Declaring module for ${package} types...`)
-            let content = fs.readFileSync(dstType, { encoding: 'utf-8'})
+            let content = fs.readFileSync(dstType, { encoding: 'utf-8' })
             content = `declare module '${package}' {\n${content}\n}`;
             fs.writeFileSync(dstType, content)
         }
@@ -24,11 +24,29 @@ function generateTypes(package, replaces = []) {
         const srcType = `${__dirname}/../../${package}`
         const dstType = `${__dirname}/../generated/${package}.d.ts`
 
+        const onComplete = () => {
+            if (replaces.length > 0) {
+                let content = fs.readFileSync(dstType, { encoding: 'utf-8'})
+                for (const replace of replaces) {
+                    console.log(`Replacing ${replace[0]}...`)
+                    content = content.replace(new RegExp(replace[0], 'g'), replace[1])
+                }
+                fs.writeFileSync(dstType, content)
+            }
+        }
+
+        let running;
+
         generator({
             project: srcType,
             out: dstType,
             exclude: [],
             resolveModuleId: (params) => {
+                if (running) {
+                    clearTimeout(running);
+                }
+                running = setTimeout(onComplete, 3000)
+
                 if (params.currentModuleId === 'index') {
                     return `@flow-ui/${package}`
                 }
@@ -37,20 +55,14 @@ function generateTypes(package, replaces = []) {
                 }
             }
         })
-        if (replaces.length > 0) {
-            let content = fs.readFileSync(dstType, { encoding: 'utf-8'})
-            for (const replace of replaces) {
-                console.log(`Replacing ${replace[0]}...`)
-                content.replace(new RegExp(replace[0], 'g'), replace[1])
-            }
-            fs.writeFileSync(dstType, content)
-        }
     } catch (error) {
         // console.error(error);
     }
 }
 
-generateTypes('core')
+generateTypes('core', [
+    ['FunctionalProp<IconsetTypes.Index, React.ReactElement>', 'FunctionalProp<IconsetTypes.Index, string>']
+])
 generateTypes('lab')
 copyTypes('node_modules/@types/react/global.d.ts', 'global')
 copyTypes('node_modules/@types/react/index.d.ts', 'react', true)
