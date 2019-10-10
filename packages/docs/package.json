@@ -20,6 +20,8 @@
     "@flow-ui/core": "~0.1.0",
     "@flow-ui/lab": "~0.1.0",
     "@flow-ui/showcase": "~0.1.0",
-    "dts-bundle-generator": "^3.2.0"
+    "@types/react-syntax-highlighter": "^11.0.1",
+    "dts-bundle-generator": "^3.2.0",
+    "react-syntax-highlighter": "^11.0.2"
   }
 }
