@@ -27,7 +27,7 @@ export default () => (
         <Syntax code={BlockCode} />
 
         <H2 p="1rem 0">Rule 3</H2>
-        <T1>User rem insted of px</T1>
+        <T1>User rem instead of px</T1>
         <T1>Thats makes you App scaleable :)</T1>
         <Syntax code={RemCode} />
 
@@ -59,6 +59,6 @@ export default () => (
         <T1>height: h</T1>
         <T1>width: w</T1>
         <Syntax code={FlowCode} />
-        
+
     </Block>
 )
