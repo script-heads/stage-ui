@@ -17,7 +17,7 @@ export default () => (
         
         
         <H2 p="1rem 0">Rule 2</H2>
-        <T1>Use <b>Block</b> insdead of div elements</T1>
+        <T1>Use <b>Block</b> instead of div elements</T1>
         <T1>I'ts has much more power then regular divs</T1>
         <Syntax code={BlockCode} />
     </Block>
