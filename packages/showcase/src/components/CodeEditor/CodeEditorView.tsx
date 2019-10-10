@@ -18,6 +18,7 @@ let model: monaco.editor.ITextModel
 
 class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorViewState> {
 
+    input: boolean = false;
     restoring: boolean = false;
     undoStates: any[] = [];
     redoStates: any[] = [];
@@ -120,8 +121,9 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
                             code
                         })
                     }
-                    this.props.onChange(code)
+                    this.input = true
                     this.restoring = false
+                    this.props.onChange(code)
                 })
             })
         }
@@ -163,12 +165,19 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
     }
 
     UNSAFE_componentWillReceiveProps(nextProps: CodeEditorViewProps) {
+        const codeValue = nextProps.code || '';
+        if (this.props.code !== codeValue && !this.input) {
+            this.undoStates = []
+            this.redoStates = []
+            model && model.setValue(codeValue)
+        }
         if (this.props.dark !== nextProps.dark) {
             this.setState({ 
                 dark: nextProps.dark
             })
             monaco.editor.setTheme(nextProps.dark ? 'vs-dark' : 'vs')
         }
+        this.input = false
     }
 
     render() {
