@@ -90,7 +90,7 @@ export default () => (
 
         <H1 p="1rem 0">Happy coding ;)</H1>
         <Divider/>
-        <T2 pb="1rem" color={c => c.primary.css()}>Copyright © ABRTech frontend team.</T2>
+        <T2 pb="1rem" color={c => c.primary.css()}>Done by frontend team of ABR Technology.</T2>
 
     </Block>
 )
