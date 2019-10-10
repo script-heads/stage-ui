@@ -10,6 +10,7 @@ const Syntax = (props: { code: any }) => {
     const style = isDark ? dark : light
     const HL = isDark ? Prism : PrismLight
     const styles: any = {
+        fontSize: '0.75rem',
         borderRadius: flow.theme.radius.default,
         borderWidth: '1px',
         borderStyle: 'solid',

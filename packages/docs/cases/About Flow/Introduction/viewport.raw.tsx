@@ -1,10 +1,10 @@
 import React from 'react';
 import { Viewport } from "@flow-ui/core";
 
-const App = () => (
+const ExampleViewport = () => (
     <Viewport>
         Hello world
     </Viewport>
 )
 
-export default App;
+export default ExampleViewport;
