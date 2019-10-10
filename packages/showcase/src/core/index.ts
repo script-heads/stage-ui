@@ -27,6 +27,7 @@ export interface Case {
         label: string
         code: string
     }[],
+    sticky?: boolean
     default?: React.SFC<{}>
 }
 

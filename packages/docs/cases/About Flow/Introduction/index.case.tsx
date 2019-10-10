@@ -5,6 +5,7 @@ import ViewportCode from './viewport.raw';
 import BlockCode from './block.raw';
 
 export const title = ' '
+export const sticky = true;
 
 export default () => (
     <Block>
