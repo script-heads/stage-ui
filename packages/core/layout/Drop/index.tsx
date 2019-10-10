@@ -35,7 +35,7 @@ const Drop = (props: Types.Props, ref) => {
     }
 
     function setPosition() {
-        if (targetRef && dropRef.current) {
+        if (targetRef && targetRef.current && dropRef.current) {
             const tr = targetRef.current!.getBoundingClientRect();
             const dr = dropRef.current.getBoundingClientRect();
             const style = dropRef.current.style;
