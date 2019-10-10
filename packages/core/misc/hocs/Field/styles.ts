@@ -54,6 +54,7 @@ export default (props: FieldTypes.Props) => {
                 position: 'relative',
                 display: 'flex',
                 flexDirection: 'column',
+                overflow: 'hidden',
                 cursor,
                 outline: 'none'
             },
@@ -75,7 +76,6 @@ export default (props: FieldTypes.Props) => {
                 display: 'flex',
                 alignItems: 'stretch',
                 boxSizing: 'border-box',
-                overflow: 'hidden',
                 '&[disabled]': {
                     color: theme.color.light.css(),
                     cursor: 'not-allowed'

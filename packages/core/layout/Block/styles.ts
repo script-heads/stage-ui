@@ -1,7 +1,6 @@
 import BlockTypes from "./types";
 import useFlow from "../../misc/hooks/useFlow";
 import useStyleProps from '../../misc/hooks/useStyleProps';
-import { css } from "@emotion/core";
 import callProp from "../../misc/utils/callProp";
 import componentStyles from '../../misc/utils/componentStyles';
 
