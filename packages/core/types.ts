@@ -20,8 +20,22 @@ declare namespace Global {
     interface Props extends
         HTMLAttributes,
         EventHandlers,
-        StyleSelfProps,
-        StyleFlowProps { }
+        SelfProps,
+        FlowProps { }
+
+    /**
+     * Default attributes
+     * @name HTMLAttributes
+     * @weight 200
+     */
+    interface HTMLAttributes extends React.AriaAttributes {
+        className?: string
+        id?: string
+        style?: React.CSSProperties
+        tabIndex?: number
+        role?: string;
+        attrs?: Object
+    }
 
     /**
      * Default events
@@ -81,31 +95,33 @@ declare namespace Global {
     }
 
     /**
-     * Styles inside the component. Paddings, visibility and display props
-     * @name StyleSelf
+     * Color styles
+     * @name StyleColors
      * @weight 400
      */
-    interface StyleSelfProps {
-        /**
-         * Padding alias
-         */
-        p?: CSS.Properties["padding"]
-        /**
-         * PaddingRight alias
-         */
-        pr?: CSS.Properties["paddingRight"]
-        /**
-         * PaddingLeft alias
-         */
-        pl?: CSS.Properties["paddingLeft"]
-        /**
-         * PaddingTop alias
-         */
-        pt?: CSS.Properties["paddingTop"]
-        /**
-         * PaddingBottom alias
-         */
-        pb?: CSS.Properties["paddingBottom"]
+    interface ColorProps {
+        textColor?: ColorProp
+        backgroundColor?: ColorProp
+    }
+
+    /**
+     * Border styles
+     * @name StyleBorder
+     * @weight 400
+     */
+    interface BorderProps {
+        borderWidth?: CSS.Properties["borderWidth"]
+        borderStyle?: CSS.Properties["borderStyle"]
+        borderColor?: CSS.Properties["borderColor"]
+        borderRadius?: CSS.Properties["borderRadius"]
+    }
+
+    /**
+     * Layout styles
+     * @name StyleLayout
+     * @weight 400
+     */
+    interface LayoutProps {
         /**
          * Width alias
          */
@@ -123,25 +139,65 @@ declare namespace Global {
          */
         display?: CSS.Properties["display"]
         /**
-         * Sets what to do when an element's content is too big to fit in its block formatting context. It is a shorthand for overflow-x and overflow-y.
-         */
-        overflow?: CSS.Properties["overflow"]
-        /**
          * Enables transition animation
          */
         animated?: boolean
     }
 
     /**
-     * Style outsize the component. Margins, flex, positions
-     * @name SelfFlow
-     * @weight 300
+     * Padding styles
+     * @name StylePadding
+     * @weight 400
      */
-    interface StyleFlowProps {
+    interface PaddingProps {
+        /**
+         * Padding alias
+         */
+        p?: CSS.Properties["padding"]
+        /**
+         * Padding horizontal alias
+         */
+        px?: CSS.Properties["padding"]
+        /**
+         * Padding vertical alias
+         */
+        py?: CSS.Properties["padding"]
+        /**
+         * PaddingRight alias
+         */
+        pr?: CSS.Properties["paddingRight"]
+        /**
+         * PaddingLeft alias
+         */
+        pl?: CSS.Properties["paddingLeft"]
+        /**
+         * PaddingTop alias
+         */
+        pt?: CSS.Properties["paddingTop"]
+        /**
+         * PaddingBottom alias
+         */
+        pb?: CSS.Properties["paddingBottom"]
+    }
+
+    /**
+     * Grid children styles
+     * @name StyleGrid
+     * @weight 400
+     */
+    interface MarginProps {
         /**
          * Margin alias
          */
         m?: CSS.Properties["margin"]
+        /**
+         * Margin horizontal alias
+         */
+        mx?: CSS.Properties["margin"]
+        /**
+         * Margin vertical alias
+         */
+        my?: CSS.Properties["margin"]
         /**
          * MarginRight alias
          */
@@ -161,7 +217,14 @@ declare namespace Global {
         /**
          * Sets how an element is positioned in a document. The top, right, bottom, and left properties determine the final location of positioned elements.
          */
-        position?: CSS.Properties["position"]
+    }
+
+    /**
+     * Flexbox children styles
+     * @name StyleFlex
+     * @weight 400
+     */
+    interface FlexProps {
         /**
          * Sets how a flex item will grow or shrink to fit the space available in its flex container.
          */
@@ -186,7 +249,14 @@ declare namespace Global {
          * Sets the way a box is justified inside its alignment container along the appropriate axis.
          */
         justifySelf?: CSS.Properties["justifySelf"]
+    }
 
+    /**
+     * Grid children styles
+     * @name StyleGrid
+     * @weight 400
+     */
+    interface GridProps {
         /**
          * Specifies a grid item’s start position within the grid column by contributing a line, a span, or nothing (automatic) to its grid placement. This start position defines the block-start edge of the grid area.
          */
@@ -221,23 +291,34 @@ declare namespace Global {
         placeSelf?: CSS.Properties["placeSelf"]
     }
 
-
+    
     /**
-     * Default attributes
-     * @name HTMLAttributes
-     * @weight 200
+     * Styles inside the component. Paddings, layout, border and color props
+     * @name StyleSelf
+     * @weight 400
      */
-    interface HTMLAttributes extends React.AriaAttributes {
-        className?: string
-        id?: string
-        style?: React.CSSProperties
-        tabIndex?: number
-        role?: string;
-        attrs?: Object
-    }
+    interface SelfProps extends 
+        ColorProps,
+        BorderProps,
+        PaddingProps,
+        LayoutProps {}
 
     /**
-     * Stuff for something
+     * Style outsize the component. Margins, flex, grid
+     * @name StyleFlow
+     * @weight 300
+     */
+    interface FlowProps extends 
+        MarginProps,
+        FlexProps,
+        GridProps {}
+
+    type ColorProp = FunctionalProp<ThemeTypes.Colors<chroma.Color>, CSS.Properties["color"]>
+    type IconProp = FunctionalProp<IconsetTypes.Index, React.ReactElement | undefined>
+
+
+    /**
+     * Props for text form fields
      * @name FieldProps
      * @weight 100
      */
@@ -247,7 +328,6 @@ declare namespace Global {
         size?: Global.Size
         decoration?: 'none' | 'filled' | 'underline' | 'outline'
         color?: Global.ColorProp,
-        backgroundColor?: Global.ColorProp,
         shape?: 'round' | 'rounded' | 'square'
         disabled?: boolean
         rightChild?: React.ReactNode
@@ -255,11 +335,7 @@ declare namespace Global {
         clearable?: boolean
     }
 
-    type ColorProp = FunctionalProp<ThemeTypes.Colors<chroma.Color>, CSS.Properties["color"]>
-    type IconProp = FunctionalProp<IconsetTypes.Index, React.ReactElement | undefined>
-
     type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
-
 }
 
 export default Global

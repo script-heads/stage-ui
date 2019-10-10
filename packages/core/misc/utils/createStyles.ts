@@ -1,17 +1,22 @@
-type variant = (key: string, variants: {[x: string]: any[]} | any[]) => any[]
+import { useFlow } from "../..";
+
+type styles = any[];
+
+type variant = (key: string, variants: {[x: string]: styles} | styles) => styles
 
 interface params {
     props:  {}
-    overrides?: {
-        items?: {}
-        variants?: {}
-    }, 
-    styles: {[x: string]: (variant: variant) => void}
+    override?: string, 
+    styles: {
+        [x: string]: ((variant: variant) => styles) | styles
+    }
 }
 
 export default (params: params) => {
 
-    const {props, overrides, styles} = params;
+    const {theme} = useFlow();
+    const {props, styles} = params;
+    const overrides = params.override && theme.overrides[params.override]
     let nextStyles: any = {};
     
     Object.keys(styles).map(styleName => {
@@ -40,7 +45,15 @@ export default (params: params) => {
                 return {}
             }
             
-            const resolvedStyle = styles[styleName](variant);
+            let resolvedStyle
+
+            if (typeof styles[styleName] === 'function') {
+                //@ts-ignore
+                resolvedStyle = styles[styleName](variant);
+            } else {
+                resolvedStyle = styles[styleName]
+            }
+            
             const overrideStyle = 
                     overrides && 
                     overrides.items && 

@@ -16,8 +16,6 @@ export default (props: ButtonTypes.Props) => {
     } = props;
 
     let color = chroma(callProp(props.color, theme.color) || theme.color.primary.css());
-    const borderColor = callProp(props.borderColor, theme.color);
-    const textColor = callProp(props.textColor, theme.color);
 
     return {
         container: [
@@ -157,14 +155,6 @@ export default (props: ButtonTypes.Props) => {
             props.uppercase && {
                 textTransform: 'uppercase'
             },
-
-            {
-                borderColor: borderColor && borderColor,
-                color: textColor && textColor
-            },
-            props.animated && {
-                transition: "all .15s"
-            }
         ]
     }
 }

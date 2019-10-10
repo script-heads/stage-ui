@@ -14,9 +14,6 @@ export default (props: Types.Props) => {
         position: "fixed",
         zIndex: 999,
       },
-      props.animated && {
-        transition: "all .15s"
-      }
     )
   };
 };

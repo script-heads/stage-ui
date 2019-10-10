@@ -13,7 +13,7 @@ const options = {
     contentBase: [__dirname + "/../public",  __dirname + "/../../"],
     compress: process.env.HOST ? true : false,
     public: process.env.HOST || undefined,
-
+    stats: 'errors-only'
 }
 
 webpackDevServer.addDevServerEntrypoints(config, options);

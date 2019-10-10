@@ -23,9 +23,6 @@ export default (props: PopoverTypes.Props) => {
                 padding: theme.distance.small
             },
             overrides && overrides.container,
-            props.animated && {
-                transition: "all .15s"
-            }
         ),
         arrow: css(
             {

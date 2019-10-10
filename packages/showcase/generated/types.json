@@ -846,7 +846,7 @@
                     "type": "stringLiteral",
                     "overwrites": {
                         "type": "reference",
-                        "name": "StyleSelfProps.overflow",
+                        "name": "SelfProps.overflow",
                         "id": 2147
                     },
                     "values": [
@@ -873,7 +873,7 @@
                     "type": "stringLiteral",
                     "overwrites": {
                         "type": "reference",
-                        "name": "StyleFlowProps.position",
+                        "name": "FlowProps.position",
                         "id": 2155
                     },
                     "values": [
@@ -12508,7 +12508,7 @@
                             },
                             {
                                 "type": "reference",
-                                "name": "StyleSelfProps",
+                                "name": "SelfProps",
                                 "id": 2137
                             }
                         ]

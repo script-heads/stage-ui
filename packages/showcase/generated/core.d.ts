@@ -180,7 +180,7 @@ declare module 'layout/Modal/types' {
 	/// <reference types="react" />
 	import Global from 'types';
 	import { Interpolation } from '@emotion/core'; namespace ModalTypes {
-	    interface Props extends Global.StyleSelfProps {
+	    interface Props extends Global.SelfProps {
 	        title?: string;
 	        subtitle?: string;
 	        fullSize?: boolean;
@@ -214,7 +214,7 @@ declare module 'layout/Modal/types' {
 	        fullSize?: boolean;
 	        hideHeader?: boolean;
 	        children?: any;
-	        containerAttr?: React.HTMLAttributes<HTMLElement> & Global.StyleSelfProps;
+	        containerAttr?: React.HTMLAttributes<HTMLElement> & Global.SelfProps;
 	        onClosePressed: () => void;
 	        styles?: any;
 	    }
@@ -1195,7 +1195,7 @@ declare module 'types' {
 	} namespace Global {
 	    type EventProp<T> = (event: T) => void;
 	    type FunctionalProp<T, R> = ((lib: T) => R) | R;
-	    interface Props extends HTMLAttributes, EventHandlers, StyleSelfProps, StyleFlowProps {
+	    interface Props extends HTMLAttributes, EventHandlers, SelfProps, FlowProps {
 	    }
 	    /**
 	     * Default events
@@ -1258,7 +1258,7 @@ declare module 'types' {
 	     * @name StyleSelf
 	     * @weight 400
 	     */
-	    interface StyleSelfProps {
+	    interface SelfProps {
 	        /**
 	         * Padding alias
 	         */
@@ -1309,7 +1309,7 @@ declare module 'types' {
 	     * @name SelfFlow
 	     * @weight 300
 	     */
-	    interface StyleFlowProps {
+	    interface FlowProps {
 	        /**
 	         * Margin alias
 	         */
@@ -1657,7 +1657,7 @@ declare module 'misc/hooks/useContainer' {
 declare module 'misc/hooks/useStyleProps' {
 	import Global from 'types';
 	import { Interpolation } from '@emotion/core';
-	interface Props extends Global.StyleSelfProps, Global.StyleFlowProps {
+	interface Props extends Global.SelfProps, Global.FlowProps {
 	    [key: string]: any;
 	} const _default: (props: Props) => {
 	    self: Interpolation<undefined>;
@@ -1926,7 +1926,7 @@ declare module 'layout/Drop/types' {
 	        left: number;
 	        right: number;
 	    }
-	    interface Props extends Global.StyleSelfProps {
+	    interface Props extends Global.SelfProps {
 	        target: React.ReactNode;
 	        align?: "top" | "bottom" | "left" | "right";
 	        justify?: "start" | "center" | "end" | "start-outside" | "end-outside";

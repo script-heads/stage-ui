@@ -4,7 +4,7 @@ import { Interpolation } from "@emotion/core";
 
 declare namespace ModalTypes {
 
-    interface Props extends Global.StyleSelfProps {
+    interface Props extends Global.SelfProps {
         title?: string
         subtitle?: string
         fullSize?: boolean
@@ -44,7 +44,7 @@ declare namespace ModalTypes {
         fullSize?: boolean
         hideHeader?: boolean
         children?: any
-        containerAttr?: React.HTMLAttributes<HTMLElement> & Global.StyleSelfProps
+        containerAttr?: React.HTMLAttributes<HTMLElement> & Global.SelfProps
         onClosePressed: () => void
         styles?: any
     }

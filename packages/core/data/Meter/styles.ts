@@ -82,9 +82,6 @@ export default (props: MeterTypes.Props, percent: number) => {
                 },
             }),
             styleProps.all,
-            props.animated && {
-                transition: "all .15s"
-            }
         ),
         thumb: css(
             {
@@ -116,9 +113,6 @@ export default (props: MeterTypes.Props, percent: number) => {
                     }),
                     animation: "move 2s linear infinite",
                     overflow: "hidden",
-                    ...(props.animated && {
-                        transition: "all .15s"
-                    })
                 },
                 '@keyframes move': {
                     '0%': {
@@ -134,9 +128,6 @@ export default (props: MeterTypes.Props, percent: number) => {
                     borderRadius: '4rem'
                 }
             }),
-            props.animated && {
-                transition: "all .15s"
-            }
         )
     }
 }

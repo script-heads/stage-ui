@@ -8,7 +8,7 @@ declare namespace DropTypes {
     right: number
   }
 
-  interface Props extends Global.StyleSelfProps {
+  interface Props extends Global.SelfProps {
     target: any
     align?: "top" | "bottom" | "left" | "right"
     justify?: "start" | "center" | "end" | "start-outside" | "end-outside"

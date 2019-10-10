@@ -37,9 +37,6 @@ const Typography = (props: Types.Props, ref) => {
                     minWidth: 0,
                 },
                 styleProps.all,
-                props.animated && {
-                    transition: "all .15s"
-                }
             ],
             download: props.download,
             href: props.href,

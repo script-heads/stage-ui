@@ -77,9 +77,6 @@ export default (props: MenuTypes.Props) => {
             },
             border != 'none' && borderStyles,
             useStyleProps(props).all,
-            props.animated && {
-                transition: "all .15s"
-            }
         ),
         item: (active: boolean, disabled: boolean) => css(
             {

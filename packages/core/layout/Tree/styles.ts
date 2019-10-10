@@ -31,9 +31,6 @@ export default (props: TreeTypes.Props, lvl: number, isOpen: boolean, hasTreeChi
                     alignItems: "flex-start",
                 }
             }),
-            props.animated && {
-                transition: "all .15s"
-            }
         ),
         label: css(
             {

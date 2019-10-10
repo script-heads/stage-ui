@@ -18,9 +18,6 @@ export default (props: TableTypes.Props) => {
             },
             gloablStyles,
             overrides && overrides.container,
-            props.animated && {
-                transition: "all .15s"
-            }
         ),
 
         content: css(

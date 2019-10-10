@@ -20,7 +20,6 @@ export default (props: FieldTypes.Props) => {
     const { theme } = useFlow();
     const styleProps = useStyleProps(props);
     let color = callProp(props.color, theme.color);
-    let backgroundColor = callProp(props.backgroundColor, theme.color);
 
     const shapeStyles = variant(shape, {
         'rounded': {
@@ -59,9 +58,6 @@ export default (props: FieldTypes.Props) => {
                 outline: 'none'
             },
             styleProps.flow,
-            props.animated && {
-                transition: "all .15s"
-            }
         ),
         field: (focus) => css(
             {
@@ -140,12 +136,8 @@ export default (props: FieldTypes.Props) => {
             },
             {
                 borderColor: color,
-                background: backgroundColor,
             },
             styleProps.self,
-            props.animated && {
-                transition: "all .15s"
-            },
         ),
 
         content: (isLabelOverlay) => css(
@@ -162,9 +154,6 @@ export default (props: FieldTypes.Props) => {
             label && isLabelOverlay && {
                 paddingTop: headingLabelHeight,
             },
-            props.animated && {
-                transition: "all .15s"
-            }
         ),
 
         label: (isLabelOutside, isLabelOverlay) => css(
@@ -200,9 +189,6 @@ export default (props: FieldTypes.Props) => {
                     ...labelSizes.font
                 },
             label && !isLabelOutside && props.insideLabelStyles,
-            props.animated && {
-                transition: "all .15s"
-            }
         ),
 
         child: (align) => [
@@ -220,9 +206,6 @@ export default (props: FieldTypes.Props) => {
                     'xlarge': '.75rem',
                 })
             },
-            props.animated && {
-                transition: "all .15s"
-            }
         ],
 
         hint: {

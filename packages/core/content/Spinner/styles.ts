@@ -34,9 +34,6 @@ export default (props: SpinnerTypes.Props) => {
                 fontSize: props.size || '1.125em'
             },
             styleProps.all,
-            props.animated && {
-                transition: "all .15s"
-            }
         ),
 
         children: css({

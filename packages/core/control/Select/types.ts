@@ -9,7 +9,6 @@ declare namespace SelectTypes {
     }
 
     export interface Props extends Global.FieldProps, Global.Props {
-        style?: CSSProperties
         placeholder?: string
         options: Option[]
         multiselect?: boolean

@@ -27,8 +27,6 @@ declare namespace ButtonTypes {
         shape?: 'square' | 'rounded' | 'round'
         uppercase?: boolean
         color?: Global.ColorProp
-        textColor?: Global.ColorProp
-        borderColor?: Global.ColorProp
         children?: React.ReactNode
     }
 

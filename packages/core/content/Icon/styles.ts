@@ -32,9 +32,6 @@ export default (props) => {
                 padding: "0.4em",
             },
             styleProps.all,
-            props.animated && {
-                transition: "all .15s"
-            }
         ),
         icon: css({
             display: "inline-block",

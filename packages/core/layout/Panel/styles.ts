@@ -22,9 +22,6 @@ export default (props: PanelTypes.Props) => {
             getPosition(props.align || "top"),
             styleProps.all,
             overrides && overrides.container,
-            props.animated && {
-                transition: "all .15s"
-            }
         )
     }
 }
