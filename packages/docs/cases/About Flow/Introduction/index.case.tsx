@@ -1,16 +1,16 @@
+import { A, Block, Divider, H1, H2, T1, T2 } from "@flow-ui/core";
 import React from 'react';
-import { Block, H1, T1, useFlow, H2, Divider, A } from "@flow-ui/core";
-import Syntax from './Syntax';
-import ViewportCode from './viewport.raw';
 import BlockCode from './block.raw';
-import RemCode from './rem.raw';
 import ColorCode from './color.raw';
-import IconCode from './icon.raw';
+import EmotionCode from './emotion.raw';
 import FlowCode from './flow.raw';
+import IconCode from './icon.raw';
+import RemCode from './rem.raw';
+import Syntax from './Syntax';
 import UseFlowCode from './useFlow.raw';
 import UtilsCode from './utils.raw';
+import ViewportCode from './viewport.raw';
 
-import EmotionCode from './emotion.raw';
 
 export const title = ' '
 export const sticky = true;
@@ -66,7 +66,7 @@ export default () => (
         <T1>width: w</T1>
         <Syntax code={FlowCode} />
 
-        <H1 p="1rem 0">Hooks and utils</H1>
+        <H1 p="1rem 0">Hooks {'&'} Utils</H1>
         <T1>We also have some hooks and utils</T1>
 
         <H1 p="1rem 0">useFlow</H1>
@@ -74,7 +74,7 @@ export default () => (
         <T1>Ofc it supports intellisense</T1>
         <Syntax code={UseFlowCode} />
 
-        <H1 p="1rem 0">Dialog and Notify</H1>
+        <H1 p="1rem 0">Dialog {'&'} Notify</H1>
         <T1>Simple utilities makes possible create Modal view</T1>
         <T1>or notification block with no jsx at all</T1>
         <Syntax code={UtilsCode} />
@@ -82,11 +82,15 @@ export default () => (
 
         <H1 p="1rem 0">CSS</H1>
         <T1>We also using Emotion.js to make css works great</T1>
-        <T1>It provides powerful and predictable style composition in addition to a great developer experience with features such as source maps, labels, and testing utilities.</T1>
         
         <H2 p="1rem 0">Emotion</H2>
+        <T1>It provides powerful and predictable style composition in addition to a great developer experience.</T1>
         <Syntax code={EmotionCode} />
         <T1 pb="1rem">For more information you may also check <noindex><A href="https://emotion.sh" target="_blank">https://emotion.sh</A></noindex></T1>
+
+        <H1 p="1rem 0">Happy coding ;)</H1>
+        <Divider/>
+        <T2 pb="1rem" color={c => c.primary.css()}>Copyright © ABRTech frontend team.</T2>
 
     </Block>
 )
