@@ -18,12 +18,15 @@ function copyTypes(path, package, declareModule) {
     }
 }
 
-function generateTypes(package) {
+function generateTypes(package, replaces = []) {
     console.log(`Generating ${package} types...`)
     try {
+        const srcType = `${__dirname}/../../${package}`
+        const dstType = `${__dirname}/../generated/${package}.d.ts`
+
         generator({
-            project: `${__dirname}/../../${package}`,
-            out: `${__dirname}/../generated/${package}.d.ts`,
+            project: srcType,
+            out: dstType,
             exclude: [],
             resolveModuleId: (params) => {
                 if (params.currentModuleId === 'index') {
@@ -34,6 +37,14 @@ function generateTypes(package) {
                 }
             }
         })
+        if (replaces.length > 0) {
+            let content = fs.readFileSync(dstType, { encoding: 'utf-8'})
+            for (const replace of replaces) {
+                console.log(`Replacing ${replace[0]}...`)
+                content.replace(new RegExp(replace[0], 'g'), replace[1])
+            }
+            fs.writeFileSync(dstType, content)
+        }
     } catch (error) {
         // console.error(error);
     }
