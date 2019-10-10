@@ -2,9 +2,7 @@ import React, { Fragment, useRef } from 'react';
 import { Modal, Button } from '@flow-ui/core';
 
 export default () => {
-    
-    const modal = useRef()
-
+    const modal = useRef<any>()
     return (
         <Fragment>
             <Modal

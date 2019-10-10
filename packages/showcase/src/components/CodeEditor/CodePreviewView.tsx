@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as LabScope from '@flow-ui/lab'
 import * as CoreScope from '@flow-ui/core'
 import { Block } from '@flow-ui/core'
@@ -52,21 +52,24 @@ const GridBackground = (props: { set?: boolean, dark: boolean, children: any }) 
 const CodePreviewView = (props: { dark: boolean, code: string, showGrid: boolean }) => {
     let { code, dark } = props;
     const matchReturn = code.match('return')
-
-    let Render = null;
+    const [render, setRender] = useState<any>(null)
 
     try {
-        Render = eval(
-            transform(code, { presets: ["react"] }).code.split('export default ')[1].slice(0, -1) + '()'
+        setRender(
+            eval(
+                transform(code, { 
+                    presets: ["react"] 
+                }).code.split('export default ')[1].slice(0, -1) + '()'
+            )
         )
-    } catch (error) { }
+    } catch (error) {}
 
     if (matchReturn && matchReturn.index) {
         return (
-            <Block flex={1}>
+            <Block w="45%" background={c => c.surface.css()}>
                 <GridBackground set={props.showGrid} dark={dark}>
-                    <Block m="1rem" css={{ position: 'relative', zIndex: 1 }}>
-                        {Render}
+                    <Block m="2rem" css={{ position: 'relative', zIndex: 1 }}>
+                        {render}
                     </Block>
                 </GridBackground>
             </Block>

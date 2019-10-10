@@ -77,7 +77,6 @@ declare namespace TableTypes {
         columns: TableColumn[]
         Form: any
         children?: any
-        styles: any
     }
 
     export interface InjectForm {
