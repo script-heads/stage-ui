@@ -42,8 +42,8 @@ const CodeEditor = (props: CodeEditorProps) => {
     } : {}
     return (
         <Flexbox flex={1} mb="2rem" css={{  
+            position: "relative",
             height: '24rem',
-            overflow: "hidden",
             borderWidth: "1px",
             borderStyle: "solid",
             borderColor: flow.theme.color.lightest.css(),

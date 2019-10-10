@@ -39,7 +39,8 @@ const GridBackground = (props: { set?: boolean, dark: boolean, children: any }) 
                         backgroundColor: gridColor2,
                         backgroundImage: gridBackground,
                         backgroundSize: "2rem 2rem",
-                        backgroundPosition: "0 0, 0 1rem, 1rem -1rem, -1rem 0px"
+                        backgroundPosition: "0 0, 0 1rem, 1rem -1rem, -1rem 0px",
+                        borderRadius: "0 8px 8px 0",
                     }}
                 />
             )}
