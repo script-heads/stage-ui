@@ -4,7 +4,8 @@ import { Panel } from '@flow-ui/core';
 export default () => {
     return (
         <Panel
-            css={{position: "absolute"}}
+            align="bottom"
+            style={{ position: "absolute" }}
         />
     )
 }
