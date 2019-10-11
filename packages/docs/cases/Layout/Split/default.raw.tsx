@@ -5,11 +5,11 @@ import { Split } from '@flow-ui/lab';
 export default () => {
     return (
         <Split direction="row" areaSize={4}>
-            <Block backgroundColor="red" w="100%" h="100%" />
-            <Block backgroundColor="blue" w="100%" h="100%" />
+            <Block surface="minor" m="0.125rem" flex={1} />
+            <Block surface="minor" m="0.125rem" flex={1} />
             <Split direction="column">
-                <Block backgroundColor="yellow" w="100%" h="100%" />
-                <Block backgroundColor="purple" w="100%" h="100%" />
+                <Block surface="minor" m="0.125rem" flex={1} />
+                <Block surface="minor" m="0.125rem" flex={1} />
             </Split>
         </Split>
     )

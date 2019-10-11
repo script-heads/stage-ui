@@ -61,7 +61,7 @@ const CodeEditor = (props: CodeEditorProps) => {
                         code={code}
                         onChange={setCode}
                     />
-                    <Block h="100%">
+                    <Block h="100%" flex={1}>
                         <CodePreviewView
                             dark={dark}
                             code={code}

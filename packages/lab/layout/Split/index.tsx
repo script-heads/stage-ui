@@ -76,6 +76,9 @@ const Split = (props: SplitTypes.Props, ref: any) => {
                     return (
                         <Fragment key={index}>
                             <div
+                                css={{
+                                    display: "flex",
+                                }}
                                 style={{
                                     [vertical ? 'height' : 'width']: defaultSize + "%"
                                 }}
