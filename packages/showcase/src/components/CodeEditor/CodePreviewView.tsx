@@ -1,10 +1,9 @@
-import React, { useState, Children } from 'react';
-import * as LabScope from '@flow-ui/lab'
-import * as CoreScope from '@flow-ui/core'
-import { Block } from '@flow-ui/core'
-import { transform } from '@babel/standalone'
+import * as CoreScope from '@flow-ui/core';
+import { Block } from '@flow-ui/core';
+import * as LabScope from '@flow-ui/lab';
+import React from 'react';
 //@ts-ignore
-import ts from 'typescript/lib/typescriptServices'
+import ts from 'typescript/lib/typescriptServices';
 
 Object.assign(window, {
     React,
@@ -56,17 +55,15 @@ class Renderer extends React.Component<{children: any}> {
 const CodePreviewView = (props: { dark: boolean, code: string, showGrid: boolean }) => {
     let { code, dark } = props;
     const matchReturn = code.match('return')
-    const [render, setRender] = useState<any>(null)
 
+    let render: any = null
+    
     try {
-        setRender(
-            eval(
-                ts.transpile(
-                    transform(code, { 
-                        presets: ["react"] 
-                    }).code.split('export default ')[1].slice(0, -1) + '()'
-                )
-            )
+        render = eval(
+            ts.transpile(code,{
+                jsx: "react",
+                module: "es6",
+            }).split('export default ')[1].trim().slice(0, -1) + '()'
         )
     } catch (error) {}
 

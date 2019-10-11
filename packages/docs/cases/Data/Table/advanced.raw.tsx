@@ -21,11 +21,16 @@ export default () => {
         code: 'NONE'
     })
 
+    const getName = (key: number) => {
+        const item = data.find(k => k.id === key)
+        return  item ? item.name : ''
+    }
+
     const forms = {
         NONE: () => null,
         EDIT: () => (
             <Flexbox flex={1} justifyContent="space-between" alignItems="center">
-                <Block>This is edit form for {data.find(k => k.id === form.key)!.name}</Block>
+                <Block>This is edit form for {getName(form.key)}</Block>
                 <Button
                     size="small"
                     onClick={close}
@@ -35,7 +40,7 @@ export default () => {
         ),
         DELETE: () => (
             <Flexbox flex={1} justifyContent="space-between" alignItems="center">
-                <Block>Delete {data.find(k => k.id === form.key)!.name}?</Block>
+                <Block>Delete {getName(form.key)}?</Block>
                 <Button
                     size="small"
                     color={c => c.accent.red.css()}

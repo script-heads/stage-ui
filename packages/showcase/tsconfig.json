@@ -10,7 +10,7 @@
         "lib": [
             "es7",
             "es2018",
-            "dom",
+            "dom"
         ],
         "target": "es5",
         "module": "commonjs",
