@@ -1,18 +1,27 @@
+import React, { forwardRef, RefObject, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
-import React, { useRef, FC, useState, useEffect, forwardRef, useImperativeHandle } from 'react';
-import ModalTypes from './types';
-import ModalPortal from './ModalPortal';
+import useContainer from '../../misc/hooks/useContainer';
 import ModalOverlay from './ModalOverlay';
+import ModalPortal from './ModalPortal';
 import ModalWindow from './ModalWindow';
 import createStyles from './styles';
-import useContainer from '../../misc/hooks/useContainer';
+import ModalTypes from './types';
 
 export interface ModalRef {
-    open: Function,
+    open: Function
     close: Function
+    // setTitle: 
+    //     subtitle,
+    //     setSubtitle,
+    //     center,
+    //     setCenter,
+    //     customContent,
+    //     setCustomContent,
+    //     overlay: overlayRef.current,
+    //     window: windowRef.current
 }
 
-const Modal: React.RefForwardingComponent<ModalRef, ModalTypes.Props> = (props, ref) => {
+const Modal = (props: ModalTypes.Props, ref: RefObject<ModalRef>) => {
 
     const { hideHeader, fullSize } = props;
     const { attributes } = useContainer(props);
