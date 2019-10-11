@@ -7,21 +7,7 @@ import ModalWindow from './ModalWindow';
 import createStyles from './styles';
 import ModalTypes from './types';
 
-export interface ModalRef {
-    open: Function
-    close: Function
-    // setTitle: 
-    //     subtitle,
-    //     setSubtitle,
-    //     center,
-    //     setCenter,
-    //     customContent,
-    //     setCustomContent,
-    //     overlay: overlayRef.current,
-    //     window: windowRef.current
-}
-
-const Modal = (props: ModalTypes.Props, ref: RefObject<ModalRef>) => {
+const Modal = (props: ModalTypes.Props, ref: RefObject<ModalTypes.Ref>) => {
 
     const { hideHeader, fullSize } = props;
     const { attributes } = useContainer(props);
@@ -32,7 +18,7 @@ const Modal = (props: ModalTypes.Props, ref: RefObject<ModalRef>) => {
 
     const [active, setActive] = useState(false);
     const [visible, setVisible] = useState(false);
-    const [customContent, setCustomContent] = useState(null);
+    const [customContent, setCustomContent] = useState<React.ReactElement | null>(null);
     const [center, setCenter] = useState(false);
     const [title, setTitle] = useState(props.title);
     const [subtitle, setSubtitle] = useState(props.subtitle);
@@ -61,7 +47,7 @@ const Modal = (props: ModalTypes.Props, ref: RefObject<ModalRef>) => {
         window: windowRef.current
     }))
 
-    function open(customContent?: React.Component | any) {
+    function open(customContent?: React.ReactElement) {
         if (customContent) {
             setCustomContent(customContent)
         }

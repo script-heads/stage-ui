@@ -1,9 +1,9 @@
 import { Button, Modal } from '@flow-ui/core';
-import { ModalRef } from '@flow-ui/core/layout/Modal';
 import React, { Fragment, useRef } from 'react';
+import ModalTypes from '@flow-ui/core/layout/Modal/types';
 
 export default () => {
-    const modal = useRef<ModalRef>(null);
+    const modal = useRef<ModalTypes.Ref>(null);
     return (
         <Fragment>
             <Modal

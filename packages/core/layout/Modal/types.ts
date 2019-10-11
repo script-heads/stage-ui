@@ -1,8 +1,23 @@
-import { CSSProperties } from "react";
+import { CSSProperties, RefObject } from "react";
 import Global from "../../types";
 import { Interpolation } from "@emotion/core";
 
 declare namespace ModalTypes {
+
+    export interface Ref {
+        open: (customContent?: React.ReactElement | null) => void
+        close: (didClose?: () => void) => void
+        setTitle: (title: string) => void
+        setSubtitle: (subtitle: string) => void
+        setCenter: (center: boolean) => void
+        setCustomContent: (customContent: React.ReactElement | null) => void
+        title?: string
+        subtitle?: string
+        center: boolean
+        customContent: React.ReactElement | null
+        overlay: any
+        window: any
+    }
 
     interface Props extends Global.SelfProps {
         title?: string
