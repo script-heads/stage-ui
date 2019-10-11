@@ -6,8 +6,6 @@ interface SeparatorProps {
     container: () => SplitElRef
     prev: () => HTMLDivElement
     next: () => HTMLDivElement
-    onMove: () => void
-    onDone: () => void
 }
 
 const Separator = (props: SeparatorProps) => {
@@ -21,7 +19,8 @@ const Separator = (props: SeparatorProps) => {
     }
     const mouseUp = (e: MouseEvent) => {
         if (move) {
-            props.onDone();
+            const container = props.container()!
+            container._onChange!();
         } 
         active = false 
         move = false 
@@ -51,7 +50,7 @@ const Separator = (props: SeparatorProps) => {
             next.style[vertical ? 'height' : 'width'] = nextPercent
 
             move = true;
-            props.onMove();
+            container._onDrag!();
         }
     }
 

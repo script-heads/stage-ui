@@ -2,7 +2,11 @@ import React, { forwardRef, Fragment, useMemo, useEffect } from 'react'
 import Separator from './Separator'
 import SplitTypes from './types'
 
-export type SplitElRef = (HTMLDivElement & { _vertical?: true }) | null
+export type SplitElRef = (HTMLDivElement & { 
+    _vertical?: true 
+    _onDrag?: () => void
+    _onChange?: () => void
+}) | null
 
 interface SplitElRefs {
     [key: number]: SplitElRef
@@ -12,21 +16,11 @@ const Split = (props: SplitTypes.Props, ref: any) => {
 
     let vertical = props.direction === 'column';
 
-    const refs: SplitElRefs = useMemo(() => {
-        return {}
-    }, [])
+    const refs: SplitElRefs = useMemo(() => ({}), [])
 
-    const defaultSize = useMemo(() => {
-        return 100 / props.children.length
-    }, [])
-
-    useEffect(() => {
-        Object.keys(refs).filter(key => parseInt(key) >= 0).map(key => {
-            const percent = props.positions ? props.positions[key] : defaultSize
-            refs[key].style[vertical ? 'height' : 'width'] = percent + '%'
-        })
-        refs["-1"]._vertical = props.direction === 'column';
-    }, [props.positions, props.direction]);
+    const defaultSize = useMemo(() => (
+        100 / props.children.length
+    ), [])
 
     const getPositions = () => (
         Object.keys(refs).filter(key => parseInt(key) >= 0).map(key =>
@@ -35,6 +29,24 @@ const Split = (props: SplitTypes.Props, ref: any) => {
             )
         )
     )
+    
+    useEffect(() => {
+        refs["-1"]._onDrag = () => {
+            props.onDrag && props.onDrag(getPositions())
+        }
+        refs["-1"]._onChange = () => {
+            props.onChange && props.onChange(getPositions())
+        }
+    }, [props.onChange, props.onDrag]);
+
+    useEffect(() => {
+        Object.keys(refs).filter(key => parseInt(key) >= 0).map(key => {
+            const percent = props.positions ? props.positions[key] : defaultSize
+            refs[key].style[vertical ? 'height' : 'width'] = percent + '%'
+        })
+        refs["-1"]._vertical = props.direction === 'column';
+        
+    }, [props.positions, props.direction]);
 
     return (
         <div ref={r => { refs[-1] = r; ref = r }} css={{
@@ -54,16 +66,6 @@ const Split = (props: SplitTypes.Props, ref: any) => {
                                 container={() => refs[-1]!}
                                 prev={() => refs[index]!}
                                 next={() => refs[index + 1]!}
-                                onMove={() => {
-                                    props.onDrag && props.onDrag(
-                                        getPositions()
-                                    )
-                                }}
-                                onDone={() => {
-                                    props.onChange && props.onChange(
-                                        getPositions()
-                                    )
-                                }}
                             />
                         )
                     }
