@@ -2,6 +2,7 @@ import ThemeTypes from './misc/themes/types';
 import IconsetTypes from './misc/icons/types';
 import chroma from 'chroma-js';
 import CSS from 'csstype';
+import { Interpolation } from "@emotion/core";
 
 declare module 'csstype' {
     interface Properties {
@@ -336,6 +337,9 @@ declare namespace Global {
     }
 
     type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
+
+    type EmotionStyles = Array<Interpolation>;
+    type Variant<T,K> = Record<Extract<T,string>,K>
 }
 
 export default Global

@@ -10,7 +10,7 @@ export default (props: BadgeTypes.Props) => {
 
     return createStyles({
         props,
-        override: 'bage',
+        overrides: theme.overrides.bage,
         styles: {
             container: [
                 {
@@ -29,8 +29,7 @@ export default (props: BadgeTypes.Props) => {
                     position: 'absolute',
                     borderRadius: '1rem',
                     padding: theme.distance.xsmall + ' ' + theme.distance.small,
-                    fontSize: typography.caption[1].fontSize,
-                    lineHeight: typography.caption[1].lineHeight,
+                    ...typography.caption[1],
                     minWidth: `calc(${typography.caption[1].lineHeight} - ${theme.distance.small})`,
                     top: 0,
                     right: 0,

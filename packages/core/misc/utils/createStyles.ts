@@ -1,71 +1,77 @@
-import { useFlow } from "../..";
+import GlobalTypes from "../../types";
+import {css, SerializedStyles} from "@emotion/core";
 
-type styles = any[];
-
-type variant = (key: string, variants: {[x: string]: styles} | styles) => styles
-
-interface params {
-    props:  {}
-    override?: string, 
-    styles: {
-        [x: string]: ((variant: variant) => styles) | styles
+type Variant = (key: string, variants: {[x: string]: GlobalTypes.EmotionStyles} | GlobalTypes.EmotionStyles) => GlobalTypes.EmotionStyles
+type VariantedStyle = ((variant: Variant) => GlobalTypes.EmotionStyles) | GlobalTypes.EmotionStyles
+type Style = (state?: { [x: string]: string | boolean | undefined }) => SerializedStyles
+type ComponentStyles = {[x: string]: VariantedStyle}
+interface Params {
+    props: {[x: string]: any},
+    styles: ComponentStyles,
+    overrides?: {
+        styles?: {
+            [x: string]: GlobalTypes.EmotionStyles | undefined
+        }
+        variants?: {
+            [x: string]: {
+                [x: string]: {
+                    [x: string]: GlobalTypes.EmotionStyles | undefined
+                } | undefined
+            } | undefined
+        }
     }
 }
 
-export default (params: params) => {
-
-    const {theme} = useFlow();
-    const {props, styles} = params;
-    const overrides = params.override && theme.overrides[params.override]
-    let nextStyles: any = {};
+export default <P extends Params, O extends keyof P["styles"]>(params: P): {[K in O]: Style} => {
+    const {props, styles, overrides} = params
+    let FlowStyles = {} as any;
     
     Object.keys(styles).map(styleName => {
-        nextStyles[styleName] = (state: Object) => {
-            
-            const variant: variant = (key, varaints) => {
-                let variantStyle;
-                const variantKey = {...props, ...state}[key];
-                const overrideVariantStyle = 
+        FlowStyles[styleName] = (state) => {
+
+            const variant: Variant = (variantName, varaints) => {
+                let variantStyles;
+                const variantValue = {...props, ...state}[variantName];
+                const overrideVariantStyles = 
                     overrides && 
                     overrides.variants && 
-                    overrides.variants[key] &&
-                    overrides.variants[key][variantKey] && 
-                    overrides.variants[key][variantKey][styleName]
+                    overrides.variants[variantName] &&
+                    overrides.variants[variantName]![variantValue] && 
+                    overrides.variants[variantName]![variantValue]![styleName]
 
-                if (typeof variantKey === 'string') {
-                    variantStyle = varaints[variantKey]
+                if (typeof variantValue === 'string') {
+                    variantStyles = varaints[variantValue]
                 }
-                if (typeof variantKey === 'boolean') {
-                    variantStyle = varaints
+                if (typeof variantValue === 'boolean') {
+                    variantStyles = varaints
                 }
-                if (overrideVariantStyle && variantStyle) {
-                    return [variantStyle, ...overrideVariantStyle]
+                if (overrideVariantStyles && variantStyles) {
+                    return [variantStyles, ...overrideVariantStyles]
                 }
-                if (variantStyle) return variantStyle
-                return {}
-            }
-            
-            let resolvedStyle
-
-            if (typeof styles[styleName] === 'function') {
-                //@ts-ignore
-                resolvedStyle = styles[styleName](variant);
-            } else {
-                resolvedStyle = styles[styleName]
+                if (variantStyles) return variantStyles
+                return null
             }
             
             const overrideStyle = 
-                    overrides && 
-                    overrides.items && 
-                    overrides.items[styleName]
+                overrides && 
+                overrides.styles && 
+                overrides.styles[styleName]
             
             if (overrideStyle) {
-                return [resolvedStyle, ...overrideStyle]
+                return css([resolveStyles(styles[styleName], variant), ...overrideStyle])
             }
 
-            return resolvedStyle
+            return resolveStyles(styles[styleName], variant)
         }
     })
     
-    return nextStyles
+    return FlowStyles
+}
+
+function resolveStyles(style: VariantedStyle, variant: Variant): SerializedStyles {
+    if (typeof style === 'function') {
+        return css(style(variant))
+    } else {
+        return css(style)
+    }
 }
