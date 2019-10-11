@@ -21,15 +21,71 @@ declare module 'data/Chart' {
 	export default _default;
 
 }
+declare module 'layout/Split/Separator' {
+	import { SplitElRef } from 'layout/Split';
+	interface SeparatorProps {
+	    defaultVertical: boolean;
+	    container: () => SplitElRef;
+	    prev: () => HTMLDivElement;
+	    next: () => HTMLDivElement;
+	    onMove: () => void;
+	    onDone: () => void;
+	} const Separator: (props: SeparatorProps) => JSX.Element;
+	export default Separator;
+
+}
+declare module 'layout/Split/types' {
+	import Global from '@flow-ui/core/types'; namespace SplitTypes {
+	    interface Props extends Global.Props {
+	        direction?: 'row' | 'column';
+	        children: React.ReactElement[];
+	        /**
+	         * Saved positions
+	         * Use percent values
+	         */
+	        positions?: number[];
+	        /**
+	         * Positions change
+	         * calls every event
+	         */
+	        onDrag?: (positions: number[]) => void;
+	        /**
+	         * Positions change
+	         * calls once after positions change
+	         */
+	        onChange?: (positions: number[]) => void;
+	    }
+	}
+	export default SplitTypes;
+
+}
+declare module 'layout/Split' {
+	import React from 'react';
+	import SplitTypes from 'layout/Split/types';
+	export type SplitElRef = (HTMLDivElement & {
+	    _vertical?: true;
+	}) | null; const _default: React.ForwardRefExoticComponent<SplitTypes.Props & React.RefAttributes<unknown>>;
+	export default _default;
+
+}
 declare module '@flow-ui/lab' {
 	/**
 	 * Data
 	 */
 	export { default as Chart } from 'data/Chart';
+	/**
+	 * Layout
+	 */
+	export { default as Split } from 'layout/Split';
 
 }
 declare module 'data/Chart/styles' {
 	import ChartTypes from 'data/Chart/types'; const _default: (props: ChartTypes.Props) => {};
+	export default _default;
+
+}
+declare module 'layout/Split/styles' {
+	import SplitTypes from 'layout/Split/types'; const _default: (props: SplitTypes.Props) => {};
 	export default _default;
 
 }

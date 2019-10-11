@@ -188,6 +188,20 @@ declare module 'layout/Modal/types' {
 	/// <reference types="react" />
 	import Global from 'types';
 	import { Interpolation } from '@emotion/core'; namespace ModalTypes {
+	    interface Ref {
+	        open: (customContent?: React.ReactElement | null) => void;
+	        close: (didClose?: () => void) => void;
+	        setTitle: (title: string) => void;
+	        setSubtitle: (subtitle: string) => void;
+	        setCenter: (center: boolean) => void;
+	        setCustomContent: (customContent: React.ReactElement | null) => void;
+	        title?: string;
+	        subtitle?: string;
+	        center: boolean;
+	        customContent: React.ReactElement | null;
+	        overlay: any;
+	        window: any;
+	    }
 	    interface Props extends Global.SelfProps {
 	        title?: string;
 	        subtitle?: string;
@@ -2624,15 +2638,15 @@ declare module 'layout/Badge' {
 	export default _default;
 
 }
-declare module 'layout/Modal/ModalPortal' {
-	 const _default: (props: any) => import("react").ReactPortal;
-	export default _default;
-
-}
 declare module 'layout/Modal/ModalOverlay' {
 	import React from 'react';
 	import ModalTypes from 'layout/Modal/types'; const ModalOverlay: React.ForwardRefExoticComponent<ModalTypes.ModalOverlayProps & React.RefAttributes<unknown>>;
 	export default ModalOverlay;
+
+}
+declare module 'layout/Modal/ModalPortal' {
+	 const _default: (props: any) => import("react").ReactPortal;
+	export default _default;
 
 }
 declare module 'layout/Modal/styles' {
@@ -2659,11 +2673,7 @@ declare module 'layout/Modal/ModalWindow' {
 }
 declare module 'layout/Modal' {
 	import React from 'react';
-	import ModalTypes from 'layout/Modal/types';
-	export interface ModalRef {
-	    open: Function;
-	    close: Function;
-	} const _default: React.ForwardRefExoticComponent<ModalTypes.Props & React.RefAttributes<ModalRef>>;
+	import ModalTypes from 'layout/Modal/types'; const _default: React.ForwardRefExoticComponent<ModalTypes.Props & React.RefAttributes<ModalTypes.Ref>>;
 	export default _default;
 
 }
