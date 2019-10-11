@@ -108,8 +108,6 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
             )
             model.onDidChangeContent(event => {
                 setTimeout(() => {
-                    this.editor.getLayoutInfo
-                    model.getout
                     const code = model.getValue()
                     if (codeBefore === code) {
                         return;
