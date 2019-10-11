@@ -2,7 +2,6 @@
 import React from 'react';
 import * as monaco from 'monaco-editor';
 import { Block } from '@flow-ui/core'
-
 const CONTAINER_ID = 'showcase-code-editor';
 
 interface CodeEditorViewState {
@@ -109,6 +108,8 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
             )
             model.onDidChangeContent(event => {
                 setTimeout(() => {
+                    this.editor.getLayoutInfo
+                    model.getout
                     const code = model.getValue()
                     if (codeBefore === code) {
                         return;

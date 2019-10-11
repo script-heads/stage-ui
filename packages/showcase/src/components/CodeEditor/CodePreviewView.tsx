@@ -3,6 +3,8 @@ import * as LabScope from '@flow-ui/lab'
 import * as CoreScope from '@flow-ui/core'
 import { Block } from '@flow-ui/core'
 import { transform } from '@babel/standalone'
+//@ts-ignore
+import ts from 'typescript/lib/typescriptServices'
 
 Object.assign(window, {
     React,
@@ -10,14 +12,6 @@ Object.assign(window, {
     ...CoreScope,
     ...LabScope
 })
-
-// const evalCode = (code: string, scope: object) => {
-//   const scopeKeys = Object.keys(scope);
-//   const scopeValues = scopeKeys.map(key => scope[key]);
-//   const res = new Function('_poly', 'React', ...scopeKeys, code);
-//   return res(_poly, React, ...scopeValues);
-// };
-
 
 const GridBackground = (props: { set?: boolean, dark: boolean, children: any }) => {
     const gridColor1 = props.dark ? "#333333" : "#f4f4f4";
@@ -67,9 +61,11 @@ const CodePreviewView = (props: { dark: boolean, code: string, showGrid: boolean
     try {
         setRender(
             eval(
-                transform(code, { 
-                    presets: ["react"] 
-                }).code.split('export default ')[1].slice(0, -1) + '()'
+                ts.transpile(
+                    transform(code, { 
+                        presets: ["react"] 
+                    }).code.split('export default ')[1].slice(0, -1) + '()'
+                )
             )
         )
     } catch (error) {}
