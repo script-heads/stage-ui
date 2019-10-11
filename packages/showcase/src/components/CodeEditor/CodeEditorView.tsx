@@ -182,9 +182,10 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
     render() {
         return (
             <Block
-                w="55%"
                 id={CONTAINER_ID}
                 css={{
+                    height: "100%",
+                    width: "100%",
                     zIndex: 999,
                     boxShadow: "none !important",
                     position: "relative",
