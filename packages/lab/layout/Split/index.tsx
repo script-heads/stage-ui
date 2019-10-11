@@ -1,6 +1,7 @@
 import React, { forwardRef, Fragment, useMemo, useEffect } from 'react'
 import Separator from './Separator'
 import SplitTypes from './types'
+import useContainer from '@flow-ui/core/misc/hooks/useContainer'
 
 export type SplitElRef = (HTMLDivElement & { 
     _vertical?: true 
@@ -13,6 +14,8 @@ interface SplitElRefs {
 }
 
 const Split = (props: SplitTypes.Props, ref: any) => {
+
+    const { attributes } = useContainer(props);
 
     let vertical = props.direction === 'column';
 
@@ -49,7 +52,7 @@ const Split = (props: SplitTypes.Props, ref: any) => {
     }, [props.positions, props.direction]);
 
     return (
-        <div ref={r => { refs[-1] = r; ref = r }} css={{
+        <div {...attributes} ref={r => { refs[-1] = r; ref = r }} css={{
             display: "flex",
             width: "100%",
             height: "100%",
