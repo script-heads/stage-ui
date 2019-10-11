@@ -1,20 +1,18 @@
+import { Block, Button, Flexbox, Modal } from '@flow-ui/core';
+import ModalTypes from '@flow-ui/core/layout/Modal/types';
 import React from 'react';
-import Button from '../../control/Button';
-import Block from '../../layout/Block';
-import Flexbox from '../../layout/Flexbox';
-import Modal, { ModalRef } from '../../layout/Modal';
 import { addElement, removeElement } from '../../layout/Viewport/MountArea';
 import ViewportTypes from '../../layout/Viewport/types';
 import createID from './createID';
 
 export default (options: ViewportTypes.DialogOptions) => {
     let key = createID();
-    let modal: ModalRef;
+    let modal: ModalTypes.Ref;
 
     addElement(
         (
             <Modal
-                ref={(ref: ModalRef) => modal = ref}
+                ref={(ref: ModalTypes.Ref) => modal = ref}
                 title={options.title}
                 subtitle={options.subtitle}
                 hideHeader={options.hideHeader}
