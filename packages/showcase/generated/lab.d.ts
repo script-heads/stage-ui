@@ -21,15 +21,73 @@ declare module 'data/Chart' {
 	export default _default;
 
 }
+declare module 'layout/Split/Separator' {
+	import { SplitElRef } from 'layout/Split';
+	interface SeparatorProps {
+	    areaSize: number;
+	    defaultVertical: boolean;
+	    container: () => SplitElRef;
+	    prev: () => HTMLDivElement;
+	    next: () => HTMLDivElement;
+	} const Separator: (props: SeparatorProps) => JSX.Element;
+	export default Separator;
+
+}
+declare module 'layout/Split/types' {
+	import Global from '@flow-ui/core/types'; namespace SplitTypes {
+	    interface Props extends Global.Props {
+	        direction?: 'row' | 'column';
+	        children: React.ReactElement[];
+	        /**
+	         * Split area size, value in pixels
+	         */
+	        areaSize?: number;
+	        /**
+	         * You can give it array of numbers (in percent)
+	         */
+	        positions?: number[];
+	        /**
+	         * Calls when split area moves
+	         */
+	        onMove?: (positions: number[]) => void;
+	        /**
+	         * Calls when mouseUp if position did change
+	         */
+	        onChange?: (positions: number[]) => void;
+	    }
+	}
+	export default SplitTypes;
+
+}
+declare module 'layout/Split' {
+	import React from 'react';
+	import SplitTypes from 'layout/Split/types';
+	export type SplitElRef = (HTMLDivElement & {
+	    _vertical?: true;
+	    _onMove?: () => void;
+	    _onChange?: () => void;
+	}) | null; const _default: React.ForwardRefExoticComponent<SplitTypes.Props & React.RefAttributes<unknown>>;
+	export default _default;
+
+}
 declare module '@flow-ui/lab' {
 	/**
 	 * Data
 	 */
 	export { default as Chart } from 'data/Chart';
+	/**
+	 * Layout
+	 */
+	export { default as Split } from 'layout/Split';
 
 }
 declare module 'data/Chart/styles' {
 	import ChartTypes from 'data/Chart/types'; const _default: (props: ChartTypes.Props) => {};
+	export default _default;
+
+}
+declare module 'layout/Split/styles' {
+	import SplitTypes from 'layout/Split/types'; const _default: (props: SplitTypes.Props) => {};
 	export default _default;
 
 }

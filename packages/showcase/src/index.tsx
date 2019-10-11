@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 import { Viewport, Menu, Button } from "@flow-ui/core";
 import Icon from "@flow-ui/core/content/Icon";
 import { A, H3, T2, H1, T1 } from "@flow-ui/core/content/Typography";

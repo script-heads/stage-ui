@@ -1,8 +1,9 @@
-import React, { useState, Children } from 'react';
-import * as LabScope from '@flow-ui/lab'
-import * as CoreScope from '@flow-ui/core'
-import { Block } from '@flow-ui/core'
-import { transform } from '@babel/standalone'
+import * as CoreScope from '@flow-ui/core';
+import { Block } from '@flow-ui/core';
+import * as LabScope from '@flow-ui/lab';
+import React from 'react';
+//@ts-ignore
+import ts from 'typescript/lib/typescriptServices';
 
 Object.assign(window, {
     React,
@@ -10,14 +11,6 @@ Object.assign(window, {
     ...CoreScope,
     ...LabScope
 })
-
-// const evalCode = (code: string, scope: object) => {
-//   const scopeKeys = Object.keys(scope);
-//   const scopeValues = scopeKeys.map(key => scope[key]);
-//   const res = new Function('_poly', 'React', ...scopeKeys, code);
-//   return res(_poly, React, ...scopeValues);
-// };
-
 
 const GridBackground = (props: { set?: boolean, dark: boolean, children: any }) => {
     const gridColor1 = props.dark ? "#333333" : "#f4f4f4";
@@ -39,7 +32,8 @@ const GridBackground = (props: { set?: boolean, dark: boolean, children: any }) 
                         backgroundColor: gridColor2,
                         backgroundImage: gridBackground,
                         backgroundSize: "2rem 2rem",
-                        backgroundPosition: "0 0, 0 1rem, 1rem -1rem, -1rem 0px"
+                        backgroundPosition: "0 0, 0 1rem, 1rem -1rem, -1rem 0px",
+                        borderRadius: "0 8px 8px 0",
                     }}
                 />
             )}
@@ -61,23 +55,23 @@ class Renderer extends React.Component<{children: any}> {
 const CodePreviewView = (props: { dark: boolean, code: string, showGrid: boolean }) => {
     let { code, dark } = props;
     const matchReturn = code.match('return')
-    const [render, setRender] = useState<any>(null)
 
+    let render: any = null
+    
     try {
-        setRender(
-            eval(
-                transform(code, { 
-                    presets: ["react"] 
-                }).code.split('export default ')[1].slice(0, -1) + '()'
-            )
+        render = eval(
+            ts.transpile(code,{
+                jsx: "react",
+                module: "es6",
+            }).split('export default ')[1].trim().slice(0, -1) + '()'
         )
     } catch (error) {}
 
     if (matchReturn && matchReturn.index) {
         return (
-            <Block w="45%" background={c => c.surface.css()}>
+            <Block h="100%" background={c => c.surface.css()} css={{ position: 'relative' }}>
                 <GridBackground set={props.showGrid} dark={dark}>
-                    <Block m="2rem" css={{ position: 'relative', zIndex: 1 }}>
+                    <Block m="2rem" css={{ position: 'absolute', zIndex: 1, top: 0, left: 0, right: 0, bottom: 0 }}>
                         <Renderer>
                             {render}
                         </Renderer>

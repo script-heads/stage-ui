@@ -99,6 +99,15 @@ export default (theme, wrapper) => {
                         line-height: 1;
                         ${global.styles}
                     }
+                    .monaco-editor, .monaco-editor .margin {
+                        border-radius: 8px 0 0 8px;
+                    }
+                    .monaco-editor .margin {
+                        background-color: transparent !important;
+                    }
+                    .monaco-editor .scroll-decoration {
+                        box-shadow: none !important;
+                    }
                 `
         )
     }

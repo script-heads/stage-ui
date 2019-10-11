@@ -5,7 +5,7 @@ import useContainer from '../../misc/hooks/useContainer';
 
 const Button: FC<ButtonTypes.Props> = (props, ref) => {
 
-    const { children, disabled } = props;
+    const { disabled } = props;
     const { attributes } = useContainer(props);
     const styles = getStyles(props);
 
@@ -32,9 +32,8 @@ const Button: FC<ButtonTypes.Props> = (props, ref) => {
             name={props.name}
             type={props.type}
             value={props.value}
-        >
-            {children}
-        </button>
+            children={props.children}
+        />
     )
 }
 

@@ -1,8 +1,9 @@
+import { Button, Modal } from '@flow-ui/core';
 import React, { Fragment, useRef } from 'react';
-import { Modal, Button } from '@flow-ui/core';
+import ModalTypes from '@flow-ui/core/layout/Modal/types';
 
 export default () => {
-    const modal = useRef<any>()
+    const modal = useRef<ModalTypes.Ref>(null);
     return (
         <Fragment>
             <Modal
@@ -11,7 +12,7 @@ export default () => {
                 ref={modal}
             />
             <Button
-                onClick={() => modal.current.open()}
+                onClick={() => modal.current!.open()}
                 children="Open up"
             />
         </Fragment>

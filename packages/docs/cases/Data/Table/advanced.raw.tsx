@@ -16,37 +16,35 @@ export default () => {
 
     const [form, setForm] = useState({ key: -1, code: 'NONE' });
 
+    const close = () => setForm({
+        key: -1,
+        code: 'NONE'
+    })
+
+    const getName = (key: number) => {
+        const item = data.find(k => k.id === key)
+        return  item ? item.name : ''
+    }
+
     const forms = {
         NONE: () => null,
         EDIT: () => (
             <Flexbox flex={1} justifyContent="space-between" alignItems="center">
-                <Block>This is edit form for {
-                    //@ts-ignore
-                    data.find(k => k.id === form.key).name
-                }</Block>
+                <Block>This is edit form for {getName(form.key)}</Block>
                 <Button
                     size="small"
-                    onClick={() => setForm({
-                        key: -1,
-                        code: 'NONE'
-                    })}
+                    onClick={close}
                     children="Close"
                 />
             </Flexbox>
         ),
         DELETE: () => (
             <Flexbox flex={1} justifyContent="space-between" alignItems="center">
-                <Block>Delete {
-                    //@ts-ignore
-                    data.find(k => k.id === form.key).name
-                }?</Block>
+                <Block>Delete {getName(form.key)}?</Block>
                 <Button
                     size="small"
                     color={c => c.accent.red.css()}
-                    onClick={() => setForm({
-                        key: -1,
-                        code: 'NONE'
-                    })}
+                    onClick={close}
                     children="Delete"
                 />
             </Flexbox>
