@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { SplitElRef } from '.';
 
 interface SeparatorProps {
+    areaSize: number
     defaultVertical: boolean
     container: () => SplitElRef
     prev: () => HTMLDivElement
@@ -50,7 +51,7 @@ const Separator = (props: SeparatorProps) => {
             next.style[vertical ? 'height' : 'width'] = nextPercent
 
             move = true;
-            container._onDrag!();
+            container._onMove!();
         }
     }
 
@@ -80,8 +81,8 @@ const Separator = (props: SeparatorProps) => {
                     position: 'absolute',
                     cursor: vertical ? 'row-resize' : 'col-resize', 
                     userSelect:"none",
-                    [vertical ? 'top': 'left']: "-2px",
-                    [vertical ? 'height': 'width']: "4px",
+                    [vertical ? 'top': 'left']: `-${props.areaSize/2}px`,
+                    [vertical ? 'height': 'width']: `${props.areaSize}px`,
                     [vertical ? 'width': 'height']:"100%",
                 }}
             />

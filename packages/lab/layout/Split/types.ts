@@ -5,18 +5,19 @@ declare namespace SplitTypes {
         direction?: 'row' | 'column'
         children: React.ReactElement[]
         /**
-         * Saved positions
-         * Use percent values
+         * Split area size, value in pixels
+         */
+        areaSize?: number
+        /**
+         * You can give it array of numbers (in percent)
          */
         positions?: number[]
         /**
-         * Positions change
-         * calls every event
+         * Calls when split area moves
          */
-        onDrag?: (positions: number[]) => void
+        onMove?: (positions: number[]) => void
         /**
-         * Positions change
-         * calls once after positions change
+         * Calls when mouseUp if position did change
          */
         onChange?: (positions: number[]) => void
     }

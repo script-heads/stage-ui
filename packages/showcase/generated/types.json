@@ -10628,7 +10628,17 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 5833,
+                    "id": 5829,
+                    "name": "areaSize",
+                    "comment": "Split area size, value in pixels",
+                    "type": "intrinsic",
+                    "values": [
+                        "number"
+                    ],
+                    "isOptional": true
+                },
+                {
+                    "id": 5828,
                     "name": "children",
                     "type": "reference",
                     "values": [
@@ -10636,7 +10646,7 @@
                     ]
                 },
                 {
-                    "id": 5832,
+                    "id": 5827,
                     "name": "direction",
                     "type": "stringLiteral",
                     "values": [
@@ -10646,19 +10656,9 @@
                     "isOptional": true
                 },
                 {
-                    "id": 5839,
-                    "name": "onChange",
-                    "comment": "Positions change\ncalls once after positions change",
-                    "type": "reflection",
-                    "values": [
-                        "(positions: undefined) => void"
-                    ],
-                    "isOptional": true
-                },
-                {
                     "id": 5835,
-                    "name": "onDrag",
-                    "comment": "Positions change\ncalls every event",
+                    "name": "onChange",
+                    "comment": "Calls when mouseUp if position did change",
                     "type": "reflection",
                     "values": [
                         "(positions: undefined) => void"
@@ -10666,9 +10666,19 @@
                     "isOptional": true
                 },
                 {
-                    "id": 5834,
+                    "id": 5831,
+                    "name": "onMove",
+                    "comment": "Calls when split area moves",
+                    "type": "reflection",
+                    "values": [
+                        "(positions: undefined) => void"
+                    ],
+                    "isOptional": true
+                },
+                {
+                    "id": 5830,
                     "name": "positions",
-                    "comment": "Saved positions\nUse percent values",
+                    "comment": "You can give it array of numbers (in percent)",
                     "type": "intrinsic",
                     "values": [
                         "number[]"

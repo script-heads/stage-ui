@@ -1486,7 +1486,7 @@ declare module 'types' {
 	    interface FlowProps extends MarginProps, FlexProps, GridProps {
 	    }
 	    type ColorProp = FunctionalProp<ThemeTypes.Colors<chroma.Color>, CSS.Properties["color"]>;
-	    type IconProp = FunctionalProp<IconsetTypes.Index, string>;
+	    type IconProp = FunctionalProp<IconsetTypes.Index, React.ReactElement>;
 	    /**
 	     * Props for text form fields
 	     * @name FieldProps

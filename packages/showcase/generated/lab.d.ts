@@ -24,12 +24,11 @@ declare module 'data/Chart' {
 declare module 'layout/Split/Separator' {
 	import { SplitElRef } from 'layout/Split';
 	interface SeparatorProps {
+	    areaSize: number;
 	    defaultVertical: boolean;
 	    container: () => SplitElRef;
 	    prev: () => HTMLDivElement;
 	    next: () => HTMLDivElement;
-	    onMove: () => void;
-	    onDone: () => void;
 	} const Separator: (props: SeparatorProps) => JSX.Element;
 	export default Separator;
 
@@ -40,18 +39,19 @@ declare module 'layout/Split/types' {
 	        direction?: 'row' | 'column';
 	        children: React.ReactElement[];
 	        /**
-	         * Saved positions
-	         * Use percent values
+	         * Split area size, value in pixels
+	         */
+	        areaSize?: number;
+	        /**
+	         * You can give it array of numbers (in percent)
 	         */
 	        positions?: number[];
 	        /**
-	         * Positions change
-	         * calls every event
+	         * Calls when split area moves
 	         */
-	        onDrag?: (positions: number[]) => void;
+	        onMove?: (positions: number[]) => void;
 	        /**
-	         * Positions change
-	         * calls once after positions change
+	         * Calls when mouseUp if position did change
 	         */
 	        onChange?: (positions: number[]) => void;
 	    }
@@ -64,6 +64,8 @@ declare module 'layout/Split' {
 	import SplitTypes from 'layout/Split/types';
 	export type SplitElRef = (HTMLDivElement & {
 	    _vertical?: true;
+	    _onMove?: () => void;
+	    _onChange?: () => void;
 	}) | null; const _default: React.ForwardRefExoticComponent<SplitTypes.Props & React.RefAttributes<unknown>>;
 	export default _default;
 

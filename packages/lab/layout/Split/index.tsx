@@ -5,7 +5,7 @@ import useContainer from '@flow-ui/core/misc/hooks/useContainer'
 
 export type SplitElRef = (HTMLDivElement & { 
     _vertical?: true 
-    _onDrag?: () => void
+    _onMove?: () => void
     _onChange?: () => void
 }) | null
 
@@ -34,13 +34,13 @@ const Split = (props: SplitTypes.Props, ref: any) => {
     )
     
     useEffect(() => {
-        refs["-1"]._onDrag = () => {
-            props.onDrag && props.onDrag(getPositions())
+        refs["-1"]._onMove = () => {
+            props.onMove && props.onMove(getPositions())
         }
         refs["-1"]._onChange = () => {
             props.onChange && props.onChange(getPositions())
         }
-    }, [props.onChange, props.onDrag]);
+    }, [props.onChange, props.onMove]);
 
     useEffect(() => {
         Object.keys(refs).filter(key => parseInt(key) >= 0).map(key => {
@@ -65,6 +65,7 @@ const Split = (props: SplitTypes.Props, ref: any) => {
                     if (props.children.length !== index + 1) {
                         separator = (
                             <Separator
+                                areaSize={props.areaSize || 4}
                                 defaultVertical={vertical}
                                 container={() => refs[-1]!}
                                 prev={() => refs[index]!}
