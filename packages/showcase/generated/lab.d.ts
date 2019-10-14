@@ -70,6 +70,22 @@ declare module 'layout/Split' {
 	export default _default;
 
 }
+declare module 'control/ButtonGroup/types' {
+	import Global from '@flow-ui/core/types';
+	import ButtonTypes from '@flow-ui/core/control/Button/types'; namespace ButtonGroupTypes {
+	    interface Props extends Global.Props, ButtonTypes.Props {
+	        children: (React.ReactElement<ButtonTypes.Props> | React.ReactElement<ButtonTypes.Props>[]);
+	    }
+	}
+	export default ButtonGroupTypes;
+
+}
+declare module 'control/ButtonGroup' {
+	import React from 'react';
+	import ButtonGroupTypes from 'control/ButtonGroup/types'; const _default: React.ForwardRefExoticComponent<ButtonGroupTypes.Props & React.RefAttributes<unknown>>;
+	export default _default;
+
+}
 declare module '@flow-ui/lab' {
 	/**
 	 * Data
@@ -79,6 +95,15 @@ declare module '@flow-ui/lab' {
 	 * Layout
 	 */
 	export { default as Split } from 'layout/Split';
+	/**
+	 * Control
+	 */
+	export { default as ButtonGroup } from 'control/ButtonGroup';
+
+}
+declare module 'control/ButtonGroup/styles' {
+	import ButtonGroupTypes from 'control/ButtonGroup/types'; const _default: (props: ButtonGroupTypes.Props) => {};
+	export default _default;
 
 }
 declare module 'data/Chart/styles' {
