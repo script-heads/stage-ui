@@ -36,7 +36,7 @@ export default (props: BlockTypes.Props) => {
 
     return createStyles({
         props,
-        override: 'block',
+        overrides: theme.overrides.block,
         styles: {
             container: (variant) => [
                 {

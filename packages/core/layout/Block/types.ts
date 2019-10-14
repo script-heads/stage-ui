@@ -25,7 +25,7 @@ declare namespace BlockTypes {
     }
 
     export interface Overrides {
-        items?: {
+        styles?: {
             container?: any[]
         }
         variants?: {

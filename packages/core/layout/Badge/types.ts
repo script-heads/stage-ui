@@ -1,5 +1,4 @@
 import Global from '../../types';
-import { Interpolation } from '@emotion/css';
 
 declare namespace BadgeTypes {
     export interface Props extends Global.Props {
@@ -12,8 +11,15 @@ declare namespace BadgeTypes {
     }
 
     export interface Overrides {
-        container?: Interpolation
-        holder?: Interpolation
+        styles: {
+            container: Global.EmotionStyles
+            holder: Global.EmotionStyles
+        }
+        variants: {
+            align: Global.Variant<Props["align"], {
+                holder: Global.EmotionStyles
+            }>
+        }
     }
 }
 

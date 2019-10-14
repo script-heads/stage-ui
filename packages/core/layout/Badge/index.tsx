@@ -1,11 +1,11 @@
 import React, { forwardRef } from 'react';
 import BadgeTypes from './types';
 import useContainer from '../../misc/hooks/useContainer';
-import getStyles from './styles';
+import bageStyles from './styles';
 
 const Badge = (props: BadgeTypes.Props, ref) => {
     const { attributes } = useContainer(props);
-    const styles = getStyles(props);
+    const styles = bageStyles(props);
 
     return (
         <div css={styles.container}>
@@ -13,7 +13,7 @@ const Badge = (props: BadgeTypes.Props, ref) => {
                 {...attributes}
                 ref={ref}
                 children={props.content}
-                css={styles.holder(!['string', 'number'].includes(typeof props.content))}
+                css={styles.holder()}
             />
             {props.children}
         </div>
