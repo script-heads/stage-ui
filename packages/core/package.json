@@ -31,6 +31,6 @@
     "@types/luxon": "^1.15.2",
     "babel-loader": "^8.0.6",
     "csstype": "^2.6.6",
-    "typescript": "^3.7-beta"
+    "typescript": "^3.7.0-beta"
   }
 }
