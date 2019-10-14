@@ -44,11 +44,24 @@ const Separator = (props: SeparatorProps) => {
             const total = prevSize + nextSize
             const otherSize = containerSize - prevSize - nextSize
             const percent = 100 - (otherSize / containerSize * 100)
-            const prevPercent = (prevSize / total * percent) + '%'
-            const nextPercent = (nextSize / total * percent) + '%'
-
-            prev.style[vertical ? 'height' : 'width'] = prevPercent
-            next.style[vertical ? 'height' : 'width'] = nextPercent
+            let prevPercent = (prevSize / total * percent)
+            let nextPercent = (nextSize / total * percent)
+            /**
+             * Collisions fix
+             */
+            if (prevPercent < 0) {
+                nextPercent += prevPercent
+                prevPercent = 0 
+            }
+            if (nextPercent < 0) {
+                prevPercent += nextPercent
+                nextPercent = 0 
+            }
+            /**
+             * Setting values
+             */
+            prev.style[vertical ? 'height' : 'width'] = prevPercent + '%'
+            next.style[vertical ? 'height' : 'width'] = nextPercent + '%'
 
             move = true;
             container._onMove!();
