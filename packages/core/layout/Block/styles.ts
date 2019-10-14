@@ -36,7 +36,7 @@ export default (props: BlockTypes.Props) => {
 
     return createStyles({
         props,
-        overrides: theme.overrides.block,
+        overrides: theme.overrides.Block,
         styles: {
             container: (variant) => [
                 {
@@ -45,12 +45,7 @@ export default (props: BlockTypes.Props) => {
                     overflow: props.overflow
                 },
                 variant('surface', surfaceVariants),
-                styleProps.color,
-                styleProps.flex,
-                styleProps.grid,
-                styleProps.layout,
-                styleProps.padding,
-                styleProps.margin,
+                styleProps.all
             ]
         }
     })

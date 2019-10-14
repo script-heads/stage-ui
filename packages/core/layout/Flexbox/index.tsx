@@ -3,8 +3,10 @@ import { forwardRef } from 'react';
 import Types from './types';
 import useContainer from '../../misc/hooks/useContainer';
 import useStyleProps from '../../misc/hooks/useStyleProps';
+import useFlow from '../../misc/hooks/useFlow';
 
 const Flexbox = (props: Types.Props, ref) => {
+    const {theme} = useFlow();
     const { attributes } = useContainer(props);
     const styleProps = useStyleProps(props);
 
@@ -25,7 +27,8 @@ const Flexbox = (props: Types.Props, ref) => {
                     flexFlow: props.flow,
                     flexWrap: props.wrap,
                 },
-                styleProps.all
+                styleProps.all,
+                theme.overrides.Flexbox
             ]
         },
         props.children

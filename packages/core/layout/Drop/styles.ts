@@ -9,7 +9,7 @@ export default (props: Types.Props) => {
 
   return createStyles({
     props,
-    overrides: theme.overrides.drop,
+    overrides: theme.overrides.Drop,
     styles: {
       container: [
         styleProps.self,

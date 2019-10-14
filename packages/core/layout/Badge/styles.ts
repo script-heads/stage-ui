@@ -10,16 +10,14 @@ export default (props: BadgeTypes.Props) => {
 
     return createStyles({
         props,
-        overrides: theme.overrides.bage,
+        overrides: theme.overrides.Bage,
         styles: {
             container: [
                 {
                     position: 'relative',
                     width: 'fit-content',
                 },
-                styleProps.margin,
-                styleProps.flex,
-                styleProps.grid,
+                styleProps.flow
             ],
             holder: (variant) => [
                 {
@@ -77,10 +75,7 @@ export default (props: BadgeTypes.Props) => {
                         transform: 'translate(-50%, -50%)',
                     }]
                 }),
-                styleProps.padding,
-                styleProps.layout,
-                styleProps.color,
-                styleProps.border,
+                styleProps.self
             ]
         }
     })
