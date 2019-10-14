@@ -21,10 +21,13 @@ const Drop = (props: Types.Props, ref) => {
             setPosition();
             document.addEventListener("scroll", setPosition, true);
             document.addEventListener("mouseup", handleClickOutside);
+            window.addEventListener("resize", setPosition);
+
         }
         return () => {
             document.removeEventListener("scroll", setPosition, true);
             document.removeEventListener("mouseup", handleClickOutside);
+            window.removeEventListener("resize", setPosition);
         };
     });
 
