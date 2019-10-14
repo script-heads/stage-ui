@@ -21,8 +21,13 @@ declare module 'layout/Block/types' {
 	        background?: CSS.Properties["background"];
 	        boxShadow?: CSS.Properties["boxShadow"];
 	    };
+<<<<<<< HEAD
 	    interface Styles {
 	        items?: {
+=======
+	    interface Overrides {
+	        styles?: {
+>>>>>>> 7601f7d39e673393ef0ff44708e51f1a515ae245
 	            container?: any[];
 	        };
 	        variants?: {
@@ -45,8 +50,7 @@ declare module 'layout/Block/types' {
 }
 declare module 'layout/Badge/types' {
 	/// <reference types="react" />
-	import Global from 'types';
-	import { Interpolation } from '@emotion/css'; namespace BadgeTypes {
+	import Global from 'types'; namespace BadgeTypes {
 	    interface Props extends Global.Props {
 	        content: React.ReactNode;
 	        align?: "top" | "bottom" | "left" | "right" | "top-right" | "bottom-right" | "top-left" | "bottom-left";
@@ -55,9 +59,22 @@ declare module 'layout/Badge/types' {
 	        children?: React.ReactNode;
 	        overrides?: Overrides;
 	    }
+<<<<<<< HEAD
 	    interface Styles {
 	        container?: Interpolation;
 	        holder?: Interpolation;
+=======
+	    interface Overrides {
+	        styles: {
+	            container: Global.EmotionStyles;
+	            holder: Global.EmotionStyles;
+	        };
+	        variants: {
+	            align: Global.Variant<Props["align"], {
+	                holder: Global.EmotionStyles;
+	            }>;
+	        };
+>>>>>>> 7601f7d39e673393ef0ff44708e51f1a515ae245
 	    }
 	}
 	export default BadgeTypes;
@@ -1203,7 +1220,8 @@ declare module 'types' {
 	import ThemeTypes from 'misc/themes/types';
 	import IconsetTypes from 'misc/icons/types';
 	import chroma from 'chroma-js';
-	import CSS from 'csstype'; module 'csstype' {
+	import CSS from 'csstype';
+	import { Interpolation } from '@emotion/core'; module 'csstype' {
 	    interface Properties {
 	        display?: "block" | "inline" | "inline-block" | "inline-table" | "list-item" | "none" | "run-in" | "table" | "table-caption" | "table-cell" | "table-column-group" | "table-column" | "table-footer-group" | "table-header-group" | "table-row" | "table-row-group" | "flex" | "grid";
 	        overflow?: "auto" | "hidden" | "scroll" | "visible" | "inherit";
@@ -1505,6 +1523,8 @@ declare module 'types' {
 	        clearable?: boolean;
 	    }
 	    type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
+	    type EmotionStyles = Array<Interpolation>;
+	    type Variant<T, K> = Record<Extract<T, string>, K>;
 	}
 	export default Global;
 
@@ -1944,21 +1964,41 @@ declare module 'control/Button' {
 
 }
 declare module 'misc/utils/createStyles' {
-	 type styles = any[]; type variant = (key: string, variants: {
-	    [x: string]: styles;
-	} | styles) => styles;
-	interface params {
-	    props: {};
-	    override?: string;
-	    styles: {
-	        [x: string]: ((variant: variant) => styles) | styles;
+	import GlobalTypes from 'types';
+	import { SerializedStyles } from '@emotion/core'; type Variant = (key: string, variants: {
+	    [x: string]: GlobalTypes.EmotionStyles;
+	} | GlobalTypes.EmotionStyles) => GlobalTypes.EmotionStyles; type VariantedStyle = ((variant: Variant) => GlobalTypes.EmotionStyles) | GlobalTypes.EmotionStyles; type Style = (state?: {
+	    [x: string]: string | boolean | undefined;
+	}) => SerializedStyles; type ComponentStyles = {
+	    [x: string]: VariantedStyle;
+	};
+	interface Params {
+	    props: {
+	        [x: string]: any;
 	    };
-	} const _default: (params: params) => any;
+	    styles: ComponentStyles;
+	    overrides?: {
+	        styles?: {
+	            [x: string]: GlobalTypes.EmotionStyles | undefined;
+	        };
+	        variants?: {
+	            [x: string]: {
+	                [x: string]: {
+	                    [x: string]: GlobalTypes.EmotionStyles | undefined;
+	                } | undefined;
+	            } | undefined;
+	        };
+	    };
+	} const _default: <P extends Params, O extends keyof P["styles"]>(params: P) => { [K in O]: Style; };
 	export default _default;
 
 }
 declare module 'layout/Block/styles' {
-	import BlockTypes from 'layout/Block/types'; const _default: (props: BlockTypes.Props) => any;
+	import BlockTypes from 'layout/Block/types'; const _default: (props: BlockTypes.Props) => {
+	    container: (state?: {
+	        [x: string]: string | boolean | undefined;
+	    } | undefined) => import("@emotion/utils").SerializedStyles;
+	};
 	export default _default;
 
 }
@@ -1983,7 +2023,7 @@ declare module 'misc/hocs/Check/types' {
 	        defaultValue?: boolean;
 	        uppercase?: boolean;
 	        size?: Global.Size;
-	        children: (checked: boolean) => React.ReactElement;
+	        children: (checked: boolean, focus: boolean) => React.ReactElement;
 	    }
 	}
 	export default CheckTypes;
@@ -2004,7 +2044,7 @@ declare module 'misc/hocs/Check' {
 
 }
 declare module 'control/Checkbox/styles' {
-	import CheckboxTypes from 'control/Checkbox/types'; const _default: (props: CheckboxTypes.Props, checked: boolean) => {
+	import CheckboxTypes from 'control/Checkbox/types'; const _default: (props: CheckboxTypes.Props, checked: boolean, focus: boolean) => {
 	    check: import("@emotion/utils").SerializedStyles;
 	    icon: import("@emotion/utils").SerializedStyles;
 	};
@@ -2432,7 +2472,7 @@ declare module 'control/Radio/types' {
 
 }
 declare module 'control/Radio/styles' {
-	import RadioTypes from 'control/Radio/types'; const _default: (props: RadioTypes.Props, checked: boolean) => {
+	import RadioTypes from 'control/Radio/types'; const _default: (props: RadioTypes.Props, checked: boolean, focus: boolean) => {
 	    check: import("@emotion/utils").SerializedStyles;
 	    radio: import("@emotion/utils").SerializedStyles;
 	};
@@ -2507,7 +2547,7 @@ declare module 'control/Switch/types' {
 
 }
 declare module 'control/Switch/styles' {
-	import SwitchTypes from 'control/Switch/types'; const _default: (props: SwitchTypes.Props, checked: boolean) => {
+	import SwitchTypes from 'control/Switch/types'; const _default: (props: SwitchTypes.Props, checked: boolean, focus: boolean) => {
 	    check: import("@emotion/utils").SerializedStyles;
 	    switch: import("@emotion/utils").SerializedStyles;
 	};
@@ -2628,7 +2668,14 @@ declare module 'data/Table' {
 
 }
 declare module 'layout/Badge/styles' {
-	import BadgeTypes from 'layout/Badge/types'; const _default: (props: BadgeTypes.Props) => any;
+	import BadgeTypes from 'layout/Badge/types'; const _default: (props: BadgeTypes.Props) => {
+	    container: (state?: {
+	        [x: string]: string | boolean | undefined;
+	    } | undefined) => import("@emotion/utils").SerializedStyles;
+	    holder: (state?: {
+	        [x: string]: string | boolean | undefined;
+	    } | undefined) => import("@emotion/utils").SerializedStyles;
+	};
 	export default _default;
 
 }
