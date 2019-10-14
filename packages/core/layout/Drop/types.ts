@@ -19,6 +19,10 @@ declare namespace DropTypes {
     onEsc?: () => void
     children?: React.ReactNode
   }
+
+  interface Overrides {
+    
+  }
 }
 
 export default DropTypes;

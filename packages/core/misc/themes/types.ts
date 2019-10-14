@@ -1,6 +1,7 @@
 import chroma from 'chroma-js';
 import BlockTypes from '../../layout/Block/types';
 import BageTypes from '../../layout/Badge/types';
+import DropTypes from '../../layout/Drop/types';
 import TableTypes from '../../data/Table/types';
 import ModalTypes from '../../layout/Modal/types';
 import PanelTypes from '../../layout/Panel/types';
@@ -70,6 +71,7 @@ declare namespace ThemeTypes {
         select: SelectTypes.Overrides
         icon: IconTypes.Overrides
         range: RangeTypes.Overrides
+        drop: DropTypes.Overrides
     }
 
     export type Replace = (

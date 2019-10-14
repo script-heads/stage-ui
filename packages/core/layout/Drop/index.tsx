@@ -1,14 +1,14 @@
-import React, { forwardRef, useEffect, useRef, Fragment, useState, RefObject } from "react";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import Types from "./types";
-import createStyles from "./styles";
+import DropStyles from "./styles";
 import useContainer from "../../misc/hooks/useContainer";
 
 const Drop = (props: Types.Props, ref) => {
 
     const { attributes } = useContainer(props);
     const { children, target, onClickOutside, distance = 0 } = props;
-    const styles = createStyles(props);
+    const styles = DropStyles(props);
     const dropRef = useRef<HTMLDivElement>(null);
     const [targetRef, setTargetRef] = useState<React.RefObject<any> | null>(null)
 
@@ -143,7 +143,7 @@ const Drop = (props: Types.Props, ref) => {
         <div
             {...attributes}
             ref={dropRef}
-            css={styles.container}
+            css={styles.container()}
             style={{
                 top: 0,
                 left: 0,
