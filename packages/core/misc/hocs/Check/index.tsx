@@ -4,9 +4,10 @@ import createStyles from './styles';
 import CheckTypes from './types';
 
 const Check = (props: CheckTypes.Props, ref: RefObject<HTMLDivElement>) => {
+    const [focus, setFocus] = useState(false);
     const [checked, setChecked] = useState(props.checked || props.defaultValue || false);
     const { label } = props;
-    const { attributes } = useContainer(props);
+    const { attributes } = useContainer(props, false, true);
 
     const styles = createStyles(props);
 
@@ -16,25 +17,59 @@ const Check = (props: CheckTypes.Props, ref: RefObject<HTMLDivElement>) => {
         }
     }, [props.checked]);
 
-    function onClick(e: Event) {
-        if (!props.disabled) {
-            props.onChange && props.onChange(!checked);
-            if (typeof props.checked === "undefined") {
-                setChecked(!checked);
+    /**
+     * Change handler
+     */
+    function change() {
+        props.onChange && props.onChange(!checked);
+        if (typeof props.checked === "undefined") {
+            setChecked(!checked);
+        }
+    }
+    /*
+    * Keyboard control
+    */
+    function onKeyDown(event: React.KeyboardEvent<HTMLElement>) {
+        /**
+         * Enter or Space
+         */
+        if (event.keyCode === 0x0D || event.keyCode === 0x20) {
+            change();
+            /**
+             * Prevent page scrolling
+             */
+            if (event.keyCode === 0x20) {
+                event.preventDefault()
             }
         }
-        attributes.onClick && attributes.onClick(e)
+        props.onKeyDown && props.onKeyDown(event)
+    }
+
+    function onClick(e: React.MouseEvent<HTMLElement>) {
+        if (!props.disabled) {
+            change()
+        }
+        props.onClick && props.onClick(e)
     }
 
     const containerProps = {
         ref,
         ...attributes,
         css: styles.container,
-        onClick
+        onClick,
+        onKeyDown,
+        onFocus: (e: React.FocusEvent<HTMLElement>) => {
+            setFocus(true)
+            props.onFocus && props.onFocus(e)
+        },
+        onBlur: (e: React.FocusEvent<HTMLElement>) => {
+            setFocus(false)
+            props.onBlur && props.onBlur(e)
+        }
     }
     return (
         <div {...containerProps}>
-            {props.children(checked)}
+            {props.children(checked, focus)}
             {(label && label.length) && (
                 <div css={styles.label} children={label} />
             )}

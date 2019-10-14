@@ -4,7 +4,7 @@ import variant from '../../misc/utils/variant';
 import Global from '../../types';
 import SwitchTypes from './types';
 
-export default (props: SwitchTypes.Props, checked: boolean) => {
+export default (props: SwitchTypes.Props, checked: boolean, focus: boolean) => {
     const { theme } = useFlow();
     const { animated, disabled, size = 'medium' } = props;
 

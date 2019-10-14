@@ -26,6 +26,7 @@ export default (props: ChecTypes.Props) => {
                     ? "not-allowed"
                     : "pointer",
                 color: theme.color.onSurface.css(),
+                outline: 'none'
             },
             styleProps.all,
             animated && {

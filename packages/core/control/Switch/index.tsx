@@ -9,12 +9,21 @@ const Switch: FC<SwitchTypes.Props> = (props, ref: RefObject<HTMLDivElement>) =>
     return (
         <Check
             {...props}
+            tabIndex={props.tabIndex || 0}
+            onFocus={(e) => {
+                props.onFocus && props.onFocus(e)
+                e.stopPropagation()
+            }}
+            onBlur={(e) => {
+                props.onBlur && props.onBlur(e)
+                e.stopPropagation()
+            }}
             /**
              * Switch use
              */
             type="checkbox"
-            children={checked => {
-                const styles = createStyles(props, checked);
+            children={(checked, focus) => {
+                const styles = createStyles(props, checked, focus);
                 return (
                     <Block css={styles.check}>
                         <div css={styles.switch} />
