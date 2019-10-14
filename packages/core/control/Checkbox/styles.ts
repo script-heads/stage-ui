@@ -4,7 +4,7 @@ import variant from '../../misc/utils/variant';
 import Global from '../../types';
 import CheckboxTypes from './types';
 
-export default (props: CheckboxTypes.Props, checked: boolean) => {
+export default (props: CheckboxTypes.Props, checked: boolean, focus: boolean) => {
     const { theme } = useFlow();
     const { animated, disabled, size = 'medium' } = props;
 
@@ -17,13 +17,17 @@ export default (props: CheckboxTypes.Props, checked: boolean) => {
                 justifyContent: "center",
                 color: disabled
                     ? theme.color.hardest.css()
-                    : theme.color.surface.css(),
-                backgroundColor: disabled
-                    ? theme.color.lightest.css()
                     : theme.color.primary.css(),
                 borderColor: disabled
                     ? theme.color.lightest.css()
-                    : theme.color.primary.css(),
+                    : (
+                        focus
+                            ? theme.color.primary.alpha(0.5).css()
+                            : theme.color.lightest.css()
+                    ),
+                backgroundColor: disabled
+                    ? theme.color.lightest.css()
+                    : theme.color.surface.css(),
                 borderWidth: theme.assets.border.width,
                 borderStyle: theme.assets.border.style,
                 borderRadius: theme.radius.narrow,

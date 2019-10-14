@@ -14,7 +14,7 @@ declare namespace CheckTypes {
         defaultValue?: boolean
         uppercase?: boolean
         size?: Global.Size
-        children: (checked: boolean) => React.ReactElement
+        children: (checked: boolean, focus: boolean) => React.ReactElement
     }
 }
 
