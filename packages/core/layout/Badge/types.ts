@@ -7,19 +7,15 @@ declare namespace BadgeTypes {
         background?: Global.ColorProp
         color?: Global.ColorProp
         children?: React.ReactNode
-        overrides?: Overrides
     }
 
-    export interface Overrides {
-        styles: {
-            container: Global.EmotionStyles
-            holder: Global.EmotionStyles
-        }
-        variants: {
-            align: Global.Variant<Props["align"], {
-                holder: Global.EmotionStyles
-            }>
-        }
+
+    export interface Styles {
+        container: Global.EmotionStyles
+        holder: Global.EmotionStyles
+    }   
+    export interface Variants {
+        align: Global.Variant<Props["align"]>
     }
 }
 

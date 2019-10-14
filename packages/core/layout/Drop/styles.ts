@@ -7,17 +7,17 @@ export default (props: Types.Props) => {
   const { theme } = useFlow();
   const styleProps = useStyleProps(props);
 
-  return createStyles({
+  return createStyles<Types.Styles, Types.Variants>(
     props,
-    overrides: theme.overrides.Drop,
-    styles: {
-      container: [
-        styleProps.self,
-        {
-          position: "fixed",
-          zIndex: 999,
-        }
-      ]
-    }
-  });
+    (props, theme) => {
+      return {
+        container: [
+          styleProps.self,
+          {
+            position: "fixed",
+            zIndex: 999,
+          }
+        ]
+    }}
+  );
 };

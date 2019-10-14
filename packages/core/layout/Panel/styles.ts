@@ -6,7 +6,7 @@ import css, { Interpolation } from "@emotion/css";
 export default (props: PanelTypes.Props) => {
     const styleProps = useStyleProps(props);
     const { theme } = useFlow();
-    const overrides = theme.overrides.panel;
+    const overrides = theme.overrides.Panel;
 
     return {
         container: css(

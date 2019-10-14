@@ -20,7 +20,11 @@ declare namespace DropTypes {
     children?: React.ReactNode
   }
 
-  interface Overrides {
+  interface Styles {
+      container: Global.EmotionStyles
+  }
+
+  interface Variants {
     
   }
 }

@@ -12,7 +12,7 @@ declare namespace RadioTypes {
         size?: Global.Size
         onChange?: (checked: boolean) => void
     }
-    export interface Overrides {
+    export interface Styles {
         check: ObjectInterpolation<undefined>
         icon: ObjectInterpolation<undefined>
     }

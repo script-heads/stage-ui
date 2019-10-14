@@ -10,7 +10,7 @@ declare namespace PanelTypes {
         children?: React.ReactNode
     }
 
-    export interface Overrides {
+    export interface Styles {
         container?: Interpolation
     }
 }

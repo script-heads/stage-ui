@@ -74,7 +74,7 @@ declare namespace SelectTypes {
         defaultValue?: string
         disabled?: boolean
     }
-    export interface Overrides {
+    export interface Styles {
         container: Interpolation
         input: Interpolation
         dropMenu: Interpolation

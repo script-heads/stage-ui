@@ -7,7 +7,7 @@ import callProp from '../../misc/utils/callProp';
 export default (props: SelectTypes.Props) => {
     const { size = 'medium', shape = 'rounded', decoration = 'outline' } = props;
     const { theme } = useFlow();
-    const overrides = theme.overrides.select;
+    const overrides = theme.overrides.Select;
     let color = callProp(props.color, theme.color);
     let backgroundColor = callProp(props.backgroundColor, theme.color);
 

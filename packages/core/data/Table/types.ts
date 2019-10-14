@@ -103,7 +103,7 @@ declare namespace TableTypes {
         styles: any
     }
 
-    export interface Overrides {
+    export interface Styles {
         container: Interpolation
         content: Interpolation
         headRow: Interpolation

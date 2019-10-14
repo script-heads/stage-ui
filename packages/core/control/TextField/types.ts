@@ -56,7 +56,7 @@ declare namespace TextFieldTypes {
         wrap?: string;
     }
 
-    export interface Overrides {
+    export interface Styles {
         
     }
 }

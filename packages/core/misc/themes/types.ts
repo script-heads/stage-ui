@@ -84,38 +84,38 @@ declare namespace ThemeTypes {
     }
 
     export interface Overrides {
-        Divider: DividerTypes.Overrides
-        Icon: IconTypes.Overrides
-        Spinner: SpinnerTypes.Overrides
-        Typography: TypographyTypes.Overrides
-        Button: ButtonTypes.Overrides
-        Checkbox: CheckboxTypes.Overrides
-        DatePicker: DatePickerTypes.Overrides
-        Menu: MenuTypes.Overrides
-        Radio: RadioTypes.Overrides
-        Range: RangeTypes.Overrides
-        Select: SelectTypes.Overrides
-        Switch: SwitchTypes.Overrides
-        TextField: TextFieldTypes.Overrides
-        Meter: MeterTypes.Overrides
-        Table: TableTypes.Overrides
-        Badge: BadgeTypes.Overrides
-        Block: BlockTypes.Overrides
-        Drop: DropTypes.Overrides
-        Flexbox: FlexboxTypes.Overrides
-        Grid: GridTypes.Overrides
-        Modal: ModalTypes.Overrides
-        Notification: NotificationTypes.Overrides
-        Panel: PanelTypes.Overrides
-        Popover: PopoverTypes.Overrides
-        Tree: TreeTypes.Overrides
-        ViewportTypes: ViewportTypes.Overrides
+        Divider: DividerTypes.Styles
+        Icon: IconTypes.Styles
+        Spinner: SpinnerTypes.Styles
+        Typography: TypographyTypes.Styles
+        Button: ButtonTypes.Styles
+        Checkbox: CheckboxTypes.Styles
+        DatePicker: DatePickerTypes.Styles
+        Menu: MenuTypes.Styles
+        Radio: RadioTypes.Styles
+        Range: RangeTypes.Styles
+        Select: SelectTypes.Styles
+        Switch: SwitchTypes.Styles
+        TextField: TextFieldTypes.Styles
+        Meter: MeterTypes.Styles
+        Table: TableTypes.Styles
+        Badge: BadgeTypes.Styles
+        Block: BlockTypes.Styles
+        Drop: DropTypes.Styles
+        Flexbox: FlexboxTypes.Styles
+        Grid: GridTypes.Styles
+        Modal: ModalTypes.Styles
+        Notification: NotificationTypes.Styles
+        Panel: PanelTypes.Styles
+        Popover: PopoverTypes.Styles
+        Tree: TreeTypes.Styles
+        ViewportTypes: ViewportTypes.Styles
     }
 
     export type Replace = (
         variables: DeepPartial<Variables<[number, number, number]>>,
         assets?: (variables: DeepPartial<Variables<[number, number, number]>>) => DeepPartial<Assets>,
-        overrides?: DeepPartial<Overrides>
+        Styles?: DeepPartial<Overrides>
     ) => Index;
 
     export type Colors<T> = {

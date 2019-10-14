@@ -8,10 +8,9 @@ export default (props: BadgeTypes.Props) => {
     const { theme } = useFlow();
     const styleProps = useStyleProps(props);
 
-    return createStyles({
+    return createStyles<BadgeTypes.Styles, BadgeTypes.Variants>(
         props,
-        overrides: theme.overrides.Bage,
-        styles: {
+        (props, theme) => {return{
             container: [
                 {
                     position: 'relative',
@@ -33,7 +32,8 @@ export default (props: BadgeTypes.Props) => {
                     right: 0,
                     transform: 'translate(50%, -50%)',
                 },
-                variant('align', {
+                variant({
+                    align: {
                     'top-right': [{
                         top: 0,
                         right: 0,
@@ -74,9 +74,9 @@ export default (props: BadgeTypes.Props) => {
                         left: 0,
                         transform: 'translate(-50%, -50%)',
                     }]
-                }),
+                }}),
                 styleProps.self
             ]
-        }
-    })
+        }}
+    )
 }

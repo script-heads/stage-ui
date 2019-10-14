@@ -30,7 +30,7 @@ declare namespace ButtonTypes {
         children?: React.ReactNode
     }
 
-    export interface Overrides {
+    export interface Styles {
         container: ObjectInterpolation<undefined>
         filled: ObjectInterpolation<undefined>
         outline: ObjectInterpolation<undefined>

@@ -6,7 +6,7 @@ import useStyleProps from '../../misc/hooks/useStyleProps';
 export default (props: ModalTypes.Props) => {
     const { theme } = useFlow();
     const { all: styleProps } = useStyleProps(props);
-    const overrides = theme.overrides.modal;
+    const overrides = theme.overrides.Modal;
 
     return {
         overlay: (visible, center) => css(

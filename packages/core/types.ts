@@ -339,7 +339,7 @@ declare namespace Global {
     type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
 
     type EmotionStyles = Array<Interpolation>;
-    type Variant<T,K> = Record<Extract<T,string>,K>
+    type Variant<T> = Record<Extract<T,string>,EmotionStyles>
 }
 
 export default Global

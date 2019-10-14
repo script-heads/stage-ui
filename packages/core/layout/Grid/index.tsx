@@ -3,8 +3,10 @@ import { forwardRef, RefObject } from 'react';
 import useStyleProps from '../../misc/hooks/useStyleProps';
 import useContainer from '../../misc/hooks/useContainer';
 import Types from './types';
+import useFlow from '../../misc/hooks/useFlow';
 
 const Grid = (props: Types.Props, ref: RefObject<HTMLDivElement>) => {
+    const { theme } = useFlow();
     const { attributes } = useContainer(props);
     const styleProps = useStyleProps(props);
 
@@ -35,7 +37,8 @@ const Grid = (props: Types.Props, ref: RefObject<HTMLDivElement>) => {
                     justifyContent: props.justifyContent,
                     justifyItems: props.justifyItems,
                 },
-                styleProps.all
+                styleProps.all,
+                theme.overrides.Grid
             ]
         },
         props.children

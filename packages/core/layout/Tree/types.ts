@@ -8,13 +8,12 @@ declare namespace TreeTypes {
         label?: React.ReactNode | string
         children?: React.ReactNode
         decoration?: TreeDecoration
-        overrides?: Overrides
         alwaysOpen?: boolean
         defaultOpen?: boolean
         indent?: boolean
     }
 
-    export interface Overrides {
+    export interface Styles {
         containter?: Interpolation
     }
 }

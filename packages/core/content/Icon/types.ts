@@ -16,7 +16,7 @@ declare namespace IconTypes {
 		background?: Global.ColorProp
 	}
 
-	export interface Overrides {
+	export interface Styles {
 
 	}
 }

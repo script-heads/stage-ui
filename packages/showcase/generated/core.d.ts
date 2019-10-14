@@ -21,7 +21,7 @@ declare module 'layout/Block/types' {
 	        background?: CSS.Properties["background"];
 	        boxShadow?: CSS.Properties["boxShadow"];
 	    };
-	    interface Overrides {
+	    interface Styles {
 	        items?: {
 	            container?: any[];
 	        };
@@ -55,7 +55,7 @@ declare module 'layout/Badge/types' {
 	        children?: React.ReactNode;
 	        overrides?: Overrides;
 	    }
-	    interface Overrides {
+	    interface Styles {
 	        container?: Interpolation;
 	        holder?: Interpolation;
 	    }
@@ -163,7 +163,7 @@ declare module 'data/Table/types' {
 	        children?: any;
 	        styles: any;
 	    }
-	    interface Overrides {
+	    interface Styles {
 	        container: Interpolation;
 	        content: Interpolation;
 	        headRow: Interpolation;
@@ -247,7 +247,7 @@ declare module 'layout/Modal/types' {
 	        onClosePressed: () => void;
 	        styles: any;
 	    }
-	    interface Overrides {
+	    interface Styles {
 	        overlay: Interpolation;
 	        window: Interpolation;
 	        header: Interpolation;
@@ -267,7 +267,7 @@ declare module 'layout/Panel/types' {
 	        color?: Global.ColorProp;
 	        children?: React.ReactNode;
 	    }
-	    interface Overrides {
+	    interface Styles {
 	        container?: Interpolation;
 	    }
 	}
@@ -288,7 +288,7 @@ declare module 'layout/Popover/types' {
 	        arrowWidth?: CSS.Properties["width"];
 	        arrowHeight?: CSS.Properties["height"];
 	    }
-	    interface Overrides {
+	    interface Styles {
 	        container?: Interpolation;
 	        arrow?: Interpolation;
 	    }
@@ -309,7 +309,7 @@ declare module 'control/Checkbox/types' {
 	        size?: Global.Size;
 	        onChange?: (checked: boolean) => void;
 	    }
-	    interface Overrides {
+	    interface Styles {
 	        check: ObjectInterpolation<undefined>;
 	        icon: ObjectInterpolation<undefined>;
 	    }
@@ -394,7 +394,7 @@ declare module 'control/DatePicker/types' {
 	        onGridTypeChange: (type: GridType) => void;
 	        styles: any;
 	    }
-	    interface Overrides {
+	    interface Styles {
 	        textFieldWrapper?: Interpolation;
 	        textFieldOkButton?: Interpolation;
 	        dateGrind?: Interpolation;
@@ -468,7 +468,7 @@ declare module 'control/Select/types' {
 	        defaultValue?: string;
 	        disabled?: boolean;
 	    }
-	    interface Overrides {
+	    interface Styles {
 	        container: Interpolation;
 	        input: Interpolation;
 	        dropMenu: Interpolation;
@@ -505,7 +505,7 @@ declare module 'control/Button/types' {
 	        color?: Global.ColorProp;
 	        children?: React.ReactNode;
 	    }
-	    interface Overrides {
+	    interface Styles {
 	        container: ObjectInterpolation<undefined>;
 	        filled: ObjectInterpolation<undefined>;
 	        outline: ObjectInterpolation<undefined>;
@@ -531,7 +531,7 @@ declare module 'content/Icon/types' {
 	        color?: Global.ColorProp;
 	        background?: Global.ColorProp;
 	    }
-	    interface Overrides {
+	    interface Styles {
 	    }
 	}
 	export default IconTypes;
@@ -549,7 +549,7 @@ declare module 'control/Range/types' {
 	        style?: CSSProperties;
 	        className?: string;
 	    }
-	    interface Overrides {
+	    interface Styles {
 	        container: Interpolation;
 	        rail: Interpolation;
 	        track: Interpolation;
@@ -613,7 +613,7 @@ declare module 'misc/themes/types' {
 	            xlarge: string;
 	        };
 	    }
-	    interface Overrides {
+	    interface Styles {
 	        button: ButtonTypes.Overrides;
 	        block: BlockTypes.Overrides;
 	        bage: BageTypes.Overrides;
@@ -2383,7 +2383,7 @@ declare module 'control/Menu/types' {
 	        styles?: any;
 	        onEnter?: () => void;
 	    }
-	    interface Overrides {
+	    interface Styles {
 	    }
 	}
 	export default MenuTypes;
@@ -2423,7 +2423,7 @@ declare module 'control/Radio/types' {
 	        size?: Global.Size;
 	        onChange?: (checked: boolean) => void;
 	    }
-	    interface Overrides {
+	    interface Styles {
 	        check: ObjectInterpolation<undefined>;
 	        icon: ObjectInterpolation<undefined>;
 	    }
@@ -2498,7 +2498,7 @@ declare module 'control/Switch/types' {
 	        size?: Global.Size;
 	        onChange?: (checked: boolean) => void;
 	    }
-	    interface Overrides {
+	    interface Styles {
 	        check: ObjectInterpolation<undefined>;
 	        icon: ObjectInterpolation<undefined>;
 	    }
@@ -2743,7 +2743,7 @@ declare module 'layout/Tree/types' {
 	        defaultOpen?: boolean;
 	        indent?: boolean;
 	    }
-	    interface Overrides {
+	    interface Styles {
 	        containter?: Interpolation;
 	    }
 	}

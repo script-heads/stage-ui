@@ -6,7 +6,7 @@ import TableTypes from './types';
 export default (props: TableTypes.Props) => {
     const { theme } = useFlow();
     const { all: gloablStyles } = useStyleProps(props);
-    const overrides = theme.overrides.table;
+    const overrides = theme.overrides.Table;
 
     return {
 

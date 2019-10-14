@@ -10,7 +10,7 @@ declare namespace SpinnerTypes {
         size?: string
     }
 
-    export interface Overrides {
+    export interface Styles {
         
     }
 }

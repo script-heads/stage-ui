@@ -7,7 +7,7 @@ import ThemeTypes from "../../misc/themes/types";
 export default (props: PopoverTypes.Props) => {
     const { theme } = useFlow();
     const styleProps = useStyleProps(props);
-    const overrides = theme.overrides.popover;
+    const overrides = theme.overrides.Popover;
 
     return {
         container: css(

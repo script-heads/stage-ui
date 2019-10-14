@@ -12,7 +12,7 @@ declare namespace RangeTypes {
         className?: string
     }
 
-    export interface Overrides {
+    export interface Styles {
         container: Interpolation
         rail: Interpolation
         track: Interpolation

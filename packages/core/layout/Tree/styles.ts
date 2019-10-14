@@ -8,7 +8,7 @@ export default (props: TreeTypes.Props, lvl: number, isOpen: boolean, hasTreeChi
     const { decoration = 'drop' } = props;
     const styleProps = useStyleProps(props);
     const { theme } = useFlow();
-    const overrides = theme.overrides.block;
+    const overrides = theme.overrides.Block;
 
     const getIndent = () => {
         if (lvl > 0) {

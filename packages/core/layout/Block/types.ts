@@ -12,7 +12,6 @@ declare namespace BlockTypes {
         background?: Global.ColorProp
         color?: Global.ColorProp
         overflow?: CSS.Properties["overflow"]
-        overrides?: Overrides
     }
 
     export type SurfaceStyles = {
@@ -24,23 +23,12 @@ declare namespace BlockTypes {
         boxShadow?: CSS.Properties["boxShadow"]
     }
 
-    export interface Overrides {
-        styles?: {
-            container?: any[]
-        }
-        variants?: {
-            surface: {
-                minor?: {
-                    container?: any[]
-                }
-                medium?: {
-                    container?: any[]
-                }
-                major?: {
-                    container?: any[]
-                }
-            }
-        }
+    export interface Styles {
+        container: any[]
+    }
+
+    export interface Variants {
+        surface?: Global.Variant<Props["surface"]>
     }
 }
 

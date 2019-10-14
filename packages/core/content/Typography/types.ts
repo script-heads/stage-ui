@@ -35,7 +35,7 @@ declare namespace TypographyTypes {
 		transform?: CSS.Properties["textTransform"]
 	}
 
-	export interface Overrides {
+	export interface Styles {
         
     }
 }

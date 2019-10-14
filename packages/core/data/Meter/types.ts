@@ -24,7 +24,7 @@ declare namespace MeterTypes {
         animation?: boolean
     }
 
-    export interface Overrides {
+    export interface Styles {
         
     }
 }

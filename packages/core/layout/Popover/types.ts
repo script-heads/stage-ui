@@ -8,12 +8,11 @@ declare namespace PopoverTypes {
         background?: Global.ColorProp
         color?: Global.ColorProp
         children?: React.ReactNode
-        overrides?: Overrides
         arrowWidth?: CSS.Properties["width"]
         arrowHeight?: CSS.Properties["height"]
     }
 
-    export interface Overrides {
+    export interface Styles {
         container?: Interpolation
         arrow?: Interpolation
     }

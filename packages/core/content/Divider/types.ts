@@ -8,7 +8,7 @@ declare namespace DividerTypes {
         color?: Global.ColorProp
     }
 
-    export interface Overrides {
+    export interface Styles {
         
     }
 }

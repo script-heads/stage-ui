@@ -34,19 +34,19 @@ export default (props: BlockTypes.Props) => {
         }]
     }
 
-    return createStyles({
+    return createStyles<BlockTypes.Styles, BlockTypes.Variants>(
         props,
-        overrides: theme.overrides.Block,
-        styles: {
+        (props, theme) => {
+            return{
             container: (variant) => [
                 {
                     position: props.position,
-                    '&:hover': variant('hoverSurface', surfaceVariants),
+                    '&:hover': variant({surface: surfaceVariants}),
                     overflow: props.overflow
                 },
-                variant('surface', surfaceVariants),
+                variant({surface: surfaceVariants}),
                 styleProps.all
             ]
-        }
-    })
+        }}
+    )
 }

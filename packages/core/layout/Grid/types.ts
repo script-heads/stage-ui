@@ -24,7 +24,7 @@ declare namespace GridTypes {
         justifyItems?: CSS.Properties["justifyItems"]
     }
 
-    export interface Overrides {
+    export interface Styles {
         
     }
 }

@@ -81,7 +81,7 @@ declare namespace DatePickerTypes {
         styles: any
     }
 
-    export interface Overrides {
+    export interface Styles {
         textFieldWrapper?: Interpolation
         textFieldOkButton?: Interpolation
         dateGrind?: Interpolation

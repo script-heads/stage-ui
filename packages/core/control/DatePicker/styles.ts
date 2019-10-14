@@ -8,7 +8,7 @@ import useFlow from '../../misc/hooks/useFlow';
 export default () => {
 
     const { theme } = useFlow();
-    const overrides = theme.overrides.datePicker;
+    const overrides = theme.overrides.DatePicker;
 
     return {
         dateGrind: css({

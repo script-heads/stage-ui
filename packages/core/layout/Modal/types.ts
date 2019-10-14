@@ -72,7 +72,7 @@ declare namespace ModalTypes {
         styles: any
     }
 
-    export interface Overrides {
+    export interface Styles {
         overlay: Interpolation
         window: Interpolation
         header: Interpolation

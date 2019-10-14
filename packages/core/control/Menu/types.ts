@@ -42,7 +42,7 @@ declare namespace MenuTypes {
         onEnter?: () => void
     }
 
-    export interface Overrides {
+    export interface Styles {
 
     }
 }

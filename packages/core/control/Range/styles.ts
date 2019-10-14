@@ -5,7 +5,7 @@ import useStyleProps from "../../misc/hooks/useStyleProps";
 
 export default (props: RangeTypes.Props) => {
     const { theme } = useFlow();
-    const overrides = theme.overrides.range;
+    const overrides = theme.overrides.Range;
     const stylesProps = useStyleProps(props);
 
     return {
