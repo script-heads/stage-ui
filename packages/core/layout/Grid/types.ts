@@ -23,6 +23,10 @@ declare namespace GridTypes {
         justifyContent?: CSS.Properties["justifyContent"]
         justifyItems?: CSS.Properties["justifyItems"]
     }
+
+    export interface Overrides {
+        
+    }
 }
 
 export default GridTypes

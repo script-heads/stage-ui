@@ -9,6 +9,10 @@ declare namespace SpinnerTypes {
         count?: number
         size?: string
     }
+
+    export interface Overrides {
+        
+    }
 }
 
 export default SpinnerTypes;

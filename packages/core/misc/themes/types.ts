@@ -1,18 +1,43 @@
 import chroma from 'chroma-js';
-import BlockTypes from '../../layout/Block/types';
-import BageTypes from '../../layout/Badge/types';
-import DropTypes from '../../layout/Drop/types';
-import TableTypes from '../../data/Table/types';
-import ModalTypes from '../../layout/Modal/types';
-import PanelTypes from '../../layout/Panel/types';
-import PopoverTypes from '../../layout/Popover/types';
-import CheckboxTypes from '../../control/Checkbox/types';
-import DatePickerTypes from '../../control/DatePicker/types'
-import SelectTypes from '../../control/Select/types';
-import ButtonTypes from '../../control/Button/types';
-import IconTypes from '../../content/Icon/types';
-import RangeTypes from '../../control/Range/types';
 import { ObjectInterpolation } from '@emotion/core';
+/**
+ * Content
+ */
+import DividerTypes from '../../content/Divider/types'
+import IconTypes from '../../content/Icon/types'
+import SpinnerTypes from '../../content/Spinner/types'
+import TypographyTypes from '../../content/Typography/types'
+/**
+ * Control
+ */
+import ButtonTypes from '../../control/Button/types'
+import CheckboxTypes from '../../control/Checkbox/types'
+import DatePickerTypes from '../../control/DatePicker/types'
+import MenuTypes from '../../control/Menu/types'
+import RadioTypes from '../../control/Radio/types'
+import RangeTypes from '../../control/Range/types'
+import SelectTypes from '../../control/Select/types'
+import SwitchTypes from '../../control/Switch/types'
+import TextFieldTypes from '../../control/TextField/types'
+/**
+ * Data
+ */
+import MeterTypes from '../../data/Meter/types'
+import TableTypes from '../../data/Table/types'
+/**
+ * Layout
+ */
+import BadgeTypes from '../../layout/Badge/types'
+import BlockTypes from '../../layout/Block/types'
+import DropTypes from '../../layout/Drop/types'
+import FlexboxTypes from '../../layout/Flexbox/types'
+import GridTypes from '../../layout/Grid/types'
+import ModalTypes from '../../layout/Modal/types'
+import NotificationTypes from '../../layout/Notification/types'
+import PanelTypes from '../../layout/Panel/types'
+import PopoverTypes from '../../layout/Popover/types'
+import TreeTypes from '../../layout/Tree/types'
+import ViewportTypes from '../../layout/Viewport/types'
 
 declare namespace ThemeTypes {
 
@@ -59,19 +84,32 @@ declare namespace ThemeTypes {
     }
 
     export interface Overrides {
-        button: ButtonTypes.Overrides
-        block: BlockTypes.Overrides
-        bage: BageTypes.Overrides
-        table: TableTypes.Overrides
-        modal: ModalTypes.Overrides
-        panel: PanelTypes.Overrides
-        popover: PopoverTypes.Overrides
-        checkbox: CheckboxTypes.Overrides
-        datePicker: DatePickerTypes.Overrides
-        select: SelectTypes.Overrides
-        icon: IconTypes.Overrides
-        range: RangeTypes.Overrides
-        drop: DropTypes.Overrides
+        Divider: DividerTypes.Overrides
+        Icon: IconTypes.Overrides
+        Spinner: SpinnerTypes.Overrides
+        Typography: TypographyTypes.Overrides
+        Button: ButtonTypes.Overrides
+        Checkbox: CheckboxTypes.Overrides
+        DatePicker: DatePickerTypes.Overrides
+        Menu: MenuTypes.Overrides
+        Radio: RadioTypes.Overrides
+        Range: RangeTypes.Overrides
+        Select: SelectTypes.Overrides
+        Switch: SwitchTypes.Overrides
+        TextField: TextFieldTypes.Overrides
+        Meter: MeterTypes.Overrides
+        Table: TableTypes.Overrides
+        Badge: BadgeTypes.Overrides
+        Block: BlockTypes.Overrides
+        Drop: DropTypes.Overrides
+        Flexbox: FlexboxTypes.Overrides
+        Grid: GridTypes.Overrides
+        Modal: ModalTypes.Overrides
+        Notification: NotificationTypes.Overrides
+        Panel: PanelTypes.Overrides
+        Popover: PopoverTypes.Overrides
+        Tree: TreeTypes.Overrides
+        ViewportTypes: ViewportTypes.Overrides
     }
 
     export type Replace = (

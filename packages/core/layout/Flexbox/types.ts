@@ -14,6 +14,10 @@ declare namespace FlexboxTypes {
         flow?: CSS.Properties["flexFlow"]
         children?: React.ReactNode
     }
+
+    export interface Overrides {
+        
+    }
 }
 
 export default FlexboxTypes

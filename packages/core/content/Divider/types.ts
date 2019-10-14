@@ -7,6 +7,10 @@ declare namespace DividerTypes {
         gap?: number
         color?: Global.ColorProp
     }
+
+    export interface Overrides {
+        
+    }
 }
 
 export default DividerTypes

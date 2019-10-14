@@ -34,6 +34,10 @@ declare namespace TypographyTypes {
 		size?: CSS.Properties["fontSize"]
 		transform?: CSS.Properties["textTransform"]
 	}
+
+	export interface Overrides {
+        
+    }
 }
 
 export default TypographyTypes

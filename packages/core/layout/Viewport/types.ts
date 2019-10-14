@@ -51,6 +51,10 @@ declare namespace ViewportTypes {
          */
         customContent?: React.ReactElement
     }
+
+    export interface Overrides {
+        
+    }
 }
 
 export default ViewportTypes

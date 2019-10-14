@@ -55,6 +55,10 @@ declare namespace TextFieldTypes {
         rows?: number;
         wrap?: string;
     }
+
+    export interface Overrides {
+        
+    }
 }
 
 export default TextFieldTypes

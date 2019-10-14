@@ -28,6 +28,10 @@ declare namespace NotificationTypes {
          */
         customContent?: React.ReactElement
     }
+
+    export interface Overrides {
+        
+    }
 }
 
 export default NotificationTypes
