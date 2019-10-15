@@ -208,7 +208,6 @@ const Select = (props: SelectTypes.Props, ref) => {
             {state.open && 
                 <Drop
                     onClickOutside={(e, ot) => {
-                        ot && console.log('outside')
                         ot && state.open && dispatch({type: 'toggleOpen', payload: false})
                     }}
                     stretchWidth
