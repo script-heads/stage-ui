@@ -1,10 +1,9 @@
-import React, { useRef, FC, forwardRef, useImperativeHandle, useEffect } from 'react';
+import React, { useRef, FC, forwardRef, useImperativeHandle, useEffect, useMemo } from 'react';
 import createStyles from './styles';
 import Types from './types';
 import useContainer from '../../misc/hooks/useContainer';
 
 const Range: FC<Types.Props> = (props, ref) => {
-    let isActive = false;
     const { min = 0, max = 100, value, defaultValue } = props;
     const styles = createStyles(props);
     const { attributes } = useContainer(props);
@@ -13,35 +12,26 @@ const Range: FC<Types.Props> = (props, ref) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const thumbPosition = value2Percent(value || defaultValue || 0, min, max)
 
+    
     useImperativeHandle(ref, () => {
         return containerRef.current
     });
 
-    useEffect(() => {
-        // document.addEventListener('touchmove', onMove);
-        document.addEventListener('mousemove', onMove);
-        document.addEventListener('mouseup', onUp);
-        return () => {
-            // document.removeEventListener('touchmove', onMove);
-            document.removeEventListener('mousemove', onMove);
-            document.removeEventListener('mouseup', onUp);
-        }
-    }, [])
-
-    function onDown(e: React.MouseEvent) {
-        isActive = true;
-    }
+    let isActive = false
 
     function onUp(e: MouseEvent) {
         isActive = false;
     }
+ 
 
-    function onMove(e: MouseEvent | React.MouseEvent, force?: boolean) {
+    function onMove(e: MouseEvent, force?: boolean) {
         if (force) {
             isActive = true;
         }
+
         if (!isActive) return;
         if (containerRef.current) {
+
             const { left, right } = containerRef.current.getBoundingClientRect();
             const percent = value2Percent(e.pageX, left, right);
 
@@ -54,11 +44,26 @@ const Range: FC<Types.Props> = (props, ref) => {
         }
     }
 
+    /**
+     * we should reAdd listener when getting
+     * new props otherways scope will be broken
+     */
+    useEffect(() => {
+        // document.addEventListener('touchmove', onMove);
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', onUp);
+        return () => {
+            // document.removeEventListener('touchmove', onMove);
+            document.removeEventListener('mousemove', onMove);
+            document.removeEventListener('mouseup', onUp);
+        }
+    }, [props])
+
     return (
         <div {...attributes} 
             css={styles.conatiner} 
             ref={containerRef} 
-            onMouseDown={(e) => onMove(e, true)}
+            onMouseDown={(e: MouseEvent) => onMove(e, true)}
             // onTouchStart={onMove}
         >
             <div css={styles.rail} />
@@ -68,7 +73,6 @@ const Range: FC<Types.Props> = (props, ref) => {
                 style={{ width: thumbPosition + '%' }}
             />
             <div
-                onMouseDown={onDown}
                 ref={thumbRef}
                 css={styles.thumb}
                 style={{ left: thumbPosition + '%' }}
