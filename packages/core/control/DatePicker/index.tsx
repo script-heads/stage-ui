@@ -55,12 +55,16 @@ const DatePicker: FC<DatePickerTypes.Props> = (props, ref: RefObject<HTMLDivElem
         if (props.onChange) {
             props.onChange(value, value.format(format));
         }
+        if (!props.stayOpen) {
+            setActive(false);
+        }
     }
 
     return (
         <Fragment>
             <TextField
                 {...(props as FieldTypes.Props)}
+                type="text"
                 ref={fieldRef}
                 defaultValue={value.format(format)}
                 masked={props.masked && mask(format, minValue, maxValue)}
@@ -103,6 +107,7 @@ const DatePicker: FC<DatePickerTypes.Props> = (props, ref: RefObject<HTMLDivElem
                         maxValue={maxValue}
                         onChange={onChange}
                         hideToday={props.hideToday || false}
+                        type={props.type || 'day'}
                     />
                 </Popover>
             </Drop>

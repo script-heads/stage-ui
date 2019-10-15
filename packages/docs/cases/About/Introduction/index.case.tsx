@@ -47,7 +47,7 @@ export default () => (
         <T1>But more usefull will be give it a function which will provide typed color object for you</T1>
         <T1>We using theme color object as first argument of function then each color are instance of Chroma.js</T1>
         <Syntax code={ColorCode} />
-        <T1 pb="1rem">For more information you may also check <noindex><A href="https://vis4.net/chromajs/" target="_blank">https://vis4.net/chromajs/</A></noindex></T1>
+        <T1 pb="1rem">For more information you may also check <A href="https://vis4.net/chromajs/" target="_blank">https://vis4.net/chromajs/</A></T1>
 
         <H2 p="1rem 0">Icon</H2>
         <T1>Icon also support functional props</T1>
@@ -86,7 +86,7 @@ export default () => (
         <H2 p="1rem 0">Emotion</H2>
         <T1>It provides powerful and predictable style composition in addition to a great developer experience.</T1>
         <Syntax code={EmotionCode} />
-        <T1 pb="1rem">For more information you may also check <noindex><A href="https://emotion.sh" target="_blank">https://emotion.sh</A></noindex></T1>
+        <T1 pb="1rem">For more information you may also check <A href="https://emotion.sh" target="_blank">https://emotion.sh</A></T1>
 
         <H1 p="1rem 0">Happy coding ;)</H1>
         <Divider/>

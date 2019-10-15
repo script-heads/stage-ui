@@ -101,11 +101,6 @@ declare module '@flow-ui/lab' {
 	export { default as ButtonGroup } from 'control/ButtonGroup';
 
 }
-declare module 'control/ButtonGroup/styles' {
-	import ButtonGroupTypes from 'control/ButtonGroup/types'; const _default: (props: ButtonGroupTypes.Props) => {};
-	export default _default;
-
-}
 declare module 'data/Chart/styles' {
 	import ChartTypes from 'data/Chart/types'; const _default: (props: ChartTypes.Props) => {};
 	export default _default;
