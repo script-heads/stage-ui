@@ -1,11 +1,10 @@
-import React, { useEffect, forwardRef, useReducer, useRef, Fragment, useImperativeHandle } from 'react'
+import React, { forwardRef, useReducer, useRef, Fragment, useImperativeHandle, useEffect } from 'react'
 import SelectTypes from './types'
 import createStyles from './styles'
 import Field from '../../misc/hocs/Field'
 import Icon from '../../content/Icon'
 import Drop from '../../layout/Drop'
-
-let nextSelectedOptions
+import SelectReducer from './reducer';
 
 const Select = (props: SelectTypes.Props, ref) => {
 
@@ -13,14 +12,13 @@ const Select = (props: SelectTypes.Props, ref) => {
         multiselect,
         onChange,
         options = [],
-        values = [],
+        values,
         defaultValues = [],
         placeholder,
         searchable,
         disabled
     } = props;
 
-    const styles = createStyles(props);
     let approvedDefaultValues = defaultValues 
         ? options.filter(option => includeOption(defaultValues, option)) 
         : [];
@@ -31,11 +29,6 @@ const Select = (props: SelectTypes.Props, ref) => {
 
     const initialState: SelectTypes.State = {
         selectedOptions: approvedDefaultValues,
-        availableOptions: getAvailableOptions(
-            options,
-            approvedDefaultValues,
-            ''
-        ),
         underOverlay: false,
         open: false,
         searchValue: '',
@@ -43,122 +36,60 @@ const Select = (props: SelectTypes.Props, ref) => {
         cursor: -1
     }
 
-    function reducer(state: SelectTypes.State, action: SelectTypes.Actions) {
-        switch (action.type) {
-            case 'setSelectedOptions':
-                return {
-                    ...state,
-                    selectedOptions: action.payload,
-                    availableOptions: getAvailableOptions(
-                        options,
-                        action.payload,
-                        state.searchValue
-                    ),
-                    empty: action.payload.length === 0,
-                    cursor: -1
-                };
-
-            case 'toggleOption':
-                nextSelectedOptions = state.selectedOptions;
-                if (multiselect) {
-                    includeOption(state.selectedOptions, action.payload)
-                        ? nextSelectedOptions = state.selectedOptions.filter(selectedOption =>
-                            selectedOption.value != action.payload.value
-                        )
-                        : nextSelectedOptions.push(action.payload)
-                } else {
-                    nextSelectedOptions = [action.payload];
-                }
-                onChange && onChange(nextSelectedOptions, action.payload);
-                return {
-                    ...state,
-                    empty: nextSelectedOptions.length === 0,
-                    selectedOptions: nextSelectedOptions,
-                    searchValue: '',
-                    availableOptions: getAvailableOptions(
-                        options,
-                        nextSelectedOptions,
-                        ''
-                    ),
-                    cursor: -1
-                };
-
-            case 'toggleOpen':
-                return {
-                    ...state,
-                    open: !disabled ? action.payload : false,
-                    cursor: -1
-                };
-
-            case 'search':
-                return {
-                    ...state,
-                    open: true,
-                    searchValue: action.payload,
-                    availableOptions: getAvailableOptions(
-                        options,
-                        state.selectedOptions,
-                        action.payload
-                    ),
-                    cursor: -1
-                }
-
-            case 'reduceSelectedOptions':
-                nextSelectedOptions = state.selectedOptions.slice(0, -1)
-                onChange && onChange(nextSelectedOptions);
-                return {
-                    ...state,
-                    selectedOptions: nextSelectedOptions,
-                    availableOptions: getAvailableOptions(
-                        options,
-                        nextSelectedOptions,
-                        state.searchValue
-                    ),
-                    empty: nextSelectedOptions.length === 0,
-                }
-
-            case 'setCursor':
-                return {
-                    ...state,
-                    cursor: action.payload
-                }
-
-            case 'clear':
-                onChange && onChange([]);
-                return {
-                    ...state,
-                    searchValue: '',
-                    selectedOptions: [],
-                    availableOptions: options,
-                    empty: true,
-                    cursor: -1
-                }
-
-            case 'setOverlay':
-                return {
-                    ...state,
-                    underOverlay: action.payload,
-                    cursor: -1
-                }
-
-            default:
-                throw new Error();
-        }
-    }
-
-    const [state, dispatch] = useReducer(reducer, initialState);
-
+    const styles = createStyles(props);
     const targetRef = useRef(null);
+    const [state, dispatch] = useReducer(SelectReducer, initialState);
+
     useImperativeHandle(ref, () => {
         return targetRef.current
     });
 
     useEffect(() => {
-        if (values.length != 0) {
-            dispatch({ type: 'setSelectedOptions', payload: values });
+        if (values) {
+            dispatch({type: 'setSelectedOptions', payload: values})
         }
     }, [values])
 
+    const availableOptions = getAvailableOptions(
+        options,
+        state.selectedOptions,
+        state.searchValue,
+    );
+
+    function toggleOpen() {
+        if (state.open) {
+            dispatch({type: 'toggleOpen', payload: false})
+        } else if(!disabled && availableOptions.length != 0) {
+            dispatch({type: 'toggleOpen', payload: true})
+        }      
+    }
+
+    function toggleOption (option: SelectTypes.Option) {
+        let nextSelectedOptions = state.selectedOptions;
+        if (multiselect) {
+            includeOption(state.selectedOptions, option)
+                ? nextSelectedOptions = state.selectedOptions.filter(selectedOption =>
+                    selectedOption.value != option.value
+                )
+                : nextSelectedOptions.push(option)
+        } else {
+            nextSelectedOptions = [option];
+        }
+        !values && dispatch({type: 'setSelectedOptions', payload: nextSelectedOptions})
+        onChange && onChange(([] as any).concat(nextSelectedOptions), option)
+    }
+
+    function reduceSelectedOptions () {
+        const nextSelectedOptions = state.selectedOptions.slice(0, -1)
+        !values && dispatch({type: 'setSelectedOptions', payload: nextSelectedOptions})
+        onChange && onChange(([] as any).concat(nextSelectedOptions) as SelectTypes.Option[])
+    }
+
+    function clear () {
+        !values && dispatch({type: 'clear'})
+        onChange && onChange([])
+    }
+                
     /*
     * Keyboard control
     */
@@ -166,10 +97,7 @@ const Select = (props: SelectTypes.Props, ref) => {
         switch (event.key) {
             case 'Enter':
                 if (state.cursor != -1) {
-                    dispatch({
-                        type: 'toggleOption',
-                        payload: state.availableOptions[state.cursor]
-                    })
+                    toggleOption(availableOptions[state.cursor]);
                 }
                 dispatch({ type: 'toggleOpen', payload: !state.open });
                 break;
@@ -182,16 +110,23 @@ const Select = (props: SelectTypes.Props, ref) => {
                 break;
             case 'ArrowDown':
                 event.preventDefault();
-                state.cursor < state.availableOptions.length - 1 && dispatch({
+                state.cursor < availableOptions.length - 1 && dispatch({
                     type: 'setCursor',
                     payload: state.cursor + 1
                 })
                 break;
             case 'Backspace':
-                !searchable || !state.searchValue && dispatch({ type: 'reduceSelectedOptions' })
+                !searchable || !state.searchValue && reduceSelectedOptions()
                 break;
         }
         props.onKeyDown && props.onKeyDown(event)
+    }
+
+    function handleSearch (value) {
+        dispatch({ type: 'search', payload: value })
+        if (availableOptions.length != 0) {
+            dispatch({ type: 'toggleOpen', payload: true })
+        }
     }
     
     /*
@@ -208,8 +143,8 @@ const Select = (props: SelectTypes.Props, ref) => {
                 disabled={disabled}
                 placeholder={state.empty ? placeholder : ''}
                 searchValue={state.searchValue}
-                onSearch={(value) => dispatch({ type: 'search', payload: value })}
-                onClose={(option) => dispatch({ type: 'toggleOption', payload: option })}
+                onSearch={handleSearch}
+                onClose={(option) => toggleOption(option)}
             />
     }
 
@@ -224,10 +159,7 @@ const Select = (props: SelectTypes.Props, ref) => {
                         ? state.searchValue 
                         : state.selectedOptions[0].text
                     }
-                    onSearch={(value) => {
-                        !state.empty && dispatch({ type: 'clear' })
-                        dispatch({ type: 'search', payload: value })
-                    }}
+                    onSearch={handleSearch}
                 />
         } else if (!state.empty) {
             fieldValue = <span>{state.selectedOptions[0].text}</span>
@@ -237,75 +169,75 @@ const Select = (props: SelectTypes.Props, ref) => {
     return (
         <Fragment>
             <Field
-            {...props}
-            tabIndex={props.tabIndex || 0}
-            ref={targetRef}
-            fieldStyles={styles.fieldStyles(state.open)}
+                {...props}
+                tabIndex={props.tabIndex || 0}
+                ref={targetRef}
+                fieldStyles={styles.fieldStyles(state.open)}
 
-            isEmpty={state.empty}
-            manyLines={multiselect && !state.empty}
-            insideLabelStyles={multiselect && !state.empty && styles.insideLabelStyles}
+                isEmpty={state.empty}
+                manyLines={multiselect && !state.empty}
+                insideLabelStyles={multiselect && !state.empty && styles.insideLabelStyles}
 
-            onClick={(e) => {
-                dispatch({ type: 'toggleOpen', payload: true })
-                props.onClick && props.onClick(e);
-            }}
-            onClear={() => dispatch({ type: 'clear' })}
-            onKeyDown={(e) => handleKeyDown(e)}
-            onLabelOverlay={(state) => dispatch({
-                type: 'setOverlay',
-                payload: state
-            })}
+                onClick={(e) => {
+                    searchable && e.target.toString() === '[object HTMLInputElement]'
+                        ? !state.open && dispatch({ type: 'toggleOpen', payload: true })
+                        : toggleOpen()
+                    props.onClick && props.onClick(e);
+                }}
+                onClear={() => clear()}
+                onKeyDown={(e) => handleKeyDown(e)}
+                onLabelOverlay={(state) => dispatch({
+                    type: 'setOverlay',
+                    payload: state
+                })}
 
-            children={!state.underOverlay && fieldValue}
+                children={!state.underOverlay && fieldValue}
 
-            rightChild={(
-                <Icon
-                    type={i =>
-                        i.filled[state.open ? 'arrowIosUpward' : 'arrowIosDownward']
-                    }
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        dispatch({ type: 'toggleOpen', payload: !state.open })
+                rightChild={(
+                    <Icon
+                        type={i =>
+                            i.filled[state.open ? 'arrowIosUpward' : 'arrowIosDownward']
+                        }
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            toggleOpen()
+                        }}
+                    />
+                )}
+            />
+            {state.open && 
+                <Drop
+                    onClickOutside={(e, ot) => {
+                        ot && console.log('outside')
+                        ot && state.open && dispatch({type: 'toggleOpen', payload: false})
                     }}
-                />
-            )}
-        />
-        <Drop
-            onClickOutside={(e, ot) => {
-                ot && dispatch({
-                    type: 'toggleOpen',
-                    payload: false
-                })
-            }}
-            stretchWidth
-            justify='start'
-            target={targetRef}
-        >
-            {state.open &&
-                <div css={styles.dropMenu}>
-                    {state.availableOptions
-                        .map((option, i) => (
-                            <div
-                                key={option.value}
-                                css={styles.dropItem(i === state.cursor)}
-                                children={option.text}
-                                onMouseDown={(e) => {
-                                    dispatch({ type: 'toggleOption', payload: option });
-                                    dispatch({ type: 'toggleOpen', payload: false })
-                                }}
-                            />
-                        ))}
-                </div>
+                    stretchWidth
+                    justify='start'
+                    target={targetRef}
+                >
+                    <div css={styles.dropMenu}>
+                        {availableOptions
+                            .map((option, i) => (
+                                <div
+                                    key={option.value}
+                                    css={styles.dropItem(i === state.cursor)}
+                                    children={option.text}
+                                    onMouseDown={(e) => {
+                                        toggleOption(option);
+                                        state.open && dispatch({type: 'toggleOpen', payload: false})
+                                    }}
+                                />
+                            ))}
+                    </div>
+                </Drop>
             }
-        </Drop>
         </Fragment>
     )
 }
 
 const Options = (props: SelectTypes.OptionsProps ) => {
 
-    const { selected, onClose, styles, searchable, disabled } = props;
+    const { selected, onClose, styles, searchable } = props;
 
     return (
         <div css={styles.options}>

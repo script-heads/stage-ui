@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useRef, useState } from "react";
+import React, { forwardRef, useEffect, useRef, useState, useImperativeHandle } from "react";
 import ReactDOM from "react-dom";
 import Types from "./types";
 import DropStyles from "./styles";
@@ -7,14 +7,13 @@ import useContainer from "../../misc/hooks/useContainer";
 const Drop = (props: Types.Props, ref) => {
 
     const { attributes } = useContainer(props);
-    const { children, target, onClickOutside, distance = 0 } = props;
+    const { children, target: targetRef, onClickOutside, distance = 0 } = props;
     const styles = DropStyles(props);
     const dropRef = useRef<HTMLDivElement>(null);
-    const [targetRef, setTargetRef] = useState<React.RefObject<any> | null>(null)
 
-    useEffect(()=>{
-        setTargetRef(target)
-    },[target])
+    useImperativeHandle(ref, () => {
+        return dropRef.current
+    });
 
     useEffect(() => {
         if (props.visibility != 'hidden' && props.display != 'none') {
@@ -32,7 +31,7 @@ const Drop = (props: Types.Props, ref) => {
     });
 
     function handleClickOutside(event: any) {
-        dropRef.current &&
+        dropRef.current && targetRef && targetRef.current && 
             !dropRef.current.contains(event.target) &&
             onClickOutside && onClickOutside(event, targetRef ? !targetRef.current.contains(event.target) : undefined);
     }

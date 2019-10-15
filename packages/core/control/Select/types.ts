@@ -24,19 +24,12 @@ declare namespace SelectTypes {
         payload: Option[]
     } |
     {
-        type: 'toggleOption'
-        payload: Option
-    } |
-    {
         type: 'toggleOpen'
         payload: boolean
     } |
     {
         type: 'search'
         payload: string
-    } |
-    {
-        type: 'reduceSelectedOptions'
     } |
     {
         type: 'setCursor'
@@ -52,7 +45,6 @@ declare namespace SelectTypes {
 
     type State = {
         selectedOptions: Option[] 
-        availableOptions: Option[] 
         underOverlay: boolean,
         open: boolean,
         searchValue: string
