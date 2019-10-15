@@ -14,6 +14,11 @@ declare namespace DatePickerTypes {
 
     export interface Props extends Global.FieldProps {
         /**
+         * Type for DatePicker
+         * @default day
+         */
+        type?: GridType
+        /**
          * Property value could be a string
          * if you pass format property aswell
          * otherwise value should be instance of Date
@@ -38,6 +43,11 @@ declare namespace DatePickerTypes {
          */
         onChange?: (moment: Moment, value: string) => void
         /**
+         * Do not close datepicker on change
+         * latest value
+         */
+        stayOpen?: boolean
+        /**
          * Enable mask input
          */
         masked?: boolean
@@ -58,6 +68,7 @@ declare namespace DatePickerTypes {
         maxValue: Moment
         onChange: (date: Moment) => void
         styles: any
+        type: GridType
     }
     export interface DateGridCalendarProps {
         value: Moment
