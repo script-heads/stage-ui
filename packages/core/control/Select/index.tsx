@@ -124,8 +124,16 @@ const Select = (props: SelectTypes.Props, ref) => {
 
     function handleSearch (value) {
         dispatch({ type: 'search', payload: value })
-        if (availableOptions.length != 0) {
-            dispatch({ type: 'toggleOpen', payload: true })
+        const nextAvailableOptions = getAvailableOptions(
+            options,
+            state.selectedOptions,
+            value,
+        );
+
+        if (nextAvailableOptions.length != 0) {
+            !state.open && dispatch({ type: 'toggleOpen', payload: true })
+        } else {
+            state.open && dispatch({ type: 'toggleOpen', payload: false })
         }
     }
     
@@ -223,7 +231,7 @@ const Select = (props: SelectTypes.Props, ref) => {
                                     children={option.text}
                                     onMouseDown={(e) => {
                                         toggleOption(option);
-                                        state.open && dispatch({type: 'toggleOpen', payload: false})
+                                        !multiselect && state.open && dispatch({type: 'toggleOpen', payload: false})
                                     }}
                                 />
                             ))}
