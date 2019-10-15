@@ -8,6 +8,7 @@ declare namespace RangeTypes {
         defaultValue?: number
         value?: number
         onChange?: (value: number) => void
+        mode?: 'single' | 'range'
         style?: CSSProperties
         className?: string
     }
@@ -16,7 +17,7 @@ declare namespace RangeTypes {
         container: Interpolation
         rail: Interpolation
         track: Interpolation
-        handle: Interpolation
+        thumb: Interpolation
     }
 }
 

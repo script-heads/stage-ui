@@ -35,7 +35,7 @@ export default (props: RangeTypes.Props) => {
             zIndex: 2,
             borderRadius: '2px',
         }, overrides && overrides.track),
-        handle: css({
+        thumb: css({
             position: 'absolute',
             width: '1rem',
             height: '1rem',
@@ -48,6 +48,13 @@ export default (props: RangeTypes.Props) => {
             boxShadow: theme.assets.shadow.short,
             border: "2px solid " + theme.color.primary.css(),
             zIndex: 3,
-        }, overrides && overrides.handle),
+            transition: 'transform 0.25s',
+            ':hover': {
+                transform: 'scale(1.05)'
+            },
+            ':active': {
+                transform: 'scale(0.95)'
+            }
+        }, overrides && overrides.thumb),
     }
 }

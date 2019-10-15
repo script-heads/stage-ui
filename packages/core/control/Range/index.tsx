@@ -1,77 +1,83 @@
-import React, { useRef, FC, forwardRef, useImperativeHandle } from 'react';
+import React, { useRef, FC, forwardRef, useImperativeHandle, useEffect } from 'react';
 import createStyles from './styles';
 import Types from './types';
 import useContainer from '../../misc/hooks/useContainer';
 
 const Range: FC<Types.Props> = (props, ref) => {
-
-    const { min = 0, max = 100, value, onChange, defaultValue } = props;
+    let isActive = false;
+    const { min = 0, max = 100, value, defaultValue } = props;
     const styles = createStyles(props);
     const { attributes } = useContainer(props);
-    const handleRef = useRef<HTMLDivElement>(null);
+    const thumbRef = useRef<HTMLDivElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
-    const handlePosition = value || defaultValue
-        ? getPercentByValue(min, max, value || defaultValue)
-        : 0;
+    const thumbPosition = value2Percent(value || defaultValue || 0, min, max)
 
     useImperativeHandle(ref, () => {
         return containerRef.current
     });
 
-    function handleChange(percent) {
-        if (onChange) {
-            onChange(getValueFromRange(min, max, percent));
+    useEffect(() => {
+        // document.addEventListener('touchmove', onMove);
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', onUp);
+        return () => {
+            // document.removeEventListener('touchmove', onMove);
+            document.removeEventListener('mousemove', onMove);
+            document.removeEventListener('mouseup', onUp);
         }
-        if (!value && handleRef.current && trackRef.current) {
-            handleRef.current.style.left = percent.toString() + '%';
-            trackRef.current.style.width = percent.toString() + '%';
-        }
+    }, [])
+
+    function onDown(e: React.MouseEvent) {
+        isActive = true;
     }
 
-    function handleMouseMove(e: MouseEvent | React.MouseEvent) {
-        e.stopPropagation();
+    function onUp(e: MouseEvent) {
+        isActive = false;
+    }
 
+    function onMove(e: MouseEvent | React.MouseEvent, force?: boolean) {
+        if (force) {
+            isActive = true;
+        }
+        if (!isActive) return;
         if (containerRef.current) {
-            const startX = containerRef.current.getBoundingClientRect().left;
-            const endX = containerRef.current.getBoundingClientRect().right;
-            const percent = getPercentByValue(startX, endX, e.pageX);
+            const { left, right } = containerRef.current.getBoundingClientRect();
+            const percent = value2Percent(e.pageX, left, right);
 
-            handleChange(percent);
+            props.onChange && props.onChange(percent2Value(percent, min, max));
+
+            if (!value && thumbRef.current && trackRef.current) {
+                thumbRef.current.style.left = percent + '%';
+                trackRef.current.style.width = percent + '%';
+            }
         }
-    }
-
-    function handleMouseDown(e: React.MouseEvent) {
-        e.stopPropagation();
-        document.addEventListener('mousemove', handleMouseMove);
-        document.addEventListener('mouseup', handleMouseUp);
-    }
-
-    function handleMouseUp(e: MouseEvent) {
-        e.stopPropagation();
-        document.removeEventListener('mousemove', handleMouseMove);
-        document.removeEventListener('mouseup', handleMouseUp);
     }
 
     return (
-        <div {...attributes} css={styles.conatiner} ref={containerRef} onClick={handleMouseMove}>
+        <div {...attributes} 
+            css={styles.conatiner} 
+            ref={containerRef} 
+            onMouseDown={(e) => onMove(e, true)}
+            // onTouchStart={onMove}
+        >
             <div css={styles.rail} />
             <div
                 css={styles.track}
                 ref={trackRef}
-                style={{ width: handlePosition.toString() + '%' }}
+                style={{ width: thumbPosition + '%' }}
             />
             <div
-                onMouseDown={handleMouseDown}
-                ref={handleRef}
-                css={styles.handle}
-                style={{ left: handlePosition.toString() + '%' }}
+                onMouseDown={onDown}
+                ref={thumbRef}
+                css={styles.thumb}
+                style={{ left: thumbPosition + '%' }}
             />
         </div>
     );
 }
 
-function getPercentByValue(min, max, value) {
+function value2Percent(value: number, min: number, max: number) {
 
     const percent = (value - min) / (max - min) * 100;
 
@@ -80,7 +86,7 @@ function getPercentByValue(min, max, value) {
     return percent
 }
 
-function getValueFromRange(min, max, percent) {
+function percent2Value(percent: number, min: number, max: number) {
     return Math.floor(min + (max - min) / 100 * percent)
 }
 
