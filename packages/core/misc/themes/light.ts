@@ -25,7 +25,7 @@ const variables: Theme.Variables<chroma.Color> = {
 
         accent: {
             red: chroma(188, 0, 0),
-            green: chroma(0, 74, 0),
+            green: chroma(0, 200, 0),
             blue: chroma(0, 122, 255),
             orange: chroma(255, 149, 0)
         }

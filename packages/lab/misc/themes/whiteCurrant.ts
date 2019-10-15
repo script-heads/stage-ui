@@ -23,7 +23,7 @@ const whiteCurrant = light.replace({
 
 		accent: {
 			red: [188, 0, 0],
-			green: [0, 74, 0],
+			green: [0, 200, 0],
 			blue: [0, 122, 255],
 			orange: [255, 149, 0]
 		},
