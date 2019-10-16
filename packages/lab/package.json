@@ -1,9 +1,8 @@
 {
   "name": "@flow-ui/lab",
   "author": "ABR Tech",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
-  "main": "index.js",
   "scripts": {
     "type-check": "tsc --noEmit",
     "type-check:watch": "yarn type-check -- --watch",
