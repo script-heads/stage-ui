@@ -2,6 +2,7 @@ var path = require("path");
 const webpack = require("webpack");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
 
 module.exports = function (dir) {
 
@@ -69,7 +70,10 @@ module.exports = function (dir) {
             new webpack.DefinePlugin({
                 '$_WORKDIR_$': JSON.stringify(dir)
             }),
-            new MonacoWebpackPlugin()
+            new MonacoWebpackPlugin(),
+            new FilterWarningsPlugin({ 
+                exclude: /source-map-loader/ 
+            })
             // new BundleAnalyzerPlugin()
         ]
     }

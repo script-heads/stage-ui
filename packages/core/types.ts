@@ -339,7 +339,24 @@ declare namespace Global {
     type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
 
     type EmotionStyles = Array<Interpolation>;
-    type Variant<T> = Record<Extract<T,string>,EmotionStyles>
+
+    type Variants<T> = Partial<{
+        [K in keyof T]: Partial<
+            Record<Extract<T[K],string>,
+            EmotionStyles>
+        >
+    }>
+    
+    type Variant<V> = (variants: Variants<V>) => EmotionStyles
+    
+    type ComponentStyle<V> = 
+        ((variant: Variant<V>) => EmotionStyles) | 
+        EmotionStyles
+    
+    type ComponentStyles<S extends string,V = ''> = 
+        ((props, theme: ThemeTypes.Index) => 
+            {[O in S]: ComponentStyle<V>}) | 
+        {[O in S]: ComponentStyle<V>}
 }
 
 export default Global

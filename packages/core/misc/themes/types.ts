@@ -84,32 +84,32 @@ declare namespace ThemeTypes {
     }
 
     export interface Overrides {
-        Divider: DividerTypes.Styles
-        Icon: IconTypes.Styles
-        Spinner: SpinnerTypes.Styles
-        Typography: TypographyTypes.Styles
-        Button: ButtonTypes.Styles
-        Checkbox: CheckboxTypes.Styles
-        DatePicker: DatePickerTypes.Styles
-        Menu: MenuTypes.Styles
-        Radio: RadioTypes.Styles
-        Range: RangeTypes.Styles
-        Select: SelectTypes.Styles
-        Switch: SwitchTypes.Styles
-        TextField: TextFieldTypes.Styles
-        Meter: MeterTypes.Styles
-        Table: TableTypes.Styles
-        Badge: BadgeTypes.Styles
-        Block: BlockTypes.Styles
-        Drop: DropTypes.Styles
-        Flexbox: FlexboxTypes.Styles
-        Grid: GridTypes.Styles
-        Modal: ModalTypes.Styles
-        Notification: NotificationTypes.Styles
-        Panel: PanelTypes.Styles
-        Popover: PopoverTypes.Styles
-        Tree: TreeTypes.Styles
-        ViewportTypes: ViewportTypes.Styles
+        Divider?: DividerTypes.Styles
+        Icon?: IconTypes.Styles
+        Spinner?: SpinnerTypes.Styles
+        Typography?: TypographyTypes.Styles
+        Button?: ButtonTypes.Styles
+        Checkbox?: CheckboxTypes.Styles
+        DatePicker?: DatePickerTypes.Styles
+        Menu?: MenuTypes.Styles
+        Radio?: RadioTypes.Styles
+        Range?: RangeTypes.Styles
+        Select?: SelectTypes.Styles
+        Switch?: SwitchTypes.Styles
+        TextField?: TextFieldTypes.Styles
+        Meter?: MeterTypes.Styles
+        Table?: TableTypes.Styles
+        Badge?: BadgeTypes.Styles
+        Block?: BlockTypes.Styles
+        Drop?: DropTypes.Styles
+        Flexbox?: FlexboxTypes.Styles
+        Grid?: GridTypes.Styles
+        Modal?: ModalTypes.Styles
+        Notification?: NotificationTypes.Styles
+        Panel?: PanelTypes.Styles
+        Popover?: PopoverTypes.Styles
+        Tree?: TreeTypes.Styles
+        ViewportTypes?: ViewportTypes.Styles
     }
 
     export type Replace = (

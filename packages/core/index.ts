@@ -4,7 +4,6 @@
 export { default as Divider } from './content/Divider'
 export { default as Icon } from './content/Icon'
 export { default as Spinner } from './content/Spinner'
-export { default as Typography } from './content/Typography'
 export { H1, H2, H3, H4 } from './content/Typography/H'
 export { D1, D2, D3, D4 } from './content/Typography/D'
 export { T1, T2, T3, T4 } from './content/Typography/T'

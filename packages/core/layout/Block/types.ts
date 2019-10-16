@@ -1,6 +1,5 @@
 import Global from '../../types';
 import CSS from 'csstype';
-import { Interpolation } from '@emotion/css';
 
 declare namespace BlockTypes {
     export interface Props extends Global.Props {
@@ -14,22 +13,12 @@ declare namespace BlockTypes {
         overflow?: CSS.Properties["overflow"]
     }
 
-    export type SurfaceStyles = {
-        borderWidth?: CSS.Properties["borderWidth"],
-        borderStyle?: CSS.Properties["borderStyle"],
-        borderColor?: CSS.Properties["borderColor"],
-        borderRadius?: CSS.Properties["borderRadius"]
-        background?: CSS.Properties["background"]
-        boxShadow?: CSS.Properties["boxShadow"]
-    }
-
-    export interface Styles {
-        container: any[]
-    }
-
     export interface Variants {
-        surface?: Global.Variant<Props["surface"]>
+        surface: Props["surface"]
+        hoverSurface: Props["hoverSurface"]
     }
+
+    export type Styles = Global.ComponentStyles<'container',Variants>
 }
 
 export default BlockTypes

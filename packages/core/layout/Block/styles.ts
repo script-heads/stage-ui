@@ -1,12 +1,8 @@
 import BlockTypes from "./types";
-import useFlow from "../../misc/hooks/useFlow";
 import useStyleProps from '../../misc/hooks/useStyleProps';
-import createStyles from '../../misc/utils/createStyles';
 
-export default (props: BlockTypes.Props) => {
+const BlockStyles: BlockTypes.Styles = (props: BlockTypes.Props, theme) => {
     const styleProps = useStyleProps(props);
-    const { theme } = useFlow();
-
     const surfaceVariants = {
         'minor': [{
             borderWidth: theme.assets.border.width,
@@ -34,19 +30,17 @@ export default (props: BlockTypes.Props) => {
         }]
     }
 
-    return createStyles<BlockTypes.Styles, BlockTypes.Variants>(
-        props,
-        (props, theme) => {
-            return{
-            container: (variant) => [
-                {
-                    position: props.position,
-                    '&:hover': variant({surface: surfaceVariants}),
-                    overflow: props.overflow
-                },
-                variant({surface: surfaceVariants}),
-                styleProps.all
-            ]
-        }}
-    )
+    return {
+        container: (variant) => [
+            {
+                position: props.position,
+                '&:hover': variant({hoverSurface: surfaceVariants}),
+                overflow: props.overflow
+            },
+            variant({surface: surfaceVariants}),
+            styleProps.all
+        ]
+    }
 }
+
+export default BlockStyles

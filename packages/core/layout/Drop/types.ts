@@ -20,13 +20,7 @@ declare namespace DropTypes {
     children?: React.ReactNode
   }
 
-  interface Styles {
-      container: Global.EmotionStyles
-  }
-
-  interface Variants {
-    
-  }
+  type Styles = Global.ComponentStyles<'container',{}>
 }
 
 export default DropTypes;

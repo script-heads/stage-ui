@@ -74,23 +74,21 @@ const assets = (variables): Theme.Assets => ({
     }
 })
 
-const components = {
-    block: {
-        items: {
-            container: [{
-                // background: 'green'
-            }]
-        },
-        variants: {
-            surface: {
-                major: {
-                    container: [{
-                        // background: 'red'
-                    }]
-                }
-            }
-        }
-    }
+const components: Theme.Overrides = {
+    // Block: {
+    //     container: (variant) => [
+    //         {
+    //             background: "green"
+    //         },
+    //         variant({
+    //             surface: {
+    //                 major: [{
+    //                     background: "red"
+    //                 }]
+    //             }
+    //         })
+    //     ]
+    // }
 }
 
 export default createTheme(variables, assets, components) as Theme.Index
