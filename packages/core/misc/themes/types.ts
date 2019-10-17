@@ -41,13 +41,13 @@ import ViewportTypes from '../../layout/Viewport/types'
 
 declare namespace ThemeTypes {
 
-    export interface Index extends Variables<chroma.Color> {
+    interface Index extends Variables<chroma.Color> {
         assets: Assets
         overrides: Overrides
         replace: Replace
     }
 
-    export interface Variables<T> {
+    interface Variables<T = [number, number, number, number?]> {
         name: string
         color: Colors<T>
         radius: Radius
@@ -55,7 +55,7 @@ declare namespace ThemeTypes {
         typography: Typography
     }
 
-    export interface Assets {
+    interface Assets {
         global?: ObjectInterpolation<undefined>
         border: {
             width: string
@@ -83,7 +83,7 @@ declare namespace ThemeTypes {
         }
     }
 
-    export interface Overrides {
+    interface Overrides {
         Divider?: DividerTypes.Styles
         Icon?: IconTypes.Styles
         Spinner?: SpinnerTypes.Styles
@@ -112,13 +112,13 @@ declare namespace ThemeTypes {
         ViewportTypes?: ViewportTypes.Styles
     }
 
-    export type Replace = (
-        variables: DeepPartial<Variables<[number, number, number]>>,
-        assets?: (variables: DeepPartial<Variables<[number, number, number]>>) => DeepPartial<Assets>,
-        Styles?: DeepPartial<Overrides>
+    type Replace = (
+        variables: DeepPartial<Variables>,
+        assets?: (variables: Variables<chroma.Color>) => DeepPartial<Assets>,
+        overrides?: Overrides
     ) => Index;
 
-    export type Colors<T> = {
+    type Colors<T> = {
         background: T
         backgroundVariant: T
         surface: T
@@ -144,13 +144,13 @@ declare namespace ThemeTypes {
         }
     }
 
-    export type Radius = {
+    type Radius = {
         default: string
         narrow: string
         wide: string
     }
 
-    export interface Distance {
+    interface Distance {
         xsmall: string,
         small: string,
         medium: string,
@@ -158,7 +158,7 @@ declare namespace ThemeTypes {
         xlarge: string,
     }
 
-    export interface Typography {
+    interface Typography {
         paragraph: ObjectInterpolation<undefined>
         header: {
             1: ObjectInterpolation<undefined>

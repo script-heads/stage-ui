@@ -3,21 +3,22 @@ import chroma from 'chroma-js';
 import createID from './createID';
 import mergeObjects from './mergeObjects';
 
-export default function createTheme(mainVaraibles: ThemeTypes.Variables<chroma.Color>, mainAssets: (variables: ThemeTypes.Variables<chroma.Color>) => ThemeTypes.Assets, mainOverrides?): ThemeTypes.Index {
+export type CreateTheme = (mainVaraibles: ThemeTypes.Variables, mainAssets: (variables: ThemeTypes.Variables<chroma.Color>) => ThemeTypes.Assets, mainOverrides?) => ThemeTypes.Index
 
+const createTheme: CreateTheme = (mainVaraibles, mainAssets, mainOverrides?) => {
+    
+    const convertedMainVarables = convertColors(mainVaraibles);
+    
     return {
-        ...mainVaraibles,
-        assets: mainAssets(mainVaraibles),
+        ...convertedMainVarables,
+        assets: mainAssets(convertedMainVarables),
         overrides: mainOverrides || {},
         replace: (variables, assets, overrides) => {
 
             const newVariables = mergeObjects(
                 mainVaraibles,
                 variables,
-                (value) => value instanceof Array
-                    ? chroma(value)
-                    : value
-            ) as ThemeTypes.Variables<chroma.Color>;
+            ) as ThemeTypes.Variables;
 
             const newAssets = (variables) => mergeObjects(
                 mainAssets(variables),
@@ -31,13 +32,19 @@ export default function createTheme(mainVaraibles: ThemeTypes.Variables<chroma.C
 
             newVariables.name = variables.name || mainVaraibles.name + '-' + createID();
 
-            if (variables.color && variables.color.primary) {
-                if (!variables.color.secondary) {
-                    newVariables.color.secondary = newVariables.color.primary.set('hsl.h', 180);
-                }
-            }
-
             return createTheme(newVariables, newAssets, newOverrides)
         }
     }
 }
+
+function convertColors(variables: ThemeTypes.Variables): ThemeTypes.Variables<chroma.Color> {
+    return mergeObjects(
+        {},
+        variables,
+        (value) => value instanceof Array
+            ? chroma(value)
+            : value
+    ) as ThemeTypes.Variables<chroma.Color>
+}
+
+export default createTheme

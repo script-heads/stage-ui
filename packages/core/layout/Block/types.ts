@@ -2,7 +2,7 @@ import Global from '../../types';
 import CSS from 'csstype';
 
 declare namespace BlockTypes {
-    export interface Props extends Global.Props {
+    interface Props extends Global.Props {
         tag?: "div" | "span" | "header" | "footer" | "article" | "section" | "aside" | "main"
         surface?: "major" | "medium" | "minor"
         hoverSurface?: "major" | "medium" | "minor"
@@ -13,12 +13,12 @@ declare namespace BlockTypes {
         overflow?: CSS.Properties["overflow"]
     }
 
-    export interface Variants {
+    interface Variants {
         surface: Props["surface"]
         hoverSurface: Props["hoverSurface"]
     }
 
-    export type Styles = Global.ComponentStyles<'container',Variants>
+    type Styles = Global.ComponentStyles<'container',Variants>
 }
 
 export default BlockTypes

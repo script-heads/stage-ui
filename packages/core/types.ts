@@ -350,13 +350,10 @@ declare namespace Global {
     type Variant<V> = (variants: Variants<V>) => EmotionStyles
     
     type ComponentStyle<V> = 
-        ((variant: Variant<V>) => EmotionStyles) | 
-        EmotionStyles
+        ((variant: Variant<V>) => EmotionStyles) | EmotionStyles
     
-    type ComponentStyles<S extends string,V = ''> = 
-        ((props, theme: ThemeTypes.Index) => 
-            {[O in S]: ComponentStyle<V>}) | 
-        {[O in S]: ComponentStyle<V>}
+    type ComponentStyles<S extends string,V, R = {[O in S]: ComponentStyle<V>}>= 
+        ((props, theme: ThemeTypes.Index) => R) | R
 }
 
 export default Global

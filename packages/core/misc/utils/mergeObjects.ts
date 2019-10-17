@@ -1,21 +1,13 @@
-export default function mergeObjects(target: Object, source?: Object, modify?: (value) => any) {
+export default function mergeObjects(target: Object = {}, source: Object = {}, modify?: (value) => any) {
 
-    if (!source) return target;
-
-    var destination = {};
-    Object.assign(destination, target)
-
-    for (let key of Object.keys(source)) {
-        if (source[key] instanceof Object) {
-            Object.assign(
-                source[key],
-                mergeObjects(target[key], source[key], modify)
-            );
+    var destination = Object.assign({}, target)
+	for (var key of Object.keys(source)) {
+        if (source[key] && Array.isArray(source[key]) === false && typeof source[key] === 'object') {
+			destination[key] = mergeObjects(target[key], source[key], modify)
+        } else {
+			destination[key] = source[key]
         }
-
-        if (modify) source[key] = modify(source[key]);
-    }
-
-    Object.assign(destination, source);
+        if (modify) destination[key] = modify(destination[key]);
+	}
     return destination;
 }

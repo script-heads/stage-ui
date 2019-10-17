@@ -1,33 +1,32 @@
 import Theme from './types';
 import createTheme from '../utils/createTheme';
-import chroma from 'chroma-js';
 import typography from '../typography';
 
-const variables: Theme.Variables<chroma.Color> = {
+const variables: Theme.Variables = {
     name: 'Light',
     color: {
-        background: chroma(250, 250, 250),
-        backgroundVariant: chroma(240, 240, 240),
-        surface: chroma(255, 255, 255),
-        surfaceVariant: chroma(230, 230, 230),
-        primary: chroma(74, 139, 252),
-        secondary: chroma(252, 148, 74),
+        background: [250, 250, 250],
+        backgroundVariant: [240, 240, 240],
+        surface: [255, 255, 255],
+        surfaceVariant: [230, 230, 230],
+        primary: [74, 139, 252],
+        secondary: [252, 148, 74],
 
-        onBackground: chroma(0, 0, 0),
-        onSurface: chroma(0, 0, 0),
-        onPrimary: chroma(255, 255, 255),
-        onSecondary: chroma(255, 255, 255),
+        onBackground: [0, 0, 0],
+        onSurface: [0, 0, 0],
+        onPrimary: [255, 255, 255],
+        onSecondary: [255, 255, 255],
 
-        lightest: chroma(230, 230, 230),
-        light: chroma(150, 150, 150),
-        hard: chroma(120, 120, 120),
-        hardest: chroma(100, 100, 100),
+        lightest: [230, 230, 230],
+        light: [150, 150, 150],
+        hard: [120, 120, 120],
+        hardest: [100, 100, 100],
 
         accent: {
-            red: chroma(188, 0, 0),
-            green: chroma(0, 200, 0),
-            blue: chroma(0, 122, 255),
-            orange: chroma(255, 149, 0)
+            red: [188, 0, 0],
+            green: [0, 200, 0],
+            blue: [0, 122, 255],
+            orange: [255, 149, 0]
         }
     },
     radius: {
@@ -74,7 +73,7 @@ const assets = (variables): Theme.Assets => ({
     }
 })
 
-const components: Theme.Overrides = {
+const overrides: Theme.Overrides = {
     // Block: {
     //     container: (variant) => [
     //         {
@@ -91,4 +90,4 @@ const components: Theme.Overrides = {
     // }
 }
 
-export default createTheme(variables, assets, components) as Theme.Index
+export default createTheme(variables, assets, overrides) as Theme.Index
