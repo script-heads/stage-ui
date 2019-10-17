@@ -158,23 +158,17 @@ const ScrollView = (props: Types.Props, ref: any) => {
 
     useEffect(() => {
         setActive(mode == 'always' ? true : false)
-    }, [mode])
-
-    useEffect(() => {
         updateScroll({
             deltaX: 0,
             deltaY: 0,
             preventDefault: () => null,
             stopPropagation: () => null
         })
-
         return () => {
             window.removeEventListener('mouseup', mouseUp)
             window.removeEventListener('mousemove', mouseMove)
-
         }
-    }, [])
-
+    }, [props])
 
     function createRef(ref) {
         if (ref && !memo.events) {
