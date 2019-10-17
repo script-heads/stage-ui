@@ -123,7 +123,7 @@ const ScrollView = (props: Types.Props, ref: any) => {
             if (timeout) {
                 clearTimeout(timeout)
             }
-            timeout = setTimeout(() => setActive(false), 250)
+            timeout = setTimeout(() => setActive(false), 500)
         }
     }
 
