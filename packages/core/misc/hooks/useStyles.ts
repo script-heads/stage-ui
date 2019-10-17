@@ -25,13 +25,12 @@ const createStyles = <C, V = any, S = C extends (...args: any) => any ? ReturnTy
                 let variantStyles: any = {};
                 for (const variantName of Object.keys(varaints)) {
                     const variantValue = {...props, ...state}[variantName];
-
                     if (typeof variantValue === 'string') {
                         variantStyles = varaints[variantName][variantValue]
                     }
                     
-                    if (typeof variantValue === 'boolean') {
-                        variantStyles = varaints
+                    if (typeof variantValue === 'boolean' && variantValue === true) {
+                        variantStyles = varaints[variantName]
                     }
                     
                     return variantStyles

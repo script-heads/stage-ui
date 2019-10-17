@@ -334,16 +334,11 @@ declare module 'control/Select/types' {
 	        type: 'setSelectedOptions';
 	        payload: Option[];
 	    } | {
-	        type: 'toggleOption';
-	        payload: Option;
-	    } | {
 	        type: 'toggleOpen';
 	        payload: boolean;
 	    } | {
 	        type: 'search';
 	        payload: string;
-	    } | {
-	        type: 'reduceSelectedOptions';
 	    } | {
 	        type: 'setCursor';
 	        payload: number;
@@ -355,7 +350,6 @@ declare module 'control/Select/types' {
 	    };
 	    type State = {
 	        selectedOptions: Option[];
-	        availableOptions: Option[];
 	        underOverlay: boolean;
 	        open: boolean;
 	        searchValue: string;
@@ -612,13 +606,10 @@ declare module 'layout/Badge/types' {
 	        color?: Global.ColorProp;
 	        children?: React.ReactNode;
 	    }
-	    interface Styles {
-	        container: Global.EmotionStyles;
-	        holder: Global.EmotionStyles;
-	    }
 	    interface Variants {
-	        align: Global.Variant<Props["align"]>;
+	        align: Props["align"];
 	    }
+	    type Styles = Global.ComponentStyles<"container" | "holder", Variants>;
 	}
 	export default BadgeTypes;
 
@@ -637,20 +628,11 @@ declare module 'layout/Block/types' {
 	        color?: Global.ColorProp;
 	        overflow?: CSS.Properties["overflow"];
 	    }
-	    type SurfaceStyles = {
-	        borderWidth?: CSS.Properties["borderWidth"];
-	        borderStyle?: CSS.Properties["borderStyle"];
-	        borderColor?: CSS.Properties["borderColor"];
-	        borderRadius?: CSS.Properties["borderRadius"];
-	        background?: CSS.Properties["background"];
-	        boxShadow?: CSS.Properties["boxShadow"];
-	    };
-	    interface Styles {
-	        container: any[];
-	    }
 	    interface Variants {
-	        surface?: Global.Variant<Props["surface"]>;
+	        surface: Props["surface"];
+	        hoverSurface: Props["hoverSurface"];
 	    }
+	    type Styles = Global.ComponentStyles<'container', Variants>;
 	}
 	export default BlockTypes;
 
@@ -675,11 +657,7 @@ declare module 'layout/Drop/types' {
 	        onEsc?: () => void;
 	        children?: React.ReactNode;
 	    }
-	    interface Styles {
-	        container: Global.EmotionStyles;
-	    }
-	    interface Variants {
-	    }
+	    type Styles = Global.ComponentStyles<'container', {}>;
 	}
 	export default DropTypes;
 
@@ -700,8 +678,7 @@ declare module 'layout/Flexbox/types' {
 	        flow?: CSS.Properties["flexFlow"];
 	        children?: React.ReactNode;
 	    }
-	    interface Styles {
-	    }
+	    type Styles = Global.ComponentStyles<'container', {}>;
 	}
 	export default FlexboxTypes;
 
@@ -727,8 +704,7 @@ declare module 'layout/Grid/types' {
 	        justifyContent?: CSS.Properties["justifyContent"];
 	        justifyItems?: CSS.Properties["justifyItems"];
 	    }
-	    interface Styles {
-	    }
+	    type Styles = Global.ComponentStyles<'container', {}>;
 	}
 	export default GridTypes;
 
@@ -1034,32 +1010,32 @@ declare module 'misc/themes/types' {
 	        };
 	    }
 	    interface Overrides {
-	        Divider: DividerTypes.Styles;
-	        Icon: IconTypes.Styles;
-	        Spinner: SpinnerTypes.Styles;
-	        Typography: TypographyTypes.Styles;
-	        Button: ButtonTypes.Styles;
-	        Checkbox: CheckboxTypes.Styles;
-	        DatePicker: DatePickerTypes.Styles;
-	        Menu: MenuTypes.Styles;
-	        Radio: RadioTypes.Styles;
-	        Range: RangeTypes.Styles;
-	        Select: SelectTypes.Styles;
-	        Switch: SwitchTypes.Styles;
-	        TextField: TextFieldTypes.Styles;
-	        Meter: MeterTypes.Styles;
-	        Table: TableTypes.Styles;
-	        Badge: BadgeTypes.Styles;
-	        Block: BlockTypes.Styles;
-	        Drop: DropTypes.Styles;
-	        Flexbox: FlexboxTypes.Styles;
-	        Grid: GridTypes.Styles;
-	        Modal: ModalTypes.Styles;
-	        Notification: NotificationTypes.Styles;
-	        Panel: PanelTypes.Styles;
-	        Popover: PopoverTypes.Styles;
-	        Tree: TreeTypes.Styles;
-	        ViewportTypes: ViewportTypes.Styles;
+	        Divider?: DividerTypes.Styles;
+	        Icon?: IconTypes.Styles;
+	        Spinner?: SpinnerTypes.Styles;
+	        Typography?: TypographyTypes.Styles;
+	        Button?: ButtonTypes.Styles;
+	        Checkbox?: CheckboxTypes.Styles;
+	        DatePicker?: DatePickerTypes.Styles;
+	        Menu?: MenuTypes.Styles;
+	        Radio?: RadioTypes.Styles;
+	        Range?: RangeTypes.Styles;
+	        Select?: SelectTypes.Styles;
+	        Switch?: SwitchTypes.Styles;
+	        TextField?: TextFieldTypes.Styles;
+	        Meter?: MeterTypes.Styles;
+	        Table?: TableTypes.Styles;
+	        Badge?: BadgeTypes.Styles;
+	        Block?: BlockTypes.Styles;
+	        Drop?: DropTypes.Styles;
+	        Flexbox?: FlexboxTypes.Styles;
+	        Grid?: GridTypes.Styles;
+	        Modal?: ModalTypes.Styles;
+	        Notification?: NotificationTypes.Styles;
+	        Panel?: PanelTypes.Styles;
+	        Popover?: PopoverTypes.Styles;
+	        Tree?: TreeTypes.Styles;
+	        ViewportTypes?: ViewportTypes.Styles;
 	    }
 	    type Replace = (variables: DeepPartial<Variables<[number, number, number]>>, assets?: (variables: DeepPartial<Variables<[number, number, number]>>) => DeepPartial<Assets>, Styles?: DeepPartial<Overrides>) => Index;
 	    type Colors<T> = {
@@ -1921,7 +1897,7 @@ declare module 'types' {
 	    interface FlowProps extends MarginProps, FlexProps, GridProps {
 	    }
 	    type ColorProp = FunctionalProp<ThemeTypes.Colors<chroma.Color>, CSS.Properties["color"]>;
-	    type IconProp = FunctionalProp<IconsetTypes.Index, string>;
+	    type IconProp = FunctionalProp<IconsetTypes.Index, React.ReactElement>;
 	    /**
 	     * Props for text form fields
 	     * @name FieldProps
@@ -1941,7 +1917,16 @@ declare module 'types' {
 	    }
 	    type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 	    type EmotionStyles = Array<Interpolation>;
-	    type Variant<T> = Record<Extract<T, string>, EmotionStyles>;
+	    type Variants<T> = Partial<{
+	        [K in keyof T]: Partial<Record<Extract<T[K], string>, EmotionStyles>>;
+	    }>;
+	    type Variant<V> = (variants: Variants<V>) => EmotionStyles;
+	    type ComponentStyle<V> = ((variant: Variant<V>) => EmotionStyles) | EmotionStyles;
+	    type ComponentStyles<S extends string, V = ''> = ((props: any, theme: ThemeTypes.Index) => {
+	        [O in S]: ComponentStyle<V>;
+	    }) | {
+	        [O in S]: ComponentStyle<V>;
+	    };
 	}
 	export default Global;
 
@@ -2253,14 +2238,6 @@ declare module 'content/Typography/A' {
 	export const A: React.ForwardRefExoticComponent<Types.AnchorProps & React.RefAttributes<unknown>>;
 
 }
-declare module 'content/Typography' {
-	export { H1, H2, H3, H4 } from 'content/Typography/H';
-	export { D1, D2, D3, D4 } from 'content/Typography/D';
-	export { T1, T2, T3, T4 } from 'content/Typography/T';
-	export { C1, C2, C3, C4 } from 'content/Typography/C';
-	export { A } from 'content/Typography/A';
-
-}
 declare module 'misc/utils/variant' {
 	 const _default: <T>(prop: any, variant: { [K in T]?: any; }) => any;
 	export default _default;
@@ -2279,25 +2256,20 @@ declare module 'control/Button' {
 	export default _default;
 
 }
-declare module 'misc/utils/createStyles' {
-	import GlobalTypes from 'types';
-	import { SerializedStyles } from '@emotion/core';
-	export type Variant<T> = (variants: T) => GlobalTypes.EmotionStyles;
-	export type VariantedStyle<T> = ((variant: Variant<T>) => GlobalTypes.EmotionStyles) | GlobalTypes.EmotionStyles;
-	export type Style = (state?: {
-	    [x: string]: string | boolean | undefined;
-	}) => SerializedStyles;
-	export type ComponentStyles<T> = {
-	    [x: string]: VariantedStyle<T>;
-	}; const createStyles: <K, T>(props: any, styles: any, overrides?: "Menu" | "Divider" | "Icon" | "Spinner" | "Typography" | "Button" | "Checkbox" | "DatePicker" | "Radio" | "Range" | "Select" | "Switch" | "TextField" | "Meter" | "Table" | "Badge" | "Block" | "Drop" | "Flexbox" | "Grid" | "Modal" | "Notification" | "Panel" | "Popover" | "Tree" | "ViewportTypes" | undefined) => { [O in keyof K]: Style; };
-	export default createStyles;
+declare module 'layout/Block/styles' {
+	import BlockTypes from 'layout/Block/types'; const BlockStyles: BlockTypes.Styles;
+	export default BlockStyles;
 
 }
-declare module 'layout/Block/styles' {
-	import BlockTypes from 'layout/Block/types'; const _default: (props: BlockTypes.Props) => {
-	    container: import("../../misc/utils/createStyles").Style;
+declare module 'misc/hooks/useStyles' {
+	import { SerializedStyles } from '@emotion/core';
+	export type FlowStyles<C, V> = {
+	    [O in keyof C]: FlowStyle<V>;
 	};
-	export default _default;
+	export type FlowStyle<V> = (state?: {
+	    [O in keyof V]: string | boolean | undefined;
+	}) => SerializedStyles; const createStyles: <C, V = any, S = C extends (...args: any) => any ? ReturnType<C> : C>(props: any, componentStyles: C, componentName?: "Menu" | "Divider" | "Icon" | "Spinner" | "Typography" | "Button" | "Checkbox" | "DatePicker" | "Radio" | "Range" | "Select" | "Switch" | "TextField" | "Meter" | "Table" | "Badge" | "Block" | "Drop" | "Flexbox" | "Grid" | "Modal" | "Notification" | "Panel" | "Popover" | "Tree" | "ViewportTypes" | undefined) => FlowStyles<S, V>;
+	export default createStyles;
 
 }
 declare module 'layout/Block' {
@@ -2356,10 +2328,8 @@ declare module 'control/Checkbox' {
 
 }
 declare module 'layout/Drop/styles' {
-	import Types from 'layout/Drop/types'; const _default: (props: Types.Props) => {
-	    container: import("../../misc/utils/createStyles").Style;
-	};
-	export default _default;
+	import DropTypes from 'layout/Drop/types'; const DropStyles: DropTypes.Styles;
+	export default DropStyles;
 
 }
 declare module 'layout/Drop' {
@@ -2533,6 +2503,14 @@ declare module 'control/DatePicker/DateGridMonth' {
 	export default DateGridMonth;
 
 }
+declare module 'content/Typography' {
+	export { H1, H2, H3, H4 } from 'content/Typography/H';
+	export { D1, D2, D3, D4 } from 'content/Typography/D';
+	export { T1, T2, T3, T4 } from 'content/Typography/T';
+	export { C1, C2, C3, C4 } from 'content/Typography/C';
+	export { A } from 'content/Typography/A';
+
+}
 declare module 'control/DatePicker/DateGridTitle' {
 	/// <reference types="react" />
 	import DatePickerTypes from 'control/DatePicker/types'; const DateGridTitle: (props: DatePickerTypes.DateGridTitleProps) => JSX.Element;
@@ -2645,6 +2623,18 @@ declare module 'control/Select/styles' {
 	export default _default;
 
 }
+declare module 'control/Select/reducer' {
+	import SelectTypes from 'control/Select/types'; const _default: (state: SelectTypes.State, action: SelectTypes.Actions) => {
+	    selectedOptions: SelectTypes.Option[];
+	    empty: boolean;
+	    searchValue: string;
+	    cursor: number;
+	    underOverlay: boolean;
+	    open: boolean;
+	};
+	export default _default;
+
+}
 declare module 'control/Select' {
 	import React from 'react';
 	import SelectTypes from 'control/Select/types'; const _default: React.ForwardRefExoticComponent<SelectTypes.Props & React.RefAttributes<unknown>>;
@@ -2748,11 +2738,8 @@ declare module 'data/Table' {
 
 }
 declare module 'layout/Badge/styles' {
-	import BadgeTypes from 'layout/Badge/types'; const _default: (props: BadgeTypes.Props) => {
-	    container: import("../../misc/utils/createStyles").Style;
-	    holder: import("../../misc/utils/createStyles").Style;
-	};
-	export default _default;
+	import BadgeTypes from 'layout/Badge/types'; const BadgeStyles: BadgeTypes.Styles;
+	export default BadgeStyles;
 
 }
 declare module 'layout/Badge' {
@@ -2874,7 +2861,6 @@ declare module '@flow-ui/core' {
 	export { default as Divider } from 'content/Divider';
 	export { default as Icon } from 'content/Icon';
 	export { default as Spinner } from 'content/Spinner';
-	export { default as Typography } from 'content/Typography';
 	export { H1, H2, H3, H4 } from 'content/Typography/H';
 	export { D1, D2, D3, D4 } from 'content/Typography/D';
 	export { T1, T2, T3, T4 } from 'content/Typography/T';
