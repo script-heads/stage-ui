@@ -12,11 +12,18 @@ const ScrollViewStyles: Types.Styles = (props: Types.Props, theme) => {
     const styleProps = useStyleProps(props)
 
     return {
-        container: [{
-            position: 'relative',
-            overflow: 'hidden',
-            height: '100%',
-        }, styleProps.all],
+        container: [
+            {
+                position: 'relative',
+                overflow: 'hidden',
+                height: '100%',
+            },
+            styleProps.all,
+            {
+                padding: '0 !important',
+                margin: '0 !important',
+            }
+        ],
         content: [{
             position: 'relative',
             width: 'fit-content',
@@ -26,17 +33,18 @@ const ScrollViewStyles: Types.Styles = (props: Types.Props, theme) => {
         }],
         yBar: (variant) => [
             {
+                zIndex: 400,
                 position: "absolute",
                 top: 0,
                 right: 0,
                 width: '0.5rem',
                 borderRadius: '1rem',
-                backgroundColor: color.alpha(0.2).css(),
+                backgroundColor: color.alpha(0.1).css(),
                 transition: 'opacity 0.5s',
                 opacity: 0,
                 ':hover': {
                     opacity: 1,
-                    '> span': { opacity: 0.5 }
+                    '> span': { opacity: 0.4 }
                 }
             },
             variant({
@@ -45,6 +53,7 @@ const ScrollViewStyles: Types.Styles = (props: Types.Props, theme) => {
         ],
         yThumb: (variant) => [
             {
+                zIndex: 400,
                 display: "block",
                 width: '0.5rem',
                 height: "100%",
@@ -54,7 +63,7 @@ const ScrollViewStyles: Types.Styles = (props: Types.Props, theme) => {
                 transition: 'opacity 0.5s'
             },
             variant({
-                active: [{ opacity: 0.5 }]
+                active: [{ opacity: 0.4 }]
             })
         ],
         xBar: (variant) => [
@@ -65,12 +74,12 @@ const ScrollViewStyles: Types.Styles = (props: Types.Props, theme) => {
                 height: '0.5rem',
                 width:'100%',
                 borderRadius: '1rem',
-                backgroundColor: color.alpha(0.2).css(),
+                backgroundColor: color.alpha(0.1).css(),
                 transition: 'opacity 0.5s',
                 opacity: 0,
                 ':hover': {
                     opacity: 1,
-                    '> span': { opacity: 0.5 }
+                    '> span': { opacity: 0.4 }
                 }
             },
             variant({
@@ -88,7 +97,7 @@ const ScrollViewStyles: Types.Styles = (props: Types.Props, theme) => {
                 transition: 'opacity 0.5s'
             },
             variant({
-                active: [{ opacity: 0.5 }]
+                active: [{ opacity: 0.4 }]
             })
         ],
     }
