@@ -28,7 +28,6 @@ const ThemeSwitch = () => {
                     )
                 }
                 onChange={(value) => {
-                    console.log(value[0])
                     window.setTheme(value[0].value)
                 }}
             />

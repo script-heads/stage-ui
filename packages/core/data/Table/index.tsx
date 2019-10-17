@@ -76,7 +76,6 @@ const Table: FC<TableTypes.Props> = (props, ref) => {
                                 ? props.onSearch(event.target.value)
                                 : setSearchValue(event.target.value)
                         }}
-                        // onChange={(event) => console.log(event.target.value)}
                         placeholder='Найти'
                     />
                     <div onClick={() => {
