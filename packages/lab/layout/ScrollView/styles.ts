@@ -1,7 +1,7 @@
 import Types from "./types";
 import chroma from 'chroma-js';
 import callProp from "@flow-ui/core/misc/utils/callProp";
-// import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
 
 const ScrollViewStyles: Types.Styles = (props: Types.Props, theme) => {
 
@@ -9,12 +9,15 @@ const ScrollViewStyles: Types.Styles = (props: Types.Props, theme) => {
         callProp(props.color, theme.color) || theme.color.onBackground.css()
     )
 
+    const styleProps = useStyleProps(props)
+
     return {
         container: [{
+            position: 'relative',
             overflow: 'hidden',
             width: '100%',
             height: '100%',
-        }],
+        }, styleProps.all],
         content: [{
             position: 'relative',
             width: 'fit-content',
