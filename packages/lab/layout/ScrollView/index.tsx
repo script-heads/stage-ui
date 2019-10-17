@@ -159,8 +159,8 @@ const ScrollView = (props: Types.Props, ref: any) => {
     useEffect(() => {
         setActive(mode == 'always' ? true : false)
         updateScroll({
-            deltaX: 0,
-            deltaY: 0,
+            deltaX: -1e+10,
+            deltaY: -1e+10,
             preventDefault: () => null,
             stopPropagation: () => null
         })
