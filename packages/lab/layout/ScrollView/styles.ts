@@ -15,7 +15,6 @@ const ScrollViewStyles: Types.Styles = (props: Types.Props, theme) => {
         container: [{
             position: 'relative',
             overflow: 'hidden',
-            width: '100%',
             height: '100%',
         }, styleProps.all],
         content: [{
