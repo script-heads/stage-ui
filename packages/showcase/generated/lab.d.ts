@@ -70,6 +70,39 @@ declare module 'layout/Split' {
 	export default _default;
 
 }
+declare module 'layout/ScrollView/types' {
+	import Global from '@flow-ui/core/types'; namespace ScrollViewTypes {
+	    interface Props extends Global.Props {
+	        children?: React.ReactNode;
+	        /**
+	         * Display mode
+	         * @default scroll
+	         */
+	        mode?: 'always' | 'scroll' | 'hidden';
+	        /**
+	         * Custom ScrollBar color
+	         */
+	        color?: Global.ColorProp;
+	    }
+	    interface Variants {
+	        active: boolean;
+	    }
+	    type Styles = Global.ComponentStyles<'container' | 'content' | 'xBar' | 'yBar' | 'xThumb' | 'yThumb', Variants>;
+	}
+	export default ScrollViewTypes;
+
+}
+declare module 'layout/ScrollView/styles' {
+	import Types from 'layout/ScrollView/types'; const ScrollViewStyles: Types.Styles;
+	export default ScrollViewStyles;
+
+}
+declare module 'layout/ScrollView' {
+	import React from 'react';
+	import Types from 'layout/ScrollView/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export default _default;
+
+}
 declare module 'control/ButtonGroup/types' {
 	import Global from '@flow-ui/core/types';
 	import ButtonTypes from '@flow-ui/core/control/Button/types'; namespace ButtonGroupTypes {
@@ -95,6 +128,7 @@ declare module '@flow-ui/lab' {
 	 * Layout
 	 */
 	export { default as Split } from 'layout/Split';
+	export { default as ScrollView } from 'layout/ScrollView';
 	/**
 	 * Control
 	 */
