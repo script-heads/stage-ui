@@ -4,8 +4,6 @@ import Styles from './styles'
 import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
 
-let timeout: NodeJS.Timeout
-
 interface ScrollParams {
     deltaX: number
     deltaY: number
@@ -15,6 +13,12 @@ interface ScrollParams {
 }
 
 const ScrollView = (props: Types.Props, ref: any) => {
+    const { mode = 'scroll' } = props
+
+    const styles = useStyles<Types.Styles, Types.Variants>(props, Styles)
+    const { attributes } = useContainer(props)
+
+    const [active, setActive] = useState(false)
     const memo: any = useMemo(() => ({
         y: false,
         x: false,
@@ -25,14 +29,8 @@ const ScrollView = (props: Types.Props, ref: any) => {
         xThumb: null,
         container: null,
         content: null,
+        timeout: null,
     }), []);
-
-    const { mode = 'scroll' } = props
-    const [active, setActive] = useState(false)
-
-    const styles = useStyles<Types.Styles, Types.Variants>(props, Styles)
-
-    const { attributes } = useContainer(props)
 
     function updateScroll(e: ScrollParams) {
         if (!memo.container || !memo.content) {
@@ -48,7 +46,7 @@ const ScrollView = (props: Types.Props, ref: any) => {
             memo.yBar.style.visibility = total > content ? 'visible' : 'hidden'
 
             if (total <= content) {
-                return
+                return false
             }
 
             const min = 0
@@ -74,7 +72,10 @@ const ScrollView = (props: Types.Props, ref: any) => {
 
                 e.preventDefault()
                 e.stopPropagation()
+            
+                return true
             }
+            return false
         }
 
         const updateX = () => {
@@ -86,7 +87,7 @@ const ScrollView = (props: Types.Props, ref: any) => {
             memo.xBar.style.visibility = total > content ? 'visible' : 'hidden'
 
             if (total <= content) {
-                return
+                return false
             }
 
             const min = 0
@@ -112,18 +113,18 @@ const ScrollView = (props: Types.Props, ref: any) => {
 
                 e.preventDefault()
                 e.stopPropagation()
+
+                return true
             }
+            return false
         }
 
-        updateY()
-        updateX()
-
-        if (mode === 'scroll') {
+        if (mode === 'scroll' && (updateY() || updateX())) {
             setActive(true)
-            if (timeout) {
-                clearTimeout(timeout)
+            if (memo.timeout) {
+                clearTimeout(memo.timeout)
             }
-            timeout = setTimeout(() => setActive(false), 500)
+            memo.timeout = setTimeout(() => setActive(false), 500)
         }
     }
 
