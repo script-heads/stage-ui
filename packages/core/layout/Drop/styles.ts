@@ -8,6 +8,7 @@ const DropStyles: DropTypes.Styles = (props: DropTypes.Props, theme) => {
     container: [
       styleProps.self,
       {
+        willChange: 'scroll-position',
         position: "fixed",
         zIndex: 999,
       }

@@ -352,7 +352,7 @@ declare namespace Global {
     type ComponentStyle<V> = 
         ((variant: Variant<V>) => EmotionStyles) | EmotionStyles
     
-    type ComponentStyles<S extends string,V, R = {[O in S]: ComponentStyle<V>}>= 
+    type ComponentStyles<S extends string,V, R = {[O in S]: ComponentStyle<V>}> = 
         ((props, theme: ThemeTypes.Index) => R) | R
 }
 
