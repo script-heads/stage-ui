@@ -1,5 +1,5 @@
 import { Interpolation } from '@emotion/css';
-import Global from '../../types';
+import Global from '@flow-ui/core/types';
 
 declare namespace TreeTypes {
     type TreeDecoration = 'flat' | 'drop' | "inline"

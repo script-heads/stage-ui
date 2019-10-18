@@ -1,5 +1,5 @@
 import { css } from '@emotion/core';
-import Global from '../../../types';
+import Global from '@flow-ui/core/types';
 import useFlow from '../../hooks/useFlow';
 import useStyleProps from '../../hooks/useStyleProps';
 import callProp from '../../utils/callProp';

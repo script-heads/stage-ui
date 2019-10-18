@@ -1,7 +1,7 @@
-import PanelTypes from "./types";
-import useFlow from "../../misc/hooks/useFlow";
-import useStyleProps from '../../misc/hooks/useStyleProps';
 import css, { Interpolation } from "@emotion/css";
+import useFlow from "@flow-ui/core/misc/hooks/useFlow";
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
+import PanelTypes from "./types";
 
 export default (props: PanelTypes.Props) => {
     const styleProps = useStyleProps(props);

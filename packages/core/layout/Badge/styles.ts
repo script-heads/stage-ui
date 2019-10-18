@@ -1,6 +1,6 @@
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
+import typography from "@flow-ui/core/misc/typography";
 import Types from "./types";
-import useStyleProps from '../../misc/hooks/useStyleProps';
-import typography from "../../misc/typography";
 
 const BadgeStyles: Types.Styles = (props: Types.Props, theme) => {
     const styleProps = useStyleProps(props);

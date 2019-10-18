@@ -1,8 +1,8 @@
-import PopoverTypes from "./types";
-import useFlow from "../../misc/hooks/useFlow";
-import useStyleProps from '../../misc/hooks/useStyleProps';
 import css, { Interpolation } from "@emotion/css";
+import useFlow from "@flow-ui/core/misc/hooks/useFlow";
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
 import ThemeTypes from "../../misc/themes/types";
+import PopoverTypes from "./types";
 
 export default (props: PopoverTypes.Props) => {
     const { theme } = useFlow();

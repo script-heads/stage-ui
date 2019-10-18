@@ -1,9 +1,9 @@
-import React, { forwardRef, useEffect, useRef, useState, useImperativeHandle } from "react";
+import useContainer from "@flow-ui/core/misc/hooks/useContainer";
+import useStyles from "@flow-ui/core/misc/hooks/useStyles";
+import React, { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import ReactDOM from "react-dom";
 import Types from "./types";
 import dropStyles from "./styles";
-import useContainer from "../../misc/hooks/useContainer";
-import useStyles from "../../misc/hooks/useStyles";
 
 const Drop = (props: Types.Props, ref) => {
 

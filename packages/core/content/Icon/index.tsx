@@ -1,9 +1,9 @@
+import useContainer from "@flow-ui/core/misc/hooks/useContainer";
+import { filled, outline } from '@flow-ui/core/misc/icons';
+import callProp from "@flow-ui/core/misc/utils/callProp";
 import React, { forwardRef } from "react";
-import useContainer from "../../misc/hooks/useContainer";
-import callProp from "../../misc/utils/callProp";
-import IconTypes from "./types";
-import { filled, outline } from '../../misc/icons';
 import getStyles from './styles';
+import IconTypes from "./types";
 
 const Icon = (props: IconTypes.Props, ref) => {
 

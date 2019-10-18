@@ -30,13 +30,15 @@ const ThemeSwitch = () => {
                 onChange={(value) => {
                     window.setTheme(value[0].value)
                 }}
+                leftChild={(
+                    <Icon
+                        size={"1.25rem"}
+                        type={t => t.outline.colorPalette}
+                        color={c => c.light.css()}
+                    />
+                )}
             />
-            <Icon
-                pl="0.5rem"
-                size={"1.25rem"}
-                type={t => t.outline.colorPalette}
-                color={c => c.light.css()}
-            />
+
         </Flexbox>
     )
 }

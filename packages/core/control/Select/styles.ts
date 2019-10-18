@@ -1,8 +1,8 @@
 import { css } from '@emotion/core';
+import useFlow from '@flow-ui/core/misc/hooks/useFlow';
+import callProp from '@flow-ui/core/misc/utils/callProp';
+import variant from '@flow-ui/core/misc/utils/variant';
 import SelectTypes from './types';
-import useFlow from '../../misc/hooks/useFlow';
-import variant from '../../misc/utils/variant';
-import callProp from '../../misc/utils/callProp';
 
 export default (props: SelectTypes.Props) => {
     const { size = 'medium', shape = 'rounded', decoration = 'outline' } = props;

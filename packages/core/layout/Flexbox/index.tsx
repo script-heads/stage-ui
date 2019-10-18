@@ -1,9 +1,9 @@
 import { jsx } from '@emotion/core';
 import { forwardRef } from 'react';
 import Types from './types';
-import useContainer from '../../misc/hooks/useContainer';
-import useStyleProps from '../../misc/hooks/useStyleProps';
-import useStyles from '../../misc/hooks/useStyles';
+import useContainer from '@flow-ui/core/misc/hooks/useContainer';
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
+import useStyles from '@flow-ui/core/misc/hooks/useStyles';
 
 const Flexbox = (props: Types.Props, ref) => {
     const { attributes } = useContainer(props);

@@ -1,7 +1,7 @@
-import React, { forwardRef, Fragment } from 'react';
-import PanelTypes from './types';
-import useContainer from '../../misc/hooks/useContainer';
+import useContainer from '@flow-ui/core/misc/hooks/useContainer';
+import React, { forwardRef } from 'react';
 import getStyles from './styles';
+import PanelTypes from './types';
 
 const Panel = (props: PanelTypes.Props, ref) => {
     const { attributes } = useContainer(props);

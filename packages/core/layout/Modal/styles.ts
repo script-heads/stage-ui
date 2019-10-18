@@ -1,5 +1,5 @@
 import Types from './types';
-import useStyleProps from '../../misc/hooks/useStyleProps';
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
 
 const modalStyles: Types.Styles = (props: Types.Props, theme) => {
     const styleProps = useStyleProps(props);

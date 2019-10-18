@@ -1,14 +1,14 @@
-import React, { useState, useEffect, FC, forwardRef } from 'react'
+import useContainer from '@flow-ui/core/misc/hooks/useContainer'
+import React, { FC, forwardRef, useEffect, useState } from 'react'
+import Icon from '../../content/Icon'
+import Spinner from '../../content/Spinner'
 import createStyles from './styles'
-import TableTypes from './types'
-
-import TableRow from './TableRow'
 import TableForm from './TableForm'
 import TablePagination from './TablePagination'
+import TableRow from './TableRow'
+import TableTypes from './types'
 
-import Icon from '../../content/Icon';
-import Spinner from '../../content/Spinner';
-import useContainer from '../../misc/hooks/useContainer';
+
 
 const Table: FC<TableTypes.Props> = (props, ref) => {
 

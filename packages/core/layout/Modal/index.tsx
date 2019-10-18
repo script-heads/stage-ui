@@ -1,6 +1,6 @@
 import React, { forwardRef, RefObject, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
-import useContainer from '../../misc/hooks/useContainer';
+import useContainer from '@flow-ui/core/misc/hooks/useContainer';
 import ModalOverlay from './ModalOverlay';
 import ModalPortal from './ModalPortal';
 import ModalWindow from './ModalWindow';

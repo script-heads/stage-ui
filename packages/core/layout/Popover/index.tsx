@@ -1,7 +1,7 @@
+import useContainer from '@flow-ui/core/misc/hooks/useContainer';
 import React, { forwardRef } from 'react';
-import PopoverTypes from './types';
-import useContainer from '../../misc/hooks/useContainer';
 import getStyles from './styles';
+import PopoverTypes from './types';
 
 const Popover = (props: PopoverTypes.Props, ref) => {
     const { attributes } = useContainer(props);

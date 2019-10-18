@@ -3,7 +3,7 @@
  * author: I.Trikoz
  */
 import { css } from '@emotion/core';
-import useFlow from '../../misc/hooks/useFlow';
+import useFlow from '@flow-ui/core/misc/hooks/useFlow';
 
 export default () => {
 

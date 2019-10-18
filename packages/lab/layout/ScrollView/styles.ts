@@ -1,7 +1,7 @@
-import Types from './types';
-import chroma from 'chroma-js';
-import callProp from '@flow-ui/core/misc/utils/callProp';
 import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
+import callProp from '@flow-ui/core/misc/utils/callProp';
+import chroma from 'chroma-js';
+import Types from './types';
 
 const ScrollViewStyles: Types.Styles = (props: Types.Props, theme) => {
 

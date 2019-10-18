@@ -1,7 +1,7 @@
+import useFlow from '@flow-ui/core/misc/hooks/useFlow';
 import React, { forwardRef } from 'react';
-import Types from './types'
-import Typography from './Typography'
-import useFlow from '../../misc/hooks/useFlow';
+import Types from './types';
+import Typography from './Typography';
 
 export const H1 = forwardRef(function H1(props: Types.TextProps, ref) {
     const { theme } = useFlow();

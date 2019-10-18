@@ -1,9 +1,7 @@
-import useFlow from '../../misc/hooks/useFlow';
-import useStyleProps from '../../misc/hooks/useStyleProps';
-import callProp from '../../misc/utils/callProp';
+import useFlow from '@flow-ui/core/misc/hooks/useFlow';
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
+import variant from '@flow-ui/core/misc/utils/variant';
 import TextFieldTypes from './types';
-import variant from '../../misc/utils/variant';
-import css from '@emotion/css';
 
 export default (props: TextFieldTypes.Props) => {
     const { size = 'medium', multiline, decoration = 'outline' } = props;

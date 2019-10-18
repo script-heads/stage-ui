@@ -55,7 +55,7 @@ const createStyles = <S extends string, V = {}>(
 function resolveStyles<V>(
     style: Global.ComponentStyle<V>, 
     variant: Global.Variant<V>): SerializedStyles {
-        
+
     if (typeof style === 'function') {
         return css(style(variant))
     } else {

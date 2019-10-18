@@ -1,8 +1,8 @@
 import { css, keyframes } from '@emotion/core';
-import useFlow from '../../misc/hooks/useFlow';
+import useFlow from '@flow-ui/core/misc/hooks/useFlow';
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
+import callProp from '@flow-ui/core/misc/utils/callProp';
 import SpinnerTypes from './types';
-import callProp from '../../misc/utils/callProp';
-import useStyleProps from '../../misc/hooks/useStyleProps';
 
 export default (props: SpinnerTypes.Props) => {
 

@@ -1,8 +1,9 @@
 import { jsx } from '@emotion/core';
+import useContainer from '@flow-ui/core/misc/hooks/useContainer';
+import useFlow from '@flow-ui/core/misc/hooks/useFlow';
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
+import useStyles from '@flow-ui/core/misc/hooks/useStyles';
 import { forwardRef, RefObject } from 'react';
-import useStyleProps from '../../misc/hooks/useStyleProps';
-import useStyles from '../../misc/hooks/useStyles';
-import useContainer from '../../misc/hooks/useContainer';
 import Types from './types';
 
 const Grid = (props: Types.Props, ref: RefObject<HTMLDivElement>) => {

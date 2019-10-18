@@ -1,5 +1,5 @@
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
 import BlockTypes from "./types";
-import useStyleProps from '../../misc/hooks/useStyleProps';
 
 const BlockStyles: BlockTypes.Styles = (props: BlockTypes.Props, theme) => {
     const styleProps = useStyleProps(props);
