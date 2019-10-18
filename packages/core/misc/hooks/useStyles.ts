@@ -4,7 +4,7 @@ import useFlow from "./useFlow";
 import ThemeTypes from "../themes/types";
 
 export type FlowStyles<C,V> = {[O in keyof C]: FlowStyle<V>}
-export type FlowStyle<V> = (state?: { [O in keyof V]: string | boolean | undefined }) => SerializedStyles
+export type FlowStyle<V> = (state?: V) => SerializedStyles
 
 const createStyles = <C, V = any, S = C extends (...args: any) => any ? ReturnType<C> : C>(
     props, 

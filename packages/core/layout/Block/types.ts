@@ -14,8 +14,8 @@ declare namespace BlockTypes {
     }
 
     interface Variants {
-        surface: Props["surface"]
-        hoverSurface: Props["hoverSurface"]
+        surface?: Props["surface"]
+        hoverSurface?: Props["hoverSurface"]
     }
 
     type Styles = Global.ComponentStyles<'container',Variants>
