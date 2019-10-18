@@ -13,7 +13,6 @@ interface ScrollParams {
 }
 
 const ScrollView = (props: Types.Props, ref: any) => {
-    const { mode = 'scroll' } = props
 
     const styles = useStyles<Types.Styles, Types.Variants>(props, Styles)
     const { attributes } = useContainer(props)
@@ -30,6 +29,7 @@ const ScrollView = (props: Types.Props, ref: any) => {
         container: null,
         content: null,
         timeout: null,
+        mode: props.mode || 'scroll'
     }), []);
 
     function updateScroll(e: ScrollParams) {
@@ -119,10 +119,11 @@ const ScrollView = (props: Types.Props, ref: any) => {
             return false
         }
 
-        if (mode === 'scroll' && (updateY() || updateX())) {
+        if ((updateY() || updateX()) && memo.mode === 'scroll') {
             setActive(true)
             if (memo.timeout) {
                 clearTimeout(memo.timeout)
+                memo.timeout = null
             }
             memo.timeout = setTimeout(() => setActive(false), 500)
         }
@@ -157,10 +158,14 @@ const ScrollView = (props: Types.Props, ref: any) => {
     }
 
     useEffect(() => {
-        setActive(mode == 'always' ? true : false)
+        if (memo.timeout && props.mode !== 'always') {
+            clearTimeout(memo.timeout)
+        }
+        memo.mode = props.mode
+        setActive(memo.mode == 'always' ? true : false)
         updateScroll({
-            deltaX: 0,
-            deltaY: 0,
+            deltaX: -1e+10,
+            deltaY: -1e+10,
             preventDefault: () => null,
             stopPropagation: () => null
         })

@@ -1,6 +1,6 @@
-import Types from "./types";
+import Types from './types';
 import chroma from 'chroma-js';
-import callProp from "@flow-ui/core/misc/utils/callProp";
+import callProp from '@flow-ui/core/misc/utils/callProp';
 import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
 
 const ScrollViewStyles: Types.Styles = (props: Types.Props, theme) => {
@@ -28,19 +28,21 @@ const ScrollViewStyles: Types.Styles = (props: Types.Props, theme) => {
             position: 'relative',
             width: 'fit-content',
             height: 'fit-content',
-            minWidth: "100%",
-            minHeight: "100%",
+            minWidth: '100%',
+            minHeight: '100%',
+            willChange: 'left, top',
         }],
         yBar: (variant) => [
             {
                 zIndex: 400,
-                position: "absolute",
+                position: 'absolute',
                 top: 0,
                 right: 0,
                 width: '0.5rem',
                 borderRadius: '1rem',
                 backgroundColor: color.alpha(0.1).css(),
                 transition: 'opacity 0.5s',
+                willChange: 'opacity',
                 opacity: 0,
                 ':hover': {
                     opacity: 1,
@@ -54,13 +56,14 @@ const ScrollViewStyles: Types.Styles = (props: Types.Props, theme) => {
         yThumb: (variant) => [
             {
                 zIndex: 400,
-                display: "block",
+                display: 'block',
                 width: '0.5rem',
-                height: "100%",
+                height: '100%',
                 borderRadius: '1rem',
                 backgroundColor: color.css(),
                 opacity: 0,
-                transition: 'opacity 0.5s'
+                transition: 'opacity 0.5s',
+                willChange: 'opacity',
             },
             variant({
                 active: [{ opacity: 0.4 }]
@@ -68,7 +71,7 @@ const ScrollViewStyles: Types.Styles = (props: Types.Props, theme) => {
         ],
         xBar: (variant) => [
             {
-                position: "absolute",
+                position: 'absolute',
                 left: 0,
                 bottom: 0,
                 height: '0.5rem',
@@ -76,6 +79,7 @@ const ScrollViewStyles: Types.Styles = (props: Types.Props, theme) => {
                 borderRadius: '1rem',
                 backgroundColor: color.alpha(0.1).css(),
                 transition: 'opacity 0.5s',
+                willChange: 'opacity',
                 opacity: 0,
                 ':hover': {
                     opacity: 1,
@@ -88,13 +92,14 @@ const ScrollViewStyles: Types.Styles = (props: Types.Props, theme) => {
         ],
         xThumb: (variant) => [
             {
-                display: "block",
+                display: 'block',
                 height: '0.5rem',
-                width: "100%",
+                width: '100%',
                 borderRadius: '1rem',
                 backgroundColor: color.css(),
                 opacity: 0,
-                transition: 'opacity 0.5s'
+                transition: 'opacity 0.5s',
+                willChange: 'opacity',
             },
             variant({
                 active: [{ opacity: 0.4 }]
