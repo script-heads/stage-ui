@@ -4,14 +4,12 @@ import Types from './types';
 import useContainer from '../../misc/hooks/useContainer';
 import useStyleProps from '../../misc/hooks/useStyleProps';
 import useStyles from '../../misc/hooks/useStyles';
-import useFlow from '../../misc/hooks/useFlow';
 
 const Flexbox = (props: Types.Props, ref) => {
-    const {theme} = useFlow();
     const { attributes } = useContainer(props);
     const styleProps = useStyleProps(props);
-    const styles = useStyles(props, {
-        containter: [
+    const styles = useStyles<Types.StylesKeys>(props, {
+        container: [
             {
                 position: "relative",
                 display: props.inline ? 'inline-flex' : 'flex',
@@ -24,7 +22,6 @@ const Flexbox = (props: Types.Props, ref) => {
                 flexWrap: props.wrap,
             },
             styleProps.all,
-            theme.overrides.Flexbox
         ]
     }, 'Flexbox')
 
@@ -33,7 +30,7 @@ const Flexbox = (props: Types.Props, ref) => {
         {
             ...attributes,
             ref: ref,
-            css: styles.containter
+            css: styles.container
         },
         props.children
     );

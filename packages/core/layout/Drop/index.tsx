@@ -1,7 +1,7 @@
 import React, { forwardRef, useEffect, useRef, useState, useImperativeHandle } from "react";
 import ReactDOM from "react-dom";
 import Types from "./types";
-import DropStyles from "./styles";
+import dropStyles from "./styles";
 import useContainer from "../../misc/hooks/useContainer";
 import useStyles from "../../misc/hooks/useStyles";
 
@@ -9,7 +9,7 @@ const Drop = (props: Types.Props, ref) => {
 
     const { attributes } = useContainer(props);
     const { children, target: targetRef, onClickOutside, distance = 0 } = props;
-    const styles = useStyles(props, DropStyles, 'Drop');
+    const styles = useStyles<Types.StyleKeys>(props, dropStyles, 'Drop');
     const dropRef = useRef<HTMLDivElement>(null);
 
     useImperativeHandle(ref, () => {

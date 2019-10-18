@@ -1,17 +1,13 @@
-import { css } from '@emotion/core';
-import ModalTypes from './types';
-import useFlow from '../../misc/hooks/useFlow';
+import Types from './types';
 import useStyleProps from '../../misc/hooks/useStyleProps';
 
-export default (props: ModalTypes.Props) => {
-    const { theme } = useFlow();
-    const { all: styleProps } = useStyleProps(props);
-    const overrides = theme.overrides.Modal;
+const modalStyles: Types.Styles = (props: Types.Props, theme) => {
+    const styleProps = useStyleProps(props);
 
     return {
-        overlay: (visible, center) => css(
+        overlay: (variant) => [
             {
-                opacity: visible ? 1 : 0,
+                opacity: 0,
                 zIndex: 500,
                 position: 'fixed',
                 width: "100%",
@@ -21,7 +17,6 @@ export default (props: ModalTypes.Props) => {
                 left: 0,
                 right: 0,
                 backgroundColor: "rgba(0,0,0,.5)",
-                display: center ? "flex" : "block",
                 justifyContent: "center",
                 alignItems: "center",
                 overflowY: 'auto',
@@ -29,11 +24,18 @@ export default (props: ModalTypes.Props) => {
                 transition: 'opacity 0.25s',
                 backfaceVisibility: "hidden",
             },
-            overrides && overrides.overlay
-        ),
-        window: (visible, center, fullSize) => css(
+            variant({
+                visible: {
+                    opacity: 1,
+                },
+                center: {
+                    display: "flex",
+                }
+            })
+        ],
+        window: (variant) => [
             {
-                opacity: visible ? 1 : 0,
+                opacity: 0,
                 zIndex: 500,
                 backgroundColor: theme.color.backgroundVariant.css(),
                 minHeight: '1rem',
@@ -46,41 +48,43 @@ export default (props: ModalTypes.Props) => {
                 borderColor: theme.assets.border.color,
                 borderRadius: theme.radius.default,
                 transition: 'all 0.5s',
-                transform: visible ? 'translateY(0)' : 'translateY(-20px)',
+                transform: 'translateY(-20px)',
                 boxSizing: 'border-box',
                 overflow: 'hidden',
                 position: 'relative'
-            }, (center && fullSize) && {
-                width: '40rem'
             },
-            styleProps,
-            overrides && overrides.window,
-        ),
-
-        header: css(
-            {
-                marginTop: '-0.25rem',
-                lineHeight: '2.375rem'
-            },
-            overrides && overrides.header
-        ),
-
-        cross: css(
-            {
-                marginTop: '-0.25rem',
-                marginLeft: '2rem',
-                cursor: 'pointer',
-                transition: 'all 0.25s',
-                transform: "scale(1)",
-                opacity: .7,
-                ':hover': {
-                    transform: "scale(1.1)"
+            variant({
+                visible: {
+                    opacity: 1,
+                    transform: 'translateY(0)',
                 },
-                ':active': {
-                    transform: "scale(1)"
+                fullSizeCenter: {
+                    display: "flex",
                 }
+            }),
+            styleProps.all,
+        ],
+
+        header: [{
+            marginTop: '-0.25rem',
+            lineHeight: '2.375rem'
+        }],
+
+        cross: [{
+            marginTop: '-0.25rem',
+            marginLeft: '2rem',
+            cursor: 'pointer',
+            transition: 'all 0.25s',
+            transform: "scale(1)",
+            opacity: .7,
+            ':hover': {
+                transform: "scale(1.1)"
             },
-            overrides && overrides.cross
-        )
+            ':active': {
+                transform: "scale(1)"
+            }
+        }]
     }
 }
+
+export default modalStyles;

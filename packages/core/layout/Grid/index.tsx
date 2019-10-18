@@ -4,14 +4,12 @@ import useStyleProps from '../../misc/hooks/useStyleProps';
 import useStyles from '../../misc/hooks/useStyles';
 import useContainer from '../../misc/hooks/useContainer';
 import Types from './types';
-import useFlow from '../../misc/hooks/useFlow';
 
 const Grid = (props: Types.Props, ref: RefObject<HTMLDivElement>) => {
-    const { theme } = useFlow();
     const { attributes } = useContainer(props);
     const styleProps = useStyleProps(props);
-    const styles = useStyles(props, {
-        containter: [
+    const styles = useStyles<Types.StylesKeys>(props, {
+        container: [
             {
                 position: "relative",
                 display: props.inline ? 'inline-grid' : 'grid',
@@ -34,7 +32,6 @@ const Grid = (props: Types.Props, ref: RefObject<HTMLDivElement>) => {
                 justifyItems: props.justifyItems,
             },
             styleProps.all,
-            theme.overrides.Grid
         ]
     }, 'Grid')
 
@@ -43,7 +40,7 @@ const Grid = (props: Types.Props, ref: RefObject<HTMLDivElement>) => {
         {
             ...attributes,
             ref: ref,
-            css: styles.containter
+            css: styles.container
         },
         props.children
     );

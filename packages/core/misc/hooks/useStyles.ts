@@ -1,18 +1,16 @@
-import GlobalTypes from "../../types";
+import Global from "../../types";
 import {css, SerializedStyles} from "@emotion/core";
 import useFlow from "./useFlow";
 import ThemeTypes from "../themes/types";
 
-export type FlowStyles<C,V> = {[O in keyof C]: FlowStyle<V>}
-export type FlowStyle<V> = (state?: V) => SerializedStyles
-
-const createStyles = <C, V = any, S = C extends (...args: any) => any ? ReturnType<C> : C>(
-    props, 
-    componentStyles: C, 
-    componentName?: keyof ThemeTypes.Overrides): FlowStyles<S,V> => {
+const createStyles = <S extends string, V = {}>(
+        props, 
+        componentStyles: Global.ComponentStyles<string>, 
+        componentName?: keyof ThemeTypes.Overrides
+    ): Global.FlowStyles<S,V> => {
     
     const { theme } = useFlow();
-    let FlowStyles: FlowStyles<S, V> = {} as FlowStyles<S, V>;
+    let FlowStyles: Global.FlowStyles<S, V> = {} as any;
 
     if (typeof componentStyles === 'function') {
         componentStyles = componentStyles(props,theme)
@@ -21,7 +19,7 @@ const createStyles = <C, V = any, S = C extends (...args: any) => any ? ReturnTy
     Object.keys(componentStyles).map(styleName => {
         FlowStyles[styleName] = (state) => {
 
-            const variant: GlobalTypes.Variant<V> = (varaints) => {
+            const variant: Global.Variant<V> = (varaints) => {
                 let variantStyles: any = {};
                 for (const variantName of Object.keys(varaints)) {
                     const variantValue = {...props, ...state}[variantName];
@@ -41,7 +39,7 @@ const createStyles = <C, V = any, S = C extends (...args: any) => any ? ReturnTy
             const overrideStyle = 
                 componentName && 
                 theme.overrides[componentName] && 
-                createStyles(props, theme.overrides[componentName])
+                createStyles(props, theme.overrides[componentName] as Global.ComponentStyles<string>)
             
             if (overrideStyle && overrideStyle[styleName]) {
                 return css([resolveStyles<V>(componentStyles[styleName], variant), overrideStyle[styleName]()])
@@ -54,7 +52,10 @@ const createStyles = <C, V = any, S = C extends (...args: any) => any ? ReturnTy
     return FlowStyles
 }
 
-function resolveStyles<V>(style: GlobalTypes.ComponentStyle<V>, variant: GlobalTypes.Variant<V>): SerializedStyles {
+function resolveStyles<V>(
+    style: Global.ComponentStyle<V>, 
+    variant: Global.Variant<V>): SerializedStyles {
+        
     if (typeof style === 'function') {
         return css(style(variant))
     } else {

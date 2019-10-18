@@ -1,6 +1,4 @@
-import { CSSProperties, RefObject } from "react";
 import Global from "../../types";
-import { Interpolation } from "@emotion/core";
 
 declare namespace ModalTypes {
 
@@ -48,7 +46,7 @@ declare namespace ModalTypes {
         center: boolean
         fullSize?: boolean
         children?: any
-        styles?: any
+        styles: Global.FlowStyles<StyleKeys, Variants>
     }
 
     interface ModalWindowProps {
@@ -61,7 +59,7 @@ declare namespace ModalTypes {
         children?: any
         containerAttr?: React.HTMLAttributes<HTMLElement> & Global.SelfProps
         onClosePressed: () => void
-        styles?: any
+        styles: Global.FlowStyles<StyleKeys, Variants>
     }
 
     interface ModalHeaderProps {
@@ -69,15 +67,19 @@ declare namespace ModalTypes {
         subtitle?: string
         hideHeader?: boolean
         onClosePressed: () => void
-        styles: any
+        styles: Global.FlowStyles<StyleKeys, Variants>
     }
 
-    export interface Styles {
-        overlay: Interpolation
-        window: Interpolation
-        header: Interpolation
-        cross: Interpolation
+    interface Variants {
+        visible?: boolean
+        center?: boolean
+        fullSize?: Props["fullSize"]
+        fullSizeCenter?: boolean
     }
+
+    type StyleKeys = 'overlay' | 'window' | 'header' | 'cross'
+
+    type Styles = Global.ComponentStyles<StyleKeys, Variants>
 
 }
 

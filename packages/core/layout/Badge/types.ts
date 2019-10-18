@@ -12,8 +12,9 @@ declare namespace BadgeTypes {
     export interface Variants {
         align: Props["align"]
     }
+    type StyleKeys = "container" | "holder"
 
-    export type Styles = Global.ComponentStyles<"container" | "holder", Variants> 
+    export type Styles = Global.ComponentStyles<StyleKeys, Variants> 
 }
 
 export default BadgeTypes

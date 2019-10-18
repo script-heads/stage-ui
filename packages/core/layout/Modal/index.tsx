@@ -4,22 +4,23 @@ import useContainer from '../../misc/hooks/useContainer';
 import ModalOverlay from './ModalOverlay';
 import ModalPortal from './ModalPortal';
 import ModalWindow from './ModalWindow';
-import createStyles from './styles';
-import ModalTypes from './types';
+import modalStyles from './styles';
+import Types from './types';
+import useStyles from '../../misc/hooks/useStyles';
 
-const Modal = (props: ModalTypes.Props, ref: RefObject<ModalTypes.Ref>) => {
+const Modal = (props: Types.Props, ref: RefObject<Types.Ref>) => {
 
     const { hideHeader, fullSize } = props;
     const { attributes } = useContainer(props);
-    const styles = createStyles(props);
+    const styles = useStyles<Types.StyleKeys, Types.Variants>(props,modalStyles,'Modal');
 
     const overlayRef = useRef(null);
     const windowRef = useRef(null);
 
     const [active, setActive] = useState(false);
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState<boolean>(false);
     const [customContent, setCustomContent] = useState<React.ReactElement | null>(null);
-    const [center, setCenter] = useState(false);
+    const [center, setCenter] = useState<boolean>(false);
     const [title, setTitle] = useState(props.title);
     const [subtitle, setSubtitle] = useState(props.subtitle);
 

@@ -15,7 +15,8 @@ declare namespace FlexboxTypes {
         children?: React.ReactNode
     }
 
-    type Styles = Global.ComponentStyles<'container',{}>
+    type StylesKeys = 'container'
+    type Styles = Global.ComponentStyles<StylesKeys>
 }
 
 export default FlexboxTypes

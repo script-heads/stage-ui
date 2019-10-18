@@ -1,12 +1,12 @@
 import React, { forwardRef } from 'react';
-import BadgeTypes from './types';
+import Types from './types';
 import useContainer from '../../misc/hooks/useContainer';
-import BageStyles from './styles';
+import bageStyles from './styles';
 import useStyles from '../../misc/hooks/useStyles';
 
-const Badge = (props: BadgeTypes.Props, ref) => {
+const Badge = (props: Types.Props, ref) => {
     const { attributes } = useContainer(props);
-    const styles = useStyles(props,BageStyles,'Badge');
+    const styles = useStyles<Types.StyleKeys>(props,bageStyles,'Badge');
 
     return (
         <div css={styles.container}>

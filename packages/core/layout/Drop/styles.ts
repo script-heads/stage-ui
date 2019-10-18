@@ -1,7 +1,7 @@
-import DropTypes from "./types";
+import Types from "./types";
 import useStyleProps from "../../misc/hooks/useStyleProps";
 
-const DropStyles: DropTypes.Styles = (props: DropTypes.Props, theme) => {
+const DropStyles: Types.Styles = (props: Types.Props, theme) => {
   const styleProps = useStyleProps(props);
 
   return {

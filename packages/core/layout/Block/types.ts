@@ -18,7 +18,8 @@ declare namespace BlockTypes {
         hoverSurface?: Props["hoverSurface"]
     }
 
-    type Styles = Global.ComponentStyles<'container',Variants>
+    type StyleKeys = 'container'
+    type Styles = Global.ComponentStyles<StyleKeys,Variants>
 }
 
 export default BlockTypes

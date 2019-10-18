@@ -1,13 +1,13 @@
 import { jsx } from '@emotion/core';
 import { forwardRef } from 'react';
-import BlockTypes from './types';
+import Types from './types';
 import useContainer from '../../misc/hooks/useContainer';
-import BlockStyles from './styles';
+import blockStyles from './styles';
 import useStyles from '../../misc/hooks/useStyles';
 
-const Block = (props: BlockTypes.Props, ref) => {
+const Block = (props: Types.Props, ref) => {
     const { attributes } = useContainer(props);
-    const styles = useStyles<BlockTypes.Styles, BlockTypes.Variants>(props, BlockStyles, 'Block');
+    const styles = useStyles<Types.StyleKeys, Types.Variants>(props, blockStyles, 'Block');
 
     return jsx(
         props.tag || 'div',

@@ -1,8 +1,8 @@
-import BadgeTypes from "./types";
+import Types from "./types";
 import useStyleProps from '../../misc/hooks/useStyleProps';
 import typography from "../../misc/typography";
 
-const BadgeStyles: BadgeTypes.Styles = (props: BadgeTypes.Props, theme) => {
+const BadgeStyles: Types.Styles = (props: Types.Props, theme) => {
     const styleProps = useStyleProps(props);
 
     return {

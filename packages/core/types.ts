@@ -2,7 +2,7 @@ import ThemeTypes from './misc/themes/types';
 import IconsetTypes from './misc/icons/types';
 import chroma from 'chroma-js';
 import CSS from 'csstype';
-import { Interpolation } from "@emotion/core";
+import { Interpolation, SerializedStyles } from "@emotion/core";
 
 declare module 'csstype' {
     interface Properties {
@@ -347,13 +347,16 @@ declare namespace Global {
         >
     }>
     
-    type Variant<V> = (variants: Variants<V>) => EmotionStyles
+    type Variant<V = {}> = (variants: Variants<V>) => EmotionStyles
     
-    type ComponentStyle<V> = 
+    type ComponentStyle<V= {}> = 
         ((variant: Variant<V>) => EmotionStyles) | EmotionStyles
     
-    type ComponentStyles<S extends string,V, R = {[O in S]: ComponentStyle<V>}> = 
+    type ComponentStyles<S extends string,V = {}, R = {[O in S]: ComponentStyle<V>}> = 
         ((props, theme: ThemeTypes.Index) => R) | R
+
+    type FlowStyles<S extends string,V = {}> = {[O in S]: FlowStyle<V>}
+    type FlowStyle<V= {}> = (state?: V) => SerializedStyles
 }
 
 export default Global
