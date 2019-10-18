@@ -5,7 +5,7 @@ export const subtitle = ''
 export const ns = 'TreeTypes'
 export const cases = [
     {
-        label: 'Default',
+        label: 'Basic',
         code
     }
 ]

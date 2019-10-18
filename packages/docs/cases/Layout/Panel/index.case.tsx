@@ -5,7 +5,7 @@ export const subtitle = 'Could be use as main menu in complex apps'
 export const ns = 'PanelTypes'
 export const cases = [
     {
-        label: 'Default',
+        label: 'Basic',
         code
     }
 ]

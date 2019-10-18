@@ -5,7 +5,7 @@ export const subtitle = 'It\'s theme provider, you should wrap entry application
 export const ns = 'ViewportTypes'
 export const cases = [
     {
-        label: 'Default',
+        label: 'Basic',
         code
     }
 ]

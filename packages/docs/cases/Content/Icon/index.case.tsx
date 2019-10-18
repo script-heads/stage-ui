@@ -6,7 +6,7 @@ import code from './default.raw';
 export const title = 'Icon'
 export const ns = 'IconTypes'
 export const cases = [
-    { label: 'Default', code }
+    { label: 'Basic', code }
 ]
 
 export default () => {

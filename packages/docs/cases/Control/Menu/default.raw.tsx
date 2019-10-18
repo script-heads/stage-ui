@@ -4,14 +4,15 @@ import { Menu, Icon } from '@flow-ui/core';
 export default () => {
     return (
         <Menu
+            decoration="filled"
             defaultValue={0}
             items={[
-                {
-                    value: 'home',
-                    content: 'Home'
+                { 
+                    value: 0, 
+                    content: 'Home' 
                 },
                 {
-                    value: 'icon',
+                    value: 1, 
                     content: (
                         <Icon
                             type={i => i.outline.cube}
