@@ -1,8 +1,8 @@
+import useContainer from '@flow-ui/core/misc/hooks/useContainer';
+import useStyles from '@flow-ui/core/misc/hooks/useStyles';
 import React, { forwardRef } from 'react';
-import BadgeTypes from './types';
-import useContainer from '../../misc/hooks/useContainer';
 import BageStyles from './styles';
-import useStyles from '../../misc/hooks/useStyles';
+import BadgeTypes from './types';
 
 const Badge = (props: BadgeTypes.Props, ref) => {
     const { attributes } = useContainer(props);

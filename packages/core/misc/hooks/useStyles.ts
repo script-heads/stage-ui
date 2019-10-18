@@ -1,4 +1,4 @@
-import GlobalTypes from "../../types";
+import GlobalTypes from "@flow-ui/core/types";
 import {css, SerializedStyles} from "@emotion/core";
 import useFlow from "./useFlow";
 import ThemeTypes from "../themes/types";

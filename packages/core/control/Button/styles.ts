@@ -1,9 +1,9 @@
-import useFlow from '../../misc/hooks/useFlow';
-import useStyleProps from '../../misc/hooks/useStyleProps';
-import callProp from '../../misc/utils/callProp';
-import ButtonTypes from './types';
+import useFlow from '@flow-ui/core/misc/hooks/useFlow';
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
+import callProp from '@flow-ui/core/misc/utils/callProp';
+import variant from '@flow-ui/core/misc/utils/variant';
 import chroma from 'chroma-js';
-import variant from '../../misc/utils/variant';
+import ButtonTypes from './types';
 
 export default (props: ButtonTypes.Props) => {
 

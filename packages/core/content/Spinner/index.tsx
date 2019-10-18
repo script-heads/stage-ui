@@ -1,7 +1,7 @@
+import useContainer from '@flow-ui/core/misc/hooks/useContainer';
 import React, { forwardRef } from 'react';
 import createStyles from './styles';
 import SpinnerTypes from './types';
-import useContainer from '../../misc/hooks/useContainer';
 
 const Spinner = (props: SpinnerTypes.Props, ref) => {
     const {

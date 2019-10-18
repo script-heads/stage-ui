@@ -1,7 +1,7 @@
-import callProp from "../../misc/utils/callProp";
-import useFlow from "../../misc/hooks/useFlow";
 import { css } from "@emotion/core";
-import useStyleProps from "../../misc/hooks/useStyleProps";
+import useFlow from "@flow-ui/core/misc/hooks/useFlow";
+import useStyleProps from "@flow-ui/core/misc/hooks/useStyleProps";
+import callProp from "@flow-ui/core/misc/utils/callProp";
 
 export default (props) => {
     const { theme } = useFlow();

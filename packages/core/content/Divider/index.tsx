@@ -1,10 +1,10 @@
+import { css, jsx } from '@emotion/core';
+import useContainer from '@flow-ui/core/misc/hooks/useContainer';
+import useFlow from '@flow-ui/core/misc/hooks/useFlow';
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
+import callProp from '@flow-ui/core/misc/utils/callProp';
 import { forwardRef } from 'react';
-import { jsx, css } from '@emotion/core';
 import DividerTypes from './types';
-import useFlow from '../../misc/hooks/useFlow';
-import useContainer from '../../misc/hooks/useContainer';
-import useStyleProps from '../../misc/hooks/useStyleProps';
-import callProp from '../../misc/utils/callProp';
 
 const Divider = (props: DividerTypes.Props, ref) => {
     const { theme } = useFlow();

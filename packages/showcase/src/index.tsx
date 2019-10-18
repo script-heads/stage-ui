@@ -1,19 +1,20 @@
 import 'babel-polyfill';
 
-import { Viewport, Menu, Button } from "@flow-ui/core";
+import { Button, Viewport } from "@flow-ui/core";
 import Icon from "@flow-ui/core/content/Icon";
-import { A, H3, T2, H1, T1 } from "@flow-ui/core/content/Typography";
+import { A, H1, H3, T1, T2 } from "@flow-ui/core/content/Typography";
 import Block from '@flow-ui/core/layout/Block';
 import Flexbox from '@flow-ui/core/layout/Flexbox';
 import * as themesCore from '@flow-ui/core/misc/themes';
 import * as themesLab from '@flow-ui/lab/misc/themes';
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import ShowcaseMenu from './components/Menu';
 import CodeEditor from './components/CodeEditor';
+import ShowcaseMenu from './components/Menu';
 import ThemeSwitch from "./components/ThemeSwitch";
-import core, { Case } from './core';
 import UIDocumentation from "./components/UIDocumentation";
+import core, { Case } from './core';
+
 
 export const themes = { ...themesCore, ...themesLab }
 

@@ -1,8 +1,8 @@
 import { css } from "@emotion/core";
-import useFlow from "../../misc/hooks/useFlow";
-import useStyleProps from '../../misc/hooks/useStyleProps';
+import useFlow from "@flow-ui/core/misc/hooks/useFlow";
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
+import variant from "@flow-ui/core/misc/utils/variant";
 import TreeTypes from "./types";
-import variant from "../../misc/utils/variant";
 
 export default (props: TreeTypes.Props, lvl: number, isOpen: boolean, hasTreeChilds: boolean) => {
     const { decoration = 'drop' } = props;

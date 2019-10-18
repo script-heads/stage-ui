@@ -1,7 +1,7 @@
 import css from '@emotion/css';
-import useFlow from '../../misc/hooks/useFlow';
-import variant from '../../misc/utils/variant';
-import Global from '../../types';
+import useFlow from '@flow-ui/core/misc/hooks/useFlow';
+import variant from '@flow-ui/core/misc/utils/variant';
+import Global from '@flow-ui/core/types';
 import CheckboxTypes from './types';
 
 export default (props: CheckboxTypes.Props, checked: boolean, focus: boolean) => {

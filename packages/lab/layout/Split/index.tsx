@@ -1,7 +1,7 @@
-import React, { forwardRef, Fragment, useMemo, useEffect } from 'react'
+import useContainer from '@flow-ui/core/misc/hooks/useContainer'
+import React, { forwardRef, Fragment, useEffect, useMemo } from 'react'
 import Separator from './Separator'
 import SplitTypes from './types'
-import useContainer from '@flow-ui/core/misc/hooks/useContainer'
 
 export type SplitElRef = (HTMLDivElement & { 
     _vertical?: true 

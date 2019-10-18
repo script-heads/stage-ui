@@ -1,7 +1,7 @@
 import { css } from '@emotion/core';
+import useFlow from '@flow-ui/core/misc/hooks/useFlow';
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
 import ModalTypes from './types';
-import useFlow from '../../misc/hooks/useFlow';
-import useStyleProps from '../../misc/hooks/useStyleProps';
 
 export default (props: ModalTypes.Props) => {
     const { theme } = useFlow();

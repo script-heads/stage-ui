@@ -1,6 +1,6 @@
+import useContainer from '@flow-ui/core/misc/hooks/useContainer';
 import React, { FC } from 'react';
 import MenuTypes from './types';
-import useContainer from '../../misc/hooks/useContainer';
 
 const Item: FC<MenuTypes.ItemProps> = (props) => {
 

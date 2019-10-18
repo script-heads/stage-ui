@@ -1,4 +1,4 @@
-import Global from "../../types";
+import Global from "@flow-ui/core/types";
 import { ChangeEventHandler } from "react";
 import IMask from 'imask';
 

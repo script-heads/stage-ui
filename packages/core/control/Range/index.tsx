@@ -1,7 +1,7 @@
 import React, { useRef, FC, forwardRef, useImperativeHandle, useEffect, useMemo } from 'react';
 import createStyles from './styles';
 import Types from './types';
-import useContainer from '../../misc/hooks/useContainer';
+import useContainer from '@flow-ui/core/misc/hooks/useContainer';
 
 const Range: FC<Types.Props> = (props, ref) => {
     const { min = 0, max = 100, value, defaultValue } = props;

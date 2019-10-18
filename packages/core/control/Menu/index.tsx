@@ -1,9 +1,9 @@
-import React, { FC, forwardRef, useState, useEffect, Fragment } from 'react';
+import useContainer from '@flow-ui/core/misc/hooks/useContainer';
+import React, { FC, forwardRef, Fragment, useState } from 'react';
+import createID from '../../misc/utils/createID';
+import Item from './Item';
 import getStyles from './styles';
 import MenuTypes from './types';
-import Item from './Item';
-import useContainer from '../../misc/hooks/useContainer';
-import createID from '../../misc/utils/createID';
 
 const Menu: FC<MenuTypes.Props> = (props, ref) => {
     const { items, defaultValue = '', separator } = props;

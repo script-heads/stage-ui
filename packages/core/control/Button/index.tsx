@@ -1,7 +1,7 @@
+import useContainer from '@flow-ui/core/misc/hooks/useContainer';
 import React, { FC, forwardRef } from 'react';
 import getStyles from './styles';
 import ButtonTypes from './types';
-import useContainer from '../../misc/hooks/useContainer';
 
 const Button: FC<ButtonTypes.Props> = (props, ref) => {
 

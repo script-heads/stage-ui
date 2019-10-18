@@ -1,8 +1,8 @@
-import React, { forwardRef, Fragment, useMemo, useEffect, useRef, useLayoutEffect, useState } from 'react'
-import Types from './types'
-import Styles from './styles'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import React, { forwardRef, useEffect, useMemo, useState } from 'react'
+import Styles from './styles'
+import Types from './types'
 
 interface ScrollParams {
     deltaX: number

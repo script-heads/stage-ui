@@ -1,5 +1,5 @@
 import { CSSProperties, RefObject } from "react";
-import Global from "../../types";
+import Global from "@flow-ui/core/types";
 import { Interpolation } from "@emotion/core";
 
 declare namespace ModalTypes {

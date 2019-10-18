@@ -1,9 +1,9 @@
 import useFlow from '@flow-ui/core/misc/hooks/useFlow';
+import mergeObjects from '@flow-ui/core/misc/utils/mergeObjects';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import React, { FC, forwardRef } from 'react';
-import { Bar, Doughnut, HorizontalBar, Line, Pie, Polar, Radar, Scatter, Bubble } from 'react-chartjs-2';
+import { Bar, Bubble, Doughnut, HorizontalBar, Line, Pie, Polar, Radar, Scatter } from 'react-chartjs-2';
 import ChartTypes from './types';
-import mergeObjects from '@flow-ui/core/misc/utils/mergeObjects';
 
 const Chart: FC<ChartTypes.Props> = (props, ref: any) => {
 

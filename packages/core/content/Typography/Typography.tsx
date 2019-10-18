@@ -1,9 +1,9 @@
 import { jsx } from '@emotion/core';
-import useStyleProps from '../../misc/hooks/useStyleProps';
-import useContainer from '../../misc/hooks/useContainer';
-import Types from './types';
+import useContainer from '@flow-ui/core/misc/hooks/useContainer';
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
+import callProp from '@flow-ui/core/misc/utils/callProp';
 import { forwardRef } from 'react';
-import callProp from '../../misc/utils/callProp';
+import Types from './types';
 
 const Typography = (props: Types.Props, ref) => {
 

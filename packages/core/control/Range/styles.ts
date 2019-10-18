@@ -1,7 +1,7 @@
 import { css } from "@emotion/core";
-import useFlow from "../../misc/hooks/useFlow";
+import useFlow from "@flow-ui/core/misc/hooks/useFlow";
+import useStyleProps from "@flow-ui/core/misc/hooks/useStyleProps";
 import RangeTypes from './types';
-import useStyleProps from "../../misc/hooks/useStyleProps";
 
 export default (props: RangeTypes.Props) => {
     const { theme } = useFlow();

@@ -1,4 +1,4 @@
-import Global from "../../types";
+import Global from "@flow-ui/core/types";
 
 declare namespace DividerTypes {
     export interface Props extends Global.Props {

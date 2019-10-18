@@ -1,11 +1,11 @@
-import React, { forwardRef, Fragment, useState } from 'react';
-import TreeTypes from './types';
-import getStyles from './styles';
+import useContainer from '@flow-ui/core/misc/hooks/useContainer';
+import React, { forwardRef, useState } from 'react';
 import Icon from '../../content/Icon';
-import Flexbox from '../Flexbox';
 import { C1 } from '../../content/Typography';
-import useContainer from '../../misc/hooks/useContainer';
 import Block from '../Block';
+import Flexbox from '../Flexbox';
+import getStyles from './styles';
+import TreeTypes from './types';
 
 const Tree = (props: TreeTypes.Props, ref) => {
     //@ts-ignore
