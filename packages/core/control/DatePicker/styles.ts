@@ -8,14 +8,13 @@ import useFlow from '@flow-ui/core/misc/hooks/useFlow';
 export default () => {
 
     const { theme } = useFlow();
-    const overrides = theme.overrides.DatePicker;
 
     return {
         dateGrind: css({
             position: "relative",
             background: theme.color.surface.css(),
             color: theme.color.onSurface.css(),
-        }, overrides && overrides.dateGrind),
+        }),
 
         weekDay: css({
             userSelect: "none",
@@ -23,12 +22,12 @@ export default () => {
             marginTop: "0.25rem",
             marginBottom: "0.5rem",
             fontWeight: 400,
-        }, overrides && overrides.weekDay),
+        }),
 
         title: css({
             color: theme.color.onSurface.css(),
             padding: '0.25rem'
-        }, overrides && overrides.title),
+        }),
 
         /**
          * Styles for day/month/year squire
@@ -82,7 +81,7 @@ export default () => {
                 st.opacity = 0.3;
                 delete st[':hover']
             }
-            return css(st, overrides && overrides.gridBlock);
+            return css(st);
         },
 
         drop: (isActive: boolean) => css({

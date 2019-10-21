@@ -7,7 +7,6 @@ import SelectTypes from './types';
 export default (props: SelectTypes.Props) => {
     const { size = 'medium', shape = 'rounded', decoration = 'outline' } = props;
     const { theme } = useFlow();
-    const overrides = theme.overrides.Select;
     let color = callProp(props.color, theme.color);
     let backgroundColor = callProp(props.backgroundColor, theme.color);
 
@@ -154,8 +153,7 @@ export default (props: SelectTypes.Props) => {
             }),
             {
                 borderColor: color
-            },
-            overrides && overrides.dropMenu
+            }
         ),
 
         dropItem: (underCursor: boolean) => css(
@@ -173,8 +171,7 @@ export default (props: SelectTypes.Props) => {
                     ':hover': {
                         background: theme.color.background.css()
                     }
-                },
-            overrides && overrides.dropItem
+                }
         ),
 
         insideLabelStyles: {

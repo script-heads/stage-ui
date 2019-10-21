@@ -5,7 +5,6 @@ import RangeTypes from './types';
 
 export default (props: RangeTypes.Props) => {
     const { theme } = useFlow();
-    const overrides = theme.overrides.Range;
     const stylesProps = useStyleProps(props);
 
     return {
@@ -16,7 +15,6 @@ export default (props: RangeTypes.Props) => {
                 height: 'calc(1rem + 4px)',
                 cursor: 'pointer',
             }, stylesProps.all,
-            overrides && overrides.container
         ),
         rail: css({
             position: 'absolute',
@@ -26,7 +24,7 @@ export default (props: RangeTypes.Props) => {
             width: '100%',
             zIndex: 1,
             borderRadius: '2px',
-        }, overrides && overrides.rail),
+        }),
         track: css({
             position: 'absolute',
             top: 'calc(50% - 2px)',
@@ -34,7 +32,7 @@ export default (props: RangeTypes.Props) => {
             background: theme.color.primary.css(),
             zIndex: 2,
             borderRadius: '2px',
-        }, overrides && overrides.track),
+        }),
         thumb: css({
             position: 'absolute',
             width: '1rem',
@@ -55,6 +53,6 @@ export default (props: RangeTypes.Props) => {
             ':active': {
                 transform: 'scale(0.95)'
             }
-        }, overrides && overrides.thumb),
+        }),
     }
 }

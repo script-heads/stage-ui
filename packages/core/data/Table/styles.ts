@@ -6,7 +6,6 @@ import TableTypes from './types';
 export default (props: TableTypes.Props) => {
     const { theme } = useFlow();
     const { all: gloablStyles } = useStyleProps(props);
-    const overrides = theme.overrides.Table;
 
     return {
 
@@ -17,14 +16,12 @@ export default (props: TableTypes.Props) => {
                 display: 'flex',
             },
             gloablStyles,
-            overrides && overrides.container,
         ),
 
         content: css(
             {
                 flex: 1
             },
-            overrides && overrides.content
         ),
 
         headRow: css(
@@ -36,7 +33,6 @@ export default (props: TableTypes.Props) => {
                 fontSize: '1rem',
                 padding: '0.75rem 1.125rem',
             },
-            overrides && overrides.headRow
         ),
 
         headColumn: css(
@@ -44,7 +40,6 @@ export default (props: TableTypes.Props) => {
                 color: theme.color.hard.css(),
                 marginRight: '1.25rem',
             },
-            overrides && overrides.headColumn
         ),
 
         search: css(
@@ -74,7 +69,6 @@ export default (props: TableTypes.Props) => {
                     flex: 1,
                 },
             },
-            overrides && overrides.search
         ),
 
         body: css(
@@ -87,7 +81,6 @@ export default (props: TableTypes.Props) => {
                 backgroundColor: theme.color.surface.css(),
                 boxShadow: theme.assets.shadow.default,
             },
-            overrides && overrides.body
         ),
 
         pagination: css(
@@ -95,7 +88,6 @@ export default (props: TableTypes.Props) => {
                 padding: '0.3rem 0.25rem 0.25rem 0rem',
                 marginTop: '3rem',
             },
-            overrides && overrides.pagination
         ),
 
         paginationButton: (active: boolean) => css(
@@ -111,7 +103,6 @@ export default (props: TableTypes.Props) => {
                 backgroundColor: theme.color.surface.css(),
                 opacity: active ? 1 : 0.5,
             },
-            overrides && overrides.paginationButton
         ),
 
         row: (edited: boolean, withActions: boolean) => css(
@@ -149,7 +140,6 @@ export default (props: TableTypes.Props) => {
                     }
                 })
             },
-            overrides && overrides.row
         ),
 
         subrow: css(
@@ -160,7 +150,6 @@ export default (props: TableTypes.Props) => {
                 alignItems: 'stretch',
                 position: 'relative',
             },
-            overrides && overrides.subrow
         ),
 
         column: css(
@@ -172,7 +161,6 @@ export default (props: TableTypes.Props) => {
                 flexDirection: 'column',
                 justifyContent: 'center',
             },
-            overrides && overrides.column
         ),
 
         more: css(
@@ -180,7 +168,6 @@ export default (props: TableTypes.Props) => {
                 color: theme.color.primary.css(),
                 fontSize: '1.5rem',
             },
-            overrides && overrides.more
         ),
 
         actions: css(
@@ -192,7 +179,6 @@ export default (props: TableTypes.Props) => {
                 alignItems: 'center',
                 justifyContent: 'flex-end',
             },
-            overrides && overrides.actions
         ),
 
         actionButtons: css(
@@ -215,7 +201,6 @@ export default (props: TableTypes.Props) => {
                     cursor: 'pointer',
                 }
             },
-            overrides && overrides.actionButtons
         ),
 
         actionButtonsEdit: css(
@@ -224,7 +209,6 @@ export default (props: TableTypes.Props) => {
                 flexDirection: 'row',
                 alignItems: 'center',
             },
-            overrides && overrides.actionButtonsEdit
         )
     }
 }
