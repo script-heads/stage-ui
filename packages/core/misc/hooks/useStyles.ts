@@ -19,7 +19,7 @@ const createStyles = <S>(
     const overrideStyles =
         componentName && 
         theme.overrides[componentName] && 
-        createStyles(props, theme.overrides[componentName] as Global.ComponentStyles<string>)
+        createStyles(props, theme.overrides[componentName] as Global.ComponentStyles<{}>)
 
     Object.keys(componentStyles).map(styleName => {
 

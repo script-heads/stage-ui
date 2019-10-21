@@ -342,12 +342,11 @@ declare namespace Global {
 
     type Variants<T> = Partial<{
         [K in keyof T]: Partial<
-            Record<Extract<T[K],string>,
-            EmotionStyles>
+            Record<Extract<T[K],string>,EmotionStyles>
         >
     }>
     
-    type Variant<V = {}> = (variants: Variants<V>) => EmotionStyles
+    type Variant<V> = (variants: Variants<V>) => EmotionStyles
     
     type FlowStyle<V> = V extends Object 
         ? (state: V) => SerializedStyles 
