@@ -6,7 +6,7 @@ declare namespace MeterTypes {
     type MeterDecoration = 'filled' | 'outline'
     type MeterShape = 'square' | 'round'
 
-    export interface Props extends Global.Props {
+    interface Props extends Global.Props {
         percent: number
 
         size?: Global.Size
@@ -24,8 +24,16 @@ declare namespace MeterTypes {
         animation?: boolean
     }
 
-    export interface Styles {
-        
+    interface Styles {
+        container: {
+            shape: MeterShape
+            size: Global.Size
+            decoration: MeterDecoration
+        },
+        thumb: {
+            shape: MeterShape
+            size: Global.Size
+        }
     }
 }
 

@@ -1,21 +1,25 @@
 import useContainer from '@flow-ui/core/misc/hooks/useContainer';
 import React, { FC, forwardRef } from 'react';
-import getStyles from './styles';
-import MeterTypes from './types';
+import meterStyles from './styles';
+import Types from './types';
+import useStyles from '@flow-ui/core/misc/hooks/useStyles';
 
-const Meter: FC<MeterTypes.Props> = (props, ref) => {
-
+const Meter = (props: Types.Props, ref) => {
+    
     const {
+        decoration = 'filled',
+        shape = 'round',
+        size = 'medium',
         percent = 0,
     } = props;
 
     const { attributes } = useContainer(props);
-    const styles = getStyles(props, percent);
+    const styles = useStyles(props, meterStyles, 'Meter')
 
     return (
-        <div ref={ref} {...attributes} css={styles.container}>
+        <div ref={ref} {...attributes} css={styles.container({decoration, shape, size})}>
             <div
-                css={styles.thumb}
+                css={styles.thumb({shape, size})}
                 style={{
                     width: percent + "%"
                 }}
