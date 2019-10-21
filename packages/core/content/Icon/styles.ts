@@ -1,16 +1,15 @@
-import { css } from "@emotion/core";
-import useFlow from "@flow-ui/core/misc/hooks/useFlow";
 import useStyleProps from "@flow-ui/core/misc/hooks/useStyleProps";
 import callProp from "@flow-ui/core/misc/utils/callProp";
+import Global from "../../types";
+import Types from "./types";
 
-export default (props) => {
-    const { theme } = useFlow();
+const iconStyles: Global.ComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     const styleProps = useStyleProps(props);
     const background = callProp(props.background, theme.color);
     const color = callProp(props.color, theme.color);
 
     return {
-        container: css(
+        container: [
             {
                 height: "min-content",
                 width: "min-content",
@@ -32,10 +31,12 @@ export default (props) => {
                 padding: "0.4em",
             },
             styleProps.all,
-        ),
-        icon: css({
+        ],
+        icon: [{
             display: "inline-block",
             verticalAlign: "middle",
-        })
+        }]
     }
 }
+
+export default iconStyles
