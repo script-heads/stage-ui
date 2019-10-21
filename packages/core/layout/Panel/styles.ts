@@ -1,16 +1,14 @@
-import css, { Interpolation } from "@emotion/css";
-import useFlow from "@flow-ui/core/misc/hooks/useFlow";
 import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
-import PanelTypes from "./types";
+import Types from "./types";
+import Global from "../../types";
 
-export default (props: PanelTypes.Props) => {
+const panelStyles: Global.ComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     const styleProps = useStyleProps(props);
-    const { theme } = useFlow();
-    const overrides = theme.overrides.Panel;
 
     return {
-        container: css(
+        container: (variant) => [
             {
+                position: 'fixed',
                 background: theme.color.surface.css(),
                 color: theme.color.onPrimary.css(),
                 padding: theme.distance.medium,
@@ -19,45 +17,33 @@ export default (props: PanelTypes.Props) => {
                 borderColor: theme.assets.border.color,
                 boxSizing: "border-box",
             },
-            getPosition(props.align || "top"),
-            styleProps.all,
-            overrides && overrides.container,
-        )
+            variant({
+                align: {
+                    'top': [{
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                    }],
+                    'bottom': [{
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                    }],
+                    'right': [{
+                        right: 0,
+                        top: 0,
+                        bottom: 0,
+                    }],
+                    'left': [{
+                        left: 0,
+                        top: 0,
+                        bottom: 0,
+                    }]
+                }
+            }),
+            styleProps.all
+        ]
     }
 }
 
-function getPosition(align: PanelTypes.Props["align"]): Interpolation {
-
-    switch (align) {
-        case 'top':
-            return {
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                right: 0,
-            }
-        case 'bottom':
-            return {
-                position: 'fixed',
-                bottom: 0,
-                left: 0,
-                right: 0,
-            }
-        case 'right':
-            return {
-                position: 'fixed',
-                right: 0,
-                top: 0,
-                bottom: 0,
-            }
-        case 'left':
-            return {
-                position: 'fixed',
-                left: 0,
-                top: 0,
-                bottom: 0,
-            }
-        default:
-            return {}
-    }
-}
+export default panelStyles
