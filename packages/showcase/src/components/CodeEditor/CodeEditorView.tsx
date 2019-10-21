@@ -133,7 +133,7 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
             minimap: {
                 enabled: false
             },
-            lineNumbers: 'off',
+            // lineNumbers: 'off',
             automaticLayout: true,
             fontSize: 14,
             fontWeight: "600",

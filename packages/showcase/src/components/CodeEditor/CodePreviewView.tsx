@@ -12,14 +12,15 @@ Object.assign(window, {
     ...LabScope
 })
 
-const GridBackground = (props: { set?: boolean, dark: boolean, children: any }) => {
-    const gridColor1 = props.dark ? "#333333" : "#f4f4f4";
-    const gridColor2 = props.dark ? "#222222" : "#ffffff";
+const GridBackground = (props: { set?: boolean, children: any }) => {
+    const { theme } = CoreScope.useFlow()
+    const gridColor1 = theme.color.background.hex();
+    const gridColor2 = theme.color.backgroundVariant.hex();
     const gridBackground = `
-        linear-gradient(45deg, ${gridColor1} 25%, transparent 25%),
-        linear-gradient(-45deg, ${gridColor1} 25%, transparent 25%), 
-        linear-gradient(45deg, transparent 75%, ${gridColor1} 75%), 
-        linear-gradient(-45deg, transparent 75%, ${gridColor1} 75%)
+        linear-gradient(45deg, ${gridColor2} 25%, transparent 25%),
+        linear-gradient(-45deg, ${gridColor2} 25%, transparent 25%), 
+        linear-gradient(45deg, transparent 75%, ${gridColor2} 75%), 
+        linear-gradient(-45deg, transparent 75%, ${gridColor2} 75%)
     `;
 
     return (
@@ -29,7 +30,7 @@ const GridBackground = (props: { set?: boolean, dark: boolean, children: any }) 
                     css={{
                         position: "absolute",
                         left: 0, right: 0, bottom: 0, top: 0,
-                        backgroundColor: gridColor2,
+                        backgroundColor: gridColor1,
                         backgroundImage: gridBackground,
                         backgroundSize: "2rem 2rem",
                         backgroundPosition: "0 0, 0 1rem, 1rem -1rem, -1rem 0px",
@@ -53,7 +54,7 @@ class Renderer extends React.Component<{children: any}> {
 }
 
 const CodePreviewView = (props: { dark: boolean, code: string, showGrid: boolean }) => {
-    let { code, dark } = props;
+    let { code } = props;
     const matchReturn = code.match('return')
 
     let render: any = null
@@ -69,8 +70,8 @@ const CodePreviewView = (props: { dark: boolean, code: string, showGrid: boolean
 
     if (matchReturn && matchReturn.index) {
         return (
-            <Block h="100%" background={c => c.surface.css()} css={{ position: 'relative' }}>
-                <GridBackground set={props.showGrid} dark={dark}>
+            <Block h="100%" css={{ position: 'relative' }}>
+                <GridBackground set={props.showGrid}>
                     <Block m="2rem" css={{ position: 'absolute', zIndex: 1, top: 0, left: 0, right: 0, bottom: 0 }}>
                         <Renderer>
                             {render}

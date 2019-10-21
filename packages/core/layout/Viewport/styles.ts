@@ -108,6 +108,9 @@ export default (theme, wrapper) => {
                     .monaco-editor .scroll-decoration {
                         box-shadow: none !important;
                     }
+                    .monaco-editor, .monaco-editor-background, .monaco-editor .inputarea.ime-input {
+                        background: transparent !important;
+                    }
                 `
         )
     }
