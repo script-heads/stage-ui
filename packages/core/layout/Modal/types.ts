@@ -70,7 +70,7 @@ declare namespace ModalTypes {
         styles: Global.FlowStyles<Styles>
     }
 
-    type Styles = {
+    interface Styles {
         overlay: {
             visible?: boolean
             center?: boolean
@@ -79,8 +79,8 @@ declare namespace ModalTypes {
             visible?: boolean
             fullSizeCenter?: boolean
         }
-        header: null
-        cross: null
+        header: void
+        cross: void
     }
 }
 

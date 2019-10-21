@@ -1,3 +1,5 @@
-export default () => {
-    return {}
+export default (props, theme) => {
+    return {
+        container: []
+    }
 }

@@ -15,8 +15,8 @@ declare namespace FlexboxTypes {
         children?: React.ReactNode
     }
 
-    type Styles = {
-        container: null
+    interface Styles {
+        container: void
     }
 }
 

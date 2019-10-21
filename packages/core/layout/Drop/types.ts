@@ -20,8 +20,8 @@ declare namespace DropTypes {
     children?: React.ReactNode
   }
 
-  type Styles = {
-    container: null
+  interface Styles {
+    container: void
   }
 }
 

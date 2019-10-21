@@ -1,11 +1,11 @@
 
 declare namespace NotificationTypes {
-    export interface Props {
+    interface Props {
         children?: React.ReactNode
         onClick?: () => void
     }
 
-    export interface NotifyOptions {
+    interface NotifyOptions {
         /**
          * Title of notification
          */
@@ -29,8 +29,8 @@ declare namespace NotificationTypes {
         customContent?: React.ReactElement
     }
 
-    export interface Styles {
-        
+    interface Styles {
+        container: void
     }
 }
 

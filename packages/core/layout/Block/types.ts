@@ -13,7 +13,7 @@ declare namespace BlockTypes {
         overflow?: CSS.Properties["overflow"]
     }
 
-    type Styles = {
+    interface Styles {
         container: {
             surface: Props["surface"]
             hoverSurface: Props["hoverSurface"]
