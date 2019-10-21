@@ -30,6 +30,10 @@ const CodeEditor = (props: CodeEditorProps) => {
         } catch (error) { }
     }, [props.caseIndex, props.caseObject])
 
+    useEffect(() => {
+        document.body.style.overflow = props.fullscreen ? 'hidden' : 'auto'
+    }, [props.fullscreen])
+
     const fullscreenStyle: any = props.fullscreen ? {
         position: 'fixed',
         left: 0,
@@ -51,7 +55,7 @@ const CodeEditor = (props: CodeEditorProps) => {
                 borderStyle: "solid",
                 borderColor: flow.theme.color.lightest.css(),
                 borderRadius: flow.theme.radius.default,
-                backgroundColor: flow.theme.color.surface.css(),
+                backgroundColor: flow.theme.color.background.css(),
                 ...fullscreenStyle
             }}
             children={(
@@ -85,28 +89,6 @@ const CodeEditor = (props: CodeEditorProps) => {
                 </Split>
             )}
         />
-        // <Flexbox flex={1} mb="2rem" css={{  
-        //     position: "relative",
-        //     height: '24rem',
-        //     borderWidth: "1px",
-        //     borderStyle: "solid",
-        //     borderColor: flow.theme.color.lightest.css(),
-        //     borderRadius: flow.theme.radius.default,
-        //     backgroundColor: flow.theme.color.surface.css(),
-        //     ...fullscreenStyle
-        // }}>
-        //     <CodeEditorView 
-        //         dark={dark}
-        //         code={code} 
-        //         onChange={setCode}
-        //     />
-        //     <CodePreviewView 
-        //         dark={dark}
-        //         code={code}
-        //         showGrid={props.showGrid}
-        //     />
-        //     
-        // </Flexbox>
     )
 }
 
