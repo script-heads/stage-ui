@@ -27,6 +27,7 @@ const BadgeStyles: Global.ComponentStyles<Types.Styles> = (props: Types.Props, t
                 top: 0,
                 right: 0,
                 transform: 'translate(50%, -50%)',
+                background: theme.color.primary.css()
             },
             variant({
                 align: {

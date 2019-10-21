@@ -74,37 +74,7 @@ const assets = (variables): Theme.Assets => ({
 })
 
 const overrides: Theme.Overrides = {
-    // Block: {
-    //     container: (variant) => [
-    //         {
-    //             background: "green"
-    //         },
-    //         variant({
-    //             surface: {
-    //                 major: [{
-    //                     background: "red"
-    //                 }]
-    //             }
-    //         })
-    //     ]
-    // }
-    Badge: {
-        // container: [
-        
-        // ],
-        // holder: (variant) => [
-        //     {
-        //         background: 'red'
-        //     },
-        //     variant({
-        //         align: {
-        //             'bottom': [{
-        //                 background: 'green'
-        //             }]
-        //         }
-        //     })
-        // ]
-    }
+
 }
 
 export default createTheme(variables, assets, overrides) as Theme.Index
