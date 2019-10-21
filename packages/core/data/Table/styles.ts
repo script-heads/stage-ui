@@ -1,48 +1,41 @@
-import { css } from '@emotion/core';
-import useFlow from '@flow-ui/core/misc/hooks/useFlow';
 import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
-import TableTypes from './types';
+import Types from './types';
+import Global from '../../types';
 
-export default (props: TableTypes.Props) => {
-    const { theme } = useFlow();
-    const { all: gloablStyles } = useStyleProps(props);
+const tabelStyles: Global.ComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+    const styleProps = useStyleProps(props);
 
     return {
-
-        container: css(
+        container: [
             {
                 overflowWrap: 'break-word',
                 lineHeight: 1,
                 display: 'flex',
             },
-            gloablStyles,
-        ),
+            styleProps.all,
+        ],
 
-        content: css(
+        content: [
             {
                 flex: 1
             },
-        ),
+        ],
 
-        headRow: css(
-            {
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                textTransform: 'uppercase',
-                fontSize: '1rem',
-                padding: '0.75rem 1.125rem',
-            },
-        ),
+        headRow: [{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            textTransform: 'uppercase',
+            fontSize: '1rem',
+            padding: '0.75rem 1.125rem',
+        }],
 
-        headColumn: css(
-            {
+        headColumn: [{
                 color: theme.color.hard.css(),
                 marginRight: '1.25rem',
-            },
-        ),
+        }],
 
-        search: css(
+        search: [
             {
                 padding: '1.25rem',
                 display: 'flex',
@@ -69,9 +62,9 @@ export default (props: TableTypes.Props) => {
                     flex: 1,
                 },
             },
-        ),
+        ],
 
-        body: css(
+        body: [
             {
                 position: 'relative',
                 borderWidth: theme.assets.border.width,
@@ -81,16 +74,16 @@ export default (props: TableTypes.Props) => {
                 backgroundColor: theme.color.surface.css(),
                 boxShadow: theme.assets.shadow.default,
             },
-        ),
+        ],
 
-        pagination: css(
+        pagination: [
             {
                 padding: '0.3rem 0.25rem 0.25rem 0rem',
                 marginTop: '3rem',
             },
-        ),
+        ],
 
-        paginationButton: (active: boolean) => css(
+        paginationButton: (variant) => [
             {
                 cursor: 'pointer',
                 borderRadius: '0px 0.25rem 0.25rem 0px',
@@ -101,11 +94,16 @@ export default (props: TableTypes.Props) => {
                 marginBottom: '0.5rem',
                 color: theme.color.onSurface.css(),
                 backgroundColor: theme.color.surface.css(),
-                opacity: active ? 1 : 0.5,
+                opacity: 0.5,
             },
-        ),
+            variant({
+                active: [{
+                    opacity: 1,
+                }]
+            })
+        ],
 
-        row: (edited: boolean, withActions: boolean) => css(
+        row: (variant) => [
             {
                 display: 'flex',
                 flex: 1,
@@ -117,7 +115,9 @@ export default (props: TableTypes.Props) => {
                     borderBottom: 'solid 0.5px',
                     borderColor: theme.color.lightest.css(),
                 },
-                ...(edited && {
+            },
+            variant({
+                edited: [{
                     backgroundColor: theme.color.background.css(),
                     borderColor: theme.color.lightest.css(),
                     borderStyle: 'solid',
@@ -131,18 +131,18 @@ export default (props: TableTypes.Props) => {
                         borderWidth: '0',
                         borderRadius: `0 0 ${theme.radius.default} ${theme.radius.default}`
                     }
-                }),
-                ...(withActions && {
+                }],
+                withActions: [{
                     ':hover': {
                         '> :last-of-type > div': {
                             display: 'flex'
                         }
                     }
-                })
-            },
-        ),
+                }]
+        })
+        ],
 
-        subrow: css(
+        subrow: [
             {
                 paddingTop: '1.25rem',
                 display: 'flex',
@@ -150,9 +150,9 @@ export default (props: TableTypes.Props) => {
                 alignItems: 'stretch',
                 position: 'relative',
             },
-        ),
+        ],
 
-        column: css(
+        column: [
             {
                 marginRight: '1.25rem',
                 flexShrink: 0,
@@ -161,16 +161,16 @@ export default (props: TableTypes.Props) => {
                 flexDirection: 'column',
                 justifyContent: 'center',
             },
-        ),
+        ],
 
-        more: css(
+        more: [
             {
                 color: theme.color.primary.css(),
                 fontSize: '1.5rem',
             },
-        ),
+        ],
 
-        actions: css(
+        actions: [
             {
                 textTransform: 'uppercase',
                 position: 'relative',
@@ -179,9 +179,9 @@ export default (props: TableTypes.Props) => {
                 alignItems: 'center',
                 justifyContent: 'flex-end',
             },
-        ),
+        ],
 
-        actionButtons: css(
+        actionButtons: [
             {
                 flexDirection: 'row',
                 alignItems: 'center',
@@ -201,14 +201,16 @@ export default (props: TableTypes.Props) => {
                     cursor: 'pointer',
                 }
             },
-        ),
+        ],
 
-        actionButtonsEdit: css(
+        actionButtonsEdit: [
             {
                 display: 'flex',
                 flexDirection: 'row',
                 alignItems: 'center',
             },
-        )
+        ]
     }
 }
+
+export default tabelStyles

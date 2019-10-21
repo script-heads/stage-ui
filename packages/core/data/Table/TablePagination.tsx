@@ -14,7 +14,7 @@ const TablePagination = (props: TableTypes.PaginationProps) => {
     let childs: JSX.Element[] = props.search ? [(
         <div key="pagination"
             onClick={() => onChange(1, true)}
-            css={styles.paginationButton(searchActive)}
+            css={styles.paginationButton({active: searchActive})}
             children={`Найти`}
         />
     )] : [];
@@ -24,7 +24,7 @@ const TablePagination = (props: TableTypes.PaginationProps) => {
             <div
                 key={i}
                 onClick={() => onChange(i + 1, false)}
-                css={styles.paginationButton(page === (i + 1))}
+                css={styles.paginationButton({active: page === (i + 1)})}
                 children={`${i * pageSize + 1}–${i * pageSize + pageSize}`}
             />
         )

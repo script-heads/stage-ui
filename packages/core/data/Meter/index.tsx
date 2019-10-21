@@ -1,5 +1,5 @@
 import useContainer from '@flow-ui/core/misc/hooks/useContainer';
-import React, { FC, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import meterStyles from './styles';
 import Types from './types';
 import useStyles from '@flow-ui/core/misc/hooks/useStyles';

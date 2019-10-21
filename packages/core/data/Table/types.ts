@@ -1,28 +1,27 @@
 import Global from "@flow-ui/core/types";
-import { Interpolation } from "@emotion/core";
 
 declare namespace TableTypes {
-    export interface TableColumn {
+    interface TableColumn {
         title?: string
         dataIndex: string
         width?: number
         render?: (row, value) => void
     }
 
-    export interface TableActions {
+    interface TableActions {
         label: string
         className?: string
         onAction: (row) => void
     }
 
-    export interface TableForm {
+    interface TableForm {
         key?: string | number
         defaultData?: { [key: string]: any }
         render: any
         dismiss?: () => void
     }
 
-    export interface Props extends Global.Props {
+    interface Props extends Global.Props {
         data: Object[]
         columns: TableColumn[]
         form?: TableForm
@@ -40,7 +39,7 @@ declare namespace TableTypes {
         className?: string
     }
 
-    export interface RowProps {
+    interface RowProps {
         row: any
         columns: TableColumn[]
         isSelected?: boolean
@@ -53,25 +52,25 @@ declare namespace TableTypes {
         style?: any
         children?: any
         onRowClick?: (row) => void
-        styles: any
+        styles: Global.FlowStyles<Styles>
     }
 
-    export interface ColumnProps {
+    interface ColumnProps {
         row: any
         columns: TableColumn[]
         scope?: any
         children?: any
-        styles: any
+        styles: Global.FlowStyles<Styles>
     }
 
-    export interface ActionsProps {
+    interface ActionsProps {
         actions: any[]
         data: any
         children?: any
-        styles: any
+        styles: Global.FlowStyles<Styles>
     }
 
-    export interface FormProps {
+    interface FormProps {
         data: any
         dismiss?: () => void
         columns: TableColumn[]
@@ -79,20 +78,20 @@ declare namespace TableTypes {
         children?: any
     }
 
-    export interface InjectForm {
+    interface InjectForm {
         data: { [key: string]: any }
         columns: TableColumn[]
         setData: (key: string, value: any) => void
         dismiss?: () => void
     }
 
-    export interface TablePagination {
+    interface TablePagination {
         pageSize: number
         pageTotalSize?: number
         async?: (page: number) => boolean
     }
 
-    export interface PaginationProps {
+    interface PaginationProps {
         pagination: TablePagination
         page: number
         searchActive: boolean
@@ -100,25 +99,30 @@ declare namespace TableTypes {
         data: { [key: string]: any }[]
         onChange: (page: number, searchBar: boolean) => void
         children?: any
-        styles: any
+        styles: Global.FlowStyles<Styles>
     }
 
-    export interface Styles {
-        container: Interpolation
-        content: Interpolation
-        headRow: Interpolation
-        headColumn: Interpolation
-        search: Interpolation
-        body: Interpolation
-        pagination: Interpolation
-        paginationButton: Interpolation
-        row: Interpolation
-        subrow: Interpolation
-        column: Interpolation
-        more: Interpolation
-        actions: Interpolation
-        actionButtons: Interpolation
-        actionButtonsEdit: Interpolation
+    interface Styles {
+        container: void
+        content: void
+        headRow: void
+        headColumn: void
+        search: void
+        body: void
+        pagination: void
+        paginationButton: {
+            active: boolean
+        }
+        row: {
+            edited: boolean
+            withActions: boolean
+        }
+        subrow: void
+        column: void
+        more: void
+        actions: void
+        actionButtons: void
+        actionButtonsEdit: void
     }
 }
 
