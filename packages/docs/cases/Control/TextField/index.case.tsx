@@ -6,7 +6,7 @@ export const subtitle = ''
 export const ns = 'TextFieldTypes'
 export const cases = [
     {
-        label: 'Default',
+        label: 'Basic',
         code
     },
     {

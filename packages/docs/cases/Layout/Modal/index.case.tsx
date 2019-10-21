@@ -5,7 +5,7 @@ export const subtitle = ''
 export const ns = 'ModalTypes'
 export const cases = [
     {
-        label: 'Default',
+        label: 'Basic',
         code
     }
 ]

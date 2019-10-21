@@ -5,7 +5,7 @@ export const subtitle = ''
 export const ns = 'RangeTypes'
 export const cases = [
     {
-        label: 'Default',
+        label: 'Basic',
         code
     }
 ]

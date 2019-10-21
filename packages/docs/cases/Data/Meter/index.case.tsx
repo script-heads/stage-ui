@@ -6,7 +6,7 @@ export const subtitle = ''
 export const ns = 'MeterTypes'
 export const cases = [
     {
-        label: 'Default',
+        label: 'Basic',
         code
     },
     {

@@ -8,7 +8,7 @@ export const ns = 'ScrollTypes'
 export const tag = <LabTag/>
 export const cases = [
     {
-        label: 'Default',
+        label: 'Basic',
         code
     }
 ]

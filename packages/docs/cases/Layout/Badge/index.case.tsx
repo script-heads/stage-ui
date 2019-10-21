@@ -5,7 +5,7 @@ export const subtitle = 'Badge wrap thier children and put on it any React Eleme
 export const ns = 'BadgeTypes'
 export const cases = [
     {
-        label: 'Default',
+        label: 'Basic',
         code
     }
 ]

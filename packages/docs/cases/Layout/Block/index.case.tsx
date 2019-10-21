@@ -6,7 +6,7 @@ export const title = 'Block'
 export const subtitle = 'Block — minimal layout component. For example this case wrap in block'
 export const ns = 'BlockTypes'
 export const cases = [
-    { label: 'Default', code },
+    { label: 'Basic', code },
     { label: 'With surface', code: withSurface },
     { label: 'With hover', code: withHover },
 ]
