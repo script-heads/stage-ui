@@ -1,12 +1,10 @@
-import { css, keyframes } from '@emotion/core';
-import useFlow from '@flow-ui/core/misc/hooks/useFlow';
+import { keyframes } from '@emotion/core';
 import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
 import callProp from '@flow-ui/core/misc/utils/callProp';
-import SpinnerTypes from './types';
+import Types from './types';
+import Global from '../../types';
 
-export default (props: SpinnerTypes.Props) => {
-
-    const { theme } = useFlow();
+const spinnerStyles: Global.ComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     const styleProps = useStyleProps(props);
     const color = callProp(props.color, theme.color) || theme.color.hardest.css();
     const duration = props.duration || 1;
@@ -21,7 +19,7 @@ export default (props: SpinnerTypes.Props) => {
     });
 
     return {
-        container: css(
+        container: [
             {
                 display: 'flex',
                 alignItems: 'center',
@@ -34,11 +32,13 @@ export default (props: SpinnerTypes.Props) => {
                 fontSize: props.size || '1.125em'
             },
             styleProps.all,
-        ),
+        ],
 
-        children: css({
+        children: [{
             width: 'fit-content',
             animation: `${spinAnimation} ${duration}s linear infinite`
-        }),
+        }],
     }
 }
+
+export default spinnerStyles

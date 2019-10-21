@@ -1,9 +1,10 @@
 import useContainer from '@flow-ui/core/misc/hooks/useContainer';
 import React, { forwardRef } from 'react';
-import createStyles from './styles';
-import SpinnerTypes from './types';
+import useStyles from '@flow-ui/core/misc/hooks/useStyles';
+import spinnerStyles from './styles';
+import Types from './types';
 
-const Spinner = (props: SpinnerTypes.Props, ref) => {
+const Spinner = (props: Types.Props, ref) => {
     const {
         children,
         shape,
@@ -11,7 +12,7 @@ const Spinner = (props: SpinnerTypes.Props, ref) => {
         count = 12
     } = props;
     const { attributes } = useContainer(props);
-    const styles = createStyles(props);
+    const styles = useStyles<Types.Styles>(props, spinnerStyles, 'Spinner');
     let rectShape;
 
     switch (shape) {

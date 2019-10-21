@@ -1,7 +1,7 @@
 import Global from "@flow-ui/core/types";
 
 declare namespace SpinnerTypes {
-    export interface Props extends Global.Props {
+    interface Props extends Global.Props {
         color?: Global.ColorProp
         children?: React.ReactElement
         shape?: 'square' | 'rounded' | 'round'
@@ -10,8 +10,9 @@ declare namespace SpinnerTypes {
         size?: string
     }
 
-    export interface Styles {
-        
+    interface Styles {
+        container: void
+        children: void
     }
 }
 
