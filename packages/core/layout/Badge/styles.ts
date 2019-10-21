@@ -1,8 +1,9 @@
 import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
 import typography from "@flow-ui/core/misc/typography";
 import Types from "./types";
+import Global from '../../types';
 
-const BadgeStyles: Types.Styles = (props: Types.Props, theme) => {
+const BadgeStyles: Global.ComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     const styleProps = useStyleProps(props);
 
     return {
@@ -71,7 +72,7 @@ const BadgeStyles: Types.Styles = (props: Types.Props, theme) => {
                 }]
             }}),
             styleProps.self
-        ]
+        ],
     }
 }
 

@@ -13,13 +13,12 @@ declare namespace BlockTypes {
         overflow?: CSS.Properties["overflow"]
     }
 
-    interface Variants {
-        surface?: Props["surface"]
-        hoverSurface?: Props["hoverSurface"]
+    type Styles = {
+        container: {
+            surface: Props["surface"]
+            hoverSurface: Props["hoverSurface"]
+        }
     }
-
-    type StyleKeys = 'container'
-    type Styles = Global.ComponentStyles<StyleKeys,Variants>
 }
 
 export default BlockTypes

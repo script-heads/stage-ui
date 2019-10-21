@@ -6,8 +6,9 @@ import Types from './types';
 import blockStyles from './styles';
 
 const Block = (props: Types.Props, ref) => {
+    const {surface, hoverSurface} = props;
     const { attributes } = useContainer(props);
-    const styles = useStyles<Types.StyleKeys, Types.Variants>(props, blockStyles, 'Block');
+    const styles = useStyles<Types.Styles>(props, blockStyles, 'Block');
 
     return jsx(
         props.tag || 'div',
@@ -15,7 +16,7 @@ const Block = (props: Types.Props, ref) => {
             position: "relative",
             ...attributes,
             ref: ref,
-            css: styles.container,
+            css: styles.container({surface, hoverSurface}),
         },
         props.children
     );

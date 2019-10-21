@@ -88,6 +88,23 @@ const overrides: Theme.Overrides = {
     //         })
     //     ]
     // }
+    Badge: {
+        // container: [
+        
+        // ],
+        // holder: (variant) => [
+        //     {
+        //         background: 'red'
+        //     },
+        //     variant({
+        //         align: {
+        //             'bottom': [{
+        //                 background: 'green'
+        //             }]
+        //         }
+        //     })
+        // ]
+    }
 }
 
 export default createTheme(variables, assets, overrides) as Theme.Index

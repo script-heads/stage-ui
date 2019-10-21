@@ -9,7 +9,7 @@ const Drop = (props: Types.Props, ref) => {
 
     const { attributes } = useContainer(props);
     const { children, target: targetRef, onClickOutside, distance = 0 } = props;
-    const styles = useStyles<Types.StyleKeys>(props, dropStyles, 'Drop');
+    const styles = useStyles<Types.Styles>(props, dropStyles, 'Drop');
     const dropRef = useRef<HTMLDivElement>(null);
 
     useImperativeHandle(ref, () => {
@@ -143,7 +143,7 @@ const Drop = (props: Types.Props, ref) => {
         <div
             {...attributes}
             ref={dropRef}
-            css={styles.container()}
+            css={styles.container}
             style={{
                 top: 0,
                 left: 0,

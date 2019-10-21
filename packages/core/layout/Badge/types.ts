@@ -9,12 +9,12 @@ declare namespace BadgeTypes {
         children?: React.ReactNode
     }
 
-    export interface Variants {
-        align: Props["align"]
+    type Styles = {
+        container: null
+        holder: {
+            align: Props["align"]
+        }
     }
-    type StyleKeys = "container" | "holder"
-
-    export type Styles = Global.ComponentStyles<StyleKeys, Variants> 
 }
 
 export default BadgeTypes

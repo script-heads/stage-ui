@@ -12,7 +12,7 @@ const Modal = (props: Types.Props, ref: RefObject<Types.Ref>) => {
 
     const { hideHeader, fullSize } = props;
     const { attributes } = useContainer(props);
-    const styles = useStyles<Types.StyleKeys, Types.Variants>(props,modalStyles,'Modal');
+    const styles = useStyles<Types.Styles>(props,modalStyles,'Modal');
 
     const overlayRef = useRef(null);
     const windowRef = useRef(null);

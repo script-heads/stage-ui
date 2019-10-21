@@ -38,6 +38,7 @@ import PanelTypes from '../../layout/Panel/types'
 import PopoverTypes from '../../layout/Popover/types'
 import TreeTypes from '../../layout/Tree/types'
 import ViewportTypes from '../../layout/Viewport/types'
+import Global from '../../types';
 
 declare namespace ThemeTypes {
 
@@ -84,32 +85,32 @@ declare namespace ThemeTypes {
     }
 
     interface Overrides {
-        Divider?: DividerTypes.Styles
-        Icon?: IconTypes.Styles
-        Spinner?: SpinnerTypes.Styles
-        Typography?: TypographyTypes.Styles
-        Button?: ButtonTypes.Styles
-        Checkbox?: CheckboxTypes.Styles
-        DatePicker?: DatePickerTypes.Styles
-        Menu?: MenuTypes.Styles
-        Radio?: RadioTypes.Styles
-        Range?: RangeTypes.Styles
-        Select?: SelectTypes.Styles
-        Switch?: SwitchTypes.Styles
-        TextField?: TextFieldTypes.Styles
-        Meter?: MeterTypes.Styles
-        Table?: TableTypes.Styles
-        Badge?: BadgeTypes.Styles
-        Block?: BlockTypes.Styles
-        Drop?: DropTypes.Styles
-        Flexbox?: FlexboxTypes.Styles
-        Grid?: GridTypes.Styles
-        Modal?: ModalTypes.Styles
-        Notification?: NotificationTypes.Styles
-        Panel?: PanelTypes.Styles
-        Popover?: PopoverTypes.Styles
-        Tree?: TreeTypes.Styles
-        ViewportTypes?: ViewportTypes.Styles
+        Divider?: Global.OverridesStyle<DividerTypes.Styles>
+        Icon?: Global.OverridesStyle<IconTypes.Styles>
+        Spinner?: Global.OverridesStyle<SpinnerTypes.Styles>
+        Typography?: Global.OverridesStyle<TypographyTypes.Styles>
+        Button?: Global.OverridesStyle<ButtonTypes.Styles>
+        Checkbox?: Global.OverridesStyle<CheckboxTypes.Styles>
+        DatePicker?: Global.OverridesStyle<DatePickerTypes.Styles>
+        Menu?: Global.OverridesStyle<MenuTypes.Styles>
+        Radio?: Global.OverridesStyle<RadioTypes.Styles>
+        Range?: Global.OverridesStyle<RangeTypes.Styles>
+        Select?: Global.OverridesStyle<SelectTypes.Styles>
+        Switch?: Global.OverridesStyle<SwitchTypes.Styles>
+        TextField?: Global.OverridesStyle<TextFieldTypes.Styles>
+        Meter?: Global.OverridesStyle<MeterTypes.Styles>
+        Table?: Global.OverridesStyle<TableTypes.Styles>
+        Badge?: Global.OverridesStyle<BadgeTypes.Styles>
+        Block?: Global.OverridesStyle<BlockTypes.Styles>
+        Drop?: Global.OverridesStyle<DropTypes.Styles>
+        Flexbox?: Global.OverridesStyle<FlexboxTypes.Styles>
+        Grid?: Global.OverridesStyle<GridTypes.Styles>
+        Modal?: Global.OverridesStyle<ModalTypes.Styles>
+        Notification?: Global.OverridesStyle<NotificationTypes.Styles>
+        Panel?: Global.OverridesStyle<PanelTypes.Styles>
+        Popover?: Global.OverridesStyle<PopoverTypes.Styles>
+        Tree?: Global.OverridesStyle<TreeTypes.Styles>
+        ViewportTypes?: Global.OverridesStyle<ViewportTypes.Styles>
     }
 
     type Replace = (

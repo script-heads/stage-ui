@@ -46,7 +46,7 @@ declare namespace ModalTypes {
         center: boolean
         fullSize?: boolean
         children?: any
-        styles: Global.FlowStyles<StyleKeys, Variants>
+        styles: Global.FlowStyles<Styles>
     }
 
     interface ModalWindowProps {
@@ -59,7 +59,7 @@ declare namespace ModalTypes {
         children?: any
         containerAttr?: React.HTMLAttributes<HTMLElement> & Global.SelfProps
         onClosePressed: () => void
-        styles: Global.FlowStyles<StyleKeys, Variants>
+        styles: Global.FlowStyles<Styles>
     }
 
     interface ModalHeaderProps {
@@ -67,20 +67,21 @@ declare namespace ModalTypes {
         subtitle?: string
         hideHeader?: boolean
         onClosePressed: () => void
-        styles: Global.FlowStyles<StyleKeys, Variants>
+        styles: Global.FlowStyles<Styles>
     }
 
-    interface Variants {
-        visible?: boolean
-        center?: boolean
-        fullSize?: Props["fullSize"]
-        fullSizeCenter?: boolean
+    type Styles = {
+        overlay: {
+            visible?: boolean
+            center?: boolean
+        }
+        window: {
+            visible?: boolean
+            fullSizeCenter?: boolean
+        }
+        header: null
+        cross: null
     }
-
-    type StyleKeys = 'overlay' | 'window' | 'header' | 'cross'
-
-    type Styles = Global.ComponentStyles<StyleKeys, Variants>
-
 }
 
 export default ModalTypes

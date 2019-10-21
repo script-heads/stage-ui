@@ -20,8 +20,9 @@ declare namespace DropTypes {
     children?: React.ReactNode
   }
 
-  type StyleKeys = 'container'
-  type Styles = Global.ComponentStyles<StyleKeys>
+  type Styles = {
+    container: null
+  }
 }
 
 export default DropTypes;

@@ -23,8 +23,9 @@ declare namespace GridTypes {
         justifyContent?: CSS.Properties["justifyContent"]
         justifyItems?: CSS.Properties["justifyItems"]
     }
-    type StylesKeys = 'container'
-    type Styles = Global.ComponentStyles<StylesKeys>
+    type Styles = {
+        container: null
+    }
 }
 
 export default GridTypes

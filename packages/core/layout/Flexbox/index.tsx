@@ -8,7 +8,7 @@ import useStyles from '@flow-ui/core/misc/hooks/useStyles';
 const Flexbox = (props: Types.Props, ref) => {
     const { attributes } = useContainer(props);
     const styleProps = useStyleProps(props);
-    const styles = useStyles<Types.StylesKeys>(props, {
+    const styles = useStyles<Types.Styles>(props, {
         container: [
             {
                 position: "relative",

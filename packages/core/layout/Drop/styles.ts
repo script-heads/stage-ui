@@ -1,7 +1,8 @@
 import Types from "./types";
 import useStyleProps from "@flow-ui/core/misc/hooks/useStyleProps";
+import Global from "../../types";
 
-const DropStyles: Types.Styles = (props: Types.Props, theme) => {
+const DropStyles: Global.ComponentStyles<Types.Styles> = (props: Types.Props) => {
   const styleProps = useStyleProps(props);
 
   return {

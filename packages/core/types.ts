@@ -349,14 +349,21 @@ declare namespace Global {
     
     type Variant<V = {}> = (variants: Variants<V>) => EmotionStyles
     
-    type ComponentStyle<V= {}> = 
-        ((variant: Variant<V>) => EmotionStyles) | EmotionStyles
+    type FlowStyle<V> = V extends Object 
+        ? (state: V) => SerializedStyles 
+        : SerializedStyles
     
-    type ComponentStyles<S extends string,V = {}, R = {[O in S]: ComponentStyle<V>}> = 
-        ((props, theme: ThemeTypes.Index) => R) | R
+    type ComponentStyle<V> =  V extends {} 
+        ? ((variant: Variant<V>) => EmotionStyles)
+        : EmotionStyles
+    
+    type FlowStyles<S> = {[O in keyof S]: FlowStyle<S[O]>}
+    
+    type ComponentStyles<S> = 
+        ((props, theme: ThemeTypes.Index) => {[O in keyof S]: ComponentStyle<S[O]>}) | 
+        {[O in keyof S]: ComponentStyle<S[O]>}
 
-    type FlowStyles<S extends string,V = {}> = {[O in S]: FlowStyle<V>}
-    type FlowStyle<V= {}> = (state?: V) => SerializedStyles
+    type OverridesStyle<S> = Partial<{[O in keyof S]: ComponentStyle<S[O]>}>
 }
 
 export default Global
