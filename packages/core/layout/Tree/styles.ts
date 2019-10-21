@@ -1,38 +1,26 @@
-import { css } from "@emotion/core";
-import useFlow from "@flow-ui/core/misc/hooks/useFlow";
 import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
-import variant from "@flow-ui/core/misc/utils/variant";
-import TreeTypes from "./types";
+import Types from "./types";
+import Global from "../../types";
 
-export default (props: TreeTypes.Props, lvl: number, isOpen: boolean, hasTreeChilds: boolean) => {
-    const { decoration = 'drop' } = props;
+const treeStyles: Global.ComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     const styleProps = useStyleProps(props);
-    const { theme } = useFlow();
-    const overrides = theme.overrides.Block;
-
-    const getIndent = () => {
-        if (lvl > 0) {
-            if (props.indent === true || (props.indent !== false && decoration === 'drop')) {
-                return {
-                    paddingLeft: "1rem"
-                }
-            }
-        }
-        return {}
-    }
 
     return {
-        container: css(
+        container: (variant) => [
             styleProps.all,
-            getIndent(),
-            variant(decoration, {
-                inline: {
-                    display: "flex",
-                    alignItems: "flex-start",
-                }
+            variant({
+                decoration: {
+                    inline: [{
+                        display: "flex",
+                        alignItems: "flex-start",
+                    }]
+                },
+                needIndent: [{
+                    paddingLeft: "1rem"
+                }]
             }),
-        ),
-        label: css(
+        ],
+        label: [
             {
                 cursor: "pointer",
                 userSelect: "none",
@@ -40,25 +28,31 @@ export default (props: TreeTypes.Props, lvl: number, isOpen: boolean, hasTreeChi
             props.alwaysOpen && {
                 cursor: "default",
             }
-        ),
-        icon: css(
+        ],
+        icon: (variant) => [
             {
                 display: "none"
             },
-            variant(decoration, {
-                drop: {
-                    display: "inline-block",
-                    marginRight: "0.25rem",
-                    ...((props.alwaysOpen || hasTreeChilds === false) && {
-                        cursor: "not-allowed"
-                    })
-                }
+            variant({
+                decoration: {
+                    drop: [{
+                        display: "inline-block",
+                        marginRight: "0.25rem",
+                    }]
+                },
+                disabled: [{
+                    cursor: "not-allowed"
+                }]
             }),
-        ),
-        child: css(
-            {
-                display: isOpen ? "block" : "none"
-            }
-        )
+        ],
+        child: (variant) => [
+            variant({
+                isOpen: [{
+                    display: "none"
+                }]
+            })
+        ]
     }
 }
+
+export default treeStyles
