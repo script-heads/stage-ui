@@ -17,6 +17,7 @@ const BadgeStyles: Global.ComponentStyles<Types.Styles> = (props: Types.Props, t
         holder: (variant) => [
             {
                 display: 'flex',
+                color: theme.color.onPrimary.css(),
                 alignContent: 'center',
                 justifyContent: 'center',
                 position: 'absolute',
