@@ -4,10 +4,10 @@ const dark = light.replace({
     name: "Dark",
 
     color: {
-        background: [55, 55, 64],
-        backgroundVariant: [75, 75, 85],
-        surface: [44, 44, 52],
-        surfaceVariant: [50, 50, 60],
+        background: [44, 44, 52],
+        backgroundVariant: [50, 50, 60],
+        surface: [55, 55, 64],
+        surfaceVariant: [75, 75, 85],
 
         onBackground: [255, 255, 255],
         onSurface: [255, 255, 255],
