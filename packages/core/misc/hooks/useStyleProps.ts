@@ -1,23 +1,73 @@
 import Global from "@flow-ui/core/types";
-import { Interpolation } from "@emotion/core";
 import callProp from "../utils/callProp";
 import useFlow  from './useFlow';
+import CSS from 'csstype';
 
 interface Props extends Global.SelfProps, Global.FlowProps {
     [key: string]: any
 }
 
+type Color = {
+    background: CSS.Properties["background"]
+    color: CSS.Properties["color"]
+}
+type Border = {
+    borderWidth: CSS.Properties["borderWidth"]
+    borderStyle: CSS.Properties["borderStyle"]
+    borderColor: CSS.Properties["borderColor"]
+    borderRadius: CSS.Properties["borderRadius"]
+}
+type Padding = {
+    padding: CSS.Properties["padding"]
+    paddingTop: CSS.Properties["paddingTop"]
+    paddingLeft: CSS.Properties["paddingLeft"]
+    paddingRight: CSS.Properties["paddingRight"]
+    paddingBottom: CSS.Properties["paddingBottom"]
+}
+type Margin = {
+    margin: CSS.Properties["margin"]
+    marginTop: CSS.Properties["marginTop"]
+    marginLeft: CSS.Properties["marginLeft"]
+    marginRight: CSS.Properties["marginRight"]
+    marginBottom: CSS.Properties["marginBottom"]
+}
+type Layout = {
+    display: CSS.Properties["display"]
+    visibility: CSS.Properties["visibility"]
+    width: CSS.Properties["width"]
+    height: CSS.Properties["height"]
+    transition: CSS.Properties["transition"]
+}
+type Flex = {
+    flex: CSS.Properties["flex"]
+    flexBasis: CSS.Properties["flexBasis"]
+    flexGrow: CSS.Properties["flexGrow"]
+    flexShrink: CSS.Properties["flexShrink"]
+    alignSelf: CSS.Properties["alignSelf"]
+    justifySelf: CSS.Properties["justifySelf"]
+}
+type Grid = {
+    gridColumnStart: CSS.Properties["gridColumnStart"]
+    gridColumnEnd: CSS.Properties["gridColumnEnd"]
+    gridRowStart: CSS.Properties["gridRowStart"]
+    gridRowEnd: CSS.Properties["gridRowEnd"]
+    gridColumn: CSS.Properties["gridColumn"]
+    gridRow: CSS.Properties["gridRow"]
+    gridArea: CSS.Properties["gridArea"]
+    placeSelf: CSS.Properties["placeSelf"]
+}
+
 interface InjectedStyleProps {
-    color: Interpolation 
-    border: Interpolation
-    padding: Interpolation
-    margin: Interpolation
-    layout: Interpolation
-    flex: Interpolation
-    grid: Interpolation
-    flow: Interpolation
-    self: Interpolation
-    all: Interpolation
+    color: Color
+    border: Border
+    padding: Padding
+    margin: Margin
+    layout: Layout
+    flex: Flex
+    grid: Grid
+    flow: Margin & Flex & Grid
+    self: Padding & Layout & Color & Border
+    all: Margin & Flex & Grid & Padding & Layout & Color & Border
 }
 
 const useStyleProps = (props: Props): InjectedStyleProps => {
@@ -56,9 +106,7 @@ const useStyleProps = (props: Props): InjectedStyleProps => {
         visibility: props.visibility,
         width: props.w,
         height: props.h,
-        ...props.animated && {
-            transition: "all .15s"
-        }
+        transition: props.animated ? "all .15s" : undefined
     }
 
     const flex = {
