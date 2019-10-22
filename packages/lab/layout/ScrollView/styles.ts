@@ -2,8 +2,9 @@ import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
 import callProp from '@flow-ui/core/misc/utils/callProp';
 import chroma from 'chroma-js';
 import Types from './types';
+import Global from '@flow-ui/core/types';
 
-const ScrollViewStyles: Types.Styles = (props: Types.Props, theme) => {
+const ScrollViewStyles: Global.ComponentStyles<Types.Styles>= (props: Types.Props, theme) => {
 
     let color = chroma(
         callProp(props.color, theme.color) || theme.color.onBackground.css()

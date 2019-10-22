@@ -18,7 +18,22 @@ declare namespace ScrollViewTypes {
         active: boolean
     }
     
-    type Styles = Global.ComponentStyles<'container' | 'content' | 'xBar' | 'yBar' | 'xThumb' | 'yThumb', Variants>
+    interface Styles {
+        container: void
+        content: void
+        yBar: {
+            active: boolean
+        }
+        yThumb: {
+            active: boolean
+        }
+        xBar: {
+            active: boolean
+        }
+        xThumb: {
+            active: boolean
+        }
+    }
 }
 
 export default ScrollViewTypes

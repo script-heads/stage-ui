@@ -14,7 +14,7 @@ interface ScrollParams {
 
 const ScrollView = (props: Types.Props, ref: any) => {
 
-    const styles = useStyles<Types.Styles, Types.Variants>(props, Styles)
+    const styles = useStyles<Types.Styles>(props, Styles)
     const { attributes } = useContainer(props)
 
     const [active, setActive] = useState(false)
