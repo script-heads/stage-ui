@@ -37,7 +37,6 @@ import NotificationTypes from '../../layout/Notification/types'
 import PanelTypes from '../../layout/Panel/types'
 import PopoverTypes from '../../layout/Popover/types'
 import TreeTypes from '../../layout/Tree/types'
-import ViewportTypes from '../../layout/Viewport/types'
 import Global from '../../types';
 
 declare namespace ThemeTypes {
@@ -110,7 +109,6 @@ declare namespace ThemeTypes {
         Panel?: Global.OverridesStyle<PanelTypes.Styles>
         Popover?: Global.OverridesStyle<PopoverTypes.Styles>
         Tree?: Global.OverridesStyle<TreeTypes.Styles>
-        ViewportTypes?: Global.OverridesStyle<ViewportTypes.Styles>
     }
 
     type Replace = (

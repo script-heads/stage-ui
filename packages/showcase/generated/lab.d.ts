@@ -87,13 +87,29 @@ declare module 'layout/ScrollView/types' {
 	    interface Variants {
 	        active: boolean;
 	    }
-	    type Styles = Global.ComponentStyles<'container' | 'content' | 'xBar' | 'yBar' | 'xThumb' | 'yThumb', Variants>;
+	    interface Styles {
+	        container: void;
+	        content: void;
+	        yBar: {
+	            active: boolean;
+	        };
+	        yThumb: {
+	            active: boolean;
+	        };
+	        xBar: {
+	            active: boolean;
+	        };
+	        xThumb: {
+	            active: boolean;
+	        };
+	    }
 	}
 	export default ScrollViewTypes;
 
 }
 declare module 'layout/ScrollView/styles' {
-	import Types from 'layout/ScrollView/types'; const ScrollViewStyles: Types.Styles;
+	import Types from 'layout/ScrollView/types';
+	import Global from 'types'; const ScrollViewStyles: Global.ComponentStyles<Types.Styles>;
 	export default ScrollViewStyles;
 
 }

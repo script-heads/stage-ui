@@ -1,1109 +1,16 @@
-declare module 'content/Icon/types' {
-	import Global from 'types';
-	import CSS from 'csstype'; namespace IconTypes {
-	    /**
-	     * TODO: circle и oval добавляют только padding
-	     * пример <Icon shape="circle" type={(t) => t.outline.cube} />
-	     */
-	    type Shapes = "circle" | "oval" | "square";
-	    interface Props extends Global.Props {
-	        type: Global.IconProp;
-	        shape?: Shapes;
-	        size?: CSS.Properties["fontSize"];
-	        color?: Global.ColorProp;
-	        background?: Global.ColorProp;
-	    }
-	    interface Styles {
-	    }
-	}
-	export default IconTypes;
+declare module 'misc/utils/createID' {
+	 const _default: () => string;
+	export default _default;
 
 }
-declare module 'content/Spinner/types' {
-	/// <reference types="react" />
-	import Global from 'types'; namespace SpinnerTypes {
-	    interface Props extends Global.Props {
-	        color?: Global.ColorProp;
-	        children?: React.ReactElement;
-	        shape?: 'square' | 'rounded' | 'round';
-	        duration?: number;
-	        count?: number;
-	        size?: string;
-	    }
-	    interface Styles {
-	    }
-	}
-	export default SpinnerTypes;
+declare module 'misc/hooks/useSharedObject' {
+	 const useMemoEffect: <T>(createObject: () => T) => T | null;
+	export default useMemoEffect;
 
 }
-declare module 'content/Typography/types' {
-	/// <reference types="react" />
-	import Global from 'types';
-	import CSS from 'csstype'; namespace TypographyTypes {
-	    interface Props extends AnchorProps {
-	        defaultStyles: any;
-	        tag: string;
-	        theme: any;
-	    }
-	    interface AnchorProps extends TextProps {
-	        download?: any;
-	        href?: string;
-	        hrefLang?: string;
-	        media?: string;
-	        ping?: string;
-	        rel?: string;
-	        target?: string;
-	        type?: string;
-	        referrerPolicy?: string;
-	    }
-	    interface TextProps extends Global.Props {
-	        quotes?: boolean;
-	        ellipsis?: boolean;
-	        decoration?: CSS.Properties["textDecoration"];
-	        children?: React.ReactNode;
-	        color?: Global.ColorProp;
-	        background?: Global.ColorProp;
-	        align?: CSS.Properties["textAlign"];
-	        weight?: CSS.Properties["fontWeight"];
-	        size?: CSS.Properties["fontSize"];
-	        transform?: CSS.Properties["textTransform"];
-	    }
-	    interface Styles {
-	    }
-	}
-	export default TypographyTypes;
-
-}
-declare module 'control/Button/types' {
-	/// <reference types="react" />
-	import Global from 'types';
-	import { ObjectInterpolation } from '@emotion/css'; namespace ButtonTypes {
-	    interface Props extends Global.Props {
-	        autoFocus?: boolean;
-	        disabled?: boolean;
-	        form?: string;
-	        formAction?: string;
-	        /**
-	         * The formenctype attribute specifies how form-data should be encoded before sending it to a server. This attribute overrides the form's enctype attribute.
-	         * The formenctype attribute is only used for buttons with type="submit".
-	         */
-	        formEncType?: string;
-	        formMethod?: string;
-	        formNoValidate?: boolean;
-	        formTarget?: string;
-	        name?: string;
-	        type?: 'submit' | 'reset' | 'button';
-	        value?: string | string[] | number;
-	        size?: Global.Size;
-	        decoration?: 'filled' | 'outline' | 'text' | 'plain';
-	        shape?: 'square' | 'rounded' | 'round';
-	        uppercase?: boolean;
-	        color?: Global.ColorProp;
-	        children?: React.ReactNode;
-	    }
-	    interface Styles {
-	        container: ObjectInterpolation<undefined>;
-	        filled: ObjectInterpolation<undefined>;
-	        outline: ObjectInterpolation<undefined>;
-	        text: ObjectInterpolation<undefined>;
-	        plain: ObjectInterpolation<undefined>;
-	    }
-	}
-	export default ButtonTypes;
-
-}
-declare module 'control/Checkbox/types' {
-	import Global from 'types';
-	import { ObjectInterpolation } from '@emotion/css'; namespace CheckboxTypes {
-	    interface Props extends Global.Props {
-	        label?: string;
-	        labelColor?: Global.ColorProp;
-	        checked?: boolean;
-	        disabled?: boolean;
-	        defaultValue?: boolean;
-	        uppercase?: boolean;
-	        size?: Global.Size;
-	        onChange?: (checked: boolean) => void;
-	    }
-	    interface Styles {
-	        check: ObjectInterpolation<undefined>;
-	        icon: ObjectInterpolation<undefined>;
-	    }
-	}
-	export default CheckboxTypes;
-
-}
-declare module 'control/DatePicker/types' {
-	/**
-	 * types.tsx
-	 * author: I.Trikoz
-	 */
-	import { Interpolation } from '@emotion/core';
-	import { Moment } from 'moment';
-	import { CSSProperties } from 'react';
-	import Global from 'types'; namespace DatePickerTypes {
-	    type GridType = "year" | "month" | "day";
-	    type Locale = 'en' | 'ru' | 'it' | 'fr' | 'de';
-	    interface Props extends Global.FieldProps {
-	        /**
-	         * Type for DatePicker
-	         * @default day
-	         */
-	        type?: GridType;
-	        /**
-	         * Property value could be a string
-	         * if you pass format property aswell
-	         * otherwise value should be instance of Date
-	         */
-	        value?: Moment | Date | string;
-	        /**
-	         * Format moment YYYY-MM-DD
-	         * @default YYYY-MM-DD
-	         */
-	        format?: string;
-	        /**
-	         * Min datetime that could be selected
-	         */
-	        minValue?: Moment | Date | string;
-	        /**
-	         * Max datetime that could be selected
-	         */
-	        maxValue?: Moment | Date | string;
-	        /**
-	         * Callback function will with Date object
-	         * or string if format property was passed.
-	         */
-	        onChange?: (moment: Moment, value: string) => void;
-	        /**
-	         * Do not close datepicker on change
-	         * latest value
-	         */
-	        stayOpen?: boolean;
-	        /**
-	         * Enable mask input
-	         */
-	        masked?: boolean;
-	        /**
-	         * @default ru
-	         */
-	        locale?: Locale;
-	        /**
-	         * Hide today button
-	         */
-	        hideToday?: boolean;
-	    }
-	    interface DateGridProps {
-	        hideToday: boolean;
-	        value: Moment;
-	        minValue: Moment;
-	        maxValue: Moment;
-	        onChange: (date: Moment) => void;
-	        styles: any;
-	        type: GridType;
-	    }
-	    interface DateGridCalendarProps {
-	        value: Moment;
-	        tmp: Moment;
-	        minValue: Moment;
-	        maxValue: Moment;
-	        active: Moment;
-	        onClick?: () => void;
-	        style?: CSSProperties;
-	        styles: any;
-	    }
-	    interface DateGridTitleProps {
-	        value: Moment;
-	        minValue: Moment;
-	        maxValue: Moment;
-	        gridType: GridType;
-	        onNext: () => void;
-	        onPrevious: () => void;
-	        onGridTypeChange: (type: GridType) => void;
-	        styles: any;
-	    }
-	    interface Styles {
-	        textFieldWrapper?: Interpolation;
-	        textFieldOkButton?: Interpolation;
-	        dateGrind?: Interpolation;
-	        weekDay?: Interpolation;
-	        title?: Interpolation;
-	        gridBlock?: Interpolation;
-	    }
-	}
-	export default DatePickerTypes;
-
-}
-declare module 'control/Menu/types' {
-	/// <reference types="react" />
-	import Global from 'types'; namespace MenuTypes {
-	    type Value = string | number;
-	    interface Props extends Global.Props {
-	        defaultValue?: Value;
-	        value?: Value;
-	        onChange?: (value: Value) => void;
-	        items: Item[];
-	        size?: Global.Size;
-	        decoration?: 'filled' | 'outline' | 'color' | 'underline' | 'tab' | 'filled-underline';
-	        flip?: boolean;
-	        distance?: string;
-	        direction?: "row" | "column";
-	        shape?: 'square' | 'rounded' | 'round';
-	        border?: 'none' | 'narrow' | 'wide';
-	        align?: 'start' | 'center' | 'end';
-	        separator?: React.ReactElement;
-	        color?: Global.ColorProp;
-	        disabled?: boolean;
-	    }
-	    interface Item extends Global.EventHandlers {
-	        content: React.ReactNode;
-	        value: Value;
-	        disabled?: boolean;
-	    }
-	    interface ItemProps extends Item {
-	        active?: boolean;
-	        styles?: any;
-	        onEnter?: () => void;
-	    }
-	    interface Styles {
-	    }
-	}
-	export default MenuTypes;
-
-}
-declare module 'control/Radio/types' {
-	import Global from 'types';
-	import { ObjectInterpolation } from '@emotion/css'; namespace RadioTypes {
-	    interface Props extends Global.Props {
-	        label?: string;
-	        labelColor?: Global.ColorProp;
-	        checked?: boolean;
-	        disabled?: boolean;
-	        defaultValue?: boolean;
-	        uppercase?: boolean;
-	        size?: Global.Size;
-	        onChange?: (checked: boolean) => void;
-	    }
-	    interface Styles {
-	        check: ObjectInterpolation<undefined>;
-	        icon: ObjectInterpolation<undefined>;
-	    }
-	}
-	export default RadioTypes;
-
-}
-declare module 'control/Range/types' {
-	import { CSSProperties } from 'react';
-	import { Interpolation } from '@emotion/css'; namespace RangeTypes {
-	    interface Props {
-	        min?: number;
-	        max?: number;
-	        defaultValue?: number;
-	        value?: number;
-	        onChange?: (value: number) => void;
-	        mode?: 'single' | 'range';
-	        style?: CSSProperties;
-	        className?: string;
-	    }
-	    interface Styles {
-	        container: Interpolation;
-	        rail: Interpolation;
-	        track: Interpolation;
-	        thumb: Interpolation;
-	    }
-	}
-	export default RangeTypes;
-
-}
-declare module 'control/Select/types' {
-	import Global from 'types';
-	import { Interpolation } from '@emotion/css'; namespace SelectTypes {
-	    interface Option {
-	        text: string;
-	        value: any;
-	    }
-	    interface Props extends Global.FieldProps, Global.Props {
-	        placeholder?: string;
-	        options: Option[];
-	        multiselect?: boolean;
-	        searchable?: boolean;
-	        values?: Option[];
-	        defaultValues?: Option[];
-	        onChange?: (values: Option[], changedValue?: Option) => void;
-	    }
-	    type Actions = {
-	        type: 'setSelectedOptions';
-	        payload: Option[];
-	    } | {
-	        type: 'toggleOpen';
-	        payload: boolean;
-	    } | {
-	        type: 'search';
-	        payload: string;
-	    } | {
-	        type: 'setCursor';
-	        payload: number;
-	    } | {
-	        type: 'clear';
-	    } | {
-	        type: 'setOverlay';
-	        payload: boolean;
-	    };
-	    type State = {
-	        selectedOptions: Option[];
-	        underOverlay: boolean;
-	        open: boolean;
-	        searchValue: string;
-	        empty: boolean;
-	        cursor: number;
-	    };
-	    interface OptionsProps extends SearchProps {
-	        selected: SelectTypes.Option[];
-	        onClose: (option: any) => void;
-	        searchable?: boolean;
-	    }
-	    interface SearchProps {
-	        searchValue: string;
-	        onSearch: (searchValue: string) => void;
-	        size?: number;
-	        styles: any;
-	        placeholder?: string;
-	        defaultValue?: string;
-	        disabled?: boolean;
-	    }
-	    interface Styles {
-	        container: Interpolation;
-	        input: Interpolation;
-	        dropMenu: Interpolation;
-	        dropItem: Interpolation;
-	    }
-	}
-	export default SelectTypes;
-
-}
-declare module 'control/Switch/types' {
-	import Global from 'types';
-	import { ObjectInterpolation } from '@emotion/css'; namespace SwitchTypes {
-	    interface Props extends Global.Props {
-	        label?: string;
-	        labelColor?: Global.ColorProp;
-	        checked?: boolean;
-	        disabled?: boolean;
-	        defaultValue?: boolean;
-	        uppercase?: boolean;
-	        size?: Global.Size;
-	        onChange?: (checked: boolean) => void;
-	    }
-	    interface Styles {
-	        check: ObjectInterpolation<undefined>;
-	        icon: ObjectInterpolation<undefined>;
-	    }
-	}
-	export default SwitchTypes;
-
-}
-declare module 'control/TextField/types' {
-	import Global from 'types';
-	import { ChangeEventHandler } from 'react';
-	import IMask from 'imask'; namespace TextFieldTypes {
-	    type InputTypes = 'email' | 'hidden' | 'number' | 'password' | 'reset' | 'search' | 'tel' | 'text' | 'url';
-	    interface Props extends Global.FieldProps, Global.Props, InputProps, TextAreaProps {
-	        defaultValue?: string | number;
-	        align?: "left" | "right";
-	        multiline?: boolean;
-	        masked?: IMask.AnyMaskedOptions;
-	        onChange?: ChangeEventHandler<HTMLInputElement>;
-	    }
-	    interface InputProps {
-	        autoComplete?: string;
-	        autoFocus?: boolean;
-	        list?: string;
-	        name?: string;
-	        placeholder?: string;
-	        pattern?: string;
-	        readOnly?: boolean;
-	        required?: boolean;
-	        type?: InputTypes;
-	        value?: string | number;
-	        form?: string;
-	        formAction?: string;
-	        formEncType?: string;
-	        formMethod?: string;
-	        formNoValidate?: boolean;
-	        formTarget?: string;
-	        max?: number | string;
-	        maxLength?: number;
-	        min?: number | string;
-	        minLength?: number;
-	        step?: number | string;
-	        width?: number | string;
-	    }
-	    interface TextAreaProps {
-	        cols?: number;
-	        rows?: number;
-	        wrap?: string;
-	    }
-	    interface Styles {
-	    }
-	}
-	export default TextFieldTypes;
-
-}
-declare module 'data/Meter/types' {
-	import Global from 'types'; namespace MeterTypes {
-	    type MeterType = 'line' | 'circle';
-	    type MeterDecoration = 'filled' | 'outline';
-	    type MeterShape = 'square' | 'round';
-	    interface Props extends Global.Props {
-	        percent: number;
-	        size?: Global.Size;
-	        /**
-	         * @default line
-	         */
-	        type?: MeterType;
-	        decoration?: MeterDecoration;
-	        shape?: MeterShape;
-	        color?: Global.ColorProp;
-	        /**
-	         * Enabled process animation
-	         * @default false
-	         */
-	        animation?: boolean;
-	    }
-	    interface Styles {
-	    }
-	}
-	export default MeterTypes;
-
-}
-declare module 'data/Table/types' {
-	/// <reference types="react" />
-	import Global from 'types';
-	import { Interpolation } from '@emotion/core'; namespace TableTypes {
-	    interface TableColumn {
-	        title?: string;
-	        dataIndex: string;
-	        width?: number;
-	        render?: (row: any, value: any) => void;
-	    }
-	    interface TableActions {
-	        label: string;
-	        className?: string;
-	        onAction: (row: any) => void;
-	    }
-	    interface TableForm {
-	        key?: string | number;
-	        defaultData?: {
-	            [key: string]: any;
-	        };
-	        render: any;
-	        dismiss?: () => void;
-	    }
-	    interface Props extends Global.Props {
-	        data: Object[];
-	        columns: TableColumn[];
-	        form?: TableForm;
-	        actions?: TableActions[];
-	        border?: 'all' | 'external' | 'internal' | 'vertical' | 'horizontal';
-	        indexKey?: string;
-	        scope?: any;
-	        pagination?: TablePagination;
-	        noDataLabel?: string;
-	        children?: React.ReactElement;
-	        onRowClick?: (row: any) => void;
-	        search?: boolean;
-	        onSearch?: (value: any) => void;
-	        hideHeaders?: boolean;
-	        className?: string;
-	    }
-	    interface RowProps {
-	        row: any;
-	        columns: TableColumn[];
-	        isSelected?: boolean;
-	        isExpanding?: boolean;
-	        isBlur?: boolean;
-	        actions?: any;
-	        border?: any;
-	        scope?: any;
-	        form?: any;
-	        style?: any;
-	        children?: any;
-	        onRowClick?: (row: any) => void;
-	        styles: any;
-	    }
-	    interface ColumnProps {
-	        row: any;
-	        columns: TableColumn[];
-	        scope?: any;
-	        children?: any;
-	        styles: any;
-	    }
-	    interface ActionsProps {
-	        actions: any[];
-	        data: any;
-	        children?: any;
-	        styles: any;
-	    }
-	    interface FormProps {
-	        data: any;
-	        dismiss?: () => void;
-	        columns: TableColumn[];
-	        Form: any;
-	        children?: any;
-	    }
-	    interface InjectForm {
-	        data: {
-	            [key: string]: any;
-	        };
-	        columns: TableColumn[];
-	        setData: (key: string, value: any) => void;
-	        dismiss?: () => void;
-	    }
-	    interface TablePagination {
-	        pageSize: number;
-	        pageTotalSize?: number;
-	        async?: (page: number) => boolean;
-	    }
-	    interface PaginationProps {
-	        pagination: TablePagination;
-	        page: number;
-	        searchActive: boolean;
-	        search?: boolean;
-	        data: {
-	            [key: string]: any;
-	        }[];
-	        onChange: (page: number, searchBar: boolean) => void;
-	        children?: any;
-	        styles: any;
-	    }
-	    interface Styles {
-	        container: Interpolation;
-	        content: Interpolation;
-	        headRow: Interpolation;
-	        headColumn: Interpolation;
-	        search: Interpolation;
-	        body: Interpolation;
-	        pagination: Interpolation;
-	        paginationButton: Interpolation;
-	        row: Interpolation;
-	        subrow: Interpolation;
-	        column: Interpolation;
-	        more: Interpolation;
-	        actions: Interpolation;
-	        actionButtons: Interpolation;
-	        actionButtonsEdit: Interpolation;
-	    }
-	}
-	export default TableTypes;
-
-}
-declare module 'layout/Badge/types' {
-	/// <reference types="react" />
-	import Global from 'types'; namespace BadgeTypes {
-	    interface Props extends Global.Props {
-	        content: React.ReactNode;
-	        align?: "top" | "bottom" | "left" | "right" | "top-right" | "bottom-right" | "top-left" | "bottom-left";
-	        background?: Global.ColorProp;
-	        color?: Global.ColorProp;
-	        children?: React.ReactNode;
-	    }
-	    interface Variants {
-	        align: Props["align"];
-	    }
-	    type Styles = Global.ComponentStyles<"container" | "holder", Variants>;
-	}
-	export default BadgeTypes;
-
-}
-declare module 'layout/Block/types' {
-	/// <reference types="react" />
-	import Global from 'types';
-	import CSS from 'csstype'; namespace BlockTypes {
-	    interface Props extends Global.Props {
-	        tag?: "div" | "span" | "header" | "footer" | "article" | "section" | "aside" | "main";
-	        surface?: "major" | "medium" | "minor";
-	        hoverSurface?: "major" | "medium" | "minor";
-	        position?: CSS.Properties["position"];
-	        children?: React.ReactNode;
-	        background?: Global.ColorProp;
-	        color?: Global.ColorProp;
-	        overflow?: CSS.Properties["overflow"];
-	    }
-	    interface Variants {
-	        surface: Props["surface"];
-	        hoverSurface: Props["hoverSurface"];
-	    }
-	    type Styles = Global.ComponentStyles<'container', Variants>;
-	}
-	export default BlockTypes;
-
-}
-declare module 'layout/Drop/types' {
-	/// <reference types="react" />
-	import Global from 'types'; namespace DropTypes {
-	    interface TargetCoordinates {
-	        top: number;
-	        bottom: number;
-	        left: number;
-	        right: number;
-	    }
-	    interface Props extends Global.SelfProps {
-	        target: any;
-	        align?: "top" | "bottom" | "left" | "right";
-	        justify?: "start" | "center" | "end" | "start-outside" | "end-outside";
-	        stretchWidth?: boolean;
-	        stretchHeight?: boolean;
-	        distance?: number;
-	        onClickOutside?: (event: React.MouseEvent<HTMLElement>, outsideTarget?: boolean) => void;
-	        onEsc?: () => void;
-	        children?: React.ReactNode;
-	    }
-	    type Styles = Global.ComponentStyles<'container', {}>;
-	}
-	export default DropTypes;
-
-}
-declare module 'layout/Flexbox/types' {
-	/// <reference types="react" />
-	import Global from 'types';
-	import CSS from 'csstype'; namespace FlexboxTypes {
-	    interface Props extends Global.Props {
-	        column?: boolean;
-	        inline?: boolean;
-	        alignItems?: CSS.Properties["alignItems"];
-	        alignContent?: CSS.Properties["alignContent"];
-	        justifyContent?: CSS.Properties["justifyContent"];
-	        justifyItems?: CSS.Properties["justifyItems"];
-	        direction?: CSS.Properties["flexDirection"];
-	        wrap?: CSS.Properties["flexWrap"];
-	        flow?: CSS.Properties["flexFlow"];
-	        children?: React.ReactNode;
-	    }
-	    type Styles = Global.ComponentStyles<'container', {}>;
-	}
-	export default FlexboxTypes;
-
-}
-declare module 'layout/Grid/types' {
-	/// <reference types="react" />
-	import Global from 'types';
-	import CSS from 'csstype'; namespace GridTypes {
-	    interface Props extends Global.Props {
-	        inline?: boolean;
-	        children?: React.ReactNode;
-	        templateColumns?: CSS.Properties["gridTemplateColumns"];
-	        templateRows?: CSS.Properties["gridTemplateRows"];
-	        templateAreas?: CSS.Properties["gridTemplateAreas"];
-	        columnGap?: CSS.Properties["gridColumnGap"];
-	        rowGap?: CSS.Properties["gridRowGap"];
-	        gap?: CSS.Properties["gridGap"];
-	        autoColumns?: CSS.Properties["gridAutoColumns"];
-	        autoRows?: CSS.Properties["gridAutoRows"];
-	        autoFlow?: CSS.Properties["gridAutoFlow"];
-	        alignItems?: CSS.Properties["alignItems"];
-	        alignContent?: CSS.Properties["alignContent"];
-	        justifyContent?: CSS.Properties["justifyContent"];
-	        justifyItems?: CSS.Properties["justifyItems"];
-	    }
-	    type Styles = Global.ComponentStyles<'container', {}>;
-	}
-	export default GridTypes;
-
-}
-declare module 'layout/Modal/types' {
-	/// <reference types="react" />
-	import Global from 'types';
-	import { Interpolation } from '@emotion/core'; namespace ModalTypes {
-	    interface Ref {
-	        open: (customContent?: React.ReactElement | null) => void;
-	        close: (didClose?: () => void) => void;
-	        setTitle: (title: string) => void;
-	        setSubtitle: (subtitle: string) => void;
-	        setCenter: (center: boolean) => void;
-	        setCustomContent: (customContent: React.ReactElement | null) => void;
-	        title?: string;
-	        subtitle?: string;
-	        center: boolean;
-	        customContent: React.ReactElement | null;
-	        overlay: any;
-	        window: any;
-	    }
-	    interface Props extends Global.SelfProps {
-	        title?: string;
-	        subtitle?: string;
-	        fullSize?: boolean;
-	        children?: any;
-	        hideHeader?: boolean;
-	        onClose?: () => void;
-	        didClose?: () => void;
-	        onOpen?: () => void;
-	        didOpen?: () => void;
-	    }
-	    interface InnerProps extends Props {
-	        innerRef: any;
-	    }
-	    interface StyleProps {
-	        visible: boolean;
-	        center: boolean;
-	        fullSize?: boolean;
-	    }
-	    interface ModalOverlayProps {
-	        visible: boolean;
-	        center: boolean;
-	        fullSize?: boolean;
-	        children?: any;
-	        styles?: any;
-	    }
-	    interface ModalWindowProps {
-	        title?: string;
-	        subtitle?: string;
-	        visible: boolean;
-	        center: boolean;
-	        fullSize?: boolean;
-	        hideHeader?: boolean;
-	        children?: any;
-	        containerAttr?: React.HTMLAttributes<HTMLElement> & Global.SelfProps;
-	        onClosePressed: () => void;
-	        styles?: any;
-	    }
-	    interface ModalHeaderProps {
-	        title?: string;
-	        subtitle?: string;
-	        hideHeader?: boolean;
-	        onClosePressed: () => void;
-	        styles: any;
-	    }
-	    interface Styles {
-	        overlay: Interpolation;
-	        window: Interpolation;
-	        header: Interpolation;
-	        cross: Interpolation;
-	    }
-	}
-	export default ModalTypes;
-
-}
-declare module 'layout/Notification/types' {
-	 namespace NotificationTypes {
-	    interface Props {
-	        children?: React.ReactNode;
-	        onClick?: () => void;
-	    }
-	    interface NotifyOptions {
-	        /**
-	         * Title of notification
-	         */
-	        title: string;
-	        /**
-	         * Message of notification
-	         */
-	        message: string;
-	        /**
-	         * Notification will be removed after timeout
-	         * value in milisecods
-	         */
-	        timeout?: number;
-	        /**
-	         * Will call on notificaion click
-	         */
-	        onClick?: () => void;
-	        /**
-	         * if custom content filled then title and message will be ignored
-	         */
-	        customContent?: React.ReactElement;
-	    }
-	    interface Styles {
-	    }
-	}
-	export default NotificationTypes;
-
-}
-declare module 'layout/Panel/types' {
-	/// <reference types="react" />
-	import Global from 'types';
-	import { Interpolation } from '@emotion/css'; namespace PanelTypes {
-	    interface Props extends Global.Props {
-	        align?: "top" | "right" | "bottom" | "left";
-	        background?: Global.ColorProp;
-	        color?: Global.ColorProp;
-	        children?: React.ReactNode;
-	    }
-	    interface Styles {
-	        container?: Interpolation;
-	    }
-	}
-	export default PanelTypes;
-
-}
-declare module 'layout/Popover/types' {
-	/// <reference types="react" />
-	import Global from 'types';
-	import CSS from 'csstype';
-	import { Interpolation } from '@emotion/core'; namespace PopoverTypes {
-	    interface Props extends Global.Props {
-	        align?: "top" | "bottom" | "left" | "right";
-	        background?: Global.ColorProp;
-	        color?: Global.ColorProp;
-	        children?: React.ReactNode;
-	        arrowWidth?: CSS.Properties["width"];
-	        arrowHeight?: CSS.Properties["height"];
-	    }
-	    interface Styles {
-	        container?: Interpolation;
-	        arrow?: Interpolation;
-	    }
-	}
-	export default PopoverTypes;
-
-}
-declare module 'layout/Tree/types' {
-	/// <reference types="react" />
-	import { Interpolation } from '@emotion/css';
-	import Global from 'types'; namespace TreeTypes {
-	    type TreeDecoration = 'flat' | 'drop' | "inline";
-	    interface Props extends Global.Props {
-	        label?: React.ReactNode | string;
-	        children?: React.ReactNode;
-	        decoration?: TreeDecoration;
-	        alwaysOpen?: boolean;
-	        defaultOpen?: boolean;
-	        indent?: boolean;
-	    }
-	    interface Styles {
-	        containter?: Interpolation;
-	    }
-	}
-	export default TreeTypes;
-
-}
-declare module 'layout/Viewport/types' {
-	/// <reference types="react" />
-	import ThemeType from 'misc/themes/types';
-	import Global from 'types'; namespace ViewportTypes {
-	    interface Props {
-	        wrapper?: boolean;
-	        className?: string;
-	        id?: string;
-	        theme?: Global.FunctionalProp<any, ThemeType.Index>;
-	        children?: React.ReactNode;
-	    }
-	    interface MountArea {
-	        className?: string;
-	    }
-	    interface MountAreaElement {
-	        key: string;
-	        children: React.ReactElement;
-	    }
-	    interface Context {
-	        theme: ThemeType.Index;
-	        browser: any;
-	    }
-	    interface DialogOptions {
-	        /**
-	         * Title of modal window header
-	         */
-	        title?: string;
-	        /**
-	         * Subtitle of modal window header
-	         */
-	        subtitle?: string;
-	        /**
-	         * Message of dialog
-	         */
-	        message?: string;
-	        /**
-	         * Button text
-	         */
-	        buttonText?: string;
-	        /**
-	         * Hides modal window header
-	         */
-	        hideHeader?: boolean;
-	        /**
-	         * if custom content filled then message and buttonText will be ignored
-	         */
-	        customContent?: React.ReactElement;
-	    }
-	    interface Styles {
-	    }
-	}
-	export default ViewportTypes;
-
-}
-declare module 'misc/themes/types' {
-	import chroma from 'chroma-js';
-	import { ObjectInterpolation } from '@emotion/core';
-	/**
-	 * Content
-	 */
-	import DividerTypes from 'content/Divider/types';
-	import IconTypes from 'content/Icon/types';
-	import SpinnerTypes from 'content/Spinner/types';
-	import TypographyTypes from 'content/Typography/types';
-	/**
-	 * Control
-	 */
-	import ButtonTypes from 'control/Button/types';
-	import CheckboxTypes from 'control/Checkbox/types';
-	import DatePickerTypes from 'control/DatePicker/types';
-	import MenuTypes from 'control/Menu/types';
-	import RadioTypes from 'control/Radio/types';
-	import RangeTypes from 'control/Range/types';
-	import SelectTypes from 'control/Select/types';
-	import SwitchTypes from 'control/Switch/types';
-	import TextFieldTypes from 'control/TextField/types';
-	/**
-	 * Data
-	 */
-	import MeterTypes from 'data/Meter/types';
-	import TableTypes from 'data/Table/types';
-	/**
-	 * Layout
-	 */
-	import BadgeTypes from 'layout/Badge/types';
-	import BlockTypes from 'layout/Block/types';
-	import DropTypes from 'layout/Drop/types';
-	import FlexboxTypes from 'layout/Flexbox/types';
-	import GridTypes from 'layout/Grid/types';
-	import ModalTypes from 'layout/Modal/types';
-	import NotificationTypes from 'layout/Notification/types';
-	import PanelTypes from 'layout/Panel/types';
-	import PopoverTypes from 'layout/Popover/types';
-	import TreeTypes from 'layout/Tree/types';
-	import ViewportTypes from 'layout/Viewport/types'; namespace ThemeTypes {
-	    interface Index extends Variables<chroma.Color> {
-	        assets: Assets;
-	        overrides: Overrides;
-	        replace: Replace;
-	    }
-	    interface Variables<T> {
-	        name: string;
-	        color: Colors<T>;
-	        radius: Radius;
-	        distance: Distance;
-	        typography: Typography;
-	    }
-	    interface Assets {
-	        global?: ObjectInterpolation<undefined>;
-	        border: {
-	            width: string;
-	            style: string;
-	            color: string;
-	        };
-	        shadow: {
-	            default: string;
-	            short: string;
-	            long: string;
-	        };
-	        gradient: {
-	            linear: string;
-	            linearVariant: string;
-	            radial: string;
-	            radialVariant: string;
-	        };
-	        focus: ObjectInterpolation<undefined>;
-	        fieldHeight: {
-	            xsmall: string;
-	            small: string;
-	            medium: string;
-	            large: string;
-	            xlarge: string;
-	        };
-	    }
-	    interface Overrides {
-	        Divider?: DividerTypes.Styles;
-	        Icon?: IconTypes.Styles;
-	        Spinner?: SpinnerTypes.Styles;
-	        Typography?: TypographyTypes.Styles;
-	        Button?: ButtonTypes.Styles;
-	        Checkbox?: CheckboxTypes.Styles;
-	        DatePicker?: DatePickerTypes.Styles;
-	        Menu?: MenuTypes.Styles;
-	        Radio?: RadioTypes.Styles;
-	        Range?: RangeTypes.Styles;
-	        Select?: SelectTypes.Styles;
-	        Switch?: SwitchTypes.Styles;
-	        TextField?: TextFieldTypes.Styles;
-	        Meter?: MeterTypes.Styles;
-	        Table?: TableTypes.Styles;
-	        Badge?: BadgeTypes.Styles;
-	        Block?: BlockTypes.Styles;
-	        Drop?: DropTypes.Styles;
-	        Flexbox?: FlexboxTypes.Styles;
-	        Grid?: GridTypes.Styles;
-	        Modal?: ModalTypes.Styles;
-	        Notification?: NotificationTypes.Styles;
-	        Panel?: PanelTypes.Styles;
-	        Popover?: PopoverTypes.Styles;
-	        Tree?: TreeTypes.Styles;
-	        ViewportTypes?: ViewportTypes.Styles;
-	    }
-	    type Replace = (variables: DeepPartial<Variables<[number, number, number]>>, assets?: (variables: DeepPartial<Variables<[number, number, number]>>) => DeepPartial<Assets>, Styles?: DeepPartial<Overrides>) => Index;
-	    type Colors<T> = {
-	        background: T;
-	        backgroundVariant: T;
-	        surface: T;
-	        surfaceVariant: T;
-	        primary: T;
-	        secondary: T;
-	        onBackground: T;
-	        onSurface: T;
-	        onPrimary: T;
-	        onSecondary: T;
-	        lightest: T;
-	        light: T;
-	        hard: T;
-	        hardest: T;
-	        accent: {
-	            red: T;
-	            green: T;
-	            blue: T;
-	            orange: T;
-	        };
-	    };
-	    type Radius = {
-	        default: string;
-	        narrow: string;
-	        wide: string;
-	    };
-	    interface Distance {
-	        xsmall: string;
-	        small: string;
-	        medium: string;
-	        large: string;
-	        xlarge: string;
-	    }
-	    interface Typography {
-	        paragraph: ObjectInterpolation<undefined>;
-	        header: {
-	            1: ObjectInterpolation<undefined>;
-	            2: ObjectInterpolation<undefined>;
-	            3: ObjectInterpolation<undefined>;
-	            4: ObjectInterpolation<undefined>;
-	        };
-	        text: {
-	            1: ObjectInterpolation<undefined>;
-	            2: ObjectInterpolation<undefined>;
-	            3: ObjectInterpolation<undefined>;
-	            4: ObjectInterpolation<undefined>;
-	        };
-	        display: {
-	            1: ObjectInterpolation<undefined>;
-	            2: ObjectInterpolation<undefined>;
-	            3: ObjectInterpolation<undefined>;
-	            4: ObjectInterpolation<undefined>;
-	        };
-	        caption: {
-	            1: ObjectInterpolation<undefined>;
-	            2: ObjectInterpolation<undefined>;
-	            3: ObjectInterpolation<undefined>;
-	            4: ObjectInterpolation<undefined>;
-	        };
-	    }
-	    type DeepPartial<T> = {
-	        [P in keyof T]?: T[P] extends Array<infer U> ? Array<DeepPartial<U>> : T[P] extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : DeepPartial<T[P]>;
-	    };
-	}
-	export default ThemeTypes;
+declare module 'misc/utils/callProp' {
+	 const _default: <P, L>(prop: P, lib: L) => Exclude<P, Function>;
+	export default _default;
 
 }
 declare module 'misc/icons/types' {
@@ -1614,7 +521,7 @@ declare module 'types' {
 	import IconsetTypes from 'misc/icons/types';
 	import chroma from 'chroma-js';
 	import CSS from 'csstype';
-	import { Interpolation } from '@emotion/core'; module 'csstype' {
+	import { Interpolation, SerializedStyles } from '@emotion/core'; module 'csstype' {
 	    interface Properties {
 	        display?: "block" | "inline" | "inline-block" | "inline-table" | "list-item" | "none" | "run-in" | "table" | "table-caption" | "table-cell" | "table-column-group" | "table-column" | "table-footer-group" | "table-header-group" | "table-row" | "table-row-group" | "flex" | "grid";
 	        overflow?: "auto" | "hidden" | "scroll" | "visible" | "inherit";
@@ -1897,7 +804,7 @@ declare module 'types' {
 	    interface FlowProps extends MarginProps, FlexProps, GridProps {
 	    }
 	    type ColorProp = FunctionalProp<ThemeTypes.Colors<chroma.Color>, CSS.Properties["color"]>;
-	    type IconProp = FunctionalProp<IconsetTypes.Index, React.ReactElement>;
+	    type IconProp = FunctionalProp<IconsetTypes.Index, string>;
 	    /**
 	     * Props for text form fields
 	     * @name FieldProps
@@ -1921,18 +828,25 @@ declare module 'types' {
 	        [K in keyof T]: Partial<Record<Extract<T[K], string>, EmotionStyles>>;
 	    }>;
 	    type Variant<V> = (variants: Variants<V>) => EmotionStyles;
-	    type ComponentStyle<V> = ((variant: Variant<V>) => EmotionStyles) | EmotionStyles;
-	    type ComponentStyles<S extends string, V = ''> = ((props: any, theme: ThemeTypes.Index) => {
-	        [O in S]: ComponentStyle<V>;
-	    }) | {
-	        [O in S]: ComponentStyle<V>;
+	    type FlowStyle<V> = V extends Object ? (state: V) => SerializedStyles : SerializedStyles;
+	    type ComponentStyle<V> = V extends {} ? ((variant: Variant<V>) => EmotionStyles) : EmotionStyles;
+	    type FlowStyles<S> = {
+	        [O in keyof S]: FlowStyle<S[O]>;
 	    };
+	    type ComponentStyles<S> = ((props: any, theme: ThemeTypes.Index) => {
+	        [O in keyof S]: ComponentStyle<S[O]>;
+	    }) | {
+	        [O in keyof S]: ComponentStyle<S[O]>;
+	    };
+	    type OverridesStyle<S> = Partial<{
+	        [O in keyof S]: ComponentStyle<S[O]>;
+	    }>;
 	}
 	export default Global;
 
 }
 declare module 'content/Divider/types' {
-	import Global from 'types'; namespace DividerTypes {
+	import Global from '@flow-ui/core/types'; namespace DividerTypes {
 	    interface Props extends Global.Props {
 	        vertical?: boolean;
 	        dash?: number;
@@ -1940,9 +854,1113 @@ declare module 'content/Divider/types' {
 	        color?: Global.ColorProp;
 	    }
 	    interface Styles {
+	        container: void;
 	    }
 	}
 	export default DividerTypes;
+
+}
+declare module 'content/Icon/types' {
+	import Global from '@flow-ui/core/types';
+	import CSS from 'csstype'; namespace IconTypes {
+	    /**
+	     * TODO: circle и oval добавляют только padding
+	     * пример <Icon shape="circle" type={(t) => t.outline.cube} />
+	     */
+	    type Shapes = "circle" | "oval" | "square";
+	    interface Props extends Global.Props {
+	        type: Global.IconProp;
+	        shape?: Shapes;
+	        size?: CSS.Properties["fontSize"];
+	        color?: Global.ColorProp;
+	        background?: Global.ColorProp;
+	    }
+	    interface Styles {
+	        container: void;
+	        icon: void;
+	    }
+	}
+	export default IconTypes;
+
+}
+declare module 'content/Spinner/types' {
+	/// <reference types="react" />
+	import Global from '@flow-ui/core/types'; namespace SpinnerTypes {
+	    interface Props extends Global.Props {
+	        color?: Global.ColorProp;
+	        children?: React.ReactElement;
+	        shape?: 'square' | 'rounded' | 'round';
+	        duration?: number;
+	        count?: number;
+	        size?: string;
+	    }
+	    interface Styles {
+	        container: void;
+	        children: void;
+	    }
+	}
+	export default SpinnerTypes;
+
+}
+declare module 'content/Typography/types' {
+	/// <reference types="react" />
+	import Global from '@flow-ui/core/types';
+	import CSS from 'csstype'; namespace TypographyTypes {
+	    interface Props extends AnchorProps {
+	        defaultStyles: any;
+	        tag: string;
+	        theme: any;
+	    }
+	    interface AnchorProps extends TextProps {
+	        download?: any;
+	        href?: string;
+	        hrefLang?: string;
+	        media?: string;
+	        ping?: string;
+	        rel?: string;
+	        target?: string;
+	        type?: string;
+	        referrerPolicy?: string;
+	    }
+	    interface TextProps extends Global.Props {
+	        quotes?: boolean;
+	        ellipsis?: boolean;
+	        decoration?: CSS.Properties["textDecoration"];
+	        children?: React.ReactNode;
+	        color?: Global.ColorProp;
+	        background?: Global.ColorProp;
+	        align?: CSS.Properties["textAlign"];
+	        weight?: CSS.Properties["fontWeight"];
+	        size?: CSS.Properties["fontSize"];
+	        transform?: CSS.Properties["textTransform"];
+	    }
+	    interface Styles {
+	    }
+	}
+	export default TypographyTypes;
+
+}
+declare module 'control/Button/types' {
+	/// <reference types="react" />
+	import Global from '@flow-ui/core/types';
+	import { ObjectInterpolation } from '@emotion/css'; namespace ButtonTypes {
+	    interface Props extends Global.Props {
+	        autoFocus?: boolean;
+	        disabled?: boolean;
+	        form?: string;
+	        formAction?: string;
+	        /**
+	         * The formenctype attribute specifies how form-data should be encoded before sending it to a server. This attribute overrides the form's enctype attribute.
+	         * The formenctype attribute is only used for buttons with type="submit".
+	         */
+	        formEncType?: string;
+	        formMethod?: string;
+	        formNoValidate?: boolean;
+	        formTarget?: string;
+	        name?: string;
+	        type?: 'submit' | 'reset' | 'button';
+	        value?: string | string[] | number;
+	        size?: Global.Size;
+	        decoration?: 'filled' | 'outline' | 'text' | 'plain';
+	        shape?: 'square' | 'rounded' | 'round';
+	        uppercase?: boolean;
+	        color?: Global.ColorProp;
+	        children?: React.ReactNode;
+	    }
+	    interface Styles {
+	        container: ObjectInterpolation<undefined>;
+	        filled: ObjectInterpolation<undefined>;
+	        outline: ObjectInterpolation<undefined>;
+	        text: ObjectInterpolation<undefined>;
+	        plain: ObjectInterpolation<undefined>;
+	    }
+	}
+	export default ButtonTypes;
+
+}
+declare module 'control/Checkbox/types' {
+	import Global from '@flow-ui/core/types';
+	import { ObjectInterpolation } from '@emotion/css'; namespace CheckboxTypes {
+	    interface Props extends Global.Props {
+	        label?: string;
+	        labelColor?: Global.ColorProp;
+	        checked?: boolean;
+	        disabled?: boolean;
+	        defaultValue?: boolean;
+	        uppercase?: boolean;
+	        size?: Global.Size;
+	        onChange?: (checked: boolean) => void;
+	    }
+	    interface Styles {
+	        check: ObjectInterpolation<undefined>;
+	        icon: ObjectInterpolation<undefined>;
+	    }
+	}
+	export default CheckboxTypes;
+
+}
+declare module 'control/DatePicker/types' {
+	/**
+	 * types.tsx
+	 * author: I.Trikoz
+	 */
+	import { Interpolation } from '@emotion/core';
+	import { Moment } from 'moment';
+	import { CSSProperties } from 'react';
+	import Global from '@flow-ui/core/types'; namespace DatePickerTypes {
+	    type GridType = "year" | "month" | "day";
+	    type Locale = 'en' | 'ru' | 'it' | 'fr' | 'de';
+	    interface Props extends Global.FieldProps {
+	        /**
+	         * Type for DatePicker
+	         * @default day
+	         */
+	        type?: GridType;
+	        /**
+	         * Property value could be a string
+	         * if you pass format property aswell
+	         * otherwise value should be instance of Date
+	         */
+	        value?: Moment | Date | string;
+	        /**
+	         * Format moment YYYY-MM-DD
+	         * @default YYYY-MM-DD
+	         */
+	        format?: string;
+	        /**
+	         * Min datetime that could be selected
+	         */
+	        minValue?: Moment | Date | string;
+	        /**
+	         * Max datetime that could be selected
+	         */
+	        maxValue?: Moment | Date | string;
+	        /**
+	         * Callback function will with Date object
+	         * or string if format property was passed.
+	         */
+	        onChange?: (moment: Moment, value: string) => void;
+	        /**
+	         * Do not close datepicker on change
+	         * latest value
+	         */
+	        stayOpen?: boolean;
+	        /**
+	         * Enable mask input
+	         */
+	        masked?: boolean;
+	        /**
+	         * @default ru
+	         */
+	        locale?: Locale;
+	        /**
+	         * Hide today button
+	         */
+	        hideToday?: boolean;
+	    }
+	    interface DateGridProps {
+	        hideToday: boolean;
+	        value: Moment;
+	        minValue: Moment;
+	        maxValue: Moment;
+	        onChange: (date: Moment) => void;
+	        styles: any;
+	        type: GridType;
+	    }
+	    interface DateGridCalendarProps {
+	        value: Moment;
+	        tmp: Moment;
+	        minValue: Moment;
+	        maxValue: Moment;
+	        active: Moment;
+	        onClick?: () => void;
+	        style?: CSSProperties;
+	        styles: any;
+	    }
+	    interface DateGridTitleProps {
+	        value: Moment;
+	        minValue: Moment;
+	        maxValue: Moment;
+	        gridType: GridType;
+	        onNext: () => void;
+	        onPrevious: () => void;
+	        onGridTypeChange: (type: GridType) => void;
+	        styles: any;
+	    }
+	    interface Styles {
+	        textFieldWrapper?: Interpolation;
+	        textFieldOkButton?: Interpolation;
+	        dateGrind?: Interpolation;
+	        weekDay?: Interpolation;
+	        title?: Interpolation;
+	        gridBlock?: Interpolation;
+	    }
+	}
+	export default DatePickerTypes;
+
+}
+declare module 'control/Menu/types' {
+	/// <reference types="react" />
+	import Global from '@flow-ui/core/types'; namespace MenuTypes {
+	    type Value = string | number;
+	    interface Props extends Global.Props {
+	        defaultValue?: Value;
+	        value?: Value;
+	        onChange?: (value: Value) => void;
+	        items: Item[];
+	        size?: Global.Size;
+	        decoration?: 'filled' | 'outline' | 'color' | 'underline' | 'tab' | 'filled-underline';
+	        flip?: boolean;
+	        distance?: string;
+	        direction?: "row" | "column";
+	        shape?: 'square' | 'rounded' | 'round';
+	        border?: 'none' | 'narrow' | 'wide';
+	        align?: 'start' | 'center' | 'end';
+	        separator?: React.ReactElement;
+	        color?: Global.ColorProp;
+	        disabled?: boolean;
+	    }
+	    interface Item extends Global.EventHandlers {
+	        content: React.ReactNode;
+	        value: Value;
+	        disabled?: boolean;
+	    }
+	    interface ItemProps extends Item {
+	        active?: boolean;
+	        styles?: any;
+	        onEnter?: () => void;
+	    }
+	    interface Styles {
+	    }
+	}
+	export default MenuTypes;
+
+}
+declare module 'control/Radio/types' {
+	import Global from '@flow-ui/core/types';
+	import { ObjectInterpolation } from '@emotion/css'; namespace RadioTypes {
+	    interface Props extends Global.Props {
+	        label?: string;
+	        labelColor?: Global.ColorProp;
+	        checked?: boolean;
+	        disabled?: boolean;
+	        defaultValue?: boolean;
+	        uppercase?: boolean;
+	        size?: Global.Size;
+	        onChange?: (checked: boolean) => void;
+	    }
+	    interface Styles {
+	        check: ObjectInterpolation<undefined>;
+	        icon: ObjectInterpolation<undefined>;
+	    }
+	}
+	export default RadioTypes;
+
+}
+declare module 'control/Range/types' {
+	import { CSSProperties } from 'react';
+	import { Interpolation } from '@emotion/css'; namespace RangeTypes {
+	    interface Props {
+	        min?: number;
+	        max?: number;
+	        defaultValue?: number;
+	        value?: number;
+	        onChange?: (value: number) => void;
+	        mode?: 'single' | 'range';
+	        style?: CSSProperties;
+	        className?: string;
+	    }
+	    interface Styles {
+	        container: Interpolation;
+	        rail: Interpolation;
+	        track: Interpolation;
+	        thumb: Interpolation;
+	    }
+	}
+	export default RangeTypes;
+
+}
+declare module 'control/Select/types' {
+	import Global from '@flow-ui/core/types';
+	import { Interpolation } from '@emotion/css'; namespace SelectTypes {
+	    interface Option {
+	        text: string;
+	        value: any;
+	    }
+	    interface Props extends Global.FieldProps, Global.Props {
+	        placeholder?: string;
+	        options: Option[];
+	        multiselect?: boolean;
+	        searchable?: boolean;
+	        values?: Option[];
+	        defaultValues?: Option[];
+	        onChange?: (values: Option[], changedValue?: Option) => void;
+	    }
+	    type Actions = {
+	        type: 'setSelectedOptions';
+	        payload: Option[];
+	    } | {
+	        type: 'toggleOpen';
+	        payload: boolean;
+	    } | {
+	        type: 'search';
+	        payload: string;
+	    } | {
+	        type: 'setCursor';
+	        payload: number;
+	    } | {
+	        type: 'clear';
+	    } | {
+	        type: 'setOverlay';
+	        payload: boolean;
+	    };
+	    type State = {
+	        selectedOptions: Option[];
+	        underOverlay: boolean;
+	        open: boolean;
+	        searchValue: string;
+	        empty: boolean;
+	        cursor: number;
+	    };
+	    interface OptionsProps extends SearchProps {
+	        selected: SelectTypes.Option[];
+	        onClose: (option: any) => void;
+	        searchable?: boolean;
+	    }
+	    interface SearchProps {
+	        searchValue: string;
+	        onSearch: (searchValue: string) => void;
+	        size?: number;
+	        styles: any;
+	        placeholder?: string;
+	        defaultValue?: string;
+	        disabled?: boolean;
+	    }
+	    interface Styles {
+	        container: Interpolation;
+	        input: Interpolation;
+	        dropMenu: Interpolation;
+	        dropItem: Interpolation;
+	    }
+	}
+	export default SelectTypes;
+
+}
+declare module 'control/Switch/types' {
+	import Global from '@flow-ui/core/types';
+	import { ObjectInterpolation } from '@emotion/css'; namespace SwitchTypes {
+	    interface Props extends Global.Props {
+	        label?: string;
+	        labelColor?: Global.ColorProp;
+	        checked?: boolean;
+	        disabled?: boolean;
+	        defaultValue?: boolean;
+	        uppercase?: boolean;
+	        size?: Global.Size;
+	        onChange?: (checked: boolean) => void;
+	    }
+	    interface Styles {
+	        check: ObjectInterpolation<undefined>;
+	        icon: ObjectInterpolation<undefined>;
+	    }
+	}
+	export default SwitchTypes;
+
+}
+declare module 'control/TextField/types' {
+	import Global from '@flow-ui/core/types';
+	import { ChangeEventHandler } from 'react';
+	import IMask from 'imask'; namespace TextFieldTypes {
+	    type InputTypes = 'email' | 'hidden' | 'number' | 'password' | 'reset' | 'search' | 'tel' | 'text' | 'url';
+	    interface Props extends Global.FieldProps, Global.Props, InputProps, TextAreaProps {
+	        defaultValue?: string | number;
+	        align?: "left" | "right";
+	        multiline?: boolean;
+	        masked?: IMask.AnyMaskedOptions;
+	        onChange?: ChangeEventHandler<HTMLInputElement>;
+	    }
+	    interface InputProps {
+	        autoComplete?: string;
+	        autoFocus?: boolean;
+	        list?: string;
+	        name?: string;
+	        placeholder?: string;
+	        pattern?: string;
+	        readOnly?: boolean;
+	        required?: boolean;
+	        type?: InputTypes;
+	        value?: string | number;
+	        form?: string;
+	        formAction?: string;
+	        formEncType?: string;
+	        formMethod?: string;
+	        formNoValidate?: boolean;
+	        formTarget?: string;
+	        max?: number | string;
+	        maxLength?: number;
+	        min?: number | string;
+	        minLength?: number;
+	        step?: number | string;
+	        width?: number | string;
+	    }
+	    interface TextAreaProps {
+	        cols?: number;
+	        rows?: number;
+	        wrap?: string;
+	    }
+	    interface Styles {
+	    }
+	}
+	export default TextFieldTypes;
+
+}
+declare module 'data/Meter/types' {
+	import Global from '@flow-ui/core/types'; namespace MeterTypes {
+	    type MeterType = 'line' | 'circle';
+	    type MeterDecoration = 'filled' | 'outline';
+	    type MeterShape = 'square' | 'round';
+	    interface Props extends Global.Props {
+	        percent: number;
+	        size?: Global.Size;
+	        /**
+	         * @default line
+	         */
+	        type?: MeterType;
+	        decoration?: MeterDecoration;
+	        shape?: MeterShape;
+	        color?: Global.ColorProp;
+	        /**
+	         * Enabled process animation
+	         * @default false
+	         */
+	        animation?: boolean;
+	    }
+	    interface Styles {
+	        container: {
+	            shape: MeterShape;
+	            size: Global.Size;
+	            decoration: MeterDecoration;
+	        };
+	        thumb: {
+	            shape: MeterShape;
+	            size: Global.Size;
+	        };
+	    }
+	}
+	export default MeterTypes;
+
+}
+declare module 'data/Table/types' {
+	/// <reference types="react" />
+	import Global from '@flow-ui/core/types'; namespace TableTypes {
+	    interface TableColumn {
+	        title?: string;
+	        dataIndex: string;
+	        width?: number;
+	        render?: (row: any, value: any) => void;
+	    }
+	    interface TableActions {
+	        label: string;
+	        className?: string;
+	        onAction: (row: any) => void;
+	    }
+	    interface TableForm {
+	        key?: string | number;
+	        defaultData?: {
+	            [key: string]: any;
+	        };
+	        render: any;
+	        dismiss?: () => void;
+	    }
+	    interface Props extends Global.Props {
+	        data: Object[];
+	        columns: TableColumn[];
+	        form?: TableForm;
+	        actions?: TableActions[];
+	        border?: 'all' | 'external' | 'internal' | 'vertical' | 'horizontal';
+	        indexKey?: string;
+	        scope?: any;
+	        pagination?: TablePagination;
+	        noDataLabel?: string;
+	        children?: React.ReactElement;
+	        onRowClick?: (row: any) => void;
+	        search?: boolean;
+	        onSearch?: (value: any) => void;
+	        hideHeaders?: boolean;
+	        className?: string;
+	    }
+	    interface RowProps {
+	        row: any;
+	        columns: TableColumn[];
+	        isSelected?: boolean;
+	        isExpanding?: boolean;
+	        isBlur?: boolean;
+	        actions?: any;
+	        border?: any;
+	        scope?: any;
+	        form?: any;
+	        style?: any;
+	        children?: any;
+	        onRowClick?: (row: any) => void;
+	        styles: Global.FlowStyles<Styles>;
+	    }
+	    interface ColumnProps {
+	        row: any;
+	        columns: TableColumn[];
+	        scope?: any;
+	        children?: any;
+	        styles: Global.FlowStyles<Styles>;
+	    }
+	    interface ActionsProps {
+	        actions: any[];
+	        data: any;
+	        children?: any;
+	        styles: Global.FlowStyles<Styles>;
+	    }
+	    interface FormProps {
+	        data: any;
+	        dismiss?: () => void;
+	        columns: TableColumn[];
+	        Form: any;
+	        children?: any;
+	    }
+	    interface InjectForm {
+	        data: {
+	            [key: string]: any;
+	        };
+	        columns: TableColumn[];
+	        setData: (key: string, value: any) => void;
+	        dismiss?: () => void;
+	    }
+	    interface TablePagination {
+	        pageSize: number;
+	        pageTotalSize?: number;
+	        async?: (page: number) => boolean;
+	    }
+	    interface PaginationProps {
+	        pagination: TablePagination;
+	        page: number;
+	        searchActive: boolean;
+	        search?: boolean;
+	        data: {
+	            [key: string]: any;
+	        }[];
+	        onChange: (page: number, searchBar: boolean) => void;
+	        children?: any;
+	        styles: Global.FlowStyles<Styles>;
+	    }
+	    interface Styles {
+	        container: void;
+	        content: void;
+	        headRow: void;
+	        headColumn: void;
+	        search: void;
+	        body: void;
+	        pagination: void;
+	        paginationButton: {
+	            active: boolean;
+	        };
+	        row: {
+	            edited: boolean;
+	            withActions: boolean;
+	        };
+	        subrow: void;
+	        column: void;
+	        more: void;
+	        actions: void;
+	        actionButtons: void;
+	        actionButtonsEdit: void;
+	    }
+	}
+	export default TableTypes;
+
+}
+declare module 'layout/Badge/types' {
+	/// <reference types="react" />
+	import Global from '@flow-ui/core/types'; namespace BadgeTypes {
+	    interface Props extends Global.Props {
+	        content: React.ReactNode;
+	        align?: "top" | "bottom" | "left" | "right" | "top-right" | "bottom-right" | "top-left" | "bottom-left";
+	        children?: React.ReactNode;
+	    }
+	    interface Styles {
+	        container: void;
+	        holder: {
+	            align: Props["align"];
+	        };
+	    }
+	}
+	export default BadgeTypes;
+
+}
+declare module 'layout/Block/types' {
+	/// <reference types="react" />
+	import Global from '@flow-ui/core/types';
+	import CSS from 'csstype'; namespace BlockTypes {
+	    interface Props extends Global.Props {
+	        tag?: "div" | "span" | "header" | "footer" | "article" | "section" | "aside" | "main";
+	        surface?: "major" | "medium" | "minor";
+	        hoverSurface?: "major" | "medium" | "minor";
+	        position?: CSS.Properties["position"];
+	        children?: React.ReactNode;
+	        background?: Global.ColorProp;
+	        color?: Global.ColorProp;
+	        overflow?: CSS.Properties["overflow"];
+	    }
+	    interface Styles {
+	        container: {
+	            surface: Props["surface"];
+	            hoverSurface: Props["hoverSurface"];
+	        };
+	    }
+	}
+	export default BlockTypes;
+
+}
+declare module 'layout/Drop/types' {
+	/// <reference types="react" />
+	import Global from '@flow-ui/core/types'; namespace DropTypes {
+	    interface TargetCoordinates {
+	        top: number;
+	        bottom: number;
+	        left: number;
+	        right: number;
+	    }
+	    interface Props extends Global.SelfProps {
+	        target: any;
+	        align?: "top" | "bottom" | "left" | "right";
+	        justify?: "start" | "center" | "end" | "start-outside" | "end-outside";
+	        stretchWidth?: boolean;
+	        stretchHeight?: boolean;
+	        distance?: number;
+	        onClickOutside?: (event: React.MouseEvent<HTMLElement>, outsideTarget?: boolean) => void;
+	        onEsc?: () => void;
+	        children?: React.ReactNode;
+	    }
+	    interface Styles {
+	        container: void;
+	    }
+	}
+	export default DropTypes;
+
+}
+declare module 'layout/Flexbox/types' {
+	/// <reference types="react" />
+	import Global from '@flow-ui/core/types';
+	import CSS from 'csstype'; namespace FlexboxTypes {
+	    interface Props extends Global.Props {
+	        column?: boolean;
+	        inline?: boolean;
+	        alignItems?: CSS.Properties["alignItems"];
+	        alignContent?: CSS.Properties["alignContent"];
+	        justifyContent?: CSS.Properties["justifyContent"];
+	        justifyItems?: CSS.Properties["justifyItems"];
+	        direction?: CSS.Properties["flexDirection"];
+	        wrap?: CSS.Properties["flexWrap"];
+	        flow?: CSS.Properties["flexFlow"];
+	        children?: React.ReactNode;
+	    }
+	    interface Styles {
+	        container: void;
+	    }
+	}
+	export default FlexboxTypes;
+
+}
+declare module 'layout/Grid/types' {
+	/// <reference types="react" />
+	import Global from '@flow-ui/core/types';
+	import CSS from 'csstype'; namespace GridTypes {
+	    interface Props extends Global.Props {
+	        inline?: boolean;
+	        children?: React.ReactNode;
+	        templateColumns?: CSS.Properties["gridTemplateColumns"];
+	        templateRows?: CSS.Properties["gridTemplateRows"];
+	        templateAreas?: CSS.Properties["gridTemplateAreas"];
+	        columnGap?: CSS.Properties["gridColumnGap"];
+	        rowGap?: CSS.Properties["gridRowGap"];
+	        gap?: CSS.Properties["gridGap"];
+	        autoColumns?: CSS.Properties["gridAutoColumns"];
+	        autoRows?: CSS.Properties["gridAutoRows"];
+	        autoFlow?: CSS.Properties["gridAutoFlow"];
+	        alignItems?: CSS.Properties["alignItems"];
+	        alignContent?: CSS.Properties["alignContent"];
+	        justifyContent?: CSS.Properties["justifyContent"];
+	        justifyItems?: CSS.Properties["justifyItems"];
+	    }
+	    interface Styles {
+	        container: void;
+	    }
+	}
+	export default GridTypes;
+
+}
+declare module 'layout/Modal/types' {
+	/// <reference types="react" />
+	import Global from '@flow-ui/core/types'; namespace ModalTypes {
+	    interface Ref {
+	        open: (customContent?: React.ReactElement | null) => void;
+	        close: (didClose?: () => void) => void;
+	        setTitle: (title: string) => void;
+	        setSubtitle: (subtitle: string) => void;
+	        setCenter: (center: boolean) => void;
+	        setCustomContent: (customContent: React.ReactElement | null) => void;
+	        title?: string;
+	        subtitle?: string;
+	        center: boolean;
+	        customContent: React.ReactElement | null;
+	        overlay: any;
+	        window: any;
+	    }
+	    interface Props extends Global.SelfProps {
+	        title?: string;
+	        subtitle?: string;
+	        fullSize?: boolean;
+	        children?: any;
+	        hideHeader?: boolean;
+	        onClose?: () => void;
+	        didClose?: () => void;
+	        onOpen?: () => void;
+	        didOpen?: () => void;
+	    }
+	    interface InnerProps extends Props {
+	        innerRef: any;
+	    }
+	    interface StyleProps {
+	        visible: boolean;
+	        center: boolean;
+	        fullSize?: boolean;
+	    }
+	    interface ModalOverlayProps {
+	        visible: boolean;
+	        center: boolean;
+	        fullSize?: boolean;
+	        children?: any;
+	        styles: Global.FlowStyles<Styles>;
+	    }
+	    interface ModalWindowProps {
+	        title?: string;
+	        subtitle?: string;
+	        visible: boolean;
+	        center: boolean;
+	        fullSize?: boolean;
+	        hideHeader?: boolean;
+	        children?: any;
+	        containerAttr?: React.HTMLAttributes<HTMLElement> & Global.SelfProps;
+	        onClosePressed: () => void;
+	        styles: Global.FlowStyles<Styles>;
+	    }
+	    interface ModalHeaderProps {
+	        title?: string;
+	        subtitle?: string;
+	        hideHeader?: boolean;
+	        onClosePressed: () => void;
+	        styles: Global.FlowStyles<Styles>;
+	    }
+	    interface Styles {
+	        overlay: {
+	            visible?: boolean;
+	            center?: boolean;
+	        };
+	        window: {
+	            visible?: boolean;
+	            fullSizeCenter?: boolean;
+	        };
+	        header: void;
+	        cross: void;
+	    }
+	}
+	export default ModalTypes;
+
+}
+declare module 'layout/Notification/types' {
+	 namespace NotificationTypes {
+	    interface Props {
+	        children?: React.ReactNode;
+	        onClick?: () => void;
+	    }
+	    interface NotifyOptions {
+	        /**
+	         * Title of notification
+	         */
+	        title: string;
+	        /**
+	         * Message of notification
+	         */
+	        message: string;
+	        /**
+	         * Notification will be removed after timeout
+	         * value in milisecods
+	         */
+	        timeout?: number;
+	        /**
+	         * Will call on notificaion click
+	         */
+	        onClick?: () => void;
+	        /**
+	         * if custom content filled then title and message will be ignored
+	         */
+	        customContent?: React.ReactElement;
+	    }
+	    interface Styles {
+	        container: void;
+	    }
+	}
+	export default NotificationTypes;
+
+}
+declare module 'layout/Panel/types' {
+	/// <reference types="react" />
+	import Global from '@flow-ui/core/types'; namespace PanelTypes {
+	    interface Props extends Global.Props {
+	        align?: "top" | "right" | "bottom" | "left";
+	        children?: React.ReactNode;
+	    }
+	    interface Styles {
+	        container: {
+	            align: Props["align"];
+	        };
+	    }
+	}
+	export default PanelTypes;
+
+}
+declare module 'layout/Popover/types' {
+	/// <reference types="react" />
+	import Global from '@flow-ui/core/types';
+	import CSS from 'csstype'; namespace PopoverTypes {
+	    interface Props extends Global.Props {
+	        align?: "top" | "bottom" | "left" | "right";
+	        background?: Global.ColorProp;
+	        color?: Global.ColorProp;
+	        children?: React.ReactNode;
+	        arrowWidth?: CSS.Properties["width"];
+	        arrowHeight?: CSS.Properties["height"];
+	    }
+	    interface Styles {
+	        container: void;
+	        arrow: {
+	            align: Props['align'];
+	        };
+	    }
+	}
+	export default PopoverTypes;
+
+}
+declare module 'layout/Tree/types' {
+	/// <reference types="react" />
+	import Global from '@flow-ui/core/types'; namespace TreeTypes {
+	    interface Props extends Global.Props {
+	        label?: React.ReactNode | string;
+	        children?: React.ReactNode;
+	        decoration?: 'flat' | 'drop' | "inline";
+	        alwaysOpen?: boolean;
+	        defaultOpen?: boolean;
+	        indent?: boolean;
+	    }
+	    interface Styles {
+	        container: {
+	            decoration: Props['decoration'];
+	            needIndent: boolean;
+	        };
+	        label: void;
+	        icon: {
+	            decoration: Props['decoration'];
+	            disabled: boolean;
+	        };
+	        child: {
+	            isOpen: boolean;
+	        };
+	    }
+	}
+	export default TreeTypes;
+
+}
+declare module 'misc/themes/types' {
+	import chroma from 'chroma-js';
+	import { ObjectInterpolation } from '@emotion/core';
+	/**
+	 * Content
+	 */
+	import DividerTypes from 'content/Divider/types';
+	import IconTypes from 'content/Icon/types';
+	import SpinnerTypes from 'content/Spinner/types';
+	import TypographyTypes from 'content/Typography/types';
+	/**
+	 * Control
+	 */
+	import ButtonTypes from 'control/Button/types';
+	import CheckboxTypes from 'control/Checkbox/types';
+	import DatePickerTypes from 'control/DatePicker/types';
+	import MenuTypes from 'control/Menu/types';
+	import RadioTypes from 'control/Radio/types';
+	import RangeTypes from 'control/Range/types';
+	import SelectTypes from 'control/Select/types';
+	import SwitchTypes from 'control/Switch/types';
+	import TextFieldTypes from 'control/TextField/types';
+	/**
+	 * Data
+	 */
+	import MeterTypes from 'data/Meter/types';
+	import TableTypes from 'data/Table/types';
+	/**
+	 * Layout
+	 */
+	import BadgeTypes from 'layout/Badge/types';
+	import BlockTypes from 'layout/Block/types';
+	import DropTypes from 'layout/Drop/types';
+	import FlexboxTypes from 'layout/Flexbox/types';
+	import GridTypes from 'layout/Grid/types';
+	import ModalTypes from 'layout/Modal/types';
+	import NotificationTypes from 'layout/Notification/types';
+	import PanelTypes from 'layout/Panel/types';
+	import PopoverTypes from 'layout/Popover/types';
+	import TreeTypes from 'layout/Tree/types';
+	import Global from 'types'; namespace ThemeTypes {
+	    interface Index extends Variables<chroma.Color> {
+	        assets: Assets;
+	        overrides: Overrides;
+	        replace: Replace;
+	    }
+	    interface Variables<T = [number, number, number, number?]> {
+	        name: string;
+	        color: Colors<T>;
+	        radius: Radius;
+	        distance: Distance;
+	        typography: Typography;
+	    }
+	    interface Assets {
+	        global?: ObjectInterpolation<undefined>;
+	        border: {
+	            width: string;
+	            style: string;
+	            color: string;
+	        };
+	        shadow: {
+	            default: string;
+	            short: string;
+	            long: string;
+	        };
+	        gradient: {
+	            linear: string;
+	            linearVariant: string;
+	            radial: string;
+	            radialVariant: string;
+	        };
+	        focus: ObjectInterpolation<undefined>;
+	        fieldHeight: {
+	            xsmall: string;
+	            small: string;
+	            medium: string;
+	            large: string;
+	            xlarge: string;
+	        };
+	    }
+	    interface Overrides {
+	        Divider?: Global.OverridesStyle<DividerTypes.Styles>;
+	        Icon?: Global.OverridesStyle<IconTypes.Styles>;
+	        Spinner?: Global.OverridesStyle<SpinnerTypes.Styles>;
+	        Typography?: Global.OverridesStyle<TypographyTypes.Styles>;
+	        Button?: Global.OverridesStyle<ButtonTypes.Styles>;
+	        Checkbox?: Global.OverridesStyle<CheckboxTypes.Styles>;
+	        DatePicker?: Global.OverridesStyle<DatePickerTypes.Styles>;
+	        Menu?: Global.OverridesStyle<MenuTypes.Styles>;
+	        Radio?: Global.OverridesStyle<RadioTypes.Styles>;
+	        Range?: Global.OverridesStyle<RangeTypes.Styles>;
+	        Select?: Global.OverridesStyle<SelectTypes.Styles>;
+	        Switch?: Global.OverridesStyle<SwitchTypes.Styles>;
+	        TextField?: Global.OverridesStyle<TextFieldTypes.Styles>;
+	        Meter?: Global.OverridesStyle<MeterTypes.Styles>;
+	        Table?: Global.OverridesStyle<TableTypes.Styles>;
+	        Badge?: Global.OverridesStyle<BadgeTypes.Styles>;
+	        Block?: Global.OverridesStyle<BlockTypes.Styles>;
+	        Drop?: Global.OverridesStyle<DropTypes.Styles>;
+	        Flexbox?: Global.OverridesStyle<FlexboxTypes.Styles>;
+	        Grid?: Global.OverridesStyle<GridTypes.Styles>;
+	        Modal?: Global.OverridesStyle<ModalTypes.Styles>;
+	        Notification?: Global.OverridesStyle<NotificationTypes.Styles>;
+	        Panel?: Global.OverridesStyle<PanelTypes.Styles>;
+	        Popover?: Global.OverridesStyle<PopoverTypes.Styles>;
+	        Tree?: Global.OverridesStyle<TreeTypes.Styles>;
+	    }
+	    type Replace = (variables: DeepPartial<Variables>, assets?: (variables: Variables<chroma.Color>) => DeepPartial<Assets>, overrides?: Overrides) => Index;
+	    type Colors<T> = {
+	        background: T;
+	        backgroundVariant: T;
+	        surface: T;
+	        surfaceVariant: T;
+	        primary: T;
+	        secondary: T;
+	        onBackground: T;
+	        onSurface: T;
+	        onPrimary: T;
+	        onSecondary: T;
+	        lightest: T;
+	        light: T;
+	        hard: T;
+	        hardest: T;
+	        accent: {
+	            red: T;
+	            green: T;
+	            blue: T;
+	            orange: T;
+	        };
+	    };
+	    type Radius = {
+	        default: string;
+	        narrow: string;
+	        wide: string;
+	    };
+	    interface Distance {
+	        xsmall: string;
+	        small: string;
+	        medium: string;
+	        large: string;
+	        xlarge: string;
+	    }
+	    interface Typography {
+	        paragraph: ObjectInterpolation<undefined>;
+	        header: {
+	            1: ObjectInterpolation<undefined>;
+	            2: ObjectInterpolation<undefined>;
+	            3: ObjectInterpolation<undefined>;
+	            4: ObjectInterpolation<undefined>;
+	        };
+	        text: {
+	            1: ObjectInterpolation<undefined>;
+	            2: ObjectInterpolation<undefined>;
+	            3: ObjectInterpolation<undefined>;
+	            4: ObjectInterpolation<undefined>;
+	        };
+	        display: {
+	            1: ObjectInterpolation<undefined>;
+	            2: ObjectInterpolation<undefined>;
+	            3: ObjectInterpolation<undefined>;
+	            4: ObjectInterpolation<undefined>;
+	        };
+	        caption: {
+	            1: ObjectInterpolation<undefined>;
+	            2: ObjectInterpolation<undefined>;
+	            3: ObjectInterpolation<undefined>;
+	            4: ObjectInterpolation<undefined>;
+	        };
+	    }
+	    type DeepPartial<T> = {
+	        [P in keyof T]?: T[P] extends Array<infer U> ? Array<DeepPartial<U>> : T[P] extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : DeepPartial<T[P]>;
+	    };
+	}
+	export default ThemeTypes;
+
+}
+declare module 'misc/utils/mergeObjects' {
+	export default function mergeObjects(target?: Object, source?: Object, modify?: (value: any) => any): Object;
+
+}
+declare module 'misc/utils/createTheme' {
+	import ThemeTypes from 'misc/themes/types';
+	import chroma from 'chroma-js';
+	export type CreateTheme = (mainVaraibles: ThemeTypes.Variables, mainAssets: (variables: ThemeTypes.Variables<chroma.Color>) => ThemeTypes.Assets, mainOverrides?: any) => ThemeTypes.Index; const createTheme: CreateTheme;
+	export default createTheme;
 
 }
 declare module 'misc/typography' {
@@ -2031,28 +2049,6 @@ declare module 'misc/typography' {
 	export default typography;
 
 }
-declare module 'layout/Viewport/styles' {
-	 const _default: (theme: any, wrapper: any) => {
-	    global: import("@emotion/utils").SerializedStyles;
-	};
-	export default _default;
-
-}
-declare module 'misc/utils/createID' {
-	 const _default: () => string;
-	export default _default;
-
-}
-declare module 'misc/utils/mergeObjects' {
-	export default function mergeObjects(target: Object, source?: Object, modify?: (value: any) => any): Object;
-
-}
-declare module 'misc/utils/createTheme' {
-	import ThemeTypes from 'misc/themes/types';
-	import chroma from 'chroma-js';
-	export default function createTheme(mainVaraibles: ThemeTypes.Variables<chroma.Color>, mainAssets: (variables: ThemeTypes.Variables<chroma.Color>) => ThemeTypes.Assets, mainOverrides?: any): ThemeTypes.Index;
-
-}
 declare module 'misc/themes/light' {
 	import Theme from 'misc/themes/types'; const _default: Theme.Index;
 	export default _default;
@@ -2068,9 +2064,60 @@ declare module 'misc/themes' {
 	export { default as dark } from 'misc/themes/dark';
 
 }
-declare module 'misc/utils/callProp' {
-	 const _default: <P, L>(prop: P, lib: L) => Exclude<P, Function>;
-	export default _default;
+declare module 'layout/Viewport/types' {
+	/// <reference types="react" />
+	import ThemeType from 'misc/themes/types';
+	import Global from '@flow-ui/core/types';
+	import ThemeTypes from 'misc/themes/types'; namespace ViewportTypes {
+	    interface Themes {
+	        light: ThemeTypes.Index;
+	        dark: ThemeTypes.Index;
+	    }
+	    interface Props {
+	        wrapper?: boolean;
+	        className?: string;
+	        id?: string;
+	        theme?: Global.FunctionalProp<Themes, ThemeType.Index>;
+	        children?: React.ReactNode;
+	    }
+	    interface MountArea {
+	        className?: string;
+	    }
+	    interface MountAreaElement {
+	        key: string;
+	        children: React.ReactElement;
+	    }
+	    interface Context {
+	        theme: ThemeType.Index;
+	    }
+	    interface DialogOptions {
+	        /**
+	         * Title of modal window header
+	         */
+	        title?: string;
+	        /**
+	         * Subtitle of modal window header
+	         */
+	        subtitle?: string;
+	        /**
+	         * Message of dialog
+	         */
+	        message?: string;
+	        /**
+	         * Button text
+	         */
+	        buttonText?: string;
+	        /**
+	         * Hides modal window header
+	         */
+	        hideHeader?: boolean;
+	        /**
+	         * if custom content filled then message and buttonText will be ignored
+	         */
+	        customContent?: React.ReactElement;
+	    }
+	}
+	export default ViewportTypes;
 
 }
 declare module 'layout/Viewport/MountArea' {
@@ -2081,9 +2128,11 @@ declare module 'layout/Viewport/MountArea' {
 	export default MountArea;
 
 }
-declare module 'misc/hooks/useSharedObject' {
-	 const useMemoEffect: <T>(createObject: () => T) => T | null;
-	export default useMemoEffect;
+declare module 'layout/Viewport/styles' {
+	 const _default: (theme: any, wrapper: any) => {
+	    global: import("@emotion/utils").SerializedStyles;
+	};
+	export default _default;
 
 }
 declare module 'layout/Viewport' {
@@ -2106,31 +2155,84 @@ declare module 'misc/hooks/useContainer' {
 	export default _default;
 
 }
+declare module 'misc/hooks/useStyles' {
+	import Global from 'types'; const createStyles: <S>(props: any, componentStyles: Global.ComponentStyles<S>, componentName?: "Menu" | "Divider" | "Icon" | "Spinner" | "Typography" | "Button" | "Checkbox" | "DatePicker" | "Radio" | "Range" | "Select" | "Switch" | "TextField" | "Meter" | "Table" | "Badge" | "Block" | "Drop" | "Flexbox" | "Grid" | "Modal" | "Notification" | "Panel" | "Popover" | "Tree" | undefined) => Global.FlowStyles<S>;
+	export default createStyles;
+
+}
 declare module 'misc/hooks/useStyleProps' {
-	import Global from 'types';
-	import { Interpolation } from '@emotion/core';
+	import Global from '@flow-ui/core/types';
+	import CSS from 'csstype';
 	interface Props extends Global.SelfProps, Global.FlowProps {
 	    [key: string]: any;
-	}
+	} type Color = {
+	    background: CSS.Properties["background"];
+	    color: CSS.Properties["color"];
+	}; type Border = {
+	    borderWidth: CSS.Properties["borderWidth"];
+	    borderStyle: CSS.Properties["borderStyle"];
+	    borderColor: CSS.Properties["borderColor"];
+	    borderRadius: CSS.Properties["borderRadius"];
+	}; type Padding = {
+	    padding: CSS.Properties["padding"];
+	    paddingTop: CSS.Properties["paddingTop"];
+	    paddingLeft: CSS.Properties["paddingLeft"];
+	    paddingRight: CSS.Properties["paddingRight"];
+	    paddingBottom: CSS.Properties["paddingBottom"];
+	}; type Margin = {
+	    margin: CSS.Properties["margin"];
+	    marginTop: CSS.Properties["marginTop"];
+	    marginLeft: CSS.Properties["marginLeft"];
+	    marginRight: CSS.Properties["marginRight"];
+	    marginBottom: CSS.Properties["marginBottom"];
+	}; type Layout = {
+	    display: CSS.Properties["display"];
+	    visibility: CSS.Properties["visibility"];
+	    width: CSS.Properties["width"];
+	    height: CSS.Properties["height"];
+	    transition: CSS.Properties["transition"];
+	}; type Flex = {
+	    flex: CSS.Properties["flex"];
+	    flexBasis: CSS.Properties["flexBasis"];
+	    flexGrow: CSS.Properties["flexGrow"];
+	    flexShrink: CSS.Properties["flexShrink"];
+	    alignSelf: CSS.Properties["alignSelf"];
+	    justifySelf: CSS.Properties["justifySelf"];
+	}; type Grid = {
+	    gridColumnStart: CSS.Properties["gridColumnStart"];
+	    gridColumnEnd: CSS.Properties["gridColumnEnd"];
+	    gridRowStart: CSS.Properties["gridRowStart"];
+	    gridRowEnd: CSS.Properties["gridRowEnd"];
+	    gridColumn: CSS.Properties["gridColumn"];
+	    gridRow: CSS.Properties["gridRow"];
+	    gridArea: CSS.Properties["gridArea"];
+	    placeSelf: CSS.Properties["placeSelf"];
+	};
 	interface InjectedStyleProps {
-	    color: Interpolation;
-	    border: Interpolation;
-	    padding: Interpolation;
-	    margin: Interpolation;
-	    layout: Interpolation;
-	    flex: Interpolation;
-	    grid: Interpolation;
-	    flow: Interpolation;
-	    self: Interpolation;
-	    all: Interpolation;
+	    color: Color;
+	    border: Border;
+	    padding: Padding;
+	    margin: Margin;
+	    layout: Layout;
+	    flex: Flex;
+	    grid: Grid;
+	    flow: Margin & Flex & Grid;
+	    self: Padding & Layout & Color & Border;
+	    all: Margin & Flex & Grid & Padding & Layout & Color & Border;
 	} const useStyleProps: (props: Props) => InjectedStyleProps;
 	export default useStyleProps;
+
+}
+declare module 'content/Divider/styles' {
+	import Global from '@flow-ui/core/types';
+	import Types from 'content/Divider/types'; const dividerStyles: Global.ComponentStyles<Types.Styles>;
+	export default dividerStyles;
 
 }
 declare module 'content/Divider' {
 	/// <reference types="react" />
 	/// <reference types="@emotion/core" />
-	import DividerTypes from 'content/Divider/types'; const _default: import("react").ForwardRefExoticComponent<DividerTypes.Props & import("react").RefAttributes<unknown>>;
+	import Types from 'content/Divider/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<unknown>>;
 	export default _default;
 
 }
@@ -2150,30 +2252,26 @@ declare module 'misc/icons' {
 
 }
 declare module 'content/Icon/styles' {
-	 const _default: (props: any) => {
-	    container: import("@emotion/utils").SerializedStyles;
-	    icon: import("@emotion/utils").SerializedStyles;
-	};
-	export default _default;
+	import Global from 'types';
+	import Types from 'content/Icon/types'; const iconStyles: Global.ComponentStyles<Types.Styles>;
+	export default iconStyles;
 
 }
 declare module 'content/Icon' {
 	import React from 'react';
-	import IconTypes from 'content/Icon/types'; const _default: React.ForwardRefExoticComponent<IconTypes.Props & React.RefAttributes<unknown>>;
+	import Types from 'content/Icon/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
 	export default _default;
 
 }
 declare module 'content/Spinner/styles' {
-	import SpinnerTypes from 'content/Spinner/types'; const _default: (props: SpinnerTypes.Props) => {
-	    container: import("@emotion/utils").SerializedStyles;
-	    children: import("@emotion/utils").SerializedStyles;
-	};
-	export default _default;
+	import Types from 'content/Spinner/types';
+	import Global from 'types'; const spinnerStyles: Global.ComponentStyles<Types.Styles>;
+	export default spinnerStyles;
 
 }
 declare module 'content/Spinner' {
 	import React from 'react';
-	import SpinnerTypes from 'content/Spinner/types'; const _default: React.ForwardRefExoticComponent<SpinnerTypes.Props & React.RefAttributes<unknown>>;
+	import Types from 'content/Spinner/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
 	export default _default;
 
 }
@@ -2257,31 +2355,21 @@ declare module 'control/Button' {
 
 }
 declare module 'layout/Block/styles' {
-	import BlockTypes from 'layout/Block/types'; const BlockStyles: BlockTypes.Styles;
+	import Types from 'layout/Block/types';
+	import Global from 'types'; const BlockStyles: Global.ComponentStyles<Types.Styles>;
 	export default BlockStyles;
-
-}
-declare module 'misc/hooks/useStyles' {
-	import { SerializedStyles } from '@emotion/core';
-	export type FlowStyles<C, V> = {
-	    [O in keyof C]: FlowStyle<V>;
-	};
-	export type FlowStyle<V> = (state?: {
-	    [O in keyof V]: string | boolean | undefined;
-	}) => SerializedStyles; const createStyles: <C, V = any, S = C extends (...args: any) => any ? ReturnType<C> : C>(props: any, componentStyles: C, componentName?: "Menu" | "Divider" | "Icon" | "Spinner" | "Typography" | "Button" | "Checkbox" | "DatePicker" | "Radio" | "Range" | "Select" | "Switch" | "TextField" | "Meter" | "Table" | "Badge" | "Block" | "Drop" | "Flexbox" | "Grid" | "Modal" | "Notification" | "Panel" | "Popover" | "Tree" | "ViewportTypes" | undefined) => FlowStyles<S, V>;
-	export default createStyles;
 
 }
 declare module 'layout/Block' {
 	/// <reference types="react" />
 	/// <reference types="@emotion/core" />
-	import BlockTypes from 'layout/Block/types'; const _default: import("react").ForwardRefExoticComponent<BlockTypes.Props & import("react").RefAttributes<unknown>>;
+	import Types from 'layout/Block/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<unknown>>;
 	export default _default;
 
 }
 declare module 'misc/hocs/Check/types' {
 	/// <reference types="react" />
-	import Global from 'types'; namespace CheckTypes {
+	import Global from '@flow-ui/core/types'; namespace CheckTypes {
 	    type CheckType = 'checkbox' | 'radio' | 'switch';
 	    interface Props extends Global.Props {
 	        label?: string;
@@ -2328,7 +2416,8 @@ declare module 'control/Checkbox' {
 
 }
 declare module 'layout/Drop/styles' {
-	import DropTypes from 'layout/Drop/types'; const DropStyles: DropTypes.Styles;
+	import Types from 'layout/Drop/types';
+	import Global from 'types'; const DropStyles: Global.ComponentStyles<Types.Styles>;
 	export default DropStyles;
 
 }
@@ -2339,16 +2428,14 @@ declare module 'layout/Drop' {
 
 }
 declare module 'layout/Popover/styles' {
-	import PopoverTypes from 'layout/Popover/types'; const _default: (props: PopoverTypes.Props) => {
-	    container: import("@emotion/utils").SerializedStyles;
-	    arrow: import("@emotion/utils").SerializedStyles;
-	};
-	export default _default;
+	import PopoverTypes from 'layout/Popover/types';
+	import Global from 'types'; const popoverStyles: Global.ComponentStyles<PopoverTypes.Styles>;
+	export default popoverStyles;
 
 }
 declare module 'layout/Popover' {
 	import React from 'react';
-	import PopoverTypes from 'layout/Popover/types'; const _default: React.ForwardRefExoticComponent<PopoverTypes.Props & React.RefAttributes<unknown>>;
+	import Types from 'layout/Popover/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
 	export default _default;
 
 }
@@ -2428,7 +2515,7 @@ declare module 'control/TextField/styles' {
 declare module 'misc/hocs/Field/types' {
 	/// <reference types="react" />
 	import CSS from 'csstype';
-	import Global from 'types'; namespace FieldTypes {
+	import Global from '@flow-ui/core/types'; namespace FieldTypes {
 	    interface Props extends Global.FieldProps, Global.Props {
 	        name?: string;
 	        children?: React.ReactNode;
@@ -2554,6 +2641,12 @@ declare module 'control/DatePicker' {
 	export default _default;
 
 }
+declare module 'control/Menu/Item' {
+	import { FC } from 'react';
+	import MenuTypes from 'control/Menu/types'; const Item: FC<MenuTypes.ItemProps>;
+	export default Item;
+
+}
 declare module 'control/Menu/styles' {
 	import MenuTypes from 'control/Menu/types'; const _default: (props: MenuTypes.Props) => {
 	    container: import("@emotion/utils").SerializedStyles;
@@ -2561,12 +2654,6 @@ declare module 'control/Menu/styles' {
 	    separator: import("@emotion/utils").SerializedStyles;
 	};
 	export default _default;
-
-}
-declare module 'control/Menu/Item' {
-	import { FC } from 'react';
-	import MenuTypes from 'control/Menu/types'; const Item: FC<MenuTypes.ItemProps>;
-	export default Item;
 
 }
 declare module 'control/Menu' {
@@ -2656,44 +2743,21 @@ declare module 'control/Switch' {
 
 }
 declare module 'data/Meter/styles' {
-	import MeterTypes from 'data/Meter/types'; const _default: (props: MeterTypes.Props, percent: number) => {
-	    container: import("@emotion/utils").SerializedStyles;
-	    thumb: import("@emotion/utils").SerializedStyles;
-	};
-	export default _default;
+	import Types from 'data/Meter/types';
+	import Global from 'types'; const meterStyles: Global.ComponentStyles<Types.Styles>;
+	export default meterStyles;
 
 }
 declare module 'data/Meter' {
 	import React from 'react';
-	import MeterTypes from 'data/Meter/types'; const _default: React.ForwardRefExoticComponent<MeterTypes.Props & React.RefAttributes<unknown>>;
+	import Types from 'data/Meter/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
 	export default _default;
 
 }
 declare module 'data/Table/styles' {
-	import TableTypes from 'data/Table/types'; const _default: (props: TableTypes.Props) => {
-	    container: import("@emotion/utils").SerializedStyles;
-	    content: import("@emotion/utils").SerializedStyles;
-	    headRow: import("@emotion/utils").SerializedStyles;
-	    headColumn: import("@emotion/utils").SerializedStyles;
-	    search: import("@emotion/utils").SerializedStyles;
-	    body: import("@emotion/utils").SerializedStyles;
-	    pagination: import("@emotion/utils").SerializedStyles;
-	    paginationButton: (active: boolean) => import("@emotion/utils").SerializedStyles;
-	    row: (edited: boolean, withActions: boolean) => import("@emotion/utils").SerializedStyles;
-	    subrow: import("@emotion/utils").SerializedStyles;
-	    column: import("@emotion/utils").SerializedStyles;
-	    more: import("@emotion/utils").SerializedStyles;
-	    actions: import("@emotion/utils").SerializedStyles;
-	    actionButtons: import("@emotion/utils").SerializedStyles;
-	    actionButtonsEdit: import("@emotion/utils").SerializedStyles;
-	};
-	export default _default;
-
-}
-declare module 'data/Table/TableColumns' {
-	/// <reference types="react" />
-	import TableTypes from 'data/Table/types'; const TableColumns: (props: TableTypes.ColumnProps) => JSX.Element;
-	export default TableColumns;
+	import Types from 'data/Table/types';
+	import Global from 'types'; const tabelStyles: Global.ComponentStyles<Types.Styles>;
+	export default tabelStyles;
 
 }
 declare module 'data/Table/TableForm' {
@@ -2713,6 +2777,18 @@ declare module 'data/Table/TableForm' {
 	export default TableFormHOC;
 
 }
+declare module 'data/Table/TablePagination' {
+	/// <reference types="react" />
+	import TableTypes from 'data/Table/types'; const TablePagination: (props: TableTypes.PaginationProps) => JSX.Element | null;
+	export default TablePagination;
+
+}
+declare module 'data/Table/TableColumns' {
+	/// <reference types="react" />
+	import TableTypes from 'data/Table/types'; const TableColumns: (props: TableTypes.ColumnProps) => JSX.Element;
+	export default TableColumns;
+
+}
 declare module 'data/Table/TableActions' {
 	/// <reference types="react" />
 	import TableTypes from 'data/Table/types'; const TableActions: (props: TableTypes.ActionsProps) => JSX.Element;
@@ -2725,12 +2801,6 @@ declare module 'data/Table/TableRow' {
 	export default TableRow;
 
 }
-declare module 'data/Table/TablePagination' {
-	/// <reference types="react" />
-	import TableTypes from 'data/Table/types'; const TablePagination: (props: TableTypes.PaginationProps) => JSX.Element | null;
-	export default TablePagination;
-
-}
 declare module 'data/Table' {
 	import React from 'react';
 	import TableTypes from 'data/Table/types'; const _default: React.ForwardRefExoticComponent<TableTypes.Props & React.RefAttributes<unknown>>;
@@ -2738,13 +2808,14 @@ declare module 'data/Table' {
 
 }
 declare module 'layout/Badge/styles' {
-	import BadgeTypes from 'layout/Badge/types'; const BadgeStyles: BadgeTypes.Styles;
+	import Types from 'layout/Badge/types';
+	import Global from 'types'; const BadgeStyles: Global.ComponentStyles<Types.Styles>;
 	export default BadgeStyles;
 
 }
 declare module 'layout/Badge' {
 	import React from 'react';
-	import BadgeTypes from 'layout/Badge/types'; const _default: React.ForwardRefExoticComponent<BadgeTypes.Props & React.RefAttributes<unknown>>;
+	import Types from 'layout/Badge/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
 	export default _default;
 
 }
@@ -2756,16 +2827,6 @@ declare module 'layout/Modal/ModalOverlay' {
 }
 declare module 'layout/Modal/ModalPortal' {
 	 const _default: (props: any) => import("react").ReactPortal;
-	export default _default;
-
-}
-declare module 'layout/Modal/styles' {
-	import ModalTypes from 'layout/Modal/types'; const _default: (props: ModalTypes.Props) => {
-	    overlay: (visible: any, center: any) => import("@emotion/utils").SerializedStyles;
-	    window: (visible: any, center: any, fullSize: any) => import("@emotion/utils").SerializedStyles;
-	    header: import("@emotion/utils").SerializedStyles;
-	    cross: import("@emotion/utils").SerializedStyles;
-	};
 	export default _default;
 
 }
@@ -2781,44 +2842,52 @@ declare module 'layout/Modal/ModalWindow' {
 	export default ModalWindow;
 
 }
+declare module 'layout/Modal/styles' {
+	import Types from 'layout/Modal/types';
+	import Global from 'types'; const modalStyles: Global.ComponentStyles<Types.Styles>;
+	export default modalStyles;
+
+}
 declare module 'layout/Modal' {
 	import React from 'react';
-	import ModalTypes from 'layout/Modal/types'; const _default: React.ForwardRefExoticComponent<ModalTypes.Props & React.RefAttributes<ModalTypes.Ref>>;
+	import Types from 'layout/Modal/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
+	export default _default;
+
+}
+declare module 'layout/Notification/styles' {
+	 const _default: (props: any, theme: any) => {
+	    container: never[];
+	};
 	export default _default;
 
 }
 declare module 'layout/Notification' {
 	import React from 'react';
-	import NotificationTypes from 'layout/Notification/types'; const _default: React.ForwardRefExoticComponent<NotificationTypes.Props & React.RefAttributes<unknown>>;
+	import Types from 'layout/Notification/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
 	export default _default;
 
 }
 declare module 'layout/Panel/styles' {
-	import PanelTypes from 'layout/Panel/types'; const _default: (props: PanelTypes.Props) => {
-	    container: import("@emotion/utils").SerializedStyles;
-	};
-	export default _default;
+	import Types from 'layout/Panel/types';
+	import Global from 'types'; const panelStyles: Global.ComponentStyles<Types.Styles>;
+	export default panelStyles;
 
 }
 declare module 'layout/Panel' {
 	import React from 'react';
-	import PanelTypes from 'layout/Panel/types'; const _default: React.ForwardRefExoticComponent<PanelTypes.Props & React.RefAttributes<unknown>>;
+	import Types from 'layout/Panel/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
 	export default _default;
 
 }
 declare module 'layout/Tree/styles' {
-	import TreeTypes from 'layout/Tree/types'; const _default: (props: TreeTypes.Props, lvl: number, isOpen: boolean, hasTreeChilds: boolean) => {
-	    container: import("@emotion/utils").SerializedStyles;
-	    label: import("@emotion/utils").SerializedStyles;
-	    icon: import("@emotion/utils").SerializedStyles;
-	    child: import("@emotion/utils").SerializedStyles;
-	};
-	export default _default;
+	import Types from 'layout/Tree/types';
+	import Global from 'types'; const treeStyles: Global.ComponentStyles<Types.Styles>;
+	export default treeStyles;
 
 }
 declare module 'layout/Tree' {
 	import React from 'react';
-	import TreeTypes from 'layout/Tree/types'; const _default: React.ForwardRefExoticComponent<TreeTypes.Props & React.RefAttributes<unknown>>;
+	import Types from 'layout/Tree/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
 	export default _default;
 
 }
@@ -2907,11 +2976,6 @@ declare module '@flow-ui/core' {
 	 */
 	export { default as useBrowser } from 'misc/hooks/useBrowser';
 	export { default as useFlow } from 'misc/hooks/useFlow';
-
-}
-declare module 'layout/Notification/styles' {
-	 const _default: () => {};
-	export default _default;
 
 }
 declare module 'misc/utils/validate' {
