@@ -1,31 +1,36 @@
 import ThemeType from '../../misc/themes/types';
 import Global from '@flow-ui/core/types';
+import ThemeTypes from '../../misc/themes/types';
 
 declare namespace ViewportTypes {
 
-    export interface Props {
+    interface Themes {
+        light: ThemeTypes.Index
+        dark: ThemeTypes.Index
+    }
+
+    interface Props {
         wrapper?: boolean
         className?: string
         id?: string
-        theme?: Global.FunctionalProp<any, ThemeType.Index>
+        theme?: Global.FunctionalProp<Themes, ThemeType.Index>
         children?: React.ReactNode
     }
 
-    export interface MountArea {
+    interface MountArea {
         className?: string
     }
 
-    export interface MountAreaElement {
+    interface MountAreaElement {
         key: string,
         children: React.ReactElement
     }
 
-    export interface Context {
+    interface Context {
         theme: ThemeType.Index
-        browser: any
     }
 
-    export interface DialogOptions {
+    interface DialogOptions {
         /**
          * Title of modal window header
          */
@@ -50,10 +55,6 @@ declare namespace ViewportTypes {
          * if custom content filled then message and buttonText will be ignored
          */
         customContent?: React.ReactElement
-    }
-
-    export interface Styles {
-        
     }
 }
 

@@ -11,21 +11,16 @@ import ViewportTypes from './types';
 
 const initialContext: ViewportTypes.Context = {
     theme: themes.light,
-    browser: {},
 }
 
 export const FlowContext = React.createContext(initialContext);
-
-const styleCaches: { [key: string]: EmotionCache } = {};
 
 const Viewport: FC<ViewportTypes.Props> = (props) => {
 
     const theme = callProp(props.theme, themes) || themes.light;
     const styles = createStyles(theme, false);
-    const browser = {}
-    // useBrowser();
 
-    const context: ViewportTypes.Context = { theme, browser }
+    const context: ViewportTypes.Context = { theme }
 
     let cache;
     const ref = useRef(null)
