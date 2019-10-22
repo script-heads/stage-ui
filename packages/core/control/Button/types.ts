@@ -1,5 +1,4 @@
 import Global from '@flow-ui/core/types';
-import { ObjectInterpolation } from '@emotion/css';
 
 declare namespace ButtonTypes {
 
@@ -31,11 +30,11 @@ declare namespace ButtonTypes {
     }
 
     export interface Styles {
-        container: ObjectInterpolation<undefined>
-        filled: ObjectInterpolation<undefined>
-        outline: ObjectInterpolation<undefined>
-        text: ObjectInterpolation<undefined>
-        plain: ObjectInterpolation<undefined>
+        container:{
+            decoration: Props["decoration"]
+            shape: Props["shape"]
+            size: Props["size"]
+        }
     }
 }
 
