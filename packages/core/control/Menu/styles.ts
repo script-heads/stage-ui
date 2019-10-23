@@ -1,12 +1,12 @@
-import { css, ObjectInterpolation } from '@emotion/core';
-import useFlow from '@flow-ui/core/misc/hooks/useFlow';
+import { ObjectInterpolation } from '@emotion/core';
 import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
 import callProp from '@flow-ui/core/misc/utils/callProp';
 import chroma from 'chroma-js';
-import MenuTypes from './types';
+import Types from './types';
+import Global from '../../types';
 
-export default (props: MenuTypes.Props) => {
-    const { theme } = useFlow();
+const menuStyles: Global.ComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+    
     const {
         decoration = 'underline',
         size = 'medium',
@@ -18,6 +18,7 @@ export default (props: MenuTypes.Props) => {
         distance,
     } = props;
 
+    const styleProps = useStyleProps(props);
     const sizes = getSizes(size, theme);
     const decorations = getDecorations(theme, sizes, props);
 
@@ -60,7 +61,7 @@ export default (props: MenuTypes.Props) => {
     }
 
     return {
-        container: css(
+        container: (variant) => [
             {
                 display: 'flex',
                 position: 'relative',
@@ -76,9 +77,9 @@ export default (props: MenuTypes.Props) => {
                 }
             },
             border != 'none' && borderStyles,
-            useStyleProps(props).all,
-        ),
-        item: (active: boolean, disabled: boolean) => css(
+            styleProps.all,
+        ],
+        item: (variant) => [
             {
                 outline: 'none',
                 display: 'flex',
@@ -88,7 +89,7 @@ export default (props: MenuTypes.Props) => {
                 userSelect: 'none',
                 overflow: 'hidden',
                 borderRadius: decorations.shape,
-                cursor: disabled ? 'not-allowed' : 'pointer',
+                cursor: 'pointer',
                 "#item-content": {
                     display: 'flex',
                     width: '100%',
@@ -98,19 +99,23 @@ export default (props: MenuTypes.Props) => {
                     ...sizes.itemContent
                 }
             },
+            decorations.ordinary,
+            variant({
+                active: decorations.active,
+                disabled: [{
+                    cursor: 'not-allowed',
+                }]
+            }),
             sizes.item,
-            active
-                ? decorations.active
-                : decorations.ordinary,
-        ),
-        separator: css({
+        ],
+        separator: [{
             display: 'flex',
             flexGrow: 1,
             justifyContent: 'center',
             alignItems: 'center',
             overflow: 'hidden',
             padding: sizes.separatorDistance
-        })
+        }]
     }
 }
 
@@ -421,3 +426,5 @@ function tabBorderStyles(direction, flip) {
             borderBottom: 0,
         }
 }
+
+export default menuStyles

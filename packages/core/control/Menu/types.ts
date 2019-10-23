@@ -4,7 +4,7 @@ declare namespace MenuTypes {
 
     type Value = string | number;
 
-    export interface Props extends Global.Props {
+    interface Props extends Global.Props {
         defaultValue?: Value
         value?: Value
         onChange?: (value: Value) => void
@@ -30,20 +30,32 @@ declare namespace MenuTypes {
         disabled?: boolean
     }
 
-    export interface Item extends Global.EventHandlers {
+    interface Item extends Global.EventHandlers, Props {
         content: React.ReactNode
         value: Value
         disabled?: boolean
     }
 
-    export interface ItemProps extends Item {
-        active?: boolean
-        styles?: any
-        onEnter?: () => void
+    interface ItemProps extends Item {
+        active: boolean
+        styles: Global.FlowStyles<Styles>
+        onEnter: () => void
     }
 
-    export interface Styles {
-
+    interface Styles {
+        container: {
+            size: Props['size']
+            flip: Props['flip']
+            border: Props['border']
+        }
+        item: {
+            shape: Props['shape']
+            disabled: boolean
+            active: boolean
+            size: Props['size']
+            decoration: Props['decoration']
+        }
+        separator: void
     }
 }
 

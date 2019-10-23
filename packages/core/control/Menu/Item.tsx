@@ -4,13 +4,19 @@ import MenuTypes from './types';
 
 const Item: FC<MenuTypes.ItemProps> = (props) => {
 
-    const { content, disabled, active } = props;
+    const { 
+        decoration = 'underline',
+        size = 'medium',
+        shape = 'rounded',
+        content, 
+        disabled = false,
+        active } = props;
     const { attributes } = useContainer(props);
 
     return (
         <div
             {...attributes}
-            css={props.styles.item(active, disabled)}
+            css={props.styles.item({active, disabled, decoration, shape, size})}
             disabled={disabled}
             tabIndex={disabled ? -1 : 0}
         >
