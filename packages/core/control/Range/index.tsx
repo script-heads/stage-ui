@@ -1,11 +1,12 @@
-import React, { useRef, FC, forwardRef, useImperativeHandle, useEffect, useMemo } from 'react';
-import createStyles from './styles';
+import React, { useRef, FC, forwardRef, useImperativeHandle, useEffect } from 'react';
+import rangeStyles from './styles';
 import Types from './types';
 import useContainer from '@flow-ui/core/misc/hooks/useContainer';
+import useStyles from '@flow-ui/core/misc/hooks/useStyles';
 
 const Range: FC<Types.Props> = (props, ref) => {
     const { min = 0, max = 100, value, defaultValue } = props;
-    const styles = createStyles(props);
+    const styles = useStyles(props, rangeStyles, 'Range');
     const { attributes } = useContainer(props);
     const thumbRef = useRef<HTMLDivElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
@@ -61,7 +62,7 @@ const Range: FC<Types.Props> = (props, ref) => {
 
     return (
         <div {...attributes} 
-            css={styles.conatiner} 
+            css={styles.container} 
             ref={containerRef} 
             onMouseDown={(e: MouseEvent) => onMove(e, true)}
             // onTouchStart={onMove}

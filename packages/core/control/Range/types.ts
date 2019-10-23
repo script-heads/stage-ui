@@ -1,23 +1,21 @@
-import { CSSProperties, ReactElement } from 'react';
-import { Interpolation } from '@emotion/css';
+import Global from "../../types";
 
 declare namespace RangeTypes {
-    export interface Props {
+    interface Props extends Global.Props {
         min?: number
         max?: number
         defaultValue?: number
         value?: number
         onChange?: (value: number) => void
         mode?: 'single' | 'range'
-        style?: CSSProperties
         className?: string
     }
 
-    export interface Styles {
-        container: Interpolation
-        rail: Interpolation
-        track: Interpolation
-        thumb: Interpolation
+    interface Styles {
+        container: void
+        rail: void
+        track: void
+        thumb: void
     }
 }
 

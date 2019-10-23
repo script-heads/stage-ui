@@ -1,22 +1,21 @@
-import { css } from "@emotion/core";
-import useFlow from "@flow-ui/core/misc/hooks/useFlow";
 import useStyleProps from "@flow-ui/core/misc/hooks/useStyleProps";
-import RangeTypes from './types';
+import Types from './types';
+import Global from "../../types";
 
-export default (props: RangeTypes.Props) => {
-    const { theme } = useFlow();
+const rangeStyles: Global.ComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     const stylesProps = useStyleProps(props);
 
     return {
-        conatiner: css(
+        container: [
             {
                 position: 'relative',
                 minWidth: '4rem',
                 height: 'calc(1rem + 4px)',
                 cursor: 'pointer',
-            }, stylesProps.all,
-        ),
-        rail: css({
+            },
+            stylesProps.all,
+        ],
+        rail: [{
             position: 'absolute',
             top: 'calc(50% - 2px)',
             height: '4px',
@@ -24,16 +23,16 @@ export default (props: RangeTypes.Props) => {
             width: '100%',
             zIndex: 1,
             borderRadius: '2px',
-        }),
-        track: css({
+        }],
+        track: [{
             position: 'absolute',
             top: 'calc(50% - 2px)',
             height: '4px',
             background: theme.color.primary.css(),
             zIndex: 2,
             borderRadius: '2px',
-        }),
-        thumb: css({
+        }],
+        thumb: [{
             position: 'absolute',
             width: '1rem',
             height: '1rem',
@@ -53,6 +52,8 @@ export default (props: RangeTypes.Props) => {
             ':active': {
                 transform: 'scale(0.95)'
             }
-        }),
+        }],
     }
 }
+
+export default rangeStyles
