@@ -30,7 +30,7 @@ declare namespace MenuTypes {
         disabled?: boolean
     }
 
-    interface Item extends Global.EventHandlers, Props {
+    interface Item extends Partial<Global.EventHandlers>, Partial<Props> {
         content: React.ReactNode
         value: Value
         disabled?: boolean
