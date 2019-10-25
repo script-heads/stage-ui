@@ -21,7 +21,7 @@ declare namespace MeterTypes {
          * Enabled process animation
          * @default false
          */
-        animation?: boolean
+        loading?: boolean
     }
 
     interface Styles {

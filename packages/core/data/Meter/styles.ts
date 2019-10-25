@@ -5,9 +5,7 @@ import Types from './types';
 import Global from '../../types';
 
 const meterStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
-    const {
-        animation,
-    } = props;
+    const { loading } = props;
 
     const styleProps = useStyleProps(props);
     const color = chroma(callProp(props.color, theme.color) || theme.color.primary.css());
@@ -80,11 +78,11 @@ const meterStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Type
             {
                 height: "100%",
                 background: color.css(),
-                animation: animation ? "move 2s linear infinite" : "none",
+                animation: loading ? "move 2s linear infinite" : "none",
                 position: "relative",
                 overflow: 'hidden',
                 borderRadius: '4rem',
-                '&:after': animation && [
+                '&:after': loading && [
                     {
                         content: `''`,
                         position: "absolute",

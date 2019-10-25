@@ -542,11 +542,12 @@ declare module 'types' {
 	    type FlowStyles<S> = {
 	        [O in keyof S]: FlowStyle<S[O]>;
 	    };
-	    type ComponentStyles<S> = ((props: any, theme: ThemeTypes.Index) => {
-	        [O in keyof S]: ComponentStyle<S[O]>;
-	    }) | {
+	    type ComponentStyles<S> = {
 	        [O in keyof S]: ComponentStyle<S[O]>;
 	    };
+	    type FunctionalComponentStyles<S> = ((props: any, theme: ThemeTypes.Index) => {
+	        [O in keyof S]: ComponentStyle<S[O]>;
+	    });
 	    type OverridesStyle<S> = Partial<{
 	        [O in keyof S]: ComponentStyle<S[O]>;
 	    }>;
@@ -823,7 +824,7 @@ declare module 'types' {
 	    interface FlowProps extends MarginProps, FlexProps, GridProps {
 	    }
 	    type ColorProp = FunctionalProp<ThemeTypes.Colors<chroma.Color>, CSS.Properties["color"]>;
-	    type IconProp = FunctionalProp<IconsetTypes.Index, string>;
+	    type IconProp = FunctionalProp<IconsetTypes.Index, React.ReactElement>;
 	}
 	export default Global;
 
@@ -1009,6 +1010,7 @@ declare module 'misc/hocs/Field/types' {
 	            isLabelOverlay: boolean;
 	        };
 	        label: {
+	            size: Props['size'];
 	            isLabelOutside: boolean;
 	            isLabelOverlay: boolean;
 	        };
@@ -1016,7 +1018,9 @@ declare module 'misc/hocs/Field/types' {
 	            align: 'right' | 'left';
 	            size: Props['size'];
 	        };
-	        hint: void;
+	        hint: {
+	            size: Props['size'];
+	        };
 	    }
 	    interface PrivateProps extends Props {
 	        focus: boolean;
@@ -1386,7 +1390,7 @@ declare module 'data/Meter/types' {
 	         * Enabled process animation
 	         * @default false
 	         */
-	        animation?: boolean;
+	        loading?: boolean;
 	    }
 	    interface Styles {
 	        container: {
@@ -2209,7 +2213,7 @@ declare module 'misc/hooks/useContainer' {
 
 }
 declare module 'misc/hooks/useStyles' {
-	import Global from 'types'; const createStyles: <S>(props: any, componentStyles: Global.ComponentStyles<S>, componentName?: "Menu" | "Divider" | "Icon" | "Spinner" | "Typography" | "Button" | "Checkbox" | "DatePicker" | "Radio" | "Range" | "Select" | "Switch" | "TextField" | "Meter" | "Table" | "Badge" | "Block" | "Drop" | "Flexbox" | "Grid" | "Modal" | "Notification" | "Panel" | "Popover" | "Tree" | undefined) => Global.FlowStyles<S>;
+	import Global from 'types'; const createStyles: <S>(props: any, componentStyles: Global.ComponentStyles<S> | Global.FunctionalComponentStyles<S>, componentName?: "Menu" | "Divider" | "Icon" | "Spinner" | "Typography" | "Button" | "Checkbox" | "DatePicker" | "Radio" | "Range" | "Select" | "Switch" | "TextField" | "Meter" | "Table" | "Badge" | "Block" | "Drop" | "Flexbox" | "Grid" | "Modal" | "Notification" | "Panel" | "Popover" | "Tree" | undefined) => Global.FlowStyles<S>;
 	export default createStyles;
 
 }
@@ -2480,8 +2484,8 @@ declare module 'layout/Drop' {
 
 }
 declare module 'layout/Popover/styles' {
-	import PopoverTypes from 'layout/Popover/types';
-	import Global from 'types'; const popoverStyles: Global.ComponentStyles<PopoverTypes.Styles>;
+	import Types from 'layout/Popover/types';
+	import Global from 'types'; const popoverStyles: Global.FunctionalComponentStyles<Types.Styles>;
 	export default popoverStyles;
 
 }
@@ -2493,7 +2497,8 @@ declare module 'layout/Popover' {
 }
 declare module 'misc/hocs/Field/styles' {
 	import Types from 'misc/hocs/Field/types';
-	import Global from 'types'; const fieldStyles: Extract<Global.FunctionalComponentStyles<Types.Styles>, Function>;
+	import Global from 'types';
+	import ThemeTypes from 'misc/themes/types'; const fieldStyles: (props: Types.Props, theme: ThemeTypes.Index) => Global.ComponentStyles<Types.Styles>;
 	export default fieldStyles;
 
 }

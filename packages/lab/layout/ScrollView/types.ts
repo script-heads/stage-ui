@@ -12,26 +12,44 @@ declare namespace ScrollViewTypes {
          * Custom ScrollBar color
          */
         color?: Global.ColorProp
+        /**
+         * Bars size
+         * @default medium
+         */
+        size?: Global.Size
+        /**
+         * Bars shape
+         * @default round
+         */
+        shape?: 'square' | 'round'
     }
     
-    interface Variants {
-        active: boolean
+    interface Ref {
+        scrollTop: () => void
     }
     
     interface Styles {
         container: void
         content: void
         yBar: {
-            active: boolean
+            active: boolean,
+            shape: Props["shape"]
+            size: Props["size"]
         }
         yThumb: {
-            active: boolean
+            active: boolean,
+            shape: Props["shape"]
+            size: Props["size"]
         }
         xBar: {
             active: boolean
+            shape: Props["shape"]
+            size: Props["size"]
         }
         xThumb: {
             active: boolean
+            shape: Props["shape"]
+            size: Props["size"]
         }
     }
 }

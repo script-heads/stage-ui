@@ -39,8 +39,8 @@ const ScrollViewStyles: Global.FunctionalComponentStyles<Types.Styles>= (props: 
                 position: 'absolute',
                 top: 0,
                 right: 0,
-                width: '0.5rem',
-                borderRadius: '1rem',
+                width: '0.75rem',
+                borderRadius: '5rem',
                 backgroundColor: color.alpha(0.1).css(),
                 transition: 'opacity 0.5s',
                 willChange: 'opacity',
@@ -51,14 +51,33 @@ const ScrollViewStyles: Global.FunctionalComponentStyles<Types.Styles>= (props: 
                 }
             },
             variant({
-                active: [{ opacity: 1 }]
+                active: [{ opacity: 1 }],
+                size: {
+                    xsmall: [{
+                        width: "0.25rem",
+                    }],
+                    small: [{
+                        width: "0.5rem",
+                    }],
+                    large: [{
+                        width: "1rem",
+                    }],
+                    xlarge: [{
+                        width: "1.25rem",
+                    }]
+                },
+                shape: {
+                    square: [{
+                        borderRadius: 0
+                    }]
+                }
             })
         ],
         yThumb: (variant) => [
             {
                 zIndex: 400,
                 display: 'block',
-                width: '0.5rem',
+                width: '0.75rem',
                 height: '100%',
                 borderRadius: '1rem',
                 backgroundColor: color.css(),
@@ -67,8 +86,28 @@ const ScrollViewStyles: Global.FunctionalComponentStyles<Types.Styles>= (props: 
                 willChange: 'opacity',
             },
             variant({
-                active: [{ opacity: 0.4 }]
+                active: [{ opacity: 0.4 }],
+                size: {
+                    xsmall: [{
+                        width: "0.25rem",
+                    }],
+                    small: [{
+                        width: "0.5rem",
+                    }],
+                    large: [{
+                        width: "1rem",
+                    }],
+                    xlarge: [{
+                        width: "1.25rem",
+                    }]
+                },
+                shape: {
+                    square: [{
+                        borderRadius: 0
+                    }]
+                }
             })
+            
         ],
         xBar: (variant) => [
             {
@@ -88,7 +127,26 @@ const ScrollViewStyles: Global.FunctionalComponentStyles<Types.Styles>= (props: 
                 }
             },
             variant({
-                active: [{ opacity: 1 }]
+                active: [{ opacity: 1 }],
+                size: {
+                    xsmall: [{
+                        height: "0.25rem",
+                    }],
+                    small: [{
+                        height: "0.5rem",
+                    }],
+                    large: [{
+                        height: "1rem",
+                    }],
+                    xlarge: [{
+                        height: "1.25rem",
+                    }]
+                },
+                shape: {
+                    square: [{
+                        borderRadius: 0
+                    }]
+                }
             })
         ],
         xThumb: (variant) => [
@@ -103,7 +161,26 @@ const ScrollViewStyles: Global.FunctionalComponentStyles<Types.Styles>= (props: 
                 willChange: 'opacity',
             },
             variant({
-                active: [{ opacity: 0.4 }]
+                active: [{ opacity: 0.4 }],
+                size: {
+                    xsmall: [{
+                        height: "0.25rem",
+                    }],
+                    small: [{
+                        height: "0.5rem",
+                    }],
+                    large: [{
+                        height: "1rem",
+                    }],
+                    xlarge: [{
+                        height: "1.25rem",
+                    }]
+                },
+                shape: {
+                    square: [{
+                        borderRadius: 0
+                    }]
+                }
             })
         ],
     }
