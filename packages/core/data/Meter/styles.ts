@@ -10,7 +10,7 @@ const meterStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Type
     } = props;
 
     const styleProps = useStyleProps(props);
-    let color = chroma(callProp(props.color, theme.color) || theme.color.primary.css());
+    const color = chroma(callProp(props.color, theme.color) || theme.color.primary.css());
 
     return {
         container: (variant) => [
@@ -22,7 +22,7 @@ const meterStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Type
                 boxSizing: "border-box",
                 borderWidth: "1px",
                 borderStyle: "solid",
-                borderColor: theme.color.lightest.css(),
+                borderColor: "transparent",
                 background: theme.color.surface.css(),
             },
             variant({
@@ -49,10 +49,10 @@ const meterStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Type
                     }]
                 },
                 decoration: {
-                    'outline': [
+                    outline: [
                         {
                             background: "transparent",
-                            borderColor: theme.color.primary.css(),
+                            borderColor: color.css()
                         },
                         variant({
                             size: {
@@ -86,6 +86,7 @@ const meterStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Type
                 background: color.css(),
                 animation: animation ? "move 2s linear infinite" : "none",
                 position: "relative",
+                overflow:'hidden',
                 '&:after': animation && [
                     {
                     content: `''`,
