@@ -1,12 +1,12 @@
-import { jsx } from '@emotion/core';
-import { forwardRef } from 'react';
-import useContainer from '@flow-ui/core/misc/hooks/useContainer';
-import Types from './types';
-import useStyles from '@flow-ui/core/misc/hooks/useStyles';
-import dividerStyles from './styles';
+import { jsx } from '@emotion/core'
+import { forwardRef } from 'react'
+import useContainer from '@flow-ui/core/misc/hooks/useContainer'
+import Types from './types'
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import dividerStyles from './styles'
 
 const Divider = (props: Types.Props, ref) => {
-    const { attributes } = useContainer(props);
+    const { attributes } = useContainer(props)
     const styles = useStyles<Types.Styles>(props, dividerStyles, 'Divider')
 
     return jsx(

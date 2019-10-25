@@ -3,14 +3,14 @@ import {css} from '@emotion/core'
 import useFlow from './useFlow'
 import ThemeTypes from '../themes/types'
 
-const createStyles = <S, P>(
+const createStyles = <S, P = {}>(
         props: P, 
         componentStyles: Global.ComponentStyles<S> | Global.FunctionalComponentStyles<S,P>, 
         componentName?: keyof ThemeTypes.Overrides
     ): Global.FlowStyles<S> => {
     
     const { theme } = useFlow()
-    const FlowStyles: Global.FlowStyles<S> = {} as any
+    const FlowStyles: Global.FlowStyles<S> = {} as Global.FlowStyles<S>
 
     if (typeof componentStyles === 'function') {
         componentStyles = componentStyles(props,theme)
@@ -19,7 +19,10 @@ const createStyles = <S, P>(
     const overrideStyles =
         componentName && 
         theme.overrides[componentName] && 
-        createStyles(props, theme.overrides[componentName] as Global.ComponentStyles<{}>)
+        createStyles(
+            props, 
+            theme.overrides[componentName] as Global.ComponentStyles<{}>
+        )
 
     Object.keys(componentStyles).map(styleName => {
         if (typeof componentStyles[styleName] === 'function') {
@@ -40,7 +43,12 @@ const createStyles = <S, P>(
                         }
 
                         if (!Object.keys(state).includes(variantName)) {
-                            console.warn(`Can't find value of "${variantName}" variant in "${styleName}" style. Function has been called with:`, state)
+                            console.warn(
+                                `Can't find value of "${variantName}" variant 
+                                in "${styleName}" style. Function has been 
+                                called with:`, 
+                                state
+                            )
                         }
                     }
                     return variantStyles
