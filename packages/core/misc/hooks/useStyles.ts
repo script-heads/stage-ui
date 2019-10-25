@@ -1,7 +1,7 @@
-import Global from "../../types";
-import {css} from "@emotion/core";
-import useFlow from "./useFlow";
-import ThemeTypes from "../themes/types";
+import Global from '../../types'
+import {css} from '@emotion/core'
+import useFlow from './useFlow'
+import ThemeTypes from '../themes/types'
 
 const createStyles = <S, P>(
         props: P, 
@@ -9,8 +9,8 @@ const createStyles = <S, P>(
         componentName?: keyof ThemeTypes.Overrides
     ): Global.FlowStyles<S> => {
     
-    const { theme } = useFlow();
-    const FlowStyles: Global.FlowStyles<S> = {} as any;
+    const { theme } = useFlow()
+    const FlowStyles: Global.FlowStyles<S> = {} as any
 
     if (typeof componentStyles === 'function') {
         componentStyles = componentStyles(props,theme)
@@ -22,15 +22,14 @@ const createStyles = <S, P>(
         createStyles(props, theme.overrides[componentName] as Global.ComponentStyles<{}>)
 
     Object.keys(componentStyles).map(styleName => {
-
         if (typeof componentStyles[styleName] === 'function') {
             FlowStyles[styleName] = (state) => {
 
                 const variant = (varaints) => {
-                    let variantStyles: Global.EmotionStyles = [];
+                    let variantStyles: Global.EmotionStyles = []
                     
                     for (const variantName of Object.keys(varaints)) {
-                        const variantValue = state[variantName];
+                        const variantValue = state[variantName]
         
                         if (typeof variantValue === 'string') {
                             variantStyles.push(varaints[variantName][variantValue])

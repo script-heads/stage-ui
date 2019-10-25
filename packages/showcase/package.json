@@ -45,6 +45,7 @@
     "webpack-bundle-analyzer": "^3.4.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10",
-    "webpack-filter-warnings-plugin": "^1.2.1"
+    "webpack-filter-warnings-plugin": "^1.2.1",
+    "tslint": "^5.20.0"
   }
 }

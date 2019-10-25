@@ -1,0 +1,24 @@
+{
+    "rules": {
+        "ban-ts-ignore": true,
+        "no-any": true,
+        "no-consecutive-blank-lines": true,
+        "no-non-null-assertion": true,
+        "max-line-length": {
+            "options": [80]
+        },
+        "max-file-line-count": [true, 800],
+        "no-empty": [true, "allow-empty-catch"],
+        "curly": [true, "ignore-same-line"],
+        "no-async-without-await": true,
+        "no-debugger": true,
+        "no-console": {
+            "severity": "warning",
+            "options": ["debug", "info", "log", "time", "timeEnd", "trace"]
+        },
+        "no-import-side-effect": [true, {"ignore-module": "(\\.html|\\.css)$"}],
+        "semicolon": [true, "never"],
+        "quotemark": [true, "single", "jsx-double"],
+        "no-var-keyword": true
+    }
+}

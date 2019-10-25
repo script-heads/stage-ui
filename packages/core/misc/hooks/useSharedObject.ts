@@ -1,7 +1,7 @@
-import { useMemo, useState, useEffect } from "react"
-import createID from "../utils/createID"
+import { useMemo, useState, useEffect } from 'react'
+import createID from '../utils/createID'
 
-const objects: { [key: string]: any } = {};
+const objects: { [key: string]: any } = {}
 /**
  * It you need useMemo in useEffect
  * hook return null on first load
@@ -17,4 +17,4 @@ const useMemoEffect = <T>(createObject: () => T): T | null => {
     return objects[id] || null
 }
 
-export default useMemoEffect;
+export default useMemoEffect
