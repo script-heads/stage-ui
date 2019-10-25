@@ -1,10 +1,11 @@
 
-import React, { useState, useEffect } from 'react';
-import { Flexbox, useFlow, Icon, Block } from '@flow-ui/core';
+import { Block, Icon, useFlow } from '@flow-ui/core';
+import { Split } from '@flow-ui/lab';
+import chroma from 'chroma-js';
+import { Case } from 'core';
+import React, { useEffect, useState } from 'react';
 import CodeEditorView from './CodeEditorView';
 import CodePreviewView from './CodePreviewView';
-import { Case } from 'core';
-import { Split } from '@flow-ui/lab';
 
 interface CodeEditorProps {
     caseObject: Case | null
@@ -21,7 +22,8 @@ const CodeEditor = (props: CodeEditorProps) => {
     }
     const [code, setCode] = useState(inCode);
     const flow = useFlow();
-    const dark = flow.theme.name.toUpperCase().match('DARK') ? true : false;
+
+    const dark = chroma.contrast("#fff", flow.theme.color.background) > 3
 
     useEffect(() => {
         try {
