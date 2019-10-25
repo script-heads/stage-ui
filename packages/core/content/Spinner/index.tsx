@@ -1,8 +1,8 @@
-import useContainer from '@flow-ui/core/misc/hooks/useContainer';
-import React, { forwardRef } from 'react';
-import useStyles from '@flow-ui/core/misc/hooks/useStyles';
-import spinnerStyles from './styles';
-import Types from './types';
+import useContainer from '@flow-ui/core/misc/hooks/useContainer'
+import React, { forwardRef } from 'react'
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import spinnerStyles from './styles'
+import Types from './types'
 
 const Spinner = (props: Types.Props, ref) => {
     const {
@@ -10,37 +10,37 @@ const Spinner = (props: Types.Props, ref) => {
         shape,
         duration = 1,
         count = 12
-    } = props;
-    const { attributes } = useContainer(props);
-    const styles = useStyles<Types.Styles>(props, spinnerStyles, 'Spinner');
-    let rectShape;
+    } = props
+    const { attributes } = useContainer(props)
+    const styles = useStyles<Types.Styles>(props, spinnerStyles, 'Spinner')
+    let rectShape
 
     switch (shape) {
         case 'round':
             rectShape = {
-                x: "10",
-                width: "3.5",
-                height: "3.5",
+                x: '10',
+                width: '3.5',
+                height: '3.5',
                 ry: '3.5',
                 rx: '3.5'
             }
-            break;
+            break
         case 'rounded':
             rectShape = {
-                x: "11",
-                width: "2.5",
-                height: "6.5",
+                x: '11',
+                width: '2.5',
+                height: '6.5',
                 ry: '3.5',
                 rx: '3.5'
             }
-            break;
+            break
         default:
             rectShape = {
-                x: "11",
-                width: "2.5",
-                height: "6.5"
+                x: '11',
+                width: '2.5',
+                height: '6.5'
             }
-            break;
+            break
     }
 
     return (
@@ -50,15 +50,15 @@ const Spinner = (props: Types.Props, ref) => {
                     ? <div css={styles.children}>{children}</div>
                     : (
                         <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid" fill="currentColor" height="1em" width="1em">
-                            {Array(count).fill("").map((e, i) =>
+                            {Array(count).fill('').map((e, i) =>
                                 <g key={i} transform={`rotate(${i * 360 / count} 12 12)`}>
-                                    <rect y="0" opacity='.2' {...rectShape}>
+                                    <rect y="0" opacity=".2" {...rectShape}>
                                         <animate
                                             attributeName="opacity"
                                             values="1;0"
                                             keyTimes="0;1"
-                                            dur={duration + "s"}
-                                            begin={(i / (count / duration)) + "s"}
+                                            dur={duration + 's'}
+                                            begin={(i / (count / duration)) + 's'}
                                             repeatCount="indefinite"
                                         />
                                     </rect>
@@ -68,7 +68,7 @@ const Spinner = (props: Types.Props, ref) => {
                     )
             }
         </div>
-    );
+    )
 }
 
-export default forwardRef(Spinner);
+export default forwardRef(Spinner)

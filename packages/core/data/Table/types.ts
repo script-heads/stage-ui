@@ -1,4 +1,4 @@
-import Global from "@flow-ui/core/types";
+import Global from '@flow-ui/core/types'
 
 declare namespace TableTypes {
     interface TableColumn {
@@ -126,4 +126,4 @@ declare namespace TableTypes {
     }
 }
 
-export default TableTypes;
+export default TableTypes

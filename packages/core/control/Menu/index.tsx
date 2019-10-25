@@ -1,10 +1,10 @@
-import useContainer from '@flow-ui/core/misc/hooks/useContainer';
-import useStyles from '@flow-ui/core/misc/hooks/useStyles';
-import React, { FC, forwardRef, Fragment, useState } from 'react';
-import createID from '../../misc/utils/createID';
-import Item from './Item';
-import menuStyles from './styles';
-import Types from './types';
+import useContainer from '@flow-ui/core/misc/hooks/useContainer'
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import React, { FC, forwardRef, Fragment, useState } from 'react'
+import createID from '../../misc/utils/createID'
+import Item from './Item'
+import menuStyles from './styles'
+import Types from './types'
 
 const Menu: FC<Types.Props> = (props, ref) => {
     
@@ -15,21 +15,20 @@ const Menu: FC<Types.Props> = (props, ref) => {
         items, 
         defaultValue = '', 
         separator, 
-    } = props;
-    const { attributes } = useContainer(props);
-    const styles = useStyles<Types.Styles>(props,menuStyles,'Menu');
-    const [value, setValue] = useState<Types.Value>(defaultValue);
+    } = props
+    const { attributes } = useContainer(props)
+    const styles = useStyles<Types.Styles>(props,menuStyles,'Menu')
+    const [value, setValue] = useState<Types.Value>(defaultValue)
     const currentValue = (typeof props.value === 'undefined' || props.value === '')
         ? value
         : props.value
         
-
     function handleSwitch(item: Types.Item) {
         if (!item.disabled) {
             if (!props.value) {
-                setValue(item.value);
+                setValue(item.value)
             }
-            props.onChange && props.onChange(item.value);
+            props.onChange && props.onChange(item.value)
         }
     }
 
@@ -63,4 +62,4 @@ const Menu: FC<Types.Props> = (props, ref) => {
     )
 }
 
-export default forwardRef(Menu);
+export default forwardRef(Menu)

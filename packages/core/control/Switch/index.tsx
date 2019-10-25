@@ -1,14 +1,14 @@
-import React, { FC, forwardRef, RefObject } from 'react';
-import Block from '../../layout/Block';
-import Check from '../../misc/hocs/Check';
-import switchStyles from './styles';
-import Types from './types';
-import useStyles from "@flow-ui/core/misc/hooks/useStyles";
+import React, { FC, forwardRef, RefObject } from 'react'
+import Block from '../../layout/Block'
+import Check from '../../misc/hocs/Check'
+import switchStyles from './styles'
+import Types from './types'
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 
 const Switch: FC<Types.Props> = (props, ref: RefObject<HTMLDivElement>) => {
 
-    const {size='medium', animated, disabled} = props;
-    const styles = useStyles<Types.Styles>(props, switchStyles, 'Switch');
+    const {size='medium', animated, disabled} = props
+    const styles = useStyles<Types.Styles>(props, switchStyles, 'Switch')
 
     return (
         <Check
@@ -34,7 +34,7 @@ const Switch: FC<Types.Props> = (props, ref: RefObject<HTMLDivElement>) => {
                 </Block>
             }
         />
-    );
+    )
 }
 
-export default forwardRef(Switch);
+export default forwardRef(Switch)

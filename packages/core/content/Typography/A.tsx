@@ -1,18 +1,18 @@
-import useFlow from '@flow-ui/core/misc/hooks/useFlow';
-import React, { forwardRef } from 'react';
-import Types from './types';
-import Typography from './Typography';
+import useFlow from '@flow-ui/core/misc/hooks/useFlow'
+import React, { forwardRef } from 'react'
+import Types from './types'
+import Typography from './Typography'
 
 /**
  * ANCHOR
  */
 
 export const A = forwardRef(function A(props: Types.AnchorProps, ref) {
-    const { theme } = useFlow();
+    const { theme } = useFlow()
 
     return (
         <Typography
-            tag='a'
+            tag="a"
             defaultStyles={{
                 ...theme.typography.text[1],
                 color: theme.color.primary.css(),

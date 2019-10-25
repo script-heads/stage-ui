@@ -1,9 +1,9 @@
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
-import Types from "./types";
-import Global from "../../types";
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
+import Types from './types'
+import Global from '../../types'
 
 const panelStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
-    const styleProps = useStyleProps(props);
+    const styleProps = useStyleProps(props)
 
     return {
         container: (variant) => [
@@ -15,7 +15,7 @@ const panelStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Type
                 borderWidth: theme.assets.border.width,
                 borderStyle: theme.assets.border.style,
                 borderColor: theme.assets.border.color,
-                boxSizing: "border-box",
+                boxSizing: 'border-box',
             },
             variant({
                 align: {

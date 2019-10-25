@@ -1,6 +1,6 @@
-import React from 'react';
-import ModalTypes from './types';
-import { forwardRef } from 'react';
+import React from 'react'
+import ModalTypes from './types'
+import { forwardRef } from 'react'
 
 const ModalOverlay = forwardRef((props: ModalTypes.ModalOverlayProps, ref: any) => {
 
@@ -11,6 +11,6 @@ const ModalOverlay = forwardRef((props: ModalTypes.ModalOverlayProps, ref: any) 
             children={props.children}
         />
     )
-});
+})
 
 export default ModalOverlay

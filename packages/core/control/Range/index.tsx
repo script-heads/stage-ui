@@ -1,46 +1,44 @@
-import React, { useRef, FC, forwardRef, useImperativeHandle, useEffect } from 'react';
-import rangeStyles from './styles';
-import Types from './types';
-import useContainer from '@flow-ui/core/misc/hooks/useContainer';
-import useStyles from '@flow-ui/core/misc/hooks/useStyles';
+import React, { useRef, FC, forwardRef, useImperativeHandle, useEffect } from 'react'
+import rangeStyles from './styles'
+import Types from './types'
+import useContainer from '@flow-ui/core/misc/hooks/useContainer'
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 
 const Range: FC<Types.Props> = (props, ref) => {
-    const { min = 0, max = 100, value, defaultValue } = props;
-    const styles = useStyles(props, rangeStyles, 'Range');
-    const { attributes } = useContainer(props);
-    const thumbRef = useRef<HTMLDivElement>(null);
-    const trackRef = useRef<HTMLDivElement>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
+    const { min = 0, max = 100, value, defaultValue } = props
+    const styles = useStyles(props, rangeStyles, 'Range')
+    const { attributes } = useContainer(props)
+    const thumbRef = useRef<HTMLDivElement>(null)
+    const trackRef = useRef<HTMLDivElement>(null)
+    const containerRef = useRef<HTMLDivElement>(null)
     const thumbPosition = value2Percent(value || defaultValue || 0, min, max)
 
-    
     useImperativeHandle(ref, () => {
         return containerRef.current
-    });
+    })
 
     let isActive = false
 
     function onUp(e: MouseEvent) {
-        isActive = false;
+        isActive = false
     }
  
-
     function onMove(e: MouseEvent, force?: boolean) {
         if (force) {
-            isActive = true;
+            isActive = true
         }
 
-        if (!isActive) return;
+        if (!isActive) return
         if (containerRef.current) {
 
-            const { left, right } = containerRef.current.getBoundingClientRect();
-            const percent = value2Percent(e.pageX, left, right);
+            const { left, right } = containerRef.current.getBoundingClientRect()
+            const percent = value2Percent(e.pageX, left, right)
 
-            props.onChange && props.onChange(percent2Value(percent, min, max));
+            props.onChange && props.onChange(percent2Value(percent, min, max))
 
             if (!value && thumbRef.current && trackRef.current) {
-                thumbRef.current.style.left = percent + '%';
-                trackRef.current.style.width = percent + '%';
+                thumbRef.current.style.left = percent + '%'
+                trackRef.current.style.width = percent + '%'
             }
         }
     }
@@ -51,12 +49,12 @@ const Range: FC<Types.Props> = (props, ref) => {
      */
     useEffect(() => {
         // document.addEventListener('touchmove', onMove);
-        document.addEventListener('mousemove', onMove);
-        document.addEventListener('mouseup', onUp);
+        document.addEventListener('mousemove', onMove)
+        document.addEventListener('mouseup', onUp)
         return () => {
             // document.removeEventListener('touchmove', onMove);
-            document.removeEventListener('mousemove', onMove);
-            document.removeEventListener('mouseup', onUp);
+            document.removeEventListener('mousemove', onMove)
+            document.removeEventListener('mouseup', onUp)
         }
     }, [props])
 
@@ -79,12 +77,12 @@ const Range: FC<Types.Props> = (props, ref) => {
                 style={{ left: thumbPosition + '%' }}
             />
         </div>
-    );
+    )
 }
 
 function value2Percent(value: number, min: number, max: number) {
 
-    const percent = (value - min) / (max - min) * 100;
+    const percent = (value - min) / (max - min) * 100
 
     if (percent <= 0) return 0
     if (percent >= 100) return 100
@@ -95,4 +93,4 @@ function percent2Value(percent: number, min: number, max: number) {
     return Math.floor(min + (max - min) / 100 * percent)
 }
 
-export default forwardRef(Range);
+export default forwardRef(Range)

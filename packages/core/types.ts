@@ -1,15 +1,15 @@
-import ThemeTypes from './misc/themes/types';
-import IconsetTypes from './misc/icons/types';
-import chroma from 'chroma-js';
-import CSS from 'csstype';
-import { Interpolation, SerializedStyles } from "@emotion/core";
+import ThemeTypes from './misc/themes/types'
+import IconsetTypes from './misc/icons/types'
+import chroma from 'chroma-js'
+import CSS from 'csstype'
+import { Interpolation, SerializedStyles } from '@emotion/core'
 
 declare module 'csstype' {
     interface Properties {
-        display?: "block" | "inline" | "inline-block" | "inline-table" | "list-item" | "none" | "run-in" | "table" | "table-caption" | "table-cell" | "table-column-group" | "table-column" | "table-footer-group" | "table-header-group" | "table-row" | "table-row-group" | "flex" | "grid"
-        overflow?: "auto" | "hidden" | "scroll" | "visible" | "inherit",
-        alignSelf?: "baseline" | "center" | "end" | "flex-end" | "flex-start" | "inherid" | "initial" | "left" | "normal" | "right" | "safe" | "safe-end" | "safe-start" | "start" | "stretch" | "unsafe" | "unset"
-        justifySelf?: "baseline" | "center" | "end" | "flex-end" | "flex-start" | "inherid" | "initial" | "left" | "normal" | "right" | "safe" | "safe-end" | "safe-start" | "start" | "stretch" | "unsafe" | "unset"
+        display?: 'block' | 'inline' | 'inline-block' | 'inline-table' | 'list-item' | 'none' | 'run-in' | 'table' | 'table-caption' | 'table-cell' | 'table-column-group' | 'table-column' | 'table-footer-group' | 'table-header-group' | 'table-row' | 'table-row-group' | 'flex' | 'grid'
+        overflow?: 'auto' | 'hidden' | 'scroll' | 'visible' | 'inherit',
+        alignSelf?: 'baseline' | 'center' | 'end' | 'flex-end' | 'flex-start' | 'inherid' | 'initial' | 'left' | 'normal' | 'right' | 'safe' | 'safe-end' | 'safe-start' | 'start' | 'stretch' | 'unsafe' | 'unset'
+        justifySelf?: 'baseline' | 'center' | 'end' | 'flex-end' | 'flex-start' | 'inherid' | 'initial' | 'left' | 'normal' | 'right' | 'safe' | 'safe-end' | 'safe-start' | 'start' | 'stretch' | 'unsafe' | 'unset'
     }
 }
 
@@ -20,7 +20,7 @@ declare namespace Global {
 
     type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
 
-    type EmotionStyles = Array<Interpolation>;
+    type EmotionStyles = Array<Interpolation>
 
     type Variants<T> = Partial<{
         [K in keyof T]: Partial<
@@ -62,7 +62,7 @@ declare namespace Global {
         id?: string
         style?: React.CSSProperties
         tabIndex?: number
-        role?: string;
+        role?: string
         attrs?: Object
     }
 
@@ -139,10 +139,10 @@ declare namespace Global {
      * @weight 400
      */
     interface BorderProps {
-        borderWidth?: CSS.Properties["borderWidth"]
-        borderStyle?: CSS.Properties["borderStyle"]
-        borderColor?: CSS.Properties["borderColor"]
-        borderRadius?: CSS.Properties["borderRadius"]
+        borderWidth?: CSS.Properties['borderWidth']
+        borderStyle?: CSS.Properties['borderStyle']
+        borderColor?: CSS.Properties['borderColor']
+        borderRadius?: CSS.Properties['borderRadius']
     }
 
     /**
@@ -154,19 +154,19 @@ declare namespace Global {
         /**
          * Width alias
          */
-        w?: CSS.Properties["width"]
+        w?: CSS.Properties['width']
         /**
          * Heigth alias
          */
-        h?: CSS.Properties["height"]
+        h?: CSS.Properties['height']
         /**
          * Shows or hides an element without changing the layout of a document.
          */
-        visibility?: CSS.Properties["visibility"]
+        visibility?: CSS.Properties['visibility']
         /**
          * Sets whether an element is treated as a block or inline element and the layout used for its children, such as flow layout, grid or flex.
          */
-        display?: CSS.Properties["display"]
+        display?: CSS.Properties['display']
         /**
          * Enables transition animation
          */
@@ -182,31 +182,31 @@ declare namespace Global {
         /**
          * Padding alias
          */
-        p?: CSS.Properties["padding"]
+        p?: CSS.Properties['padding']
         /**
          * Padding horizontal alias
          */
-        px?: CSS.Properties["padding"]
+        px?: CSS.Properties['padding']
         /**
          * Padding vertical alias
          */
-        py?: CSS.Properties["padding"]
+        py?: CSS.Properties['padding']
         /**
          * PaddingRight alias
          */
-        pr?: CSS.Properties["paddingRight"]
+        pr?: CSS.Properties['paddingRight']
         /**
          * PaddingLeft alias
          */
-        pl?: CSS.Properties["paddingLeft"]
+        pl?: CSS.Properties['paddingLeft']
         /**
          * PaddingTop alias
          */
-        pt?: CSS.Properties["paddingTop"]
+        pt?: CSS.Properties['paddingTop']
         /**
          * PaddingBottom alias
          */
-        pb?: CSS.Properties["paddingBottom"]
+        pb?: CSS.Properties['paddingBottom']
     }
 
     /**
@@ -218,31 +218,31 @@ declare namespace Global {
         /**
          * Margin alias
          */
-        m?: CSS.Properties["margin"]
+        m?: CSS.Properties['margin']
         /**
          * Margin horizontal alias
          */
-        mx?: CSS.Properties["margin"]
+        mx?: CSS.Properties['margin']
         /**
          * Margin vertical alias
          */
-        my?: CSS.Properties["margin"]
+        my?: CSS.Properties['margin']
         /**
          * MarginRight alias
          */
-        mr?: CSS.Properties["marginRight"]
+        mr?: CSS.Properties['marginRight']
         /**
          * MarginLeft alias
          */
-        ml?: CSS.Properties["marginLeft"]
+        ml?: CSS.Properties['marginLeft']
         /**
          * MarginTop alias
          */
-        mt?: CSS.Properties["marginTop"]
+        mt?: CSS.Properties['marginTop']
         /**
          * MarginBottom alias
          */
-        mb?: CSS.Properties["marginBottom"]
+        mb?: CSS.Properties['marginBottom']
         /**
          * Sets how an element is positioned in a document. The top, right, bottom, and left properties determine the final location of positioned elements.
          */
@@ -257,27 +257,27 @@ declare namespace Global {
         /**
          * Sets how a flex item will grow or shrink to fit the space available in its flex container.
          */
-        flex?: CSS.Properties["flex"]
+        flex?: CSS.Properties['flex']
         /**
          * Sets the initial main size of a flex item. It sets the size of the content box unless otherwise set with box-sizing.
          */
-        flexBasis?: CSS.Properties["flexBasis"]
+        flexBasis?: CSS.Properties['flexBasis']
         /**
          * Sets the flex grow factor of a flex item main size. It specifies how much of the remaining space in the flex container should be assigned to the item (the flex grow factor).
          */
-        flexGrow?: CSS.Properties["flexGrow"]
+        flexGrow?: CSS.Properties['flexGrow']
         /**
          * Sets the flex shrink factor of a flex item. If the size of all flex items is larger than the flex container, items shrink to fit according to flex-shrink.
          */
-        flexShrink?: CSS.Properties["flexShrink"]
+        flexShrink?: CSS.Properties['flexShrink']
         /**
          * Property overrides a grid or flex item's align-items value. In Grid, it aligns the item inside the grid area. In Flexbox, it aligns the item on the cross axis.
          */
-        alignSelf?: CSS.Properties["alignSelf"]
+        alignSelf?: CSS.Properties['alignSelf']
         /**
          * Sets the way a box is justified inside its alignment container along the appropriate axis.
          */
-        justifySelf?: CSS.Properties["justifySelf"]
+        justifySelf?: CSS.Properties['justifySelf']
     }
 
     /**
@@ -289,38 +289,37 @@ declare namespace Global {
         /**
          * Specifies a grid item’s start position within the grid column by contributing a line, a span, or nothing (automatic) to its grid placement. This start position defines the block-start edge of the grid area.
          */
-        gridColumnStart?: CSS.Properties["gridColumnStart"]
+        gridColumnStart?: CSS.Properties['gridColumnStart']
         /**
          * Specifies a grid item’s end position within the grid column by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the block-end edge of its grid area.
          */
-        gridColumnEnd?: CSS.Properties["gridColumnEnd"]
+        gridColumnEnd?: CSS.Properties['gridColumnEnd']
         /**
          * Specifies a grid item’s start position within the grid row by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the inline-start edge of its grid area.
          */
-        gridRowStart?: CSS.Properties["gridRowStart"]
+        gridRowStart?: CSS.Properties['gridRowStart']
         /**
          * Specifies a grid item’s end position within the grid row by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the inline-end edge of its grid area.
          */
-        gridRowEnd?: CSS.Properties["gridRowEnd"]
+        gridRowEnd?: CSS.Properties['gridRowEnd']
         /**
          * Shorthand property for grid-column-start and grid-column-end specifying a grid item's size and location within the grid column by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the inline-start and inline-end edge of its grid area.
          */
-        gridColumn?: CSS.Properties["gridColumn"]
+        gridColumn?: CSS.Properties['gridColumn']
         /**
          * Shorthand property for grid-row-start and grid-row-end specifying a grid item’s size and location within the grid row by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the inline-start and inline-end edge of its grid area.
          */
-        gridRow?: CSS.Properties["gridRow"]
+        gridRow?: CSS.Properties['gridRow']
         /**
          * Shorthand property for grid-row-start, grid-column-start, grid-row-end and grid-column-end, specifying a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the edges of its grid area.
          */
-        gridArea?: CSS.Properties["gridArea"]
+        gridArea?: CSS.Properties['gridArea']
         /**
          * Shorthand property sets both the align-self and justify-self properties. The first value is the align-self property value, the second the justify-self one. If the second value is not present, the first value is also used for it.
          */
-        placeSelf?: CSS.Properties["placeSelf"]
+        placeSelf?: CSS.Properties['placeSelf']
     }
 
-    
     /**
      * Styles inside the component. Paddings, layout, border and color props
      * @name StyleSelf
@@ -342,7 +341,7 @@ declare namespace Global {
         FlexProps,
         GridProps {}
 
-    type ColorProp = FunctionalProp<ThemeTypes.Colors<chroma.Color>, CSS.Properties["color"]>
+    type ColorProp = FunctionalProp<ThemeTypes.Colors<chroma.Color>, CSS.Properties['color']>
     type IconProp = FunctionalProp<IconsetTypes.Index, React.ReactElement>
 }
 

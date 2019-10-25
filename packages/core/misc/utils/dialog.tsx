@@ -1,13 +1,13 @@
-import { Block, Button, Flexbox, Modal } from '@flow-ui/core';
-import ModalTypes from '@flow-ui/core/layout/Modal/types';
-import React from 'react';
-import { addElement, removeElement } from '../../layout/Viewport/MountArea';
-import ViewportTypes from '../../layout/Viewport/types';
-import createID from './createID';
+import { Block, Button, Flexbox, Modal } from '@flow-ui/core'
+import ModalTypes from '@flow-ui/core/layout/Modal/types'
+import React from 'react'
+import { addElement, removeElement } from '../../layout/Viewport/MountArea'
+import ViewportTypes from '../../layout/Viewport/types'
+import createID from './createID'
 
 export default (options: ViewportTypes.DialogOptions) => {
-    let key = createID();
-    let modal: ModalTypes.Ref;
+    let key = createID()
+    let modal: ModalTypes.Ref
 
     addElement(
         (
@@ -27,9 +27,9 @@ export default (options: ViewportTypes.DialogOptions) => {
                                 <Block>
                                     {options.message}
                                 </Block>
-                                <Flexbox flex={1} justifyContent="flex-end" pt={"1rem"}>
+                                <Flexbox flex={1} justifyContent="flex-end" pt={'1rem'}>
                                     <Button
-                                        children={options.buttonText || "OK"}
+                                        children={options.buttonText || 'OK'}
                                         onClick={() => {
                                             modal.close()
                                         }}

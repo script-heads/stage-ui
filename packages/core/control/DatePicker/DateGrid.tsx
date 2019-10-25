@@ -2,23 +2,23 @@
  * DateGrid.tsx
  * author: I.Trikoz
  */
-import moment, { Moment } from 'moment';
-import React, { Fragment, useEffect, useState } from 'react';
-import Button from '../../control/Button';
-import Flexbox from '../../layout/Flexbox';
-import Grid from '../../layout/Grid';
-import DateGridDay from './DateGridDay';
-import DateGridMonth from './DateGridMonth';
-import DateGridTitle from './DateGridTitle';
-import DateGridYear from './DateGridYear';
-import DatePickerTypes from './types';
+import moment, { Moment } from 'moment'
+import React, { Fragment, useEffect, useState } from 'react'
+import Button from '../../control/Button'
+import Flexbox from '../../layout/Flexbox'
+import Grid from '../../layout/Grid'
+import DateGridDay from './DateGridDay'
+import DateGridMonth from './DateGridMonth'
+import DateGridTitle from './DateGridTitle'
+import DateGridYear from './DateGridYear'
+import DatePickerTypes from './types'
 
-let toDayWord = '';
+let toDayWord = ''
 
 const DateGrid = (props: DatePickerTypes.DateGridProps) => {
     
-    const { value } = props;
-    const now = moment();
+    const { value } = props
+    const now = moment()
 
     if (!toDayWord) {
         for(const char of now.calendar()) {
@@ -29,13 +29,13 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
         }
     }
 
-    const [gridType, setGridType] = useState<"year" | "month" | "day">(props.type);
-    const [tmpDate, setTmpDate] = useState(value);
+    const [gridType, setGridType] = useState<'year' | 'month' | 'day'>(props.type)
+    const [tmpDate, setTmpDate] = useState(value)
 
-    const monthOffset = gridType === "day" ? 1 : 9;
-    const grid: Moment[][] = [];
-    const start = tmpDate.clone().startOf('month').startOf('week').startOf("day");
-    const end = tmpDate.clone().endOf('month').endOf('week').startOf("day");
+    const monthOffset = gridType === 'day' ? 1 : 9
+    const grid: Moment[][] = []
+    const start = tmpDate.clone().startOf('month').startOf('week').startOf('day')
+    const end = tmpDate.clone().endOf('month').endOf('week').startOf('day')
 
     useEffect(() => {
         setGridType(props.type)
@@ -63,33 +63,33 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                 minValue={props.minValue}
                 maxValue={props.maxValue}
                 onPrevious={() => {
-                    const clone = tmpDate.clone();
-                    if (gridType === "day") {
+                    const clone = tmpDate.clone()
+                    if (gridType === 'day') {
                         clone.add(-1, 'month')
                     }
-                    if (gridType === "month") {
+                    if (gridType === 'month') {
                         clone.add(-1, 'year')
                     }
-                    if (gridType === "year") {
+                    if (gridType === 'year') {
                         clone.add(-monthOffset, 'year')
                     }
                     setTmpDate(clone)
                 }}
                 onNext={() => {
-                    const clone = tmpDate.clone();
-                    if (gridType === "day") {
+                    const clone = tmpDate.clone()
+                    if (gridType === 'day') {
                         clone.add(1, 'month')
                     }
-                    if (gridType === "month") {
+                    if (gridType === 'month') {
                         clone.add(1, 'year')
                     }
-                    if (gridType === "year") {
+                    if (gridType === 'year') {
                         clone.add(monthOffset, 'year')
                     }
                     setTmpDate(clone)
                 }}
             />
-            {gridType === "day" && (
+            {gridType === 'day' && (
                 <Fragment>
                     <Flexbox>
                         {moment.weekdaysMin().map(day => (
@@ -117,7 +117,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                         maxValue={props.maxValue}
                                         onClick={() => {
                                             if (props.type === 'day') {
-                                                props.onChange(day);
+                                                props.onChange(day)
                                             }
                                         }}
                                     />
@@ -141,7 +141,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                     )}
                 </Fragment>
             )}
-            {gridType === "month" && (
+            {gridType === 'month' && (
                 <Grid templateRows="1fr 1fr 1fr" templateColumns="1fr 1fr 1fr">
                     {
                         Array(12).fill(null).map((_, index) => {
@@ -152,16 +152,16 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                     key={index}
                                     value={clone}
                                     tmp={tmpDate}
-                                    style={{ padding: "0 0.5rem"}}
+                                    style={{ padding: '0 0.5rem'}}
                                     active={value}
                                     minValue={props.minValue}
                                     maxValue={props.maxValue}
                                     onClick={() => {
                                         if (props.type === 'month') {
-                                            props.onChange(clone);
+                                            props.onChange(clone)
                                         } else {
                                             setTmpDate(clone)
-                                            setGridType("day")
+                                            setGridType('day')
                                         }
                                     }}
                                 />
@@ -171,7 +171,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                 </Grid>
 
             )}
-            {gridType === "year" && (
+            {gridType === 'year' && (
                 <Grid key={1} templateRows="1fr 1fr 1fr" templateColumns="1fr 1fr 1fr">
                     {
                         Array(monthOffset).fill(null).map((_, index) => {
@@ -182,16 +182,16 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                     key={index}
                                     value={clone}
                                     tmp={tmpDate}
-                                    style={{ padding: "0 1rem"}}
+                                    style={{ padding: '0 1rem'}}
                                     active={value}
                                     minValue={props.minValue}
                                     maxValue={props.maxValue}
                                     onClick={() => {
                                         if (props.type === 'year') {
-                                            props.onChange(clone);
+                                            props.onChange(clone)
                                         } else {
                                             setTmpDate(clone)
-                                            setGridType("month")
+                                            setGridType('month')
                                         }
                                     }}
                                 />
@@ -202,6 +202,6 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
             )}
         </Flexbox>
     )
-};
+}
 
 export default DateGrid

@@ -1,19 +1,19 @@
-import callProp from '@flow-ui/core/misc/utils/callProp';
-import variant from '@flow-ui/core/misc/utils/variant';
-import Types from './types';
-import fieldStyles from '../../misc/hocs/Field/styles';
-import Global from '../../types';
+import callProp from '@flow-ui/core/misc/utils/callProp'
+import variant from '@flow-ui/core/misc/utils/variant'
+import Types from './types'
+import fieldStyles from '../../misc/hocs/Field/styles'
+import Global from '../../types'
 
 const selectStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     const { 
         size = 'medium', 
         shape = 'rounded', 
         decoration = 'outline' 
-    } = props;
+    } = props
     
-    const field = fieldStyles(props, theme);
-    let color = callProp(props.color, theme.color);
-    let backgroundColor = callProp(props.backgroundColor, theme.color);
+    const field = fieldStyles(props, theme)
+    let color = callProp(props.color, theme.color)
+    let backgroundColor = callProp(props.backgroundColor, theme.color)
 
     const multilineAdditionalPadding = variant(size, {
         'medium': '.25rem',
@@ -28,7 +28,7 @@ const selectStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Typ
         'round': {
             borderRadius: '4rem'
         }
-    });
+    })
 
     return {
         ...field,

@@ -1,13 +1,13 @@
-import React, { FC, forwardRef, RefObject } from 'react';
-import Block from '../../layout/Block';
-import Check from '../../misc/hocs/Check';
-import radioStyles from './styles';
-import RadioTypes from './types';
-import useStyles from "@flow-ui/core/misc/hooks/useStyles";
+import React, { FC, forwardRef, RefObject } from 'react'
+import Block from '../../layout/Block'
+import Check from '../../misc/hocs/Check'
+import radioStyles from './styles'
+import RadioTypes from './types'
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 
 const Radio: FC<RadioTypes.Props> = (props, ref: RefObject<HTMLDivElement>) => {
-    const {animated, size = 'medium', disabled} = props;
-    const styles = useStyles(props, radioStyles, 'Radio');
+    const {animated, size = 'medium', disabled} = props
+    const styles = useStyles(props, radioStyles, 'Radio')
 
     return (
         <Check
@@ -33,7 +33,7 @@ const Radio: FC<RadioTypes.Props> = (props, ref: RefObject<HTMLDivElement>) => {
                 </Block>
             }
         />
-    );
+    )
 }
 
-export default forwardRef(Radio);
+export default forwardRef(Radio)

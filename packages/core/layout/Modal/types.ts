@@ -1,4 +1,4 @@
-import Global from "@flow-ui/core/types";
+import Global from '@flow-ui/core/types'
 
 declare namespace ModalTypes {
 

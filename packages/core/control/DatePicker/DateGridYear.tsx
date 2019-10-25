@@ -2,28 +2,28 @@
  * DateGridYear.tsx
  * author: I.Trikoz
  */
-import moment from 'moment';
-import React from 'react';
-import Flexbox from '../../layout/Flexbox';
-import DatePickerTypes from './types';
+import moment from 'moment'
+import React from 'react'
+import Flexbox from '../../layout/Flexbox'
+import DatePickerTypes from './types'
 
 const DateGridYear = (props: DatePickerTypes.DateGridCalendarProps) => {
-    const { value, active, onClick, minValue, maxValue } = props;
+    const { value, active, onClick, minValue, maxValue } = props
 
     const isDisabled =
         minValue.valueOf() > value.valueOf() ||
         maxValue.valueOf() < value.valueOf() ||
-        false;
+        false
 
     const now = moment()
-    const yearValue = value.clone().startOf("year").valueOf()
-    const nowValue = now.clone().startOf("year").valueOf()
-    const activeValue = active.clone().startOf("year").valueOf()
+    const yearValue = value.clone().startOf('year').valueOf()
+    const nowValue = now.clone().startOf('year').valueOf()
+    const activeValue = active.clone().startOf('year').valueOf()
 
-    const isActive = (activeValue === yearValue);
-    const isCurrent = (yearValue === nowValue);
+    const isActive = (activeValue === yearValue)
+    const isCurrent = (yearValue === nowValue)
 
-    const css = props.styles.gridBlock(isActive, isCurrent, isDisabled, true);
+    const css = props.styles.gridBlock(isActive, isCurrent, isDisabled, true)
 
     return (
         <Flexbox
@@ -31,15 +31,15 @@ const DateGridYear = (props: DatePickerTypes.DateGridCalendarProps) => {
             alignItems="center"
             onClick={() => {
                 if (!isDisabled && onClick) {
-                    onClick();
+                    onClick()
                 }
             }}
             css={css}
             style={props.style}
-            children={value.format("YYYY")}
+            children={value.format('YYYY')}
         />
 
     )
-};
+}
 
-export default DateGridYear;
+export default DateGridYear

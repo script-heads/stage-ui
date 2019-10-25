@@ -1,10 +1,10 @@
-import React from 'react';
-import TableTypes from './types';
-import { Fragment } from 'react';
+import React from 'react'
+import TableTypes from './types'
+import { Fragment } from 'react'
 
 const TableColumns = (props: TableTypes.ColumnProps) => {
-    const { row, columns, scope } = props;
-    const styles = props.styles;
+    const { row, columns, scope } = props
+    const styles = props.styles
 
     return (
         <Fragment>
@@ -12,7 +12,7 @@ const TableColumns = (props: TableTypes.ColumnProps) => {
                 columns.map(column => {
 
                     if (!column.render) {
-                        column.render = (row, value) => value;
+                        column.render = (row, value) => value
                     }
                     return (
                         <div
@@ -28,4 +28,4 @@ const TableColumns = (props: TableTypes.ColumnProps) => {
     )
 }
 
-export default TableColumns;
+export default TableColumns

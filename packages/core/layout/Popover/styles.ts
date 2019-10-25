@@ -1,16 +1,16 @@
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
-import Types from "./types";
-import Global from "../../types";
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
+import Types from './types'
+import Global from '../../types'
 
 const popoverStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
-    const styleProps = useStyleProps(props);
+    const styleProps = useStyleProps(props)
 
-    const background = styleProps.color.background || theme.color.surface.css();
-    const borderColor = styleProps.border.borderColor || theme.assets.border.color;
+    const background = styleProps.color.background || theme.color.surface.css()
+    const borderColor = styleProps.border.borderColor || theme.assets.border.color
     const borderWidth = theme.assets.border.width
     const width = props.arrowWidth || '.75rem'
     const height = props.arrowHeight|| '.5rem'
-    const halfWidth = `calc(${width} / 2)`;
+    const halfWidth = `calc(${width} / 2)`
 
     return {
         container: [
@@ -33,7 +33,7 @@ const popoverStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Ty
                 '&::before, &::after': {
                     position: 'absolute',
                     display: 'inline-block',
-                    content: "''",
+                    content: '\'\'',
                     borderColor: 'transparent',
                     borderStyle: 'solid',
                 }
@@ -110,4 +110,4 @@ const popoverStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Ty
     }
 }
 
-export default popoverStyles;
+export default popoverStyles

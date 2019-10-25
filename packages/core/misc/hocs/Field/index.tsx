@@ -1,6 +1,6 @@
-import React, { FC, forwardRef } from 'react';
-import Types from './types';
-import Icon from '../../../content/Icon';
+import React, { FC, forwardRef } from 'react'
+import Types from './types'
+import Icon from '../../../content/Icon'
 
 const Field: FC<Types.PrivateProps> = (props, ref) => {
 
@@ -18,7 +18,7 @@ const Field: FC<Types.PrivateProps> = (props, ref) => {
         isLabelOutside, 
         isLabelOverlay,
         disabled
-    } = props;
+    } = props
 
     const Label = (
         <label
@@ -51,8 +51,8 @@ const Field: FC<Types.PrivateProps> = (props, ref) => {
                             {clearable && <Icon
                                 type={i => i.filled.close}
                                 onClick={(e) => {
-                                    e.stopPropagation();
-                                    onClear && onClear();
+                                    e.stopPropagation()
+                                    onClear && onClear()
                                 }}
                             />}
                             {props.rightChild}
@@ -69,4 +69,4 @@ const Field: FC<Types.PrivateProps> = (props, ref) => {
     )
 }
 
-export default forwardRef(Field);
+export default forwardRef(Field)

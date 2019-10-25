@@ -1,14 +1,14 @@
-import React, { FC, forwardRef, RefObject } from 'react';
-import Icon from '../../content/Icon';
-import Block from '../../layout/Block';
-import Check from '../../misc/hocs/Check';
-import checkboxStyles from './styles';
-import Types from './types';
-import useStyles from "@flow-ui/core/misc/hooks/useStyles";
+import React, { FC, forwardRef, RefObject } from 'react'
+import Icon from '../../content/Icon'
+import Block from '../../layout/Block'
+import Check from '../../misc/hocs/Check'
+import checkboxStyles from './styles'
+import Types from './types'
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 
 const Checkbox: FC<Types.Props> = (props, ref: RefObject<HTMLDivElement>) => {
-    const {size='medium', animated, disabled} = props;
-    const styles = useStyles<Types.Styles>(props, checkboxStyles, 'Checkbox');
+    const {size='medium', animated, disabled} = props
+    const styles = useStyles<Types.Styles>(props, checkboxStyles, 'Checkbox')
 
     return (
         <Check
@@ -37,7 +37,7 @@ const Checkbox: FC<Types.Props> = (props, ref: RefObject<HTMLDivElement>) => {
                 </Block>
             }
         />
-    );
+    )
 }
 
-export default forwardRef(Checkbox);
+export default forwardRef(Checkbox)

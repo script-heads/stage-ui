@@ -1,17 +1,17 @@
-import { jsx } from '@emotion/core';
-import useContainer from '@flow-ui/core/misc/hooks/useContainer';
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
-import useStyles from '@flow-ui/core/misc/hooks/useStyles';
-import { forwardRef, RefObject } from 'react';
-import Types from './types';
+import { jsx } from '@emotion/core'
+import useContainer from '@flow-ui/core/misc/hooks/useContainer'
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import { forwardRef, RefObject } from 'react'
+import Types from './types'
 
 const Grid = (props: Types.Props, ref: RefObject<HTMLDivElement>) => {
-    const { attributes } = useContainer(props);
-    const styleProps = useStyleProps(props);
+    const { attributes } = useContainer(props)
+    const styleProps = useStyleProps(props)
     const styles = useStyles<Types.Styles>(props, {
         container: [
             {
-                position: "relative",
+                position: 'relative',
                 display: props.inline ? 'inline-grid' : 'grid',
 
                 gridTemplateColumns: props.templateColumns,
@@ -43,7 +43,7 @@ const Grid = (props: Types.Props, ref: RefObject<HTMLDivElement>) => {
             css: styles.container
         },
         props.children
-    );
+    )
 }
 
-export default forwardRef(Grid);
+export default forwardRef(Grid)

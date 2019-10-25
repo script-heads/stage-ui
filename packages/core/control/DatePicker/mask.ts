@@ -1,5 +1,5 @@
-import IMask from 'imask';
-import moment, { Moment } from 'moment';
+import IMask from 'imask'
+import moment, { Moment } from 'moment'
 
 export default (format: string, min: Moment, max: Moment) => ({
     mask: Date,
@@ -9,11 +9,11 @@ export default (format: string, min: Moment, max: Moment) => ({
     max: min.toDate(),
   
     format: function (date: Date) {
-      return moment(date).format(format);
+      return moment(date).format(format)
     },
 
     parse: function (value: string) {
-      return moment(value, format);
+      return moment(value, format)
     },
   
     blocks: {

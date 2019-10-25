@@ -1,27 +1,26 @@
-import React, { forwardRef, RefObject, useEffect, useState } from 'react';
-import useContainer from '../../hooks/useContainer';
-import createStyles from './styles';
-import CheckTypes from './types';
+import React, { forwardRef, RefObject, useEffect, useState } from 'react'
+import useContainer from '../../hooks/useContainer'
+import CheckTypes from './types'
 
 const Check = (props: CheckTypes.PrivateProps, ref: RefObject<HTMLDivElement>) => {
-    const [focus, setFocus] = useState(false);
-    const [checked, setChecked] = useState(props.checked || props.defaultValue || false);
-    const { label, styles, animated, disabled,size, uppercase } = props;
-    const { attributes } = useContainer(props, false, true);
+    const [focus, setFocus] = useState(false)
+    const [checked, setChecked] = useState(props.checked || props.defaultValue || false)
+    const { label, styles, animated, disabled,size, uppercase } = props
+    const { attributes } = useContainer(props, false, true)
 
     useEffect(() => {
-        if (typeof props.checked !== "undefined") {
-            setChecked(props.checked);
+        if (typeof props.checked !== 'undefined') {
+            setChecked(props.checked)
         }
-    }, [props.checked]);
+    }, [props.checked])
 
     /**
      * Change handler
      */
     function change() {
-        props.onChange && props.onChange(!checked);
-        if (typeof props.checked === "undefined") {
-            setChecked(!checked);
+        props.onChange && props.onChange(!checked)
+        if (typeof props.checked === 'undefined') {
+            setChecked(!checked)
         }
     }
     /*
@@ -32,7 +31,7 @@ const Check = (props: CheckTypes.PrivateProps, ref: RefObject<HTMLDivElement>) =
          * Enter or Space
          */
         if (event.keyCode === 0x0D || event.keyCode === 0x20) {
-            change();
+            change()
             /**
              * Prevent page scrolling
              */
@@ -75,4 +74,4 @@ const Check = (props: CheckTypes.PrivateProps, ref: RefObject<HTMLDivElement>) =
     )
 }
 
-export default forwardRef(Check);
+export default forwardRef(Check)

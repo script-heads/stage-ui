@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
 const RES_MIN = {
     TABLET: 768,
@@ -26,21 +26,21 @@ export default () => {
                 language: navigator.language,
                 geolocation: navigator.geolocation,
             }
-        };
+        }
     }
 
-    const [value, setValue] = useState(calc());
+    const [value, setValue] = useState(calc())
 
     useEffect(() => {
         const resize = () => {
             setValue(calc())
         }
-        window.addEventListener('resize', resize);
+        window.addEventListener('resize', resize)
 
         return () => {
-            window.removeEventListener('resize', resize);
+            window.removeEventListener('resize', resize)
         }
-    });
+    })
 
-    return value;
+    return value
 }

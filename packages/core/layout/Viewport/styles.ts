@@ -1,5 +1,5 @@
-import { css } from '@emotion/core';
-import typography from '../../misc/typography';
+import { css } from '@emotion/core'
+import typography from '../../misc/typography'
 
 export default (theme, wrapper) => {
 

@@ -1,9 +1,9 @@
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
-import Types from "./types";
-import Global from '../../types';
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
+import Types from './types'
+import Global from '../../types'
 
 const BlockStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
-    const styleProps = useStyleProps(props);
+    const styleProps = useStyleProps(props)
     const surfaceVariants = {
         'minor': [{
             borderWidth: theme.assets.border.width,

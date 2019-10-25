@@ -1,13 +1,13 @@
-import ThemeTypes from '../themes/types';
-import chroma from 'chroma-js';
-import createID from './createID';
-import mergeObjects from './mergeObjects';
+import ThemeTypes from '../themes/types'
+import chroma from 'chroma-js'
+import createID from './createID'
+import mergeObjects from './mergeObjects'
 
 export type CreateTheme = (mainVaraibles: ThemeTypes.Variables, mainAssets: (variables: ThemeTypes.Variables<chroma.Color>) => ThemeTypes.Assets, mainOverrides?) => ThemeTypes.Index
 
 const createTheme: CreateTheme = (mainVaraibles, mainAssets, mainOverrides?) => {
     
-    const convertedMainVarables = convertColors(mainVaraibles);
+    const convertedMainVarables = convertColors(mainVaraibles)
     
     return {
         ...convertedMainVarables,
@@ -18,7 +18,7 @@ const createTheme: CreateTheme = (mainVaraibles, mainAssets, mainOverrides?) => 
             const newVariables = mergeObjects(
                 mainVaraibles,
                 variables,
-            ) as ThemeTypes.Variables;
+            ) as ThemeTypes.Variables
 
             const newAssets = (variables) => mergeObjects(
                 mainAssets(variables),
@@ -30,7 +30,7 @@ const createTheme: CreateTheme = (mainVaraibles, mainAssets, mainOverrides?) => 
                 overrides,
             ) as ThemeTypes.Overrides
 
-            newVariables.name = variables.name || mainVaraibles.name + '-' + createID();
+            newVariables.name = variables.name || mainVaraibles.name + '-' + createID()
 
             return createTheme(newVariables, newAssets, newOverrides)
         }

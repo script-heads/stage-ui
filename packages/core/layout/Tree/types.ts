@@ -1,11 +1,11 @@
-import Global from '@flow-ui/core/types';
+import Global from '@flow-ui/core/types'
 
 declare namespace TreeTypes {
 
     interface Props extends Global.Props {
         label?: React.ReactNode | string
         children?: React.ReactNode
-        decoration?: 'flat' | 'drop' | "inline"
+        decoration?: 'flat' | 'drop' | 'inline'
         alwaysOpen?: boolean
         defaultOpen?: boolean
         indent?: boolean

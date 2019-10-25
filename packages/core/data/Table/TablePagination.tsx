@@ -1,14 +1,14 @@
-import React from 'react';
-import TableTypes from './types';
+import React from 'react'
+import TableTypes from './types'
 
 const TablePagination = (props: TableTypes.PaginationProps) => {
-    const { data, page, searchActive, search, onChange } = props;
-    const { pageSize, pageTotalSize } = props.pagination;
-    const buttons = Math.ceil((pageTotalSize || data.length) / pageSize);
-    const styles = props.styles;
+    const { data, page, searchActive, search, onChange } = props
+    const { pageSize, pageTotalSize } = props.pagination
+    const buttons = Math.ceil((pageTotalSize || data.length) / pageSize)
+    const styles = props.styles
 
     if (buttons <= 1 && !search) {
-        return null;
+        return null
     }
 
     let childs: JSX.Element[] = props.search ? [(
@@ -17,7 +17,7 @@ const TablePagination = (props: TableTypes.PaginationProps) => {
             css={styles.paginationButton({active: searchActive})}
             children={`Найти`}
         />
-    )] : [];
+    )] : []
 
     for (let i = 0; i < buttons; i++) {
         childs.push(
@@ -32,4 +32,4 @@ const TablePagination = (props: TableTypes.PaginationProps) => {
 
     return <div css={styles.pagination} children={childs} />
 }
-export default TablePagination;
+export default TablePagination

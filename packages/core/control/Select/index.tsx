@@ -4,7 +4,7 @@ import selectStyles from './styles'
 import Field from '../../misc/hocs/Field'
 import Icon from '../../content/Icon'
 import Drop from '../../layout/Drop'
-import SelectReducer from './reducer';
+import SelectReducer from './reducer'
 import useContainer from '../../misc/hooks/useContainer'
 import useStyles from '../../misc/hooks/useStyles'
 
@@ -22,11 +22,11 @@ const Select = (props: Types.Props, ref) => {
         placeholder,
         searchable,
         disabled
-    } = props;
+    } = props
 
     let approvedDefaultValues = defaultValues 
         ? options.filter(option => includeOption(defaultValues, option)) 
-        : [];
+        : []
 
     if (!multiselect && approvedDefaultValues.length != 0) {
         approvedDefaultValues = [approvedDefaultValues[0]]
@@ -40,17 +40,17 @@ const Select = (props: Types.Props, ref) => {
         cursor: -1
     }
 
-    const targetRef = useRef(null);
-    const [state, dispatch] = useReducer(SelectReducer, initialState);
+    const targetRef = useRef(null)
+    const [state, dispatch] = useReducer(SelectReducer, initialState)
 
-    const {attributes, focus} = useContainer(props, true, props.decoration != 'none');
-    const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xlarge');
+    const {attributes, focus} = useContainer(props, true, props.decoration != 'none')
+    const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xlarge')
     const isLabelOverlay = (state.empty && !focus && !isLabelOutside) ? true : false
-    const styles = useStyles<Types.Styles>(props, selectStyles, 'TextField');
+    const styles = useStyles<Types.Styles>(props, selectStyles, 'TextField')
 
     useImperativeHandle(ref, () => {
         return targetRef.current
-    });
+    })
 
     useEffect(() => {
         if (values) {
@@ -62,7 +62,7 @@ const Select = (props: Types.Props, ref) => {
         options,
         state.selectedOptions,
         state.searchValue,
-    );
+    )
 
     function toggleOpen() {
         if (state.open) {
@@ -73,7 +73,7 @@ const Select = (props: Types.Props, ref) => {
     }
 
     function toggleOption (option: Types.Option) {
-        let nextSelectedOptions = state.selectedOptions;
+        let nextSelectedOptions = state.selectedOptions
         if (multiselect) {
             includeOption(state.selectedOptions, option)
                 ? nextSelectedOptions = state.selectedOptions.filter(selectedOption =>
@@ -81,7 +81,7 @@ const Select = (props: Types.Props, ref) => {
                 )
                 : nextSelectedOptions.push(option)
         } else {
-            nextSelectedOptions = [option];
+            nextSelectedOptions = [option]
         }
         !values && dispatch({type: 'setSelectedOptions', payload: nextSelectedOptions})
         onChange && onChange(([] as any).concat(nextSelectedOptions), option)
@@ -105,27 +105,27 @@ const Select = (props: Types.Props, ref) => {
         switch (event.key) {
             case 'Enter':
                 if (state.cursor != -1) {
-                    toggleOption(availableOptions[state.cursor]);
+                    toggleOption(availableOptions[state.cursor])
                 }
-                dispatch({ type: 'toggleOpen', payload: !state.open });
-                break;
+                dispatch({ type: 'toggleOpen', payload: !state.open })
+                break
             case 'ArrowUp':
-                event.preventDefault();
+                event.preventDefault()
                 state.cursor > 0 && dispatch({
                     type: 'setCursor',
                     payload: state.cursor - 1
                 })
-                break;
+                break
             case 'ArrowDown':
-                event.preventDefault();
+                event.preventDefault()
                 state.cursor < availableOptions.length - 1 && dispatch({
                     type: 'setCursor',
                     payload: state.cursor + 1
                 })
-                break;
+                break
             case 'Backspace':
                 !searchable || !state.searchValue && reduceSelectedOptions()
-                break;
+                break
         }
         props.onKeyDown && props.onKeyDown(event)
     }
@@ -136,7 +136,7 @@ const Select = (props: Types.Props, ref) => {
             options,
             state.selectedOptions,
             value,
-        );
+        )
 
         if (nextAvailableOptions.length != 0) {
             !state.open && dispatch({ type: 'toggleOpen', payload: true })
@@ -204,7 +204,7 @@ const Select = (props: Types.Props, ref) => {
                         searchable && e.target.toString() === '[object HTMLInputElement]'
                             ? !state.open && dispatch({ type: 'toggleOpen', payload: true })
                             : toggleOpen()
-                        props.onClick && props.onClick(e);
+                        props.onClick && props.onClick(e)
                     },
                     onKeyDown: (e) => handleKeyDown(e)
                 }}                
@@ -217,7 +217,7 @@ const Select = (props: Types.Props, ref) => {
                             i.filled[state.open ? 'arrowIosUpward' : 'arrowIosDownward']
                         }
                         onClick={(e) => {
-                            e.stopPropagation();
+                            e.stopPropagation()
                             toggleOpen()
                         }}
                     />
@@ -229,7 +229,7 @@ const Select = (props: Types.Props, ref) => {
                         ot && state.open && dispatch({type: 'toggleOpen', payload: false})
                     }}
                     stretchWidth
-                    justify='start'
+                    justify="start"
                     target={targetRef}
                 >
                     <div css={styles.dropMenu}>
@@ -240,7 +240,7 @@ const Select = (props: Types.Props, ref) => {
                                     css={styles.dropItem({underCursor: i === state.cursor})}
                                     children={option.text}
                                     onMouseDown={(e) => {
-                                        toggleOption(option);
+                                        toggleOption(option)
                                         !multiselect && state.open && dispatch({type: 'toggleOpen', payload: false})
                                     }}
                                 />
@@ -254,7 +254,7 @@ const Select = (props: Types.Props, ref) => {
 
 const Options = (props: Types.OptionsProps ) => {
 
-    const { selected, onClose, styles, searchable } = props;
+    const { selected, onClose, styles, searchable } = props
 
     return (
         <div css={styles.options}>
@@ -264,7 +264,7 @@ const Options = (props: Types.OptionsProps ) => {
                     <Icon
                         type={(i) => i.outline.close}
                         onClick={(e) => {
-                            e.stopPropagation();
+                            e.stopPropagation()
                             onClose(option)
                         }}
                     />
@@ -276,7 +276,7 @@ const Options = (props: Types.OptionsProps ) => {
 }
 
 const Search = (props: Types.SearchProps) => {
-    const { searchValue, onSearch, styles, defaultValue, placeholder, disabled } = props;
+    const { searchValue, onSearch, styles, defaultValue, placeholder, disabled } = props
 
     return (
         <input
@@ -310,4 +310,4 @@ function includeOption(options: Types.Option[], option: Types.Option) {
     })
     return includes
 }
-export default forwardRef(Select);
+export default forwardRef(Select)

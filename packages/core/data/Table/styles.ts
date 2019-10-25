@@ -1,9 +1,9 @@
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
-import Types from './types';
-import Global from '../../types';
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
+import Types from './types'
+import Global from '../../types'
 
 const tabelStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
-    const styleProps = useStyleProps(props);
+    const styleProps = useStyleProps(props)
 
     return {
         container: [
@@ -124,10 +124,10 @@ const tabelStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Type
                     borderWidth: '0 0 0.5px 0',
                     padding: '1.25rem',
                     // marginTop: '-1px',
-                    "&:first-of-type": {
+                    '&:first-of-type': {
                         borderRadius: `${theme.radius.default} ${theme.radius.default} 0 0`
                     },
-                    "&:last-of-type": {
+                    '&:last-of-type': {
                         borderWidth: '0',
                         borderRadius: `0 0 ${theme.radius.default} ${theme.radius.default}`
                     }

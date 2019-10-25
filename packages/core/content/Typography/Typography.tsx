@@ -1,18 +1,18 @@
-import { jsx } from '@emotion/core';
-import useContainer from '@flow-ui/core/misc/hooks/useContainer';
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
-import callProp from '@flow-ui/core/misc/utils/callProp';
-import { forwardRef } from 'react';
-import Types from './types';
+import { jsx } from '@emotion/core'
+import useContainer from '@flow-ui/core/misc/hooks/useContainer'
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
+import callProp from '@flow-ui/core/misc/utils/callProp'
+import { forwardRef } from 'react'
+import Types from './types'
 
 const Typography = (props: Types.Props, ref) => {
 
-    const styleProps = useStyleProps(props);
-    const { attributes } = useContainer(props);
+    const styleProps = useStyleProps(props)
+    const { attributes } = useContainer(props)
 
     const data = props.quotes && typeof props.children === 'string'
         ? props.children.replace(/"([^"]*)"/g, '«$1»')
-        : props.children;
+        : props.children
 
     return jsx(
         props.tag,
@@ -49,7 +49,7 @@ const Typography = (props: Types.Props, ref) => {
             referrerPolicy: props.referrerPolicy,
         },
         data
-    );
+    )
 }
 
-export default forwardRef(Typography);
+export default forwardRef(Typography)

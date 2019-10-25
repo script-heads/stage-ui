@@ -1,9 +1,9 @@
-import { ObjectInterpolation } from '@emotion/core';
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
-import callProp from '@flow-ui/core/misc/utils/callProp';
-import chroma from 'chroma-js';
-import Types from './types';
-import Global from '../../types';
+import { ObjectInterpolation } from '@emotion/core'
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
+import callProp from '@flow-ui/core/misc/utils/callProp'
+import chroma from 'chroma-js'
+import Types from './types'
+import Global from '../../types'
 
 const menuStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     
@@ -16,23 +16,23 @@ const menuStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types
         shape,
         align,
         distance,
-    } = props;
+    } = props
 
-    const styleProps = useStyleProps(props);
-    const sizes = getSizes(size, theme);
-    const decorations = getDecorations(theme, sizes, props);
+    const styleProps = useStyleProps(props)
+    const sizes = getSizes(size, theme)
+    const decorations = getDecorations(theme, sizes, props)
 
     switch (shape) {
         case 'square':
-            decorations.shape = 0;
-            break;
+            decorations.shape = 0
+            break
         case 'round':
-            decorations.shape = '4rem';
-            break;
+            decorations.shape = '4rem'
+            break
         case 'rounded':
-            decorations.shape = theme.radius.narrow;
-            break;
-    };
+            decorations.shape = theme.radius.narrow
+            break
+    }
 
     const justifyContent = align
         ? align === 'center'
@@ -42,13 +42,13 @@ const menuStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types
             ? 'center'
             : flip
                 ? 'flex-end'
-                : 'flex-start';
+                : 'flex-start'
 
     const borderStyles: ObjectInterpolation<undefined> = {
         '&::after': {
             zIndex: -1,
             position: 'absolute',
-            content: "''",
+            content: '\'\'',
             background: theme.color.lightest.css(),
             margin: direction === 'column' && decoration === 'underline'
                 ? sizes.item.padding
@@ -90,7 +90,7 @@ const menuStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types
                 overflow: 'hidden',
                 borderRadius: decorations.shape,
                 cursor: 'pointer',
-                "#item-content": {
+                '#item-content': {
                     display: 'flex',
                     width: '100%',
                     justifyContent: justifyContent,
@@ -133,7 +133,7 @@ function getSizes(size, theme) {
                 underline: '.125rem',
                 borderDistance: '.75rem',
                 separatorDistance: '.25rem',
-            };
+            }
         case 'small':
             return {
                 item: {
@@ -188,13 +188,13 @@ function getSizes(size, theme) {
                 underline: '.5rem',
                 borderDistance: '1.75rem',
                 separatorDistance: '.75rem',
-            };
+            }
     }
 }
 
 function getDecorations(theme, sizes, props) {
-    let color = chroma(callProp(props.color, theme.color) || theme.color.primary.css());
-    let { flip, direction, decoration } = props;
+    let color = chroma(callProp(props.color, theme.color) || theme.color.primary.css())
+    let { flip, direction, decoration } = props
 
     switch (decoration) {
         case 'underline':
@@ -274,8 +274,8 @@ function getDecorations(theme, sizes, props) {
                 shape: theme.radius.narrow
             }
         case 'tab':
-            let borderStyles = tabBorderStyles(direction, flip);
-            color = chroma(callProp(props.color, theme.color) || theme.color.surface.css());
+            let borderStyles = tabBorderStyles(direction, flip)
+            color = chroma(callProp(props.color, theme.color) || theme.color.surface.css())
             return {
                 active: {
                     background: color.css(),
@@ -352,7 +352,7 @@ function underlineStyles(flip, direction, color, size, alwaysFull?) {
         position: 'relative',
         '&::after': {
             position: 'absolute',
-            content: "''",
+            content: '\'\'',
             background: color.css(),
             ...linePosition(direction, flip, size)
         }

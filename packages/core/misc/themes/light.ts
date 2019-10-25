@@ -1,6 +1,6 @@
-import Theme from './types';
-import createTheme from '../utils/createTheme';
-import typography from '../typography';
+import Theme from './types'
+import createTheme from '../utils/createTheme'
+import typography from '../typography'
 
 const variables: Theme.Variables = {
     name: 'Light',

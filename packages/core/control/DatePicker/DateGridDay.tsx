@@ -2,29 +2,29 @@
  * DateGridDay.tsx
  * author: I.Trikoz
  */
-import moment from 'moment';
-import React from 'react';
-import Flexbox from '../../layout/Flexbox';
-import DatePickerTypes from './types';
+import moment from 'moment'
+import React from 'react'
+import Flexbox from '../../layout/Flexbox'
+import DatePickerTypes from './types'
 
 const DateGridDay = (props: DatePickerTypes.DateGridCalendarProps) => {
-    const { value, tmp, active, onClick, minValue, maxValue } = props;
+    const { value, tmp, active, onClick, minValue, maxValue } = props
 
     const isDisabled =
         minValue.valueOf() > value.valueOf() ||
         maxValue.valueOf() < value.valueOf() ||
-        false;
+        false
 
     const now = moment()
-    const dayValue = value.startOf("day").valueOf()
-    const nowValue = now.startOf("day").valueOf()
-    const activeValue = active.startOf("day").valueOf()
+    const dayValue = value.startOf('day').valueOf()
+    const nowValue = now.startOf('day').valueOf()
+    const activeValue = active.startOf('day').valueOf()
 
-    const isActive = (activeValue === dayValue);
-    const isCurrent = (dayValue === nowValue);
-    const isCurrentMonth = (value.month() === tmp.month());
+    const isActive = (activeValue === dayValue)
+    const isCurrent = (dayValue === nowValue)
+    const isCurrentMonth = (value.month() === tmp.month())
     
-    const css = props.styles.gridBlock(isActive, isCurrent, isDisabled, isCurrentMonth);
+    const css = props.styles.gridBlock(isActive, isCurrent, isDisabled, isCurrentMonth)
 
     return (
         <Flexbox
@@ -32,7 +32,7 @@ const DateGridDay = (props: DatePickerTypes.DateGridCalendarProps) => {
             alignItems="center"
             onClick={() => {
                 if (!isDisabled && onClick) {
-                    onClick();
+                    onClick()
                 }
             }}
             css={css}
@@ -40,6 +40,6 @@ const DateGridDay = (props: DatePickerTypes.DateGridCalendarProps) => {
             children={value.date()}
         />
     )
-};
+}
 
-export default DateGridDay;
+export default DateGridDay

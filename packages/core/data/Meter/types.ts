@@ -1,4 +1,4 @@
-import Global from '@flow-ui/core/types';
+import Global from '@flow-ui/core/types'
 
 declare namespace MeterTypes {
 
@@ -37,4 +37,4 @@ declare namespace MeterTypes {
     }
 }
 
-export default MeterTypes;
+export default MeterTypes

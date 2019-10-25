@@ -2,25 +2,25 @@
  * styles.tsx
  * author: I.Trikoz
  */
-import { css } from '@emotion/core';
-import useFlow from '@flow-ui/core/misc/hooks/useFlow';
+import { css } from '@emotion/core'
+import useFlow from '@flow-ui/core/misc/hooks/useFlow'
 
 export default () => {
 
-    const { theme } = useFlow();
+    const { theme } = useFlow()
 
     return {
         dateGrind: css({
-            position: "relative",
+            position: 'relative',
             background: theme.color.surface.css(),
             color: theme.color.onSurface.css(),
         }),
 
         weekDay: css({
-            userSelect: "none",
+            userSelect: 'none',
             ...theme.typography.caption[2],
-            marginTop: "0.25rem",
-            marginBottom: "0.5rem",
+            marginTop: '0.25rem',
+            marginBottom: '0.5rem',
             fontWeight: 400,
         }),
 
@@ -38,8 +38,8 @@ export default () => {
                 fontWeight: 500,
                 minWidth: '2rem',
                 height: '2rem',
-                cursor: "pointer",
-                margin:"0.125rem",
+                cursor: 'pointer',
+                margin:'0.125rem',
                 opacity: 1,
                 background: theme.color.background.css(),
                 borderWidth: theme.assets.border.width,
@@ -47,12 +47,12 @@ export default () => {
                 borderColor: theme.color.surface.css(),
                 borderRadius: theme.radius.narrow,
                 color: theme.color.onSurface.css(),
-                userSelect: "none" as "none",
+                userSelect: 'none' as 'none',
                 ...theme.typography.text[1],
                 ':hover': {
                     background: theme.color.lightest.css()
                 }
-            };
+            }
             /**
              * This block is from current month
              */
@@ -64,31 +64,31 @@ export default () => {
              * It is current block
              */
             if (isCurrent) {
-                st.borderColor = theme.color.primary.css();
+                st.borderColor = theme.color.primary.css()
             }
             /**
              * This block is selected
              */
             if (isActive) {
-                st.background = theme.color.primary.css();
-                st.color = theme.color.onPrimary.css();
+                st.background = theme.color.primary.css()
+                st.color = theme.color.onPrimary.css()
                 delete st[':hover']
             }
             /**
              * This block is disabled to select
              */
             if (isDisabled) {
-                st.opacity = 0.3;
+                st.opacity = 0.3
                 delete st[':hover']
             }
-            return css(st);
+            return css(st)
         },
 
         drop: (isActive: boolean) => css({
             transition: 'all 0.2s',
             transform: `translateY(${isActive ? 0 : '-1rem'}) scale(${isActive ? 1 : 0.9})`,
             opacity: isActive ? 1 : 0,
-            visibility: isActive ? "visible" : "hidden"
+            visibility: isActive ? 'visible' : 'hidden'
         })
     }
 }

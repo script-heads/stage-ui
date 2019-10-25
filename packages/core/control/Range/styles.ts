@@ -1,9 +1,9 @@
-import useStyleProps from "@flow-ui/core/misc/hooks/useStyleProps";
-import Types from './types';
-import Global from "../../types";
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
+import Types from './types'
+import Global from '../../types';
 
 const rangeStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
-    const stylesProps = useStyleProps(props);
+    const stylesProps = useStyleProps(props)
 
     return {
         container: [
@@ -43,7 +43,7 @@ const rangeStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Type
             borderStyle: theme.assets.border.style,
             borderWidth: theme.assets.border.width,
             boxShadow: theme.assets.shadow.short,
-            border: "2px solid " + theme.color.primary.css(),
+            border: '2px solid ' + theme.color.primary.css(),
             zIndex: 3,
             transition: 'transform 0.25s',
             ':hover': {

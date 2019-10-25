@@ -1,31 +1,29 @@
-import { css } from '@emotion/core';
-import Global from '@flow-ui/core/types';
-import useFlow from '../../hooks/useFlow';
-import useStyleProps from '../../hooks/useStyleProps';
-import callProp from '../../utils/callProp';
-import Types from './types';
-import ThemeTypes from '../../themes/types';
+import Global from '@flow-ui/core/types'
+import useStyleProps from '../../hooks/useStyleProps'
+import callProp from '../../utils/callProp'
+import Types from './types'
+import ThemeTypes from '../../themes/types'
 
 const checkStyles = (props: Types.Props, theme: ThemeTypes.Index): Global.ComponentStyles<Types.Styles> => {
     
-    const labelColor = callProp(props.labelColor, theme.color);
-    const styleProps = useStyleProps(props);
+    const labelColor = callProp(props.labelColor, theme.color)
+    const styleProps = useStyleProps(props)
 
     return {
         container: (variant) => [
             {
-                display: "flex",
-                alignItems: "center",
-                cursor: "pointer",
+                display: 'flex',
+                alignItems: 'center',
+                cursor: 'pointer',
                 color: theme.color.onSurface.css(),
                 outline: 'none'
             },
             variant({
                 disabled: [{
-                    cursor: "not-allowed",
+                    cursor: 'not-allowed',
                 }],
                 animated: [{
-                    transition: "all .15s"
+                    transition: 'all .15s'
                 }]
             }),
             styleProps.all
@@ -33,8 +31,8 @@ const checkStyles = (props: Types.Props, theme: ThemeTypes.Index): Global.Compon
 
         label: (variant) => [
             {
-                marginLeft: "0.5rem",
-                userSelect: "none",
+                marginLeft: '0.5rem',
+                userSelect: 'none',
                 color: labelColor
             },
             variant({
@@ -61,10 +59,10 @@ const checkStyles = (props: Types.Props, theme: ThemeTypes.Index): Global.Compon
                     color: callProp(theme.color.light.css(), theme.color)
                 }],
                 uppercase: [{
-                    textTransform: "uppercase"
+                    textTransform: 'uppercase'
                 }],
                 animated: [{
-                    transition: "all .15s"
+                    transition: 'all .15s'
                 }]
             }),
         ],

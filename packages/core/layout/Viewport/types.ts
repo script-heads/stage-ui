@@ -1,6 +1,6 @@
-import ThemeType from '../../misc/themes/types';
-import Global from '@flow-ui/core/types';
-import ThemeTypes from '../../misc/themes/types';
+import ThemeType from '../../misc/themes/types'
+import Global from '@flow-ui/core/types'
+import ThemeTypes from '../../misc/themes/types'
 
 declare namespace ViewportTypes {
 

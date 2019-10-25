@@ -1,8 +1,8 @@
-import Global from '@flow-ui/core/types';
+import Global from '@flow-ui/core/types'
 
 declare namespace MenuTypes {
 
-    type Value = string | number;
+    type Value = string | number
 
     interface Props extends Global.Props {
         defaultValue?: Value
@@ -20,7 +20,7 @@ declare namespace MenuTypes {
         'filled-underline'
         flip?: boolean
         distance?: string
-        direction?: "row" | "column"
+        direction?: 'row' | 'column'
         shape?: 'square' | 'rounded' | 'round'
         border?: 'none' | 'narrow' | 'wide'
         align?: 'start' | 'center' | 'end'
@@ -59,4 +59,4 @@ declare namespace MenuTypes {
     }
 }
 
-export default MenuTypes;
+export default MenuTypes

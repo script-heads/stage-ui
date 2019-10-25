@@ -1,9 +1,9 @@
-import Types from './types';
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
-import Global from '../../types';
+import Types from './types'
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
+import Global from '../../types'
 
 const modalStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
-    const styleProps = useStyleProps(props);
+    const styleProps = useStyleProps(props)
 
     return {
         overlay: (variant) => [
@@ -11,26 +11,26 @@ const modalStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Type
                 opacity: 0,
                 zIndex: 500,
                 position: 'fixed',
-                width: "100%",
-                height: "100%",
+                width: '100%',
+                height: '100%',
                 top: 0,
                 bottom: 0,
                 left: 0,
                 right: 0,
-                backgroundColor: "rgba(0,0,0,.5)",
-                justifyContent: "center",
-                alignItems: "center",
+                backgroundColor: 'rgba(0,0,0,.5)',
+                justifyContent: 'center',
+                alignItems: 'center',
                 overflowY: 'auto',
-                backdropFilter: "blur(4px)",
+                backdropFilter: 'blur(4px)',
                 transition: 'opacity 0.25s',
-                backfaceVisibility: "hidden",
+                backfaceVisibility: 'hidden',
             },
             variant({
                 visible: {
                     opacity: 1,
                 },
                 center: {
-                    display: "flex",
+                    display: 'flex',
                 }
             })
         ],
@@ -60,7 +60,7 @@ const modalStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Type
                     transform: 'translateY(0)',
                 },
                 fullSizeCenter: {
-                    display: "flex",
+                    display: 'flex',
                 }
             }),
             styleProps.all,
@@ -76,16 +76,16 @@ const modalStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Type
             marginLeft: '2rem',
             cursor: 'pointer',
             transition: 'all 0.25s',
-            transform: "scale(1)",
+            transform: 'scale(1)',
             opacity: .7,
             ':hover': {
-                transform: "scale(1.1)"
+                transform: 'scale(1.1)'
             },
             ':active': {
-                transform: "scale(1)"
+                transform: 'scale(1)'
             }
         }]
     }
 }
 
-export default modalStyles;
+export default modalStyles

@@ -1,28 +1,28 @@
-import createCache, { EmotionCache } from '@emotion/cache';
-import { CacheProvider, Global } from '@emotion/core';
-import useMemoEffect from '@flow-ui/core/misc/hooks/useSharedObject';
-import callProp from '@flow-ui/core/misc/utils/callProp';
-import { ThemeProvider } from 'emotion-theming';
-import React, { FC, useMemo, useRef } from 'react';
-import * as themes from '../../misc/themes';
-import MountArea from './MountArea';
-import createStyles from './styles';
-import ViewportTypes from './types';
+import createCache, { EmotionCache } from '@emotion/cache'
+import { CacheProvider, Global } from '@emotion/core'
+import useMemoEffect from '@flow-ui/core/misc/hooks/useSharedObject'
+import callProp from '@flow-ui/core/misc/utils/callProp'
+import { ThemeProvider } from 'emotion-theming'
+import React, { FC, useMemo, useRef } from 'react'
+import * as themes from '../../misc/themes'
+import MountArea from './MountArea'
+import createStyles from './styles'
+import ViewportTypes from './types'
 
 const initialContext: ViewportTypes.Context = {
     theme: themes.light,
 }
 
-export const FlowContext = React.createContext(initialContext);
+export const FlowContext = React.createContext(initialContext)
 
 const Viewport: FC<ViewportTypes.Props> = (props) => {
 
-    const theme = callProp(props.theme, themes) || themes.light;
-    const styles = createStyles(theme, false);
+    const theme = callProp(props.theme, themes) || themes.light
+    const styles = createStyles(theme, false)
 
     const context: ViewportTypes.Context = { theme }
 
-    let cache;
+    let cache
     const ref = useRef(null)
 
     if (props.wrapper) {
@@ -47,7 +47,7 @@ const Viewport: FC<ViewportTypes.Props> = (props) => {
             <Global styles={styles.global} />
             <MountArea />
         </CacheProvider>
-    );
+    )
 
     return (
         <FlowContext.Provider value={context}>
@@ -60,4 +60,4 @@ const Viewport: FC<ViewportTypes.Props> = (props) => {
     )
 }
 
-export default Viewport;
+export default Viewport

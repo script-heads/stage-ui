@@ -1,8 +1,8 @@
-import useContainer from '@flow-ui/core/misc/hooks/useContainer';
-import React, { forwardRef } from 'react';
-import meterStyles from './styles';
-import Types from './types';
-import useStyles from '@flow-ui/core/misc/hooks/useStyles';
+import useContainer from '@flow-ui/core/misc/hooks/useContainer'
+import React, { forwardRef } from 'react'
+import meterStyles from './styles'
+import Types from './types'
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 
 const Meter = (props: Types.Props, ref) => {
     
@@ -11,9 +11,9 @@ const Meter = (props: Types.Props, ref) => {
         shape = 'round',
         size = 'medium',
         percent = 0,
-    } = props;
+    } = props
 
-    const { attributes } = useContainer(props);
+    const { attributes } = useContainer(props)
     const styles = useStyles(props, meterStyles, 'Meter')
 
     return (
@@ -21,11 +21,11 @@ const Meter = (props: Types.Props, ref) => {
             <div
                 css={styles.thumb({shape, size})}
                 style={{
-                    width: percent + "%"
+                    width: percent + '%'
                 }}
             />
         </div>
     )
 }
 
-export default forwardRef(Meter);
+export default forwardRef(Meter)

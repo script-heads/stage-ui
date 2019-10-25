@@ -1,13 +1,13 @@
-import useStyleProps from '../../hooks/useStyleProps';
-import callProp from '../../utils/callProp';
-import Types from './types';
-import Global from '../../../types';
-import ThemeTypes from '../../themes/types';
+import useStyleProps from '../../hooks/useStyleProps'
+import callProp from '../../utils/callProp'
+import Types from './types'
+import Global from '../../../types'
+import ThemeTypes from '../../themes/types'
 
 const fieldStyles = (props: Types.Props, theme: ThemeTypes.Index): Global.ComponentStyles<Types.Styles> => {
     
-    const styleProps = useStyleProps(props);
-    const color = callProp(props.color, theme.color);
+    const styleProps = useStyleProps(props)
+    const color = callProp(props.color, theme.color)
 
     return {
         container: [

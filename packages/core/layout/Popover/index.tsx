@@ -1,13 +1,13 @@
-import useContainer from '@flow-ui/core/misc/hooks/useContainer';
-import React, { forwardRef } from 'react';
-import popoverStyles from './styles';
-import Types from './types';
-import useStyles from '@flow-ui/core/misc/hooks/useStyles';
+import useContainer from '@flow-ui/core/misc/hooks/useContainer'
+import React, { forwardRef } from 'react'
+import popoverStyles from './styles'
+import Types from './types'
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 
 const Popover = (props: Types.Props, ref) => {
-    const {align = 'top'} = props;
-    const { attributes } = useContainer(props);
-    const styles = useStyles<Types.Styles>(props, popoverStyles, 'Popover');
+    const {align = 'top'} = props
+    const { attributes } = useContainer(props)
+    const styles = useStyles<Types.Styles>(props, popoverStyles, 'Popover')
 
     return (
         <div
@@ -21,4 +21,4 @@ const Popover = (props: Types.Props, ref) => {
     )
 }
 
-export default forwardRef(Popover);
+export default forwardRef(Popover)

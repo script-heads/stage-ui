@@ -1,7 +1,7 @@
-import variant from '@flow-ui/core/misc/utils/variant';
-import Types from './types';
-import Global from '../../types';
-import fieldStyles from '@flow-ui/core/misc/hocs/Field/styles';
+import variant from '@flow-ui/core/misc/utils/variant'
+import Types from './types'
+import Global from '../../types'
+import fieldStyles from '@flow-ui/core/misc/hocs/Field/styles'
 
 const textFieldStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     
@@ -9,7 +9,7 @@ const textFieldStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: 
         size = 'medium',
         decoration = 'outline',
         multiline, 
-    } = props;
+    } = props
 
     const multilineAdditionalPadding = variant(size, {
         'medium': '.25rem',

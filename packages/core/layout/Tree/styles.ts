@@ -1,9 +1,9 @@
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
-import Types from "./types";
-import Global from "../../types";
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
+import Types from './types'
+import Global from '../../types'
 
 const treeStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
-    const styleProps = useStyleProps(props);
+    const styleProps = useStyleProps(props)
 
     return {
         container: (variant) => [
@@ -11,44 +11,44 @@ const treeStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types
             variant({
                 decoration: {
                     inline: [{
-                        display: "flex",
-                        alignItems: "flex-start",
+                        display: 'flex',
+                        alignItems: 'flex-start',
                     }]
                 },
                 needIndent: [{
-                    paddingLeft: "1rem"
+                    paddingLeft: '1rem'
                 }]
             }),
         ],
         label: [
             {
-                cursor: "pointer",
-                userSelect: "none",
+                cursor: 'pointer',
+                userSelect: 'none',
             },
             props.alwaysOpen && {
-                cursor: "default",
+                cursor: 'default',
             }
         ],
         icon: (variant) => [
             {
-                display: "none"
+                display: 'none'
             },
             variant({
                 decoration: {
                     drop: [{
-                        display: "inline-block",
-                        marginRight: "0.25rem",
+                        display: 'inline-block',
+                        marginRight: '0.25rem',
                     }]
                 },
                 disabled: [{
-                    cursor: "not-allowed"
+                    cursor: 'not-allowed'
                 }]
             }),
         ],
         child: (variant) => [
             variant({
                 isOpen: [{
-                    display: "none"
+                    display: 'none'
                 }]
             })
         ]

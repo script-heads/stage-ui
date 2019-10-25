@@ -1,4 +1,4 @@
-import FieldTypes from "../../misc/hocs/Field/types";
+import FieldTypes from '../../misc/hocs/Field/types'
 
 declare namespace SelectTypes {
     interface Option {
@@ -78,4 +78,4 @@ declare namespace SelectTypes {
     }
 }
 
-export default SelectTypes;
+export default SelectTypes

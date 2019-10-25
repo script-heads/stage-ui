@@ -1,10 +1,10 @@
-import { css } from '@emotion/core';
-import React, { FC, useState, Fragment } from 'react';
-import ViewportTypes from './types';
-import createID from '../../misc/utils/createID';
+import { css } from '@emotion/core'
+import React, { FC, useState, Fragment } from 'react'
+import ViewportTypes from './types'
+import createID from '../../misc/utils/createID'
 
-export let addElement: (children: React.ReactElement, key?: string) => string;
-export let removeElement: (key: string) => void;
+export let addElement: (children: React.ReactElement, key?: string) => string
+export let removeElement: (key: string) => void
 
 const MountArea: FC<ViewportTypes.MountArea> = (props) => {
 
@@ -19,17 +19,17 @@ const MountArea: FC<ViewportTypes.MountArea> = (props) => {
         }
     })
 
-    const [elements, setElements] = useState<ViewportTypes.MountAreaElement[]>([]);
+    const [elements, setElements] = useState<ViewportTypes.MountAreaElement[]>([])
 
     addElement = (children: React.ReactElement, key?: string) => {
         if (!key) {
-            key = createID();
+            key = createID()
         }
         setElements(
             elements.concat({ key, children })
-        );
-        return key;
-    };
+        )
+        return key
+    }
 
     removeElement = (key: string) => {
         setElements(
@@ -49,4 +49,4 @@ const MountArea: FC<ViewportTypes.MountArea> = (props) => {
     )
 }
 
-export default MountArea;
+export default MountArea

@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 import TableTypes from './types'
-import Icon from '../../content/Icon';
+import Icon from '../../content/Icon'
 
 const TableActions = (props: TableTypes.ActionsProps) => {
-    const styles = props.styles;
+    const styles = props.styles
 
     return (
         <div css={styles.actions}>
@@ -13,7 +13,7 @@ const TableActions = (props: TableTypes.ActionsProps) => {
                     <span
                         key={index}
                         onClick={() => {
-                            action.onAction(props.data);
+                            action.onAction(props.data)
                         }}
                         children={action.label}
                     />
@@ -23,4 +23,4 @@ const TableActions = (props: TableTypes.ActionsProps) => {
     )
 }
 
-export default TableActions;
+export default TableActions

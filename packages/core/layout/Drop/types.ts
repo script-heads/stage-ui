@@ -1,4 +1,4 @@
-import Global from "@flow-ui/core/types";
+import Global from '@flow-ui/core/types'
 
 declare namespace DropTypes {
   interface TargetCoordinates {
@@ -10,8 +10,8 @@ declare namespace DropTypes {
 
   interface Props extends Global.SelfProps {
     target: any
-    align?: "top" | "bottom" | "left" | "right"
-    justify?: "start" | "center" | "end" | "start-outside" | "end-outside"
+    align?: 'top' | 'bottom' | 'left' | 'right'
+    justify?: 'start' | 'center' | 'end' | 'start-outside' | 'end-outside'
     stretchWidth?: boolean
     stretchHeight?: boolean
     distance?: number
@@ -25,4 +25,4 @@ declare namespace DropTypes {
   }
 }
 
-export default DropTypes;
+export default DropTypes

@@ -1,10 +1,10 @@
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
-import typography from "@flow-ui/core/misc/typography";
-import Types from "./types";
-import Global from '../../types';
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
+import typography from '@flow-ui/core/misc/typography'
+import Types from './types'
+import Global from '../../types'
 
 const BadgeStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
-    const styleProps = useStyleProps(props);
+    const styleProps = useStyleProps(props)
 
     return {
         container: [

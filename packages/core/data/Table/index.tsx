@@ -7,22 +7,22 @@ import TableForm from './TableForm'
 import TablePagination from './TablePagination'
 import TableRow from './TableRow'
 import TableTypes from './types'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles';
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 
 const Table: FC<TableTypes.Props> = (props, ref) => {
 
-    const { attributes } = useContainer(props);
-    const { columns, actions, border, indexKey, scope, form, search, onRowClick, hideHeaders } = props;
-    const styles = useStyles(props, tableStyles, 'Table');
+    const { attributes } = useContainer(props)
+    const { columns, actions, border, indexKey, scope, form, search, onRowClick, hideHeaders } = props
+    const styles = useStyles(props, tableStyles, 'Table')
 
-    const [page, setPage] = useState(1);
-    const [pending, setPending] = useState(false);
-    const [searchBar, setSearchBar] = useState(false);
-    const [searchValue, setSearchValue] = useState('');
-    const [selectedItems, setSelectedItems] = useState<string[]>([]);
-    const [expandedItems, setExpandedItems] = useState<string[]>([]);
+    const [page, setPage] = useState(1)
+    const [pending, setPending] = useState(false)
+    const [searchBar, setSearchBar] = useState(false)
+    const [searchValue, setSearchValue] = useState('')
+    const [selectedItems, setSelectedItems] = useState<string[]>([])
+    const [expandedItems, setExpandedItems] = useState<string[]>([])
 
-    let { noDataLabel } = props;
+    let { noDataLabel } = props
     if (typeof noDataLabel === 'undefined') {
         noDataLabel = 'Нет данных'
     }
@@ -57,7 +57,7 @@ const Table: FC<TableTypes.Props> = (props, ref) => {
              */
             pageData = data.filter((_, i) => pageSize * page >= (i + 1) && i >= pageSize * page - pageSize)
         } else {
-            pageData = data;
+            pageData = data
         }
     }
 
@@ -75,12 +75,12 @@ const Table: FC<TableTypes.Props> = (props, ref) => {
                                 ? props.onSearch(event.target.value)
                                 : setSearchValue(event.target.value)
                         }}
-                        placeholder='Найти'
+                        placeholder="Найти"
                     />
                     <div onClick={() => {
-                        setSearchBar(false);
-                        setSearchValue('');
-                        setPage(1);
+                        setSearchBar(false)
+                        setSearchValue('')
+                        setPage(1)
                     }}><Icon type={i => i.outline.close} /></div>
                 </div>
             )
@@ -108,9 +108,9 @@ const Table: FC<TableTypes.Props> = (props, ref) => {
 
     const AddForm = () => {
         if (typeof form != 'undefined' && typeof form.key === 'undefined') {
-            return TableForm({ Form: form.render, dismiss: form.dismiss, columns, defaultData: form.defaultData });
+            return TableForm({ Form: form.render, dismiss: form.dismiss, columns, defaultData: form.defaultData })
         }
-        return null;
+        return null
     }
 
     return (
@@ -166,12 +166,12 @@ const Table: FC<TableTypes.Props> = (props, ref) => {
                     search={props.search}
                     data={data}
                     onChange={async (page, searchBar) => {
-                        setPage(page);
-                        setSearchBar(searchBar);
+                        setPage(page)
+                        setSearchBar(searchBar)
                         if (props.pagination && props.pagination.async) {
-                            setPending(true);
-                            await props.pagination.async(page);
-                            setPending(false);
+                            setPending(true)
+                            await props.pagination.async(page)
+                            setPending(false)
                         }
                     }}
                     styles={styles}

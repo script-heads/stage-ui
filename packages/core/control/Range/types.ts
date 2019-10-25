@@ -1,4 +1,4 @@
-import Global from "../../types";
+import Global from '../../types'
 
 declare namespace RangeTypes {
     interface Props extends Global.Props {

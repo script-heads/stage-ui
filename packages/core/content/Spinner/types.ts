@@ -1,4 +1,4 @@
-import Global from "@flow-ui/core/types";
+import Global from '@flow-ui/core/types'
 
 declare namespace SpinnerTypes {
     interface Props extends Global.Props {
@@ -16,4 +16,4 @@ declare namespace SpinnerTypes {
     }
 }
 
-export default SpinnerTypes;
+export default SpinnerTypes

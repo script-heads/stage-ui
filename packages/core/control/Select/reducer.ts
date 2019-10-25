@@ -1,4 +1,4 @@
-import Types from "./types";
+import Types from './types'
 
 export default (state: Types.State, action: Types.Actions) => {
     switch (action.type) {
@@ -9,14 +9,14 @@ export default (state: Types.State, action: Types.Actions) => {
                 empty: action.payload.length === 0,
                 searchValue: '',
                 cursor: -1
-            };
+            }
 
         case 'toggleOpen':
             return {
                 ...state,
                 open: action.payload,
                 cursor: -1
-            };
+            }
 
         case 'search':
             return {
@@ -41,6 +41,6 @@ export default (state: Types.State, action: Types.Actions) => {
             }
 
         default:
-            throw new Error();
+            throw new Error()
     }
 }

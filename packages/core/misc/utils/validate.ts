@@ -5,15 +5,15 @@ export interface ValidateObject {
 }
 
 function validate(validate: ValidateObject[], value: string) {
-    const errors: string[] = [];
+    const errors: string[] = []
 
     if (validate) {
         validate.forEach(item => {
             if (item.regex.test(value) === Boolean(item.isMatch)) {
-                errors.push(item.error || `Значение '${value}' не соответсвует регулярному выражению ${item.regex}`);
+                errors.push(item.error || `Значение '${value}' не соответсвует регулярному выражению ${item.regex}`)
             }
-        });
+        })
     }
 
-    return errors;
+    return errors
 }

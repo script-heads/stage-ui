@@ -1,16 +1,16 @@
-import useContainer from "@flow-ui/core/misc/hooks/useContainer";
-import { filled, outline } from '@flow-ui/core/misc/icons';
-import callProp from "@flow-ui/core/misc/utils/callProp";
-import React, { forwardRef } from "react";
-import iconStyles from './styles';
-import useStyles from '@flow-ui/core/misc/hooks/useStyles';
-import Types from "./types";
+import useContainer from '@flow-ui/core/misc/hooks/useContainer'
+import { filled, outline } from '@flow-ui/core/misc/icons'
+import callProp from '@flow-ui/core/misc/utils/callProp'
+import React, { forwardRef } from 'react'
+import iconStyles from './styles'
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import Types from './types'
 
 const Icon = (props: Types.Props, ref) => {
 
-    const { attributes } = useContainer(props);
-    const styles = useStyles<Types.Styles>(props, iconStyles, 'Icon');
-    const type = callProp(props.type, { filled, outline });
+    const { attributes } = useContainer(props)
+    const styles = useStyles<Types.Styles>(props, iconStyles, 'Icon')
+    const type = callProp(props.type, { filled, outline })
 
     if (!type) return null
 
@@ -36,4 +36,4 @@ const Icon = (props: Types.Props, ref) => {
     )
 }
 
-export default forwardRef(Icon);
+export default forwardRef(Icon)

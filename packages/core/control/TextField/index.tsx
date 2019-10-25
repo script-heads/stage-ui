@@ -1,33 +1,33 @@
-import { jsx } from '@emotion/core';
-import React, { FC, forwardRef, useState, useImperativeHandle, useRef, useEffect, useMemo } from 'react';
-import textFieldStyles from './styles';
-import Types from './types';
-import Field from '../../misc/hocs/Field';
-import IMask from 'imask';
-import createID from '../../misc/utils/createID';
-import useStyles from '@flow-ui/core/misc/hooks/useStyles';
-import useContainer from '@flow-ui/core/misc/hooks/useContainer';
+import { jsx } from '@emotion/core'
+import React, { FC, forwardRef, useState, useImperativeHandle, useRef, useEffect, useMemo } from 'react'
+import textFieldStyles from './styles'
+import Types from './types'
+import Field from '../../misc/hocs/Field'
+import IMask from 'imask'
+import createID from '../../misc/utils/createID'
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import useContainer from '@flow-ui/core/misc/hooks/useContainer'
 
-const elements: { [key: string]: IMask.InputMask<IMask.AnyMaskedOptions> } = {};
+const elements: { [key: string]: IMask.InputMask<IMask.AnyMaskedOptions> } = {}
 
 const TextField: FC<Types.Props> = (props, ref) => {
 
-    const {decoration = 'outline', size = 'medium', shape='rounded', tabIndex = 1} = props;
+    const {decoration = 'outline', size = 'medium', shape='rounded', tabIndex = 1} = props
     const [isEmpty, setEmpty] = useState<boolean>(
         props.defaultValue === '' ||
         typeof props.defaultValue === 'undefined'
-    );
+    )
     
-    const {attributes, focus} = useContainer(props, true, props.decoration != 'none');
-    const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xlarge');
+    const {attributes, focus} = useContainer(props, true, props.decoration != 'none')
+    const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xlarge')
     const isLabelOverlay = (isEmpty && !focus && !isLabelOutside) ? true : false
-    const styles = useStyles<Types.Styles>(props, textFieldStyles, 'TextField');
-    const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
-    const id = useMemo(() => createID(), []);
+    const styles = useStyles<Types.Styles>(props, textFieldStyles, 'TextField')
+    const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
+    const id = useMemo(() => createID(), [])
 
     useImperativeHandle(ref, () => {
         return inputRef.current
-    });
+    })
 
     useEffect(() => {
         if (inputRef.current && props.masked) {
@@ -36,7 +36,7 @@ const TextField: FC<Types.Props> = (props, ref) => {
                 props.masked
             )
         }
-    }, []);
+    }, [])
 
     useEffect(() => {
         if (typeof props.value != 'undefined') {
@@ -45,13 +45,13 @@ const TextField: FC<Types.Props> = (props, ref) => {
             } else if (inputRef.current) {
                 inputRef.current.value = props.value.toString()
             }
-            setEmpty(props.value === '');
+            setEmpty(props.value === '')
         }
     }, [props.value])
 
     function onChange(event) {
         props.onChange && props.onChange(event)
-        setEmpty(event.target.value === '');
+        setEmpty(event.target.value === '')
     }
 
     return (
@@ -120,4 +120,4 @@ const TextField: FC<Types.Props> = (props, ref) => {
     )
 }
 
-export default forwardRef(TextField);
+export default forwardRef(TextField)

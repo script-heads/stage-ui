@@ -1,15 +1,15 @@
-import React from 'react';
-import ModalTypes from './types';
+import React from 'react'
+import ModalTypes from './types'
 
-import { H1 } from '../../content/Typography/H';
-import { T1 } from '../../content/Typography/T';
-import Flexbox from '../Flexbox';
-import Icon from '../../content/Icon';
+import { H1 } from '../../content/Typography/H'
+import { T1 } from '../../content/Typography/T'
+import Flexbox from '../Flexbox'
+import Icon from '../../content/Icon'
 
 const ModalHeader = (props: ModalTypes.ModalHeaderProps) => {
 
     if (props.hideHeader) {
-        return null;
+        return null
     }
 
     return (

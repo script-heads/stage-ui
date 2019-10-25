@@ -1,7 +1,7 @@
-import light from './light';
+import light from './light'
 
 const dark = light.replace({
-    name: "Dark",
+    name: 'Dark',
 
     color: {
         background: [44, 44, 52],

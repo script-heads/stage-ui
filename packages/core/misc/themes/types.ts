@@ -1,5 +1,5 @@
-import chroma from 'chroma-js';
-import { ObjectInterpolation } from '@emotion/core';
+import chroma from 'chroma-js'
+import { ObjectInterpolation } from '@emotion/core'
 /**
  * Content
  */
@@ -37,7 +37,7 @@ import NotificationTypes from '../../layout/Notification/types'
 import PanelTypes from '../../layout/Panel/types'
 import PopoverTypes from '../../layout/Popover/types'
 import TreeTypes from '../../layout/Tree/types'
-import Global from '../../types';
+import Global from '../../types'
 
 declare namespace ThemeTypes {
 
@@ -115,7 +115,7 @@ declare namespace ThemeTypes {
         variables: DeepPartial<Variables>,
         assets?: (variables: Variables<chroma.Color>) => DeepPartial<Assets>,
         overrides?: Overrides
-    ) => Index;
+    ) => Index
 
     type Colors<T> = {
         background: T
@@ -191,7 +191,7 @@ declare namespace ThemeTypes {
         : T[P] extends ReadonlyArray<infer U>
         ? ReadonlyArray<DeepPartial<U>>
         : DeepPartial<T[P]>
-    };
+    }
 }
 
 export default ThemeTypes

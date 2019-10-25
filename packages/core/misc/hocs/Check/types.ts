@@ -1,4 +1,4 @@
-import Global from "@flow-ui/core/types";
+import Global from '@flow-ui/core/types'
 
 declare namespace CheckTypes {
 
@@ -35,4 +35,4 @@ declare namespace CheckTypes {
     }
 }
 
-export default CheckTypes;
+export default CheckTypes

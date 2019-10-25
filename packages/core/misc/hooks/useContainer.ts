@@ -1,11 +1,11 @@
-import { useState } from "react";
-import useFlow from "./useFlow";
+import { useState } from 'react'
+import useFlow from './useFlow'
 
 export default (props, mouseFocus?: boolean, disableDecoration?: boolean) => {
 
-    const [focus, setFocus] = useState(false);
-    const { theme } = useFlow();
-    let isMouseDown = false;
+    const [focus, setFocus] = useState(false)
+    const { theme } = useFlow()
+    let isMouseDown = false
 
     const attributes = {
         id: props.id,
@@ -20,33 +20,33 @@ export default (props, mouseFocus?: boolean, disableDecoration?: boolean) => {
         tabIndex: props.tabIndex,
         role: props.role,
         onBlur: (event) => {
-            event.stopPropagation();
-            setFocus(false);
-            props.onBlur && props.onBlur(event);
+            event.stopPropagation()
+            setFocus(false)
+            props.onBlur && props.onBlur(event)
         },
         onFocus: (event) => {
-            event.stopPropagation();
+            event.stopPropagation()
             if (mouseFocus || !isMouseDown) {
-                setFocus(true);
+                setFocus(true)
             }
-            props.onFocus && props.onFocus(event);
+            props.onFocus && props.onFocus(event)
         },
         onMouseDown: (event) => {
             isMouseDown = true
-            props.onMouseDown && props.onMouseDown(event);
+            props.onMouseDown && props.onMouseDown(event)
         },
         onMouseUp: (event) => {
             isMouseDown = false
-            props.onMouseUp && props.onMouseUp(event);
+            props.onMouseUp && props.onMouseUp(event)
         },
         onKeyPress: props.onKeyPress,
         onKeyDown: (event) => {
-            props.onKeyPress && props.onKeyPress(event);
+            props.onKeyPress && props.onKeyPress(event)
             if (event.key === 'Enter' && props.onEnter) {
-                props.onEnter(event);
+                props.onEnter(event)
             }
             if (event.key === 'Esc' && props.onEsc) {
-                props.onEsc(event);
+                props.onEsc(event)
             }
             props.onKeyDown && props.onKeyDown(event)
         },
@@ -62,5 +62,5 @@ export default (props, mouseFocus?: boolean, disableDecoration?: boolean) => {
     return {
         attributes,
         focus
-    };
+    }
 }

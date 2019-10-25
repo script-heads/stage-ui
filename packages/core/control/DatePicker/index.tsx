@@ -2,32 +2,32 @@
  * DatePicker.tsx
  * author: I.Trikoz
  */
-import moment, { Moment } from 'moment';
-import React, { FC, forwardRef, RefObject, useLayoutEffect, useRef, useState, Fragment } from 'react';
-import Icon from '../../content/Icon';
-import Drop from '../../layout/Drop';
-import Popover from '../../layout/Popover';
-import TextField from '../TextField';
-import DateGrid from './DateGrid';
-import createStyles from './styles';
-import DatePickerTypes from './types';
-import mask from './mask';
-import FieldTypes from '../../misc/hocs/Field/types';
+import moment, { Moment } from 'moment'
+import React, { FC, forwardRef, RefObject, useLayoutEffect, useRef, useState, Fragment } from 'react'
+import Icon from '../../content/Icon'
+import Drop from '../../layout/Drop'
+import Popover from '../../layout/Popover'
+import TextField from '../TextField'
+import DateGrid from './DateGrid'
+import createStyles from './styles'
+import DatePickerTypes from './types'
+import mask from './mask'
+import FieldTypes from '../../misc/hocs/Field/types'
 
 const DatePicker: FC<DatePickerTypes.Props> = (props, ref: RefObject<HTMLDivElement>) => {
 
     const {
-        locale = "ru",
-        format = "YYYY-MM-DD"
-    } = props;
+        locale = 'ru',
+        format = 'YYYY-MM-DD'
+    } = props
 
     moment.locale(locale)
 
     const now = moment()
-    const [value, setValue] = useState(now);
-    const [isActive, setActive] = useState(false);
+    const [value, setValue] = useState(now)
+    const [isActive, setActive] = useState(false)
     
-    const styles = createStyles();
+    const styles = createStyles()
     
     const fieldRef = useRef<any>(null)
     
@@ -36,27 +36,27 @@ const DatePicker: FC<DatePickerTypes.Props> = (props, ref: RefObject<HTMLDivElem
 
     useLayoutEffect(() => {
         if (props.value) {
-            if (typeof props.value === "string") {
-                setValue(moment(props.value, format));
+            if (typeof props.value === 'string') {
+                setValue(moment(props.value, format))
             } else {
-                setValue(moment(props.value));
+                setValue(moment(props.value))
             }
         }
-    }, []);
+    }, [])
 
     function onChange(value: Moment) {
         if (!value.isValid) {
-            return;
+            return
         }
         fieldRef.current!.value = value.format(format)
         
-        setValue(value);
+        setValue(value)
 
         if (props.onChange) {
-            props.onChange(value, value.format(format));
+            props.onChange(value, value.format(format))
         }
         if (!props.stayOpen) {
-            setActive(false);
+            setActive(false)
         }
     }
 
@@ -71,7 +71,7 @@ const DatePicker: FC<DatePickerTypes.Props> = (props, ref: RefObject<HTMLDivElem
                 onChange={(e) => {
                     const date = moment(e.target.value, format)
                     if (date.isValid() && date > minValue && date < maxValue) {
-                        setValue(date);
+                        setValue(date)
                     }
                 }}
                 onClick={() => {
@@ -114,6 +114,6 @@ const DatePicker: FC<DatePickerTypes.Props> = (props, ref: RefObject<HTMLDivElem
         </Fragment>
         
     )
-};
+}
 
-export default forwardRef(DatePicker);
+export default forwardRef(DatePicker)
