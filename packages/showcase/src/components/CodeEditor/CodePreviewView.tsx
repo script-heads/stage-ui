@@ -15,7 +15,7 @@ Object.assign(window, {
 const GridBackground = (props: { set?: boolean, children: any }) => {
     const { theme } = CoreScope.useFlow()
     const gridColor1 = theme.color.background.hex();
-    const gridColor2 = theme.color.backgroundVariant.hex();
+    const gridColor2 = theme.color.surface.hex();
     const gridBackground = `
         linear-gradient(45deg, ${gridColor2} 25%, transparent 25%),
         linear-gradient(-45deg, ${gridColor2} 25%, transparent 25%), 
