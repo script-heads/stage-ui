@@ -29,7 +29,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
     const { attributes } = useContainer(props)
     const { shape = 'round', size = 'medium' } = props;
 
-    const [active, setActive] = useState(false)
+    const [active, setActive] = useState(props.mode === 'always')
     const memo: any = useMemo(() => ({
         y: false,
         x: false,
@@ -60,7 +60,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             if (total <= content) {
                 return false
             }
-
+            
             const min = 0
             const max = -(total - content)
             const ratio = (content / total) * 100
@@ -76,7 +76,8 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             if (value > min) value = min
             if (value < max) value = max
 
-            if (offset !== value) {
+            if (offset !== value || value === 0) {
+
                 memo.content!.style.top = value + 'px'
                 memo.yBar!.style.height = content + 'px'
                 memo.yThumb!.style.height = content * ratio / 100 + 'px'
@@ -97,7 +98,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             const content = memo.container.offsetWidth
 
             memo.xBar.style.visibility = total > content ? 'visible' : 'hidden'
-
+            
             if (total <= content) {
                 return false
             }
@@ -117,7 +118,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             if (value > min) value = min
             if (value < max) value = max
 
-            if (offset !== value) {
+            if (offset !== value || value === 0) {
                 memo.content!.style.left = value + 'px'
                 memo.xBar!.style.width = content + 'px'
                 memo.xThumb!.style.width = content * ratio / 100 + 'px'
@@ -131,7 +132,10 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             return false
         }
 
-        if ((updateY() || updateX()) && memo.mode === 'scroll') {
+        const y = updateY();
+        const x = updateX();
+
+        if ((y || x) && memo.mode === 'scroll') {
             setActive(true)
             if (memo.timeout) {
                 clearTimeout(memo.timeout)
