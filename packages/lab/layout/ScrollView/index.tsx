@@ -27,9 +27,15 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
 
     const styles = useStyles<Types.Styles>(props, Styles)
     const { attributes } = useContainer(props)
-    const { shape = 'round', size = 'medium' } = props;
+    const { 
+        shape = 'round', 
+        size = 'medium', 
+        mode = 'scroll',
+        xBarPosition = 'bottom',
+        yBarPosition = 'right',
+    } = props;
 
-    const [active, setActive] = useState(props.mode === 'always')
+    const [active, setActive] = useState(mode === 'always')
     const memo: any = useMemo(() => ({
         y: false,
         x: false,
@@ -41,7 +47,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         container: null,
         content: null,
         timeout: null,
-        mode: props.mode || 'scroll'
+        mode: mode || 'scroll'
     }), []);
 
     function updateScroll(e: ScrollParams) {
@@ -54,13 +60,13 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
 
             const total = memo.content.offsetHeight
             const content = memo.container.offsetHeight
-            
+
             memo.yBar.style.visibility = total > content ? 'visible' : 'hidden'
 
             if (total <= content) {
                 return false
             }
-            
+
             const min = 0
             const max = -(total - content)
             const ratio = (content / total) * 100
@@ -85,7 +91,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
 
                 e.preventDefault()
                 e.stopPropagation()
-            
+
                 return true
             }
             return false
@@ -98,7 +104,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             const content = memo.container.offsetWidth
 
             memo.xBar.style.visibility = total > content ? 'visible' : 'hidden'
-            
+
             if (total <= content) {
                 return false
             }
@@ -174,10 +180,10 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
     }
 
     useEffect(() => {
-        if (memo.timeout && props.mode !== 'always') {
+        if (memo.timeout && mode !== 'always') {
             clearTimeout(memo.timeout)
         }
-        memo.mode = props.mode
+        memo.mode = mode
         setActive(memo.mode == 'always' ? true : false)
         updateScroll({
             deltaX: 0,
@@ -203,17 +209,32 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         memo.container = ref
     }
 
-    const variantParams = { active, size, shape }
-    
     return (
         <div {...attributes} css={styles.container} ref={createRef}>
-            <div css={styles.content} ref={ref => memo.content = ref} children={props.children} />
-            <div css={styles.yBar(variantParams)} ref={ref => memo.yBar = ref}>
-                <span css={styles.yThumb(variantParams)} ref={ref => memo.yThumb = ref} />
-            </div>
-            <div css={styles.xBar(variantParams)} ref={ref => memo.xBar = ref}>
-                <span css={styles.xThumb(variantParams)} ref={ref => memo.xThumb = ref} />
-            </div>
+            <div
+                css={styles.content}
+                ref={ref => memo.content = ref}
+                children={props.children}
+            />
+            <div
+                css={styles.yBar({ active, size, shape, position: yBarPosition })}
+                ref={ref => memo.yBar = ref}
+                children={(
+                    <span
+                        css={styles.yThumb({ active, size, shape })}
+                        ref={ref => memo.yThumb = ref}
+                    />
+                )}
+            />
+            <div
+                css={styles.xBar({ active, size, shape, position: xBarPosition })}
+                ref={ref => memo.xBar = ref}
+                children={(
+                    <span
+                        css={styles.xThumb({ active, size, shape })}
+                        ref={ref => memo.xThumb = ref}
+                    />
+                )} />
         </div>
     )
 }

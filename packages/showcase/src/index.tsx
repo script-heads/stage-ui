@@ -14,6 +14,7 @@ import ShowcaseMenu from './components/Menu';
 import ThemeSwitch from "./components/ThemeSwitch";
 import UIDocumentation from "./components/UIDocumentation";
 import core, { Case } from './core';
+import { ScrollView } from '@flow-ui/lab';
 
 
 export const themes = { ...themesCore, ...themesLab }
@@ -36,6 +37,8 @@ interface State {
 }
 
 class Showcase extends React.Component<{}, State>  {
+
+	mainViewRef: any = null
 
 	state: Readonly<State> = {
 		caseId: null,
@@ -97,6 +100,8 @@ class Showcase extends React.Component<{}, State>  {
 			caseObject,
 			caseIndex: 0,
 		});
+
+		this.mainViewRef && this.mainViewRef.scrollTop()
 	}
 
 	componentWillUnmount() {
@@ -120,12 +125,8 @@ class Showcase extends React.Component<{}, State>  {
 			<Context.Provider value={{ ...context, setContext: this.setContext }}>
 				<Viewport theme={themes[this.state.currentTheme]}>
 					<Flexbox alignItems="flex-start">
-						<Block flex={1} css={{ 
-							padding: '2rem 4rem', 
-							position: (caseObject && caseObject.sticky) ? "relative" : "sticky", 
-							top: 0, 
-							zIndex:1 
-						}}>
+						<ScrollView flex={1} size="xsmall" h="100vh" yBarPosition="left" ref={ref => this.mainViewRef = ref}>
+							<Block css={{padding: '2rem 4rem', zIndex:1 }}>
 							{caseObject && caseObject.title && (
 								<H1
 									css={{
@@ -210,8 +211,9 @@ class Showcase extends React.Component<{}, State>  {
 								/>
 							)}
 							{CustomPageContent && <CustomPageContent />}
-						</Block>
-						<Block>
+							</Block>
+						</ScrollView>
+						<ScrollView h="100vh" size="xsmall">
 							<Flexbox pt="1rem" pl="1.25rem" pr="1rem">
 								<H3
 									css={{ cursor: "default" }}
@@ -234,7 +236,7 @@ class Showcase extends React.Component<{}, State>  {
 								cases={core.cases}
 								onChange={this.setCase}
 							/>
-						</Block>
+						</ScrollView>
 					</Flexbox>
 				</Viewport>
 			</Context.Provider>

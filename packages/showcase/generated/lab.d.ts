@@ -93,6 +93,16 @@ declare module 'layout/ScrollView/types' {
 	         * @default round
 	         */
 	        shape?: 'square' | 'round';
+	        /**
+	         * Position of X bar
+	         * @default bottom
+	         */
+	        xBarPosition?: 'top' | 'bottom';
+	        /**
+	         * Position of Y bar
+	         * @default right
+	         */
+	        yBarPosition?: 'left' | 'right';
 	    }
 	    interface Ref {
 	        scrollTop: () => void;
@@ -104,6 +114,7 @@ declare module 'layout/ScrollView/types' {
 	            active: boolean;
 	            shape: Props["shape"];
 	            size: Props["size"];
+	            position: Props["yBarPosition"];
 	        };
 	        yThumb: {
 	            active: boolean;
@@ -114,6 +125,7 @@ declare module 'layout/ScrollView/types' {
 	            active: boolean;
 	            shape: Props["shape"];
 	            size: Props["size"];
+	            position: Props["xBarPosition"];
 	        };
 	        xThumb: {
 	            active: boolean;
