@@ -11,8 +11,6 @@ const textFieldStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: 
         multiline, 
     } = props;
 
-    const field = fieldStyles(props, theme);
-
     const multilineAdditionalPadding = variant(size, {
         'medium': '.25rem',
         'large': '.25rem',
@@ -20,7 +18,7 @@ const textFieldStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: 
     })
 
     return {
-        ...field,
+        ...fieldStyles(props, theme),
         input: (variant) => [
             {
                 outline: 0,

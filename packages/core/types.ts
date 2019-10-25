@@ -42,7 +42,7 @@ declare namespace Global {
     
     type ComponentStyles<S> = {[O in keyof S]: ComponentStyle<S[O]>}
 
-    type FunctionalComponentStyles<S> = ((props, theme: ThemeTypes.Index) => {[O in keyof S]: ComponentStyle<S[O]>})        
+    type FunctionalComponentStyles<S, P = any> = ((props: P, theme: ThemeTypes.Index) => {[O in keyof S]: ComponentStyle<S[O]>})        
 
     type OverridesStyle<S> = Partial<{[O in keyof S]: ComponentStyle<S[O]>}>
 

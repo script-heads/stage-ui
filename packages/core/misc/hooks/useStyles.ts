@@ -3,14 +3,14 @@ import {css} from "@emotion/core";
 import useFlow from "./useFlow";
 import ThemeTypes from "../themes/types";
 
-const createStyles = <S>(
-        props, 
-        componentStyles: Global.ComponentStyles<S> | Global.FunctionalComponentStyles<S> , 
+const createStyles = <S, P>(
+        props: P, 
+        componentStyles: Global.ComponentStyles<S> | Global.FunctionalComponentStyles<S,P>, 
         componentName?: keyof ThemeTypes.Overrides
     ): Global.FlowStyles<S> => {
     
     const { theme } = useFlow();
-    let FlowStyles: Global.FlowStyles<S> = {} as any;
+    const FlowStyles: Global.FlowStyles<S> = {} as any;
 
     if (typeof componentStyles === 'function') {
         componentStyles = componentStyles(props,theme)
