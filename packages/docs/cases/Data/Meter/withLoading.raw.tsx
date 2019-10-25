@@ -4,7 +4,7 @@ import { Meter } from '@flow-ui/core';
 export default () => {
     return (
         <Meter
-            animation
+            loading
             percent={100}
             color={c => c.secondary.css()}
         />

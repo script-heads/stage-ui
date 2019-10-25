@@ -1,5 +1,5 @@
 import code from './default.raw';
-import withAnimation from './withAnimation.raw';
+import withLoading from './withLoading.raw';
 
 export const title = 'Meter'
 export const subtitle = ''
@@ -10,7 +10,7 @@ export const cases = [
         code
     },
     {
-        label: 'With animation',
-        code: withAnimation
+        label: 'With loading',
+        code: withLoading
     }
 ]

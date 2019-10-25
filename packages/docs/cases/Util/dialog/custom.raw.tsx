@@ -8,7 +8,7 @@ export default () => {
                 dialog({
                     title: "In progress",
                     customContent: (
-                        <Meter animation percent={100} />
+                        <Meter loading percent={100} />
                     )
                 })
             }}

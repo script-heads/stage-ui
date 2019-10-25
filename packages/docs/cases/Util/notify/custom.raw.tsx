@@ -11,7 +11,7 @@ export default () => {
                     customContent: (
                         <Block p="1rem" w="20rem">
                             <H4 pb="1rem">In progress</H4>
-                            <Meter animation percent={100} />
+                            <Meter loading percent={100} />
                         </Block>
                     ),
                     timeout: 3000
