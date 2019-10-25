@@ -23,6 +23,7 @@
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.6.0",
     "@babel/plugin-transform-runtime": "^7.5.0",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
@@ -31,7 +32,7 @@
     "@types/luxon": "^1.15.2",
     "babel-loader": "^8.0.6",
     "csstype": "^2.6.6",
-    "typescript": "^3.7.0-beta",
-    "tslint": "^5.20.0"
+    "tslint": "^5.20.0",
+    "typescript": "^3.7.0-beta"
   }
 }

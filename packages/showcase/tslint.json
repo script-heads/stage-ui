@@ -5,7 +5,7 @@
         "no-consecutive-blank-lines": true,
         "no-non-null-assertion": true,
         "max-line-length": {
-            "options": [80]
+            "options": [120]
         },
         "max-file-line-count": [true, 800],
         "no-empty": [true, "allow-empty-catch"],
