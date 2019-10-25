@@ -1,6 +1,7 @@
 import Global from "@flow-ui/core/types";
 import { ChangeEventHandler } from "react";
 import IMask from 'imask';
+import FieldTypes from "../../misc/hocs/Field/types";
 
 declare namespace TextFieldTypes {
 
@@ -15,7 +16,7 @@ declare namespace TextFieldTypes {
         'text' |
         'url'
 
-    interface Props extends Global.FieldProps, Global.Props, InputProps, TextAreaProps {
+    interface Props extends FieldTypes.Props, InputProps, TextAreaProps {
         defaultValue?: string | number
         align?: "left" | "right"
         multiline?: boolean
@@ -56,8 +57,11 @@ declare namespace TextFieldTypes {
         wrap?: string;
     }
 
-    export interface Styles {
-        
+    interface Styles extends FieldTypes.Styles {
+        input: {
+            isLabelOverlay: boolean
+        }
+        insideLabelStyles: void
     }
 }
 

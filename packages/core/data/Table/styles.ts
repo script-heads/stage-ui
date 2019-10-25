@@ -2,7 +2,7 @@ import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
 import Types from './types';
 import Global from '../../types';
 
-const tabelStyles: Global.ComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const tabelStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     const styleProps = useStyleProps(props);
 
     return {

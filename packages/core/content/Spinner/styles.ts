@@ -4,7 +4,7 @@ import callProp from '@flow-ui/core/misc/utils/callProp';
 import Types from './types';
 import Global from '../../types';
 
-const spinnerStyles: Global.ComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const spinnerStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     const styleProps = useStyleProps(props);
     const color = callProp(props.color, theme.color) || theme.color.hardest.css();
     const duration = props.duration || 1;

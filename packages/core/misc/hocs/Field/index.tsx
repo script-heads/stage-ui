@@ -1,33 +1,29 @@
-import React, { FC, forwardRef, useRef, useState, useEffect } from 'react';
-import getStyles from './styles';
-import FieldTypes from './types';
-import useContainer from '../../hooks/useContainer';
+import React, { FC, forwardRef } from 'react';
+import Types from './types';
 import Icon from '../../../content/Icon';
 
-const Field: FC<FieldTypes.Props> = (props, ref) => {
+const Field: FC<Types.PrivateProps> = (props, ref) => {
 
     const {
-        decoration = 'outline',
-        size = 'medium',
-        name,
+        decoration,
+        shape,
+        size,
+        labelName,
         label,
         clearable,
         onClear,
-        isEmpty
+        attributes,
+        focus,
+        styles,
+        isLabelOutside, 
+        isLabelOverlay,
+        disabled
     } = props;
-    const { attributes, focus } = useContainer(props, true, decoration != 'none');
-    const styles = getStyles(props);
-    const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xlarge');
-    const isLabelOverlay = (isEmpty && !focus && !isLabelOutside) ? true : false
-
-    useEffect(() => {
-        props.onLabelOverlay && props.onLabelOverlay(isLabelOverlay);
-    }, [isLabelOverlay])
 
     const Label = (
         <label
-            css={styles.label(isLabelOutside, isLabelOverlay)}
-            htmlFor={name}
+            css={styles.label({isLabelOutside, isLabelOverlay, size})}
+            htmlFor={labelName}
             children={label}
         />
     )
@@ -37,23 +33,21 @@ const Field: FC<FieldTypes.Props> = (props, ref) => {
             {...attributes}
             ref={ref}
             css={styles.container}
-            tabIndex={props.tabIndex}
         >
             {label && isLabelOutside && Label}
             {
-                //@ts-ignore
-                <div css={styles.field(focus)} disabled={props.disabled}>
+                <div css={styles.field({focus, size, decoration, shape, disabled})}>
                     {props.leftChild && (
-                        <div css={styles.child('left')}>
+                        <div css={styles.child({align: 'left', size})}>
                             {props.leftChild}
                         </div>
                     )}
-                    <div css={styles.content(isLabelOverlay)}>
+                    <div css={styles.content({isLabelOverlay})}>
                         {label && !isLabelOutside && Label}
                         {props.children}
                     </div>
                     {(clearable || props.rightChild) && (
-                        <div css={styles.child('right')}>
+                        <div css={styles.child({align: 'right', size})}>
                             {clearable && <Icon
                                 type={i => i.filled.close}
                                 onClick={(e) => {

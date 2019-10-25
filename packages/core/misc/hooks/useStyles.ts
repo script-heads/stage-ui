@@ -5,7 +5,7 @@ import ThemeTypes from "../themes/types";
 
 const createStyles = <S>(
         props, 
-        componentStyles: Global.ComponentStyles<S>, 
+        componentStyles: Global.ComponentStyles<S> | Global.FunctionalComponentStyles<S> , 
         componentName?: keyof ThemeTypes.Overrides
     ): Global.FlowStyles<S> => {
     

@@ -1,12 +1,17 @@
-import useFlow from '@flow-ui/core/misc/hooks/useFlow';
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
 import variant from '@flow-ui/core/misc/utils/variant';
-import TextFieldTypes from './types';
+import Types from './types';
+import Global from '../../types';
+import fieldStyles from '@flow-ui/core/misc/hocs/Field/styles';
 
-export default (props: TextFieldTypes.Props) => {
-    const { size = 'medium', multiline, decoration = 'outline' } = props;
-    const { theme } = useFlow();
-    const styleProps = useStyleProps(props);
+const textFieldStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+    
+    const { 
+        size = 'medium',
+        decoration = 'outline',
+        multiline, 
+    } = props;
+
+    const field = fieldStyles(props, theme);
 
     const multilineAdditionalPadding = variant(size, {
         'medium': '.25rem',
@@ -14,10 +19,9 @@ export default (props: TextFieldTypes.Props) => {
         'xlarge': '.5rem'
     })
 
-    const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xlarge');
-
     return {
-        input: (underOverlay) => [
+        ...field,
+        input: (variant) => [
             {
                 outline: 0,
                 padding: 0,
@@ -37,17 +41,17 @@ export default (props: TextFieldTypes.Props) => {
             multiline && decoration != 'underline' && {
                 padding: multilineAdditionalPadding
             },
-            multiline && !isLabelOutside && !underOverlay && {
-                paddingTop: 0
-            },
-            underOverlay && {
-                opacity: '0'
-            }],
-
-        insideLabelStyles: {
+            variant({
+                isLabelOverlay: [{
+                    opacity: '0'
+                }]
+            }),   
+        ],
+        insideLabelStyles: [{
             marginLeft: multilineAdditionalPadding,
             marginTop: multilineAdditionalPadding
-        }
-
+        }]
     }
 }
+
+export default textFieldStyles

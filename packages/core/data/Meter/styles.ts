@@ -4,7 +4,7 @@ import chroma from 'chroma-js';
 import Types from './types';
 import Global from '../../types';
 
-const meterStyles: Global.ComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const meterStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     const {
         animation,
     } = props;

@@ -2,7 +2,7 @@ import Types from './types';
 import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
 import Global from '../../types';
 
-const modalStyles: Global.ComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const modalStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     const styleProps = useStyleProps(props);
 
     return {

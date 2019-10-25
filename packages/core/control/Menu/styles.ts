@@ -5,7 +5,7 @@ import chroma from 'chroma-js';
 import Types from './types';
 import Global from '../../types';
 
-const menuStyles: Global.ComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const menuStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     
     const {
         decoration = 'underline',

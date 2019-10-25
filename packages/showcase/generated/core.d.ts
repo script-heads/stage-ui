@@ -531,6 +531,25 @@ declare module 'types' {
 	} namespace Global {
 	    type EventProp<T> = (event: T) => void;
 	    type FunctionalProp<T, R> = ((lib: T) => R) | R;
+	    type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
+	    type EmotionStyles = Array<Interpolation>;
+	    type Variants<T> = Partial<{
+	        [K in keyof T]: Partial<Record<Extract<T[K], string>, EmotionStyles>>;
+	    }>;
+	    type Variant<V> = (variants: Variants<V>) => EmotionStyles;
+	    type FlowStyle<V> = V extends Object ? (state: V) => SerializedStyles : SerializedStyles;
+	    type ComponentStyle<V> = V extends {} ? ((variant: Variant<V>) => EmotionStyles) : EmotionStyles;
+	    type FlowStyles<S> = {
+	        [O in keyof S]: FlowStyle<S[O]>;
+	    };
+	    type ComponentStyles<S> = ((props: any, theme: ThemeTypes.Index) => {
+	        [O in keyof S]: ComponentStyle<S[O]>;
+	    }) | {
+	        [O in keyof S]: ComponentStyle<S[O]>;
+	    };
+	    type OverridesStyle<S> = Partial<{
+	        [O in keyof S]: ComponentStyle<S[O]>;
+	    }>;
 	    interface Props extends HTMLAttributes, EventHandlers, SelfProps, FlowProps {
 	    }
 	    /**
@@ -805,42 +824,6 @@ declare module 'types' {
 	    }
 	    type ColorProp = FunctionalProp<ThemeTypes.Colors<chroma.Color>, CSS.Properties["color"]>;
 	    type IconProp = FunctionalProp<IconsetTypes.Index, string>;
-	    /**
-	     * Props for text form fields
-	     * @name FieldProps
-	     * @weight 100
-	     */
-	    interface FieldProps {
-	        label?: React.ReactNode;
-	        hint?: React.ReactNode;
-	        size?: Global.Size;
-	        decoration?: 'none' | 'filled' | 'underline' | 'outline';
-	        color?: Global.ColorProp;
-	        shape?: 'round' | 'rounded' | 'square';
-	        disabled?: boolean;
-	        rightChild?: React.ReactNode;
-	        leftChild?: React.ReactNode;
-	        clearable?: boolean;
-	    }
-	    type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
-	    type EmotionStyles = Array<Interpolation>;
-	    type Variants<T> = Partial<{
-	        [K in keyof T]: Partial<Record<Extract<T[K], string>, EmotionStyles>>;
-	    }>;
-	    type Variant<V> = (variants: Variants<V>) => EmotionStyles;
-	    type FlowStyle<V> = V extends Object ? (state: V) => SerializedStyles : SerializedStyles;
-	    type ComponentStyle<V> = V extends {} ? ((variant: Variant<V>) => EmotionStyles) : EmotionStyles;
-	    type FlowStyles<S> = {
-	        [O in keyof S]: FlowStyle<S[O]>;
-	    };
-	    type ComponentStyles<S> = ((props: any, theme: ThemeTypes.Index) => {
-	        [O in keyof S]: ComponentStyle<S[O]>;
-	    }) | {
-	        [O in keyof S]: ComponentStyle<S[O]>;
-	    };
-	    type OverridesStyle<S> = Partial<{
-	        [O in keyof S]: ComponentStyle<S[O]>;
-	    }>;
 	}
 	export default Global;
 
@@ -942,8 +925,7 @@ declare module 'content/Typography/types' {
 }
 declare module 'control/Button/types' {
 	/// <reference types="react" />
-	import Global from '@flow-ui/core/types';
-	import { ObjectInterpolation } from '@emotion/css'; namespace ButtonTypes {
+	import Global from '@flow-ui/core/types'; namespace ButtonTypes {
 	    interface Props extends Global.Props {
 	        autoFocus?: boolean;
 	        disabled?: boolean;
@@ -968,11 +950,11 @@ declare module 'control/Button/types' {
 	        children?: React.ReactNode;
 	    }
 	    interface Styles {
-	        container: ObjectInterpolation<undefined>;
-	        filled: ObjectInterpolation<undefined>;
-	        outline: ObjectInterpolation<undefined>;
-	        text: ObjectInterpolation<undefined>;
-	        plain: ObjectInterpolation<undefined>;
+	        container: {
+	            decoration: Props["decoration"];
+	            shape: Props["shape"];
+	            size: Props["size"];
+	        };
 	    }
 	}
 	export default ButtonTypes;
@@ -999,6 +981,58 @@ declare module 'control/Checkbox/types' {
 	export default CheckboxTypes;
 
 }
+declare module 'misc/hocs/Field/types' {
+	/// <reference types="react" />
+	import Global from '@flow-ui/core/types'; namespace FieldTypes {
+	    interface Props extends Global.Props {
+	        label?: React.ReactNode;
+	        hint?: React.ReactNode;
+	        size?: Global.Size;
+	        decoration?: 'none' | 'filled' | 'underline' | 'outline';
+	        color?: Global.ColorProp;
+	        shape?: 'round' | 'rounded' | 'square';
+	        disabled?: boolean;
+	        rightChild?: React.ReactNode;
+	        leftChild?: React.ReactNode;
+	        clearable?: boolean;
+	    }
+	    interface Styles {
+	        container: void;
+	        field: {
+	            disabled: Props['disabled'];
+	            focus: boolean;
+	            shape: Props['shape'];
+	            size: Props['size'];
+	            decoration: Props['decoration'];
+	        };
+	        content: {
+	            isLabelOverlay: boolean;
+	        };
+	        label: {
+	            isLabelOutside: boolean;
+	            isLabelOverlay: boolean;
+	        };
+	        child: {
+	            align: 'right' | 'left';
+	            size: Props['size'];
+	        };
+	        hint: void;
+	    }
+	    interface PrivateProps extends Props {
+	        focus: boolean;
+	        isLabelOutside: boolean;
+	        isLabelOverlay: boolean;
+	        styles: Global.FlowStyles<Styles>;
+	        labelName?: string;
+	        attributes?: any;
+	        children?: React.ReactNode;
+	        onEnter?: () => void;
+	        onClear?: () => void;
+	    }
+	}
+	export default FieldTypes;
+
+}
 declare module 'control/DatePicker/types' {
 	/**
 	 * types.tsx
@@ -1007,10 +1041,10 @@ declare module 'control/DatePicker/types' {
 	import { Interpolation } from '@emotion/core';
 	import { Moment } from 'moment';
 	import { CSSProperties } from 'react';
-	import Global from '@flow-ui/core/types'; namespace DatePickerTypes {
+	import FieldTypes from 'misc/hocs/Field/types'; namespace DatePickerTypes {
 	    type GridType = "year" | "month" | "day";
 	    type Locale = 'en' | 'ru' | 'it' | 'fr' | 'de';
-	    interface Props extends Global.FieldProps {
+	    interface Props extends FieldTypes.Props {
 	        /**
 	         * Type for DatePicker
 	         * @default day
@@ -1120,17 +1154,30 @@ declare module 'control/Menu/types' {
 	        color?: Global.ColorProp;
 	        disabled?: boolean;
 	    }
-	    interface Item extends Global.EventHandlers {
+	    interface Item extends Partial<Global.EventHandlers>, Partial<Props> {
 	        content: React.ReactNode;
 	        value: Value;
 	        disabled?: boolean;
 	    }
 	    interface ItemProps extends Item {
-	        active?: boolean;
-	        styles?: any;
-	        onEnter?: () => void;
+	        active: boolean;
+	        styles: Global.FlowStyles<Styles>;
+	        onEnter: () => void;
 	    }
 	    interface Styles {
+	        container: {
+	            size: Props['size'];
+	            flip: Props['flip'];
+	            border: Props['border'];
+	        };
+	        item: {
+	            shape: Props['shape'];
+	            disabled: boolean;
+	            active: boolean;
+	            size: Props['size'];
+	            decoration: Props['decoration'];
+	        };
+	        separator: void;
 	    }
 	}
 	export default MenuTypes;
@@ -1158,36 +1205,33 @@ declare module 'control/Radio/types' {
 
 }
 declare module 'control/Range/types' {
-	import { CSSProperties } from 'react';
-	import { Interpolation } from '@emotion/css'; namespace RangeTypes {
-	    interface Props {
+	import Global from 'types'; namespace RangeTypes {
+	    interface Props extends Global.Props {
 	        min?: number;
 	        max?: number;
 	        defaultValue?: number;
 	        value?: number;
 	        onChange?: (value: number) => void;
 	        mode?: 'single' | 'range';
-	        style?: CSSProperties;
 	        className?: string;
 	    }
 	    interface Styles {
-	        container: Interpolation;
-	        rail: Interpolation;
-	        track: Interpolation;
-	        thumb: Interpolation;
+	        container: void;
+	        rail: void;
+	        track: void;
+	        thumb: void;
 	    }
 	}
 	export default RangeTypes;
 
 }
 declare module 'control/Select/types' {
-	import Global from '@flow-ui/core/types';
-	import { Interpolation } from '@emotion/css'; namespace SelectTypes {
+	import FieldTypes from 'misc/hocs/Field/types'; namespace SelectTypes {
 	    interface Option {
 	        text: string;
 	        value: any;
 	    }
-	    interface Props extends Global.FieldProps, Global.Props {
+	    interface Props extends FieldTypes.Props {
 	        placeholder?: string;
 	        options: Option[];
 	        multiselect?: boolean;
@@ -1210,13 +1254,9 @@ declare module 'control/Select/types' {
 	        payload: number;
 	    } | {
 	        type: 'clear';
-	    } | {
-	        type: 'setOverlay';
-	        payload: boolean;
 	    };
 	    type State = {
 	        selectedOptions: Option[];
-	        underOverlay: boolean;
 	        open: boolean;
 	        searchValue: string;
 	        empty: boolean;
@@ -1236,11 +1276,20 @@ declare module 'control/Select/types' {
 	        defaultValue?: string;
 	        disabled?: boolean;
 	    }
-	    interface Styles {
-	        container: Interpolation;
-	        input: Interpolation;
-	        dropMenu: Interpolation;
-	        dropItem: Interpolation;
+	    interface Styles extends FieldTypes.Styles {
+	        fieldStyles: {
+	            open: boolean;
+	        };
+	        placeholder: void;
+	        input: void;
+	        options: void;
+	        optionItem: void;
+	        optionItemText: void;
+	        dropMenu: void;
+	        dropItem: {
+	            underCursor: boolean;
+	        };
+	        insideLabelStyles: void;
 	    }
 	}
 	export default SelectTypes;
@@ -1268,11 +1317,11 @@ declare module 'control/Switch/types' {
 
 }
 declare module 'control/TextField/types' {
-	import Global from '@flow-ui/core/types';
 	import { ChangeEventHandler } from 'react';
-	import IMask from 'imask'; namespace TextFieldTypes {
+	import IMask from 'imask';
+	import FieldTypes from 'misc/hocs/Field/types'; namespace TextFieldTypes {
 	    type InputTypes = 'email' | 'hidden' | 'number' | 'password' | 'reset' | 'search' | 'tel' | 'text' | 'url';
-	    interface Props extends Global.FieldProps, Global.Props, InputProps, TextAreaProps {
+	    interface Props extends FieldTypes.Props, InputProps, TextAreaProps {
 	        defaultValue?: string | number;
 	        align?: "left" | "right";
 	        multiline?: boolean;
@@ -1308,7 +1357,11 @@ declare module 'control/TextField/types' {
 	        rows?: number;
 	        wrap?: string;
 	    }
-	    interface Styles {
+	    interface Styles extends FieldTypes.Styles {
+	        input: {
+	            isLabelOverlay: boolean;
+	        };
+	        insideLabelStyles: void;
 	    }
 	}
 	export default TextFieldTypes;
@@ -2225,7 +2278,7 @@ declare module 'misc/hooks/useStyleProps' {
 }
 declare module 'content/Divider/styles' {
 	import Global from '@flow-ui/core/types';
-	import Types from 'content/Divider/types'; const dividerStyles: Global.ComponentStyles<Types.Styles>;
+	import Types from 'content/Divider/types'; const dividerStyles: Global.FunctionalComponentStyles<Types.Styles>;
 	export default dividerStyles;
 
 }
@@ -2253,7 +2306,7 @@ declare module 'misc/icons' {
 }
 declare module 'content/Icon/styles' {
 	import Global from 'types';
-	import Types from 'content/Icon/types'; const iconStyles: Global.ComponentStyles<Types.Styles>;
+	import Types from 'content/Icon/types'; const iconStyles: Global.FunctionalComponentStyles<Types.Styles>;
 	export default iconStyles;
 
 }
@@ -2265,7 +2318,7 @@ declare module 'content/Icon' {
 }
 declare module 'content/Spinner/styles' {
 	import Types from 'content/Spinner/types';
-	import Global from 'types'; const spinnerStyles: Global.ComponentStyles<Types.Styles>;
+	import Global from 'types'; const spinnerStyles: Global.FunctionalComponentStyles<Types.Styles>;
 	export default spinnerStyles;
 
 }
@@ -2336,27 +2389,21 @@ declare module 'content/Typography/A' {
 	export const A: React.ForwardRefExoticComponent<Types.AnchorProps & React.RefAttributes<unknown>>;
 
 }
-declare module 'misc/utils/variant' {
-	 const _default: <T>(prop: any, variant: { [K in T]?: any; }) => any;
-	export default _default;
-
-}
 declare module 'control/Button/styles' {
-	import ButtonTypes from 'control/Button/types'; const _default: (props: ButtonTypes.Props) => {
-	    container: any[];
-	};
-	export default _default;
+	import Types from 'control/Button/types';
+	import Global from 'types'; const buttonStyles: Global.FunctionalComponentStyles<Types.Styles>;
+	export default buttonStyles;
 
 }
 declare module 'control/Button' {
 	import React from 'react';
-	import ButtonTypes from 'control/Button/types'; const _default: React.ForwardRefExoticComponent<ButtonTypes.Props & React.RefAttributes<unknown>>;
+	import Types from 'control/Button/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
 	export default _default;
 
 }
 declare module 'layout/Block/styles' {
 	import Types from 'layout/Block/types';
-	import Global from 'types'; const BlockStyles: Global.ComponentStyles<Types.Styles>;
+	import Global from 'types'; const BlockStyles: Global.FunctionalComponentStyles<Types.Styles>;
 	export default BlockStyles;
 
 }
@@ -2364,6 +2411,11 @@ declare module 'layout/Block' {
 	/// <reference types="react" />
 	/// <reference types="@emotion/core" />
 	import Types from 'layout/Block/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<unknown>>;
+	export default _default;
+
+}
+declare module 'misc/utils/variant' {
+	 const _default: <T>(prop: any, variant: { [K in T]?: any; }) => any;
 	export default _default;
 
 }
@@ -2417,7 +2469,7 @@ declare module 'control/Checkbox' {
 }
 declare module 'layout/Drop/styles' {
 	import Types from 'layout/Drop/types';
-	import Global from 'types'; const DropStyles: Global.ComponentStyles<Types.Styles>;
+	import Global from 'types'; const DropStyles: Global.FunctionalComponentStyles<Types.Styles>;
 	export default DropStyles;
 
 }
@@ -2439,128 +2491,27 @@ declare module 'layout/Popover' {
 	export default _default;
 
 }
-declare module 'control/TextField/styles' {
-	import TextFieldTypes from 'control/TextField/types'; const _default: (props: TextFieldTypes.Props) => {
-	    input: (underOverlay: any) => (false | {
-	        outline: number;
-	        padding: number;
-	        margin: number;
-	        border: string;
-	        backgroundImage: string;
-	        backgroundColor: string;
-	        resize: string;
-	        boxShadow: string;
-	        color: string;
-	        font: string;
-	        cursor: string;
-	        '&::placeholder': {
-	            color: string;
-	        };
-	        paddingTop?: undefined;
-	        opacity?: undefined;
-	    } | {
-	        padding: any;
-	        outline?: undefined;
-	        margin?: undefined;
-	        border?: undefined;
-	        backgroundImage?: undefined;
-	        backgroundColor?: undefined;
-	        resize?: undefined;
-	        boxShadow?: undefined;
-	        color?: undefined;
-	        font?: undefined;
-	        cursor?: undefined;
-	        '&::placeholder'?: undefined;
-	        paddingTop?: undefined;
-	        opacity?: undefined;
-	    } | {
-	        paddingTop: number;
-	        outline?: undefined;
-	        padding?: undefined;
-	        margin?: undefined;
-	        border?: undefined;
-	        backgroundImage?: undefined;
-	        backgroundColor?: undefined;
-	        resize?: undefined;
-	        boxShadow?: undefined;
-	        color?: undefined;
-	        font?: undefined;
-	        cursor?: undefined;
-	        '&::placeholder'?: undefined;
-	        opacity?: undefined;
-	    } | {
-	        opacity: string;
-	        outline?: undefined;
-	        padding?: undefined;
-	        margin?: undefined;
-	        border?: undefined;
-	        backgroundImage?: undefined;
-	        backgroundColor?: undefined;
-	        resize?: undefined;
-	        boxShadow?: undefined;
-	        color?: undefined;
-	        font?: undefined;
-	        cursor?: undefined;
-	        '&::placeholder'?: undefined;
-	        paddingTop?: undefined;
-	    } | undefined)[];
-	    insideLabelStyles: {
-	        marginLeft: any;
-	        marginTop: any;
-	    };
-	};
-	export default _default;
-
-}
-declare module 'misc/hocs/Field/types' {
-	/// <reference types="react" />
-	import CSS from 'csstype';
-	import Global from '@flow-ui/core/types'; namespace FieldTypes {
-	    interface Props extends Global.FieldProps, Global.Props {
-	        name?: string;
-	        children?: React.ReactNode;
-	        cursor?: CSS.Properties['cursor'];
-	        onLabelOverlay?: (state: boolean) => void;
-	        fieldStyles?: any;
-	        overlayLabelAlign?: 'top' | 'bottom';
-	        insideLabelStyles?: any;
-	        onClear?: () => void;
-	        manyLines?: boolean;
-	        onEnter?: () => void;
-	        isEmpty?: boolean;
-	    }
-	}
-	export default FieldTypes;
-
-}
 declare module 'misc/hocs/Field/styles' {
-	import FieldTypes from 'misc/hocs/Field/types'; const _default: (props: FieldTypes.Props) => {
-	    container: import("@emotion/utils").SerializedStyles;
-	    field: (focus: any) => import("@emotion/utils").SerializedStyles;
-	    content: (isLabelOverlay: any) => import("@emotion/utils").SerializedStyles;
-	    label: (isLabelOutside: any, isLabelOverlay: any) => import("@emotion/utils").SerializedStyles;
-	    child: (align: any) => {
-	        [x: string]: any;
-	        color: string;
-	        flexGrow: number;
-	        flexShrink: number;
-	        display: string;
-	        alignItems: string;
-	    }[];
-	    hint: any;
-	};
-	export default _default;
+	import Types from 'misc/hocs/Field/types';
+	import Global from 'types'; const fieldStyles: Extract<Global.FunctionalComponentStyles<Types.Styles>, Function>;
+	export default fieldStyles;
+
+}
+declare module 'control/TextField/styles' {
+	import Types from 'control/TextField/types';
+	import Global from 'types'; const textFieldStyles: Global.FunctionalComponentStyles<Types.Styles>;
+	export default textFieldStyles;
 
 }
 declare module 'misc/hocs/Field' {
 	import React from 'react';
-	import FieldTypes from 'misc/hocs/Field/types'; const _default: React.ForwardRefExoticComponent<FieldTypes.Props & React.RefAttributes<unknown>>;
+	import Types from 'misc/hocs/Field/types'; const _default: React.ForwardRefExoticComponent<Types.PrivateProps & React.RefAttributes<unknown>>;
 	export default _default;
 
 }
 declare module 'control/TextField' {
 	import React from 'react';
-	import ButtonTypes from 'control/TextField/types'; const _default: React.ForwardRefExoticComponent<ButtonTypes.Props & React.RefAttributes<unknown>>;
+	import Types from 'control/TextField/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
 	export default _default;
 
 }
@@ -2648,17 +2599,14 @@ declare module 'control/Menu/Item' {
 
 }
 declare module 'control/Menu/styles' {
-	import MenuTypes from 'control/Menu/types'; const _default: (props: MenuTypes.Props) => {
-	    container: import("@emotion/utils").SerializedStyles;
-	    item: (active: boolean, disabled: boolean) => import("@emotion/utils").SerializedStyles;
-	    separator: import("@emotion/utils").SerializedStyles;
-	};
-	export default _default;
+	import Types from 'control/Menu/types';
+	import Global from 'types'; const menuStyles: Global.FunctionalComponentStyles<Types.Styles>;
+	export default menuStyles;
 
 }
 declare module 'control/Menu' {
 	import React from 'react';
-	import MenuTypes from 'control/Menu/types'; const _default: React.ForwardRefExoticComponent<MenuTypes.Props & React.RefAttributes<unknown>>;
+	import Types from 'control/Menu/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
 	export default _default;
 
 }
@@ -2677,13 +2625,9 @@ declare module 'control/Radio' {
 
 }
 declare module 'control/Range/styles' {
-	import RangeTypes from 'control/Range/types'; const _default: (props: RangeTypes.Props) => {
-	    conatiner: import("@emotion/utils").SerializedStyles;
-	    rail: import("@emotion/utils").SerializedStyles;
-	    track: import("@emotion/utils").SerializedStyles;
-	    thumb: import("@emotion/utils").SerializedStyles;
-	};
-	export default _default;
+	import Types from 'control/Range/types';
+	import Global from 'types'; const rangeStyles: Global.FunctionalComponentStyles<Types.Styles>;
+	export default rangeStyles;
 
 }
 declare module 'control/Range' {
@@ -2693,30 +2637,17 @@ declare module 'control/Range' {
 
 }
 declare module 'control/Select/styles' {
-	import SelectTypes from 'control/Select/types'; const _default: (props: SelectTypes.Props) => {
-	    fieldStyles: (open: any) => import("@emotion/utils").SerializedStyles;
-	    placeholder: import("@emotion/utils").SerializedStyles;
-	    input: import("@emotion/utils").SerializedStyles;
-	    options: (empty: any) => import("@emotion/utils").SerializedStyles;
-	    optionItem: import("@emotion/utils").SerializedStyles;
-	    optionItemText: import("@emotion/utils").SerializedStyles;
-	    dropMenu: import("@emotion/utils").SerializedStyles;
-	    dropItem: (underCursor: boolean) => import("@emotion/utils").SerializedStyles;
-	    insideLabelStyles: {
-	        marginLeft: any;
-	        marginTop: any;
-	    };
-	};
-	export default _default;
+	import Types from 'control/Select/types';
+	import Global from 'types'; const selectStyles: Global.FunctionalComponentStyles<Types.Styles>;
+	export default selectStyles;
 
 }
 declare module 'control/Select/reducer' {
-	import SelectTypes from 'control/Select/types'; const _default: (state: SelectTypes.State, action: SelectTypes.Actions) => {
-	    selectedOptions: SelectTypes.Option[];
+	import Types from 'control/Select/types'; const _default: (state: Types.State, action: Types.Actions) => {
+	    selectedOptions: Types.Option[];
 	    empty: boolean;
 	    searchValue: string;
 	    cursor: number;
-	    underOverlay: boolean;
 	    open: boolean;
 	};
 	export default _default;
@@ -2724,7 +2655,7 @@ declare module 'control/Select/reducer' {
 }
 declare module 'control/Select' {
 	import React from 'react';
-	import SelectTypes from 'control/Select/types'; const _default: React.ForwardRefExoticComponent<SelectTypes.Props & React.RefAttributes<unknown>>;
+	import Types from 'control/Select/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
 	export default _default;
 
 }
@@ -2744,7 +2675,7 @@ declare module 'control/Switch' {
 }
 declare module 'data/Meter/styles' {
 	import Types from 'data/Meter/types';
-	import Global from 'types'; const meterStyles: Global.ComponentStyles<Types.Styles>;
+	import Global from 'types'; const meterStyles: Global.FunctionalComponentStyles<Types.Styles>;
 	export default meterStyles;
 
 }
@@ -2756,7 +2687,7 @@ declare module 'data/Meter' {
 }
 declare module 'data/Table/styles' {
 	import Types from 'data/Table/types';
-	import Global from 'types'; const tabelStyles: Global.ComponentStyles<Types.Styles>;
+	import Global from 'types'; const tabelStyles: Global.FunctionalComponentStyles<Types.Styles>;
 	export default tabelStyles;
 
 }
@@ -2809,7 +2740,7 @@ declare module 'data/Table' {
 }
 declare module 'layout/Badge/styles' {
 	import Types from 'layout/Badge/types';
-	import Global from 'types'; const BadgeStyles: Global.ComponentStyles<Types.Styles>;
+	import Global from 'types'; const BadgeStyles: Global.FunctionalComponentStyles<Types.Styles>;
 	export default BadgeStyles;
 
 }
@@ -2844,7 +2775,7 @@ declare module 'layout/Modal/ModalWindow' {
 }
 declare module 'layout/Modal/styles' {
 	import Types from 'layout/Modal/types';
-	import Global from 'types'; const modalStyles: Global.ComponentStyles<Types.Styles>;
+	import Global from 'types'; const modalStyles: Global.FunctionalComponentStyles<Types.Styles>;
 	export default modalStyles;
 
 }
@@ -2869,7 +2800,7 @@ declare module 'layout/Notification' {
 }
 declare module 'layout/Panel/styles' {
 	import Types from 'layout/Panel/types';
-	import Global from 'types'; const panelStyles: Global.ComponentStyles<Types.Styles>;
+	import Global from 'types'; const panelStyles: Global.FunctionalComponentStyles<Types.Styles>;
 	export default panelStyles;
 
 }
@@ -2881,7 +2812,7 @@ declare module 'layout/Panel' {
 }
 declare module 'layout/Tree/styles' {
 	import Types from 'layout/Tree/types';
-	import Global from 'types'; const treeStyles: Global.ComponentStyles<Types.Styles>;
+	import Global from 'types'; const treeStyles: Global.FunctionalComponentStyles<Types.Styles>;
 	export default treeStyles;
 
 }

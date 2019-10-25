@@ -1,8 +1,8 @@
 import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
-import PopoverTypes from "./types";
+import Types from "./types";
 import Global from "../../types";
 
-const popoverStyles: Global.ComponentStyles<PopoverTypes.Styles> = (props: PopoverTypes.Props, theme) => {
+const popoverStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     const styleProps = useStyleProps(props);
 
     const background = styleProps.color.background || theme.color.surface.css();

@@ -18,6 +18,34 @@ declare namespace Global {
     type EventProp<T> = (event: T) => void
     type FunctionalProp<T, R> = ((lib: T) => R) | R
 
+    type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
+
+    type EmotionStyles = Array<Interpolation>;
+
+    type Variants<T> = Partial<{
+        [K in keyof T]: Partial<
+            Record<Extract<T[K],string>,EmotionStyles>
+        >
+    }>
+    
+    type Variant<V> = (variants: Variants<V>) => EmotionStyles
+    
+    type FlowStyle<V> = V extends Object 
+        ? (state: V) => SerializedStyles 
+        : SerializedStyles
+    
+    type ComponentStyle<V> =  V extends {} 
+        ? ((variant: Variant<V>) => EmotionStyles)
+        : EmotionStyles
+    
+    type FlowStyles<S> = {[O in keyof S]: FlowStyle<S[O]>}
+    
+    type ComponentStyles<S> = {[O in keyof S]: ComponentStyle<S[O]>}
+
+    type FunctionalComponentStyles<S> = ((props, theme: ThemeTypes.Index) => {[O in keyof S]: ComponentStyle<S[O]>})        
+
+    type OverridesStyle<S> = Partial<{[O in keyof S]: ComponentStyle<S[O]>}>
+
     interface Props extends
         HTMLAttributes,
         EventHandlers,
@@ -316,53 +344,6 @@ declare namespace Global {
 
     type ColorProp = FunctionalProp<ThemeTypes.Colors<chroma.Color>, CSS.Properties["color"]>
     type IconProp = FunctionalProp<IconsetTypes.Index, React.ReactElement>
-
-
-    /**
-     * Props for text form fields
-     * @name FieldProps
-     * @weight 100
-     */
-    interface FieldProps {
-        label?: React.ReactNode
-        hint?: React.ReactNode
-        size?: Global.Size
-        decoration?: 'none' | 'filled' | 'underline' | 'outline'
-        color?: Global.ColorProp,
-        shape?: 'round' | 'rounded' | 'square'
-        disabled?: boolean
-        rightChild?: React.ReactNode
-        leftChild?: React.ReactNode
-        clearable?: boolean
-    }
-
-    type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
-
-    type EmotionStyles = Array<Interpolation>;
-
-    type Variants<T> = Partial<{
-        [K in keyof T]: Partial<
-            Record<Extract<T[K],string>,EmotionStyles>
-        >
-    }>
-    
-    type Variant<V> = (variants: Variants<V>) => EmotionStyles
-    
-    type FlowStyle<V> = V extends Object 
-        ? (state: V) => SerializedStyles 
-        : SerializedStyles
-    
-    type ComponentStyle<V> =  V extends {} 
-        ? ((variant: Variant<V>) => EmotionStyles)
-        : EmotionStyles
-    
-    type FlowStyles<S> = {[O in keyof S]: FlowStyle<S[O]>}
-    
-    type ComponentStyles<S> = 
-        ((props, theme: ThemeTypes.Index) => {[O in keyof S]: ComponentStyle<S[O]>}) | 
-        {[O in keyof S]: ComponentStyle<S[O]>}
-
-    type OverridesStyle<S> = Partial<{[O in keyof S]: ComponentStyle<S[O]>}>
 }
 
 export default Global

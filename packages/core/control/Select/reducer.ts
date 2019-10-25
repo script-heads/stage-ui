@@ -1,6 +1,6 @@
-import SelectTypes from "./types";
+import Types from "./types";
 
-export default (state: SelectTypes.State, action: SelectTypes.Actions) => {
+export default (state: Types.State, action: Types.Actions) => {
     switch (action.type) {
         case 'setSelectedOptions':
             return {
@@ -37,13 +37,6 @@ export default (state: SelectTypes.State, action: SelectTypes.Actions) => {
                 searchValue: '',
                 selectedOptions: [],
                 empty: true,
-                cursor: -1
-            }
-
-        case 'setOverlay':
-            return {
-                ...state,
-                underOverlay: action.payload,
                 cursor: -1
             }
 

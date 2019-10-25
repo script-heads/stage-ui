@@ -3,7 +3,7 @@ import typography from "@flow-ui/core/misc/typography";
 import Types from "./types";
 import Global from '../../types';
 
-const BadgeStyles: Global.ComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const BadgeStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     const styleProps = useStyleProps(props);
 
     return {

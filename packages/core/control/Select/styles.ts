@@ -1,12 +1,17 @@
-import { css } from '@emotion/core';
-import useFlow from '@flow-ui/core/misc/hooks/useFlow';
 import callProp from '@flow-ui/core/misc/utils/callProp';
 import variant from '@flow-ui/core/misc/utils/variant';
-import SelectTypes from './types';
+import Types from './types';
+import fieldStyles from '../../misc/hocs/Field/styles';
+import Global from '../../types';
 
-export default (props: SelectTypes.Props) => {
-    const { size = 'medium', shape = 'rounded', decoration = 'outline' } = props;
-    const { theme } = useFlow();
+const selectStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+    const { 
+        size = 'medium', 
+        shape = 'rounded', 
+        decoration = 'outline' 
+    } = props;
+    
+    const field = fieldStyles(props, theme);
     let color = callProp(props.color, theme.color);
     let backgroundColor = callProp(props.backgroundColor, theme.color);
 
@@ -26,20 +31,24 @@ export default (props: SelectTypes.Props) => {
     });
 
     return {
-        fieldStyles: (open) => css(
-            open && {
-                borderBottomLeftRadius: 0,
-                borderBottomRightRadius: 0
-            }
-        ),
+        ...field,
 
-        placeholder: css({
+        fieldStyles: (variant) => [
+            variant({
+                open: [{
+                    borderBottomLeftRadius: 0,
+                    borderBottomRightRadius: 0
+                }]
+            })
+        ],
+
+        placeholder:[{
             color: theme.color.light.css(),
             userSelect: 'none',
             cursor: 'pointer'
-        }),
+        }],
 
-        input: css({
+        input:[{
             outline: 0,
             padding: 0,
             margin: 0,
@@ -54,9 +63,9 @@ export default (props: SelectTypes.Props) => {
             '&::placeholder': {
                 color: theme.color.light.css()
             }
-        }),
+        }],
 
-        options: (empty) => css({
+        options: [{
             display: 'flex',
             flexWrap: 'wrap',
             marginBottom: '-.25rem',
@@ -66,9 +75,9 @@ export default (props: SelectTypes.Props) => {
                 marginBottom: '.25rem !important',
                 marginRight: '.25rem',
             }
-        }),
+        }],
 
-        optionItem: css(
+        optionItem: [
             {
                 display: 'flex',
                 alignItems: 'center',
@@ -88,9 +97,9 @@ export default (props: SelectTypes.Props) => {
                     borderRadius: '100%',
                 }
             })
-        ),
+        ],
 
-        optionItemText: css(
+        optionItemText: [
             {
                 minHeight: '100%',
                 borderRightWidth: '1px',
@@ -121,9 +130,9 @@ export default (props: SelectTypes.Props) => {
                     lineHeight: theme.typography.header[4].lineHeight,
                 }
             }),
-        ),
+        ],
 
-        dropMenu: css(
+        dropMenu: [
             {
                 overflow: 'auto',
                 maxHeight: '10rem',
@@ -154,29 +163,30 @@ export default (props: SelectTypes.Props) => {
             {
                 borderColor: color
             }
-        ),
+        ],
 
-        dropItem: (underCursor: boolean) => css(
+        dropItem: (variant) =>[
             {
                 cursor: 'pointer',
                 padding: '0.5rem 0.75rem',
                 height: 'fit-content',
+                ':hover': {
+                    background: theme.color.background.css()
+                }
 
             },
-            underCursor ?
-                {
+            variant({
+                underCursor: [{
                     background: theme.color.primary.css()
-                }
-                : {
-                    ':hover': {
-                        background: theme.color.background.css()
-                    }
-                }
-        ),
+                }]
+            })
+        ],
 
-        insideLabelStyles: {
+        insideLabelStyles: [{
             marginLeft: multilineAdditionalPadding,
             marginTop: multilineAdditionalPadding
-        }
+        }]
     }
 }
+
+export default selectStyles

@@ -1,14 +1,18 @@
 import React, { forwardRef, useReducer, useRef, Fragment, useImperativeHandle, useEffect } from 'react'
-import SelectTypes from './types'
-import createStyles from './styles'
+import Types from './types'
+import selectStyles from './styles'
 import Field from '../../misc/hocs/Field'
 import Icon from '../../content/Icon'
 import Drop from '../../layout/Drop'
 import SelectReducer from './reducer';
+import useContainer from '../../misc/hooks/useContainer'
+import useStyles from '../../misc/hooks/useStyles'
 
-const Select = (props: SelectTypes.Props, ref) => {
+const Select = (props: Types.Props, ref) => {
 
     const {
+        decoration = 'outline', 
+        size = 'medium',
         multiselect,
         onChange,
         options = [],
@@ -27,18 +31,21 @@ const Select = (props: SelectTypes.Props, ref) => {
         approvedDefaultValues = [approvedDefaultValues[0]]
     }
 
-    const initialState: SelectTypes.State = {
+    const initialState: Types.State = {
         selectedOptions: approvedDefaultValues,
-        underOverlay: false,
         open: false,
         searchValue: '',
         empty: approvedDefaultValues.length === 0,
         cursor: -1
     }
 
-    const styles = createStyles(props);
     const targetRef = useRef(null);
     const [state, dispatch] = useReducer(SelectReducer, initialState);
+
+    const {attributes, focus} = useContainer(props, true, props.decoration != 'none');
+    const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xlarge');
+    const isLabelOverlay = (state.empty && !focus && !isLabelOutside) ? true : false
+    const styles = useStyles<Types.Styles>(props, selectStyles, 'TextField');
 
     useImperativeHandle(ref, () => {
         return targetRef.current
@@ -64,7 +71,7 @@ const Select = (props: SelectTypes.Props, ref) => {
         }      
     }
 
-    function toggleOption (option: SelectTypes.Option) {
+    function toggleOption (option: Types.Option) {
         let nextSelectedOptions = state.selectedOptions;
         if (multiselect) {
             includeOption(state.selectedOptions, option)
@@ -82,7 +89,7 @@ const Select = (props: SelectTypes.Props, ref) => {
     function reduceSelectedOptions () {
         const nextSelectedOptions = state.selectedOptions.slice(0, -1)
         !values && dispatch({type: 'setSelectedOptions', payload: nextSelectedOptions})
-        onChange && onChange(([] as any).concat(nextSelectedOptions) as SelectTypes.Option[])
+        onChange && onChange(([] as any).concat(nextSelectedOptions) as Types.Option[])
     }
 
     function clear () {
@@ -178,28 +185,27 @@ const Select = (props: SelectTypes.Props, ref) => {
         <Fragment>
             <Field
                 {...props}
-                tabIndex={props.tabIndex || 0}
                 ref={targetRef}
-                fieldStyles={styles.fieldStyles(state.open)}
 
-                isEmpty={state.empty}
-                manyLines={multiselect && !state.empty}
-                insideLabelStyles={multiselect && !state.empty && styles.insideLabelStyles}
-
-                onClick={(e) => {
-                    searchable && e.target.toString() === '[object HTMLInputElement]'
-                        ? !state.open && dispatch({ type: 'toggleOpen', payload: true })
-                        : toggleOpen()
-                    props.onClick && props.onClick(e);
-                }}
+                focus={focus}
+                styles={styles}
+                isLabelOutside={isLabelOutside}
+                isLabelOverlay={isLabelOverlay}
                 onClear={() => clear()}
-                onKeyDown={(e) => handleKeyDown(e)}
-                onLabelOverlay={(state) => dispatch({
-                    type: 'setOverlay',
-                    payload: state
-                })}
+                
+                attributes={{
+                    ...attributes,
+                    tabIndex: props.tabIndex || 0,
+                    onClick: (e) => {
+                        searchable && e.target.toString() === '[object HTMLInputElement]'
+                            ? !state.open && dispatch({ type: 'toggleOpen', payload: true })
+                            : toggleOpen()
+                        props.onClick && props.onClick(e);
+                    },
+                    onKeyDown: (e) => handleKeyDown(e)
+                }}                
 
-                children={!state.underOverlay && fieldValue}
+                children={isLabelOverlay && fieldValue}
 
                 rightChild={(
                     <Icon
@@ -227,7 +233,7 @@ const Select = (props: SelectTypes.Props, ref) => {
                             .map((option, i) => (
                                 <div
                                     key={option.value}
-                                    css={styles.dropItem(i === state.cursor)}
+                                    css={styles.dropItem({underCursor: i === state.cursor})}
                                     children={option.text}
                                     onMouseDown={(e) => {
                                         toggleOption(option);
@@ -242,7 +248,7 @@ const Select = (props: SelectTypes.Props, ref) => {
     )
 }
 
-const Options = (props: SelectTypes.OptionsProps ) => {
+const Options = (props: Types.OptionsProps ) => {
 
     const { selected, onClose, styles, searchable } = props;
 
@@ -265,7 +271,7 @@ const Options = (props: SelectTypes.OptionsProps ) => {
     )
 }
 
-const Search = (props: SelectTypes.SearchProps) => {
+const Search = (props: Types.SearchProps) => {
     const { searchValue, onSearch, styles, defaultValue, placeholder, disabled } = props;
 
     return (
@@ -282,7 +288,7 @@ const Search = (props: SelectTypes.SearchProps) => {
     )
 }
 
-function getAvailableOptions(options: SelectTypes.Option[], selectedOptions: SelectTypes.Option[], search: string) {
+function getAvailableOptions(options: Types.Option[], selectedOptions: Types.Option[], search: string) {
     return options.filter(option =>
         !includeOption(selectedOptions, option) &&
         option.text
@@ -291,7 +297,7 @@ function getAvailableOptions(options: SelectTypes.Option[], selectedOptions: Sel
     )
 }
 
-function includeOption(options: SelectTypes.Option[], option: SelectTypes.Option) {
+function includeOption(options: Types.Option[], option: Types.Option) {
     let includes = false
     options.map(o => {
         if(o.value === option.value) {

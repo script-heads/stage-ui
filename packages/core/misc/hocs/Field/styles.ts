@@ -1,146 +1,114 @@
-import useFlow from '../../hooks/useFlow';
 import useStyleProps from '../../hooks/useStyleProps';
 import callProp from '../../utils/callProp';
-import FieldTypes from './types';
-import variant from '../../utils/variant';
-import css from '@emotion/css';
+import Types from './types';
+import Global from '../../../types';
+import ThemeTypes from '../../themes/types';
 
-export default (props: FieldTypes.Props) => {
-
-    const {
-        decoration = 'outline',
-        shape = 'rounded',
-        size = 'medium',
-        overlayLabelAlign = 'bottoms',
-        fieldStyles,
-        label,
-        cursor = 'pointer',
-        manyLines
-    } = props;
-    const { theme } = useFlow();
+const fieldStyles = (props: Types.Props, theme: ThemeTypes.Index): Global.ComponentStyles<Types.Styles> => {
+    
     const styleProps = useStyleProps(props);
-    let color = callProp(props.color, theme.color);
-
-    const shapeStyles = variant(shape, {
-        'rounded': {
-            borderRadius: theme.radius.narrow
-        },
-        'round': {
-            borderRadius: '4rem'
-        }
-    });
-
-    const labelSizes = {
-        padding: '.25rem',
-        font: theme.typography.caption[3],
-        ...variant(size, {
-            'small': {
-                padding: '2px',
-                font: theme.typography.caption[4]
-            },
-            'xsmall': {
-                padding: '2px',
-                font: theme.typography.caption[4]
-            },
-        })
-    }
-
-    const headingLabelHeight = `calc(${labelSizes.font.lineHeight} + ${labelSizes.padding})`
+    const color = callProp(props.color, theme.color);
 
     return {
-        container: css(
+        container: [
             {
                 position: 'relative',
                 display: 'flex',
                 flexDirection: 'column',
                 overflow: 'hidden',
-                cursor,
                 outline: 'none'
             },
             styleProps.flow,
-        ),
-        field: (focus) => css(
+        ],
+
+        field: (variant) => [
             {
                 position: 'relative',
                 flexShrink: 0,
                 flexGrow: 1,
                 background: theme.color.surface.css(),
-                flexBasis: theme.assets.fieldHeight[size],
                 borderColor: theme.color.lightest.css(),
                 outline: 'none',
                 padding: '.25rem',
                 display: 'flex',
                 alignItems: 'stretch',
                 boxSizing: 'border-box',
-                '&[disabled]': {
+            },
+            variant({
+                shape: {
+                    'rounded': [{
+                        borderRadius: theme.radius.narrow
+                    }],
+                    'round': [{
+                        borderRadius: '4rem'
+                    }]
+                },
+                size: {
+                    'xsmall': [{
+                        flexBasis: theme.assets.fieldHeight.xsmall,
+                        ...theme.typography.caption[3],
+                    }],
+                    'small': [{
+                        flexBasis: theme.assets.fieldHeight.small,
+                        ...theme.typography.caption[2],
+                    }],
+                    'medium': [{
+                        flexBasis: theme.assets.fieldHeight.medium,
+                        ...theme.typography.caption[1],
+                    }],
+                    'large': [{
+                        flexBasis: theme.assets.fieldHeight.large,
+                        fontSize: theme.typography.header[4].fontSize,
+                        lineHeight: theme.typography.header[4].lineHeight,
+                    }],
+                    'xlarge': [{
+                        flexBasis: theme.assets.fieldHeight.xlarge,
+                        fontSize: theme.typography.header[4].fontSize,
+                        lineHeight: theme.typography.header[4].lineHeight,
+                    }]
+                },
+                decoration: {
+                    'outline': [{
+                        borderWidth: '1px',
+                        borderStyle: 'solid',
+                        '&[disabled]': {
+                            background: theme.color.lightest.css(),
+                        }
+                    }],
+                    'filled': [{
+                        borderWidth: '1px',
+                        borderStyle: 'solid',
+                        borderColor: 'transparent',
+                        '&[disabled]': {
+                            background: theme.color.lightest.css(),
+                        },
+                    }],
+                    'underline': [{
+                        borderBottomWidth: '1px',
+                        borderBottomStyle: 'solid',
+                        background: 'transparent',
+                        paddingLeft: 0,
+                        paddingRight: 0,
+                    }],
+                    'none': [{
+                        background: 'transparent',
+                    }]
+                },
+                focus: [{
+                    borderColor: theme.color.primary.css()
+                }],
+                disabled: [{
                     color: theme.color.light.css(),
                     cursor: 'not-allowed'
-                },
-            },
-            variant(size, {
-                'xsmall': {
-                    ...theme.typography.caption[3],
-                    padding: !manyLines && '.25rem .375rem'
-                },
-                'small': {
-                    ...theme.typography.caption[2],
-                    padding: !manyLines && '.25rem .5rem'
-                },
-                'medium': {
-                    ...theme.typography.caption[1],
-                    padding: !manyLines && '.25rem .75rem'
-                },
-                'large': {
-                    fontSize: theme.typography.header[4].fontSize,
-                    lineHeight: theme.typography.header[4].lineHeight,
-                    padding: !manyLines && '.25rem .875rem'
-                },
-                'xlarge': {
-                    fontSize: theme.typography.header[4].fontSize,
-                    lineHeight: theme.typography.header[4].lineHeight,
-                    padding: !manyLines && '.25rem .875rem'
-                }
+                }]
             }),
-            variant(decoration, {
-                'outline': {
-                    borderWidth: '1px',
-                    borderStyle: 'solid',
-                    ...shapeStyles,
-                    '&[disabled]': {
-                        background: theme.color.lightest.css(),
-                    }
-                },
-                'filled': {
-                    borderWidth: '1px',
-                    borderStyle: 'solid',
-                    borderColor: 'transparent',
-                    '&[disabled]': {
-                        background: theme.color.lightest.css(),
-                    },
-                    ...shapeStyles
-                },
-                'underline': {
-                    borderBottomWidth: '1px',
-                    borderBottomStyle: 'solid',
-                    background: 'transparent',
-                    paddingLeft: 0,
-                    paddingRight: 0,
-                },
-                'none': {
-                    background: 'transparent',
-                }
-            }),
-            fieldStyles,
-            focus && {
-                borderColor: theme.color.primary.css()
-            },
             {
                 borderColor: color,
             },
             styleProps.self,
-        ),
+        ],
 
-        content: (isLabelOverlay) => css(
+        content: (variant) => [
             {
                 display: 'flex',
                 flexBasis: '12rem',
@@ -151,68 +119,98 @@ export default (props: FieldTypes.Props) => {
                 flexDirection: 'column',
                 justifyContent: 'center'
             },
-            label && isLabelOverlay && {
-                paddingTop: headingLabelHeight,
-            },
-        ),
+            variant({
+                isLabelOverlay: [{
+                    paddingTop: 'var(--headingLabelHeight)',
+                }]
+            })
+        ],
 
-        label: (isLabelOutside, isLabelOverlay) => css(
+        label: (variant) => [
             {
                 color: theme.color.hard.css(),
+                paddingBottom: '.25rem',
+                ...theme.typography.caption[2],
+                '--headingLabelHeight': `calc(${theme.typography.caption[2].lineHeight} + .25rem)`
             },
-            label && isLabelOutside && [
-                {
+            variant({
+                size: {
+                    'small': [
+                        {
+                            paddingBottom: '2px',
+                            '--headingLabelHeight': `calc(${theme.typography.caption[4].lineHeight} + 2px)`
+                        },
+                        theme.typography.caption[4]
+                    ],
+                    'xsmall': [
+                        {
+                            paddingBottom: '2px',
+                            '--headingLabelHeight': `calc(${theme.typography.caption[4].lineHeight} + 2px)`
+                        },
+                        theme.typography.caption[4]
+                    ]
+                },
+                isLabelOutside: [{
                     paddingBottom: '.25rem',
                     paddingLeft: '.25rem',
-                }
-            ],
-            label && isLabelOverlay
-                ? [
-                    {
-                        position: 'absolute',
-                        height: theme.assets.fieldHeight[size],
-                        display: 'flex',
-                        userSelect: 'none',
-                    },
-                    overlayLabelAlign === 'top'
-                        ? {
-                            top: 0,
-                            paddingTop: headingLabelHeight
-                        }
-                        : {
-                            bottom: 0,
-                            alignItems: 'center',
-                        }
-                ]
-                : {
-                    paddingBottom: labelSizes.padding,
-                    ...labelSizes.font
-                },
-            label && !isLabelOutside && props.insideLabelStyles,
-        ),
+                }],
+                isLabelOverlay: [{
+                    position: 'absolute',
+                    display: 'flex',
+                    userSelect: 'none',
+                    top: 0,
+                    paddingTop: 'var(--headingLabelHeight)'
+                }],
+            }),
+        ],
 
-        child: (align) => [
+        child: (variant) => [
             {
                 color: color || theme.color.light.css(),
                 flexGrow: 0,
                 flexShrink: 1,
                 display: 'flex',
                 alignItems: 'center',
-                [align === 'right' ? 'marginLeft' : 'marginRight']: variant(size, {
-                    'xsmall': '.25rem',
-                    'small': '.25rem',
-                    'medium': '.5rem',
-                    'large': '.5rem',
-                    'xlarge': '.75rem',
-                })
             },
+            variant({
+                align: {
+                    'right': variant({
+                        size: {
+                            'xsmall': [{marginLeft: '.25rem'}],
+                            'small': [{marginLeft: '.25rem'}],
+                            'medium': [{marginLeft: '.5rem'}],
+                            'large': [{marginLeft: '.5rem'}],
+                            'xlarge': [{marginLeft: '.75rem'}],
+                        }
+                    }),
+                    'left': variant({
+                        size: {
+                            'xsmall': [{marginRight: '.25rem'}],
+                            'small': [{marginRight: '.25rem'}],
+                            'medium': [{marginRight: '.5rem'}],
+                            'large': [{marginRight: '.5rem'}],
+                            'xlarge': [{marginRight: '.75rem'}],
+                        }
+                    })
+                }
+            })
         ],
 
-        hint: {
-            paddingTop: '.25rem',
-            paddingLeft: decoration != 'underline' && '.25rem',
-            ...labelSizes.font,
-            color: color || theme.color.hard.css(),
-        }
+        hint: (variant) => [
+            {
+                paddingTop: '.25rem',
+                paddingLeft: props.decoration != 'underline' ? '.25rem' : '',
+                color: color || theme.color.hard.css(),
+                ...theme.typography.caption[2],
+            },
+            variant({
+                size: {
+                    'small': [theme.typography.caption[4]],
+                    'xsmall': [theme.typography.caption[4]]
+                }
+            }),
+        ]
     }
 }
+
+export default fieldStyles

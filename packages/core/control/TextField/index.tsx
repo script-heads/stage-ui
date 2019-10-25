@@ -1,21 +1,27 @@
 import { jsx } from '@emotion/core';
 import React, { FC, forwardRef, useState, useImperativeHandle, useRef, useEffect, useMemo } from 'react';
-import getStyles from './styles';
-import ButtonTypes from './types';
+import textFieldStyles from './styles';
+import Types from './types';
 import Field from '../../misc/hocs/Field';
 import IMask from 'imask';
 import createID from '../../misc/utils/createID';
+import useStyles from '@flow-ui/core/misc/hooks/useStyles';
+import useContainer from '@flow-ui/core/misc/hooks/useContainer';
 
 const elements: { [key: string]: IMask.InputMask<IMask.AnyMaskedOptions> } = {};
 
-const TextField: FC<ButtonTypes.Props> = (props, ref) => {
+const TextField: FC<Types.Props> = (props, ref) => {
 
+    const {decoration = 'outline', size = 'medium', shape='rounded', tabIndex = 1} = props;
     const [isEmpty, setEmpty] = useState<boolean>(
         props.defaultValue === '' ||
         typeof props.defaultValue === 'undefined'
     );
-    const [underOverlay, setUnderOverlay] = useState<boolean>(false);
-    const styles = getStyles(props);
+    
+    const {attributes, focus} = useContainer(props, true, props.decoration != 'none');
+    const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xlarge');
+    const isLabelOverlay = (isEmpty && !focus && !isLabelOutside) ? true : false
+    const styles = useStyles<Types.Styles>(props, textFieldStyles, 'TextField');
     const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
     const id = useMemo(() => createID(), []);
 
@@ -51,21 +57,30 @@ const TextField: FC<ButtonTypes.Props> = (props, ref) => {
     return (
         <Field
             {...props}
-            isEmpty={isEmpty}
-            cursor='text'
-            onLabelOverlay={(state) => setUnderOverlay(state)}
-            onFocus={() => inputRef.current!.focus()}
-            onBlur={undefined}
+            decoration={decoration}
+            size={size}
+            shape={shape}
+            focus={focus}
+            styles={styles}
+            isLabelOutside={isLabelOutside}
+            isLabelOverlay={isLabelOverlay}
+
             onClear={() => inputRef.current!.value = ''}
-            manyLines={props.multiline}
-            overlayLabelAlign={props.multiline ? 'top' : 'bottom'}
-            insideLabelStyles={props.multiline && props.decoration != 'underline' && styles.insideLabelStyles}
+
+            attributes={{
+                ...attributes,
+                tabIndex,
+                onFocus: (e) => {
+                    inputRef.current!.focus()
+                    attributes.onFocus(e)
+                },
+            }}
             children={jsx(
                 props.multiline ? 'textarea' : 'input',
                 {
                     ref: inputRef,
                     onKeyUp: onChange,
-                    css: styles.input(underOverlay),
+                    css: styles.input({isLabelOverlay}),
 
                     defaultValue: props.defaultValue,
                     disabled: props.disabled,

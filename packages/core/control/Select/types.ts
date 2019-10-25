@@ -1,14 +1,12 @@
-import { CSSProperties } from "react";
-import Global from "@flow-ui/core/types";
-import { Interpolation } from "@emotion/css";
+import FieldTypes from "../../misc/hocs/Field/types";
 
 declare namespace SelectTypes {
-    export interface Option {
+    interface Option {
         text: string
         value: any
     }
 
-    export interface Props extends Global.FieldProps, Global.Props {
+    interface Props extends FieldTypes.Props {
         placeholder?: string
         options: Option[]
         multiselect?: boolean
@@ -37,15 +35,10 @@ declare namespace SelectTypes {
     } |
     {
         type: 'clear'
-    } |
-    {
-        type: 'setOverlay'
-        payload: boolean
     }
 
     type State = {
         selectedOptions: Option[] 
-        underOverlay: boolean,
         open: boolean,
         searchValue: string
         empty: boolean
@@ -57,6 +50,7 @@ declare namespace SelectTypes {
         onClose: (option) => void,
         searchable?: boolean
     }
+
     interface SearchProps {
         searchValue: string,
         onSearch: (searchValue: string) => void
@@ -66,11 +60,21 @@ declare namespace SelectTypes {
         defaultValue?: string
         disabled?: boolean
     }
-    export interface Styles {
-        container: Interpolation
-        input: Interpolation
-        dropMenu: Interpolation
-        dropItem: Interpolation
+
+    interface Styles extends FieldTypes.Styles {
+        fieldStyles: {
+            open: boolean
+        }
+        placeholder: void
+        input: void
+        options: void
+        optionItem: void
+        optionItemText: void
+        dropMenu: void
+        dropItem: {
+            underCursor: boolean
+        }
+        insideLabelStyles: void
     }
 }
 

@@ -109,7 +109,7 @@ declare module 'layout/ScrollView/types' {
 }
 declare module 'layout/ScrollView/styles' {
 	import Types from 'layout/ScrollView/types';
-	import Global from 'types'; const ScrollViewStyles: Global.ComponentStyles<Types.Styles>;
+	import Global from 'types'; const ScrollViewStyles: Global.FunctionalComponentStyles<Types.Styles>;
 	export default ScrollViewStyles;
 
 }

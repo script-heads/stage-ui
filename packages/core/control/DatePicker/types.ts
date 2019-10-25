@@ -6,13 +6,14 @@ import { Interpolation } from '@emotion/core';
 import { Moment } from 'moment';
 import { CSSProperties } from 'react';
 import Global from '@flow-ui/core/types';
+import FieldTypes from '../../misc/hocs/Field/types';
 
 declare namespace DatePickerTypes {
 
     export type GridType = "year" | "month" | "day"
     export type Locale = 'en' | 'ru' | 'it' | 'fr' | 'de'
 
-    export interface Props extends Global.FieldProps {
+    export interface Props extends FieldTypes.Props {
         /**
          * Type for DatePicker
          * @default day

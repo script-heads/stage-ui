@@ -4,7 +4,7 @@ import chroma from 'chroma-js';
 import Types from './types';
 import Global from '@flow-ui/core/types';
 
-const ScrollViewStyles: Global.ComponentStyles<Types.Styles>= (props: Types.Props, theme) => {
+const ScrollViewStyles: Global.FunctionalComponentStyles<Types.Styles>= (props: Types.Props, theme) => {
 
     let color = chroma(
         callProp(props.color, theme.color) || theme.color.onBackground.css()
