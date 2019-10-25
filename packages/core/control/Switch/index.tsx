@@ -1,14 +1,20 @@
 import React, { FC, forwardRef, RefObject } from 'react';
-import Icon from '../../content/Icon';
 import Block from '../../layout/Block';
 import Check from '../../misc/hocs/Check';
-import createStyles from './styles';
-import SwitchTypes from './types';
+import switchStyles from './styles';
+import Types from './types';
+import useStyles from "@flow-ui/core/misc/hooks/useStyles";
 
-const Switch: FC<SwitchTypes.Props> = (props, ref: RefObject<HTMLDivElement>) => {
+const Switch: FC<Types.Props> = (props, ref: RefObject<HTMLDivElement>) => {
+
+    const {size='medium', animated, disabled} = props;
+    const styles = useStyles<Types.Styles>(props, switchStyles, 'Switch');
+
     return (
         <Check
             {...props}
+            size={size}
+            styles={styles}
             tabIndex={props.tabIndex || 0}
             onFocus={(e) => {
                 props.onFocus && props.onFocus(e)
@@ -22,14 +28,11 @@ const Switch: FC<SwitchTypes.Props> = (props, ref: RefObject<HTMLDivElement>) =>
              * Switch use
              */
             type="checkbox"
-            children={(checked, focus) => {
-                const styles = createStyles(props, checked, focus);
-                return (
-                    <Block css={styles.check}>
-                        <div css={styles.switch} />
-                    </Block>
-                )
-            }}
+            children={(checked, focus) => 
+                <Block css={styles.check({animated, size, disabled, checked})}>
+                    <div css={styles.switch({animated, size, disabled, checked})} />
+                </Block>
+            }
         />
     );
 }

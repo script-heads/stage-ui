@@ -3,13 +3,11 @@ import useContainer from '../../hooks/useContainer';
 import createStyles from './styles';
 import CheckTypes from './types';
 
-const Check = (props: CheckTypes.Props, ref: RefObject<HTMLDivElement>) => {
+const Check = (props: CheckTypes.PrivateProps, ref: RefObject<HTMLDivElement>) => {
     const [focus, setFocus] = useState(false);
     const [checked, setChecked] = useState(props.checked || props.defaultValue || false);
-    const { label } = props;
+    const { label, styles, animated, disabled,size, uppercase } = props;
     const { attributes } = useContainer(props, false, true);
-
-    const styles = createStyles(props);
 
     useEffect(() => {
         if (typeof props.checked !== "undefined") {
@@ -55,7 +53,7 @@ const Check = (props: CheckTypes.Props, ref: RefObject<HTMLDivElement>) => {
     const containerProps = {
         ref,
         ...attributes,
-        css: styles.container,
+        css: styles.container({animated, disabled}),
         onClick,
         onKeyDown,
         onFocus: (e: React.FocusEvent<HTMLElement>) => {
@@ -71,7 +69,7 @@ const Check = (props: CheckTypes.Props, ref: RefObject<HTMLDivElement>) => {
         <div {...containerProps}>
             {props.children(checked, focus)}
             {(label && label.length) && (
-                <div css={styles.label} children={label} />
+                <div css={styles.label({animated,disabled,size,uppercase})} children={label} />
             )}
         </div>
     )

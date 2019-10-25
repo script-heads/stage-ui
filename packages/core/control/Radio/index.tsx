@@ -1,14 +1,18 @@
 import React, { FC, forwardRef, RefObject } from 'react';
-import Icon from '../../content/Icon';
 import Block from '../../layout/Block';
 import Check from '../../misc/hocs/Check';
-import createStyles from './styles';
+import radioStyles from './styles';
 import RadioTypes from './types';
+import useStyles from "@flow-ui/core/misc/hooks/useStyles";
 
 const Radio: FC<RadioTypes.Props> = (props, ref: RefObject<HTMLDivElement>) => {
+    const {animated, size = 'medium', disabled} = props;
+    const styles = useStyles(props, radioStyles, 'Radio');
+
     return (
         <Check
             {...props}
+            size={size}
             tabIndex={props.tabIndex || 0}
             onFocus={(e) => {
                 props.onFocus && props.onFocus(e)
@@ -22,14 +26,12 @@ const Radio: FC<RadioTypes.Props> = (props, ref: RefObject<HTMLDivElement>) => {
              * Radio use
              */
             type="checkbox"
-            children={(checked, focus) => {
-                const styles = createStyles(props, checked, focus);
-                return (
-                    <Block css={styles.check}>
-                        <div css={styles.radio} />
-                    </Block>
-                )
-            }}
+            styles={styles}
+            children={(checked, focus) => 
+                <Block css={styles.check({animated, size, disabled})}>
+                    <div css={styles.radio({animated, size, disabled, checked})}/>
+                </Block>
+            }
         />
     );
 }

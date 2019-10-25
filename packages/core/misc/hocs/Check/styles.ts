@@ -3,70 +3,72 @@ import Global from '@flow-ui/core/types';
 import useFlow from '../../hooks/useFlow';
 import useStyleProps from '../../hooks/useStyleProps';
 import callProp from '../../utils/callProp';
-import variant from '../../utils/variant';
-import ChecTypes from './types';
+import Types from './types';
+import ThemeTypes from '../../themes/types';
 
-export default (props: ChecTypes.Props) => {
-    const { theme } = useFlow();
-
-    let { animated, disabled, size, labelColor } = props;
-
+const checkStyles = (props: Types.Props, theme: ThemeTypes.Index): Global.ComponentStyles<Types.Styles> => {
+    
+    const labelColor = callProp(props.labelColor, theme.color);
     const styleProps = useStyleProps(props);
 
-    if (!size) {
-        size = 'medium'
-    }
-
     return {
-        container: css(
+        container: (variant) => [
             {
                 display: "flex",
                 alignItems: "center",
-                cursor: disabled
-                    ? "not-allowed"
-                    : "pointer",
+                cursor: "pointer",
                 color: theme.color.onSurface.css(),
                 outline: 'none'
             },
-            styleProps.all,
-            animated && {
-                transition: "all .15s"
-            }
-        ),
+            variant({
+                disabled: [{
+                    cursor: "not-allowed",
+                }],
+                animated: [{
+                    transition: "all .15s"
+                }]
+            }),
+            styleProps.all
+        ],
 
-        label: css(
+        label: (variant) => [
             {
                 marginLeft: "0.5rem",
                 userSelect: "none",
-                color: disabled
-                    ? callProp(theme.color.light.css(), theme.color)
-                    : callProp(labelColor, theme.color),
+                color: labelColor
             },
-            variant<Global.Size>(size, {
-                xsmall: {
-                    ...theme.typography.caption[3],
+            variant({
+                size: {
+                    xsmall: [{
+                        ...theme.typography.caption[3],
+                    }],
+                    small: [{
+                        ...theme.typography.caption[2],
+                    }],
+                    medium: [{
+                        ...theme.typography.caption[1],
+                    }],
+                    large: [{
+                        fontSize: theme.typography.header[4].fontSize,
+                        lineHeight: theme.typography.header[4].lineHeight,
+                    }],
+                    xlarge: [{
+                        fontSize: theme.typography.header[4].fontSize,
+                        lineHeight: theme.typography.header[4].lineHeight,
+                    }],
                 },
-                small: {
-                    ...theme.typography.caption[2],
-                },
-                medium: {
-                    ...theme.typography.caption[1],
-                },
-                large: {
-                    fontSize: theme.typography.header[4].fontSize,
-                    lineHeight: theme.typography.header[4].lineHeight,
-                },
-                xlarge: {
-                    fontSize: theme.typography.header[4].fontSize,
-                    lineHeight: theme.typography.header[4].lineHeight,
-                },
+                disabled: [{
+                    color: callProp(theme.color.light.css(), theme.color)
+                }],
+                uppercase: [{
+                    textTransform: "uppercase"
+                }],
+                animated: [{
+                    transition: "all .15s"
+                }]
             }),
-            props.uppercase && {
-                textTransform: "uppercase"
-            },
-            animated && {
-                transition: "all .15s"
-            }
-        ),
+        ],
     }
 }
+
+export default checkStyles

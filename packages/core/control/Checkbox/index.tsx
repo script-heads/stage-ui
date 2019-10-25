@@ -2,13 +2,19 @@ import React, { FC, forwardRef, RefObject } from 'react';
 import Icon from '../../content/Icon';
 import Block from '../../layout/Block';
 import Check from '../../misc/hocs/Check';
-import createStyles from './styles';
-import CheckBoxTypes from './types';
+import checkboxStyles from './styles';
+import Types from './types';
+import useStyles from "@flow-ui/core/misc/hooks/useStyles";
 
-const Checkbox: FC<CheckBoxTypes.Props> = (props, ref: RefObject<HTMLDivElement>) => {
+const Checkbox: FC<Types.Props> = (props, ref: RefObject<HTMLDivElement>) => {
+    const {size='medium', animated, disabled} = props;
+    const styles = useStyles<Types.Styles>(props, checkboxStyles, 'Checkbox');
+
     return (
         <Check
             {...props}
+            size={size}
+            styles={styles}
             tabIndex={props.tabIndex || 0}
             onFocus={(e) => {
                 props.onFocus && props.onFocus(e)
@@ -22,17 +28,14 @@ const Checkbox: FC<CheckBoxTypes.Props> = (props, ref: RefObject<HTMLDivElement>
              * Checkbox use
              */
             type="checkbox"
-            children={(checked, focus) => {
-                const styles = createStyles(props, checked, focus);
-                return (
-                    <Block css={styles.check}>
-                        <Icon
-                            type={i => i.outline.checkmark}
-                            css={styles.icon}
-                        />
-                    </Block>
-                )
-            }}
+            children={(checked, focus) => 
+                <Block css={styles.check({animated, size, disabled, focus})}>
+                    <Icon
+                        type={i => i.outline.checkmark}
+                        css={styles.icon({animated, size, disabled, checked})}
+                    />
+                </Block>
+            }
         />
     );
 }

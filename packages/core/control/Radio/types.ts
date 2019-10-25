@@ -1,20 +1,22 @@
-import Global from "@flow-ui/core/types";
-import { ObjectInterpolation } from "@emotion/css";
+import CheckTypes from "../../misc/hocs/Check/types";
 
 declare namespace RadioTypes {
-    interface Props extends Global.Props {
-        label?: string
-        labelColor?: Global.ColorProp
-        checked?: boolean
-        disabled?: boolean
-        defaultValue?: boolean
-        uppercase?: boolean
-        size?: Global.Size
-        onChange?: (checked: boolean) => void
+
+    interface Props extends CheckTypes.Props {
     }
-    export interface Styles {
-        check: ObjectInterpolation<undefined>
-        icon: ObjectInterpolation<undefined>
+
+    interface Styles extends CheckTypes.Styles {
+        check: {
+            size: Props['size']
+            animated: Props['animated']
+            disabled: Props['disabled']
+        }
+        radio: {
+            checked: Props['checked']
+            size: Props['size']
+            animated: Props['animated']
+            disabled: Props['disabled']
+        }
     }
 }
 
