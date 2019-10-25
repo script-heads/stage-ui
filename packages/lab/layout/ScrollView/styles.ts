@@ -70,6 +70,12 @@ const ScrollViewStyles: Global.FunctionalComponentStyles<Types.Styles>= (props: 
                     square: [{
                         borderRadius: 0
                     }]
+                },
+                position: {
+                    left: [{
+                        right: 'auto',
+                        left: 0
+                    }]
                 }
             })
         ],
@@ -145,6 +151,12 @@ const ScrollViewStyles: Global.FunctionalComponentStyles<Types.Styles>= (props: 
                 shape: {
                     square: [{
                         borderRadius: 0
+                    }]
+                },
+                position: {
+                    top: [{
+                        bottom: 'auto',
+                        top: 0
                     }]
                 }
             })

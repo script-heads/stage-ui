@@ -22,6 +22,16 @@ declare namespace ScrollViewTypes {
          * @default round
          */
         shape?: 'square' | 'round'
+        /**
+         * Position of X bar
+         * @default bottom
+         */
+        xBarPosition?: 'top' | 'bottom'
+        /**
+         * Position of Y bar
+         * @default right
+         */
+        yBarPosition?: 'left' | 'right'
     }
     
     interface Ref {
@@ -35,6 +45,7 @@ declare namespace ScrollViewTypes {
             active: boolean,
             shape: Props["shape"]
             size: Props["size"]
+            position: Props["yBarPosition"]
         }
         yThumb: {
             active: boolean,
@@ -45,6 +56,7 @@ declare namespace ScrollViewTypes {
             active: boolean
             shape: Props["shape"]
             size: Props["size"]
+            position: Props["xBarPosition"]
         }
         xThumb: {
             active: boolean

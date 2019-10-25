@@ -961,22 +961,58 @@ declare module 'control/Button/types' {
 	export default ButtonTypes;
 
 }
-declare module 'control/Checkbox/types' {
-	import Global from '@flow-ui/core/types';
-	import { ObjectInterpolation } from '@emotion/css'; namespace CheckboxTypes {
+declare module 'misc/hocs/Check/types' {
+	/// <reference types="react" />
+	import Global from '@flow-ui/core/types'; namespace CheckTypes {
+	    type CheckType = 'checkbox' | 'radio' | 'switch';
 	    interface Props extends Global.Props {
 	        label?: string;
 	        labelColor?: Global.ColorProp;
 	        checked?: boolean;
 	        disabled?: boolean;
+	        onChange?: (checked: boolean) => void;
 	        defaultValue?: boolean;
 	        uppercase?: boolean;
 	        size?: Global.Size;
-	        onChange?: (checked: boolean) => void;
+	    }
+	    interface PrivateProps extends Props {
+	        children: (checked: boolean, focus: boolean) => React.ReactElement;
+	        type?: CheckType;
+	        styles: Global.FlowStyles<Styles>;
 	    }
 	    interface Styles {
-	        check: ObjectInterpolation<undefined>;
-	        icon: ObjectInterpolation<undefined>;
+	        container: {
+	            disabled: Props['disabled'];
+	            animated: Props['animated'];
+	        };
+	        label: {
+	            disabled: Props['disabled'];
+	            size: Props['size'];
+	            uppercase: Props['uppercase'];
+	            animated: Props['animated'];
+	        };
+	    }
+	}
+	export default CheckTypes;
+
+}
+declare module 'control/Checkbox/types' {
+	import CheckTypes from 'misc/hocs/Check/types'; namespace CheckboxTypes {
+	    interface Props extends CheckTypes.Props {
+	    }
+	    interface Styles extends CheckTypes.Styles {
+	        check: {
+	            size: Props['size'];
+	            animated: Props['animated'];
+	            disabled: Props['disabled'];
+	            focus: boolean;
+	        };
+	        icon: {
+	            checked: Props['checked'];
+	            size: Props['size'];
+	            animated: Props['animated'];
+	            disabled: Props['disabled'];
+	        };
 	    }
 	}
 	export default CheckboxTypes;
@@ -1188,21 +1224,21 @@ declare module 'control/Menu/types' {
 
 }
 declare module 'control/Radio/types' {
-	import Global from '@flow-ui/core/types';
-	import { ObjectInterpolation } from '@emotion/css'; namespace RadioTypes {
-	    interface Props extends Global.Props {
-	        label?: string;
-	        labelColor?: Global.ColorProp;
-	        checked?: boolean;
-	        disabled?: boolean;
-	        defaultValue?: boolean;
-	        uppercase?: boolean;
-	        size?: Global.Size;
-	        onChange?: (checked: boolean) => void;
+	import CheckTypes from 'misc/hocs/Check/types'; namespace RadioTypes {
+	    interface Props extends CheckTypes.Props {
 	    }
-	    interface Styles {
-	        check: ObjectInterpolation<undefined>;
-	        icon: ObjectInterpolation<undefined>;
+	    interface Styles extends CheckTypes.Styles {
+	        check: {
+	            size: Props['size'];
+	            animated: Props['animated'];
+	            disabled: Props['disabled'];
+	        };
+	        radio: {
+	            checked: Props['checked'];
+	            size: Props['size'];
+	            animated: Props['animated'];
+	            disabled: Props['disabled'];
+	        };
 	    }
 	}
 	export default RadioTypes;
@@ -1300,21 +1336,22 @@ declare module 'control/Select/types' {
 
 }
 declare module 'control/Switch/types' {
-	import Global from '@flow-ui/core/types';
-	import { ObjectInterpolation } from '@emotion/css'; namespace SwitchTypes {
-	    interface Props extends Global.Props {
-	        label?: string;
-	        labelColor?: Global.ColorProp;
-	        checked?: boolean;
-	        disabled?: boolean;
-	        defaultValue?: boolean;
-	        uppercase?: boolean;
-	        size?: Global.Size;
-	        onChange?: (checked: boolean) => void;
+	import CheckTypes from 'misc/hocs/Check/types'; namespace SwitchTypes {
+	    interface Props extends CheckTypes.Props {
 	    }
-	    interface Styles {
-	        check: ObjectInterpolation<undefined>;
-	        icon: ObjectInterpolation<undefined>;
+	    interface Styles extends CheckTypes.Styles {
+	        check: {
+	            checked: Props['checked'];
+	            size: Props['size'];
+	            animated: Props['animated'];
+	            disabled: Props['disabled'];
+	        };
+	        switch: {
+	            checked: Props['checked'];
+	            size: Props['size'];
+	            animated: Props['animated'];
+	            disabled: Props['disabled'];
+	        };
 	    }
 	}
 	export default SwitchTypes;
@@ -2418,56 +2455,28 @@ declare module 'layout/Block' {
 	export default _default;
 
 }
-declare module 'misc/utils/variant' {
-	 const _default: <T>(prop: any, variant: { [K in T]?: any; }) => any;
-	export default _default;
-
-}
-declare module 'misc/hocs/Check/types' {
-	/// <reference types="react" />
-	import Global from '@flow-ui/core/types'; namespace CheckTypes {
-	    type CheckType = 'checkbox' | 'radio' | 'switch';
-	    interface Props extends Global.Props {
-	        label?: string;
-	        labelColor?: Global.ColorProp;
-	        type?: CheckType;
-	        checked?: boolean;
-	        disabled?: boolean;
-	        onChange?: (checked: boolean) => void;
-	        defaultValue?: boolean;
-	        uppercase?: boolean;
-	        size?: Global.Size;
-	        children: (checked: boolean, focus: boolean) => React.ReactElement;
-	    }
-	}
-	export default CheckTypes;
-
-}
 declare module 'misc/hocs/Check/styles' {
-	import ChecTypes from 'misc/hocs/Check/types'; const _default: (props: ChecTypes.Props) => {
-	    container: import("@emotion/utils").SerializedStyles;
-	    label: import("@emotion/utils").SerializedStyles;
-	};
-	export default _default;
+	import Global from '@flow-ui/core/types';
+	import Types from 'misc/hocs/Check/types';
+	import ThemeTypes from 'misc/themes/types'; const checkStyles: (props: Types.Props, theme: ThemeTypes.Index) => Global.ComponentStyles<Types.Styles>;
+	export default checkStyles;
 
 }
 declare module 'misc/hocs/Check' {
 	import React from 'react';
-	import CheckTypes from 'misc/hocs/Check/types'; const _default: React.ForwardRefExoticComponent<CheckTypes.Props & React.RefAttributes<HTMLDivElement>>;
+	import CheckTypes from 'misc/hocs/Check/types'; const _default: React.ForwardRefExoticComponent<CheckTypes.PrivateProps & React.RefAttributes<HTMLDivElement>>;
 	export default _default;
 
 }
 declare module 'control/Checkbox/styles' {
-	import CheckboxTypes from 'control/Checkbox/types'; const _default: (props: CheckboxTypes.Props, checked: boolean, focus: boolean) => {
-	    check: import("@emotion/utils").SerializedStyles;
-	    icon: import("@emotion/utils").SerializedStyles;
-	};
-	export default _default;
+	import Types from 'control/Checkbox/types';
+	import Global from 'types'; const checkboxStyles: Global.FunctionalComponentStyles<Types.Styles>;
+	export default checkboxStyles;
 
 }
 declare module 'control/Checkbox' {
 	import React from 'react';
-	import CheckBoxTypes from 'control/Checkbox/types'; const _default: React.ForwardRefExoticComponent<CheckBoxTypes.Props & React.RefAttributes<unknown>>;
+	import Types from 'control/Checkbox/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
 	export default _default;
 
 }
@@ -2492,6 +2501,11 @@ declare module 'layout/Popover/styles' {
 declare module 'layout/Popover' {
 	import React from 'react';
 	import Types from 'layout/Popover/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export default _default;
+
+}
+declare module 'misc/utils/variant' {
+	 const _default: <T>(prop: any, variant: { [K in T]?: any; }) => any;
 	export default _default;
 
 }
@@ -2616,11 +2630,9 @@ declare module 'control/Menu' {
 
 }
 declare module 'control/Radio/styles' {
-	import RadioTypes from 'control/Radio/types'; const _default: (props: RadioTypes.Props, checked: boolean, focus: boolean) => {
-	    check: import("@emotion/utils").SerializedStyles;
-	    radio: import("@emotion/utils").SerializedStyles;
-	};
-	export default _default;
+	import Types from 'control/Radio/types';
+	import Global from 'types'; const radioStyles: Global.FunctionalComponentStyles<Types.Styles>;
+	export default radioStyles;
 
 }
 declare module 'control/Radio' {
@@ -2665,16 +2677,14 @@ declare module 'control/Select' {
 
 }
 declare module 'control/Switch/styles' {
-	import SwitchTypes from 'control/Switch/types'; const _default: (props: SwitchTypes.Props, checked: boolean, focus: boolean) => {
-	    check: import("@emotion/utils").SerializedStyles;
-	    switch: import("@emotion/utils").SerializedStyles;
-	};
-	export default _default;
+	import Types from 'control/Switch/types';
+	import Global from 'types'; const switchStyles: Global.FunctionalComponentStyles<Types.Styles>;
+	export default switchStyles;
 
 }
 declare module 'control/Switch' {
 	import React from 'react';
-	import SwitchTypes from 'control/Switch/types'; const _default: React.ForwardRefExoticComponent<SwitchTypes.Props & React.RefAttributes<unknown>>;
+	import Types from 'control/Switch/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
 	export default _default;
 
 }
