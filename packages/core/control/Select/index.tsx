@@ -11,6 +11,7 @@ import useStyles from '../../misc/hooks/useStyles'
 const Select = (props: Types.Props, ref) => {
 
     const {
+        shape = 'rounded',
         decoration = 'outline', 
         size = 'medium',
         multiselect,
@@ -191,6 +192,9 @@ const Select = (props: Types.Props, ref) => {
                 styles={styles}
                 isLabelOutside={isLabelOutside}
                 isLabelOverlay={isLabelOverlay}
+                decoration={decoration}
+                size={size}
+                shape={shape}
                 onClear={() => clear()}
                 
                 attributes={{
@@ -205,7 +209,7 @@ const Select = (props: Types.Props, ref) => {
                     onKeyDown: (e) => handleKeyDown(e)
                 }}                
 
-                children={isLabelOverlay && fieldValue}
+                children={!isLabelOverlay && fieldValue}
 
                 rightChild={(
                     <Icon
