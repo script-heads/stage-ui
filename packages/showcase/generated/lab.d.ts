@@ -83,24 +83,42 @@ declare module 'layout/ScrollView/types' {
 	         * Custom ScrollBar color
 	         */
 	        color?: Global.ColorProp;
+	        /**
+	         * Bars size
+	         * @default medium
+	         */
+	        size?: Global.Size;
+	        /**
+	         * Bars shape
+	         * @default round
+	         */
+	        shape?: 'square' | 'round';
 	    }
-	    interface Variants {
-	        active: boolean;
+	    interface Ref {
+	        scrollTop: () => void;
 	    }
 	    interface Styles {
 	        container: void;
 	        content: void;
 	        yBar: {
 	            active: boolean;
+	            shape: Props["shape"];
+	            size: Props["size"];
 	        };
 	        yThumb: {
 	            active: boolean;
+	            shape: Props["shape"];
+	            size: Props["size"];
 	        };
 	        xBar: {
 	            active: boolean;
+	            shape: Props["shape"];
+	            size: Props["size"];
 	        };
 	        xThumb: {
 	            active: boolean;
+	            shape: Props["shape"];
+	            size: Props["size"];
 	        };
 	    }
 	}
@@ -115,7 +133,7 @@ declare module 'layout/ScrollView/styles' {
 }
 declare module 'layout/ScrollView' {
 	import React from 'react';
-	import Types from 'layout/ScrollView/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	import Types from 'layout/ScrollView/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
 	export default _default;
 
 }

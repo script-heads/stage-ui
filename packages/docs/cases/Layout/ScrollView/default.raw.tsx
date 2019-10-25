@@ -4,15 +4,11 @@ import { ScrollView } from '@flow-ui/lab';
 
 export default () => {
     return (
-        <ScrollView mode="scroll">
-            <Block 
-                p="1rem 2rem"
-                style={{
-                    color:"white",
-                    background: 'linear-gradient(45deg, red, yellow)'
-                }}
-                children={"ScrollView ".repeat(100)}
-            />
-        </ScrollView>
+        <ScrollView 
+            mode="always"
+            size="medium"
+            shape="round"
+            children={"Text ".repeat(200)}
+        />
     )
 }

@@ -861,7 +861,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 8208,
+                    "id": 8222,
                     "name": "children",
                     "type": "reference",
                     "overwrites": {
@@ -11452,27 +11452,12 @@
     ],
     "ScrollViewTypes": [
         {
-            "name": "Variants",
-            "comment": "",
-            "weight": 99999,
-            "children": [
-                {
-                    "id": 8012,
-                    "name": "active",
-                    "type": "intrinsic",
-                    "values": [
-                        "boolean"
-                    ]
-                }
-            ]
-        },
-        {
             "name": "Styles",
             "comment": "",
             "weight": 99999,
             "children": [
                 {
-                    "id": 8014,
+                    "id": 8018,
                     "name": "container",
                     "type": "intrinsic",
                     "values": [
@@ -11480,7 +11465,7 @@
                     ]
                 },
                 {
-                    "id": 8015,
+                    "id": 8019,
                     "name": "content",
                     "type": "intrinsic",
                     "values": [
@@ -11488,12 +11473,12 @@
                     ]
                 },
                 {
-                    "id": 8022,
+                    "id": 8030,
                     "name": "xBar",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 8023,
+                            "id": 8031,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -11502,7 +11487,7 @@
                             },
                             "children": [
                                 {
-                                    "id": 8024,
+                                    "id": 8032,
                                     "name": "active",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -11513,13 +11498,93 @@
                                     "sources": [
                                         {
                                             "fileName": "lab/layout/ScrollView/types.ts",
-                                            "line": 31,
+                                            "line": 45,
                                             "character": 18
                                         }
                                     ],
                                     "type": {
                                         "type": "intrinsic",
                                         "name": "boolean"
+                                    }
+                                },
+                                {
+                                    "id": 8033,
+                                    "name": "shape",
+                                    "kind": 32,
+                                    "kindString": "Variable",
+                                    "flags": {
+                                        "isExported": true,
+                                        "isExternal": true
+                                    },
+                                    "sources": [
+                                        {
+                                            "fileName": "lab/layout/ScrollView/types.ts",
+                                            "line": 46,
+                                            "character": 17
+                                        }
+                                    ],
+                                    "type": {
+                                        "type": "union",
+                                        "types": [
+                                            {
+                                                "type": "intrinsic",
+                                                "name": "undefined"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "square"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "round"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "id": 8034,
+                                    "name": "size",
+                                    "kind": 32,
+                                    "kindString": "Variable",
+                                    "flags": {
+                                        "isExported": true,
+                                        "isExternal": true
+                                    },
+                                    "sources": [
+                                        {
+                                            "fileName": "lab/layout/ScrollView/types.ts",
+                                            "line": 47,
+                                            "character": 16
+                                        }
+                                    ],
+                                    "type": {
+                                        "type": "union",
+                                        "types": [
+                                            {
+                                                "type": "intrinsic",
+                                                "name": "undefined"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "medium"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "xsmall"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "small"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "large"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "xlarge"
+                                            }
+                                        ]
                                     }
                                 }
                             ],
@@ -11528,6 +11593,282 @@
                                     "title": "Variables",
                                     "kind": 32,
                                     "children": [
+                                        8032,
+                                        8033,
+                                        8034
+                                    ]
+                                }
+                            ],
+                            "sources": [
+                                {
+                                    "fileName": "lab/layout/ScrollView/types.ts",
+                                    "line": 44,
+                                    "character": 13
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "id": 8035,
+                    "name": "xThumb",
+                    "type": {
+                        "type": "reflection",
+                        "declaration": {
+                            "id": 8036,
+                            "name": "__type",
+                            "kind": 65536,
+                            "kindString": "Type literal",
+                            "flags": {
+                                "isExported": true
+                            },
+                            "children": [
+                                {
+                                    "id": 8037,
+                                    "name": "active",
+                                    "kind": 32,
+                                    "kindString": "Variable",
+                                    "flags": {
+                                        "isExported": true,
+                                        "isExternal": true
+                                    },
+                                    "sources": [
+                                        {
+                                            "fileName": "lab/layout/ScrollView/types.ts",
+                                            "line": 50,
+                                            "character": 18
+                                        }
+                                    ],
+                                    "type": {
+                                        "type": "intrinsic",
+                                        "name": "boolean"
+                                    }
+                                },
+                                {
+                                    "id": 8038,
+                                    "name": "shape",
+                                    "kind": 32,
+                                    "kindString": "Variable",
+                                    "flags": {
+                                        "isExported": true,
+                                        "isExternal": true
+                                    },
+                                    "sources": [
+                                        {
+                                            "fileName": "lab/layout/ScrollView/types.ts",
+                                            "line": 51,
+                                            "character": 17
+                                        }
+                                    ],
+                                    "type": {
+                                        "type": "union",
+                                        "types": [
+                                            {
+                                                "type": "intrinsic",
+                                                "name": "undefined"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "square"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "round"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "id": 8039,
+                                    "name": "size",
+                                    "kind": 32,
+                                    "kindString": "Variable",
+                                    "flags": {
+                                        "isExported": true,
+                                        "isExternal": true
+                                    },
+                                    "sources": [
+                                        {
+                                            "fileName": "lab/layout/ScrollView/types.ts",
+                                            "line": 52,
+                                            "character": 16
+                                        }
+                                    ],
+                                    "type": {
+                                        "type": "union",
+                                        "types": [
+                                            {
+                                                "type": "intrinsic",
+                                                "name": "undefined"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "medium"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "xsmall"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "small"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "large"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "xlarge"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ],
+                            "groups": [
+                                {
+                                    "title": "Variables",
+                                    "kind": 32,
+                                    "children": [
+                                        8037,
+                                        8038,
+                                        8039
+                                    ]
+                                }
+                            ],
+                            "sources": [
+                                {
+                                    "fileName": "lab/layout/ScrollView/types.ts",
+                                    "line": 49,
+                                    "character": 15
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "id": 8020,
+                    "name": "yBar",
+                    "type": {
+                        "type": "reflection",
+                        "declaration": {
+                            "id": 8021,
+                            "name": "__type",
+                            "kind": 65536,
+                            "kindString": "Type literal",
+                            "flags": {
+                                "isExported": true
+                            },
+                            "children": [
+                                {
+                                    "id": 8022,
+                                    "name": "active",
+                                    "kind": 32,
+                                    "kindString": "Variable",
+                                    "flags": {
+                                        "isExported": true,
+                                        "isExternal": true
+                                    },
+                                    "sources": [
+                                        {
+                                            "fileName": "lab/layout/ScrollView/types.ts",
+                                            "line": 35,
+                                            "character": 18
+                                        }
+                                    ],
+                                    "type": {
+                                        "type": "intrinsic",
+                                        "name": "boolean"
+                                    }
+                                },
+                                {
+                                    "id": 8023,
+                                    "name": "shape",
+                                    "kind": 32,
+                                    "kindString": "Variable",
+                                    "flags": {
+                                        "isExported": true,
+                                        "isExternal": true
+                                    },
+                                    "sources": [
+                                        {
+                                            "fileName": "lab/layout/ScrollView/types.ts",
+                                            "line": 36,
+                                            "character": 17
+                                        }
+                                    ],
+                                    "type": {
+                                        "type": "union",
+                                        "types": [
+                                            {
+                                                "type": "intrinsic",
+                                                "name": "undefined"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "square"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "round"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "id": 8024,
+                                    "name": "size",
+                                    "kind": 32,
+                                    "kindString": "Variable",
+                                    "flags": {
+                                        "isExported": true,
+                                        "isExternal": true
+                                    },
+                                    "sources": [
+                                        {
+                                            "fileName": "lab/layout/ScrollView/types.ts",
+                                            "line": 37,
+                                            "character": 16
+                                        }
+                                    ],
+                                    "type": {
+                                        "type": "union",
+                                        "types": [
+                                            {
+                                                "type": "intrinsic",
+                                                "name": "undefined"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "medium"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "xsmall"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "small"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "large"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "xlarge"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ],
+                            "groups": [
+                                {
+                                    "title": "Variables",
+                                    "kind": 32,
+                                    "children": [
+                                        8022,
+                                        8023,
                                         8024
                                     ]
                                 }
@@ -11535,7 +11876,7 @@
                             "sources": [
                                 {
                                     "fileName": "lab/layout/ScrollView/types.ts",
-                                    "line": 30,
+                                    "line": 34,
                                     "character": 13
                                 }
                             ]
@@ -11544,7 +11885,7 @@
                 },
                 {
                     "id": 8025,
-                    "name": "xThumb",
+                    "name": "yThumb",
                     "type": {
                         "type": "reflection",
                         "declaration": {
@@ -11568,7 +11909,7 @@
                                     "sources": [
                                         {
                                             "fileName": "lab/layout/ScrollView/types.ts",
-                                            "line": 34,
+                                            "line": 40,
                                             "character": 18
                                         }
                                     ],
@@ -11576,44 +11917,10 @@
                                         "type": "intrinsic",
                                         "name": "boolean"
                                     }
-                                }
-                            ],
-                            "groups": [
+                                },
                                 {
-                                    "title": "Variables",
-                                    "kind": 32,
-                                    "children": [
-                                        8027
-                                    ]
-                                }
-                            ],
-                            "sources": [
-                                {
-                                    "fileName": "lab/layout/ScrollView/types.ts",
-                                    "line": 33,
-                                    "character": 15
-                                }
-                            ]
-                        }
-                    }
-                },
-                {
-                    "id": 8016,
-                    "name": "yBar",
-                    "type": {
-                        "type": "reflection",
-                        "declaration": {
-                            "id": 8017,
-                            "name": "__type",
-                            "kind": 65536,
-                            "kindString": "Type literal",
-                            "flags": {
-                                "isExported": true
-                            },
-                            "children": [
-                                {
-                                    "id": 8018,
-                                    "name": "active",
+                                    "id": 8028,
+                                    "name": "shape",
                                     "kind": 32,
                                     "kindString": "Variable",
                                     "flags": {
@@ -11623,52 +11930,31 @@
                                     "sources": [
                                         {
                                             "fileName": "lab/layout/ScrollView/types.ts",
-                                            "line": 25,
-                                            "character": 18
+                                            "line": 41,
+                                            "character": 17
                                         }
                                     ],
                                     "type": {
-                                        "type": "intrinsic",
-                                        "name": "boolean"
+                                        "type": "union",
+                                        "types": [
+                                            {
+                                                "type": "intrinsic",
+                                                "name": "undefined"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "square"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "round"
+                                            }
+                                        ]
                                     }
-                                }
-                            ],
-                            "groups": [
+                                },
                                 {
-                                    "title": "Variables",
-                                    "kind": 32,
-                                    "children": [
-                                        8018
-                                    ]
-                                }
-                            ],
-                            "sources": [
-                                {
-                                    "fileName": "lab/layout/ScrollView/types.ts",
-                                    "line": 24,
-                                    "character": 13
-                                }
-                            ]
-                        }
-                    }
-                },
-                {
-                    "id": 8019,
-                    "name": "yThumb",
-                    "type": {
-                        "type": "reflection",
-                        "declaration": {
-                            "id": 8020,
-                            "name": "__type",
-                            "kind": 65536,
-                            "kindString": "Type literal",
-                            "flags": {
-                                "isExported": true
-                            },
-                            "children": [
-                                {
-                                    "id": 8021,
-                                    "name": "active",
+                                    "id": 8029,
+                                    "name": "size",
                                     "kind": 32,
                                     "kindString": "Variable",
                                     "flags": {
@@ -11678,13 +11964,38 @@
                                     "sources": [
                                         {
                                             "fileName": "lab/layout/ScrollView/types.ts",
-                                            "line": 28,
-                                            "character": 18
+                                            "line": 42,
+                                            "character": 16
                                         }
                                     ],
                                     "type": {
-                                        "type": "intrinsic",
-                                        "name": "boolean"
+                                        "type": "union",
+                                        "types": [
+                                            {
+                                                "type": "intrinsic",
+                                                "name": "undefined"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "medium"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "xsmall"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "small"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "large"
+                                            },
+                                            {
+                                                "type": "stringLiteral",
+                                                "value": "xlarge"
+                                            }
+                                        ]
                                     }
                                 }
                             ],
@@ -11693,15 +12004,60 @@
                                     "title": "Variables",
                                     "kind": 32,
                                     "children": [
-                                        8021
+                                        8027,
+                                        8028,
+                                        8029
                                     ]
                                 }
                             ],
                             "sources": [
                                 {
                                     "fileName": "lab/layout/ScrollView/types.ts",
-                                    "line": 27,
+                                    "line": 39,
                                     "character": 15
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Ref",
+            "comment": "",
+            "weight": 99999,
+            "children": [
+                {
+                    "id": 8014,
+                    "name": "scrollTop",
+                    "type": {
+                        "type": "reflection",
+                        "declaration": {
+                            "id": 8015,
+                            "name": "__type",
+                            "kind": 65536,
+                            "kindString": "Type literal",
+                            "flags": {
+                                "isExported": true
+                            },
+                            "signatures": [
+                                {
+                                    "id": 8016,
+                                    "name": "__call",
+                                    "kind": 4096,
+                                    "kindString": "Call signature",
+                                    "flags": {},
+                                    "type": {
+                                        "type": "intrinsic",
+                                        "name": "void"
+                                    }
+                                }
+                            ],
+                            "sources": [
+                                {
+                                    "fileName": "lab/layout/ScrollView/types.ts",
+                                    "line": 28,
+                                    "character": 18
                                 }
                             ]
                         }
@@ -11745,6 +12101,37 @@
                         "always",
                         "scroll",
                         "hidden"
+                    ],
+                    "isOptional": true
+                },
+                {
+                    "id": 7907,
+                    "name": "shape",
+                    "comment": "Bars shape",
+                    "type": "stringLiteral",
+                    "tags": {
+                        "default": "round"
+                    },
+                    "values": [
+                        "square",
+                        "round"
+                    ],
+                    "isOptional": true
+                },
+                {
+                    "id": 7906,
+                    "name": "size",
+                    "comment": "Bars size",
+                    "type": "stringLiteral",
+                    "tags": {
+                        "default": "medium"
+                    },
+                    "values": [
+                        "xsmall",
+                        "small",
+                        "medium",
+                        "large",
+                        "xlarge"
                     ],
                     "isOptional": true
                 }

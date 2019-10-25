@@ -1,6 +1,6 @@
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
 import useStyles from '@flow-ui/core/misc/hooks/useStyles'
-import React, { forwardRef, useEffect, useMemo, useState } from 'react'
+import React, { forwardRef, useEffect, useMemo, useState, useImperativeHandle, RefForwardingComponent } from 'react'
 import Styles from './styles'
 import Types from './types'
 
@@ -12,10 +12,22 @@ interface ScrollParams {
     cursorHandle?: boolean
 }
 
-const ScrollView = (props: Types.Props, ref: any) => {
+const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
+
+    useImperativeHandle(ref, () => ({
+        scrollTop: () => {
+            updateScroll({
+                deltaX: -1e+10,
+                deltaY: -1e+10,
+                preventDefault: () => null,
+                stopPropagation: () => null
+            })
+        }
+    }))
 
     const styles = useStyles<Types.Styles>(props, Styles)
     const { attributes } = useContainer(props)
+    const { shape = 'round', size = 'medium' } = props;
 
     const [active, setActive] = useState(false)
     const memo: any = useMemo(() => ({
@@ -164,8 +176,8 @@ const ScrollView = (props: Types.Props, ref: any) => {
         memo.mode = props.mode
         setActive(memo.mode == 'always' ? true : false)
         updateScroll({
-            deltaX: -1e+10,
-            deltaY: -1e+10,
+            deltaX: 0,
+            deltaY: 0,
             preventDefault: () => null,
             stopPropagation: () => null
         })
@@ -187,14 +199,16 @@ const ScrollView = (props: Types.Props, ref: any) => {
         memo.container = ref
     }
 
+    const variantParams = { active, size, shape }
+    
     return (
         <div {...attributes} css={styles.container} ref={createRef}>
             <div css={styles.content} ref={ref => memo.content = ref} children={props.children} />
-            <div css={styles.yBar({ active })} ref={ref => memo.yBar = ref}>
-                <span css={styles.yThumb({ active })} ref={ref => memo.yThumb = ref} />
+            <div css={styles.yBar(variantParams)} ref={ref => memo.yBar = ref}>
+                <span css={styles.yThumb(variantParams)} ref={ref => memo.yThumb = ref} />
             </div>
-            <div css={styles.xBar({ active })} ref={ref => memo.xBar = ref}>
-                <span css={styles.xThumb({ active })} ref={ref => memo.xThumb = ref} />
+            <div css={styles.xBar(variantParams)} ref={ref => memo.xBar = ref}>
+                <span css={styles.xThumb(variantParams)} ref={ref => memo.xThumb = ref} />
             </div>
         </div>
     )
