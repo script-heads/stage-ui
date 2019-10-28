@@ -5,109 +5,91 @@ import ReactDOM from 'react-dom'
 import Types from './types'
 import dropStyles from './styles'
 
+type GetCoord = (tr: ClientRect, td: ClientRect) => string
+
 const Drop = (props: Types.Props, ref) => {
 
+    let timer
+
     const { attributes } = useContainer(props)
-    const { children, target: targetRef, onClickOutside, distance = 0, align, justify } = props
+    const { children, target: targetRef, onClickOutside, distance = 0, align,
+        justify, stretchHeight, stretchWidth, visibility, display } = props
     const styles = useStyles<Types.Styles>(props, dropStyles, 'Drop')
     const dropRef = useRef<HTMLDivElement>(null)
-    
-    let getTopCoord = (tr, dr) => toStyle(tr.bottom + distance)
-    let getLeftCoord = (tr, dr) => toStyle((tr.left + tr.width / 2) - dr.width / 2)
+
+    let getTopCoord: GetCoord = (tr) => toStyle(tr.bottom + distance)
+    let getLeftCoord: GetCoord = (tr, dr) => toStyle((tr.left + tr.width / 2) - dr.width / 2)
+
+    const setHorizontalPosition = () => {
+        switch (justify) {
+            case 'start':
+                getLeftCoord = (tr) => toStyle(tr.left)
+                break
+            case 'center':
+                getLeftCoord = (tr, dr) => toStyle((tr.left + tr.width / 2) - dr.width / 2)
+                break
+            case 'end':
+                getLeftCoord = (tr, dr) => toStyle(tr.right - dr.width)
+                break
+            case 'start-outside':
+                getLeftCoord = (tr) => toStyle(tr.left - tr.width)
+                break
+            case 'end-outside':
+                getLeftCoord = (tr) => toStyle(tr.left + tr.width)
+                break
+        }
+    }
+
+    const setVerticalPosition = () => {
+        switch (justify) {
+            case 'end':
+                getTopCoord = (tr) => toStyle(tr.top)
+                break
+            case 'center':
+                getTopCoord = (tr, dr) => toStyle((tr.top + tr.height / 2) - dr.height / 2)
+                break
+            case 'start':
+                getTopCoord = (tr, dr) => toStyle(tr.bottom - dr.height)
+                break
+            case 'start-outside':
+                getTopCoord = (tr) => toStyle(tr.top - tr.height)
+                break
+        }
+    }
 
     switch (align) {
         case 'top':
             getTopCoord = (tr, dr) => toStyle(tr.top - dr.height - distance)
-            switch (justify) {
-                case 'start':
-                    getLeftCoord = (tr, dr) => toStyle(tr.left)
-                    break
-                case 'center':
-                    getLeftCoord = (tr, dr) => toStyle((tr.left + tr.width / 2) - dr.width / 2)
-                    break
-                case 'end':
-                    getLeftCoord = (tr, dr) => toStyle(tr.right - dr.width)
-                    break
-                case 'start-outside':
-                    getLeftCoord = (tr, dr) => toStyle(tr.left - tr.width)
-                    break
-                case 'end-outside':
-                    getLeftCoord = (tr, dr) => toStyle(tr.left + tr.width)
-                    break
-            }
+            setHorizontalPosition()
             break
         case 'bottom':
-            getTopCoord = (tr, dr) => toStyle(tr.bottom + distance)
-            switch (justify) {
-                case 'start':
-                    getLeftCoord = (tr, dr) => toStyle(tr.left)
-                    break
-                case 'center':
-                    getLeftCoord = (tr, dr) => toStyle((tr.left + tr.width / 2) - dr.width / 2)
-                    break
-                case 'end':
-                    getLeftCoord = (tr, dr) => toStyle(tr.right - dr.width)
-                    break
-                case 'start-outside':
-                    getLeftCoord = (tr, dr) => toStyle(tr.left - tr.width)
-                    break
-                case 'end-outside':
-                    getLeftCoord = (tr, dr) => toStyle(tr.left + tr.width)
-                    break
-            }
+            getTopCoord = (tr) => toStyle(tr.bottom + distance)
+            setHorizontalPosition()
             break
         case 'left':
             getLeftCoord = (tr, dr) => toStyle(tr.left - dr.width - distance)
-            switch (justify) {
-                case 'end':
-                    getTopCoord = (tr, dr) => toStyle(tr.top)
-                    break
-                case 'center':
-                    getTopCoord = (tr, dr) => toStyle((tr.top + tr.height / 2) - dr.height / 2)
-                    break
-                case 'start':
-                    getTopCoord = (tr, dr) => toStyle(tr.bottom - dr.height)
-                    break
-                case 'start-outside':
-                    getTopCoord = (tr, dr) => toStyle(tr.top - tr.height)
-                    break
-            }
+            setVerticalPosition()
             break
         case 'right':
-            getLeftCoord = (tr, dr) => toStyle(tr.right + distance)
-            switch (justify) {
-                case 'end':
-                    getTopCoord = (tr, dr) => toStyle(tr.top)
-                    break
-                case 'center':
-                    getTopCoord = (tr, dr) => toStyle((tr.top + tr.height / 2) - dr.height / 2)
-                    break
-                case 'start':
-                    getTopCoord = (tr, dr) => toStyle(tr.bottom - dr.height)
-                    break
-                case 'start-outside':
-                    getTopCoord = (tr, dr) => toStyle(tr.top - tr.height)
-                    break
-            }
+            getLeftCoord = (tr) => toStyle(tr.right + distance)
+            setVerticalPosition()
             break
     }
 
-    useImperativeHandle(ref, () => {
-        return dropRef.current
-    })
+    useImperativeHandle(ref, () => dropRef.current)
 
     useEffect(() => {
         const style = dropRef.current?.style
 
-        if (props.stretchHeight && style) {
-            style.height = toStyle(targetRef.current?.getBoundingClientRect().height)
+        if (style) {
+            stretchHeight &&
+                toStyle(targetRef.current?.getBoundingClientRect().height)
+
+            stretchWidth &&
+                toStyle(targetRef.current?.getBoundingClientRect().width)
         }
 
-        if (props.stretchWidth && style) {
-            style.width = toStyle(targetRef.current?.getBoundingClientRect().width)
-        }
-        
-        if (props.visibility != 'hidden' && props.display != 'none') {
+        if (visibility != 'hidden' && display != 'none') {
             setPosition()
             document.addEventListener('wheel', setPosition, true)
             document.addEventListener('mouseup', handleClickOutside)
@@ -122,20 +104,25 @@ const Drop = (props: Types.Props, ref) => {
     })
 
     function handleClickOutside(event: any) {
-        dropRef.current && targetRef && targetRef.current && 
+        dropRef.current && targetRef && targetRef.current &&
             !dropRef.current.contains(event.target) &&
             onClickOutside && onClickOutside(event, targetRef ? !targetRef.current.contains(event.target) : undefined)
     }
 
     function setPosition() {
-        if (targetRef.current && dropRef.current) {
-            const tr = targetRef.current.getBoundingClientRect()
-            const dr = dropRef.current.getBoundingClientRect()
-            const style = dropRef.current.style
+        if (!timer) {
+            setTimeout(() => {
+                if (targetRef.current && dropRef.current) {
+                    const tr: ClientRect = targetRef.current.getBoundingClientRect()
+                    const dr: ClientRect = dropRef.current.getBoundingClientRect()
+                    const style = dropRef.current.style
 
-            style.visibility = ''
-            style.top = getTopCoord(tr, dr)
-            style.left = getLeftCoord(tr, dr)
+                    style.visibility = ''
+                    style.top = getTopCoord(tr, dr)
+                    style.left = getLeftCoord(tr, dr)
+                }
+                timer = null
+            }, 1)
         }
     }
 
