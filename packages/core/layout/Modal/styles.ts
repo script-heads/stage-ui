@@ -9,7 +9,7 @@ const modalStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Type
         overlay: (variant) => [
             {
                 opacity: 0,
-                zIndex: 500,
+                zIndex: 200,
                 position: 'fixed',
                 width: '100%',
                 height: '100%',
@@ -37,7 +37,7 @@ const modalStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Type
         window: (variant) => [
             {
                 opacity: 0,
-                zIndex: 500,
+                zIndex: 200,
                 backgroundColor: theme.color.backgroundVariant.css(),
                 minHeight: '1rem',
                 minWidth: '15rem',

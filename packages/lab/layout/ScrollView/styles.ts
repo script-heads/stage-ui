@@ -1,10 +1,10 @@
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
-import callProp from '@flow-ui/core/misc/utils/callProp';
-import chroma from 'chroma-js';
-import Types from './types';
-import Global from '@flow-ui/core/types';
+import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
+import callProp from '@flow-ui/core/misc/utils/callProp'
+import chroma from 'chroma-js'
+import Types from './types'
+import Global from '@flow-ui/core/types'
 
-const ScrollViewStyles: Global.FunctionalComponentStyles<Types.Styles>= (props: Types.Props, theme) => {
+const ScrollViewStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
 
     let color = chroma(
         callProp(props.color, theme.color) || theme.color.onBackground.css()
@@ -35,7 +35,7 @@ const ScrollViewStyles: Global.FunctionalComponentStyles<Types.Styles>= (props: 
         }],
         yBar: (variant) => [
             {
-                zIndex: 400,
+                zIndex: 999,
                 position: 'absolute',
                 top: 0,
                 right: 0,
@@ -54,16 +54,16 @@ const ScrollViewStyles: Global.FunctionalComponentStyles<Types.Styles>= (props: 
                 active: [{ opacity: 1 }],
                 size: {
                     xsmall: [{
-                        width: "0.25rem",
+                        width: '0.25rem',
                     }],
                     small: [{
-                        width: "0.5rem",
+                        width: '0.5rem',
                     }],
                     large: [{
-                        width: "1rem",
+                        width: '1rem',
                     }],
                     xlarge: [{
-                        width: "1.25rem",
+                        width: '1.25rem',
                     }]
                 },
                 shape: {
@@ -81,7 +81,7 @@ const ScrollViewStyles: Global.FunctionalComponentStyles<Types.Styles>= (props: 
         ],
         yThumb: (variant) => [
             {
-                zIndex: 400,
+                zIndex: 999,
                 display: 'block',
                 width: '0.75rem',
                 height: '100%',
@@ -95,16 +95,16 @@ const ScrollViewStyles: Global.FunctionalComponentStyles<Types.Styles>= (props: 
                 active: [{ opacity: 0.4 }],
                 size: {
                     xsmall: [{
-                        width: "0.25rem",
+                        width: '0.25rem',
                     }],
                     small: [{
-                        width: "0.5rem",
+                        width: '0.5rem',
                     }],
                     large: [{
-                        width: "1rem",
+                        width: '1rem',
                     }],
                     xlarge: [{
-                        width: "1.25rem",
+                        width: '1.25rem',
                     }]
                 },
                 shape: {
@@ -113,15 +113,16 @@ const ScrollViewStyles: Global.FunctionalComponentStyles<Types.Styles>= (props: 
                     }]
                 }
             })
-            
+
         ],
         xBar: (variant) => [
             {
+                zIndex: 999,
                 position: 'absolute',
                 left: 0,
                 bottom: 0,
                 height: '0.5rem',
-                width:'100%',
+                width: '100%',
                 borderRadius: '1rem',
                 backgroundColor: color.alpha(0.1).css(),
                 transition: 'opacity 0.5s',
@@ -136,16 +137,16 @@ const ScrollViewStyles: Global.FunctionalComponentStyles<Types.Styles>= (props: 
                 active: [{ opacity: 1 }],
                 size: {
                     xsmall: [{
-                        height: "0.25rem",
+                        height: '0.25rem',
                     }],
                     small: [{
-                        height: "0.5rem",
+                        height: '0.5rem',
                     }],
                     large: [{
-                        height: "1rem",
+                        height: '1rem',
                     }],
                     xlarge: [{
-                        height: "1.25rem",
+                        height: '1.25rem',
                     }]
                 },
                 shape: {
@@ -163,6 +164,7 @@ const ScrollViewStyles: Global.FunctionalComponentStyles<Types.Styles>= (props: 
         ],
         xThumb: (variant) => [
             {
+                zIndex: 999,
                 display: 'block',
                 height: '0.5rem',
                 width: '100%',
@@ -176,16 +178,16 @@ const ScrollViewStyles: Global.FunctionalComponentStyles<Types.Styles>= (props: 
                 active: [{ opacity: 0.4 }],
                 size: {
                     xsmall: [{
-                        height: "0.25rem",
+                        height: '0.25rem',
                     }],
                     small: [{
-                        height: "0.5rem",
+                        height: '0.5rem',
                     }],
                     large: [{
-                        height: "1rem",
+                        height: '1rem',
                     }],
                     xlarge: [{
-                        height: "1.25rem",
+                        height: '1.25rem',
                     }]
                 },
                 shape: {
