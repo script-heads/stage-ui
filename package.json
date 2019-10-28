@@ -8,7 +8,7 @@
     "packages/*"
   ],
   "scripts": {
-    "docs": "yarn workspace @flow-ui/docs showcase",
+    "start": "yarn workspace @flow-ui/docs start",
     "gen": "yarn gen:createTypes && yarn gen:convertTypes && yarn gen:generateTypes",
     "gen:createTypes": "cd ./packages/showcase && typedoc -mode file --json ./generated/original.json ../docs/cases",
     "gen:convertTypes": "cd ./packages/showcase && node ./tools/TypeDoc.js",
