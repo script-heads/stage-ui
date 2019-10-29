@@ -9,8 +9,6 @@ type GetCoord = (tr: ClientRect, td: ClientRect) => string
 
 const Drop = (props: Types.Props, ref) => {
 
-    let timer
-
     const { attributes } = useContainer(props)
     const { children, target: targetRef, onClickOutside, distance = 0, align,
         justify, stretchHeight, stretchWidth, visibility, display } = props
