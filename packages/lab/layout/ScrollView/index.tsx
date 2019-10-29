@@ -25,12 +25,6 @@ interface MemoParams {
     mode: Types.Props['mode']
 }
 
-// Listen for the event.
-// elem.addEventListener('build', function (e) { ... }, false)
-
-// // Dispatch the event.
-// elem.dispatchEvent(event)
-
 const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
 
     useImperativeHandle(ref, () => ({
@@ -233,7 +227,6 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
     function createRef(ref: HTMLDivElement) {
         if (ref && !memo.events) {
             memo.events = true
-            window.addEventListener('mouseup', mouseUp, { passive: true })
             window.addEventListener('mousemove', mouseMove, { passive: true })
             if (memo.yThumb) {
                 memo.yThumb.addEventListener('mousedown', yMouseDown, { passive: true })
@@ -264,6 +257,12 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                         ref={ref => memo.yThumb = ref}
                     />
                 )}
+                onMouseEnter={() => {
+                    window.addEventListener('mouseup', mouseUp, { passive: true })
+                }}
+                onMouseLeave={() => {
+                    window.removeEventListener('mouseup', mouseUp)
+                }}
             />
             <div
                 css={styles.xBar({ active, size, shape, position: xBarPosition })}
@@ -274,6 +273,12 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                         ref={ref => memo.xThumb = ref}
                     />
                 )} 
+                onMouseEnter={() => {
+                    window.addEventListener('mouseup', mouseUp, { passive: true })
+                }}
+                onMouseLeave={() => {
+                    window.removeEventListener('mouseup', mouseUp)
+                }}
             />
         </div>
     )
