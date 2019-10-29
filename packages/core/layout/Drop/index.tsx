@@ -77,14 +77,13 @@ const Drop = (props: Types.Props, ref) => {
     useImperativeHandle(ref, () => dropRef.current)
 
     useEffect(() => {
-        const style = dropRef.current?.style
+
+        const rect = (stretchHeight || stretchWidth) ? targetRef.current?.getBoundingClientRect() : null
+        const style = rect && dropRef.current?.style
 
         if (style) {
-            stretchHeight &&
-                toStyle(targetRef.current?.getBoundingClientRect().height)
-
-            stretchWidth &&
-                toStyle(targetRef.current?.getBoundingClientRect().width)
+            if (stretchHeight) style.height = toStyle(rect.height)
+            if (stretchWidth) style.width = toStyle(rect.width)
         }
 
         if (visibility != 'hidden' && display != 'none') {
