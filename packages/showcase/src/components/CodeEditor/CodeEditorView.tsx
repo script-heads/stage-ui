@@ -1,8 +1,8 @@
 
-import React from 'react';
-import * as monaco from 'monaco-editor';
+import React from 'react'
+import * as monaco from 'monaco-editor'
 import { Block } from '@flow-ui/core'
-const CONTAINER_ID = 'showcase-code-editor';
+const CONTAINER_ID = 'showcase-code-editor'
 
 interface CodeEditorViewState {
     dark: boolean
@@ -17,10 +17,10 @@ let model: monaco.editor.ITextModel
 
 class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorViewState> {
 
-    input: boolean = false;
-    restoring: boolean = false;
-    undoStates: any[] = [];
-    redoStates: any[] = [];
+    input: boolean = false
+    restoring: boolean = false
+    undoStates: any[] = []
+    redoStates: any[] = []
 
     editor: monaco.editor.IStandaloneCodeEditor
 
@@ -31,28 +31,28 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
 
     undo() {
         if (this.undoStates.length > 1) {
-            this.restoring = true;
-            const state = this.undoStates[this.undoStates.length - 2];
+            this.restoring = true
+            const state = this.undoStates[this.undoStates.length - 2]
             this.editor.setValue(state.code)
-            this.editor.restoreViewState(state.state);
+            this.editor.restoreViewState(state.state)
             this.redoStates.push(this.undoStates[this.undoStates.length - 1])
-            this.undoStates = this.undoStates.slice(0, -1);
+            this.undoStates = this.undoStates.slice(0, -1)
         }
     }
 
     redo() {
         if (this.redoStates.length > 0) {
-            this.restoring = true;
-            const state = this.redoStates[this.redoStates.length - 1];
+            this.restoring = true
+            const state = this.redoStates[this.redoStates.length - 1]
             this.editor.setValue(state.code)
-            this.editor.restoreViewState(state.state);
+            this.editor.restoreViewState(state.state)
             this.undoStates.push(this.redoStates[this.redoStates.length - 1])
-            this.redoStates = this.redoStates.slice(0, -1);
+            this.redoStates = this.redoStates.slice(0, -1)
         }
     }
 
     keydown(e: KeyboardEvent) {
-        const isMac = navigator.platform.toUpperCase().indexOf('MAC')>=0;
+        const isMac = navigator.platform.toUpperCase().indexOf('MAC')>=0
         if ((isMac && e.metaKey) || (!isMac && e.ctrlKey)) {
             if (e.keyCode === 90){
                 if (e.shiftKey) {
@@ -65,20 +65,20 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
     }
 
     constructor(props: CodeEditorViewProps) {
-        super(props);
+        super(props)
         this.keydown = this.keydown.bind(this)
     }
 
     async componentDidMount() {
 
-        const domNode = document.createElement("div")!;
+        const domNode = document.createElement('div')!
 
         const defineLib = async (name: string) => {
             monaco.languages.typescript.typescriptDefaults.addExtraLib((
                 await (
                     await fetch(location.origin + `/showcase/generated/${name}.d.ts`)
                 ).text()
-            ));
+            ))
         }
 
         await defineLib('global')
@@ -95,10 +95,10 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
             allowSyntheticDefaultImports: true,
             allowJs: true,
             target: monaco.languages.typescript.ScriptTarget.Latest,
-        });
+        })
 
-        let code = this.props.code || '';
-        let codeBefore = code;
+        let code = this.props.code || ''
+        let codeBefore = code
 
         if (!model) {
             model = monaco.editor.createModel(
@@ -110,9 +110,9 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
                 setTimeout(() => {
                     const code = model.getValue()
                     if (codeBefore === code) {
-                        return;
+                        return
                     }
-                    codeBefore = code;
+                    codeBefore = code
                     if (!this.restoring) {
                         this.redoStates = []
                         this.undoStates.push({
@@ -136,15 +136,15 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
             // lineNumbers: 'off',
             automaticLayout: true,
             fontSize: 14,
-            fontWeight: "600",
-        });
+            fontWeight: '600',
+        })
         this.editor.changeViewZones((changeAccessor) => {
             changeAccessor.addZone({
                 afterLineNumber: 0,
                 heightInLines: 1,
                 domNode
-            });
-        });
+            })
+        })
 
         this.undoStates.push({
             state: this.editor.saveViewState(),
@@ -164,7 +164,7 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
     }
 
     UNSAFE_componentWillReceiveProps(nextProps: CodeEditorViewProps) {
-        const codeValue = nextProps.code || '';
+        const codeValue = nextProps.code || ''
         if (this.props.code !== codeValue && !this.input) {
             this.undoStates = []
             this.redoStates = []
@@ -184,15 +184,15 @@ class CodeEditorView extends React.Component<CodeEditorViewProps, CodeEditorView
             <Block
                 id={CONTAINER_ID}
                 css={{
-                    height: "100%",
-                    width: "100%",
-                    zIndex: 999,
-                    boxShadow: "none !important",
-                    position: "relative",
+                    height: '100%',
+                    width: '100%',
+                    zIndex: 90,
+                    boxShadow: 'none !important',
+                    position: 'relative',
                 }}
             />
-        );
+        )
     }
 }
 
-export default CodeEditorView;
+export default CodeEditorView

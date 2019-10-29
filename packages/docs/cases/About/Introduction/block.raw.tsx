@@ -1,5 +1,5 @@
-import React from 'react';
-import { Block } from "@flow-ui/core";
+import React from 'react'
+import { Block } from '@flow-ui/core';
 
 const ExampleBlock = () => (
     <Block p="1rem 2rem">
@@ -7,4 +7,4 @@ const ExampleBlock = () => (
     </Block>
 )
 
-export default ExampleBlock;
+export default ExampleBlock
