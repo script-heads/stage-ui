@@ -91,38 +91,35 @@ const Drop = (props: Types.Props, ref) => {
 
         if (visibility != 'hidden' && display != 'none') {
             setPosition()
-            document.addEventListener('wheel', setPosition, true)
+            document.addEventListener('scroll', setPosition, true)
+            document.addEventListener('onflowscroll', setPosition, true)
             document.addEventListener('mouseup', handleClickOutside)
             window.addEventListener('resize', setPosition)
 
         }
         return () => {
-            document.removeEventListener('wheel', setPosition, true)
+            document.removeEventListener('scroll', setPosition, true)
+            document.removeEventListener('onflowscroll', setPosition, true)
             document.removeEventListener('mouseup', handleClickOutside)
             window.removeEventListener('resize', setPosition)
         }
     })
 
-    function handleClickOutside(event: any) {
-        dropRef.current && targetRef && targetRef.current &&
-            !dropRef.current.contains(event.target) &&
-            onClickOutside && onClickOutside(event, targetRef ? !targetRef.current.contains(event.target) : undefined)
+    function handleClickOutside(event: MouseEvent) {
+        if (onClickOutside && !dropRef?.current?.contains(event.target as Node)) {
+            onClickOutside(event, !targetRef?.current?.contains(event.target))
+        }
     }
 
     function setPosition() {
-        if (!timer) {
-            setTimeout(() => {
-                if (targetRef.current && dropRef.current) {
-                    const tr: ClientRect = targetRef.current.getBoundingClientRect()
-                    const dr: ClientRect = dropRef.current.getBoundingClientRect()
-                    const style = dropRef.current.style
+        if (targetRef.current && dropRef.current) {
+            const tr: ClientRect = targetRef.current.getBoundingClientRect()
+            const dr: ClientRect = dropRef.current.getBoundingClientRect()
+            const style = dropRef.current.style
 
-                    style.visibility = ''
-                    style.top = getTopCoord(tr, dr)
-                    style.left = getLeftCoord(tr, dr)
-                }
-                timer = null
-            }, 1)
+            style.visibility = ''
+            style.top = getTopCoord(tr, dr)
+            style.left = getLeftCoord(tr, dr)
         }
     }
 

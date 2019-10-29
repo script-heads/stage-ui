@@ -15,7 +15,7 @@ declare namespace DropTypes {
     stretchWidth?: boolean
     stretchHeight?: boolean
     distance?: number
-    onClickOutside?: (event: React.MouseEvent<HTMLElement>, outsideTarget?: boolean) => void
+    onClickOutside?: (event: MouseEvent, outsideTarget?: boolean) => void
     onEsc?: () => void
     children?: React.ReactNode
   }

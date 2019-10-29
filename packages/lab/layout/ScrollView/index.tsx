@@ -11,6 +11,25 @@ interface ScrollParams {
     stopPropagation: () => void
     cursorHandle?: boolean
 }
+interface MemoParams { 
+    y: boolean
+    x: boolean
+    events: boolean
+    yBar: null | HTMLDivElement
+    yThumb: null | HTMLSpanElement
+    xBar: null | HTMLDivElement
+    xThumb: null | HTMLSpanElement
+    container: null | HTMLDivElement
+    content: null | HTMLDivElement
+    timeout?: NodeJS.Timeout | null
+    mode: Types.Props['mode']
+}
+
+// Listen for the event.
+// elem.addEventListener('build', function (e) { ... }, false)
+
+// // Dispatch the event.
+// elem.dispatchEvent(event)
 
 const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
 
@@ -27,16 +46,16 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
 
     const styles = useStyles<Types.Styles>(props, Styles)
     const { attributes } = useContainer(props)
-    const { 
-        shape = 'round', 
-        size = 'medium', 
+    const {
+        shape = 'round',
+        size = 'medium',
         mode = 'scroll',
         xBarPosition = 'bottom',
         yBarPosition = 'right',
-    } = props;
+    } = props
 
     const [active, setActive] = useState(mode === 'always')
-    const memo: any = useMemo(() => ({
+    const memo: MemoParams = useMemo(() => ({
         y: false,
         x: false,
         events: false,
@@ -46,100 +65,114 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         xThumb: null,
         container: null,
         content: null,
-        timeout: null,
         mode: mode || 'scroll'
-    }), []);
+    }), [])
 
+    const updateY = (e: ScrollParams) => {
+        if (!memo.content || !memo.container) return
+
+        const total = memo.content.offsetHeight
+        const content = memo.container.offsetHeight
+
+        if (memo.yBar) {
+            memo.yBar.style.visibility = total > content ? 'visible' : 'hidden'
+        }
+
+        if (total <= content) {
+            return false
+        }
+
+        const min = 0
+        const max = -(total - content)
+        const ratio = (content / total) * 100
+        const offset = memo.content.offsetTop
+        let delta = e.deltaY
+
+        if (e.cursorHandle) {
+            delta = delta * 100 / ratio
+        }
+
+        let value = offset - delta
+
+        if (value > min) value = min
+        if (value < max) value = max
+
+        if (offset !== value || value === 0) {
+
+            memo.content.style.top = value + 'px'
+
+            if (memo.yBar && memo.yThumb) {
+                memo.yBar.style.height = content + 'px'
+                memo.yThumb.style.height = content * ratio / 100 + 'px'
+                memo.yThumb.style.transform = `translateY(${-(value * ratio / 100)}px)`    
+            }
+    
+            e.preventDefault()
+            e.stopPropagation()
+
+            return true
+        }
+        return false
+    }
+
+    const updateX = (e: ScrollParams) => {
+        if (!memo.content || !memo.container) return
+
+        const total = memo.content.offsetWidth
+        const content = memo.container.offsetWidth
+        
+        if (memo.xBar) {
+            memo.xBar.style.visibility = total > content ? 'visible' : 'hidden'
+        }
+
+        if (total <= content) {
+            return false
+        }
+
+        const min = 0
+        const max = -(total - content)
+        const ratio = (content / total) * 100
+        const offset = memo.content.offsetLeft
+        let delta = e.deltaX
+
+        if (e.cursorHandle) {
+            delta = delta * 100 / ratio
+        }
+
+        let value = offset + -delta
+
+        if (value > min) value = min
+        if (value < max) value = max
+
+        if (offset !== value || value === 0) {
+            memo.content.style.left = value + 'px'
+
+            if (memo.xBar && memo.xThumb) {
+                memo.xBar.style.width = content + 'px'
+                memo.xThumb.style.width = content * ratio / 100 + 'px'
+                memo.xThumb.style.transform = `translateX(${-(value * ratio / 100)}px)`    
+            }
+
+            e.preventDefault()
+            e.stopPropagation()
+
+            return true
+        }
+        return false
+    }
+    
     function updateScroll(e: ScrollParams) {
         if (!memo.container || !memo.content) {
             return
         }
+        const y = updateY(e)
+        const x = updateX(e)
 
-        const updateY = () => {
-            if (!memo.content || !memo.container) return
-
-            const total = memo.content.offsetHeight
-            const content = memo.container.offsetHeight
-
-            memo.yBar.style.visibility = total > content ? 'visible' : 'hidden'
-
-            if (total <= content) {
-                return false
-            }
-
-            const min = 0
-            const max = -(total - content)
-            const ratio = (content / total) * 100
-            const offset = memo.content.offsetTop
-            let delta = e.deltaY
-
-            if (e.cursorHandle) {
-                delta = delta * 100 / ratio
-            }
-
-            let value = offset - delta
-
-            if (value > min) value = min
-            if (value < max) value = max
-
-            if (offset !== value || value === 0) {
-
-                memo.content!.style.top = value + 'px'
-                memo.yBar!.style.height = content + 'px'
-                memo.yThumb!.style.height = content * ratio / 100 + 'px'
-                memo.yThumb!.style.transform = `translateY(${-(value * ratio / 100)}px)`
-
-                e.preventDefault()
-                e.stopPropagation()
-
-                return true
-            }
-            return false
-        }
-
-        const updateX = () => {
-            if (!memo.content || !memo.container) return
-
-            const total = memo.content.offsetWidth
-            const content = memo.container.offsetWidth
-
-            memo.xBar.style.visibility = total > content ? 'visible' : 'hidden'
-
-            if (total <= content) {
-                return false
-            }
-
-            const min = 0
-            const max = -(total - content)
-            const ratio = (content / total) * 100
-            const offset = memo.content.offsetLeft
-            let delta = e.deltaX
-
-            if (e.cursorHandle) {
-                delta = delta * 100 / ratio
-            }
-
-            let value = offset + -delta
-
-            if (value > min) value = min
-            if (value < max) value = max
-
-            if (offset !== value || value === 0) {
-                memo.content!.style.left = value + 'px'
-                memo.xBar!.style.width = content + 'px'
-                memo.xThumb!.style.width = content * ratio / 100 + 'px'
-                memo.xThumb!.style.transform = `translateX(${-(value * ratio / 100)}px)`
-
-                e.preventDefault()
-                e.stopPropagation()
-
-                return true
-            }
-            return false
-        }
-
-        const y = updateY();
-        const x = updateX();
+        document.dispatchEvent(
+            new CustomEvent('onflowscroll', { 
+                detail: e 
+            })
+        )
 
         if ((y || x) && memo.mode === 'scroll') {
             setActive(true)
@@ -197,14 +230,20 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         }
     }, [props])
 
-    function createRef(ref) {
+    function createRef(ref: HTMLDivElement) {
         if (ref && !memo.events) {
             memo.events = true
             window.addEventListener('mouseup', mouseUp, { passive: true })
             window.addEventListener('mousemove', mouseMove, { passive: true })
-            memo.yThumb!.addEventListener('mousedown', yMouseDown, { passive: true })
-            memo.xThumb!.addEventListener('mousedown', xMouseDown, { passive: true })
-            memo.content!.addEventListener('wheel', updateScroll)
+            if (memo.yThumb) {
+                memo.yThumb.addEventListener('mousedown', yMouseDown, { passive: true })
+            }
+            if (memo.xThumb) {
+                memo.xThumb.addEventListener('mousedown', xMouseDown, { passive: true })
+            }
+            if (memo.content) {
+                memo.content.addEventListener('wheel', updateScroll)
+            }
         }
         memo.container = ref
     }
@@ -234,7 +273,8 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                         css={styles.xThumb({ active, size, shape })}
                         ref={ref => memo.xThumb = ref}
                     />
-                )} />
+                )} 
+            />
         </div>
     )
 }
