@@ -1,19 +1,18 @@
-import { A, Block, Divider, H1, H2, T1, T2 } from "@flow-ui/core";
-import React from 'react';
-import BlockCode from './block.raw';
-import ColorCode from './color.raw';
-import EmotionCode from './emotion.raw';
-import FlowCode from './flow.raw';
-import IconCode from './icon.raw';
-import RemCode from './rem.raw';
-import Syntax from './Syntax';
-import UseFlowCode from './useFlow.raw';
-import UtilsCode from './utils.raw';
-import ViewportCode from './viewport.raw';
-
+import { A, Block, Divider, H1, H2, T1, T2 } from '@flow-ui/core'
+import React from 'react'
+import BlockCode from './block.raw'
+import ColorCode from './color.raw'
+import EmotionCode from './emotion.raw'
+import FlowCode from './flow.raw'
+import IconCode from './icon.raw'
+import RemCode from './rem.raw'
+import Syntax from './Syntax'
+import UseFlowCode from './useFlow.raw'
+import UtilsCode from './utils.raw'
+import ViewportCode from './viewport.raw'
 
 export const title = ' '
-export const sticky = true;
+export const sticky = true
 
 export default () => (
     <Block>
@@ -23,7 +22,6 @@ export default () => (
         <T1>The main rule is you should wrap entire application with <b>Viewport</b>.</T1>
         <T1>Viewport provides theme in all components, use <b>prop</b> theme to change it</T1>
         <Syntax code={ViewportCode} />
-        
         
         <H2 p="1rem 0">Rule 2</H2>
         <T1>Use <b>Block</b> instead of div elements</T1>
@@ -47,7 +45,11 @@ export default () => (
         <T1>But more usefull will be give it a function which will provide typed color object for you</T1>
         <T1>We using theme color object as first argument of function then each color are instance of Chroma.js</T1>
         <Syntax code={ColorCode} />
-        <T1 pb="1rem">For more information you may also check <A href="https://vis4.net/chromajs/" target="_blank">https://vis4.net/chromajs/</A></T1>
+        <T1 pb="1rem">For more information you may also check <A
+            href="https://vis4.net/chromajs/"
+            target="_blank"
+            children="https://vis4.net/chromajs/"
+        /></T1>
 
         <H2 p="1rem 0">Icon</H2>
         <T1>Icon also support functional props</T1>
@@ -86,7 +88,12 @@ export default () => (
         <H2 p="1rem 0">Emotion</H2>
         <T1>It provides powerful and predictable style composition in addition to a great developer experience.</T1>
         <Syntax code={EmotionCode} />
-        <T1 pb="1rem">For more information you may also check <A href="https://emotion.sh" target="_blank">https://emotion.sh</A></T1>
+        <T1 pb="1rem">For more information you may also check <A
+            href="https://emotion.sh"
+            target="_blank"
+            children="https://emotion.sh"
+        />
+        </T1>
 
         <H1 p="1rem 0">Happy coding ;)</H1>
         <Divider/>

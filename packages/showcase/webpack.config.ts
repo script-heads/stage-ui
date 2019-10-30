@@ -1,26 +1,26 @@
-var path = require("path");
-const webpack = require("webpack");
+const path = require('path')
+const webpack = require('webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
-const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin')
 
 module.exports = function (dir) {
 
     const config = {
         mode: 'development',
         entry: {
-            app: [__dirname + "/src/index.tsx"]
+            app: [__dirname + '/src/index.tsx']
         },
         output: {
-            filename: "showcase.js",
-            path: __dirname + "/public",
+            filename: 'showcase.js',
+            path: __dirname + '/public',
         },
         // Enable sourcemaps for debugging webpack's output.
-        devtool: "source-map",
+        devtool: 'source-map',
 
         resolve: {
             // Add '.ts' and '.tsx' as resolvable extensions.
-            extensions: [".ts", ".tsx", ".js", ".json"]
+            extensions: ['.ts', '.tsx', '.js', '.json']
         },
 
         module: {
@@ -38,16 +38,18 @@ module.exports = function (dir) {
                                 loader: 'babel-loader',
                                 options: {
                                     presets: [
-                                        "@babel/preset-env",
-                                        "@babel/preset-typescript",
-                                        "@babel/preset-react",
-                                        "@emotion/babel-preset-css-prop"
+                                        '@babel/preset-env',
+                                        '@babel/preset-typescript',
+                                        '@babel/preset-react',
+                                        '@emotion/babel-preset-css-prop'
                                     ],
                                     plugins: [
-                                        "@babel/proposal-class-properties",
-                                        "@babel/proposal-object-rest-spread",
-                                        "@babel/plugin-transform-runtime",
-                                        "@babel/plugin-proposal-optional-chaining"
+                                        '@babel/proposal-class-properties',
+                                        '@babel/proposal-object-rest-spread',
+                                        '@babel/plugin-transform-runtime',
+                                        ['@babel/plugin-proposal-optional-chaining', {
+                                            loose: true
+                                        }]
                                     ]
                                 }
                             }
@@ -58,12 +60,12 @@ module.exports = function (dir) {
                     test: /\.css$/,
                     use: [
                         'style-loader',
-                        "css-loader"
+                        'css-loader'
                     ]
                 },
 
                 // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-                { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+                { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
             ]
         },
         plugins: [

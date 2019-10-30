@@ -17,7 +17,7 @@ const Button: FC<Types.Props> = (props, ref) => {
 
     const onClick = (event: React.MouseEvent<HTMLElement>) => {
         if (!disabled) {
-            attributes?.onClick(event)
+            attributes.onClick?.(event)
         }
     }
 

@@ -1,14 +1,15 @@
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
 import useStyles from '@flow-ui/core/misc/hooks/useStyles'
-import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
+import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState, useMemo } from 'react'
 import ReactDOM from 'react-dom'
 import Types from './types'
 import dropStyles from './styles'
 
 type GetCoord = (tr: ClientRect, td: ClientRect) => string
 
-const Drop = (props: Types.Props, ref) => {
+let sharedZIndex = 300
 
+const Drop = (props: Types.Props, ref) => {
     const { attributes } = useContainer(props)
     const { children, target: targetRef, onClickOutside, distance = 0, align,
         justify, stretchHeight, stretchWidth, visibility, display } = props
@@ -77,17 +78,16 @@ const Drop = (props: Types.Props, ref) => {
     useImperativeHandle(ref, () => dropRef.current)
 
     useEffect(() => {
-        const style = dropRef.current?.style
+        const rect = (stretchHeight || stretchWidth) ? targetRef.current?.getBoundingClientRect() : null
+        const style = rect && dropRef.current?.style
 
         if (style) {
-            stretchHeight &&
-                toStyle(targetRef.current?.getBoundingClientRect().height)
-
-            stretchWidth &&
-                toStyle(targetRef.current?.getBoundingClientRect().width)
+            if (stretchHeight) style.height = toStyle(rect.height)
+            if (stretchWidth) style.width = toStyle(rect.width)
         }
 
         if (visibility != 'hidden' && display != 'none') {
+            sharedZIndex++
             setPosition()
             document.addEventListener('scroll', setPosition, true)
             document.addEventListener('onflowscroll', setPosition, true)
@@ -101,7 +101,7 @@ const Drop = (props: Types.Props, ref) => {
             document.removeEventListener('mouseup', handleClickOutside)
             window.removeEventListener('resize', setPosition)
         }
-    })
+    }, [visibility, display])
 
     function handleClickOutside(event: MouseEvent) {
         if (onClickOutside && !dropRef?.current?.contains(event.target as Node)) {
@@ -121,6 +121,16 @@ const Drop = (props: Types.Props, ref) => {
         }
     }
 
+    /**
+     * zIndex magic stuff
+     */
+    const [clicks, click] = useState(0)
+    const zIndex = useMemo(() => sharedZIndex, [visibility, display, clicks])
+    attributes.onClick = (e: MouseEvent) => {
+        click(clicks+1)
+        attributes.onClick?.(e)
+    }
+
     return ReactDOM.createPortal(
         <div
             {...attributes}
@@ -130,6 +140,7 @@ const Drop = (props: Types.Props, ref) => {
                 top: 0,
                 left: 0,
                 visibility: 'hidden',
+                zIndex,
                 ...attributes.style
             }}
             children={children}
