@@ -126,14 +126,14 @@ const Drop = (props: Types.Props, ref) => {
      */
     const [clicks, click] = useState(0)
     const zIndex = useMemo(() => sharedZIndex, [visibility, display, clicks])
-    attributes.onClick = (e: MouseEvent) => {
-        click(clicks+1)
-        attributes.onClick?.(e)
-    }
 
     return ReactDOM.createPortal(
         <div
             {...attributes}
+            onClick={(e) => {
+                click(clicks+1)
+                props.onClick?.(e)
+            }}
             ref={dropRef}
             css={styles.container}
             style={{
