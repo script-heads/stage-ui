@@ -65,13 +65,15 @@ const TextField: FC<Types.Props> = (props, ref) => {
             isLabelOutside={isLabelOutside}
             isLabelOverlay={isLabelOverlay}
 
-            onClear={() => inputRef.current!.value = ''}
+            onClear={() => {
+                if (inputRef.current) inputRef.current.value = ''
+            }}
 
             attributes={{
                 ...attributes,
                 tabIndex,
                 onFocus: (e) => {
-                    inputRef.current!.focus()
+                    inputRef.current?.focus()
                     attributes.onFocus(e)
                 },
             }}
