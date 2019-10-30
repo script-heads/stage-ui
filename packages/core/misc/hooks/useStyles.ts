@@ -3,9 +3,9 @@ import {css} from '@emotion/core'
 import useFlow from './useFlow'
 import ThemeTypes from '../themes/types'
 
-const createStyles = <S, P = {}>(
-        props: P, 
-        componentStyles: Global.ComponentStyles<S> | Global.FunctionalComponentStyles<S,P>, 
+const createStyles = <S>(
+        props, 
+        componentStyles: Global.ComponentStyles<S> | Global.FunctionalComponentStyles<S>, 
         componentName?: keyof ThemeTypes.Overrides
     ): Global.FlowStyles<S> => {
     
@@ -16,12 +16,19 @@ const createStyles = <S, P = {}>(
         componentStyles = componentStyles(props,theme)
     }
 
-    const overrideStyles =
+    const overrideThemeStyles =
         componentName && 
         theme.overrides[componentName] && 
         createStyles(
             props, 
             theme.overrides[componentName] as Global.ComponentStyles<{}>
+        )
+
+    const overridePropsStyles =
+        props.overrides && 
+        createStyles(
+            props, 
+            props.overrides as Global.ComponentStyles<{}>
         )
 
     Object.keys(componentStyles).map(styleName => {
@@ -53,17 +60,19 @@ const createStyles = <S, P = {}>(
                     }
                     return variantStyles
                 }
-                
-                if (overrideStyles && overrideStyles[styleName]) {
-                    return css([componentStyles[styleName](variant), overrideStyles[styleName](state)])
-                }
 
-                return componentStyles[styleName](variant)
+                return css(
+                    componentStyles[styleName](variant), 
+                    overrideThemeStyles && overrideThemeStyles[styleName] && overrideThemeStyles[styleName](variant),
+                    overridePropsStyles && overridePropsStyles[styleName] && overridePropsStyles[styleName](variant)
+                )
             }
         } else {
-            FlowStyles[styleName] = overrideStyles && overrideStyles[styleName]
-                ? css([componentStyles[styleName], overrideStyles[styleName]])
-                : componentStyles[styleName]
+            FlowStyles[styleName] = css(
+                componentStyles[styleName], 
+                overrideThemeStyles && overrideThemeStyles[styleName] && overrideThemeStyles[styleName],
+                overridePropsStyles && overridePropsStyles[styleName] && overridePropsStyles[styleName]
+            )
         }     
     })
     

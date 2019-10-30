@@ -42,15 +42,19 @@ declare namespace Global {
     
     type ComponentStyles<S> = {[O in keyof S]: ComponentStyle<S[O]>}
 
-    type FunctionalComponentStyles<S, P = any> = ((props: P, theme: ThemeTypes.Index) => {[O in keyof S]: ComponentStyle<S[O]>})        
+    type FunctionalComponentStyles<S, P = {}> = (
+        (props: P, theme: ThemeTypes.Index) => {[O in keyof S]: ComponentStyle<S[O]>}
+    )        
 
     type OverridesStyle<S> = Partial<{[O in keyof S]: ComponentStyle<S[O]>}>
 
-    interface Props extends
+    interface Props<S={}> extends
         HTMLAttributes,
         EventHandlers,
         SelfProps,
-        FlowProps { }
+        FlowProps { 
+        overrides?: ComponentStyles<S>
+    }
 
     /**
      * Default attributes
@@ -73,43 +77,64 @@ declare namespace Global {
      */
     interface EventHandlers {
         /**
-         * An element receives a click event when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.
+         * An element receives a click event when a pointing 
+         * device button (such as a mouse's primary mouse button) 
+         * is both pressed and released while the pointer is 
+         * located inside the element.
          */
         onClick?: EventProp<React.MouseEvent<HTMLElement>>
         /**
-         * Event fires when an element has received focus. The main difference between this event and focusin is that focusin bubbles while focus does not.
+         * Event fires when an element has received focus. 
+         * The main difference between this event and focusin 
+         * is that focusin bubbles while focus does not.
          */
         onFocus?: EventProp<React.FocusEvent<HTMLElement>>
         /**
-         * Event fires when an element has lost focus. The main difference between this event and focusout is that focusout bubbles while blur does not.
+         * Event fires when an element has lost focus. 
+         * The main difference between this event and 
+         * focusout is that focusout bubbles while blur 
+         * does not.
          */
         onBlur?: EventProp<React.FocusEvent<HTMLElement>>
         /**
-         * Event is fired at an Element when a pointing device button is pressed while the pointer is inside the element.
+         * Event is fired at an Element when a pointing 
+         * device button is pressed while the pointer is 
+         * inside the element.
          */
         onMouseDown?: EventProp<React.MouseEvent<HTMLElement>>
         /**
-         * Event is fired at an Element when a button on a pointing device (such as a mouse or trackpad) is released while the pointer is located inside it. mouseup events are the counterpoint to onMouseDown events.
+         * Event is fired at an Element when a button on 
+         * a pointing device (such as a mouse or trackpad) 
+         * is released while the pointer is located inside it. 
+         * mouseup events are the counterpoint to onMouseDown events.
          */
         onMouseUp?: EventProp<React.MouseEvent<HTMLElement>>
         /**
-         * Event is fired at an Element when a pointing device (usually a mouse) is initially moved so that its hotspot is within the element at which the event was fired.
+         * Event is fired at an Element when a pointing 
+         * device (usually a mouse) is initially moved so 
+         * that its hotspot is within the element at which 
+         * the event was fired.
          */
         onMouseEnter?: EventProp<React.MouseEvent<HTMLElement>>
         /**
-         * Event is fired at an Element when the cursor of a pointing device (usually a mouse) is moved out of it.
+         * Event is fired at an Element when the cursor of a 
+         * pointing device (usually a mouse) is moved out of it.
          */
         onMouseLeave?: EventProp<React.MouseEvent<HTMLElement>>
         /**
-         * Event is fired when one or more touch points are placed on the touch surface.
+         * Event is fired when one or more touch points are 
+         * placed on the touch surface.
          */
         onTouchStart?: EventProp<React.TouchEvent<HTMLElement>>
         /**
-         * Event fires when one or more touch points are removed from the touch surface.
+         * Event fires when one or more touch points are 
+         * removed from the touch surface.
          */
         onTouchEnd?: EventProp<React.TouchEvent<HTMLElement>>
         /**
-         * Event is fired when a key that produces a character value is pressed down. Examples of keys that produce a character value are alphabetic, numeric, and punctuation keys.
+         * Event is fired when a key that produces a character 
+         * value is pressed down. Examples of keys that produce a 
+         * character value are alphabetic, numeric, and punctuation keys.
          * @deprecated This feature is no longer recommended.
          */
         onKeyPress?: EventProp<React.KeyboardEvent<HTMLElement>>
@@ -160,11 +185,14 @@ declare namespace Global {
          */
         h?: CSS.Properties['height']
         /**
-         * Shows or hides an element without changing the layout of a document.
+         * Shows or hides an element without changing the layout 
+         * of a document.
          */
         visibility?: CSS.Properties['visibility']
         /**
-         * Sets whether an element is treated as a block or inline element and the layout used for its children, such as flow layout, grid or flex.
+         * Sets whether an element is treated as a block or 
+         * inline element and the layout used for its children, 
+         * such as flow layout, grid or flex.
          */
         display?: CSS.Properties['display']
         /**
@@ -244,7 +272,9 @@ declare namespace Global {
          */
         mb?: CSS.Properties['marginBottom']
         /**
-         * Sets how an element is positioned in a document. The top, right, bottom, and left properties determine the final location of positioned elements.
+         * Sets how an element is positioned in a document. 
+         * The top, right, bottom, and left properties determine 
+         * the final location of positioned elements.
          */
     }
 
@@ -255,27 +285,39 @@ declare namespace Global {
      */
     interface FlexProps {
         /**
-         * Sets how a flex item will grow or shrink to fit the space available in its flex container.
+         * Sets how a flex item will grow or shrink to fit the 
+         * space available in its flex container.
          */
         flex?: CSS.Properties['flex']
         /**
-         * Sets the initial main size of a flex item. It sets the size of the content box unless otherwise set with box-sizing.
+         * Sets the initial main size of a flex item. It sets the 
+         * size of the content box unless otherwise set with box-sizing.
          */
         flexBasis?: CSS.Properties['flexBasis']
         /**
-         * Sets the flex grow factor of a flex item main size. It specifies how much of the remaining space in the flex container should be assigned to the item (the flex grow factor).
+         * Sets the flex grow factor of a flex item main size. 
+         * It specifies how much of the remaining space in the 
+         * flex container should be assigned to the item 
+         * (the flex grow factor).
          */
         flexGrow?: CSS.Properties['flexGrow']
         /**
-         * Sets the flex shrink factor of a flex item. If the size of all flex items is larger than the flex container, items shrink to fit according to flex-shrink.
+         * Sets the flex shrink factor of a flex item. 
+         * If the size of all flex items is larger than 
+         * the flex container, items shrink to fit 
+         * according to flex-shrink.
          */
         flexShrink?: CSS.Properties['flexShrink']
         /**
-         * Property overrides a grid or flex item's align-items value. In Grid, it aligns the item inside the grid area. In Flexbox, it aligns the item on the cross axis.
+         * Property overrides a grid or flex item's 
+         * align-items value. In Grid, it aligns the 
+         * item inside the grid area. In Flexbox, 
+         * it aligns the item on the cross axis.
          */
         alignSelf?: CSS.Properties['alignSelf']
         /**
-         * Sets the way a box is justified inside its alignment container along the appropriate axis.
+         * Sets the way a box is justified inside its 
+         * alignment container along the appropriate axis.
          */
         justifySelf?: CSS.Properties['justifySelf']
     }
@@ -287,35 +329,64 @@ declare namespace Global {
      */
     interface GridProps {
         /**
-         * Specifies a grid item’s start position within the grid column by contributing a line, a span, or nothing (automatic) to its grid placement. This start position defines the block-start edge of the grid area.
+         * Specifies a grid item’s start position within 
+         * the grid column by contributing a line, a span, 
+         * or nothing (automatic) to its grid placement. 
+         * This start position defines the block-start edge 
+         * of the grid area.
          */
         gridColumnStart?: CSS.Properties['gridColumnStart']
         /**
-         * Specifies a grid item’s end position within the grid column by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the block-end edge of its grid area.
+         * Specifies a grid item’s end position within the 
+         * grid column by contributing a line, a span, or 
+         * nothing (automatic) to its grid placement, thereby 
+         * specifying the block-end edge of its grid area.
          */
         gridColumnEnd?: CSS.Properties['gridColumnEnd']
         /**
-         * Specifies a grid item’s start position within the grid row by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the inline-start edge of its grid area.
+         * Specifies a grid item’s start position within the 
+         * grid row by contributing a line, a span, or nothing 
+         * (automatic) to its grid placement, thereby specifying 
+         * the inline-start edge of its grid area.
          */
         gridRowStart?: CSS.Properties['gridRowStart']
         /**
-         * Specifies a grid item’s end position within the grid row by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the inline-end edge of its grid area.
+         * Specifies a grid item’s end position within the grid 
+         * row by contributing a line, a span, or nothing 
+         * (automatic) to its grid placement, thereby 
+         * specifying the inline-end edge of its grid area.
          */
         gridRowEnd?: CSS.Properties['gridRowEnd']
         /**
-         * Shorthand property for grid-column-start and grid-column-end specifying a grid item's size and location within the grid column by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the inline-start and inline-end edge of its grid area.
+         * Shorthand property for grid-column-start and 
+         * grid-column-end specifying a grid item's size 
+         * and location within the grid column by contributing 
+         * a line, a span, or nothing (automatic) to its grid 
+         * placement, thereby specifying the inline-start and 
+         * inline-end edge of its grid area.
          */
         gridColumn?: CSS.Properties['gridColumn']
         /**
-         * Shorthand property for grid-row-start and grid-row-end specifying a grid item’s size and location within the grid row by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the inline-start and inline-end edge of its grid area.
+         * Shorthand property for grid-row-start and grid-row-end 
+         * specifying a grid item’s size and location within the 
+         * grid row by contributing a line, a span, or nothing 
+         * (automatic) to its grid placement, thereby specifying 
+         * the inline-start and inline-end edge of its grid area.
          */
         gridRow?: CSS.Properties['gridRow']
         /**
-         * Shorthand property for grid-row-start, grid-column-start, grid-row-end and grid-column-end, specifying a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the edges of its grid area.
+         * Shorthand property for grid-row-start, grid-column-start, 
+         * grid-row-end and grid-column-end, specifying a grid item’s 
+         * size and location within the grid by contributing a line, a 
+         * span, or nothing (automatic) to its grid placement, thereby 
+         * specifying the edges of its grid area.
          */
         gridArea?: CSS.Properties['gridArea']
         /**
-         * Shorthand property sets both the align-self and justify-self properties. The first value is the align-self property value, the second the justify-self one. If the second value is not present, the first value is also used for it.
+         * Shorthand property sets both the align-self and justify-self 
+         * properties. The first value is the align-self property value, 
+         * the second the justify-self one. If the second value is not 
+         * present, the first value is also used for it.
          */
         placeSelf?: CSS.Properties['placeSelf']
     }
