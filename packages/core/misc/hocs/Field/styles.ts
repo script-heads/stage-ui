@@ -155,6 +155,7 @@ const fieldStyles = (props: Types.Props, theme: ThemeTypes.Index): Global.Compon
                     paddingLeft: '.25rem',
                 }],
                 isLabelOverlay: [{
+                    fontSize: 'inherit',
                     position: 'absolute',
                     display: 'flex',
                     userSelect: 'none',
