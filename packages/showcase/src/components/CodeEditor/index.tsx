@@ -1,11 +1,11 @@
 
-import { Block, Icon, useFlow } from '@flow-ui/core';
-import { Split } from '@flow-ui/lab';
-import chroma from 'chroma-js';
-import { Case } from 'core';
-import React, { useEffect, useState } from 'react';
-import CodeEditorView from './CodeEditorView';
-import CodePreviewView from './CodePreviewView';
+import { Block, Icon, useFlow } from '@flow-ui/core'
+import { Split } from '@flow-ui/lab'
+import chroma from 'chroma-js'
+import { Case } from 'core'
+import React, { useEffect, useState } from 'react'
+import CodeEditorView from './CodeEditorView'
+import CodePreviewView from './CodePreviewView'
 
 interface CodeEditorProps {
     caseObject: Case | null
@@ -20,10 +20,10 @@ const CodeEditor = (props: CodeEditorProps) => {
     if (props.caseObject && props.caseObject.cases) {
         inCode = props.caseObject.cases[props.caseIndex].code
     }
-    const [code, setCode] = useState(inCode);
-    const flow = useFlow();
+    const [code, setCode] = useState(inCode)
+    const flow = useFlow()
 
-    const dark = chroma.contrast("#fff", flow.theme.color.background) > 3
+    const dark = chroma.contrast('#fff', flow.theme.color.background) > 3
 
     useEffect(() => {
         try {
@@ -51,10 +51,10 @@ const CodeEditor = (props: CodeEditorProps) => {
         <Block
             mb="2rem"
             css={{
-                position: "relative",
+                position: 'relative',
                 height: '24rem',
-                borderWidth: "1px",
-                borderStyle: "solid",
+                borderWidth: '1px',
+                borderStyle: 'solid',
                 borderColor: flow.theme.color.lightest.css(),
                 borderRadius: flow.theme.radius.default,
                 backgroundColor: flow.theme.color.background.css(),
@@ -94,4 +94,4 @@ const CodeEditor = (props: CodeEditorProps) => {
     )
 }
 
-export default CodeEditor;
+export default CodeEditor
