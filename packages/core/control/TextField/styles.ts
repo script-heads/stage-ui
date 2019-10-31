@@ -11,14 +11,29 @@ const textFieldStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: 
         multiline, 
     } = props
 
-    const multilineAdditionalPadding = variant(size, {
-        'medium': '.25rem',
-        'large': '.25rem',
-        'xlarge': '.5rem'
-    })
+    let multilineAdditionalPadding = ''
+    switch (size) {
+        case 'medium':
+            multilineAdditionalPadding = '.25rem'
+            break
+        case 'large':
+            multilineAdditionalPadding = '.25rem'
+            break
+        case 'xlarge':
+            multilineAdditionalPadding = '.5rem'
+            break
+    }
 
     return {
-        ...fieldStyles(props, theme),
+        ...fieldStyles(props, theme, {
+            manyLines: multiline,
+            additionalStyles: {
+                label: [{
+                    marginLeft: multilineAdditionalPadding,
+                    marginTop: multilineAdditionalPadding
+                }]
+            }
+        }),
         input: (variant) => [
             {
                 outline: 0,
@@ -45,10 +60,6 @@ const textFieldStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: 
                 }]
             }),   
         ],
-        insideLabelStyles: [{
-            marginLeft: multilineAdditionalPadding,
-            marginTop: multilineAdditionalPadding
-        }]
     }
 }
 

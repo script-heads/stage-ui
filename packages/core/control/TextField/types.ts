@@ -60,7 +60,6 @@ declare namespace TextFieldTypes {
         input: {
             isLabelOverlay: boolean
         }
-        insideLabelStyles: void
     }
 }
 

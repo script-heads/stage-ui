@@ -4,10 +4,17 @@ import Types from './types'
 import Global from '../../../types'
 import ThemeTypes from '../../themes/types'
 
-const fieldStyles = (props: Types.Props, theme: ThemeTypes.Index): Global.ComponentStyles<Types.Styles> => {
+const fieldStyles = (
+    props: Types.Props, 
+    theme: ThemeTypes.Index, 
+    params: {
+        manyLines?: boolean
+        additionalStyles?: {[K in keyof Types.Styles]?: Global.EmotionStyles}
+    } = {}): Global.ComponentStyles<Types.Styles> => {
     
     const styleProps = useStyleProps(props)
     const color = callProp(props.color, theme.color)
+    const {manyLines, additionalStyles} = params
 
     return {
         container: [
@@ -19,6 +26,7 @@ const fieldStyles = (props: Types.Props, theme: ThemeTypes.Index): Global.Compon
                 outline: 'none'
             },
             styleProps.flow,
+            additionalStyles?.container
         ],
 
         field: (variant) => [
@@ -44,28 +52,53 @@ const fieldStyles = (props: Types.Props, theme: ThemeTypes.Index): Global.Compon
                     }]
                 },
                 size: {
-                    'xsmall': [{
-                        flexBasis: theme.assets.fieldHeight.xsmall,
-                        ...theme.typography.caption[3],
-                    }],
-                    'small': [{
-                        flexBasis: theme.assets.fieldHeight.small,
-                        ...theme.typography.caption[2],
-                    }],
-                    'medium': [{
-                        flexBasis: theme.assets.fieldHeight.medium,
-                        ...theme.typography.caption[1],
-                    }],
-                    'large': [{
-                        flexBasis: theme.assets.fieldHeight.large,
-                        fontSize: theme.typography.header[4].fontSize,
-                        lineHeight: theme.typography.header[4].lineHeight,
-                    }],
-                    'xlarge': [{
-                        flexBasis: theme.assets.fieldHeight.xlarge,
-                        fontSize: theme.typography.header[4].fontSize,
-                        lineHeight: theme.typography.header[4].lineHeight,
-                    }]
+                    'xsmall': [
+                        {
+                            flexBasis: theme.assets.fieldHeight.xsmall,
+                            ...theme.typography.caption[3],                            
+                        },
+                        !manyLines && {
+                            padding: '.25rem .375rem'
+                        }
+                    ],
+                    'small': [
+                        {
+                            flexBasis: theme.assets.fieldHeight.small,
+                            ...theme.typography.caption[2],                            
+                        },
+                        !manyLines && {
+                            padding: !manyLines && '.25rem .5rem'
+                        }
+                    ],
+                    'medium': [
+                        {
+                            flexBasis: theme.assets.fieldHeight.medium,
+                            ...theme.typography.caption[1],                            
+                        },
+                        !manyLines && {
+                            padding: !manyLines && '.25rem .75rem'
+                        }
+                    ],
+                    'large': [
+                        {
+                            flexBasis: theme.assets.fieldHeight.large,
+                            fontSize: theme.typography.header[4].fontSize,
+                            lineHeight: theme.typography.header[4].lineHeight,                            
+                        },
+                        !manyLines && {
+                            padding: !manyLines && '.25rem .875rem'
+                        }
+                    ],
+                    'xlarge': [
+                        {
+                            flexBasis: theme.assets.fieldHeight.xlarge,
+                            fontSize: theme.typography.header[4].fontSize,
+                            lineHeight: theme.typography.header[4].lineHeight,                            
+                        },
+                        !manyLines && {
+                            padding: !manyLines && '.25rem .875rem'
+                        }
+                    ]
                 },
                 decoration: {
                     'outline': [{
@@ -106,6 +139,7 @@ const fieldStyles = (props: Types.Props, theme: ThemeTypes.Index): Global.Compon
                 borderColor: color,
             },
             styleProps.self,
+            additionalStyles?.field
         ],
 
         content: (variant) => [
@@ -123,7 +157,8 @@ const fieldStyles = (props: Types.Props, theme: ThemeTypes.Index): Global.Compon
                 isLabelOverlay: [{
                     paddingTop: 'var(--headingLabelHeight)',
                 }]
-            })
+            }),
+            additionalStyles?.content
         ],
 
         label: (variant) => [
@@ -163,6 +198,7 @@ const fieldStyles = (props: Types.Props, theme: ThemeTypes.Index): Global.Compon
                     paddingTop: 'var(--headingLabelHeight)'
                 }],
             }),
+            additionalStyles?.label
         ],
 
         child: (variant) => [
@@ -194,7 +230,8 @@ const fieldStyles = (props: Types.Props, theme: ThemeTypes.Index): Global.Compon
                         }
                     })
                 }
-            })
+            }),
+            additionalStyles?.child
         ],
 
         hint: (variant) => [
@@ -210,6 +247,7 @@ const fieldStyles = (props: Types.Props, theme: ThemeTypes.Index): Global.Compon
                     'xsmall': [theme.typography.caption[4]]
                 }
             }),
+            additionalStyles?.hint
         ]
     }
 }

@@ -8,10 +8,10 @@ const selectStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Typ
     const { 
         size = 'medium', 
         shape = 'rounded', 
-        decoration = 'outline' 
+        decoration = 'outline',
+        multiselect 
     } = props
     
-    const field = fieldStyles(props, theme)
     let color = callProp(props.color, theme.color)
     let backgroundColor = callProp(props.backgroundColor, theme.color)
 
@@ -31,7 +31,9 @@ const selectStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Typ
     })
 
     return {
-        ...field,
+        ...fieldStyles(props, theme,{
+            manyLines: multiselect
+        }),
 
         fieldStyles: (variant) => [
             variant({
