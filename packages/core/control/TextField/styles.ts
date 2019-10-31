@@ -28,10 +28,12 @@ const textFieldStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: 
         ...fieldStyles(props, theme, {
             manyLines: multiline,
             additionalStyles: {
-                label: [{
+                label: [
+                    multiline && {
                     marginLeft: multilineAdditionalPadding,
                     marginTop: multilineAdditionalPadding
-                }]
+                }
+            ]
             }
         }),
         input: (variant) => [
