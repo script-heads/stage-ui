@@ -23,7 +23,7 @@ const DateGridYear = (props: DatePickerTypes.DateGridCalendarProps) => {
     const isActive = (activeValue === yearValue)
     const isCurrent = (yearValue === nowValue)
 
-    const css = props.styles.gridBlock(isActive, isCurrent, isDisabled, true)
+    const css = props.styles.gridBlock({isActive, isCurrent, isDisabled, isCurrentMonth: true})
 
     return (
         <Flexbox

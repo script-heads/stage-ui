@@ -2,7 +2,6 @@
  * types.tsx
  * author: I.Trikoz
  */
-import { Interpolation } from '@emotion/core'
 import { Moment } from 'moment'
 import { CSSProperties } from 'react'
 import Global from '@flow-ui/core/types'
@@ -10,10 +9,10 @@ import FieldTypes from '../../misc/hocs/Field/types'
 
 declare namespace DatePickerTypes {
 
-    export type GridType = 'year' | 'month' | 'day'
-    export type Locale = 'en' | 'ru' | 'it' | 'fr' | 'de'
+    type GridType = 'year' | 'month' | 'day'
+    type Locale = 'en' | 'ru' | 'it' | 'fr' | 'de'
 
-    export interface Props extends FieldTypes.Props {
+    interface Props extends FieldTypes.Props, InputProps {
         /**
          * Type for DatePicker
          * @default day
@@ -25,6 +24,7 @@ declare namespace DatePickerTypes {
          * otherwise value should be instance of Date
          */
         value?: Moment | Date | string
+        defaultValue?: Moment | Date | string
         /**
          * Format moment YYYY-MM-DD 
          * @default YYYY-MM-DD
@@ -62,16 +62,17 @@ declare namespace DatePickerTypes {
         hideToday?: boolean
     }
 
-    export interface DateGridProps {
+    interface DateGridProps {
         hideToday: boolean
         value: Moment
         minValue: Moment
         maxValue: Moment
         onChange: (date: Moment) => void
-        styles: any
+        styles: Global.FlowStyles<Styles>
         type: GridType
     }
-    export interface DateGridCalendarProps {
+    
+    interface DateGridCalendarProps {
         value: Moment
         tmp: Moment
         minValue: Moment
@@ -79,10 +80,10 @@ declare namespace DatePickerTypes {
         active: Moment
         onClick?: () => void
         style?: CSSProperties
-        styles: any
+        styles: Global.FlowStyles<Styles>
     }
 
-    export interface DateGridTitleProps {
+    interface DateGridTitleProps {
         value: Moment
         minValue: Moment
         maxValue: Moment
@@ -90,16 +91,43 @@ declare namespace DatePickerTypes {
         onNext: () => void
         onPrevious: () => void
         onGridTypeChange: (type: GridType) => void
-        styles: any
+        styles: Global.FlowStyles<Styles>
     }
 
-    export interface Styles {
-        textFieldWrapper?: Interpolation
-        textFieldOkButton?: Interpolation
-        dateGrind?: Interpolation
-        weekDay?: Interpolation
-        title?: Interpolation
-        gridBlock?: Interpolation
+    interface InputProps {
+        autoComplete?: string
+        autoFocus?: boolean
+        list?: string
+        name?: string
+        placeholder?: string
+        pattern?: string
+        readOnly?: boolean
+        required?: boolean
+
+        form?: string
+        formAction?: string
+        formEncType?: string
+        formMethod?: string
+        formNoValidate?: boolean
+        formTarget?: string
+    }
+
+    interface Styles extends FieldTypes.Styles {
+        dateGrind: void
+        weekDay: void
+        title: void
+        gridBlock: {
+            isActive: Boolean
+            isCurrent: boolean
+            isDisabled: boolean
+            isCurrentMonth: boolean
+        }
+        drop: {
+            isActive: boolean
+        }
+        input: {
+            isLabelOverlay: boolean
+        }
     }
 }
 

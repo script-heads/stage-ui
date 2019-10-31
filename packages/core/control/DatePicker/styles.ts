@@ -2,38 +2,39 @@
  * styles.tsx
  * author: I.Trikoz
  */
-import { css } from '@emotion/core'
-import useFlow from '@flow-ui/core/misc/hooks/useFlow'
+import Global from '../../types'
+import Types from './types'
+import fieldStyles from '@flow-ui/core/misc/hocs/Field/styles'
 
-export default () => {
-
-    const { theme } = useFlow()
+const datePickerStyles: Global.FunctionalComponentStyles<Types.Styles> = (props, theme) => {
 
     return {
-        dateGrind: css({
+        ...fieldStyles(props, theme),
+
+        dateGrind: [{
             position: 'relative',
             background: theme.color.surface.css(),
             color: theme.color.onSurface.css(),
-        }),
+        }],
 
-        weekDay: css({
+        weekDay: [{
             userSelect: 'none',
             ...theme.typography.caption[2],
             marginTop: '0.25rem',
             marginBottom: '0.5rem',
             fontWeight: 400,
-        }),
+        }],
 
-        title: css({
+        title: [{
             color: theme.color.onSurface.css(),
             padding: '0.25rem'
-        }),
+        }],
 
         /**
          * Styles for day/month/year squire
          */
-        gridBlock: (isActive: Boolean, isCurrent: boolean, isDisabled: boolean, isCurrentMonth: boolean) => {
-            const st = {
+        gridBlock: (variant) => [
+            {
                 transition: 'all 0.2s',
                 fontWeight: 500,
                 minWidth: '2rem',
@@ -47,48 +48,75 @@ export default () => {
                 borderColor: theme.color.surface.css(),
                 borderRadius: theme.radius.narrow,
                 color: theme.color.onSurface.css(),
-                userSelect: 'none' as 'none',
+                userSelect: 'none',
                 ...theme.typography.text[1],
                 ':hover': {
                     background: theme.color.lightest.css()
                 }
-            }
-            /**
-             * This block is from current month
-             */
-            if (!isCurrentMonth) {
-                st.color = theme.color.hardest.css()
-                st.background = theme.color.surface.css()
-            }
-            /**
-             * It is current block
-             */
-            if (isCurrent) {
-                st.borderColor = theme.color.primary.css()
-            }
-            /**
-             * This block is selected
-             */
-            if (isActive) {
-                st.background = theme.color.primary.css()
-                st.color = theme.color.onPrimary.css()
-                delete st[':hover']
-            }
-            /**
-             * This block is disabled to select
-             */
-            if (isDisabled) {
-                st.opacity = 0.3
-                delete st[':hover']
-            }
-            return css(st)
-        },
+            },
+            variant({
+                isActive: [{
+                    background: theme.color.primary.css(),
+                    color: theme.color.onPrimary.css(),
+                    ':hover': {
+                        background: theme.color.primary.css()
+                    }
+                }], 
+                isCurrent: [{
+                    borderColor: theme.color.primary.css()
+                }],
+                isDisabled: [{
+                    opacity: 0.3,
+                    ':hover': {
+                        background: theme.color.background.css()
+                    }
+                }], 
+                isCurrentMonth: [{
+                    color: theme.color.hardest.css(),
+                    background: theme.color.surface.css()
+                }]
+            })
+        ],
 
-        drop: (isActive: boolean) => css({
-            transition: 'all 0.2s',
-            transform: `translateY(${isActive ? 0 : '-1rem'}) scale(${isActive ? 1 : 0.9})`,
-            opacity: isActive ? 1 : 0,
-            visibility: isActive ? 'visible' : 'hidden'
-        })
+        drop: (variant) => [
+            {
+                transition: 'all 0.2s',
+                transform: `translateY(-1rem) scale(0.9)`,
+                opacity: 0,
+                visibility: 'hidden'
+            },
+            variant({
+                isActive: [{
+                    transform: `translateY(0) scale(1)`,
+                    opacity: 1,
+                    visibility: 'visible'
+                }]
+            })
+        ],
+        input: (variant) => [
+            {
+                outline: 0,
+                padding: 0,
+                margin: 0,
+                border: 'none',
+                backgroundImage: 'none',
+                backgroundColor: 'transparent',
+                resize: 'vertical',
+                boxShadow: 'none',
+                color: 'inherit',
+                font: 'inherit',
+                cursor: 'inherit',
+                '&::placeholder': {
+                    color: theme.color.light.css()
+                }
+            },
+            variant({
+                isLabelOverlay: [{
+                    opacity: '0'
+                }]
+            }),  
+        ]
     }
 }
+
+export default datePickerStyles
