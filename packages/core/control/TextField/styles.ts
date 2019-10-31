@@ -1,4 +1,3 @@
-import variant from '@flow-ui/core/misc/utils/variant'
 import Types from './types'
 import Global from '../../types'
 import fieldStyles from '@flow-ui/core/misc/hocs/Field/styles'
@@ -27,14 +26,7 @@ const textFieldStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: 
     return {
         ...fieldStyles(props, theme, {
             manyLines: multiline,
-            additionalStyles: {
-                label: [
-                    multiline && {
-                    marginLeft: multilineAdditionalPadding,
-                    marginTop: multilineAdditionalPadding
-                }
-            ]
-            }
+            additionalPadding: multilineAdditionalPadding
         }),
         input: (variant) => [
             {

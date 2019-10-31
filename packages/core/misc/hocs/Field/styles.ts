@@ -9,12 +9,13 @@ const fieldStyles = (
     theme: ThemeTypes.Index, 
     params: {
         manyLines?: boolean
+        additionalPadding?: string
         additionalStyles?: {[K in keyof Types.Styles]?: Global.EmotionStyles}
     } = {}): Global.ComponentStyles<Types.Styles> => {
     
     const styleProps = useStyleProps(props)
     const color = callProp(props.color, theme.color)
-    const {manyLines, additionalStyles} = params
+    const {manyLines, additionalStyles, additionalPadding} = params
 
     return {
         container: [
@@ -41,6 +42,7 @@ const fieldStyles = (
                 display: 'flex',
                 alignItems: 'stretch',
                 boxSizing: 'border-box',
+                '--headingLabelHeight': `calc(${theme.typography.caption[2].lineHeight} + .25rem + ${additionalPadding})`
             },
             variant({
                 shape: {
@@ -55,7 +57,10 @@ const fieldStyles = (
                     'xsmall': [
                         {
                             flexBasis: theme.assets.fieldHeight.xsmall,
-                            ...theme.typography.caption[3],                            
+                            ...theme.typography.caption[3],   
+                            '--headingLabelHeight': `
+                                calc(${theme.typography.caption[4].lineHeight} + 2px + ${additionalPadding})
+                            `                         
                         },
                         !manyLines && {
                             padding: '.25rem .375rem'
@@ -64,10 +69,13 @@ const fieldStyles = (
                     'small': [
                         {
                             flexBasis: theme.assets.fieldHeight.small,
-                            ...theme.typography.caption[2],                            
+                            ...theme.typography.caption[2],
+                            '--headingLabelHeight': `
+                                calc(${theme.typography.caption[4].lineHeight} + 2px + ${additionalPadding})
+                            `                            
                         },
                         !manyLines && {
-                            padding: !manyLines && '.25rem .5rem'
+                            padding: '.25rem .5rem'
                         }
                     ],
                     'medium': [
@@ -76,7 +84,7 @@ const fieldStyles = (
                             ...theme.typography.caption[1],                            
                         },
                         !manyLines && {
-                            padding: !manyLines && '.25rem .75rem'
+                            padding: '.25rem .75rem'
                         }
                     ],
                     'large': [
@@ -86,7 +94,7 @@ const fieldStyles = (
                             lineHeight: theme.typography.header[4].lineHeight,                            
                         },
                         !manyLines && {
-                            padding: !manyLines && '.25rem .875rem'
+                            padding: '.25rem .875rem'
                         }
                     ],
                     'xlarge': [
@@ -96,26 +104,30 @@ const fieldStyles = (
                             lineHeight: theme.typography.header[4].lineHeight,                            
                         },
                         !manyLines && {
-                            padding: !manyLines && '.25rem .875rem'
+                            padding: '.25rem .875rem'
                         }
                     ]
                 },
                 decoration: {
-                    'outline': [{
-                        borderWidth: '1px',
-                        borderStyle: 'solid',
-                        '&[disabled]': {
-                            background: theme.color.lightest.css(),
-                        }
-                    }],
-                    'filled': [{
-                        borderWidth: '1px',
-                        borderStyle: 'solid',
-                        borderColor: 'transparent',
-                        '&[disabled]': {
-                            background: theme.color.lightest.css(),
+                    'outline': [
+                        {
+                            borderWidth: '1px',
+                            borderStyle: 'solid'
                         },
-                    }],
+                        variant({disabled: [{
+                            background: theme.color.lightest.css(),
+                        }]})
+                    ],
+                    'filled': [
+                        {
+                            borderWidth: '1px',
+                            borderStyle: 'solid',
+                            borderColor: 'transparent'
+                        },
+                        variant({disabled: [{
+                            background: theme.color.lightest.css(),
+                        }]})
+                    ],
                     'underline': [{
                         borderBottomWidth: '1px',
                         borderBottomStyle: 'solid',
@@ -165,22 +177,24 @@ const fieldStyles = (
             {
                 color: theme.color.hard.css(),
                 paddingBottom: '.25rem',
-                ...theme.typography.caption[2],
-                '--headingLabelHeight': `calc(${theme.typography.caption[2].lineHeight} + .25rem)`
             },
+            additionalPadding && {
+                marginLeft: additionalPadding,
+                marginTop: additionalPadding
+            },
+            theme.typography.caption[2],
             variant({
                 size: {
                     'small': [
                         {
                             paddingBottom: '2px',
-                            '--headingLabelHeight': `calc(${theme.typography.caption[4].lineHeight} + 2px)`
                         },
                         theme.typography.caption[4]
                     ],
                     'xsmall': [
                         {
                             paddingBottom: '2px',
-                            '--headingLabelHeight': `calc(${theme.typography.caption[4].lineHeight} + 2px)`
+                            
                         },
                         theme.typography.caption[4]
                     ]
@@ -189,14 +203,16 @@ const fieldStyles = (
                     paddingBottom: '.25rem',
                     paddingLeft: '.25rem',
                 }],
-                isLabelOverlay: [{
-                    fontSize: 'inherit',
-                    position: 'absolute',
-                    display: 'flex',
-                    userSelect: 'none',
-                    top: 0,
-                    paddingTop: 'var(--headingLabelHeight)'
-                }],
+                isLabelOverlay: [
+                    {
+                        fontSize: 'inherit',
+                        position: 'absolute',
+                        display: 'flex',
+                        userSelect: 'none',
+                        top: 0,
+                        paddingTop: 'var(--headingLabelHeight)'
+                    }
+                ],
             }),
             additionalStyles?.label
         ],

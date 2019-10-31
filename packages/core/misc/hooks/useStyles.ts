@@ -51,9 +51,8 @@ const createStyles = <S>(
 
                         if (!Object.keys(state).includes(variantName)) {
                             console.warn(
-                                `Can't find value of "${variantName}" variant 
-                                in "${styleName}" style. Function has been 
-                                called with:`, 
+                                `Can't find value of "${variantName}" variant in "${styleName}" style. 
+                                Function has been called with:`, 
                                 state
                             )
                         }
