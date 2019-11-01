@@ -22,8 +22,6 @@ declare namespace DropTypes {
 
   interface Ref extends Partial<HTMLDivElement> {
     updatePosition: () => void
-    updateVerticalPosition: () => void
-    updateHorizontalPosition: () => void
   }
 
   interface Styles {

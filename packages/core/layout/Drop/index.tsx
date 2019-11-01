@@ -20,7 +20,7 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
     let getTopCoord: GetCoord = (tr) => toStyle(tr.bottom + distance)
     let getLeftCoord: GetCoord = (tr, dr) => toStyle((tr.left + tr.width / 2) - dr.width / 2)
 
-    const updateHorizontalPosition = () => {
+    const setHorizontalPosition = () => {
         switch (justify) {
             case 'start':
                 getLeftCoord = (tr) => toStyle(tr.left)
@@ -40,7 +40,7 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
         }
     }
 
-    const updateVerticalPosition = () => {
+    const setVerticalPosition = () => {
         switch (justify) {
             case 'end':
                 getTopCoord = (tr) => toStyle(tr.top)
@@ -60,19 +60,19 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
     switch (align) {
         case 'top':
             getTopCoord = (tr, dr) => toStyle(tr.top - dr.height - distance)
-            updateHorizontalPosition()
+            setHorizontalPosition()
             break
         case 'bottom':
             getTopCoord = (tr) => toStyle(tr.bottom + distance)
-            updateHorizontalPosition()
+            setHorizontalPosition()
             break
         case 'left':
             getLeftCoord = (tr, dr) => toStyle(tr.left - dr.width - distance)
-            updateVerticalPosition()
+            setVerticalPosition()
             break
         case 'right':
             getLeftCoord = (tr) => toStyle(tr.right + distance)
-            updateVerticalPosition()
+            setVerticalPosition()
             break
     }
 
@@ -110,6 +110,7 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
 
     function updatePosition() {
         if (targetRef.current && dropRef.current) {
+            console.log(2)
             const tr: ClientRect = targetRef.current.getBoundingClientRect()
             const dr: ClientRect = dropRef.current.getBoundingClientRect()
             const style = dropRef.current.style
@@ -123,8 +124,6 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
     useImperativeHandle(ref, () => ({
         ...dropRef.current,
         updatePosition,
-        updateVerticalPosition,
-        updateHorizontalPosition
     }))
 
     /**
