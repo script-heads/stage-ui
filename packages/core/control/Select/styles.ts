@@ -49,7 +49,8 @@ const selectStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Typ
         placeholder: [{
             color: theme.color.light.css(),
             userSelect: 'none',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            padding: multiselectAdditionalPadding,
         }],
 
         input:[{
