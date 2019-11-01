@@ -3,7 +3,7 @@ import Global from '@flow-ui/core/types'
 declare namespace TreeTypes {
 
     interface Props extends Global.Props {
-        label?: React.ReactNode | string
+        label?: React.ReactNode | string | ((isOpen: boolean) => React.ReactNode)
         children?: React.ReactNode
         decoration?: 'flat' | 'drop' | 'inline'
         alwaysOpen?: boolean
