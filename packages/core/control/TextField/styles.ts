@@ -11,18 +11,21 @@ const textFieldStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: 
     } = props
 
     let multilineAdditionalPadding = ''
-    switch (size) {
-        case 'medium':
-            multilineAdditionalPadding = '.25rem'
-            break
-        case 'large':
-            multilineAdditionalPadding = '.25rem'
-            break
-        case 'xlarge':
-            multilineAdditionalPadding = '.5rem'
-            break
-    }
 
+    if (multiline) {
+        switch (size) {
+            case 'medium':
+                multilineAdditionalPadding = '.25rem'
+                break
+            case 'large':
+                multilineAdditionalPadding = '.25rem'
+                break
+            case 'xlarge':
+                multilineAdditionalPadding = '.5rem'
+                break
+        }
+    }
+   
     return {
         ...fieldStyles(props, theme, {
             manyLines: multiline,

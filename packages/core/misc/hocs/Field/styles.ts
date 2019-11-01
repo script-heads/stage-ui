@@ -10,13 +10,14 @@ const fieldStyles = (
     params: {
         manyLines?: boolean
         additionalPadding?: string
+        labelOverlayPosition?: 'top' | 'center'
         additionalStyles?: {[K in keyof Types.Styles]?: Global.EmotionStyles}
     } = {}): Global.ComponentStyles<Types.Styles> => {
     
     const styleProps = useStyleProps(props)
     const color = callProp(props.color, theme.color)
-    const {manyLines, additionalStyles, additionalPadding} = params
-
+    const {manyLines, additionalStyles, additionalPadding, labelOverlayPosition} = params
+    
     return {
         container: [
             {
@@ -42,7 +43,7 @@ const fieldStyles = (
                 display: 'flex',
                 alignItems: 'stretch',
                 boxSizing: 'border-box',
-                '--headingLabelHeight': `calc(${theme.typography.caption[2].lineHeight} + .25rem + ${additionalPadding})`
+                '--headingLabelHeight': `calc(${theme.typography.caption[2].lineHeight} + .25rem${additionalPadding ? ' + ' + additionalPadding : ''})`
             },
             variant({
                 shape: {
@@ -59,7 +60,7 @@ const fieldStyles = (
                             flexBasis: theme.assets.fieldHeight.xsmall,
                             ...theme.typography.caption[3],   
                             '--headingLabelHeight': `
-                                calc(${theme.typography.caption[4].lineHeight} + 2px + ${additionalPadding})
+                                calc(${theme.typography.caption[4].lineHeight} + 2px${additionalPadding ? ' + ' + additionalPadding : ''})
                             `                         
                         },
                         !manyLines && {
@@ -71,7 +72,7 @@ const fieldStyles = (
                             flexBasis: theme.assets.fieldHeight.small,
                             ...theme.typography.caption[2],
                             '--headingLabelHeight': `
-                                calc(${theme.typography.caption[4].lineHeight} + 2px + ${additionalPadding})
+                                calc(${theme.typography.caption[4].lineHeight} + 2px${additionalPadding ? ' + ' + additionalPadding : ''})
                             `                            
                         },
                         !manyLines && {
@@ -209,8 +210,16 @@ const fieldStyles = (
                         position: 'absolute',
                         display: 'flex',
                         userSelect: 'none',
+                        marginTop: 0,
+                        paddingBottom: 0
+                    },
+                    (!labelOverlayPosition || labelOverlayPosition === 'top') && {
                         top: 0,
                         paddingTop: 'var(--headingLabelHeight)'
+                    },
+                    labelOverlayPosition  === 'center' && {
+                        top: '50%',
+                        transform: 'translateY(-50%)'
                     }
                 ],
             }),

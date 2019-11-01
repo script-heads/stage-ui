@@ -15,7 +15,7 @@ const selectStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Typ
     let color = callProp(props.color, theme.color)
     let backgroundColor = callProp(props.backgroundColor, theme.color)
 
-    const multilineAdditionalPadding = variant(size, {
+    const multiselectAdditionalPadding = variant(size, {
         'medium': '.25rem',
         'large': '.25rem',
         'xlarge': '.5rem'
@@ -33,7 +33,8 @@ const selectStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Typ
     return {
         ...fieldStyles(props, theme, {
             manyLines: multiselect,
-            additionalPadding: multilineAdditionalPadding,
+            additionalPadding: multiselect ? multiselectAdditionalPadding : '',
+            labelOverlayPosition: 'center'
         }),
 
         fieldAdditional: (variant) => [
@@ -73,7 +74,7 @@ const selectStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Typ
             flexWrap: 'wrap',
             marginBottom: '-.25rem',
             marginRight: '-.25rem',
-            padding: multilineAdditionalPadding,
+            padding: multiselectAdditionalPadding,
             '> *': {
                 marginBottom: '.25rem !important',
                 marginRight: '.25rem',
@@ -149,8 +150,6 @@ const selectStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Typ
                 borderTopRightRadius: 0,
             },
             variant(decoration, {
-                'outline': {
-                },
                 'filled': {
                     borderColor: 'transparent',
                 },
@@ -176,7 +175,6 @@ const selectStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Typ
                 ':hover': {
                     background: theme.color.background.css()
                 }
-
             },
             variant({
                 size: {
