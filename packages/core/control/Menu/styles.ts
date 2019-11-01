@@ -278,7 +278,7 @@ function getDecorations(theme, sizes, props) {
             color = chroma(callProp(props.color, theme.color) || theme.color.surface.css())
             return {
                 active: {
-                    background: color.css(),
+                    background: color.css() + '!important',
                     border: '1px solid ' + theme.color.lightest.css(),
                     '&:active:not([disabled])': {
                         background: color.alpha(.02).css(),
