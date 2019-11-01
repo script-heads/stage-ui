@@ -4,6 +4,7 @@ import selectStyles from './styles'
 import Field from '../../misc/hocs/Field'
 import Icon from '../../content/Icon'
 import Drop from '../../layout/Drop'
+import DropTypes from '../../layout/Drop/types'
 import SelectReducer from './reducer'
 import useContainer from '../../misc/hooks/useContainer'
 import useStyles from '../../misc/hooks/useStyles'
@@ -41,6 +42,7 @@ const Select = (props: Types.Props, ref) => {
     }
 
     const targetRef = useRef(null)
+    const dropRef = useRef<DropTypes.Ref>(null)
     const [state, dispatch] = useReducer(SelectReducer, initialState)
 
     const {attributes, focus} = useContainer(props, true, props.decoration != 'none')
@@ -73,6 +75,7 @@ const Select = (props: Types.Props, ref) => {
     }
 
     function toggleOption (option: Types.Option) {
+        const empty: Types.Option[] = []
         let nextSelectedOptions = state.selectedOptions
         if (multiselect) {
             includeOption(state.selectedOptions, option)
@@ -84,18 +87,22 @@ const Select = (props: Types.Props, ref) => {
             nextSelectedOptions = [option]
         }
         !values && dispatch({type: 'setSelectedOptions', payload: nextSelectedOptions})
-        onChange && onChange(([] as any).concat(nextSelectedOptions), option)
+        onChange?.(empty.concat(nextSelectedOptions), option)
+        setTimeout(() => dropRef?.current?.updatePosition())
     }
 
     function reduceSelectedOptions () {
+        const empty: Types.Option[] = []
         const nextSelectedOptions = state.selectedOptions.slice(0, -1)
         !values && dispatch({type: 'setSelectedOptions', payload: nextSelectedOptions})
-        onChange && onChange(([] as any).concat(nextSelectedOptions) as Types.Option[])
+        onChange?.(empty.concat(nextSelectedOptions) as Types.Option[])
+        setTimeout(() => dropRef?.current?.updatePosition())
     }
 
     function clear () {
         !values && dispatch({type: 'clear'})
-        onChange && onChange([])
+        onChange?.([])
+        setTimeout(() => dropRef?.current?.updatePosition())
     }
                 
     /*
@@ -228,6 +235,7 @@ const Select = (props: Types.Props, ref) => {
             />
             {state.open && 
                 <Drop
+                    ref={dropRef}
                     onClickOutside={(e, ot) => {
                         ot && state.open && dispatch({type: 'toggleOpen', payload: false})
                     }}

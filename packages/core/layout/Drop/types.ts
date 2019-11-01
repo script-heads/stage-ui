@@ -20,6 +20,10 @@ declare namespace DropTypes {
     children?: React.ReactNode
   }
 
+  interface Ref extends Partial<HTMLDivElement> {
+    updatePosition: () => void
+  }
+
   interface Styles {
     container: void
   }

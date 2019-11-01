@@ -1,6 +1,6 @@
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
 import useStyles from '@flow-ui/core/misc/hooks/useStyles'
-import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState, useMemo } from 'react'
+import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState, useMemo, RefForwardingComponent } from 'react'
 import ReactDOM from 'react-dom'
 import Types from './types'
 import dropStyles from './styles'
@@ -9,7 +9,8 @@ type GetCoord = (tr: ClientRect, td: ClientRect) => string
 
 let sharedZIndex = 300
 
-const Drop = (props: Types.Props, ref) => {
+const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
+
     const { attributes } = useContainer(props)
     const { children, target: targetRef, onClickOutside, distance = 0, align,
         justify, stretchHeight, stretchWidth, visibility, display } = props
@@ -75,8 +76,6 @@ const Drop = (props: Types.Props, ref) => {
             break
     }
 
-    useImperativeHandle(ref, () => dropRef.current)
-
     useEffect(() => {
         const rect = (stretchHeight || stretchWidth) ? targetRef.current?.getBoundingClientRect() : null
         const style = rect && dropRef.current?.style
@@ -88,18 +87,18 @@ const Drop = (props: Types.Props, ref) => {
 
         if (visibility != 'hidden' && display != 'none') {
             sharedZIndex++
-            setPosition()
-            document.addEventListener('scroll', setPosition, true)
-            document.addEventListener('onflowscroll', setPosition, true)
+            updatePosition()
+            document.addEventListener('scroll', updatePosition, true)
+            document.addEventListener('onflowscroll', updatePosition, true)
             document.addEventListener('mouseup', handleClickOutside)
-            window.addEventListener('resize', setPosition)
+            window.addEventListener('resize', updatePosition)
 
         }
         return () => {
-            document.removeEventListener('scroll', setPosition, true)
-            document.removeEventListener('onflowscroll', setPosition, true)
+            document.removeEventListener('scroll', updatePosition, true)
+            document.removeEventListener('onflowscroll', updatePosition, true)
             document.removeEventListener('mouseup', handleClickOutside)
-            window.removeEventListener('resize', setPosition)
+            window.removeEventListener('resize', updatePosition)
         }
     }, [visibility, display])
 
@@ -109,8 +108,9 @@ const Drop = (props: Types.Props, ref) => {
         }
     }
 
-    function setPosition() {
+    function updatePosition() {
         if (targetRef.current && dropRef.current) {
+            console.log(2)
             const tr: ClientRect = targetRef.current.getBoundingClientRect()
             const dr: ClientRect = dropRef.current.getBoundingClientRect()
             const style = dropRef.current.style
@@ -120,6 +120,11 @@ const Drop = (props: Types.Props, ref) => {
             style.left = getLeftCoord(tr, dr)
         }
     }
+
+    useImperativeHandle(ref, () => ({
+        ...dropRef.current,
+        updatePosition,
+    }))
 
     /**
      * zIndex magic stuff

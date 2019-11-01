@@ -205,15 +205,18 @@ function getDecorations(theme, sizes, props) {
                     '&[disabled]': {
                         color: theme.color.light.css(),
                         ...underlineStyles(flip, direction, theme.color.light, sizes.underline),
-                    }
+                    },
+                    '&:hover:not([disabled])': {
+                        ...underlineStyles(flip, direction, color, sizes.underline)
+                    },
                 },
                 ordinary: {
+                    '&[disabled]': {
+                        color: theme.color.light.css(),
+                    },
                     '&:hover:not([disabled])': {
                         ...underlineStyles(flip, direction, color.alpha(.1), sizes.underline)
                     },
-                    '&[disabled]': {
-                        color: theme.color.light.css(),
-                    }
                 }
             }
         case 'filled':
@@ -223,6 +226,9 @@ function getDecorations(theme, sizes, props) {
                     color: chroma.contrast(color, theme.color.onPrimary) > 3
                         ? theme.color.onPrimary.css()
                         : theme.color.onSurface.css(),
+                    '&:hover:not([disabled])': {
+                        background: color.css(),
+                    },
                     '&:active:not([disabled])': {
                         background: color.get('hsl.l') > .2
                             ? color.darken(.2).css()
@@ -250,6 +256,9 @@ function getDecorations(theme, sizes, props) {
             return {
                 active: {
                     border: '1px solid ' + color.alpha(.7).css(),
+                    '&:hover:not([disabled])': {
+                        border: '1px solid ' + color.alpha(.7).css(),
+                    },
                     color: color.css(),
                     '&:active:not([disabled])': {
                         background: color.alpha(.02).css(),
@@ -280,6 +289,9 @@ function getDecorations(theme, sizes, props) {
                 active: {
                     background: color.css(),
                     border: '1px solid ' + theme.color.lightest.css(),
+                    '&:hover:not([disabled])': {
+                        background: color.css(),
+                    },
                     '&:active:not([disabled])': {
                         background: color.alpha(.02).css(),
                     },
@@ -311,6 +323,9 @@ function getDecorations(theme, sizes, props) {
             return {
                 active: {
                     background: color.alpha(.15).css(),
+                    '&:hover:not([disabled])': {
+                        background: color.alpha(.15).css(),
+                    },
                     ...underlineStyles(flip, direction, color, true),
                     '&[disabled]': {
                         background: theme.color.lightest.css(),
@@ -333,6 +348,9 @@ function getDecorations(theme, sizes, props) {
             return {
                 active: {
                     color: color.css(),
+                    '&:hover:not([disabled])': {
+                        color: color.css(),
+                    },
                     '&[disabled]': {
                         color: theme.color.light.css(),
                     }
