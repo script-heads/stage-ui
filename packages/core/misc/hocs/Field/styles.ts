@@ -4,22 +4,22 @@ import Types from './types'
 import Global from '../../../types'
 import ThemeTypes from '../../themes/types'
 
-const fieldStyles = (
+const fieldStyles = <T extends Types.Styles>(
     props: Types.Props, 
     theme: ThemeTypes.Index, 
     params: {
         manyLines?: boolean
         additionalPadding?: string
         labelOverlayPosition?: 'top' | 'center'
-        additionalStyles?: {[K in keyof Types.Styles]?: Global.EmotionStyles}
+        overrides?: Partial<Global.ComponentStyles<T>>
     } = {}): Global.ComponentStyles<Types.Styles> => {
     
     const styleProps = useStyleProps(props)
     const color = callProp(props.color, theme.color)
-    const {manyLines, additionalStyles, additionalPadding, labelOverlayPosition} = params
+    const {manyLines, overrides, additionalPadding, labelOverlayPosition} = params
     
     return {
-        container: [
+        container: (variant) => [
             {
                 position: 'relative',
                 display: 'flex',
@@ -28,7 +28,7 @@ const fieldStyles = (
                 outline: 'none'
             },
             styleProps.flow,
-            additionalStyles?.container
+            overrides?.container?.(variant)
         ],
 
         field: (variant) => [
@@ -152,7 +152,7 @@ const fieldStyles = (
                 borderColor: color,
             },
             styleProps.self,
-            additionalStyles?.field
+            overrides?.field?.(variant)
         ],
 
         content: (variant) => [
@@ -171,7 +171,7 @@ const fieldStyles = (
                     paddingTop: 'var(--headingLabelHeight)',
                 }]
             }),
-            additionalStyles?.content
+            overrides?.content?.(variant)
         ],
 
         label: (variant) => [
@@ -223,7 +223,7 @@ const fieldStyles = (
                     }
                 ],
             }),
-            additionalStyles?.label
+            overrides?.label?.(variant)
         ],
 
         child: (variant) => [
@@ -256,7 +256,7 @@ const fieldStyles = (
                     })
                 }
             }),
-            additionalStyles?.child
+            overrides?.child?.(variant)
         ],
 
         hint: (variant) => [
@@ -272,7 +272,7 @@ const fieldStyles = (
                     'xsmall': [theme.typography.caption[4]]
                 }
             }),
-            additionalStyles?.hint
+            overrides?.hint?.(variant)
         ]
     }
 }

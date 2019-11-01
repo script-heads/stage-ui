@@ -16,30 +16,25 @@ declare namespace FieldTypes {
         clearable?: boolean
     }
 
-    interface Styles {
-        container: void
-        field: {
-            disabled: Props['disabled']
-            focus: boolean 
-            shape: Props['shape']
-            size: Props['size'] 
-            decoration: Props['decoration']
-        }
-        content: {
-            isLabelOverlay: boolean
-        }
-        label: {
-            size: Props['size']
-            isLabelOutside: boolean 
-            isLabelOverlay: boolean
-        }
+    interface State {
+        disabled: Props['disabled']
+        focus: boolean 
+        shape: Props['shape']
+        size: Props['size'] 
+        decoration: Props['decoration']
+        isLabelOutside: boolean 
+        isLabelOverlay: boolean
+    }
+
+    interface Styles<T extends {[T in keyof Styles]?: Object} = {}> {
+        container: State & T['container']
+        field: State & T['field']
+        content: State & T['content']
+        label: State & T['label']
         child: {
             align: 'right' | 'left'
-            size: Props['size']
-        }
-        hint: {
-            size: Props['size'] 
-        }
+        } & State & T['child']
+        hint: State & T['hint']
     }
 
     interface PrivateProps extends Props {
@@ -47,12 +42,10 @@ declare namespace FieldTypes {
         isLabelOutside: boolean 
         isLabelOverlay: boolean
         styles: Global.FlowStyles<Styles>
-        additionalStyles?: {
-            [K: string]: SerializedStyles
-        }
+        state?: Object
         
         labelName?: string
-        attributes?: any
+        attributes?: Object
         children?: React.ReactNode
 
         onEnter?: () => void

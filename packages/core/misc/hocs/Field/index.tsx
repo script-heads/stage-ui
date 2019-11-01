@@ -5,25 +5,29 @@ import Icon from '../../../content/Icon'
 const Field: FC<Types.PrivateProps> = (props, ref) => {
 
     const {
-        decoration,
-        shape,
-        size,
         labelName,
         label,
         clearable,
         onClear,
         attributes,
-        focus,
         styles,
         isLabelOutside, 
-        isLabelOverlay,
-        disabled,
-        additionalStyles
     } = props
+
+    const state = {
+        focus: props.focus,
+        size: props.size, 
+        decoration: props.decoration,
+        shape: props.shape,
+        disabled: props.disabled,
+        isLabelOverlay: props.isLabelOverlay,
+        isLabelOutside,
+        ...props.state
+    }
 
     const Label = (
         <label
-            css={[styles.label({isLabelOutside, isLabelOverlay, size}), additionalStyles?.label]}
+            css={styles.label(state)}
             htmlFor={labelName}
             children={label}
         />
@@ -33,22 +37,22 @@ const Field: FC<Types.PrivateProps> = (props, ref) => {
         <div
             {...attributes}
             ref={ref}
-            css={[styles.container, additionalStyles?.container]}
+            css={styles.container(state)}
         >
             {label && isLabelOutside && Label}
             {
-                <div css={[styles.field({focus, size, decoration, shape, disabled}), additionalStyles?.field]}>
+                <div css={styles.field(state)}>
                     {props.leftChild && (
-                        <div css={[styles.child({align: 'left', size}), additionalStyles?.child]}>
+                        <div css={styles.child({align: 'right', ...state})}>
                             {props.leftChild}
                         </div>
                     )}
-                    <div css={[styles.content({isLabelOverlay}), additionalStyles?.content]}>
+                    <div css={styles.content(state)}>
                         {label && !isLabelOutside && Label}
                         {props.children}
                     </div>
                     {(clearable || props.rightChild) && (
-                        <div css={[styles.child({align: 'right', size}), additionalStyles?.child]}>
+                        <div css={styles.child({align: 'right', ...state})}>
                             {clearable && <Icon
                                 type={i => i.filled.close}
                                 onClick={(e) => {
@@ -62,7 +66,7 @@ const Field: FC<Types.PrivateProps> = (props, ref) => {
                 </div>
             }
             {props.hint &&
-                <div css={[styles.hint({size}), additionalStyles?.hint]}>
+                <div css={styles.hint(state)}>
                     {props.hint}
                 </div>
             }

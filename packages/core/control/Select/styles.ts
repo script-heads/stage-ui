@@ -31,20 +31,21 @@ const selectStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Typ
     })
 
     return {
-        ...fieldStyles(props, theme, {
+        ...fieldStyles<Types.Styles>(props, theme, {
             manyLines: multiselect,
             additionalPadding: multiselect ? multiselectAdditionalPadding : '',
-            labelOverlayPosition: 'center'
+            labelOverlayPosition: 'center',
+            overrides: {
+                field: (variant) => [
+                    variant({
+                        open: [{
+                            borderBottomLeftRadius: 0,
+                            borderBottomRightRadius: 0
+                        }]
+                    })
+                ]
+            }
         }),
-
-        fieldAdditional: (variant) => [
-            variant({
-                open: [{
-                    borderBottomLeftRadius: 0,
-                    borderBottomRightRadius: 0
-                }]
-            })
-        ],
 
         placeholder: [{
             color: theme.color.light.css(),

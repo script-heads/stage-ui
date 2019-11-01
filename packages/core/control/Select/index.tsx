@@ -48,7 +48,7 @@ const Select = (props: Types.Props, ref) => {
     const {attributes, focus} = useContainer(props, true, props.decoration != 'none')
     const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xlarge')
     const isLabelOverlay = (state.empty && !focus && !isLabelOutside) ? true : false
-    const styles = useStyles<Types.Styles>(props, selectStyles, 'TextField')
+    const styles = useStyles<Types.Styles>(props, selectStyles, 'Select')
 
     useImperativeHandle(ref, () => {
         return targetRef.current
@@ -197,9 +197,7 @@ const Select = (props: Types.Props, ref) => {
 
                 focus={focus}
                 styles={styles}
-                additionalStyles={{
-                    field: styles.fieldAdditional({open: state.open})
-                }}
+                state={state}
                 isLabelOutside={isLabelOutside}
                 isLabelOverlay={isLabelOverlay}
                 decoration={decoration}
