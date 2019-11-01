@@ -16,20 +16,7 @@ const createStyles = <S>(
         componentStyles = componentStyles(props,theme)
     }
 
-    const overrideThemeStyles =
-        componentName && 
-        theme.overrides[componentName] && 
-        createStyles(
-            props, 
-            theme.overrides[componentName] as Global.ComponentStyles<{}>
-        )
-
-    const overridePropsStyles =
-        props.overrides && 
-        createStyles(
-            props, 
-            props.overrides as Global.ComponentStyles<{}>
-        )
+    const themeOverrides = componentName && theme.overrides[componentName]
 
     Object.keys(componentStyles).map(styleName => {
         if (typeof componentStyles[styleName] === 'function') {
@@ -59,18 +46,30 @@ const createStyles = <S>(
                     }
                     return variantStyles
                 }
-
+                
                 return css(
                     componentStyles[styleName](variant), 
-                    overrideThemeStyles && overrideThemeStyles[styleName] && overrideThemeStyles[styleName](variant),
-                    overridePropsStyles && overridePropsStyles[styleName] && overridePropsStyles[styleName](variant)
+                    
+                    themeOverrides &&
+                    themeOverrides[styleName] && 
+                    themeOverrides[styleName](variant),
+                    
+                    props.overrides && 
+                    props.overrides[styleName] && 
+                    props.overrides[styleName](variant)
                 )
             }
         } else {
             FlowStyles[styleName] = css(
                 componentStyles[styleName], 
-                overrideThemeStyles && overrideThemeStyles[styleName] && overrideThemeStyles[styleName],
-                overridePropsStyles && overridePropsStyles[styleName] && overridePropsStyles[styleName]
+                
+                themeOverrides &&
+                themeOverrides[styleName] && 
+                themeOverrides[styleName],
+                
+                props.overrides && 
+                props.overrides[styleName] && 
+                props.overrides[styleName]
             )
         }     
     })
