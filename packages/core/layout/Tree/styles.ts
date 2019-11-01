@@ -46,9 +46,12 @@ const treeStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types
             }),
         ],
         child: (variant) => [
+            {
+                display: 'none'
+            },
             variant({
                 isOpen: [{
-                    display: 'none'
+                    display: 'block'
                 }]
             })
         ]
