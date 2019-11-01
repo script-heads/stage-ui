@@ -62,9 +62,6 @@ declare namespace SelectTypes {
     }
 
     interface Styles extends FieldTypes.Styles {
-        fieldStyles: {
-            open: boolean
-        }
         placeholder: void
         input: void
         options: void
