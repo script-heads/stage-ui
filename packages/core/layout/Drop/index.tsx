@@ -110,7 +110,6 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
 
     function updatePosition() {
         if (targetRef.current && dropRef.current) {
-            console.log(2)
             const tr: ClientRect = targetRef.current.getBoundingClientRect()
             const dr: ClientRect = dropRef.current.getBoundingClientRect()
             const style = dropRef.current.style
