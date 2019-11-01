@@ -2,11 +2,14 @@ import * as CoreScope from '@flow-ui/core'
 import { Block } from '@flow-ui/core'
 import * as LabScope from '@flow-ui/lab'
 import React from 'react'
+import DesignEditor from '../DesignEditor'
+
 //@ts-ignore
 import ts from 'typescript/lib/typescriptServices'
 
 Object.assign(window, {
     React,
+    DesignEditor,
     ...React,
     ...CoreScope,
     ...LabScope
@@ -55,6 +58,52 @@ class Renderer extends React.Component<{children: any}> {
 
 const CodePreviewView = (props: { dark: boolean, code: string, showGrid: boolean }) => {
     let { code } = props
+    let id = 0
+    if (code.match('//design->')) { 
+        try {
+            const codeObject = eval(code)
+            const build = (object) => {
+                if (Array.isArray(object)) {
+                    let t = ''
+
+                    for (const obj of object) {
+                        t += build(obj)
+                    }
+                    return `<>${t}</>`
+                }
+                if (typeof object === 'object') {
+                    let props = ''
+                    let children = ''
+                    for (const key of Object.keys(object)) {
+                        if (key !== '$' && key !== 'children') {
+                            let value = object[key]
+                            if (typeof value === 'string') {
+                                props += ` ${key}="${object[key]}"`
+                            } else {
+                                props += ` ${key}={${object[key]}}`
+                            }
+                        }
+                        if (key === 'children') {
+                            if (['object', 'array'].find(type => type === typeof object[key])) {
+                                children = `children={${build(object[key])}}`
+                            } else {
+                                if (typeof object[key] === 'string') {
+                                    children = `children="${object[key]}"`
+                                } else {
+                                    children = `children={${object[key]}}`
+                                }
+                            }
+                        }
+                    }
+                    return `<${object.$}${props}${children} id={"${object.$}_${++id}"}/>`
+                }
+            }
+            code = `export default () => return (<DesignEditor>${build(codeObject)}</DesignEditor>)`
+            
+        } catch (error) {
+            code = `export default () => return (<div>Parse error: ${error.message}</div>)`
+        }
+    }
     if (code.match('//->')) {
         let jsx = ''
         const build = (o) => {
