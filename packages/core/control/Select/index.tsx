@@ -231,17 +231,17 @@ const Select = (props: Types.Props, ref) => {
                     />
                 )}
             />
-            {state.open && 
-                <Drop
-                    ref={dropRef}
-                    onClickOutside={(e, ot) => {
-                        ot && state.open && dispatch({type: 'toggleOpen', payload: false})
-                    }}
-                    stretchWidth
-                    justify="start"
-                    target={targetRef}
-                >
-                    <div css={styles.dropMenu}>
+            <Drop
+                visibility={state.open ? 'visible' : 'hidden'}
+                ref={dropRef}
+                onClickOutside={(e, ot) => {
+                    ot && state.open && dispatch({type: 'toggleOpen', payload: false})
+                }}
+                stretchWidth
+                justify="start"
+                target={targetRef}
+                children={(
+                    <div css={styles.dropMenu({decoration, focus})}>
                         {availableOptions
                             .map((option, i) => (
                                 <div
@@ -255,8 +255,8 @@ const Select = (props: Types.Props, ref) => {
                                 />
                             ))}
                     </div>
-                </Drop>
-            }
+                )}
+            />
         </Fragment>
     )
 }

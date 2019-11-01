@@ -68,7 +68,10 @@ declare namespace SelectTypes {
         options: void
         optionItem: void
         optionItemText: void
-        dropMenu: void
+        dropMenu: {
+            decoration: Props['decoration']
+            focus: boolean
+        }
         dropItem: {
             size: Props['size']
             underCursor: boolean

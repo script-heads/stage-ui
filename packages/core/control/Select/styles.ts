@@ -138,31 +138,36 @@ const selectStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Typ
             }),
         ],
 
-        dropMenu: [
+        dropMenu: (variant) => [
             {
                 overflow: 'auto',
                 maxHeight: '10rem',
                 borderStyle: 'solid',
                 borderWidth: '1px',
-                borderColor: theme.color.primary.css(),
+                borderColor: theme.color.lightest.css(),
                 borderTop: 'none',
                 background: backgroundColor || theme.color.surface.css(),
                 ...shapeStyles,
                 borderTopLeftRadius: 0,
                 borderTopRightRadius: 0,
             },
-            variant(decoration, {
-                'filled': {
-                    borderColor: 'transparent',
+            variant({
+                decoration: {
+                    'filled': [{
+                        borderColor: 'transparent',
+                    }],
+                    'underline': [{
+                        borderColor: 'transparent',
+                        paddingLeft: 0,
+                        paddingRight: 0,
+                    }],
+                    'none': [{
+                        borderColor: 'transparent',
+                    }]
                 },
-                'underline': {
-                    borderColor: 'transparent',
-                    paddingLeft: 0,
-                    paddingRight: 0,
-                },
-                'none': {
-                    borderColor: 'transparent',
-                }
+                focus: [{
+                    borderColor: theme.color.primary.css(),
+                }]
             }),
             {
                 borderColor: color
