@@ -219,7 +219,7 @@ function getDecorations(theme, sizes, props) {
         case 'filled':
             return {
                 active: {
-                    background: color.css(),
+                    background: color.css() + '!important',
                     color: chroma.contrast(color, theme.color.onPrimary) > 3
                         ? theme.color.onPrimary.css()
                         : theme.color.onSurface.css(),
