@@ -1,4 +1,5 @@
 import Global from '@flow-ui/core/types'
+import { SerializedStyles } from '@emotion/core'
 
 declare namespace FieldTypes {
 
@@ -46,6 +47,9 @@ declare namespace FieldTypes {
         isLabelOutside: boolean 
         isLabelOverlay: boolean
         styles: Global.FlowStyles<Styles>
+        additionalStyles?: {
+            [K: string]: SerializedStyles
+        }
         
         labelName?: string
         attributes?: any

@@ -31,11 +31,12 @@ const selectStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Typ
     })
 
     return {
-        ...fieldStyles(props, theme,{
-            manyLines: multiselect
+        ...fieldStyles(props, theme, {
+            manyLines: multiselect,
+            additionalPadding: multilineAdditionalPadding,
         }),
 
-        fieldStyles: (variant) => [
+        fieldAdditional: (variant) => [
             variant({
                 open: [{
                     borderBottomLeftRadius: 0,
@@ -44,7 +45,7 @@ const selectStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Typ
             })
         ],
 
-        placeholder:[{
+        placeholder: [{
             color: theme.color.light.css(),
             userSelect: 'none',
             cursor: 'pointer'
@@ -178,16 +179,28 @@ const selectStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Typ
 
             },
             variant({
+                size: {
+                    'xsmall': [theme.typography.caption[3]],
+                    'small': [theme.typography.caption[2]],
+                    'medium': [theme.typography.caption[1]],
+                    'large': [{
+                        fontSize: theme.typography.header[4].fontSize,
+                        lineHeight: theme.typography.header[4].lineHeight,
+                    }],
+                    'xlarge': [{
+                        fontSize: theme.typography.header[4].fontSize,
+                        lineHeight: theme.typography.header[4].lineHeight,
+                    }]
+                },
                 underCursor: [{
-                    background: theme.color.primary.css()
+                    background: theme.color.primary.css(),
+                    color: theme.color.onPrimary.css(),
+                    ':hover': {
+                        background: theme.color.primary.css()
+                    }
                 }]
             })
         ],
-
-        insideLabelStyles: [{
-            marginLeft: multilineAdditionalPadding,
-            marginTop: multilineAdditionalPadding
-        }]
     }
 }
 

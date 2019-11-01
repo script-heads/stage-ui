@@ -1,4 +1,5 @@
 import FieldTypes from '../../misc/hocs/Field/types'
+import Global from '../../types'
 
 declare namespace SelectTypes {
     interface Option {
@@ -55,15 +56,15 @@ declare namespace SelectTypes {
         searchValue: string,
         onSearch: (searchValue: string) => void
         size?: number
-        styles: any
+        styles: Global.FlowStyles<Styles>
         placeholder?: string
         defaultValue?: string
         disabled?: boolean
     }
-
+    
     interface Styles extends FieldTypes.Styles {
-        fieldStyles: {
-            open: boolean
+        fieldAdditional: {
+            open?: boolean
         }
         placeholder: void
         input: void
@@ -72,9 +73,9 @@ declare namespace SelectTypes {
         optionItemText: void
         dropMenu: void
         dropItem: {
+            size: Props['size']
             underCursor: boolean
         }
-        insideLabelStyles: void
     }
 }
 

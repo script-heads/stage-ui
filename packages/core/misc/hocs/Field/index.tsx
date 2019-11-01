@@ -17,12 +17,13 @@ const Field: FC<Types.PrivateProps> = (props, ref) => {
         styles,
         isLabelOutside, 
         isLabelOverlay,
-        disabled
+        disabled,
+        additionalStyles
     } = props
 
     const Label = (
         <label
-            css={styles.label({isLabelOutside, isLabelOverlay, size})}
+            css={[styles.label({isLabelOutside, isLabelOverlay, size}), additionalStyles?.label]}
             htmlFor={labelName}
             children={label}
         />
@@ -32,22 +33,22 @@ const Field: FC<Types.PrivateProps> = (props, ref) => {
         <div
             {...attributes}
             ref={ref}
-            css={styles.container}
+            css={[styles.container, additionalStyles?.container]}
         >
             {label && isLabelOutside && Label}
             {
-                <div css={styles.field({focus, size, decoration, shape, disabled})}>
+                <div css={[styles.field({focus, size, decoration, shape, disabled}), additionalStyles?.field]}>
                     {props.leftChild && (
-                        <div css={styles.child({align: 'left', size})}>
+                        <div css={[styles.child({align: 'left', size}), additionalStyles?.child]}>
                             {props.leftChild}
                         </div>
                     )}
-                    <div css={styles.content({isLabelOverlay})}>
+                    <div css={[styles.content({isLabelOverlay}), additionalStyles?.content]}>
                         {label && !isLabelOutside && Label}
                         {props.children}
                     </div>
                     {(clearable || props.rightChild) && (
-                        <div css={styles.child({align: 'right', size})}>
+                        <div css={[styles.child({align: 'right', size}), additionalStyles?.child]}>
                             {clearable && <Icon
                                 type={i => i.filled.close}
                                 onClick={(e) => {
@@ -61,7 +62,7 @@ const Field: FC<Types.PrivateProps> = (props, ref) => {
                 </div>
             }
             {props.hint &&
-                <div css={styles.hint}>
+                <div css={[styles.hint({size}), additionalStyles?.hint]}>
                     {props.hint}
                 </div>
             }

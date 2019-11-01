@@ -190,6 +190,9 @@ const Select = (props: Types.Props, ref) => {
 
                 focus={focus}
                 styles={styles}
+                additionalStyles={{
+                    field: styles.fieldAdditional({open: state.open})
+                }}
                 isLabelOutside={isLabelOutside}
                 isLabelOverlay={isLabelOverlay}
                 decoration={decoration}
@@ -237,7 +240,7 @@ const Select = (props: Types.Props, ref) => {
                             .map((option, i) => (
                                 <div
                                     key={option.value}
-                                    css={styles.dropItem({underCursor: i === state.cursor})}
+                                    css={styles.dropItem({underCursor: i === state.cursor, size})}
                                     children={option.text}
                                     onMouseDown={(e) => {
                                         toggleOption(option)
