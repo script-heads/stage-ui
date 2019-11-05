@@ -9,6 +9,8 @@
   ],
   "scripts": {
     "start": "yarn workspace @flow-ui/docs start",
+    "test": "yarn workspace @flow-ui/docs test",
+    "approve": "yarn workspace @flow-ui/docs approve",
     "gen": "yarn gen:createTypes && yarn gen:convertTypes && yarn gen:generateTypes",
     "gen:createTypes": "cd ./packages/showcase && typedoc -mode file --json ./generated/original.json ../docs/cases",
     "gen:convertTypes": "cd ./packages/showcase && node ./tools/TypeDoc.js",

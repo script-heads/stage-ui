@@ -1,10 +1,10 @@
-report({
+{
   "testSuite": "BackstopJS",
   "tests": [
     {
       "pair": {
         "reference": "../bitmaps_reference/backstop_default_Button_0_document_0_deskop.png",
-        "test": "../bitmaps_test/20191105-132115/backstop_default_Button_0_document_0_deskop.png",
+        "test": "../bitmaps_test/20191105-132031/backstop_default_Button_0_document_0_deskop.png",
         "selector": "document",
         "fileName": "backstop_default_Button_0_document_0_deskop.png",
         "label": "Button",
@@ -26,7 +26,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/backstop_default_TextField_0_document_0_deskop.png",
-        "test": "../bitmaps_test/20191105-132115/backstop_default_TextField_0_document_0_deskop.png",
+        "test": "../bitmaps_test/20191105-132031/backstop_default_TextField_0_document_0_deskop.png",
         "selector": "document",
         "fileName": "backstop_default_TextField_0_document_0_deskop.png",
         "label": "TextField",
@@ -40,15 +40,17 @@ report({
             "width": 0,
             "height": 0
           },
-          "misMatchPercentage": "0.00"
-        }
+          "misMatchPercentage": "2.20",
+          "analysisTime": 130
+        },
+        "diffImage": "../bitmaps_test/20191105-132031/failed_diff_backstop_default_TextField_0_document_0_deskop.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/backstop_default_Select_0_document_0_deskop.png",
-        "test": "../bitmaps_test/20191105-132115/backstop_default_Select_0_document_0_deskop.png",
+        "test": "../bitmaps_test/20191105-132031/backstop_default_Select_0_document_0_deskop.png",
         "selector": "document",
         "fileName": "backstop_default_Select_0_document_0_deskop.png",
         "label": "Select",
@@ -62,11 +64,13 @@ report({
             "width": 0,
             "height": 0
           },
-          "misMatchPercentage": "0.00"
-        }
+          "misMatchPercentage": "2.18",
+          "analysisTime": 134
+        },
+        "diffImage": "../bitmaps_test/20191105-132031/failed_diff_backstop_default_Select_0_document_0_deskop.png"
       },
-      "status": "pass"
+      "status": "fail"
     }
   ],
   "id": "backstop_default"
-});
+}
