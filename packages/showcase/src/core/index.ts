@@ -1,5 +1,5 @@
-import React from 'react';
-import PluginRender from './pluginRender';
+import React from 'react'
+import PluginRender from './pluginRender'
 
 declare const $_WORKDIR_$: string
 
@@ -27,72 +27,73 @@ export interface Case {
         label: string
         code: string
     }[],
+    test?: React.SFC<{}>
     sticky?: boolean
     default?: React.SFC<{}>
 }
 
 class Core {
-    static instance: Core;
+    static instance: Core
     static getInstance() {
         if (!this.instance) {
-            this.instance = new Core();
+            this.instance = new Core()
         }
-        return this.instance;
+        return this.instance
     }
 
-    protected context: any;
-    protected configObject: IConfig = {};
-    protected generatedPluginsArray: any[] = [];
-    protected generatedCasesObject: any = {};
-    protected userInterface: any;
-    protected reactContext: any = React.createContext(null);
+    protected context: any
+    protected configObject: IConfig = {}
+    protected generatedPluginsArray: any[] = []
+    protected generatedCasesObject: any = {}
+    protected userInterface: any
+    protected reactContext: any = React.createContext(null)
 
     constructor() {
-        this.context = require['context']($_WORKDIR_$ + '/cases', true, /\.case$/);
-        const config = require($_WORKDIR_$ + '/showcase.config');
+        this.context = require['context']($_WORKDIR_$ + '/cases', true, /\.case$/)
+        const config = require($_WORKDIR_$ + '/showcase.config')
 
         if (config && config.default) {
-            this.configObject = config.default;
+            this.configObject = config.default
         }
     }
 
     get cases() {
-        return this.generatedCasesObject;
+        return this.generatedCasesObject
     }
 
     get config() {
-        return this.configObject as IConfig;
+        return this.configObject as IConfig
     }
 
     get UI() {
-        return this.userInterface;
+        return this.userInterface
     }
 
     get getReactContext() {
-        return this.reactContext;
+        return this.reactContext
     }
 
     public getId(prefix: string, id?: string) {
-        let uniqueId = "";
+        let uniqueId = ''
         if (id) {
-            id.split("").forEach(char => {
-                uniqueId += char.charCodeAt(0).toString(16);
-            });
+            id.split('').forEach(char => {
+                uniqueId += char.charCodeAt(0).toString(16)
+            })
         }
         if (!uniqueId) {
-            uniqueId = Math.trunc(Math.random() * 66666666).toString();
+            uniqueId = Math.trunc(Math.random() * 66666666).toString()
         }
-        return prefix + "-" + uniqueId;
+        return prefix + '-' + uniqueId
     }
 
     private initPlugin(plugin: (props: IPluginProps) => void) {
-        const pluginId = this.getId("PLUGIN");
-        let selfContainer: HTMLElement = document.getElementById(pluginId)!;
+        const pluginId = this.getId('PLUGIN')
+        let selfContainer: HTMLElement = document.getElementById(pluginId)!
 
         if (!selfContainer) {
-            selfContainer = document.createElement('div');
-            selfContainer.setAttribute("id", pluginId);
-            document.body.appendChild(selfContainer);
+            selfContainer = document.createElement('div')
+            selfContainer.setAttribute('id', pluginId)
+            document.body.appendChild(selfContainer)
         }
 
         const pluginObject = {
@@ -100,9 +101,9 @@ class Core {
             executer: plugin,
             render: (Body: () => JSX.Element) => PluginRender(Body, selfContainer),
             context: this.reactContext
-        };
+        }
 
-        this.generatedPluginsArray.push(pluginObject);
+        this.generatedPluginsArray.push(pluginObject)
 
         plugin({
             cases: this.cases,
@@ -110,7 +111,7 @@ class Core {
             selfContainer,
             render: pluginObject.render,
             context: pluginObject.context
-        });
+        })
     }
 
     public init(UI: any) {
@@ -118,49 +119,49 @@ class Core {
          * Generate cases
          */
         this.context.keys().map((currentContext: any) => {
-            let objectLink = this.generatedCasesObject;
+            let objectLink = this.generatedCasesObject
 
             currentContext.split('/').map((contextItem: any, index: number) => {
-                if (!index) return;
+                if (!index) return
                 if (contextItem.match('.case')) {
                     Object.assign(objectLink, this.context(currentContext), {
-                        url: currentContext.split('/').slice(1, -1).join("/")
+                        url: currentContext.split('/').slice(1, -1).join('/')
                     })
                 } else {
                     if (!objectLink[contextItem]) {
                         objectLink[contextItem] = {
-                            id: this.getId("CASE", contextItem)
+                            id: this.getId('CASE', contextItem)
                         }
                     }
-                    objectLink = objectLink[contextItem];
+                    objectLink = objectLink[contextItem]
                 }
-            });
-        });
+            })
+        })
 
         /**
          * Initiating plugins
          */
-        this.userInterface = UI;
+        this.userInterface = UI
         if (this.config.plugins) {
             this.config.plugins.map(plugin => {
-                this.initPlugin(plugin);
-            });
+                this.initPlugin(plugin)
+            })
         }
     }
 
     public getFirstCase(cases?: any) {
         if (!cases) {
-            cases = this.cases;
+            cases = this.cases
         }
 
-        const keys = Object.keys(cases);
+        const keys = Object.keys(cases)
         for (let i = 0; i < keys.length; i++) {
-            const group: any = cases[keys[i]];
+            const group: any = cases[keys[i]]
 
-            if (typeof group === "object" && !group.cases) {
-                const node = this.getFirstCase(group);
+            if (typeof group === 'object' && !group.cases) {
+                const node = this.getFirstCase(group)
                 if (node) {
-                    return node;
+                    return node
                 }
             }
             if (group.title || group.cases || group.default) {
@@ -170,19 +171,19 @@ class Core {
     }
 
     public getCaseById(id: string | null, cases?: any) {
-        if (!id) return null;
+        if (!id) return null
         if (!cases) {
-            cases = this.cases;
+            cases = this.cases
         }
 
-        const keys = Object.keys(cases);
+        const keys = Object.keys(cases)
         for (let i = 0; i < keys.length; i++) {
-            const group: any = cases[keys[i]];
+            const group: any = cases[keys[i]]
 
-            if (typeof group === "object" && !group.cases) {
-                const node = this.getCaseById(id, group);
+            if (typeof group === 'object' && !group.cases) {
+                const node = this.getCaseById(id, group)
                 if (node) {
-                    return node;
+                    return node
                 }
             }
 
@@ -193,22 +194,22 @@ class Core {
     }
 
     public getCaseByUrl(url: string | null, cases?: any) {
-        if (!url) return null;
+        if (!url) return null
         if (!cases) {
-            cases = this.cases;
+            cases = this.cases
         }
-        if (url[0] === "/") {
-            url = url.slice(1);
+        if (url[0] === '/') {
+            url = url.slice(1)
         }
 
-        const keys = Object.keys(cases);
+        const keys = Object.keys(cases)
         for (let i = 0; i < keys.length; i++) {
-            const group: any = cases[keys[i]];
+            const group: any = cases[keys[i]]
 
-            if (typeof group === "object" && !group.cases) {
-                const node = this.getCaseByUrl(url, group);
+            if (typeof group === 'object' && !group.cases) {
+                const node = this.getCaseByUrl(url, group)
                 if (node) {
-                    return node;
+                    return node
                 }
             }
             if (group && group.url === url) {
@@ -218,4 +219,4 @@ class Core {
     }
 }
 
-export default Core.getInstance();
+export default Core.getInstance()

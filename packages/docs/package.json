@@ -4,7 +4,9 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "start": "showcase"
+    "start": "showcase",
+    "test": "backstop test",
+    "approve": "backstop approve"
   },
   "devDependencies": {
     "@types/react": "^16.8.17",
@@ -13,8 +15,8 @@
     "fakerator": "^0.3.0",
     "randomcolor": "^0.5.4",
     "react-element-to-jsx-string": "^14.1.0",
-    "typedoc": "^0.15.0",
-    "tslint": "^5.20.0"
+    "tslint": "^5.20.0",
+    "typedoc": "^0.15.0"
   },
   "dependencies": {
     "@emotion/core": "^10.0.14",
@@ -22,6 +24,7 @@
     "@flow-ui/lab": "~0.1.0",
     "@flow-ui/showcase": "~0.1.0",
     "@types/react-syntax-highlighter": "^11.0.1",
+    "backstopjs": "^4.3.2",
     "dts-bundle-generator": "^3.2.0",
     "react-syntax-highlighter": "^11.0.2"
   }

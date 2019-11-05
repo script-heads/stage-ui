@@ -1,21 +1,20 @@
-import 'babel-polyfill';
+import 'babel-polyfill'
 
-import { Button, Viewport } from "@flow-ui/core";
-import Icon from "@flow-ui/core/content/Icon";
-import { A, H1, H3, T1, T2 } from "@flow-ui/core/content/Typography";
-import Block from '@flow-ui/core/layout/Block';
-import Flexbox from '@flow-ui/core/layout/Flexbox';
-import * as themesCore from '@flow-ui/core/misc/themes';
-import * as themesLab from '@flow-ui/lab/misc/themes';
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import CodeEditor from './components/CodeEditor';
-import ShowcaseMenu from './components/Menu';
-import ThemeSwitch from "./components/ThemeSwitch";
-import UIDocumentation from "./components/UIDocumentation";
-import core, { Case } from './core';
-import { ScrollView } from '@flow-ui/lab';
-
+import { Button, Viewport } from '@flow-ui/core'
+import Icon from '@flow-ui/core/content/Icon'
+import { A, H1, H3, T1, T2 } from '@flow-ui/core/content/Typography'
+import Block from '@flow-ui/core/layout/Block'
+import Flexbox from '@flow-ui/core/layout/Flexbox'
+import * as themesCore from '@flow-ui/core/misc/themes'
+import * as themesLab from '@flow-ui/lab/misc/themes'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+import CodeEditor from './components/CodeEditor'
+import ShowcaseMenu from './components/Menu'
+import ThemeSwitch from './components/ThemeSwitch'
+import UIDocumentation from './components/UIDocumentation'
+import core, { Case } from './core'
+import { ScrollView } from '@flow-ui/lab'
 
 export const themes = { ...themesCore, ...themesLab }
 
@@ -27,6 +26,7 @@ declare global {
 }
 
 interface State {
+	test: boolean
 	caseId: string | null
 	caseObject: Case | null
 	caseIndex: number
@@ -41,6 +41,7 @@ class Showcase extends React.Component<{}, State>  {
 	mainViewRef: any = null
 
 	state: Readonly<State> = {
+		test: false,
 		caseId: null,
 		caseObject: null,
 		caseIndex: 0,
@@ -51,36 +52,40 @@ class Showcase extends React.Component<{}, State>  {
 	}
 
 	constructor(props: any) {
-		super(props);
-		this.playgroundModeHandle = this.playgroundModeHandle.bind(this);
-		this.setCase = this.setCase.bind(this);
-		this.setContext = this.setContext.bind(this);
+		super(props)
+		this.playgroundModeHandle = this.playgroundModeHandle.bind(this)
+		this.setCase = this.setCase.bind(this)
+		this.setContext = this.setContext.bind(this)
 	}
 
 	playgroundModeHandle(event) {
 		if (event.keyCode === 80 && event.altKey) {
-			const mode = localStorage.getItem("mode") || "default";
-			localStorage.setItem("mode", mode === "default" ? "playground" : "default")
+			const mode = localStorage.getItem('mode') || 'default'
+			localStorage.setItem('mode', mode === 'default' ? 'playground' : 'default')
 		}
 	}
 
 	UNSAFE_componentWillMount() {
 
-		core.init({});
+		core.init({})
 
-		document.addEventListener('keyup', this.playgroundModeHandle);
-		const path = window.location.hash.slice(1)
+		document.addEventListener('keyup', this.playgroundModeHandle)
+		let path = window.location.hash.slice(1)
+		if (path.match('/test')) {
+			path = path.replace('/test', '')
+			this.setState({ test: true })
+		}
 		if (path) {
 			const currentCase = core.getCaseByUrl(path)
 			if (currentCase) {
 				this.setCase(currentCase.id)
-				return;
+				return
 			}
 		}
 		this.setCase(
 			core.getFirstCase().id
 		)
-	};
+	}
 
 	setContext(nextContext: any) {
 		this.setState({
@@ -90,48 +95,51 @@ class Showcase extends React.Component<{}, State>  {
 
 	setCase(caseId: string) {
 
-		const caseObject: Case = core.getCaseById(caseId);
+		const caseObject: Case = core.getCaseById(caseId)
 
-		window.scrollTo(0, 0);
-		window.location.hash = `/${caseObject.url}`;
+		window.scrollTo(0, 0)
+		window.location.hash = `/${caseObject.url}`
 
 		this.setState({
 			caseId,
 			caseObject,
 			caseIndex: 0,
-		});
+		})
 
 		this.mainViewRef && this.mainViewRef.scrollTop()
 	}
 
 	componentWillUnmount() {
-		document.removeEventListener('keydown', this.playgroundModeHandle);
+		document.removeEventListener('keydown', this.playgroundModeHandle)
 	}
 
 	render() {
 
-		const { caseObject, context } = this.state;
-		const Context = core.getReactContext;
+		const { caseObject, context } = this.state
+		const Context = core.getReactContext
 
 		window.setTheme = (currentTheme) => {
 			localStorage.setItem('theme', currentTheme)
 			this.setState({ currentTheme })
 		}
 		window.currentTheme = this.state.currentTheme
-
-		const CustomPageContent = (caseObject && caseObject.default) ? caseObject.default : null;
+		
+		const CustomPageContent = (caseObject && caseObject.default) ? caseObject.default : null
 
 		return (
 			<Context.Provider value={{ ...context, setContext: this.setContext }}>
 				<Viewport theme={themes[this.state.currentTheme]}>
-					<Flexbox alignItems="flex-start">
+					{this.state.test ? (
+						(caseObject && caseObject.test) ? <caseObject.test /> : null
+					) : (
+						<Flexbox alignItems="flex-start">
 						<ScrollView flex={1} size="xsmall" h="100vh" yBarPosition="left" ref={ref => this.mainViewRef = ref}>
 							<Block css={{padding: '2rem 4rem', zIndex:1 }}>
 							{caseObject && caseObject.title && (
 								<H1
 									css={{
-										userSelect: "none",
-										fontSize: "2.5rem",
+										userSelect: 'none',
+										fontSize: '2.5rem',
 										fontWeight: 800
 									}}
 									children={caseObject.title}
@@ -140,12 +148,12 @@ class Showcase extends React.Component<{}, State>  {
 							{caseObject && caseObject.subtitle && (
 								<T1
 									color={c => c.light.css()}
-									css={{ userSelect: "none" }}
-									pt={"0.25rem"}
+									css={{ userSelect: 'none' }}
+									pt={'0.25rem'}
 									children={caseObject.subtitle}
 								/>
 							)}
-							{caseObject && caseObject.cases && (
+							{caseObject && caseObject.cases && caseObject.cases.length > 0 && (
 								<React.Fragment>
 									<Flexbox mt={'1rem'} mb={'0.25rem'} alignItems="center">
 										{caseObject.cases.map((c, caseIndex) => (
@@ -216,16 +224,16 @@ class Showcase extends React.Component<{}, State>  {
 						<ScrollView h="100vh" size="xsmall">
 							<Flexbox pt="1rem" pl="1.25rem" pr="1rem">
 								<H3
-									css={{ cursor: "default" }}
+									css={{ cursor: 'default' }}
 									weight={800}
 									color={c => c.primary.css()}
-									children={(core.config && core.config.title) || "Showcase"}
+									children={(core.config && core.config.title) || 'Showcase'}
 								/>
 								<Block flex={1} />
 								{(core.config && core.config.giturl) && (
 									<T2>
 										<A target="_blank" href={core.config.giturl}>
-											<Icon size={"1.5rem"} type={t => t.outline.github} />
+											<Icon size={'1.5rem'} type={t => t.outline.github} />
 										</A>
 									</T2>
 								)}
@@ -238,10 +246,11 @@ class Showcase extends React.Component<{}, State>  {
 							/>
 						</ScrollView>
 					</Flexbox>
+					)}
 				</Viewport>
 			</Context.Provider>
 		)
 	}
 }
 
-ReactDOM.render(<Showcase />, document.getElementById('showcase'));
+ReactDOM.render(<Showcase />, document.getElementById('showcase'))

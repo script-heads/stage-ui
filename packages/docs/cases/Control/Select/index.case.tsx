@@ -1,4 +1,4 @@
-import code from './default.raw';
+import code from './default.raw'
 
 export const title = 'Select'
 export const subtitle = ''
@@ -9,3 +9,5 @@ export const cases = [
         code
     }
 ]
+
+export { default as test } from './index.test'
