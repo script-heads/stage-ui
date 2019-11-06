@@ -3,7 +3,7 @@ import CSS from 'csstype'
 
 declare namespace PopoverTypes {
     interface Props extends Global.Props {
-        align?: 'top' | 'bottom' | 'left' | 'right'
+        align?: 'top' | 'bottom' | 'left' | 'right' | 'none'
         background?: Global.ColorProp
         color?: Global.ColorProp
         children?: React.ReactNode

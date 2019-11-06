@@ -40,7 +40,10 @@ const popoverStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Ty
             },
             variant({
                 align: {
-                    'top': [{
+                    none: [{
+                        display: 'none'
+                    }],
+                    top: [{
                         bottom: `calc(100% + ${borderWidth})`,
                         left: '50%',
                         transform: 'translateX(-50%)',
@@ -55,7 +58,7 @@ const popoverStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Ty
                             borderBottomColor: background,
                         }
                     }],
-                    'bottom': [{
+                    bottom: [{
                             top: `calc(100% + ${borderWidth})`,
                             left: '50%',
                             transform: 'translateX(-50%)',
@@ -70,7 +73,7 @@ const popoverStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Ty
                                 borderTopColor: background,
                             }
                     }],
-                    'right': [{
+                    right: [{
                             height: width,
                             width: height,
                             left: `calc(100% + ${borderWidth})`,
@@ -87,7 +90,7 @@ const popoverStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Ty
                                 borderLeftColor: background,
                             }
                     }],
-                    'left': [{
+                    left: [{
                             height: width,
                             width: height,
                             right: `calc(100% + ${borderWidth})`,
