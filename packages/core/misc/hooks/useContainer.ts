@@ -50,6 +50,7 @@ export default (props, mouseFocus?: boolean, disableDecoration?: boolean) => {
             }
             props.onKeyDown && props.onKeyDown(event)
         },
+        onContextMenu: props.onContextMenu,
         onKeyUp: props.onKeyUp,
         onClick: props.onClick,
         onMouseEnter: props.onMouseEnter,

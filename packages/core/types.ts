@@ -121,6 +121,10 @@ declare namespace Global {
          * pointing device (usually a mouse) is moved out of it.
          */
         onMouseLeave?: EventProp<React.MouseEvent<HTMLElement>>
+                /**
+         * Event is fired on context menu.
+         */
+        onContextMenu?: EventProp<React.MouseEvent<HTMLElement>>
         /**
          * Event is fired when one or more touch points are 
          * placed on the touch surface.
