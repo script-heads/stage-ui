@@ -58,52 +58,7 @@ class Renderer extends React.Component<{children: any}> {
 
 const CodePreviewView = (props: { dark: boolean, code: string, showGrid: boolean }) => {
     let { code } = props
-    let id = 0
-    if (code.match('//design->')) { 
-        try {
-            const codeObject = eval(code)
-            const build = (object) => {
-                if (Array.isArray(object)) {
-                    let t = ''
 
-                    for (const obj of object) {
-                        t += build(obj)
-                    }
-                    return `<>${t}</>`
-                }
-                if (typeof object === 'object') {
-                    let props = ''
-                    let children = ''
-                    for (const key of Object.keys(object)) {
-                        if (key !== '$' && key !== 'children') {
-                            let value = object[key]
-                            if (typeof value === 'string') {
-                                props += ` ${key}="${object[key]}"`
-                            } else {
-                                props += ` ${key}={${object[key]}}`
-                            }
-                        }
-                        if (key === 'children') {
-                            if (['object', 'array'].find(type => type === typeof object[key])) {
-                                children = `children={${build(object[key])}}`
-                            } else {
-                                if (typeof object[key] === 'string') {
-                                    children = `children="${object[key]}"`
-                                } else {
-                                    children = `children={${object[key]}}`
-                                }
-                            }
-                        }
-                    }
-                    return `<${object.$}${props}${children} id={"${object.$}_${++id}"}/>`
-                }
-            }
-            code = `export default () => return (<DesignEditor>${build(codeObject)}</DesignEditor>)`
-            
-        } catch (error) {
-            code = `export default () => return (<div>Parse error: ${error.message}</div>)`
-        }
-    }
     if (code.match('//->')) {
         let jsx = ''
         const build = (o) => {
@@ -154,7 +109,6 @@ const CodePreviewView = (props: { dark: boolean, code: string, showGrid: boolean
             }
             jsx = build(codeObject[Object.keys(codeObject)[0]])
             code = `export default () => return (${jsx})`
-            console.warn(jsx)
         } catch (error) {
             console.error(error)
         }

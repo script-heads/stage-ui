@@ -10,6 +10,7 @@ export default (props, mouseFocus?: boolean, disableDecoration?: boolean) => {
     const attributes = {
         id: props.id,
         className: props.className,
+        draggable: props.draggable,
         style: {
             ...focus && !disableDecoration && {
                 outline: 'none',
@@ -57,6 +58,16 @@ export default (props, mouseFocus?: boolean, disableDecoration?: boolean) => {
         onMouseLeave: props.onMouseLeave,
         onTouchStart: props.onTouchStart,
         onTouchEnd: props.onTouchEnd,
+
+        onDrag: props.onDrag,
+        onDragEnd: props.onDragEnd,
+        onDragEnter: props.onDragEnter,
+        onDragExit: props.onDragExit,
+        onDragLeave: props.onDragLeave,
+        onDragOver: props.onDragOver,
+        onDragStart: props.onDragStart,
+        onDrop: props.onDrop,
+
         ...props.attrs && props.attrs
     }
 

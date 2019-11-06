@@ -1,10 +1,11 @@
+import React from 'react'
+import DesignEditor from '@flow-ui/showcase/src/components/DesignEditor'
 export const title = 'DesignRenderer - Meta'
 export const subtitle = ''
 export const ns = ''
-export const cases = [
-    {
-        label: 'Example',
-        code: `//design->
+export const cases = []
+
+const code = `
 [
     {
         $: "Flexbox",
@@ -30,5 +31,7 @@ export const cases = [
         onClick: () => console.log("Yay!")
     }
 ]`
-    }
-]
+
+export default () => (
+    <DesignEditor code={code} />
+)

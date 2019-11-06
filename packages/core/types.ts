@@ -68,6 +68,7 @@ declare namespace Global {
         tabIndex?: number
         role?: string
         attrs?: Object
+        draggable?: boolean
     }
 
     /**
@@ -121,7 +122,7 @@ declare namespace Global {
          * pointing device (usually a mouse) is moved out of it.
          */
         onMouseLeave?: EventProp<React.MouseEvent<HTMLElement>>
-                /**
+        /**
          * Event is fired on context menu.
          */
         onContextMenu?: EventProp<React.MouseEvent<HTMLElement>>
@@ -150,6 +151,15 @@ declare namespace Global {
          * Event is fired when a key is released.
          */
         onKeyUp?: EventProp<React.KeyboardEvent<HTMLElement>>
+
+        onDrag?: EventProp<React.DragEvent<HTMLElement>>
+        onDragEnd?: EventProp<React.DragEvent<HTMLElement>>
+        onDragEnter?: EventProp<React.DragEvent<HTMLElement>>
+        onDragExit?: EventProp<React.DragEvent<HTMLElement>>
+        onDragLeave?: EventProp<React.DragEvent<HTMLElement>>
+        onDragOver?: EventProp<React.DragEvent<HTMLElement>>
+        onDragStart?: EventProp<React.DragEvent<HTMLElement>>
+        onDrop?: EventProp<React.DragEvent<HTMLElement>>
     }
 
     /**
