@@ -523,10 +523,10 @@ declare module 'types' {
 	import CSS from 'csstype';
 	import { Interpolation, SerializedStyles } from '@emotion/core'; module 'csstype' {
 	    interface Properties {
-	        display?: "block" | "inline" | "inline-block" | "inline-table" | "list-item" | "none" | "run-in" | "table" | "table-caption" | "table-cell" | "table-column-group" | "table-column" | "table-footer-group" | "table-header-group" | "table-row" | "table-row-group" | "flex" | "grid";
-	        overflow?: "auto" | "hidden" | "scroll" | "visible" | "inherit";
-	        alignSelf?: "baseline" | "center" | "end" | "flex-end" | "flex-start" | "inherid" | "initial" | "left" | "normal" | "right" | "safe" | "safe-end" | "safe-start" | "start" | "stretch" | "unsafe" | "unset";
-	        justifySelf?: "baseline" | "center" | "end" | "flex-end" | "flex-start" | "inherid" | "initial" | "left" | "normal" | "right" | "safe" | "safe-end" | "safe-start" | "start" | "stretch" | "unsafe" | "unset";
+	        display?: 'block' | 'inline' | 'inline-block' | 'inline-table' | 'list-item' | 'none' | 'run-in' | 'table' | 'table-caption' | 'table-cell' | 'table-column-group' | 'table-column' | 'table-footer-group' | 'table-header-group' | 'table-row' | 'table-row-group' | 'flex' | 'grid';
+	        overflow?: 'auto' | 'hidden' | 'scroll' | 'visible' | 'inherit';
+	        alignSelf?: 'baseline' | 'center' | 'end' | 'flex-end' | 'flex-start' | 'inherid' | 'initial' | 'left' | 'normal' | 'right' | 'safe' | 'safe-end' | 'safe-start' | 'start' | 'stretch' | 'unsafe' | 'unset';
+	        justifySelf?: 'baseline' | 'center' | 'end' | 'flex-end' | 'flex-start' | 'inherid' | 'initial' | 'left' | 'normal' | 'right' | 'safe' | 'safe-end' | 'safe-start' | 'start' | 'stretch' | 'unsafe' | 'unset';
 	    }
 	} namespace Global {
 	    type EventProp<T> = (event: T) => void;
@@ -545,13 +545,14 @@ declare module 'types' {
 	    type ComponentStyles<S> = {
 	        [O in keyof S]: ComponentStyle<S[O]>;
 	    };
-	    type FunctionalComponentStyles<S> = ((props: any, theme: ThemeTypes.Index) => {
+	    type FunctionalComponentStyles<S, P = {}> = ((props: P, theme: ThemeTypes.Index) => {
 	        [O in keyof S]: ComponentStyle<S[O]>;
 	    });
 	    type OverridesStyle<S> = Partial<{
 	        [O in keyof S]: ComponentStyle<S[O]>;
 	    }>;
-	    interface Props extends HTMLAttributes, EventHandlers, SelfProps, FlowProps {
+	    interface Props<S = {}> extends HTMLAttributes, EventHandlers, SelfProps, FlowProps {
+	        overrides?: ComponentStyles<S>;
 	    }
 	    /**
 	     * Default attributes
@@ -565,6 +566,7 @@ declare module 'types' {
 	        tabIndex?: number;
 	        role?: string;
 	        attrs?: Object;
+	        draggable?: boolean;
 	    }
 	    /**
 	     * Default events
@@ -573,43 +575,68 @@ declare module 'types' {
 	     */
 	    interface EventHandlers {
 	        /**
-	         * An element receives a click event when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.
+	         * An element receives a click event when a pointing
+	         * device button (such as a mouse's primary mouse button)
+	         * is both pressed and released while the pointer is
+	         * located inside the element.
 	         */
 	        onClick?: EventProp<React.MouseEvent<HTMLElement>>;
 	        /**
-	         * Event fires when an element has received focus. The main difference between this event and focusin is that focusin bubbles while focus does not.
+	         * Event fires when an element has received focus.
+	         * The main difference between this event and focusin
+	         * is that focusin bubbles while focus does not.
 	         */
 	        onFocus?: EventProp<React.FocusEvent<HTMLElement>>;
 	        /**
-	         * Event fires when an element has lost focus. The main difference between this event and focusout is that focusout bubbles while blur does not.
+	         * Event fires when an element has lost focus.
+	         * The main difference between this event and
+	         * focusout is that focusout bubbles while blur
+	         * does not.
 	         */
 	        onBlur?: EventProp<React.FocusEvent<HTMLElement>>;
 	        /**
-	         * Event is fired at an Element when a pointing device button is pressed while the pointer is inside the element.
+	         * Event is fired at an Element when a pointing
+	         * device button is pressed while the pointer is
+	         * inside the element.
 	         */
 	        onMouseDown?: EventProp<React.MouseEvent<HTMLElement>>;
 	        /**
-	         * Event is fired at an Element when a button on a pointing device (such as a mouse or trackpad) is released while the pointer is located inside it. mouseup events are the counterpoint to onMouseDown events.
+	         * Event is fired at an Element when a button on
+	         * a pointing device (such as a mouse or trackpad)
+	         * is released while the pointer is located inside it.
+	         * mouseup events are the counterpoint to onMouseDown events.
 	         */
 	        onMouseUp?: EventProp<React.MouseEvent<HTMLElement>>;
 	        /**
-	         * Event is fired at an Element when a pointing device (usually a mouse) is initially moved so that its hotspot is within the element at which the event was fired.
+	         * Event is fired at an Element when a pointing
+	         * device (usually a mouse) is initially moved so
+	         * that its hotspot is within the element at which
+	         * the event was fired.
 	         */
 	        onMouseEnter?: EventProp<React.MouseEvent<HTMLElement>>;
 	        /**
-	         * Event is fired at an Element when the cursor of a pointing device (usually a mouse) is moved out of it.
+	         * Event is fired at an Element when the cursor of a
+	         * pointing device (usually a mouse) is moved out of it.
 	         */
 	        onMouseLeave?: EventProp<React.MouseEvent<HTMLElement>>;
 	        /**
-	         * Event is fired when one or more touch points are placed on the touch surface.
+	         * Event is fired on context menu.
+	         */
+	        onContextMenu?: EventProp<React.MouseEvent<HTMLElement>>;
+	        /**
+	         * Event is fired when one or more touch points are
+	         * placed on the touch surface.
 	         */
 	        onTouchStart?: EventProp<React.TouchEvent<HTMLElement>>;
 	        /**
-	         * Event fires when one or more touch points are removed from the touch surface.
+	         * Event fires when one or more touch points are
+	         * removed from the touch surface.
 	         */
 	        onTouchEnd?: EventProp<React.TouchEvent<HTMLElement>>;
 	        /**
-	         * Event is fired when a key that produces a character value is pressed down. Examples of keys that produce a character value are alphabetic, numeric, and punctuation keys.
+	         * Event is fired when a key that produces a character
+	         * value is pressed down. Examples of keys that produce a
+	         * character value are alphabetic, numeric, and punctuation keys.
 	         * @deprecated This feature is no longer recommended.
 	         */
 	        onKeyPress?: EventProp<React.KeyboardEvent<HTMLElement>>;
@@ -621,6 +648,14 @@ declare module 'types' {
 	         * Event is fired when a key is released.
 	         */
 	        onKeyUp?: EventProp<React.KeyboardEvent<HTMLElement>>;
+	        onDrag?: EventProp<React.DragEvent<HTMLElement>>;
+	        onDragEnd?: EventProp<React.DragEvent<HTMLElement>>;
+	        onDragEnter?: EventProp<React.DragEvent<HTMLElement>>;
+	        onDragExit?: EventProp<React.DragEvent<HTMLElement>>;
+	        onDragLeave?: EventProp<React.DragEvent<HTMLElement>>;
+	        onDragOver?: EventProp<React.DragEvent<HTMLElement>>;
+	        onDragStart?: EventProp<React.DragEvent<HTMLElement>>;
+	        onDrop?: EventProp<React.DragEvent<HTMLElement>>;
 	    }
 	    /**
 	     * Color styles
@@ -637,10 +672,10 @@ declare module 'types' {
 	     * @weight 400
 	     */
 	    interface BorderProps {
-	        borderWidth?: CSS.Properties["borderWidth"];
-	        borderStyle?: CSS.Properties["borderStyle"];
-	        borderColor?: CSS.Properties["borderColor"];
-	        borderRadius?: CSS.Properties["borderRadius"];
+	        borderWidth?: CSS.Properties['borderWidth'];
+	        borderStyle?: CSS.Properties['borderStyle'];
+	        borderColor?: CSS.Properties['borderColor'];
+	        borderRadius?: CSS.Properties['borderRadius'];
 	    }
 	    /**
 	     * Layout styles
@@ -651,19 +686,22 @@ declare module 'types' {
 	        /**
 	         * Width alias
 	         */
-	        w?: CSS.Properties["width"];
+	        w?: CSS.Properties['width'];
 	        /**
 	         * Heigth alias
 	         */
-	        h?: CSS.Properties["height"];
+	        h?: CSS.Properties['height'];
 	        /**
-	         * Shows or hides an element without changing the layout of a document.
+	         * Shows or hides an element without changing the layout
+	         * of a document.
 	         */
-	        visibility?: CSS.Properties["visibility"];
+	        visibility?: CSS.Properties['visibility'];
 	        /**
-	         * Sets whether an element is treated as a block or inline element and the layout used for its children, such as flow layout, grid or flex.
+	         * Sets whether an element is treated as a block or
+	         * inline element and the layout used for its children,
+	         * such as flow layout, grid or flex.
 	         */
-	        display?: CSS.Properties["display"];
+	        display?: CSS.Properties['display'];
 	        /**
 	         * Enables transition animation
 	         */
@@ -678,31 +716,31 @@ declare module 'types' {
 	        /**
 	         * Padding alias
 	         */
-	        p?: CSS.Properties["padding"];
+	        p?: CSS.Properties['padding'];
 	        /**
 	         * Padding horizontal alias
 	         */
-	        px?: CSS.Properties["padding"];
+	        px?: CSS.Properties['padding'];
 	        /**
 	         * Padding vertical alias
 	         */
-	        py?: CSS.Properties["padding"];
+	        py?: CSS.Properties['padding'];
 	        /**
 	         * PaddingRight alias
 	         */
-	        pr?: CSS.Properties["paddingRight"];
+	        pr?: CSS.Properties['paddingRight'];
 	        /**
 	         * PaddingLeft alias
 	         */
-	        pl?: CSS.Properties["paddingLeft"];
+	        pl?: CSS.Properties['paddingLeft'];
 	        /**
 	         * PaddingTop alias
 	         */
-	        pt?: CSS.Properties["paddingTop"];
+	        pt?: CSS.Properties['paddingTop'];
 	        /**
 	         * PaddingBottom alias
 	         */
-	        pb?: CSS.Properties["paddingBottom"];
+	        pb?: CSS.Properties['paddingBottom'];
 	    }
 	    /**
 	     * Grid children styles
@@ -713,31 +751,31 @@ declare module 'types' {
 	        /**
 	         * Margin alias
 	         */
-	        m?: CSS.Properties["margin"];
+	        m?: CSS.Properties['margin'];
 	        /**
 	         * Margin horizontal alias
 	         */
-	        mx?: CSS.Properties["margin"];
+	        mx?: CSS.Properties['margin'];
 	        /**
 	         * Margin vertical alias
 	         */
-	        my?: CSS.Properties["margin"];
+	        my?: CSS.Properties['margin'];
 	        /**
 	         * MarginRight alias
 	         */
-	        mr?: CSS.Properties["marginRight"];
+	        mr?: CSS.Properties['marginRight'];
 	        /**
 	         * MarginLeft alias
 	         */
-	        ml?: CSS.Properties["marginLeft"];
+	        ml?: CSS.Properties['marginLeft'];
 	        /**
 	         * MarginTop alias
 	         */
-	        mt?: CSS.Properties["marginTop"];
+	        mt?: CSS.Properties['marginTop'];
 	        /**
 	         * MarginBottom alias
 	         */
-	        mb?: CSS.Properties["marginBottom"];
+	        mb?: CSS.Properties['marginBottom'];
 	    }
 	    /**
 	     * Flexbox children styles
@@ -746,29 +784,41 @@ declare module 'types' {
 	     */
 	    interface FlexProps {
 	        /**
-	         * Sets how a flex item will grow or shrink to fit the space available in its flex container.
+	         * Sets how a flex item will grow or shrink to fit the
+	         * space available in its flex container.
 	         */
-	        flex?: CSS.Properties["flex"];
+	        flex?: CSS.Properties['flex'];
 	        /**
-	         * Sets the initial main size of a flex item. It sets the size of the content box unless otherwise set with box-sizing.
+	         * Sets the initial main size of a flex item. It sets the
+	         * size of the content box unless otherwise set with box-sizing.
 	         */
-	        flexBasis?: CSS.Properties["flexBasis"];
+	        flexBasis?: CSS.Properties['flexBasis'];
 	        /**
-	         * Sets the flex grow factor of a flex item main size. It specifies how much of the remaining space in the flex container should be assigned to the item (the flex grow factor).
+	         * Sets the flex grow factor of a flex item main size.
+	         * It specifies how much of the remaining space in the
+	         * flex container should be assigned to the item
+	         * (the flex grow factor).
 	         */
-	        flexGrow?: CSS.Properties["flexGrow"];
+	        flexGrow?: CSS.Properties['flexGrow'];
 	        /**
-	         * Sets the flex shrink factor of a flex item. If the size of all flex items is larger than the flex container, items shrink to fit according to flex-shrink.
+	         * Sets the flex shrink factor of a flex item.
+	         * If the size of all flex items is larger than
+	         * the flex container, items shrink to fit
+	         * according to flex-shrink.
 	         */
-	        flexShrink?: CSS.Properties["flexShrink"];
+	        flexShrink?: CSS.Properties['flexShrink'];
 	        /**
-	         * Property overrides a grid or flex item's align-items value. In Grid, it aligns the item inside the grid area. In Flexbox, it aligns the item on the cross axis.
+	         * Property overrides a grid or flex item's
+	         * align-items value. In Grid, it aligns the
+	         * item inside the grid area. In Flexbox,
+	         * it aligns the item on the cross axis.
 	         */
-	        alignSelf?: CSS.Properties["alignSelf"];
+	        alignSelf?: CSS.Properties['alignSelf'];
 	        /**
-	         * Sets the way a box is justified inside its alignment container along the appropriate axis.
+	         * Sets the way a box is justified inside its
+	         * alignment container along the appropriate axis.
 	         */
-	        justifySelf?: CSS.Properties["justifySelf"];
+	        justifySelf?: CSS.Properties['justifySelf'];
 	    }
 	    /**
 	     * Grid children styles
@@ -777,37 +827,66 @@ declare module 'types' {
 	     */
 	    interface GridProps {
 	        /**
-	         * Specifies a grid item’s start position within the grid column by contributing a line, a span, or nothing (automatic) to its grid placement. This start position defines the block-start edge of the grid area.
+	         * Specifies a grid item’s start position within
+	         * the grid column by contributing a line, a span,
+	         * or nothing (automatic) to its grid placement.
+	         * This start position defines the block-start edge
+	         * of the grid area.
 	         */
-	        gridColumnStart?: CSS.Properties["gridColumnStart"];
+	        gridColumnStart?: CSS.Properties['gridColumnStart'];
 	        /**
-	         * Specifies a grid item’s end position within the grid column by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the block-end edge of its grid area.
+	         * Specifies a grid item’s end position within the
+	         * grid column by contributing a line, a span, or
+	         * nothing (automatic) to its grid placement, thereby
+	         * specifying the block-end edge of its grid area.
 	         */
-	        gridColumnEnd?: CSS.Properties["gridColumnEnd"];
+	        gridColumnEnd?: CSS.Properties['gridColumnEnd'];
 	        /**
-	         * Specifies a grid item’s start position within the grid row by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the inline-start edge of its grid area.
+	         * Specifies a grid item’s start position within the
+	         * grid row by contributing a line, a span, or nothing
+	         * (automatic) to its grid placement, thereby specifying
+	         * the inline-start edge of its grid area.
 	         */
-	        gridRowStart?: CSS.Properties["gridRowStart"];
+	        gridRowStart?: CSS.Properties['gridRowStart'];
 	        /**
-	         * Specifies a grid item’s end position within the grid row by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the inline-end edge of its grid area.
+	         * Specifies a grid item’s end position within the grid
+	         * row by contributing a line, a span, or nothing
+	         * (automatic) to its grid placement, thereby
+	         * specifying the inline-end edge of its grid area.
 	         */
-	        gridRowEnd?: CSS.Properties["gridRowEnd"];
+	        gridRowEnd?: CSS.Properties['gridRowEnd'];
 	        /**
-	         * Shorthand property for grid-column-start and grid-column-end specifying a grid item's size and location within the grid column by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the inline-start and inline-end edge of its grid area.
+	         * Shorthand property for grid-column-start and
+	         * grid-column-end specifying a grid item's size
+	         * and location within the grid column by contributing
+	         * a line, a span, or nothing (automatic) to its grid
+	         * placement, thereby specifying the inline-start and
+	         * inline-end edge of its grid area.
 	         */
-	        gridColumn?: CSS.Properties["gridColumn"];
+	        gridColumn?: CSS.Properties['gridColumn'];
 	        /**
-	         * Shorthand property for grid-row-start and grid-row-end specifying a grid item’s size and location within the grid row by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the inline-start and inline-end edge of its grid area.
+	         * Shorthand property for grid-row-start and grid-row-end
+	         * specifying a grid item’s size and location within the
+	         * grid row by contributing a line, a span, or nothing
+	         * (automatic) to its grid placement, thereby specifying
+	         * the inline-start and inline-end edge of its grid area.
 	         */
-	        gridRow?: CSS.Properties["gridRow"];
+	        gridRow?: CSS.Properties['gridRow'];
 	        /**
-	         * Shorthand property for grid-row-start, grid-column-start, grid-row-end and grid-column-end, specifying a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the edges of its grid area.
+	         * Shorthand property for grid-row-start, grid-column-start,
+	         * grid-row-end and grid-column-end, specifying a grid item’s
+	         * size and location within the grid by contributing a line, a
+	         * span, or nothing (automatic) to its grid placement, thereby
+	         * specifying the edges of its grid area.
 	         */
-	        gridArea?: CSS.Properties["gridArea"];
+	        gridArea?: CSS.Properties['gridArea'];
 	        /**
-	         * Shorthand property sets both the align-self and justify-self properties. The first value is the align-self property value, the second the justify-self one. If the second value is not present, the first value is also used for it.
+	         * Shorthand property sets both the align-self and justify-self
+	         * properties. The first value is the align-self property value,
+	         * the second the justify-self one. If the second value is not
+	         * present, the first value is also used for it.
 	         */
-	        placeSelf?: CSS.Properties["placeSelf"];
+	        placeSelf?: CSS.Properties['placeSelf'];
 	    }
 	    /**
 	     * Styles inside the component. Paddings, layout, border and color props
@@ -823,8 +902,8 @@ declare module 'types' {
 	     */
 	    interface FlowProps extends MarginProps, FlexProps, GridProps {
 	    }
-	    type ColorProp = FunctionalProp<ThemeTypes.Colors<chroma.Color>, CSS.Properties["color"]>;
-	    type IconProp = FunctionalProp<IconsetTypes.Index, React.ReactElement>;
+	    type ColorProp = FunctionalProp<ThemeTypes.Colors<chroma.Color>, CSS.Properties['color']>;
+	    type IconProp = FunctionalProp<IconsetTypes.Index, string>;
 	}
 	export default Global;
 
@@ -851,11 +930,11 @@ declare module 'content/Icon/types' {
 	     * TODO: circle и oval добавляют только padding
 	     * пример <Icon shape="circle" type={(t) => t.outline.cube} />
 	     */
-	    type Shapes = "circle" | "oval" | "square";
+	    type Shapes = 'circle' | 'oval' | 'square';
 	    interface Props extends Global.Props {
 	        type: Global.IconProp;
 	        shape?: Shapes;
-	        size?: CSS.Properties["fontSize"];
+	        size?: CSS.Properties['fontSize'];
 	        color?: Global.ColorProp;
 	        background?: Global.ColorProp;
 	    }
@@ -909,14 +988,14 @@ declare module 'content/Typography/types' {
 	    interface TextProps extends Global.Props {
 	        quotes?: boolean;
 	        ellipsis?: boolean;
-	        decoration?: CSS.Properties["textDecoration"];
+	        decoration?: CSS.Properties['textDecoration'];
 	        children?: React.ReactNode;
 	        color?: Global.ColorProp;
 	        background?: Global.ColorProp;
-	        align?: CSS.Properties["textAlign"];
-	        weight?: CSS.Properties["fontWeight"];
-	        size?: CSS.Properties["fontSize"];
-	        transform?: CSS.Properties["textTransform"];
+	        align?: CSS.Properties['textAlign'];
+	        weight?: CSS.Properties['fontWeight'];
+	        size?: CSS.Properties['fontSize'];
+	        transform?: CSS.Properties['textTransform'];
 	    }
 	    interface Styles {
 	    }
@@ -933,7 +1012,9 @@ declare module 'control/Button/types' {
 	        form?: string;
 	        formAction?: string;
 	        /**
-	         * The formenctype attribute specifies how form-data should be encoded before sending it to a server. This attribute overrides the form's enctype attribute.
+	         * The formenctype attribute specifies how form-data should be encoded
+	         * before sending it to a server. This attribute overrides the form's
+	         * enctype attribute.
 	         * The formenctype attribute is only used for buttons with type="submit".
 	         */
 	        formEncType?: string;
@@ -952,9 +1033,9 @@ declare module 'control/Button/types' {
 	    }
 	    interface Styles {
 	        container: {
-	            decoration: Props["decoration"];
-	            shape: Props["shape"];
-	            size: Props["size"];
+	            decoration: Props['decoration'];
+	            shape: Props['shape'];
+	            size: Props['size'];
 	        };
 	    }
 	}
@@ -1033,38 +1114,35 @@ declare module 'misc/hocs/Field/types' {
 	        leftChild?: React.ReactNode;
 	        clearable?: boolean;
 	    }
-	    interface Styles {
-	        container: void;
-	        field: {
-	            disabled: Props['disabled'];
-	            focus: boolean;
-	            shape: Props['shape'];
-	            size: Props['size'];
-	            decoration: Props['decoration'];
-	        };
-	        content: {
-	            isLabelOverlay: boolean;
-	        };
-	        label: {
-	            size: Props['size'];
-	            isLabelOutside: boolean;
-	            isLabelOverlay: boolean;
-	        };
+	    interface State {
+	        disabled: Props['disabled'];
+	        focus: boolean;
+	        shape: Props['shape'];
+	        size: Props['size'];
+	        decoration: Props['decoration'];
+	        isLabelOutside: boolean;
+	        isLabelOverlay: boolean;
+	    }
+	    interface Styles<T extends {
+	        [T in keyof Styles]?: Object;
+	    } = {}> {
+	        container: State & T['container'];
+	        field: State & T['field'];
+	        content: State & T['content'];
+	        label: State & T['label'];
 	        child: {
 	            align: 'right' | 'left';
-	            size: Props['size'];
-	        };
-	        hint: {
-	            size: Props['size'];
-	        };
+	        } & State & T['child'];
+	        hint: State & T['hint'];
 	    }
 	    interface PrivateProps extends Props {
 	        focus: boolean;
 	        isLabelOutside: boolean;
 	        isLabelOverlay: boolean;
 	        styles: Global.FlowStyles<Styles>;
+	        state?: Object;
 	        labelName?: string;
-	        attributes?: any;
+	        attributes?: Object;
 	        children?: React.ReactNode;
 	        onEnter?: () => void;
 	        onClear?: () => void;
@@ -1078,13 +1156,13 @@ declare module 'control/DatePicker/types' {
 	 * types.tsx
 	 * author: I.Trikoz
 	 */
-	import { Interpolation } from '@emotion/core';
 	import { Moment } from 'moment';
 	import { CSSProperties } from 'react';
+	import Global from '@flow-ui/core/types';
 	import FieldTypes from 'misc/hocs/Field/types'; namespace DatePickerTypes {
-	    type GridType = "year" | "month" | "day";
+	    type GridType = 'year' | 'month' | 'day';
 	    type Locale = 'en' | 'ru' | 'it' | 'fr' | 'de';
-	    interface Props extends FieldTypes.Props {
+	    interface Props extends FieldTypes.Props, InputProps {
 	        /**
 	         * Type for DatePicker
 	         * @default day
@@ -1096,6 +1174,7 @@ declare module 'control/DatePicker/types' {
 	         * otherwise value should be instance of Date
 	         */
 	        value?: Moment | Date | string;
+	        defaultValue?: Moment | Date | string;
 	        /**
 	         * Format moment YYYY-MM-DD
 	         * @default YYYY-MM-DD
@@ -1138,7 +1217,7 @@ declare module 'control/DatePicker/types' {
 	        minValue: Moment;
 	        maxValue: Moment;
 	        onChange: (date: Moment) => void;
-	        styles: any;
+	        styles: Global.FlowStyles<Styles>;
 	        type: GridType;
 	    }
 	    interface DateGridCalendarProps {
@@ -1149,7 +1228,7 @@ declare module 'control/DatePicker/types' {
 	        active: Moment;
 	        onClick?: () => void;
 	        style?: CSSProperties;
-	        styles: any;
+	        styles: Global.FlowStyles<Styles>;
 	    }
 	    interface DateGridTitleProps {
 	        value: Moment;
@@ -1159,15 +1238,40 @@ declare module 'control/DatePicker/types' {
 	        onNext: () => void;
 	        onPrevious: () => void;
 	        onGridTypeChange: (type: GridType) => void;
-	        styles: any;
+	        styles: Global.FlowStyles<Styles>;
 	    }
-	    interface Styles {
-	        textFieldWrapper?: Interpolation;
-	        textFieldOkButton?: Interpolation;
-	        dateGrind?: Interpolation;
-	        weekDay?: Interpolation;
-	        title?: Interpolation;
-	        gridBlock?: Interpolation;
+	    interface InputProps {
+	        autoComplete?: string;
+	        autoFocus?: boolean;
+	        list?: string;
+	        name?: string;
+	        placeholder?: string;
+	        pattern?: string;
+	        readOnly?: boolean;
+	        required?: boolean;
+	        form?: string;
+	        formAction?: string;
+	        formEncType?: string;
+	        formMethod?: string;
+	        formNoValidate?: boolean;
+	        formTarget?: string;
+	    }
+	    interface Styles extends FieldTypes.Styles {
+	        dateGrind: void;
+	        weekDay: void;
+	        title: void;
+	        gridBlock: {
+	            isActive: Boolean;
+	            isCurrent: boolean;
+	            isDisabled: boolean;
+	            isCurrentMonth: boolean;
+	        };
+	        drop: {
+	            isActive: boolean;
+	        };
+	        input: {
+	            isLabelOverlay: boolean;
+	        };
 	    }
 	}
 	export default DatePickerTypes;
@@ -1186,7 +1290,7 @@ declare module 'control/Menu/types' {
 	        decoration?: 'filled' | 'outline' | 'color' | 'underline' | 'tab' | 'filled-underline';
 	        flip?: boolean;
 	        distance?: string;
-	        direction?: "row" | "column";
+	        direction?: 'row' | 'column';
 	        shape?: 'square' | 'rounded' | 'round';
 	        border?: 'none' | 'narrow' | 'wide';
 	        align?: 'start' | 'center' | 'end';
@@ -1266,7 +1370,8 @@ declare module 'control/Range/types' {
 
 }
 declare module 'control/Select/types' {
-	import FieldTypes from 'misc/hocs/Field/types'; namespace SelectTypes {
+	import FieldTypes from 'misc/hocs/Field/types';
+	import Global from 'types'; namespace SelectTypes {
 	    interface Option {
 	        text: string;
 	        value: any;
@@ -1311,25 +1416,29 @@ declare module 'control/Select/types' {
 	        searchValue: string;
 	        onSearch: (searchValue: string) => void;
 	        size?: number;
-	        styles: any;
+	        styles: Global.FlowStyles<Styles>;
 	        placeholder?: string;
 	        defaultValue?: string;
 	        disabled?: boolean;
 	    }
-	    interface Styles extends FieldTypes.Styles {
-	        fieldStyles: {
+	    interface Styles extends FieldTypes.Styles<{
+	        field: {
 	            open: boolean;
 	        };
+	    }> {
 	        placeholder: void;
 	        input: void;
 	        options: void;
 	        optionItem: void;
 	        optionItemText: void;
-	        dropMenu: void;
+	        dropMenu: {
+	            decoration: Props['decoration'];
+	            focus: boolean;
+	        };
 	        dropItem: {
+	            size: Props['size'];
 	            underCursor: boolean;
 	        };
-	        insideLabelStyles: void;
 	    }
 	}
 	export default SelectTypes;
@@ -1364,7 +1473,7 @@ declare module 'control/TextField/types' {
 	    type InputTypes = 'email' | 'hidden' | 'number' | 'password' | 'reset' | 'search' | 'tel' | 'text' | 'url';
 	    interface Props extends FieldTypes.Props, InputProps, TextAreaProps {
 	        defaultValue?: string | number;
-	        align?: "left" | "right";
+	        align?: 'left' | 'right';
 	        multiline?: boolean;
 	        masked?: IMask.AnyMaskedOptions;
 	        onChange?: ChangeEventHandler<HTMLInputElement>;
@@ -1402,7 +1511,6 @@ declare module 'control/TextField/types' {
 	        input: {
 	            isLabelOverlay: boolean;
 	        };
-	        insideLabelStyles: void;
 	    }
 	}
 	export default TextFieldTypes;
@@ -1574,13 +1682,13 @@ declare module 'layout/Badge/types' {
 	import Global from '@flow-ui/core/types'; namespace BadgeTypes {
 	    interface Props extends Global.Props {
 	        content: React.ReactNode;
-	        align?: "top" | "bottom" | "left" | "right" | "top-right" | "bottom-right" | "top-left" | "bottom-left";
+	        align?: 'top' | 'bottom' | 'left' | 'right' | 'top-right' | 'bottom-right' | 'top-left' | 'bottom-left';
 	        children?: React.ReactNode;
 	    }
 	    interface Styles {
 	        container: void;
 	        holder: {
-	            align: Props["align"];
+	            align: Props['align'];
 	        };
 	    }
 	}
@@ -1592,19 +1700,19 @@ declare module 'layout/Block/types' {
 	import Global from '@flow-ui/core/types';
 	import CSS from 'csstype'; namespace BlockTypes {
 	    interface Props extends Global.Props {
-	        tag?: "div" | "span" | "header" | "footer" | "article" | "section" | "aside" | "main";
-	        surface?: "major" | "medium" | "minor";
-	        hoverSurface?: "major" | "medium" | "minor";
-	        position?: CSS.Properties["position"];
+	        tag?: 'div' | 'span' | 'header' | 'footer' | 'article' | 'section' | 'aside' | 'main';
+	        surface?: 'major' | 'medium' | 'minor';
+	        hoverSurface?: 'major' | 'medium' | 'minor';
+	        position?: CSS.Properties['position'];
 	        children?: React.ReactNode;
 	        background?: Global.ColorProp;
 	        color?: Global.ColorProp;
-	        overflow?: CSS.Properties["overflow"];
+	        overflow?: CSS.Properties['overflow'];
 	    }
 	    interface Styles {
 	        container: {
-	            surface: Props["surface"];
-	            hoverSurface: Props["hoverSurface"];
+	            surface: Props['surface'];
+	            hoverSurface: Props['hoverSurface'];
 	        };
 	    }
 	}
@@ -1620,16 +1728,19 @@ declare module 'layout/Drop/types' {
 	        left: number;
 	        right: number;
 	    }
-	    interface Props extends Global.SelfProps {
+	    interface Props extends Global.SelfProps, Global.HTMLAttributes, Global.EventHandlers {
 	        target: any;
-	        align?: "top" | "bottom" | "left" | "right";
-	        justify?: "start" | "center" | "end" | "start-outside" | "end-outside";
+	        align?: 'top' | 'bottom' | 'left' | 'right';
+	        justify?: 'start' | 'center' | 'end' | 'start-outside' | 'end-outside';
 	        stretchWidth?: boolean;
 	        stretchHeight?: boolean;
 	        distance?: number;
-	        onClickOutside?: (event: React.MouseEvent<HTMLElement>, outsideTarget?: boolean) => void;
+	        onClickOutside?: (event: MouseEvent, outsideTarget?: boolean) => void;
 	        onEsc?: () => void;
 	        children?: React.ReactNode;
+	    }
+	    interface Ref extends Partial<HTMLDivElement> {
+	        updatePosition: () => void;
 	    }
 	    interface Styles {
 	        container: void;
@@ -1645,13 +1756,13 @@ declare module 'layout/Flexbox/types' {
 	    interface Props extends Global.Props {
 	        column?: boolean;
 	        inline?: boolean;
-	        alignItems?: CSS.Properties["alignItems"];
-	        alignContent?: CSS.Properties["alignContent"];
-	        justifyContent?: CSS.Properties["justifyContent"];
-	        justifyItems?: CSS.Properties["justifyItems"];
-	        direction?: CSS.Properties["flexDirection"];
-	        wrap?: CSS.Properties["flexWrap"];
-	        flow?: CSS.Properties["flexFlow"];
+	        alignItems?: CSS.Properties['alignItems'];
+	        alignContent?: CSS.Properties['alignContent'];
+	        justifyContent?: CSS.Properties['justifyContent'];
+	        justifyItems?: CSS.Properties['justifyItems'];
+	        direction?: CSS.Properties['flexDirection'];
+	        wrap?: CSS.Properties['flexWrap'];
+	        flow?: CSS.Properties['flexFlow'];
 	        children?: React.ReactNode;
 	    }
 	    interface Styles {
@@ -1668,19 +1779,19 @@ declare module 'layout/Grid/types' {
 	    interface Props extends Global.Props {
 	        inline?: boolean;
 	        children?: React.ReactNode;
-	        templateColumns?: CSS.Properties["gridTemplateColumns"];
-	        templateRows?: CSS.Properties["gridTemplateRows"];
-	        templateAreas?: CSS.Properties["gridTemplateAreas"];
-	        columnGap?: CSS.Properties["gridColumnGap"];
-	        rowGap?: CSS.Properties["gridRowGap"];
-	        gap?: CSS.Properties["gridGap"];
-	        autoColumns?: CSS.Properties["gridAutoColumns"];
-	        autoRows?: CSS.Properties["gridAutoRows"];
-	        autoFlow?: CSS.Properties["gridAutoFlow"];
-	        alignItems?: CSS.Properties["alignItems"];
-	        alignContent?: CSS.Properties["alignContent"];
-	        justifyContent?: CSS.Properties["justifyContent"];
-	        justifyItems?: CSS.Properties["justifyItems"];
+	        templateColumns?: CSS.Properties['gridTemplateColumns'];
+	        templateRows?: CSS.Properties['gridTemplateRows'];
+	        templateAreas?: CSS.Properties['gridTemplateAreas'];
+	        columnGap?: CSS.Properties['gridColumnGap'];
+	        rowGap?: CSS.Properties['gridRowGap'];
+	        gap?: CSS.Properties['gridGap'];
+	        autoColumns?: CSS.Properties['gridAutoColumns'];
+	        autoRows?: CSS.Properties['gridAutoRows'];
+	        autoFlow?: CSS.Properties['gridAutoFlow'];
+	        alignItems?: CSS.Properties['alignItems'];
+	        alignContent?: CSS.Properties['alignContent'];
+	        justifyContent?: CSS.Properties['justifyContent'];
+	        justifyItems?: CSS.Properties['justifyItems'];
 	    }
 	    interface Styles {
 	        container: void;
@@ -1807,12 +1918,12 @@ declare module 'layout/Panel/types' {
 	/// <reference types="react" />
 	import Global from '@flow-ui/core/types'; namespace PanelTypes {
 	    interface Props extends Global.Props {
-	        align?: "top" | "right" | "bottom" | "left";
+	        align?: 'top' | 'right' | 'bottom' | 'left';
 	        children?: React.ReactNode;
 	    }
 	    interface Styles {
 	        container: {
-	            align: Props["align"];
+	            align: Props['align'];
 	        };
 	    }
 	}
@@ -1824,12 +1935,12 @@ declare module 'layout/Popover/types' {
 	import Global from '@flow-ui/core/types';
 	import CSS from 'csstype'; namespace PopoverTypes {
 	    interface Props extends Global.Props {
-	        align?: "top" | "bottom" | "left" | "right";
+	        align?: 'top' | 'bottom' | 'left' | 'right' | 'none';
 	        background?: Global.ColorProp;
 	        color?: Global.ColorProp;
 	        children?: React.ReactNode;
-	        arrowWidth?: CSS.Properties["width"];
-	        arrowHeight?: CSS.Properties["height"];
+	        arrowWidth?: CSS.Properties['width'];
+	        arrowHeight?: CSS.Properties['height'];
 	    }
 	    interface Styles {
 	        container: void;
@@ -1845,9 +1956,9 @@ declare module 'layout/Tree/types' {
 	/// <reference types="react" />
 	import Global from '@flow-ui/core/types'; namespace TreeTypes {
 	    interface Props extends Global.Props {
-	        label?: React.ReactNode | string;
+	        label?: React.ReactNode | string | ((isOpen: boolean) => React.ReactNode);
 	        children?: React.ReactNode;
-	        decoration?: 'flat' | 'drop' | "inline";
+	        decoration?: 'flat' | 'drop' | 'inline';
 	        alwaysOpen?: boolean;
 	        defaultOpen?: boolean;
 	        indent?: boolean;
@@ -2250,7 +2361,7 @@ declare module 'misc/hooks/useContainer' {
 
 }
 declare module 'misc/hooks/useStyles' {
-	import Global from 'types'; const createStyles: <S>(props: any, componentStyles: Global.ComponentStyles<S> | Global.FunctionalComponentStyles<S>, componentName?: "Menu" | "Divider" | "Icon" | "Spinner" | "Typography" | "Button" | "Checkbox" | "DatePicker" | "Radio" | "Range" | "Select" | "Switch" | "TextField" | "Meter" | "Table" | "Badge" | "Block" | "Drop" | "Flexbox" | "Grid" | "Modal" | "Notification" | "Panel" | "Popover" | "Tree" | undefined) => Global.FlowStyles<S>;
+	import Global from 'types'; const createStyles: <S>(props: any, componentStyles: Global.ComponentStyles<S> | Global.FunctionalComponentStyles<S, {}>, componentName?: "Menu" | "Divider" | "Icon" | "Spinner" | "Typography" | "Button" | "Checkbox" | "DatePicker" | "Radio" | "Range" | "Select" | "Switch" | "TextField" | "Meter" | "Table" | "Badge" | "Block" | "Drop" | "Flexbox" | "Grid" | "Modal" | "Notification" | "Panel" | "Popover" | "Tree" | undefined) => Global.FlowStyles<S>;
 	export default createStyles;
 
 }
@@ -2260,47 +2371,47 @@ declare module 'misc/hooks/useStyleProps' {
 	interface Props extends Global.SelfProps, Global.FlowProps {
 	    [key: string]: any;
 	} type Color = {
-	    background: CSS.Properties["background"];
-	    color: CSS.Properties["color"];
+	    background: CSS.Properties['background'];
+	    color: CSS.Properties['color'];
 	}; type Border = {
-	    borderWidth: CSS.Properties["borderWidth"];
-	    borderStyle: CSS.Properties["borderStyle"];
-	    borderColor: CSS.Properties["borderColor"];
-	    borderRadius: CSS.Properties["borderRadius"];
+	    borderWidth: CSS.Properties['borderWidth'];
+	    borderStyle: CSS.Properties['borderStyle'];
+	    borderColor: CSS.Properties['borderColor'];
+	    borderRadius: CSS.Properties['borderRadius'];
 	}; type Padding = {
-	    padding: CSS.Properties["padding"];
-	    paddingTop: CSS.Properties["paddingTop"];
-	    paddingLeft: CSS.Properties["paddingLeft"];
-	    paddingRight: CSS.Properties["paddingRight"];
-	    paddingBottom: CSS.Properties["paddingBottom"];
+	    padding: CSS.Properties['padding'];
+	    paddingTop: CSS.Properties['paddingTop'];
+	    paddingLeft: CSS.Properties['paddingLeft'];
+	    paddingRight: CSS.Properties['paddingRight'];
+	    paddingBottom: CSS.Properties['paddingBottom'];
 	}; type Margin = {
-	    margin: CSS.Properties["margin"];
-	    marginTop: CSS.Properties["marginTop"];
-	    marginLeft: CSS.Properties["marginLeft"];
-	    marginRight: CSS.Properties["marginRight"];
-	    marginBottom: CSS.Properties["marginBottom"];
+	    margin: CSS.Properties['margin'];
+	    marginTop: CSS.Properties['marginTop'];
+	    marginLeft: CSS.Properties['marginLeft'];
+	    marginRight: CSS.Properties['marginRight'];
+	    marginBottom: CSS.Properties['marginBottom'];
 	}; type Layout = {
-	    display: CSS.Properties["display"];
-	    visibility: CSS.Properties["visibility"];
-	    width: CSS.Properties["width"];
-	    height: CSS.Properties["height"];
-	    transition: CSS.Properties["transition"];
+	    display: CSS.Properties['display'];
+	    visibility: CSS.Properties['visibility'];
+	    width: CSS.Properties['width'];
+	    height: CSS.Properties['height'];
+	    transition: CSS.Properties['transition'];
 	}; type Flex = {
-	    flex: CSS.Properties["flex"];
-	    flexBasis: CSS.Properties["flexBasis"];
-	    flexGrow: CSS.Properties["flexGrow"];
-	    flexShrink: CSS.Properties["flexShrink"];
-	    alignSelf: CSS.Properties["alignSelf"];
-	    justifySelf: CSS.Properties["justifySelf"];
+	    flex: CSS.Properties['flex'];
+	    flexBasis: CSS.Properties['flexBasis'];
+	    flexGrow: CSS.Properties['flexGrow'];
+	    flexShrink: CSS.Properties['flexShrink'];
+	    alignSelf: CSS.Properties['alignSelf'];
+	    justifySelf: CSS.Properties['justifySelf'];
 	}; type Grid = {
-	    gridColumnStart: CSS.Properties["gridColumnStart"];
-	    gridColumnEnd: CSS.Properties["gridColumnEnd"];
-	    gridRowStart: CSS.Properties["gridRowStart"];
-	    gridRowEnd: CSS.Properties["gridRowEnd"];
-	    gridColumn: CSS.Properties["gridColumn"];
-	    gridRow: CSS.Properties["gridRow"];
-	    gridArea: CSS.Properties["gridArea"];
-	    placeSelf: CSS.Properties["placeSelf"];
+	    gridColumnStart: CSS.Properties['gridColumnStart'];
+	    gridColumnEnd: CSS.Properties['gridColumnEnd'];
+	    gridRowStart: CSS.Properties['gridRowStart'];
+	    gridRowEnd: CSS.Properties['gridRowEnd'];
+	    gridColumn: CSS.Properties['gridColumn'];
+	    gridRow: CSS.Properties['gridRow'];
+	    gridArea: CSS.Properties['gridArea'];
+	    placeSelf: CSS.Properties['placeSelf'];
 	};
 	interface InjectedStyleProps {
 	    color: Color;
@@ -2455,17 +2566,17 @@ declare module 'layout/Block' {
 	export default _default;
 
 }
+declare module 'misc/hocs/Check' {
+	import React from 'react';
+	import CheckTypes from 'misc/hocs/Check/types'; const _default: React.ForwardRefExoticComponent<CheckTypes.PrivateProps & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
 declare module 'misc/hocs/Check/styles' {
 	import Global from '@flow-ui/core/types';
 	import Types from 'misc/hocs/Check/types';
 	import ThemeTypes from 'misc/themes/types'; const checkStyles: (props: Types.Props, theme: ThemeTypes.Index) => Global.ComponentStyles<Types.Styles>;
 	export default checkStyles;
-
-}
-declare module 'misc/hocs/Check' {
-	import React from 'react';
-	import CheckTypes from 'misc/hocs/Check/types'; const _default: React.ForwardRefExoticComponent<CheckTypes.PrivateProps & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
 
 }
 declare module 'control/Checkbox/styles' {
@@ -2488,7 +2599,7 @@ declare module 'layout/Drop/styles' {
 }
 declare module 'layout/Drop' {
 	import React from 'react';
-	import Types from 'layout/Drop/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	import Types from 'layout/Drop/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
 	export default _default;
 
 }
@@ -2501,36 +2612,6 @@ declare module 'layout/Popover/styles' {
 declare module 'layout/Popover' {
 	import React from 'react';
 	import Types from 'layout/Popover/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'misc/utils/variant' {
-	 const _default: <T>(prop: any, variant: { [K in T]?: any; }) => any;
-	export default _default;
-
-}
-declare module 'misc/hocs/Field/styles' {
-	import Types from 'misc/hocs/Field/types';
-	import Global from 'types';
-	import ThemeTypes from 'misc/themes/types'; const fieldStyles: (props: Types.Props, theme: ThemeTypes.Index) => Global.ComponentStyles<Types.Styles>;
-	export default fieldStyles;
-
-}
-declare module 'control/TextField/styles' {
-	import Types from 'control/TextField/types';
-	import Global from 'types'; const textFieldStyles: Global.FunctionalComponentStyles<Types.Styles>;
-	export default textFieldStyles;
-
-}
-declare module 'misc/hocs/Field' {
-	import React from 'react';
-	import Types from 'misc/hocs/Field/types'; const _default: React.ForwardRefExoticComponent<Types.PrivateProps & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'control/TextField' {
-	import React from 'react';
-	import Types from 'control/TextField/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
 	export default _default;
 
 }
@@ -2586,18 +2667,26 @@ declare module 'control/DatePicker/DateGrid' {
 	export default DateGrid;
 
 }
+declare module 'misc/hocs/Field/styles' {
+	import Types from 'misc/hocs/Field/types';
+	import Global from 'types';
+	import ThemeTypes from 'misc/themes/types'; const fieldStyles: <T extends Types.Styles<{}>>(props: Types.Props, theme: ThemeTypes.Index, params?: {
+	    manyLines?: boolean | undefined;
+	    additionalPadding?: string | undefined;
+	    labelOverlayPosition?: "center" | "top" | undefined;
+	    overrides?: Partial<Global.ComponentStyles<T>> | undefined;
+	}) => Global.ComponentStyles<Types.Styles<{}>>;
+	export default fieldStyles;
+
+}
 declare module 'control/DatePicker/styles' {
-	 const _default: () => {
-	    dateGrind: import("@emotion/utils").SerializedStyles;
-	    weekDay: import("@emotion/utils").SerializedStyles;
-	    title: import("@emotion/utils").SerializedStyles;
-	    /**
-	     * Styles for day/month/year squire
-	     */
-	    gridBlock: (isActive: Boolean, isCurrent: boolean, isDisabled: boolean, isCurrentMonth: boolean) => import("@emotion/utils").SerializedStyles;
-	    drop: (isActive: boolean) => import("@emotion/utils").SerializedStyles;
-	};
-	export default _default;
+	/**
+	 * styles.tsx
+	 * author: I.Trikoz
+	 */
+	import Global from 'types';
+	import Types from 'control/DatePicker/types'; const datePickerStyles: Global.FunctionalComponentStyles<Types.Styles>;
+	export default datePickerStyles;
 
 }
 declare module 'control/DatePicker/mask' {
@@ -2605,9 +2694,20 @@ declare module 'control/DatePicker/mask' {
 	export default _default;
 
 }
+declare module 'misc/hocs/Field' {
+	import React from 'react';
+	import Types from 'misc/hocs/Field/types'; const _default: React.ForwardRefExoticComponent<Types.PrivateProps & React.RefAttributes<unknown>>;
+	export default _default;
+
+}
+declare module 'misc/hooks/useMask' {
+	import IMask from 'imask'; const _default: (ref: any, masked: any) => IMask.InputMask<IMask.AnyMaskedOptions>;
+	export default _default;
+
+}
 declare module 'control/DatePicker' {
 	import React from 'react';
-	import DatePickerTypes from 'control/DatePicker/types'; const _default: React.ForwardRefExoticComponent<DatePickerTypes.Props & React.RefAttributes<unknown>>;
+	import Types from 'control/DatePicker/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
 	export default _default;
 
 }
@@ -2653,6 +2753,11 @@ declare module 'control/Range' {
 	export default _default;
 
 }
+declare module 'misc/utils/variant' {
+	 const _default: <T>(prop: any, variant: { [K in T]?: any; }) => any;
+	export default _default;
+
+}
 declare module 'control/Select/styles' {
 	import Types from 'control/Select/types';
 	import Global from 'types'; const selectStyles: Global.FunctionalComponentStyles<Types.Styles>;
@@ -2685,6 +2790,18 @@ declare module 'control/Switch/styles' {
 declare module 'control/Switch' {
 	import React from 'react';
 	import Types from 'control/Switch/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export default _default;
+
+}
+declare module 'control/TextField/styles' {
+	import Types from 'control/TextField/types';
+	import Global from 'types'; const textFieldStyles: Global.FunctionalComponentStyles<Types.Styles>;
+	export default textFieldStyles;
+
+}
+declare module 'control/TextField' {
+	import React from 'react';
+	import Types from 'control/TextField/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
 	export default _default;
 
 }

@@ -8,7 +8,8 @@ import treeStyles from './styles'
 import Types from './types'
 import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 
-const Tree = (props: Types.Props & { lvl: number }, ref) => {
+const Tree = (props: Types.Props, ref) => {
+    //@ts-ignore
     let { children, decoration = 'drop' as Types.Props['decoration'], lvl = 0 } = props
     const { attributes } = useContainer(props)
     const [isOpen, setOpen] = useState((props.alwaysOpen || props.defaultOpen) ? true : false)
