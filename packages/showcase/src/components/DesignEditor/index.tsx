@@ -7,6 +7,47 @@ let tree: unknown = {
     $: 'div'
 }
 let id = 0
+let link = {
+    target: null,
+    reference: null
+}
+const Tree = (props: { object: any }) => {
+
+    if (Array.isArray(props.object)) {
+        return props.object.map(object =>
+            Tree({ object })
+        )
+    }
+
+    if (typeof props.object === 'object') {
+        return (
+            <CoreScope.Tree 
+                draggable
+                onDragStart={(e) => {
+                    link.reference = props.object.$id
+                }}
+                onDragEnter={(e) => {
+                    e.preventDefault()
+                }}
+                onDragLeave={(e) => {
+                    link.target = null
+                }}
+                onDragOver={(e) => {
+                    link.target = props.object.$id
+                    e.preventDefault()
+                }}
+                onDrop={(e) => {
+                    console.log(link)
+                }}
+                defaultOpen 
+                label={props.object.$}
+                children={Tree({ object: props.object.children })} 
+            />
+        )
+    }
+    
+    return null
+}
 
 const Build = (props: { object: any, addBefore?: (object) => void, addAfter?: (object) => void }) => {
     if (Array.isArray(props.object)) {
@@ -57,18 +98,6 @@ const Build = (props: { object: any, addBefore?: (object) => void, addAfter?: (o
                     id={`${props.object.$}_${++id}`}
                     // onMouseDown={down}
                     draggable={true}
-                    onDragStart={e => {
-                        e.stopPropagation()
-                        console.log('start',props.object.$)
-                    }}
-                    onDragOver={e => {
-                        e.dataTransfer.dropEffect = 'copy'
-                        e.stopPropagation()
-                        console.log('drag',props.object.$)
-                    }}
-                    onDrop={e => {
-                        console.log('dropp!!',props.object.$)
-                    }}
                     // onContextMenu={(e) => {
                     //     e.stopPropagation()
                     //     e.preventDefault()
@@ -82,7 +111,21 @@ const Build = (props: { object: any, addBefore?: (object) => void, addAfter?: (o
 class DesignEditor extends React.Component<{ code: string }> {
 
     componentWillMount() {
+        let id = 0x0
+        const addID = (object) => {
+            if (Array.isArray(object)) {
+                object.forEach(obj => addID(obj))
+                return
+            }
+            if (typeof object === 'object') {
+                object.$id = ++id
+                if (object.children) {
+                    addID(object.children)
+                }
+            }
+        }
         tree = eval(this.props.code)
+        addID(tree)
     }
 
     componentWillReceiveProps(props) {
@@ -94,7 +137,14 @@ class DesignEditor extends React.Component<{ code: string }> {
         try {
             return (
                 <Fragment>
-                    <Build object={tree} />
+                    <CoreScope.Flexbox>
+                        <CoreScope.Block>
+                            <Tree object={tree} />
+                        </CoreScope.Block>
+                        <CoreScope.Block>
+                            <Build object={tree} />
+                        </CoreScope.Block>
+                    </CoreScope.Flexbox>
                     {/* <CoreScope.Popover 
                         align="none"
                         style={{ 

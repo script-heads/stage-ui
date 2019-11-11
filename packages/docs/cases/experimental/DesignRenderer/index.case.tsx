@@ -19,7 +19,6 @@ const code = `
             {
                 $: "TextField",
                 label: "Password",
-                type: "Password",
                 mb: "2rem"
             }
         ]
