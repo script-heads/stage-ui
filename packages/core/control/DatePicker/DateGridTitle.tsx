@@ -4,10 +4,9 @@
  */
 import React, { Fragment } from 'react'
 import Icon from '../../content/Icon'
-import { T1 } from '../../content/Typography'
+import Text from '../../content/Text'
 import Flexbox from '../../layout/Flexbox'
 import DatePickerTypes from './types'
-import Block from '../../layout/Block'
 
 const Arrow = (props: { onClick: () => void, icon: 'chevronLeft' | 'chevronRight', disabled: boolean }) => (
     <Flexbox
@@ -28,7 +27,7 @@ const Arrow = (props: { onClick: () => void, icon: 'chevronLeft' | 'chevronRight
 )
 
 const Title = (props: {value: string, onClick?: () => void}) => (
-    <T1 
+    <Text 
         weight={700} 
         css={{ 
             userSelect: 'none', 
@@ -54,7 +53,7 @@ const DateGridTitle = (props: DatePickerTypes.DateGridTitleProps) => {
                                 onClick={() => props.onGridTypeChange('month')}
                                 value={value.format('MMMM')}
                             />
-                            <T1>{`\u00A0`}</T1>
+                            <Text>{`\u00A0`}</Text>
                             <Title 
                                 onClick={() => props.onGridTypeChange('year')}
                                 value={value.format('YYYY')}

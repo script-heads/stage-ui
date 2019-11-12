@@ -1,4 +1,4 @@
-import { C1, C2 } from '@flow-ui/core/content/Typography';
+import { C1, C2 } from '@flow-ui/core';
 import Menu from '@flow-ui/core/control/Menu';
 import Block from '@flow-ui/core/layout/Block';
 import Flexbox from '@flow-ui/core/layout/Flexbox';

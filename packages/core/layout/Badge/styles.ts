@@ -1,5 +1,4 @@
 import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
-import typography from '@flow-ui/core/misc/typography'
 import Types from './types'
 import Global from '../../types'
 
@@ -23,8 +22,8 @@ const BadgeStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Type
                 position: 'absolute',
                 borderRadius: '1rem',
                 padding: theme.distance.xsmall + ' ' + theme.distance.small,
-                ...typography.caption[1],
-                minWidth: `calc(${typography.caption[1].lineHeight} - ${theme.distance.small})`,
+                ...theme.typography.text[1],
+                minWidth: `calc(${theme.typography.text[1].lineHeight} - ${theme.distance.small})`,
                 top: 0,
                 right: 0,
                 transform: 'translate(50%, -50%)',

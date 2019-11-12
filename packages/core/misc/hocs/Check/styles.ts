@@ -38,13 +38,13 @@ const checkStyles = (props: Types.Props, theme: ThemeTypes.Index): Global.Compon
             variant({
                 size: {
                     xsmall: [{
-                        ...theme.typography.caption[3],
+                        ...theme.typography.text[3],
                     }],
                     small: [{
-                        ...theme.typography.caption[2],
+                        ...theme.typography.text[2],
                     }],
                     medium: [{
-                        ...theme.typography.caption[1],
+                        ...theme.typography.text[1],
                     }],
                     large: [{
                         fontSize: theme.typography.header[4].fontSize,

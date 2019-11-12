@@ -1,7 +1,7 @@
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
 import React, { forwardRef, useState } from 'react'
 import Icon from '@flow-ui/core/content/Icon'
-import { C1 } from '@flow-ui/core/content/Typography'
+import Text from '@flow-ui/core/content/Text'
 import Block from '@flow-ui/core/layout/Block'
 import Flexbox from '@flow-ui/core/layout/Flexbox'
 import treeStyles from './styles'
@@ -56,7 +56,7 @@ const Tree = (props: Types.Props, ref) => {
     let label = props.label
 
     if (typeof label === 'string') {
-        label = <C1 css={styles.label}>{label}</C1>
+        label = <Text css={styles.label}>{label}</Text>
     }
     if (typeof label === 'function') {
         label = label(isOpen)

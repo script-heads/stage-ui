@@ -4,11 +4,11 @@
 export { default as Divider } from './content/Divider'
 export { default as Icon } from './content/Icon'
 export { default as Spinner } from './content/Spinner'
-export { H1, H2, H3, H4 } from './content/Typography/H'
-export { D1, D2, D3, D4 } from './content/Typography/D'
-export { T1, T2, T3, T4 } from './content/Typography/T'
-export { C1, C2, C3, C4 } from './content/Typography/C'
-export { A } from './content/Typography/A'
+export { default as Header  } from './content/Header'
+export { default as Display  } from './content/Display'
+export { default as Paragraph  } from './content/Paragraph'
+export { default as Text  } from './content/Text'
+export { default as Anchor  } from './content/Anchor'
 /**
  * Control
  */
@@ -50,3 +50,14 @@ export { default as notify } from './misc/utils/notify'
  */
 export { default as useBrowser } from './misc/hooks/useBrowser'
 export { default as useFlow } from './misc/hooks/useFlow'
+
+/**
+ * Deprecated
+ */
+export { 
+    H1, H2, H3, H4, 
+    D1, D2, D3, D4,
+    T1, T2, T3, T4,
+    C1, C2, C3, C4,
+    A 
+} from './misc/deprecated'

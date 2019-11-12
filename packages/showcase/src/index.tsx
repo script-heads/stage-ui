@@ -2,7 +2,7 @@ import 'babel-polyfill'
 
 import { Button, Viewport } from '@flow-ui/core'
 import Icon from '@flow-ui/core/content/Icon'
-import { A, H1, H3, T1, T2 } from '@flow-ui/core/content/Typography'
+import { A, H1, H3, T1, T2 } from '@flow-ui/core'
 import Block from '@flow-ui/core/layout/Block'
 import Flexbox from '@flow-ui/core/layout/Flexbox'
 import * as themesCore from '@flow-ui/core/misc/themes'

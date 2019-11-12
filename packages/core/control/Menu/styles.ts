@@ -128,7 +128,7 @@ function getSizes(size, theme) {
                 },
                 itemContent: {
                     padding: '0 .25rem',
-                    ...theme.typography.caption[3],
+                    ...theme.typography.text[3],
                 },
                 underline: '.125rem',
                 borderDistance: '.75rem',
@@ -141,7 +141,7 @@ function getSizes(size, theme) {
                 },
                 itemContent: {
                     padding: '0 .5rem',
-                    ...theme.typography.caption[2],
+                    ...theme.typography.text[2],
                 },
                 underline: '.125rem',
                 borderDistance: '1rem',
@@ -155,7 +155,7 @@ function getSizes(size, theme) {
                 },
                 itemContent: {
                     padding: '0 .75rem',
-                    ...theme.typography.caption[1],
+                    ...theme.typography.text[1],
                 },
                 underline: '.25rem',
                 borderDistance: '1.25rem',

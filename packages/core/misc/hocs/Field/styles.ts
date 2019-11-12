@@ -43,7 +43,7 @@ const fieldStyles = <T extends Types.Styles>(
                 display: 'flex',
                 alignItems: 'stretch',
                 boxSizing: 'border-box',
-                '--headingLabelHeight': `calc(${theme.typography.caption[2].lineHeight} + .25rem${additionalPadding ? ' + ' + additionalPadding : ''})`
+                '--headingLabelHeight': `calc(${theme.typography.text[2].lineHeight} + .25rem${additionalPadding ? ' + ' + additionalPadding : ''})`
             },
             variant({
                 shape: {
@@ -58,9 +58,9 @@ const fieldStyles = <T extends Types.Styles>(
                     'xsmall': [
                         {
                             flexBasis: theme.assets.fieldHeight.xsmall,
-                            ...theme.typography.caption[3],   
+                            ...theme.typography.text[3],   
                             '--headingLabelHeight': `
-                                calc(${theme.typography.caption[4].lineHeight} + 2px${additionalPadding ? ' + ' + additionalPadding : ''})
+                                calc(${theme.typography.text[4].lineHeight} + 2px${additionalPadding ? ' + ' + additionalPadding : ''})
                             `                         
                         },
                         !manyLines && {
@@ -70,9 +70,9 @@ const fieldStyles = <T extends Types.Styles>(
                     'small': [
                         {
                             flexBasis: theme.assets.fieldHeight.small,
-                            ...theme.typography.caption[2],
+                            ...theme.typography.text[2],
                             '--headingLabelHeight': `
-                                calc(${theme.typography.caption[4].lineHeight} + 2px${additionalPadding ? ' + ' + additionalPadding : ''})
+                                calc(${theme.typography.text[4].lineHeight} + 2px${additionalPadding ? ' + ' + additionalPadding : ''})
                             `                            
                         },
                         !manyLines && {
@@ -82,7 +82,7 @@ const fieldStyles = <T extends Types.Styles>(
                     'medium': [
                         {
                             flexBasis: theme.assets.fieldHeight.medium,
-                            ...theme.typography.caption[1],                            
+                            ...theme.typography.text[1],                            
                         },
                         !manyLines && {
                             padding: '.25rem .75rem'
@@ -183,21 +183,21 @@ const fieldStyles = <T extends Types.Styles>(
                 marginLeft: additionalPadding,
                 marginTop: additionalPadding
             },
-            theme.typography.caption[2],
+            theme.typography.text[2],
             variant({
                 size: {
                     'small': [
                         {
                             paddingBottom: '2px',
                         },
-                        theme.typography.caption[4]
+                        theme.typography.text[4]
                     ],
                     'xsmall': [
                         {
                             paddingBottom: '2px',
                             
                         },
-                        theme.typography.caption[4]
+                        theme.typography.text[4]
                     ]
                 },
                 isLabelOutside: [{
@@ -264,12 +264,12 @@ const fieldStyles = <T extends Types.Styles>(
                 paddingTop: '.25rem',
                 paddingLeft: props.decoration != 'underline' ? '.25rem' : '',
                 color: color || theme.color.hard.css(),
-                ...theme.typography.caption[2],
+                ...theme.typography.text[2],
             },
             variant({
                 size: {
-                    'small': [theme.typography.caption[4]],
-                    'xsmall': [theme.typography.caption[4]]
+                    'small': [theme.typography.text[4]],
+                    'xsmall': [theme.typography.text[4]]
                 }
             }),
             overrides?.hint?.(variant)

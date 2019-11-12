@@ -11,8 +11,8 @@ npm i @flow-ui/core
 import React from 'react'
 import { Viewport } from '@flow-ui/core/layout/viewport'
 import { Block } from '@flow-ui/core/layout/block'
-import { H1 } from '@flow-ui/core/content/typography/H'
-import { T1 } from '@flow-ui/core/content/typography/T'
+import { H1 } from '@flow-ui/core/H'
+import { T1 } from '@flow-ui/core/T'
 
 const Hello props =>
 	<Viewport>

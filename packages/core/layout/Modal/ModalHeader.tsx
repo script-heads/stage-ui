@@ -1,8 +1,8 @@
 import React from 'react'
 import ModalTypes from './types'
 
-import { H1 } from '../../content/Typography/H'
-import { T1 } from '../../content/Typography/T'
+import Header from '../../content/Header'
+import Paragraph from '../../content/Paragraph'
 import Flexbox from '../Flexbox'
 import Icon from '../../content/Icon'
 
@@ -16,8 +16,8 @@ const ModalHeader = (props: ModalTypes.ModalHeaderProps) => {
         <div css={props.styles.header}>
             <Flexbox>
                 <Flexbox flex={1} column>
-                    <H1 css={props.styles.header}>{props.title}</H1>
-                    <T1 color={c => c.hard.css()} mt={'0.5rem'}>{props.subtitle}</T1>
+                    <Header css={props.styles.header}>{props.title}</Header>
+                    <Paragraph color={c => c.hard.css()} mt={'0.5rem'}>{props.subtitle}</Paragraph>
                 </Flexbox>
                 <Icon
                     css={props.styles.cross}

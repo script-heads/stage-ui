@@ -6,7 +6,6 @@ import { ObjectInterpolation } from '@emotion/core'
 import DividerTypes from '../../content/Divider/types'
 import IconTypes from '../../content/Icon/types'
 import SpinnerTypes from '../../content/Spinner/types'
-import TypographyTypes from '../../content/Typography/types'
 /**
  * Control
  */
@@ -87,7 +86,6 @@ declare namespace ThemeTypes {
         Divider?: Global.OverridesStyle<DividerTypes.Styles>
         Icon?: Global.OverridesStyle<IconTypes.Styles>
         Spinner?: Global.OverridesStyle<SpinnerTypes.Styles>
-        Typography?: Global.OverridesStyle<TypographyTypes.Styles>
         Button?: Global.OverridesStyle<ButtonTypes.Styles>
         Checkbox?: Global.OverridesStyle<CheckboxTypes.Styles>
         DatePicker?: Global.OverridesStyle<DatePickerTypes.Styles>
@@ -158,7 +156,6 @@ declare namespace ThemeTypes {
     }
 
     interface Typography {
-        paragraph: ObjectInterpolation<undefined>
         header: {
             1: ObjectInterpolation<undefined>
             2: ObjectInterpolation<undefined>
@@ -177,7 +174,7 @@ declare namespace ThemeTypes {
             3: ObjectInterpolation<undefined>
             4: ObjectInterpolation<undefined>
         },
-        caption: {
+        paragraph: {
             1: ObjectInterpolation<undefined>
             2: ObjectInterpolation<undefined>
             3: ObjectInterpolation<undefined>
