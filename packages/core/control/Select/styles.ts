@@ -116,19 +116,19 @@ const selectStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Typ
             variant(size, {
                 'xsmall': {
                     padding: '.125rem .25rem',
-                    ...theme.typography.caption[4]
+                    ...theme.typography.text[4]
                 },
                 'small': {
                     padding: '.125rem .25rem',
-                    ...theme.typography.caption[3],
+                    ...theme.typography.text[3],
                 },
                 'medium': {
                     padding: '.125rem .25rem',
-                    ...theme.typography.caption[2],
+                    ...theme.typography.text[2],
                 },
                 'large': {
                     padding: '.125rem .25rem',
-                    ...theme.typography.caption[1],
+                    ...theme.typography.text[1],
                 },
                 'xlarge': {
                     padding: '.125rem .25rem',
@@ -185,9 +185,9 @@ const selectStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Typ
             },
             variant({
                 size: {
-                    'xsmall': [theme.typography.caption[3]],
-                    'small': [theme.typography.caption[2]],
-                    'medium': [theme.typography.caption[1]],
+                    'xsmall': [theme.typography.text[3]],
+                    'small': [theme.typography.text[2]],
+                    'medium': [theme.typography.text[1]],
                     'large': [{
                         fontSize: theme.typography.header[4].fontSize,
                         lineHeight: theme.typography.header[4].lineHeight,

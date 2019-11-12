@@ -1,12 +1,13 @@
 import React from 'react'
 import Icon from '../../content/Icon'
-import { H4, T2 } from '../../content/Typography'
 import Block from '../../layout/Block'
 import Flexbox from '../../layout/Flexbox'
 import Notification from '../../layout/Notification'
 import NotificationType from '../../layout/Notification/types'
 import { addElement, removeElement } from '../../layout/Viewport/MountArea'
 import createID from './createID'
+import Paragraph from '../../content/Paragraph'
+import Header from '../../content/Header'
 
 export default (options: NotificationType.NotifyOptions) => {
     let timer
@@ -22,8 +23,8 @@ export default (options: NotificationType.NotifyOptions) => {
                 ) : (
                         <Flexbox p="1rem" w={'20rem'}>
                             <Block flex={1} css={{ overflow: 'hidden' }}>
-                                <H4 ellipsis>{options.title}</H4>
-                                <T2>{options.message}</T2>
+                                <Header size={4} ellipsis>{options.title}</Header>
+                                <Paragraph size={2}>{options.message}</Paragraph>
                             </Block>
                             <Block pl="0.5rem">
                                 <Icon

@@ -19,7 +19,7 @@ const datePickerStyles: Global.FunctionalComponentStyles<Types.Styles> = (props,
 
         weekDay: [{
             userSelect: 'none',
-            ...theme.typography.caption[2],
+            ...theme.typography.text[2],
             marginTop: '0.25rem',
             marginBottom: '0.5rem',
             fontWeight: 400,

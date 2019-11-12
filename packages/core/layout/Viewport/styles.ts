@@ -1,5 +1,4 @@
 import { css } from '@emotion/core'
-import typography from '../../misc/typography'
 
 export default (theme, wrapper) => {
 
@@ -14,7 +13,7 @@ export default (theme, wrapper) => {
             'h2': theme.typography.header[2],
             'h3': theme.typography.header[3],
             'h4': theme.typography.header[4],
-            ...typography.text[1]
+            ...theme.typography.text[1]
         },
         `
             -moz-osx-font-smoothing: grayscale;

@@ -1,6 +1,5 @@
 import Theme from './types'
 import createTheme from '../utils/createTheme'
-import typography from '../typography'
 
 const variables: Theme.Variables = {
     name: 'Light',
@@ -41,7 +40,80 @@ const variables: Theme.Variables = {
         large: '2rem',
         xlarge: '4rem',
     },
-    typography
+    typography: {
+        paragraph: {
+            1: {
+                fontSize: '1rem',
+                lineHeight: '1.5rem'
+            },
+            2: {
+                fontSize: '0.875rem',
+                lineHeight: '1.25rem'
+            },
+            3: {
+                fontSize: '0.75rem',
+                lineHeight: '1rem'
+            },
+            4: {
+                fontSize: '0.625rem',
+                lineHeight: '0.75rem'
+            }
+        },
+        text: {
+            1: {
+                fontSize: '1rem',
+                lineHeight: '1.25rem'
+            },
+            2: {
+                fontSize: '0.875rem',
+                lineHeight: '1rem'
+            },
+            3: {
+                fontSize: '0.75rem',
+                lineHeight: '0.875rem'
+            },
+            4: {
+                fontSize: '0.625rem',
+                lineHeight: '0.75rem'
+            }
+        },
+        header: {
+            1: {
+                fontSize: '2rem',
+                lineHeight: '3rem',
+            },
+            2: {
+                fontSize: '1.5rem',
+                lineHeight: '2rem',
+            },
+            3: {
+                fontSize: '1.25rem',
+                lineHeight: '1.5rem',
+            },
+            4: {
+                fontSize: '1.125rem',
+                lineHeight: '1.5rem',
+            }
+        },
+        display: {
+            1: {
+                fontSize: '6rem',
+                lineHeight: 1.5,
+            },
+            2: {
+                fontSize: '5.5rem',
+                lineHeight: 1.5,
+            },
+            3: {
+                fontSize: '4.5rem',
+                lineHeight: 1.5,
+            },
+            4: {
+                fontSize: '3.5rem',
+                lineHeight: 1.5,
+            }
+        }
+    }
 }
 
 const assets = (variables): Theme.Assets => ({

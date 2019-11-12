@@ -112,28 +112,27 @@ const buttonStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Typ
                     'xsmall': [{
                         padding: '0 .25rem',
                         minHeight: theme.assets.fieldHeight.xsmall,
-                        ...theme.typography.caption[4]
+                        ...theme.typography.text[4]
                     }],
                     'small': [{
                         padding: '0 .5rem',
                         minHeight: theme.assets.fieldHeight.small,
-                        ...theme.typography.caption[3]
+                        ...theme.typography.text[3]
                     }],
                     'medium': [{
                         padding: '0 .75rem',
                         minHeight: theme.assets.fieldHeight.medium,
-                        ...theme.typography.caption[2]
+                        ...theme.typography.text[2]
                     }],
                     'large': [{
                         padding: '0 1rem',
                         minHeight: theme.assets.fieldHeight.large,
-                        ...theme.typography.caption[1]
+                        ...theme.typography.text[1]
                     }],
                     'xlarge': [{
                         padding: '0 1.25rem',
                         minHeight: theme.assets.fieldHeight.xlarge,
-                        fontSize: theme.typography.header[4].fontSize,
-                        lineHeight: theme.typography.header[4].lineHeight
+                        ...theme.typography.header[4],
                     }]
                 }
             }),
