@@ -7,7 +7,7 @@ import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 import useMask from '@flow-ui/core/misc/hooks/useMask'
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
 
-const TextField: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+const TextField: RefForwardingComponent<any, Types.Props> = (props, ref) => {
 
     const {decoration = 'outline', size = 'medium', shape='rounded', tabIndex = 1, masked, label} = props
     const [isEmpty, setEmpty] = useState<boolean>(
@@ -23,7 +23,10 @@ const TextField: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, r
     const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
     const mask = masked && useMask(inputRef, masked)
 
-    useImperativeHandle(ref, () => selfRef.current!)
+    useImperativeHandle(ref, () => selfRef && inputRef && {
+        ...inputRef.current,
+        ...selfRef.current,
+    })
 
     useEffect(() => {
         if (typeof props.value != 'undefined') {
