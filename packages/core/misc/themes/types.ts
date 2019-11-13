@@ -66,12 +66,6 @@ declare namespace ThemeTypes {
             short: string
             long: string
         }
-        gradient: {
-            linear: string
-            linearVariant: string
-            radial: string
-            radialVariant: string
-        }
         focus: ObjectInterpolation<undefined>
         fieldHeight: {
             xsmall: string

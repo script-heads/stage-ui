@@ -127,12 +127,6 @@ const assets = (variables): Theme.Assets => ({
         short: `0px 2px 4px rgba(0,0,0,0.15)`,
         long: `0 16px 16px rgba(0,0,0,0.15)`,
     },
-    gradient: {
-        linear: `0deg, ${variables.color.primary.css()} 0%, ${variables.color.secondary.css()} 100%`,
-        linearVariant: `0deg, ${variables.color.secondary.css()} 0%, ${variables.color.primary.css()} 100%`,
-        radial: `circle, ${variables.color.primary.css()} 0%, ${variables.color.secondary.css()} 100%`,
-        radialVariant: `circle, ${variables.color.secondary.css()} 0%, ${variables.color.primary.css()} 100%`,
-    },
     focus: {
         boxShadow: '0 0 0 3px ' + variables.color.primary.alpha(.3).css()
     },
