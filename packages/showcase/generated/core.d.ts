@@ -903,7 +903,7 @@ declare module 'types' {
 	    interface FlowProps extends MarginProps, FlexProps, GridProps {
 	    }
 	    type ColorProp = FunctionalProp<ThemeTypes.Colors<chroma.Color>, CSS.Properties['color']>;
-	    type IconProp = FunctionalProp<IconsetTypes.Index, React.ReactElement>;
+	    type IconProp = FunctionalProp<IconsetTypes.Index, string>;
 	}
 	export default Global;
 
@@ -2006,12 +2006,6 @@ declare module 'misc/themes/types' {
 	            default: string;
 	            short: string;
 	            long: string;
-	        };
-	        gradient: {
-	            linear: string;
-	            linearVariant: string;
-	            radial: string;
-	            radialVariant: string;
 	        };
 	        focus: ObjectInterpolation<undefined>;
 	        fieldHeight: {

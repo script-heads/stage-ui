@@ -18,8 +18,5 @@
     "pub:core": "git pull && cd ./packages/core && npm version patch && yarn build && cd ./dist && npm publish && cd .. && rm -rf ./dist && cd ../.. && yarn gitpush",
     "pub:lab": "git pull && cd ./packages/lab && npm version patch && yarn build && cd ./dist && npm publish && cd .. && rm -rf ./dist && cd ../.. && yarn gitpush",
     "gitpush": "git commit . -m 'Update version' && git push"
-  },
-  "resolutions": {
-    "**/typescript": "3.7.x"
   }
 }
