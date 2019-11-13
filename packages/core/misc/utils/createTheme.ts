@@ -3,48 +3,42 @@ import chroma from 'chroma-js'
 import createID from './createID'
 import mergeObjects from './mergeObjects'
 
-export type CreateTheme = (mainVaraibles: ThemeTypes.Variables, mainAssets: (variables: ThemeTypes.Variables<chroma.Color>) => ThemeTypes.Assets, mainOverrides?) => ThemeTypes.Index
+export type CreateTheme = (theme: ThemeTypes.SourceTheme) => ThemeTypes.Index
 
-const createTheme: CreateTheme = (mainVaraibles, mainAssets, mainOverrides?) => {
+const createTheme: CreateTheme = (theme) => {
     
-    const convertedMainVarables = convertColors(mainVaraibles)
-    
-    return {
-        ...convertedMainVarables,
-        assets: mainAssets(convertedMainVarables),
-        overrides: mainOverrides || {},
-        replace: (variables, assets, overrides) => {
+    const convertedTheme = convertColors(theme)
 
-            const newVariables = mergeObjects(
-                mainVaraibles,
-                variables,
-            ) as ThemeTypes.Variables
+    convertedTheme.assets = theme.assets(convertedTheme)
+    convertedTheme.overrides = theme.overrides || {}
+    convertedTheme.replace = (themeReplace) => {
+        
+        const newTheme = mergeObjects(
+            theme,
+            themeReplace,
+        ) as ThemeTypes.SourceTheme
 
-            const newAssets = (variables) => mergeObjects(
-                mainAssets(variables),
-                assets && assets(variables),
-            ) as ThemeTypes.Assets
+        newTheme.assets = (theme) => mergeObjects(
+            convertedTheme.assets,
+            themeReplace.assets && themeReplace.assets(theme),
+        ) as ThemeTypes.Assets
 
-            const newOverrides = mergeObjects(
-                mainOverrides,
-                overrides,
-            ) as ThemeTypes.Overrides
+        newTheme.name = newTheme.name || convertedTheme.name + '-' + createID()
 
-            newVariables.name = variables.name || mainVaraibles.name + '-' + createID()
-
-            return createTheme(newVariables, newAssets, newOverrides)
-        }
+        return createTheme(newTheme)
     }
+
+    return convertedTheme
 }
 
-function convertColors(variables: ThemeTypes.Variables): ThemeTypes.Variables<chroma.Color> {
+function convertColors(theme: ThemeTypes.SourceTheme): ThemeTypes.Index{
     return mergeObjects(
         {},
-        variables,
+        theme,
         (value) => value instanceof Array
             ? chroma(value)
             : value
-    ) as ThemeTypes.Variables<chroma.Color>
+    ) as ThemeTypes.Index
 }
 
 export default createTheme

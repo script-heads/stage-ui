@@ -40,13 +40,24 @@ import Global from '../../types'
 
 declare namespace ThemeTypes {
 
+    type SourceColor = [number, number, number, number?]
     interface Index extends Variables<chroma.Color> {
         assets: Assets
         overrides: Overrides
         replace: Replace
     }
 
-    interface Variables<T = [number, number, number, number?]> {
+    interface SourceTheme extends Variables<SourceColor> {
+        assets: (theme: ThemeTypes.Index) => ThemeTypes.Assets
+        overrides: Overrides
+    }
+
+    type Replace = (theme: ReplaceTheme) => Index
+    interface ReplaceTheme extends DeepPartial<Variables<SourceColor>> {
+        assets?: (theme: ThemeTypes.Index) => DeepPartial<ThemeTypes.Assets>
+        overrides?: Overrides
+    }
+    interface Variables<T = SourceColor> {
         name: string
         color: Colors<T>
         radius: Radius
@@ -102,12 +113,6 @@ declare namespace ThemeTypes {
         Popover?: Global.OverridesStyle<PopoverTypes.Styles>
         Tree?: Global.OverridesStyle<TreeTypes.Styles>
     }
-
-    type Replace = (
-        variables: DeepPartial<Variables>,
-        assets?: (variables: Variables<chroma.Color>) => DeepPartial<Assets>,
-        overrides?: Overrides
-    ) => Index
 
     type Colors<T> = {
         background: T

@@ -1,7 +1,7 @@
 import Theme from './types'
 import createTheme from '../utils/createTheme'
 
-const variables: Theme.Variables = {
+const Light: Theme.SourceTheme = {
     name: 'Light',
     color: {
         background: [250, 250, 250],
@@ -113,34 +113,30 @@ const variables: Theme.Variables = {
                 lineHeight: '0.75rem'
             }
         },
-    }
+    },
+    assets: (theme) => ({
+        border: {
+            width: '1px',
+            style: 'solid',
+            color: theme.color.lightest.css()
+        },
+        shadow: {
+            default: `0px 4px 8px rgba(0,0,0,0.15)`,
+            short: `0px 2px 4px rgba(0,0,0,0.15)`,
+            long: `0 16px 16px rgba(0,0,0,0.15)`,
+        },
+        focus: {
+            boxShadow: '0 0 0 3px ' + theme.color.primary.alpha(.3).css()
+        },
+        fieldHeight: {
+            xsmall: '1.5rem',
+            small: '2rem',
+            medium: '2.5rem',
+            large: '3rem',
+            xlarge: '3.5rem',
+        }
+    }),
+    overrides: {}
 }
 
-const assets = (variables): Theme.Assets => ({
-    border: {
-        width: '1px',
-        style: 'solid',
-        color: variables.color.lightest.css()
-    },
-    shadow: {
-        default: `0px 4px 8px rgba(0,0,0,0.15)`,
-        short: `0px 2px 4px rgba(0,0,0,0.15)`,
-        long: `0 16px 16px rgba(0,0,0,0.15)`,
-    },
-    focus: {
-        boxShadow: '0 0 0 3px ' + variables.color.primary.alpha(.3).css()
-    },
-    fieldHeight: {
-        xsmall: '1.5rem',
-        small: '2rem',
-        medium: '2.5rem',
-        large: '3rem',
-        xlarge: '3.5rem',
-    }
-})
-
-const overrides: Theme.Overrides = {
-
-}
-
-export default createTheme(variables, assets, overrides) as Theme.Index
+export default createTheme(Light)
