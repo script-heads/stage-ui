@@ -41,6 +41,42 @@ const variables: Theme.Variables = {
         xlarge: '4rem',
     },
     typography: {
+        display: {
+            1: {
+                fontSize: '6rem',
+                lineHeight: 1.5,
+            },
+            2: {
+                fontSize: '5.5rem',
+                lineHeight: 1.5,
+            },
+            3: {
+                fontSize: '4.5rem',
+                lineHeight: 1.5,
+            },
+            4: {
+                fontSize: '3.5rem',
+                lineHeight: 1.5,
+            }
+        },
+        header: {
+            1: {
+                fontSize: '2rem',
+                lineHeight: '3rem',
+            },
+            2: {
+                fontSize: '1.5rem',
+                lineHeight: '2rem',
+            },
+            3: {
+                fontSize: '1.25rem',
+                lineHeight: '1.5rem',
+            },
+            4: {
+                fontSize: '1.125rem',
+                lineHeight: '1.5rem',
+            }
+        },
         paragraph: {
             1: {
                 fontSize: '1rem',
@@ -77,42 +113,6 @@ const variables: Theme.Variables = {
                 lineHeight: '0.75rem'
             }
         },
-        header: {
-            1: {
-                fontSize: '2rem',
-                lineHeight: '3rem',
-            },
-            2: {
-                fontSize: '1.5rem',
-                lineHeight: '2rem',
-            },
-            3: {
-                fontSize: '1.25rem',
-                lineHeight: '1.5rem',
-            },
-            4: {
-                fontSize: '1.125rem',
-                lineHeight: '1.5rem',
-            }
-        },
-        display: {
-            1: {
-                fontSize: '6rem',
-                lineHeight: 1.5,
-            },
-            2: {
-                fontSize: '5.5rem',
-                lineHeight: 1.5,
-            },
-            3: {
-                fontSize: '4.5rem',
-                lineHeight: 1.5,
-            },
-            4: {
-                fontSize: '3.5rem',
-                lineHeight: 1.5,
-            }
-        }
     }
 }
 
