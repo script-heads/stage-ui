@@ -47,13 +47,15 @@ declare namespace ThemeTypes {
         replace: Replace
     }
 
-    interface SourceTheme extends Variables<SourceColor> {
+    interface SourceTheme {
+        main: Variables<SourceColor>
         assets: (theme: ThemeTypes.Index) => ThemeTypes.Assets
         overrides: Overrides
     }
 
     type Replace = (theme: ReplaceTheme) => Index
-    interface ReplaceTheme extends DeepPartial<Variables<SourceColor>> {
+    interface ReplaceTheme {
+        main: DeepPartial<Variables<SourceColor>>
         assets?: (theme: ThemeTypes.Index) => DeepPartial<ThemeTypes.Assets>
         overrides?: Overrides
     }

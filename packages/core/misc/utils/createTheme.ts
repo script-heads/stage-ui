@@ -6,12 +6,11 @@ import mergeObjects from './mergeObjects'
 export type CreateTheme = (theme: ThemeTypes.SourceTheme) => ThemeTypes.Index
 
 const createTheme: CreateTheme = (theme) => {
-    
-    const convertedTheme = convertColors(theme)
 
-    convertedTheme.assets = theme.assets(convertedTheme)
-    convertedTheme.overrides = theme.overrides || {}
-    convertedTheme.replace = (themeReplace) => {
+    const main = convertColors(theme.main)
+    const assets = theme.assets(main)
+    const overrides = theme.overrides
+    const replace: ThemeTypes.Replace = (themeReplace) => {
         
         const newTheme = mergeObjects(
             theme,
@@ -19,19 +18,19 @@ const createTheme: CreateTheme = (theme) => {
         ) as ThemeTypes.SourceTheme
 
         newTheme.assets = (theme) => mergeObjects(
-            convertedTheme.assets,
+            assets,
             themeReplace.assets && themeReplace.assets(theme),
         ) as ThemeTypes.Assets
 
-        newTheme.name = newTheme.name || convertedTheme.name + '-' + createID()
+        newTheme.main.name = newTheme.main.name || main.name + '-' + createID()
 
         return createTheme(newTheme)
     }
 
-    return convertedTheme
+    return { ...main, assets, overrides, replace }
 }
 
-function convertColors(theme: ThemeTypes.SourceTheme): ThemeTypes.Index{
+function convertColors(theme: ThemeTypes.SourceTheme['main']): ThemeTypes.Index{
     return mergeObjects(
         {},
         theme,

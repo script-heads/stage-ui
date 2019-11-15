@@ -2,117 +2,119 @@ import Theme from './types'
 import createTheme from '../utils/createTheme'
 
 const Light: Theme.SourceTheme = {
-    name: 'Light',
-    color: {
-        background: [250, 250, 250],
-        backgroundVariant: [240, 240, 240],
-        surface: [255, 255, 255],
-        surfaceVariant: [230, 230, 230],
-        primary: [74, 139, 252],
-        secondary: [252, 148, 74],
+    main: {
+        name: 'Light',
+        color: {
+            background: [250, 250, 250],
+            backgroundVariant: [240, 240, 240],
+            surface: [255, 255, 255],
+            surfaceVariant: [230, 230, 230],
+            primary: [74, 139, 252],
+            secondary: [252, 148, 74],
 
-        onBackground: [0, 0, 0],
-        onSurface: [0, 0, 0],
-        onPrimary: [255, 255, 255],
-        onSecondary: [255, 255, 255],
+            onBackground: [0, 0, 0],
+            onSurface: [0, 0, 0],
+            onPrimary: [255, 255, 255],
+            onSecondary: [255, 255, 255],
 
-        lightest: [230, 230, 230],
-        light: [150, 150, 150],
-        hard: [120, 120, 120],
-        hardest: [100, 100, 100],
+            lightest: [230, 230, 230],
+            light: [150, 150, 150],
+            hard: [120, 120, 120],
+            hardest: [100, 100, 100],
 
-        accent: {
-            red: [188, 0, 0],
-            green: [0, 200, 0],
-            blue: [0, 122, 255],
-            orange: [255, 149, 0]
+            accent: {
+                red: [188, 0, 0],
+                green: [0, 200, 0],
+                blue: [0, 122, 255],
+                orange: [255, 149, 0]
+            }
+        },
+        radius: {
+            default: '0.5rem',
+            narrow: '0.25rem',
+            wide: '1rem',
+        },
+        distance: {
+            xsmall: '.25rem',
+            small: '.5rem',
+            medium: '1rem',
+            large: '2rem',
+            xlarge: '4rem',
+        },
+        typography: {
+            display: {
+                1: {
+                    fontSize: '6rem',
+                    lineHeight: 1.5,
+                },
+                2: {
+                    fontSize: '5.5rem',
+                    lineHeight: 1.5,
+                },
+                3: {
+                    fontSize: '4.5rem',
+                    lineHeight: 1.5,
+                },
+                4: {
+                    fontSize: '3.5rem',
+                    lineHeight: 1.5,
+                }
+            },
+            header: {
+                1: {
+                    fontSize: '2rem',
+                    lineHeight: '3rem',
+                },
+                2: {
+                    fontSize: '1.5rem',
+                    lineHeight: '2rem',
+                },
+                3: {
+                    fontSize: '1.25rem',
+                    lineHeight: '1.5rem',
+                },
+                4: {
+                    fontSize: '1.125rem',
+                    lineHeight: '1.5rem',
+                }
+            },
+            paragraph: {
+                1: {
+                    fontSize: '1rem',
+                    lineHeight: '1.5rem'
+                },
+                2: {
+                    fontSize: '0.875rem',
+                    lineHeight: '1.25rem'
+                },
+                3: {
+                    fontSize: '0.75rem',
+                    lineHeight: '1rem'
+                },
+                4: {
+                    fontSize: '0.625rem',
+                    lineHeight: '0.75rem'
+                }
+            },
+            text: {
+                1: {
+                    fontSize: '1rem',
+                    lineHeight: '1.25rem'
+                },
+                2: {
+                    fontSize: '0.875rem',
+                    lineHeight: '1rem'
+                },
+                3: {
+                    fontSize: '0.75rem',
+                    lineHeight: '0.875rem'
+                },
+                4: {
+                    fontSize: '0.625rem',
+                    lineHeight: '0.75rem'
+                }
+            },
         }
-    },
-    radius: {
-        default: '0.5rem',
-        narrow: '0.25rem',
-        wide: '1rem',
-    },
-    distance: {
-        xsmall: '.25rem',
-        small: '.5rem',
-        medium: '1rem',
-        large: '2rem',
-        xlarge: '4rem',
-    },
-    typography: {
-        display: {
-            1: {
-                fontSize: '6rem',
-                lineHeight: 1.5,
-            },
-            2: {
-                fontSize: '5.5rem',
-                lineHeight: 1.5,
-            },
-            3: {
-                fontSize: '4.5rem',
-                lineHeight: 1.5,
-            },
-            4: {
-                fontSize: '3.5rem',
-                lineHeight: 1.5,
-            }
-        },
-        header: {
-            1: {
-                fontSize: '2rem',
-                lineHeight: '3rem',
-            },
-            2: {
-                fontSize: '1.5rem',
-                lineHeight: '2rem',
-            },
-            3: {
-                fontSize: '1.25rem',
-                lineHeight: '1.5rem',
-            },
-            4: {
-                fontSize: '1.125rem',
-                lineHeight: '1.5rem',
-            }
-        },
-        paragraph: {
-            1: {
-                fontSize: '1rem',
-                lineHeight: '1.5rem'
-            },
-            2: {
-                fontSize: '0.875rem',
-                lineHeight: '1.25rem'
-            },
-            3: {
-                fontSize: '0.75rem',
-                lineHeight: '1rem'
-            },
-            4: {
-                fontSize: '0.625rem',
-                lineHeight: '0.75rem'
-            }
-        },
-        text: {
-            1: {
-                fontSize: '1rem',
-                lineHeight: '1.25rem'
-            },
-            2: {
-                fontSize: '0.875rem',
-                lineHeight: '1rem'
-            },
-            3: {
-                fontSize: '0.75rem',
-                lineHeight: '0.875rem'
-            },
-            4: {
-                fontSize: '0.625rem',
-                lineHeight: '0.75rem'
-            }
-        },
     },
     assets: (theme) => ({
         border: {
