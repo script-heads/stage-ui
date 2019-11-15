@@ -61,3 +61,59 @@ export {
     C1, C2, C3, C4,
     A 
 } from './misc/deprecated'
+
+export function transformImports (importName, matches) {
+    switch(importName){
+        case 'Divider': return '@flow-ui/core/content/Divider'
+        case 'Icon': return '@flow-ui/core/content/Icon'
+        case 'Spinner': return '@flow-ui/core/content/Spinner'
+        case 'Header ': return '@flow-ui/core/content/Header'
+        case 'Display ': return '@flow-ui/core/content/Display'
+        case 'Paragraph ': return '@flow-ui/core/content/Paragraph'
+        case 'Text ': return '@flow-ui/core/content/Text'
+        case 'Anchor ': return '@flow-ui/core/content/Anchor'
+        /**
+         * Control
+         */
+        case 'Button': return '@flow-ui/core/control/Button'
+        case 'Checkbox': return '@flow-ui/core/control/Checkbox'
+        case 'DatePicker': return '@flow-ui/core/control/DatePicker'
+        case 'Menu': return '@flow-ui/core/control/Menu'
+        case 'Radio': return '@flow-ui/core/control/Radio'
+        case 'Range': return '@flow-ui/core/control/Range'
+        case 'Select': return '@flow-ui/core/control/Select'
+        case 'Switch': return '@flow-ui/core/control/Switch'
+        case 'TextField': return '@flow-ui/core/control/TextField'
+        /**
+         * Data
+         */
+        case 'Meter': return '@flow-ui/core/data/Meter'
+        case 'Table': return '@flow-ui/core/data/Table'
+        /**
+         * Layout
+         */
+        case 'Badge': return '@flow-ui/core/layout/Badge'
+        case 'Block': return '@flow-ui/core/layout/Block'
+        case 'Drop': return '@flow-ui/core/layout/Drop'
+        case 'Flexbox': return '@flow-ui/core/layout/Flexbox'
+        case 'Grid': return '@flow-ui/core/layout/Grid'
+        case 'Modal': return '@flow-ui/core/layout/Modal'
+        case 'Notification': return '@flow-ui/core/layout/Notification'
+        case 'Panel': return '@flow-ui/core/layout/Panel'
+        case 'Popover': return '@flow-ui/core/layout/Popover'
+        case 'Tree': return '@flow-ui/core/layout/Tree'
+        case 'Viewport': return '@flow-ui/core/layout/Viewport'
+        /**
+         * Utils
+         */
+        case 'dialog': return '@flow-ui/core/misc/utils/dialog'
+        case 'notify': return '@flow-ui/core/misc/utils/notify'
+        /**
+         * Misc
+         */
+        case 'useBrowser': return '@flow-ui/core/misc/hooks/useBrowser'
+        case 'useFlow': return '@flow-ui/core/misc/hooks/useFlow'
+        
+        default: return '/'
+    }
+}
