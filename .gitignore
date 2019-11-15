@@ -1,3 +1,6 @@
+# build
+build/
+
 # dependencies
 node_modules
 packages/mobile/**/build

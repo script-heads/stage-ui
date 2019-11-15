@@ -6,9 +6,9 @@
   "scripts": {
     "type-check": "tsc --noEmit",
     "type-check:watch": "yarn type-check -- --watch",
-    "build": "rm -fR dist && yarn build:types && yarn build:js && cp package.json dist/package.json",
+    "build": "yarn build:types && yarn build:js && cp package.json ../../build/lab/package.json",
     "build:types": "tsc --emitDeclarationOnly",
-    "build:js": "babel ./ --out-dir dist --extensions \".ts,.tsx\" --ignore \"node_modules/\",\"dist/\""
+    "build:js": "babel ./ --out-dir ../../build/lab --extensions \".ts,.tsx\" --ignore \"node_modules/\""
   },
   "dependencies": {
     "@types/chart.js": "^2.7.40",
