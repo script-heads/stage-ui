@@ -67,11 +67,11 @@ export function transformImports (importName, matches) {
         case 'Divider': return '@flow-ui/core/content/Divider'
         case 'Icon': return '@flow-ui/core/content/Icon'
         case 'Spinner': return '@flow-ui/core/content/Spinner'
-        case 'Header ': return '@flow-ui/core/content/Header'
-        case 'Display ': return '@flow-ui/core/content/Display'
-        case 'Paragraph ': return '@flow-ui/core/content/Paragraph'
-        case 'Text ': return '@flow-ui/core/content/Text'
-        case 'Anchor ': return '@flow-ui/core/content/Anchor'
+        case 'Header': return '@flow-ui/core/content/Header'
+        case 'Display': return '@flow-ui/core/content/Display'
+        case 'Paragraph': return '@flow-ui/core/content/Paragraph'
+        case 'Text': return '@flow-ui/core/content/Text'
+        case 'Anchor': return '@flow-ui/core/content/Anchor'
         /**
          * Control
          */
