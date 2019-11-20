@@ -5,9 +5,10 @@ import { useFlow } from '../..'
 
 const Anchor = (props: Types.AnchorProps, ref) => {
     const {theme} = useFlow()
+    
     return (
         <Typography
-            tabIndex={0}
+            tabIndex={props.tabIndex || (props.onClick || props.onEnter) && 0}
             tag="a"
             sizesOf="text"
             specificStyles={{
