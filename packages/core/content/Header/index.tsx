@@ -5,7 +5,7 @@ import Typography from '../../misc/hocs/Typography'
 const Header = (props: Types.Props, ref) =>
     <Typography 
         tag="span" 
-        sizesOf='header'
+        sizesOf="header"
         specificStyles={{
             fontWeight: 700,
             display: 'block' 
