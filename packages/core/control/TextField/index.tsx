@@ -9,7 +9,7 @@ import useContainer from '@flow-ui/core/misc/hooks/useContainer'
 
 const TextField: RefForwardingComponent<any, Types.Props> = (props, ref) => {
 
-    const {decoration = 'outline', size = 'medium', shape='rounded', tabIndex = 1, masked, label} = props
+    const {decoration = 'outline', size = 'medium', shape='rounded', tabIndex = 0, masked, label} = props
     const [isEmpty, setEmpty] = useState<boolean>(
         props.defaultValue === '' ||
         typeof props.defaultValue === 'undefined'

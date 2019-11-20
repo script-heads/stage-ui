@@ -1,12 +1,13 @@
 import React, { forwardRef } from 'react'
 import Types from '../../misc/hocs/Typography/types'
 import Typography from '../../misc/hocs/Typography'
-import { useFlow } from '../..';
+import { useFlow } from '../..'
 
 const Anchor = (props: Types.AnchorProps, ref) => {
-    const {theme} = useFlow();
+    const {theme} = useFlow()
     return (
         <Typography
+            tabIndex={0}
             tag="a"
             sizesOf="text"
             specificStyles={{

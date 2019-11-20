@@ -26,7 +26,7 @@ const DatePicker: FC<Types.Props> = (props, ref: RefObject<HTMLDivElement>) => {
         decoration = 'outline', 
         size = 'medium', 
         shape='rounded', 
-        tabIndex = 1,
+        tabIndex = 0,
         label 
     } = props
 

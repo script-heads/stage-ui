@@ -23,7 +23,8 @@ const Select = (props: Types.Props, ref) => {
         placeholder,
         searchable,
         disabled,
-        label
+        label,
+        tabIndex = 0
     } = props
 
     let approvedDefaultValues = defaultValues 
@@ -208,7 +209,7 @@ const Select = (props: Types.Props, ref) => {
                 
                 attributes={{
                     ...attributes,
-                    tabIndex: props.tabIndex || 0,
+                    tabIndex: props.tabIndex,
                     onClick: (e) => {
                         searchable && e.target.toString() === '[object HTMLInputElement]'
                             ? !state.open && dispatch({ type: 'toggleOpen', payload: true })
