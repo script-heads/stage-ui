@@ -67,6 +67,7 @@ const menuStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types
                 position: 'relative',
                 justifyContent: 'center',
                 alignItems: 'stretch',
+                width: 'fit-content',
                 flexDirection: props.direction,
             },
             distance && {
