@@ -10,7 +10,7 @@ import useStyles from '../../misc/hooks/useStyles'
 
 const Modal = (props: Types.Props, ref: RefObject<Types.Ref>) => {
 
-    const { hideHeader, fullSize } = props
+    const { hideHeader, fullSize, opened } = props
     const { attributes } = useContainer(props)
     const styles = useStyles<Types.Styles>(props,modalStyles,'Modal')
 
@@ -23,7 +23,7 @@ const Modal = (props: Types.Props, ref: RefObject<Types.Ref>) => {
     const [center, setCenter] = useState<boolean>(false)
     const [title, setTitle] = useState(props.title)
     const [subtitle, setSubtitle] = useState(props.subtitle)
-
+    
     useEffect(() => {
         setTitle(props.title)
         setSubtitle(props.subtitle)
@@ -32,6 +32,11 @@ const Modal = (props: Types.Props, ref: RefObject<Types.Ref>) => {
             window.removeEventListener('resize', setVetricalCenter)
         }
     }, [props.title, props.subtitle])
+
+    useEffect(()=>{
+        if (opened === true) open()
+        if (opened === false) close()
+    },[opened])
 
     useImperativeHandle(ref, () => ({
         open,

@@ -22,6 +22,7 @@ declare namespace ModalTypes {
         subtitle?: string
         fullSize?: boolean
         children?: any
+        opened?: boolean
 
         hideHeader?: boolean
 
