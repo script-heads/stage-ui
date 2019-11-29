@@ -1,5 +1,4 @@
 import Global from '@flow-ui/core/types'
-import { SerializedStyles } from '@emotion/core'
 
 declare namespace FieldTypes {
 
@@ -14,6 +13,9 @@ declare namespace FieldTypes {
         rightChild?: React.ReactNode
         leftChild?: React.ReactNode
         clearable?: boolean
+
+        onEnter?: () => void
+        onClear?: () => void
     }
 
     interface State {
@@ -47,9 +49,6 @@ declare namespace FieldTypes {
         labelName?: string
         attributes?: Object
         children?: React.ReactNode
-
-        onEnter?: () => void
-        onClear?: () => void
     }   
     
 }

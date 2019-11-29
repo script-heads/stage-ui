@@ -22,7 +22,9 @@ const Select = (props: Types.Props, ref) => {
         defaultValues = [],
         placeholder,
         searchable,
-        disabled
+        disabled,
+        label,
+        tabIndex = 0
     } = props
 
     let approvedDefaultValues = defaultValues 
@@ -47,7 +49,7 @@ const Select = (props: Types.Props, ref) => {
 
     const {attributes, focus} = useContainer(props, true, props.decoration != 'none')
     const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xlarge')
-    const isLabelOverlay = (state.empty && !focus && !isLabelOutside) ? true : false
+    const isLabelOverlay = (label && state.empty && !focus && !isLabelOutside) ? true : false
     const styles = useStyles<Types.Styles>(props, selectStyles, 'Select')
 
     useImperativeHandle(ref, () => {
@@ -207,7 +209,7 @@ const Select = (props: Types.Props, ref) => {
                 
                 attributes={{
                     ...attributes,
-                    tabIndex: props.tabIndex || 0,
+                    tabIndex: props.tabIndex,
                     onClick: (e) => {
                         searchable && e.target.toString() === '[object HTMLInputElement]'
                             ? !state.open && dispatch({ type: 'toggleOpen', payload: true })

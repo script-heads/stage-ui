@@ -34,11 +34,11 @@ const BlockStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Type
     return {
         container: (variant) => [
             {
-                position: props.position,
-                '&:hover': variant({hoverSurface: surfaceVariants}),
+                position: 'relative',
+                '&:hover': variant({ hoverSurface: surfaceVariants }),
                 overflow: props.overflow
             },
-            variant({surface: surfaceVariants}),
+            variant({ surface: surfaceVariants }),
             styleProps.all
         ]
     }

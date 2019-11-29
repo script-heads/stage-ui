@@ -23,11 +23,13 @@ const fieldStyles = <T extends Types.Styles>(
             {
                 position: 'relative',
                 display: 'flex',
+                width: '12rem',
                 flexDirection: 'column',
                 overflow: 'hidden',
                 outline: 'none'
             },
             styleProps.flow,
+            styleProps.layout,
             overrides?.container?.(variant)
         ],
 
@@ -151,7 +153,9 @@ const fieldStyles = <T extends Types.Styles>(
             {
                 borderColor: color,
             },
-            styleProps.self,
+            styleProps.color,
+            styleProps.border,
+            styleProps.padding,
             overrides?.field?.(variant)
         ],
 
@@ -164,7 +168,8 @@ const fieldStyles = <T extends Types.Styles>(
                 borderColor: 'inherit',
                 background: 'inherit',
                 flexDirection: 'column',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                overflow: 'hidden'
             },
             variant({
                 isLabelOverlay: [{

@@ -14,6 +14,7 @@ declare namespace TypographyTypes {
 		target?: string
 		type?: string
 		referrerPolicy?: string
+		onEnter?: () => void
 	}
 
 	interface Props extends Global.Props {

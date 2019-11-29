@@ -6,7 +6,6 @@ declare namespace BlockTypes {
         tag?: 'div' | 'span' | 'header' | 'footer' | 'article' | 'section' | 'aside' | 'main'
         surface?: 'major' | 'medium' | 'minor'
         hoverSurface?: 'major' | 'medium' | 'minor'
-        position?: CSS.Properties['position']
         children?: React.ReactNode
         background?: Global.ColorProp
         color?: Global.ColorProp

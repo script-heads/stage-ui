@@ -25,6 +25,7 @@ const Typography = (props: Types.PrivateProps, ref) => {
                 },
                 {
                     fontWeight: props.weight,
+                    lineHeight: props.lineHeight,
                     textDecoration: props.decoration,
                     textTransform: props.transform,
                     textAlign: props.align,

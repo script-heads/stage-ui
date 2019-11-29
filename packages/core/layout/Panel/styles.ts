@@ -10,8 +10,6 @@ const panelStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Type
             {
                 position: 'fixed',
                 background: theme.color.surface.css(),
-                color: theme.color.onPrimary.css(),
-                padding: theme.distance.medium,
                 borderWidth: theme.assets.border.width,
                 borderStyle: theme.assets.border.style,
                 borderColor: theme.assets.border.color,

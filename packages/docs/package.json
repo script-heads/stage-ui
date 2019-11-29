@@ -16,7 +16,7 @@
     "randomcolor": "^0.5.4",
     "react-element-to-jsx-string": "^14.1.0",
     "tslint": "^5.20.0",
-    "typedoc": "^0.15.0"
+    "typedoc": "^0.15.1"
   },
   "dependencies": {
     "@emotion/core": "^10.0.14",

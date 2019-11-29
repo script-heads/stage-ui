@@ -1,14 +1,14 @@
 {
   "name": "@flow-ui/core",
   "author": "ABR Tech",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "license": "MIT",
   "scripts": {
     "type-check": "tsc --noEmit",
     "type-check:watch": "yarn type-check -- --watch",
-    "build": "rm -fR dist && yarn build:types && yarn build:js && cp package.json dist/package.json",
+    "build": "yarn build:types && yarn build:js && cp package.json ../../build/core/package.json",
     "build:types": "tsc --emitDeclarationOnly",
-    "build:js": "babel ./ --out-dir dist --extensions \".ts,.tsx\" --ignore \"node_modules/\",\"dist/\""
+    "build:js": "babel ./ --out-dir ../../build/core --extensions \".ts,.tsx\" --ignore \"node_modules/\""
   },
   "dependencies": {
     "@emotion/core": "^10.0.14",

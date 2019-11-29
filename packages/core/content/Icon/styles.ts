@@ -13,8 +13,8 @@ const iconStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types
             {
                 height: 'min-content',
                 width: 'min-content',
-                fontSize: props.size,
-                display: 'flex',
+                fontSize: props.size || '1rem',
+                display: 'inline-flex',
                 color,
                 background
             },

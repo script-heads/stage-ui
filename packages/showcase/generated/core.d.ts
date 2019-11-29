@@ -965,44 +965,6 @@ declare module 'content/Spinner/types' {
 	export default SpinnerTypes;
 
 }
-declare module 'content/Typography/types' {
-	/// <reference types="react" />
-	import Global from '@flow-ui/core/types';
-	import CSS from 'csstype'; namespace TypographyTypes {
-	    interface Props extends AnchorProps {
-	        defaultStyles: any;
-	        tag: string;
-	        theme: any;
-	    }
-	    interface AnchorProps extends TextProps {
-	        download?: any;
-	        href?: string;
-	        hrefLang?: string;
-	        media?: string;
-	        ping?: string;
-	        rel?: string;
-	        target?: string;
-	        type?: string;
-	        referrerPolicy?: string;
-	    }
-	    interface TextProps extends Global.Props {
-	        quotes?: boolean;
-	        ellipsis?: boolean;
-	        decoration?: CSS.Properties['textDecoration'];
-	        children?: React.ReactNode;
-	        color?: Global.ColorProp;
-	        background?: Global.ColorProp;
-	        align?: CSS.Properties['textAlign'];
-	        weight?: CSS.Properties['fontWeight'];
-	        size?: CSS.Properties['fontSize'];
-	        transform?: CSS.Properties['textTransform'];
-	    }
-	    interface Styles {
-	    }
-	}
-	export default TypographyTypes;
-
-}
 declare module 'control/Button/types' {
 	/// <reference types="react" />
 	import Global from '@flow-ui/core/types'; namespace ButtonTypes {
@@ -1990,7 +1952,6 @@ declare module 'misc/themes/types' {
 	import DividerTypes from 'content/Divider/types';
 	import IconTypes from 'content/Icon/types';
 	import SpinnerTypes from 'content/Spinner/types';
-	import TypographyTypes from 'content/Typography/types';
 	/**
 	 * Control
 	 */
@@ -2046,12 +2007,6 @@ declare module 'misc/themes/types' {
 	            short: string;
 	            long: string;
 	        };
-	        gradient: {
-	            linear: string;
-	            linearVariant: string;
-	            radial: string;
-	            radialVariant: string;
-	        };
 	        focus: ObjectInterpolation<undefined>;
 	        fieldHeight: {
 	            xsmall: string;
@@ -2065,7 +2020,6 @@ declare module 'misc/themes/types' {
 	        Divider?: Global.OverridesStyle<DividerTypes.Styles>;
 	        Icon?: Global.OverridesStyle<IconTypes.Styles>;
 	        Spinner?: Global.OverridesStyle<SpinnerTypes.Styles>;
-	        Typography?: Global.OverridesStyle<TypographyTypes.Styles>;
 	        Button?: Global.OverridesStyle<ButtonTypes.Styles>;
 	        Checkbox?: Global.OverridesStyle<CheckboxTypes.Styles>;
 	        DatePicker?: Global.OverridesStyle<DatePickerTypes.Styles>;
@@ -2124,7 +2078,6 @@ declare module 'misc/themes/types' {
 	        xlarge: string;
 	    }
 	    interface Typography {
-	        paragraph: ObjectInterpolation<undefined>;
 	        header: {
 	            1: ObjectInterpolation<undefined>;
 	            2: ObjectInterpolation<undefined>;
@@ -2143,7 +2096,7 @@ declare module 'misc/themes/types' {
 	            3: ObjectInterpolation<undefined>;
 	            4: ObjectInterpolation<undefined>;
 	        };
-	        caption: {
+	        paragraph: {
 	            1: ObjectInterpolation<undefined>;
 	            2: ObjectInterpolation<undefined>;
 	            3: ObjectInterpolation<undefined>;
@@ -2166,92 +2119,6 @@ declare module 'misc/utils/createTheme' {
 	import chroma from 'chroma-js';
 	export type CreateTheme = (mainVaraibles: ThemeTypes.Variables, mainAssets: (variables: ThemeTypes.Variables<chroma.Color>) => ThemeTypes.Assets, mainOverrides?: any) => ThemeTypes.Index; const createTheme: CreateTheme;
 	export default createTheme;
-
-}
-declare module 'misc/typography' {
-	 const typography: {
-	    paragraph: {
-	        fontSize: string;
-	        lineHeight: number;
-	    };
-	    header: {
-	        1: {
-	            fontSize: string;
-	            lineHeight: string;
-	            fontWeight: number;
-	        };
-	        2: {
-	            fontSize: string;
-	            lineHeight: string;
-	            fontWeight: number;
-	        };
-	        3: {
-	            fontSize: string;
-	            lineHeight: string;
-	            fontWeight: number;
-	        };
-	        4: {
-	            fontSize: string;
-	            lineHeight: string;
-	            fontWeight: number;
-	        };
-	    };
-	    text: {
-	        1: {
-	            fontSize: string;
-	            lineHeight: string;
-	        };
-	        2: {
-	            fontSize: string;
-	            lineHeight: string;
-	        };
-	        3: {
-	            fontSize: string;
-	            lineHeight: string;
-	        };
-	        4: {
-	            fontSize: string;
-	            lineHeight: string;
-	        };
-	    };
-	    display: {
-	        1: {
-	            fontSize: string;
-	            lineHeight: number;
-	        };
-	        2: {
-	            fontSize: string;
-	            lineHeight: number;
-	        };
-	        3: {
-	            fontSize: string;
-	            lineHeight: number;
-	        };
-	        4: {
-	            fontSize: string;
-	            lineHeight: number;
-	        };
-	    };
-	    caption: {
-	        1: {
-	            fontSize: string;
-	            lineHeight: string;
-	        };
-	        2: {
-	            fontSize: string;
-	            lineHeight: string;
-	        };
-	        3: {
-	            fontSize: string;
-	            lineHeight: string;
-	        };
-	        4: {
-	            fontSize: string;
-	            lineHeight: string;
-	        };
-	    };
-	};
-	export default typography;
 
 }
 declare module 'misc/themes/light' {
@@ -2361,7 +2228,7 @@ declare module 'misc/hooks/useContainer' {
 
 }
 declare module 'misc/hooks/useStyles' {
-	import Global from 'types'; const createStyles: <S>(props: any, componentStyles: Global.ComponentStyles<S> | Global.FunctionalComponentStyles<S, {}>, componentName?: "Menu" | "Divider" | "Icon" | "Spinner" | "Typography" | "Button" | "Checkbox" | "DatePicker" | "Radio" | "Range" | "Select" | "Switch" | "TextField" | "Meter" | "Table" | "Badge" | "Block" | "Drop" | "Flexbox" | "Grid" | "Modal" | "Notification" | "Panel" | "Popover" | "Tree" | undefined) => Global.FlowStyles<S>;
+	import Global from 'types'; const createStyles: <S>(props: any, componentStyles: Global.ComponentStyles<S> | Global.FunctionalComponentStyles<S, {}>, componentName?: "Menu" | "Divider" | "Icon" | "Spinner" | "Button" | "Checkbox" | "DatePicker" | "Radio" | "Range" | "Select" | "Switch" | "TextField" | "Meter" | "Table" | "Badge" | "Block" | "Drop" | "Flexbox" | "Grid" | "Modal" | "Notification" | "Panel" | "Popover" | "Tree" | undefined) => Global.FlowStyles<S>;
 	export default createStyles;
 
 }
@@ -2480,65 +2347,78 @@ declare module 'content/Spinner' {
 	export default _default;
 
 }
-declare module 'content/Typography/Typography' {
+declare module 'misc/hocs/Typography/types' {
+	/// <reference types="react" />
+	import Global from '@flow-ui/core/types';
+	import CSS from 'csstype';
+	import ThemeTypes from 'misc/themes/types'; namespace TypographyTypes {
+	    interface AnchorProps extends Props {
+	        download?: any;
+	        href?: string;
+	        hrefLang?: string;
+	        media?: string;
+	        ping?: string;
+	        rel?: string;
+	        target?: string;
+	        type?: string;
+	        referrerPolicy?: string;
+	    }
+	    interface Props extends Global.Props {
+	        ellipsis?: boolean;
+	        decoration?: CSS.Properties['textDecoration'];
+	        children?: React.ReactNode;
+	        color?: Global.ColorProp;
+	        background?: Global.ColorProp;
+	        align?: CSS.Properties['textAlign'];
+	        weight?: CSS.Properties['fontWeight'];
+	        size?: CSS.Properties['fontSize'] | number;
+	        lineHeight?: CSS.Properties['lineHeight'];
+	        transform?: CSS.Properties['textTransform'];
+	    }
+	    interface PrivateProps extends AnchorProps {
+	        tag: string;
+	        sizesOf: keyof ThemeTypes.Typography;
+	        specificStyles?: any;
+	    }
+	}
+	export default TypographyTypes;
+
+}
+declare module 'misc/hocs/Typography' {
 	/// <reference types="react" />
 	/// <reference types="@emotion/core" />
-	import Types from 'content/Typography/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<unknown>>;
+	import Types from 'misc/hocs/Typography/types'; const _default: import("react").ForwardRefExoticComponent<Types.PrivateProps & import("react").RefAttributes<unknown>>;
 	export default _default;
 
 }
-declare module 'content/Typography/H' {
+declare module 'content/Header' {
 	import React from 'react';
-	import Types from 'content/Typography/types';
-	export const H1: React.ForwardRefExoticComponent<Types.TextProps & React.RefAttributes<unknown>>;
-	export const H2: React.ForwardRefExoticComponent<Types.TextProps & React.RefAttributes<unknown>>;
-	export const H3: React.ForwardRefExoticComponent<Types.TextProps & React.RefAttributes<unknown>>;
-	export const H4: React.ForwardRefExoticComponent<Types.TextProps & React.RefAttributes<unknown>>;
+	import Types from 'misc/hocs/Typography/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export default _default;
 
 }
-declare module 'content/Typography/D' {
+declare module 'content/Display' {
 	import React from 'react';
-	import Types from 'content/Typography/types';
-	/**
-	 * DISPLAYS
-	 */
-	export const D1: React.ForwardRefExoticComponent<Types.TextProps & React.RefAttributes<unknown>>;
-	export const D2: React.ForwardRefExoticComponent<Types.TextProps & React.RefAttributes<unknown>>;
-	export const D3: React.ForwardRefExoticComponent<Types.TextProps & React.RefAttributes<unknown>>;
-	export const D4: React.ForwardRefExoticComponent<Types.TextProps & React.RefAttributes<unknown>>;
+	import Types from 'misc/hocs/Typography/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export default _default;
 
 }
-declare module 'content/Typography/T' {
+declare module 'content/Paragraph' {
 	import React from 'react';
-	import Types from 'content/Typography/types';
-	/**
-	 * TEXTS
-	 */
-	export const T1: React.ForwardRefExoticComponent<Types.TextProps & React.RefAttributes<unknown>>;
-	export const T2: React.ForwardRefExoticComponent<Types.TextProps & React.RefAttributes<unknown>>;
-	export const T3: React.ForwardRefExoticComponent<Types.TextProps & React.RefAttributes<unknown>>;
-	export const T4: React.ForwardRefExoticComponent<Types.TextProps & React.RefAttributes<unknown>>;
+	import Types from 'misc/hocs/Typography/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export default _default;
 
 }
-declare module 'content/Typography/C' {
+declare module 'content/Text' {
 	import React from 'react';
-	import Types from 'content/Typography/types';
-	/**
-	 * CAPTIONS
-	 */
-	export const C1: React.ForwardRefExoticComponent<Types.TextProps & React.RefAttributes<unknown>>;
-	export const C2: React.ForwardRefExoticComponent<Types.TextProps & React.RefAttributes<unknown>>;
-	export const C3: React.ForwardRefExoticComponent<Types.TextProps & React.RefAttributes<unknown>>;
-	export const C4: React.ForwardRefExoticComponent<Types.TextProps & React.RefAttributes<unknown>>;
+	import Types from 'misc/hocs/Typography/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export default _default;
 
 }
-declare module 'content/Typography/A' {
+declare module 'content/Anchor' {
 	import React from 'react';
-	import Types from 'content/Typography/types';
-	/**
-	 * ANCHOR
-	 */
-	export const A: React.ForwardRefExoticComponent<Types.AnchorProps & React.RefAttributes<unknown>>;
+	import Types from 'misc/hocs/Typography/types'; const _default: React.ForwardRefExoticComponent<Types.AnchorProps & React.RefAttributes<unknown>>;
+	export default _default;
 
 }
 declare module 'control/Button/styles' {
@@ -2639,14 +2519,6 @@ declare module 'control/DatePicker/DateGridMonth' {
 	/// <reference types="react" />
 	import DatePickerTypes from 'control/DatePicker/types'; const DateGridMonth: (props: DatePickerTypes.DateGridCalendarProps) => JSX.Element;
 	export default DateGridMonth;
-
-}
-declare module 'content/Typography' {
-	export { H1, H2, H3, H4 } from 'content/Typography/H';
-	export { D1, D2, D3, D4 } from 'content/Typography/D';
-	export { T1, T2, T3, T4 } from 'content/Typography/T';
-	export { C1, C2, C3, C4 } from 'content/Typography/C';
-	export { A } from 'content/Typography/A';
 
 }
 declare module 'control/DatePicker/DateGridTitle' {
@@ -2986,6 +2858,43 @@ declare module 'misc/hooks/useBrowser' {
 	export default _default;
 
 }
+declare module 'misc/deprecated' {
+	import React from 'react';
+	import Types from 'misc/hocs/Typography/types';
+	/**
+	 * ANCHOR
+	 */
+	export const A: React.ForwardRefExoticComponent<Types.AnchorProps & React.RefAttributes<unknown>>;
+	/**
+	 * CAPTIONS
+	 */
+	export const C1: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export const C2: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export const C3: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export const C4: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	/**
+	 * DISPLAYS
+	 */
+	export const D1: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export const D2: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export const D3: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export const D4: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	/**
+	 * HEADERS
+	 */
+	export const H1: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export const H2: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export const H3: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export const H4: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	/**
+	 * TEXTS
+	 */
+	export const T1: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export const T2: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export const T3: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export const T4: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+
+}
 declare module '@flow-ui/core' {
 	/**
 	 * Content
@@ -2993,11 +2902,11 @@ declare module '@flow-ui/core' {
 	export { default as Divider } from 'content/Divider';
 	export { default as Icon } from 'content/Icon';
 	export { default as Spinner } from 'content/Spinner';
-	export { H1, H2, H3, H4 } from 'content/Typography/H';
-	export { D1, D2, D3, D4 } from 'content/Typography/D';
-	export { T1, T2, T3, T4 } from 'content/Typography/T';
-	export { C1, C2, C3, C4 } from 'content/Typography/C';
-	export { A } from 'content/Typography/A';
+	export { default as Header } from 'content/Header';
+	export { default as Display } from 'content/Display';
+	export { default as Paragraph } from 'content/Paragraph';
+	export { default as Text } from 'content/Text';
+	export { default as Anchor } from 'content/Anchor';
 	/**
 	 * Control
 	 */
@@ -3039,6 +2948,10 @@ declare module '@flow-ui/core' {
 	 */
 	export { default as useBrowser } from 'misc/hooks/useBrowser';
 	export { default as useFlow } from 'misc/hooks/useFlow';
+	/**
+	 * Deprecated
+	 */
+	export { H1, H2, H3, H4, D1, D2, D3, D4, T1, T2, T3, T4, C1, C2, C3, C4, A } from 'misc/deprecated';
 
 }
 declare module 'misc/utils/validate' {
