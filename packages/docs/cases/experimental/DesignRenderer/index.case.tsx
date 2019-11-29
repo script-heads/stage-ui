@@ -25,6 +25,17 @@ const code = `
     
     },
     {
+        $: "Flexbox",
+        direction: "row",
+        children: [
+            {
+                $: "Checkbox",
+                label: "Check",
+            }
+        ]
+    
+    },
+    {
         $: "Button",
         children: "Login",
         onClick: () => console.log("Yay!")

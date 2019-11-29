@@ -53,28 +53,15 @@ class Showcase extends React.Component<{}, State>  {
 
 	constructor(props: any) {
 		super(props)
-		this.playgroundModeHandle = this.playgroundModeHandle.bind(this)
 		this.setCase = this.setCase.bind(this)
 		this.setContext = this.setContext.bind(this)
 	}
-
-	playgroundModeHandle(event) {
-		if (event.keyCode === 80 && event.altKey) {
-			const mode = localStorage.getItem('mode') || 'default'
-			localStorage.setItem('mode', mode === 'default' ? 'playground' : 'default')
-		}
-	}
-
 	UNSAFE_componentWillMount() {
 
 		core.init({})
 
-		document.addEventListener('keyup', this.playgroundModeHandle)
 		let path = window.location.hash.slice(1)
-		if (path.match('/test')) {
-			path = path.replace('/test', '')
-			this.setState({ test: true })
-		}
+	
 		if (path) {
 			const currentCase = core.getCaseByUrl(path)
 			if (currentCase) {
@@ -107,10 +94,6 @@ class Showcase extends React.Component<{}, State>  {
 		})
 
 		this.mainViewRef && this.mainViewRef.scrollTop()
-	}
-
-	componentWillUnmount() {
-		document.removeEventListener('keydown', this.playgroundModeHandle)
 	}
 
 	render() {

@@ -52,9 +52,9 @@ const DatePicker: FC<Types.Props> = (props, ref: RefObject<HTMLDivElement>) => {
     useLayoutEffect(() => {
         if (props.value) {
             if (typeof props.value === 'string') {
-                setValue(moment(props.value, format))
+                onChange(moment(props.value, format))
             } else {
-                setValue(moment(props.value))
+                onChange(moment(props.value))
             }
         }
     }, [props.value])
@@ -133,7 +133,7 @@ const DatePicker: FC<Types.Props> = (props, ref: RefObject<HTMLDivElement>) => {
                         pattern: props.pattern,
                         readOnly: props.readOnly,
                         required: props.required,
-                        type: props.type,
+                        // type: props.type,
 
                         form: props.form,
                         formAction: props.formAction,

@@ -3,19 +3,23 @@ import * as CoreScope from '@flow-ui/core'
 import * as LabScope from '@flow-ui/lab'
 import Menu from 'components/Menu'
 
-let tree: unknown = {
-    $: 'div'
-}
-let id = 0
+let id = 100
 let link = {
+    $id: 1,
+    $: 'Surface',
+    children: [
+        {
+            $: 'div'
+        }
+    ],
     target: null,
     reference: null
 }
-const Tree = (props: { object: any }) => {
+const Tree = (props: { object: any, needReload: () => void }) => {
 
     if (Array.isArray(props.object)) {
         return props.object.map(object =>
-            Tree({ object })
+            Tree({ object, needReload: props.needReload })
         )
     }
 
@@ -34,14 +38,69 @@ const Tree = (props: { object: any }) => {
                 }}
                 onDragOver={(e) => {
                     link.target = props.object.$id
+
                     e.preventDefault()
                 }}
                 onDrop={(e) => {
-                    console.log(link)
+                    let ref: any = link
+
+                    const findAndDelete = (tree) => {
+                        for (const obj of tree) {
+                            if (obj.$id === link.reference) {
+                                ref.children = ref.children.filter(t => t.$id !== link.reference)
+                                return obj
+                            }
+                            if (Array.isArray(obj.children)) {
+                                const tmpRef = ref
+                                ref = obj
+                                const tmp = findAndDelete(obj.children)
+                                if (tmp) {
+                                    return tmp
+                                } else {
+                                    ref = tmpRef
+                                }
+                            }
+                        }
+                    }
+
+                    const target = findAndDelete(ref.children)
+
+                    if (target) {
+                        const insert = (tree) => {
+                            if (link.target === 1) {
+                                link.children.push({
+                                    ...target,
+                                    $id: ++id
+                                })
+                                return
+                            }
+                            for (const obj of tree) {
+                                if (obj.$id === link.target) {
+                                    if (!obj.children) {
+                                        obj.children = []
+                                    }
+                                    if (Array.isArray(obj.children)) {
+                                        obj.children.push({
+                                            ...target,
+                                            $id: ++id
+                                        })
+                                    }
+                                }
+                                if (Array.isArray(obj.children)) {
+                                    insert(obj.children)
+                                }
+                            }
+                        }
+                        insert(link.children)
+                    }
+                    props.needReload()
                 }}
                 defaultOpen 
                 label={props.object.$}
-                children={Tree({ object: props.object.children })} 
+                children={Tree({ 
+                    object: props.object.children,
+                    needReload: props.needReload
+                })} 
             />
         )
     }
@@ -111,7 +170,6 @@ const Build = (props: { object: any, addBefore?: (object) => void, addAfter?: (o
 class DesignEditor extends React.Component<{ code: string }> {
 
     componentWillMount() {
-        let id = 0x0
         const addID = (object) => {
             if (Array.isArray(object)) {
                 object.forEach(obj => addID(obj))
@@ -124,13 +182,13 @@ class DesignEditor extends React.Component<{ code: string }> {
                 }
             }
         }
-        tree = eval(this.props.code)
-        addID(tree)
+        link.children = eval(this.props.code)
+        addID(link.children)
     }
 
     componentWillReceiveProps(props) {
         id = 0
-        tree = eval(props.code)
+        link.children = eval(props.code)
     }
 
     render() {
@@ -139,10 +197,15 @@ class DesignEditor extends React.Component<{ code: string }> {
                 <Fragment>
                     <CoreScope.Flexbox>
                         <CoreScope.Block>
-                            <Tree object={tree} />
+                            <Tree 
+                                object={link} 
+                                needReload={() => {
+                                    this.forceUpdate()
+                                }} 
+                            />
                         </CoreScope.Block>
                         <CoreScope.Block>
-                            <Build object={tree} />
+                            <Build object={link.children} />
                         </CoreScope.Block>
                     </CoreScope.Flexbox>
                     {/* <CoreScope.Popover 

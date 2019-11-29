@@ -55,13 +55,6 @@ const datePickerStyles: Global.FunctionalComponentStyles<Types.Styles> = (props,
                 }
             },
             variant({
-                isActive: [{
-                    background: theme.color.primary.css(),
-                    color: theme.color.onPrimary.css(),
-                    ':hover': {
-                        background: theme.color.primary.css()
-                    }
-                }], 
                 isCurrent: [{
                     borderColor: theme.color.primary.css()
                 }],
@@ -74,7 +67,14 @@ const datePickerStyles: Global.FunctionalComponentStyles<Types.Styles> = (props,
                 isCurrentMonth: [{
                     color: theme.color.hardest.css(),
                     background: theme.color.surface.css()
-                }]
+                }],
+                isActive: [{
+                    background: theme.color.primary.css(),
+                    color: theme.color.onPrimary.css(),
+                    ':hover': {
+                        background: theme.color.primary.css()
+                    }
+                }], 
             })
         ],
 
