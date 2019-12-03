@@ -62,7 +62,7 @@ const UIDocumentation = (props: { ns: string, filter?: string[], openInterfaces?
     if (!Array.isArray(nameSpaceDocumentation)) {
         return null
     }
-
+    
     return (
         <Block pb="2rem">
             <H1 css={{ userSelect: 'none', fontSize: '2.5rem' }} mb={'1rem'} weight={800}>Properties</H1>

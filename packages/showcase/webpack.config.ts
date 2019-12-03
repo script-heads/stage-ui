@@ -1,3 +1,4 @@
+import { transformImports } from '@flow-ui/core'
 const path = require('path')
 const webpack = require('webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -49,7 +50,13 @@ module.exports = function (dir) {
                                         '@babel/plugin-transform-runtime',
                                         ['@babel/plugin-proposal-optional-chaining', {
                                             loose: true
-                                        }]
+                                        }],
+                                        // ["transform-imports", {
+                                        //     "@flow-ui/core": {
+                                        //         "transform": transformImports,
+                                        //         "preventFullImport": true
+                                        //     }
+                                        // }]
                                     ]
                                 }
                             }

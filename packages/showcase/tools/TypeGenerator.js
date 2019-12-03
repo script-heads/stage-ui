@@ -66,6 +66,6 @@ generateTypes('core', [
 generateTypes('lab', [
     ['@flow-ui/core/', '']
 ])
-copyTypes('node_modules/@types/react/global.d.ts', 'global')
+copyTypes('node_modules/@types/react/Shared.d.ts', 'global')
 copyTypes('node_modules/@types/react/index.d.ts', 'react', true)
 copyTypes('node_modules/csstype/index.d.ts', 'csstype', true)

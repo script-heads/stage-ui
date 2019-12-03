@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Text } from '../../../../../build/core'
+import { Text } from '@flow-ui/core'
 
 export default () => {
     return (

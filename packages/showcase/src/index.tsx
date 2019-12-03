@@ -56,6 +56,7 @@ class Showcase extends React.Component<{}, State>  {
 		this.setCase = this.setCase.bind(this)
 		this.setContext = this.setContext.bind(this)
 	}
+	
 	UNSAFE_componentWillMount() {
 
 		core.init({})
@@ -69,6 +70,7 @@ class Showcase extends React.Component<{}, State>  {
 				return
 			}
 		}
+
 		this.setCase(
 			core.getFirstCase().id
 		)

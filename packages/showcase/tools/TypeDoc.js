@@ -2,6 +2,7 @@ const fs = require('fs')
 
 let Types = {}
 const doc = JSON.parse(fs.readFileSync(__dirname + '/../generated/original.json', 'utf-8'));
+
 const find = (id, item = doc) => {
     if (item.id === id) return item;
     if (item.children) {
@@ -37,22 +38,22 @@ const merger = (item) => {
         }
     }
 }
+
 merger(doc)
 
 for (const namespace of doc.children) {
     if (namespace.kindString === "Module") {
-        for (const props of namespace.children) {
-            if (!props || props.kindString !== "Interface") {
-                // console.log(props)
+        for (const type of namespace.children) {
+            if (!type || type.kindString !== "Interface") {
                 continue;
             }
 
-            props.props = []
-            const pushProps = (item) => {
-                if (!item.children) {
+            type.props = []
+            const pushType = (item) => {
+                if (!item || !item.children) {
                     return;
                 }
-
+                
                 let name = item.name;
                 let comment = "";
                 let weight = 99999;
@@ -177,35 +178,26 @@ for (const namespace of doc.children) {
                     }
                     delete child.kindString
                 })
+
                 if (children.length > 0) {
-                    props.props.push({ name, comment, weight, children })
+                    type.props.push({ name, comment, weight, children })
+                }
+                
+                if (item.extendedTypes) {
+                    item.extendedTypes.map(extendedType => {
+                        const ref = extendedType.reference;
+                        if (ref) {
+                            pushType(ref);
+                        } else {
+                            console.warn("Unexpected extendedType " + namespace.name + " reference: " + extendedType.name)
+                        }
+                    })
                 }
             }
 
-            pushProps(props);
+            pushType(type);
 
-            if (props.extendedTypes) {
-                //TODO: recursive
-                props.extendedTypes.map(extendedType => {
-                    const ref = extendedType.reference;
-                    if (ref) {
-                        if (Array.isArray(ref.extendedTypes)) {
-                            ref.extendedTypes.map(item => {
-                                const ref = item.reference;
-                                if (ref) {
-                                    pushProps(ref);
-                                }
-                            })
-                        } else {
-                            pushProps(ref);
-                        }
-                    } else {
-                        console.warn("Unexpected extendedType reference")
-                    }
-                })
-
-            }
-            const p = props.props.sort((a, b) => (a.weight < b.weight))
+            const p = type.props.sort((a, b) => (a.weight < b.weight))
             if (!Types[namespace.name]) {
                 Types[namespace.name] = p
             } else {
@@ -213,9 +205,9 @@ for (const namespace of doc.children) {
             }
         }
     }
-
 }
 
 fs.writeFileSync(__dirname + "/../generated/types.json", JSON.stringify(Types, null, 4))
+fs.writeFileSync(__dirname + "/../generated/doc.json", JSON.stringify(doc, null, 4))
 
 console.log("Types created successfully!")

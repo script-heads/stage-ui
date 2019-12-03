@@ -12,12 +12,9 @@
     "build": "webpack"
   },
   "dependencies": {
-    "@babel/standalone": "^7.6.3",
-    "babel-polyfill": "^6.26.0",
+    "@flow-ui/core": "^0.1.12",    
     "monaco-editor": "^0.17.1",
-    "monaco-editor-webpack-plugin": "^1.7.0",
-    "raw-loader": "^3.1.0",
-    "typescript": "3.7.x"
+    "monaco-editor-webpack-plugin": "^1.7.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
@@ -47,6 +44,12 @@
     "webpack-bundle-analyzer": "^3.4.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10",
-    "webpack-filter-warnings-plugin": "^1.2.1"
+    "webpack-filter-warnings-plugin": "^1.2.1",
+    "raw-loader": "^3.1.0",
+    "typescript": "3.7.x",
+    "babel-plugin-transform-imports": "^2.0.0",
+    "babel-polyfill": "^6.26.0",
+    "esm": "^3.2.25",
+    "@babel/standalone": "^7.6.3"
   }
 }

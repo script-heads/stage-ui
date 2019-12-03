@@ -137,7 +137,7 @@ class Core {
                 }
             })
         })
-
+        
         /**
          * Initiating plugins
          */
@@ -175,7 +175,7 @@ class Core {
         if (!cases) {
             cases = this.cases
         }
-
+        
         const keys = Object.keys(cases)
         for (let i = 0; i < keys.length; i++) {
             const group: any = cases[keys[i]]

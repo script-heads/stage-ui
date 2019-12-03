@@ -1,8 +1,8 @@
 declare module 'data/Chart/types' {
 	import { ChartDataSets, ChartOptions } from 'chart.js';
-	import Global from 'types'; namespace ChartTypes {
+	import Shared from 'types'; namespace ChartTypes {
 	    type ChartType = 'line' | 'pie' | 'verticalBar' | 'horizontalBar' | 'doughnut' | 'radar' | 'polar' | 'scatter' | 'bubble';
-	    interface Props extends Global.Props {
+	    interface Props extends Shared.AllProps {
 	        /**
 	         * @default line
 	         */
@@ -22,6 +22,7 @@ declare module 'data/Chart' {
 
 }
 declare module 'layout/Split/Separator' {
+	/// <reference types="react" />
 	import { SplitElRef } from 'layout/Split';
 	interface SeparatorProps {
 	    areaSize: number;
@@ -34,8 +35,9 @@ declare module 'layout/Split/Separator' {
 
 }
 declare module 'layout/Split/types' {
-	import Global from 'types'; namespace SplitTypes {
-	    interface Props extends Global.Props {
+	/// <reference types="react" />
+	import Shared from 'types'; namespace SplitTypes {
+	    interface Props extends Shared.AllProps {
 	        direction?: 'row' | 'column';
 	        children: React.ReactElement[];
 	        /**
@@ -71,8 +73,9 @@ declare module 'layout/Split' {
 
 }
 declare module 'layout/ScrollView/types' {
-	import Global from 'types'; namespace ScrollViewTypes {
-	    interface Props extends Global.Props {
+	/// <reference types="react" />
+	import Shared from 'types'; namespace ScrollViewTypes {
+	    interface Props extends Shared.AllProps {
 	        children?: React.ReactNode;
 	        /**
 	         * Display mode
@@ -82,12 +85,12 @@ declare module 'layout/ScrollView/types' {
 	        /**
 	         * Custom ScrollBar color
 	         */
-	        color?: Global.ColorProp;
+	        color?: Shared.ColorProp;
 	        /**
 	         * Bars size
 	         * @default medium
 	         */
-	        size?: Global.Size;
+	        size?: Shared.Size;
 	        /**
 	         * Bars shape
 	         * @default round
@@ -139,7 +142,7 @@ declare module 'layout/ScrollView/types' {
 }
 declare module 'layout/ScrollView/styles' {
 	import Types from 'layout/ScrollView/types';
-	import Global from 'types'; const ScrollViewStyles: Global.FunctionalComponentStyles<Types.Styles>;
+	import Shared from 'types'; const ScrollViewStyles: Shared.FunctionalComponentStyles<Types.Styles>;
 	export default ScrollViewStyles;
 
 }
@@ -150,9 +153,10 @@ declare module 'layout/ScrollView' {
 
 }
 declare module 'control/ButtonGroup/types' {
-	import Global from 'types';
+	/// <reference types="react" />
+	import Shared from 'types';
 	import ButtonTypes from 'control/Button/types'; namespace ButtonGroupTypes {
-	    interface Props extends Global.Props, ButtonTypes.Props {
+	    interface Props extends Shared.AllProps, ButtonTypes.Props {
 	        children: (React.ReactElement<ButtonTypes.Props> | React.ReactElement<ButtonTypes.Props>[]);
 	    }
 	}

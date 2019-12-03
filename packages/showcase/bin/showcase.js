@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const makeConfig = require("../webpack.config.ts");
+const makeConfig = require('esm')(module)("../webpack.config.ts");
 const webpack = require("webpack");
 const webpackDevServer = require('webpack-dev-server');
 
