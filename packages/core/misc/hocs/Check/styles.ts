@@ -1,10 +1,10 @@
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 import useStyleProps from '../../hooks/useStyleProps'
 import callProp from '../../utils/callProp'
 import Types from './types'
 import ThemeTypes from '../../themes/types'
 
-const checkStyles = (props: Types.Props, theme: ThemeTypes.Index): Global.ComponentStyles<Types.Styles> => {
+const checkStyles = (props: Types.Props, theme: ThemeTypes.Index): Shared.ComponentStyles<Types.Styles> => {
     
     const labelColor = callProp(props.labelColor, theme.color)
     const styleProps = useStyleProps(props)

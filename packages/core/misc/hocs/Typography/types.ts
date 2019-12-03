@@ -1,4 +1,4 @@
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 import CSS from 'csstype'
 import ThemeTypes from '../../themes/types'
 
@@ -17,13 +17,13 @@ declare namespace TypographyTypes {
 		onEnter?: () => void
 	}
 
-	interface Props extends Global.Props {
+	interface Props extends Shared.AllProps {
 		ellipsis?: boolean
 		decoration?: CSS.Properties['textDecoration']
 
 		children?: React.ReactNode
-		color?: Global.ColorProp
-		background?: Global.ColorProp
+		color?: Shared.ColorProp
+		background?: Shared.ColorProp
 		align?: CSS.Properties['textAlign']
 		weight?: CSS.Properties['fontWeight']
 		size?: CSS.Properties['fontSize'] | number

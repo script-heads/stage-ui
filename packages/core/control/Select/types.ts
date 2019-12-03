@@ -1,5 +1,5 @@
 import FieldTypes from '../../misc/hocs/Field/types'
-import Global from '../../types'
+import Shared from '../../types'
 
 declare namespace SelectTypes {
     interface Option {
@@ -56,7 +56,7 @@ declare namespace SelectTypes {
         searchValue: string,
         onSearch: (searchValue: string) => void
         size?: number
-        styles: Global.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Styles>
         placeholder?: string
         defaultValue?: string
         disabled?: boolean

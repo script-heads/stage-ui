@@ -4,7 +4,7 @@
  */
 import { Moment } from 'moment'
 import { CSSProperties } from 'react'
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 import FieldTypes from '../../misc/hocs/Field/types'
 
 declare namespace DatePickerTypes {
@@ -68,7 +68,7 @@ declare namespace DatePickerTypes {
         minValue: Moment
         maxValue: Moment
         onChange: (date: Moment) => void
-        styles: Global.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Styles>
         type: GridType
     }
     
@@ -80,7 +80,7 @@ declare namespace DatePickerTypes {
         active: Moment
         onClick?: () => void
         style?: CSSProperties
-        styles: Global.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Styles>
     }
 
     interface DateGridTitleProps {
@@ -91,7 +91,7 @@ declare namespace DatePickerTypes {
         onNext: () => void
         onPrevious: () => void
         onGridTypeChange: (type: GridType) => void
-        styles: Global.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Styles>
     }
 
     interface InputProps {

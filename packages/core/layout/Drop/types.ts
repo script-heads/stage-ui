@@ -1,4 +1,4 @@
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 
 declare namespace DropTypes {
   interface TargetCoordinates {
@@ -8,7 +8,7 @@ declare namespace DropTypes {
     right: number
   }
 
-  interface Props extends Global.SelfProps, Global.HTMLAttributes, Global.EventHandlers {
+  interface Props extends Shared.SelfProps, Shared.AttributeProps, Shared.EventProps {
     target: any
     align?: 'top' | 'bottom' | 'left' | 'right'
     justify?: 'start' | 'center' | 'end' | 'start-outside' | 'end-outside'

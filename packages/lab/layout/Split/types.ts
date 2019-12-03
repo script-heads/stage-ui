@@ -1,7 +1,7 @@
-import Global from "@flow-ui/core/types";
+import Shared from "@flow-ui/core/types";
 
 declare namespace SplitTypes {
-    export interface Props extends Global.Props {
+    export interface Props extends Shared.AllProps {
         direction?: 'row' | 'column'
         children: React.ReactElement[]
         /**

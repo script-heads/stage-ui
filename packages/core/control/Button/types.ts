@@ -1,8 +1,8 @@
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 
 declare namespace ButtonTypes {
 
-    export interface Props extends Global.Props {
+    export interface Props extends Shared.AllProps {
         //Native button props
         autoFocus?: boolean
         disabled?: boolean
@@ -23,11 +23,11 @@ declare namespace ButtonTypes {
         value?: string | string[] | number
 
         //Amazing button props
-        size?: Global.Size
+        size?: Shared.Size
         decoration?: 'filled' | 'outline' | 'text' | 'plain'
         shape?: 'square' | 'rounded' | 'round'
         uppercase?: boolean
-        color?: Global.ColorProp
+        color?: Shared.ColorProp
         children?: React.ReactNode
     }
 

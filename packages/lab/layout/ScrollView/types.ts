@@ -1,7 +1,7 @@
-import Global from "@flow-ui/core/types";
+import Shared from "@flow-ui/core/types";
 
 declare namespace ScrollViewTypes {
-    interface Props extends Global.Props {
+    interface Props extends Shared.AllProps {
         children?: React.ReactNode
         /**
          * Display mode
@@ -11,12 +11,12 @@ declare namespace ScrollViewTypes {
         /**
          * Custom ScrollBar color
          */
-        color?: Global.ColorProp
+        color?: Shared.ColorProp
         /**
          * Bars size
          * @default medium
          */
-        size?: Global.Size
+        size?: Shared.Size
         /**
          * Bars shape
          * @default round

@@ -1,4 +1,4 @@
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 
 declare namespace MeterTypes {
 
@@ -6,17 +6,17 @@ declare namespace MeterTypes {
     type MeterDecoration = 'filled' | 'outline'
     type MeterShape = 'square' | 'round'
 
-    interface Props extends Global.Props {
+    interface Props extends Shared.AllProps {
         percent: number
 
-        size?: Global.Size
+        size?: Shared.Size
         /**
          * @default line
          */
         type?: MeterType
         decoration?: MeterDecoration
         shape?: MeterShape
-        color?: Global.ColorProp
+        color?: Shared.ColorProp
         /**
          * Enabled process animation
          * @default false
@@ -27,12 +27,12 @@ declare namespace MeterTypes {
     interface Styles {
         container: {
             shape: MeterShape
-            size: Global.Size
+            size: Shared.Size
             decoration: MeterDecoration
         },
         thumb: {
             shape: MeterShape
-            size: Global.Size
+            size: Shared.Size
         }
     }
 }

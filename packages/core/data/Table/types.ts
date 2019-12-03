@@ -1,4 +1,4 @@
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 
 declare namespace TableTypes {
     interface TableColumn {
@@ -21,7 +21,7 @@ declare namespace TableTypes {
         dismiss?: () => void
     }
 
-    interface Props extends Global.Props {
+    interface Props extends Shared.AllProps {
         data: Object[]
         columns: TableColumn[]
         form?: TableForm
@@ -52,7 +52,7 @@ declare namespace TableTypes {
         style?: any
         children?: any
         onRowClick?: (row) => void
-        styles: Global.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Styles>
     }
 
     interface ColumnProps {
@@ -60,14 +60,14 @@ declare namespace TableTypes {
         columns: TableColumn[]
         scope?: any
         children?: any
-        styles: Global.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Styles>
     }
 
     interface ActionsProps {
         actions: any[]
         data: any
         children?: any
-        styles: Global.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Styles>
     }
 
     interface FormProps {
@@ -99,7 +99,7 @@ declare namespace TableTypes {
         data: { [key: string]: any }[]
         onChange: (page: number, searchBar: boolean) => void
         children?: any
-        styles: Global.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Styles>
     }
 
     interface Styles {

@@ -1,8 +1,8 @@
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 
 declare namespace SpinnerTypes {
-    interface Props extends Global.Props {
-        color?: Global.ColorProp
+    interface Props extends Shared.AllProps {
+        color?: Shared.ColorProp
         children?: React.ReactElement
         shape?: 'square' | 'rounded' | 'round'
         duration?: number

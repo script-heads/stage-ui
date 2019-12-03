@@ -1,8 +1,8 @@
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 import CSS from 'csstype'
 
 declare namespace GridTypes {
-    interface Props extends Global.Props {
+    interface Props extends Shared.AllProps {
         inline?: boolean
         children?: React.ReactNode
 

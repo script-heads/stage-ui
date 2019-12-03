@@ -1,9 +1,9 @@
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 import callProp from '../utils/callProp'
 import useFlow  from './useFlow'
 import CSS from 'csstype'
 
-interface Props extends Global.SelfProps, Global.FlowProps {
+interface Props extends Shared.SelfProps, Shared.FlowProps {
     [key: string]: any
 }
 

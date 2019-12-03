@@ -1,14 +1,14 @@
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 import CSS from 'csstype'
 
 declare namespace BlockTypes {
-    interface Props extends Global.Props {
+    interface Props extends Shared.AllProps {
         tag?: 'div' | 'span' | 'header' | 'footer' | 'article' | 'section' | 'aside' | 'main'
         surface?: 'major' | 'medium' | 'minor'
         hoverSurface?: 'major' | 'medium' | 'minor'
         children?: React.ReactNode
-        background?: Global.ColorProp
-        color?: Global.ColorProp
+        background?: Shared.ColorProp
+        color?: Shared.ColorProp
         overflow?: CSS.Properties['overflow']
     }
 

@@ -1,13 +1,13 @@
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 
 declare namespace FieldTypes {
 
-    interface Props extends Global.Props{
+    interface Props extends Shared.AllProps{
         label?: React.ReactNode
         hint?: React.ReactNode
-        size?: Global.Size
+        size?: Shared.Size
         decoration?: 'none' | 'filled' | 'underline' | 'outline'
-        color?: Global.ColorProp,
+        color?: Shared.ColorProp,
         shape?: 'round' | 'rounded' | 'square'
         disabled?: boolean
         rightChild?: React.ReactNode
@@ -43,7 +43,7 @@ declare namespace FieldTypes {
         focus: boolean
         isLabelOutside: boolean 
         isLabelOverlay: boolean
-        styles: Global.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Styles>
         state?: Object
         
         labelName?: string

@@ -1,24 +1,24 @@
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 
 declare namespace CheckTypes {
 
     type CheckType = 'checkbox' | 'radio' | 'switch'
 
-    interface Props extends Global.Props {
+    interface Props extends Shared.AllProps {
         label?: string
-        labelColor?: Global.ColorProp
+        labelColor?: Shared.ColorProp
         checked?: boolean
         disabled?: boolean
         onChange?: (checked: boolean) => void
         defaultValue?: boolean
         uppercase?: boolean
-        size?: Global.Size
+        size?: Shared.Size
     }
 
     interface PrivateProps extends Props {
         children: (checked: boolean, focus: boolean) => React.ReactElement
         type?: CheckType
-        styles: Global.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Styles>
     }
 
     interface Styles {

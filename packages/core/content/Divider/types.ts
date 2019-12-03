@@ -1,11 +1,11 @@
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 
 declare namespace DividerTypes {
-    interface Props extends Global.Props {
+    interface Props extends Shared.AllProps {
         vertical?: boolean
         dash?: number
         gap?: number
-        color?: Global.ColorProp
+        color?: Shared.ColorProp
     }
 
     interface Styles {

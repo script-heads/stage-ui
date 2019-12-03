@@ -1,9 +1,9 @@
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 import Types from './types'
 import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
 import callProp from '@flow-ui/core/misc/utils/callProp'
 
-const dividerStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const dividerStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     const styleProps = useStyleProps(props)
     let { gap = 0, dash = 0, vertical } = props
     const color = callProp(props.color, theme.color) || theme.assets.border.color

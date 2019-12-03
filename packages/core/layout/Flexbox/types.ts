@@ -1,8 +1,8 @@
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 import CSS from 'csstype'
 
 declare namespace FlexboxTypes {
-    interface Props extends Global.Props {
+    interface Props extends Shared.AllProps {
         column?: boolean
         inline?: boolean
         alignItems?: CSS.Properties['alignItems']

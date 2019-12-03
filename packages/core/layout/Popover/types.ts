@@ -1,11 +1,11 @@
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 import CSS from 'csstype'
 
 declare namespace PopoverTypes {
-    interface Props extends Global.Props {
+    interface Props extends Shared.AllProps {
         align?: 'top' | 'bottom' | 'left' | 'right' | 'none'
-        background?: Global.ColorProp
-        color?: Global.ColorProp
+        background?: Shared.ColorProp
+        color?: Shared.ColorProp
         children?: React.ReactNode
         arrowWidth?: CSS.Properties['width']
         arrowHeight?: CSS.Properties['height']

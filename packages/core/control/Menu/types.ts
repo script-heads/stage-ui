@@ -1,16 +1,16 @@
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 
 declare namespace MenuTypes {
 
     type Value = string | number
 
-    interface Props extends Global.Props {
+    interface Props extends Shared.AllProps {
         defaultValue?: Value
         value?: Value
         onChange?: (value: Value) => void
         items: Item[]
 
-        size?: Global.Size
+        size?: Shared.Size
         decoration?:
         'filled' |
         'outline' |
@@ -26,11 +26,11 @@ declare namespace MenuTypes {
         align?: 'start' | 'center' | 'end'
         separator?: React.ReactElement
 
-        color?: Global.ColorProp
+        color?: Shared.ColorProp
         disabled?: boolean
     }
 
-    interface Item extends Partial<Global.EventHandlers>, Partial<Props> {
+    interface Item extends Partial<Shared.EventProps>, Partial<Props> {
         content: React.ReactNode
         value: Value
         disabled?: boolean
@@ -38,7 +38,7 @@ declare namespace MenuTypes {
 
     interface ItemProps extends Item {
         active: boolean
-        styles: Global.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Styles>
         onEnter: () => void
     }
 

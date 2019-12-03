@@ -1,7 +1,7 @@
 import useStyleProps from '../../hooks/useStyleProps'
 import callProp from '../../utils/callProp'
 import Types from './types'
-import Global from '../../../types'
+import Shared from '../../../types'
 import ThemeTypes from '../../themes/types'
 
 const fieldStyles = <T extends Types.Styles>(
@@ -11,8 +11,8 @@ const fieldStyles = <T extends Types.Styles>(
         manyLines?: boolean
         additionalPadding?: string
         labelOverlayPosition?: 'top' | 'center'
-        overrides?: Partial<Global.ComponentStyles<T>>
-    } = {}): Global.ComponentStyles<Types.Styles> => {
+        overrides?: Partial<Shared.ComponentStyles<T>>
+    } = {}): Shared.ComponentStyles<Types.Styles> => {
     
     const styleProps = useStyleProps(props)
     const color = callProp(props.color, theme.color)

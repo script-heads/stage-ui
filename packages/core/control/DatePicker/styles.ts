@@ -2,11 +2,11 @@
  * styles.tsx
  * author: I.Trikoz
  */
-import Global from '../../types'
+import Shared from '../../types'
 import Types from './types'
 import fieldStyles from '@flow-ui/core/misc/hocs/Field/styles'
 
-const datePickerStyles: Global.FunctionalComponentStyles<Types.Styles> = (props, theme) => {
+const datePickerStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props, theme) => {
 
     return {
         ...fieldStyles(props, theme),

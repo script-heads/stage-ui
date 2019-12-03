@@ -1,8 +1,8 @@
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 
 declare namespace TreeTypes {
 
-    interface Props extends Global.Props {
+    interface Props extends Shared.AllProps {
         label?: React.ReactNode | string | ((isOpen: boolean) => React.ReactNode)
         children?: React.ReactNode
         decoration?: 'flat' | 'drop' | 'inline'

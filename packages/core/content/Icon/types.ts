@@ -1,4 +1,4 @@
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 import CSS from 'csstype'
 
 declare namespace IconTypes {
@@ -8,12 +8,12 @@ declare namespace IconTypes {
 	 */
 	type Shapes = 'circle' | 'oval' | 'square'
 
-	interface Props extends Global.Props {
-		type: Global.IconProp
+	interface Props extends Shared.AllProps {
+		type: Shared.IconProp
 		shape?: Shapes
 		size?: CSS.Properties['fontSize']
-		color?: Global.ColorProp
-		background?: Global.ColorProp
+		color?: Shared.ColorProp
+		background?: Shared.ColorProp
 	}
 
 	interface Styles {

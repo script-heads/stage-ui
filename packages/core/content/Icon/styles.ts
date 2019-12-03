@@ -1,9 +1,9 @@
 import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
 import callProp from '@flow-ui/core/misc/utils/callProp'
-import Global from '../../types'
+import Shared from '../../types'
 import Types from './types'
 
-const iconStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const iconStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     const styleProps = useStyleProps(props)
     const background = callProp(props.background, theme.color)
     const color = callProp(props.color, theme.color)

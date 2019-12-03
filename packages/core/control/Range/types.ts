@@ -1,7 +1,7 @@
-import Global from '../../types'
+import Shared from '../../types'
 
 declare namespace RangeTypes {
-    interface Props extends Global.Props {
+    interface Props extends Shared.AllProps {
         min?: number
         max?: number
         defaultValue?: number

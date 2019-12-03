@@ -1,16 +1,16 @@
-import Global from '../../types'
+import Shared from '../../types'
 import {css} from '@emotion/core'
 import useFlow from './useFlow'
 import ThemeTypes from '../themes/types'
 
 const createStyles = <S>(
         props, 
-        componentStyles: Global.ComponentStyles<S> | Global.FunctionalComponentStyles<S>, 
+        componentStyles: Shared.ComponentStyles<S> | Shared.FunctionalComponentStyles<S>, 
         componentName?: keyof ThemeTypes.Overrides
-    ): Global.FlowStyles<S> => {
+    ): Shared.FlowStyles<S> => {
     
     const { theme } = useFlow()
-    const FlowStyles: Global.FlowStyles<S> = {} as Global.FlowStyles<S>
+    const FlowStyles: Shared.FlowStyles<S> = {} as Shared.FlowStyles<S>
 
     if (typeof componentStyles === 'function') {
         componentStyles = componentStyles(props,theme)
@@ -23,7 +23,7 @@ const createStyles = <S>(
             FlowStyles[styleName] = (state) => {
 
                 const variant = (varaints) => {
-                    let variantStyles: Global.EmotionStyles = []
+                    let variantStyles: Shared.EmotionStyles = []
                     
                     for (const variantName of Object.keys(varaints)) {
                         const variantValue = state[variantName]

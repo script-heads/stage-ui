@@ -1,5 +1,5 @@
 import ThemeType from '../../misc/themes/types'
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 import ThemeTypes from '../../misc/themes/types'
 
 declare namespace ViewportTypes {
@@ -13,7 +13,7 @@ declare namespace ViewportTypes {
         wrapper?: boolean
         className?: string
         id?: string
-        theme?: Global.FunctionalProp<Themes, ThemeType.Index>
+        theme?: Shared.FunctionalProp<Themes, ThemeType.Index>
         children?: React.ReactNode
     }
 

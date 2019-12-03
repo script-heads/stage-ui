@@ -1,8 +1,8 @@
 import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
 import Types from './types'
-import Global from '../../types'
+import Shared from '../../types'
 
-const BadgeStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const BadgeStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     const styleProps = useStyleProps(props)
 
     return {

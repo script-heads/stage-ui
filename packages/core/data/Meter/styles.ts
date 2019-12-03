@@ -2,9 +2,9 @@ import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
 import callProp from '@flow-ui/core/misc/utils/callProp'
 import chroma from 'chroma-js'
 import Types from './types'
-import Global from '../../types'
+import Shared from '../../types'
 
-const meterStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const meterStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     const { loading } = props
 
     const styleProps = useStyleProps(props)

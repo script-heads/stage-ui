@@ -1,7 +1,7 @@
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 
 declare namespace BadgeTypes {
-    interface Props extends Global.Props {
+    interface Props extends Shared.AllProps {
         content: React.ReactNode
         align?: 'top' | 'bottom' | 'left' | 'right' | 'top-right' | 'bottom-right' | 'top-left' | 'bottom-left'
         children?: React.ReactNode

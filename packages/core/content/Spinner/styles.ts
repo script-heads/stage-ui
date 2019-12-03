@@ -2,9 +2,9 @@ import { keyframes } from '@emotion/core'
 import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
 import callProp from '@flow-ui/core/misc/utils/callProp'
 import Types from './types'
-import Global from '../../types'
+import Shared from '../../types'
 
-const spinnerStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const spinnerStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     const styleProps = useStyleProps(props)
     const color = callProp(props.color, theme.color) || theme.color.hardest.css()
     const duration = props.duration || 1

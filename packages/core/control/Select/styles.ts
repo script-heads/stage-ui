@@ -2,9 +2,9 @@ import callProp from '@flow-ui/core/misc/utils/callProp'
 import variant from '@flow-ui/core/misc/utils/variant'
 import Types from './types'
 import fieldStyles from '../../misc/hocs/Field/styles'
-import Global from '../../types'
+import Shared from '../../types'
 
-const selectStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const selectStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     const { 
         size = 'medium', 
         shape = 'rounded', 

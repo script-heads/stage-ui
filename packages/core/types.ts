@@ -13,10 +13,12 @@ declare module 'csstype' {
     }
 }
 
-declare namespace Global {
+declare namespace Shared {
 
     type EventProp<T> = (event: T) => void
     type FunctionalProp<T, R> = ((lib: T) => R) | R
+    type ColorProp = FunctionalProp<ThemeTypes.Colors<chroma.Color>, CSS.Properties['color']>
+    type IconProp = FunctionalProp<IconsetTypes.Index, React.ReactElement>
 
     type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
 
@@ -48,20 +50,41 @@ declare namespace Global {
 
     type OverridesStyle<S> = Partial<{[O in keyof S]: ComponentStyle<S[O]>}>
 
-    interface Props<S={}> extends
-        HTMLAttributes,
-        EventHandlers,
+    interface AllProps<S={}> extends
+        AttributeProps,
+        EventProps,
         SelfProps,
         FlowProps { 
         overrides?: ComponentStyles<S>
     }
 
     /**
+     * Styles inside the component. Paddings, layout, border and color props
+     * @name SelfProps
+     * @weight 400
+     */
+    interface SelfProps extends 
+        ColorProps,
+        BorderProps,
+        PaddingProps,
+        LayoutProps {}
+
+    /**
+     * Style outsize the component. Margins, flex, grid
+     * @name FlowProps
+     * @weight 300
+     */
+    interface FlowProps extends 
+        MarginProps,
+        FlexProps,
+        GridProps {}
+
+    /**
      * Default attributes
-     * @name HTMLAttributes
+     * @name AttributeProps
      * @weight 200
      */
-    interface HTMLAttributes extends React.AriaAttributes {
+    interface AttributeProps extends React.AriaAttributes {
         className?: string
         id?: string
         style?: React.CSSProperties
@@ -73,10 +96,10 @@ declare namespace Global {
 
     /**
      * Default events
-     * @name Events
+     * @name EventProps
      * @weight 500
      */
-    interface EventHandlers {
+    interface EventProps {
         /**
          * An element receives a click event when a pointing 
          * device button (such as a mouse's primary mouse button) 
@@ -163,8 +186,8 @@ declare namespace Global {
     }
 
     /**
-     * Color styles
-     * @name StyleColors
+     * Color props
+     * @name ColorProps
      * @weight 400
      */
     interface ColorProps {
@@ -173,8 +196,8 @@ declare namespace Global {
     }
 
     /**
-     * Border styles
-     * @name StyleBorder
+     * Border props
+     * @name BorderProps
      * @weight 400
      */
     interface BorderProps {
@@ -185,8 +208,8 @@ declare namespace Global {
     }
 
     /**
-     * Layout styles
-     * @name StyleLayout
+     * Layout props
+     * @name LayoutProps
      * @weight 400
      */
     interface LayoutProps {
@@ -216,8 +239,8 @@ declare namespace Global {
     }
 
     /**
-     * Padding styles
-     * @name StylePadding
+     * Padding props
+     * @name PaddingProps
      * @weight 400
      */
     interface PaddingProps {
@@ -252,8 +275,8 @@ declare namespace Global {
     }
 
     /**
-     * Grid children styles
-     * @name StyleGrid
+     * Grid children props
+     * @name MarginProps
      * @weight 400
      */
     interface MarginProps {
@@ -293,8 +316,8 @@ declare namespace Global {
     }
 
     /**
-     * Flexbox children styles
-     * @name StyleFlex
+     * Flexbox children props
+     * @name FlexProps
      * @weight 400
      */
     interface FlexProps {
@@ -337,8 +360,8 @@ declare namespace Global {
     }
 
     /**
-     * Grid children styles
-     * @name StyleGrid
+     * Grid children props
+     * @name GridProps
      * @weight 400
      */
     interface GridProps {
@@ -404,30 +427,6 @@ declare namespace Global {
          */
         placeSelf?: CSS.Properties['placeSelf']
     }
-
-    /**
-     * Styles inside the component. Paddings, layout, border and color props
-     * @name StyleSelf
-     * @weight 400
-     */
-    interface SelfProps extends 
-        ColorProps,
-        BorderProps,
-        PaddingProps,
-        LayoutProps {}
-
-    /**
-     * Style outsize the component. Margins, flex, grid
-     * @name StyleFlow
-     * @weight 300
-     */
-    interface FlowProps extends 
-        MarginProps,
-        FlexProps,
-        GridProps {}
-
-    type ColorProp = FunctionalProp<ThemeTypes.Colors<chroma.Color>, CSS.Properties['color']>
-    type IconProp = FunctionalProp<IconsetTypes.Index, React.ReactElement>
 }
 
-export default Global
+export default Shared

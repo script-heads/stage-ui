@@ -1,8 +1,8 @@
 import Types from './types'
-import Global from '../../types'
+import Shared from '../../types'
 import checkStyles from '@flow-ui/core/misc/hocs/Check/styles'
 
-const checkboxStyles: Global.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const checkboxStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
     
     return {
         ...checkStyles(props, theme),

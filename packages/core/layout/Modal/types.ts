@@ -1,4 +1,4 @@
-import Global from '@flow-ui/core/types'
+import Shared from '@flow-ui/core/types'
 
 declare namespace ModalTypes {
 
@@ -17,7 +17,7 @@ declare namespace ModalTypes {
         window: any
     }
 
-    interface Props extends Global.SelfProps {
+    interface Props extends Shared.SelfProps {
         title?: string
         subtitle?: string
         fullSize?: boolean
@@ -47,7 +47,7 @@ declare namespace ModalTypes {
         center: boolean
         fullSize?: boolean
         children?: any
-        styles: Global.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Styles>
     }
 
     interface ModalWindowProps {
@@ -58,9 +58,9 @@ declare namespace ModalTypes {
         fullSize?: boolean
         hideHeader?: boolean
         children?: any
-        containerAttr?: React.HTMLAttributes<HTMLElement> & Global.SelfProps
+        containerAttr?: React.HTMLAttributes<HTMLElement> & Shared.SelfProps
         onClosePressed: () => void
-        styles: Global.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Styles>
     }
 
     interface ModalHeaderProps {
@@ -68,7 +68,7 @@ declare namespace ModalTypes {
         subtitle?: string
         hideHeader?: boolean
         onClosePressed: () => void
-        styles: Global.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Styles>
     }
 
     interface Styles {
