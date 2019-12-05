@@ -3,7 +3,7 @@ import Icon from '@flow-ui/core/content/Icon'
 import { Header, Text } from '@flow-ui/core'
 import Block from '@flow-ui/core/layout/Block'
 import Flexbox from '@flow-ui/core/layout/Flexbox'
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useMemo } from 'react'
 import {TypeInterfaceChild, TypeInterface} from '.'
 export const typedoc = require('../../../generated/types.json')
 
@@ -39,7 +39,10 @@ const sortTypes = (data: TypeInterface, cutTypes?: string[]) => {
 
 const Interface = (props: {data: TypeInterface, cutTypes?: string[]}) => {
 
-    const {main, cut} = sortTypes(props.data, props.cutTypes)
+    const {main, cut} = useMemo(
+        () => sortTypes(props.data, props.cutTypes), 
+        [props.data, props.cutTypes]
+    )
     const [openedCuts, setOpenedCuts] = useState<string[]>([])
     
     const renderInterface = (data: TypeInterfaceChild[]) => 
