@@ -201,6 +201,7 @@ class Showcase extends React.Component<{}, State>  {
 							{caseObject && caseObject.ns && (
 								<UIDocumentation
 									ns={caseObject.ns}
+									config={core.config}
 								/>
 							)}
 							{CustomPageContent && <CustomPageContent />}

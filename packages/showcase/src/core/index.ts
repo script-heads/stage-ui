@@ -7,6 +7,8 @@ export interface IConfig {
     title?: string
     giturl?: string
     plugins?: ((props: IPluginProps) => void)[]
+    types?: string[],
+    cutTypes?: string[]
 }
 
 export interface IPluginProps {

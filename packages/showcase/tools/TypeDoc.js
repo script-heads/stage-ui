@@ -48,16 +48,12 @@ for (const namespace of doc.children) {
                 continue;
             }
 
-            type.props = []
-            const pushType = (item) => {
-                if (!item || !item.children) {
-                    return;
-                }
-                
+            const convertType = (item) => {                
                 let name = item.name;
                 let comment = "";
                 let weight = 99999;
                 const children = item.children.filter(item => !item.inheritedFrom)
+                let extendedTypes = []
 
                 if (item.comment) {
                     if (item.comment.tags) {
@@ -77,7 +73,6 @@ for (const namespace of doc.children) {
                 }
 
                 children.map(child => {
-                    // child.values = ["unknown"]
                     if (child.comment) {
                         if (child.comment.tags) {
                             let deprecated = child.comment.tags.find(tag => tag.tag === "deprecated")
@@ -179,35 +174,39 @@ for (const namespace of doc.children) {
                     delete child.kindString
                 })
 
-                if (children.length > 0) {
-                    type.props.push({ name, comment, weight, children })
-                }
-                
                 if (item.extendedTypes) {
                     item.extendedTypes.map(extendedType => {
+                        namespace.name === 'DividerTypes' && console.log(extendedType.name);
                         const ref = extendedType.reference;
                         if (ref) {
-                            pushType(ref);
+                            extendedTypes.push(convertType(ref))
                         } else {
                             console.warn("Unexpected extendedType " + namespace.name + " reference: " + extendedType.name)
                         }
                     })
+                    namespace.name === 'DividerTypes' && console.log('next');
+                }
+
+                return { 
+                    name, 
+                    comment, 
+                    weight, 
+                    children, 
+                    extendedTypes
                 }
             }
 
-            pushType(type);
+            let convertedType = [convertType(type)];
 
-            const p = type.props.sort((a, b) => (a.weight < b.weight))
             if (!Types[namespace.name]) {
-                Types[namespace.name] = p
+                Types[namespace.name] = convertedType
             } else {
-                Types[namespace.name] = p.concat(Types[namespace.name])
+                Types[namespace.name] = convertedType.concat(Types[namespace.name])
             }
         }
     }
 }
 
 fs.writeFileSync(__dirname + "/../generated/types.json", JSON.stringify(Types, null, 4))
-fs.writeFileSync(__dirname + "/../generated/doc.json", JSON.stringify(doc, null, 4))
 
 console.log("Types created successfully!")

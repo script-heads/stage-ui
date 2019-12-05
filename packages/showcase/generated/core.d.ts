@@ -574,7 +574,6 @@ declare module 'types' {
 	     * Default attributes
 	     * @name AttributeProps
 	     * @weight 200
-	     * @noscanextends
 	     */
 	    interface AttributeProps extends React.AriaAttributes {
 	        className?: string;
