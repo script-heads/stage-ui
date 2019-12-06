@@ -12,9 +12,9 @@
     "test": "yarn workspace @flow-ui/docs test",
     "approve": "yarn workspace @flow-ui/docs approve",
     "gen": "yarn gen:createTypes && yarn gen:convertTypes && yarn gen:generateTypes",
-    "gen:createTypes": "cd ./packages/showcase && typedoc -mode file --json ./generated/original.json ../docs/cases",
-    "gen:convertTypes": "cd ./packages/showcase && node ./tools/TypeDoc.js",
-    "gen:generateTypes": "cd ./packages/showcase && node ./tools/TypeGenerator.js",
+    "gen:createTypes": "cd ./packages/documaker && typedoc -mode file --json ./definitions/original.json ../docs/cases",
+    "gen:convertTypes": "cd ./packages/documaker && node ./bin/convertTypes.js",
+    "gen:generateTypes": "cd ./packages/documaker && node ./bin/generateTypes.js",
     "pub:core": "git pull && cd ./packages/core && npm version patch && yarn build && cd ../../build/core && npm publish && cd .. && rm -rf ./core && cd ../.. && yarn gitpush",
     "pub:lab": "git pull && cd ./packages/lab && npm version patch && yarn build && cd ../../build/lab && npm publish && cd .. && rm -rf ./lab && cd ../.. && yarn gitpush",
     "gitpush": "git commit . -m 'Update version' && git push"

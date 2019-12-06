@@ -1,0 +1,55 @@
+{
+  "name": "@flow-ui/documaker",
+  "author": "ABR Tech",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "index.js",
+  "bin": {
+    "documaker": "./bin/documaker.js"
+  },
+  "scripts": {
+    "start": "./bin/documaker.js",
+    "build": "webpack"
+  },
+  "dependencies": {
+    "@flow-ui/core": "^0.1.12",    
+    "monaco-editor": "^0.17.1",
+    "monaco-editor-webpack-plugin": "^1.7.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/plugin-proposal-optional-chaining": "^7.6.0",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "@babel/preset-typescript": "^7.6.0",
+    "@emotion/babel-preset-css-prop": "^10.0.22",
+    "@types/node": "^10.12.15",
+    "@types/react": "^16.8.17",
+    "@types/react-dom": "^16.8.4",
+    "@types/webpack-env": "^1.13.6",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-emotion": "^10.0.13",
+    "commander": "^2.19.0",
+    "css-loader": "^2.1.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "source-map-loader": "^0.2.4",
+    "style-loader": "^0.23.1",
+    "tslint": "^5.20.0",
+    "webpack": "^4.27.1",
+    "webpack-bundle-analyzer": "^3.4.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-filter-warnings-plugin": "^1.2.1",
+    "raw-loader": "^3.1.0",
+    "typescript": "3.7.x",
+    "babel-plugin-transform-imports": "^2.0.0",
+    "babel-polyfill": "^6.26.0",
+    "esm": "^3.2.25",
+    "@babel/standalone": "^7.6.3"
+  }
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import DesignEditor from '@flow-ui/showcase/src/components/DesignEditor'
+import DesignEditor from '@flow-ui/documaker/components/DesignEditor'
 export const title = 'DesignRenderer - Meta'
 export const subtitle = ''
 export const ns = ''

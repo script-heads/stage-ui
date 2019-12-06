@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "start": "showcase",
+    "start": "documaker",
     "test": "backstop test",
     "approve": "backstop approve"
   },
@@ -22,7 +22,7 @@
     "@emotion/core": "^10.0.14",
     "@flow-ui/core": "~0.1.0",
     "@flow-ui/lab": "~0.1.0",
-    "@flow-ui/showcase": "~0.1.0",
+    "@flow-ui/documaker": "~0.1.0",
     "@types/react-syntax-highlighter": "^11.0.1",
     "backstopjs": "^4.3.2",
     "dts-bundle-generator": "^3.2.0",

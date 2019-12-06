@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "jsx": "preserve",
+        "target": "esnext",
+        "module": "commonjs",
+        "outDir": "../../build/documaker",
+        "baseUrl": ".",
+        "allowJs": false,
+        "declaration": true,
+        "skipLibCheck": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "alwaysStrict": true,
+        "noImplicitThis": false,
+        "noImplicitAny": false,
+        "noImplicitReturns": false,
+        "strictNullChecks": false,
+        "strictBindCallApply": false,
+        "strictFunctionTypes": false,
+        "strictPropertyInitialization": false,
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
