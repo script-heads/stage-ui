@@ -97,9 +97,9 @@ const Type = (props: { type: TypeInterfaceChild, last: boolean} ) => {
                             ? type.values.map(value =>
                                 <Text
                                     h="fit-content"
-                                    size={3}
+                                    size={2}
                                     key={value}
-                                    p=".25rem 0.5rem"
+                                    p=".125rem 0.25rem"
                                     mx=".125rem"
                                     mb=".25rem"
                                     backgroundColor={c => c.lightest.css()}
