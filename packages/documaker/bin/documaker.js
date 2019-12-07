@@ -8,6 +8,7 @@ const config = makeConfig(process.cwd());
 const options = {
     port: 9050,
     host: '0.0.0.0',
+    clientLogLevel: 'error',
     hot: true,
     historyApiFallback: true,
     contentBase: [__dirname + "/../public",  __dirname + "/../../"],

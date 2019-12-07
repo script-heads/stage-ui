@@ -10,42 +10,37 @@ const toggleArrayItem = (a, v): any[] => {
 }
 
 const sortTypes = (data: TypeInterface, cutTypes?: string[]) => {
-    const main: TypeInterface = data
+    const main: TypeInterface = Object.assign({},data)
     const cut: TypeInterface[] = []
 
-    if (cutTypes) {
-        const getExtendedTypes = (type: TypeInterface, cutted?: boolean) => {
-            type.extendedTypes.map(innerType => {
-                if (cutTypes.includes(innerType.name) || cutted) {
-                    innerType.children.length > 0
-                    && cut.push(innerType),
-                    getExtendedTypes(innerType, true)
-                } else {
-                    innerType.children.length > 0
-                    && (main.children = main.children.concat(innerType.children))
-                    getExtendedTypes(innerType)
-                }
-            })
-        }
-        getExtendedTypes(data)
+    const getExtendedTypes = (type: TypeInterface, cutted?: boolean) => {
+        type.extendedTypes.map(innerType => {
+            if (cutTypes && cutTypes.includes(innerType.name) || cutted) {
+                innerType.children.length > 0 && cut.push(innerType)
+                getExtendedTypes(innerType, true)
+            } else {
+                main.children = main.children.concat(innerType.children)
+                getExtendedTypes(innerType)
+            }
+        })
     }
+    
+    getExtendedTypes(data)
 
     return {main,cut}
 }
 
 const Interface = (props: {data: TypeInterface, cutTypes?: string[]}) => {
 
-    const {main, cut} = useMemo(
-        () => sortTypes(props.data, props.cutTypes), 
-        [props.data, props.cutTypes]
-    )
+    if (!props.data) return null
+    const {main, cut} = sortTypes(props.data, props.cutTypes)
     const [openedCuts, setOpenedCuts] = useState<string[]>([])
     
     const renderInterface = (data: TypeInterfaceChild[]) => 
         data.map((type:TypeInterfaceChild, index: number ) =>
-            <Type type={type} last={index === data.length} key={type.id}/>
+            <Type type={type} last={index === data.length} key={'type'+index}/>
     )
-
+    
     return (
         <Block flex={1} mr="2rem">
             <Header>{main.name}</Header>
@@ -79,8 +74,9 @@ const Interface = (props: {data: TypeInterface, cutTypes?: string[]}) => {
 
 const Type = (props: { type: TypeInterfaceChild, last: boolean} ) => {
     const {type, last} = props
+    
     return (
-        <Block key={type.id}>
+        <Block>
             <Block mt="1rem" mb=".75rem" ml=".5rem">
                 <Flexbox>
                     <Text
@@ -123,7 +119,7 @@ const Type = (props: { type: TypeInterfaceChild, last: boolean} ) => {
                     display="block"
                     size={2} 
                     color={c => c.hard.css()} 
-                    children={type.comment}
+                    children={JSON.stringify(type.comment)}
                 />
             </Block>
             {!last && <Divider />}

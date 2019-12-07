@@ -82,7 +82,7 @@ module.exports = function (dir) {
             }),
             new MonacoWebpackPlugin(),
             new FilterWarningsPlugin({ 
-                exclude: /source-map-loader/ 
+                exclude: /source-map-loader|Critical dependency: the request of a dependency is an expression/ 
             })
             // new BundleAnalyzerPlugin()
         ]

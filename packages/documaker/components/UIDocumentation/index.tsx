@@ -2,8 +2,7 @@ import Flexbox from '@flow-ui/core/layout/Flexbox'
 import { IConfig } from '../../core'
 import React from 'react'
 import Interface from './Interface'
-
-export const typedoc = require('../../definitions/types.json')
+import typedoc from '../../definitions/types.json'
 
 export interface TypeInterface {
     name: string
@@ -25,22 +24,22 @@ export interface TypeInterfaceChild {
 
 const UIDocumentation = (props: { ns: string, config: IConfig }) => {
 
-    let nameSpaceDocumentation = typedoc[props.ns] || []
+    let nameSpace = typedoc[props.ns] || []
 
-    if (!Array.isArray(nameSpaceDocumentation) || nameSpaceDocumentation.length === 0) {
+    if (!Array.isArray(nameSpace) || nameSpace.length === 0) {
         console.warn(`Render docs: There is no props for ${props.ns}`)
         return null
     }
     
     if (props.config.types) {
-        nameSpaceDocumentation = props.config.types.map(typeName => {
-            return nameSpaceDocumentation.find(type => type.name === typeName)
+        nameSpace = props.config.types.map(typeName => {
+            return nameSpace.find(type => type.name === typeName)
         })
     }
 
     return (
         <Flexbox wrap="wrap">
-            {nameSpaceDocumentation.map((data, index) => (
+            {nameSpace.map((data, index) => (
                 <Interface data={data} cutTypes={props.config.cutTypes} key={'inteface'+index}/>
             ))}
         </Flexbox>
