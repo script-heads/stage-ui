@@ -1,7 +1,6 @@
 import {Header, Text, Divider, Icon, Flexbox, Block, Paragraph} from '@flow-ui/core'
-import React, { Fragment, useState, useMemo } from 'react'
-import {TypeInterfaceChild, TypeInterface} from '../UIDocumentation'
-export const typedoc = require('../../definitions/types.json')
+import React, { Fragment, useState } from 'react'
+import {TypeInterfaceChild, TypeInterface} from '.'
 
 const toggleArrayItem = (a, v): any[] => {
     let i = a.indexOf(v)
@@ -36,7 +35,7 @@ const Interface = (props: {data: TypeInterface, cutTypes?: string[]}) => {
     const {main, cut} = sortTypes(props.data, props.cutTypes)
     const [openedCuts, setOpenedCuts] = useState<string[]>([])
     
-    const renderInterface = (data: TypeInterfaceChild[]) => 
+    const renderTypes = (data: TypeInterfaceChild[]) => 
         data.map((type:TypeInterfaceChild, index: number ) =>
             <Type type={type} last={index === data.length} key={'type'+index}/>
     )
@@ -44,7 +43,7 @@ const Interface = (props: {data: TypeInterface, cutTypes?: string[]}) => {
     return (
         <Block flex={1} mr="2rem">
             <Header>{main.name}</Header>
-            {renderInterface(main.children)}
+            {renderTypes(main.children)}
             {cut.map((cutInterface, index) => (
                 <Fragment key={cutInterface.name+index}>
                     <Flexbox
@@ -65,7 +64,7 @@ const Interface = (props: {data: TypeInterface, cutTypes?: string[]}) => {
                         />
                     </Flexbox>
                     <Divider/>
-                    {openedCuts.includes(cutInterface.name) && renderInterface(cutInterface.children)}
+                    {openedCuts.includes(cutInterface.name) && renderTypes(cutInterface.children)}
                 </Fragment>
             ))}
         </Block>

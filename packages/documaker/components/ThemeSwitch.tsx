@@ -1,46 +1,73 @@
-import Icon from '@flow-ui/core/content/Icon';
-import Select from '@flow-ui/core/control/Select';
-import Flexbox from '@flow-ui/core/layout/Flexbox';
-import React from 'react';
-import { themes } from '../';
+import Icon from '@flow-ui/core/content/Icon'
+import React, { Fragment, useRef, useState } from 'react'
+import { themes } from '../'
+import { Block, Flexbox, Drop, Popover, Grid } from '@flow-ui/core'
 
 const ThemeSwitch = () => {
-    const currentTheme = localStorage.getItem('theme');
-    
-    return (
-        <Flexbox p="1rem" alignItems="center">
-            <Select
-                flex={1}
-                size="small"
-                defaultValues={currentTheme && themes[currentTheme] ? [{
-                    text: themes[currentTheme].name!,
-                    value: currentTheme!
-                }] : [{
-                    text: themes[Object.keys(themes)[0]].name,
-                    value: Object.keys(themes)[0]
-                }]}
-                options={
-                    Object.keys(themes).map(
-                        theme => ({
-                            text: themes[theme].name,
-                            value: theme
-                        })
-                    )
-                }
-                onChange={(value) => {
-                    window.setTheme(value[0].value)
-                }}
-                leftChild={(
-                    <Icon
-                        size={"1.25rem"}
-                        type={t => t.outline.colorPalette}
-                        color={c => c.light.css()}
-                    />
-                )}
-            />
+    const currentTheme = localStorage.getItem('theme')
+    const iconRef = useRef(null)
+    const [visible, setVisible] = useState(false)
 
-        </Flexbox>
+    return (
+        <Fragment>
+            <Icon
+                size="1.5rem" 
+                type={c=>c.filled.colorPalette} 
+                ref={iconRef} 
+                onClick={()=>setVisible(!visible)}
+                color={c=>c.primary.css()}
+            />
+            <Drop 
+                target={iconRef} 
+                visibility={visible ? 'visible' : 'hidden'} 
+                distance={16}>
+                <Popover>
+                    <Grid 
+                        templateRows="auto auto" 
+                        templateColumns="auto auto" 
+                        gap=".5rem" 
+                        p=".25rem">
+                        {Object.keys(themes).map(theme => (
+                            <Flexbox 
+                                h="2rem" 
+                                w="2rem" 
+                                css={{
+                                    cursor: 'pointer',
+                                    borderRadius: '16rem',
+                                    position: 'relative' 
+                                }}
+                                borderWidth="2px"
+                                borderStyle="solid"
+                                borderColor={c=>currentTheme===theme
+                                    ? c.primary.css()
+                                    : c.lightest.css()
+                                }
+                                onClick={() => {
+                                    window.setTheme(theme)
+                                }}>
+                                <Block 
+                                    flex={1}
+                                    css={{
+                                        borderTopLeftRadius: '16rem', 
+                                        borderBottomLeftRadius: '16rem',
+                                        background: themes[theme].color.primary.css()
+                                    }} 
+                                />
+                                <Block
+                                    flex={1} 
+                                    css={{
+                                        borderTopRightRadius: '16rem', 
+                                        borderBottomRightRadius: '16rem',
+                                        background: themes[theme].color.background.css()
+                                    }} 
+                                />
+                            </Flexbox>
+                        ))}
+                    </Grid>
+                </Popover>
+            </Drop>
+        </Fragment>
     )
 }
 
-export default ThemeSwitch;
+export default ThemeSwitch

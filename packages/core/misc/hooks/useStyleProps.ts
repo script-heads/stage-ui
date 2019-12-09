@@ -81,7 +81,7 @@ const useStyleProps = (props: Props): InjectedStyleProps => {
     const border = {
         borderWidth: props.borderWidth,
         borderStyle: props.borderStyle,
-        borderColor: props.borderColor,
+        borderColor: callProp(props.borderColor, theme.color),
         borderRadius: props.borderRadius
     }
 

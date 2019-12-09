@@ -22,12 +22,12 @@ export interface TypeInterfaceChild {
     values: string[]
 }
 
-const UIDocumentation = (props: { ns: string, config: IConfig }) => {
+const API = (props: { name: string, config: IConfig }) => {
 
-    let nameSpace = typedoc[props.ns] || []
+    let nameSpace = typedoc[props.name] || []
 
     if (!Array.isArray(nameSpace) || nameSpace.length === 0) {
-        console.warn(`Render docs: There is no props for ${props.ns}`)
+        console.warn(`Render docs: There is no props for ${props.name}`)
         return null
     }
     
@@ -46,4 +46,4 @@ const UIDocumentation = (props: { ns: string, config: IConfig }) => {
     )
 }
 
-export default UIDocumentation
+export default API

@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import * as CoreScope from '@flow-ui/core'
 import * as LabScope from '@flow-ui/lab'
-import Menu from 'components/Menu'
 
 let id = 100
 let link = {

@@ -203,7 +203,7 @@ declare namespace Shared {
     interface BorderProps {
         borderWidth?: CSS.Properties['borderWidth']
         borderStyle?: CSS.Properties['borderStyle']
-        borderColor?: CSS.Properties['borderColor']
+        borderColor?: ColorProp
         borderRadius?: CSS.Properties['borderRadius']
     }
 
