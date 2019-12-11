@@ -5,6 +5,9 @@
         "module": "commonjs",
         "outDir": "../../build/documaker",
         "baseUrl": ".",
+        "typeRoots": [
+            "node_modules/@types"
+        ],
         "allowJs": false,
         "declaration": true,
         "skipLibCheck": true,

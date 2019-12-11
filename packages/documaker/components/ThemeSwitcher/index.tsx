@@ -1,9 +1,9 @@
 import Icon from '@flow-ui/core/content/Icon'
 import React, { Fragment, useRef, useState } from 'react'
-import { themes } from '../'
+import { themes } from '../../'
 import { Block, Flexbox, Drop, Popover, Grid } from '@flow-ui/core'
 
-const ThemeSwitch = () => {
+const ThemeSwitcher = () => {
     const currentTheme = localStorage.getItem('theme')
     const iconRef = useRef(null)
     const [visible, setVisible] = useState(false)
@@ -12,7 +12,7 @@ const ThemeSwitch = () => {
         <Fragment>
             <Icon
                 size="1.5rem" 
-                type={c=>c.filled.colorPalette} 
+                type={c=>c.outline.colorPalette} 
                 ref={iconRef} 
                 onClick={()=>setVisible(!visible)}
                 color={c=>c.primary.css()}
@@ -20,15 +20,17 @@ const ThemeSwitch = () => {
             <Drop 
                 target={iconRef} 
                 visibility={visible ? 'visible' : 'hidden'} 
-                distance={16}>
+                distance={16}
+                onClickOutside={(e,ot)=>ot&&setVisible(!visible)}>
                 <Popover>
                     <Grid 
                         templateRows="auto auto" 
                         templateColumns="auto auto" 
                         gap=".5rem" 
                         p=".25rem">
-                        {Object.keys(themes).map(theme => (
-                            <Flexbox 
+                        {Object.keys(themes).map((theme, index) => (
+                            <Flexbox
+                                key={'theme'+index} 
                                 h="2rem" 
                                 w="2rem" 
                                 css={{
@@ -70,4 +72,4 @@ const ThemeSwitch = () => {
     )
 }
 
-export default ThemeSwitch
+export default ThemeSwitcher

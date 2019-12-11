@@ -4,9 +4,9 @@ import ReactDOM from 'react-dom'
 import React, { useEffect, useReducer, Fragment } from 'react'
 import CodeEditor from './components/CodeEditor'
 import Sidebar from './components/Sidebar'
-import ThemeSwitch from './components/ThemeSwitch'
+import ThemeSwitcher from './components/ThemeSwitcher'
 import API from './components/API'
-import core, { Case } from './core'
+import core, { Page } from './core'
 import { Button, Viewport, Text, Anchor, Icon, Block, Flexbox, Header, Display } from '@flow-ui/core'
 import * as themesCore from '@flow-ui/core/misc/themes'
 import * as themesLab from '@flow-ui/lab/misc/themes'
@@ -22,8 +22,8 @@ declare global {
 
 interface State {
 	test: boolean
-	caseId: string | null
-	page: Case | null
+	pageId: string | null
+	page: Page | null
 	caseIndex: number
 	showGrid: boolean
 	fullscreen: boolean
@@ -39,7 +39,7 @@ const Documaker = () => {
 		(state, action) => ({...state, ...action}), 
 		{
 			test: false,
-			caseId: null,
+			pageId: null,
 			page: null,
 			caseIndex: 0,
 			showGrid: localStorage.getItem('case_grid') ? true : false,
@@ -50,19 +50,18 @@ const Documaker = () => {
 	)
 
 	useEffect(() => {
-		core.init({})
+		core.init()
 
 		let path = window.location.hash.slice(1)
 	
 		if (path) {
-			const currentCase = core.getCaseByUrl(path)
-			if (currentCase) {
-				setCase(currentCase.id)
+			const currentPage = core.getPageByUrl(path)
+			if (currentPage) {
+				setPage(currentPage)
 				return
 			}
 		}
-
-		setCase(core.getFirstCase().id)
+		setPage(core.getFirstPage())
 	}, [])
 	
 	const {page, context} = state
@@ -73,15 +72,12 @@ const Documaker = () => {
 		dispatch({ context: nextContext })
 	}
 
-	function setCase(caseId: string) {
-
-		const page: Case = core.getCaseById(caseId)
-
+	function setPage(page: Page) {
 		window.scrollTo(0, 0)
 		window.location.hash = `/${page.url}`
 
 		dispatch({
-			caseId,
+			pageId: page.id,
 			page,
 			caseIndex: 0,
 		})
@@ -111,7 +107,7 @@ const Documaker = () => {
 									flex={1}
 									children={(core.config && core.config.title) || 'documaker'}
 								/>
-								<ThemeSwitch />
+								<ThemeSwitcher />
 								{(core.config && core.config.giturl) && (
 									<Anchor size={2} target="_blank" href={core.config.giturl} ml="1rem">
 										<Icon size="1.5rem" type={t => t.outline.github}/>
@@ -120,10 +116,10 @@ const Documaker = () => {
 							</Flexbox>
 							<Flexbox>
 								<Sidebar
-									current={state.caseId}
-									cases={core.cases}
+									current={state.pageId}
+									pages={core.pages}
 									config={core.config}
-									onChange={setCase}
+									onChange={(pageId) => setPage(core.getPageById(pageId))}
 								/>
 								<Block px="6rem" flex={1} css={{zIndex:1 }}>
 									{page && page.title && (

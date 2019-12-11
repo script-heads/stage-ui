@@ -18,9 +18,8 @@
       "node"
     ],
     "jsx": "react",
-    "outDir": "./dist/"
   },
   "include": [
-    "./cases/**/*"
+    "pages/**/*"
   ]
 }
