@@ -98,7 +98,7 @@ class Core {
                 if (dir.match('.case')) {
                     let pagesLink: Object = this.generatedPagesObject
                     const page = this.context(path)
-                    const name = dirs[i-1] || page.title || 'Untitled'
+                    const name = page.title || dirs[i-1] || 'Untitled'
                     const section = dirs[i-2]
 
                     if (section) {

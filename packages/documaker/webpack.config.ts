@@ -9,18 +9,19 @@ module.exports = function (dir) {
 
     const config = {
         mode: 'development',
+
         entry: {
             app: [__dirname + '/index.tsx']
         },
+
         output: {
             filename: 'documaker.js',
             path: __dirname + '/public',
         },
-        // Enable sourcemaps for debugging webpack's output.
+
         devtool: 'source-map',
 
         resolve: {
-            // Add '.ts' and '.tsx' as resolvable extensions.
             extensions: ['.ts', '.tsx', '.js', '.json']
         },
 
@@ -48,6 +49,7 @@ module.exports = function (dir) {
                                         '@babel/proposal-class-properties',
                                         '@babel/proposal-object-rest-spread',
                                         '@babel/plugin-transform-runtime',
+                                        ['@babel/plugin-transform-typescript', { allowNamespaces: true }],
                                         ['@babel/plugin-proposal-optional-chaining', {
                                             loose: true
                                         }],
@@ -65,18 +67,11 @@ module.exports = function (dir) {
                 },
                 {
                     test: /\.css$/,
-                    use: [
-                        'style-loader',
-                        'css-loader'
-                    ]
+                    use: ['style-loader', 'css-loader']
                 },
-
-                // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-                { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
             ]
         },
         plugins: [
-            new webpack.HotModuleReplacementPlugin(),
             new webpack.DefinePlugin({
                 '$_WORKDIR_$': JSON.stringify(dir)
             }),
@@ -84,7 +79,6 @@ module.exports = function (dir) {
             new FilterWarningsPlugin({ 
                 exclude: /source-map-loader|Critical dependency: the request of a dependency is an expression/ 
             })
-            // new BundleAnalyzerPlugin()
         ]
     }
     return config
