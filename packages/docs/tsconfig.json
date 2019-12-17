@@ -20,6 +20,6 @@
     "jsx": "react",
   },
   "include": [
-    "pages/**/*"
+    "pages/**/*", "components/Syntax.tsx"
   ]
 }
