@@ -52,7 +52,7 @@ declare namespace TableTypes {
         style?: any
         children?: any
         onRowClick?: (row) => void
-        styles: Shared.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Overrides>
     }
 
     interface ColumnProps {
@@ -60,14 +60,14 @@ declare namespace TableTypes {
         columns: TableColumn[]
         scope?: any
         children?: any
-        styles: Shared.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Overrides>
     }
 
     interface ActionsProps {
         actions: any[]
         data: any
         children?: any
-        styles: Shared.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Overrides>
     }
 
     interface FormProps {
@@ -99,10 +99,10 @@ declare namespace TableTypes {
         data: { [key: string]: any }[]
         onChange: (page: number, searchBar: boolean) => void
         children?: any
-        styles: Shared.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Overrides>
     }
 
-    interface Styles {
+    interface Overrides {
         container: void
         content: void
         headRow: void

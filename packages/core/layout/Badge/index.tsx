@@ -6,7 +6,7 @@ import Types from './types'
 
 const Badge = (props: Types.Props, ref) => {
     const { attributes } = useContainer(props)
-    const styles = useStyles<Types.Styles>(props, bageStyles, 'Badge')
+    const styles = useStyles<Types.Overrides>(props, bageStyles, 'Badge')
 
     return (
         <div css={styles.container}>

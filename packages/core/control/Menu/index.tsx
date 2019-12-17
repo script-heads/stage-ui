@@ -17,7 +17,7 @@ const Menu: FC<Types.Props> = (props, ref) => {
         separator, 
     } = props
     const { attributes } = useContainer(props)
-    const styles = useStyles<Types.Styles>(props,menuStyles,'Menu')
+    const styles = useStyles<Types.Overrides>(props,menuStyles,'Menu')
     const [value, setValue] = useState<Types.Value>(defaultValue)
     const currentValue = (typeof props.value === 'undefined' || props.value === '')
         ? value

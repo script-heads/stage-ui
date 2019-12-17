@@ -4,7 +4,7 @@ import Types from './types'
 import Shared from '../../../types'
 import ThemeTypes from '../../themes/types'
 
-const fieldStyles = <T extends Types.Styles>(
+const fieldStyles = <T extends Types.Overrides>(
     props: Types.Props, 
     theme: ThemeTypes.Index, 
     params: {
@@ -12,7 +12,7 @@ const fieldStyles = <T extends Types.Styles>(
         additionalPadding?: string
         labelOverlayPosition?: 'top' | 'center'
         overrides?: Partial<Shared.ComponentStyles<T>>
-    } = {}): Shared.ComponentStyles<Types.Styles> => {
+    } = {}): Shared.ComponentStyles<Types.Overrides> => {
     
     const styleProps = useStyleProps(props)
     const color = callProp(props.color, theme.color)

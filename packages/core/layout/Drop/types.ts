@@ -24,7 +24,7 @@ declare namespace DropTypes {
     updatePosition: () => void
   }
 
-  interface Styles {
+  interface Overrides {
     container: void
   }
 }

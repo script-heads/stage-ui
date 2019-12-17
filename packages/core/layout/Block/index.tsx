@@ -8,7 +8,7 @@ import blockStyles from './styles'
 const Block = (props: Types.Props, ref) => {
     const { surface, hoverSurface } = props
     const { attributes } = useContainer(props)
-    const styles = useStyles<Types.Styles>(props, blockStyles, 'Block')
+    const styles = useStyles<Types.Overrides>(props, blockStyles, 'Block')
 
     return jsx(
         props.tag || 'div',

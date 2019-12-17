@@ -2,7 +2,7 @@ import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
 import Types from './types'
 import Shared from '../../types'
 
-const popoverStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const popoverStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
     const styleProps = useStyleProps(props)
 
     const background = styleProps.color.background || theme.color.surface.css()

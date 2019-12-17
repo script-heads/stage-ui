@@ -28,7 +28,7 @@ declare namespace FieldTypes {
         isLabelOverlay: boolean
     }
 
-    interface Styles<T extends {[T in keyof Styles]?: Object} = {}> {
+    interface Overrides<T extends {[T in keyof Overrides]?: Object} = {}> {
         container: State & T['container']
         field: State & T['field']
         content: State & T['content']
@@ -43,7 +43,7 @@ declare namespace FieldTypes {
         focus: boolean
         isLabelOutside: boolean 
         isLabelOverlay: boolean
-        styles: Shared.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Overrides>
         state?: Object
         
         labelName?: string

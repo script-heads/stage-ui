@@ -56,13 +56,13 @@ declare namespace SelectTypes {
         searchValue: string,
         onSearch: (searchValue: string) => void
         size?: number
-        styles: Shared.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Overrides>
         placeholder?: string
         defaultValue?: string
         disabled?: boolean
     }
     
-    interface Styles extends FieldTypes.Styles<{field: {open: boolean}}> {
+    interface Overrides extends FieldTypes.Overrides<{field: {open: boolean}}> {
         placeholder: void
         input: void
         options: void

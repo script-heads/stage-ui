@@ -4,7 +4,7 @@ import callProp from '@flow-ui/core/misc/utils/callProp'
 import Types from './types'
 import Shared from '../../types'
 
-const spinnerStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const spinnerStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
     const styleProps = useStyleProps(props)
     const color = callProp(props.color, theme.color) || theme.color.hardest.css()
     const duration = props.duration || 1

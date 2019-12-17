@@ -18,7 +18,7 @@ const TextField: RefForwardingComponent<any, Types.Props> = (props, ref) => {
     const {attributes, focus} = useContainer(props, true, props.decoration != 'none')
     const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xlarge')
     const isLabelOverlay = (label && isEmpty && !focus && !isLabelOutside) ? true : false
-    const styles = useStyles<Types.Styles>(props, textFieldStyles, 'TextField')
+    const styles = useStyles<Types.Overrides>(props, textFieldStyles, 'TextField')
     const selfRef = useRef<HTMLDivElement>(null)
     const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
     const mask = masked && useMask(inputRef, masked)

@@ -38,11 +38,11 @@ declare namespace MenuTypes {
 
     interface ItemProps extends Item {
         active: boolean
-        styles: Shared.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Overrides>
         onEnter: () => void
     }
 
-    interface Styles {
+    interface Overrides {
         container: {
             size: Props['size']
             flip: Props['flip']

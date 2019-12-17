@@ -2,7 +2,7 @@ import Types from './types'
 import Shared from '../../types'
 import checkStyles from '@flow-ui/core/misc/hocs/Check/styles'
 
-const switchStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const switchStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
 
     return {
         ...checkStyles(props, theme),

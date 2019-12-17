@@ -7,7 +7,7 @@ import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 const Popover = (props: Types.Props, ref) => {
     const {align = 'top'} = props
     const { attributes } = useContainer(props)
-    const styles = useStyles<Types.Styles>(props, popoverStyles, 'Popover')
+    const styles = useStyles<Types.Overrides>(props, popoverStyles, 'Popover')
 
     return (
         <div

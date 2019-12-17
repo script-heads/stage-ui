@@ -5,7 +5,7 @@ import chroma from 'chroma-js'
 import Types from './types'
 import Shared from '../../types'
 
-const menuStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const menuStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
     
     const {
         decoration = 'underline',

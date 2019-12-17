@@ -6,7 +6,7 @@ import Shared from '../../types'
 import Types from './types'
 import fieldStyles from '@flow-ui/core/misc/hocs/Field/styles'
 
-const datePickerStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props, theme) => {
+const datePickerStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props, theme) => {
 
     return {
         ...fieldStyles(props, theme),

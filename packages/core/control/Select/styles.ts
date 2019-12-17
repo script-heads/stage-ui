@@ -4,7 +4,7 @@ import Types from './types'
 import fieldStyles from '../../misc/hocs/Field/styles'
 import Shared from '../../types'
 
-const selectStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const selectStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
     const { 
         size = 'medium', 
         shape = 'rounded', 
@@ -31,7 +31,7 @@ const selectStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props: Typ
     })
 
     return {
-        ...fieldStyles<Types.Styles>(props, theme, {
+        ...fieldStyles<Types.Overrides>(props, theme, {
             manyLines: multiselect,
             additionalPadding: multiselect ? multiselectAdditionalPadding : '',
             labelOverlayPosition: 'center',

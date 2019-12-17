@@ -8,7 +8,7 @@ import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 
 const Checkbox: FC<Types.Props> = (props, ref: RefObject<HTMLDivElement>) => {
     const {size='medium', animated, disabled} = props
-    const styles = useStyles<Types.Styles>(props, checkboxStyles, 'Checkbox')
+    const styles = useStyles<Types.Overrides>(props, checkboxStyles, 'Checkbox')
 
     return (
         <Check

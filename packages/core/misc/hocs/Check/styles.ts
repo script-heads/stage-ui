@@ -4,7 +4,7 @@ import callProp from '../../utils/callProp'
 import Types from './types'
 import ThemeTypes from '../../themes/types'
 
-const checkStyles = (props: Types.Props, theme: ThemeTypes.Index): Shared.ComponentStyles<Types.Styles> => {
+const checkStyles = (props: Types.Props, theme: ThemeTypes.Index): Shared.ComponentStyles<Types.Overrides> => {
     
     const labelColor = callProp(props.labelColor, theme.color)
     const styleProps = useStyleProps(props)

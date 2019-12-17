@@ -6,7 +6,7 @@ import notificationStyles from './styles'
 
 const Notifications = (props: Types.Props, ref: any) => {
 
-    const styles = useStyles<Types.Styles>(props, notificationStyles, 'Notification')
+    const styles = useStyles<Types.Overrides>(props, notificationStyles, 'Notification')
 
     return (
         <Block ref={ref} surface="minor" onClick={() => props.onClick && props.onClick()} css={styles.container}>

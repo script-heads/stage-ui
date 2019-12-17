@@ -23,7 +23,7 @@ declare namespace GridTypes {
         justifyContent?: CSS.Properties['justifyContent']
         justifyItems?: CSS.Properties['justifyItems']
     }
-    interface Styles {
+    interface Overrides {
         container: void
     }
 }

@@ -8,7 +8,7 @@ import Types from './types'
 const Grid = (props: Types.Props, ref: RefObject<HTMLDivElement>) => {
     const { attributes } = useContainer(props)
     const styleProps = useStyleProps(props)
-    const styles = useStyles<Types.Styles>(props, {
+    const styles = useStyles<Types.Overrides>(props, {
         container: [
             {
                 position: 'relative',

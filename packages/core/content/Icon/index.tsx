@@ -9,7 +9,7 @@ import Types from './types'
 const Icon = (props: Types.Props, ref) => {
 
     const { attributes } = useContainer(props)
-    const styles = useStyles<Types.Styles>(props, iconStyles, 'Icon')
+    const styles = useStyles<Types.Overrides>(props, iconStyles, 'Icon')
     const type = callProp(props.type, { filled, outline })
 
     if (!type) return null

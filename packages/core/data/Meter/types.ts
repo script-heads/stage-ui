@@ -24,7 +24,7 @@ declare namespace MeterTypes {
         loading?: boolean
     }
 
-    interface Styles {
+    interface Overrides {
         container: {
             shape: MeterShape
             size: Shared.Size

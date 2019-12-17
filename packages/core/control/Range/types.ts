@@ -11,7 +11,7 @@ declare namespace RangeTypes {
         className?: string
     }
 
-    interface Styles {
+    interface Overrides {
         container: void
         rail: void
         track: void

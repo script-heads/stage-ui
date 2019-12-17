@@ -56,7 +56,7 @@ declare namespace TextFieldTypes {
         wrap?: string
     }
 
-    interface Styles extends FieldTypes.Styles {
+    interface Overrides extends FieldTypes.Overrides {
         input: {
             isLabelOverlay: boolean
         }

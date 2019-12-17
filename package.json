@@ -12,7 +12,7 @@
     "test": "yarn workspace @flow-ui/docs test",
     "approve": "yarn workspace @flow-ui/docs approve",
     "gen": "yarn gen:createTypes && yarn gen:convertTypes && yarn gen:generateTypes",
-    "gen:createTypes": "cd ./packages/documaker && typedoc -mode file --json ./definitions/original.json ../docs/cases",
+    "gen:createTypes": "cd ./packages/documaker && typedoc -mode file --json ./definitions/original.json ../docs/pages",
     "gen:convertTypes": "cd ./packages/documaker && node ./bin/convertTypes.js",
     "gen:generateTypes": "cd ./packages/documaker && node ./bin/generateTypes.js",
     "pub:core": "git pull && cd ./packages/core && npm version patch && yarn build && cd ../../build/core && npm publish && cd .. && rm -rf ./core && cd ../.. && yarn gitpush",

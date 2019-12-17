@@ -2,7 +2,7 @@ import Types from './types'
 import Shared from '../../types'
 import checkStyles from '@flow-ui/core/misc/hocs/Check/styles'
 
-const radioStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const radioStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
     
     return {
         ...checkStyles(props, theme),

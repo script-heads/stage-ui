@@ -10,7 +10,7 @@ declare namespace SpinnerTypes {
         size?: string
     }
 
-    interface Styles {
+    interface Overrides {
         container: void
         children: void
     }

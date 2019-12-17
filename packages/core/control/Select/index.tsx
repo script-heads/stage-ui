@@ -50,7 +50,7 @@ const Select = (props: Types.Props, ref) => {
     const {attributes, focus} = useContainer(props, true, props.decoration != 'none')
     const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xlarge')
     const isLabelOverlay = (label && state.empty && !focus && !isLabelOutside) ? true : false
-    const styles = useStyles<Types.Styles>(props, selectStyles, 'Select')
+    const styles = useStyles<Types.Overrides>(props, selectStyles, 'Select')
 
     useImperativeHandle(ref, () => {
         return targetRef.current

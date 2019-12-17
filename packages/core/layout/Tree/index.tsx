@@ -13,7 +13,7 @@ const Tree = (props: Types.Props, ref) => {
     let { children, decoration = 'drop' as Types.Props['decoration'], lvl = 0 } = props
     const { attributes } = useContainer(props)
     const [isOpen, setOpen] = useState((props.alwaysOpen || props.defaultOpen) ? true : false)
-    const styles = useStyles<Types.Styles>(props, treeStyles, 'Tree')
+    const styles = useStyles<Types.Overrides>(props, treeStyles, 'Tree')
 
     let treeChilds: React.ReactNode[] = []
     let otherChilds: React.ReactElement[] = []

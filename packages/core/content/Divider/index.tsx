@@ -7,7 +7,7 @@ import dividerStyles from './styles'
 
 const Divider = (props: Types.Props, ref) => {
     const { attributes } = useContainer(props)
-    const styles = useStyles<Types.Styles>(props, dividerStyles, 'Divider')
+    const styles = useStyles<Types.Overrides>(props, dividerStyles, 'Divider')
 
     return jsx(
         'div',

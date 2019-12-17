@@ -18,10 +18,10 @@ declare namespace CheckTypes {
     interface PrivateProps extends Props {
         children: (checked: boolean, focus: boolean) => React.ReactElement
         type?: CheckType
-        styles: Shared.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Overrides>
     }
 
-    interface Styles {
+    interface Overrides {
         container: {
             disabled: Props['disabled']
             animated: Props['animated']

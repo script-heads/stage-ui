@@ -553,26 +553,31 @@ declare module 'types' {
 	    type OverridesStyle<S> = Partial<{
 	        [O in keyof S]: ComponentStyle<S[O]>;
 	    }>;
+	    /**
+	     * Styles inside the component. Paddings, layout, border and color props
+	     * @name All
+	     * @weight 400
+	     */
 	    interface AllProps<S = {}> extends AttributeProps, EventProps, SelfProps, FlowProps {
 	        overrides?: ComponentStyles<S>;
 	    }
 	    /**
 	     * Styles inside the component. Paddings, layout, border and color props
-	     * @name SelfProps
+	     * @name Self
 	     * @weight 400
 	     */
 	    interface SelfProps extends ColorProps, BorderProps, PaddingProps, LayoutProps {
 	    }
 	    /**
 	     * Style outsize the component. Margins, flex, grid
-	     * @name FlowProps
+	     * @name Flow
 	     * @weight 300
 	     */
 	    interface FlowProps extends MarginProps, FlexProps, GridProps {
 	    }
 	    /**
 	     * Default attributes
-	     * @name AttributeProps
+	     * @name Attribute
 	     * @weight 200
 	     */
 	    interface AttributeProps extends React.AriaAttributes {
@@ -586,7 +591,7 @@ declare module 'types' {
 	    }
 	    /**
 	     * Default events
-	     * @name EventProps
+	     * @name Event
 	     * @weight 500
 	     */
 	    interface EventProps {
@@ -675,7 +680,7 @@ declare module 'types' {
 	    }
 	    /**
 	     * Color props
-	     * @name ColorProps
+	     * @name Color
 	     * @weight 400
 	     */
 	    interface ColorProps {
@@ -684,18 +689,18 @@ declare module 'types' {
 	    }
 	    /**
 	     * Border props
-	     * @name BorderProps
+	     * @name Border
 	     * @weight 400
 	     */
 	    interface BorderProps {
 	        borderWidth?: CSS.Properties['borderWidth'];
 	        borderStyle?: CSS.Properties['borderStyle'];
-	        borderColor?: CSS.Properties['borderColor'];
+	        borderColor?: ColorProp;
 	        borderRadius?: CSS.Properties['borderRadius'];
 	    }
 	    /**
 	     * Layout props
-	     * @name LayoutProps
+	     * @name Layout
 	     * @weight 400
 	     */
 	    interface LayoutProps {
@@ -725,7 +730,7 @@ declare module 'types' {
 	    }
 	    /**
 	     * Padding props
-	     * @name PaddingProps
+	     * @name Padding
 	     * @weight 400
 	     */
 	    interface PaddingProps {
@@ -760,7 +765,7 @@ declare module 'types' {
 	    }
 	    /**
 	     * Grid children props
-	     * @name MarginProps
+	     * @name Margin
 	     * @weight 400
 	     */
 	    interface MarginProps {
@@ -795,7 +800,7 @@ declare module 'types' {
 	    }
 	    /**
 	     * Flexbox children props
-	     * @name FlexProps
+	     * @name Flex
 	     * @weight 400
 	     */
 	    interface FlexProps {
@@ -838,7 +843,7 @@ declare module 'types' {
 	    }
 	    /**
 	     * Grid children props
-	     * @name GridProps
+	     * @name Grid
 	     * @weight 400
 	     */
 	    interface GridProps {
@@ -916,7 +921,7 @@ declare module 'content/Divider/types' {
 	        gap?: number;
 	        color?: Shared.ColorProp;
 	    }
-	    interface Styles {
+	    interface Overrides {
 	        container: void;
 	    }
 	}
@@ -938,7 +943,7 @@ declare module 'content/Icon/types' {
 	        color?: Shared.ColorProp;
 	        background?: Shared.ColorProp;
 	    }
-	    interface Styles {
+	    interface Overrides {
 	        container: void;
 	        icon: void;
 	    }
@@ -957,7 +962,7 @@ declare module 'content/Spinner/types' {
 	        count?: number;
 	        size?: string;
 	    }
-	    interface Styles {
+	    interface Overrides {
 	        container: void;
 	        children: void;
 	    }
@@ -993,7 +998,7 @@ declare module 'control/Button/types' {
 	        color?: Shared.ColorProp;
 	        children?: React.ReactNode;
 	    }
-	    interface Styles {
+	    interface Overrides {
 	        container: {
 	            decoration: Props['decoration'];
 	            shape: Props['shape'];
@@ -1021,9 +1026,9 @@ declare module 'misc/hocs/Check/types' {
 	    interface PrivateProps extends Props {
 	        children: (checked: boolean, focus: boolean) => React.ReactElement;
 	        type?: CheckType;
-	        styles: Shared.FlowStyles<Styles>;
+	        styles: Shared.FlowStyles<Overrides>;
 	    }
-	    interface Styles {
+	    interface Overrides {
 	        container: {
 	            disabled: Props['disabled'];
 	            animated: Props['animated'];
@@ -1043,7 +1048,7 @@ declare module 'control/Checkbox/types' {
 	import CheckTypes from 'misc/hocs/Check/types'; namespace CheckboxTypes {
 	    interface Props extends CheckTypes.Props {
 	    }
-	    interface Styles extends CheckTypes.Styles {
+	    interface Overrides extends CheckTypes.Overrides {
 	        check: {
 	            size: Props['size'];
 	            animated: Props['animated'];
@@ -1087,8 +1092,8 @@ declare module 'misc/hocs/Field/types' {
 	        isLabelOutside: boolean;
 	        isLabelOverlay: boolean;
 	    }
-	    interface Styles<T extends {
-	        [T in keyof Styles]?: Object;
+	    interface Overrides<T extends {
+	        [T in keyof Overrides]?: Object;
 	    } = {}> {
 	        container: State & T['container'];
 	        field: State & T['field'];
@@ -1103,7 +1108,7 @@ declare module 'misc/hocs/Field/types' {
 	        focus: boolean;
 	        isLabelOutside: boolean;
 	        isLabelOverlay: boolean;
-	        styles: Shared.FlowStyles<Styles>;
+	        styles: Shared.FlowStyles<Overrides>;
 	        state?: Object;
 	        labelName?: string;
 	        attributes?: Object;
@@ -1179,7 +1184,7 @@ declare module 'control/DatePicker/types' {
 	        minValue: Moment;
 	        maxValue: Moment;
 	        onChange: (date: Moment) => void;
-	        styles: Shared.FlowStyles<Styles>;
+	        styles: Shared.FlowStyles<Overrides>;
 	        type: GridType;
 	    }
 	    interface DateGridCalendarProps {
@@ -1190,7 +1195,7 @@ declare module 'control/DatePicker/types' {
 	        active: Moment;
 	        onClick?: () => void;
 	        style?: CSSProperties;
-	        styles: Shared.FlowStyles<Styles>;
+	        styles: Shared.FlowStyles<Overrides>;
 	    }
 	    interface DateGridTitleProps {
 	        value: Moment;
@@ -1200,7 +1205,7 @@ declare module 'control/DatePicker/types' {
 	        onNext: () => void;
 	        onPrevious: () => void;
 	        onGridTypeChange: (type: GridType) => void;
-	        styles: Shared.FlowStyles<Styles>;
+	        styles: Shared.FlowStyles<Overrides>;
 	    }
 	    interface InputProps {
 	        autoComplete?: string;
@@ -1218,7 +1223,7 @@ declare module 'control/DatePicker/types' {
 	        formNoValidate?: boolean;
 	        formTarget?: string;
 	    }
-	    interface Styles extends FieldTypes.Styles {
+	    interface Overrides extends FieldTypes.Overrides {
 	        dateGrind: void;
 	        weekDay: void;
 	        title: void;
@@ -1267,10 +1272,10 @@ declare module 'control/Menu/types' {
 	    }
 	    interface ItemProps extends Item {
 	        active: boolean;
-	        styles: Shared.FlowStyles<Styles>;
+	        styles: Shared.FlowStyles<Overrides>;
 	        onEnter: () => void;
 	    }
-	    interface Styles {
+	    interface Overrides {
 	        container: {
 	            size: Props['size'];
 	            flip: Props['flip'];
@@ -1293,7 +1298,7 @@ declare module 'control/Radio/types' {
 	import CheckTypes from 'misc/hocs/Check/types'; namespace RadioTypes {
 	    interface Props extends CheckTypes.Props {
 	    }
-	    interface Styles extends CheckTypes.Styles {
+	    interface Overrides extends CheckTypes.Overrides {
 	        check: {
 	            size: Props['size'];
 	            animated: Props['animated'];
@@ -1321,7 +1326,7 @@ declare module 'control/Range/types' {
 	        mode?: 'single' | 'range';
 	        className?: string;
 	    }
-	    interface Styles {
+	    interface Overrides {
 	        container: void;
 	        rail: void;
 	        track: void;
@@ -1378,12 +1383,12 @@ declare module 'control/Select/types' {
 	        searchValue: string;
 	        onSearch: (searchValue: string) => void;
 	        size?: number;
-	        styles: Shared.FlowStyles<Styles>;
+	        styles: Shared.FlowStyles<Overrides>;
 	        placeholder?: string;
 	        defaultValue?: string;
 	        disabled?: boolean;
 	    }
-	    interface Styles extends FieldTypes.Styles<{
+	    interface Overrides extends FieldTypes.Overrides<{
 	        field: {
 	            open: boolean;
 	        };
@@ -1410,7 +1415,7 @@ declare module 'control/Switch/types' {
 	import CheckTypes from 'misc/hocs/Check/types'; namespace SwitchTypes {
 	    interface Props extends CheckTypes.Props {
 	    }
-	    interface Styles extends CheckTypes.Styles {
+	    interface Overrides extends CheckTypes.Overrides {
 	        check: {
 	            checked: Props['checked'];
 	            size: Props['size'];
@@ -1469,7 +1474,7 @@ declare module 'control/TextField/types' {
 	        rows?: number;
 	        wrap?: string;
 	    }
-	    interface Styles extends FieldTypes.Styles {
+	    interface Overrides extends FieldTypes.Overrides {
 	        input: {
 	            isLabelOverlay: boolean;
 	        };
@@ -1499,7 +1504,7 @@ declare module 'data/Meter/types' {
 	         */
 	        loading?: boolean;
 	    }
-	    interface Styles {
+	    interface Overrides {
 	        container: {
 	            shape: MeterShape;
 	            size: Shared.Size;
@@ -1566,20 +1571,20 @@ declare module 'data/Table/types' {
 	        style?: any;
 	        children?: any;
 	        onRowClick?: (row: any) => void;
-	        styles: Shared.FlowStyles<Styles>;
+	        styles: Shared.FlowStyles<Overrides>;
 	    }
 	    interface ColumnProps {
 	        row: any;
 	        columns: TableColumn[];
 	        scope?: any;
 	        children?: any;
-	        styles: Shared.FlowStyles<Styles>;
+	        styles: Shared.FlowStyles<Overrides>;
 	    }
 	    interface ActionsProps {
 	        actions: any[];
 	        data: any;
 	        children?: any;
-	        styles: Shared.FlowStyles<Styles>;
+	        styles: Shared.FlowStyles<Overrides>;
 	    }
 	    interface FormProps {
 	        data: any;
@@ -1611,9 +1616,9 @@ declare module 'data/Table/types' {
 	        }[];
 	        onChange: (page: number, searchBar: boolean) => void;
 	        children?: any;
-	        styles: Shared.FlowStyles<Styles>;
+	        styles: Shared.FlowStyles<Overrides>;
 	    }
-	    interface Styles {
+	    interface Overrides {
 	        container: void;
 	        content: void;
 	        headRow: void;
@@ -1647,7 +1652,7 @@ declare module 'layout/Badge/types' {
 	        align?: 'top' | 'bottom' | 'left' | 'right' | 'top-right' | 'bottom-right' | 'top-left' | 'bottom-left';
 	        children?: React.ReactNode;
 	    }
-	    interface Styles {
+	    interface Overrides {
 	        container: void;
 	        holder: {
 	            align: Props['align'];
@@ -1670,7 +1675,7 @@ declare module 'layout/Block/types' {
 	        color?: Shared.ColorProp;
 	        overflow?: CSS.Properties['overflow'];
 	    }
-	    interface Styles {
+	    interface Overrides {
 	        container: {
 	            surface: Props['surface'];
 	            hoverSurface: Props['hoverSurface'];
@@ -1703,7 +1708,7 @@ declare module 'layout/Drop/types' {
 	    interface Ref extends Partial<HTMLDivElement> {
 	        updatePosition: () => void;
 	    }
-	    interface Styles {
+	    interface Overrides {
 	        container: void;
 	    }
 	}
@@ -1726,7 +1731,7 @@ declare module 'layout/Flexbox/types' {
 	        flow?: CSS.Properties['flexFlow'];
 	        children?: React.ReactNode;
 	    }
-	    interface Styles {
+	    interface Overrides {
 	        container: void;
 	    }
 	}
@@ -1754,7 +1759,7 @@ declare module 'layout/Grid/types' {
 	        justifyContent?: CSS.Properties['justifyContent'];
 	        justifyItems?: CSS.Properties['justifyItems'];
 	    }
-	    interface Styles {
+	    interface Overrides {
 	        container: void;
 	    }
 	}
@@ -1803,7 +1808,7 @@ declare module 'layout/Modal/types' {
 	        center: boolean;
 	        fullSize?: boolean;
 	        children?: any;
-	        styles: Shared.FlowStyles<Styles>;
+	        styles: Shared.FlowStyles<Overrides>;
 	    }
 	    interface ModalWindowProps {
 	        title?: string;
@@ -1815,16 +1820,16 @@ declare module 'layout/Modal/types' {
 	        children?: any;
 	        containerAttr?: React.HTMLAttributes<HTMLElement> & Shared.SelfProps;
 	        onClosePressed: () => void;
-	        styles: Shared.FlowStyles<Styles>;
+	        styles: Shared.FlowStyles<Overrides>;
 	    }
 	    interface ModalHeaderProps {
 	        title?: string;
 	        subtitle?: string;
 	        hideHeader?: boolean;
 	        onClosePressed: () => void;
-	        styles: Shared.FlowStyles<Styles>;
+	        styles: Shared.FlowStyles<Overrides>;
 	    }
-	    interface Styles {
+	    interface Overrides {
 	        overlay: {
 	            visible?: boolean;
 	            center?: boolean;
@@ -1869,27 +1874,11 @@ declare module 'layout/Notification/types' {
 	         */
 	        customContent?: React.ReactElement;
 	    }
-	    interface Styles {
+	    interface Overrides {
 	        container: void;
 	    }
 	}
 	export default NotificationTypes;
-
-}
-declare module 'layout/Panel/types' {
-	/// <reference types="react" />
-	import Shared from '@flow-ui/core/types'; namespace PanelTypes {
-	    interface Props extends Shared.AllProps {
-	        align?: 'top' | 'right' | 'bottom' | 'left';
-	        children?: React.ReactNode;
-	    }
-	    interface Styles {
-	        container: {
-	            align: Props['align'];
-	        };
-	    }
-	}
-	export default PanelTypes;
 
 }
 declare module 'layout/Popover/types' {
@@ -1904,7 +1893,7 @@ declare module 'layout/Popover/types' {
 	        arrowWidth?: CSS.Properties['width'];
 	        arrowHeight?: CSS.Properties['height'];
 	    }
-	    interface Styles {
+	    interface Overrides {
 	        container: void;
 	        arrow: {
 	            align: Props['align'];
@@ -1925,7 +1914,7 @@ declare module 'layout/Tree/types' {
 	        defaultOpen?: boolean;
 	        indent?: boolean;
 	    }
-	    interface Styles {
+	    interface Overrides {
 	        container: {
 	            decoration: Props['decoration'];
 	            needIndent: boolean;
@@ -1979,7 +1968,6 @@ declare module 'misc/themes/types' {
 	import GridTypes from 'layout/Grid/types';
 	import ModalTypes from 'layout/Modal/types';
 	import NotificationTypes from 'layout/Notification/types';
-	import PanelTypes from 'layout/Panel/types';
 	import PopoverTypes from 'layout/Popover/types';
 	import TreeTypes from 'layout/Tree/types';
 	import Shared from 'types'; namespace ThemeTypes {
@@ -2029,30 +2017,29 @@ declare module 'misc/themes/types' {
 	        };
 	    }
 	    interface Overrides {
-	        Divider?: Shared.OverridesStyle<DividerTypes.Styles>;
-	        Icon?: Shared.OverridesStyle<IconTypes.Styles>;
-	        Spinner?: Shared.OverridesStyle<SpinnerTypes.Styles>;
-	        Button?: Shared.OverridesStyle<ButtonTypes.Styles>;
-	        Checkbox?: Shared.OverridesStyle<CheckboxTypes.Styles>;
-	        DatePicker?: Shared.OverridesStyle<DatePickerTypes.Styles>;
-	        Menu?: Shared.OverridesStyle<MenuTypes.Styles>;
-	        Radio?: Shared.OverridesStyle<RadioTypes.Styles>;
-	        Range?: Shared.OverridesStyle<RangeTypes.Styles>;
-	        Select?: Shared.OverridesStyle<SelectTypes.Styles>;
-	        Switch?: Shared.OverridesStyle<SwitchTypes.Styles>;
-	        TextField?: Shared.OverridesStyle<TextFieldTypes.Styles>;
-	        Meter?: Shared.OverridesStyle<MeterTypes.Styles>;
-	        Table?: Shared.OverridesStyle<TableTypes.Styles>;
-	        Badge?: Shared.OverridesStyle<BadgeTypes.Styles>;
-	        Block?: Shared.OverridesStyle<BlockTypes.Styles>;
-	        Drop?: Shared.OverridesStyle<DropTypes.Styles>;
-	        Flexbox?: Shared.OverridesStyle<FlexboxTypes.Styles>;
-	        Grid?: Shared.OverridesStyle<GridTypes.Styles>;
-	        Modal?: Shared.OverridesStyle<ModalTypes.Styles>;
-	        Notification?: Shared.OverridesStyle<NotificationTypes.Styles>;
-	        Panel?: Shared.OverridesStyle<PanelTypes.Styles>;
-	        Popover?: Shared.OverridesStyle<PopoverTypes.Styles>;
-	        Tree?: Shared.OverridesStyle<TreeTypes.Styles>;
+	        Divider?: Shared.OverridesStyle<DividerTypes.Overrides>;
+	        Icon?: Shared.OverridesStyle<IconTypes.Overrides>;
+	        Spinner?: Shared.OverridesStyle<SpinnerTypes.Overrides>;
+	        Button?: Shared.OverridesStyle<ButtonTypes.Overrides>;
+	        Checkbox?: Shared.OverridesStyle<CheckboxTypes.Overrides>;
+	        DatePicker?: Shared.OverridesStyle<DatePickerTypes.Overrides>;
+	        Menu?: Shared.OverridesStyle<MenuTypes.Overrides>;
+	        Radio?: Shared.OverridesStyle<RadioTypes.Overrides>;
+	        Range?: Shared.OverridesStyle<RangeTypes.Overrides>;
+	        Select?: Shared.OverridesStyle<SelectTypes.Overrides>;
+	        Switch?: Shared.OverridesStyle<SwitchTypes.Overrides>;
+	        TextField?: Shared.OverridesStyle<TextFieldTypes.Overrides>;
+	        Meter?: Shared.OverridesStyle<MeterTypes.Overrides>;
+	        Table?: Shared.OverridesStyle<TableTypes.Overrides>;
+	        Badge?: Shared.OverridesStyle<BadgeTypes.Overrides>;
+	        Block?: Shared.OverridesStyle<BlockTypes.Overrides>;
+	        Drop?: Shared.OverridesStyle<DropTypes.Overrides>;
+	        Flexbox?: Shared.OverridesStyle<FlexboxTypes.Overrides>;
+	        Grid?: Shared.OverridesStyle<GridTypes.Overrides>;
+	        Modal?: Shared.OverridesStyle<ModalTypes.Overrides>;
+	        Notification?: Shared.OverridesStyle<NotificationTypes.Overrides>;
+	        Popover?: Shared.OverridesStyle<PopoverTypes.Overrides>;
+	        Tree?: Shared.OverridesStyle<TreeTypes.Overrides>;
 	    }
 	    type Colors<T> = {
 	        background: T;
@@ -2238,7 +2225,7 @@ declare module 'misc/hooks/useContainer' {
 
 }
 declare module 'misc/hooks/useStyles' {
-	import Shared from 'types'; const createStyles: <S>(props: any, componentStyles: Shared.ComponentStyles<S> | Shared.FunctionalComponentStyles<S, {}>, componentName?: "Menu" | "Divider" | "Icon" | "Spinner" | "Button" | "Checkbox" | "DatePicker" | "Radio" | "Range" | "Select" | "Switch" | "TextField" | "Meter" | "Table" | "Badge" | "Block" | "Drop" | "Flexbox" | "Grid" | "Modal" | "Notification" | "Panel" | "Popover" | "Tree" | undefined) => Shared.FlowStyles<S>;
+	import Shared from 'types'; const createStyles: <S>(props: any, componentStyles: Shared.ComponentStyles<S> | Shared.FunctionalComponentStyles<S, {}>, componentName?: "Menu" | "Divider" | "Icon" | "Spinner" | "Button" | "Checkbox" | "DatePicker" | "Radio" | "Range" | "Select" | "Switch" | "TextField" | "Meter" | "Table" | "Badge" | "Block" | "Drop" | "Flexbox" | "Grid" | "Modal" | "Notification" | "Popover" | "Tree" | undefined) => Shared.FlowStyles<S>;
 	export default createStyles;
 
 }
@@ -2307,7 +2294,7 @@ declare module 'misc/hooks/useStyleProps' {
 }
 declare module 'content/Divider/styles' {
 	import Shared from '@flow-ui/core/types';
-	import Types from 'content/Divider/types'; const dividerStyles: Shared.FunctionalComponentStyles<Types.Styles>;
+	import Types from 'content/Divider/types'; const dividerStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
 	export default dividerStyles;
 
 }
@@ -2335,7 +2322,7 @@ declare module 'misc/icons' {
 }
 declare module 'content/Icon/styles' {
 	import Shared from 'types';
-	import Types from 'content/Icon/types'; const iconStyles: Shared.FunctionalComponentStyles<Types.Styles>;
+	import Types from 'content/Icon/types'; const iconStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
 	export default iconStyles;
 
 }
@@ -2347,7 +2334,7 @@ declare module 'content/Icon' {
 }
 declare module 'content/Spinner/styles' {
 	import Types from 'content/Spinner/types';
-	import Shared from 'types'; const spinnerStyles: Shared.FunctionalComponentStyles<Types.Styles>;
+	import Shared from 'types'; const spinnerStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
 	export default spinnerStyles;
 
 }
@@ -2434,7 +2421,7 @@ declare module 'content/Anchor' {
 }
 declare module 'control/Button/styles' {
 	import Types from 'control/Button/types';
-	import Shared from 'types'; const buttonStyles: Shared.FunctionalComponentStyles<Types.Styles>;
+	import Shared from 'types'; const buttonStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
 	export default buttonStyles;
 
 }
@@ -2446,7 +2433,7 @@ declare module 'control/Button' {
 }
 declare module 'layout/Block/styles' {
 	import Types from 'layout/Block/types';
-	import Shared from 'types'; const BlockStyles: Shared.FunctionalComponentStyles<Types.Styles>;
+	import Shared from 'types'; const BlockStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
 	export default BlockStyles;
 
 }
@@ -2466,13 +2453,13 @@ declare module 'misc/hocs/Check' {
 declare module 'misc/hocs/Check/styles' {
 	import Shared from '@flow-ui/core/types';
 	import Types from 'misc/hocs/Check/types';
-	import ThemeTypes from 'misc/themes/types'; const checkStyles: (props: Types.Props, theme: ThemeTypes.Index) => Shared.ComponentStyles<Types.Styles>;
+	import ThemeTypes from 'misc/themes/types'; const checkStyles: (props: Types.Props, theme: ThemeTypes.Index) => Shared.ComponentStyles<Types.Overrides>;
 	export default checkStyles;
 
 }
 declare module 'control/Checkbox/styles' {
 	import Types from 'control/Checkbox/types';
-	import Shared from 'types'; const checkboxStyles: Shared.FunctionalComponentStyles<Types.Styles>;
+	import Shared from 'types'; const checkboxStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
 	export default checkboxStyles;
 
 }
@@ -2484,7 +2471,7 @@ declare module 'control/Checkbox' {
 }
 declare module 'layout/Drop/styles' {
 	import Types from 'layout/Drop/types';
-	import Shared from 'types'; const DropStyles: Shared.FunctionalComponentStyles<Types.Styles>;
+	import Shared from 'types'; const DropStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
 	export default DropStyles;
 
 }
@@ -2496,7 +2483,7 @@ declare module 'layout/Drop' {
 }
 declare module 'layout/Popover/styles' {
 	import Types from 'layout/Popover/types';
-	import Shared from 'types'; const popoverStyles: Shared.FunctionalComponentStyles<Types.Styles>;
+	import Shared from 'types'; const popoverStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
 	export default popoverStyles;
 
 }
@@ -2553,12 +2540,12 @@ declare module 'control/DatePicker/DateGrid' {
 declare module 'misc/hocs/Field/styles' {
 	import Types from 'misc/hocs/Field/types';
 	import Shared from 'types';
-	import ThemeTypes from 'misc/themes/types'; const fieldStyles: <T extends Types.Styles<{}>>(props: Types.Props, theme: ThemeTypes.Index, params?: {
+	import ThemeTypes from 'misc/themes/types'; const fieldStyles: <T extends Types.Overrides<{}>>(props: Types.Props, theme: ThemeTypes.Index, params?: {
 	    manyLines?: boolean | undefined;
 	    additionalPadding?: string | undefined;
 	    labelOverlayPosition?: "center" | "top" | undefined;
 	    overrides?: Partial<Shared.ComponentStyles<T>> | undefined;
-	}) => Shared.ComponentStyles<Types.Styles<{}>>;
+	}) => Shared.ComponentStyles<Types.Overrides<{}>>;
 	export default fieldStyles;
 
 }
@@ -2568,7 +2555,7 @@ declare module 'control/DatePicker/styles' {
 	 * author: I.Trikoz
 	 */
 	import Shared from 'types';
-	import Types from 'control/DatePicker/types'; const datePickerStyles: Shared.FunctionalComponentStyles<Types.Styles>;
+	import Types from 'control/DatePicker/types'; const datePickerStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
 	export default datePickerStyles;
 
 }
@@ -2602,7 +2589,7 @@ declare module 'control/Menu/Item' {
 }
 declare module 'control/Menu/styles' {
 	import Types from 'control/Menu/types';
-	import Shared from 'types'; const menuStyles: Shared.FunctionalComponentStyles<Types.Styles>;
+	import Shared from 'types'; const menuStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
 	export default menuStyles;
 
 }
@@ -2614,7 +2601,7 @@ declare module 'control/Menu' {
 }
 declare module 'control/Radio/styles' {
 	import Types from 'control/Radio/types';
-	import Shared from 'types'; const radioStyles: Shared.FunctionalComponentStyles<Types.Styles>;
+	import Shared from 'types'; const radioStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
 	export default radioStyles;
 
 }
@@ -2626,7 +2613,7 @@ declare module 'control/Radio' {
 }
 declare module 'control/Range/styles' {
 	import Types from 'control/Range/types';
-	import Shared from 'types'; const rangeStyles: Shared.FunctionalComponentStyles<Types.Styles>;
+	import Shared from 'types'; const rangeStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
 	export default rangeStyles;
 
 }
@@ -2643,7 +2630,7 @@ declare module 'misc/utils/variant' {
 }
 declare module 'control/Select/styles' {
 	import Types from 'control/Select/types';
-	import Shared from 'types'; const selectStyles: Shared.FunctionalComponentStyles<Types.Styles>;
+	import Shared from 'types'; const selectStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
 	export default selectStyles;
 
 }
@@ -2666,7 +2653,7 @@ declare module 'control/Select' {
 }
 declare module 'control/Switch/styles' {
 	import Types from 'control/Switch/types';
-	import Shared from 'types'; const switchStyles: Shared.FunctionalComponentStyles<Types.Styles>;
+	import Shared from 'types'; const switchStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
 	export default switchStyles;
 
 }
@@ -2678,7 +2665,7 @@ declare module 'control/Switch' {
 }
 declare module 'control/TextField/styles' {
 	import Types from 'control/TextField/types';
-	import Shared from 'types'; const textFieldStyles: Shared.FunctionalComponentStyles<Types.Styles>;
+	import Shared from 'types'; const textFieldStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
 	export default textFieldStyles;
 
 }
@@ -2690,7 +2677,7 @@ declare module 'control/TextField' {
 }
 declare module 'data/Meter/styles' {
 	import Types from 'data/Meter/types';
-	import Shared from 'types'; const meterStyles: Shared.FunctionalComponentStyles<Types.Styles>;
+	import Shared from 'types'; const meterStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
 	export default meterStyles;
 
 }
@@ -2702,7 +2689,7 @@ declare module 'data/Meter' {
 }
 declare module 'data/Table/styles' {
 	import Types from 'data/Table/types';
-	import Shared from 'types'; const tabelStyles: Shared.FunctionalComponentStyles<Types.Styles>;
+	import Shared from 'types'; const tabelStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
 	export default tabelStyles;
 
 }
@@ -2755,7 +2742,7 @@ declare module 'data/Table' {
 }
 declare module 'layout/Badge/styles' {
 	import Types from 'layout/Badge/types';
-	import Shared from 'types'; const BadgeStyles: Shared.FunctionalComponentStyles<Types.Styles>;
+	import Shared from 'types'; const BadgeStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
 	export default BadgeStyles;
 
 }
@@ -2790,7 +2777,7 @@ declare module 'layout/Modal/ModalWindow' {
 }
 declare module 'layout/Modal/styles' {
 	import Types from 'layout/Modal/types';
-	import Shared from 'types'; const modalStyles: Shared.FunctionalComponentStyles<Types.Styles>;
+	import Shared from 'types'; const modalStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
 	export default modalStyles;
 
 }
@@ -2813,21 +2800,9 @@ declare module 'layout/Notification' {
 	export default _default;
 
 }
-declare module 'layout/Panel/styles' {
-	import Types from 'layout/Panel/types';
-	import Shared from 'types'; const panelStyles: Shared.FunctionalComponentStyles<Types.Styles>;
-	export default panelStyles;
-
-}
-declare module 'layout/Panel' {
-	import React from 'react';
-	import Types from 'layout/Panel/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
 declare module 'layout/Tree/styles' {
 	import Types from 'layout/Tree/types';
-	import Shared from 'types'; const treeStyles: Shared.FunctionalComponentStyles<Types.Styles>;
+	import Shared from 'types'; const treeStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
 	export default treeStyles;
 
 }
@@ -2945,7 +2920,6 @@ declare module '@flow-ui/core' {
 	export { default as Grid } from 'layout/Grid';
 	export { default as Modal } from 'layout/Modal';
 	export { default as Notification } from 'layout/Notification';
-	export { default as Panel } from 'layout/Panel';
 	export { default as Popover } from 'layout/Popover';
 	export { default as Tree } from 'layout/Tree';
 	export { default as Viewport } from 'layout/Viewport';
@@ -2963,7 +2937,7 @@ declare module '@flow-ui/core' {
 	 * Deprecated
 	 */
 	export { H1, H2, H3, H4, D1, D2, D3, D4, T1, T2, T3, T4, C1, C2, C3, C4, A } from 'misc/deprecated';
-	export function transformImports(importName: any, matches: any): "@flow-ui/core/content/Divider" | "@flow-ui/core/content/Icon" | "@flow-ui/core/content/Spinner" | "@flow-ui/core/content/Header" | "@flow-ui/core/content/Display" | "@flow-ui/core/content/Paragraph" | "@flow-ui/core/content/Text" | "@flow-ui/core/content/Anchor" | "@flow-ui/core/control/Button" | "@flow-ui/core/control/Checkbox" | "@flow-ui/core/control/DatePicker" | "@flow-ui/core/control/Menu" | "@flow-ui/core/control/Radio" | "@flow-ui/core/control/Range" | "@flow-ui/core/control/Select" | "@flow-ui/core/control/Switch" | "@flow-ui/core/control/TextField" | "@flow-ui/core/data/Meter" | "@flow-ui/core/data/Table" | "@flow-ui/core/layout/Badge" | "@flow-ui/core/layout/Block" | "@flow-ui/core/layout/Drop" | "@flow-ui/core/layout/Flexbox" | "@flow-ui/core/layout/Grid" | "@flow-ui/core/layout/Modal" | "@flow-ui/core/layout/Notification" | "@flow-ui/core/layout/Panel" | "@flow-ui/core/layout/Popover" | "@flow-ui/core/layout/Tree" | "@flow-ui/core/layout/Viewport" | "@flow-ui/core/misc/utils/dialog" | "@flow-ui/core/misc/utils/notify" | "@flow-ui/core/misc/hooks/useBrowser" | "@flow-ui/core/misc/hooks/useFlow" | "/";
+	export function transformImports(importName: any, matches: any): "@flow-ui/core/content/Divider" | "@flow-ui/core/content/Icon" | "@flow-ui/core/content/Spinner" | "@flow-ui/core/content/Header" | "@flow-ui/core/content/Display" | "@flow-ui/core/content/Paragraph" | "@flow-ui/core/content/Text" | "@flow-ui/core/content/Anchor" | "@flow-ui/core/control/Button" | "@flow-ui/core/control/Checkbox" | "@flow-ui/core/control/DatePicker" | "@flow-ui/core/control/Menu" | "@flow-ui/core/control/Radio" | "@flow-ui/core/control/Range" | "@flow-ui/core/control/Select" | "@flow-ui/core/control/Switch" | "@flow-ui/core/control/TextField" | "@flow-ui/core/data/Meter" | "@flow-ui/core/data/Table" | "@flow-ui/core/layout/Badge" | "@flow-ui/core/layout/Block" | "@flow-ui/core/layout/Drop" | "@flow-ui/core/layout/Flexbox" | "@flow-ui/core/layout/Grid" | "@flow-ui/core/layout/Modal" | "@flow-ui/core/layout/Notification" | "@flow-ui/core/layout/Popover" | "@flow-ui/core/layout/Tree" | "@flow-ui/core/layout/Viewport" | "@flow-ui/core/misc/utils/dialog" | "@flow-ui/core/misc/utils/notify" | "@flow-ui/core/misc/hooks/useBrowser" | "@flow-ui/core/misc/hooks/useFlow" | "/";
 
 }
 declare module 'misc/utils/validate' {

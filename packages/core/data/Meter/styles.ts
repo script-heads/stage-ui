@@ -4,7 +4,7 @@ import chroma from 'chroma-js'
 import Types from './types'
 import Shared from '../../types'
 
-const meterStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const meterStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
     const { loading } = props
 
     const styleProps = useStyleProps(props)

@@ -68,7 +68,7 @@ declare namespace DatePickerTypes {
         minValue: Moment
         maxValue: Moment
         onChange: (date: Moment) => void
-        styles: Shared.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Overrides>
         type: GridType
     }
     
@@ -80,7 +80,7 @@ declare namespace DatePickerTypes {
         active: Moment
         onClick?: () => void
         style?: CSSProperties
-        styles: Shared.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Overrides>
     }
 
     interface DateGridTitleProps {
@@ -91,7 +91,7 @@ declare namespace DatePickerTypes {
         onNext: () => void
         onPrevious: () => void
         onGridTypeChange: (type: GridType) => void
-        styles: Shared.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Overrides>
     }
 
     interface InputProps {
@@ -112,7 +112,7 @@ declare namespace DatePickerTypes {
         formTarget?: string
     }
 
-    interface Styles extends FieldTypes.Styles {
+    interface Overrides extends FieldTypes.Overrides {
         dateGrind: void
         weekDay: void
         title: void

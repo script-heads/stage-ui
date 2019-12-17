@@ -11,7 +11,7 @@ declare namespace TreeTypes {
         indent?: boolean
     }
 
-    interface Styles {
+    interface Overrides {
         container: {
             decoration: Props['decoration']
             needIndent: boolean

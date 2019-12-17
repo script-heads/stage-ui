@@ -47,7 +47,7 @@ declare namespace ModalTypes {
         center: boolean
         fullSize?: boolean
         children?: any
-        styles: Shared.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Overrides>
     }
 
     interface ModalWindowProps {
@@ -60,7 +60,7 @@ declare namespace ModalTypes {
         children?: any
         containerAttr?: React.HTMLAttributes<HTMLElement> & Shared.SelfProps
         onClosePressed: () => void
-        styles: Shared.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Overrides>
     }
 
     interface ModalHeaderProps {
@@ -68,10 +68,10 @@ declare namespace ModalTypes {
         subtitle?: string
         hideHeader?: boolean
         onClosePressed: () => void
-        styles: Shared.FlowStyles<Styles>
+        styles: Shared.FlowStyles<Overrides>
     }
 
-    interface Styles {
+    interface Overrides {
         overlay: {
             visible?: boolean
             center?: boolean

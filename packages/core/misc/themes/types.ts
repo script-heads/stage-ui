@@ -33,7 +33,6 @@ import FlexboxTypes from '../../layout/Flexbox/types'
 import GridTypes from '../../layout/Grid/types'
 import ModalTypes from '../../layout/Modal/types'
 import NotificationTypes from '../../layout/Notification/types'
-import PanelTypes from '../../layout/Panel/types'
 import PopoverTypes from '../../layout/Popover/types'
 import TreeTypes from '../../layout/Tree/types'
 import Shared from '../../types'
@@ -90,30 +89,29 @@ declare namespace ThemeTypes {
     }
 
     interface Overrides {
-        Divider?: Shared.OverridesStyle<DividerTypes.Styles>
-        Icon?: Shared.OverridesStyle<IconTypes.Styles>
-        Spinner?: Shared.OverridesStyle<SpinnerTypes.Styles>
-        Button?: Shared.OverridesStyle<ButtonTypes.Styles>
-        Checkbox?: Shared.OverridesStyle<CheckboxTypes.Styles>
-        DatePicker?: Shared.OverridesStyle<DatePickerTypes.Styles>
-        Menu?: Shared.OverridesStyle<MenuTypes.Styles>
-        Radio?: Shared.OverridesStyle<RadioTypes.Styles>
-        Range?: Shared.OverridesStyle<RangeTypes.Styles>
-        Select?: Shared.OverridesStyle<SelectTypes.Styles>
-        Switch?: Shared.OverridesStyle<SwitchTypes.Styles>
-        TextField?: Shared.OverridesStyle<TextFieldTypes.Styles>
-        Meter?: Shared.OverridesStyle<MeterTypes.Styles>
-        Table?: Shared.OverridesStyle<TableTypes.Styles>
-        Badge?: Shared.OverridesStyle<BadgeTypes.Styles>
-        Block?: Shared.OverridesStyle<BlockTypes.Styles>
-        Drop?: Shared.OverridesStyle<DropTypes.Styles>
-        Flexbox?: Shared.OverridesStyle<FlexboxTypes.Styles>
-        Grid?: Shared.OverridesStyle<GridTypes.Styles>
-        Modal?: Shared.OverridesStyle<ModalTypes.Styles>
-        Notification?: Shared.OverridesStyle<NotificationTypes.Styles>
-        Panel?: Shared.OverridesStyle<PanelTypes.Styles>
-        Popover?: Shared.OverridesStyle<PopoverTypes.Styles>
-        Tree?: Shared.OverridesStyle<TreeTypes.Styles>
+        Divider?: Shared.OverridesStyle<DividerTypes.Overrides>
+        Icon?: Shared.OverridesStyle<IconTypes.Overrides>
+        Spinner?: Shared.OverridesStyle<SpinnerTypes.Overrides>
+        Button?: Shared.OverridesStyle<ButtonTypes.Overrides>
+        Checkbox?: Shared.OverridesStyle<CheckboxTypes.Overrides>
+        DatePicker?: Shared.OverridesStyle<DatePickerTypes.Overrides>
+        Menu?: Shared.OverridesStyle<MenuTypes.Overrides>
+        Radio?: Shared.OverridesStyle<RadioTypes.Overrides>
+        Range?: Shared.OverridesStyle<RangeTypes.Overrides>
+        Select?: Shared.OverridesStyle<SelectTypes.Overrides>
+        Switch?: Shared.OverridesStyle<SwitchTypes.Overrides>
+        TextField?: Shared.OverridesStyle<TextFieldTypes.Overrides>
+        Meter?: Shared.OverridesStyle<MeterTypes.Overrides>
+        Table?: Shared.OverridesStyle<TableTypes.Overrides>
+        Badge?: Shared.OverridesStyle<BadgeTypes.Overrides>
+        Block?: Shared.OverridesStyle<BlockTypes.Overrides>
+        Drop?: Shared.OverridesStyle<DropTypes.Overrides>
+        Flexbox?: Shared.OverridesStyle<FlexboxTypes.Overrides>
+        Grid?: Shared.OverridesStyle<GridTypes.Overrides>
+        Modal?: Shared.OverridesStyle<ModalTypes.Overrides>
+        Notification?: Shared.OverridesStyle<NotificationTypes.Overrides>
+        Popover?: Shared.OverridesStyle<PopoverTypes.Overrides>
+        Tree?: Shared.OverridesStyle<TreeTypes.Overrides>
     }
 
     type Colors<T> = {

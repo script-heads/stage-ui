@@ -11,7 +11,7 @@ declare namespace PopoverTypes {
         arrowHeight?: CSS.Properties['height']
     }
 
-    interface Styles {
+    interface Overrides {
         container: void
         arrow: {
             align: Props['align']

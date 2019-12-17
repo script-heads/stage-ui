@@ -1,7 +1,7 @@
 export default {
     title: 'FlowUI',
     giturl: 'https://github.com/abr-tech/FlowUI',
-    types: ['Props','Styles'],
-    cutTypes: ['AllProps','AttributeProps','EventProps','SelfProps','FlowProps'],
+    types: ['Props','Overrides'],
+    cutTypes: ['All','Attribute','Event','Self','Flow'],
     separateSections: ['Lab']
 }

@@ -4,7 +4,7 @@ declare namespace CheckboxTypes {
     interface Props extends CheckTypes.Props {
     }
     
-    interface Styles extends CheckTypes.Styles {
+    interface Overrides extends CheckTypes.Overrides {
         check: {
             size: Props['size']
             animated: Props['animated']

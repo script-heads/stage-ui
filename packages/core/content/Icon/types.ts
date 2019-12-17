@@ -16,7 +16,7 @@ declare namespace IconTypes {
 		background?: Shared.ColorProp
 	}
 
-	interface Styles {
+	interface Overrides {
 		container: void
 		icon: void
 	}

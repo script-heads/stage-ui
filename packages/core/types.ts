@@ -50,6 +50,11 @@ declare namespace Shared {
 
     type OverridesStyle<S> = Partial<{[O in keyof S]: ComponentStyle<S[O]>}>
 
+    /**
+     * Styles inside the component. Paddings, layout, border and color props
+     * @name All
+     * @weight 400
+     */
     interface AllProps<S={}> extends
         AttributeProps,
         EventProps,
@@ -60,7 +65,7 @@ declare namespace Shared {
 
     /**
      * Styles inside the component. Paddings, layout, border and color props
-     * @name SelfProps
+     * @name Self
      * @weight 400
      */
     interface SelfProps extends 
@@ -71,7 +76,7 @@ declare namespace Shared {
 
     /**
      * Style outsize the component. Margins, flex, grid
-     * @name FlowProps
+     * @name Flow
      * @weight 300
      */
     interface FlowProps extends 
@@ -81,7 +86,7 @@ declare namespace Shared {
 
     /**
      * Default attributes
-     * @name AttributeProps
+     * @name Attribute
      * @weight 200
      */
     interface AttributeProps extends React.AriaAttributes {
@@ -96,7 +101,7 @@ declare namespace Shared {
 
     /**
      * Default events
-     * @name EventProps
+     * @name Event
      * @weight 500
      */
     interface EventProps {
@@ -187,7 +192,7 @@ declare namespace Shared {
 
     /**
      * Color props
-     * @name ColorProps
+     * @name Color
      * @weight 400
      */
     interface ColorProps {
@@ -197,7 +202,7 @@ declare namespace Shared {
 
     /**
      * Border props
-     * @name BorderProps
+     * @name Border
      * @weight 400
      */
     interface BorderProps {
@@ -209,7 +214,7 @@ declare namespace Shared {
 
     /**
      * Layout props
-     * @name LayoutProps
+     * @name Layout
      * @weight 400
      */
     interface LayoutProps {
@@ -240,7 +245,7 @@ declare namespace Shared {
 
     /**
      * Padding props
-     * @name PaddingProps
+     * @name Padding
      * @weight 400
      */
     interface PaddingProps {
@@ -276,7 +281,7 @@ declare namespace Shared {
 
     /**
      * Grid children props
-     * @name MarginProps
+     * @name Margin
      * @weight 400
      */
     interface MarginProps {
@@ -317,7 +322,7 @@ declare namespace Shared {
 
     /**
      * Flexbox children props
-     * @name FlexProps
+     * @name Flex
      * @weight 400
      */
     interface FlexProps {
@@ -361,7 +366,7 @@ declare namespace Shared {
 
     /**
      * Grid children props
-     * @name GridProps
+     * @name Grid
      * @weight 400
      */
     interface GridProps {

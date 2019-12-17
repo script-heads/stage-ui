@@ -2,7 +2,7 @@ import Shared from '@flow-ui/core/types'
 
 declare namespace ButtonTypes {
 
-    export interface Props extends Shared.AllProps {
+    interface Props extends Shared.AllProps {
         //Native button props
         autoFocus?: boolean
         disabled?: boolean
@@ -31,7 +31,7 @@ declare namespace ButtonTypes {
         children?: React.ReactNode
     }
 
-    export interface Styles {
+    interface Overrides {
         container:{
             decoration: Props['decoration']
             shape: Props['shape']

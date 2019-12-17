@@ -29,7 +29,7 @@ declare namespace NotificationTypes {
         customContent?: React.ReactElement
     }
 
-    interface Styles {
+    interface Overrides {
         container: void
     }
 }

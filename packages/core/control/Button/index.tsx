@@ -13,7 +13,7 @@ const Button: FC<Types.Props> = (props, ref) => {
         size = 'medium'
     } = props
     const { attributes } = useContainer(props)
-    const styles = useStyles<Types.Styles>(props, buttonStyles, 'Button')
+    const styles = useStyles<Types.Overrides>(props, buttonStyles, 'Button')
 
     const onClick = (event: React.MouseEvent<HTMLElement>) => {
         if (!disabled) {

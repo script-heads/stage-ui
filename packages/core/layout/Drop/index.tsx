@@ -14,7 +14,7 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
     const { attributes } = useContainer(props)
     const { children, target: targetRef, onClickOutside, distance = 0, align,
         justify, stretchHeight, stretchWidth, visibility, display } = props
-    const styles = useStyles<Types.Styles>(props, dropStyles, 'Drop')
+    const styles = useStyles<Types.Overrides>(props, dropStyles, 'Drop')
     const dropRef = useRef<HTMLDivElement>(null)
 
     let getTopCoord: GetCoord = (tr) => toStyle(tr.bottom + distance)

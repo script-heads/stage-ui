@@ -2,7 +2,7 @@ import Types from './types'
 import Shared from '../../types'
 import fieldStyles from '@flow-ui/core/misc/hocs/Field/styles'
 
-const textFieldStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const textFieldStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
     
     const { 
         size = 'medium',

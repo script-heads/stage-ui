@@ -8,7 +8,7 @@ import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 const Switch: FC<Types.Props> = (props, ref: RefObject<HTMLDivElement>) => {
 
     const {size='medium', animated, disabled} = props
-    const styles = useStyles<Types.Styles>(props, switchStyles, 'Switch')
+    const styles = useStyles<Types.Overrides>(props, switchStyles, 'Switch')
 
     return (
         <Check

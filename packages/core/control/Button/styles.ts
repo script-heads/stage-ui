@@ -4,7 +4,7 @@ import chroma from 'chroma-js'
 import Types from './types'
 import Shared from '../../types'
 
-const buttonStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const buttonStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
 
     const styleProps = useStyleProps(props)
     const color = chroma(callProp(props.color, theme.color) || theme.color.primary.css())

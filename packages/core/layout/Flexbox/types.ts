@@ -15,7 +15,7 @@ declare namespace FlexboxTypes {
         children?: React.ReactNode
     }
 
-    interface Styles {
+    interface Overrides {
         container: void
     }
 }

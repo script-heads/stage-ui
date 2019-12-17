@@ -12,7 +12,7 @@ const Spinner = (props: Types.Props, ref) => {
         count = 12
     } = props
     const { attributes } = useContainer(props)
-    const styles = useStyles<Types.Styles>(props, spinnerStyles, 'Spinner')
+    const styles = useStyles<Types.Overrides>(props, spinnerStyles, 'Spinner')
     let rectShape
 
     switch (shape) {

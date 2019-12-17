@@ -7,7 +7,7 @@ declare namespace BadgeTypes {
         children?: React.ReactNode
     }
 
-    interface Styles {
+    interface Overrides {
         container: void
         holder: {
             align: Props['align']

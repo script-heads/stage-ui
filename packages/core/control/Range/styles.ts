@@ -2,7 +2,7 @@ import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
 import Types from './types'
 import Shared from '../../types';
 
-const rangeStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const rangeStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
     const stylesProps = useStyleProps(props)
 
     return {
