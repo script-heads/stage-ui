@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
+import ThemeTypes from '@flow-ui/core/misc/themes/types'
 
 declare const $_WORKDIR_$: string
 
@@ -8,6 +9,8 @@ export interface Config {
     types?: string[],
     cutTypes?: string[]
     separateSections?: string[]
+    themes?: Record<string,ThemeTypes.Index>
+    promo?: (props: {open: () => void}) => ReactElement
 }
 
 export interface Page {
