@@ -6,6 +6,6 @@ export const sticky = true
 
 export default () => (
     <Block>
-        <Header pb="1rem">Whait for content</Header>
+        <Text pb="1rem">Whait for content</Text>
     </Block>
 )

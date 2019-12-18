@@ -2,14 +2,12 @@ import * as CoreScope from '@flow-ui/core'
 import { Block } from '@flow-ui/core'
 import * as LabScope from '@flow-ui/lab'
 import React from 'react'
-import DesignEditor from '../DesignEditor'
 
 //@ts-ignore
 import ts from 'typescript/lib/typescriptServices'
 
 Object.assign(window, {
     React,
-    DesignEditor,
     ...React,
     ...CoreScope,
     ...LabScope

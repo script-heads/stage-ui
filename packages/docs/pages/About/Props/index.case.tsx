@@ -11,7 +11,6 @@ export const sticky = true
 
 export default () => (
     <Block>
-        <Header p="1rem 0">Functional props</Header>
         <Text>Some components have functional props</Text>
         <Text>Let's see couple examples below</Text>
 
