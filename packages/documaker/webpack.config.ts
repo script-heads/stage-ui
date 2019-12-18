@@ -17,6 +17,7 @@ module.exports = function (dir) {
         output: {
             filename: 'documaker.js',
             path: __dirname + '/public',
+            publicPath: '/',
         },
 
         devtool: 'source-map',

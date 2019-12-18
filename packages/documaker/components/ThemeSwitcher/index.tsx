@@ -3,11 +3,16 @@ import React, { Fragment, useRef, useState } from 'react'
 import { Block, Flexbox, Drop, Popover, Grid } from '@flow-ui/core'
 import { Config } from 'core'
 
-const ThemeSwitcher = (props: {themes: Config['themes']}) => {
-    const {themes} = props
-    const currentTheme = localStorage.getItem('theme')
-    const iconRef = useRef(null)
+interface ThemeSwitcherProps {
+    themes: Config['themes']
+    currentTheme: string
+    setTheme: (theme: string) => void
+}
+
+const ThemeSwitcher = (props: ThemeSwitcherProps) => {
+    const {themes, currentTheme, setTheme} = props
     const [visible, setVisible] = useState(false)
+    const iconRef = useRef(null)
 
     return (
         <Fragment>
@@ -22,7 +27,7 @@ const ThemeSwitcher = (props: {themes: Config['themes']}) => {
                 target={iconRef} 
                 visibility={visible ? 'visible' : 'hidden'} 
                 distance={16}
-                onClickOutside={(e,ot)=>ot&&setVisible(!visible)}>
+                onClickOutside={(e,ot)=> ot && setVisible(!visible)}>
                 <Popover>
                     <Grid 
                         templateRows="auto auto" 
@@ -41,12 +46,12 @@ const ThemeSwitcher = (props: {themes: Config['themes']}) => {
                                 }}
                                 borderWidth="2px"
                                 borderStyle="solid"
-                                borderColor={c=>currentTheme===theme
+                                borderColor={c=> currentTheme === theme
                                     ? c.primary.css()
                                     : c.lightest.css()
                                 }
                                 onClick={() => {
-                                    window.setTheme(theme)
+                                    setTheme(theme)
                                 }}>
                                 <Block 
                                     flex={1}

@@ -41,13 +41,13 @@ class Core {
         return this.instance
     }
 
-    protected context: __WebpackModuleApi.RequireContext
+    protected content: __WebpackModuleApi.RequireContext
     protected configObject: Config = {}
     protected generatedPagesObject: Pages = {}
-    protected reactContext: any = React.createContext(null)
+    protected reactContext: React.Context<any> = React.createContext(null)
 
     constructor() {
-        this.context = require.context($_WORKDIR_$ + '/pages', true, /\.case$/)
+        this.content = require.context($_WORKDIR_$ + '/pages', true, /\.case$/)
         const config = require($_WORKDIR_$ + '/documaker.config')
 
         if (config && config.default) {
@@ -63,7 +63,7 @@ class Core {
         return this.configObject 
     }
 
-    get getReactContext() {
+    get Context() {
         return this.reactContext
     }
 
@@ -94,15 +94,17 @@ class Core {
     }
 
     public init() {
-        this.context.keys().map((path: string) => {
+        this.content.keys().map((path: string) => {
             const dirs = path.split('/').slice(1)
             
             dirs.map((dir, i) => {
                 if (dir.match('.case')) {
                     let pagesLink: Object = this.generatedPagesObject
-                    const page = this.context(path)
+                    const page = this.content(path)
                     const name = page.title || dirs[i-1] || 'Untitled'
                     const section = dirs[i-2]
+                    const urlName = name.toLowerCase().replace(' ', '-')
+                    const sectionUrlName = section?.toLowerCase().replace(' ', '-')
 
                     if (section) {
                         if (!pagesLink[section]) {
@@ -111,10 +113,14 @@ class Core {
                         pagesLink = pagesLink[section]
                     }
 
-                    pagesLink[name] = Object.assign({
+                    pagesLink[name] = Object.assign({},page,{
                         id: this.getId('PAGE', name),
-                        url: section ? section+'/'+name : name
-                    }, page)                    
+                        title: name,
+                        url: '/' + (section 
+                            ? sectionUrlName + '/' + urlName 
+                            : urlName
+                        )
+                    })                    
                 }
             })
         })

@@ -37,7 +37,6 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-emotion": "^10.0.13",
     "babel-plugin-transform-imports": "^2.0.0",
-    "babel-polyfill": "^6.26.0",
     "css-loader": "^3.3.2",
     "esm": "^3.2.25",
     "raw-loader": "^4.0.0",

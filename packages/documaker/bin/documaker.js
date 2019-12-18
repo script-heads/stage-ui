@@ -12,8 +12,6 @@ const options = {
     hot: true,
     historyApiFallback: true,
     contentBase: [__dirname + "/../public",  __dirname + "/../../"],
-    compress: process.env.HOST ? true : false,
-    public: process.env.HOST || undefined,
     stats: 'errors-warnings'
 }
 

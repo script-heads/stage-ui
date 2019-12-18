@@ -1,30 +1,29 @@
-import 'babel-polyfill'
-
 import ReactDOM from 'react-dom'
-import React, { useEffect, useReducer, Fragment } from 'react'
+import React, { useReducer, Fragment, useMemo } from 'react'
 import CodeEditor from './components/CodeEditor'
 import Sidebar from './components/Sidebar'
 import ThemeSwitcher from './components/ThemeSwitcher'
 import API from './components/API'
 import core, { Page } from './core'
-import { Button, Viewport, Text, Anchor, Icon, Block, Flexbox, Header, Display } from '@flow-ui/core'
-
-declare global {
-	interface Window {
-		setTheme: (theme: string) => void
-		currentTheme: string
-	}
-}
+import { 
+	Button, 
+	Viewport, 
+	Text, 
+	Anchor, 
+	Icon, 
+	Block, 
+	Flexbox, 
+	Header, 
+	Display } from '@flow-ui/core'
 
 interface State {
 	test: boolean
-	promo: boolean
-	pageId: string | null
+	pageId: string
 	page: Page | null
 	caseIndex: number
 	showGrid: boolean
 	fullscreen: boolean
-	context: Object
+	shared: Object
 	currentTheme: string
 }
 
@@ -36,45 +35,50 @@ const Documaker = () => {
 		(state, action) => ({...state, ...action}), 
 		{
 			test: false,
-			promo: true,
-			pageId: null,
+			pageId: 'promo',
 			page: null,
 			caseIndex: 0,
 			showGrid: localStorage.getItem('case_grid') ? true : false,
 			fullscreen: false,
-			context: {},
+			shared: {},
 			currentTheme: localStorage.getItem('theme') || 'light',
 		}
 	)
 
-	useEffect(() => {
-		core.init()
-
-		let path = window.location.hash.slice(1)
-	
-		if (path) {
-			const currentPage = core.getPageByUrl(path)
-			if (currentPage) {
-				setPage(currentPage)
-				return
-			}
-		}
-		setPage(core.getFirstPage())
-	}, [])
-	
-	const {page, context} = state
-	const themes = core.config.themes
-	const Promo = core.config.promo
-	const Context = core.getReactContext	
+	const {page} = state
+	const {Context, config, pages} = core
+	const {themes, promo: Promo} = config	
 	const CustomPageContent = (page && page.default) ? page.default : null
 
-	function setContext(nextContext: Object) {
-		dispatch({ context: nextContext })
+	useMemo(() => {
+		const path = decodeURIComponent(window.location.pathname.slice(1))
+		const currentPage = core.getPageByUrl('/'+path)
+		openPage(currentPage)
+	},[])
+	
+	window.onpopstate = () => {
+		const page = core.getPageById(history.state?.id)
+		page ? setPage(page) : setPromo()
+	}
+
+	function openPage(page?: Page) {
+		if (page) {
+			history.pushState(
+				{ id: page.id },
+				page.title,
+				page.url
+			)
+			setPage(page)
+		} else {
+			setPromo()
+		}
 	}
 
 	function setPage(page: Page) {
-		window.scrollTo(0, 0)
-		window.location.hash = `/${page.url}`
+		document.title = 
+			page.title 
+			+ ' - '
+			+ config.title
 
 		dispatch({
 			pageId: page.id,
@@ -83,22 +87,34 @@ const Documaker = () => {
 		})
 	}
 
-	window.setTheme = (currentTheme) => {
+	function setPromo() {
+		document.title = config.title
+
+		dispatch({
+			pageId: 'promo',
+			page: null,
+			caseIndex: 0,
+		})
+	}
+
+	function setContext(nextContext: Object) {
+		dispatch({ shared: nextContext })
+	}
+
+	function setTheme(currentTheme: string) {
 		localStorage.setItem('theme', currentTheme)
 		dispatch({ currentTheme })
 	}
-	
-	window.currentTheme = state.currentTheme
-		
+
 	return (
-		<Context.Provider value={{ ...context, setContext: setContext }}>
+		<Context.Provider value={{ ...state.shared, setContext: setContext }}>
 			<Viewport theme={themes[state.currentTheme]}>
-				{state.promo && Promo
-					? <Promo open={() => dispatch({promo: false})} />
+				{state.pageId === 'promo' && Promo
+					? <Promo open={() => openPage(core.getFirstPage())} />
 					: state.test 
-						? ( (page && page.test) 
-								? <page.test /> 
-								: null
+						? (page && page.test
+							? <page.test /> 
+							: null
 						) 
 						: (
 							<Fragment>
@@ -106,11 +122,15 @@ const Documaker = () => {
 									<Header
 										size={3} 
 										flex={1}
-										children={(core.config && core.config.title) || 'documaker'}
+										children={(config && config.title) || 'Documaker'}
 									/>
-									<ThemeSwitcher themes={themes} />
-									{(core.config && core.config.giturl) && (
-										<Anchor size={2} target="_blank" href={core.config.giturl} ml="1rem">
+									<ThemeSwitcher 
+										themes={themes}
+										currentTheme={state.currentTheme}
+										setTheme={setTheme} 
+									/>
+									{(config && config.giturl) && (
+										<Anchor size={2} target="_blank" href={config.giturl} ml="1rem">
 											<Icon size="1.5rem" type={t => t.outline.github}/>
 										</Anchor>
 									)}
@@ -118,9 +138,9 @@ const Documaker = () => {
 								<Flexbox>
 									<Sidebar
 										current={state.pageId}
-										pages={core.pages}
-										config={core.config}
-										onChange={(pageId) => setPage(core.getPageById(pageId))}
+										pages={pages}
+										config={config}
+										onChange={(pageId) => openPage(core.getPageById(pageId))}
 									/>
 									<Block px="6rem" flex={1} css={{zIndex:1 }}>
 										{page && page.title && (
@@ -164,7 +184,12 @@ const Documaker = () => {
 															: c.onSurface.css()
 														}
 														onClick={() => {
-															localStorage.setItem('case_grid', !state.showGrid ? 'true' : 'false')
+															localStorage.setItem(
+																'case_grid', 
+																!state.showGrid 
+																	? 'true' 
+																	: 'false'
+															)
 															dispatch({
 																showGrid: !state.showGrid
 															})
@@ -200,7 +225,7 @@ const Documaker = () => {
 										{page && page.ns && (
 											<API
 												name={page.ns}
-												config={core.config}
+												config={config}
 											/>
 										)}
 										{CustomPageContent && <CustomPageContent />}
@@ -214,4 +239,9 @@ const Documaker = () => {
 	)
 }
 
-ReactDOM.render(<Documaker/>, document.getElementById('documaker'))
+core.init()
+
+ReactDOM.render(
+	<Documaker/>, 
+	document.getElementById('documaker')
+)
