@@ -1,12 +1,20 @@
-import promo from './promo'
+import index from '.'
 import themes from './themes'
 
 export default {
-    title: 'FlowUI',
-    giturl: 'https://github.com/abr-tech/FlowUI',
-    types: ['Props','Overrides'],
-    cutTypes: ['All','Attribute','Event','Self','Flow'],
-    separateSections: ['Lab'],
+    name: 'FlowUI',
+    git: 'https://github.com/abr-tech/FlowUI',
     themes,
-    promo
+    index,
+    pages: {
+        order: {
+            About: ['Getting started','Props','Theming','Overrides'],
+            Content: [],
+            Layout: [],
+            Control: [],
+            Util: []
+        },
+        types: ['Props','Overrides'],
+        separatedTypes: ['All','Attribute','Event','Self','Flow'],
+    }
 }

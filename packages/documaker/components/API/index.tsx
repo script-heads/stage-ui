@@ -1,5 +1,5 @@
 import Flexbox from '@flow-ui/core/layout/Flexbox'
-import { IConfig } from '../../core'
+import { Config } from '../../core'
 import React from 'react'
 import Interface from './Interface'
 import typedoc from '../../definitions/types.json'
@@ -22,7 +22,7 @@ export interface TypeInterfaceChild {
     values: string[]
 }
 
-const API = (props: { name: string, config: IConfig }) => {
+const API = (props: { name: string, config: Config }) => {
 
     let nameSpace = typedoc[props.name] || []
 
@@ -31,8 +31,8 @@ const API = (props: { name: string, config: IConfig }) => {
         return null
     }
     
-    if (props.config.types) {
-        nameSpace = props.config.types.map(typeName => {
+    if (props.config.pages?.types) {
+        nameSpace = props.config.pages.types.map(typeName => {
             return nameSpace.find(type => type.name === typeName)
         })
     }
@@ -40,7 +40,7 @@ const API = (props: { name: string, config: IConfig }) => {
     return (
         <Flexbox wrap="wrap">
             {nameSpace.map((data, index) => (
-                <Interface data={data} cutTypes={props.config.cutTypes} key={'inteface'+index}/>
+                <Interface data={data} separatedTypes={props.config.pages?.separatedTypes} key={'inteface'+index}/>
             ))}
         </Flexbox>
     )

@@ -7,8 +7,7 @@ import API from './components/API'
 import core, { Page } from './core'
 import { 
 	Button, 
-	Viewport, 
-	Text, 
+	Viewport,
 	Anchor, 
 	Icon, 
 	Block, 
@@ -35,7 +34,7 @@ const Documaker = () => {
 		(state, action) => ({...state, ...action}), 
 		{
 			test: false,
-			pageId: 'promo',
+			pageId: 'index',
 			page: null,
 			caseIndex: 0,
 			showGrid: localStorage.getItem('case_grid') ? true : false,
@@ -47,18 +46,18 @@ const Documaker = () => {
 
 	const {page} = state
 	const {Context, config, pages} = core
-	const {themes, promo: Promo} = config	
+	const {name, themes, index: Index, git} = config	
 	const CustomPageContent = (page && page.default) ? page.default : null
 
 	useMemo(() => {
-		const path = decodeURIComponent(window.location.pathname.slice(1))
-		const currentPage = core.getPageByUrl('/'+path)
+		const path = window.location.pathname.slice(1)
+		const currentPage = core.getPageByUrl('/' + path)
 		openPage(currentPage)
 	},[])
 	
 	window.onpopstate = () => {
 		const page = core.getPageById(history.state?.id)
-		page ? setPage(page) : setPromo()
+		page ? setPage(page) : setIndex()
 	}
 
 	function openPage(page?: Page) {
@@ -70,7 +69,7 @@ const Documaker = () => {
 			)
 			setPage(page)
 		} else {
-			setPromo()
+			setIndex()
 		}
 	}
 
@@ -78,7 +77,7 @@ const Documaker = () => {
 		document.title = 
 			page.title 
 			+ ' - '
-			+ config.title
+			+ name
 
 		dispatch({
 			pageId: page.id,
@@ -87,11 +86,11 @@ const Documaker = () => {
 		})
 	}
 
-	function setPromo() {
-		document.title = config.title
+	function setIndex() {
+		document.title = name
 
 		dispatch({
-			pageId: 'promo',
+			pageId: 'index',
 			page: null,
 			caseIndex: 0,
 		})
@@ -109,8 +108,8 @@ const Documaker = () => {
 	return (
 		<Context.Provider value={{ ...state.shared, setContext: setContext }}>
 			<Viewport theme={themes[state.currentTheme]}>
-				{state.pageId === 'promo' && Promo
-					? <Promo open={() => openPage(core.getFirstPage())} />
+				{state.pageId === 'index' && Index
+					? <Index open={() => openPage(core.getFirstPage())} />
 					: state.test 
 						? (page && page.test
 							? <page.test /> 
@@ -122,15 +121,15 @@ const Documaker = () => {
 									<Header
 										size={3} 
 										flex={1}
-										children={(config && config.title) || 'Documaker'}
+										children={name || 'Documaker'}
 									/>
 									<ThemeSwitcher 
 										themes={themes}
 										currentTheme={state.currentTheme}
 										setTheme={setTheme} 
 									/>
-									{(config && config.giturl) && (
-										<Anchor size={2} target="_blank" href={config.giturl} ml="1rem">
+									{git && (
+										<Anchor size={2} target="_blank" href={git} ml="1rem">
 											<Icon size="1.5rem" type={t => t.outline.github}/>
 										</Anchor>
 									)}
@@ -139,7 +138,6 @@ const Documaker = () => {
 									<Sidebar
 										current={state.pageId}
 										pages={pages}
-										config={config}
 										onChange={(pageId) => openPage(core.getPageById(pageId))}
 									/>
 									<Block px="6rem" flex={1} css={{zIndex:1 }}>
@@ -148,14 +146,6 @@ const Documaker = () => {
 												size={4}
 												weight="bold"
 												children={page.title}
-											/>
-										)}
-										{page && page.subtitle && (
-											<Text
-												color={c => c.light.css()}
-												css={{ userSelect: 'none' }}
-												pt="0.25rem"
-												children={page.subtitle}
 											/>
 										)}
 										{page && page.cases && page.cases.length > 0 && (

@@ -1,23 +1,24 @@
 import React, { ReactElement } from 'react'
 import ThemeTypes from '@flow-ui/core/misc/themes/types'
 
-declare const $_WORKDIR_$: string
+declare const WEBPACK_WORKDIR: string
 
 export interface Config {
-    title?: string
-    giturl?: string
-    types?: string[],
-    cutTypes?: string[]
-    separateSections?: string[]
+    name?: string
+    git?: string
+    index?: (props: {open: () => void}) => ReactElement
     themes?: Record<string,ThemeTypes.Index>
-    promo?: (props: {open: () => void}) => ReactElement
+    pages?: {
+        order?: Record<string,string[]>
+        types?: string[],
+        separatedTypes?: string[]
+    }
 }
 
 export interface Page {
     id?: string
     url?: string
     title?: string
-    subtitle?: string
     ns?: string
     cases?: {
         label: string
@@ -28,9 +29,7 @@ export interface Page {
     default?: React.SFC<{}>
 }
 
-export type Pages = {
-    [k: string]: Page | Pages
-}
+export type Pages = Record<string,Page[]>
 
 class Core {
     static instance: Core
@@ -41,26 +40,22 @@ class Core {
         return this.instance
     }
 
-    protected content: __WebpackModuleApi.RequireContext
-    protected configObject: Config = {}
-    protected generatedPagesObject: Pages = {}
-    protected reactContext: React.Context<any> = React.createContext(null)
+    protected rawContent: __WebpackModuleApi.RequireContext
+    protected rawConfig: Config = {}
+    protected content: Pages = {}
+    protected reactContext: React.Context<Object> = React.createContext(null)
 
     constructor() {
-        this.content = require.context($_WORKDIR_$ + '/pages', true, /\.case$/)
-        const config = require($_WORKDIR_$ + '/documaker.config')
-
-        if (config && config.default) {
-            this.configObject = config.default
-        }
+        this.rawContent = require.context(WEBPACK_WORKDIR + '/pages', true, /\.case$/)
+        this.rawConfig = require(WEBPACK_WORKDIR + '/documaker.config')?.default || {}
     }
 
     get pages(): Pages {
-        return this.generatedPagesObject
+        return this.content
     }
 
     get config(): Config  {
-        return this.configObject 
+        return this.rawConfig 
     }
 
     get Context() {
@@ -80,57 +75,79 @@ class Core {
         return prefix + '-' + uniqueId
     }
 
-    private searchPage(pages: Object, key: string, value: unknown) {
-        let page = null
-        for (let innerKey in pages) {
-            if (pages[innerKey].id) {
-                if (pages[innerKey][key] === value) return pages[innerKey]
-            } else {
-                page = this.searchPage(pages[innerKey], key, value)
-                if (page) return page
+    private makePage(path) {
+        const page = this.rawContent(path)
+        const dirs = path.split('/').slice(1)
+        const dirsCount = dirs.length
+        const name = page.title || dirs[dirsCount] || 'Untitled'
+        
+        return Object.assign(
+            {},
+            page,
+            {
+                id: this.getId('PAGE', name),
+                title: name,
+                url: '/' + name.toLowerCase().replace(' ', '-')
             }
-        }
-        return page
+        )
     }
 
-    public init() {
-        this.content.keys().map((path: string) => {
-            const dirs = path.split('/').slice(1)
-            
-            dirs.map((dir, i) => {
-                if (dir.match('.case')) {
-                    let pagesLink: Object = this.generatedPagesObject
-                    const page = this.content(path)
-                    const name = page.title || dirs[i-1] || 'Untitled'
-                    const section = dirs[i-2]
-                    const urlName = name.toLowerCase().replace(' ', '-')
-                    const sectionUrlName = section?.toLowerCase().replace(' ', '-')
+    private searchPage(pages: Pages, key: string, value: unknown): Page | null {
+        let result = null
+        for (let section in pages) {
+            result = pages[section].find(page => page[key] === value)
+            if (result) return result  
+        }
+        return result
+    }
 
-                    if (section) {
-                        if (!pagesLink[section]) {
-                            pagesLink[section] = {}
-                        }
-                        pagesLink = pagesLink[section]
-                    }
+    private makePages() {
+        const order = this.config?.pages?.order
+        const pagesByPaths: Pages = { Index: [] }
 
-                    pagesLink[name] = Object.assign({},page,{
-                        id: this.getId('PAGE', name),
-                        title: name,
-                        url: '/' + (section 
-                            ? sectionUrlName + '/' + urlName 
-                            : urlName
-                        )
-                    })                    
-                }
-            })
+        this.rawContent.keys().map((path: string) => {    
+            const section = path.split('/').slice(-3)[0] || 'Index'
+            const page = this.makePage(path)
+            pagesByPaths[section] = pagesByPaths[section] || []
+            pagesByPaths[section].push(page)
         })
+
+        if (!order) return pagesByPaths
+
+        const pagesByOrder: Pages = { Index: [] }
+
+        for (let section in order) {
+            pagesByOrder[section] = order[section].map(pageTitle =>
+                this.searchPage(pagesByPaths, 'title', pageTitle)
+            )
+            if (pagesByPaths[section]) {
+                const otherPages = pagesByPaths[section].filter(page =>
+                    !order[section].includes(page.title)
+                )
+                pagesByOrder[section] = pagesByOrder[section].concat(otherPages)
+            }
+        }
+        
+        for (let section in pagesByPaths) {
+            if (!pagesByOrder[section]) {
+                pagesByOrder[section] = pagesByPaths[section]
+            }
+        }
+
+        return pagesByOrder
+    }
+    
+    public init() {
+        this.content = this.makePages()
     }
 
     public getFirstPage(): Page | null {
-        const firstObject = Object.values(this.pages)[0]
-        if (!firstObject) return null
-        if (firstObject.id) return firstObject
-        return Object.values(firstObject)[0]
+        for (let section in this.pages) {
+            if (this.pages[section].length) {
+                return this.pages[section][0]
+            }
+        }
+        return null
     }
 
     public getPageById(id: string) {

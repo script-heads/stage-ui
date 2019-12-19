@@ -5,7 +5,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 const FilterWarningsPlugin = require('webpack-filter-warnings-plugin')
 
-module.exports = function (dir) {
+module.exports = function (workdir) {
 
     const config = {
         mode: 'development',
@@ -74,7 +74,7 @@ module.exports = function (dir) {
         },
         plugins: [
             new webpack.DefinePlugin({
-                '$_WORKDIR_$': JSON.stringify(dir)
+                'WEBPACK_WORKDIR': JSON.stringify(workdir)
             }),
             new MonacoWebpackPlugin(),
             new FilterWarningsPlugin({ 

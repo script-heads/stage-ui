@@ -29,10 +29,10 @@ const sortTypes = (data: TypeInterface, cutTypes?: string[]) => {
     return {main,cut}
 }
 
-const Interface = (props: {data: TypeInterface, cutTypes?: string[]}) => {
+const Interface = (props: {data: TypeInterface, separatedTypes?: string[]}) => {
 
     if (!props.data) return null
-    const {main, cut} = sortTypes(props.data, props.cutTypes)
+    const {main, cut} = sortTypes(props.data, props.separatedTypes)
     const [openedCuts, setOpenedCuts] = useState<string[]>([])
     
     const renderTypes = (data: TypeInterfaceChild[]) => 
