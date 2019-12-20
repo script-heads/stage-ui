@@ -1,8 +1,8 @@
 import Flexbox from '@flow-ui/core/layout/Flexbox'
-import { Config } from '../../core'
+import { Config } from '../../../core'
 import React from 'react'
 import Interface from './Interface'
-import typedoc from '../../definitions/types.json'
+import typedoc from '../../../definitions/types.json'
 
 export interface TypeInterface {
     name: string
@@ -22,17 +22,24 @@ export interface TypeInterfaceChild {
     values: string[]
 }
 
-const API = (props: { name: string, config: Config }) => {
+interface APIProps { 
+    name: string, 
+    types: Config['pages']['separatedTypes'], 
+    separatedTypes: Config['pages']['separatedTypes'] 
+}
 
-    let nameSpace = typedoc[props.name] || []
+const API = (props: APIProps) => {
+
+    const {name, types, separatedTypes} = props
+    let nameSpace = typedoc[name] || []
 
     if (!Array.isArray(nameSpace) || nameSpace.length === 0) {
-        console.warn(`Render docs: There is no props for ${props.name}`)
+        console.warn(`Render docs: There is no props for ${name}`)
         return null
     }
     
-    if (props.config.pages?.types) {
-        nameSpace = props.config.pages.types.map(typeName => {
+    if (types) {
+        nameSpace = types.map(typeName => {
             return nameSpace.find(type => type.name === typeName)
         })
     }
@@ -40,7 +47,7 @@ const API = (props: { name: string, config: Config }) => {
     return (
         <Flexbox wrap="wrap">
             {nameSpace.map((data, index) => (
-                <Interface data={data} separatedTypes={props.config.pages?.separatedTypes} key={'inteface'+index}/>
+                <Interface data={data} separatedTypes={separatedTypes} key={'inteface'+index}/>
             ))}
         </Flexbox>
     )

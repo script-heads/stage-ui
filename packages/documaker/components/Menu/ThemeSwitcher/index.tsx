@@ -3,7 +3,7 @@ import React, { Fragment, useRef, useState } from 'react'
 import { Block, Flexbox, Drop, Popover, Grid } from '@flow-ui/core'
 import { Config } from 'core'
 
-interface ThemeSwitcherProps {
+export interface ThemeSwitcherProps {
     themes: Config['themes']
     currentTheme: string
     setTheme: (theme: string) => void

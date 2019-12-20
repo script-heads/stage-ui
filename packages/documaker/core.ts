@@ -15,7 +15,7 @@ export interface Config {
     }
 }
 
-export interface Page {
+export interface PageType {
     id?: string
     url?: string
     title?: string
@@ -29,7 +29,7 @@ export interface Page {
     default?: React.SFC<{}>
 }
 
-export type Pages = Record<string,Page[]>
+export type PagesType = Record<string,PageType[]>
 
 class Core {
     static instance: Core
@@ -42,7 +42,7 @@ class Core {
 
     protected rawContent: __WebpackModuleApi.RequireContext
     protected rawConfig: Config = {}
-    protected content: Pages = {}
+    protected content: PagesType = {}
     protected reactContext: React.Context<Object> = React.createContext(null)
 
     constructor() {
@@ -50,7 +50,7 @@ class Core {
         this.rawConfig = require(WEBPACK_WORKDIR + '/documaker.config')?.default || {}
     }
 
-    get pages(): Pages {
+    get pages(): PagesType {
         return this.content
     }
 
@@ -92,7 +92,7 @@ class Core {
         )
     }
 
-    private searchPage(pages: Pages, key: string, value: unknown): Page | null {
+    private searchPage(pages: PagesType, key: string, value: unknown): PageType | null {
         let result = null
         for (let section in pages) {
             result = pages[section].find(page => page[key] === value)
@@ -103,7 +103,7 @@ class Core {
 
     private makePages() {
         const order = this.config?.pages?.order
-        const pagesByPaths: Pages = { Index: [] }
+        const pagesByPaths: PagesType = { Index: [] }
 
         this.rawContent.keys().map((path: string) => {    
             const section = path.split('/').slice(-3)[0] || 'Index'
@@ -114,7 +114,7 @@ class Core {
 
         if (!order) return pagesByPaths
 
-        const pagesByOrder: Pages = { Index: [] }
+        const pagesByOrder: PagesType = { Index: [] }
 
         for (let section in order) {
             pagesByOrder[section] = order[section].map(pageTitle =>
@@ -141,7 +141,7 @@ class Core {
         this.content = this.makePages()
     }
 
-    public getFirstPage(): Page | null {
+    public getFirstPage(): PageType | null {
         for (let section in this.pages) {
             if (this.pages[section].length) {
                 return this.pages[section][0]
@@ -150,11 +150,11 @@ class Core {
         return null
     }
 
-    public getPageById(id: string) {
+    public getPageById(id: string): PageType | null {
         return this.searchPage(this.pages, 'id', id)
     }
 
-    public getPageByUrl(url: string) {
+    public getPageByUrl(url: string): PageType | null {
         return this.searchPage(this.pages, 'url', url)
     }
 }

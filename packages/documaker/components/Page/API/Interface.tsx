@@ -1,6 +1,6 @@
 import {Header, Text, Divider, Icon, Flexbox, Block, Paragraph} from '@flow-ui/core'
 import React, { Fragment, useState } from 'react'
-import {TypeInterfaceChild, TypeInterface} from '.'
+import {TypeInterfaceChild, TypeInterface} from '../API'
 
 const toggleArrayItem = (a, v): any[] => {
     let i = a.indexOf(v)

@@ -1,26 +1,26 @@
 import * as React from 'react'
-import { Pages, Page } from 'core'
+import { PagesType, PageType } from '../../core'
 import { Text, Menu,Block } from '@flow-ui/core'
 import MenuTypes from '@flow-ui/core/control/Menu/types'
 
 export interface SidebarProps {
-	pages: Pages,
-	current: string | null
+	pages: PagesType,
+	currentPage: PageType
 	onChange: (pageId: string) => void
 }
 
 const Sidebar = (props: SidebarProps) => {
 
-	const {pages, current, onChange} = props
+	const {pages, currentPage, onChange} = props
 	
-	const getMenuItems = (section: Page[]): MenuTypes.Item[] => 
+	const getMenuItems = (section: PageType[]): MenuTypes.Item[] => 
 		section.map(page => ({
 				css: {
 					fontWeight: '700',
 					paddingLeft:'0.75rem',
 					minWidth: '14rem',
 				},
-				value: page.id,
+				value: page.url,
 				content: (
 					<Text ellipsis flex={1}>{page.title}</Text>
 				)
@@ -41,12 +41,11 @@ const Sidebar = (props: SidebarProps) => {
 								/>
 							}
 							<Menu 
-								value={current || -1}
+								value={currentPage.url || -1}
 								decoration="color"
 								direction="column"
 								onChange={(value) => {
-									const pageId = value.toString()
-									onChange(pageId)
+									onChange(value.toString())
 								}}
 								items={getMenuItems(pages[section])}
 							/>

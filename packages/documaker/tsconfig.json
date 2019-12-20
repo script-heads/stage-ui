@@ -4,7 +4,6 @@
         "target": "esnext",
         "module": "commonjs",
         "outDir": "../../build/documaker",
-        "baseUrl": ".",
         "allowJs": false,
         "declaration": true,
         "skipLibCheck": true,
