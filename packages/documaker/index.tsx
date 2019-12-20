@@ -19,7 +19,12 @@ const Documaker = () => {
 	const locationPath = '/' + window.location.pathname.slice(1)
 
 	function setPage(pageURL?: string) {
-		const nextPage = core.getPageByUrl(pageURL || history.state?.url)
+		let nextPage = core.getPageByUrl(pageURL || history.state?.url)
+
+		if (!nextPage && !Index) {
+			nextPage = core.getFirstPage()
+		}
+
 		const title = nextPage?.title 
 			? nextPage?.title + ' - ' + config.name
 			: config.name
@@ -44,9 +49,9 @@ const Documaker = () => {
 	}
 
 	function Content () {
-		if (!currentPage && Index) {
+		if (!currentPage) {
 			return (
-				<Index open={() => setPage(core.getFirstPage().url)} />
+				<Index open={() => historyPush(core.getFirstPage().url)} />
 			)
 		}
 	

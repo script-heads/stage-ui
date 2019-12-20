@@ -150,11 +150,11 @@ class Core {
         return null
     }
 
-    public getPageById(id: string): PageType | null {
+    public getPageById(id: string) {
         return this.searchPage(this.pages, 'id', id)
     }
 
-    public getPageByUrl(url: string): PageType | null {
+    public getPageByUrl(url: string) {
         return this.searchPage(this.pages, 'url', url)
     }
 }
