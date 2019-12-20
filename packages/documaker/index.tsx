@@ -1,35 +1,36 @@
 import ReactDOM from 'react-dom'
 import React, { Fragment, useState, useMemo } from 'react'
-import { Viewport,Flexbox } from '@flow-ui/core'
+import { Viewport,Flexbox, Header, Text } from '@flow-ui/core'
 import core, { PageType } from './core'
 import Sidebar from './components/Sidebar'
 import Menu from './components/Menu'
 import Page from './components/Page'
+import ThemeTypes from '@flow-ui/core/misc/themes/types'
+import * as flowThemes from '@flow-ui/core/misc/themes/index'
 
 core.init()
 
 const Documaker = () => {
 
-	const [currentThemeName, setTheme] = useState<string|null>(null)
-	const [contextData, setContext] = useState<Object>({})
-	const [currentPage, setCurrentPage] = useState<PageType|null>(null)
-
 	const {Context, config, pages} = core
 	const Index = config.index
-	const locationPath = '/' + window.location.pathname.slice(1)
+	const themes = Object.assign(flowThemes,config.themes)
+	const locationPath = '/' + window.location.pathname.slice(1) 
 
+	const [currentTheme, setTheme] = useState<ThemeTypes.Index>(Object.values(themes)[0])
+	const [contextData, setContext] = useState<Object>({})
+	const [currentPage, setCurrentPage] = useState<PageType|'/'|'404'|null>(null)	
+	
 	function setPage(pageURL?: string) {
-		let nextPage = core.getPageByUrl(pageURL || history.state?.url)
-
-		if (!nextPage && !Index) {
-			nextPage = core.getFirstPage()
-		}
-
-		const title = nextPage?.title 
+		const nextPage = pageURL != '/' 
+			? core.getPageByUrl(pageURL || history.state?.url) || '404'
+			: Index ? '/' : core.getFirstPage()
+		
+		const title = typeof nextPage != 'string'
 			? nextPage?.title + ' - ' + config.name
-			: config.name
+			: config.name || 'Documaker'
 
-		document.title = title
+		document.title = title 
 		setCurrentPage(nextPage)
 		return title
 	}
@@ -49,41 +50,58 @@ const Documaker = () => {
 	}
 
 	function Content () {
-		if (!currentPage) {
-			return (
-				<Index open={() => historyPush(core.getFirstPage().url)} />
-			)
+		switch (currentPage) {
+			case null:
+				return (
+					<Header>Documaker has no pages</Header>
+				)
+			case '404':
+				return (
+					<Fragment>
+						<Header>404</Header>
+						<Text>Page not found</Text>
+					</Fragment>
+				)
+			case '/':
+				return Index ? (
+					<Index open={() => {
+						const firstPage = core.getFirstPage()
+						if (firstPage) {
+							historyPush(firstPage.url)
+						}
+					}} />
+				) : null
+			default:
+				return (
+					<Fragment>
+						<Menu
+							themes={themes}
+							currentTheme={currentTheme}
+							setTheme={setTheme}
+							name={config.name || 'Documaker'}
+							git={config.git} 
+							setIndex={() => historyPush('/')} 
+						/>
+						<Flexbox>
+							<Sidebar
+								currentPage={currentPage as PageType}
+								pages={pages}
+								onChange={(pageURL) => historyPush(pageURL)}
+							/>
+							<Page
+								currentPage={currentPage as PageType}
+								types={config.pages?.types}
+								separatedTypes={config.pages?.separatedTypes}
+							/>
+						</Flexbox>
+					</Fragment>
+				) 
 		}
-	
-		return (
-			<Fragment>
-				<Menu
-					themes={config.themes}
-					currentTheme={currentThemeName}
-					setTheme={setTheme}
-					name={config.name || 'Documaker'}
-					git={config.git} 
-					setIndex={() => historyPush('/')} 
-				/>
-				<Flexbox>
-					<Sidebar
-						currentPage={currentPage}
-						pages={pages}
-						onChange={(pageURL) => historyPush(pageURL)}
-					/>
-					<Page
-						currentPage={currentPage}
-						types={config.pages.types}
-						separatedTypes={config.pages.separatedTypes}
-					/>
-				</Flexbox>
-			</Fragment>
-		)
 	}
 
 	return (
 		<Context.Provider value={{ ...contextData, setContext }}>
-			<Viewport theme={config.themes?.[currentThemeName]}>
+			<Viewport theme={currentTheme}>
 				<Content/>
 			</Viewport>
 		</Context.Provider>

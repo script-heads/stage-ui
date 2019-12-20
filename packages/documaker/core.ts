@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import ThemeTypes from '@flow-ui/core/misc/themes/types'
 
 declare const WEBPACK_WORKDIR: string
@@ -6,7 +6,7 @@ declare const WEBPACK_WORKDIR: string
 export interface Config {
     name?: string
     git?: string
-    index?: (props: {open: () => void}) => ReactElement
+    index?: (props: {open: () => void}) => JSX.Element
     themes?: Record<string,ThemeTypes.Index>
     pages?: {
         order?: Record<string,string[]>
@@ -16,9 +16,9 @@ export interface Config {
 }
 
 export interface PageType {
-    id?: string
-    url?: string
-    title?: string
+    id: string
+    url: string
+    title: string
     ns?: string
     cases?: {
         label: string
@@ -43,7 +43,7 @@ class Core {
     protected rawContent: __WebpackModuleApi.RequireContext
     protected rawConfig: Config = {}
     protected content: PagesType = {}
-    protected reactContext: React.Context<Object> = React.createContext(null)
+    protected reactContext: React.Context<Object> = React.createContext({})
 
     constructor() {
         this.rawContent = require.context(WEBPACK_WORKDIR + '/pages', true, /\.case$/)
@@ -75,7 +75,7 @@ class Core {
         return prefix + '-' + uniqueId
     }
 
-    private makePage(path) {
+    private makePage(path: string) {
         const page = this.rawContent(path)
         const dirs = path.split('/').slice(1)
         const dirsCount = dirs.length
@@ -92,10 +92,10 @@ class Core {
         )
     }
 
-    private searchPage(pages: PagesType, key: string, value: unknown): PageType | null {
-        let result = null
+    private searchPage(pages: PagesType, key: string, value: unknown) {
+        let result: PageType | null = null
         for (let section in pages) {
-            result = pages[section].find(page => page[key] === value)
+            result = pages[section].find(page => page[key] === value) || null
             if (result) return result  
         }
         return result
@@ -117,9 +117,15 @@ class Core {
         const pagesByOrder: PagesType = { Index: [] }
 
         for (let section in order) {
-            pagesByOrder[section] = order[section].map(pageTitle =>
-                this.searchPage(pagesByPaths, 'title', pageTitle)
-            )
+            pagesByOrder[section] = []
+            
+            order[section].map(pageTitle => {
+                const findedPage = this.searchPage(pagesByPaths, 'title', pageTitle)
+                if (findedPage) {
+                    pagesByOrder[section].push(findedPage)
+                }
+            })
+
             if (pagesByPaths[section]) {
                 const otherPages = pagesByPaths[section].filter(page =>
                     !order[section].includes(page.title)

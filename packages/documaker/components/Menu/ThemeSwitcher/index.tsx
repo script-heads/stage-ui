@@ -1,12 +1,12 @@
 import Icon from '@flow-ui/core/content/Icon'
 import React, { Fragment, useRef, useState } from 'react'
 import { Block, Flexbox, Drop, Popover, Grid } from '@flow-ui/core'
-import { Config } from 'core'
+import ThemeTypes from '@flow-ui/core/misc/themes/types'
 
 export interface ThemeSwitcherProps {
-    themes: Config['themes']
-    currentTheme: string
-    setTheme: (theme: string) => void
+    themes: Record<string,ThemeTypes.Index>
+    currentTheme: ThemeTypes.Index
+    setTheme: (theme: ThemeTypes.Index) => void
 }
 
 const ThemeSwitcher = (props: ThemeSwitcherProps) => {
@@ -46,12 +46,12 @@ const ThemeSwitcher = (props: ThemeSwitcherProps) => {
                                 }}
                                 borderWidth="2px"
                                 borderStyle="solid"
-                                borderColor={c=> currentTheme === theme
+                                borderColor={c=> currentTheme.name === themes[theme].name
                                     ? c.primary.css()
                                     : c.lightest.css()
                                 }
                                 onClick={() => {
-                                    setTheme(theme)
+                                    setTheme(themes[theme])
                                 }}>
                                 <Block 
                                     flex={1}

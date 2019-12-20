@@ -1,5 +1,5 @@
+//@ts-nocheck
 import Flexbox from '@flow-ui/core/layout/Flexbox'
-import { Config } from '../../../core'
 import React from 'react'
 import Interface from './Interface'
 import typedoc from '../../../definitions/types.json'
@@ -24,8 +24,8 @@ export interface TypeInterfaceChild {
 
 interface APIProps { 
     name: string, 
-    types: Config['pages']['separatedTypes'], 
-    separatedTypes: Config['pages']['separatedTypes'] 
+    types?: string[], 
+    separatedTypes?: string[]
 }
 
 const API = (props: APIProps) => {
@@ -47,7 +47,7 @@ const API = (props: APIProps) => {
     return (
         <Flexbox wrap="wrap">
             {nameSpace.map((data, index) => (
-                <Interface data={data} separatedTypes={separatedTypes} key={'inteface'+index}/>
+                <Interface data={data} separatedTypes={separatedTypes} key={'inteface-'+index}/>
             ))}
         </Flexbox>
     )

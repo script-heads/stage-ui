@@ -3,7 +3,7 @@ import ThemeSwitcher, { ThemeSwitcherProps } from './ThemeSwitcher'
 
 interface MenuProps extends ThemeSwitcherProps {
     name: string, 
-    git: string,
+    git?: string,
     setIndex: () => void
 }
 

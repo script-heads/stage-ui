@@ -1,13 +1,13 @@
 import { Flexbox, Icon, Block, Display, Button } from '@flow-ui/core'
-import core, { Config, PageType } from '../../core'
+import { PageType } from '../../core'
 import { Fragment, useReducer } from 'react'
 import CodeEditor from './CodeEditor'
 import API from './API'
 
 interface ContentProps {
     currentPage: PageType
-    types: Config['pages']['separatedTypes'], 
-    separatedTypes: Config['pages']['separatedTypes'] 
+    types?: string[], 
+    separatedTypes?: string[] 
 }
 
 export interface State {
