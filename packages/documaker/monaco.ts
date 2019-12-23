@@ -78,27 +78,7 @@ class Monaco {
                 defaultCode, 
                 'typescript',
                 monaco.Uri.parse(location.origin + '/main.tsx')
-            )
-    
-            this.model.onDidChangeContent(event => {
-                setTimeout(() => {
-                    const code = this.model.getValue()
-                    if (this.code === code) {
-                        return
-                    }
-                    this.code = code
-                    if (!this.restoring) {
-                        this.redoStates = []
-                        this.undoStates.push({
-                            state: this.editor.saveViewState(),
-                            code
-                        })
-                    }
-                    this.input = true
-                    this.restoring = false
-                    setCode && setCode(code)
-                })
-            })
+            )            
         }
 
         this.editor = monaco.editor.create(document.getElementById(id)!, { 
@@ -107,10 +87,30 @@ class Monaco {
             minimap: {
                 enabled: false
             },
-            // lineNumbers: 'off',
             automaticLayout: true,
             fontSize: 14,
             fontWeight: '600',
+        })
+
+        this.editor.onDidChangeModelContent(event => {
+            setTimeout(() => {
+                const code = this.model.getValue()
+
+                if (this.code === code) {
+                    return
+                }
+                this.code = code
+                if (!this.restoring) {
+                    this.redoStates = []
+                    this.undoStates.push({
+                        state: this.editor.saveViewState(),
+                        code
+                    })
+                }
+                this.input = true
+                this.restoring = false
+                setCode && setCode(code)
+            })
         })
 
         this.editor.changeViewZones((changeAccessor) => {
