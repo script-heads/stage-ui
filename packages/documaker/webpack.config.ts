@@ -1,4 +1,3 @@
-// import { transformImports } from '@flow-ui/core'
 const path = require('path')
 const webpack = require('webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
@@ -6,8 +5,7 @@ const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 const FilterWarningsPlugin = require('webpack-filter-warnings-plugin')
 
 module.exports = function (workdir) {
-
-    const config = {
+    return {
         mode: 'development',
 
         entry: {
@@ -54,12 +52,6 @@ module.exports = function (workdir) {
                                         ['@babel/plugin-proposal-optional-chaining', {
                                             loose: true
                                         }],
-                                        // ["transform-imports", {
-                                        //     "@flow-ui/core": {
-                                        //         "transform": transformImports,
-                                        //         "preventFullImport": true
-                                        //     }
-                                        // }]
                                     ]
                                 }
                             }
@@ -82,5 +74,4 @@ module.exports = function (workdir) {
             })
         ]
     }
-    return config
 }

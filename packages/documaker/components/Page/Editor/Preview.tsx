@@ -30,56 +30,40 @@ const Preview = (props: PreviewProps) => {
     }).split('export default ')[1].trim().slice(0, -1) + '()'
     
     return (
-        <Fragment>
-            <Block h="100%" css={{ position: 'relative' }}>
-                <Block 
-                    p="2rem" 
-                    css={[
-                        { 
-                            position: 'absolute', 
-                            zIndex: 1, 
-                            top: 0, 
-                            left: 0, 
-                            right: 0, 
-                            bottom: 0 
-                        },
-                        grid && {
-                            '&::before': {
-                                content: '\'\'',
-                                position: 'absolute',
-                                zIndex: -1,
-                                left: 0, right: 0, bottom: 0, top: 0,
-                                backgroundColor: theme.color.background.hex(),
-                                backgroundImage: `
-                                    linear-gradient(45deg, ${theme.color.surface.hex()} 25%, transparent 25%),
-                                    linear-gradient(-45deg, ${theme.color.surface.hex()} 25%, transparent 25%), 
-                                    linear-gradient(45deg, transparent 75%, ${theme.color.surface.hex()} 75%), 
-                                    linear-gradient(-45deg, transparent 75%, ${theme.color.surface.hex()} 75%)
-                                `,
-                                backgroundSize: '2rem 2rem',
-                                backgroundPosition: '0 0, 0 1rem, 1rem -1rem, -1rem 0px',
-                                borderRadius: '0 8px 8px 0',
-                            }
+        <Block h="100%" css={{ position: 'relative' }}>
+            <Block 
+                p="2rem" 
+                css={[
+                    { 
+                        position: 'absolute', 
+                        zIndex: 1, 
+                        top: 0, 
+                        left: 0, 
+                        right: 0, 
+                        bottom: 0 
+                    },
+                    grid && {
+                        '&::before': {
+                            content: '\'\'',
+                            position: 'absolute',
+                            zIndex: -1,
+                            left: 0, right: 0, bottom: 0, top: 0,
+                            backgroundColor: theme.color.background.hex(),
+                            backgroundImage: `
+                                linear-gradient(45deg, ${theme.color.surface.hex()} 25%, transparent 25%),
+                                linear-gradient(-45deg, ${theme.color.surface.hex()} 25%, transparent 25%), 
+                                linear-gradient(45deg, transparent 75%, ${theme.color.surface.hex()} 75%), 
+                                linear-gradient(-45deg, transparent 75%, ${theme.color.surface.hex()} 75%)
+                            `,
+                            backgroundSize: '2rem 2rem',
+                            backgroundPosition: '0 0, 0 1rem, 1rem -1rem, -1rem 0px',
+                            borderRadius: '0 8px 8px 0',
                         }
-                    ]}>
-                    {Function('"use strict";return (' + traspiledCode + ')')()}
-                </Block>
-            </Block>                        
-            {fullscreen && (
-                <Icon
-                    shape="oval"
-                    background={c => c.lightest.css()}
-                    type={t => t.outline.collapse}
-                    css={{
-                        position: 'fixed',
-                        top: '1rem',
-                        right: '1rem',
-                        zIndex: 9999,
-                    }}
-                    onClick={() => setFullscreen(false)}
-                />
-            )}
-        </Fragment>
+                    }
+                ]}>
+                {Function('"use strict";return (' + traspiledCode + ')')()}
+            </Block>
+        </Block>                        
     )
 }
 

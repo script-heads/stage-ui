@@ -14,7 +14,7 @@ interface EditorProps {
 const Editor = (props: EditorProps) => {
     const {cases} = props
     const [currentCase, setCurrentCase] = useState<number>(0)
-    const [code, setCode] = useState<string>('')
+    const [code, setCode] = useState<string>(cases[0].code)
     const [grid, setGrid] = useState<boolean>(false)
     const [fullscreen, setFullscreen] = useState<boolean>(false)
     const {theme} = useFlow()
@@ -22,7 +22,7 @@ const Editor = (props: EditorProps) => {
     useEffect(() => {
         monaco.create({
             id: 'documaker-code-editor',
-            code: cases?.[0]?.code || '', 
+            code: cases[0].code, 
             setCode,
         })
         return monaco.remove
@@ -38,11 +38,11 @@ const Editor = (props: EditorProps) => {
 
     useEffect(() => {
         setCurrentCase(0)
-        monaco.setCode(cases?.[0]?.code || '')
+        monaco.setCode(cases[0].code)
     }, [cases])
 
     useEffect(() => {
-        monaco.setCode(cases?.[currentCase]?.code || '')
+        monaco.setCode(cases[currentCase].code)
     }, [currentCase])
 
     useEffect(() => {
@@ -117,6 +117,7 @@ const Editor = (props: EditorProps) => {
                         bottom: 0,
                         margin: 0,
                         borderRadius: 0,
+                        borderWidth: '0px',
                         zIndex: 10,
                         height: '100%',
                     }
@@ -141,6 +142,20 @@ const Editor = (props: EditorProps) => {
                                 setFullscreen={setFullscreen}
                             />
                         </ErrorBoundary>
+                        {fullscreen && (
+                            <Icon
+                                shape="oval"
+                                background={c => c.lightest.css()}
+                                type={t => t.outline.collapse}
+                                css={{
+                                    position: 'fixed',
+                                    top: '1rem',
+                                    right: '1rem',
+                                    zIndex: 9999,
+                                }}
+                                onClick={() => setFullscreen(false)}
+                            />
+                        )}
                     </Block>
                 </Split>
             </Block>

@@ -166,7 +166,7 @@ class Monaco {
         }
     }    
 
-    public async setCode(code: string) {
+    public async setCode(code: string = '') {
         if (!this.model) {
             await this.waitEditor()
         }
