@@ -17,10 +17,10 @@ interface EditorProps {
 
 const Editor = (props: EditorProps) => {
     const {page, caseIndex, showGrid, fullscreen, onExitFullscreen} = props
-    const currentCode = page?.cases?.[caseIndex].code || ''
+    const currentCode = page?.cases?.[caseIndex]?.code || ''
     const [code, setCode] = useState<string>(currentCode)
     const {theme} = useFlow()
-    
+
     useEffect(() => {
         monaco.create({
             id: 'documaker-code-editor',
