@@ -17,13 +17,13 @@ Object.assign(window, {
 interface PreviewProps {
     theme: ThemeTypes.Index
     code: string
-    showGrid: boolean
+    grid: boolean
     fullscreen: boolean
-    onExitFullscreen: () => void
+    setFullscreen: (state: boolean) => void
 }
 
 const Preview = (props: PreviewProps) => {
-    const {theme, code, showGrid, fullscreen, onExitFullscreen} = props
+    const {theme, code, grid, fullscreen, setFullscreen} = props
     const traspiledCode = code && ts.transpile(code, {
         jsx: 'react',
         module: 'es6',
@@ -43,7 +43,7 @@ const Preview = (props: PreviewProps) => {
                             right: 0, 
                             bottom: 0 
                         },
-                        showGrid && {
+                        grid && {
                             '&::before': {
                                 content: '\'\'',
                                 position: 'absolute',
@@ -76,7 +76,7 @@ const Preview = (props: PreviewProps) => {
                         right: '1rem',
                         zIndex: 9999,
                     }}
-                    onClick={onExitFullscreen}
+                    onClick={() => setFullscreen(false)}
                 />
             )}
         </Fragment>

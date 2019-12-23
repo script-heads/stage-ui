@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Block, useFlow } from '@flow-ui/core'
+import React, { useEffect, useState, Fragment } from 'react'
+import { Block, useFlow, Flexbox, Text, Icon } from '@flow-ui/core'
 import { Split } from '@flow-ui/lab'
 import chroma from 'chroma-js'
 import monaco from '../../../monaco'
@@ -8,23 +8,21 @@ import Preview from './Preview'
 import ErrorBoundary from './ErrorBoundary'
 
 interface EditorProps {
-    page: PageType | null
-    caseIndex: number
-    showGrid: boolean
-    fullscreen: boolean
-    onExitFullscreen: () => void
+    page: PageType
 }
 
 const Editor = (props: EditorProps) => {
-    const {page, caseIndex, showGrid, fullscreen, onExitFullscreen} = props
-    const currentCode = page?.cases?.[caseIndex]?.code || ''
-    const [code, setCode] = useState<string>(currentCode)
+    const {page} = props
+    const [currentCase, setCurrentCase] = useState<number>(0)
+    const [code, setCode] = useState<string>('')
+    const [grid, setGrid] = useState<boolean>(false)
+    const [fullscreen, setFullscreen] = useState<boolean>(false)
     const {theme} = useFlow()
-
+    
     useEffect(() => {
         monaco.create({
             id: 'documaker-code-editor',
-            code: currentCode, 
+            code: page.cases?.[0]?.code || '', 
             setCode,
         })
         return monaco.remove
@@ -39,8 +37,13 @@ const Editor = (props: EditorProps) => {
     }, [theme])
 
     useEffect(() => {
-        monaco.setCode(currentCode)
-    }, [currentCode])
+        setCurrentCase(0)
+        monaco.setCode(page.cases?.[0]?.code || '')
+    }, [page])
+
+    useEffect(() => {
+        monaco.setCode(page.cases?.[currentCase]?.code || '')
+    }, [currentCase])
 
     useEffect(() => {
         document.body.style.overflow = fullscreen 
@@ -49,31 +52,75 @@ const Editor = (props: EditorProps) => {
     }, [fullscreen])
 
     return (
-        <Block
-            mb="2rem"
-            h="24rem"
-            borderColor={c=>c.lightest.css()}
-            borderWidth="1px"
-            borderStyle="solid"
-            borderRadius={theme.radius.default}
-            backgroundColor={c=>c.background.css()}
-            css={[
-                {
-                    overflow: 'hidden'
-                },
-                fullscreen && {
-                    position: 'fixed',
-                    left: 0,
-                    right: 0,
-                    top: 0,
-                    bottom: 0,
-                    margin: 0,
-                    borderRadius: 0,
-                    zIndex: 10,
-                    height: '100%',
-                }
-            ]}
-            children={(
+        <Fragment>
+            <Flexbox mt="1rem" mb="0.25rem" alignItems="center">
+                {page.cases && page.cases.length > 1 && page.cases.map((c, caseIndex) => (
+                    <Text
+                        key={caseIndex}
+                        size={2}
+                        mr={'1rem'}
+                        weight={600}
+                        color={c => caseIndex === currentCase 
+                            ? c.primary.css()
+                            : c.onBackground.css()}
+                        children={c.label}
+                        onClick={() => setCurrentCase(caseIndex)}
+                        css={{cursor: 'pointer'}}
+                    />
+                ))}
+                <Block flex={1} />
+                <Icon
+                    p="0.75rem"
+                    pr="0.5rem"
+                    size="1.25rem"
+                    color={c => grid
+                        ? c.primary.css()
+                        : c.onSurface.css()
+                    }
+                    onClick={() => {
+                        localStorage.setItem(
+                            'case_grid', 
+                            !grid 
+                                ? 'true' 
+                                : 'false'
+                        )
+                        setGrid(!grid)
+                    }}
+                    type={t => t.outline.grid}
+                />
+                <Icon
+                    p="0.75rem"
+                    pr="0.5rem"
+                    size="1.25rem"
+                    color={c => c.onSurface.css()}
+                    onClick={() => setFullscreen(true)}
+                    type={t => t.outline.expand}
+                />
+            </Flexbox>
+            <Block
+                mb="2rem"
+                h="24rem"
+                borderColor={c=>c.lightest.css()}
+                borderWidth="1px"
+                borderStyle="solid"
+                borderRadius={theme.radius.default}
+                backgroundColor={c=>c.background.css()}
+                css={[
+                    {
+                        overflow: 'hidden'
+                    },
+                    fullscreen && {
+                        position: 'fixed',
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        bottom: 0,
+                        margin: 0,
+                        borderRadius: 0,
+                        zIndex: 10,
+                        height: '100%',
+                    }
+                ]}>
                 <Split>
                     <Block
                         id="documaker-code-editor"
@@ -89,15 +136,15 @@ const Editor = (props: EditorProps) => {
                             <Preview
                                 theme={theme}
                                 code={code}
-                                showGrid={showGrid} 
+                                grid={grid} 
                                 fullscreen={fullscreen} 
-                                onExitFullscreen={onExitFullscreen}
+                                setFullscreen={setFullscreen}
                             />
                         </ErrorBoundary>
                     </Block>
                 </Split>
-            )}
-        />
+            </Block>
+        </Fragment>
     )
 }
 
