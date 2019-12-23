@@ -12,13 +12,12 @@ core.init()
 
 const Documaker = () => {
 
-	const {Context, config, pages} = core
+	const {config, pages} = core
 	const Index = config.index
 	const themes = Object.assign(flowThemes,config.themes)
 	const locationPath = '/' + window.location.pathname.slice(1) 
 
 	const [currentTheme, setTheme] = useState<ThemeTypes.Index>(Object.values(themes)[0])
-	const [contextData, setContext] = useState<Object>({})
 	const [currentPage, setCurrentPage] = useState<PageType|'/'|'404'|null>(null)	
 	
 	function setPage(pageURL?: string) {
@@ -49,62 +48,50 @@ const Documaker = () => {
 		)
 	}
 
-	function Content () {
-		switch (currentPage) {
-			case null:
-				return (
-					<Header>Documaker has no pages</Header>
-				)
-			case '404':
-				return (
-					<Fragment>
-						<Header>404</Header>
-						<Text>Page not found</Text>
-					</Fragment>
-				)
-			case '/':
-				return Index ? (
-					<Index open={() => {
-						const firstPage = core.getFirstPage()
-						if (firstPage) {
-							historyPush(firstPage.url)
-						}
-					}} />
-				) : null
-			default:
-				return (
-					<Fragment>
-						<Menu
-							themes={themes}
-							currentTheme={currentTheme}
-							setTheme={setTheme}
-							name={config.name || 'Documaker'}
-							git={config.git} 
-							setIndex={() => historyPush('/')} 
-						/>
-						<Flexbox>
-							<Sidebar
-								currentPage={currentPage as PageType}
-								pages={pages}
-								onChange={(pageURL) => historyPush(pageURL)}
-							/>
-							<Page
-								currentPage={currentPage as PageType}
-								types={config.pages?.types}
-								separatedTypes={config.pages?.separatedTypes}
-							/>
-						</Flexbox>
-					</Fragment>
-				) 
-		}
-	}
-
 	return (
-		<Context.Provider value={{ ...contextData, setContext }}>
-			<Viewport theme={currentTheme}>
-				<Content/>
-			</Viewport>
-		</Context.Provider>
+		<Viewport theme={currentTheme}>
+			{currentPage === null &&
+				<Header>Documaker has no pages</Header>
+			}
+			{currentPage === '404' &&
+				<Fragment>
+					<Header>404</Header>
+					<Text>Page not found</Text>
+				</Fragment>
+			}
+			{currentPage === '/' && Index &&
+				<Index open={() => {
+					const firstPage = core.getFirstPage()
+					if (firstPage) {
+						historyPush(firstPage.url)
+					}
+				}} />
+			}
+			{currentPage && typeof currentPage === 'object' &&
+				<Fragment>
+					<Menu
+						themes={themes}
+						currentTheme={currentTheme}
+						setTheme={setTheme}
+						name={config.name || 'Documaker'}
+						git={config.git} 
+						setIndex={() => historyPush('/')} 
+					/>
+					<Flexbox>
+						<Sidebar
+							currentPage={currentPage as PageType}
+							pages={pages}
+							onChange={(pageURL) => historyPush(pageURL)}
+						/>
+						<Page
+							currentPage={currentPage as PageType}
+							types={config.pages?.types}
+							separatedTypes={config.pages?.separatedTypes}
+						/>
+					</Flexbox>
+				</Fragment>
+			}
+		</Viewport>
 	)
 }
 

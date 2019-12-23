@@ -1,7 +1,7 @@
 import { Flexbox, Icon, Block, Display, Button } from '@flow-ui/core'
 import { PageType } from '../../core'
 import { Fragment, useReducer } from 'react'
-import CodeEditor from './CodeEditor'
+import Editor from './Editor'
 import API from './API'
 
 interface ContentProps {
@@ -14,8 +14,6 @@ export interface State {
 	caseIndex: number
 	showGrid: boolean
 	fullscreen: boolean
-	shared: Object
-	currentTheme: string
 }
 
 type Reducer = (state: State, action: Partial<State>) => State
@@ -28,14 +26,12 @@ const Page = (props: ContentProps) => {
 			caseIndex: 0,
 			showGrid: localStorage.getItem('case_grid') ? true : false,
 			fullscreen: false,
-			shared: {},
-			currentTheme: localStorage.getItem('theme') || 'light',
 		}
     )
     
     const {currentPage: page, types, separatedTypes} = props
     const CustomPageContent = (page && page.default) ? page.default : null
-
+    
     return (
         <Block px="6rem" flex={1} css={{zIndex:1 }}>
             {page && page.title && (
@@ -96,8 +92,8 @@ const Page = (props: ContentProps) => {
                             type={t => t.outline.expand}
                         />
                     </Flexbox>
-                    <CodeEditor
-                        caseObject={page}
+                    <Editor
+                        page={page}
                         caseIndex={state.caseIndex}
                         showGrid={state.showGrid}
                         fullscreen={state.fullscreen}

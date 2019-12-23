@@ -1,4 +1,3 @@
-import React from 'react'
 import ThemeTypes from '@flow-ui/core/misc/themes/types'
 
 declare const WEBPACK_WORKDIR: string
@@ -43,7 +42,6 @@ class Core {
     protected rawContent: __WebpackModuleApi.RequireContext
     protected rawConfig: Config = {}
     protected content: PagesType = {}
-    protected reactContext: React.Context<Object> = React.createContext({})
 
     constructor() {
         this.rawContent = require.context(WEBPACK_WORKDIR + '/pages', true, /\.case$/)
@@ -56,10 +54,6 @@ class Core {
 
     get config(): Config  {
         return this.rawConfig 
-    }
-
-    get Context() {
-        return this.reactContext
     }
 
     private getId(prefix: string, id?: string) {
