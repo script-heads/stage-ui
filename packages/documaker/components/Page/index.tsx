@@ -10,7 +10,6 @@ interface ContentProps {
 }
 
 const Page = (props: ContentProps) => {
-
     const {currentPage: page, types, separatedTypes} = props
 
     if (!page) return null
@@ -24,7 +23,9 @@ const Page = (props: ContentProps) => {
                     children={page.title}
                 />
             )}
-            <Editor page={page}/>
+            {page.cases &&
+                <Editor cases={page.cases}/>
+            }
             {page.default && 
                 <Block my="2rem">
                     <page.default />

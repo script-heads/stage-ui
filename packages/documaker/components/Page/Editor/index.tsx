@@ -8,11 +8,11 @@ import Preview from './Preview'
 import ErrorBoundary from './ErrorBoundary'
 
 interface EditorProps {
-    page: PageType
+    cases: Exclude<PageType['cases'],undefined>
 }
 
 const Editor = (props: EditorProps) => {
-    const {page} = props
+    const {cases} = props
     const [currentCase, setCurrentCase] = useState<number>(0)
     const [code, setCode] = useState<string>('')
     const [grid, setGrid] = useState<boolean>(false)
@@ -22,7 +22,7 @@ const Editor = (props: EditorProps) => {
     useEffect(() => {
         monaco.create({
             id: 'documaker-code-editor',
-            code: page.cases?.[0]?.code || '', 
+            code: cases?.[0]?.code || '', 
             setCode,
         })
         return monaco.remove
@@ -38,11 +38,11 @@ const Editor = (props: EditorProps) => {
 
     useEffect(() => {
         setCurrentCase(0)
-        monaco.setCode(page.cases?.[0]?.code || '')
-    }, [page])
+        monaco.setCode(cases?.[0]?.code || '')
+    }, [cases])
 
     useEffect(() => {
-        monaco.setCode(page.cases?.[currentCase]?.code || '')
+        monaco.setCode(cases?.[currentCase]?.code || '')
     }, [currentCase])
 
     useEffect(() => {
@@ -54,7 +54,7 @@ const Editor = (props: EditorProps) => {
     return (
         <Fragment>
             <Flexbox mt="1rem" mb="0.25rem" alignItems="center">
-                {page.cases && page.cases.length > 1 && page.cases.map((c, caseIndex) => (
+                {cases.length > 1 && cases.map((c, caseIndex) => (
                     <Text
                         key={caseIndex}
                         size={2}
