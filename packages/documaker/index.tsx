@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom'
+import {Global} from '@emotion/core'
 import React, { Fragment, useState, useMemo } from 'react'
 import { Viewport,Flexbox, Header, Text } from '@flow-ui/core'
 import core, { PageType } from './core'
@@ -7,6 +8,14 @@ import Menu from './components/Menu'
 import Page from './components/Page'
 import ThemeTypes from '@flow-ui/core/misc/themes/types'
 import * as flowThemes from '@flow-ui/core/misc/themes/index'
+
+declare global {
+	interface Window {
+		breakpoints: number[]
+	}
+}
+
+window.breakpoints=[960,768]
 
 core.init()
 
@@ -47,9 +56,16 @@ const Documaker = () => {
 			pageURL
 		)
 	}
-
+	
 	return (
 		<Viewport theme={currentTheme}>
+			<Global
+				styles={{
+					'html,body,#documaker': {
+						minHeight: '100%'
+					}
+				}}
+			/>
 			{currentPage === null &&
 				<Header>Documaker has no pages</Header>
 			}
@@ -77,7 +93,7 @@ const Documaker = () => {
 						git={config.git} 
 						setIndex={() => historyPush('/')} 
 					/>
-					<Flexbox>
+					<Flexbox css={{minHeight: '100%'}}>
 						<Sidebar
 							currentPage={currentPage as PageType}
 							pages={pages}

@@ -35,8 +35,7 @@ const Preview = (props: PreviewProps) => {
                 p="2rem" 
                 css={[
                     { 
-                        position: 'absolute', 
-                        zIndex: 1, 
+                        position: 'absolute',  
                         top: 0, 
                         left: 0, 
                         right: 0, 

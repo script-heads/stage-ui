@@ -6,6 +6,7 @@ import monaco from '../../../monaco'
 import { PageType } from '../../../core'
 import Preview from './Preview'
 import ErrorBoundary from './ErrorBoundary'
+import { useBrowser } from '@flow-ui/core'
 
 interface EditorProps {
     cases: Exclude<PageType['cases'],undefined>
@@ -18,6 +19,7 @@ const Editor = (props: EditorProps) => {
     const [grid, setGrid] = useState<boolean>(false)
     const [fullscreen, setFullscreen] = useState<boolean>(false)
     const {theme} = useFlow()
+    const browser = useBrowser()
     
     useEffect(() => {
         monaco.create({
@@ -53,7 +55,7 @@ const Editor = (props: EditorProps) => {
 
     return (
         <Fragment>
-            <Flexbox mt="1rem" mb="0.25rem" alignItems="center">
+            <Flexbox alignItems="center">
                 {cases.length > 1 && cases.map((c, caseIndex) => (
                     <Text
                         key={caseIndex}
@@ -118,17 +120,15 @@ const Editor = (props: EditorProps) => {
                         margin: 0,
                         borderRadius: 0,
                         borderWidth: '0px',
-                        zIndex: 10,
                         height: '100%',
                     }
                 ]}>
-                <Split>
+                <Split direction={browser.width > window.breakpoints[1] ? 'row' : 'column'}>
                     <Block
                         id="documaker-code-editor"
                         h="100%"
                         w="100%"
                         css={{
-                            zIndex: 10,
                             boxShadow: 'none !important',
                         }}
                     />
@@ -151,7 +151,7 @@ const Editor = (props: EditorProps) => {
                                     position: 'fixed',
                                     top: '1rem',
                                     right: '1rem',
-                                    zIndex: 9999,
+                                    zIndex: 100,
                                 }}
                                 onClick={() => setFullscreen(false)}
                             />

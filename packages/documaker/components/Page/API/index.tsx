@@ -1,5 +1,4 @@
-//@ts-nocheck
-import Flexbox from '@flow-ui/core/layout/Flexbox'
+import { Grid } from '@flow-ui/core'
 import React from 'react'
 import Interface from './Interface'
 import typedoc from '../../../definitions/types.json'
@@ -45,11 +44,11 @@ const API = (props: APIProps) => {
     }
 
     return (
-        <Flexbox wrap="wrap">
+        <Grid templateColumns="repeat(auto-fit, minmax(18rem, 1fr))" mt="2rem" gap="2rem" css={{overflow: 'hidden'}}>
             {nameSpace.map((data, index) => (
                 <Interface data={data} separatedTypes={separatedTypes} key={'inteface-'+index}/>
             ))}
-        </Flexbox>
+        </Grid>
     )
 }
 

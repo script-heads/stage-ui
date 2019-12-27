@@ -41,7 +41,7 @@ const Interface = (props: {data: TypeInterface, separatedTypes?: string[]}) => {
     )
     
     return (
-        <Block flex={1} mr="2rem">
+        <Block>
             <Header>{main.name}</Header>
             {renderTypes(main.children)}
             {cut.map((cutInterface, index) => (
@@ -77,10 +77,10 @@ const Type = (props: { type: TypeInterfaceChild, last: boolean} ) => {
     return (
         <Block>
             <Block mt="1rem" mb=".75rem" ml=".5rem">
-                <Flexbox>
+                <Flexbox css={{overflow: 'hidden'}}>
                     <Text
                         mr=".5rem"
-                        css={{whiteSpace: 'nowrap'}} 
+                        css={{whiteSpace: 'nowrap'}}
                         flex={1}>
                         &bull;&ensp;
                         {type.deprecated !== void 0 && '[Deprecated] '}

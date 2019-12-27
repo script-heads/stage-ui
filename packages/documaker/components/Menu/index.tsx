@@ -1,5 +1,6 @@
 import { Flexbox, Header, Anchor, Icon } from '@flow-ui/core'
 import ThemeSwitcher, { ThemeSwitcherProps } from './ThemeSwitcher'
+import ThemeTypes from '@flow-ui/core/misc/themes/types'
 
 interface MenuProps extends ThemeSwitcherProps {
     name: string, 
@@ -12,7 +13,14 @@ const Menu = (props: MenuProps) => {
     const {name, git, themes, setTheme, currentTheme, setIndex} = props
 
     return (
-        <Flexbox alignItems="center" m="1.5rem" mb="1rem">
+        <Flexbox 
+            alignItems="center" 
+            p="1.5rem"
+            css={(theme: ThemeTypes.Index) => ({
+                [`@media (max-width: ${window.breakpoints[0]}px)`]: {
+                    padding: '1rem',
+                }
+            })}>
             <Header
                 css={{cursor: 'pointer'}}
                 size={3} 
