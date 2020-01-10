@@ -6,7 +6,7 @@ import Types from './types'
 
 const Button: FC<Types.Props> = (props, ref) => {
 
-        const {
+    const {
         disabled,
         decoration = 'filled',
         shape = 'rounded',
@@ -25,7 +25,7 @@ const Button: FC<Types.Props> = (props, ref) => {
         <button
             {...attributes}
             ref={ref}
-            css={styles.container({shape,decoration,size})}
+            css={styles.container({ shape, decoration, size })}
             onClick={onClick}
             autoFocus={props.autoFocus}
             disabled={props.disabled}

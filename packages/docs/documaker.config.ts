@@ -1,11 +1,11 @@
-import index from '.'
+import homePage from '.'
 import themes from './themes'
 
 export default {
     name: 'FlowUI',
     git: 'https://github.com/abr-tech/FlowUI',
     themes,
-    index,
+    homePage,
     pages: {
         order: {
             About: ['Getting started','Props','Theming','Overrides'],

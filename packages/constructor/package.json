@@ -1,0 +1,12 @@
+{
+  "name": "@flow-ui/constructor",
+  "author": "ABR Tech",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}

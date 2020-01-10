@@ -2,10 +2,17 @@ import ThemeTypes from '@flow-ui/core/misc/themes/types'
 
 declare const WEBPACK_WORKDIR: string
 
+export interface HomePageProps {
+    history: {
+        push: (url: string) => void
+    }
+    pages: {[key: string]: string}
+}
+
 export interface Config {
     name?: string
     git?: string
-    index?: (props: {open: () => void}) => JSX.Element
+    homePage?: (props: HomePageProps) => JSX.Element
     themes?: Record<string,ThemeTypes.Index>
     pages?: {
         order?: Record<string,string[]>

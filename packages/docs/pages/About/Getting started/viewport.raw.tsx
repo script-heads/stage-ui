@@ -1,5 +1,5 @@
-import React from 'react';
-import { Viewport } from "@flow-ui/core";
+import { Viewport } from '@flow-ui/core'
+import React from 'react'
 
 const ExampleViewport = () => (
     <Viewport>
@@ -7,4 +7,4 @@ const ExampleViewport = () => (
     </Viewport>
 )
 
-export default ExampleViewport;
+export default ExampleViewport
