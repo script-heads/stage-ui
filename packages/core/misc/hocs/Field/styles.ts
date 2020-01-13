@@ -23,7 +23,8 @@ const fieldStyles = <T extends Types.Overrides>(
             {
                 position: 'relative',
                 display: 'flex',
-                width: '12rem',
+                minWidth: '1rem',
+                flex: 1,
                 flexDirection: 'column',
                 overflow: 'hidden',
                 outline: 'none'
