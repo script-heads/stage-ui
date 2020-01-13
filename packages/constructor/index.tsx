@@ -7,9 +7,16 @@ import styles from './styles'
 import { useState } from 'react'
 import uuidv4 from '@flow-ui/constructor/src/utils/uuidv4'
 
-let captured: StructureItem | null = null
-let focused: StructureItem | null = null
-let target: StructureItem | null = null
+interface Store {
+    captured: StructureItem | null
+    focused: StructureItem | null
+    target: StructureItem | null
+}
+const store = {
+    captured: null,
+    focused: null,
+    target: null
+}
 
 function filter(id: string, section: StructureItem[]) {
     return section.filter(element => {
@@ -64,58 +71,48 @@ export default () => {
 
     const [structure, setStructure] = useState<StructureItem[]>(defaultStructure)
 
-    // function create(componentName: string) {
-    //     setStructure(sctructure => sctructure.concat([{
-    //         $id: uuidv4(),
-    //         $: componentName,
-    //     }]))
-    // }
-
-    // function move(currentId: string, targetId: string) {
-    //     let result = findDelete(currentId, structure)
-    //     if (result) {
-    //         put(result.element,targetId, result.structure)
-    //     } 
-    // }
-
-    // function remove(id: string) {
-    //     setStructure(structure => filter(id,structure))
-    // }
-
-    function create() {
-        return
-    }
-    function duplicate() {
-        return
-    }
-    function move() {
-        return
-    }
-    function update() {
-        return
-    }
-    function remove() {
-        return
-    }
-    function undo() {
-        return
-    }
-    function redo() {
-        return
-    }
-
     const context: ConstructorContext = {
         structure,
-        captured,
-        focused,
-        target,
-        create,
-        duplicate,
-        move,
-        update,
-        remove,
-        undo,
-        redo
+        captured: store.captured,
+        focused: store.focused,
+        target: store.target,
+
+        create: () => {
+            // setStructure(sctructure => sctructure.concat([{
+            //     $id: uuidv4(),
+            //     $: componentName,
+            // }]))
+            return
+        },
+
+        duplicate: () => {
+            return
+        },
+
+        move: () => {
+            // let result = findDelete(currentId, structure)
+            // if (result) {
+            //     put(result.element,targetId, result.structure)
+            // }
+            return
+        },
+
+        update: () => {
+            return
+        },
+
+        remove: () => {
+            // setStructure(structure => filter(id,structure))
+            return
+        },
+
+        undo: () => {
+            return
+        },
+
+        redo: () => {
+            return
+        },
     }
 
     return (
