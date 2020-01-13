@@ -23,7 +23,7 @@ const SizeConrols = (props: { context: StructureContext, onUpdate: () => void })
             <Flexbox>
                 <TextField 
                     placeholder="width" 
-                    defaultValue={parseInt(props.context.focused.w)}
+                    defaultValue={props.context.focused.w)}
                     w="1px" 
                     size="xsmall" 
                     onChange={e => {
@@ -40,7 +40,7 @@ const SizeConrols = (props: { context: StructureContext, onUpdate: () => void })
                 <Text color={c => c.light.hex()} p="0 0.25rem">x</Text>
                 <TextField 
                     placeholder="height" 
-                    defaultValue={parseInt(props.context.focused.h) || ''}
+                    defaultValue={props.context.focused.h}
                     w="1px" 
                     size="xsmall" 
                     onChange={e => {

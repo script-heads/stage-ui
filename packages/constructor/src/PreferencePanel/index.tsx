@@ -6,7 +6,6 @@ import MarginControls from './controls/margin'
 import NameControls from './controls/name'
 import PaddingControls from './controls/padding'
 import SizeConrols from './controls/size'
-
 import createStyles from './styles'
 
 // const setProperty = (context: StructureContext, propertyName: string, value: string | number | boolean) => {
@@ -16,6 +15,8 @@ import createStyles from './styles'
 
 // }
 
+const data = require('@flow-ui/documaker/definitions/types')
+console.log(data)
 const PreferencePanel = (props: { context: StructureContext, onUpdate: () => void }) => {
     const { theme } = useFlow()
     const styles = createStyles(theme)
