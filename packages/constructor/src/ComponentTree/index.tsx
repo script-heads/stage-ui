@@ -93,6 +93,19 @@ const ComponentTree = (props: { context: StructureContext, onUpdate: () => void 
                             }}>
                             <Paragraph lineHeight={1} size={3} weight={500}>{name}</Paragraph>
                             <Paragraph color={c => c.light.hex()} size={4}>{structureEl.$}</Paragraph>
+                            {structureEl.$empty && (
+                                <Block
+                                    css={{
+                                        position: 'absolute',
+                                        background: theme.color.accent.orange.hex(),
+                                        width: '0.5rem',
+                                        height: '0.5rem',
+                                        right: '0.25rem',
+                                        top: '0.25rem',
+                                        borderRadius: '0.5rem',
+                                    }}
+                                />
+                            )}
                         </Block>
                     )}
                     children={structureEl.$children && renderTree(structureEl.$children)}
@@ -103,15 +116,16 @@ const ComponentTree = (props: { context: StructureContext, onUpdate: () => void 
     
     return (
         <Flexbox css={styles.container} flex={1}>
-            <Block surface="minor" css={styles.panel} flex={1}>
+            <Block css={styles.panel} flex={1}>
                 <ScrollView size="small">
-                    <Block p="0.25rem 0.5rem" pb="0">
-                        <Paragraph
-                            size={3}
-                            weight="bold"
-                            color={c => c.light.hex()}
-                            children="Structure"
-                        />
+                    <Paragraph
+                        pl="0.5rem"
+                        size={0}
+                        weight="bold"
+                        color={c => c.light.hex()}
+                        children="Structure"
+                    />
+                    <Block p="0.5rem">
                         <Tree
                             defaultOpen
                             label={(

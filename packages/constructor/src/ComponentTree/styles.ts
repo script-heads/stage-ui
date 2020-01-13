@@ -11,7 +11,7 @@ export default (theme: ThemeTypes.Index) => {
         },
         item: (selected: boolean) => (
             css({
-                background: theme.color.background.hex(),
+                background: theme.color.surface.hex(),
                 margin:'0.125rem 0',
                 padding: '0.25rem 0.5rem',
                 borderRadius: '0.25rem',

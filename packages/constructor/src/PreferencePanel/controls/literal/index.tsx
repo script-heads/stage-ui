@@ -9,7 +9,7 @@ type Props = {
     onUpdate: () => void
 }
 
-const LiteralGroupControls = (props: Props) => {
+const LiteralControls = (props: Props) => {
     if (!props.context.focused) {
         return null
     }
@@ -39,8 +39,7 @@ const LiteralGroupControls = (props: Props) => {
                                 <Button
                                     flex={1}
                                     size="small"
-                                    decoration={value === currentValue ? 'filled' : 'outline'
-                                    }
+                                    decoration={value === currentValue ? 'filled' : 'outline'}
                                     key={value}
                                     children={value}
                                     onClick={() => {
@@ -76,4 +75,4 @@ const LiteralGroupControls = (props: Props) => {
         </Block>
     )
 }
-export default LiteralGroupControls
+export default LiteralControls

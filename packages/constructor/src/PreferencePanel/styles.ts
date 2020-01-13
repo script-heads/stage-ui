@@ -13,7 +13,7 @@ export default (theme: ThemeTypes.Index) => {
             css({
                 position: 'absolute',
                 top: '0.25rem',
-                right: '0.25rem',
+                right: '0.5rem',
                 padding: '0.125rem 0.5rem',
                 borderRadius: '1rem',
                 color: theme.color.light.hex(),

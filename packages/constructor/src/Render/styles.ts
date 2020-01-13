@@ -5,8 +5,9 @@ export default (theme: ThemeTypes.Index) => {
     return {
         container: css({
             padding: '0.5rem',
-            border: '2px dashed rgba(0,0,0,0.25)',
-            borderRadius: '8px',
+            border: '2px dashed',
+            borderColor: theme.color.lightest.hex(),
+            borderRadius: '1rem',
             margin: '0.75rem 0.5rem',
         }),
         deleteArea: css({
