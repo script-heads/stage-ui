@@ -9,7 +9,7 @@ type SceneStructure = {
     $empty?: boolean
 }
 
-const ComponentCreate = (props: { context: ConstructorContext, onUpdate: () => void }) => {
+const ComponentCreate = (props: { context: ConstructorContext }) => {
     const { theme } = useFlow()
     const styles = createStyles(theme)
     const { context } = props

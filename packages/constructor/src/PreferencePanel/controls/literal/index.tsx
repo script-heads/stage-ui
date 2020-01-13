@@ -5,8 +5,7 @@ import { ButtonGroup } from '@flow-ui/lab'
 type Props = {
     name: string,
     values: string[] | number[]
-    context: ConstructorContext,
-    onUpdate: () => void
+    context: ConstructorContext
 }
 
 const LiteralControls = (props: Props) => {
@@ -47,7 +46,7 @@ const LiteralControls = (props: Props) => {
                                         if (value === defaultKey) {
                                             delete props.context.focused[props.name]
                                         }
-                                        props.onUpdate()
+                                        props.context.update()
                                     }}
                                 />
                             ))
@@ -68,7 +67,7 @@ const LiteralControls = (props: Props) => {
                             if (option.value === defaultKey) {
                                 delete props.context.focused[props.name]
                             }
-                            props.onUpdate()
+                            props.context.update()
                         }}
                     />
                 )}

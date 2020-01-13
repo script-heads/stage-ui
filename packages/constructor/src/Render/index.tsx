@@ -11,24 +11,24 @@ const Render = (props: { context: ConstructorContext } ) => {
     const { context } = props
     const { structure } = context
 
-    function patchStyle(structureEls: StructureItem[]) {
-        for (const structureEl of structureEls) {
-            if (structureEl.$ === 'Block' || structureEl.$ === 'Flexbox') {
-                if (structureEl.$empty) {
-                    structureEl.children = (
+    function patchStyle(structureItems: StructureItem[]) {
+        for (const structureItem of structureItems) {
+            if (structureItem.$ === 'Block' || structureItem.$ === 'Flexbox') {
+                if (structureItem.$empty) {
+                    structureItem.children = (
                         <Flexbox column p="1rem" css={{ color: theme.color.light.css() }}>
-                            <Text size={1} weight="bold">{structureEl.$name || structureEl.$}</Text>
+                            <Text size={1} weight="bold">{structureItem.$name || structureItem.$}</Text>
                             <Text size={2}>Place any element here</Text>
                         </Flexbox>
                     )
                 } else {
-                    if (structureEl.children) {
-                        delete structureEl.children
+                    if (structureItem.children) {
+                        delete structureItem.children
                     }
                 }
             }
-            if (Array.isArray(structureEl.$children)) {
-                patchStyle(structureEl.$children)
+            if (Array.isArray(structureItem.$children)) {
+                patchStyle(structureItem.$children)
             }
         }
     }
@@ -51,12 +51,12 @@ const Render = (props: { context: ConstructorContext } ) => {
         return true
     }
 
-    const doRenderRecursive = (structureEl: StructureItem) => {
+    const doRenderRecursive = (structureItem: StructureItem) => {
 
-        structureEl.$ref = useRef(null)
-        const ref = structureEl.$ref?.current
+        structureItem.$ref = useRef(null)
+        const ref = structureItem.$ref?.captured
 
-        structureEl.$getRect = () => {
+        structureItem.$getRect = () => {
             const { top, left, width, height } = ref?.getBoundingClientRect()
             return {
                 x: left,
@@ -68,28 +68,28 @@ const Render = (props: { context: ConstructorContext } ) => {
 
         const elAttributes: { [key: string]: string } = {}
 
-        Object.keys(structureEl).map(key => {
+        Object.keys(structureItem).map(key => {
 
             if (key[0] !== '$') {
-                elAttributes[key] = structureEl[key]
+                elAttributes[key] = structureItem[key]
             }
         })
 
-        const Component = Core[structureEl.$]
-        const childrens = structureEl.$children?.map(doRenderRecursive)
+        const Component = Core[structureItem.$]
+        const childrens = structureItem.$children?.map(doRenderRecursive)
         return (
             <Component
                 {...elAttributes}
                 draggable
                 onDragStart={(e) => {
                     e.stopPropagation()
-                    context.current = structureEl
+                    context.captured = structureItem
                 }}
                 onDragOver={(e) => {
                     e.stopPropagation()
                     e.preventDefault()
-                    context.target = structureEl
-                    if (context.current?.$id === context.target?.$id) {
+                    context.target = structureItem
+                    if (context.captured?.$id === context.target?.$id) {
                         context.target = null
                         return
                     }
@@ -99,25 +99,20 @@ const Render = (props: { context: ConstructorContext } ) => {
                 }}
                 onDrop={(e) => {
                     e.stopPropagation()
-                    if (context.current && context.target) {
-                        if (Array.isArray(context.target.$children)) {
-                            props.context.move(context.current.$id, context.target.$id)
-                        }
-                    }
-                    context.current = null
-                    context.target = null
+                    props.context.move()
                 }}
                 onClick={(e) => {
                     e.stopPropagation()
-                    context.setFocused(structureEl)
+                    context.focused = structureItem
+                    context.update()
                 }}
-                ref={structureEl.$ref}
-                key={structureEl.$id}
-                css={structureEl.$css}
+                ref={structureItem.$ref}
+                key={structureItem.$id}
+                css={structureItem.$css}
                 children={
                     (childrens && childrens.length > 0)
                         ? childrens
-                        : (structureEl.children || null)
+                        : (structureItem.children || null)
                 }
             />
         )
@@ -156,14 +151,14 @@ const Render = (props: { context: ConstructorContext } ) => {
                 }}
                 onDrop={(e) => {
                     e.stopPropagation()
-                    if (context.current) {
-                        //move to workspace
+                    if (context.captured) {
+                        context.move()
                     }
-                    context.current = null
                 }}
                 onClick={(e) => {
                     e.stopPropagation()
-                    context.setFocused(null)
+                    context.focused = null
+                    context.update()
                 }}
             />
             <Block
@@ -177,10 +172,7 @@ const Render = (props: { context: ConstructorContext } ) => {
                 }}
                 onDrop={(e) => {
                     e.stopPropagation()
-                    if (context.current) {
-                        context.remove(context.current.$id)
-                    }
-                    context.current = null
+                    context.remove()
                 }}
             />
         </Flexbox>

@@ -2,7 +2,7 @@ import { ConstructorContext } from '@flow-ui/constructor/types'
 import { Block, Text, Paragraph, TextField, Flexbox, Select } from '@flow-ui/core'
 import { ButtonGroup } from '@flow-ui/lab'
 
-const SizeConrols = (props: { context: ConstructorContext, onUpdate: () => void }) => {
+const SizeConrols = (props: { context: ConstructorContext }) => {
     if (!props.context.focused) {
         return null
     }
@@ -28,7 +28,7 @@ const SizeConrols = (props: { context: ConstructorContext, onUpdate: () => void 
                             } else {
                                 delete props.context.focused.w
                             }
-                            props.onUpdate()
+                            props.context.update()
                         }
                     }}
                 />
@@ -46,7 +46,7 @@ const SizeConrols = (props: { context: ConstructorContext, onUpdate: () => void 
                             } else {
                                 delete props.context.focused.h
                             }
-                            props.onUpdate()
+                            props.context.update()
                         }
                     }}
                 />
@@ -64,7 +64,7 @@ const SizeConrols = (props: { context: ConstructorContext, onUpdate: () => void 
                             } else {
                                 delete props.context.focused.flex
                             }
-                            props.onUpdate()
+                            props.context.update()
                         }
                     }}
                 />

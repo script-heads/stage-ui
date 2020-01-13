@@ -1,13 +1,7 @@
-import uuidv4 from '@flow-ui/constructor/src/utils/uuidv4'
-import { StructureItem, ConstructorContext } from '@flow-ui/constructor/types'
+import { ConstructorContext, StructureItem } from '@flow-ui/constructor/types'
 import { Block, Flexbox, Paragraph, Tree, useFlow } from '@flow-ui/core'
 import { ScrollView } from '@flow-ui/lab'
 import createStyles from './styles'
-
-type SceneStructure = {
-    $children?: StructureItem[]
-    $empty?: boolean
-}
 
 const ComponentTree = (props: { context: ConstructorContext }) => {
     const { theme } = useFlow()
@@ -15,22 +9,22 @@ const ComponentTree = (props: { context: ConstructorContext }) => {
     const { context } = props
 
     const renderTree = (structure: StructureItem[]) => {
-        return structure.map(structureEl => {
-            let name = structureEl.$
-            if (structureEl.$name) {
-                name = `${structureEl.$name}`
+        return structure.map(structureItem => {
+            let name = structureItem.$
+            if (structureItem.$name) {
+                name = `${structureItem.$name}`
             } 
-            if (typeof structureEl.children === 'string' && structureEl.children.length <= 10) {
-                name += ` (${structureEl.children})`
-            } else if (structureEl.label) {
-                name += ` (${structureEl.label})`
+            if (typeof structureItem.children === 'string' && structureItem.children.length <= 10) {
+                name += ` (${structureItem.children})`
+            } else if (structureItem.label) {
+                name += ` (${structureItem.label})`
             }
-            const selected = context.focused?.$id === structureEl.$id
+            const selected = context.focused?.$id === structureItem.$id
 
             return (
                 <Tree
                     defaultOpen
-                    key={structureEl.$id}
+                    key={structureItem.$id}
                     label={(
                         <Block
                             draggable
@@ -38,36 +32,30 @@ const ComponentTree = (props: { context: ConstructorContext }) => {
                             css={styles.item(selected)}
                             onDragStart={(e) => {
                                 e.stopPropagation()
-                                context.setCurrent(structureEl)
+                                context.captured = structureItem
                             }}
                             onDragOver={(e) => {
                                 e.stopPropagation()
                                 e.preventDefault()
-                                context.setTarget(structureEl)
+                                context.target = structureItem
                             }}
                             onDragLeave={(e) => {
                                 e.stopPropagation()
                             }}
                             onDrop={(e) => {
                                 e.stopPropagation()
-                                if (context.current && context.target) {
-                                    if (Array.isArray(context.target.$children)) {
-                                        context.move(context.current.$id, context.target.$id)
-                                    }
-                                }
-                                context.current = null
-                                context.target = null
+                                context.move()
                             }}
                             onClick={(e) => {
                                 e.stopPropagation()
                                 e.preventDefault()
                                 if (!selected) {
-                                    context.setFocused(structureEl)
+                                    context.focused = structureItem
                                 }
                             }}>
                             <Paragraph lineHeight={1} size={3} weight={500}>{name}</Paragraph>
-                            <Paragraph color={c => c.light.hex()} size={4}>{structureEl.$}</Paragraph>
-                            {structureEl.$empty && (
+                            <Paragraph color={c => c.light.hex()} size={4}>{structureItem.$}</Paragraph>
+                            {structureItem.$empty && (
                                 <Block
                                     css={{
                                         position: 'absolute',
@@ -82,7 +70,7 @@ const ComponentTree = (props: { context: ConstructorContext }) => {
                             )}
                         </Block>
                     )}
-                    children={structureEl.$children && renderTree(structureEl.$children)}
+                    children={structureItem.$children && renderTree(structureItem.$children)}
                 />
             )
         })

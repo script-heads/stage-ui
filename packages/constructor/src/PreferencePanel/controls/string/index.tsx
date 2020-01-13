@@ -5,7 +5,6 @@ type Props = {
     name: string
     placeholder?: string
     context: ConstructorContext
-    onUpdate: () => void
 }
 
 const StringControls = (props: Props) => {
@@ -30,7 +29,7 @@ const StringControls = (props: Props) => {
             if (!value) {
                 delete props.context.focused[props.name]
             }
-            props.onUpdate()
+            props.context.update()
         }, 100)
     }
 
