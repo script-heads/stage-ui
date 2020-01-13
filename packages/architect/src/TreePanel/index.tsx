@@ -1,61 +1,63 @@
-import { ConstructorContext, StructureItem } from '@flow-ui/constructor/types'
+import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
 import { Block, Flexbox, Paragraph, Tree, useFlow } from '@flow-ui/core'
 import { ScrollView } from '@flow-ui/lab'
 import createStyles from './styles'
 
-const ComponentTree = (props: { context: ConstructorContext }) => {
+const ComponentTree = (props: { tools: ArchitectTools }) => {
     const { theme } = useFlow()
     const styles = createStyles(theme)
-    const { context } = props
+    const { tools } = props
 
-    const renderTree = (structure: StructureItem[]) => {
-        return structure.map(structureItem => {
-            let name = structureItem.$
-            if (structureItem.$name) {
-                name = `${structureItem.$name}`
+    const renderTree = (items: ArchitectItem[]) => {
+        return items.map(item => {
+            let name = item.component
+            if (item.name) {
+                name = `${item.name}`
             } 
-            if (typeof structureItem.children === 'string' && structureItem.children.length <= 10) {
-                name += ` (${structureItem.children})`
-            } else if (structureItem.label) {
-                name += ` (${structureItem.label})`
+            if (item.text) {
+                name += ` (${item.text})`
+            } else if (item.props?.label) {
+                name += ` (${item.props.label})`
             }
-            const selected = context.focused?.$id === structureItem.$id
-
+            
+            const isFocused = tools.focused?.id === item.id
+            
             return (
                 <Tree
                     defaultOpen
-                    key={structureItem.$id}
+                    key={item.id}
                     label={(
                         <Block
                             draggable
                             flex={1}
-                            css={styles.item(selected)}
+                            css={styles.item(isFocused)}
                             onDragStart={(e) => {
                                 e.stopPropagation()
-                                context.captured = structureItem
+                                tools.captured = item
                             }}
                             onDragOver={(e) => {
                                 e.stopPropagation()
                                 e.preventDefault()
-                                context.target = structureItem
+                                tools.target = item
                             }}
                             onDragLeave={(e) => {
                                 e.stopPropagation()
                             }}
                             onDrop={(e) => {
                                 e.stopPropagation()
-                                context.move()
+                                tools.move()
                             }}
                             onClick={(e) => {
                                 e.stopPropagation()
                                 e.preventDefault()
-                                if (!selected) {
-                                    context.focused = structureItem
+                                if (!isFocused) {
+                                    tools.focused = item
+                                    tools.update()
                                 }
                             }}>
                             <Paragraph lineHeight={1} size={3} weight={500}>{name}</Paragraph>
-                            <Paragraph color={c => c.light.hex()} size={4}>{structureItem.$}</Paragraph>
-                            {structureItem.$empty && (
+                            <Paragraph color={c => c.light.hex()} size={4}>{item.component}</Paragraph>
+                            {item.children?.length === 0 && (
                                 <Block
                                     css={{
                                         position: 'absolute',
@@ -70,7 +72,7 @@ const ComponentTree = (props: { context: ConstructorContext }) => {
                             )}
                         </Block>
                     )}
-                    children={structureItem.$children && renderTree(structureItem.$children)}
+                    children={item.children && renderTree(item.children)}
                 />
             )
         })
@@ -96,7 +98,7 @@ const ComponentTree = (props: { context: ConstructorContext }) => {
                                     <Paragraph color={c => c.light.hex()} size={4}>Root layer</Paragraph>
                                 </Block>
                             )}
-                            children={renderTree(context.structure)}
+                            children={renderTree(tools.getItems())}
                         />
                     </Block>
                 </ScrollView>

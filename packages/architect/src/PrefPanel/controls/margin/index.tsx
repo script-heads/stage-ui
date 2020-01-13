@@ -1,4 +1,4 @@
-import { ConstructorContext } from '@flow-ui/constructor/types'
+import { ArchitectTools } from '@flow-ui/architect/types'
 import { Block, Button, Paragraph } from '@flow-ui/core'
 import { ButtonGroup } from '@flow-ui/lab'
 
@@ -11,8 +11,12 @@ const values = [
     ['xlarge', '1rem'],
 ]
 
-const MarginControls = (props: { context: ConstructorContext }) => {
-    if (!props.context.focused) {
+type Props = {
+    tools: ArchitectTools
+}
+
+const MarginControls = (props: Props) => {
+    if (!props.tools.focused) {
         return null
     }
     return (
@@ -33,15 +37,15 @@ const MarginControls = (props: { context: ConstructorContext }) => {
                             size="small"
                             decoration={
                                 (
-                                    (!props.context.focused.m && value[1] === 'none')
-                                    || props.context.focused.m === value[1]
+                                    (!props.tools.focused.props.m && value[1] === 'none')
+                                    || props.tools.focused.props.m === value[1]
                                 ) ? 'filled' : 'outline'
                             }
                             key={value[0]}
                             children={value[0]}
                             onClick={() => {
-                                props.context.focused.m = value[1]
-                                props.context.update()
+                                props.tools.focused.props.m = value[1]
+                                props.tools.update()
                             }}
                         />
                     ))

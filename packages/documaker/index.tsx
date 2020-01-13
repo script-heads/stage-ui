@@ -11,7 +11,7 @@ import PageEmpty from './components/PageEmpty'
 
 import ThemeTypes from '@flow-ui/core/misc/themes/types'
 import * as flowThemes from '@flow-ui/core/misc/themes/index'
-import Constructor from '@flow-ui/constructor'
+import Constructor from '@flow-ui/architect'
 
 declare global {
 	interface Window {

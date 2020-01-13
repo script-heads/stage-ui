@@ -1,9 +1,12 @@
-import { ConstructorContext } from '@flow-ui/constructor/types'
-import { Block, Text, Paragraph, TextField, Flexbox, Select } from '@flow-ui/core'
-import { ButtonGroup } from '@flow-ui/lab'
+import { ArchitectTools } from '@flow-ui/architect/types'
+import { Block, Flexbox, TextField } from '@flow-ui/core'
 
-const SizeConrols = (props: { context: ConstructorContext }) => {
-    if (!props.context.focused) {
+type Props = {
+    tools: ArchitectTools
+}
+
+const SizeConrols = (props: Props) => {
+    if (!props.tools.focused) {
         return null
     }
     const valueTypes = [
@@ -18,17 +21,17 @@ const SizeConrols = (props: { context: ConstructorContext }) => {
                 <TextField 
                     placeholder="auto" 
                     label="Width"
-                    defaultValue={props.context.focused.w}
+                    defaultValue={props.tools.focused.props.w}
                     w="1px" 
                     size="small" 
                     onChange={e => {
-                        if (props.context.focused) {
+                        if (props.tools.focused) {
                             if (e.target.value) {
-                                props.context.focused.w = e.target.value + valueType
+                                props.tools.focused.props.w = e.target.value + valueType
                             } else {
-                                delete props.context.focused.w
+                                delete props.tools.focused.props.w
                             }
-                            props.context.update()
+                            props.tools.update()
                         }
                     }}
                 />
@@ -36,17 +39,17 @@ const SizeConrols = (props: { context: ConstructorContext }) => {
                     ml="1rem"
                     placeholder="auto" 
                     label="Height"
-                    defaultValue={props.context.focused.h}
+                    defaultValue={props.tools.focused.props.h}
                     w="1px" 
                     size="small" 
                     onChange={e => {
-                        if (props.context.focused) {
+                        if (props.tools.focused) {
                             if (e.target.value) {
-                                props.context.focused.h = e.target.value + valueType
+                                props.tools.focused.props.h = e.target.value + valueType
                             } else {
-                                delete props.context.focused.h
+                                delete props.tools.focused.props.h
                             }
-                            props.context.update()
+                            props.tools.update()
                         }
                     }}
                 />
@@ -54,17 +57,17 @@ const SizeConrols = (props: { context: ConstructorContext }) => {
                     ml="1rem"
                     placeholder="auto" 
                     label="Flex"
-                    defaultValue={props.context.focused.flex}
+                    defaultValue={props.tools.focused.props.flex}
                     w="1px" 
                     size="small" 
                     onChange={e => {
-                        if (props.context.focused) {
+                        if (props.tools.focused) {
                             if (e.target.value) {
-                                props.context.focused.flex = e.target.value
+                                props.tools.focused.props.flex = e.target.value
                             } else {
-                                delete props.context.focused.flex
+                                delete props.tools.focused.props.flex
                             }
-                            props.context.update()
+                            props.tools.update()
                         }
                     }}
                 />

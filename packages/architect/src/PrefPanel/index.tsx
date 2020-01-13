@@ -1,9 +1,9 @@
-import { ConstructorContext } from '@flow-ui/constructor/types'
+import { ArchitectTools } from '@flow-ui/architect/types'
 import { Block, Flexbox, Paragraph, Text, useFlow } from '@flow-ui/core'
 import { ScrollView } from '@flow-ui/lab'
 import { Fragment } from 'react'
 import BooleanControls from './controls/boolean'
-import ChildrenControls from './controls/children'
+import ContentChildren from './controls/content'
 import LiteralControls from './controls/literal'
 import MarginControls from './controls/margin'
 import PaddingControls from './controls/padding'
@@ -13,9 +13,11 @@ import createStyles from './styles'
 
 const data = require('@flow-ui/documaker/definitions/types')
 
-const PreferencePanel = (props: { context: ConstructorContext }) => {
+const PrefPanel = (props: { tools: ArchitectTools }) => {
     const { theme } = useFlow()
     const styles = createStyles(theme)
+    const { tools } = props
+
     const literalProps: { name: string, values: string[] }[] = []
     const stringProps: string[] = []
     const booleanProps: string[] = []
@@ -68,12 +70,11 @@ const PreferencePanel = (props: { context: ConstructorContext }) => {
         }
     }
 
-    let ComponentTypeName = props.context.focused?.$
-    if (['Header', 'Display', 'Paragraph', 'Anchor', 'Text'].includes(props.context.focused?.$)) {
+    let ComponentTypeName = tools.focused?.component
+    if (['Header', 'Display', 'Paragraph', 'Anchor', 'Text'].includes(tools.focused?.component)) {
         ComponentTypeName = 'Typography'
     }
     findProps(data[ComponentTypeName + 'Types'])
-
     return (
         <Flexbox css={styles.container} flex={1}>
             <Block css={styles.panel} flex={1}>
@@ -88,19 +89,19 @@ const PreferencePanel = (props: { context: ConstructorContext }) => {
                     <Text
                         size={3}
                         weight="bold"
-                        css={styles.componentName(!!props.context.focused)}
-                        children={props.context.focused?.$ || ''}
+                        css={styles.componentName(!!tools.focused)}
+                        children={tools.focused?.component || ''}
                     />
                     <Block p="0.25rem 0.5rem" pb="0">
                         {
-                            !!props.context.focused && (
+                            !!tools.focused && (
                                 <Fragment>
                                     <StringControls
                                         {...props}
-                                        name="$name"
-                                        placeholder={props.context.focused?.$}
+                                        name="name"
+                                        placeholder={tools.focused?.component}
                                     />
-                                    <ChildrenControls {...props} />
+                                    <ContentChildren {...props} />
                                     <PaddingControls {...props} />
                                     <MarginControls {...props} />
                                     <SizeConrols {...props} />
@@ -151,4 +152,4 @@ const PreferencePanel = (props: { context: ConstructorContext }) => {
         </Flexbox>
     )
 }
-export default PreferencePanel
+export default PrefPanel

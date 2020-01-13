@@ -1,14 +1,14 @@
-import { ConstructorContext } from '@flow-ui/constructor/types'
-import { Block, Paragraph, TextField } from '@flow-ui/core'
+import { ArchitectTools } from '@flow-ui/architect/types'
+import { Block, TextField } from '@flow-ui/core'
 
 type Props = {
     name: string
     placeholder?: string
-    context: ConstructorContext
+    tools: ArchitectTools
 }
 
 const StringControls = (props: Props) => {
-    if (!props.context.focused) {
+    if (!props.tools.focused.props) {
         return null
     }
 
@@ -25,11 +25,11 @@ const StringControls = (props: Props) => {
             clearTimeout(timer)
         }
         timer = setTimeout(() => {
-            props.context.focused[props.name] = value
+            props.tools.focused.props[props.name] = value
             if (!value) {
-                delete props.context.focused[props.name]
+                delete props.tools.focused.props[props.name]
             }
-            props.context.update()
+            props.tools.update()
         }, 100)
     }
 
@@ -40,7 +40,7 @@ const StringControls = (props: Props) => {
                 size="small"
                 placeholder={props.placeholder}
                 label={name[0].toUpperCase() + name.slice(1)}
-                defaultValue={props.context.focused[props.name] || ''}
+                defaultValue={props.tools.focused.props[props.name] || ''}
                 onChange={e => handleChange(e.target.value)}
             />
         </Block>
