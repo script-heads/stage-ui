@@ -1,11 +1,20 @@
-import { StructureContext } from '@flow-ui/constructor/types'
+import { StructureContext} from '@flow-ui/constructor/types'
 import { Block, Flexbox, Paragraph, Text, useFlow } from '@flow-ui/core'
 import { ScrollView } from '@flow-ui/lab'
 import ChildrenControls from './controls/children'
 import MarginControls from './controls/margin'
 import NameControls from './controls/name'
 import PaddingControls from './controls/padding'
+import SizeConrols from './controls/size'
+
 import createStyles from './styles'
+
+// const setProperty = (context: StructureContext, propertyName: string, value: string | number | boolean) => {
+//     context.
+// }
+// const deleteProperty = (context: StructureContext, propertyName: string) => {
+
+// }
 
 const PreferencePanel = (props: { context: StructureContext, onUpdate: () => void }) => {
     const { theme } = useFlow()
@@ -33,6 +42,8 @@ const PreferencePanel = (props: { context: StructureContext, onUpdate: () => voi
                         <ChildrenControls {...props} />
                         <PaddingControls {...props} />
                         <MarginControls {...props} />
+                        <SizeConrols {...props} />
+
                     </Block>
                 </ScrollView>
             </Block>

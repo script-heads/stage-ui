@@ -12,7 +12,7 @@ const context: StructureContext = {
     structure: require('./$DEMO').default,
     current: null,
     target: null,
-    focused: null
+    focused: null,
 }
 
 export default () => {
