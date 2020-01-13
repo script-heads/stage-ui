@@ -1,5 +1,5 @@
 import * as Core from '@flow-ui/core'
-import { Block, Paragraph, Text, Flexbox, useFlow } from '@flow-ui/core'
+import { Block, Button, Icon, Paragraph, Text, Flexbox, useFlow } from '@flow-ui/core'
 import { useRef } from 'react'
 import { StructureContext, ConstructorStructure } from '@flow-ui/constructor/types'
 import uuidv4 from '@flow-ui/constructor/src/utils/uuidv4'
@@ -93,15 +93,9 @@ const Render = (props: { context: StructureContext, onUpdate: () => void }) => {
                         return
                     }
                 }}
-                onClick={(e) => {
-                    e.stopPropagation()
-                    context.focused = structureEl
-                    props.onUpdate()
-                }}
                 onDragLeave={(e) => {
                     e.stopPropagation()
                 }}
-
                 onDrop={(e) => {
                     e.stopPropagation()
                     if (context.current && context.target) {
@@ -119,6 +113,11 @@ const Render = (props: { context: StructureContext, onUpdate: () => void }) => {
                     context.current = null
                     context.target = null
                 }}
+                onClick={(e) => {
+                    e.stopPropagation()
+                    context.focused = structureEl
+                    props.onUpdate()
+                }}
                 ref={structureEl.$ref}
                 key={structureEl.$id}
                 css={structureEl.$css}
@@ -135,13 +134,19 @@ const Render = (props: { context: StructureContext, onUpdate: () => void }) => {
 
     return (
         <Flexbox column pt="0.75rem" flex={1}>
-            <Paragraph
-                pl="0.5rem" 
-                size={3}
-                weight="bold"
-                color={c => c.light.hex()}
-                children="Workspace"
-            />
+            <Flexbox pr="0.75rem">
+                <Paragraph
+                    flex={1}
+                    pl="0.5rem" 
+                    size={0}
+                    weight="bold"
+                    color={c => c.light.hex()}
+                    children="Workspace"
+                />
+                <Flexbox alignItems="center">
+                    <Button size="xsmall"><Icon type={i => i.outline.plus} />New</Button>
+                </Flexbox>
+            </Flexbox>
             <Block
                 flex={1}
                 css={styles.container}
@@ -173,6 +178,24 @@ const Render = (props: { context: StructureContext, onUpdate: () => void }) => {
                     e.stopPropagation()
                     context.focused = null
                     props.onUpdate()
+                }}
+            />
+            <Block
+                m="0.5rem"
+                mt="0"
+                css={styles.deleteArea}
+                children="Drop component here to delete."
+                onDragOver={(e) => {
+                    e.stopPropagation()
+                    e.preventDefault()
+                }}
+                onDrop={(e) => {
+                    e.stopPropagation()
+                    if (context.current) {
+                        remove(context.current.$id)
+                        props.onUpdate()
+                    }
+                    context.current = null
                 }}
             />
         </Flexbox>

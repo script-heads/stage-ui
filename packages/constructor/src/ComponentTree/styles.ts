@@ -2,6 +2,7 @@ import { css } from '@emotion/core'
 import ThemeTypes from '@flow-ui/core/misc/themes/types'
 
 export default (theme: ThemeTypes.Index) => {
+    
     return {
         container: css({
             padding: '0.5rem'
@@ -10,14 +11,15 @@ export default (theme: ThemeTypes.Index) => {
         },
         item: (selected: boolean) => (
             css({
-                padding: '0.125rem 0.5rem',
-                background: theme.color.onPrimary.hex(),
-                borderRadius: '0.125rem',
-                borderStyle: 'dashed',
-                borderWidth: 1,
+                background: theme.color.background.hex(),
+                margin:'0.125rem 0',
+                padding: '0.25rem 0.5rem',
+                borderRadius: '0.25rem',
+                borderWidth: 2,
+                borderStyle: 'solid',
                 borderColor: selected
                     ? theme.color.primary.hex()
-                    : theme.color.onPrimary.hex()
+                    : theme.color.backgroundVariant.hex()
             })
         ),
         tag: css({
