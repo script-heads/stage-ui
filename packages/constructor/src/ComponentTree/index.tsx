@@ -9,24 +9,10 @@ type SceneStructure = {
     $empty?: boolean
 }
 
-const ComponentTree = (props: { context: StructureContext, onUpdate: () => void }) => {
+const ComponentTree = (props: { context: StructureContext }) => {
     const { theme } = useFlow()
     const styles = createStyles(theme)
     const { context } = props
-    const { structure } = context
-
-    function remove(uuid: string, obj: SceneStructure = { $children: structure }) {
-        for (let prop in obj) {
-            if (prop === '$id' && obj[prop] === uuid) {
-                return false
-            }
-        }
-        if (obj.$children) {
-            obj.$children = obj.$children.filter(child => remove(uuid, child))
-            obj.$empty = obj.$children.length === 0
-        }
-        return true
-    }
 
     const renderTree = (structure: ConstructorStructure[]) => {
         return structure.map(structureEl => {
@@ -52,16 +38,12 @@ const ComponentTree = (props: { context: StructureContext, onUpdate: () => void 
                             css={styles.item(selected)}
                             onDragStart={(e) => {
                                 e.stopPropagation()
-                                context.current = structureEl
+                                context.setCurrent(structureEl)
                             }}
                             onDragOver={(e) => {
                                 e.stopPropagation()
                                 e.preventDefault()
-                                context.target = structureEl
-                                if (context.current?.$id === context.target?.$id) {
-                                    context.target = null
-                                    return
-                                }
+                                context.setTarget(structureEl)
                             }}
                             onDragLeave={(e) => {
                                 e.stopPropagation()
@@ -70,14 +52,7 @@ const ComponentTree = (props: { context: StructureContext, onUpdate: () => void 
                                 e.stopPropagation()
                                 if (context.current && context.target) {
                                     if (Array.isArray(context.target.$children)) {
-                                        const rmid = context.current.$id
-                                        context.target.$children.push({
-                                            ...context.current,
-                                            $id: uuidv4()
-                                        })
-                                        context.target.$empty = false
-                                        remove(rmid)
-                                        props.onUpdate()
+                                        context.move(context.current.$id, context.target.$id)
                                     }
                                 }
                                 context.current = null
@@ -87,8 +62,7 @@ const ComponentTree = (props: { context: StructureContext, onUpdate: () => void 
                                 e.stopPropagation()
                                 e.preventDefault()
                                 if (!selected) {
-                                    context.focused = structureEl
-                                    props.onUpdate()
+                                    context.setFocused(structureEl)
                                 }
                             }}>
                             <Paragraph lineHeight={1} size={3} weight={500}>{name}</Paragraph>
