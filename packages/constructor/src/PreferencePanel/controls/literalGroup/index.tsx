@@ -14,7 +14,8 @@ const LiteralGroupControls = (props: Props) => {
         return null
     }
 
-    const values = ['default'].concat(props.values as string[])
+    const defaultKey = 'default'
+    const values = [defaultKey].concat(props.values as string[])
     const focusedValue = props.context.focused[props.name]
     let currentValue = values.find(item => item === focusedValue)
     if (!currentValue) {
@@ -44,6 +45,9 @@ const LiteralGroupControls = (props: Props) => {
                                     children={value}
                                     onClick={() => {
                                         props.context.focused[props.name] = value
+                                        if (value === defaultKey) {
+                                            delete props.context.focused[props.name]
+                                        }
                                         props.onUpdate()
                                     }}
                                 />
@@ -62,6 +66,9 @@ const LiteralGroupControls = (props: Props) => {
                         }))}
                         onChange={(e, option) => {
                             props.context.focused[props.name] = option.value
+                            if (option.value === defaultKey) {
+                                delete props.context.focused[props.name]
+                            }
                             props.onUpdate()
                         }}
                     />
