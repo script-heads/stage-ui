@@ -14,17 +14,10 @@ const SizeConrols = (props: { context: StructureContext, onUpdate: () => void })
 
     return (
         <Block pb="0.5rem">
-            <Paragraph
-                size={4}
-                pb=".25rem"
-                pl=".25rem"
-                lineHeight="0.75rem"
-                color={c => c.light.hex()}
-                children="Size"
-            />
             <Flexbox alignItems="center">
                 <TextField 
-                    placeholder="width" 
+                    placeholder="auto" 
+                    label="Width"
                     defaultValue={props.context.focused.w}
                     w="1px" 
                     size="small" 
@@ -39,9 +32,10 @@ const SizeConrols = (props: { context: StructureContext, onUpdate: () => void })
                         }
                     }}
                 />
-                <Text color={c => c.light.hex()} p="0 0.5rem">x</Text>
                 <TextField 
-                    placeholder="height" 
+                    ml="1rem"
+                    placeholder="auto" 
+                    label="Height"
                     defaultValue={props.context.focused.h}
                     w="1px" 
                     size="small" 
@@ -56,15 +50,24 @@ const SizeConrols = (props: { context: StructureContext, onUpdate: () => void })
                         }
                     }}
                 />
-                {/* <Select
-                    ml="0.25rem"
+                <TextField 
+                    ml="1rem"
+                    placeholder="auto" 
+                    label="Flex"
+                    defaultValue={props.context.focused.flex}
+                    w="1px" 
                     size="small" 
-                    defaultValues={[valueTypes[0]]}
-                    options={valueTypes}
-                    onChange={(e, option) => {
-                        valueType = option.value
+                    onChange={e => {
+                        if (props.context.focused) {
+                            if (e.target.value) {
+                                props.context.focused.flex = e.target.value
+                            } else {
+                                delete props.context.focused.flex
+                            }
+                            props.onUpdate()
+                        }
                     }}
-                /> */}
+                />
             </Flexbox>
         </Block>
     )
