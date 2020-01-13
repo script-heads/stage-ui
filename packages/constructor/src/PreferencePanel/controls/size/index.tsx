@@ -15,17 +15,19 @@ const SizeConrols = (props: { context: StructureContext, onUpdate: () => void })
     return (
         <Block pb="0.5rem">
             <Paragraph
-                size={3}
-                weight="bold"
+                size={4}
+                pb=".25rem"
+                pl=".25rem"
+                lineHeight="0.75rem"
                 color={c => c.light.hex()}
                 children="Size"
             />
-            <Flexbox>
+            <Flexbox alignItems="center">
                 <TextField 
                     placeholder="width" 
-                    defaultValue={props.context.focused.w)}
+                    defaultValue={props.context.focused.w}
                     w="1px" 
-                    size="xsmall" 
+                    size="small" 
                     onChange={e => {
                         if (props.context.focused) {
                             if (e.target.value) {
@@ -37,12 +39,12 @@ const SizeConrols = (props: { context: StructureContext, onUpdate: () => void })
                         }
                     }}
                 />
-                <Text color={c => c.light.hex()} p="0 0.25rem">x</Text>
+                <Text color={c => c.light.hex()} p="0 0.5rem">x</Text>
                 <TextField 
                     placeholder="height" 
                     defaultValue={props.context.focused.h}
                     w="1px" 
-                    size="xsmall" 
+                    size="small" 
                     onChange={e => {
                         if (props.context.focused) {
                             if (e.target.value) {
@@ -56,7 +58,7 @@ const SizeConrols = (props: { context: StructureContext, onUpdate: () => void })
                 />
                 {/* <Select
                     ml="0.25rem"
-                    size="xsmall" 
+                    size="small" 
                     defaultValues={[valueTypes[0]]}
                     options={valueTypes}
                     onChange={(e, option) => {

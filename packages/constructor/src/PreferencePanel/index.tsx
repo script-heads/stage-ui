@@ -1,13 +1,14 @@
-import { StructureContext} from '@flow-ui/constructor/types'
+import { StructureContext } from '@flow-ui/constructor/types'
 import { Block, Flexbox, Paragraph, Text, useFlow } from '@flow-ui/core'
 import { ScrollView } from '@flow-ui/lab'
+import { Fragment } from 'react'
 import ChildrenControls from './controls/children'
 import MarginControls from './controls/margin'
 import NameControls from './controls/name'
 import PaddingControls from './controls/padding'
 import SizeConrols from './controls/size'
+import LiteralGroup from './controls/literalGroup'
 import createStyles from './styles'
-
 // const setProperty = (context: StructureContext, propertyName: string, value: string | number | boolean) => {
 //     context.
 // }
@@ -16,15 +17,48 @@ import createStyles from './styles'
 // }
 
 const data = require('@flow-ui/documaker/definitions/types')
-console.log(data)
+
 const PreferencePanel = (props: { context: StructureContext, onUpdate: () => void }) => {
     const { theme } = useFlow()
     const styles = createStyles(theme)
-    
+    const literalProps: { name: string, values: string[] }[] = []
+
+    const findliteralProps = (children) => {
+        for (const prop of children) {
+            if (prop.type === 'stringLiteral') {
+                literalProps.push(prop)
+            }
+        }
+    }
+
+    const filterProps = (item) => {
+        if (Array.isArray(item.children)) {
+            findliteralProps(item.children)
+        }
+        if (Array.isArray(item.extendedTypes)) {
+            findProps(item.extendedTypes)
+        }
+    }
+
+    const findProps = (types) => {
+        if (!types) {
+            return
+        }
+        if (Array.isArray(types)) {
+            for (const item of types) {
+                if (item.name.match('Props')) {
+                    filterProps(item)
+                }
+            }
+        }
+    }
+
+    findProps(data[props.context.focused?.$ + 'Types'])
+
     return (
         <Flexbox css={styles.container} flex={1}>
             <Block surface="minor" css={styles.panel} flex={1}>
-                <ScrollView size="small">
+                <ScrollView size="xsmall">
                     <Block p="0.25rem 0.5rem" pb="0">
                         <Paragraph
                             pb="0.5rem"
@@ -39,12 +73,25 @@ const PreferencePanel = (props: { context: StructureContext, onUpdate: () => voi
                             css={styles.componentName(!!props.context.focused)}
                             children={props.context.focused?.$ || ''}
                         />
-                        <NameControls {...props} />
-                        <ChildrenControls {...props} />
-                        <PaddingControls {...props} />
-                        <MarginControls {...props} />
-                        <SizeConrols {...props} />
-
+                        {
+                            !!props.context.focused && (
+                                <Fragment>
+                                    <NameControls {...props} />
+                                    <ChildrenControls {...props} />
+                                    <PaddingControls {...props} />
+                                    <MarginControls {...props} />
+                                    <SizeConrols {...props} />
+                                    {literalProps.map((item, index) => (
+                                        <LiteralGroup
+                                            {...props}
+                                            key={index}
+                                            name={item.name}
+                                            values={item.values}
+                                        />
+                                    ))}
+                                </Fragment>
+                            )
+                        }
                     </Block>
                 </ScrollView>
             </Block>

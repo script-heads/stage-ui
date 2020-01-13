@@ -10,15 +10,10 @@ const ChildrenControls = (props: { context: StructureContext, onUpdate: () => vo
     }
     return (
         <Block pb="0.5rem">
-            <Paragraph
-                size={3}
-                weight="bold"
-                color={c => c.light.hex()}
-                children="Content"
-            />
             <TextField
                 w="100%"
-                size="xsmall"
+                size="small"
+                label="Name"
                 multiline
                 value={props.context.focused.children || ''}
                 placeholder={props.context.focused.$}

@@ -18,8 +18,10 @@ const PaddingControls = (props: { context: StructureContext, onUpdate: () => voi
     return (
         <Block pb="0.5rem">
             <Paragraph
-                size={3}
-                weight="bold"
+                size={4}
+                pb=".25rem"
+                pl=".25rem"
+                lineHeight="0.75rem"
                 color={c => c.light.hex()}
                 children="Padding"
             />

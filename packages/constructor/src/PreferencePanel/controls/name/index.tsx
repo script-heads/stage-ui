@@ -7,15 +7,10 @@ const NameControls = (props: { context: StructureContext, onUpdate: () => void }
     }
     return (
         <Block pb="0.5rem">
-            <Paragraph
-                size={3}
-                weight="bold"
-                color={c => c.light.hex()}
-                children="Name"
-            />
             <TextField
                 w="100%"
-                size="xsmall"
+                size="small"
+                label="Name"
                 value={props.context.focused.$name || ''}
                 placeholder={props.context.focused.$}
                 onChange={e => {
