@@ -1,10 +1,10 @@
-import { StructureContext } from '@flow-ui/constructor/types'
+import { ConstructorContext } from '@flow-ui/constructor/types'
 import { Block, Paragraph, TextField } from '@flow-ui/core'
 
 type Props = {
     name: string
     placeholder?: string
-    context: StructureContext
+    context: ConstructorContext
     onUpdate: () => void
 }
 

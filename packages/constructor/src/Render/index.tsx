@@ -1,17 +1,17 @@
 import * as Core from '@flow-ui/core'
 import { Block, Button, Icon, Paragraph, Text, Flexbox, useFlow } from '@flow-ui/core'
 import { useRef } from 'react'
-import { StructureContext, ConstructorStructure } from '@flow-ui/constructor/types'
+import { ConstructorContext, StructureItem } from '@flow-ui/constructor/types'
 import uuidv4 from '@flow-ui/constructor/src/utils/uuidv4'
 import createStyles from './styles'
 
-const Render = (props: { context: StructureContext, onUpdate: () => void }) => {
+const Render = (props: { context: ConstructorContext } ) => {
     const { theme } = useFlow()
     const styles = createStyles(theme)
     const { context } = props
     const { structure } = context
 
-    function patchStyle(structureEls: ConstructorStructure[]) {
+    function patchStyle(structureEls: StructureItem[]) {
         for (const structureEl of structureEls) {
             if (structureEl.$ === 'Block' || structureEl.$ === 'Flexbox') {
                 if (structureEl.$empty) {
@@ -34,7 +34,7 @@ const Render = (props: { context: StructureContext, onUpdate: () => void }) => {
     }
 
     type SceneStructure = {
-        $children?: ConstructorStructure[]
+        $children?: StructureItem[]
         $empty?: boolean
     }
 
@@ -51,7 +51,7 @@ const Render = (props: { context: StructureContext, onUpdate: () => void }) => {
         return true
     }
 
-    const doRenderRecursive = (structureEl: ConstructorStructure) => {
+    const doRenderRecursive = (structureEl: StructureItem) => {
 
         structureEl.$ref = useRef(null)
         const ref = structureEl.$ref?.current
@@ -101,14 +101,7 @@ const Render = (props: { context: StructureContext, onUpdate: () => void }) => {
                     e.stopPropagation()
                     if (context.current && context.target) {
                         if (Array.isArray(context.target.$children)) {
-                            const rmid = context.current.$id
-                            context.target.$children.push({
-                                ...context.current,
-                                $id: uuidv4()
-                            })
-                            context.target.$empty = false
-                            remove(rmid)
-                            props.onUpdate()
+                            props.context.move(context.current.$id, context.target.$id)
                         }
                     }
                     context.current = null
@@ -116,8 +109,7 @@ const Render = (props: { context: StructureContext, onUpdate: () => void }) => {
                 }}
                 onClick={(e) => {
                     e.stopPropagation()
-                    context.focused = structureEl
-                    props.onUpdate()
+                    context.setFocused(structureEl)
                 }}
                 ref={structureEl.$ref}
                 key={structureEl.$id}
@@ -165,20 +157,13 @@ const Render = (props: { context: StructureContext, onUpdate: () => void }) => {
                 onDrop={(e) => {
                     e.stopPropagation()
                     if (context.current) {
-                        const rmid = context.current.$id
-                        context.structure.push({
-                            ...context.current,
-                            $id: uuidv4()
-                        })
-                        remove(rmid)
-                        props.onUpdate()
+                        //move to workspace
                     }
                     context.current = null
                 }}
                 onClick={(e) => {
                     e.stopPropagation()
-                    context.focused = null
-                    props.onUpdate()
+                    context.setFocused(null)
                 }}
             />
             <Block
@@ -193,8 +178,7 @@ const Render = (props: { context: StructureContext, onUpdate: () => void }) => {
                 onDrop={(e) => {
                     e.stopPropagation()
                     if (context.current) {
-                        remove(context.current.$id)
-                        props.onUpdate()
+                        context.remove(context.current.$id)
                     }
                     context.current = null
                 }}

@@ -1,20 +1,20 @@
 import uuidv4 from '@flow-ui/constructor/src/utils/uuidv4'
-import { ConstructorStructure, StructureContext } from '@flow-ui/constructor/types'
+import { StructureItem, ConstructorContext } from '@flow-ui/constructor/types'
 import { Block, Flexbox, Paragraph, Tree, useFlow } from '@flow-ui/core'
 import { ScrollView } from '@flow-ui/lab'
 import createStyles from './styles'
 
 type SceneStructure = {
-    $children?: ConstructorStructure[]
+    $children?: StructureItem[]
     $empty?: boolean
 }
 
-const ComponentTree = (props: { context: StructureContext }) => {
+const ComponentTree = (props: { context: ConstructorContext }) => {
     const { theme } = useFlow()
     const styles = createStyles(theme)
     const { context } = props
 
-    const renderTree = (structure: ConstructorStructure[]) => {
+    const renderTree = (structure: StructureItem[]) => {
         return structure.map(structureEl => {
             let name = structureEl.$
             if (structureEl.$name) {

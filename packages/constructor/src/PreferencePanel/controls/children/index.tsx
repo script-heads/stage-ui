@@ -1,7 +1,7 @@
-import { StructureContext } from '@flow-ui/constructor/types'
+import { ConstructorContext } from '@flow-ui/constructor/types'
 import { Block, Paragraph, TextField } from '@flow-ui/core'
 
-const ChildrenControls = (props: { context: StructureContext, onUpdate: () => void }) => {
+const ChildrenControls = (props: { context: ConstructorContext, onUpdate: () => void }) => {
     if (!props.context.focused) {
         return null
     }

@@ -1,4 +1,4 @@
-import { StructureContext } from '@flow-ui/constructor/types'
+import { ConstructorContext } from '@flow-ui/constructor/types'
 import { Block, Flexbox, Paragraph, Text, useFlow } from '@flow-ui/core'
 import { ScrollView } from '@flow-ui/lab'
 import { Fragment } from 'react'
@@ -13,7 +13,7 @@ import createStyles from './styles'
 
 const data = require('@flow-ui/documaker/definitions/types')
 
-const PreferencePanel = (props: { context: StructureContext, onUpdate: () => void }) => {
+const PreferencePanel = (props: { context: ConstructorContext }) => {
     const { theme } = useFlow()
     const styles = createStyles(theme)
     const literalProps: { name: string, values: string[] }[] = []

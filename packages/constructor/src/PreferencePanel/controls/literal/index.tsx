@@ -1,11 +1,11 @@
-import { StructureContext } from '@flow-ui/constructor/types'
+import { ConstructorContext } from '@flow-ui/constructor/types'
 import { Block, Button, Paragraph, Select } from '@flow-ui/core'
 import { ButtonGroup } from '@flow-ui/lab'
 
 type Props = {
     name: string,
     values: string[] | number[]
-    context: StructureContext,
+    context: ConstructorContext,
     onUpdate: () => void
 }
 

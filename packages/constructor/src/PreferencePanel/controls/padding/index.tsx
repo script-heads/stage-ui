@@ -1,4 +1,4 @@
-import { StructureContext } from '@flow-ui/constructor/types'
+import { ConstructorContext } from '@flow-ui/constructor/types'
 import { Block, Button, Paragraph } from '@flow-ui/core'
 import { ButtonGroup } from '@flow-ui/lab'
 
@@ -11,7 +11,7 @@ const values = [
     ['xlarge', '1rem'],
 ]
 
-const PaddingControls = (props: { context: StructureContext, onUpdate: () => void }) => {
+const PaddingControls = (props: { context: ConstructorContext, onUpdate: () => void }) => {
     if (!props.context.focused) {
         return null
     }

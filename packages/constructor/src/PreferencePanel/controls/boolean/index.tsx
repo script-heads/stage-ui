@@ -1,10 +1,9 @@
-import { StructureContext } from '@flow-ui/constructor/types'
+import { ConstructorContext } from '@flow-ui/constructor/types'
 import { Block, Switch } from '@flow-ui/core'
 
 type Props = {
     name: string
-    context: StructureContext
-    onUpdate: () => void
+    context: ConstructorContext
 }
 
 const BooleanControls = (props: Props) => {
@@ -20,7 +19,6 @@ const BooleanControls = (props: Props) => {
                 label={name[0].toUpperCase() + name.slice(1)}
                 onChange={value => {
                     props.context.focused[props.name] = value
-                    props.onUpdate()
                 }}
             />
         </Block>

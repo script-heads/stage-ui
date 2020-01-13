@@ -1,7 +1,7 @@
-import { ConstructorStructure } from '@flow-ui/constructor/types'
+import { StructureItem } from '@flow-ui/constructor/types'
 import uuidv4 from '@flow-ui/constructor/src/utils/uuidv4'
 
-let demoStructure: ConstructorStructure[] = [
+let demoStructure: StructureItem[] = [
     {
         $id: uuidv4(),
         $: 'Block',
