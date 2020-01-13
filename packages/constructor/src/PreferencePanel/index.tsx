@@ -1,13 +1,16 @@
 import { StructureContext } from '@flow-ui/constructor/types'
-import { Block, Button, Flexbox, Text, Paragraph, Divider, Range } from '@flow-ui/core'
-import { ScrollView, ButtonGroup } from '@flow-ui/lab'
-import styles from './styles'
-import NameControls from './controls/name'
+import { Block, Flexbox, Paragraph, Text, useFlow } from '@flow-ui/core'
+import { ScrollView } from '@flow-ui/lab'
 import ChildrenControls from './controls/children'
-import PaddingControls from './controls/padding'
 import MarginControls from './controls/margin'
+import NameControls from './controls/name'
+import PaddingControls from './controls/padding'
+import createStyles from './styles'
 
 const PreferencePanel = (props: { context: StructureContext, onUpdate: () => void }) => {
+    const { theme } = useFlow()
+    const styles = createStyles(theme)
+    
     return (
         <Flexbox css={styles.container} flex={1}>
             <Block surface="minor" css={styles.panel} flex={1}>

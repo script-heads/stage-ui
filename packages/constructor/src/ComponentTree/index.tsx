@@ -32,7 +32,10 @@ const ComponentTree = (props: { context: StructureContext, onUpdate: () => void 
         return structure.map(structureEl => {
             let name = structureEl.$
             if (structureEl.$name) {
-                name += ` (${structureEl.$name})`
+                name = `${structureEl.$name}`
+            } 
+            if (typeof structureEl.children === 'string' && structureEl.children.length <= 10) {
+                name += ` (${structureEl.children})`
             } else if (structureEl.label) {
                 name += ` (${structureEl.label})`
             }
@@ -88,7 +91,7 @@ const ComponentTree = (props: { context: StructureContext, onUpdate: () => void 
                                     props.onUpdate()
                                 }
                             }}>
-                            <Paragraph lineHeight={1} size={2} weight="bold">{name}</Paragraph>
+                            <Paragraph lineHeight={1} size={3} weight={500}>{name}</Paragraph>
                             <Paragraph color={c => c.light.hex()} size={4}>{structureEl.$}</Paragraph>
                         </Block>
                     )}
@@ -113,7 +116,7 @@ const ComponentTree = (props: { context: StructureContext, onUpdate: () => void 
                             defaultOpen
                             label={(
                                 <Block>
-                                    <Paragraph weight="bold">Workspace</Paragraph>
+                                    <Paragraph lineHeight={1} size={3} weight={500}>Workspace</Paragraph>
                                     <Paragraph color={c => c.light.hex()} size={4}>Root layer</Paragraph>
                                 </Block>
                             )}

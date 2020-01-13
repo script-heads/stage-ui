@@ -3,10 +3,11 @@ import { Block, Button, Icon, Paragraph, Text, Flexbox, useFlow } from '@flow-ui
 import { useRef } from 'react'
 import { StructureContext, ConstructorStructure } from '@flow-ui/constructor/types'
 import uuidv4 from '@flow-ui/constructor/src/utils/uuidv4'
-import styles from './styles'
+import createStyles from './styles'
 
 const Render = (props: { context: StructureContext, onUpdate: () => void }) => {
     const { theme } = useFlow()
+    const styles = createStyles(theme)
     const { context } = props
     const { structure } = context
 
