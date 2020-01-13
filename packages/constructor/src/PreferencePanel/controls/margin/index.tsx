@@ -11,7 +11,7 @@ const values = [
     ['xlarge', '1rem'],
 ]
 
-const MarginControls = (props: { context: ConstructorContext, onUpdate: () => void }) => {
+const MarginControls = (props: { context: ConstructorContext }) => {
     if (!props.context.focused) {
         return null
     }
@@ -41,7 +41,7 @@ const MarginControls = (props: { context: ConstructorContext, onUpdate: () => vo
                             children={value[0]}
                             onClick={() => {
                                 props.context.focused.m = value[1]
-                                props.onUpdate()
+                                props.context.update()
                             }}
                         />
                     ))

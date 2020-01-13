@@ -11,7 +11,7 @@ const values = [
     ['xlarge', '1rem'],
 ]
 
-const PaddingControls = (props: { context: ConstructorContext, onUpdate: () => void }) => {
+const PaddingControls = (props: { context: ConstructorContext }) => {
     if (!props.context.focused) {
         return null
     }
@@ -42,7 +42,7 @@ const PaddingControls = (props: { context: ConstructorContext, onUpdate: () => v
                             onClick={() => {
                                 if (props.context.focused) {
                                     props.context.focused.p = value[1]
-                                    props.onUpdate()
+                                    props.context.update()
                                 }
                             }}
                         />

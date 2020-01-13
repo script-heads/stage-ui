@@ -1,7 +1,7 @@
 import { ConstructorContext } from '@flow-ui/constructor/types'
 import { Block, Paragraph, TextField } from '@flow-ui/core'
 
-const ChildrenControls = (props: { context: ConstructorContext, onUpdate: () => void }) => {
+const ChildrenControls = (props: { context: ConstructorContext }) => {
     if (!props.context.focused) {
         return null
     }
@@ -20,7 +20,7 @@ const ChildrenControls = (props: { context: ConstructorContext, onUpdate: () => 
             if (!value) {
                 delete props.context.focused.children
             }
-            props.onUpdate()
+            props.context.update()
         }, 100)
     }
 
