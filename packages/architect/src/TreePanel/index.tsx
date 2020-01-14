@@ -98,16 +98,6 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
             </Flexbox>
             <ScrollView size="small">
                 <Block p="0.5rem">
-                    <Tree
-                        defaultOpen
-                        label={(
-                            <Block css={styles.item(false)} flex={1}>
-                                <Paragraph lineHeight={1} size={2} weight={500}>Workspace</Paragraph>
-                                <Paragraph color={c => c.light.hex()} size={2}>Root layer</Paragraph>
-                            </Block>
-                        )}
-                        children={renderTree(tools.getItems())}
-                    />
                     <Block p="0.5rem">
                         <Tree
                             defaultOpen
