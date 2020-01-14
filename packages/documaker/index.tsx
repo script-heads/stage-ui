@@ -11,7 +11,7 @@ import PageEmpty from './components/PageEmpty'
 
 import ThemeTypes from '@flow-ui/core/misc/themes/types'
 import * as flowThemes from '@flow-ui/core/misc/themes/index'
-import Constructor from '@flow-ui/architect'
+import Architect from '@flow-ui/architect'
 
 declare global {
 	interface Window {
@@ -73,10 +73,10 @@ const Documaker = () => {
 		)
 	}
 
-	if (location.pathname.match('constructor')) {
+	if (location.pathname.match('architect')) {
 		return (
 			<FlowViewport currentTheme={currentTheme}>
-				<Constructor />
+				<Architect />
 			</FlowViewport>
 		)
 	}
