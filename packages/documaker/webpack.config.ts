@@ -62,6 +62,12 @@ module.exports = function (workdir) {
                     test: /\.css$/,
                     use: ['style-loader', 'css-loader']
                 },
+                {
+                    test: /\.(ttf|eot|svg|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                    use: [{
+                        loader: 'file-loader'
+                    }]
+                }
             ]
         },
         plugins: [

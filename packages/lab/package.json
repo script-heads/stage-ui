@@ -31,6 +31,6 @@
     "babel-loader": "^8.0.6",
     "csstype": "^2.6.8",
     "tslint": "^5.20.1",
-    "typescript": "^3.7.3"
+    "typescript": "^3.7.4"
   }
 }
