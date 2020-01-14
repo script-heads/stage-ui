@@ -1,9 +1,18 @@
 import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
 import * as Core from '@flow-ui/core'
+import * as Lab from '@flow-ui/lab'
 import { Block, Button, Flexbox, Icon, Paragraph, Text, useFlow } from '@flow-ui/core'
 import { useRef } from 'react'
 import createStyles from './styles'
 
+const componentSearchLibs = [
+    Core,
+    Lab
+]
+const componentsInvisibleWhenEmpty = [
+    'Block', 
+    'Flexbox'
+]
 const Render = (props: { tools: ArchitectTools } ) => {
     const { theme } = useFlow()
     const styles = createStyles(theme)
@@ -12,8 +21,8 @@ const Render = (props: { tools: ArchitectTools } ) => {
 
     function patchStyle(items: ArchitectItem[]) {
         for (const item of items) {
-            if (item.component === 'Block' || item.component === 'Flexbox') {
-                if (item.children?.length && !item.text) {
+            if (componentsInvisibleWhenEmpty.includes(item.component)) {
+                if (item.children.length === 0 && !item.text) {
                     item.props.children = (
                         <Flexbox column p="1rem" css={{ color: theme.color.light.css() }}>
                             <Text size={1} weight="bold">{item.name || item.component}</Text>
@@ -21,8 +30,8 @@ const Render = (props: { tools: ArchitectTools } ) => {
                         </Flexbox>
                     )
                 } else {
-                    if (item.children) {
-                        delete item.children
+                    if (item.props.children) {
+                        delete item.props.children
                     }
                 }
             }
@@ -47,8 +56,24 @@ const Render = (props: { tools: ArchitectTools } ) => {
             }
         }
 
-        const Component = Core[item.component]
-        const childrens = item.children?.map(doRenderRecursive)
+        let Component = (props) => (
+            <Flexbox column p="1rem" css={{ color: theme.color.light.css() }}>
+                <Text size={1} weight="bold">{item.name || item.component}</Text>
+                <Text size={2} color={c => c.accent.red.hex()}>No component found!</Text>
+            </Flexbox>
+        )
+
+        for (let lib of componentSearchLibs) {
+            Component = lib[item.component]
+            if (Component) {
+                break
+            }
+        }
+
+        let children = item.children?.map(doRenderRecursive)
+        if (!children || children.length === 0) {
+            children = item.props.children || item.text || null
+        }
 
         return (
             <Component
@@ -81,11 +106,7 @@ const Render = (props: { tools: ArchitectTools } ) => {
                 }}
                 ref={item.$.ref}
                 key={item.id}
-                children={
-                    (childrens?.length > 0)
-                        ? childrens
-                        : (item.text || null)
-                }
+                children={children}
             />
         )
     }

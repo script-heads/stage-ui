@@ -11,6 +11,7 @@ const items: ArchitectItem[] = [
         $:{},
         id: uuid(),
         component: 'Block',
+        name: 'Wrapper',
         props: {
             surface: 'major',
             p: '1rem',
@@ -30,6 +31,7 @@ const items: ArchitectItem[] = [
                 $:{},
                 id: uuid(),
                 component: 'Flexbox',
+                name: 'Credential fields',
                 props: {
                     column: true,
                 },
@@ -60,6 +62,7 @@ const items: ArchitectItem[] = [
                 $:{},
                 id: uuid(),
                 component: 'Flexbox',
+                name: 'Control buttons',
                 props: {
                     mt: '0.75rem',
                 },
@@ -85,6 +88,16 @@ const items: ArchitectItem[] = [
                             ml: '0.25rem',
                         }]
                     }
+                ],
+            },
+            {
+                $:{},
+                id: uuid(),
+                component: 'Flexbox',
+                name: 'Footer',
+                props: {
+                },
+                children: [
                 ],
             }
         ]
