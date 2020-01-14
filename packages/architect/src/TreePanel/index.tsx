@@ -81,15 +81,23 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
     }
     
     return (
-        <Flexbox css={styles.container} flex={1}>
-            <Block css={styles.panel} flex={1}>
-                <ScrollView size="small">
-                    <Paragraph
-                        pl="0.5rem"
-                        size={2}
-                        color={c => c.light.hex()}
-                        children="Structure"
-                    />
+        <Block css={styles.container} flex={1}>
+            <Flexbox justifyContent="space-between">
+                <Paragraph
+                    pl="0.5rem"
+                    size={2}
+                    color={c => c.light.hex()}
+                    children="Layers"
+                />
+                <Paragraph
+                    pl="0.5rem"
+                    size={2}
+                    color={c => c.light.hex()}
+                    children="Page 1"
+                />
+            </Flexbox>
+            <ScrollView size="small">
+                <Block p="0.5rem">
                     <Block p="0.5rem">
                         <Tree
                             defaultOpen
@@ -113,9 +121,9 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                             children={renderTree(tools.getItems())}
                         />
                     </Block>
-                </ScrollView>
-            </Block>
-        </Flexbox>
+                </Block>
+            </ScrollView>
+        </Block>
     )
 }
 export default ComponentTree
