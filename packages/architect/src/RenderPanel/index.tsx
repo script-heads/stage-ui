@@ -29,7 +29,9 @@ const RenderItem = (props: RenderItemProps) => {
     const ref: RefObject<HTMLSpanElement> = useRef(null)
 
     item.$.getRect = () => {
-        const { left, top, width, height } = ref.current?.getBoundingClientRect() as any
+        const { left, top } = ref.current?.getBoundingClientRect() as any
+        const { width, height } = ref.current?.children[0]?.getBoundingClientRect() as any
+
         return {
             x: left,
             y: top,
