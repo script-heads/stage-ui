@@ -5,11 +5,8 @@ type Props = {
     tools: ArchitectTools
 }
 
-const ContentChildren = (props: Props) => {
+const NameControls = (props: Props) => {
     if (!props.tools.focused) {
-        return null
-    }
-    if (typeof props.tools.focused.children !== 'string') {
         return null
     }
 
@@ -20,9 +17,9 @@ const ContentChildren = (props: Props) => {
             clearTimeout(timer)
         }
         timer = setTimeout(() => {
-            props.tools.focused.children = value
+            props.tools.focused.name = value
             if (!value) {
-                delete props.tools.focused.children
+                delete props.tools.focused.name
             }
             props.tools.update()
         }, 100)
@@ -35,11 +32,11 @@ const ContentChildren = (props: Props) => {
                 size="small"
                 label="Content"
                 multiline
-                defaultValue={props.tools.focused.text || ''}
+                defaultValue={props.tools.focused.name || ''}
                 placeholder={props.tools.focused.component}
                 onChange={e => handleChange(e.target.value)}
             />
         </Block>
     )
 }
-export default ContentChildren
+export default NameControls
