@@ -1,5 +1,5 @@
 import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
-import { Block, Flexbox, Paragraph, Tree, useFlow, Divider, Menu, Icon } from '@flow-ui/core'
+import { Block, Flexbox, Text, Tree, useFlow, Divider, Menu, Icon } from '@flow-ui/core'
 import { ScrollView } from '@flow-ui/lab'
 import createStyles from './styles'
 
@@ -29,7 +29,11 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                     defaultOpen
                     key={item.id}
                     label={(
-                        <Block
+                        <Text 
+                            lineHeight={1.5} 
+                            size={2} 
+                            weight={500} 
+                            children={name}
                             draggable
                             flex={1}
                             css={styles.item(isFocused)}
@@ -56,23 +60,8 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                                     tools.focused = item
                                     tools.update()
                                 }
-                            }}>
-                            <Paragraph lineHeight={1} size={2} weight={500}>{name}</Paragraph>
-                            <Paragraph color={c => c.light.hex()} size={2}>{item.component}</Paragraph>
-                            {item.children?.length === 0 && (
-                                <Block
-                                    css={{
-                                        position: 'absolute',
-                                        background: theme.color.accent.orange.hex(),
-                                        width: '0.5rem',
-                                        height: '0.5rem',
-                                        right: '0.25rem',
-                                        top: '0.25rem',
-                                        borderRadius: '0.5rem',
-                                    }}
-                                />
-                            )}
-                        </Block>
+                            }}
+                        />
                     )}
                     children={item.children && renderTree(item.children)}
                 />
