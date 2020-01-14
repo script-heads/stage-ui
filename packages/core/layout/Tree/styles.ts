@@ -31,7 +31,8 @@ const treeStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Ty
         ],
         icon: (variant) => [
             {
-                display: 'none'
+                display: 'none',
+                opacity: 1
             },
             variant({
                 decoration: {
@@ -41,7 +42,8 @@ const treeStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Ty
                     }]
                 },
                 disabled: [{
-                    cursor: 'not-allowed'
+                    cursor: 'not-allowed',
+                    opacity: 0
                 }]
             }),
         ],
