@@ -1,3 +1,4 @@
+import {css} from '@emotion/core'
 import ThemeTypes from '@flow-ui/core/misc/themes/types'
 
 export default (theme: ThemeTypes.Index) => {
@@ -9,18 +10,20 @@ export default (theme: ThemeTypes.Index) => {
             borderWidth: '1px',
             borderStyle: 'solid'
         }],
-        item: (selected: boolean) => (
-            [{
-                background: theme.color.surface.hex(),
-                margin:'0.125rem 0',
-                padding: '0.25rem 0.5rem',
-                borderRadius: '0.5rem',
-                borderWidth: 1,
-                borderStyle: 'solid',
-                borderColor: selected
-                    ? theme.color.primary.hex()
-                    : theme.color.lightest.hex()
-            }]
+        item: (selected: boolean) => css(
+            [
+                {
+                    margin: '0.25rem 0',
+                    '&:hover': {
+                        borderWidth: 1,
+                        borderStyle: 'solid',
+                        borderColor: theme.color.primary.hex()
+                    }
+                },
+                selected && {
+                    background: theme.color.primary.luminance(.85).css()
+                }
+        ]
         ),
         tag: [{
             padding: '0.125rem 0.5rem',
