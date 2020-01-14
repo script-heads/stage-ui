@@ -5,16 +5,10 @@ export default (theme: ThemeTypes.Index) => {
     return {
         container: css({
             padding: '0 1rem',
-            width: '15rem'
+            width: '15rem',
+            borderWidth: '1px',
+            borderStyle: 'solid'
         }),
-        panel: {
-            padding: '2rem',
-            border: '1px solid',
-            borderColor: theme.color.lightest.hex(),
-            background: theme.color.background.hex(),
-            borderRadius: '0.5rem',
-            marginTop:'0.5rem',
-        },
         componentName: (active: boolean) => (
             css({
                 position: 'absolute',

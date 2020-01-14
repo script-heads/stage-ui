@@ -5,7 +5,9 @@ export default (theme: ThemeTypes.Index) => {
     return {
         container: [{
             padding: '0 1rem',
-            width: '15rem'
+            width: '15rem',
+            borderWidth: '1px',
+            borderStyle: 'solid'
         }],
         item: (selected: boolean) => (
             [{

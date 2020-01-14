@@ -107,7 +107,7 @@ const ArchitectView = (props: { tools: ArchitectTools}) => {
     const styles = createStyles(theme)
 
     return (
-        <Flexbox css={styles.container} mt="5rem">
+        <Flexbox css={styles.container}>
             <TreePanel tools={props.tools} />
             <RenderPanel tools={props.tools} />
             <PrefPanel tools={props.tools} /> 

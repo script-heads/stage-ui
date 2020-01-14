@@ -1,5 +1,5 @@
 import { ArchitectTools } from '@flow-ui/architect/types'
-import { Block, Flexbox, Paragraph, Text, useFlow } from '@flow-ui/core'
+import { Block, Flexbox, Paragraph, Text, useFlow, Menu, Divider } from '@flow-ui/core'
 import { ScrollView } from '@flow-ui/lab'
 import { Fragment } from 'react'
 import BooleanControls from './controls/boolean'
@@ -77,22 +77,32 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
     }
     findProps(data[ComponentTypeName + 'Types'])
     return (
-        <Flexbox css={styles.container}>
+        <Block 
+            css={styles.container}
+            backgroundColor={c=>c.surface.css()}
+            borderColor={c=>c.lightest.css()}>
+            <Flexbox justifyContent="space-between" alignItems="center" my=".5rem">
+                <Menu
+                    ml="-.5rem"
+                    size="small"
+                    decoration="color"
+                    defaultValue="props"
+                    items={[
+                        {content: 'Props',value:'props'},
+                        {content: 'Actions',value:'actions'}
+                    ]}
+                />
+            </Flexbox>
+            <Divider mx="-1rem" w="unset"/>
             <Block flex={1}>
                 <ScrollView size="xsmall">
-                    <Paragraph
-                        pl="0.5rem"
-                        size={2}
-                        color={c => c.light.hex()}
-                        children="Preferences"
-                    />
                     <Text
                         size={3}
                         weight="bold"
                         css={styles.componentName(!!tools.focused)}
                         children={tools.focused?.component || ''}
                     />
-                    <Block p="0.25rem 0.5rem" pb="0" css={styles.panel}>
+                    <Block>
                         {
                             !tools.focused && (
                                 <Paragraph
@@ -156,7 +166,7 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
                     </Block>
                 </ScrollView>
             </Block>
-        </Flexbox>
+        </Block>
     )
 }
 export default PrefPanel

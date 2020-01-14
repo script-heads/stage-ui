@@ -1,5 +1,5 @@
 import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
-import { Block, Flexbox, Paragraph, Tree, useFlow } from '@flow-ui/core'
+import { Block, Flexbox, Paragraph, Tree, useFlow, Divider, Menu, Icon } from '@flow-ui/core'
 import { ScrollView } from '@flow-ui/lab'
 import createStyles from './styles'
 
@@ -90,24 +90,31 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                 e.stopPropagation()
                 tools.move()
             }} 
-            css={styles.container}>
-            <Flexbox justifyContent="space-between">
-                <Paragraph
-                    size={2}
-                    color={c => c.light.hex()}
-                    children="Layers"
+            css={styles.container}
+            backgroundColor={c=>c.surface.css()}
+            borderColor={c=>c.lightest.css()}>
+            <Flexbox justifyContent="space-between" alignItems="center" my=".5rem">
+                <Menu
+                    ml="-.5rem"
+                    size="small"
+                    decoration="color"
+                    defaultValue="layers"
+                    items={[
+                        {content: 'Layers',value:'layers'},
+                        {content: 'Pages',value:'pages'}
+                    ]}
                 />
-                <Paragraph
-                    size={2}
-                    color={c => c.light.hex()}
-                    children="Page 1"
+                <Icon
+                    type={i=>i.outline.plus}
                 />
             </Flexbox>
-            <ScrollView 
-                size="small"
-                pt="0.5rem"
-                children={renderTree(tools.getItems())}
-            />
+            <Divider mx="-1rem" w="unset"/>
+            <Block pt=".5rem">
+                <ScrollView 
+                    size="small"
+                    children={renderTree(tools.getItems())}
+                />
+            </Block>
         </Block>
     )
 }
