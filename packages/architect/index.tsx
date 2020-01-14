@@ -29,6 +29,9 @@ class Architect extends React.Component {
         move: () => {
             if (this.tools.captured) {
                 if (this.tools.target) {
+                    if (this.tools.captured.id === this.tools.target.id) {
+                        return
+                    }
                     this.tools.target?.children?.push({
                         ...this.tools.captured, $: {}
                     })
