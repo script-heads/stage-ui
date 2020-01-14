@@ -8,7 +8,8 @@ import { ScrollView } from '@flow-ui/lab'
 
 const componentsInvisibleWhenEmpty = [
     'Block',
-    'Flexbox'
+    'Flexbox',
+    'Grid'
 ]
 interface RenderItemProps {
     item: ArchitectItem,
