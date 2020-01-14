@@ -131,15 +131,6 @@ const Render = (props: { tools: ArchitectTools } ) => {
 
     return (
         <Flexbox column flex={1} css={styles.container}>
-            <Flexbox pr="0.75rem">
-                <Paragraph
-                    flex={1}
-                    pl="0.5rem" 
-                    size={2}
-                    color={c => c.light.hex()}
-                    children="Workspace"
-                />
-            </Flexbox>
             <Block
                 css={styles.panel}
                 flex={1}

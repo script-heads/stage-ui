@@ -8,6 +8,6 @@ export default (theme: ThemeTypes.Index) => ({
         right: 0, 
         top: 0,
         bottom: 0,
-        background: theme.color.backgroundVariant.hex()
+        background: theme.color.background.hex()
     })
 })
