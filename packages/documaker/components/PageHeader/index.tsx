@@ -8,7 +8,7 @@ interface MenuProps extends ThemeSwitcherProps {
     setIndex: () => void
 }
 
-const Menu = (props: MenuProps) => {
+const PageHeader = (props: MenuProps) => {
 
     const {name, git, themes, setTheme, currentTheme, setIndex} = props
 
@@ -42,4 +42,4 @@ const Menu = (props: MenuProps) => {
     )
 }
 
-export default Menu
+export default PageHeader

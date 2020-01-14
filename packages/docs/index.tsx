@@ -5,8 +5,8 @@ export default (props: HomePageProps) => {
 
     return (
         <Flexbox column alignItems="center" mt="2rem" flex={1}>
-            <Header>Flow UI</Header>
-            <Text color={c => c.light.hex()}>Modern UI framework on React</Text>
+            <Header>FlowUI</Header>
+            <Text color={c => c.light.hex()}>Consistent React UI Framework declared by your own Design System.</Text>
             <Flexbox mt="1rem">
                 <Button
                     onClick={() => props.history.push(props.pages.docs)}

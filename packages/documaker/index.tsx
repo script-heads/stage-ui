@@ -4,7 +4,7 @@ import React, { Fragment, useState, useMemo } from 'react'
 import { Viewport, Flexbox, Header, Text } from '@flow-ui/core'
 import core, { PageType } from './core'
 import Sidebar from './components/Sidebar'
-import Menu from './components/Menu'
+import PageHeader from './components/PageHeader'
 import Page from './components/Page'
 import Page404 from './components/Page404'
 import PageEmpty from './components/PageEmpty'
@@ -76,6 +76,14 @@ const Documaker = () => {
 	if (location.pathname.match('architect')) {
 		return (
 			<FlowViewport currentTheme={currentTheme}>
+				<PageHeader
+					themes={themes}
+					currentTheme={currentTheme}
+					setTheme={setTheme}
+					name={config.name + ' - Architect'}
+					git={config.git}
+					setIndex={() => historyPush('/')}
+				/>
 				<Architect />
 			</FlowViewport>
 		)
@@ -97,11 +105,11 @@ const Documaker = () => {
 			}
 			{currentPage && typeof currentPage === 'object' &&
 				<Fragment>
-					<Menu
+					<PageHeader
 						themes={themes}
 						currentTheme={currentTheme}
 						setTheme={setTheme}
-						name={config.name || 'Documaker'}
+						name={config.name + ' - Documentation'}
 						git={config.git}
 						setIndex={() => historyPush('/')}
 					/>
