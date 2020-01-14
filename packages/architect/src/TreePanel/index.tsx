@@ -18,6 +18,8 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                 name += ` (${item.text})`
             } else if (item.props?.label) {
                 name += ` (${item.props.label})`
+            } else if (item.props?.placeholder) {
+                name += ` (${item.props.placeholder})`
             }
             
             const isFocused = tools.focused?.id === item.id
