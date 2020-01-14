@@ -81,7 +81,17 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
     }
     
     return (
-        <Block css={styles.container} flex={1}>
+        <Block
+            onDragOver={(e) => {
+                e.stopPropagation()
+                e.preventDefault()
+            }}
+            onDrop={(e) => {
+                e.stopPropagation()
+                tools.move()
+            }} 
+            css={styles.container} 
+            flex={1}>
             <Flexbox justifyContent="space-between">
                 <Paragraph
                     pl="0.5rem"
@@ -98,29 +108,7 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
             </Flexbox>
             <ScrollView size="small">
                 <Block p="0.5rem">
-                    <Block p="0.5rem">
-                        <Tree
-                            defaultOpen
-                            label={(
-                                <Block 
-                                    onDragOver={(e) => {
-                                        e.stopPropagation()
-                                        e.preventDefault()
-                                    }}
-                                    onDrop={(e) => {
-                                        e.stopPropagation()
-                                        tools.move()
-                                    }}
-                                    css={styles.item(false)} 
-                                    flex={1}
-                                >
-                                    <Paragraph lineHeight={1} size={2} weight={500}>Workspace</Paragraph>
-                                    <Paragraph color={c => c.light.hex()} size={2}>Root layer</Paragraph>
-                                </Block>
-                            )}
-                            children={renderTree(tools.getItems())}
-                        />
-                    </Block>
+                    <Block p="0.5rem" children={renderTree(tools.getItems())}/>
                 </Block>
             </ScrollView>
         </Block>
