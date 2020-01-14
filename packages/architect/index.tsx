@@ -74,7 +74,7 @@ const ArchitectView = (props: { tools: ArchitectTools}) => {
         <Split css={styles.container} direction="row" areaSize={4} positions={[25, 50, 25]}>
             <TreePanel tools={props.tools} />
             <RenderPanel tools={props.tools} />
-            <PrefPanel tools={props.tools} />
+            <PrefPanel tools={props.tools} /> 
         </Split>
     )
 }
