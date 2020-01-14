@@ -7,7 +7,7 @@ import React from 'react'
 import createStyles from './styles'
 import { useFlow } from '@flow-ui/core'
 
-class Constuctor extends React.Component {
+class Architect extends React.Component {
     constructor(props: {}) {
         super(props)
         this.items = require('./demoData').default
@@ -57,19 +57,23 @@ class Constuctor extends React.Component {
     }
 
     render() {
-        const ArchitectView = () => {
-            const { theme } = useFlow()
-            const styles = createStyles(theme)
-    
-            return (
-                <Split css={styles.container} direction="row" areaSize={4} positions={[25, 50, 25]}>
-                    <TreePanel tools={this.tools} />
-                    <RenderPanel tools={this.tools} />
-                    <PrefPanel tools={this.tools} />
-                </Split>
-            )
-        }
-        return <ArchitectView />
+        return (
+            <ArchitectView tools={this.tools} />
+        )
     }
 } 
-export default Constuctor
+
+const ArchitectView = (props: { tools: ArchitectTools}) => {
+    const { theme } = useFlow()
+    const styles = createStyles(theme)
+
+    return (
+        <Split css={styles.container} direction="row" areaSize={4} positions={[25, 50, 25]}>
+            <TreePanel tools={props.tools} />
+            <RenderPanel tools={props.tools} />
+            <PrefPanel tools={props.tools} />
+        </Split>
+    )
+}
+
+export default Architect
