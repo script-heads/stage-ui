@@ -10,7 +10,22 @@ import { useFlow } from '@flow-ui/core'
 class Architect extends React.Component {
     constructor(props: {}) {
         super(props)
+        this.init(require('./demoData').default)
+    }
+    private init(items: Architect) {
         this.items = require('./demoData').default
+        // Add parent links
+        const recursive = (items: ArchitectItem[]) => {
+            items?.forEach(item => {
+                if (Array.isArray(item.children)) {
+                    for (let child of item.children) {
+                        child.parent = item
+                    }
+                    recursive(item.children)
+                }
+            })
+        }
+        recursive(this.items)
     }
     private items: ArchitectItem[] = []
     private clearDirtyRecords() {
@@ -27,20 +42,42 @@ class Architect extends React.Component {
         target: null,
         getItems: () => this.items,
         move: () => {
-            if (this.tools.captured) {
-                if (this.tools.target) {
-                    if (this.tools.captured.id === this.tools.target.id) {
+            const moveTool = {
+                captured: this.tools.captured,
+                target: this.tools.target,
+            }
+            const checkSelfDrop = (parent?: ArchitectItem) => {
+                if (parent && parent.id === moveTool.captured.id) {
+                    return false
+                }
+                if (!parent) {
+                    return true
+                }
+                return checkSelfDrop(parent.parent)                            
+            }
+            if (moveTool.captured) {
+                if (moveTool.target) {
+                    if (moveTool.captured.id === moveTool.target.id) {
                         return
                     }
-                    this.tools.target?.children?.push({
-                        ...this.tools.captured, $: {}
-                    })
-                    this.tools.target = null
-                } else {
-                    this.items.push({
-                        ...this.tools.captured, $: {}
-                    })
+                    if (!checkSelfDrop(moveTool.target.parent)) {
+                        return
+                    }
+                    if (!moveTool.target?.children) {
+                        if (moveTool.target?.parent) {
+                            moveTool.target = moveTool.target.parent
+                        }
+                    }
                 }
+                if (!moveTool.target) {
+                    moveTool.target = void 0
+                }
+                (moveTool.target?.children || this.items).push({
+                    ...this.tools.captured, 
+                    parent: moveTool.target,
+                    $: {}
+                })
+                this.tools.target = null
                 this.tools.remove()
             }
         },

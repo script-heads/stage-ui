@@ -5,6 +5,7 @@ export type ArchitectItem = {
     component: string
     name?: string
     text?: string
+    parent?: ArchitectItem
     children?: ArchitectItem[]
     props: Record<string,any>
     $: Record<string,any>
