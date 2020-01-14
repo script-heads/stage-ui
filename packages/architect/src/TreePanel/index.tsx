@@ -131,9 +131,9 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                             children={renderTree(tools.getItems())}
                         />
                     </Block>
-                </ScrollView>
-            </Block>
-        </Flexbox>
+                </Block>
+            </ScrollView>
+        </Block>
     )
 }
 export default ComponentTree
