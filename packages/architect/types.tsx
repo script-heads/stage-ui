@@ -5,7 +5,7 @@ export type ArchitectItem = {
     component: string
     name?: string
     text?: string
-    parent?: ArchitectItem
+    parent?: ArchitectItem | null
     children?: ArchitectItem[]
     props: Record<string,any>
     $: Record<string,any>
@@ -13,9 +13,9 @@ export type ArchitectItem = {
 
 export interface ArchitectTools {
     getItems: () => ArchitectItem[]
-    captured: ArchitectItem | null
-    focused: ArchitectItem | null
-    target: ArchitectItem | null 
+    captured?: ArchitectItem | null
+    focused?: ArchitectItem | null
+    target?: ArchitectItem | null 
 
     move: () => void
     update: () => void
