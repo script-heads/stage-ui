@@ -2,10 +2,9 @@ import PrefPanel from '@flow-ui/architect/src/PrefPanel'
 import RenderPanel from '@flow-ui/architect/src/RenderPanel'
 import TreePanel from '@flow-ui/architect/src/TreePanel'
 import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
-import { Split } from '@flow-ui/lab'
 import React from 'react'
 import createStyles from './styles'
-import { useFlow } from '@flow-ui/core'
+import { useFlow, Flexbox } from '@flow-ui/core'
 
 class Architect extends React.Component {
     constructor(props: {}) {
@@ -108,11 +107,11 @@ const ArchitectView = (props: { tools: ArchitectTools}) => {
     const styles = createStyles(theme)
 
     return (
-        <Split css={styles.container} direction="row" areaSize={4} positions={[25, 50, 25]}>
+        <Flexbox css={styles.container} mt="5rem">
             <TreePanel tools={props.tools} />
             <RenderPanel tools={props.tools} />
             <PrefPanel tools={props.tools} /> 
-        </Split>
+        </Flexbox>
     )
 }
 

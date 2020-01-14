@@ -77,7 +77,7 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
     }
     findProps(data[ComponentTypeName + 'Types'])
     return (
-        <Flexbox css={styles.container} flex={1}>
+        <Flexbox css={styles.container}>
             <Block flex={1}>
                 <ScrollView size="xsmall">
                     <Paragraph

@@ -4,8 +4,8 @@ export default (theme: ThemeTypes.Index) => {
     
     return {
         container: [{
-            padding: '1rem',
-            paddingTop: '5rem'
+            padding: '0 1rem',
+            width: '15rem'
         }],
         item: (selected: boolean) => (
             [{

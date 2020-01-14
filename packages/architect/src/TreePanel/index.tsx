@@ -90,27 +90,24 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                 e.stopPropagation()
                 tools.move()
             }} 
-            css={styles.container} 
-            flex={1}>
+            css={styles.container}>
             <Flexbox justifyContent="space-between">
                 <Paragraph
-                    pl="0.5rem"
                     size={2}
                     color={c => c.light.hex()}
                     children="Layers"
                 />
                 <Paragraph
-                    pl="0.5rem"
                     size={2}
                     color={c => c.light.hex()}
                     children="Page 1"
                 />
             </Flexbox>
-            <ScrollView size="small">
-                <Block p="0.5rem">
-                    <Block p="0.5rem" children={renderTree(tools.getItems())}/>
-                </Block>
-            </ScrollView>
+            <ScrollView 
+                size="small"
+                pt="0.5rem"
+                children={renderTree(tools.getItems())}
+            />
         </Block>
     )
 }

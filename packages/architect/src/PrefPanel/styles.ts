@@ -4,8 +4,8 @@ import ThemeTypes from '@flow-ui/core/misc/themes/types'
 export default (theme: ThemeTypes.Index) => {
     return {
         container: css({
-            padding: '1rem',
-            paddingTop: '5rem',
+            padding: '0 1rem',
+            width: '15rem'
         }),
         panel: {
             padding: '2rem',
