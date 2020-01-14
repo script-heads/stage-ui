@@ -45,11 +45,11 @@ class Architect extends React.Component {
                 captured: this.tools.captured,
                 target: this.tools.target,
             }
-            const checkSelfDrop = (parent?: ArchitectItem) => {
+            const checkSelfDrop = (parent?: ArchitectItem | null) => {
                 if (!parent) {
                     return true
                 }
-                if (parent.id === moveTool.captured.id) {
+                if (parent.id === moveTool.captured?.id) {
                     return false
                 }
                 return checkSelfDrop(parent.parent)                            
@@ -69,10 +69,10 @@ class Architect extends React.Component {
                     }
                 }
                 if (!moveTool.target) {
-                    moveTool.target = void 0
+                    moveTool.target = null
                 }
                 (moveTool.target?.children || this.items).push({
-                    ...this.tools.captured, 
+                    ...moveTool.captured, 
                     parent: moveTool.target,
                     $: {}
                 })

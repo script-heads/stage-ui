@@ -8,6 +8,18 @@ export default (theme: ThemeTypes.Index) => {
         panel: css({
  
         }),
+        mask: css({
+            opacity: 0,
+            pointerEvents: 'none',
+            position: 'fixed',
+            border: '1px dashed red',
+        }),
+        maskName: css({
+            position:'absolute',
+            right:0,
+            top: '-1rem',
+            color: 'red'
+        }),
         deleteArea: css({
             opacity: 0.75,
             textAlign: 'center',
