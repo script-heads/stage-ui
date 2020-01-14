@@ -47,11 +47,11 @@ class Architect extends React.Component {
                 target: this.tools.target,
             }
             const checkSelfDrop = (parent?: ArchitectItem) => {
-                if (parent && parent.id === moveTool.captured.id) {
-                    return false
-                }
                 if (!parent) {
                     return true
+                }
+                if (parent.id === moveTool.captured.id) {
+                    return false
                 }
                 return checkSelfDrop(parent.parent)                            
             }

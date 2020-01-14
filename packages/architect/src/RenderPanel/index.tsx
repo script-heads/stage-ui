@@ -20,7 +20,7 @@ const RenredItem = (props: { item: ArchitectItem, tools: ArchitectTools, theme: 
     const { item, tools, theme } = props
 
     item.$.ref = useRef(null)
-    const ref = item.$.ref?.captured
+    const ref = item.$.ref?.current
 
     item.$.getRect = () => {
         const { top, left, width, height } = ref?.getBoundingClientRect()
@@ -60,37 +60,41 @@ const RenredItem = (props: { item: ArchitectItem, tools: ArchitectTools, theme: 
     }
 
     return (
-        <Component
-            {...item.props}
-            draggable
-            onDragStart={(e) => {
-                e.stopPropagation()
-                tools.captured = item
-            }}
-            onDragOver={(e) => {
-                e.stopPropagation()
-                e.preventDefault()
-                if (tools.captured?.id !== item.id) {
-                    tools.target = item
-                } else {
-                    tools.target = null
-                }
-            }}
-            onDragLeave={(e) => {
-                e.stopPropagation()
-            }}
-            onDrop={(e) => {
-                e.stopPropagation()
-                props.tools.move()
-            }}
-            onClick={(e) => {
-                e.stopPropagation()
-                tools.focused = item
-                tools.update()
-            }}
+        <span
             ref={item.$.ref}
-            key={item.id}
-            children={children}
+            children={(
+                <Component
+                    {...item.props}
+                    draggable
+                    onDragStart={(e) => {
+                        e.stopPropagation()
+                        tools.captured = item
+                    }}
+                    onDragOver={(e) => {
+                        e.stopPropagation()
+                        e.preventDefault()
+                        if (tools.captured?.id !== item.id) {
+                            tools.target = item
+                        } else {
+                            tools.target = null
+                        }
+                    }}
+                    onDragLeave={(e) => {
+                        e.stopPropagation()
+                    }}
+                    onDrop={(e) => {
+                        e.stopPropagation()
+                        props.tools.move()
+                    }}
+                    onClick={(e) => {
+                        e.stopPropagation()
+                        tools.focused = item
+                        tools.update()
+                    }}
+                    key={item.id}
+                    children={children}
+                />
+            )}
         />
     )
 }
