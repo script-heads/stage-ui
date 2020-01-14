@@ -5,12 +5,69 @@ import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
 import React from 'react'
 import createStyles from './styles'
 import { useFlow, Flexbox } from '@flow-ui/core'
+import * as Core from '@flow-ui/core'
 
+const components = {
+    Divider: Core.Divider,
+    Icon: Core.Icon,
+    Spinner: Core.Spinner,
+    Header: Core.Header,
+    Display: Core.Display,
+    Paragraph: Core.Paragraph,
+    Text: Core.Text,
+    Anchor: Core.Anchor,
+    /**
+     * Control
+     */
+    Button: Core.Button,
+    Checkbox: Core.Checkbox,
+    DatePicker: Core.DatePicker,
+    Menu: Core.Menu,
+    Radio: Core.Radio,
+    Range: Core.Range,
+    Select: Core.Select,
+    Switch: Core.Switch,
+    TextField: Core.TextField,
+    /**
+     * Data
+     */
+    Meter: Core.Meter,
+    Table: Core.Table,
+    /**
+     * Layout
+     */
+    Badge: Core.Badge,
+    Block: Core.Block,
+    Drop: Core.Drop,
+    Flexbox: Core.Flexbox,
+    Grid: Core.Grid,
+    Tree: Core.Tree,
+}
 class Architect extends React.Component {
     constructor(props: {}) {
         super(props)
         this.init(require('./demoData').default)
     }
+
+    componentDidMount() {
+        window.addEventListener('keydown', this.handleKey.bind(this))
+    }
+    componentWillUnmount() {
+        window.addEventListener('keydown', this.handleKey.bind(this))
+    }
+
+    /**
+     * Handling keyboard events
+     */
+    handleKey(e: KeyboardEvent) {
+        switch(e.keyCode) {
+            //Backspace
+            case 8: 
+                this.tools.remove()
+            break
+        }
+    }
+
     /**
      * This method will set items
      * but not rerender em.
@@ -47,6 +104,7 @@ class Architect extends React.Component {
         this.items = recursive(this.items) as ArchitectItem[]
     }
     public tools: ArchitectTools = {
+        components,
         /**
          * Current dragging element
          */
@@ -85,7 +143,7 @@ class Architect extends React.Component {
                 }
                 return checkSelfDrop(parent.parent)                            
             }
-            
+
             if (moveTool.captured) {
                 if (moveTool.target) {
                     /**
@@ -134,7 +192,9 @@ class Architect extends React.Component {
                  * remove dirty record
                  */
                 this.tools.target = null
-                this.tools.remove()
+                moveTool.captured.$.dirty = true
+                this.clearDirtyRecords()
+                this.tools.update()
             }
         },
         update: () => {
@@ -147,8 +207,9 @@ class Architect extends React.Component {
             this.tools.captured = null
         },
         remove: () => {
-            if (this.tools.captured) {
-                this.tools.captured.$.dirty = true
+            if (this.tools.focused) {
+                this.tools.focused.$.dirty = true
+                this.tools.focused = null
                 this.clearDirtyRecords()
                 this.tools.update()
             }

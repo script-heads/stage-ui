@@ -1,16 +1,11 @@
 import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
-import * as Core from '@flow-ui/core'
 import { Block, Flexbox, Text, useFlow } from '@flow-ui/core'
 import ThemeTypes from '@flow-ui/core/misc/themes/types'
-import * as Lab from '@flow-ui/lab'
 import { RefObject, useRef } from 'react'
 import Mask, { MaskRefs } from './mask'
 import createStyles from './styles'
+import { ScrollView } from '@flow-ui/lab'
 
-const componentSearchLibs = [
-    Core,
-    Lab
-]
 const componentsInvisibleWhenEmpty = [
     'Block',
     'Flexbox'
@@ -49,11 +44,8 @@ const RenderItem = (props: RenderItemProps) => {
         </Flexbox>
     )
 
-    for (let lib of componentSearchLibs) {
-        if (lib[item.component]) {
-            Component = lib[item.component]
-            break
-        }
+    if (tools.components[item.component]) {
+        Component = tools.components[item.component]
     }
 
     let children = item.children?.map((child) =>
@@ -178,7 +170,7 @@ const Render = (props: { tools: ArchitectTools }) => {
 
     return (
         <Flexbox column flex={1} css={styles.container}>
-            <Lab.ScrollView size="xsmall">
+            <ScrollView size="xsmall">
                 <Block
                     css={styles.panel}
                     flex={1}
@@ -222,7 +214,7 @@ const Render = (props: { tools: ArchitectTools }) => {
                     color={c => c.secondary.hex()}
                     item={tools.focused}
                 />
-            </Lab.ScrollView>
+            </ScrollView>
         </Flexbox>
     )
 }

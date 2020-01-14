@@ -41,6 +41,9 @@ const Mask: RefForwardingComponent<MaskRefs, MaskProps> = (props, ref) => {
             const { $, component } = props.item
             update($.getRect(), component)
         }
+        if (props.item === null) {
+            hide()
+        }
     })
 
     useImperativeHandle(ref, () => ({ update, hide }))
