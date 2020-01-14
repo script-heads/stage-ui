@@ -19,17 +19,21 @@ interface RenderItemProps {
     item: ArchitectItem,
     tools: ArchitectTools
     theme: ThemeTypes.Index,
-    targetMask: RefObject<MaskRefs>
+    mask: {
+        hover: RefObject<MaskRefs>
+        target: RefObject<MaskRefs>
+        focus: RefObject<MaskRefs>
+    }
 
 }
 const RenderItem = (props: RenderItemProps) => {
 
-    const { item, tools, theme, targetMask } = props
+    const { item, tools, theme, mask } = props
 
-    item.$.ref = useRef(null)
+    const ref: RefObject<HTMLSpanElement> = useRef(null)
 
     item.$.getRect = () => {
-        const { left, top, width, height } = item.$.ref.current?.getBoundingClientRect()
+        const { left, top, width, height } = ref.current?.getBoundingClientRect() as any
         return {
             x: left,
             y: top,
@@ -54,7 +58,7 @@ const RenderItem = (props: RenderItemProps) => {
 
     let children = item.children?.map((child) =>
         <RenderItem
-            targetMask={targetMask}
+            mask={mask}
             key={child.id}
             tools={tools}
             item={child}
@@ -68,11 +72,24 @@ const RenderItem = (props: RenderItemProps) => {
 
     return (
         <span
-            ref={item.$.ref}
+            ref={ref}
             children={(
                 <Component
                     {...item.props}
                     draggable
+                    onMouseEnter={(e) => {
+                        if (mask.hover.current && !tools.captured) {
+                            mask.hover.current.update(
+                                item.$.getRect(),
+                                item.component
+                            )
+                        }
+                    }}
+                    onMouseLeave={(e) => {
+                        if (mask.hover.current) {
+                            mask.hover.current.hide()
+                        }
+                    }}
                     onDragStart={(e) => {
                         e.stopPropagation()
                         tools.captured = item
@@ -89,8 +106,8 @@ const RenderItem = (props: RenderItemProps) => {
                             if (!tools.target?.children) {
                                 tools.target = tools.target?.parent
                             }
-                            if (tools.target && targetMask.current) {
-                                targetMask.current.update(
+                            if (tools.target && mask.target.current) {
+                                mask.target.current.update(
                                     tools.target.$.getRect(),
                                     tools.target.component
                                 )
@@ -99,15 +116,18 @@ const RenderItem = (props: RenderItemProps) => {
                     }}
                     onDragLeave={(e) => {
                         e.stopPropagation()
-                        if (targetMask.current) {
-                            targetMask.current.hide()
+                        if (mask.target.current) {
+                            mask.target.current.hide()
+                        }
+                        if (mask.hover.current) {
+                            mask.hover.current.hide()
                         }
                     }}
                     onDrop={(e) => {
                         e.stopPropagation()
                         props.tools.move()
-                        if (targetMask.current) {
-                            targetMask.current.hide()
+                        if (mask.target.current) {
+                            mask.target.current.hide()
                         }
                     }}
                     onClick={(e) => {
@@ -128,7 +148,9 @@ const Render = (props: { tools: ArchitectTools }) => {
     const styles = createStyles(theme)
     const { tools } = props
     const architectItems = tools.getItems()
+    const hoverMask = useRef<MaskRefs>(null)
     const targetMask = useRef<MaskRefs>(null)
+    const focusMask = useRef<MaskRefs>(null)
 
     function patchStyle(items: ArchitectItem[]) {
         for (const item of items) {
@@ -164,7 +186,11 @@ const Render = (props: { tools: ArchitectTools }) => {
                         architectItems.map((item) => (
                             <Block key={item.id}>
                                 <RenderItem
-                                    targetMask={targetMask}
+                                    mask={{
+                                        hover: hoverMask,
+                                        target: targetMask,
+                                        focus: focusMask
+                                    }}
                                     tools={tools}
                                     item={item}
                                     theme={theme}
@@ -189,21 +215,13 @@ const Render = (props: { tools: ArchitectTools }) => {
                         tools.update()
                     }}
                 />
-                <Block
-                    m="0.5rem"
-                    mt="0"
-                    css={styles.deleteArea}
-                    children="Drop component here to delete."
-                    onDragOver={(e) => {
-                        e.stopPropagation()
-                        e.preventDefault()
-                    }}
-                    onDrop={(e) => {
-                        e.stopPropagation()
-                        tools.remove()
-                    }}
+                <Mask ref={hoverMask} color={c => c.primary.alpha(0.5).hex()} />
+                <Mask ref={targetMask} color={c => c.primary.hex()} />
+                <Mask 
+                    ref={focusMask} 
+                    color={c => c.secondary.hex()}
+                    item={tools.focused}
                 />
-                <Mask ref={targetMask} />
             </Lab.ScrollView>
         </Flexbox>
     )
