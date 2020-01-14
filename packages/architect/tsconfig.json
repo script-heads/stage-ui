@@ -19,7 +19,7 @@
     ],
     "jsx": "react",
   },
-  "include": [
-    "pages/**/*", "components/Syntax.tsx"
+  "exclude": [
+    "node_modules"
   ]
 }
