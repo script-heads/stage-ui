@@ -3,22 +3,25 @@ import ThemeTypes from '@flow-ui/core/misc/themes/types'
 
 export default (theme: ThemeTypes.Index) => {
     return {
-        container: css({
-        }),
-        panel: css({
- 
-        }),
-        mask: css({
+        container: {
+
+        },
+        panel: {
+            margin: '2rem 4rem'
+        },
+        mask: (color: string) => css({
             opacity: 0,
             pointerEvents: 'none',
             position: 'fixed',
-            border: '1px dashed red',
+            border: '1px dotted',
+            borderRadius: '0.25rem',
+            borderColor: color
         }),
-        maskName: css({
+        maskName: (color: string) => css({
             position:'absolute',
             right:0,
             top: '-1rem',
-            color: 'red'
+            color: color
         }),
         deleteArea: css({
             opacity: 0.75,
