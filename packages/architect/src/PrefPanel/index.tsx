@@ -3,7 +3,8 @@ import { Block, Flexbox, Paragraph, Text, useFlow } from '@flow-ui/core'
 import { ScrollView } from '@flow-ui/lab'
 import { Fragment } from 'react'
 import BooleanControls from './controls/boolean'
-import ContentChildren from './controls/content'
+import NameControls from './controls/name'
+import TextControls from './controls/text'
 import LiteralControls from './controls/literal'
 import MarginControls from './controls/margin'
 import PaddingControls from './controls/padding'
@@ -106,12 +107,8 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
                         {
                             !!tools.focused && (
                                 <Fragment>
-                                    <StringControls
-                                        {...props}
-                                        name="name"
-                                        placeholder={tools.focused?.component}
-                                    />
-                                    <ContentChildren {...props} />
+                                    <NameControls {...props} />
+                                    <TextControls {...props} />
                                     <PaddingControls {...props} />
                                     <MarginControls {...props} />
                                     <SizeConrols {...props} />
