@@ -77,12 +77,11 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
     findProps(data[ComponentTypeName + 'Types'])
     return (
         <Flexbox css={styles.container} flex={1}>
-            <Block css={styles.panel} flex={1}>
+            <Block flex={1}>
                 <ScrollView size="xsmall">
                     <Paragraph
                         pl="0.5rem"
-                        size={0}
-                        weight="bold"
+                        size={2}
                         color={c => c.light.hex()}
                         children="Preferences"
                     />
@@ -92,7 +91,18 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
                         css={styles.componentName(!!tools.focused)}
                         children={tools.focused?.component || ''}
                     />
-                    <Block p="0.25rem 0.5rem" pb="0">
+                    <Block p="0.25rem 0.5rem" pb="0" css={styles.panel}>
+                        {
+                            !tools.focused && (
+                                <Paragraph
+                                    align="center"
+                                    pl="0.5rem"
+                                    size={2}
+                                    color={c => c.light.hex()}
+                                    children="No element selected"
+                                />
+                            )
+                        }
                         {
                             !!tools.focused && (
                                 <Fragment>

@@ -17,6 +17,7 @@ const PageHeader = (props: MenuProps) => {
             alignItems="center" 
             p="1.5rem"
             css={(theme: ThemeTypes.Index) => ({
+                zIndex: 10,
                 [`@media (max-width: ${window.breakpoints[0]}px)`]: {
                     padding: '1rem',
                 }

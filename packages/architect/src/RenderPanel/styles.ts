@@ -4,11 +4,15 @@ import ThemeTypes from '@flow-ui/core/misc/themes/types'
 export default (theme: ThemeTypes.Index) => {
     return {
         container: css({
-            padding: '0.5rem',
-            border: '2px dashed',
+            paddingTop: '5rem',
+        }),
+        panel: css({
+            padding: '2rem',
+            border: '1px solid',
             borderColor: theme.color.lightest.hex(),
-            borderRadius: '1rem',
-            margin: '0.75rem 0.5rem',
+            background: theme.color.background.hex(),
+            borderRadius: '0.5rem',
+            marginTop:'0.5rem',
         }),
         deleteArea: css({
             opacity: 0.75,

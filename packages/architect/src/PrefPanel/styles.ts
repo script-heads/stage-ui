@@ -4,10 +4,16 @@ import ThemeTypes from '@flow-ui/core/misc/themes/types'
 export default (theme: ThemeTypes.Index) => {
     return {
         container: css({
-            padding: '0.5rem'
+            padding: '1rem',
+            paddingTop: '5rem',
         }),
         panel: {
-            
+            padding: '2rem',
+            border: '1px solid',
+            borderColor: theme.color.lightest.hex(),
+            background: theme.color.background.hex(),
+            borderRadius: '0.5rem',
+            marginTop:'0.5rem',
         },
         componentName: (active: boolean) => (
             css({

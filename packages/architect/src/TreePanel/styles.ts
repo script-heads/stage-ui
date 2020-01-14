@@ -5,7 +5,8 @@ export default (theme: ThemeTypes.Index) => {
     
     return {
         container: css({
-            padding: '0.5rem'
+            padding: '1rem',
+            paddingTop: '5rem'
         }),
         panel: {
         },
@@ -14,12 +15,12 @@ export default (theme: ThemeTypes.Index) => {
                 background: theme.color.surface.hex(),
                 margin:'0.125rem 0',
                 padding: '0.25rem 0.5rem',
-                borderRadius: '0.25rem',
-                borderWidth: 2,
+                borderRadius: '0.5rem',
+                borderWidth: 1,
                 borderStyle: 'solid',
                 borderColor: selected
                     ? theme.color.primary.hex()
-                    : theme.color.backgroundVariant.hex()
+                    : theme.color.lightest.hex()
             })
         ),
         tag: css({

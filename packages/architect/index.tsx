@@ -4,7 +4,8 @@ import TreePanel from '@flow-ui/architect/src/TreePanel'
 import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
 import { Split } from '@flow-ui/lab'
 import React from 'react'
-import styles from './styles'
+import createStyles from './styles'
+import { useFlow } from '@flow-ui/core'
 
 class Constuctor extends React.Component {
     constructor(props: {}) {
@@ -56,13 +57,19 @@ class Constuctor extends React.Component {
     }
 
     render() {
-        return (
-            <Split css={styles.container} direction="row" areaSize={4} positions={[25, 50, 25]}>
-                <TreePanel tools={this.tools} />
-                <RenderPanel tools={this.tools} />
-                <PrefPanel tools={this.tools} />
-            </Split>
-        )
+        const ArchitectView = () => {
+            const { theme } = useFlow()
+            const styles = createStyles(theme)
+    
+            return (
+                <Split css={styles.container} direction="row" areaSize={4} positions={[25, 50, 25]}>
+                    <TreePanel tools={this.tools} />
+                    <RenderPanel tools={this.tools} />
+                    <PrefPanel tools={this.tools} />
+                </Split>
+            )
+        }
+        return <ArchitectView />
     }
 } 
 export default Constuctor

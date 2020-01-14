@@ -57,8 +57,8 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                                     tools.update()
                                 }
                             }}>
-                            <Paragraph lineHeight={1} size={3} weight={500}>{name}</Paragraph>
-                            <Paragraph color={c => c.light.hex()} size={4}>{item.component}</Paragraph>
+                            <Paragraph lineHeight={1} size={2} weight={500}>{name}</Paragraph>
+                            <Paragraph color={c => c.light.hex()} size={2}>{item.component}</Paragraph>
                             {item.children?.length === 0 && (
                                 <Block
                                     css={{
@@ -86,8 +86,7 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                 <ScrollView size="small">
                     <Paragraph
                         pl="0.5rem"
-                        size={0}
-                        weight="bold"
+                        size={2}
                         color={c => c.light.hex()}
                         children="Structure"
                     />
@@ -95,9 +94,9 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                         <Tree
                             defaultOpen
                             label={(
-                                <Block>
-                                    <Paragraph lineHeight={1} size={3} weight={500}>Workspace</Paragraph>
-                                    <Paragraph color={c => c.light.hex()} size={4}>Root layer</Paragraph>
+                                <Block css={styles.item(false)} flex={1}>
+                                    <Paragraph lineHeight={1} size={2} weight={500}>Workspace</Paragraph>
+                                    <Paragraph color={c => c.light.hex()} size={2}>Root layer</Paragraph>
                                 </Block>
                             )}
                             children={renderTree(tools.getItems())}
