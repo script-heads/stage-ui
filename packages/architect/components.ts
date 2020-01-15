@@ -48,32 +48,30 @@ const components: ArchitectTools['components'] = {
     /**
      * Data
      */
-    Meter: Init('Meter'),
+    // Meter: Init('Meter'),
     // Table: Init('Table'),
     /**
      * Layout
      */
-    // Badge: Init('Badge', {
-    //     text: 'Badge',
-    //     children: []
-    // }),
+    Badge: Init('Badge', {
+        children: [],
+        props: {
+            label: '10'
+        }
+    }),
     Block: Init('Block', {
-        text: 'Header',
+        children: []
     }),
     // Drop: Init('Drop', {
-    //     text: 'Drop',
     //     children: []
     // }),
     Flexbox: Init('Flexbox', {
-        text: 'Flexbox',
         children: []
     }),
     // Grid: Init('Grid', {
-    //     text: 'Grid',
     //     children: []
     // }),
     // Tree: Init('Tree', {
-    //     text: 'Tree',
     //     children: []
     // }),
 }
