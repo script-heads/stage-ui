@@ -30,7 +30,7 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                     key={item.id}
                     label={(
                         <Text 
-                            lineHeight={1.5} 
+                            lineHeight={1} 
                             size={2} 
                             weight={500} 
                             children={name}
