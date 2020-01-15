@@ -1,5 +1,5 @@
 import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
-import { Block, Flexbox, Text, Tree, useFlow, Divider, Menu, Icon } from '@flow-ui/core'
+import { Block, Flexbox, Text, Tree, useFlow, Divider, Menu, Icon, Paragraph } from '@flow-ui/core'
 import { ScrollView } from '@flow-ui/lab'
 import createStyles from './styles'
 
@@ -104,7 +104,20 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
             <Divider w="unset"/>
             <ScrollView size="xsmall" css={styles.scrollView}>
                 <Block css={styles.scrollContainer}>
-                        {renderTree(tools.getItems())}
+                    {
+                        tools.getItems().length === 0 && (
+                            <Paragraph
+                                align="center"
+                                pt="2rem"
+                                size={2}
+                                color={c => c.light.hex()}
+                                children="Drag any component here"
+                            />
+                        )
+                    }
+                    {
+                        renderTree(tools.getItems())
+                    }
                 </Block>
             </ScrollView>
         </Block>

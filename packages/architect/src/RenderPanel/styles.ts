@@ -6,7 +6,7 @@ export default (theme: ThemeTypes.Index) => {
         container: {
         },
         scrollView: css({ 
-            height: 'calc(100vh - 4rem)',
+            // height: 'calc(100vh - 4rem)',
         }),
         scrollContainer: css({ 
             padding: '2rem 4rem 20rem 4rem',

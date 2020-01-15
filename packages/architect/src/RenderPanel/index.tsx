@@ -36,7 +36,7 @@ const RenderItem = (props: RenderItemProps) => {
 
     const { item, tools, theme, mask } = props
 
-    const ref: RefObject<HTMLSpanElement> = useRef(null)
+    const ref: RefObject<HTMLSpancomponent> = useRef(null)
 
     item.$.getRect = () => {
 
@@ -164,7 +164,7 @@ const Render = (props: { tools: ArchitectTools }) => {
                     item.props.children = (
                         <Flexbox column p="1rem" css={{ color: theme.color.light.css() }}>
                             <Text size={1} weight="bold">{item.name || item.component}</Text>
-                            <Text size={2}>Place any element here</Text>
+                            <Text size={2}>Place any component here</Text>
                         </Flexbox>
                     )
                 } else {
@@ -184,6 +184,11 @@ const Render = (props: { tools: ArchitectTools }) => {
     return (
         <Flexbox column flex={1} css={styles.container}>
             <ScrollView size="xsmall" css={styles.scrollView}>
+                {architectItems.length === 0 && (
+                    <Flexbox column p="1rem" css={{ color: theme.color.light.css() }}>
+                        <Text size={1} weight="bold">Workspace</Text>
+                    </Flexbox>
+                )}
                 <Block
                     css={styles.scrollContainer}
                     children={
