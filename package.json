@@ -17,6 +17,7 @@
     "gen:generateTypes": "cd ./packages/documaker && node ./bin/generateTypes.js",
     "pub:core": "git pull && cd ./packages/core && npm version patch && yarn build && cd ../../build/core && npm publish && cd .. && rm -rf ./core && cd ../.. && yarn gitpush",
     "pub:lab": "git pull && cd ./packages/lab && npm version patch && yarn build && cd ../../build/lab && npm publish && cd .. && rm -rf ./lab && cd ../.. && yarn gitpush",
-    "gitpush": "git commit . -m 'Update version' && git push"
+    "gitpush": "git commit . -m 'Update version' && git push",
+    "pm2": "pm2 start --name FlowUI npm -- start"
   }
 }
