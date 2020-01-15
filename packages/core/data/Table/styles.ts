@@ -31,8 +31,8 @@ const tabelStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: T
         }],
 
         headColumn: [{
-                color: theme.color.hard.css(),
-                marginRight: '1.25rem',
+            color: theme.color.hard.css(),
+            marginRight: '1.25rem',
         }],
 
         search: [

@@ -27,7 +27,12 @@ const dark = light.replace({
                 orange: [255, 149, 0]
             },
         },
-    }
+    },
+    assets: (theme) => ({
+        border: {
+            color: theme.color.lightest.css()
+        },
+    }),
 })
 
 export default dark
