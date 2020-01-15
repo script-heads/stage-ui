@@ -112,7 +112,7 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
                                 pt="2rem"
                                 size={2}
                                 color={c => c.light.hex()}
-                                children="No component selected"
+                                children="Preferences panel"
                             />
                         )
                     }

@@ -111,7 +111,7 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                                 pt="2rem"
                                 size={2}
                                 color={c => c.light.hex()}
-                                children="Drag any component here"
+                                children="Component tree"
                             />
                         )
                     }

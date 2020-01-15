@@ -1,5 +1,5 @@
 import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
-import { Block, Flexbox, Text, useFlow } from '@flow-ui/core'
+import { Block, Flexbox, Text, useFlow, Paragraph } from '@flow-ui/core'
 import ThemeTypes from '@flow-ui/core/misc/themes/types'
 import { RefObject, useRef } from 'react'
 import Mask, { MaskRefs } from './Mask'
@@ -185,8 +185,13 @@ const Render = (props: { tools: ArchitectTools }) => {
         <Flexbox column flex={1} css={styles.container}>
             <ScrollView size="xsmall" css={styles.scrollView}>
                 {architectItems.length === 0 && (
-                    <Flexbox column p="1rem" css={{ color: theme.color.light.css() }}>
-                        <Text size={1} weight="bold">Workspace</Text>
+                    <Flexbox justifyContent="center" pt="4.75rem">
+                        <Paragraph
+                            align="center"
+                            size={2}
+                            color={c => c.light.hex()}
+                            children="Create any component by droping it here."
+                        />
                     </Flexbox>
                 )}
                 <Block
