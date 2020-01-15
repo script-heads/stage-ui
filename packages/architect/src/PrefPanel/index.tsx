@@ -1,5 +1,5 @@
 import { ArchitectTools } from '@flow-ui/architect/types'
-import { Block, Flexbox, Paragraph, Text, useFlow, Menu, Divider } from '@flow-ui/core'
+import { Block, Flexbox, Paragraph, Text, useFlow, Menu, Divider, Icon } from '@flow-ui/core'
 import { ScrollView } from '@flow-ui/lab'
 import { Fragment } from 'react'
 import BooleanControls from './controls/boolean'
@@ -11,6 +11,7 @@ import PaddingControls from './controls/padding'
 import SizeConrols from './controls/size'
 import StringControls from './controls/string'
 import createStyles from './styles'
+import { componentsTypography } from '../RenderPanel'
 
 const data = require('@flow-ui/documaker/definitions/types')
 
@@ -72,7 +73,7 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
     }
 
     let ComponentTypeName = tools.focused?.component
-    if (['Header', 'Display', 'Paragraph', 'Anchor', 'Text'].includes(tools.focused?.component || '-')) {
+    if (componentsTypography.includes(tools.focused?.component || '-')) {
         ComponentTypeName = 'Typography'
     }
     findProps(data[ComponentTypeName + 'Types'])
@@ -92,22 +93,23 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
                         {content: 'Actions',value:'actions'}
                     ]}
                 />
+                <Icon 
+                    onClick={() => {
+                        tools.remove()
+                    }}
+                    type={t => t.outline.trash} 
+                    color={c => tools.focused ? c.accent.red.hex() : c.lightest.hex()}
+                />
             </Flexbox>
             <Divider mx="-1rem" w="unset"/>
             <Block flex={1}>
                 <ScrollView size="xsmall">
-                    <Text
-                        size={3}
-                        weight="bold"
-                        css={styles.componentName(!!tools.focused)}
-                        children={tools.focused?.component || ''}
-                    />
                     <Block>
                         {
                             !tools.focused && (
                                 <Paragraph
                                     align="center"
-                                    pl="0.5rem"
+                                    pt="2rem"
                                     size={2}
                                     color={c => c.light.hex()}
                                     children="No element selected"

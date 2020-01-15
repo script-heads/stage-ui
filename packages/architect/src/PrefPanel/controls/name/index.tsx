@@ -17,11 +17,13 @@ const NameControls = (props: Props) => {
             clearTimeout(timer)
         }
         timer = setTimeout(() => {
-            props.tools.focused.name = value
-            if (!value) {
-                delete props.tools.focused.name
+            if (props.tools.focused) {
+                props.tools.focused.name = value
+                if (!value) {
+                    delete props.tools.focused.name
+                }
+                props.tools.update()
             }
-            props.tools.update()
         }, 100)
     }
 
@@ -30,9 +32,9 @@ const NameControls = (props: Props) => {
             <TextField
                 w="100%"
                 size="small"
-                label="Content"
+                label="Name"
                 multiline
-                defaultValue={props.tools.focused.name || ''}
+                value={props.tools.focused.name || ''}
                 placeholder={props.tools.focused.component}
                 onChange={e => handleChange(e.target.value)}
             />

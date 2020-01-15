@@ -5,7 +5,7 @@ export default (theme: ThemeTypes.Index) => {
     return {
         container: css({
             padding: '0 1rem',
-            width: '15rem',
+            width: '20rem',
             borderLeft: `1px solid ${theme.color.lightest.css()}`,
         }),
         componentName: (active: boolean) => (

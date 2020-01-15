@@ -13,6 +13,14 @@ export const componentsInvisibleWhenEmpty = [
     'Tree',
     'ScrollView',
 ]
+export const componentsTypography = [
+    'Header', 
+    'Display', 
+    'Paragraph', 
+    'Anchor', 
+    'Text'
+]
+
 interface RenderItemProps {
     item: ArchitectItem,
     tools: ArchitectTools

@@ -57,24 +57,24 @@ class Architect extends React.Component {
         this.init(require('./demoData').default)
     }
 
-    componentDidMount() {
-        window.addEventListener('keydown', this.handleKey.bind(this))
-    }
-    componentWillUnmount() {
-        window.addEventListener('keydown', this.handleKey.bind(this))
-    }
+    // componentDidMount() {
+    //     window.addEventListener('keydown', this.handleKey.bind(this))
+    // }
+    // componentWillUnmount() {
+    //     window.addEventListener('keydown', this.handleKey.bind(this))
+    // }
 
-    /**
-     * Handling keyboard events
-     */
-    handleKey(e: KeyboardEvent) {
-        switch(e.keyCode) {
-            //Backspace
-            case 8: 
-                this.tools.remove()
-            break
-        }
-    }
+    // /**
+    //  * Handling keyboard events
+    //  */
+    // handleKey(e: KeyboardEvent) {
+    //     switch(e.keyCode) {
+    //         //Backspace
+    //         case 8: 
+    //             this.tools.remove()
+    //         break
+    //     }
+    // }
 
     /**
      * This method will set items

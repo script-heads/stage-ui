@@ -1,27 +1,31 @@
 import { ArchitectTools } from '@flow-ui/architect/types'
 import { Block, TextField } from '@flow-ui/core'
+import { useState } from 'react'
 
 type Props = {
     tools: ArchitectTools
 }
 
+let timer: NodeJS.Timeout | null = null
+
 const TextControls = (props: Props) => {
     if (!props.tools.focused) {
         return null
     }
+    const [value, setValue] = useState(props.tools.focused.text)
 
-    let timer: NodeJS.Timeout | null = null
-
-    const handleChange = (value) => {
+    const handleChange = (value: string) => {
         if (timer) {
             clearTimeout(timer)
         }
         timer = setTimeout(() => {
-            props.tools.focused.text = value
-            if (!value) {
-                delete props.tools.focused.text
+            if (props.tools.focused) {
+                props.tools.focused.text = value
+                if (!value) {
+                    delete props.tools.focused.text
+                }
+                props.tools.update()
             }
-            props.tools.update()
         }, 100)
     }
 
@@ -30,11 +34,13 @@ const TextControls = (props: Props) => {
             <TextField
                 w="100%"
                 size="small"
-                label="Content"
+                label="Text"
                 multiline
-                defaultValue={props.tools.focused.text || ''}
-                placeholder={props.tools.focused.component}
-                onChange={e => handleChange(e.target.value)}
+                value={value}
+                onChange={e => {
+                    setValue(e.target.value)
+                    handleChange(e.target.value)
+                }}
             />
         </Block>
     )

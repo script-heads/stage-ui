@@ -1,5 +1,6 @@
 import { ArchitectTools } from '@flow-ui/architect/types'
 import { Block, TextField } from '@flow-ui/core'
+import { useState } from 'react'
 
 type Props = {
     name: string
@@ -7,8 +8,10 @@ type Props = {
     tools: ArchitectTools
 }
 
+let timer: NodeJS.Timeout | null = null
+
 const StringControls = (props: Props) => {
-    if (!props.tools.focused.props) {
+    if (!props.tools.focused?.props) {
         return null
     }
 
@@ -18,18 +21,20 @@ const StringControls = (props: Props) => {
         name = name.slice(1)
     }
 
-    let timer: NodeJS.Timeout | null = null
+    const [value, setValue] = useState(props.tools.focused.props[name])
 
-    const handleChange = (value) => {
+    const handleChange = (value: string) => {
         if (timer) {
             clearTimeout(timer)
         }
         timer = setTimeout(() => {
-            props.tools.focused.props[props.name] = value
-            if (!value) {
-                delete props.tools.focused.props[props.name]
+            if (props.tools.focused) {
+                props.tools.focused.props[props.name] = value
+                if (!value) {
+                    delete props.tools.focused.props[props.name]
+                }
+                props.tools.update()
             }
-            props.tools.update()
         }, 100)
     }
 
@@ -40,8 +45,11 @@ const StringControls = (props: Props) => {
                 size="small"
                 placeholder={props.placeholder}
                 label={name[0].toUpperCase() + name.slice(1)}
-                defaultValue={props.tools.focused.props[props.name] || ''}
-                onChange={e => handleChange(e.target.value)}
+                value={value}
+                onChange={e => {
+                    setValue(e.target.value)
+                    handleChange(e.target.value)
+                }}
             />
         </Block>
     )
