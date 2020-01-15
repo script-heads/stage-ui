@@ -6,10 +6,12 @@ import Mask, { MaskRefs } from './mask'
 import createStyles from './styles'
 import { ScrollView } from '@flow-ui/lab'
 
-const componentsInvisibleWhenEmpty = [
+export const componentsInvisibleWhenEmpty = [
     'Block',
     'Flexbox',
-    'Grid'
+    'Grid',
+    'Tree',
+    'ScrollView',
 ]
 interface RenderItemProps {
     item: ArchitectItem,

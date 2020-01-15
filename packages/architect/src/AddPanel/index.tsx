@@ -3,6 +3,7 @@ import { Block, useFlow, Flexbox, Divider, TextField, Text, Icon, Menu, Header }
 import createStyles from './styles'
 import { ScrollView } from '@flow-ui/lab'
 import { useState } from 'react'
+import { componentsInvisibleWhenEmpty } from '../RenderPanel'
 
 const AddPanel = (props: { tools: ArchitectTools }) => {
     const { theme } = useFlow()
@@ -72,6 +73,9 @@ const AddPanel = (props: { tools: ArchitectTools }) => {
                                         id: '',
                                         component,
                                         props: {},
+                                    }
+                                    if (componentsInvisibleWhenEmpty.includes(component)) {
+                                        tools.captured.children = []
                                     }
                                     setTimeout(() => {
                                         tools.componentLibraryHide()
