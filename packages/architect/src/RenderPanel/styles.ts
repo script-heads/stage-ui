@@ -4,18 +4,18 @@ import ThemeTypes from '@flow-ui/core/misc/themes/types'
 export default (theme: ThemeTypes.Index) => {
     return {
         container: {
-
         },
         panel: {
-            margin: '2rem 4rem'
+            margin: '2rem 4rem',
         },
         mask: (color: string) => css({
             opacity: 0,
             pointerEvents: 'none',
             position: 'fixed',
-            border: '1px dotted',
-            borderRadius: '0.25rem',
-            borderColor: color
+            border: '3px solid',
+            borderRadius: theme.radius.default,
+            transform: 'translateX(-3px) translateY(-3px)',
+            borderColor: color,
         }),
         maskName: (color: string) => css({
             position:'absolute',

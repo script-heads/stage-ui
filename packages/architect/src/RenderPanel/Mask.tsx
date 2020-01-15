@@ -22,8 +22,8 @@ const Mask: RefForwardingComponent<MaskRefs, MaskProps> = (props, ref) => {
     const update = (rect, name) => {
         if (selectMask.current) {
             selectMask.current.style.opacity = '1'
-            selectMask.current.style.width = rect.w - 1 + 'px'
-            selectMask.current.style.height = rect.h - 1 + 'px'
+            selectMask.current.style.width = rect.w + 'px'
+            selectMask.current.style.height = rect.h + 'px'
             selectMask.current.style.top = rect.y + 'px'
             selectMask.current.style.left = rect.x + 'px'
         }
