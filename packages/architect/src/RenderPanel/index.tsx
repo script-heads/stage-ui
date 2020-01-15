@@ -36,7 +36,7 @@ const RenderItem = (props: RenderItemProps) => {
 
     const { item, tools, theme, mask } = props
 
-    const ref: RefObject<HTMLSpancomponent> = useRef(null)
+    const ref: RefObject<HTMLSpanComponent> = useRef(null)
 
     item.$.getRect = () => {
 
