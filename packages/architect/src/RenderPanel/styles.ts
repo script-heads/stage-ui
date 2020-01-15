@@ -5,9 +5,12 @@ export default (theme: ThemeTypes.Index) => {
     return {
         container: {
         },
-        panel: {
-            margin: '2rem 4rem',
-        },
+        scrollView: css({ 
+            height: 'calc(100vh - 4rem)',
+        }),
+        scrollContainer: css({ 
+            padding: '2rem 4rem 20rem 4rem',
+        }),
         mask: (color: string) => css({
             opacity: 0,
             pointerEvents: 'none',

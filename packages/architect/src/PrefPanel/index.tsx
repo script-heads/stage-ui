@@ -78,96 +78,95 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
     }
     findProps(data[ComponentTypeName + 'Types'])
     return (
-        <Block 
+        <Block
             css={styles.container}
-            backgroundColor={c=>c.surface.css()}
-            borderColor={c=>c.lightest.css()}>
+            backgroundColor={c => c.surface.css()}
+            borderColor={c => c.lightest.css()}>
             <Flexbox justifyContent="space-between" alignItems="center" my=".5rem">
                 <Menu
-                    ml="-.5rem"
+                    px="1rem"
                     size="small"
                     decoration="color"
                     defaultValue="props"
                     items={[
-                        {content: 'Props',value:'props'},
-                        {content: 'Actions',value:'actions'}
+                        { content: 'Props', value: 'props' },
+                        { content: 'Actions', value: 'actions' }
                     ]}
                 />
-                <Icon 
+                <Icon
+                    mr="1rem"
                     onClick={() => {
                         tools.remove()
                     }}
-                    type={t => t.outline.trash} 
+                    type={t => t.outline.trash}
                     color={c => tools.focused ? c.accent.red.hex() : c.lightest.hex()}
                 />
             </Flexbox>
-            <Divider mx="-1rem" w="unset"/>
-            <Block flex={1}>
-                <ScrollView size="xsmall">
-                    <Block>
-                        {
-                            !tools.focused && (
-                                <Paragraph
-                                    align="center"
-                                    pt="2rem"
-                                    size={2}
-                                    color={c => c.light.hex()}
-                                    children="No element selected"
-                                />
-                            )
-                        }
-                        {
-                            !!tools.focused && (
-                                <Fragment>
-                                    <NameControls {...props} />
-                                    <TextControls {...props} />
-                                    <PaddingControls {...props} />
-                                    <MarginControls {...props} />
-                                    <SizeConrols {...props} />
-                                    {literalProps.map((item, index) => (
-                                        <LiteralControls
-                                            {...props}
-                                            key={index}
-                                            name={item.name}
-                                            values={item.values}
-                                        />
-                                    ))}
+            <Divider w="unset" />
+            <ScrollView size="xsmall" css={styles.scrollView}>
+                <Block css={styles.scrollContainer}>
+                    {
+                        !tools.focused && (
+                            <Paragraph
+                                align="center"
+                                pt="2rem"
+                                size={2}
+                                color={c => c.light.hex()}
+                                children="No element selected"
+                            />
+                        )
+                    }
+                    {
+                        !!tools.focused && (
+                            <Fragment>
+                                <NameControls {...props} />
+                                <TextControls {...props} />
+                                <PaddingControls {...props} />
+                                <MarginControls {...props} />
+                                <SizeConrols {...props} />
+                                {literalProps.map((item, index) => (
+                                    <LiteralControls
+                                        {...props}
+                                        key={index}
+                                        name={item.name}
+                                        values={item.values}
+                                    />
+                                ))}
 
-                                    {booleanProps.length > 0 && (
-                                        <Block>
-                                            <Paragraph
-                                                size={4}
-                                                pb=".25rem"
-                                                pl=".25rem"
-                                                lineHeight="0.75rem"
-                                                color={c => c.light.hex()}
-                                                children="Flags"
-                                            />
-                                            <Block p="0.25rem">
-                                                {booleanProps.map((name, index) => (
-                                                    <BooleanControls
-                                                        {...props}
-                                                        key={index}
-                                                        name={name}
-                                                    />
-                                                ))}
-                                            </Block>
+                                {booleanProps.length > 0 && (
+                                    <Block>
+                                        <Paragraph
+                                            size={4}
+                                            pb=".25rem"
+                                            pl=".25rem"
+                                            lineHeight="0.75rem"
+                                            color={c => c.light.hex()}
+                                            children="Flags"
+                                        />
+                                        <Block p="0.25rem">
+                                            {booleanProps.map((name, index) => (
+                                                <BooleanControls
+                                                    {...props}
+                                                    key={index}
+                                                    name={name}
+                                                />
+                                            ))}
                                         </Block>
+                                    </Block>
 
-                                    )}
-                                    {stringProps.map((name, index) => (
-                                        <StringControls
-                                            {...props}
-                                            key={index}
-                                            name={name}
-                                        />
-                                    ))}
-                                </Fragment>
-                            )
-                        }
-                    </Block>
-                </ScrollView>
-            </Block>
+                                )}
+                                {stringProps.map((name, index) => (
+                                    <StringControls
+                                        {...props}
+                                        key={index}
+                                        name={name}
+                                    />
+                                ))}
+                            </Fragment>
+                        )
+                    }
+                </Block>
+            </ScrollView>
         </Block>
     )
 }

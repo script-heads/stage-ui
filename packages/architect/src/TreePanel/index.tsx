@@ -84,7 +84,7 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
             borderColor={c=>c.lightest.css()}>
             <Flexbox justifyContent="space-between" alignItems="center" my=".5rem">
                 <Menu
-                    ml="-.5rem"
+                    px="1rem"
                     size="small"
                     decoration="color"
                     defaultValue="layers"
@@ -94,19 +94,19 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                     ]}
                 />
                 <Icon
+                    mr="1rem"
                     type={i=>i.outline.plus}
                     onClick={() => {
                         tools.componentLibraryShow()
                     }}
                 />
             </Flexbox>
-            <Divider mx="-1rem" w="unset"/>
-            <Block pt=".5rem">
-                <ScrollView 
-                    size="small"
-                    children={renderTree(tools.getItems())}
-                />
-            </Block>
+            <Divider w="unset"/>
+            <ScrollView size="xsmall" css={styles.scrollView}>
+                <Block css={styles.scrollContainer}>
+                        {renderTree(tools.getItems())}
+                </Block>
+            </ScrollView>
         </Block>
     )
 }

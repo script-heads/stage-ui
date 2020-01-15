@@ -4,11 +4,16 @@ import ThemeTypes from '@flow-ui/core/misc/themes/types'
 export default (theme: ThemeTypes.Index) => {
     
     return {
-        container: [{
-            padding: '0 1rem',
-            width: '15rem',
+        container: css({
+            width: '18rem',
             borderRight: `1px solid ${theme.color.lightest.css()}`,
-        }],
+        }),
+        scrollView: css({ 
+            height: 'calc(100vh - 7.5rem)',
+        }),
+        scrollContainer: css({ 
+            padding: '0 1rem',
+        }),
         item: (selected: boolean) => css(
             [
                 {

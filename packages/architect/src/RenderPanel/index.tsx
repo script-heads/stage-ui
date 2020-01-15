@@ -183,10 +183,9 @@ const Render = (props: { tools: ArchitectTools }) => {
 
     return (
         <Flexbox column flex={1} css={styles.container}>
-            <ScrollView size="xsmall">
+            <ScrollView size="xsmall" css={styles.scrollView}>
                 <Block
-                    css={styles.panel}
-                    flex={1}
+                    css={styles.scrollContainer}
                     children={
                         architectItems.map((item) => (
                             <Block key={item.id}>
