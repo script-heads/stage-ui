@@ -72,7 +72,7 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
     }
 
     let ComponentTypeName = tools.focused?.component
-    if (['Header', 'Display', 'Paragraph', 'Anchor', 'Text'].includes(tools.focused?.component)) {
+    if (['Header', 'Display', 'Paragraph', 'Anchor', 'Text'].includes(tools.focused?.component || '-')) {
         ComponentTypeName = 'Typography'
     }
     findProps(data[ComponentTypeName + 'Types'])

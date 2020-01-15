@@ -23,4 +23,7 @@ export interface ArchitectTools {
     remove: () => void
     undo: () => void
     redo: () => void
+
+    componentLibraryShow: () => void
+    componentLibraryHide: () => void
 }

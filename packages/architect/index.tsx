@@ -1,11 +1,19 @@
 import PrefPanel from '@flow-ui/architect/src/PrefPanel'
 import RenderPanel from '@flow-ui/architect/src/RenderPanel'
 import TreePanel from '@flow-ui/architect/src/TreePanel'
+import AddPanel from '@flow-ui/architect/src/AddPanel'
 import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
-import React from 'react'
+import React, { Fragment } from 'react'
 import createStyles from './styles'
 import { useFlow, Flexbox } from '@flow-ui/core'
 import * as Core from '@flow-ui/core'
+
+export function uuid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8)
+        return v.toString(16)
+    })
+}
 
 const components = {
     Divider: Core.Divider,
@@ -88,6 +96,10 @@ class Architect extends React.Component {
         recursive(this.items)
     }
     /**
+     * Is component library panel visible
+     */
+    private componentLibraryOpen: boolean = false
+    /**
      * Store with all items
      */
     private items: ArchitectItem[] = []
@@ -145,6 +157,12 @@ class Architect extends React.Component {
             }
 
             if (moveTool.captured) {
+                /**
+                 * Create uuid for new components
+                 */
+                if (!moveTool.captured.id) {
+                    moveTool.captured.id = uuid()
+                }
                 if (moveTool.target) {
                     /**
                      * Do nothing is element dropped
@@ -171,6 +189,7 @@ class Architect extends React.Component {
                  * there is no target
                  */
                 const target = moveTool.target?.children || this.items
+
                 /**
                  * Clone element and
                  * them push to target
@@ -214,6 +233,14 @@ class Architect extends React.Component {
                 this.tools.update()
             }
         },
+        componentLibraryShow: () => {
+            this.componentLibraryOpen = true
+            this.forceUpdate()
+        },
+        componentLibraryHide: () => {
+            this.componentLibraryOpen = false
+            this.forceUpdate()
+        },
         /**
          * TODO: Some day
          */
@@ -223,7 +250,10 @@ class Architect extends React.Component {
 
     render() {
         return (
-            <ArchitectView tools={this.tools} />
+            <ArchitectView 
+                tools={this.tools} 
+                componentLibraryOpen={this.componentLibraryOpen}
+            />
         )
     }
 }
@@ -231,16 +261,23 @@ class Architect extends React.Component {
 /**
  * That is just for hooks
  */
-const ArchitectView = (props: { tools: ArchitectTools}) => {
+const ArchitectView = (props: { tools: ArchitectTools, componentLibraryOpen: boolean }) => {
     const { theme } = useFlow()
     const styles = createStyles(theme)
 
     return (
-        <Flexbox css={styles.container}>
-            <TreePanel tools={props.tools} />
-            <RenderPanel tools={props.tools} />
-            <PrefPanel tools={props.tools} /> 
-        </Flexbox>
+        <Fragment>
+            <Flexbox css={styles.container}>
+                <TreePanel tools={props.tools} />
+                <RenderPanel tools={props.tools} />
+                <PrefPanel tools={props.tools} /> 
+            </Flexbox>
+            {
+                props.componentLibraryOpen && (
+                    <AddPanel tools={props.tools} />
+                )
+            }
+        </Fragment>
     )
 }
 

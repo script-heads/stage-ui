@@ -95,6 +95,9 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                 />
                 <Icon
                     type={i=>i.outline.plus}
+                    onClick={() => {
+                        tools.componentLibraryShow()
+                    }}
                 />
             </Flexbox>
             <Divider mx="-1rem" w="unset"/>
