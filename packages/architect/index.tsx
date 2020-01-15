@@ -6,7 +6,7 @@ import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
 import React, { Fragment } from 'react'
 import createStyles from './styles'
 import { useFlow, Flexbox } from '@flow-ui/core'
-import * as Core from '@flow-ui/core'
+import components from './components'
 
 export function uuid() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -15,42 +15,6 @@ export function uuid() {
     })
 }
 
-const components = {
-    Divider: Core.Divider,
-    Icon: Core.Icon,
-    Spinner: Core.Spinner,
-    Header: Core.Header,
-    Display: Core.Display,
-    Paragraph: Core.Paragraph,
-    Text: Core.Text,
-    Anchor: Core.Anchor,
-    /**
-     * Control
-     */
-    Button: Core.Button,
-    Checkbox: Core.Checkbox,
-    DatePicker: Core.DatePicker,
-    Menu: Core.Menu,
-    Radio: Core.Radio,
-    Range: Core.Range,
-    Select: Core.Select,
-    Switch: Core.Switch,
-    TextField: Core.TextField,
-    /**
-     * Data
-     */
-    Meter: Core.Meter,
-    Table: Core.Table,
-    /**
-     * Layout
-     */
-    Badge: Core.Badge,
-    Block: Core.Block,
-    Drop: Core.Drop,
-    Flexbox: Core.Flexbox,
-    Grid: Core.Grid,
-    Tree: Core.Tree,
-}
 class Architect extends React.Component {
     constructor(props: {}) {
         super(props)
@@ -157,12 +121,6 @@ class Architect extends React.Component {
             }
 
             if (moveTool.captured) {
-                /**
-                 * Create uuid for new components
-                 */
-                if (!moveTool.captured.id) {
-                    moveTool.captured.id = uuid()
-                }
                 if (moveTool.target) {
                     /**
                      * Do nothing is element dropped

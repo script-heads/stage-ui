@@ -12,7 +12,10 @@ export type ArchitectItem = {
 }
 
 export interface ArchitectTools {
-    components: Record<string, any>
+    components: Record<string, {
+        component: any
+        create: () => ArchitectItem
+    }>
     getItems: () => ArchitectItem[]
     captured?: ArchitectItem | null
     focused?: ArchitectItem | null

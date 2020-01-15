@@ -58,7 +58,7 @@ const RenderItem = (props: RenderItemProps) => {
     )
 
     if (tools.components[item.component]) {
-        Component = tools.components[item.component]
+        Component = tools.components[item.component].component
     }
 
     let children = item.children?.map((child) =>
