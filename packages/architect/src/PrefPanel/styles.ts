@@ -6,8 +6,7 @@ export default (theme: ThemeTypes.Index) => {
         container: css({
             padding: '0 1rem',
             width: '15rem',
-            borderWidth: '1px',
-            borderStyle: 'solid'
+            borderLeft: `1px solid ${theme.color.lightest.css()}`,
         }),
         componentName: (active: boolean) => (
             css({

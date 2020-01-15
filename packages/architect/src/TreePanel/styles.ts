@@ -7,8 +7,7 @@ export default (theme: ThemeTypes.Index) => {
         container: [{
             padding: '0 1rem',
             width: '15rem',
-            borderWidth: '1px',
-            borderStyle: 'solid'
+            borderRight: `1px solid ${theme.color.lightest.css()}`,
         }],
         item: (selected: boolean) => css(
             [
