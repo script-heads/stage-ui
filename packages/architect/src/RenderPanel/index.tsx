@@ -2,7 +2,7 @@ import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
 import { Block, Flexbox, Text, useFlow } from '@flow-ui/core'
 import ThemeTypes from '@flow-ui/core/misc/themes/types'
 import { RefObject, useRef } from 'react'
-import Mask, { MaskRefs } from './mask'
+import Mask, { MaskRefs } from './Mask'
 import createStyles from './styles'
 import { ScrollView } from '@flow-ui/lab'
 
