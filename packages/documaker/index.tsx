@@ -28,7 +28,8 @@ const FlowViewport = (props: { children: any, currentTheme: ThemeTypes.Index }) 
 		<Global
 			styles={{
 				'html,body,#documaker': {
-					minHeight: '100%'
+					minHeight: '100%',
+					overscrollBehavior: 'none'
 				}
 			}}
 		/>

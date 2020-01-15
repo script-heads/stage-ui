@@ -9,6 +9,7 @@ export default (theme: ThemeTypes.Index) => ({
         right: 0, 
         top: '4.5rem',
         bottom: 0,
-        background: theme.color.background.hex()
+        background: theme.color.background.hex(),
+        borderTop: `1px solid ${theme.color.lightest.css()}`
     })
 })
