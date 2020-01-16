@@ -25,6 +25,7 @@ export default (theme: ThemeTypes.Index) => {
             borderColor: theme.color.lightest.hex(),
             boxShadow: '0 0.5rem 5rem rgba(0,0,0,0.3)',
             borderRadius: '0.5rem',
+            overflow: 'hidden'
         }),
         searchBar: css({
             boxShadow: 'none !important'
