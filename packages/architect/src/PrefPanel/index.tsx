@@ -91,7 +91,7 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
                     defaultValue="props"
                     items={[
                         { content: 'Props', value: 'props' },
-                        { content: 'Actions', value: 'actions' }
+                        { content: 'Actions', value: 'actions', disabled: true }
                     ]}
                 />
                 <Icon

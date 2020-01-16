@@ -34,7 +34,7 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                     : 'transparent'
                 }
             }
-            
+
             const splitterAfterSetHover = (state: boolean) => {
                 const el = document.getElementById(`split-a-${item.id}`)
                 if (el) {
@@ -170,7 +170,7 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                     defaultValue="layers"
                     items={[
                         { content: 'Layers', value: 'layers' },
-                        { content: 'Pages', value: 'pages' }
+                        { content: 'Pages', value: 'pages', disabled: true }
                     ]}
                 />
                 <Icon

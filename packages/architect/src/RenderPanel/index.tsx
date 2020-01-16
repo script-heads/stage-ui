@@ -14,10 +14,10 @@ export const componentsInvisibleWhenEmpty = [
     'ScrollView',
 ]
 export const componentsTypography = [
-    'Header', 
-    'Display', 
-    'Paragraph', 
-    'Anchor', 
+    'Header',
+    'Display',
+    'Paragraph',
+    'Anchor',
     'Text'
 ]
 
@@ -191,60 +191,58 @@ const Render = (props: { tools: ArchitectTools }) => {
 
     return (
         <Flexbox column flex={1} css={styles.container}>
-            {/* <ScrollView size="xsmall" css={styles.scrollView}> */}
-                {architectItems.length === 0 && (
-                    <Flexbox justifyContent="center" pt="4.75rem">
-                        <Paragraph
-                            align="center"
-                            size={2}
-                            color={c => c.light.hex()}
-                            children="Create any component by droping it here."
-                        />
-                    </Flexbox>
-                )}
-                <Block
-                    css={styles.scrollContainer}
-                    children={
-                        architectItems.map((item) => (
-                            <Block key={item.id}>
-                                <RenderItem
-                                    mask={{
-                                        hover: hoverMask,
-                                        target: targetMask,
-                                        focus: focusMask
-                                    }}
-                                    tools={tools}
-                                    item={item}
-                                    theme={theme}
-                                />
-                            </Block>
-                        ))
+            {architectItems.length === 0 && (
+                <Flexbox justifyContent="center" pt="4.75rem" css={{ position: 'absolute', width: '100%' }}>
+                    <Paragraph
+                        align="center"
+                        size={2}
+                        color={c => c.light.hex()}
+                        children="Create any component by droping it here."
+                    />
+                </Flexbox>
+            )}
+            <Block
+                css={styles.scrollContainer}
+                children={
+                    architectItems.map((item) => (
+                        <Block key={item.id}>
+                            <RenderItem
+                                mask={{
+                                    hover: hoverMask,
+                                    target: targetMask,
+                                    focus: focusMask
+                                }}
+                                tools={tools}
+                                item={item}
+                                theme={theme}
+                            />
+                        </Block>
+                    ))
+                }
+                onDragOver={(e) => {
+                    e.stopPropagation()
+                    e.preventDefault()
+                    tools.target = null
+                }}
+                onDrop={(e) => {
+                    e.stopPropagation()
+                    if (tools.captured) {
+                        tools.move()
                     }
-                    onDragOver={(e) => {
-                        e.stopPropagation()
-                        e.preventDefault()
-                        tools.target = null
-                    }}
-                    onDrop={(e) => {
-                        e.stopPropagation()
-                        if (tools.captured) {
-                            tools.move()
-                        }
-                    }}
-                    onClick={(e) => {
-                        e.stopPropagation()
-                        tools.focused = null
-                        tools.update()
-                    }}
-                />
-                <Mask ref={hoverMask} color={c => c.primary.alpha(0.5).hex()} />
-                <Mask ref={targetMask} color={c => c.primary.hex()} />
-                <Mask 
-                    ref={focusMask} 
-                    color={c => c.secondary.hex()}
-                    item={tools.focused}
-                />
-            {/* </ScrollView> */}
+                }}
+                onClick={(e) => {
+                    e.stopPropagation()
+                    tools.focused = null
+                    tools.update()
+                }}
+            />
+            <Mask ref={hoverMask} color={c => c.primary.alpha(0.5).hex()} />
+            <Mask ref={targetMask} color={c => c.primary.hex()} />
+            <Mask
+                ref={focusMask}
+                color={c => c.secondary.hex()}
+                item={tools.focused}
+            />
         </Flexbox>
     )
 }
