@@ -28,7 +28,9 @@ const ValueControl = (props: { value: number, onChange: (value: number) => void 
                         flex={1}
                         size="xsmall"
                         children={index ? index : '✕'}
-                        decoration={value === props.value ? 'filled' : 'outline'}
+                        decoration={(value === props.value && value !== 0)
+                            ? 'filled'
+                            : 'outline'}
                         onClick={() => {
                             props.onChange(value)
                         }}
@@ -52,6 +54,11 @@ const ValueCross = (props: Props) => {
         const kl = parseFloat(focused.props[propKeys[1]] || staticValues[0])
         const kr = parseFloat(focused.props[propKeys[2]] || staticValues[0])
         const kb = parseFloat(focused.props[propKeys[3]] || staticValues[0])
+        
+        setLockX(false)
+        setLockX(false)
+        setLockX(false)
+
         setValues([kt,kl,kr,kb])
         if (kr && kr === kl) {
             setLockX(true)
