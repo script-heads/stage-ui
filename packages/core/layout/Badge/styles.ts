@@ -15,6 +15,7 @@ const BadgeStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: T
         ],
         holder: (variant) => [
             {
+                zIndex: 1,
                 display: 'flex',
                 color: theme.color.onPrimary.css(),
                 alignContent: 'center',
