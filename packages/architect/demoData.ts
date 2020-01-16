@@ -8,7 +8,10 @@ const items: ArchitectItem[] = [
         component: 'Block',
         props: {
             surface: 'major',
-            p: '1rem',
+            pt: '1rem',
+            pl: '1rem',
+            pr: '1rem',
+            pb: '1rem',
         },
         children: [
             {
