@@ -191,7 +191,7 @@ const Render = (props: { tools: ArchitectTools }) => {
 
     return (
         <Flexbox column flex={1} css={styles.container}>
-            <ScrollView size="xsmall" css={styles.scrollView}>
+            {/* <ScrollView size="xsmall" css={styles.scrollView}> */}
                 {architectItems.length === 0 && (
                     <Flexbox justifyContent="center" pt="4.75rem">
                         <Paragraph
@@ -244,7 +244,7 @@ const Render = (props: { tools: ArchitectTools }) => {
                     color={c => c.secondary.hex()}
                     item={tools.focused}
                 />
-            </ScrollView>
+            {/* </ScrollView> */}
         </Flexbox>
     )
 }
