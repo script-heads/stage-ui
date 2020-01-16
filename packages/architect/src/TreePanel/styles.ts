@@ -12,20 +12,28 @@ export default (theme: ThemeTypes.Index) => {
             height: 'calc(100vh - 7.5rem)',
         }),
         scrollContainer: css({ 
-            padding: '0 1rem',
+            padding: '1rem 0 0 1rem',
         }),
         item: (selected: boolean) => css(
             [
                 {
-                    margin: '0.25rem 0',
+                    padding: '0.5rem 0 0.5rem 1rem',
+                    margin: '1px 0',
+                    borderRightWidth: '4px',
+                    borderRightStyle: 'solid',
+                    borderBottomLeftRadius: '1rem',
+                    borderTopLeftRadius: '1rem',
+                    borderRightColor: theme.color.primary.alpha(0).hex(),
                     '&:hover': {
-                        borderWidth: 1,
-                        borderStyle: 'solid',
-                        borderColor: theme.color.primary.hex()
+                        background: theme.color.hard.alpha(.1).css()
                     }
                 },
                 selected && {
-                    background: theme.color.primary.luminance(.85).css()
+                    borderRightColor: theme.color.primary.alpha(1).hex(),
+                    background: theme.color.primary.alpha(.1).css(),
+                    '&:hover': {
+                        background: theme.color.primary.alpha(.1).css()
+                    }
                 }
         ]
         ),
