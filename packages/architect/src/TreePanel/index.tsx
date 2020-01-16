@@ -2,6 +2,7 @@ import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
 import { Block, Flexbox, Text, Tree, useTheme, Divider, Menu, Icon, Paragraph } from '@flow-ui/core'
 import { ScrollView } from '@flow-ui/lab'
 import createStyles from './styles'
+import { useRef } from 'react'
 
 const ComponentTree = (props: { tools: ArchitectTools }) => {
     const theme = useTheme()
@@ -9,11 +10,31 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
     const { tools } = props
 
     const renderTree = (items: ArchitectItem[]) => {
-        return items.map(item => {
+        return items.map((item, index) => {
+
+            const beforeRef = useRef<HTMLDivElement>(null)
+            const hoverBeforeRef = (state: boolean) => {
+                if (beforeRef.current) {
+                    beforeRef.current.style.borderColor = state
+                        ? theme.color.light.hex()
+                        : 'transparent'
+                }
+
+            }
+            const afterRef = useRef<HTMLDivElement>(null)
+            const hoverAfterRef = (state: boolean) => {
+                if (afterRef.current) {
+                    afterRef.current.style.borderColor = state
+                        ? theme.color.light.hex()
+                        : 'transparent'
+                }
+
+            }
+
             let name = item.component
             if (item.name) {
                 name = `${item.name}`
-            } 
+            }
             if (item.text) {
                 name += ` (${item.text})`
             } else if (item.props?.label) {
@@ -21,54 +42,112 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
             } else if (item.props?.placeholder) {
                 name += ` (${item.props.placeholder})`
             }
-            
+
             const isFocused = tools.focused?.id === item.id
-            
+
             return (
                 <Tree
                     defaultOpen
                     key={item.id}
                     label={(
-                        <Text 
-                            lineHeight={1} 
-                            size={2} 
-                            weight={500} 
-                            children={name}
-                            draggable
-                            flex={1}
-                            css={styles.item(isFocused)}
-                            onDragStart={(e) => {
-                                e.stopPropagation()
-                                tools.captured = item
-                            }}
-                            onDragOver={(e) => {
-                                e.stopPropagation()
-                                e.preventDefault()
-                                tools.target = item
-                            }}
-                            onDragLeave={(e) => {
-                                e.stopPropagation()
-                            }}
-                            onDrop={(e) => {
-                                e.stopPropagation()
-                                tools.move()
-                            }}
-                            onClick={(e) => {
-                                e.stopPropagation()
-                                e.preventDefault()
-                                if (!isFocused) {
-                                    tools.focused = item
-                                    tools.update()
-                                }
-                            }}
-                        />
+                        <Block flex={1}>
+                            {!item.children && index === 0 && (
+                                <div
+                                    style={{
+                                        width: '100%',
+                                        borderBottom: '2px dashed',
+                                        borderColor: 'transparent',
+                                    }}
+                                    ref={beforeRef}
+                                    onDragOver={(e) => {
+                                        e.stopPropagation()
+                                        e.preventDefault()
+                                        hoverBeforeRef(true)
+                                    }}
+                                    onDragLeave={(e) => {
+                                        e.stopPropagation()
+                                        hoverBeforeRef(false)
+                                    }}
+                                    onDrop={(e) => {
+                                        e.stopPropagation()
+                                        hoverBeforeRef(false)
+                                        if (item.parent) {
+                                            tools.target = item.parent
+                                            tools.targetIndex = index
+                                            tools.move()
+                                        }
+                                    }}
+                                />
+                            )}
+                            <Text
+                                lineHeight={1}
+                                size={2}
+                                weight={500}
+                                children={name}
+                                draggable
+                                flex={1}
+                                css={styles.item(isFocused)}
+                                onDragStart={(e) => {
+                                    e.stopPropagation()
+                                    tools.captured = item
+                                }}
+                                onDragOver={(e) => {
+                                    e.stopPropagation()
+                                    e.preventDefault()
+                                    tools.target = item
+                                }}
+                                onDragLeave={(e) => {
+                                    e.stopPropagation()
+                                }}
+                                onDrop={(e) => {
+                                    e.stopPropagation()
+                                    tools.move()
+                                }}
+                                onClick={(e) => {
+                                    e.stopPropagation()
+                                    e.preventDefault()
+                                    if (!isFocused) {
+                                        tools.focused = item
+                                        tools.update()
+                                    }
+                                }}
+                            />
+                            {!item.children && (
+                                <div
+                                    style={{
+                                        width: '100%',
+                                        borderBottom: '2px dashed',
+                                        borderColor: 'transparent',
+                                    }}
+                                    ref={afterRef}
+                                    onDragOver={(e) => {
+                                        e.stopPropagation()
+                                        e.preventDefault()
+                                        hoverAfterRef(true)
+                                    }}
+                                    onDragLeave={(e) => {
+                                        e.stopPropagation()
+                                        hoverAfterRef(false)
+                                    }}
+                                    onDrop={(e) => {
+                                        e.stopPropagation()
+                                        hoverAfterRef(false)
+                                        if (item.parent) {
+                                            tools.target = item.parent
+                                            tools.targetIndex = index + 1
+                                            tools.move()
+                                        }
+                                    }}
+                                />
+                            )}
+                        </Block>
                     )}
                     children={item.children && renderTree(item.children)}
                 />
             )
         })
     }
-    
+
     return (
         <Block
             onDragOver={(e) => {
@@ -78,10 +157,10 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
             onDrop={(e) => {
                 e.stopPropagation()
                 tools.move()
-            }} 
+            }}
             css={styles.container}
-            backgroundColor={c=>c.surface.css()}
-            borderColor={c=>c.lightest.css()}>
+            backgroundColor={c => c.surface.css()}
+            borderColor={c => c.lightest.css()}>
             <Flexbox justifyContent="space-between" alignItems="center" my=".5rem">
                 <Menu
                     px="1rem"
@@ -89,19 +168,19 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                     decoration="color"
                     defaultValue="layers"
                     items={[
-                        {content: 'Layers',value:'layers'},
-                        {content: 'Pages',value:'pages'}
+                        { content: 'Layers', value: 'layers' },
+                        { content: 'Pages', value: 'pages' }
                     ]}
                 />
                 <Icon
                     mr="1rem"
-                    type={i=>i.outline.plus}
+                    type={i => i.outline.plus}
                     onClick={() => {
                         tools.componentLibraryShow()
                     }}
                 />
             </Flexbox>
-            <Divider w="unset"/>
+            <Divider w="unset" />
             <ScrollView size="xsmall" css={styles.scrollView}>
                 <Block css={styles.scrollContainer}>
                     {

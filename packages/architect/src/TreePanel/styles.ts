@@ -17,6 +17,7 @@ export default (theme: ThemeTypes.Index) => {
         item: (selected: boolean) => css(
             [
                 {
+                    display: 'block',
                     padding: '0.5rem 0 0.5rem 1rem',
                     margin: '1px 0',
                     borderRightWidth: '4px',

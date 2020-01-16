@@ -20,7 +20,8 @@ export interface ArchitectTools {
     captured?: ArchitectItem | null
     focused?: ArchitectItem | null
     target?: ArchitectItem | null 
-
+    targetIndex?: number
+    
     move: () => void
     update: () => void
     remove: () => void

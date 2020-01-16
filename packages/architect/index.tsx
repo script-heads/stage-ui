@@ -104,7 +104,7 @@ class Architect extends React.Component {
              */
             const moveTool = {
                 captured: this.tools.captured,
-                target: this.tools.target,
+                target: this.tools.target
             }
             /**
              * Thats for check if parent
@@ -152,11 +152,20 @@ class Architect extends React.Component {
                  * Clone element and
                  * them push to target
                  */
-                target.push({
-                    ...moveTool.captured, 
-                    parent: moveTool.target,
-                    $: {}
-                })
+                if (this.tools.targetIndex !== undefined && this.tools.targetIndex >= 0) {
+                    target.splice(this.tools.targetIndex, 0, {
+                        ...moveTool.captured, 
+                        parent: moveTool.target,
+                        $: {}
+                    })
+                } else {
+                    target.push({
+                        ...moveTool.captured, 
+                        parent: moveTool.target,
+                        $: {}
+                    })
+                }
+                
                 /**
                  * replace focused element
                  * if exist
@@ -169,6 +178,7 @@ class Architect extends React.Component {
                  * remove dirty record
                  */
                 this.tools.target = null
+                this.tools.targetIndex = -1
                 moveTool.captured.$.dirty = true
                 this.clearDirtyRecords()
                 this.tools.update()
