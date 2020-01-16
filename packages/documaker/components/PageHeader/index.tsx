@@ -1,4 +1,4 @@
-import { Flexbox, Header, Anchor, Icon } from '@flow-ui/core'
+import { Flexbox, Header, Anchor, Icon, Block } from '@flow-ui/core'
 import ThemeSwitcher, { ThemeSwitcherProps } from './ThemeSwitcher'
 import ThemeTypes from '@flow-ui/core/misc/themes/types'
 
@@ -23,12 +23,12 @@ const PageHeader = (props: MenuProps) => {
                 }
             })}>
             <Header
-                css={{cursor: 'pointer'}}
+                css={{ cursor: 'pointer' }}
                 size={3} 
-                flex={1}
                 children={name}
                 onClick={()=>setIndex()}
             />
+            <Block flex={1} />
             <ThemeSwitcher 
                 themes={themes}
                 currentTheme={currentTheme}
