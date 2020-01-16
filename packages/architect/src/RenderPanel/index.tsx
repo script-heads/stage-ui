@@ -168,15 +168,11 @@ const Render = (props: { tools: ArchitectTools }) => {
                         <Flexbox
                             column
                             css={{
-                                color: theme.color.light.css(),
-                                border: '2px dashed',
-                                borderRadius: theme.radius.default,
-                                borderColor: theme.color.lightest.hex(),
-                                padding: '0.25rem',
-                                margin: '0.25rem',
-                                textAlign: 'center'
+                                color: theme.color.secondary.css(),
+                                textAlign: 'center',
+                                fontSize: '11px',
                             }}
-                            children={item.name || item.component}
+                            children={`⇠ ${item.name || item.component} ⇢`}
                         />
                     )
                 } else {

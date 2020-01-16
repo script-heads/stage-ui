@@ -12,25 +12,6 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
     const renderTree = (items: ArchitectItem[]) => {
         return items.map((item, index) => {
 
-            const beforeRef = useRef<HTMLDivElement>(null)
-            const hoverBeforeRef = (state: boolean) => {
-                if (beforeRef.current) {
-                    beforeRef.current.style.background = state
-                    ? theme.color.primary.alpha(0.2).hex()
-                    : 'transparent'
-                }
-
-            }
-            const afterRef = useRef<HTMLDivElement>(null)
-            const hoverAfterRef = (state: boolean) => {
-                if (afterRef.current) {
-                    afterRef.current.style.background = state
-                        ? theme.color.primary.alpha(0.2).hex()
-                        : 'transparent'
-                }
-
-            }
-
             let name = item.component
             if (item.name) {
                 name = `${item.name}`
@@ -45,6 +26,24 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
 
             const isFocused = tools.focused?.id === item.id
 
+            const splitterBeforeSetHover = (state: boolean) => {
+                const el = document.getElementById(`split-b-${item.id}`)
+                if (el) {
+                    el.style.background = state
+                    ? theme.color.primary.alpha(0.2).hex()
+                    : 'transparent'
+                }
+            }
+            
+            const splitterAfterSetHover = (state: boolean) => {
+                const el = document.getElementById(`split-a-${item.id}`)
+                if (el) {
+                    el.style.background = state
+                        ? theme.color.primary.alpha(0.2).hex()
+                        : 'transparent'
+                }
+            }
+
             return (
                 <Tree
                     defaultOpen
@@ -53,25 +52,25 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                         <Block flex={1}>
                             {!item.children && index === 0 && (
                                 <div
+                                    id={`split-b-${item.id}`}
                                     style={{
                                         width: '100%',
                                         height: '8px',
                                         marginTop: '-4px',
                                         marginBottom: '-4px',
                                     }}
-                                    ref={beforeRef}
                                     onDragOver={(e) => {
                                         e.stopPropagation()
                                         e.preventDefault()
-                                        hoverBeforeRef(true)
+                                        splitterBeforeSetHover(true)
                                     }}
                                     onDragLeave={(e) => {
                                         e.stopPropagation()
-                                        hoverBeforeRef(false)
+                                        splitterBeforeSetHover(false)
                                     }}
                                     onDrop={(e) => {
                                         e.stopPropagation()
-                                        hoverBeforeRef(false)
+                                        splitterBeforeSetHover(false)
                                         if (item.parent) {
                                             tools.target = item.parent
                                             tools.targetIndex = index
@@ -115,25 +114,25 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                             />
                             {!item.children && (
                                 <div
+                                    id={`split-a-${item.id}`}
                                     style={{
                                         width: '100%',
                                         height: '8px',
                                         marginTop: '-4px',
                                         marginBottom: '-4px',
                                     }}
-                                    ref={afterRef}
                                     onDragOver={(e) => {
                                         e.stopPropagation()
                                         e.preventDefault()
-                                        hoverAfterRef(true)
+                                        splitterAfterSetHover(true)
                                     }}
                                     onDragLeave={(e) => {
                                         e.stopPropagation()
-                                        hoverAfterRef(false)
+                                        splitterAfterSetHover(false)
                                     }}
                                     onDrop={(e) => {
                                         e.stopPropagation()
-                                        hoverAfterRef(false)
+                                        splitterAfterSetHover(false)
                                         if (item.parent) {
                                             tools.target = item.parent
                                             tools.targetIndex = index + 1
