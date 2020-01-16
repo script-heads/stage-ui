@@ -4,7 +4,7 @@ import ThemeTypes from '@flow-ui/core/misc/themes/types'
 export default (theme: ThemeTypes.Index) => {
     return {
         container: css({
-            width: '22rem',
+            width: '20rem',
             borderLeft: `1px solid ${theme.color.lightest.css()}`,
         }),
         scrollView: css({ 

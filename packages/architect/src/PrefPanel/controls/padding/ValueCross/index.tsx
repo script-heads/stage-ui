@@ -27,7 +27,7 @@ const ValueControl = (props: { value: number, onChange: (value: number) => void 
                     <Button
                         flex={1}
                         size="xsmall"
-                        children={index}
+                        children={index ? index : '✕'}
                         decoration={value === props.value ? 'filled' : 'outline'}
                         onClick={() => {
                             props.onChange(value)
@@ -115,7 +115,7 @@ const ValueCross = (props: Props) => {
                 color={c => c.light.hex()}
                 children={props.label}
             />
-            <Grid css={styles.container} templateColumns="1fr 1fr 1fr" templateRows="1fr 2fr 1fr">
+            <Grid css={styles.container} templateColumns="5.25rem 5.25rem 5.25rem" templateRows="1fr 4rem 1fr">
                 <div />
                 <ValueControl 
                     value={values[0]} 

@@ -5,7 +5,7 @@ export default (theme: ThemeTypes.Index) => {
     
     return {
         container: css({
-            width: '18rem',
+            width: '20rem',
             borderRight: `1px solid ${theme.color.lightest.css()}`,
         }),
         scrollView: css({ 
