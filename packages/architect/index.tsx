@@ -5,7 +5,7 @@ import AddPanel from '@flow-ui/architect/src/AddPanel'
 import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
 import React, { Fragment } from 'react'
 import createStyles from './styles'
-import { useFlow, Flexbox } from '@flow-ui/core'
+import { useTheme, Flexbox } from '@flow-ui/core'
 import components from './components'
 
 export function uuid() {
@@ -220,7 +220,7 @@ class Architect extends React.Component {
  * That is just for hooks
  */
 const ArchitectView = (props: { tools: ArchitectTools, componentLibraryOpen: boolean }) => {
-    const { theme } = useFlow()
+    const theme = useTheme()
     const styles = createStyles(theme)
 
     return (

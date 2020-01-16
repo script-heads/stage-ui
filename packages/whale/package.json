@@ -1,0 +1,18 @@
+{
+  "name": "@flow-ui/whale",
+  "author": "ABR Tech",
+  "version": "0.1.0",
+  "license": "MIT",
+  "dependencies": {
+    "@emotion/core": "^10.0.22",
+    "chroma-js": "^2.1.0",
+    "emotion-theming": "^10.0.19"
+  },
+  "devDependencies": {
+    "@types/chroma-js": "^1.4.3",
+    "@emotion/babel-preset-css-prop": "^10.0.23",
+    "csstype": "^2.6.8",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.4"
+  }
+}

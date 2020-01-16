@@ -48,7 +48,7 @@ export { default as notify } from './misc/utils/notify'
  * Misc
  */
 export { default as useBrowser } from './misc/hooks/useBrowser'
-export { default as useFlow } from './misc/hooks/useFlow'
+export { useTheme as useTheme } from '@flow-ui/whale'
 
 /**
  * Deprecated
@@ -110,7 +110,6 @@ export function transformImports (importName, matches) {
          * Misc
          */
         case 'useBrowser': return '@flow-ui/core/misc/hooks/useBrowser'
-        case 'useFlow': return '@flow-ui/core/misc/hooks/useFlow'
         
         default: return '/'
     }

@@ -1,11 +1,11 @@
 import { ArchitectTools } from '@flow-ui/architect/types'
-import { Block, useFlow, Flexbox, Divider, TextField, Text, Icon, Menu, Header } from '@flow-ui/core'
+import { Block, useTheme, Flexbox, Divider, TextField, Text, Icon, Menu, Header } from '@flow-ui/core'
 import createStyles from './styles'
 import { ScrollView } from '@flow-ui/lab'
 import { useState } from 'react'
 
 const AddPanel = (props: { tools: ArchitectTools }) => {
-    const { theme } = useFlow()
+    const theme = useTheme()
     const styles = createStyles(theme)
     const { tools } = props
     const [search, setSearch] = useState('')

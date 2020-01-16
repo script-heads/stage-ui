@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import useFlow from './useFlow'
+import {useTheme} from '@flow-ui/core'
 
 export default (props, mouseFocus?: boolean, disableDecoration?: boolean) => {
 
     const [focus, setFocus] = useState(false)
-    const { theme } = useFlow()
+    const theme = useTheme()
     let isMouseDown = false
 
     const attributes = {

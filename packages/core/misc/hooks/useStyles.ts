@@ -1,6 +1,6 @@
 import Shared from '../../types'
 import {css} from '@emotion/core'
-import useFlow from './useFlow'
+import {useTheme} from '@flow-ui/core'
 import ThemeTypes from '../themes/types'
 
 const createStyles = <S>(
@@ -9,7 +9,7 @@ const createStyles = <S>(
         componentName?: keyof ThemeTypes.Overrides
     ): Shared.FlowStyles<S> => {
     
-    const { theme } = useFlow()
+    const theme = useTheme()
     const FlowStyles: Shared.FlowStyles<S> = {} as Shared.FlowStyles<S>
 
     if (typeof componentStyles === 'function') {

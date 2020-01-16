@@ -2211,7 +2211,7 @@ declare module 'layout/Viewport' {
 	export default Viewport;
 
 }
-declare module 'misc/hooks/useFlow' {
+declare module 'misc/hooks/useTheme' {
 	 const _default: () => import("../../layout/Viewport/types").default.Context;
 	export default _default;
 
@@ -2932,12 +2932,12 @@ declare module '@flow-ui/core' {
 	 * Misc
 	 */
 	export { default as useBrowser } from 'misc/hooks/useBrowser';
-	export { default as useFlow } from 'misc/hooks/useFlow';
+	export { default as useTheme } from 'misc/hooks/useTheme';
 	/**
 	 * Deprecated
 	 */
 	export { H1, H2, H3, H4, D1, D2, D3, D4, T1, T2, T3, T4, C1, C2, C3, C4, A } from 'misc/deprecated';
-	export function transformImports(importName: any, matches: any): "@flow-ui/core/content/Divider" | "@flow-ui/core/content/Icon" | "@flow-ui/core/content/Spinner" | "@flow-ui/core/content/Header" | "@flow-ui/core/content/Display" | "@flow-ui/core/content/Paragraph" | "@flow-ui/core/content/Text" | "@flow-ui/core/content/Anchor" | "@flow-ui/core/control/Button" | "@flow-ui/core/control/Checkbox" | "@flow-ui/core/control/DatePicker" | "@flow-ui/core/control/Menu" | "@flow-ui/core/control/Radio" | "@flow-ui/core/control/Range" | "@flow-ui/core/control/Select" | "@flow-ui/core/control/Switch" | "@flow-ui/core/control/TextField" | "@flow-ui/core/data/Meter" | "@flow-ui/core/data/Table" | "@flow-ui/core/layout/Badge" | "@flow-ui/core/layout/Block" | "@flow-ui/core/layout/Drop" | "@flow-ui/core/layout/Flexbox" | "@flow-ui/core/layout/Grid" | "@flow-ui/core/layout/Modal" | "@flow-ui/core/layout/Notification" | "@flow-ui/core/layout/Popover" | "@flow-ui/core/layout/Tree" | "@flow-ui/core/layout/Viewport" | "@flow-ui/core/misc/utils/dialog" | "@flow-ui/core/misc/utils/notify" | "@flow-ui/core/misc/hooks/useBrowser" | "@flow-ui/core/misc/hooks/useFlow" | "/";
+	export function transformImports(importName: any, matches: any): "@flow-ui/core/content/Divider" | "@flow-ui/core/content/Icon" | "@flow-ui/core/content/Spinner" | "@flow-ui/core/content/Header" | "@flow-ui/core/content/Display" | "@flow-ui/core/content/Paragraph" | "@flow-ui/core/content/Text" | "@flow-ui/core/content/Anchor" | "@flow-ui/core/control/Button" | "@flow-ui/core/control/Checkbox" | "@flow-ui/core/control/DatePicker" | "@flow-ui/core/control/Menu" | "@flow-ui/core/control/Radio" | "@flow-ui/core/control/Range" | "@flow-ui/core/control/Select" | "@flow-ui/core/control/Switch" | "@flow-ui/core/control/TextField" | "@flow-ui/core/data/Meter" | "@flow-ui/core/data/Table" | "@flow-ui/core/layout/Badge" | "@flow-ui/core/layout/Block" | "@flow-ui/core/layout/Drop" | "@flow-ui/core/layout/Flexbox" | "@flow-ui/core/layout/Grid" | "@flow-ui/core/layout/Modal" | "@flow-ui/core/layout/Notification" | "@flow-ui/core/layout/Popover" | "@flow-ui/core/layout/Tree" | "@flow-ui/core/layout/Viewport" | "@flow-ui/core/misc/utils/dialog" | "@flow-ui/core/misc/utils/notify" | "@flow-ui/core/misc/hooks/useBrowser" | "@flow-ui/core/misc/hooks/useTheme" | "/";
 
 }
 declare module 'misc/utils/validate' {

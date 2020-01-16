@@ -1,5 +1,5 @@
 import { ArchitectTools } from '@flow-ui/architect/types'
-import { Block, Flexbox, Paragraph, Text, useFlow, Menu, Divider, Icon } from '@flow-ui/core'
+import { Block, Flexbox, Paragraph, Text, useTheme, Menu, Divider, Icon } from '@flow-ui/core'
 import { ScrollView } from '@flow-ui/lab'
 import { Fragment } from 'react'
 import BooleanControls from './controls/boolean'
@@ -16,7 +16,7 @@ import { componentsTypography } from '../RenderPanel'
 const data = require('@flow-ui/documaker/definitions/types')
 
 const PrefPanel = (props: { tools: ArchitectTools }) => {
-    const { theme } = useFlow()
+    const theme = useTheme()
     const styles = createStyles(theme)
     const { tools } = props
 

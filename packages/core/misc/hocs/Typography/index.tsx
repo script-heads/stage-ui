@@ -4,13 +4,13 @@ import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
 import callProp from '@flow-ui/core/misc/utils/callProp'
 import { forwardRef } from 'react'
 import Types from './types'
-import useFlow from '../../hooks/useFlow'
+import {useTheme} from '@flow-ui/core'
 
 const Typography = (props: Types.PrivateProps, ref) => {
 
     const styleProps = useStyleProps(props)
     const { attributes } = useContainer(props)
-    const { theme } = useFlow()
+    const theme = useTheme()
     
     return jsx(
         props.tag,

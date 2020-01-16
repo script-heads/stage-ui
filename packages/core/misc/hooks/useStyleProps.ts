@@ -1,6 +1,6 @@
 import Shared from '@flow-ui/core/types'
 import callProp from '../utils/callProp'
-import useFlow  from './useFlow'
+import {useTheme} from '@flow-ui/core'
 import CSS from 'csstype'
 
 interface Props extends Shared.SelfProps, Shared.FlowProps {
@@ -71,7 +71,7 @@ interface InjectedStyleProps {
 }
 
 const useStyleProps = (props: Props): InjectedStyleProps => {
-    const {theme} = useFlow()
+    const theme = useTheme()
 
     const color = {
         background: callProp(props.backgroundColor, theme.color),

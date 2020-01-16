@@ -1,10 +1,10 @@
 import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
-import { Block, Flexbox, Text, Tree, useFlow, Divider, Menu, Icon, Paragraph } from '@flow-ui/core'
+import { Block, Flexbox, Text, Tree, useTheme, Divider, Menu, Icon, Paragraph } from '@flow-ui/core'
 import { ScrollView } from '@flow-ui/lab'
 import createStyles from './styles'
 
 const ComponentTree = (props: { tools: ArchitectTools }) => {
-    const { theme } = useFlow()
+    const theme = useTheme()
     const styles = createStyles(theme)
     const { tools } = props
 

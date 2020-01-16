@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Fragment } from 'react'
-import { Block, useFlow, Flexbox, Text, Icon } from '@flow-ui/core'
+import { Block, useTheme, Flexbox, Text, Icon } from '@flow-ui/core'
 import { Split } from '@flow-ui/lab'
 import chroma from 'chroma-js'
 import monaco from '../../../monaco'
@@ -18,7 +18,7 @@ const Editor = (props: EditorProps) => {
     const [code, setCode] = useState<string>(cases[0].code)
     const [grid, setGrid] = useState<boolean>(false)
     const [fullscreen, setFullscreen] = useState<boolean>(false)
-    const {theme} = useFlow()
+    const theme = useTheme()
     const browser = useBrowser()
     
     useEffect(() => {

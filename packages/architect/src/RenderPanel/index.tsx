@@ -1,5 +1,5 @@
 import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
-import { Block, Flexbox, Text, useFlow, Paragraph } from '@flow-ui/core'
+import { Block, Flexbox, Text, useTheme, Paragraph } from '@flow-ui/core'
 import ThemeTypes from '@flow-ui/core/misc/themes/types'
 import { RefObject, useRef } from 'react'
 import Mask, { MaskRefs } from './Mask'
@@ -149,7 +149,7 @@ const RenderItem = (props: RenderItemProps) => {
 }
 
 const Render = (props: { tools: ArchitectTools }) => {
-    const { theme } = useFlow()
+    const theme = useTheme()
     const styles = createStyles(theme)
     const { tools } = props
     const architectItems = tools.getItems()

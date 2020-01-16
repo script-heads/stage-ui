@@ -1,13 +1,13 @@
-import useFlow from '@flow-ui/core/misc/hooks/useFlow';
-import mergeObjects from '@flow-ui/core/misc/utils/mergeObjects';
-import { ChartDataSets, ChartOptions } from 'chart.js';
-import React, { FC, forwardRef } from 'react';
-import { Bar, Bubble, Doughnut, HorizontalBar, Line, Pie, Polar, Radar, Scatter } from 'react-chartjs-2';
-import ChartTypes from './types';
+import {useTheme} from '@flow-ui/core'
+import mergeObjects from '@flow-ui/core/misc/utils/mergeObjects'
+import { ChartDataSets, ChartOptions } from 'chart.js'
+import React, { FC, forwardRef } from 'react'
+import { Bar, Bubble, Doughnut, HorizontalBar, Line, Pie, Polar, Radar, Scatter } from 'react-chartjs-2'
+import ChartTypes from './types'
 
 const Chart: FC<ChartTypes.Props> = (props, ref: any) => {
 
-    const { type = "line", labels, data, options } = props;
+    const { type = 'line', labels, data, options } = props
 
     const datasets: ChartDataSets[] | undefined = data && data.map(dataItem => {
         let dataset: ChartDataSets = {}
@@ -21,7 +21,7 @@ const Chart: FC<ChartTypes.Props> = (props, ref: any) => {
         return dataset
     })
 
-    const { theme } = useFlow();
+    const theme = useTheme()
 
     const defaultOptions: ChartOptions = {
         title: {
@@ -72,7 +72,7 @@ const Chart: FC<ChartTypes.Props> = (props, ref: any) => {
                 backgroundColor: theme.color.primary.alpha(0.2).css(),
             }
         }
-    };
+    }
 
     const params = {
         ref,
@@ -84,17 +84,17 @@ const Chart: FC<ChartTypes.Props> = (props, ref: any) => {
     }
 
     switch (type) {
-        case 'line': return <Line {...params} />;
-        case 'pie': return <Pie {...params} />;
-        case 'verticalBar': return <Bar {...params} />;
-        case 'horizontalBar': return <HorizontalBar {...params} />;
-        case 'doughnut': return <Doughnut {...params} />;
-        case 'scatter': return <Scatter {...params} />;
-        case 'radar': return <Radar {...params} />;
-        case 'polar': return <Polar {...params} />;
-        case 'bubble': return <Bubble {...params} />;
+        case 'line': return <Line {...params} />
+        case 'pie': return <Pie {...params} />
+        case 'verticalBar': return <Bar {...params} />
+        case 'horizontalBar': return <HorizontalBar {...params} />
+        case 'doughnut': return <Doughnut {...params} />
+        case 'scatter': return <Scatter {...params} />
+        case 'radar': return <Radar {...params} />
+        case 'polar': return <Polar {...params} />
+        case 'bubble': return <Bubble {...params} />
         default: return null
     }
 }
 
-export default forwardRef(Chart);
+export default forwardRef(Chart)

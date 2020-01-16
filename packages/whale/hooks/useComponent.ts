@@ -13,7 +13,7 @@ const useComponent = <S>(options: {
     }): { styles: Types.FlowStyles<S>, attributes } => {
     
     let { props, styles: componentStyles, name, mouseFocus, disableDecoration } = options
-    const { theme } = useTheme()
+    const theme = useTheme()
     const propStyles = styleProps(props, theme)
     const attributes = attributeProps(props, theme, mouseFocus, disableDecoration)
     const styles: Types.FlowStyles<S> = {} as Types.FlowStyles<S>
