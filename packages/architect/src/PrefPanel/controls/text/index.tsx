@@ -1,6 +1,6 @@
 import { ArchitectTools } from '@flow-ui/architect/types'
 import { Block, TextField } from '@flow-ui/core'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 type Props = {
     tools: ArchitectTools
@@ -12,7 +12,13 @@ const TextControls = (props: Props) => {
     if (!props.tools.focused) {
         return null
     }
-    const [value, setValue] = useState(props.tools.focused.text)
+    const [value, setValue] = useState('')
+
+    useEffect(() => {
+        if (props.tools.focused) {
+            setValue(props.tools.focused.text || '')
+        }
+    }, [props.tools.focused?.id])
 
     const handleChange = (value: string) => {
         if (timer) {

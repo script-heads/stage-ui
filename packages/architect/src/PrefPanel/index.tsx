@@ -1,17 +1,17 @@
 import { ArchitectTools } from '@flow-ui/architect/types'
-import { Block, Flexbox, Paragraph, Text, useTheme, Menu, Divider, Icon } from '@flow-ui/core'
+import { Block, Divider, Flexbox, Icon, Menu, Paragraph, useTheme } from '@flow-ui/core'
 import { ScrollView } from '@flow-ui/lab'
 import { Fragment } from 'react'
+import { componentsTypography } from '../RenderPanel'
 import BooleanControls from './controls/boolean'
-import NameControls from './controls/name'
-import TextControls from './controls/text'
 import LiteralControls from './controls/literal'
 import MarginControls from './controls/margin'
+import NameControls from './controls/name'
 import PaddingControls from './controls/padding'
 import SizeConrols from './controls/size'
 import StringControls from './controls/string'
+import TextControls from './controls/text'
 import createStyles from './styles'
-import { componentsTypography } from '../RenderPanel'
 
 const data = require('@flow-ui/documaker/definitions/types')
 

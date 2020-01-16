@@ -1,6 +1,6 @@
 import { ArchitectTools } from '@flow-ui/architect/types'
 import { Block, TextField } from '@flow-ui/core'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 type Props = {
     name: string
@@ -21,7 +21,13 @@ const StringControls = (props: Props) => {
         name = name.slice(1)
     }
 
-    const [value, setValue] = useState(props.tools.focused.props[name])
+    const [value, setValue] = useState('')
+
+    useEffect(() => {
+        if (props.tools.focused) {
+            setValue(props.tools.focused.props[name] || '')
+        }
+    }, [props.tools.focused?.id])
 
     const handleChange = (value: string) => {
         if (timer) {
