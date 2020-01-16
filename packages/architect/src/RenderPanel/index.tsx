@@ -78,6 +78,9 @@ const RenderItem = (props: RenderItemProps) => {
     return (
         <span
             ref={ref}
+            css={{
+                flex: item.props.flex
+            }}
             children={(
                 <Component
                     {...item.props}
@@ -162,10 +165,19 @@ const Render = (props: { tools: ArchitectTools }) => {
             if (componentsInvisibleWhenEmpty.includes(item.component)) {
                 if (item.children?.length === 0 && !item.text) {
                     item.props.children = (
-                        <Flexbox column p="1rem" css={{ color: theme.color.light.css() }}>
-                            <Text size={1} weight="bold">{item.name || item.component}</Text>
-                            <Text size={2}>Place any component here</Text>
-                        </Flexbox>
+                        <Flexbox
+                            column
+                            css={{
+                                color: theme.color.light.css(),
+                                border: '2px dashed',
+                                borderRadius: theme.radius.default,
+                                borderColor: theme.color.lightest.hex(),
+                                padding: '0.25rem',
+                                margin: '0.25rem',
+                                textAlign: 'center'
+                            }}
+                            children={item.name || item.component}
+                        />
                     )
                 } else {
                     if (item.props.children) {

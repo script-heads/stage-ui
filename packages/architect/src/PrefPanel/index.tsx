@@ -11,6 +11,7 @@ import PaddingControls from './controls/padding'
 import SizeConrols from './controls/size'
 import StringControls from './controls/string'
 import TextControls from './controls/text'
+import FlexControls from './controls/flex'
 import createStyles from './styles'
 
 const data = require('@flow-ui/documaker/definitions/types')
@@ -121,6 +122,9 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
                             <Fragment>
                                 <NameControls {...props} />
                                 <TextControls {...props} />
+                                {tools.focused.component === 'Flexbox' && (
+                                    <FlexControls {...props} />
+                                )}
                                 <PaddingControls {...props} />
                                 <MarginControls {...props} />
                                 <SizeConrols {...props} />

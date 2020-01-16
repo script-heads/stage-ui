@@ -18,7 +18,10 @@ const BooleanControls = (props: Props) => {
                 size="small"
                 label={name[0].toUpperCase() + name.slice(1)}
                 onChange={value => {
-                    props.tools.focused.props[props.name] = value
+                    if (props.tools.focused) {
+                        props.tools.focused.props[props.name] = value
+                        props.tools.update()
+                    }
                 }}
             />
         </Block>
