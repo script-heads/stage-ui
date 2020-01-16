@@ -15,17 +15,17 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
             const beforeRef = useRef<HTMLDivElement>(null)
             const hoverBeforeRef = (state: boolean) => {
                 if (beforeRef.current) {
-                    beforeRef.current.style.borderColor = state
-                        ? theme.color.light.hex()
-                        : 'transparent'
+                    beforeRef.current.style.background = state
+                    ? theme.color.primary.alpha(0.2).hex()
+                    : 'transparent'
                 }
 
             }
             const afterRef = useRef<HTMLDivElement>(null)
             const hoverAfterRef = (state: boolean) => {
                 if (afterRef.current) {
-                    afterRef.current.style.borderColor = state
-                        ? theme.color.light.hex()
+                    afterRef.current.style.background = state
+                        ? theme.color.primary.alpha(0.2).hex()
                         : 'transparent'
                 }
 
@@ -55,8 +55,9 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                                 <div
                                     style={{
                                         width: '100%',
-                                        borderBottom: '2px dashed',
-                                        borderColor: 'transparent',
+                                        height: '8px',
+                                        marginTop: '-4px',
+                                        marginBottom: '-4px',
                                     }}
                                     ref={beforeRef}
                                     onDragOver={(e) => {
@@ -116,8 +117,9 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                                 <div
                                     style={{
                                         width: '100%',
-                                        borderBottom: '2px dashed',
-                                        borderColor: 'transparent',
+                                        height: '8px',
+                                        marginTop: '-4px',
+                                        marginBottom: '-4px',
                                     }}
                                     ref={afterRef}
                                     onDragOver={(e) => {
