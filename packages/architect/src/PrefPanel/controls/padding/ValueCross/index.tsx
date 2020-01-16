@@ -53,11 +53,20 @@ const ValueCross = (props: Props) => {
         const kr = parseFloat(focused.props[propKeys[2]] || staticValues[0])
         const kb = parseFloat(focused.props[propKeys[3]] || staticValues[0])
         setValues([kt,kl,kr,kb])
+        if (kr && kr === kl) {
+            setLockX(true)
+        }
+        if (kt && kt === kb) {
+            setLockY(true)
+        }
+        if (kr && kr === kl && kt === kb && kt === kr) {
+            setLockC(true)
+        }
     }, [props.tools.focused?.id])
 
-    const [lockX, setLockX] = useState(true)
-    const [lockY, setLockY] = useState(true)
-    const [lockC, setLockC] = useState(true)
+    const [lockX, setLockX] = useState(false)
+    const [lockY, setLockY] = useState(false)
+    const [lockC, setLockC] = useState(false)
 
     const theme = useTheme()
 
