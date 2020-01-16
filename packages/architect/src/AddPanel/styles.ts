@@ -3,6 +3,14 @@ import ThemeTypes from '@flow-ui/core/misc/themes/types'
 
 export default (theme: ThemeTypes.Index) => {
     return {
+        backgroundLayer: css({
+            zIndex: 10,
+            position: 'absolute',
+            top:0,
+            left:0,
+            width:'100%',
+            height:'100%'
+        }),
         container: css({
             zIndex: 10,
             position: 'absolute',
