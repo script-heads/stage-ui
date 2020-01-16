@@ -2,8 +2,9 @@ import React, { useCallback } from 'react'
 import createCache from '@emotion/cache'
 import { ThemeProvider } from 'emotion-theming'
 import { CacheProvider, Global } from '@emotion/core'
+import Types from '../types'
 
-export const Context = React.createContext(null)
+export const Context = React.createContext({} as Types.Theme)
 
 const Provider = (props) => {
 
