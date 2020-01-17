@@ -25,6 +25,7 @@ const ValueControl = (props: { value: number, onChange: (value: number) => void 
             {
                 staticValues.map((value, index) => (
                     <Button
+                        key={index}
                         flex={1}
                         size="xsmall"
                         children={index ? index : '✕'}
