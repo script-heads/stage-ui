@@ -39,9 +39,9 @@ const RenderItem = (props: RenderItemProps) => {
     const ref: RefObject<HTMLSpanElement> = useRef(null)
 
     item.$.getRect = () => {
-
-        const { left, top, width, height } = ref.current?.children[0]?.getBoundingClientRect() as any
-
+        const rect: any = ref.current?.children[0]?.getBoundingClientRect() || {}
+        const { left, top, width, height } = rect
+        
         return {
             x: left,
             y: top,
@@ -51,10 +51,13 @@ const RenderItem = (props: RenderItemProps) => {
     }
 
     let Component = (props) => (
-        <Flexbox column p="1rem" css={{ color: theme.color.light.css() }}>
-            <Text size={1} weight="bold">{item.name || item.component}</Text>
-            <Text size={2} color={c => c.accent.red.hex()}>No component found!</Text>
-        </Flexbox>
+        <Text 
+            align="center"
+            size={2} 
+            color={c => c.accent.red.hex()}
+            children={`⚠ ${item.component} not found ⚠`}    
+        />
+
     )
 
     if (tools.components[item.component]) {
@@ -75,6 +78,18 @@ const RenderItem = (props: RenderItemProps) => {
         children = item.props.children || item.text || null
     }
 
+    const convertedProps: {[key: string]: unknown} = {}
+    if (item.component === 'Icon') {
+        if (item.props.type) {
+            const keys = item.props.type.split('.') || []
+            convertedProps.type = (t) => {
+                if (t[keys[0]]) {
+                    return t[keys[0]][keys[1]]
+                }
+                return t.outline.questionMark
+            }
+        }
+    }
     return (
         <span
             ref={ref}
@@ -84,6 +99,7 @@ const RenderItem = (props: RenderItemProps) => {
             children={(
                 <Component
                     {...item.props}
+                    {...convertedProps}
                     draggable
                     onMouseEnter={(e) => {
                         if (mask.hover.current && !tools.captured) {
@@ -143,7 +159,6 @@ const RenderItem = (props: RenderItemProps) => {
                         tools.focused = item
                         tools.update()
                     }}
-                    key={item.id}
                     children={children}
                 />
             )}

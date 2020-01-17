@@ -75,6 +75,14 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
                 }
                 continue
             }
+            /**
+             * TODO: new controls for icons 
+             */
+            if (prop.type === 'reference') {
+                if (prop.values[0] === 'Shared.IconProp') {
+                    stringProps.push('type')
+                }
+            }
         }
     }
 

@@ -18,7 +18,7 @@ const items: ArchitectItem[] = [
                 $:{},
                 id: uuid(),
                 component: 'Header',
-                text: 'New ticket',
+                text: 'Hello world',
                 props: {
                     pb: '1rem',
                 },
@@ -90,16 +90,35 @@ const items: ArchitectItem[] = [
                     {
                         $:{},
                         id: uuid(),
-                        component: 'Checkbox',
+                        component: 'Button',
                         text: '',
                         props: {
-                            label: 'I agree',
-                        }
+                            decoration: 'plain',
+                        },
+                        children: [
+                            {
+                                $:{},
+                                id: uuid(),
+                                component: 'Block',
+                                text: 'Help',
+                                props: {}
+                            },
+                            {
+                                $:{},
+                                id: uuid(),
+                                component: 'Icon',
+                                props: {
+                                    pl: '0.25rem',
+                                    type: 'outline.questionMarkCircle',
+                                }
+                            }
+                        ]
                     },
                     {
                         $:{},
                         id: uuid(),
                         component: 'Block',
+                        name: 'Spacer',
                         text: '',
                         props: {
                             flex: 1,
@@ -113,7 +132,8 @@ const items: ArchitectItem[] = [
                         text: 'Cancel',
                         props: {
                             decoration: 'outline'
-                        }
+                        },
+                        children: []
                     },
                     {
                         $:{},
@@ -123,7 +143,8 @@ const items: ArchitectItem[] = [
                         props: {
                             ml: '0.5rem',
                             type: 'submit'
-                        }
+                        },
+                        children: []
                     }
                 ]
             }
