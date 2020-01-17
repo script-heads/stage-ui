@@ -11,8 +11,8 @@ const iconStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Ty
     return {
         container: [
             {
-                height: 'min-content',
                 width: 'min-content',
+                height: props.size || '1rem',
                 fontSize: props.size || '1rem',
                 display: 'inline-flex',
                 color,
