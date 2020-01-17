@@ -26,15 +26,8 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
 
             const isFocused = tools.focused?.id === item.id
 
-            const splitterBeforeSetHover = (state: boolean) => {
-                const el = document.getElementById(`split-b-${item.id}`)
-                if (el) {
-                    el.style.background = state ? theme.color.primary.alpha(0.5).hex() : ''
-                }
-            }
-
             const splitterAfterSetHover = (state: boolean) => {
-                const el = document.getElementById(`split-a-${item.id}`)
+                const el = document.getElementById(`split-${item.id}`)
                 if (el) {
                     el.style.background = state ? theme.color.primary.alpha(0.5).hex() : ''
                 }
@@ -46,35 +39,6 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                     key={item.id}
                     label={(
                         <Block flex={1}>
-                            {/* {!item.children && index === 0 && (
-                                <div
-                                    id={`split-b-${item.id}`}
-                                    style={{
-                                        width: '100%',
-                                        height: '8px',
-                                        marginTop: '-4px',
-                                        marginBottom: '-4px',
-                                    }}
-                                    onDragOver={(e) => {
-                                        e.stopPropagation()
-                                        e.preventDefault()
-                                        splitterBeforeSetHover(true)
-                                    }}
-                                    onDragLeave={(e) => {
-                                        e.stopPropagation()
-                                        splitterBeforeSetHover(false)
-                                    }}
-                                    onDrop={(e) => {
-                                        e.stopPropagation()
-                                        splitterBeforeSetHover(false)
-                                        if (item.parent) {
-                                            tools.target = item.parent
-                                            tools.targetIndex = index
-                                            tools.move()
-                                        }
-                                    }}
-                                />
-                            )} */}
                             <Text
                                 lineHeight={1}
                                 size={2}
@@ -114,7 +78,7 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                             />
                             {(!item.children || item.children.length === 0) && (
                                 <div
-                                    id={`split-a-${item.id}`}
+                                    id={`split-${item.id}`}
                                     style={{
                                         width: '100%',
                                         height: '8px',
