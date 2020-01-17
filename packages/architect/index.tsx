@@ -104,8 +104,13 @@ class Architect extends React.Component {
              */
             const shared = {
                 captured: this.tools.captured,
-                target: this.tools.target
+                target: this.tools.target,
+                targetIndex: this.tools.targetIndex || 0,
             }
+
+            this.tools.target = null
+            this.tools.targetIndex = 0
+
             /**
              * Thats for check if parent
              * not dropped in his childs
@@ -130,6 +135,17 @@ class Architect extends React.Component {
                      */
                     if (!shared.target?.children) {
                         if (shared.target?.parent) {
+                            /**
+                             * Setting index for correct insert position
+                             */
+                            shared.target.parent.children?.forEach((child, index) => {
+                                if (child.id === shared.target?.id) {
+                                    shared.targetIndex = index + 1
+                                }
+                            })
+                            /**
+                             * Setting new target
+                             */
                             shared.target = shared.target.parent
                         }
                     }
@@ -151,33 +167,23 @@ class Architect extends React.Component {
                  * Clone element and
                  * them push to target
                  */
-                if (this.tools.targetIndex !== undefined && this.tools.targetIndex >= 0) {
-                    target.splice(this.tools.targetIndex, 0, {
-                        ...shared.captured, 
-                        parent: shared.target,
-                        $: {}
-                    })
-                } else {
-                    target.push({
-                        ...shared.captured, 
-                        parent: shared.target,
-                        $: {}
-                    })
-                }
+                target.splice(shared.targetIndex, 0, {
+                    ...shared.captured, 
+                    parent: shared.target,
+                    $: {}
+                })
                 
                 /**
                  * replace focused element
                  * if exist
                  */
-                if (this.tools.focused?.id === this.tools.captured?.id) {
-                    this.tools.focused = target[target.length - 1]
+                if (this.tools.focused?.id === shared.captured?.id) {
+                    this.tools.focused = target[shared.targetIndex]
                 }
                 /**
                  * Clear target and
                  * remove dirty record
                  */
-                this.tools.target = null
-                this.tools.targetIndex = -1
                 shared.captured.$.dirty = true
                 this.clearDirtyRecords()
                 this.tools.update()

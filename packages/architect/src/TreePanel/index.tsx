@@ -29,18 +29,14 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
             const splitterBeforeSetHover = (state: boolean) => {
                 const el = document.getElementById(`split-b-${item.id}`)
                 if (el) {
-                    el.style.background = state
-                    ? theme.color.primary.alpha(0.2).hex()
-                    : 'transparent'
+                    el.style.background = state ? theme.color.primary.alpha(0.5).hex() : ''
                 }
             }
 
             const splitterAfterSetHover = (state: boolean) => {
                 const el = document.getElementById(`split-a-${item.id}`)
                 if (el) {
-                    el.style.background = state
-                        ? theme.color.primary.alpha(0.2).hex()
-                        : 'transparent'
+                    el.style.background = state ? theme.color.primary.alpha(0.5).hex() : ''
                 }
             }
 
@@ -50,7 +46,7 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                     key={item.id}
                     label={(
                         <Block flex={1}>
-                            {!item.children && index === 0 && (
+                            {/* {!item.children && index === 0 && (
                                 <div
                                     id={`split-b-${item.id}`}
                                     style={{
@@ -78,7 +74,7 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                                         }
                                     }}
                                 />
-                            )}
+                            )} */}
                             <Text
                                 lineHeight={1}
                                 size={2}
@@ -91,16 +87,20 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                                     e.stopPropagation()
                                     tools.captured = item
                                 }}
-                                onDragOver={(e) => {
+                                onDragOver={(e: any) => {
                                     e.stopPropagation()
                                     e.preventDefault()
                                     tools.target = item
+                                    e.target.style.backgroundColor = theme.color.primary.alpha(0.5).hex()
                                 }}
-                                onDragLeave={(e) => {
+                                onDragLeave={(e: any) => {
                                     e.stopPropagation()
+                                    e.target.style.background = ''
+
                                 }}
-                                onDrop={(e) => {
+                                onDrop={(e: any) => {
                                     e.stopPropagation()
+                                    e.target.style.background = ''
                                     tools.move()
                                 }}
                                 onClick={(e) => {
@@ -112,12 +112,14 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                                     }
                                 }}
                             />
-                            {!item.children && (
+                            {(!item.children || item.children.length === 0) && (
                                 <div
                                     id={`split-a-${item.id}`}
                                     style={{
                                         width: '100%',
                                         height: '8px',
+                                        borderTopLeftRadius: '4px',
+                                        borderBottomLeftRadius: '4px',
                                         marginTop: '-4px',
                                         marginBottom: '-4px',
                                     }}
