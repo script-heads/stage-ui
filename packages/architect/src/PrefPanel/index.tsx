@@ -117,18 +117,34 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
                     decoration="color"
                     defaultValue="props"
                     items={[
-                        { content: 'Props', value: 'props' },
-                        { content: 'Actions', value: 'actions', disabled: true }
+                        { 
+                            content: (<><Icon mr={'0.25rem'} type={t => t.outline.cube}/>Design</>), 
+                            value: 'props' },
+                        { 
+                            content: (<><Icon mr={'0.25rem'} type={t => t.outline.link}/>Logics</>), 
+                            value: 'actions', 
+                            disabled: true 
+                        }
                     ]}
                 />
-                <Icon
-                    mr="1rem"
-                    onClick={() => {
-                        tools.remove()
-                    }}
-                    type={t => t.outline.trash}
-                    color={c => tools.focused ? c.accent.red.hex() : c.lightest.hex()}
-                />
+                <Block>
+                    <Icon
+                        mr="1rem"
+                        onClick={() => {
+                            tools.duplicate()
+                        }}
+                        type={t => t.outline.copy}
+                        color={c => tools.focused ? c.onSurface.hex() : c.lightest.hex()}
+                    />
+                    <Icon
+                        mr="1rem"
+                        onClick={() => {
+                            tools.remove()
+                        }}
+                        type={t => t.outline.trash2}
+                        color={c => tools.focused ? c.accent.red.hex() : c.lightest.hex()}
+                    />
+                </Block>
             </Flexbox>
             <Divider w="unset" />
             <ScrollView size="xsmall" css={styles.scrollView}>

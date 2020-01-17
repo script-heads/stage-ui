@@ -25,6 +25,7 @@ export interface ArchitectTools {
     move: () => void
     update: () => void
     remove: () => void
+    duplicate:() => void
     undo: () => void
     redo: () => void
 

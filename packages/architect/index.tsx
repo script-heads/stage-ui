@@ -189,6 +189,23 @@ class Architect extends React.Component {
                 this.tools.update()
             }
         },
+        duplicate: () => {
+            const parent = this.tools.focused?.parent
+            if (parent) {
+                for (let index in parent.children) {
+                    if (this.tools.focused && this.tools.focused?.id === parent.children[index].id) {
+                        parent?.children?.splice(parseInt(index) + 1, 0, {
+                            ...this.tools.focused,
+                            id: uuid(),
+                            $: {},
+                            children: this.tools.focused.children ? [] : undefined
+                        })
+                        this.tools.update()
+                        break
+                    }
+                }
+            }
+        },
         update: () => {
             this.forceUpdate()
             /**

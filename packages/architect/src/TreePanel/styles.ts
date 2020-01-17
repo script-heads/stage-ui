@@ -25,8 +25,15 @@ export default (theme: ThemeTypes.Index) => {
                     borderBottomLeftRadius: '1rem',
                     borderTopLeftRadius: '1rem',
                     borderRightColor: theme.color.primary.alpha(0).hex(),
+                    'span[id^=\'ctrl\']': {
+                        visibility: 'hidden'
+                    },
                     '&:hover': {
-                        background: theme.color.hard.alpha(.1).css()
+                        background: theme.color.hard.alpha(.1).css(),
+                        'span[id^=\'ctrl\']': {
+                            visibility: 'visible'
+                        }
+                        
                     }
                 },
                 selected && {
@@ -34,7 +41,7 @@ export default (theme: ThemeTypes.Index) => {
                     background: theme.color.primary.alpha(.1).css(),
                     '&:hover': {
                         background: theme.color.primary.alpha(.1).css()
-                    }
+                    },
                 }
         ]
         ),

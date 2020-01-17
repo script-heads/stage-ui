@@ -43,7 +43,34 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                                 lineHeight={1}
                                 size={2}
                                 weight={500}
-                                children={name}
+                                children={(
+                                    <Flexbox flex={1} alignItems="center" justifyContent="space-between">
+                                        <span>{name}</span>
+                                        <span id={`ctrl-${item.id}`}>
+                                            <Icon
+                                                pr={'0.25rem'}
+                                                type={t => t.outline.copy}
+                                                onClick={(e) => {
+                                                    e.preventDefault()
+                                                    e.stopPropagation()
+                                                    props.tools.focused = item
+                                                    props.tools.duplicate()
+                                                }}
+                                            />
+                                            <Icon
+                                                pr={'0.25rem'}
+                                                color={c => c.accent.red.hex()}
+                                                type={t => t.outline.trash2}
+                                                onClick={(e) => {
+                                                    e.preventDefault()
+                                                    e.stopPropagation()
+                                                    props.tools.focused = item
+                                                    props.tools.remove()
+                                                }}
+                                            />
+                                        </span>
+                                    </Flexbox>
+                                )}
                                 draggable
                                 flex={1}
                                 css={styles.item(isFocused)}
@@ -135,8 +162,14 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                     decoration="color"
                     defaultValue="layers"
                     items={[
-                        { content: 'Layers', value: 'layers' },
-                        { content: 'Pages', value: 'pages', disabled: true }
+                        { 
+                            content: (<><Icon mr={'0.25rem'} type={t => t.outline.layers}/>Layers</>),
+                            value: 'layers' },
+                        { 
+                            content: (<><Icon mr={'0.25rem'} type={t => t.outline.browser}/>Pages</>), 
+                            value: 'pages', 
+                            disabled: true 
+                        }
                     ]}
                 />
                 <Icon
