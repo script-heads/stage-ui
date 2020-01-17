@@ -1,5 +1,6 @@
 import { ArchitectTools } from '@flow-ui/architect/types'
-import { Block, Flexbox, TextField } from '@flow-ui/core'
+import { Block, Flexbox, Button, Paragraph } from '@flow-ui/core'
+import { ButtonGroup } from '@flow-ui/lab'
 
 type Props = {
     tools: ArchitectTools
@@ -17,8 +18,16 @@ const SizeConrols = (props: Props) => {
 
     return (
         <Block pb="0.5rem">
-            <Flexbox alignItems="center">
-                <TextField 
+            <Paragraph
+                size={4}
+                pb=".25rem"
+                pl=".25rem"
+                lineHeight="0.75rem"
+                color={c => c.light.hex()}
+                children="Flex"
+            />
+            <Flexbox flex={1}>
+                {/* <TextField 
                     placeholder="auto" 
                     label="Width"
                     defaultValue={props.tools.focused.props.w}
@@ -52,8 +61,34 @@ const SizeConrols = (props: Props) => {
                             props.tools.update()
                         }
                     }}
-                />
-                <TextField 
+                /> */}
+                <ButtonGroup flex={1}>
+                    {Array(11).fill(0).map((_, index) => {
+                        const focused = props.tools.focused
+                        return (
+                            <Button
+                                key={index}
+                                flex={1}
+                                size="xsmall"
+                                children={index ? index : '✕'}
+                                decoration={(focused && focused.props.flex === index)
+                                    ? 'filled'
+                                    : 'outline'}
+                                onClick={() => {
+                                    if (focused) {
+                                        if (index) {
+                                            focused.props.flex = index
+                                        } else {
+                                            delete focused.props.flex
+                                        }
+                                        props.tools.update()
+                                    }
+                                }}
+                            />
+                        )
+                    })}
+                </ButtonGroup>
+                {/* <TextField 
                     ml="1rem"
                     placeholder="auto" 
                     label="Flex"
@@ -70,7 +105,7 @@ const SizeConrols = (props: Props) => {
                             props.tools.update()
                         }
                     }}
-                />
+                /> */}
             </Flexbox>
         </Block>
     )
