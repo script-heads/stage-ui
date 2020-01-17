@@ -102,7 +102,7 @@ class Architect extends React.Component {
             /**
              * Object need for links
              */
-            const moveTool = {
+            const shared = {
                 captured: this.tools.captured,
                 target: this.tools.target
             }
@@ -114,39 +114,38 @@ class Architect extends React.Component {
                 if (!parent) {
                     return true
                 }
-                if (parent.id === moveTool.captured?.id) {
+                if (parent.id === shared.captured?.id) {
                     return false
                 }
                 return checkSelfDrop(parent.parent)                            
             }
-
-            if (moveTool.captured) {
-                if (moveTool.target) {
-                    /**
-                     * Do nothing is element dropped
-                     * on itself
-                     */
-                    if (moveTool.captured.id === moveTool.target.id) {
-                        return
-                    }
-                    if (!checkSelfDrop(moveTool.target.parent)) {
+            if (shared.captured) {
+                if (shared.target) {
+                    if (!checkSelfDrop(shared.target.parent)) {
                         return
                     }
                     /**
                      * If there is not children prop
                      * then we'll try push to parent of target
                      */
-                    if (!moveTool.target?.children) {
-                        if (moveTool.target?.parent) {
-                            moveTool.target = moveTool.target.parent
+                    if (!shared.target?.children) {
+                        if (shared.target?.parent) {
+                            shared.target = shared.target.parent
                         }
+                    }
+                    /**
+                     * Do nothing is element dropped
+                     * on itself
+                     */
+                    if (shared.captured.id === shared.target.id) {
+                        return
                     }
                 }
                 /**
                  * Select root as target if
                  * there is no target
                  */
-                const target = moveTool.target?.children || this.items
+                const target = shared.target?.children || this.items
 
                 /**
                  * Clone element and
@@ -154,14 +153,14 @@ class Architect extends React.Component {
                  */
                 if (this.tools.targetIndex !== undefined && this.tools.targetIndex >= 0) {
                     target.splice(this.tools.targetIndex, 0, {
-                        ...moveTool.captured, 
-                        parent: moveTool.target,
+                        ...shared.captured, 
+                        parent: shared.target,
                         $: {}
                     })
                 } else {
                     target.push({
-                        ...moveTool.captured, 
-                        parent: moveTool.target,
+                        ...shared.captured, 
+                        parent: shared.target,
                         $: {}
                     })
                 }
@@ -179,7 +178,7 @@ class Architect extends React.Component {
                  */
                 this.tools.target = null
                 this.tools.targetIndex = -1
-                moveTool.captured.$.dirty = true
+                shared.captured.$.dirty = true
                 this.clearDirtyRecords()
                 this.tools.update()
             }
