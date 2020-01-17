@@ -15,7 +15,31 @@ import FlexControls from './controls/flex'
 import createStyles from './styles'
 
 const data = require('@flow-ui/documaker/definitions/types')
-
+const hiddenProps = [
+    'form',
+    'formAction',
+    'formEncType',
+    'formMethod',
+    'formTarget',
+    'name',
+    'formNoValidate',
+    'alignContent',
+    'alignItems',
+    'flow',
+    'justifyContent',
+    'justifyItems',
+    'wrap',
+    'direction',
+    'overflow',
+    'list',
+    'autoComplete',
+    'rel',
+    'target',
+    'ping',
+    'media',
+    'hrefLang',
+    'href',
+]
 const PrefPanel = (props: { tools: ArchitectTools }) => {
     const theme = useTheme()
     const styles = createStyles(theme)
@@ -27,6 +51,9 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
 
     const findliteralProps = (children) => {
         for (const prop of children) {
+            if (hiddenProps.includes(prop.name)) {
+                continue
+            }
             if (prop.type === 'stringLiteral') {
                 if (!literalProps.find(item => item.name === prop.name)) {
                     literalProps.push(prop)
