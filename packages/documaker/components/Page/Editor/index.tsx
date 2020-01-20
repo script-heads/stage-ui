@@ -121,6 +121,7 @@ const Editor = (props: EditorProps) => {
                         borderRadius: 0,
                         borderWidth: '0px',
                         height: '100%',
+                        zIndex: 10,
                     }
                 ]}>
                 <Split direction={browser.width > window.breakpoints[1] ? 'row' : 'column'}>
