@@ -1,7 +1,7 @@
-import { ArchitectItem } from '@flow-ui/architect/types'
+import { ArchitectPage, ArchitectItem } from '@flow-ui/architect/types'
 import { uuid } from '.'
 
-const items: ArchitectItem[] = [
+const HelloWorldForm: ArchitectItem[] = [
     {
         $:{},
         id: uuid(),
@@ -151,4 +151,11 @@ const items: ArchitectItem[] = [
         ]
     }
 ]
-export default items
+
+const pages: ArchitectPage[] = [{
+    id: uuid(),
+    name: 'Hello world form',
+    items: HelloWorldForm
+}]
+
+export default pages[0].items

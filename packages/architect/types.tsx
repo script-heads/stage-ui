@@ -1,4 +1,9 @@
-import { CSSObject } from '@emotion/core'
+
+export type ArchitectPage = {
+    id: string
+    name: string
+    items: ArchitectItem[]
+}
 
 export type ArchitectItem = {
     id: string
