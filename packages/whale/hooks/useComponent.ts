@@ -7,7 +7,7 @@ import attributeProps from '../utils/attributeProps'
 const useComponent = <S>(options: {
         props, 
         styles: Types.ComponentStyles<S> | Types.FunctionalComponentStyles<S>, 
-        name?: keyof Types.Overrides,
+        name?: string,
         mouseFocus?: boolean,
         disableDecoration?: boolean
     }): { styles: Types.FlowStyles<S>, attributes } => {
