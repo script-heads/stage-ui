@@ -1,7 +1,7 @@
 {
   "name": "@flow-ui/core",
   "author": "ABR Tech",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "license": "MIT",
   "scripts": {
     "type-check": "tsc --noEmit",
@@ -15,7 +15,8 @@
     "chroma-js": "^2.1.0",
     "emotion-theming": "^10.0.19",
     "imask": "^5.2.1",
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "@flow-ui/whale": "^0.1.1"
   },
   "devDependencies": {
     "@types/chroma-js": "^1.4.3",
@@ -29,7 +30,6 @@
     "@babel/preset-react": "^7.7.4",
     "@babel/preset-typescript": "^7.7.4",
     "@emotion/babel-preset-css-prop": "^10.0.23",
-    "@flow-ui/whale": "0.1.0",
     "babel-loader": "^8.0.6",
     "csstype": "^2.6.8",
     "tslint": "^5.20.1",
