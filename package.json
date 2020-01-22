@@ -15,6 +15,7 @@
     "gen:createTypes": "cd ./packages/documaker && typedoc -mode file --json ./definitions/original.json ../docs/pages",
     "gen:convertTypes": "cd ./packages/documaker && node ./bin/convertTypes.js",
     "gen:generateTypes": "cd ./packages/documaker && node ./bin/generateTypes.js",
+    "pub:whale": "git pull && cd ./packages/whale && npm version patch && yarn build && cd ../../build/whale && npm publish && cd .. && rm -rf ./whale && cd ../.. && yarn gitpush",
     "pub:core": "git pull && cd ./packages/core && npm version patch && yarn build && cd ../../build/core && npm publish && cd .. && rm -rf ./core && cd ../.. && yarn gitpush",
     "pub:lab": "git pull && cd ./packages/lab && npm version patch && yarn build && cd ../../build/lab && npm publish && cd .. && rm -rf ./lab && cd ../.. && yarn gitpush",
     "gitpush": "git commit . -m 'Update version' && git push",
