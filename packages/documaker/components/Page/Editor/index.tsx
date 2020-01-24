@@ -1,12 +1,11 @@
-import React, { useEffect, useState, Fragment } from 'react'
-import { Block, useTheme, Flexbox, Text, Icon } from '@flow-ui/core'
+import { Block, Flexbox, Icon, Text, useBrowser, useTheme } from '@flow-ui/core'
+import { PageType } from '@flow-ui/documaker/core'
+import monaco from '@flow-ui/documaker/monaco'
 import { Split } from '@flow-ui/lab'
 import chroma from 'chroma-js'
-import monaco from '../../../monaco'
-import { PageType } from '../../../core'
-import Preview from './Preview'
+import React, { Fragment, useEffect, useState } from 'react'
 import ErrorBoundary from './ErrorBoundary'
-import { useBrowser } from '@flow-ui/core'
+import Preview from './Preview'
 
 interface EditorProps {
     cases: Exclude<PageType['cases'],undefined>
