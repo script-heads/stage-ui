@@ -28,8 +28,11 @@ const merger = (item) => {
         item.type.reference = find(item.type.id)
     }
     if (Array.isArray(item.extendedTypes)) {
-        item.extendedTypes.map(item => {
-            if (item.id) item.reference = find(item.id)
+        item.extendedTypes = item.extendedTypes.filter(item => {
+            if (item.id) {
+                item.reference = find(item.id)
+            }
+            return !!item.id
         })
     }
     if (item.children) {
@@ -52,7 +55,8 @@ for (const namespace of doc.children) {
                 let name = item.name;
                 let comment = "";
                 let weight = 99999;
-                const children = item.children.filter(item => !item.inheritedFrom)
+                
+                const children = (item.children || []).filter(item => !item.inheritedFrom)
                 let extendedTypes = []
 
                 if (item.comment) {
@@ -175,16 +179,17 @@ for (const namespace of doc.children) {
                 })
 
                 if (item.extendedTypes) {
+
                     item.extendedTypes.map(extendedType => {
-                        namespace.name === 'DividerTypes' && console.log(extendedType.name);
+
                         const ref = extendedType.reference;
                         if (ref) {
                             extendedTypes.push(convertType(ref))
                         } else {
+                            console.log(extendedType)
                             console.warn("Unexpected extendedType " + namespace.name + " reference: " + extendedType.name)
                         }
                     })
-                    namespace.name === 'DividerTypes' && console.log('next');
                 }
 
                 return { 
