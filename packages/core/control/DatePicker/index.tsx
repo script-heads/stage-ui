@@ -147,6 +147,7 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
                 )}
             />
             <Drop
+                visibility={isActive ? 'visible' : 'hidden'}
                 distance={9}
                 align="bottom"
                 justify="start"
