@@ -74,12 +74,16 @@ const Interface = (props: { data: TypeInterface, separatedTypes?: string[] }) =>
 const Type = (props: { type: TypeInterfaceChild, last: boolean }) => {
     const { type, last } = props
 
-    let rightSide: JSX.Element | JSX.Element[] = (
+    const LightText = (props: { children: string }) => (
         <Text
             size={2}
             color={c => c.hard.css()}
-            children="Not documented yet"
+            children={props.children}
         />
+    )
+
+    let rightSide: JSX.Element | JSX.Element[] = (
+        <LightText>Not documented yet</LightText>
     )
 
     if (Array.isArray(type.values)) {
@@ -104,21 +108,15 @@ const Type = (props: { type: TypeInterfaceChild, last: boolean }) => {
                     if (signature.name === '__call') {
                         rightSide = (
                             <span>
-                                ({signature.parameters?.map((param, index) =>
-                                    <Fragment key={param.id}>
-                                        <Text
-                                            h="fit-content"
-                                            size={2}
-                                            p=".125rem 0.25rem"
-                                            mx=".125rem"
-                                            mb=".25rem"
-                                            backgroundColor={c => c.lightest.css()}
-                                            css={{ borderRadius: '.25rem' }}
-                                            children={param.name}
-                                        />
-                                        {signature.parameters.length - 1 > index ? ',' : ''}
-                                    </Fragment>
-                                )}) => <Text
+                                <LightText children="("/>
+                                {signature.parameters?.map((param, index) =>
+                                    <LightText
+                                        key={param.id}
+                                        children={`${param.name}${signature.parameters.length - 1 > index ? ',' : ''}`}
+                                    />
+                                )}
+                                <LightText children=") => "/>
+                                <Text
                                     h="fit-content"
                                     size={2}
                                     p=".125rem 0.25rem"
