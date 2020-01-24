@@ -28,7 +28,6 @@ function generateTypes(package, replaces = []) {
             if (replaces.length > 0) {
                 let content = fs.readFileSync(dstType, { encoding: 'utf-8'})
                 for (const replace of replaces) {
-                    console.log(`Replacing ${replace[0]}...`)
                     content = content.replace(new RegExp(replace[0], 'g'), replace[1])
                 }
                 fs.writeFileSync(dstType, content)
@@ -45,7 +44,7 @@ function generateTypes(package, replaces = []) {
                 if (running) {
                     clearTimeout(running);
                 }
-                running = setTimeout(onComplete, 3000)
+                running = setTimeout(onComplete, 5000)
 
                 if (params.currentModuleId === 'index') {
                     return `@flow-ui/${package}`

@@ -7,7 +7,7 @@ declare module 'misc/hooks/useContainer' {
 
 }
 declare module 'content/Divider/types' {
-	import Shared from '@flow-ui/core/types'; namespace DividerTypes {
+	import Shared from 'types'; namespace DividerTypes {
 	    interface Props extends Shared.AllProps {
 	        vertical?: boolean;
 	        dash?: number;
@@ -22,7 +22,7 @@ declare module 'content/Divider/types' {
 
 }
 declare module 'content/Icon/types' {
-	import Shared from '@flow-ui/core/types';
+	import Shared from 'types';
 	import CSS from 'csstype'; namespace IconTypes {
 	    /**
 	     * TODO: circle и oval добавляют только padding
@@ -46,7 +46,7 @@ declare module 'content/Icon/types' {
 }
 declare module 'content/Spinner/types' {
 	/// <reference types="react" />
-	import Shared from '@flow-ui/core/types'; namespace SpinnerTypes {
+	import Shared from 'types'; namespace SpinnerTypes {
 	    interface Props extends Shared.AllProps {
 	        color?: Shared.ColorProp;
 	        children?: React.ReactElement;
@@ -65,7 +65,7 @@ declare module 'content/Spinner/types' {
 }
 declare module 'control/Button/types' {
 	/// <reference types="react" />
-	import Shared from '@flow-ui/core/types'; namespace ButtonTypes {
+	import Shared from 'types'; namespace ButtonTypes {
 	    interface Props extends Shared.AllProps {
 	        autoFocus?: boolean;
 	        disabled?: boolean;
@@ -104,7 +104,7 @@ declare module 'control/Button/types' {
 }
 declare module 'misc/hocs/Check/types' {
 	/// <reference types="react" />
-	import Shared from '@flow-ui/core/types'; namespace CheckTypes {
+	import Shared from 'types'; namespace CheckTypes {
 	    type CheckType = 'checkbox' | 'radio' | 'switch';
 	    interface Props extends Shared.AllProps {
 	        label?: string;
@@ -161,7 +161,7 @@ declare module 'control/Checkbox/types' {
 }
 declare module 'misc/hocs/Field/types' {
 	/// <reference types="react" />
-	import Shared from '@flow-ui/core/types'; namespace FieldTypes {
+	import Shared from 'types'; namespace FieldTypes {
 	    interface Props extends Shared.AllProps {
 	        label?: React.ReactNode;
 	        hint?: React.ReactNode;
@@ -214,7 +214,7 @@ declare module 'misc/hocs/Field/types' {
 declare module 'control/DatePicker/types' {
 	import { Moment } from 'moment';
 	import { CSSProperties } from 'react';
-	import Shared from '@flow-ui/core/types';
+	import Shared from 'types';
 	import FieldTypes from 'misc/hocs/Field/types'; namespace DatePickerTypes {
 	    type GridType = 'year' | 'month' | 'day';
 	    type Locale = 'en' | 'ru' | 'it' | 'fr' | 'de';
@@ -335,7 +335,7 @@ declare module 'control/DatePicker/types' {
 }
 declare module 'control/Menu/types' {
 	/// <reference types="react" />
-	import Shared from '@flow-ui/core/types'; namespace MenuTypes {
+	import Shared from 'types'; namespace MenuTypes {
 	    type Value = string | number;
 	    interface Props extends Shared.AllProps {
 	        defaultValue?: Value;
@@ -573,7 +573,7 @@ declare module 'control/TextField/types' {
 
 }
 declare module 'data/Meter/types' {
-	import Shared from '@flow-ui/core/types'; namespace MeterTypes {
+	import Shared from 'types'; namespace MeterTypes {
 	    type MeterType = 'line' | 'circle';
 	    type MeterDecoration = 'filled' | 'outline';
 	    type MeterShape = 'square' | 'round';
@@ -610,7 +610,7 @@ declare module 'data/Meter/types' {
 }
 declare module 'data/Table/types' {
 	/// <reference types="react" />
-	import Shared from '@flow-ui/core/types'; namespace TableTypes {
+	import Shared from 'types'; namespace TableTypes {
 	    interface TableColumn {
 	        title?: string;
 	        dataIndex: string;
@@ -735,7 +735,7 @@ declare module 'data/Table/types' {
 }
 declare module 'layout/Badge/types' {
 	/// <reference types="react" />
-	import Shared from '@flow-ui/core/types'; namespace BadgeTypes {
+	import Shared from 'types'; namespace BadgeTypes {
 	    interface Props extends Shared.AllProps {
 	        content: React.ReactNode;
 	        align?: 'top' | 'bottom' | 'left' | 'right' | 'top-right' | 'bottom-right' | 'top-left' | 'bottom-left';
@@ -753,7 +753,7 @@ declare module 'layout/Badge/types' {
 }
 declare module 'layout/Block/types' {
 	/// <reference types="react" />
-	import Shared from '@flow-ui/core/types';
+	import Shared from 'types';
 	import CSS from 'csstype'; namespace BlockTypes {
 	    interface Props extends Shared.AllProps {
 	        tag?: 'div' | 'span' | 'header' | 'footer' | 'article' | 'section' | 'aside' | 'main';
@@ -776,7 +776,7 @@ declare module 'layout/Block/types' {
 }
 declare module 'layout/Drop/types' {
 	/// <reference types="react" />
-	import Shared from '@flow-ui/core/types'; namespace DropTypes {
+	import Shared from 'types'; namespace DropTypes {
 	    interface TargetCoordinates {
 	        top: number;
 	        bottom: number;
@@ -806,7 +806,7 @@ declare module 'layout/Drop/types' {
 }
 declare module 'layout/Flexbox/types' {
 	/// <reference types="react" />
-	import Shared from '@flow-ui/core/types';
+	import Shared from 'types';
 	import CSS from 'csstype'; namespace FlexboxTypes {
 	    interface Props extends Shared.AllProps {
 	        column?: boolean;
@@ -829,7 +829,7 @@ declare module 'layout/Flexbox/types' {
 }
 declare module 'layout/Grid/types' {
 	/// <reference types="react" />
-	import Shared from '@flow-ui/core/types';
+	import Shared from 'types';
 	import CSS from 'csstype'; namespace GridTypes {
 	    interface Props extends Shared.AllProps {
 	        inline?: boolean;
@@ -857,7 +857,7 @@ declare module 'layout/Grid/types' {
 }
 declare module 'layout/Modal/types' {
 	/// <reference types="react" />
-	import Shared from '@flow-ui/core/types'; namespace ModalTypes {
+	import Shared from 'types'; namespace ModalTypes {
 	    interface Ref {
 	        open: (customContent?: React.ReactElement | null) => void;
 	        close: (didClose?: () => void) => void;
@@ -972,7 +972,7 @@ declare module 'layout/Notification/types' {
 }
 declare module 'layout/Popover/types' {
 	/// <reference types="react" />
-	import Shared from '@flow-ui/core/types';
+	import Shared from 'types';
 	import CSS from 'csstype'; namespace PopoverTypes {
 	    interface Props extends Shared.AllProps {
 	        align?: 'top' | 'bottom' | 'left' | 'right' | 'none';
@@ -994,7 +994,7 @@ declare module 'layout/Popover/types' {
 }
 declare module 'layout/Tree/types' {
 	/// <reference types="react" />
-	import Shared from '@flow-ui/core/types'; namespace TreeTypes {
+	import Shared from 'types'; namespace TreeTypes {
 	    interface Props extends Shared.AllProps {
 	        label?: React.ReactNode | string | ((isOpen: boolean) => React.ReactNode);
 	        children?: React.ReactNode;
@@ -1716,7 +1716,7 @@ declare module 'types' {
 	    type EventProp<T> = (event: T) => void;
 	    type FunctionalProp<T, R> = ((lib: T) => R) | R;
 	    type ColorProp = FunctionalProp<ThemeTypes.Colors<chroma.Color>, CSS.Properties['color']>;
-	    type IconProp = FunctionalProp<IconsetTypes.Index, React.ReactElement>;
+	    type IconProp = FunctionalProp<IconsetTypes.Index, string>;
 	    type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 	    type EmotionStyles = Array<Interpolation>;
 	    type Variants<T> = Partial<{
@@ -2108,7 +2108,7 @@ declare module 'misc/utils/callProp' {
 
 }
 declare module 'misc/hooks/useStyleProps' {
-	import Shared from '@flow-ui/core/types';
+	import Shared from 'types';
 	import CSS from 'csstype';
 	interface Props extends Shared.SelfProps, Shared.FlowProps {
 	    [key: string]: any;
@@ -2171,7 +2171,7 @@ declare module 'misc/hooks/useStyleProps' {
 
 }
 declare module 'content/Divider/styles' {
-	import Shared from '@flow-ui/core/types';
+	import Shared from 'types';
 	import Types from 'content/Divider/types'; const dividerStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
 	export default dividerStyles;
 
@@ -2224,7 +2224,7 @@ declare module 'content/Spinner' {
 }
 declare module 'misc/hocs/Typography/types' {
 	/// <reference types="react" />
-	import Shared from '@flow-ui/core/types';
+	import Shared from 'types';
 	import CSS from 'csstype';
 	import ThemeTypes from 'misc/themes/types'; namespace TypographyTypes {
 	    interface AnchorProps extends Props {
@@ -2329,7 +2329,7 @@ declare module 'misc/hocs/Check' {
 
 }
 declare module 'misc/hocs/Check/styles' {
-	import Shared from '@flow-ui/core/types';
+	import Shared from 'types';
 	import Types from 'misc/hocs/Check/types';
 	import ThemeTypes from 'misc/themes/types'; const checkStyles: (props: Types.Props, theme: ThemeTypes.Index) => Shared.ComponentStyles<Types.Overrides>;
 	export default checkStyles;
@@ -2719,7 +2719,7 @@ declare module 'misc/themes' {
 declare module 'layout/Viewport/types' {
 	/// <reference types="react" />
 	import ThemeType from 'misc/themes/types';
-	import Shared from '@flow-ui/core/types';
+	import Shared from 'types';
 	import ThemeTypes from 'misc/themes/types'; namespace ViewportTypes {
 	    interface Themes {
 	        light: ThemeTypes.Index;
@@ -2918,7 +2918,7 @@ declare module '@flow-ui/core' {
 	 * Deprecated
 	 */
 	export { H1, H2, H3, H4, D1, D2, D3, D4, T1, T2, T3, T4, C1, C2, C3, C4, A } from 'misc/deprecated';
-	export function transformImports(importName: any, matches: any): "@flow-ui/core/content/Divider" | "@flow-ui/core/content/Icon" | "@flow-ui/core/content/Spinner" | "@flow-ui/core/content/Header" | "@flow-ui/core/content/Display" | "@flow-ui/core/content/Paragraph" | "@flow-ui/core/content/Text" | "@flow-ui/core/content/Anchor" | "@flow-ui/core/control/Button" | "@flow-ui/core/control/Checkbox" | "@flow-ui/core/control/DatePicker" | "@flow-ui/core/control/Menu" | "@flow-ui/core/control/Radio" | "@flow-ui/core/control/Range" | "@flow-ui/core/control/Select" | "@flow-ui/core/control/Switch" | "@flow-ui/core/control/TextField" | "@flow-ui/core/data/Meter" | "@flow-ui/core/data/Table" | "@flow-ui/core/layout/Badge" | "@flow-ui/core/layout/Block" | "@flow-ui/core/layout/Drop" | "@flow-ui/core/layout/Flexbox" | "@flow-ui/core/layout/Grid" | "@flow-ui/core/layout/Modal" | "@flow-ui/core/layout/Notification" | "@flow-ui/core/layout/Popover" | "@flow-ui/core/layout/Tree" | "@flow-ui/core/layout/Viewport" | "@flow-ui/core/misc/utils/dialog" | "@flow-ui/core/misc/utils/notify" | "@flow-ui/core/misc/hooks/useBrowser" | "/";
+	export function transformImports(importName: any, matches: any): "content/Divider" | "content/Icon" | "content/Spinner" | "content/Header" | "content/Display" | "content/Paragraph" | "content/Text" | "content/Anchor" | "control/Button" | "control/Checkbox" | "control/DatePicker" | "control/Menu" | "control/Radio" | "control/Range" | "control/Select" | "control/Switch" | "control/TextField" | "data/Meter" | "data/Table" | "layout/Badge" | "layout/Block" | "layout/Drop" | "layout/Flexbox" | "layout/Grid" | "layout/Modal" | "layout/Notification" | "layout/Popover" | "layout/Tree" | "layout/Viewport" | "misc/utils/dialog" | "misc/utils/notify" | "misc/hooks/useBrowser" | "/";
 
 }
 declare module 'misc/hooks/useSharedObject' {
