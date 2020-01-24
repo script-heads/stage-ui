@@ -61,6 +61,7 @@ function generateTypes(package, replaces = []) {
 }
 
 generateTypes('core', [
+    ['@flow-ui/core/', ''],
     ['FunctionalProp<IconsetTypes.Index, React.ReactElement>', 'FunctionalProp<IconsetTypes.Index, string>']
 ])
 generateTypes('lab', [
