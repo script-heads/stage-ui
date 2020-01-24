@@ -1,916 +1,9 @@
-declare module 'misc/utils/createID' {
-	 const _default: () => string;
+declare module 'misc/hooks/useContainer' {
+	 const _default: (props: any, mouseFocus?: boolean | undefined, disableDecoration?: boolean | undefined) => {
+	    attributes: any;
+	    focus: boolean;
+	};
 	export default _default;
-
-}
-declare module 'misc/hooks/useSharedObject' {
-	 const useMemoEffect: <T>(createObject: () => T) => T | null;
-	export default useMemoEffect;
-
-}
-declare module 'misc/utils/callProp' {
-	 const _default: <P, L>(prop: P, lib: L) => Exclude<P, Function>;
-	export default _default;
-
-}
-declare module 'misc/icons/types' {
-	 namespace IconsetTypes {
-	    type Filled = {
-	        activity: React.ReactElement;
-	        alertCircle: React.ReactElement;
-	        alertTriangle: React.ReactElement;
-	        archive: React.ReactElement;
-	        arrowBack: React.ReactElement;
-	        arrowCircleDown: React.ReactElement;
-	        arrowCircleLeft: React.ReactElement;
-	        arrowCircleRight: React.ReactElement;
-	        arrowCircleUp: React.ReactElement;
-	        arrowDown: React.ReactElement;
-	        arrowDownward: React.ReactElement;
-	        arrowForward: React.ReactElement;
-	        arrowIosBack: React.ReactElement;
-	        arrowIosDownward: React.ReactElement;
-	        arrowIosForward: React.ReactElement;
-	        arrowIosUpward: React.ReactElement;
-	        arrowLeft: React.ReactElement;
-	        arrowRight: React.ReactElement;
-	        arrowUp: React.ReactElement;
-	        arrowUpward: React.ReactElement;
-	        arrowheadDown: React.ReactElement;
-	        arrowheadLeft: React.ReactElement;
-	        arrowheadRight: React.ReactElement;
-	        arrowheadUp: React.ReactElement;
-	        at: React.ReactElement;
-	        attach2: React.ReactElement;
-	        attach: React.ReactElement;
-	        award: React.ReactElement;
-	        backspace: React.ReactElement;
-	        barChart2: React.ReactElement;
-	        barChart: React.ReactElement;
-	        battery: React.ReactElement;
-	        behance: React.ReactElement;
-	        bellOff: React.ReactElement;
-	        bell: React.ReactElement;
-	        bluetooth: React.ReactElement;
-	        bookOpen: React.ReactElement;
-	        book: React.ReactElement;
-	        bookmark: React.ReactElement;
-	        briefcase: React.ReactElement;
-	        browser: React.ReactElement;
-	        brush: React.ReactElement;
-	        bulb: React.ReactElement;
-	        calendar: React.ReactElement;
-	        camera: React.ReactElement;
-	        car: React.ReactElement;
-	        cast: React.ReactElement;
-	        charging: React.ReactElement;
-	        checkmarkCircle2: React.ReactElement;
-	        checkmarkCircle: React.ReactElement;
-	        checkmarkSquare2: React.ReactElement;
-	        checkmarkSquare: React.ReactElement;
-	        checkmark: React.ReactElement;
-	        chevronDown: React.ReactElement;
-	        chevronLeft: React.ReactElement;
-	        chevronRight: React.ReactElement;
-	        chevronUp: React.ReactElement;
-	        clipboard: React.ReactElement;
-	        clock: React.ReactElement;
-	        closeCircle: React.ReactElement;
-	        closeSquare: React.ReactElement;
-	        close: React.ReactElement;
-	        cloudDownload: React.ReactElement;
-	        cloudUpload: React.ReactElement;
-	        codeDownload: React.ReactElement;
-	        code: React.ReactElement;
-	        collapse: React.ReactElement;
-	        colorPalette: React.ReactElement;
-	        colorPicker: React.ReactElement;
-	        compass: React.ReactElement;
-	        copy: React.ReactElement;
-	        cornerDownLeft: React.ReactElement;
-	        cornerDownRight: React.ReactElement;
-	        cornerLeftDown: React.ReactElement;
-	        cornerLeftUp: React.ReactElement;
-	        cornerRightDown: React.ReactElement;
-	        cornerRightUp: React.ReactElement;
-	        cornerUpLeft: React.ReactElement;
-	        cornerUpRight: React.ReactElement;
-	        creditCard: React.ReactElement;
-	        crop: React.ReactElement;
-	        cube: React.ReactElement;
-	        diagonalArrowLeftDown: React.ReactElement;
-	        diagonalArrowLeftUp: React.ReactElement;
-	        diagonalArrowRightDown: React.ReactElement;
-	        diagonalArrowRightUp: React.ReactElement;
-	        doneAll: React.ReactElement;
-	        download: React.ReactElement;
-	        dropletOff: React.ReactElement;
-	        droplet: React.ReactElement;
-	        edit2: React.ReactElement;
-	        edit: React.ReactElement;
-	        email: React.ReactElement;
-	        expand: React.ReactElement;
-	        externalLink: React.ReactElement;
-	        eyeOff2: React.ReactElement;
-	        eyeOff: React.ReactElement;
-	        eye: React.ReactElement;
-	        facebook: React.ReactElement;
-	        fileAdd: React.ReactElement;
-	        fileRemove: React.ReactElement;
-	        fileText: React.ReactElement;
-	        file: React.ReactElement;
-	        film: React.ReactElement;
-	        flag: React.ReactElement;
-	        flashOff: React.ReactElement;
-	        flash: React.ReactElement;
-	        flip2: React.ReactElement;
-	        flip: React.ReactElement;
-	        folderAdd: React.ReactElement;
-	        folderRemove: React.ReactElement;
-	        folder: React.ReactElement;
-	        funnel: React.ReactElement;
-	        gift: React.ReactElement;
-	        github: React.ReactElement;
-	        globe2: React.ReactElement;
-	        globe3: React.ReactElement;
-	        globe: React.ReactElement;
-	        google: React.ReactElement;
-	        grid: React.ReactElement;
-	        hardDrive: React.ReactElement;
-	        hash: React.ReactElement;
-	        headphones: React.ReactElement;
-	        heart: React.ReactElement;
-	        home: React.ReactElement;
-	        image2: React.ReactElement;
-	        image: React.ReactElement;
-	        inbox: React.ReactElement;
-	        info: React.ReactElement;
-	        keypad: React.ReactElement;
-	        layers: React.ReactElement;
-	        layout: React.ReactElement;
-	        link2: React.ReactElement;
-	        link: React.ReactElement;
-	        linkedin: React.ReactElement;
-	        list: React.ReactElement;
-	        lock: React.ReactElement;
-	        logIn: React.ReactElement;
-	        logOut: React.ReactElement;
-	        map: React.ReactElement;
-	        maximize: React.ReactElement;
-	        menu2: React.ReactElement;
-	        menuArrow: React.ReactElement;
-	        menu: React.ReactElement;
-	        messageCircle: React.ReactElement;
-	        messageSquare: React.ReactElement;
-	        micOff: React.ReactElement;
-	        mic: React.ReactElement;
-	        minimize: React.ReactElement;
-	        minusCircle: React.ReactElement;
-	        minusSquare: React.ReactElement;
-	        minus: React.ReactElement;
-	        monitor: React.ReactElement;
-	        moon: React.ReactElement;
-	        moreHorizontal: React.ReactElement;
-	        moreVertical: React.ReactElement;
-	        move: React.ReactElement;
-	        music: React.ReactElement;
-	        navigation2: React.ReactElement;
-	        navigation: React.ReactElement;
-	        npm: React.ReactElement;
-	        options2: React.ReactElement;
-	        options: React.ReactElement;
-	        pantone: React.ReactElement;
-	        paperPlane: React.ReactElement;
-	        pauseCircle: React.ReactElement;
-	        people: React.ReactElement;
-	        percent: React.ReactElement;
-	        personAdd: React.ReactElement;
-	        personDelete: React.ReactElement;
-	        personDone: React.ReactElement;
-	        personRemove: React.ReactElement;
-	        person: React.ReactElement;
-	        phoneCall: React.ReactElement;
-	        phoneMissed: React.ReactElement;
-	        phoneOff: React.ReactElement;
-	        phone: React.ReactElement;
-	        pieChart2: React.ReactElement;
-	        pieChart: React.ReactElement;
-	        pin: React.ReactElement;
-	        playCircle: React.ReactElement;
-	        plusCircle: React.ReactElement;
-	        plusSquare: React.ReactElement;
-	        plus: React.ReactElement;
-	        power: React.ReactElement;
-	        pricetags: React.ReactElement;
-	        printer: React.ReactElement;
-	        questionMarkCircle: React.ReactElement;
-	        questionMark: React.ReactElement;
-	        radioButtonOff: React.ReactElement;
-	        radioButtonOn: React.ReactElement;
-	        radio: React.ReactElement;
-	        recording: React.ReactElement;
-	        refresh: React.ReactElement;
-	        repeat: React.ReactElement;
-	        rewindLeft: React.ReactElement;
-	        rewindRight: React.ReactElement;
-	        save: React.ReactElement;
-	        scissors: React.ReactElement;
-	        search: React.ReactElement;
-	        settings2: React.ReactElement;
-	        settings: React.ReactElement;
-	        shake: React.ReactElement;
-	        share: React.ReactElement;
-	        shieldOff: React.ReactElement;
-	        shield: React.ReactElement;
-	        shoppingBag: React.ReactElement;
-	        shoppingCart: React.ReactElement;
-	        shuffle2: React.ReactElement;
-	        shuffle: React.ReactElement;
-	        skipBack: React.ReactElement;
-	        skipForward: React.ReactElement;
-	        slash: React.ReactElement;
-	        smartphone: React.ReactElement;
-	        speaker: React.ReactElement;
-	        square: React.ReactElement;
-	        star: React.ReactElement;
-	        stopCircle: React.ReactElement;
-	        sun: React.ReactElement;
-	        swap: React.ReactElement;
-	        sync: React.ReactElement;
-	        text: React.ReactElement;
-	        thermometerMinus: React.ReactElement;
-	        thermometerPlus: React.ReactElement;
-	        thermometer: React.ReactElement;
-	        toggleLeft: React.ReactElement;
-	        toggleRight: React.ReactElement;
-	        trash2: React.ReactElement;
-	        trash: React.ReactElement;
-	        trendingDown: React.ReactElement;
-	        trendingUp: React.ReactElement;
-	        tv: React.ReactElement;
-	        twitter: React.ReactElement;
-	        umbrella: React.ReactElement;
-	        undo: React.ReactElement;
-	        unlock: React.ReactElement;
-	        upload: React.ReactElement;
-	        videoOff: React.ReactElement;
-	        video: React.ReactElement;
-	        volumeDown: React.ReactElement;
-	        volumeMute: React.ReactElement;
-	        volumeOff: React.ReactElement;
-	        volumeUp: React.ReactElement;
-	        wifiOff: React.ReactElement;
-	        wifi: React.ReactElement;
-	    };
-	    type Outline = {
-	        activity: React.ReactElement;
-	        alertCircle: React.ReactElement;
-	        alertTriangle: React.ReactElement;
-	        archive: React.ReactElement;
-	        arrowBack: React.ReactElement;
-	        arrowCircleDown: React.ReactElement;
-	        arrowCircleLeft: React.ReactElement;
-	        arrowCircleRight: React.ReactElement;
-	        arrowCircleUp: React.ReactElement;
-	        arrowDown: React.ReactElement;
-	        arrowDownward: React.ReactElement;
-	        arrowForward: React.ReactElement;
-	        arrowIosBack: React.ReactElement;
-	        arrowIosDownward: React.ReactElement;
-	        arrowIosForward: React.ReactElement;
-	        arrowIosUpward: React.ReactElement;
-	        arrowLeft: React.ReactElement;
-	        arrowRight: React.ReactElement;
-	        arrowUp: React.ReactElement;
-	        arrowUpward: React.ReactElement;
-	        arrowheadDown: React.ReactElement;
-	        arrowheadLeft: React.ReactElement;
-	        arrowheadRight: React.ReactElement;
-	        arrowheadUp: React.ReactElement;
-	        at: React.ReactElement;
-	        attach2: React.ReactElement;
-	        attach: React.ReactElement;
-	        award: React.ReactElement;
-	        backspace: React.ReactElement;
-	        barChart2: React.ReactElement;
-	        barChart: React.ReactElement;
-	        battery: React.ReactElement;
-	        behance: React.ReactElement;
-	        bellOff: React.ReactElement;
-	        bell: React.ReactElement;
-	        bluetooth: React.ReactElement;
-	        bookOpen: React.ReactElement;
-	        book: React.ReactElement;
-	        bookmark: React.ReactElement;
-	        briefcase: React.ReactElement;
-	        browser: React.ReactElement;
-	        brush: React.ReactElement;
-	        bulb: React.ReactElement;
-	        calendar: React.ReactElement;
-	        camera: React.ReactElement;
-	        car: React.ReactElement;
-	        cast: React.ReactElement;
-	        charging: React.ReactElement;
-	        checkmarkCircle2: React.ReactElement;
-	        checkmarkCircle: React.ReactElement;
-	        checkmark: React.ReactElement;
-	        checkmarkSquare2: React.ReactElement;
-	        checkmarkSquare: React.ReactElement;
-	        chevronDown: React.ReactElement;
-	        chevronLeft: React.ReactElement;
-	        chevronRight: React.ReactElement;
-	        chevronUp: React.ReactElement;
-	        clipboard: React.ReactElement;
-	        clock: React.ReactElement;
-	        closeCircle: React.ReactElement;
-	        close: React.ReactElement;
-	        closeSquare: React.ReactElement;
-	        cloudDownload: React.ReactElement;
-	        cloudUpload: React.ReactElement;
-	        codeDownload: React.ReactElement;
-	        code: React.ReactElement;
-	        collapse: React.ReactElement;
-	        colorPalette: React.ReactElement;
-	        colorPicker: React.ReactElement;
-	        compass: React.ReactElement;
-	        copy: React.ReactElement;
-	        cornerDownLeft: React.ReactElement;
-	        cornerDownRight: React.ReactElement;
-	        cornerLeftDown: React.ReactElement;
-	        cornerLeftUp: React.ReactElement;
-	        cornerRightDown: React.ReactElement;
-	        cornerRightUp: React.ReactElement;
-	        cornerUpLeft: React.ReactElement;
-	        cornerUpRight: React.ReactElement;
-	        creditCard: React.ReactElement;
-	        crop: React.ReactElement;
-	        cube: React.ReactElement;
-	        diagonalArrowLeftDown: React.ReactElement;
-	        diagonalArrowLeftUp: React.ReactElement;
-	        diagonalArrowRightDown: React.ReactElement;
-	        diagonalArrowRightUp: React.ReactElement;
-	        doneAll: React.ReactElement;
-	        download: React.ReactElement;
-	        dropletOff: React.ReactElement;
-	        droplet: React.ReactElement;
-	        edit2: React.ReactElement;
-	        edit: React.ReactElement;
-	        email: React.ReactElement;
-	        expand: React.ReactElement;
-	        externalLink: React.ReactElement;
-	        eyeOff2: React.ReactElement;
-	        eyeOff: React.ReactElement;
-	        eye: React.ReactElement;
-	        facebook: React.ReactElement;
-	        fileAdd: React.ReactElement;
-	        file: React.ReactElement;
-	        fileRemove: React.ReactElement;
-	        fileText: React.ReactElement;
-	        film: React.ReactElement;
-	        flag: React.ReactElement;
-	        flashOff: React.ReactElement;
-	        flash: React.ReactElement;
-	        flip2: React.ReactElement;
-	        flip: React.ReactElement;
-	        folderAdd: React.ReactElement;
-	        folder: React.ReactElement;
-	        folderRemove: React.ReactElement;
-	        funnel: React.ReactElement;
-	        gift: React.ReactElement;
-	        github: React.ReactElement;
-	        globe2: React.ReactElement;
-	        globe: React.ReactElement;
-	        google: React.ReactElement;
-	        grid: React.ReactElement;
-	        hardDrive: React.ReactElement;
-	        hash: React.ReactElement;
-	        headphones: React.ReactElement;
-	        heart: React.ReactElement;
-	        home: React.ReactElement;
-	        image: React.ReactElement;
-	        inbox: React.ReactElement;
-	        info: React.ReactElement;
-	        keypad: React.ReactElement;
-	        layers: React.ReactElement;
-	        layout: React.ReactElement;
-	        link2: React.ReactElement;
-	        link: React.ReactElement;
-	        linkedin: React.ReactElement;
-	        list: React.ReactElement;
-	        loader: React.ReactElement;
-	        lock: React.ReactElement;
-	        logIn: React.ReactElement;
-	        logOut: React.ReactElement;
-	        map: React.ReactElement;
-	        maximize: React.ReactElement;
-	        menu2: React.ReactElement;
-	        menuArrow: React.ReactElement;
-	        menu: React.ReactElement;
-	        messageCircle: React.ReactElement;
-	        messageSquare: React.ReactElement;
-	        micOff: React.ReactElement;
-	        mic: React.ReactElement;
-	        minimize: React.ReactElement;
-	        minusCircle: React.ReactElement;
-	        minus: React.ReactElement;
-	        minusSquare: React.ReactElement;
-	        monitor: React.ReactElement;
-	        moon: React.ReactElement;
-	        moreHorizontal: React.ReactElement;
-	        moreVertical: React.ReactElement;
-	        move: React.ReactElement;
-	        music: React.ReactElement;
-	        navigation2: React.ReactElement;
-	        navigation: React.ReactElement;
-	        npm: React.ReactElement;
-	        options2: React.ReactElement;
-	        options: React.ReactElement;
-	        pantone: React.ReactElement;
-	        paperPlane: React.ReactElement;
-	        pauseCircle: React.ReactElement;
-	        people: React.ReactElement;
-	        percent: React.ReactElement;
-	        personAdd: React.ReactElement;
-	        personDelete: React.ReactElement;
-	        personDone: React.ReactElement;
-	        person: React.ReactElement;
-	        personRemove: React.ReactElement;
-	        phoneCall: React.ReactElement;
-	        phoneMissed: React.ReactElement;
-	        phoneOff: React.ReactElement;
-	        phone: React.ReactElement;
-	        pieChart: React.ReactElement;
-	        pin: React.ReactElement;
-	        playCircle: React.ReactElement;
-	        plusCircle: React.ReactElement;
-	        plus: React.ReactElement;
-	        plusSquare: React.ReactElement;
-	        power: React.ReactElement;
-	        pricetags: React.ReactElement;
-	        printer: React.ReactElement;
-	        questionMarkCircle: React.ReactElement;
-	        questionMark: React.ReactElement;
-	        radioButtonOff: React.ReactElement;
-	        radioButtonOn: React.ReactElement;
-	        radio: React.ReactElement;
-	        recording: React.ReactElement;
-	        refresh: React.ReactElement;
-	        repeat: React.ReactElement;
-	        rewindLeft: React.ReactElement;
-	        rewindRight: React.ReactElement;
-	        save: React.ReactElement;
-	        scissors: React.ReactElement;
-	        search: React.ReactElement;
-	        settings2: React.ReactElement;
-	        settings: React.ReactElement;
-	        shake: React.ReactElement;
-	        share: React.ReactElement;
-	        shieldOff: React.ReactElement;
-	        shield: React.ReactElement;
-	        shoppingBag: React.ReactElement;
-	        shoppingCart: React.ReactElement;
-	        shuffle2: React.ReactElement;
-	        shuffle: React.ReactElement;
-	        skipBack: React.ReactElement;
-	        skipForward: React.ReactElement;
-	        slash: React.ReactElement;
-	        smartphone: React.ReactElement;
-	        speaker: React.ReactElement;
-	        square: React.ReactElement;
-	        star: React.ReactElement;
-	        stopCircle: React.ReactElement;
-	        sun: React.ReactElement;
-	        swap: React.ReactElement;
-	        sync: React.ReactElement;
-	        text: React.ReactElement;
-	        thermometerMinus: React.ReactElement;
-	        thermometer: React.ReactElement;
-	        thermometerPlus: React.ReactElement;
-	        toggleLeft: React.ReactElement;
-	        toggleRight: React.ReactElement;
-	        trash2: React.ReactElement;
-	        trash: React.ReactElement;
-	        trendingDown: React.ReactElement;
-	        trendingUp: React.ReactElement;
-	        tv: React.ReactElement;
-	        twitter: React.ReactElement;
-	        umbrella: React.ReactElement;
-	        undo: React.ReactElement;
-	        unlock: React.ReactElement;
-	        upload: React.ReactElement;
-	        videoOff: React.ReactElement;
-	        video: React.ReactElement;
-	        volumeDown: React.ReactElement;
-	        volumeMute: React.ReactElement;
-	        volumeOff: React.ReactElement;
-	        volumeUp: React.ReactElement;
-	        wifiOff: React.ReactElement;
-	        wifi: React.ReactElement;
-	    };
-	    interface Index {
-	        filled: Filled;
-	        outline: Outline;
-	    }
-	}
-	export default IconsetTypes;
-
-}
-declare module 'types' {
-	/// <reference types="react" />
-	import ThemeTypes from 'misc/themes/types';
-	import IconsetTypes from 'misc/icons/types';
-	import chroma from 'chroma-js';
-	import CSS from 'csstype';
-	import { Interpolation, SerializedStyles } from '@emotion/core'; module 'csstype' {
-	    interface Properties {
-	        display?: 'block' | 'inline' | 'inline-block' | 'inline-table' | 'list-item' | 'none' | 'run-in' | 'table' | 'table-caption' | 'table-cell' | 'table-column-group' | 'table-column' | 'table-footer-group' | 'table-header-group' | 'table-row' | 'table-row-group' | 'flex' | 'grid';
-	        overflow?: 'auto' | 'hidden' | 'scroll' | 'visible' | 'inherit';
-	        alignSelf?: 'baseline' | 'center' | 'end' | 'flex-end' | 'flex-start' | 'inherid' | 'initial' | 'left' | 'normal' | 'right' | 'safe' | 'safe-end' | 'safe-start' | 'start' | 'stretch' | 'unsafe' | 'unset';
-	        justifySelf?: 'baseline' | 'center' | 'end' | 'flex-end' | 'flex-start' | 'inherid' | 'initial' | 'left' | 'normal' | 'right' | 'safe' | 'safe-end' | 'safe-start' | 'start' | 'stretch' | 'unsafe' | 'unset';
-	    }
-	} namespace Shared {
-	    type EventProp<T> = (event: T) => void;
-	    type FunctionalProp<T, R> = ((lib: T) => R) | R;
-	    type ColorProp = FunctionalProp<ThemeTypes.Colors<chroma.Color>, CSS.Properties['color']>;
-	    type IconProp = FunctionalProp<IconsetTypes.Index, string>;
-	    type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
-	    type EmotionStyles = Array<Interpolation>;
-	    type Variants<T> = Partial<{
-	        [K in keyof T]: Partial<Record<Extract<T[K], string>, EmotionStyles>>;
-	    }>;
-	    type Variant<V> = (variants: Variants<V>) => EmotionStyles;
-	    type FlowStyle<V> = V extends Object ? (state: V) => SerializedStyles : SerializedStyles;
-	    type ComponentStyle<V> = V extends {} ? ((variant: Variant<V>) => EmotionStyles) : EmotionStyles;
-	    type FlowStyles<S> = {
-	        [O in keyof S]: FlowStyle<S[O]>;
-	    };
-	    type ComponentStyles<S> = {
-	        [O in keyof S]: ComponentStyle<S[O]>;
-	    };
-	    type FunctionalComponentStyles<S, P = {}> = ((props: P, theme: ThemeTypes.Index) => {
-	        [O in keyof S]: ComponentStyle<S[O]>;
-	    });
-	    type OverridesStyle<S> = Partial<{
-	        [O in keyof S]: ComponentStyle<S[O]>;
-	    }>;
-	    /**
-	     * Styles inside the component. Paddings, layout, border and color props
-	     * @name All
-	     * @weight 400
-	     */
-	    interface AllProps<S = {}> extends AttributeProps, EventProps, SelfProps, FlowProps {
-	        overrides?: ComponentStyles<S>;
-	    }
-	    /**
-	     * Styles inside the component. Paddings, layout, border and color props
-	     * @name Self
-	     * @weight 400
-	     */
-	    interface SelfProps extends ColorProps, BorderProps, PaddingProps, LayoutProps {
-	    }
-	    /**
-	     * Style outsize the component. Margins, flex, grid
-	     * @name Flow
-	     * @weight 300
-	     */
-	    interface FlowProps extends MarginProps, FlexProps, GridProps {
-	    }
-	    /**
-	     * Default attributes
-	     * @name Attribute
-	     * @weight 200
-	     */
-	    interface AttributeProps extends React.AriaAttributes {
-	        className?: string;
-	        id?: string;
-	        style?: React.CSSProperties;
-	        tabIndex?: number;
-	        role?: string;
-	        attrs?: Object;
-	        draggable?: boolean;
-	    }
-	    /**
-	     * Default events
-	     * @name Event
-	     * @weight 500
-	     */
-	    interface EventProps {
-	        /**
-	         * An element receives a click event when a pointing
-	         * device button (such as a mouse's primary mouse button)
-	         * is both pressed and released while the pointer is
-	         * located inside the element.
-	         */
-	        onClick?: EventProp<React.MouseEvent<HTMLElement>>;
-	        /**
-	         * Event fires when an element has received focus.
-	         * The main difference between this event and focusin
-	         * is that focusin bubbles while focus does not.
-	         */
-	        onFocus?: EventProp<React.FocusEvent<HTMLElement>>;
-	        /**
-	         * Event fires when an element has lost focus.
-	         * The main difference between this event and
-	         * focusout is that focusout bubbles while blur
-	         * does not.
-	         */
-	        onBlur?: EventProp<React.FocusEvent<HTMLElement>>;
-	        /**
-	         * Event is fired at an Element when a pointing
-	         * device button is pressed while the pointer is
-	         * inside the element.
-	         */
-	        onMouseDown?: EventProp<React.MouseEvent<HTMLElement>>;
-	        /**
-	         * Event is fired at an Element when a button on
-	         * a pointing device (such as a mouse or trackpad)
-	         * is released while the pointer is located inside it.
-	         * mouseup events are the counterpoint to onMouseDown events.
-	         */
-	        onMouseUp?: EventProp<React.MouseEvent<HTMLElement>>;
-	        /**
-	         * Event is fired at an Element when a pointing
-	         * device (usually a mouse) is initially moved so
-	         * that its hotspot is within the element at which
-	         * the event was fired.
-	         */
-	        onMouseEnter?: EventProp<React.MouseEvent<HTMLElement>>;
-	        /**
-	         * Event is fired at an Element when the cursor of a
-	         * pointing device (usually a mouse) is moved out of it.
-	         */
-	        onMouseLeave?: EventProp<React.MouseEvent<HTMLElement>>;
-	        /**
-	         * Event is fired on context menu.
-	         */
-	        onContextMenu?: EventProp<React.MouseEvent<HTMLElement>>;
-	        /**
-	         * Event is fired when one or more touch points are
-	         * placed on the touch surface.
-	         */
-	        onTouchStart?: EventProp<React.TouchEvent<HTMLElement>>;
-	        /**
-	         * Event fires when one or more touch points are
-	         * removed from the touch surface.
-	         */
-	        onTouchEnd?: EventProp<React.TouchEvent<HTMLElement>>;
-	        /**
-	         * Event is fired when a key that produces a character
-	         * value is pressed down. Examples of keys that produce a
-	         * character value are alphabetic, numeric, and punctuation keys.
-	         * @deprecated This feature is no longer recommended.
-	         */
-	        onKeyPress?: EventProp<React.KeyboardEvent<HTMLElement>>;
-	        /**
-	         * Event is fired when a key is pressed.
-	         */
-	        onKeyDown?: EventProp<React.KeyboardEvent<HTMLElement>>;
-	        /**
-	         * Event is fired when a key is released.
-	         */
-	        onKeyUp?: EventProp<React.KeyboardEvent<HTMLElement>>;
-	        onDrag?: EventProp<React.DragEvent<HTMLElement>>;
-	        onDragEnd?: EventProp<React.DragEvent<HTMLElement>>;
-	        onDragEnter?: EventProp<React.DragEvent<HTMLElement>>;
-	        onDragExit?: EventProp<React.DragEvent<HTMLElement>>;
-	        onDragLeave?: EventProp<React.DragEvent<HTMLElement>>;
-	        onDragOver?: EventProp<React.DragEvent<HTMLElement>>;
-	        onDragStart?: EventProp<React.DragEvent<HTMLElement>>;
-	        onDrop?: EventProp<React.DragEvent<HTMLElement>>;
-	    }
-	    /**
-	     * Color props
-	     * @name Color
-	     * @weight 400
-	     */
-	    interface ColorProps {
-	        textColor?: ColorProp;
-	        backgroundColor?: ColorProp;
-	    }
-	    /**
-	     * Border props
-	     * @name Border
-	     * @weight 400
-	     */
-	    interface BorderProps {
-	        borderWidth?: CSS.Properties['borderWidth'];
-	        borderStyle?: CSS.Properties['borderStyle'];
-	        borderColor?: ColorProp;
-	        borderRadius?: CSS.Properties['borderRadius'];
-	    }
-	    /**
-	     * Layout props
-	     * @name Layout
-	     * @weight 400
-	     */
-	    interface LayoutProps {
-	        /**
-	         * Width alias
-	         */
-	        w?: CSS.Properties['width'];
-	        /**
-	         * Heigth alias
-	         */
-	        h?: CSS.Properties['height'];
-	        /**
-	         * Shows or hides an element without changing the layout
-	         * of a document.
-	         */
-	        visibility?: CSS.Properties['visibility'];
-	        /**
-	         * Sets whether an element is treated as a block or
-	         * inline element and the layout used for its children,
-	         * such as flow layout, grid or flex.
-	         */
-	        display?: CSS.Properties['display'];
-	        /**
-	         * Enables transition animation
-	         */
-	        animated?: boolean;
-	    }
-	    /**
-	     * Padding props
-	     * @name Padding
-	     * @weight 400
-	     */
-	    interface PaddingProps {
-	        /**
-	         * Padding alias
-	         */
-	        p?: CSS.Properties['padding'];
-	        /**
-	         * Padding horizontal alias
-	         */
-	        px?: CSS.Properties['padding'];
-	        /**
-	         * Padding vertical alias
-	         */
-	        py?: CSS.Properties['padding'];
-	        /**
-	         * PaddingRight alias
-	         */
-	        pr?: CSS.Properties['paddingRight'];
-	        /**
-	         * PaddingLeft alias
-	         */
-	        pl?: CSS.Properties['paddingLeft'];
-	        /**
-	         * PaddingTop alias
-	         */
-	        pt?: CSS.Properties['paddingTop'];
-	        /**
-	         * PaddingBottom alias
-	         */
-	        pb?: CSS.Properties['paddingBottom'];
-	    }
-	    /**
-	     * Grid children props
-	     * @name Margin
-	     * @weight 400
-	     */
-	    interface MarginProps {
-	        /**
-	         * Margin alias
-	         */
-	        m?: CSS.Properties['margin'];
-	        /**
-	         * Margin horizontal alias
-	         */
-	        mx?: CSS.Properties['margin'];
-	        /**
-	         * Margin vertical alias
-	         */
-	        my?: CSS.Properties['margin'];
-	        /**
-	         * MarginRight alias
-	         */
-	        mr?: CSS.Properties['marginRight'];
-	        /**
-	         * MarginLeft alias
-	         */
-	        ml?: CSS.Properties['marginLeft'];
-	        /**
-	         * MarginTop alias
-	         */
-	        mt?: CSS.Properties['marginTop'];
-	        /**
-	         * MarginBottom alias
-	         */
-	        mb?: CSS.Properties['marginBottom'];
-	    }
-	    /**
-	     * Flexbox children props
-	     * @name Flex
-	     * @weight 400
-	     */
-	    interface FlexProps {
-	        /**
-	         * Sets how a flex item will grow or shrink to fit the
-	         * space available in its flex container.
-	         */
-	        flex?: CSS.Properties['flex'];
-	        /**
-	         * Sets the initial main size of a flex item. It sets the
-	         * size of the content box unless otherwise set with box-sizing.
-	         */
-	        flexBasis?: CSS.Properties['flexBasis'];
-	        /**
-	         * Sets the flex grow factor of a flex item main size.
-	         * It specifies how much of the remaining space in the
-	         * flex container should be assigned to the item
-	         * (the flex grow factor).
-	         */
-	        flexGrow?: CSS.Properties['flexGrow'];
-	        /**
-	         * Sets the flex shrink factor of a flex item.
-	         * If the size of all flex items is larger than
-	         * the flex container, items shrink to fit
-	         * according to flex-shrink.
-	         */
-	        flexShrink?: CSS.Properties['flexShrink'];
-	        /**
-	         * Property overrides a grid or flex item's
-	         * align-items value. In Grid, it aligns the
-	         * item inside the grid area. In Flexbox,
-	         * it aligns the item on the cross axis.
-	         */
-	        alignSelf?: CSS.Properties['alignSelf'];
-	        /**
-	         * Sets the way a box is justified inside its
-	         * alignment container along the appropriate axis.
-	         */
-	        justifySelf?: CSS.Properties['justifySelf'];
-	    }
-	    /**
-	     * Grid children props
-	     * @name Grid
-	     * @weight 400
-	     */
-	    interface GridProps {
-	        /**
-	         * Specifies a grid item’s start position within
-	         * the grid column by contributing a line, a span,
-	         * or nothing (automatic) to its grid placement.
-	         * This start position defines the block-start edge
-	         * of the grid area.
-	         */
-	        gridColumnStart?: CSS.Properties['gridColumnStart'];
-	        /**
-	         * Specifies a grid item’s end position within the
-	         * grid column by contributing a line, a span, or
-	         * nothing (automatic) to its grid placement, thereby
-	         * specifying the block-end edge of its grid area.
-	         */
-	        gridColumnEnd?: CSS.Properties['gridColumnEnd'];
-	        /**
-	         * Specifies a grid item’s start position within the
-	         * grid row by contributing a line, a span, or nothing
-	         * (automatic) to its grid placement, thereby specifying
-	         * the inline-start edge of its grid area.
-	         */
-	        gridRowStart?: CSS.Properties['gridRowStart'];
-	        /**
-	         * Specifies a grid item’s end position within the grid
-	         * row by contributing a line, a span, or nothing
-	         * (automatic) to its grid placement, thereby
-	         * specifying the inline-end edge of its grid area.
-	         */
-	        gridRowEnd?: CSS.Properties['gridRowEnd'];
-	        /**
-	         * Shorthand property for grid-column-start and
-	         * grid-column-end specifying a grid item's size
-	         * and location within the grid column by contributing
-	         * a line, a span, or nothing (automatic) to its grid
-	         * placement, thereby specifying the inline-start and
-	         * inline-end edge of its grid area.
-	         */
-	        gridColumn?: CSS.Properties['gridColumn'];
-	        /**
-	         * Shorthand property for grid-row-start and grid-row-end
-	         * specifying a grid item’s size and location within the
-	         * grid row by contributing a line, a span, or nothing
-	         * (automatic) to its grid placement, thereby specifying
-	         * the inline-start and inline-end edge of its grid area.
-	         */
-	        gridRow?: CSS.Properties['gridRow'];
-	        /**
-	         * Shorthand property for grid-row-start, grid-column-start,
-	         * grid-row-end and grid-column-end, specifying a grid item’s
-	         * size and location within the grid by contributing a line, a
-	         * span, or nothing (automatic) to its grid placement, thereby
-	         * specifying the edges of its grid area.
-	         */
-	        gridArea?: CSS.Properties['gridArea'];
-	        /**
-	         * Shorthand property sets both the align-self and justify-self
-	         * properties. The first value is the align-self property value,
-	         * the second the justify-self one. If the second value is not
-	         * present, the first value is also used for it.
-	         */
-	        placeSelf?: CSS.Properties['placeSelf'];
-	    }
-	}
-	export default Shared;
 
 }
 declare module 'content/Divider/types' {
@@ -1119,10 +212,6 @@ declare module 'misc/hocs/Field/types' {
 
 }
 declare module 'control/DatePicker/types' {
-	/**
-	 * types.tsx
-	 * author: I.Trikoz
-	 */
 	import { Moment } from 'moment';
 	import { CSSProperties } from 'react';
 	import Shared from '@flow-ui/core/types';
@@ -2108,6 +1197,1500 @@ declare module 'misc/themes/types' {
 	export default ThemeTypes;
 
 }
+declare module 'misc/icons/types' {
+	 namespace IconsetTypes {
+	    type Filled = {
+	        activity: React.ReactElement;
+	        alertCircle: React.ReactElement;
+	        alertTriangle: React.ReactElement;
+	        archive: React.ReactElement;
+	        arrowBack: React.ReactElement;
+	        arrowCircleDown: React.ReactElement;
+	        arrowCircleLeft: React.ReactElement;
+	        arrowCircleRight: React.ReactElement;
+	        arrowCircleUp: React.ReactElement;
+	        arrowDown: React.ReactElement;
+	        arrowDownward: React.ReactElement;
+	        arrowForward: React.ReactElement;
+	        arrowIosBack: React.ReactElement;
+	        arrowIosDownward: React.ReactElement;
+	        arrowIosForward: React.ReactElement;
+	        arrowIosUpward: React.ReactElement;
+	        arrowLeft: React.ReactElement;
+	        arrowRight: React.ReactElement;
+	        arrowUp: React.ReactElement;
+	        arrowUpward: React.ReactElement;
+	        arrowheadDown: React.ReactElement;
+	        arrowheadLeft: React.ReactElement;
+	        arrowheadRight: React.ReactElement;
+	        arrowheadUp: React.ReactElement;
+	        at: React.ReactElement;
+	        attach2: React.ReactElement;
+	        attach: React.ReactElement;
+	        award: React.ReactElement;
+	        backspace: React.ReactElement;
+	        barChart2: React.ReactElement;
+	        barChart: React.ReactElement;
+	        battery: React.ReactElement;
+	        behance: React.ReactElement;
+	        bellOff: React.ReactElement;
+	        bell: React.ReactElement;
+	        bluetooth: React.ReactElement;
+	        bookOpen: React.ReactElement;
+	        book: React.ReactElement;
+	        bookmark: React.ReactElement;
+	        briefcase: React.ReactElement;
+	        browser: React.ReactElement;
+	        brush: React.ReactElement;
+	        bulb: React.ReactElement;
+	        calendar: React.ReactElement;
+	        camera: React.ReactElement;
+	        car: React.ReactElement;
+	        cast: React.ReactElement;
+	        charging: React.ReactElement;
+	        checkmarkCircle2: React.ReactElement;
+	        checkmarkCircle: React.ReactElement;
+	        checkmarkSquare2: React.ReactElement;
+	        checkmarkSquare: React.ReactElement;
+	        checkmark: React.ReactElement;
+	        chevronDown: React.ReactElement;
+	        chevronLeft: React.ReactElement;
+	        chevronRight: React.ReactElement;
+	        chevronUp: React.ReactElement;
+	        clipboard: React.ReactElement;
+	        clock: React.ReactElement;
+	        closeCircle: React.ReactElement;
+	        closeSquare: React.ReactElement;
+	        close: React.ReactElement;
+	        cloudDownload: React.ReactElement;
+	        cloudUpload: React.ReactElement;
+	        codeDownload: React.ReactElement;
+	        code: React.ReactElement;
+	        collapse: React.ReactElement;
+	        colorPalette: React.ReactElement;
+	        colorPicker: React.ReactElement;
+	        compass: React.ReactElement;
+	        copy: React.ReactElement;
+	        cornerDownLeft: React.ReactElement;
+	        cornerDownRight: React.ReactElement;
+	        cornerLeftDown: React.ReactElement;
+	        cornerLeftUp: React.ReactElement;
+	        cornerRightDown: React.ReactElement;
+	        cornerRightUp: React.ReactElement;
+	        cornerUpLeft: React.ReactElement;
+	        cornerUpRight: React.ReactElement;
+	        creditCard: React.ReactElement;
+	        crop: React.ReactElement;
+	        cube: React.ReactElement;
+	        diagonalArrowLeftDown: React.ReactElement;
+	        diagonalArrowLeftUp: React.ReactElement;
+	        diagonalArrowRightDown: React.ReactElement;
+	        diagonalArrowRightUp: React.ReactElement;
+	        doneAll: React.ReactElement;
+	        download: React.ReactElement;
+	        dropletOff: React.ReactElement;
+	        droplet: React.ReactElement;
+	        edit2: React.ReactElement;
+	        edit: React.ReactElement;
+	        email: React.ReactElement;
+	        expand: React.ReactElement;
+	        externalLink: React.ReactElement;
+	        eyeOff2: React.ReactElement;
+	        eyeOff: React.ReactElement;
+	        eye: React.ReactElement;
+	        facebook: React.ReactElement;
+	        fileAdd: React.ReactElement;
+	        fileRemove: React.ReactElement;
+	        fileText: React.ReactElement;
+	        file: React.ReactElement;
+	        film: React.ReactElement;
+	        flag: React.ReactElement;
+	        flashOff: React.ReactElement;
+	        flash: React.ReactElement;
+	        flip2: React.ReactElement;
+	        flip: React.ReactElement;
+	        folderAdd: React.ReactElement;
+	        folderRemove: React.ReactElement;
+	        folder: React.ReactElement;
+	        funnel: React.ReactElement;
+	        gift: React.ReactElement;
+	        github: React.ReactElement;
+	        globe2: React.ReactElement;
+	        globe3: React.ReactElement;
+	        globe: React.ReactElement;
+	        google: React.ReactElement;
+	        grid: React.ReactElement;
+	        hardDrive: React.ReactElement;
+	        hash: React.ReactElement;
+	        headphones: React.ReactElement;
+	        heart: React.ReactElement;
+	        home: React.ReactElement;
+	        image2: React.ReactElement;
+	        image: React.ReactElement;
+	        inbox: React.ReactElement;
+	        info: React.ReactElement;
+	        keypad: React.ReactElement;
+	        layers: React.ReactElement;
+	        layout: React.ReactElement;
+	        link2: React.ReactElement;
+	        link: React.ReactElement;
+	        linkedin: React.ReactElement;
+	        list: React.ReactElement;
+	        lock: React.ReactElement;
+	        logIn: React.ReactElement;
+	        logOut: React.ReactElement;
+	        map: React.ReactElement;
+	        maximize: React.ReactElement;
+	        menu2: React.ReactElement;
+	        menuArrow: React.ReactElement;
+	        menu: React.ReactElement;
+	        messageCircle: React.ReactElement;
+	        messageSquare: React.ReactElement;
+	        micOff: React.ReactElement;
+	        mic: React.ReactElement;
+	        minimize: React.ReactElement;
+	        minusCircle: React.ReactElement;
+	        minusSquare: React.ReactElement;
+	        minus: React.ReactElement;
+	        monitor: React.ReactElement;
+	        moon: React.ReactElement;
+	        moreHorizontal: React.ReactElement;
+	        moreVertical: React.ReactElement;
+	        move: React.ReactElement;
+	        music: React.ReactElement;
+	        navigation2: React.ReactElement;
+	        navigation: React.ReactElement;
+	        npm: React.ReactElement;
+	        options2: React.ReactElement;
+	        options: React.ReactElement;
+	        pantone: React.ReactElement;
+	        paperPlane: React.ReactElement;
+	        pauseCircle: React.ReactElement;
+	        people: React.ReactElement;
+	        percent: React.ReactElement;
+	        personAdd: React.ReactElement;
+	        personDelete: React.ReactElement;
+	        personDone: React.ReactElement;
+	        personRemove: React.ReactElement;
+	        person: React.ReactElement;
+	        phoneCall: React.ReactElement;
+	        phoneMissed: React.ReactElement;
+	        phoneOff: React.ReactElement;
+	        phone: React.ReactElement;
+	        pieChart2: React.ReactElement;
+	        pieChart: React.ReactElement;
+	        pin: React.ReactElement;
+	        playCircle: React.ReactElement;
+	        plusCircle: React.ReactElement;
+	        plusSquare: React.ReactElement;
+	        plus: React.ReactElement;
+	        power: React.ReactElement;
+	        pricetags: React.ReactElement;
+	        printer: React.ReactElement;
+	        questionMarkCircle: React.ReactElement;
+	        questionMark: React.ReactElement;
+	        radioButtonOff: React.ReactElement;
+	        radioButtonOn: React.ReactElement;
+	        radio: React.ReactElement;
+	        recording: React.ReactElement;
+	        refresh: React.ReactElement;
+	        repeat: React.ReactElement;
+	        rewindLeft: React.ReactElement;
+	        rewindRight: React.ReactElement;
+	        save: React.ReactElement;
+	        scissors: React.ReactElement;
+	        search: React.ReactElement;
+	        settings2: React.ReactElement;
+	        settings: React.ReactElement;
+	        shake: React.ReactElement;
+	        share: React.ReactElement;
+	        shieldOff: React.ReactElement;
+	        shield: React.ReactElement;
+	        shoppingBag: React.ReactElement;
+	        shoppingCart: React.ReactElement;
+	        shuffle2: React.ReactElement;
+	        shuffle: React.ReactElement;
+	        skipBack: React.ReactElement;
+	        skipForward: React.ReactElement;
+	        slash: React.ReactElement;
+	        smartphone: React.ReactElement;
+	        speaker: React.ReactElement;
+	        square: React.ReactElement;
+	        star: React.ReactElement;
+	        stopCircle: React.ReactElement;
+	        sun: React.ReactElement;
+	        swap: React.ReactElement;
+	        sync: React.ReactElement;
+	        text: React.ReactElement;
+	        thermometerMinus: React.ReactElement;
+	        thermometerPlus: React.ReactElement;
+	        thermometer: React.ReactElement;
+	        toggleLeft: React.ReactElement;
+	        toggleRight: React.ReactElement;
+	        trash2: React.ReactElement;
+	        trash: React.ReactElement;
+	        trendingDown: React.ReactElement;
+	        trendingUp: React.ReactElement;
+	        tv: React.ReactElement;
+	        twitter: React.ReactElement;
+	        umbrella: React.ReactElement;
+	        undo: React.ReactElement;
+	        unlock: React.ReactElement;
+	        upload: React.ReactElement;
+	        videoOff: React.ReactElement;
+	        video: React.ReactElement;
+	        volumeDown: React.ReactElement;
+	        volumeMute: React.ReactElement;
+	        volumeOff: React.ReactElement;
+	        volumeUp: React.ReactElement;
+	        wifiOff: React.ReactElement;
+	        wifi: React.ReactElement;
+	    };
+	    type Outline = {
+	        activity: React.ReactElement;
+	        alertCircle: React.ReactElement;
+	        alertTriangle: React.ReactElement;
+	        archive: React.ReactElement;
+	        arrowBack: React.ReactElement;
+	        arrowCircleDown: React.ReactElement;
+	        arrowCircleLeft: React.ReactElement;
+	        arrowCircleRight: React.ReactElement;
+	        arrowCircleUp: React.ReactElement;
+	        arrowDown: React.ReactElement;
+	        arrowDownward: React.ReactElement;
+	        arrowForward: React.ReactElement;
+	        arrowIosBack: React.ReactElement;
+	        arrowIosDownward: React.ReactElement;
+	        arrowIosForward: React.ReactElement;
+	        arrowIosUpward: React.ReactElement;
+	        arrowLeft: React.ReactElement;
+	        arrowRight: React.ReactElement;
+	        arrowUp: React.ReactElement;
+	        arrowUpward: React.ReactElement;
+	        arrowheadDown: React.ReactElement;
+	        arrowheadLeft: React.ReactElement;
+	        arrowheadRight: React.ReactElement;
+	        arrowheadUp: React.ReactElement;
+	        at: React.ReactElement;
+	        attach2: React.ReactElement;
+	        attach: React.ReactElement;
+	        award: React.ReactElement;
+	        backspace: React.ReactElement;
+	        barChart2: React.ReactElement;
+	        barChart: React.ReactElement;
+	        battery: React.ReactElement;
+	        behance: React.ReactElement;
+	        bellOff: React.ReactElement;
+	        bell: React.ReactElement;
+	        bluetooth: React.ReactElement;
+	        bookOpen: React.ReactElement;
+	        book: React.ReactElement;
+	        bookmark: React.ReactElement;
+	        briefcase: React.ReactElement;
+	        browser: React.ReactElement;
+	        brush: React.ReactElement;
+	        bulb: React.ReactElement;
+	        calendar: React.ReactElement;
+	        camera: React.ReactElement;
+	        car: React.ReactElement;
+	        cast: React.ReactElement;
+	        charging: React.ReactElement;
+	        checkmarkCircle2: React.ReactElement;
+	        checkmarkCircle: React.ReactElement;
+	        checkmark: React.ReactElement;
+	        checkmarkSquare2: React.ReactElement;
+	        checkmarkSquare: React.ReactElement;
+	        chevronDown: React.ReactElement;
+	        chevronLeft: React.ReactElement;
+	        chevronRight: React.ReactElement;
+	        chevronUp: React.ReactElement;
+	        clipboard: React.ReactElement;
+	        clock: React.ReactElement;
+	        closeCircle: React.ReactElement;
+	        close: React.ReactElement;
+	        closeSquare: React.ReactElement;
+	        cloudDownload: React.ReactElement;
+	        cloudUpload: React.ReactElement;
+	        codeDownload: React.ReactElement;
+	        code: React.ReactElement;
+	        collapse: React.ReactElement;
+	        colorPalette: React.ReactElement;
+	        colorPicker: React.ReactElement;
+	        compass: React.ReactElement;
+	        copy: React.ReactElement;
+	        cornerDownLeft: React.ReactElement;
+	        cornerDownRight: React.ReactElement;
+	        cornerLeftDown: React.ReactElement;
+	        cornerLeftUp: React.ReactElement;
+	        cornerRightDown: React.ReactElement;
+	        cornerRightUp: React.ReactElement;
+	        cornerUpLeft: React.ReactElement;
+	        cornerUpRight: React.ReactElement;
+	        creditCard: React.ReactElement;
+	        crop: React.ReactElement;
+	        cube: React.ReactElement;
+	        diagonalArrowLeftDown: React.ReactElement;
+	        diagonalArrowLeftUp: React.ReactElement;
+	        diagonalArrowRightDown: React.ReactElement;
+	        diagonalArrowRightUp: React.ReactElement;
+	        doneAll: React.ReactElement;
+	        download: React.ReactElement;
+	        dropletOff: React.ReactElement;
+	        droplet: React.ReactElement;
+	        edit2: React.ReactElement;
+	        edit: React.ReactElement;
+	        email: React.ReactElement;
+	        expand: React.ReactElement;
+	        externalLink: React.ReactElement;
+	        eyeOff2: React.ReactElement;
+	        eyeOff: React.ReactElement;
+	        eye: React.ReactElement;
+	        facebook: React.ReactElement;
+	        fileAdd: React.ReactElement;
+	        file: React.ReactElement;
+	        fileRemove: React.ReactElement;
+	        fileText: React.ReactElement;
+	        film: React.ReactElement;
+	        flag: React.ReactElement;
+	        flashOff: React.ReactElement;
+	        flash: React.ReactElement;
+	        flip2: React.ReactElement;
+	        flip: React.ReactElement;
+	        folderAdd: React.ReactElement;
+	        folder: React.ReactElement;
+	        folderRemove: React.ReactElement;
+	        funnel: React.ReactElement;
+	        gift: React.ReactElement;
+	        github: React.ReactElement;
+	        globe2: React.ReactElement;
+	        globe: React.ReactElement;
+	        google: React.ReactElement;
+	        grid: React.ReactElement;
+	        hardDrive: React.ReactElement;
+	        hash: React.ReactElement;
+	        headphones: React.ReactElement;
+	        heart: React.ReactElement;
+	        home: React.ReactElement;
+	        image: React.ReactElement;
+	        inbox: React.ReactElement;
+	        info: React.ReactElement;
+	        keypad: React.ReactElement;
+	        layers: React.ReactElement;
+	        layout: React.ReactElement;
+	        link2: React.ReactElement;
+	        link: React.ReactElement;
+	        linkedin: React.ReactElement;
+	        list: React.ReactElement;
+	        loader: React.ReactElement;
+	        lock: React.ReactElement;
+	        logIn: React.ReactElement;
+	        logOut: React.ReactElement;
+	        map: React.ReactElement;
+	        maximize: React.ReactElement;
+	        menu2: React.ReactElement;
+	        menuArrow: React.ReactElement;
+	        menu: React.ReactElement;
+	        messageCircle: React.ReactElement;
+	        messageSquare: React.ReactElement;
+	        micOff: React.ReactElement;
+	        mic: React.ReactElement;
+	        minimize: React.ReactElement;
+	        minusCircle: React.ReactElement;
+	        minus: React.ReactElement;
+	        minusSquare: React.ReactElement;
+	        monitor: React.ReactElement;
+	        moon: React.ReactElement;
+	        moreHorizontal: React.ReactElement;
+	        moreVertical: React.ReactElement;
+	        move: React.ReactElement;
+	        music: React.ReactElement;
+	        navigation2: React.ReactElement;
+	        navigation: React.ReactElement;
+	        npm: React.ReactElement;
+	        options2: React.ReactElement;
+	        options: React.ReactElement;
+	        pantone: React.ReactElement;
+	        paperPlane: React.ReactElement;
+	        pauseCircle: React.ReactElement;
+	        people: React.ReactElement;
+	        percent: React.ReactElement;
+	        personAdd: React.ReactElement;
+	        personDelete: React.ReactElement;
+	        personDone: React.ReactElement;
+	        person: React.ReactElement;
+	        personRemove: React.ReactElement;
+	        phoneCall: React.ReactElement;
+	        phoneMissed: React.ReactElement;
+	        phoneOff: React.ReactElement;
+	        phone: React.ReactElement;
+	        pieChart: React.ReactElement;
+	        pin: React.ReactElement;
+	        playCircle: React.ReactElement;
+	        plusCircle: React.ReactElement;
+	        plus: React.ReactElement;
+	        plusSquare: React.ReactElement;
+	        power: React.ReactElement;
+	        pricetags: React.ReactElement;
+	        printer: React.ReactElement;
+	        questionMarkCircle: React.ReactElement;
+	        questionMark: React.ReactElement;
+	        radioButtonOff: React.ReactElement;
+	        radioButtonOn: React.ReactElement;
+	        radio: React.ReactElement;
+	        recording: React.ReactElement;
+	        refresh: React.ReactElement;
+	        repeat: React.ReactElement;
+	        rewindLeft: React.ReactElement;
+	        rewindRight: React.ReactElement;
+	        save: React.ReactElement;
+	        scissors: React.ReactElement;
+	        search: React.ReactElement;
+	        settings2: React.ReactElement;
+	        settings: React.ReactElement;
+	        shake: React.ReactElement;
+	        share: React.ReactElement;
+	        shieldOff: React.ReactElement;
+	        shield: React.ReactElement;
+	        shoppingBag: React.ReactElement;
+	        shoppingCart: React.ReactElement;
+	        shuffle2: React.ReactElement;
+	        shuffle: React.ReactElement;
+	        skipBack: React.ReactElement;
+	        skipForward: React.ReactElement;
+	        slash: React.ReactElement;
+	        smartphone: React.ReactElement;
+	        speaker: React.ReactElement;
+	        square: React.ReactElement;
+	        star: React.ReactElement;
+	        stopCircle: React.ReactElement;
+	        sun: React.ReactElement;
+	        swap: React.ReactElement;
+	        sync: React.ReactElement;
+	        text: React.ReactElement;
+	        thermometerMinus: React.ReactElement;
+	        thermometer: React.ReactElement;
+	        thermometerPlus: React.ReactElement;
+	        toggleLeft: React.ReactElement;
+	        toggleRight: React.ReactElement;
+	        trash2: React.ReactElement;
+	        trash: React.ReactElement;
+	        trendingDown: React.ReactElement;
+	        trendingUp: React.ReactElement;
+	        tv: React.ReactElement;
+	        twitter: React.ReactElement;
+	        umbrella: React.ReactElement;
+	        undo: React.ReactElement;
+	        unlock: React.ReactElement;
+	        upload: React.ReactElement;
+	        videoOff: React.ReactElement;
+	        video: React.ReactElement;
+	        volumeDown: React.ReactElement;
+	        volumeMute: React.ReactElement;
+	        volumeOff: React.ReactElement;
+	        volumeUp: React.ReactElement;
+	        wifiOff: React.ReactElement;
+	        wifi: React.ReactElement;
+	    };
+	    interface Index {
+	        filled: Filled;
+	        outline: Outline;
+	    }
+	}
+	export default IconsetTypes;
+
+}
+declare module 'types' {
+	/// <reference types="react" />
+	import ThemeTypes from 'misc/themes/types';
+	import IconsetTypes from 'misc/icons/types';
+	import chroma from 'chroma-js';
+	import CSS from 'csstype';
+	import { Interpolation, SerializedStyles } from '@emotion/core'; module 'csstype' {
+	    interface Properties {
+	        display?: 'block' | 'inline' | 'inline-block' | 'inline-table' | 'list-item' | 'none' | 'run-in' | 'table' | 'table-caption' | 'table-cell' | 'table-column-group' | 'table-column' | 'table-footer-group' | 'table-header-group' | 'table-row' | 'table-row-group' | 'flex' | 'grid';
+	        overflow?: 'auto' | 'hidden' | 'scroll' | 'visible' | 'inherit';
+	        alignSelf?: 'baseline' | 'center' | 'end' | 'flex-end' | 'flex-start' | 'inherid' | 'initial' | 'left' | 'normal' | 'right' | 'safe' | 'safe-end' | 'safe-start' | 'start' | 'stretch' | 'unsafe' | 'unset';
+	        justifySelf?: 'baseline' | 'center' | 'end' | 'flex-end' | 'flex-start' | 'inherid' | 'initial' | 'left' | 'normal' | 'right' | 'safe' | 'safe-end' | 'safe-start' | 'start' | 'stretch' | 'unsafe' | 'unset';
+	    }
+	} namespace Shared {
+	    type EventProp<T> = (event: T) => void;
+	    type FunctionalProp<T, R> = ((lib: T) => R) | R;
+	    type ColorProp = FunctionalProp<ThemeTypes.Colors<chroma.Color>, CSS.Properties['color']>;
+	    type IconProp = FunctionalProp<IconsetTypes.Index, React.ReactElement>;
+	    type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
+	    type EmotionStyles = Array<Interpolation>;
+	    type Variants<T> = Partial<{
+	        [K in keyof T]: Partial<Record<Extract<T[K], string>, EmotionStyles>>;
+	    }>;
+	    type Variant<V> = (variants: Variants<V>) => EmotionStyles;
+	    type FlowStyle<V> = V extends Object ? (state: V) => SerializedStyles : SerializedStyles;
+	    type ComponentStyle<V> = V extends {} ? ((variant: Variant<V>) => EmotionStyles) : EmotionStyles;
+	    type FlowStyles<S> = {
+	        [O in keyof S]: FlowStyle<S[O]>;
+	    };
+	    type ComponentStyles<S> = {
+	        [O in keyof S]: ComponentStyle<S[O]>;
+	    };
+	    type FunctionalComponentStyles<S, P = {}> = ((props: P, theme: ThemeTypes.Index) => {
+	        [O in keyof S]: ComponentStyle<S[O]>;
+	    });
+	    type OverridesStyle<S> = Partial<{
+	        [O in keyof S]: ComponentStyle<S[O]>;
+	    }>;
+	    /**
+	     * Styles inside the component. Paddings, layout, border and color props
+	     * @name All
+	     * @weight 400
+	     */
+	    interface AllProps<S = {}> extends AttributeProps, EventProps, SelfProps, FlowProps {
+	        overrides?: ComponentStyles<S>;
+	    }
+	    /**
+	     * Styles inside the component. Paddings, layout, border and color props
+	     * @name Self
+	     * @weight 400
+	     */
+	    interface SelfProps extends ColorProps, BorderProps, PaddingProps, LayoutProps {
+	    }
+	    /**
+	     * Style outsize the component. Margins, flex, grid
+	     * @name Flow
+	     * @weight 300
+	     */
+	    interface FlowProps extends MarginProps, FlexProps, GridProps {
+	    }
+	    /**
+	     * Default attributes
+	     * @name Attribute
+	     * @weight 200
+	     */
+	    interface AttributeProps extends React.AriaAttributes {
+	        className?: string;
+	        id?: string;
+	        style?: React.CSSProperties;
+	        tabIndex?: number;
+	        role?: string;
+	        attrs?: Object;
+	        draggable?: boolean;
+	    }
+	    /**
+	     * Default events
+	     * @name Event
+	     * @weight 500
+	     */
+	    interface EventProps {
+	        /**
+	         * An element receives a click event when a pointing
+	         * device button (such as a mouse's primary mouse button)
+	         * is both pressed and released while the pointer is
+	         * located inside the element.
+	         */
+	        onClick?: EventProp<React.MouseEvent<HTMLElement>>;
+	        /**
+	         * Event fires when an element has received focus.
+	         * The main difference between this event and focusin
+	         * is that focusin bubbles while focus does not.
+	         */
+	        onFocus?: EventProp<React.FocusEvent<HTMLElement>>;
+	        /**
+	         * Event fires when an element has lost focus.
+	         * The main difference between this event and
+	         * focusout is that focusout bubbles while blur
+	         * does not.
+	         */
+	        onBlur?: EventProp<React.FocusEvent<HTMLElement>>;
+	        /**
+	         * Event is fired at an Element when a pointing
+	         * device button is pressed while the pointer is
+	         * inside the element.
+	         */
+	        onMouseDown?: EventProp<React.MouseEvent<HTMLElement>>;
+	        /**
+	         * Event is fired at an Element when a button on
+	         * a pointing device (such as a mouse or trackpad)
+	         * is released while the pointer is located inside it.
+	         * mouseup events are the counterpoint to onMouseDown events.
+	         */
+	        onMouseUp?: EventProp<React.MouseEvent<HTMLElement>>;
+	        /**
+	         * Event is fired at an Element when a pointing
+	         * device (usually a mouse) is initially moved so
+	         * that its hotspot is within the element at which
+	         * the event was fired.
+	         */
+	        onMouseEnter?: EventProp<React.MouseEvent<HTMLElement>>;
+	        /**
+	         * Event is fired at an Element when the cursor of a
+	         * pointing device (usually a mouse) is moved out of it.
+	         */
+	        onMouseLeave?: EventProp<React.MouseEvent<HTMLElement>>;
+	        /**
+	         * Event is fired on context menu.
+	         */
+	        onContextMenu?: EventProp<React.MouseEvent<HTMLElement>>;
+	        /**
+	         * Event is fired when one or more touch points are
+	         * placed on the touch surface.
+	         */
+	        onTouchStart?: EventProp<React.TouchEvent<HTMLElement>>;
+	        /**
+	         * Event fires when one or more touch points are
+	         * removed from the touch surface.
+	         */
+	        onTouchEnd?: EventProp<React.TouchEvent<HTMLElement>>;
+	        /**
+	         * Event is fired when a key that produces a character
+	         * value is pressed down. Examples of keys that produce a
+	         * character value are alphabetic, numeric, and punctuation keys.
+	         * @deprecated This feature is no longer recommended.
+	         */
+	        onKeyPress?: EventProp<React.KeyboardEvent<HTMLElement>>;
+	        /**
+	         * Event is fired when a key is pressed.
+	         */
+	        onKeyDown?: EventProp<React.KeyboardEvent<HTMLElement>>;
+	        /**
+	         * Event is fired when a key is released.
+	         */
+	        onKeyUp?: EventProp<React.KeyboardEvent<HTMLElement>>;
+	        onDrag?: EventProp<React.DragEvent<HTMLElement>>;
+	        onDragEnd?: EventProp<React.DragEvent<HTMLElement>>;
+	        onDragEnter?: EventProp<React.DragEvent<HTMLElement>>;
+	        onDragExit?: EventProp<React.DragEvent<HTMLElement>>;
+	        onDragLeave?: EventProp<React.DragEvent<HTMLElement>>;
+	        onDragOver?: EventProp<React.DragEvent<HTMLElement>>;
+	        onDragStart?: EventProp<React.DragEvent<HTMLElement>>;
+	        onDrop?: EventProp<React.DragEvent<HTMLElement>>;
+	    }
+	    /**
+	     * Color props
+	     * @name Color
+	     * @weight 400
+	     */
+	    interface ColorProps {
+	        textColor?: ColorProp;
+	        backgroundColor?: ColorProp;
+	    }
+	    /**
+	     * Border props
+	     * @name Border
+	     * @weight 400
+	     */
+	    interface BorderProps {
+	        borderWidth?: CSS.Properties['borderWidth'];
+	        borderStyle?: CSS.Properties['borderStyle'];
+	        borderColor?: ColorProp;
+	        borderRadius?: CSS.Properties['borderRadius'];
+	    }
+	    /**
+	     * Layout props
+	     * @name Layout
+	     * @weight 400
+	     */
+	    interface LayoutProps {
+	        /**
+	         * Width alias
+	         */
+	        w?: CSS.Properties['width'];
+	        /**
+	         * Heigth alias
+	         */
+	        h?: CSS.Properties['height'];
+	        /**
+	         * Shows or hides an element without changing the layout
+	         * of a document.
+	         */
+	        visibility?: CSS.Properties['visibility'];
+	        /**
+	         * Sets whether an element is treated as a block or
+	         * inline element and the layout used for its children,
+	         * such as flow layout, grid or flex.
+	         */
+	        display?: CSS.Properties['display'];
+	        /**
+	         * Enables transition animation
+	         */
+	        animated?: boolean;
+	    }
+	    /**
+	     * Padding props
+	     * @name Padding
+	     * @weight 400
+	     */
+	    interface PaddingProps {
+	        /**
+	         * Padding alias
+	         */
+	        p?: CSS.Properties['padding'];
+	        /**
+	         * Padding horizontal alias
+	         */
+	        px?: CSS.Properties['padding'];
+	        /**
+	         * Padding vertical alias
+	         */
+	        py?: CSS.Properties['padding'];
+	        /**
+	         * PaddingRight alias
+	         */
+	        pr?: CSS.Properties['paddingRight'];
+	        /**
+	         * PaddingLeft alias
+	         */
+	        pl?: CSS.Properties['paddingLeft'];
+	        /**
+	         * PaddingTop alias
+	         */
+	        pt?: CSS.Properties['paddingTop'];
+	        /**
+	         * PaddingBottom alias
+	         */
+	        pb?: CSS.Properties['paddingBottom'];
+	    }
+	    /**
+	     * Grid children props
+	     * @name Margin
+	     * @weight 400
+	     */
+	    interface MarginProps {
+	        /**
+	         * Margin alias
+	         */
+	        m?: CSS.Properties['margin'];
+	        /**
+	         * Margin horizontal alias
+	         */
+	        mx?: CSS.Properties['margin'];
+	        /**
+	         * Margin vertical alias
+	         */
+	        my?: CSS.Properties['margin'];
+	        /**
+	         * MarginRight alias
+	         */
+	        mr?: CSS.Properties['marginRight'];
+	        /**
+	         * MarginLeft alias
+	         */
+	        ml?: CSS.Properties['marginLeft'];
+	        /**
+	         * MarginTop alias
+	         */
+	        mt?: CSS.Properties['marginTop'];
+	        /**
+	         * MarginBottom alias
+	         */
+	        mb?: CSS.Properties['marginBottom'];
+	    }
+	    /**
+	     * Flexbox children props
+	     * @name Flex
+	     * @weight 400
+	     */
+	    interface FlexProps {
+	        /**
+	         * Sets how a flex item will grow or shrink to fit the
+	         * space available in its flex container.
+	         */
+	        flex?: CSS.Properties['flex'];
+	        /**
+	         * Sets the initial main size of a flex item. It sets the
+	         * size of the content box unless otherwise set with box-sizing.
+	         */
+	        flexBasis?: CSS.Properties['flexBasis'];
+	        /**
+	         * Sets the flex grow factor of a flex item main size.
+	         * It specifies how much of the remaining space in the
+	         * flex container should be assigned to the item
+	         * (the flex grow factor).
+	         */
+	        flexGrow?: CSS.Properties['flexGrow'];
+	        /**
+	         * Sets the flex shrink factor of a flex item.
+	         * If the size of all flex items is larger than
+	         * the flex container, items shrink to fit
+	         * according to flex-shrink.
+	         */
+	        flexShrink?: CSS.Properties['flexShrink'];
+	        /**
+	         * Property overrides a grid or flex item's
+	         * align-items value. In Grid, it aligns the
+	         * item inside the grid area. In Flexbox,
+	         * it aligns the item on the cross axis.
+	         */
+	        alignSelf?: CSS.Properties['alignSelf'];
+	        /**
+	         * Sets the way a box is justified inside its
+	         * alignment container along the appropriate axis.
+	         */
+	        justifySelf?: CSS.Properties['justifySelf'];
+	    }
+	    /**
+	     * Grid children props
+	     * @name Grid
+	     * @weight 400
+	     */
+	    interface GridProps {
+	        /**
+	         * Specifies a grid item’s start position within
+	         * the grid column by contributing a line, a span,
+	         * or nothing (automatic) to its grid placement.
+	         * This start position defines the block-start edge
+	         * of the grid area.
+	         */
+	        gridColumnStart?: CSS.Properties['gridColumnStart'];
+	        /**
+	         * Specifies a grid item’s end position within the
+	         * grid column by contributing a line, a span, or
+	         * nothing (automatic) to its grid placement, thereby
+	         * specifying the block-end edge of its grid area.
+	         */
+	        gridColumnEnd?: CSS.Properties['gridColumnEnd'];
+	        /**
+	         * Specifies a grid item’s start position within the
+	         * grid row by contributing a line, a span, or nothing
+	         * (automatic) to its grid placement, thereby specifying
+	         * the inline-start edge of its grid area.
+	         */
+	        gridRowStart?: CSS.Properties['gridRowStart'];
+	        /**
+	         * Specifies a grid item’s end position within the grid
+	         * row by contributing a line, a span, or nothing
+	         * (automatic) to its grid placement, thereby
+	         * specifying the inline-end edge of its grid area.
+	         */
+	        gridRowEnd?: CSS.Properties['gridRowEnd'];
+	        /**
+	         * Shorthand property for grid-column-start and
+	         * grid-column-end specifying a grid item's size
+	         * and location within the grid column by contributing
+	         * a line, a span, or nothing (automatic) to its grid
+	         * placement, thereby specifying the inline-start and
+	         * inline-end edge of its grid area.
+	         */
+	        gridColumn?: CSS.Properties['gridColumn'];
+	        /**
+	         * Shorthand property for grid-row-start and grid-row-end
+	         * specifying a grid item’s size and location within the
+	         * grid row by contributing a line, a span, or nothing
+	         * (automatic) to its grid placement, thereby specifying
+	         * the inline-start and inline-end edge of its grid area.
+	         */
+	        gridRow?: CSS.Properties['gridRow'];
+	        /**
+	         * Shorthand property for grid-row-start, grid-column-start,
+	         * grid-row-end and grid-column-end, specifying a grid item’s
+	         * size and location within the grid by contributing a line, a
+	         * span, or nothing (automatic) to its grid placement, thereby
+	         * specifying the edges of its grid area.
+	         */
+	        gridArea?: CSS.Properties['gridArea'];
+	        /**
+	         * Shorthand property sets both the align-self and justify-self
+	         * properties. The first value is the align-self property value,
+	         * the second the justify-self one. If the second value is not
+	         * present, the first value is also used for it.
+	         */
+	        placeSelf?: CSS.Properties['placeSelf'];
+	    }
+	}
+	export default Shared;
+
+}
+declare module 'misc/hooks/useStyles' {
+	import Shared from 'types'; const createStyles: <S>(props: any, componentStyles: Shared.ComponentStyles<S> | Shared.FunctionalComponentStyles<S, {}>, componentName?: "Menu" | "Divider" | "Icon" | "Spinner" | "Button" | "Checkbox" | "DatePicker" | "Radio" | "Range" | "Select" | "Switch" | "TextField" | "Meter" | "Table" | "Badge" | "Block" | "Drop" | "Flexbox" | "Grid" | "Modal" | "Notification" | "Popover" | "Tree" | undefined) => Shared.FlowStyles<S>;
+	export default createStyles;
+
+}
+declare module 'misc/utils/callProp' {
+	 const _default: <P, L>(prop: P, lib: L) => Exclude<P, Function>;
+	export default _default;
+
+}
+declare module 'misc/hooks/useStyleProps' {
+	import Shared from '@flow-ui/core/types';
+	import CSS from 'csstype';
+	interface Props extends Shared.SelfProps, Shared.FlowProps {
+	    [key: string]: any;
+	} type Color = {
+	    background: CSS.Properties['background'];
+	    color: CSS.Properties['color'];
+	}; type Border = {
+	    borderWidth: CSS.Properties['borderWidth'];
+	    borderStyle: CSS.Properties['borderStyle'];
+	    borderColor: CSS.Properties['borderColor'];
+	    borderRadius: CSS.Properties['borderRadius'];
+	}; type Padding = {
+	    padding: CSS.Properties['padding'];
+	    paddingTop: CSS.Properties['paddingTop'];
+	    paddingLeft: CSS.Properties['paddingLeft'];
+	    paddingRight: CSS.Properties['paddingRight'];
+	    paddingBottom: CSS.Properties['paddingBottom'];
+	}; type Margin = {
+	    margin: CSS.Properties['margin'];
+	    marginTop: CSS.Properties['marginTop'];
+	    marginLeft: CSS.Properties['marginLeft'];
+	    marginRight: CSS.Properties['marginRight'];
+	    marginBottom: CSS.Properties['marginBottom'];
+	}; type Layout = {
+	    display: CSS.Properties['display'];
+	    visibility: CSS.Properties['visibility'];
+	    width: CSS.Properties['width'];
+	    height: CSS.Properties['height'];
+	    transition: CSS.Properties['transition'];
+	}; type Flex = {
+	    flex: CSS.Properties['flex'];
+	    flexBasis: CSS.Properties['flexBasis'];
+	    flexGrow: CSS.Properties['flexGrow'];
+	    flexShrink: CSS.Properties['flexShrink'];
+	    alignSelf: CSS.Properties['alignSelf'];
+	    justifySelf: CSS.Properties['justifySelf'];
+	}; type Grid = {
+	    gridColumnStart: CSS.Properties['gridColumnStart'];
+	    gridColumnEnd: CSS.Properties['gridColumnEnd'];
+	    gridRowStart: CSS.Properties['gridRowStart'];
+	    gridRowEnd: CSS.Properties['gridRowEnd'];
+	    gridColumn: CSS.Properties['gridColumn'];
+	    gridRow: CSS.Properties['gridRow'];
+	    gridArea: CSS.Properties['gridArea'];
+	    placeSelf: CSS.Properties['placeSelf'];
+	};
+	interface InjectedStyleProps {
+	    color: Color;
+	    border: Border;
+	    padding: Padding;
+	    margin: Margin;
+	    layout: Layout;
+	    flex: Flex;
+	    grid: Grid;
+	    flow: Margin & Flex & Grid;
+	    self: Padding & Layout & Color & Border;
+	    all: Margin & Flex & Grid & Padding & Layout & Color & Border;
+	} const useStyleProps: (props: Props) => InjectedStyleProps;
+	export default useStyleProps;
+
+}
+declare module 'content/Divider/styles' {
+	import Shared from '@flow-ui/core/types';
+	import Types from 'content/Divider/types'; const dividerStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	export default dividerStyles;
+
+}
+declare module 'content/Divider' {
+	/// <reference types="react" />
+	/// <reference types="@emotion/core" />
+	import Types from 'content/Divider/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'misc/icons/filled' {
+	import IconTypes from 'misc/icons/types'; const filled: IconTypes.Filled;
+	export default filled;
+
+}
+declare module 'misc/icons/outline' {
+	import IconTypes from 'misc/icons/types'; const outline: IconTypes.Outline;
+	export default outline;
+
+}
+declare module 'misc/icons' {
+	export { default as filled } from 'misc/icons/filled';
+	export { default as outline } from 'misc/icons/outline';
+
+}
+declare module 'content/Icon/styles' {
+	import Shared from 'types';
+	import Types from 'content/Icon/types'; const iconStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	export default iconStyles;
+
+}
+declare module 'content/Icon' {
+	import React from 'react';
+	import Types from 'content/Icon/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'content/Spinner/styles' {
+	import Types from 'content/Spinner/types';
+	import Shared from 'types'; const spinnerStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	export default spinnerStyles;
+
+}
+declare module 'content/Spinner' {
+	import React from 'react';
+	import Types from 'content/Spinner/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'misc/hocs/Typography/types' {
+	/// <reference types="react" />
+	import Shared from '@flow-ui/core/types';
+	import CSS from 'csstype';
+	import ThemeTypes from 'misc/themes/types'; namespace TypographyTypes {
+	    interface AnchorProps extends Props {
+	        download?: any;
+	        href?: string;
+	        hrefLang?: string;
+	        media?: string;
+	        ping?: string;
+	        rel?: string;
+	        target?: string;
+	        type?: string;
+	        referrerPolicy?: string;
+	        onEnter?: () => void;
+	    }
+	    interface Props extends Shared.AllProps {
+	        ellipsis?: boolean;
+	        decoration?: CSS.Properties['textDecoration'];
+	        children?: React.ReactNode;
+	        color?: Shared.ColorProp;
+	        background?: Shared.ColorProp;
+	        align?: CSS.Properties['textAlign'];
+	        weight?: CSS.Properties['fontWeight'];
+	        size?: CSS.Properties['fontSize'] | number;
+	        lineHeight?: CSS.Properties['lineHeight'];
+	        transform?: CSS.Properties['textTransform'];
+	    }
+	    interface PrivateProps extends AnchorProps {
+	        tag: string;
+	        sizesOf: keyof ThemeTypes.Typography;
+	        specificStyles?: any;
+	    }
+	}
+	export default TypographyTypes;
+
+}
+declare module 'misc/hocs/Typography' {
+	/// <reference types="react" />
+	/// <reference types="@emotion/core" />
+	import Types from 'misc/hocs/Typography/types'; type RefTag = HTMLSpanElement | HTMLAnchorElement | HTMLParagraphElement; const _default: import("react").ForwardRefExoticComponent<Types.PrivateProps & import("react").RefAttributes<RefTag>>;
+	export default _default;
+
+}
+declare module 'content/Header' {
+	import React from 'react';
+	import Types from 'misc/hocs/Typography/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'content/Display' {
+	import React from 'react';
+	import Types from 'misc/hocs/Typography/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'content/Paragraph' {
+	import React from 'react';
+	import Types from 'misc/hocs/Typography/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLParagraphElement>>;
+	export default _default;
+
+}
+declare module 'content/Text' {
+	import React from 'react';
+	import Types from 'misc/hocs/Typography/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'content/Anchor' {
+	import React from 'react';
+	import Types from 'misc/hocs/Typography/types'; const _default: React.ForwardRefExoticComponent<Types.AnchorProps & React.RefAttributes<HTMLAnchorElement>>;
+	export default _default;
+
+}
+declare module 'control/Button/styles' {
+	import Types from 'control/Button/types';
+	import Shared from 'types'; const buttonStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	export default buttonStyles;
+
+}
+declare module 'control/Button' {
+	import React from 'react';
+	import Types from 'control/Button/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLButtonElement>>;
+	export default _default;
+
+}
+declare module 'layout/Block/styles' {
+	import Types from 'layout/Block/types';
+	import Shared from 'types'; const BlockStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	export default BlockStyles;
+
+}
+declare module 'layout/Block' {
+	/// <reference types="react" />
+	/// <reference types="@emotion/core" />
+	import Types from 'layout/Block/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'misc/hocs/Check' {
+	import React from 'react';
+	import CheckTypes from 'misc/hocs/Check/types'; const _default: React.ForwardRefExoticComponent<CheckTypes.PrivateProps & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'misc/hocs/Check/styles' {
+	import Shared from '@flow-ui/core/types';
+	import Types from 'misc/hocs/Check/types';
+	import ThemeTypes from 'misc/themes/types'; const checkStyles: (props: Types.Props, theme: ThemeTypes.Index) => Shared.ComponentStyles<Types.Overrides>;
+	export default checkStyles;
+
+}
+declare module 'control/Checkbox/styles' {
+	import Types from 'control/Checkbox/types';
+	import Shared from 'types'; const checkboxStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	export default checkboxStyles;
+
+}
+declare module 'control/Checkbox' {
+	import React from 'react';
+	import Types from 'control/Checkbox/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'layout/Drop/styles' {
+	import Types from 'layout/Drop/types';
+	import Shared from 'types'; const DropStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	export default DropStyles;
+
+}
+declare module 'layout/Drop' {
+	import React from 'react';
+	import Types from 'layout/Drop/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
+	export default _default;
+
+}
+declare module 'layout/Popover/styles' {
+	import Types from 'layout/Popover/types';
+	import Shared from 'types'; const popoverStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	export default popoverStyles;
+
+}
+declare module 'layout/Popover' {
+	import React from 'react';
+	import Types from 'layout/Popover/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'misc/hocs/Field' {
+	import React from 'react';
+	import Types from 'misc/hocs/Field/types'; const _default: React.ForwardRefExoticComponent<Types.PrivateProps & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'misc/utils/createID' {
+	 const _default: () => string;
+	export default _default;
+
+}
+declare module 'misc/hooks/useMask' {
+	import IMask from 'imask'; const _default: (ref: any, masked: any) => IMask.InputMask<IMask.AnyMaskedOptions>;
+	export default _default;
+
+}
+declare module 'layout/Flexbox' {
+	/// <reference types="react" />
+	/// <reference types="@emotion/core" />
+	import Types from 'layout/Flexbox/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'layout/Grid' {
+	/// <reference types="react" />
+	/// <reference types="@emotion/core" />
+	import Types from 'layout/Grid/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'control/DatePicker/DateGridDay' {
+	/// <reference types="react" />
+	import DatePickerTypes from 'control/DatePicker/types'; const DateGridDay: (props: DatePickerTypes.DateGridCalendarProps) => JSX.Element;
+	export default DateGridDay;
+
+}
+declare module 'control/DatePicker/DateGridMonth' {
+	/// <reference types="react" />
+	import DatePickerTypes from 'control/DatePicker/types'; const DateGridMonth: (props: DatePickerTypes.DateGridCalendarProps) => JSX.Element;
+	export default DateGridMonth;
+
+}
+declare module 'control/DatePicker/DateGridTitle' {
+	/// <reference types="react" />
+	import DatePickerTypes from 'control/DatePicker/types'; const DateGridTitle: (props: DatePickerTypes.DateGridTitleProps) => JSX.Element;
+	export default DateGridTitle;
+
+}
+declare module 'control/DatePicker/DateGridYear' {
+	/// <reference types="react" />
+	import DatePickerTypes from 'control/DatePicker/types'; const DateGridYear: (props: DatePickerTypes.DateGridCalendarProps) => JSX.Element;
+	export default DateGridYear;
+
+}
+declare module 'control/DatePicker/DateGrid' {
+	/// <reference types="react" />
+	import DatePickerTypes from 'control/DatePicker/types'; const DateGrid: (props: DatePickerTypes.DateGridProps) => JSX.Element;
+	export default DateGrid;
+
+}
+declare module 'control/DatePicker/mask' {
+	import moment from 'moment'; const _default: (format: string, min: moment.Moment, max: moment.Moment) => any;
+	export default _default;
+
+}
+declare module 'misc/hocs/Field/styles' {
+	import Types from 'misc/hocs/Field/types';
+	import Shared from 'types';
+	import ThemeTypes from 'misc/themes/types'; const fieldStyles: <T extends Types.Overrides<{}>>(props: Types.Props, theme: ThemeTypes.Index, params?: {
+	    manyLines?: boolean | undefined;
+	    additionalPadding?: string | undefined;
+	    labelOverlayPosition?: "top" | "center" | undefined;
+	    overrides?: Partial<Shared.ComponentStyles<T>> | undefined;
+	}) => Shared.ComponentStyles<Types.Overrides<{}>>;
+	export default fieldStyles;
+
+}
+declare module 'control/DatePicker/styles' {
+	import Shared from 'types';
+	import Types from 'control/DatePicker/types'; const datePickerStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	export default datePickerStyles;
+
+}
+declare module 'control/DatePicker' {
+	import React from 'react';
+	import Types from 'control/DatePicker/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'control/Menu/Item' {
+	import { FC } from 'react';
+	import MenuTypes from 'control/Menu/types'; const Item: FC<MenuTypes.ItemProps>;
+	export default Item;
+
+}
+declare module 'control/Menu/styles' {
+	import Types from 'control/Menu/types';
+	import Shared from 'types'; const menuStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	export default menuStyles;
+
+}
+declare module 'control/Menu' {
+	import React from 'react';
+	import Types from 'control/Menu/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'control/Radio/styles' {
+	import Types from 'control/Radio/types';
+	import Shared from 'types'; const radioStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	export default radioStyles;
+
+}
+declare module 'control/Radio' {
+	import React from 'react';
+	import Types from 'control/Radio/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'control/Range/styles' {
+	import Types from 'control/Range/types';
+	import Shared from 'types'; const rangeStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	export default rangeStyles;
+
+}
+declare module 'control/Range' {
+	import React from 'react';
+	import Types from 'control/Range/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'control/Select/reducer' {
+	import Types from 'control/Select/types'; const _default: (state: Types.State, action: Types.Actions) => {
+	    selectedOptions: Types.Option[];
+	    empty: boolean;
+	    searchValue: string;
+	    cursor: number;
+	    open: boolean;
+	};
+	export default _default;
+
+}
+declare module 'misc/utils/variant' {
+	 const _default: <T>(prop: any, variant: { [K in T]?: any; }) => any;
+	export default _default;
+
+}
+declare module 'control/Select/styles' {
+	import Types from 'control/Select/types';
+	import Shared from 'types'; const selectStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	export default selectStyles;
+
+}
+declare module 'control/Select' {
+	import React from 'react';
+	import Types from 'control/Select/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'control/Switch/styles' {
+	import Types from 'control/Switch/types';
+	import Shared from 'types'; const switchStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	export default switchStyles;
+
+}
+declare module 'control/Switch' {
+	import React from 'react';
+	import Types from 'control/Switch/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'control/TextField/styles' {
+	import Types from 'control/TextField/types';
+	import Shared from 'types'; const textFieldStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	export default textFieldStyles;
+
+}
+declare module 'control/TextField' {
+	import React from 'react';
+	import Types from 'control/TextField/types'; type RefTypes = ((HTMLInputElement | HTMLTextAreaElement) & HTMLDivElement) | null | {}; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<RefTypes>>;
+	export default _default;
+
+}
+declare module 'data/Meter/styles' {
+	import Types from 'data/Meter/types';
+	import Shared from 'types'; const meterStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	export default meterStyles;
+
+}
+declare module 'data/Meter' {
+	import React from 'react';
+	import Types from 'data/Meter/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'data/Table/styles' {
+	import Types from 'data/Table/types';
+	import Shared from 'types'; const tabelStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	export default tabelStyles;
+
+}
+declare module 'data/Table/TableForm' {
+	/// <reference types="react" />
+	import TableTypes from 'data/Table/types';
+	interface TableFormHOCProps {
+	    Form: TableTypes.InjectForm;
+	    dismiss?: () => void;
+	    columns: TableTypes.TableColumn[];
+	    row?: {
+	        [key: string]: any;
+	    };
+	    defaultData?: {
+	        [key: string]: any;
+	    };
+	} const TableFormHOC: (props: TableFormHOCProps) => JSX.Element;
+	export default TableFormHOC;
+
+}
+declare module 'data/Table/TablePagination' {
+	/// <reference types="react" />
+	import TableTypes from 'data/Table/types'; const TablePagination: (props: TableTypes.PaginationProps) => JSX.Element | null;
+	export default TablePagination;
+
+}
+declare module 'data/Table/TableColumns' {
+	/// <reference types="react" />
+	import TableTypes from 'data/Table/types'; const TableColumns: (props: TableTypes.ColumnProps) => JSX.Element;
+	export default TableColumns;
+
+}
+declare module 'data/Table/TableActions' {
+	/// <reference types="react" />
+	import TableTypes from 'data/Table/types'; const TableActions: (props: TableTypes.ActionsProps) => JSX.Element;
+	export default TableActions;
+
+}
+declare module 'data/Table/TableRow' {
+	/// <reference types="react" />
+	import TableTypes from 'data/Table/types'; const TableRow: (props: TableTypes.RowProps) => JSX.Element;
+	export default TableRow;
+
+}
+declare module 'data/Table' {
+	import React from 'react';
+	import Types from 'data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'layout/Badge/styles' {
+	import Types from 'layout/Badge/types';
+	import Shared from 'types'; const BadgeStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	export default BadgeStyles;
+
+}
+declare module 'layout/Badge' {
+	import React from 'react';
+	import Types from 'layout/Badge/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'layout/Modal/ModalOverlay' {
+	import React from 'react';
+	import ModalTypes from 'layout/Modal/types'; const ModalOverlay: React.ForwardRefExoticComponent<ModalTypes.ModalOverlayProps & React.RefAttributes<unknown>>;
+	export default ModalOverlay;
+
+}
+declare module 'layout/Modal/ModalPortal' {
+	 const _default: (props: any) => import("react").ReactPortal;
+	export default _default;
+
+}
+declare module 'layout/Modal/ModalHeader' {
+	/// <reference types="react" />
+	import ModalTypes from 'layout/Modal/types'; const ModalHeader: (props: ModalTypes.ModalHeaderProps) => JSX.Element | null;
+	export default ModalHeader;
+
+}
+declare module 'layout/Modal/ModalWindow' {
+	import ModalTypes from 'layout/Modal/types';
+	import React from 'react'; const ModalWindow: React.ForwardRefExoticComponent<ModalTypes.ModalWindowProps & React.RefAttributes<unknown>>;
+	export default ModalWindow;
+
+}
+declare module 'layout/Modal/styles' {
+	import Types from 'layout/Modal/types';
+	import Shared from 'types'; const modalStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	export default modalStyles;
+
+}
+declare module 'layout/Modal' {
+	import React from 'react';
+	import Types from 'layout/Modal/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
+	export default _default;
+
+}
+declare module 'layout/Notification/styles' {
+	 const _default: (props: any, theme: any) => {
+	    container: never[];
+	};
+	export default _default;
+
+}
+declare module 'layout/Notification' {
+	import React from 'react';
+	import Types from 'layout/Notification/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'layout/Tree/styles' {
+	import Types from 'layout/Tree/types';
+	import Shared from 'types'; const treeStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	export default treeStyles;
+
+}
+declare module 'layout/Tree' {
+	import React from 'react';
+	import Types from 'layout/Tree/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
 declare module 'misc/utils/mergeObjects' {
 	export default function mergeObjects(target?: Object, source?: Object, modify?: (value: any) => any): Object;
 
@@ -2205,611 +2788,9 @@ declare module 'layout/Viewport/styles' {
 
 }
 declare module 'layout/Viewport' {
-	import React, { FC } from 'react';
-	import ViewportTypes from 'layout/Viewport/types';
-	export const FlowContext: React.Context<ViewportTypes.Context>; const Viewport: FC<ViewportTypes.Props>;
+	import { RefForwardingComponent } from 'react';
+	import Types from 'layout/Viewport/types'; const Viewport: RefForwardingComponent<{}, Types.Props>;
 	export default Viewport;
-
-}
-declare module 'misc/hooks/useTheme' {
-	 const _default: () => import("../../layout/Viewport/types").default.Context;
-	export default _default;
-
-}
-declare module 'misc/hooks/useContainer' {
-	 const _default: (props: any, mouseFocus?: boolean | undefined, disableDecoration?: boolean | undefined) => {
-	    attributes: any;
-	    focus: boolean;
-	};
-	export default _default;
-
-}
-declare module 'misc/hooks/useStyles' {
-	import Shared from 'types'; const createStyles: <S>(props: any, componentStyles: Shared.ComponentStyles<S> | Shared.FunctionalComponentStyles<S, {}>, componentName?: "Menu" | "Divider" | "Icon" | "Spinner" | "Button" | "Checkbox" | "DatePicker" | "Radio" | "Range" | "Select" | "Switch" | "TextField" | "Meter" | "Table" | "Badge" | "Block" | "Drop" | "Flexbox" | "Grid" | "Modal" | "Notification" | "Popover" | "Tree" | undefined) => Shared.FlowStyles<S>;
-	export default createStyles;
-
-}
-declare module 'misc/hooks/useStyleProps' {
-	import Shared from '@flow-ui/core/types';
-	import CSS from 'csstype';
-	interface Props extends Shared.SelfProps, Shared.FlowProps {
-	    [key: string]: any;
-	} type Color = {
-	    background: CSS.Properties['background'];
-	    color: CSS.Properties['color'];
-	}; type Border = {
-	    borderWidth: CSS.Properties['borderWidth'];
-	    borderStyle: CSS.Properties['borderStyle'];
-	    borderColor: CSS.Properties['borderColor'];
-	    borderRadius: CSS.Properties['borderRadius'];
-	}; type Padding = {
-	    padding: CSS.Properties['padding'];
-	    paddingTop: CSS.Properties['paddingTop'];
-	    paddingLeft: CSS.Properties['paddingLeft'];
-	    paddingRight: CSS.Properties['paddingRight'];
-	    paddingBottom: CSS.Properties['paddingBottom'];
-	}; type Margin = {
-	    margin: CSS.Properties['margin'];
-	    marginTop: CSS.Properties['marginTop'];
-	    marginLeft: CSS.Properties['marginLeft'];
-	    marginRight: CSS.Properties['marginRight'];
-	    marginBottom: CSS.Properties['marginBottom'];
-	}; type Layout = {
-	    display: CSS.Properties['display'];
-	    visibility: CSS.Properties['visibility'];
-	    width: CSS.Properties['width'];
-	    height: CSS.Properties['height'];
-	    transition: CSS.Properties['transition'];
-	}; type Flex = {
-	    flex: CSS.Properties['flex'];
-	    flexBasis: CSS.Properties['flexBasis'];
-	    flexGrow: CSS.Properties['flexGrow'];
-	    flexShrink: CSS.Properties['flexShrink'];
-	    alignSelf: CSS.Properties['alignSelf'];
-	    justifySelf: CSS.Properties['justifySelf'];
-	}; type Grid = {
-	    gridColumnStart: CSS.Properties['gridColumnStart'];
-	    gridColumnEnd: CSS.Properties['gridColumnEnd'];
-	    gridRowStart: CSS.Properties['gridRowStart'];
-	    gridRowEnd: CSS.Properties['gridRowEnd'];
-	    gridColumn: CSS.Properties['gridColumn'];
-	    gridRow: CSS.Properties['gridRow'];
-	    gridArea: CSS.Properties['gridArea'];
-	    placeSelf: CSS.Properties['placeSelf'];
-	};
-	interface InjectedStyleProps {
-	    color: Color;
-	    border: Border;
-	    padding: Padding;
-	    margin: Margin;
-	    layout: Layout;
-	    flex: Flex;
-	    grid: Grid;
-	    flow: Margin & Flex & Grid;
-	    self: Padding & Layout & Color & Border;
-	    all: Margin & Flex & Grid & Padding & Layout & Color & Border;
-	} const useStyleProps: (props: Props) => InjectedStyleProps;
-	export default useStyleProps;
-
-}
-declare module 'content/Divider/styles' {
-	import Shared from '@flow-ui/core/types';
-	import Types from 'content/Divider/types'; const dividerStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
-	export default dividerStyles;
-
-}
-declare module 'content/Divider' {
-	/// <reference types="react" />
-	/// <reference types="@emotion/core" />
-	import Types from 'content/Divider/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'misc/icons/filled' {
-	import IconTypes from 'misc/icons/types'; const filled: IconTypes.Filled;
-	export default filled;
-
-}
-declare module 'misc/icons/outline' {
-	import IconTypes from 'misc/icons/types'; const outline: IconTypes.Outline;
-	export default outline;
-
-}
-declare module 'misc/icons' {
-	export { default as filled } from 'misc/icons/filled';
-	export { default as outline } from 'misc/icons/outline';
-
-}
-declare module 'content/Icon/styles' {
-	import Shared from 'types';
-	import Types from 'content/Icon/types'; const iconStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
-	export default iconStyles;
-
-}
-declare module 'content/Icon' {
-	import React from 'react';
-	import Types from 'content/Icon/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'content/Spinner/styles' {
-	import Types from 'content/Spinner/types';
-	import Shared from 'types'; const spinnerStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
-	export default spinnerStyles;
-
-}
-declare module 'content/Spinner' {
-	import React from 'react';
-	import Types from 'content/Spinner/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'misc/hocs/Typography/types' {
-	/// <reference types="react" />
-	import Shared from '@flow-ui/core/types';
-	import CSS from 'csstype';
-	import ThemeTypes from 'misc/themes/types'; namespace TypographyTypes {
-	    interface AnchorProps extends Props {
-	        download?: any;
-	        href?: string;
-	        hrefLang?: string;
-	        media?: string;
-	        ping?: string;
-	        rel?: string;
-	        target?: string;
-	        type?: string;
-	        referrerPolicy?: string;
-	        onEnter?: () => void;
-	    }
-	    interface Props extends Shared.AllProps {
-	        ellipsis?: boolean;
-	        decoration?: CSS.Properties['textDecoration'];
-	        children?: React.ReactNode;
-	        color?: Shared.ColorProp;
-	        background?: Shared.ColorProp;
-	        align?: CSS.Properties['textAlign'];
-	        weight?: CSS.Properties['fontWeight'];
-	        size?: CSS.Properties['fontSize'] | number;
-	        lineHeight?: CSS.Properties['lineHeight'];
-	        transform?: CSS.Properties['textTransform'];
-	    }
-	    interface PrivateProps extends AnchorProps {
-	        tag: string;
-	        sizesOf: keyof ThemeTypes.Typography;
-	        specificStyles?: any;
-	    }
-	}
-	export default TypographyTypes;
-
-}
-declare module 'misc/hocs/Typography' {
-	/// <reference types="react" />
-	/// <reference types="@emotion/core" />
-	import Types from 'misc/hocs/Typography/types'; const _default: import("react").ForwardRefExoticComponent<Types.PrivateProps & import("react").RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'content/Header' {
-	import React from 'react';
-	import Types from 'misc/hocs/Typography/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'content/Display' {
-	import React from 'react';
-	import Types from 'misc/hocs/Typography/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'content/Paragraph' {
-	import React from 'react';
-	import Types from 'misc/hocs/Typography/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'content/Text' {
-	import React from 'react';
-	import Types from 'misc/hocs/Typography/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'content/Anchor' {
-	import React from 'react';
-	import Types from 'misc/hocs/Typography/types'; const _default: React.ForwardRefExoticComponent<Types.AnchorProps & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'control/Button/styles' {
-	import Types from 'control/Button/types';
-	import Shared from 'types'; const buttonStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
-	export default buttonStyles;
-
-}
-declare module 'control/Button' {
-	import React from 'react';
-	import Types from 'control/Button/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'layout/Block/styles' {
-	import Types from 'layout/Block/types';
-	import Shared from 'types'; const BlockStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
-	export default BlockStyles;
-
-}
-declare module 'layout/Block' {
-	/// <reference types="react" />
-	/// <reference types="@emotion/core" />
-	import Types from 'layout/Block/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'misc/hocs/Check' {
-	import React from 'react';
-	import CheckTypes from 'misc/hocs/Check/types'; const _default: React.ForwardRefExoticComponent<CheckTypes.PrivateProps & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
-
-}
-declare module 'misc/hocs/Check/styles' {
-	import Shared from '@flow-ui/core/types';
-	import Types from 'misc/hocs/Check/types';
-	import ThemeTypes from 'misc/themes/types'; const checkStyles: (props: Types.Props, theme: ThemeTypes.Index) => Shared.ComponentStyles<Types.Overrides>;
-	export default checkStyles;
-
-}
-declare module 'control/Checkbox/styles' {
-	import Types from 'control/Checkbox/types';
-	import Shared from 'types'; const checkboxStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
-	export default checkboxStyles;
-
-}
-declare module 'control/Checkbox' {
-	import React from 'react';
-	import Types from 'control/Checkbox/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'layout/Drop/styles' {
-	import Types from 'layout/Drop/types';
-	import Shared from 'types'; const DropStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
-	export default DropStyles;
-
-}
-declare module 'layout/Drop' {
-	import React from 'react';
-	import Types from 'layout/Drop/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
-	export default _default;
-
-}
-declare module 'layout/Popover/styles' {
-	import Types from 'layout/Popover/types';
-	import Shared from 'types'; const popoverStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
-	export default popoverStyles;
-
-}
-declare module 'layout/Popover' {
-	import React from 'react';
-	import Types from 'layout/Popover/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'layout/Flexbox' {
-	/// <reference types="react" />
-	/// <reference types="@emotion/core" />
-	import Types from 'layout/Flexbox/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'layout/Grid' {
-	/// <reference types="react" />
-	/// <reference types="@emotion/core" />
-	import Types from 'layout/Grid/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
-	export default _default;
-
-}
-declare module 'control/DatePicker/DateGridDay' {
-	/// <reference types="react" />
-	import DatePickerTypes from 'control/DatePicker/types'; const DateGridDay: (props: DatePickerTypes.DateGridCalendarProps) => JSX.Element;
-	export default DateGridDay;
-
-}
-declare module 'control/DatePicker/DateGridMonth' {
-	/// <reference types="react" />
-	import DatePickerTypes from 'control/DatePicker/types'; const DateGridMonth: (props: DatePickerTypes.DateGridCalendarProps) => JSX.Element;
-	export default DateGridMonth;
-
-}
-declare module 'control/DatePicker/DateGridTitle' {
-	/// <reference types="react" />
-	import DatePickerTypes from 'control/DatePicker/types'; const DateGridTitle: (props: DatePickerTypes.DateGridTitleProps) => JSX.Element;
-	export default DateGridTitle;
-
-}
-declare module 'control/DatePicker/DateGridYear' {
-	/// <reference types="react" />
-	import DatePickerTypes from 'control/DatePicker/types'; const DateGridYear: (props: DatePickerTypes.DateGridCalendarProps) => JSX.Element;
-	export default DateGridYear;
-
-}
-declare module 'control/DatePicker/DateGrid' {
-	/// <reference types="react" />
-	import DatePickerTypes from 'control/DatePicker/types'; const DateGrid: (props: DatePickerTypes.DateGridProps) => JSX.Element;
-	export default DateGrid;
-
-}
-declare module 'misc/hocs/Field/styles' {
-	import Types from 'misc/hocs/Field/types';
-	import Shared from 'types';
-	import ThemeTypes from 'misc/themes/types'; const fieldStyles: <T extends Types.Overrides<{}>>(props: Types.Props, theme: ThemeTypes.Index, params?: {
-	    manyLines?: boolean | undefined;
-	    additionalPadding?: string | undefined;
-	    labelOverlayPosition?: "center" | "top" | undefined;
-	    overrides?: Partial<Shared.ComponentStyles<T>> | undefined;
-	}) => Shared.ComponentStyles<Types.Overrides<{}>>;
-	export default fieldStyles;
-
-}
-declare module 'control/DatePicker/styles' {
-	/**
-	 * styles.tsx
-	 * author: I.Trikoz
-	 */
-	import Shared from 'types';
-	import Types from 'control/DatePicker/types'; const datePickerStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
-	export default datePickerStyles;
-
-}
-declare module 'control/DatePicker/mask' {
-	import moment from 'moment'; const _default: (format: string, min: moment.Moment, max: moment.Moment) => any;
-	export default _default;
-
-}
-declare module 'misc/hocs/Field' {
-	import React from 'react';
-	import Types from 'misc/hocs/Field/types'; const _default: React.ForwardRefExoticComponent<Types.PrivateProps & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'misc/hooks/useMask' {
-	import IMask from 'imask'; const _default: (ref: any, masked: any) => IMask.InputMask<IMask.AnyMaskedOptions>;
-	export default _default;
-
-}
-declare module 'control/DatePicker' {
-	import React from 'react';
-	import Types from 'control/DatePicker/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'control/Menu/Item' {
-	import { FC } from 'react';
-	import MenuTypes from 'control/Menu/types'; const Item: FC<MenuTypes.ItemProps>;
-	export default Item;
-
-}
-declare module 'control/Menu/styles' {
-	import Types from 'control/Menu/types';
-	import Shared from 'types'; const menuStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
-	export default menuStyles;
-
-}
-declare module 'control/Menu' {
-	import React from 'react';
-	import Types from 'control/Menu/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'control/Radio/styles' {
-	import Types from 'control/Radio/types';
-	import Shared from 'types'; const radioStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
-	export default radioStyles;
-
-}
-declare module 'control/Radio' {
-	import React from 'react';
-	import RadioTypes from 'control/Radio/types'; const _default: React.ForwardRefExoticComponent<RadioTypes.Props & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'control/Range/styles' {
-	import Types from 'control/Range/types';
-	import Shared from 'types'; const rangeStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
-	export default rangeStyles;
-
-}
-declare module 'control/Range' {
-	import React from 'react';
-	import Types from 'control/Range/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'misc/utils/variant' {
-	 const _default: <T>(prop: any, variant: { [K in T]?: any; }) => any;
-	export default _default;
-
-}
-declare module 'control/Select/styles' {
-	import Types from 'control/Select/types';
-	import Shared from 'types'; const selectStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
-	export default selectStyles;
-
-}
-declare module 'control/Select/reducer' {
-	import Types from 'control/Select/types'; const _default: (state: Types.State, action: Types.Actions) => {
-	    selectedOptions: Types.Option[];
-	    empty: boolean;
-	    searchValue: string;
-	    cursor: number;
-	    open: boolean;
-	};
-	export default _default;
-
-}
-declare module 'control/Select' {
-	import React from 'react';
-	import Types from 'control/Select/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'control/Switch/styles' {
-	import Types from 'control/Switch/types';
-	import Shared from 'types'; const switchStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
-	export default switchStyles;
-
-}
-declare module 'control/Switch' {
-	import React from 'react';
-	import Types from 'control/Switch/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'control/TextField/styles' {
-	import Types from 'control/TextField/types';
-	import Shared from 'types'; const textFieldStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
-	export default textFieldStyles;
-
-}
-declare module 'control/TextField' {
-	import React from 'react';
-	import Types from 'control/TextField/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<any>>;
-	export default _default;
-
-}
-declare module 'data/Meter/styles' {
-	import Types from 'data/Meter/types';
-	import Shared from 'types'; const meterStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
-	export default meterStyles;
-
-}
-declare module 'data/Meter' {
-	import React from 'react';
-	import Types from 'data/Meter/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'data/Table/styles' {
-	import Types from 'data/Table/types';
-	import Shared from 'types'; const tabelStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
-	export default tabelStyles;
-
-}
-declare module 'data/Table/TableForm' {
-	/// <reference types="react" />
-	import TableTypes from 'data/Table/types';
-	interface TableFormHOCProps {
-	    Form: TableTypes.InjectForm;
-	    dismiss?: () => void;
-	    columns: TableTypes.TableColumn[];
-	    row?: {
-	        [key: string]: any;
-	    };
-	    defaultData?: {
-	        [key: string]: any;
-	    };
-	} const TableFormHOC: (props: TableFormHOCProps) => JSX.Element;
-	export default TableFormHOC;
-
-}
-declare module 'data/Table/TablePagination' {
-	/// <reference types="react" />
-	import TableTypes from 'data/Table/types'; const TablePagination: (props: TableTypes.PaginationProps) => JSX.Element | null;
-	export default TablePagination;
-
-}
-declare module 'data/Table/TableColumns' {
-	/// <reference types="react" />
-	import TableTypes from 'data/Table/types'; const TableColumns: (props: TableTypes.ColumnProps) => JSX.Element;
-	export default TableColumns;
-
-}
-declare module 'data/Table/TableActions' {
-	/// <reference types="react" />
-	import TableTypes from 'data/Table/types'; const TableActions: (props: TableTypes.ActionsProps) => JSX.Element;
-	export default TableActions;
-
-}
-declare module 'data/Table/TableRow' {
-	/// <reference types="react" />
-	import TableTypes from 'data/Table/types'; const TableRow: (props: TableTypes.RowProps) => JSX.Element;
-	export default TableRow;
-
-}
-declare module 'data/Table' {
-	import React from 'react';
-	import TableTypes from 'data/Table/types'; const _default: React.ForwardRefExoticComponent<TableTypes.Props & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'layout/Badge/styles' {
-	import Types from 'layout/Badge/types';
-	import Shared from 'types'; const BadgeStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
-	export default BadgeStyles;
-
-}
-declare module 'layout/Badge' {
-	import React from 'react';
-	import Types from 'layout/Badge/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'layout/Modal/ModalOverlay' {
-	import React from 'react';
-	import ModalTypes from 'layout/Modal/types'; const ModalOverlay: React.ForwardRefExoticComponent<ModalTypes.ModalOverlayProps & React.RefAttributes<unknown>>;
-	export default ModalOverlay;
-
-}
-declare module 'layout/Modal/ModalPortal' {
-	 const _default: (props: any) => import("react").ReactPortal;
-	export default _default;
-
-}
-declare module 'layout/Modal/ModalHeader' {
-	/// <reference types="react" />
-	import ModalTypes from 'layout/Modal/types'; const ModalHeader: (props: ModalTypes.ModalHeaderProps) => JSX.Element | null;
-	export default ModalHeader;
-
-}
-declare module 'layout/Modal/ModalWindow' {
-	import ModalTypes from 'layout/Modal/types';
-	import React from 'react'; const ModalWindow: React.ForwardRefExoticComponent<ModalTypes.ModalWindowProps & React.RefAttributes<unknown>>;
-	export default ModalWindow;
-
-}
-declare module 'layout/Modal/styles' {
-	import Types from 'layout/Modal/types';
-	import Shared from 'types'; const modalStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
-	export default modalStyles;
-
-}
-declare module 'layout/Modal' {
-	import React from 'react';
-	import Types from 'layout/Modal/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
-	export default _default;
-
-}
-declare module 'layout/Notification/styles' {
-	 const _default: (props: any, theme: any) => {
-	    container: never[];
-	};
-	export default _default;
-
-}
-declare module 'layout/Notification' {
-	import React from 'react';
-	import Types from 'layout/Notification/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export default _default;
-
-}
-declare module 'layout/Tree/styles' {
-	import Types from 'layout/Tree/types';
-	import Shared from 'types'; const treeStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
-	export default treeStyles;
-
-}
-declare module 'layout/Tree' {
-	import React from 'react';
-	import Types from 'layout/Tree/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export default _default;
 
 }
 declare module 'misc/utils/dialog' {
@@ -2850,35 +2831,35 @@ declare module 'misc/deprecated' {
 	/**
 	 * ANCHOR
 	 */
-	export const A: React.ForwardRefExoticComponent<Types.AnchorProps & React.RefAttributes<unknown>>;
+	export const A: React.ForwardRefExoticComponent<Types.AnchorProps & React.RefAttributes<HTMLAnchorElement>>;
 	/**
 	 * CAPTIONS
 	 */
-	export const C1: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export const C2: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export const C3: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export const C4: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export const C1: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
+	export const C2: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
+	export const C3: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
+	export const C4: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
 	/**
 	 * DISPLAYS
 	 */
-	export const D1: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export const D2: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export const D3: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export const D4: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export const D1: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
+	export const D2: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
+	export const D3: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
+	export const D4: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
 	/**
 	 * HEADERS
 	 */
-	export const H1: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export const H2: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export const H3: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export const H4: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export const H1: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
+	export const H2: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
+	export const H3: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
+	export const H4: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
 	/**
 	 * TEXTS
 	 */
-	export const T1: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export const T2: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export const T3: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
-	export const T4: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<unknown>>;
+	export const T1: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLParagraphElement>>;
+	export const T2: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLParagraphElement>>;
+	export const T3: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLParagraphElement>>;
+	export const T4: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLParagraphElement>>;
 
 }
 declare module '@flow-ui/core' {
@@ -2932,12 +2913,17 @@ declare module '@flow-ui/core' {
 	 * Misc
 	 */
 	export { default as useBrowser } from 'misc/hooks/useBrowser';
-	export { default as useTheme } from 'misc/hooks/useTheme';
+	export { useTheme as useTheme } from '@flow-ui/whale';
 	/**
 	 * Deprecated
 	 */
 	export { H1, H2, H3, H4, D1, D2, D3, D4, T1, T2, T3, T4, C1, C2, C3, C4, A } from 'misc/deprecated';
-	export function transformImports(importName: any, matches: any): "@flow-ui/core/content/Divider" | "@flow-ui/core/content/Icon" | "@flow-ui/core/content/Spinner" | "@flow-ui/core/content/Header" | "@flow-ui/core/content/Display" | "@flow-ui/core/content/Paragraph" | "@flow-ui/core/content/Text" | "@flow-ui/core/content/Anchor" | "@flow-ui/core/control/Button" | "@flow-ui/core/control/Checkbox" | "@flow-ui/core/control/DatePicker" | "@flow-ui/core/control/Menu" | "@flow-ui/core/control/Radio" | "@flow-ui/core/control/Range" | "@flow-ui/core/control/Select" | "@flow-ui/core/control/Switch" | "@flow-ui/core/control/TextField" | "@flow-ui/core/data/Meter" | "@flow-ui/core/data/Table" | "@flow-ui/core/layout/Badge" | "@flow-ui/core/layout/Block" | "@flow-ui/core/layout/Drop" | "@flow-ui/core/layout/Flexbox" | "@flow-ui/core/layout/Grid" | "@flow-ui/core/layout/Modal" | "@flow-ui/core/layout/Notification" | "@flow-ui/core/layout/Popover" | "@flow-ui/core/layout/Tree" | "@flow-ui/core/layout/Viewport" | "@flow-ui/core/misc/utils/dialog" | "@flow-ui/core/misc/utils/notify" | "@flow-ui/core/misc/hooks/useBrowser" | "@flow-ui/core/misc/hooks/useTheme" | "/";
+	export function transformImports(importName: any, matches: any): "@flow-ui/core/content/Divider" | "@flow-ui/core/content/Icon" | "@flow-ui/core/content/Spinner" | "@flow-ui/core/content/Header" | "@flow-ui/core/content/Display" | "@flow-ui/core/content/Paragraph" | "@flow-ui/core/content/Text" | "@flow-ui/core/content/Anchor" | "@flow-ui/core/control/Button" | "@flow-ui/core/control/Checkbox" | "@flow-ui/core/control/DatePicker" | "@flow-ui/core/control/Menu" | "@flow-ui/core/control/Radio" | "@flow-ui/core/control/Range" | "@flow-ui/core/control/Select" | "@flow-ui/core/control/Switch" | "@flow-ui/core/control/TextField" | "@flow-ui/core/data/Meter" | "@flow-ui/core/data/Table" | "@flow-ui/core/layout/Badge" | "@flow-ui/core/layout/Block" | "@flow-ui/core/layout/Drop" | "@flow-ui/core/layout/Flexbox" | "@flow-ui/core/layout/Grid" | "@flow-ui/core/layout/Modal" | "@flow-ui/core/layout/Notification" | "@flow-ui/core/layout/Popover" | "@flow-ui/core/layout/Tree" | "@flow-ui/core/layout/Viewport" | "@flow-ui/core/misc/utils/dialog" | "@flow-ui/core/misc/utils/notify" | "@flow-ui/core/misc/hooks/useBrowser" | "/";
+
+}
+declare module 'misc/hooks/useSharedObject' {
+	 const useMemoEffect: <T>(createObject: () => T) => T | null;
+	export default useMemoEffect;
 
 }
 declare module 'misc/utils/validate' {

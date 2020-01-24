@@ -17,7 +17,8 @@ declare module 'data/Chart/types' {
 }
 declare module 'data/Chart' {
 	import React from 'react';
-	import ChartTypes from 'data/Chart/types'; const _default: React.ForwardRefExoticComponent<ChartTypes.Props & React.RefAttributes<unknown>>;
+	import { Bar, Bubble, Doughnut, HorizontalBar, Line, Pie, Polar, Radar, Scatter } from 'react-chartjs-2';
+	import Types from 'data/Chart/types'; type ChartRef = Bar | Bubble | Doughnut | HorizontalBar | Line | Pie | Polar | Radar | Scatter; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<ChartRef>>;
 	export default _default;
 
 }
@@ -63,12 +64,12 @@ declare module 'layout/Split/types' {
 }
 declare module 'layout/Split' {
 	import React from 'react';
-	import SplitTypes from 'layout/Split/types';
+	import Types from 'layout/Split/types';
 	export type SplitElRef = (HTMLDivElement & {
 	    _vertical?: true;
 	    _onMove?: () => void;
 	    _onChange?: () => void;
-	}) | null; const _default: React.ForwardRefExoticComponent<SplitTypes.Props & React.RefAttributes<unknown>>;
+	}) | null; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
 	export default _default;
 
 }
@@ -165,7 +166,7 @@ declare module 'control/ButtonGroup/types' {
 }
 declare module 'control/ButtonGroup' {
 	import React from 'react';
-	import ButtonGroupTypes from 'control/ButtonGroup/types'; const _default: React.ForwardRefExoticComponent<ButtonGroupTypes.Props & React.RefAttributes<unknown>>;
+	import Types from 'control/ButtonGroup/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
 	export default _default;
 
 }
