@@ -1,11 +1,11 @@
 import { jsx } from '@emotion/core'
-import { forwardRef } from 'react'
-import Types from './types'
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
 import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
 import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import { forwardRef, RefForwardingComponent } from 'react'
+import Types from './types'
 
-const Flexbox = (props: Types.Props, ref) => {
+const Flexbox: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     const { attributes } = useContainer(props)
     const styleProps = useStyleProps(props)
     const styles = useStyles<Types.Overrides>(props, {

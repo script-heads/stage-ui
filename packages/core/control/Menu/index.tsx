@@ -1,12 +1,12 @@
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
 import useStyles from '@flow-ui/core/misc/hooks/useStyles'
-import React, { FC, forwardRef, Fragment, useState } from 'react'
+import React, { forwardRef, Fragment, RefForwardingComponent, useState } from 'react'
 import createID from '../../misc/utils/createID'
 import Item from './Item'
 import menuStyles from './styles'
 import Types from './types'
 
-const Menu: FC<Types.Props> = (props, ref) => {
+const Menu: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     
     const {
         size = 'medium',

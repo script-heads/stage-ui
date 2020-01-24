@@ -1,9 +1,9 @@
-import React, { forwardRef } from 'react'
-import Types from '../../misc/hocs/Typography/types'
-import Typography from '../../misc/hocs/Typography'
+import React, { forwardRef, RefForwardingComponent } from 'react'
 import { useTheme } from '../..'
+import Typography from '../../misc/hocs/Typography'
+import Types from '../../misc/hocs/Typography/types'
 
-const Anchor = (props: Types.AnchorProps, ref) => {
+const Anchor: RefForwardingComponent<HTMLAnchorElement, Types.AnchorProps> = (props, ref) => {
     const theme = useTheme()
     
     return (

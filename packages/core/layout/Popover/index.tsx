@@ -1,10 +1,10 @@
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
-import React, { forwardRef } from 'react'
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import React, { forwardRef, RefForwardingComponent } from 'react'
 import popoverStyles from './styles'
 import Types from './types'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 
-const Popover = (props: Types.Props, ref) => {
+const Popover: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     const {align = 'top'} = props
     const { attributes } = useContainer(props)
     const styles = useStyles<Types.Overrides>(props, popoverStyles, 'Popover')

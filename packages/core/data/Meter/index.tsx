@@ -1,10 +1,10 @@
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
-import React, { forwardRef } from 'react'
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import React, { forwardRef, RefForwardingComponent } from 'react'
 import meterStyles from './styles'
 import Types from './types'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 
-const Meter = (props: Types.Props, ref) => {
+const Meter: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     
     const {
         decoration = 'filled',

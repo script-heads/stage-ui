@@ -1,12 +1,12 @@
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 import { filled, outline } from '@flow-ui/core/misc/icons'
 import callProp from '@flow-ui/core/misc/utils/callProp'
-import React, { forwardRef } from 'react'
+import React, { forwardRef, RefForwardingComponent } from 'react'
 import iconStyles from './styles'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 import Types from './types'
 
-const Icon = (props: Types.Props, ref) => {
+const Icon: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref) => {
 
     const { attributes } = useContainer(props)
     const styles = useStyles<Types.Overrides>(props, iconStyles, 'Icon')

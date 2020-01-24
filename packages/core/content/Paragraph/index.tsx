@@ -1,11 +1,11 @@
-import React, { forwardRef } from 'react'
-import Types from '../../misc/hocs/Typography/types'
+import React, { forwardRef, RefForwardingComponent } from 'react'
 import Typography from '../../misc/hocs/Typography'
+import Types from '../../misc/hocs/Typography/types'
 
-const Parapraph = (props: Types.Props, ref) =>
+const Parapraph: RefForwardingComponent<HTMLParagraphElement, Types.Props> = (props, ref) =>
     <Typography 
         tag="p" 
-        sizesOf='paragraph'  
+        sizesOf="paragraph"  
         ref={ref} 
         {...props}
     />

@@ -1,14 +1,14 @@
-import React, { forwardRef, RefObject, useEffect, useImperativeHandle, useRef, useState } from 'react'
-import ReactDOM from 'react-dom'
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
+import React, { forwardRef, RefForwardingComponent, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import ReactDOM from 'react-dom'
+import useStyles from '../../misc/hooks/useStyles'
 import ModalOverlay from './ModalOverlay'
 import ModalPortal from './ModalPortal'
 import ModalWindow from './ModalWindow'
 import modalStyles from './styles'
 import Types from './types'
-import useStyles from '../../misc/hooks/useStyles'
 
-const Modal = (props: Types.Props, ref: RefObject<Types.Ref>) => {
+const Modal: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
 
     const { hideHeader, fullSize, opened } = props
     const { attributes } = useContainer(props)

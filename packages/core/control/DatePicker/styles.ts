@@ -1,7 +1,3 @@
-/**
- * styles.tsx
- * author: I.Trikoz
- */
 import Shared from '../../types'
 import Types from './types'
 import fieldStyles from '@flow-ui/core/misc/hocs/Field/styles'

@@ -1,7 +1,3 @@
-/**
- * DateGridTitle.tsx
- * author: I.Trikoz
- */
 import React, { Fragment } from 'react'
 import Icon from '../../content/Icon'
 import Text from '../../content/Text'

@@ -1,7 +1,3 @@
-/**
- * DateGridDay.tsx
- * author: I.Trikoz
- */
 import moment from 'moment'
 import React from 'react'
 import Flexbox from '../../layout/Flexbox'

@@ -1,7 +1,7 @@
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
-import React, { forwardRef, Fragment, useEffect, useMemo } from 'react'
+import React, { forwardRef, Fragment, RefForwardingComponent, useEffect, useMemo, createRef } from 'react'
 import Separator from './Separator'
-import SplitTypes from './types'
+import Types from './types'
 
 export type SplitElRef = (HTMLDivElement & { 
     _vertical?: true 
@@ -13,11 +13,11 @@ interface SplitElRefs {
     [key: number]: SplitElRef
 }
 
-const Split = (props: SplitTypes.Props, ref: any) => {
+const Split: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
-    const { attributes } = useContainer(props);
+    const { attributes } = useContainer(props)
 
-    let vertical = props.direction === 'column';
+    let vertical = props.direction === 'column'
 
     const refs: SplitElRefs = useMemo(() => ({}), [])
 
@@ -28,59 +28,60 @@ const Split = (props: SplitTypes.Props, ref: any) => {
     const getPositions = () => (
         Object.keys(refs).filter(key => parseInt(key) >= 0).map(key =>
             parseFloat(
-                refs[key].style[vertical ? 'height' : 'width']!
+                refs[key].style[vertical ? 'height' : 'width'] || ''
             )
         )
     )
     
     useEffect(() => {
-        refs["-1"]._onMove = () => {
+        refs['-1']._onMove = () => {
             props.onMove && props.onMove(getPositions())
         }
-        refs["-1"]._onChange = () => {
+        refs['-1']._onChange = () => {
             props.onChange && props.onChange(getPositions())
         }
-    }, [props.onChange, props.onMove]);
+    }, [props.onChange, props.onMove])
 
     useEffect(() => {
         Object.keys(refs).filter(key => parseInt(key) >= 0).map(key => {
             const percent = props.positions ? props.positions[key] : defaultSize
             refs[key].style[vertical ? 'height' : 'width'] = percent + '%'
         })
-        refs["-1"]._vertical = props.direction === 'column';
+        refs['-1']._vertical = props.direction === 'column'
         
-    }, [props.positions, props.direction]);
+    }, [props.positions, props.direction])
 
     return (
-        <div {...attributes} ref={r => { refs[-1] = r; ref = r }} css={{
-            display: "flex",
-            width: "100%",
-            height: "100%",
+        <div {...attributes} ref={r => { refs[-1] = r; ref = { current: r } }} css={{
+            display: 'flex',
+            width: '100%',
+            height: '100%',
             flex: 1,
             flexDirection: vertical ? 'column' : 'row',
         }}>
             {
                 props.children.map((child, index) => {
-                    let separator: any = null
-                    if (props.children.length !== index + 1) {
-                        separator = (
+
+                    let separator = (props.children.length !== index + 1)
+                        ? (
                             <Separator
                                 areaSize={props.areaSize || 4}
                                 defaultVertical={vertical}
-                                container={() => refs[-1]!}
-                                prev={() => refs[index]!}
-                                next={() => refs[index + 1]!}
+                                container={() => refs[-1] as HTMLDivElement}
+                                prev={() => refs[index] as HTMLDivElement}
+                                next={() => refs[index + 1] as HTMLDivElement}
                             />
                         )
-                    }
+                        : null
+
                     return (
                         <Fragment key={index}>
                             <div
                                 css={{
-                                    display: "flex",
+                                    display: 'flex',
                                 }}
                                 style={{
-                                    [vertical ? 'height' : 'width']: defaultSize + "%"
+                                    [vertical ? 'height' : 'width']: defaultSize + '%'
                                 }}
                                 ref={ref => refs[index] = ref}
                                 children={child}

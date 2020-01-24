@@ -1,10 +1,10 @@
-import React, { forwardRef } from 'react'
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
 import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import React, { forwardRef, RefForwardingComponent } from 'react'
 import bageStyles from './styles'
 import Types from './types'
 
-const Badge = (props: Types.Props, ref) => {
+const Badge: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     const { attributes } = useContainer(props)
     const styles = useStyles<Types.Overrides>(props, bageStyles, 'Badge')
 

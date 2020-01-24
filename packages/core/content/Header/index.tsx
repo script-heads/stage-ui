@@ -1,8 +1,8 @@
-import React, { forwardRef } from 'react'
-import Types from '../../misc/hocs/Typography/types'
+import React, { forwardRef, RefForwardingComponent } from 'react'
 import Typography from '../../misc/hocs/Typography'
+import Types from '../../misc/hocs/Typography/types'
 
-const Header = (props: Types.Props, ref) =>
+const Header: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref) =>
     <Typography 
         tag="span" 
         sizesOf="header"

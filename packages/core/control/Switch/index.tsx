@@ -1,11 +1,11 @@
-import React, { FC, forwardRef, RefObject } from 'react'
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import React, { forwardRef, RefForwardingComponent } from 'react'
 import Block from '../../layout/Block'
 import Check from '../../misc/hocs/Check'
 import switchStyles from './styles'
 import Types from './types'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 
-const Switch: FC<Types.Props> = (props, ref: RefObject<HTMLDivElement>) => {
+const Switch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const {size='medium', animated, disabled} = props
     const styles = useStyles<Types.Overrides>(props, switchStyles, 'Switch')

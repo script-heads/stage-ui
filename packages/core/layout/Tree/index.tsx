@@ -1,5 +1,5 @@
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
-import React, { forwardRef, useState } from 'react'
+import React, { RefForwardingComponent, forwardRef, useState } from 'react'
 import Icon from '@flow-ui/core/content/Icon'
 import Text from '@flow-ui/core/content/Text'
 import Block from '@flow-ui/core/layout/Block'
@@ -8,9 +8,14 @@ import treeStyles from './styles'
 import Types from './types'
 import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 
-const Tree = (props: Types.Props, ref) => {
-    //@ts-ignore
-    let { children, decoration = 'drop' as Types.Props['decoration'], lvl = 0 } = props
+const Tree: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+    let { 
+        children, 
+        decoration = 'drop' as Types.Props['decoration'],
+        //@ts-ignore
+        lvl = 0 
+    } = props
+    
     const { attributes } = useContainer(props)
     const [isOpen, setOpen] = useState((props.alwaysOpen || props.defaultOpen) ? true : false)
     const styles = useStyles<Types.Overrides>(props, treeStyles, 'Tree')

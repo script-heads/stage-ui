@@ -1,8 +1,8 @@
-import React, { forwardRef, RefObject, useEffect, useState } from 'react'
+import React, { forwardRef, RefForwardingComponent, useEffect, useState } from 'react'
 import useContainer from '../../hooks/useContainer'
 import CheckTypes from './types'
 
-const Check = (props: CheckTypes.PrivateProps, ref: RefObject<HTMLDivElement>) => {
+const Check: RefForwardingComponent<HTMLDivElement, CheckTypes.PrivateProps> = (props, ref) => {
     const [focus, setFocus] = useState(false)
     const [checked, setChecked] = useState(props.checked || props.defaultValue || false)
     const { label, styles, animated, disabled,size, uppercase } = props

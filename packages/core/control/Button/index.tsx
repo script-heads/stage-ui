@@ -1,10 +1,10 @@
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
 import useStyles from '@flow-ui/core/misc/hooks/useStyles'
-import React, { FC, forwardRef } from 'react'
+import React, { forwardRef, RefForwardingComponent } from 'react'
 import buttonStyles from './styles'
 import Types from './types'
 
-const Button: FC<Types.Props> = (props, ref) => {
+const Button: RefForwardingComponent<HTMLButtonElement, Types.Props> = (props, ref) => {
 
     const {
         disabled,

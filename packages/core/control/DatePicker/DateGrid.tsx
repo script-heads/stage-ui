@@ -1,7 +1,3 @@
-/**
- * DateGrid.tsx
- * author: I.Trikoz
- */
 import moment, { Moment } from 'moment'
 import React, { Fragment, useEffect, useState } from 'react'
 import Button from '../../control/Button'

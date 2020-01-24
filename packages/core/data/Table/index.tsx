@@ -1,15 +1,15 @@
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
-import React, { FC, forwardRef, useEffect, useState } from 'react'
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import React, { forwardRef, RefForwardingComponent, useEffect, useState } from 'react'
 import Icon from '../../content/Icon'
 import Spinner from '../../content/Spinner'
 import tableStyles from './styles'
 import TableForm from './TableForm'
 import TablePagination from './TablePagination'
 import TableRow from './TableRow'
-import TableTypes from './types'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import Types from './types'
 
-const Table: FC<TableTypes.Props> = (props, ref) => {
+const Table: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const { attributes } = useContainer(props)
     const { columns, actions, border, indexKey, scope, form, search, onRowClick, hideHeaders } = props

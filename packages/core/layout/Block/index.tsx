@@ -1,11 +1,11 @@
 import { jsx } from '@emotion/core'
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
 import useStyles from '@flow-ui/core/misc/hooks/useStyles'
-import { forwardRef } from 'react'
-import Types from './types'
+import { forwardRef, RefForwardingComponent } from 'react'
 import blockStyles from './styles'
+import Types from './types'
 
-const Block = (props: Types.Props, ref) => {
+const Block: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     const { surface, hoverSurface } = props
     const { attributes } = useContainer(props)
     const styles = useStyles<Types.Overrides>(props, blockStyles, 'Block')

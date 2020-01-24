@@ -1,17 +1,18 @@
-import React, { FC, forwardRef, RefObject } from 'react'
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import React, { forwardRef, RefForwardingComponent } from 'react'
 import Block from '../../layout/Block'
 import Check from '../../misc/hocs/Check'
 import radioStyles from './styles'
-import RadioTypes from './types'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import Types from './types'
 
-const Radio: FC<RadioTypes.Props> = (props, ref: RefObject<HTMLDivElement>) => {
+const Radio: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     const {animated, size = 'medium', disabled} = props
     const styles = useStyles(props, radioStyles, 'Radio')
 
     return (
         <Check
             {...props}
+            ref={ref}
             size={size}
             tabIndex={props.tabIndex || 0}
             onFocus={(e) => {

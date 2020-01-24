@@ -1,10 +1,10 @@
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
-import React, { forwardRef } from 'react'
 import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import React, { forwardRef, RefForwardingComponent } from 'react'
 import spinnerStyles from './styles'
 import Types from './types'
 
-const Spinner = (props: Types.Props, ref) => {
+const Spinner: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     const {
         children,
         shape,

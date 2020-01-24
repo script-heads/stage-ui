@@ -1,9 +1,9 @@
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
 import useStyles from '@flow-ui/core/misc/hooks/useStyles'
-import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState, useMemo, RefForwardingComponent } from 'react'
+import React, { forwardRef, RefForwardingComponent, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
-import Types from './types'
 import dropStyles from './styles'
+import Types from './types'
 
 type GetCoord = (tr: ClientRect, td: ClientRect) => string
 

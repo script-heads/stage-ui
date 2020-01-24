@@ -1,11 +1,11 @@
-import React, { forwardRef } from 'react'
-import Types from '../../misc/hocs/Typography/types'
+import React, { forwardRef, RefForwardingComponent } from 'react'
 import Typography from '../../misc/hocs/Typography'
+import Types from '../../misc/hocs/Typography/types'
 
-const Display = (props: Types.Props, ref) =>
+const Display: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref) =>
     <Typography 
         tag="span" 
-        sizesOf='display'
+        sizesOf="display"
         specificStyles={{
             display: 'block'
         }}  

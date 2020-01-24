@@ -1,7 +1,3 @@
-/**
- * types.tsx
- * author: I.Trikoz
- */
 import { Moment } from 'moment'
 import { CSSProperties } from 'react'
 import Shared from '@flow-ui/core/types'

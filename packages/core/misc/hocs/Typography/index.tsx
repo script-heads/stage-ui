@@ -1,12 +1,14 @@
 import { jsx } from '@emotion/core'
+import { useTheme } from '@flow-ui/core'
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
 import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
 import callProp from '@flow-ui/core/misc/utils/callProp'
-import { forwardRef } from 'react'
+import { forwardRef, RefForwardingComponent } from 'react'
 import Types from './types'
-import {useTheme} from '@flow-ui/core'
 
-const Typography = (props: Types.PrivateProps, ref) => {
+type RefTag = HTMLSpanElement | HTMLAnchorElement | HTMLParagraphElement
+
+const Typography: RefForwardingComponent<RefTag, Types.PrivateProps> = (props, ref) => {
 
     const styleProps = useStyleProps(props)
     const { attributes } = useContainer(props)

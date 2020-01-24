@@ -1,23 +1,19 @@
-/**
- * DatePicker.tsx
- * author: I.Trikoz
- */
+import { jsx } from '@emotion/core'
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 import moment, { Moment } from 'moment'
-import React, { FC, forwardRef, RefObject, useLayoutEffect, useRef, useState, Fragment, useEffect } from 'react'
+import React, { forwardRef, Fragment, RefForwardingComponent, useLayoutEffect, useRef, useState } from 'react'
 import Icon from '../../content/Icon'
 import Drop from '../../layout/Drop'
 import Popover from '../../layout/Popover'
-import DateGrid from './DateGrid'
-import datePickerStyles from './styles'
-import Types from './types'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
-import maskConf from './mask'
 import Field from '../../misc/hocs/Field'
 import useContainer from '../../misc/hooks/useContainer'
 import useMask from '../../misc/hooks/useMask'
-import { jsx } from '@emotion/core'
+import DateGrid from './DateGrid'
+import maskConf from './mask'
+import datePickerStyles from './styles'
+import Types from './types'
 
-const DatePicker: FC<Types.Props> = (props, ref: RefObject<HTMLDivElement>) => {
+const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const {
         locale = 'ru',
@@ -85,6 +81,7 @@ const DatePicker: FC<Types.Props> = (props, ref: RefObject<HTMLDivElement>) => {
         <Fragment>
             <Field
                 {...props}
+                ref={ref}
                 decoration={decoration}
                 size={size}
                 shape={shape}

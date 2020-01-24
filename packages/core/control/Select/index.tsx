@@ -1,15 +1,15 @@
-import React, { forwardRef, useReducer, useRef, Fragment, useImperativeHandle, useEffect } from 'react'
-import Types from './types'
-import selectStyles from './styles'
-import Field from '../../misc/hocs/Field'
+import React, { forwardRef, Fragment, RefForwardingComponent, useEffect, useImperativeHandle, useReducer, useRef } from 'react'
 import Icon from '../../content/Icon'
 import Drop from '../../layout/Drop'
 import DropTypes from '../../layout/Drop/types'
-import SelectReducer from './reducer'
+import Field from '../../misc/hocs/Field'
 import useContainer from '../../misc/hooks/useContainer'
 import useStyles from '../../misc/hooks/useStyles'
+import SelectReducer from './reducer'
+import selectStyles from './styles'
+import Types from './types'
 
-const Select = (props: Types.Props, ref) => {
+const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const {
         shape = 'rounded',
@@ -43,7 +43,7 @@ const Select = (props: Types.Props, ref) => {
         cursor: -1
     }
 
-    const targetRef = useRef(null)
+    const targetRef = useRef<HTMLDivElement>(null)
     const dropRef = useRef<DropTypes.Ref>(null)
     const [state, dispatch] = useReducer(SelectReducer, initialState)
 
@@ -52,9 +52,9 @@ const Select = (props: Types.Props, ref) => {
     const isLabelOverlay = (label && state.empty && !focus && !isLabelOutside) ? true : false
     const styles = useStyles<Types.Overrides>(props, selectStyles, 'Select')
 
-    useImperativeHandle(ref, () => {
-        return targetRef.current
-    })
+    useImperativeHandle(ref, () => 
+        targetRef.current as HTMLDivElement
+    )
 
     useEffect(() => {
         if (values) {

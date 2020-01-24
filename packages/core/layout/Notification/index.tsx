@@ -1,10 +1,10 @@
-import React, { forwardRef } from 'react'
+import React, { RefForwardingComponent, forwardRef } from 'react'
 import Block from '../Block'
 import Types from './types'
 import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 import notificationStyles from './styles'
 
-const Notifications = (props: Types.Props, ref: any) => {
+const Notifications: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const styles = useStyles<Types.Overrides>(props, notificationStyles, 'Notification')
 

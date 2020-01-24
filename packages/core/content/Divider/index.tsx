@@ -1,11 +1,11 @@
 import { jsx } from '@emotion/core'
-import { forwardRef } from 'react'
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
-import Types from './types'
 import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import { forwardRef, RefForwardingComponent } from 'react'
 import dividerStyles from './styles'
+import Types from './types'
 
-const Divider = (props: Types.Props, ref) => {
+const Divider: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     const { attributes } = useContainer(props)
     const styles = useStyles<Types.Overrides>(props, dividerStyles, 'Divider')
 

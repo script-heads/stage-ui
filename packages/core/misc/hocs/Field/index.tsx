@@ -1,8 +1,8 @@
-import React, { FC, forwardRef } from 'react'
-import Types from './types'
+import React, { forwardRef, RefForwardingComponent } from 'react'
 import Icon from '../../../content/Icon'
+import Types from './types'
 
-const Field: FC<Types.PrivateProps> = (props, ref) => {
+const Field: RefForwardingComponent<HTMLDivElement, Types.PrivateProps> = (props, ref) => {
 
     const {
         labelName,

@@ -1,11 +1,13 @@
-import {useTheme} from '@flow-ui/core'
+import { useTheme } from '@flow-ui/core'
 import mergeObjects from '@flow-ui/core/misc/utils/mergeObjects'
 import { ChartDataSets, ChartOptions } from 'chart.js'
-import React, { FC, forwardRef } from 'react'
+import React, { forwardRef, RefForwardingComponent } from 'react'
 import { Bar, Bubble, Doughnut, HorizontalBar, Line, Pie, Polar, Radar, Scatter } from 'react-chartjs-2'
-import ChartTypes from './types'
+import Types from './types'
 
-const Chart: FC<ChartTypes.Props> = (props, ref: any) => {
+type ChartRef = Bar | Bubble | Doughnut | HorizontalBar | Line | Pie | Polar | Radar | Scatter
+
+const Chart: RefForwardingComponent<ChartRef, Types.Props> = (props, ref) => {
 
     const { type = 'line', labels, data, options } = props
 

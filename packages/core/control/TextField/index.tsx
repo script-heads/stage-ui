@@ -1,13 +1,15 @@
 import { jsx } from '@emotion/core'
-import React, { RefForwardingComponent, forwardRef, useState, useImperativeHandle, useRef, useEffect, useMemo } from 'react'
+import useContainer from '@flow-ui/core/misc/hooks/useContainer'
+import useMask from '@flow-ui/core/misc/hooks/useMask'
+import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import React, { forwardRef, RefForwardingComponent, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import Field from '../../misc/hocs/Field'
 import textFieldStyles from './styles'
 import Types from './types'
-import Field from '../../misc/hocs/Field'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
-import useMask from '@flow-ui/core/misc/hooks/useMask'
-import useContainer from '@flow-ui/core/misc/hooks/useContainer'
 
-const TextField: RefForwardingComponent<any, Types.Props> = (props, ref) => {
+type RefTypes = ((HTMLInputElement | HTMLTextAreaElement) & HTMLDivElement) | null | {}
+
+const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) => {
 
     const {decoration = 'outline', size = 'medium', shape='rounded', tabIndex = 0, masked, label} = props
     const [isEmpty, setEmpty] = useState<boolean>(

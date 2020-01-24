@@ -1,22 +1,26 @@
 import callProp from '@flow-ui/core/misc/utils/callProp'
-import React, { FC, Fragment, useRef } from 'react'
+import { Provider } from '@flow-ui/whale'
+import React, { Fragment, RefForwardingComponent, useImperativeHandle, useRef } from 'react'
 import * as themes from '../../misc/themes'
 import MountArea from './MountArea'
 import createStyles from './styles'
-import ViewportTypes from './types'
-import { Provider } from '@flow-ui/whale'
+import Types from './types'
 
-const Viewport: FC<ViewportTypes.Props> = (props) => {
+const Viewport: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const theme = callProp(props.theme, themes) || themes.light
     const styles = createStyles(theme, false)
-    const ref = useRef(null)
+    const currentRef = useRef<HTMLDivElement>(null)
 
     const cache = {
         key: 'flow',
-        container: props.wrapper ? ref.current : undefined
+        container: props.wrapper ? currentRef.current : undefined
     }
-    
+
+    useImperativeHandle(ref, () =>
+        currentRef.current as HTMLDivElement
+    )
+
     const Content = (
         <Fragment>
             {props.children}
@@ -26,8 +30,8 @@ const Viewport: FC<ViewportTypes.Props> = (props) => {
 
     return (
         <Provider theme={theme} global={styles.global} cache={cache}>
-            {props.wrapper 
-                ? <div ref={ref} children={Content} />
+            {props.wrapper
+                ? <div ref={currentRef} children={Content} />
                 : Content
             }
         </Provider>

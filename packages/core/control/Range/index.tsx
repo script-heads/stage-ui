@@ -1,10 +1,10 @@
-import React, { useRef, FC, forwardRef, useImperativeHandle, useEffect } from 'react'
-import rangeStyles from './styles'
-import Types from './types'
 import useContainer from '@flow-ui/core/misc/hooks/useContainer'
 import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import React, { forwardRef, RefForwardingComponent, useEffect, useImperativeHandle, useRef } from 'react'
+import rangeStyles from './styles'
+import Types from './types'
 
-const Range: FC<Types.Props> = (props, ref) => {
+const Range: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     const { min = 0, max = 100, value, defaultValue } = props
     const styles = useStyles(props, rangeStyles, 'Range')
     const { attributes } = useContainer(props)
@@ -13,9 +13,9 @@ const Range: FC<Types.Props> = (props, ref) => {
     const containerRef = useRef<HTMLDivElement>(null)
     const thumbPosition = value2Percent(value || defaultValue || 0, min, max)
 
-    useImperativeHandle(ref, () => {
-        return containerRef.current
-    })
+    useImperativeHandle(ref, () =>
+        containerRef.current as HTMLDivElement
+    )
 
     let isActive = false
 
