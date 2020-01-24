@@ -1,6 +1,6 @@
-import {Header, Text, Divider, Icon, Flexbox, Block, Paragraph} from '@flow-ui/core'
+import { Header, Text, Divider, Icon, Flexbox, Block, Paragraph } from '@flow-ui/core'
 import React, { Fragment, useState } from 'react'
-import {TypeInterfaceChild, TypeInterface} from '../API'
+import { TypeInterfaceChild, TypeInterface } from '../API'
 
 const toggleArrayItem = (a, v): any[] => {
     let i = a.indexOf(v)
@@ -9,7 +9,7 @@ const toggleArrayItem = (a, v): any[] => {
 }
 
 const sortTypes = (data: TypeInterface, cutTypes?: string[]) => {
-    const main: TypeInterface = Object.assign({},data)
+    const main: TypeInterface = Object.assign({}, data)
     const cut: TypeInterface[] = []
 
     const getExtendedTypes = (type: TypeInterface, cutted?: boolean) => {
@@ -23,47 +23,47 @@ const sortTypes = (data: TypeInterface, cutTypes?: string[]) => {
             }
         })
     }
-    
+
     getExtendedTypes(data)
 
-    return {main,cut}
+    return { main, cut }
 }
 
-const Interface = (props: {data: TypeInterface, separatedTypes?: string[]}) => {
+const Interface = (props: { data: TypeInterface, separatedTypes?: string[] }) => {
 
     if (!props.data) return null
-    const {main, cut} = sortTypes(props.data, props.separatedTypes)
+    const { main, cut } = sortTypes(props.data, props.separatedTypes)
     const [openedCuts, setOpenedCuts] = useState<string[]>([])
-    
-    const renderTypes = (data: TypeInterfaceChild[]) => 
-        data.map((type:TypeInterfaceChild, index: number ) =>
-            <Type type={type} last={index === data.length} key={'type'+index}/>
-    )
-    
+
+    const renderTypes = (data: TypeInterfaceChild[]) =>
+        data.map((type: TypeInterfaceChild, index: number) =>
+            <Type type={type} last={index === data.length} key={'type' + index} />
+        )
+
     return (
         <Block>
             <Header>{main.name}</Header>
             {renderTypes(main.children)}
             {cut.map((cutInterface, index) => (
-                <Fragment key={cutInterface.name+index}>
+                <Fragment key={cutInterface.name + index}>
                     <Flexbox
-                        py="1rem" 
+                        py="1rem"
                         alignItems="center"
                         justifyContent="space-between"
-                        css={{cursor: 'pointer'}}
-                        onClick={() => setOpenedCuts(toggleArrayItem(openedCuts,cutInterface.name))}>
-                        <Text 
-                            weight="bold" 
+                        css={{ cursor: 'pointer' }}
+                        onClick={() => setOpenedCuts(toggleArrayItem(openedCuts, cutInterface.name))}>
+                        <Text
+                            weight="bold"
                             children={cutInterface.name}
                         />
-                        <Icon 
+                        <Icon
                             type={i => openedCuts.includes(cutInterface.name)
                                 ? i.filled.minus
                                 : i.filled.plus
                             }
                         />
                     </Flexbox>
-                    <Divider/>
+                    <Divider />
                     {openedCuts.includes(cutInterface.name) && renderTypes(cutInterface.children)}
                 </Fragment>
             ))}
@@ -71,16 +71,84 @@ const Interface = (props: {data: TypeInterface, separatedTypes?: string[]}) => {
     )
 }
 
-const Type = (props: { type: TypeInterfaceChild, last: boolean} ) => {
-    const {type, last} = props
-    
+const Type = (props: { type: TypeInterfaceChild, last: boolean }) => {
+    const { type, last } = props
+
+    let rightSide: JSX.Element | JSX.Element[] = (
+        <Text
+            size={2}
+            color={c => c.hard.css()}
+            children="Not documented yet"
+        />
+    )
+
+    if (Array.isArray(type.values)) {
+        rightSide = type.values.map(value =>
+            <Text
+                h="fit-content"
+                size={2}
+                key={value}
+                p=".125rem 0.25rem"
+                mx=".125rem"
+                mb=".25rem"
+                backgroundColor={c => c.lightest.css()}
+                css={{ borderRadius: '.25rem' }}
+                children={`${value}`}
+            />
+        )
+    } else {
+        if (typeof type.type !== 'string') {
+            if (type.type.type === 'reflection') {
+                if (type.type.declaration.signatures) {
+                    const signature = type.type.declaration.signatures[0]
+                    if (signature.name === '__call') {
+                        rightSide = (
+                            <span>
+                                ({signature.parameters?.map((param, index) =>
+                                    <Fragment key={param.id}>
+                                        <Text
+                                            h="fit-content"
+                                            size={2}
+                                            p=".125rem 0.25rem"
+                                            mx=".125rem"
+                                            mb=".25rem"
+                                            backgroundColor={c => c.lightest.css()}
+                                            css={{ borderRadius: '.25rem' }}
+                                            children={param.name}
+                                        />
+                                        {signature.parameters.length - 1 > index ? ',' : ''}
+                                    </Fragment>
+                                )}) => <Text
+                                    h="fit-content"
+                                    size={2}
+                                    p=".125rem 0.25rem"
+                                    mx=".125rem"
+                                    mb=".25rem"
+                                    backgroundColor={c => c.lightest.css()}
+                                    css={{ borderRadius: '.25rem' }}
+                                    children={`${signature.type.name}`}
+                                />
+                            </span>
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    let comment = ''
+
+    if (typeof type.comment === 'string') {
+        comment = type.comment
+    }
+
     return (
         <Block>
             <Block mt="1rem" mb=".75rem" ml=".5rem">
-                <Flexbox css={{overflow: 'hidden'}}>
+                <Flexbox css={{ overflow: 'hidden' }}>
                     <Text
                         mr=".5rem"
-                        css={{whiteSpace: 'nowrap'}}
+                        css={{ whiteSpace: 'nowrap' }}
                         flex={1}>
                         &bull;&ensp;
                         {type.deprecated !== void 0 && '[Deprecated] '}
@@ -88,37 +156,16 @@ const Type = (props: { type: TypeInterfaceChild, last: boolean} ) => {
                         {(type.isOptional ? '?' : '')}
                     </Text>
                     <Flexbox wrap="wrap" justifyContent="flex-end">
-                        {Array.isArray(type.values)
-                            ? type.values.map(value =>
-                                <Text
-                                    h="fit-content"
-                                    size={2}
-                                    key={value}
-                                    p=".125rem 0.25rem"
-                                    mx=".125rem"
-                                    mb=".25rem"
-                                    backgroundColor={c => c.lightest.css()}
-                                    css={{borderRadius: '.25rem'}}
-                                    children={`${value}`}
-                                />
-                            )
-                            : (
-                                <Text
-                                    size={2}
-                                    color={c => c.hard.css()}
-                                    children="Not documented yet"
-                                />
-                            )
-                        }
-                    </Flexbox>                        
+                        {rightSide}
+                    </Flexbox>
                 </Flexbox>
                 <Paragraph
                     ml="1rem"
                     mb=".25rem"
                     display="block"
-                    size={2} 
-                    color={c => c.hard.css()} 
-                    children={JSON.stringify(type.comment)}
+                    size={2}
+                    color={c => c.hard.css()}
+                    children={comment}
                 />
             </Block>
             {!last && <Divider />}

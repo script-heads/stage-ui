@@ -10,6 +10,31 @@ export interface TypeInterface {
     extendedTypes: TypeInterface[]
 }
 
+type Reflection = {
+    type: 'reflection'
+    declaration: {
+        id: number
+        children?: any[]
+        groups?: any[],
+        signatures?: {
+            name: '__call'
+            parameters: {
+                id: number
+                name: string
+            }[]
+            type: {
+                name: string
+                type: 'stringLiteral' | 'intrinsic'
+            }
+        }[]
+    }
+}
+
+type Intersection = {
+    type: 'intersection'
+    types: any[]
+}
+
 export interface TypeInterfaceChild {
     id: number
     isOptional: boolean
@@ -17,7 +42,7 @@ export interface TypeInterfaceChild {
     comment?: string
     tags?: { [key: string]: string }
     deprecated?: string | true
-    type: 'stringLiteral' | 'intrinsic' | 'reference' | 'reflection'
+    type: 'stringLiteral' | 'intrinsic' | 'reference' | Reflection | Intersection
     values: string[]
 }
 
