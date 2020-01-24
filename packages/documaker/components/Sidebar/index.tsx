@@ -40,7 +40,7 @@ const Sidebar = (props: SidebarProps) => {
 					[`@media (max-width: ${window.breakpoints[1]}px)`]: [
 						{
 							position: 'absolute',
-							width: '100vw',
+							width: '100%',
 							backgroundColor: theme.color.background.css(),
 							zIndex: 200,
 						},
