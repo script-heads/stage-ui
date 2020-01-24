@@ -7,14 +7,14 @@ import Types from './types'
 
 const Divider: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     const { attributes } = useContainer(props)
-    const styles = useStyles<Types.Overrides>(props, dividerStyles, 'Divider')
+    const { container: css } = useStyles<Types.Overrides>(props, dividerStyles, 'Divider')
 
     return jsx(
         'div',
         {
             ...attributes,
-            ref: ref,
-            css: styles.container
+            ref,
+            css
         }
     )
 }
