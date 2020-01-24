@@ -1,24 +1,23 @@
-import useContainer from '@flow-ui/core/misc/hooks/useContainer'
-import React, { RefForwardingComponent, forwardRef, useState } from 'react'
 import Icon from '@flow-ui/core/content/Icon'
 import Text from '@flow-ui/core/content/Text'
 import Block from '@flow-ui/core/layout/Block'
 import Flexbox from '@flow-ui/core/layout/Flexbox'
-import treeStyles from './styles'
+import { useComponent } from '@flow-ui/whale'
+import React, { forwardRef, RefForwardingComponent, useState } from 'react'
+import styles from './styles'
 import Types from './types'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 
 const Tree: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
-    let { 
-        children, 
+    let {
+        children,
         decoration = 'drop' as Types.Props['decoration'],
         //@ts-ignore
-        lvl = 0 
+        lvl = 0
     } = props
-    
-    const { attributes } = useContainer(props)
+
     const [isOpen, setOpen] = useState((props.alwaysOpen || props.defaultOpen) ? true : false)
-    const styles = useStyles<Types.Overrides>(props, treeStyles, 'Tree')
+
+    const { css, attributes } = useComponent('Tree', { props, styles })
 
     let treeChilds: React.ReactNode[] = []
     let otherChilds: React.ReactElement[] = []
@@ -61,25 +60,25 @@ const Tree: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
     let label = props.label
 
     if (typeof label === 'string') {
-        label = <Text css={styles.label}>{label}</Text>
+        label = <Text css={css.label}>{label}</Text>
     }
     if (typeof label === 'function') {
         label = label(isOpen)
     }
 
     return (
-        <Block ref={ref} css={styles.container({decoration,needIndent})}>
+        <Block ref={ref} css={css.container({ decoration, needIndent })}>
             <Flexbox {...attributes} onKeyPress={keyPressHandle} onClick={openHandle} alignItems="center">
                 <Icon
                     type={t => isOpen ? t.outline.arrowIosDownward : t.outline.arrowIosForward}
-                    css={styles.icon({decoration,disabled})}
+                    css={css.icon({ decoration, disabled })}
                 />
                 {label}
             </Flexbox>
             <Block>
                 {
                     treeChilds.map((child: React.ReactElement, index) => (
-                        <Block css={styles.child({ isOpen })} key={index}>
+                        <Block css={css.child({ isOpen })} key={index}>
                             {
                                 React.cloneElement(child, {
                                     decoration: child.props.decoration || props.decoration,
@@ -92,7 +91,7 @@ const Tree: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
                 }
                 {
                     otherChilds.map((child: React.ReactElement, index) => (
-                        <Block css={styles.child({isOpen})} key={index} children={child} />
+                        <Block css={css.child({ isOpen })} key={index} children={child} />
                     ))
                 }
             </Block>

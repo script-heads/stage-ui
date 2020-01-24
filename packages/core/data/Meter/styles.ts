@@ -1,13 +1,12 @@
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
+
 import callProp from '@flow-ui/core/misc/utils/callProp'
+import { StyleObject } from '@flow-ui/whale/types'
 import chroma from 'chroma-js'
 import Types from './types'
-import Shared from '../../types'
 
-const meterStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
+const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
     const { loading } = props
 
-    const styleProps = useStyleProps(props)
     const color = chroma(callProp(props.color, theme.color) || theme.color.primary.css())
 
     return {
@@ -139,4 +138,4 @@ const meterStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: T
     }
 }
 
-export default meterStyles
+export default styles

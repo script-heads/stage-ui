@@ -2,9 +2,9 @@ import callProp from '@flow-ui/core/misc/utils/callProp'
 import variant from '@flow-ui/core/misc/utils/variant'
 import Types from './types'
 import fieldStyles from '../../misc/hocs/Field/styles'
-import Shared from '../../types'
+import { StyleObject } from '@flow-ui/whale/types'
 
-const selectStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
+const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
     const { 
         size = 'medium', 
         shape = 'rounded', 
@@ -209,4 +209,4 @@ const selectStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: 
     }
 }
 
-export default selectStyles
+export default styles

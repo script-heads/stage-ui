@@ -1,15 +1,14 @@
-import useContainer from '@flow-ui/core/misc/hooks/useContainer'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 import { filled, outline } from '@flow-ui/core/misc/icons'
 import callProp from '@flow-ui/core/misc/utils/callProp'
+import { useComponent } from '@flow-ui/whale'
 import React, { forwardRef, RefForwardingComponent } from 'react'
-import iconStyles from './styles'
+import styles from './styles'
 import Types from './types'
 
 const Icon: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref) => {
 
-    const { attributes } = useContainer(props)
-    const styles = useStyles<Types.Overrides>(props, iconStyles, 'Icon')
+    const { css, attributes } = useComponent('Icon', { props, styles })
+
     const type = callProp(props.type, { filled, outline })
 
     if (!type) return null
@@ -18,7 +17,7 @@ const Icon: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref) 
         <span
             {...attributes}
             ref={ref}
-            css={styles.container}
+            css={css.container}
             children={(
                 <svg
                     viewBox="0 0 24 24"
@@ -27,7 +26,7 @@ const Icon: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref) 
                     height="1em"
                     width="1em"
                     children={type}
-                    css={styles.icon}
+                    css={css.icon}
                 />
             )
             }

@@ -1,4 +1,5 @@
-import Shared from '@flow-ui/core/types'
+import Shared from '@flow-ui/whale/types'
+import DeprecatedShared from '@flow-ui/core/types'
 import CSS from 'csstype'
 
 declare namespace IconTypes {
@@ -9,7 +10,7 @@ declare namespace IconTypes {
 	type Shapes = 'circle' | 'oval' | 'square'
 
 	interface Props extends Shared.AllProps {
-		type: Shared.IconProp
+		type: DeprecatedShared.IconProp
 		shape?: Shapes
 		size?: CSS.Properties['fontSize']
 		color?: Shared.ColorProp

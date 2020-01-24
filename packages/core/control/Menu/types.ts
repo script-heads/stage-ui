@@ -1,4 +1,4 @@
-import Shared from '@flow-ui/core/types'
+import Shared from '@flow-ui/whale/types'
 
 declare namespace MenuTypes {
 

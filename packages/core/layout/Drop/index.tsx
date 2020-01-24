@@ -1,8 +1,8 @@
-import useContainer from '@flow-ui/core/misc/hooks/useContainer'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+
+import { useComponent } from '@flow-ui/whale'
 import React, { forwardRef, RefForwardingComponent, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
-import dropStyles from './styles'
+import styles from './styles'
 import Types from './types'
 
 type GetCoord = (tr: ClientRect, td: ClientRect) => string
@@ -11,10 +11,11 @@ let sharedZIndex = 300
 
 const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
 
-    const { attributes } = useContainer(props)
     const { children, target: targetRef, onClickOutside, distance = 0, align,
         justify, stretchHeight, stretchWidth, visibility, display } = props
-    const styles = useStyles<Types.Overrides>(props, dropStyles, 'Drop')
+        
+    const { css, attributes } = useComponent('Drop', { props, styles })
+
     const dropRef = useRef<HTMLDivElement>(null)
 
     let getTopCoord: GetCoord = (tr) => toStyle(tr.bottom + distance)
@@ -139,7 +140,7 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
                 props.onClick?.(e)
             }}
             ref={dropRef}
-            css={styles.container}
+            css={css.container}
             style={{
                 top: 0,
                 left: 0,

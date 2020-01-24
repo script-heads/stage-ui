@@ -1,8 +1,8 @@
 import Types from './types'
-import Shared from '../../types'
+import { StyleObject } from '@flow-ui/whale/types'
 import fieldStyles from '@flow-ui/core/misc/hocs/Field/styles'
 
-const textFieldStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
+const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
     
     const { 
         size = 'medium',
@@ -27,7 +27,7 @@ const textFieldStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (prop
     }
    
     return {
-        ...fieldStyles(props, theme, {
+        ...fieldStyles(props, theme, styleProps, {
             manyLines: multiline,
             additionalPadding: multilineAdditionalPadding
         }),
@@ -60,4 +60,4 @@ const textFieldStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (prop
     }
 }
 
-export default textFieldStyles
+export default styles

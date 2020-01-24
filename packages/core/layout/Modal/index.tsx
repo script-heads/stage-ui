@@ -1,18 +1,17 @@
-import useContainer from '@flow-ui/core/misc/hooks/useContainer'
+import { useComponent } from '@flow-ui/whale'
 import React, { forwardRef, RefForwardingComponent, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
-import useStyles from '../../misc/hooks/useStyles'
 import ModalOverlay from './ModalOverlay'
 import ModalPortal from './ModalPortal'
 import ModalWindow from './ModalWindow'
-import modalStyles from './styles'
+import styles from './styles'
 import Types from './types'
 
 const Modal: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
 
     const { hideHeader, fullSize, opened } = props
-    const { attributes } = useContainer(props)
-    const styles = useStyles<Types.Overrides>(props,modalStyles,'Modal')
+
+    const { css, attributes } = useComponent('Modal', { props, styles })
 
     const overlayRef = useRef(null)
     const windowRef = useRef(null)
@@ -23,7 +22,7 @@ const Modal: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
     const [center, setCenter] = useState<boolean>(false)
     const [title, setTitle] = useState(props.title)
     const [subtitle, setSubtitle] = useState(props.subtitle)
-    
+
     useEffect(() => {
         setTitle(props.title)
         setSubtitle(props.subtitle)
@@ -33,10 +32,10 @@ const Modal: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
         }
     }, [props.title, props.subtitle])
 
-    useEffect(()=>{
+    useEffect(() => {
         if (opened === true) open()
         if (opened === false) close()
-    },[opened])
+    }, [opened])
 
     useImperativeHandle(ref, () => ({
         open,
@@ -107,9 +106,9 @@ const Modal: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
 
     return (
         <ModalPortal>
-            <ModalOverlay ref={overlayRef} visible={visible} center={center} fullSize={fullSize} styles={styles}>
+            <ModalOverlay ref={overlayRef} visible={visible} center={center} fullSize={fullSize} styles={css}>
                 <ModalWindow
-                    styles={styles}
+                    styles={css}
                     ref={windowRef}
                     visible={visible}
                     center={center}

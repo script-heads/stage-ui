@@ -855,7 +855,7 @@ declare module 'layout/Grid/types' {
 	export default GridTypes;
 
 }
-declare module 'layout/Modal/types' {
+declare module '@flow-ui/core/layout/Modal/types' {
 	/// <reference types="react" />
 	import Shared from 'types'; namespace ModalTypes {
 	    interface Ref {
@@ -1055,7 +1055,7 @@ declare module 'misc/themes/types' {
 	import DropTypes from 'layout/Drop/types';
 	import FlexboxTypes from 'layout/Flexbox/types';
 	import GridTypes from 'layout/Grid/types';
-	import ModalTypes from 'layout/Modal/types';
+	import ModalTypes from '@flow-ui/core/layout/Modal/types';
 	import NotificationTypes from 'layout/Notification/types';
 	import PopoverTypes from 'layout/Popover/types';
 	import TreeTypes from 'layout/Tree/types';
@@ -1731,7 +1731,7 @@ declare module 'types' {
 	    type ComponentStyles<S> = {
 	        [O in keyof S]: ComponentStyle<S[O]>;
 	    };
-	    type FunctionalComponentStyles<S, P = {}> = ((props: P, theme: ThemeTypes.Index) => {
+	    type FlowStyles<S, P = {}> = ((props: P, theme: ThemeTypes.Index) => {
 	        [O in keyof S]: ComponentStyle<S[O]>;
 	    });
 	    type OverridesStyle<S> = Partial<{
@@ -2098,7 +2098,7 @@ declare module 'types' {
 
 }
 declare module 'misc/hooks/useStyles' {
-	import Shared from 'types'; const createStyles: <S>(props: any, componentStyles: Shared.ComponentStyles<S> | Shared.FunctionalComponentStyles<S, {}>, componentName?: "Menu" | "Divider" | "Icon" | "Spinner" | "Button" | "Checkbox" | "DatePicker" | "Radio" | "Range" | "Select" | "Switch" | "TextField" | "Meter" | "Table" | "Badge" | "Block" | "Drop" | "Flexbox" | "Grid" | "Modal" | "Notification" | "Popover" | "Tree" | undefined) => Shared.FlowStyles<S>;
+	import Shared from 'types'; const createStyles: <S>(props: any, componentStyles: Shared.ComponentStyles<S> | Shared.ComponentStyles<S, {}>, componentName?: "Menu" | "Divider" | "Icon" | "Spinner" | "Button" | "Checkbox" | "DatePicker" | "Radio" | "Range" | "Select" | "Switch" | "TextField" | "Meter" | "Table" | "Badge" | "Block" | "Drop" | "Flexbox" | "Grid" | "Modal" | "Notification" | "Popover" | "Tree" | undefined) => Shared.ComponentStyles<S>;
 	export default createStyles;
 
 }
@@ -2172,7 +2172,7 @@ declare module 'misc/hooks/useStyleProps' {
 }
 declare module 'content/Divider/styles' {
 	import Shared from 'types';
-	import Types from 'content/Divider/types'; const dividerStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	import Types from 'content/Divider/types'; const dividerStyles: StyleObject<Types.Overrides, Types.Props>;
 	export default dividerStyles;
 
 }
@@ -2200,7 +2200,7 @@ declare module 'misc/icons' {
 }
 declare module 'content/Icon/styles' {
 	import Shared from 'types';
-	import Types from 'content/Icon/types'; const iconStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	import Types from 'content/Icon/types'; const iconStyles: StyleObject<Types.Overrides, Types.Props>;
 	export default iconStyles;
 
 }
@@ -2212,7 +2212,7 @@ declare module 'content/Icon' {
 }
 declare module 'content/Spinner/styles' {
 	import Types from 'content/Spinner/types';
-	import Shared from 'types'; const spinnerStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	import Shared from 'types'; const spinnerStyles: StyleObject<Types.Overrides, Types.Props>;
 	export default spinnerStyles;
 
 }
@@ -2299,7 +2299,7 @@ declare module 'content/Anchor' {
 }
 declare module 'control/Button/styles' {
 	import Types from 'control/Button/types';
-	import Shared from 'types'; const buttonStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	import Shared from 'types'; const buttonStyles: StyleObject<Types.Overrides, Types.Props>;
 	export default buttonStyles;
 
 }
@@ -2311,7 +2311,7 @@ declare module 'control/Button' {
 }
 declare module 'layout/Block/styles' {
 	import Types from 'layout/Block/types';
-	import Shared from 'types'; const BlockStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	import Shared from 'types'; const BlockStyles: StyleObject<Types.Overrides, Types.Props>;
 	export default BlockStyles;
 
 }
@@ -2331,13 +2331,13 @@ declare module 'misc/hocs/Check' {
 declare module 'misc/hocs/Check/styles' {
 	import Shared from 'types';
 	import Types from 'misc/hocs/Check/types';
-	import ThemeTypes from 'misc/themes/types'; const checkStyles: (props: Types.Props, theme: ThemeTypes.Index) => Shared.ComponentStyles<Types.Overrides>;
+	import ThemeTypes from 'misc/themes/types'; const checkStyles: (props: Types.Props, theme: ThemeTypes.Index) => StyleObject<Types.Overrides, Types.Props>;
 	export default checkStyles;
 
 }
 declare module 'control/Checkbox/styles' {
 	import Types from 'control/Checkbox/types';
-	import Shared from 'types'; const checkboxStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	import Shared from 'types'; const checkboxStyles: StyleObject<Types.Overrides, Types.Props>;
 	export default checkboxStyles;
 
 }
@@ -2349,7 +2349,7 @@ declare module 'control/Checkbox' {
 }
 declare module 'layout/Drop/styles' {
 	import Types from 'layout/Drop/types';
-	import Shared from 'types'; const DropStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	import Shared from 'types'; const DropStyles: StyleObject<Types.Overrides, Types.Props>;
 	export default DropStyles;
 
 }
@@ -2361,7 +2361,7 @@ declare module 'layout/Drop' {
 }
 declare module 'layout/Popover/styles' {
 	import Types from 'layout/Popover/types';
-	import Shared from 'types'; const popoverStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	import Shared from 'types'; const popoverStyles: StyleObject<Types.Overrides, Types.Props>;
 	export default popoverStyles;
 
 }
@@ -2443,14 +2443,14 @@ declare module 'misc/hocs/Field/styles' {
 	    manyLines?: boolean | undefined;
 	    additionalPadding?: string | undefined;
 	    labelOverlayPosition?: "top" | "center" | undefined;
-	    overrides?: Partial<Shared.ComponentStyles<T>> | undefined;
-	}) => Shared.ComponentStyles<Types.Overrides<{}>>;
+	    overrides?: Partial<Shared.FunctionalComponentStyles<T>> | undefined;
+	}) => StyleObject<Types.Overrides<{}>>;
 	export default fieldStyles;
 
 }
 declare module 'control/DatePicker/styles' {
 	import Shared from 'types';
-	import Types from 'control/DatePicker/types'; const datePickerStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	import Types from 'control/DatePicker/types'; const datePickerStyles: StyleObject<Types.Overrides, Types.Props>;
 	export default datePickerStyles;
 
 }
@@ -2468,7 +2468,7 @@ declare module 'control/Menu/Item' {
 }
 declare module 'control/Menu/styles' {
 	import Types from 'control/Menu/types';
-	import Shared from 'types'; const menuStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	import Shared from 'types'; const menuStyles: StyleObject<Types.Overrides, Types.Props>;
 	export default menuStyles;
 
 }
@@ -2480,7 +2480,7 @@ declare module 'control/Menu' {
 }
 declare module 'control/Radio/styles' {
 	import Types from 'control/Radio/types';
-	import Shared from 'types'; const radioStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	import Shared from 'types'; const radioStyles: StyleObject<Types.Overrides, Types.Props>;
 	export default radioStyles;
 
 }
@@ -2492,7 +2492,7 @@ declare module 'control/Radio' {
 }
 declare module 'control/Range/styles' {
 	import Types from 'control/Range/types';
-	import Shared from 'types'; const rangeStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	import Shared from 'types'; const rangeStyles: StyleObject<Types.Overrides, Types.Props>;
 	export default rangeStyles;
 
 }
@@ -2520,7 +2520,7 @@ declare module 'misc/utils/variant' {
 }
 declare module 'control/Select/styles' {
 	import Types from 'control/Select/types';
-	import Shared from 'types'; const selectStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	import Shared from 'types'; const selectStyles: StyleObject<Types.Overrides, Types.Props>;
 	export default selectStyles;
 
 }
@@ -2532,7 +2532,7 @@ declare module 'control/Select' {
 }
 declare module 'control/Switch/styles' {
 	import Types from 'control/Switch/types';
-	import Shared from 'types'; const switchStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	import Shared from 'types'; const switchStyles: StyleObject<Types.Overrides, Types.Props>;
 	export default switchStyles;
 
 }
@@ -2544,7 +2544,7 @@ declare module 'control/Switch' {
 }
 declare module 'control/TextField/styles' {
 	import Types from 'control/TextField/types';
-	import Shared from 'types'; const textFieldStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	import Shared from 'types'; const textFieldStyles: StyleObject<Types.Overrides, Types.Props>;
 	export default textFieldStyles;
 
 }
@@ -2556,7 +2556,7 @@ declare module 'control/TextField' {
 }
 declare module 'data/Meter/styles' {
 	import Types from 'data/Meter/types';
-	import Shared from 'types'; const meterStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	import Shared from 'types'; const meterStyles: StyleObject<Types.Overrides, Types.Props>;
 	export default meterStyles;
 
 }
@@ -2568,7 +2568,7 @@ declare module 'data/Meter' {
 }
 declare module 'data/Table/styles' {
 	import Types from 'data/Table/types';
-	import Shared from 'types'; const tabelStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	import Shared from 'types'; const tabelStyles: StyleObject<Types.Overrides, Types.Props>;
 	export default tabelStyles;
 
 }
@@ -2621,7 +2621,7 @@ declare module 'data/Table' {
 }
 declare module 'layout/Badge/styles' {
 	import Types from 'layout/Badge/types';
-	import Shared from 'types'; const BadgeStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	import Shared from 'types'; const BadgeStyles: StyleObject<Types.Overrides, Types.Props>;
 	export default BadgeStyles;
 
 }
@@ -2633,7 +2633,7 @@ declare module 'layout/Badge' {
 }
 declare module 'layout/Modal/ModalOverlay' {
 	import React from 'react';
-	import ModalTypes from 'layout/Modal/types'; const ModalOverlay: React.ForwardRefExoticComponent<ModalTypes.ModalOverlayProps & React.RefAttributes<unknown>>;
+	import ModalTypes from '@flow-ui/core/layout/Modal/types'; const ModalOverlay: React.ForwardRefExoticComponent<ModalTypes.ModalOverlayProps & React.RefAttributes<unknown>>;
 	export default ModalOverlay;
 
 }
@@ -2644,25 +2644,25 @@ declare module 'layout/Modal/ModalPortal' {
 }
 declare module 'layout/Modal/ModalHeader' {
 	/// <reference types="react" />
-	import ModalTypes from 'layout/Modal/types'; const ModalHeader: (props: ModalTypes.ModalHeaderProps) => JSX.Element | null;
+	import ModalTypes from '@flow-ui/core/layout/Modal/types'; const ModalHeader: (props: ModalTypes.ModalHeaderProps) => JSX.Element | null;
 	export default ModalHeader;
 
 }
 declare module 'layout/Modal/ModalWindow' {
-	import ModalTypes from 'layout/Modal/types';
+	import ModalTypes from '@flow-ui/core/layout/Modal/types';
 	import React from 'react'; const ModalWindow: React.ForwardRefExoticComponent<ModalTypes.ModalWindowProps & React.RefAttributes<unknown>>;
 	export default ModalWindow;
 
 }
 declare module 'layout/Modal/styles' {
-	import Types from 'layout/Modal/types';
-	import Shared from 'types'; const modalStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	import Types from '@flow-ui/core/layout/Modal/types';
+	import Shared from 'types'; const modalStyles: StyleObject<Types.Overrides, Types.Props>;
 	export default modalStyles;
 
 }
 declare module 'layout/Modal' {
 	import React from 'react';
-	import Types from 'layout/Modal/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
+	import Types from '@flow-ui/core/layout/Modal/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
 	export default _default;
 
 }
@@ -2681,7 +2681,7 @@ declare module 'layout/Notification' {
 }
 declare module 'layout/Tree/styles' {
 	import Types from 'layout/Tree/types';
-	import Shared from 'types'; const treeStyles: Shared.FunctionalComponentStyles<Types.Overrides>;
+	import Shared from 'types'; const treeStyles: StyleObject<Types.Overrides, Types.Props>;
 	export default treeStyles;
 
 }
@@ -2918,7 +2918,7 @@ declare module '@flow-ui/core' {
 	 * Deprecated
 	 */
 	export { H1, H2, H3, H4, D1, D2, D3, D4, T1, T2, T3, T4, C1, C2, C3, C4, A } from 'misc/deprecated';
-	export function transformImports(importName: any, matches: any): "content/Divider" | "content/Icon" | "content/Spinner" | "content/Header" | "content/Display" | "content/Paragraph" | "content/Text" | "content/Anchor" | "control/Button" | "control/Checkbox" | "control/DatePicker" | "control/Menu" | "control/Radio" | "control/Range" | "control/Select" | "control/Switch" | "control/TextField" | "data/Meter" | "data/Table" | "layout/Badge" | "layout/Block" | "layout/Drop" | "layout/Flexbox" | "layout/Grid" | "layout/Modal" | "layout/Notification" | "layout/Popover" | "layout/Tree" | "layout/Viewport" | "misc/utils/dialog" | "misc/utils/notify" | "misc/hooks/useBrowser" | "/";
+	export function transformImports(importName: any, matches: any): "@flow-ui/core/content/Divider" | "@flow-ui/core/content/Icon" | "@flow-ui/core/content/Spinner" | "@flow-ui/core/content/Header" | "@flow-ui/core/content/Display" | "@flow-ui/core/content/Paragraph" | "@flow-ui/core/content/Text" | "@flow-ui/core/content/Anchor" | "@flow-ui/core/control/Button" | "@flow-ui/core/control/Checkbox" | "@flow-ui/core/control/DatePicker" | "@flow-ui/core/control/Menu" | "@flow-ui/core/control/Radio" | "@flow-ui/core/control/Range" | "@flow-ui/core/control/Select" | "@flow-ui/core/control/Switch" | "@flow-ui/core/control/TextField" | "@flow-ui/core/data/Meter" | "@flow-ui/core/data/Table" | "@flow-ui/core/layout/Badge" | "@flow-ui/core/layout/Block" | "@flow-ui/core/layout/Drop" | "@flow-ui/core/layout/Flexbox" | "@flow-ui/core/layout/Grid" | "@flow-ui/core/layout/Modal" | "@flow-ui/core/layout/Notification" | "@flow-ui/core/layout/Popover" | "@flow-ui/core/layout/Tree" | "@flow-ui/core/layout/Viewport" | "@flow-ui/core/misc/utils/dialog" | "@flow-ui/core/misc/utils/notify" | "@flow-ui/core/misc/hooks/useBrowser" | "/";
 
 }
 declare module 'misc/hooks/useSharedObject' {

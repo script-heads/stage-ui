@@ -40,7 +40,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-
 ### Linux ###
 *~
 
@@ -49,7 +48,6 @@ Temporary Items
 
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
-
 
 ### Windows ###
 # Windows image file caches

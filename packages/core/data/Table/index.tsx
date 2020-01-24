@@ -1,9 +1,8 @@
-import useContainer from '@flow-ui/core/misc/hooks/useContainer'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import { useComponent } from '@flow-ui/whale'
 import React, { forwardRef, RefForwardingComponent, useEffect, useState } from 'react'
 import Icon from '../../content/Icon'
 import Spinner from '../../content/Spinner'
-import tableStyles from './styles'
+import styles from './styles'
 import TableForm from './TableForm'
 import TablePagination from './TablePagination'
 import TableRow from './TableRow'
@@ -11,9 +10,9 @@ import Types from './types'
 
 const Table: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
-    const { attributes } = useContainer(props)
     const { columns, actions, border, indexKey, scope, form, search, onRowClick, hideHeaders } = props
-    const styles = useStyles(props, tableStyles, 'Table')
+
+    const { css, attributes } = useComponent('Table', { props, styles })
 
     const [page, setPage] = useState(1)
     const [pending, setPending] = useState(false)
@@ -66,7 +65,7 @@ const Table: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
     const SearchBar = () => {
         if (searchBar || searchValue) {
             return (
-                <div css={styles.search}>
+                <div css={css.search}>
                     <Icon type={i => i.outline.search} />
                     <input
                         value={searchValue}
@@ -93,7 +92,7 @@ const Table: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
         if (isData && !isAddForm) {
             return columns.map(column => (
                 <div
-                    css={styles.headColumn}
+                    css={css.headColumn}
                     key={column.dataIndex}
                     style={column.width ? { flexBasis: column.width } : { flex: 1 }}
                     children={column.title}
@@ -101,29 +100,36 @@ const Table: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
             ))
         }
         if (isData) {
-            return <div css={styles.headColumn} style={{ flex: 1 }}>Добавить</div>
+            return <div css={css.headColumn} style={{ flex: 1 }}>Добавить</div>
         }
         return null
     }
 
     const AddForm = () => {
         if (typeof form != 'undefined' && typeof form.key === 'undefined') {
-            return TableForm({ Form: form.render, dismiss: form.dismiss, columns, defaultData: form.defaultData })
+            return TableForm({ 
+                Form: form.render, 
+                styles: css,
+                dismiss: 
+                form.dismiss, 
+                columns, 
+                defaultData: form.defaultData 
+            })
         }
         return null
     }
 
     return (
-        <div ref={ref} css={styles.container} {...attributes}>
-            <div css={styles.content}>
+        <div ref={ref} css={css.container} {...attributes}>
+            <div css={css.content}>
                 {!hideHeaders && (
-                    <div css={styles.headRow}
+                    <div css={css.headRow}
                         style={actions && { marginRight: '2rem' }}
                         children={Columns()}
                     />
                 )}
 
-                <div css={styles.body}>
+                <div css={css.body}>
                     <SearchBar />
                     <AddForm />
                     {
@@ -145,7 +151,7 @@ const Table: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
                                     style={{
                                         opacity: pending ? 0.2 : 1
                                     }}
-                                    styles={styles}
+                                    styles={css}
                                 />
                             )
                         })
@@ -160,7 +166,7 @@ const Table: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
             </div>
             {isData && data && (
                 <TablePagination
-                    pagination={pagination!}
+                    pagination={pagination || {}}
                     page={page}
                     searchActive={searchBar || searchValue.length > 0}
                     search={props.search}
@@ -174,7 +180,7 @@ const Table: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
                             setPending(false)
                         }
                     }}
-                    styles={styles}
+                    styles={css}
                 />
             )}
         </div>

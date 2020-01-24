@@ -3,11 +3,10 @@ import Icon from '../../content/Icon'
 import Drop from '../../layout/Drop'
 import DropTypes from '../../layout/Drop/types'
 import Field from '../../misc/hocs/Field'
-import useContainer from '../../misc/hooks/useContainer'
-import useStyles from '../../misc/hooks/useStyles'
 import SelectReducer from './reducer'
-import selectStyles from './styles'
+import styles from './styles'
 import Types from './types'
+import { useComponent } from '@flow-ui/whale'
 
 const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
@@ -47,10 +46,15 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
     const dropRef = useRef<DropTypes.Ref>(null)
     const [state, dispatch] = useReducer(SelectReducer, initialState)
 
-    const {attributes, focus} = useContainer(props, true, props.decoration != 'none')
+    const { css, attributes, focus } = useComponent('Select', { 
+        props, 
+        styles,
+        mouseFocus: true,
+        disableDecoration: props.decoration != 'none'
+    })
+
     const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xlarge')
     const isLabelOverlay = (label && state.empty && !focus && !isLabelOutside) ? true : false
-    const styles = useStyles<Types.Overrides>(props, selectStyles, 'Select')
 
     useImperativeHandle(ref, () => 
         targetRef.current as HTMLDivElement
@@ -157,12 +161,12 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
     /*
     * Set field value
     */
-    let fieldValue = <span css={styles.placeholder}>{placeholder}</span>
+    let fieldValue = <span css={css.placeholder}>{placeholder}</span>
 
     if (multiselect && (!state.empty || searchable)) {
         fieldValue =
             <Options
-                styles={styles}
+                styles={css}
                 selected={state.selectedOptions}
                 searchable={searchable}
                 disabled={disabled}
@@ -177,7 +181,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
         if (searchable) {
             fieldValue =
                 <Search
-                    styles={styles}
+                    styles={css}
                     disabled={disabled}
                     placeholder={placeholder}
                     searchValue={state.empty 
@@ -198,7 +202,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                 ref={targetRef}
 
                 focus={focus}
-                styles={styles}
+                styles={css}
                 state={state}
                 isLabelOutside={isLabelOutside}
                 isLabelOverlay={isLabelOverlay}
@@ -243,12 +247,12 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                 justify="start"
                 target={targetRef}
                 children={(
-                    <div css={styles.dropMenu({decoration, focus})}>
+                    <div css={css.dropMenu({decoration, focus})}>
                         {availableOptions
                             .map((option, i) => (
                                 <div
                                     key={option.value}
-                                    css={styles.dropItem({underCursor: i === state.cursor, size})}
+                                    css={css.dropItem({underCursor: i === state.cursor, size})}
                                     children={option.text}
                                     onMouseDown={(e) => {
                                         toggleOption(option)

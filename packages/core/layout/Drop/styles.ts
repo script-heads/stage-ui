@@ -1,10 +1,8 @@
+import { StyleObject } from '@flow-ui/whale/types'
 import Types from './types'
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
-import Shared from '../../types'
 
-const DropStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props) => {
-	const styleProps = useStyleProps(props)
-
+const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+	
 	return {
 		container: [
 			styleProps.self,
@@ -16,4 +14,4 @@ const DropStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Ty
 		]
 	}
 }
-export default DropStyles
+export default styles

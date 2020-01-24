@@ -1,9 +1,8 @@
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
-import Types from './types'
-import Shared from '../../types'
 
-const popoverStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
-    const styleProps = useStyleProps(props)
+import Types from './types'
+import { StyleObject } from '@flow-ui/whale/types'
+
+const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
 
     const background = styleProps.color.background || theme.color.surface.css()
     const borderColor = styleProps.border.borderColor || theme.assets.border.color
@@ -113,4 +112,4 @@ const popoverStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props:
     }
 }
 
-export default popoverStyles
+export default styles

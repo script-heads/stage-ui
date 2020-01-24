@@ -1,4 +1,4 @@
-import Shared from '@flow-ui/core/types'
+import Shared from '@flow-ui/whale/types'
 import CSS from 'csstype'
 import ThemeTypes from '../../themes/types'
 
@@ -31,6 +31,10 @@ declare namespace TypographyTypes {
 		transform?: CSS.Properties['textTransform']
 	}
 
+	interface Overrides<T extends {[T in keyof Overrides]?: Object} = {}> {
+        container: T['container']
+	}
+	
 	interface PrivateProps extends AnchorProps {
 		tag: string
 		sizesOf: keyof ThemeTypes.Typography

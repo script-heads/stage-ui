@@ -1,20 +1,22 @@
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+
+import { useComponent } from '@flow-ui/whale'
 import React, { forwardRef, RefForwardingComponent } from 'react'
 import Block from '../../layout/Block'
 import Check from '../../misc/hocs/Check'
-import switchStyles from './styles'
+import styles from './styles'
 import Types from './types'
 
 const Switch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
-    const {size='medium', animated, disabled} = props
-    const styles = useStyles<Types.Overrides>(props, switchStyles, 'Switch')
+    const { size = 'medium', animated, disabled } = props
+
+    const { css, attributes } = useComponent('Switch', { props, styles })
 
     return (
         <Check
             {...props}
             size={size}
-            styles={styles}
+            styles={css}
             tabIndex={props.tabIndex || 0}
             onFocus={(e) => {
                 props.onFocus && props.onFocus(e)
@@ -28,9 +30,9 @@ const Switch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
              * Switch use
              */
             type="checkbox"
-            children={(checked, focus) => 
-                <Block css={styles.check({animated, size, disabled, checked})}>
-                    <div css={styles.switch({animated, size, disabled, checked})} />
+            children={(checked, focus) =>
+                <Block css={css.check({ animated, size, disabled, checked })}>
+                    <div css={css.switch({ animated, size, disabled, checked })} />
                 </Block>
             }
         />

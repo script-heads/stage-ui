@@ -1,7 +1,6 @@
-import useContainer from '@flow-ui/core/misc/hooks/useContainer'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import { useComponent } from '@flow-ui/whale'
 import React, { forwardRef, RefForwardingComponent } from 'react'
-import spinnerStyles from './styles'
+import styles from './styles'
 import Types from './types'
 
 const Spinner: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
@@ -11,8 +10,9 @@ const Spinner: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref
         duration = 1,
         count = 12
     } = props
-    const { attributes } = useContainer(props)
-    const styles = useStyles<Types.Overrides>(props, spinnerStyles, 'Spinner')
+    
+    const { css, attributes } = useComponent('Spinner', { props, styles })
+
     let rectShape
 
     switch (shape) {
@@ -44,10 +44,10 @@ const Spinner: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref
     }
 
     return (
-        <div {...attributes} css={styles.container} ref={ref}>
+        <div {...attributes} css={css.container} ref={ref}>
             {
                 children
-                    ? <div css={styles.children}>{children}</div>
+                    ? <div css={css.children}>{children}</div>
                     : (
                         <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid" fill="currentColor" height="1em" width="1em">
                             {Array(count).fill('').map((e, i) =>

@@ -3,7 +3,7 @@ import { Block, Flexbox, Text, useTheme, Paragraph } from '@flow-ui/core'
 import ThemeTypes from '@flow-ui/core/misc/themes/types'
 import { RefObject, useRef } from 'react'
 import Mask, { MaskRefs } from './Mask'
-import createStyles from './styles'
+import styles from './styles'
 import { ScrollView } from '@flow-ui/lab'
 
 export const componentsInvisibleWhenEmpty = [
@@ -168,7 +168,7 @@ const RenderItem = (props: RenderItemProps) => {
 
 const Render = (props: { tools: ArchitectTools }) => {
     const theme = useTheme()
-    const styles = createStyles(theme)
+    const styles = styles(theme)
     const { tools } = props
     const architectItems = tools.getItems()
     const hoverMask = useRef<MaskRefs>(null)

@@ -1,5 +1,6 @@
-import chroma from 'chroma-js'
 import { ObjectInterpolation } from '@emotion/core'
+import Shared from '@flow-ui/whale/types'
+import chroma from 'chroma-js'
 /**
  * Content
  */
@@ -35,7 +36,6 @@ import ModalTypes from '../../layout/Modal/types'
 import NotificationTypes from '../../layout/Notification/types'
 import PopoverTypes from '../../layout/Popover/types'
 import TreeTypes from '../../layout/Tree/types'
-import Shared from '../../types'
 
 declare namespace ThemeTypes {
 

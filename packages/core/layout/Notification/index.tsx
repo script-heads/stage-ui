@@ -1,17 +1,21 @@
-import React, { RefForwardingComponent, forwardRef } from 'react'
+import { useComponent } from '@flow-ui/whale'
+import React, { forwardRef, RefForwardingComponent } from 'react'
 import Block from '../Block'
+import styles from './styles'
 import Types from './types'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
-import notificationStyles from './styles'
 
 const Notifications: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
-    const styles = useStyles<Types.Overrides>(props, notificationStyles, 'Notification')
+    const { css, attributes } = useComponent('Notification', { props, styles })
 
     return (
-        <Block ref={ref} surface="minor" onClick={() => props.onClick && props.onClick()} css={styles.container}>
-            {props.children}
-        </Block>
+        <Block 
+            {...attributes}
+            ref={ref} 
+            surface="minor" 
+            onClick={() => props.onClick && props.onClick()} css={css.container}
+            children={props.children}
+        />
     )
 }
 

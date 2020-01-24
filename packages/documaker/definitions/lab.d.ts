@@ -1,6 +1,6 @@
 declare module 'data/Chart/types' {
 	import { ChartDataSets, ChartOptions } from 'chart.js';
-	import Shared from 'types'; namespace ChartTypes {
+	import Shared from '/types'; namespace ChartTypes {
 	    type ChartType = 'line' | 'pie' | 'verticalBar' | 'horizontalBar' | 'doughnut' | 'radar' | 'polar' | 'scatter' | 'bubble';
 	    interface Props extends Shared.AllProps {
 	        /**
@@ -37,7 +37,7 @@ declare module 'layout/Split/Separator' {
 }
 declare module 'layout/Split/types' {
 	/// <reference types="react" />
-	import Shared from 'types'; namespace SplitTypes {
+	import Shared from '/types'; namespace SplitTypes {
 	    interface Props extends Shared.AllProps {
 	        direction?: 'row' | 'column';
 	        children: React.ReactElement[];
@@ -75,7 +75,7 @@ declare module 'layout/Split' {
 }
 declare module 'layout/ScrollView/types' {
 	/// <reference types="react" />
-	import Shared from 'types'; namespace ScrollViewTypes {
+	import Shared from '/types'; namespace ScrollViewTypes {
 	    interface Props extends Shared.AllProps {
 	        children?: React.ReactNode;
 	        /**
@@ -143,7 +143,7 @@ declare module 'layout/ScrollView/types' {
 }
 declare module 'layout/ScrollView/styles' {
 	import Types from 'layout/ScrollView/types';
-	import Shared from 'types'; const ScrollViewStyles: Shared.FunctionalComponentStyles<Types.Styles>;
+	import Shared from '/types'; const ScrollViewStyles: Shared.FunctionalComponentStyles<Types.Styles>;
 	export default ScrollViewStyles;
 
 }
@@ -155,8 +155,8 @@ declare module 'layout/ScrollView' {
 }
 declare module 'control/ButtonGroup/types' {
 	/// <reference types="react" />
-	import Shared from 'types';
-	import ButtonTypes from 'control/Button/types'; namespace ButtonGroupTypes {
+	import Shared from '/types';
+	import ButtonTypes from '/control/Button/types'; namespace ButtonGroupTypes {
 	    interface Props extends Shared.AllProps, ButtonTypes.Props {
 	        children: (React.ReactElement<ButtonTypes.Props> | React.ReactElement<ButtonTypes.Props>[]);
 	    }
@@ -232,7 +232,7 @@ declare module 'misc/logos' {
 
 }
 declare module 'misc/themes/whiteCurrant' {
-	 const whiteCurrant: import("misc/themes/types").default.Index;
+	 const whiteCurrant: import("/misc/themes/types").default.Index;
 	export default whiteCurrant;
 
 }

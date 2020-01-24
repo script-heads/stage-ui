@@ -1,47 +1,24 @@
 import { jsx } from '@emotion/core'
 import { useTheme } from '@flow-ui/core'
-import useContainer from '@flow-ui/core/misc/hooks/useContainer'
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
-import callProp from '@flow-ui/core/misc/utils/callProp'
+import { useComponent } from '@flow-ui/whale'
 import { forwardRef, RefForwardingComponent } from 'react'
+import styles from './styles'
 import Types from './types'
 
 type RefTag = HTMLSpanElement | HTMLAnchorElement | HTMLParagraphElement
 
 const Typography: RefForwardingComponent<RefTag, Types.PrivateProps> = (props, ref) => {
-
-    const styleProps = useStyleProps(props)
-    const { attributes } = useContainer(props)
+    
     const theme = useTheme()
     
+    const { attributes, css } = useComponent('Typography', { props, styles })
+
     return jsx(
         props.tag,
         {
             ...attributes,
             ref: ref,
-            css: [
-                props.specificStyles,
-                theme.typography[props.sizesOf][props.size || 1],
-                typeof props.size != 'number' && {
-                    fontSize: props.size,
-                },
-                {
-                    fontWeight: props.weight,
-                    lineHeight: props.lineHeight,
-                    textDecoration: props.decoration,
-                    textTransform: props.transform,
-                    textAlign: props.align,
-                    color: callProp(props.color, theme.color),
-                    background: callProp(props.background, theme.color),
-                },
-                props.ellipsis && {
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    minWidth: 0,
-                },
-                styleProps.all,
-            ],
+            css: css.container,
             download: props.download,
             href: props.href,
             hrefLang: props.hrefLang,

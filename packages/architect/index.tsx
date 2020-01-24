@@ -4,7 +4,7 @@ import TreePanel from '@flow-ui/architect/src/TreePanel'
 import AddPanel from '@flow-ui/architect/src/AddPanel'
 import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
 import React, { Fragment } from 'react'
-import createStyles from './styles'
+import styles from './styles'
 import { useTheme, Flexbox } from '@flow-ui/core'
 import components from './components'
 

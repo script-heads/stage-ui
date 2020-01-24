@@ -1,10 +1,8 @@
+import { StyleObject } from '@flow-ui/whale/types'
 import Types from './types'
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
-import Shared from '../../types'
 
-const modalStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
-    const styleProps = useStyleProps(props)
-
+const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+    
     return {
         overlay: (variant) => [
             {
@@ -88,4 +86,4 @@ const modalStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: T
     }
 }
 
-export default modalStyles
+export default styles

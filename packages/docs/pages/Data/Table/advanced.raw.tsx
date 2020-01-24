@@ -1,20 +1,19 @@
-import React, { useState, Fragment } from 'react';
-import { Table, Flexbox, Button, Block } from '@flow-ui/core';
-
+import React, { useState, Fragment } from 'react'
+import { Table, Flexbox, Button, Block } from '@flow-ui/core'
 
 export default () => {
     const columns = [
         { title: '#', dataIndex: 'id', width: 40 },
         { title: 'Fullname', dataIndex: 'name' },
         { title: 'Age', dataIndex: 'age', width: 40 }
-    ];
+    ]
     const data = [
         { id: 1, name: 'Matt', age: 25 },
         { id: 2, name: 'Marry', age: 20 },
         { id: 3, name: 'David', age: 35 }
-    ];
+    ]
 
-    const [form, setForm] = useState({ key: -1, code: 'NONE' });
+    const [form, setForm] = useState({ key: -1, code: 'NONE' })
 
     const close = () => setForm({
         key: -1,
@@ -61,13 +60,13 @@ export default () => {
             }}
             indexKey="id"
             actions={[{
-                label: "Edit",
+                label: 'Edit',
                 onAction: (row) => setForm({
                     key: row.id,
                     code: 'EDIT'
                 })
             }, {
-                label: "Delete",
+                label: 'Delete',
                 onAction: (row) => setForm({
                     key: row.id,
                     code: 'DELETE'

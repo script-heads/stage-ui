@@ -1,6 +1,6 @@
+import Shared from '@flow-ui/whale/types'
 import { Moment } from 'moment'
 import { CSSProperties } from 'react'
-import Shared from '@flow-ui/core/types'
 import FieldTypes from '../../misc/hocs/Field/types'
 
 declare namespace DatePickerTypes {

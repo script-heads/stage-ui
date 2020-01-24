@@ -1,10 +1,10 @@
 import { jsx } from '@emotion/core'
-import useContainer from '@flow-ui/core/misc/hooks/useContainer'
+import { useComponent } from '@flow-ui/whale'
 import useMask from '@flow-ui/core/misc/hooks/useMask'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+
 import React, { forwardRef, RefForwardingComponent, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import Field from '../../misc/hocs/Field'
-import textFieldStyles from './styles'
+import styles from './styles'
 import Types from './types'
 
 type RefTypes = ((HTMLInputElement | HTMLTextAreaElement) & HTMLDivElement) | null | {}
@@ -17,10 +17,15 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
         typeof props.defaultValue === 'undefined'
     )
     
-    const {attributes, focus} = useContainer(props, true, props.decoration != 'none')
+    const { css, attributes, focus } = useComponent('TextField', { 
+        props, 
+        styles,
+        mouseFocus: true,
+        disableDecoration: props.decoration != 'none'
+    })
+
     const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xlarge')
     const isLabelOverlay = (label && isEmpty && !focus && !isLabelOutside) ? true : false
-    const styles = useStyles<Types.Overrides>(props, textFieldStyles, 'TextField')
     const selfRef = useRef<HTMLDivElement>(null)
     const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
     const mask = masked && useMask(inputRef, masked)
@@ -54,7 +59,7 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
             size={size}
             shape={shape}
             focus={focus}
-            styles={styles}
+            styles={css}
             isLabelOutside={isLabelOutside}
             isLabelOverlay={isLabelOverlay}
 
@@ -75,7 +80,7 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
                 {
                     ref: inputRef,
                     onKeyUp: onChange,
-                    css: styles.input({isLabelOverlay}),
+                    css: css.input({isLabelOverlay}),
 
                     defaultValue: props.defaultValue,
                     disabled: props.disabled,

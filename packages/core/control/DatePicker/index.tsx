@@ -1,18 +1,16 @@
 import { jsx } from '@emotion/core'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import { useComponent } from '@flow-ui/whale'
 import moment, { Moment } from 'moment'
 import React, { forwardRef, Fragment, RefForwardingComponent, useLayoutEffect, useRef, useState } from 'react'
 import Icon from '../../content/Icon'
 import Drop from '../../layout/Drop'
 import Popover from '../../layout/Popover'
 import Field from '../../misc/hocs/Field'
-import useContainer from '../../misc/hooks/useContainer'
 import useMask from '../../misc/hooks/useMask'
 import DateGrid from './DateGrid'
 import maskConf from './mask'
-import datePickerStyles from './styles'
+import styles from './styles'
 import Types from './types'
-
 const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const {
@@ -36,9 +34,13 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
         defaultValue === 'undefined'
     )
     
-    const styles = useStyles(props, datePickerStyles, 'DatePicker')
-    
-    const {attributes, focus} = useContainer(props, true, props.decoration != 'none')
+    const { css, attributes, focus } = useComponent('DatePicker', { 
+        props, 
+        styles,  
+        mouseFocus: true,
+        disableDecoration: props.decoration != 'none'
+    })
+
     const minValue = props.minValue ? moment(props.minValue).startOf('day') : now.clone().add(-500, 'year')
     const maxValue = props.maxValue ? moment(props.maxValue).startOf('day') : now.clone().add(500, 'year')
     const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xlarge')
@@ -86,7 +88,7 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
                 size={size}
                 shape={shape}
                 focus={focus}
-                styles={styles}
+                styles={css}
                 isLabelOutside={isLabelOutside}
                 isLabelOverlay={isLabelOverlay}
 
@@ -119,7 +121,7 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
                                 setValue(date)
                             }
                         },
-                        css: styles.input({isLabelOverlay}),
+                        css: css.input({isLabelOverlay}),
                         
                         defaultValue: defaultValue ? moment(defaultValue, format) : undefined,
                         disabled: props.disabled,
@@ -158,9 +160,9 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
                 }}
                 target={inputRef}
             >
-                <Popover css={styles.drop({isActive})}>
+                <Popover css={css.drop({isActive})}>
                     <DateGrid
-                        styles={styles}
+                        styles={css}
                         value={value}
                         minValue={minValue}
                         maxValue={maxValue}

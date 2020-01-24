@@ -1,4 +1,4 @@
-import Shared from "@flow-ui/core/types";
+import Shared from '@flow-ui/core/types'
 
 declare namespace ScrollViewTypes {
     interface Props extends Shared.AllProps {
@@ -37,31 +37,31 @@ declare namespace ScrollViewTypes {
     interface Ref {
         scrollTop: () => void
     }
-    
-    interface Styles {
+
+    interface Overrides {
         container: void
         content: void
         yBar: {
             active: boolean,
-            shape: Props["shape"]
-            size: Props["size"]
-            position: Props["yBarPosition"]
+            shape: Props['shape']
+            size: Props['size']
+            position: Props['yBarPosition']
         }
         yThumb: {
             active: boolean,
-            shape: Props["shape"]
-            size: Props["size"]
+            shape: Props['shape']
+            size: Props['size']
         }
         xBar: {
             active: boolean
-            shape: Props["shape"]
-            size: Props["size"]
-            position: Props["xBarPosition"]
+            shape: Props['shape']
+            size: Props['size']
+            position: Props['xBarPosition']
         }
         xThumb: {
             active: boolean
-            shape: Props["shape"]
-            size: Props["size"]
+            shape: Props['shape']
+            size: Props['size']
         }
     }
 }

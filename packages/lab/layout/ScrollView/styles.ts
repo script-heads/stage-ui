@@ -1,16 +1,13 @@
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
 import callProp from '@flow-ui/core/misc/utils/callProp'
+import { StyleObject } from '@flow-ui/whale/types'
 import chroma from 'chroma-js'
 import Types from './types'
-import Shared from '@flow-ui/core/types'
 
-const ScrollViewStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props: Types.Props, theme) => {
+const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
 
     let color = chroma(
         callProp(props.color, theme.color) || theme.color.onBackground.css()
     )
-
-    const styleProps = useStyleProps(props)
 
     return {
         container: [
@@ -200,4 +197,4 @@ const ScrollViewStyles: Shared.FunctionalComponentStyles<Types.Styles> = (props:
     }
 }
 
-export default ScrollViewStyles
+export default styles

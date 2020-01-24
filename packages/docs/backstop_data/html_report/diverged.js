@@ -173,7 +173,6 @@ function reduceColumnDiffRaw(columnDiffs, h, w) {
                 });
             }
 
-
             resultColumn = resultColumn.concat(segment);
             
             if (resultColumn.length > h) {
@@ -292,7 +291,6 @@ function ungroupAdjacent(grouped, spread, columnUnderlay, h, w) {
 
     return ungrouped
 }
-
 
 
 function imgDataWordArrToColsAndRows(arr, h, w) {

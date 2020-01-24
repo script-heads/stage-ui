@@ -1,4 +1,4 @@
-import Shared from '../../types'
+import Shared from '@flow-ui/whale/types'
 
 declare namespace RangeTypes {
     interface Props extends Shared.AllProps {

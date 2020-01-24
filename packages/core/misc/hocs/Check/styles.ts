@@ -1,13 +1,10 @@
-import Shared from '@flow-ui/core/types'
-import useStyleProps from '../../hooks/useStyleProps'
+import { StyleObject } from '@flow-ui/whale/types'
 import callProp from '../../utils/callProp'
 import Types from './types'
-import ThemeTypes from '../../themes/types'
 
-const checkStyles = (props: Types.Props, theme: ThemeTypes.Index): Shared.ComponentStyles<Types.Overrides> => {
-    
+const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+
     const labelColor = callProp(props.labelColor, theme.color)
-    const styleProps = useStyleProps(props)
 
     return {
         container: (variant) => [
@@ -69,4 +66,4 @@ const checkStyles = (props: Types.Props, theme: ThemeTypes.Index): Shared.Compon
     }
 }
 
-export default checkStyles
+export default styles

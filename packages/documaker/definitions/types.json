@@ -8191,7 +8191,7 @@
                     "name": "styles",
                     "type": "reference",
                     "values": [
-                        "Shared.FlowStyles"
+                        "Shared.ComponentStyles"
                     ]
                 },
                 {
@@ -13507,7 +13507,7 @@
                     "name": "styles",
                     "type": "reference",
                     "values": [
-                        "Shared.FlowStyles"
+                        "Shared.ComponentStyles"
                     ]
                 },
                 {
@@ -13604,7 +13604,7 @@
                     "name": "styles",
                     "type": "reference",
                     "values": [
-                        "Shared.FlowStyles"
+                        "Shared.ComponentStyles"
                     ]
                 },
                 {
@@ -13680,7 +13680,7 @@
                     "name": "styles",
                     "type": "reference",
                     "values": [
-                        "Shared.FlowStyles"
+                        "Shared.ComponentStyles"
                     ]
                 },
                 {
@@ -16869,7 +16869,7 @@
                     "name": "styles",
                     "type": "reference",
                     "values": [
-                        "Shared.FlowStyles"
+                        "Shared.ComponentStyles"
                     ]
                 }
             ],
@@ -23406,7 +23406,7 @@
                     "name": "styles",
                     "type": "reference",
                     "values": [
-                        "Shared.FlowStyles"
+                        "Shared.ComponentStyles"
                     ]
                 }
             ],
@@ -25970,7 +25970,7 @@
                     "name": "styles",
                     "type": "reference",
                     "values": [
-                        "Shared.FlowStyles"
+                        "Shared.ComponentStyles"
                     ]
                 },
                 {
@@ -26039,7 +26039,7 @@
                     "name": "styles",
                     "type": "reference",
                     "values": [
-                        "Shared.FlowStyles"
+                        "Shared.ComponentStyles"
                     ]
                 },
                 {
@@ -26109,7 +26109,7 @@
                     "name": "styles",
                     "type": "reference",
                     "values": [
-                        "Shared.FlowStyles"
+                        "Shared.ComponentStyles"
                     ]
                 },
                 {
@@ -32383,7 +32383,7 @@
                     "name": "styles",
                     "type": "reference",
                     "values": [
-                        "Shared.FlowStyles"
+                        "Shared.ComponentStyles"
                     ]
                 }
             ],
@@ -34308,7 +34308,7 @@
                             "name": "styles",
                             "type": "reference",
                             "values": [
-                                "Shared.FlowStyles"
+                                "Shared.ComponentStyles"
                             ]
                         }
                     ],
@@ -42374,7 +42374,7 @@
                     "name": "styles",
                     "type": "reference",
                     "values": [
-                        "Shared.FlowStyles"
+                        "Shared.ComponentStyles"
                     ]
                 }
             ],
@@ -43660,7 +43660,7 @@
                     "name": "styles",
                     "type": "reference",
                     "values": [
-                        "Shared.FlowStyles"
+                        "Shared.ComponentStyles"
                     ]
                 }
             ],
@@ -44138,7 +44138,7 @@
                     "name": "styles",
                     "type": "reference",
                     "values": [
-                        "Shared.FlowStyles"
+                        "Shared.ComponentStyles"
                     ]
                 }
             ],
@@ -44179,7 +44179,7 @@
                     "name": "styles",
                     "type": "reference",
                     "values": [
-                        "Shared.FlowStyles"
+                        "Shared.ComponentStyles"
                     ]
                 }
             ],

@@ -1,10 +1,11 @@
-import useContainer from '@flow-ui/core/misc/hooks/useContainer'
+import { useComponent } from '@flow-ui/whale'
 import React, { forwardRef, Fragment, RefForwardingComponent, useEffect, useMemo, createRef } from 'react'
 import Separator from './Separator'
 import Types from './types'
+import styles from './styles'
 
-export type SplitElRef = (HTMLDivElement & { 
-    _vertical?: true 
+export type SplitElRef = (HTMLDivElement & {
+    _vertical?: true
     _onMove?: () => void
     _onChange?: () => void
 }) | null
@@ -15,7 +16,7 @@ interface SplitElRefs {
 
 const Split: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
-    const { attributes } = useContainer(props)
+    const { css, attributes } = useComponent('Split', { props, styles })
 
     let vertical = props.direction === 'column'
 
@@ -32,7 +33,7 @@ const Split: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
             )
         )
     )
-    
+
     useEffect(() => {
         refs['-1']._onMove = () => {
             props.onMove && props.onMove(getPositions())
@@ -48,18 +49,17 @@ const Split: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
             refs[key].style[vertical ? 'height' : 'width'] = percent + '%'
         })
         refs['-1']._vertical = props.direction === 'column'
-        
+
     }, [props.positions, props.direction])
 
     return (
-        <div {...attributes} ref={r => { refs[-1] = r; ref = { current: r } }} css={{
-            display: 'flex',
-            width: '100%',
-            height: '100%',
-            flex: 1,
-            flexDirection: vertical ? 'column' : 'row',
-        }}>
-            {
+        <div
+            {...attributes}
+            ref={r => { refs[-1] = r; ref = { current: r } }}
+            css={css.container({
+                vertical
+            })}
+            children={
                 props.children.map((child, index) => {
 
                     let separator = (props.children.length !== index + 1)
@@ -91,7 +91,7 @@ const Split: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
                     )
                 })
             }
-        </div>
+        />
     )
 }
 

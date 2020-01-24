@@ -1,10 +1,9 @@
-import Shared from '@flow-ui/core/types'
+import { StyleObject } from '@flow-ui/whale/types'
 import Types from './types'
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
 import callProp from '@flow-ui/core/misc/utils/callProp'
 
-const dividerStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
-    const styleProps = useStyleProps(props)
+const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+    
     let { gap = 0, dash = 0, vertical } = props
     const color = callProp(props.color, theme.color) || theme.assets.border.color
     
@@ -64,4 +63,4 @@ const dividerStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props:
     }
 }
 
-export default dividerStyles
+export default styles

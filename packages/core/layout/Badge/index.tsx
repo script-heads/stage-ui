@@ -1,20 +1,20 @@
-import useContainer from '@flow-ui/core/misc/hooks/useContainer'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+
+import { useComponent } from '@flow-ui/whale'
 import React, { forwardRef, RefForwardingComponent } from 'react'
-import bageStyles from './styles'
+import styles from './styles'
 import Types from './types'
 
 const Badge: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
-    const { attributes } = useContainer(props)
-    const styles = useStyles<Types.Overrides>(props, bageStyles, 'Badge')
+
+    const { css, attributes } = useComponent('Badge', { props, styles })
 
     return (
-        <div css={styles.container}>
+        <div css={css.container}>
             <div
                 {...attributes}
                 ref={ref}
                 children={props.content}
-                css={styles.holder({align: props.align})}
+                css={css.holder({align: props.align})}
             />
             {props.children}
         </div>

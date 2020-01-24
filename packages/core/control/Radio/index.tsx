@@ -1,16 +1,19 @@
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+
 import React, { forwardRef, RefForwardingComponent } from 'react'
 import Block from '../../layout/Block'
 import Check from '../../misc/hocs/Check'
-import radioStyles from './styles'
+import styles from './styles'
 import Types from './types'
+import { useComponent } from '@flow-ui/whale'
 
 const Radio: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
-    const {animated, size = 'medium', disabled} = props
-    const styles = useStyles(props, radioStyles, 'Radio')
+    const { animated, size = 'medium', disabled } = props
+
+    const { css, attributes } = useComponent('Radio', { props, styles })
 
     return (
         <Check
+            {...attributes}
             {...props}
             ref={ref}
             size={size}
@@ -27,10 +30,10 @@ const Radio: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
              * Radio use
              */
             type="checkbox"
-            styles={styles}
-            children={(checked, focus) => 
-                <Block css={styles.check({animated, size, disabled})}>
-                    <div css={styles.radio({animated, size, disabled, checked})}/>
+            styles={css}
+            children={(checked) =>
+                <Block css={css.check({ animated, size, disabled })}>
+                    <div css={css.radio({ animated, size, disabled, checked })} />
                 </Block>
             }
         />

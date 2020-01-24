@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import TableTypes from './types'
-import tableStyles from './styles'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 
 interface TableFormHOCProps {
     Form: TableTypes.InjectForm
+    styles: any
     dismiss?: () => void
     columns: TableTypes.TableColumn[]
     row?: { [key: string]: any }
@@ -12,8 +11,8 @@ interface TableFormHOCProps {
 }
 
 const TableForm = (props: TableTypes.FormProps) => {
-    const { Form, columns, dismiss } = props
-    const styles = useStyles(props, tableStyles, 'Table')
+    const { Form, columns, dismiss, styles } = props
+
     const initialData = props.data ? JSON.parse(JSON.stringify(props.data)) : {}
     const [data, setData] = useState<{ [key: string]: string }>(initialData)
 

@@ -1,10 +1,7 @@
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps';
 import Types from './types'
-import Shared from '../../types';
+import { StyleObject } from '@flow-ui/whale/types'
 
-const rangeStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
-    const stylesProps = useStyleProps(props)
-
+const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
     return {
         container: [
             {
@@ -13,7 +10,7 @@ const rangeStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: T
                 height: 'calc(1rem + 4px)',
                 cursor: 'pointer',
             },
-            stylesProps.all,
+            styleProps.all,
         ],
         rail: [{
             position: 'absolute',
@@ -56,4 +53,4 @@ const rangeStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: T
     }
 }
 
-export default rangeStyles
+export default styles

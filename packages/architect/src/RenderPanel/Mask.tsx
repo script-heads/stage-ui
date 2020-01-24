@@ -1,6 +1,6 @@
 import { Block, Text, useTheme } from '@flow-ui/core'
 import React, { forwardRef, RefForwardingComponent, useImperativeHandle, useRef, useState, useEffect } from 'react'
-import createStyles from './styles'
+import styles from './styles'
 import ThemeTypes from '@flow-ui/core/misc/themes/types'
 import { ArchitectItem } from '../../types'
 
@@ -15,7 +15,7 @@ export type MaskRefs = {
 
 const Mask: RefForwardingComponent<MaskRefs, MaskProps> = (props, ref) => {
     const theme = useTheme()
-    const styles = createStyles(theme)
+    const styles = styles(theme)
     const selectMask = useRef<HTMLDivElement>(null)
     const [name, setName] = useState('')
 

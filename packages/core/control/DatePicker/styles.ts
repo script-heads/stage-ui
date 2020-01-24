@@ -1,11 +1,11 @@
-import Shared from '../../types'
-import Types from './types'
 import fieldStyles from '@flow-ui/core/misc/hocs/Field/styles'
+import { StyleObject } from '@flow-ui/whale/types'
+import Types from './types'
 
-const datePickerStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props, theme) => {
+const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
 
     return {
-        ...fieldStyles(props, theme),
+        ...fieldStyles(props, theme, styleProps),
 
         dateGrind: [{
             position: 'relative',
@@ -115,4 +115,4 @@ const datePickerStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (pro
     }
 }
 
-export default datePickerStyles
+export default styles

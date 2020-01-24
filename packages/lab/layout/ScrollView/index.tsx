@@ -1,7 +1,6 @@
-import useContainer from '@flow-ui/core/misc/hooks/useContainer'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import { useComponent } from '@flow-ui/whale'
 import React, { forwardRef, useEffect, useMemo, useState, useImperativeHandle, RefForwardingComponent } from 'react'
-import Styles from './styles'
+import styles from './styles'
 import Types from './types'
 
 interface ScrollParams {
@@ -38,8 +37,8 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         }
     }))
 
-    const styles = useStyles<Types.Styles>(props, Styles)
-    const { attributes } = useContainer(props)
+    const { css, attributes } = useComponent('ScrollView', { props, styles })
+    
     const {
         shape = 'round',
         size = 'medium',
@@ -242,18 +241,18 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
     }
 
     return (
-        <div {...attributes} css={styles.container} ref={createRef}>
+        <div {...attributes} css={css.container} ref={createRef}>
             <div
-                css={styles.content}
+                css={css.content}
                 ref={ref => memo.content = ref}
                 children={props.children}
             />
             <div
-                css={styles.yBar({ active, size, shape, position: yBarPosition })}
+                css={css.yBar({ active, size, shape, position: yBarPosition })}
                 ref={ref => memo.yBar = ref}
                 children={(
                     <span
-                        css={styles.yThumb({ active, size, shape })}
+                        css={css.yThumb({ active, size, shape })}
                         ref={ref => memo.yThumb = ref}
                     />
                 )}
@@ -265,11 +264,11 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                 }}
             />
             <div
-                css={styles.xBar({ active, size, shape, position: xBarPosition })}
+                css={css.xBar({ active, size, shape, position: xBarPosition })}
                 ref={ref => memo.xBar = ref}
                 children={(
                     <span
-                        css={styles.xThumb({ active, size, shape })}
+                        css={css.xThumb({ active, size, shape })}
                         ref={ref => memo.xThumb = ref}
                     />
                 )} 

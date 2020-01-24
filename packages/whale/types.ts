@@ -1,6 +1,7 @@
 import chroma from 'chroma-js'
 import CSS from 'csstype'
 import { Interpolation, SerializedStyles, ObjectInterpolation } from '@emotion/core'
+import { InjectedStyleProps } from './utils/styleProps'
 
 declare module 'csstype' {
     interface Properties {
@@ -168,11 +169,7 @@ declare namespace Shared {
     
     type FlowStyles<S> = {[O in keyof S]: FlowStyle<S[O]>}
     
-    type ComponentStyles<S> = {[O in keyof S]: ComponentStyle<S[O]>}
-
-    type FunctionalComponentStyles<S, P = {}> = (
-        (props: P, theme: Theme, propsStyles?) => {[O in keyof S]: ComponentStyle<S[O]>}
-    )        
+    type ComponentStyles<S> = {[O in keyof S]: ComponentStyle<S[O]>}      
 
     type OverridesStyle<S> = Partial<{[O in keyof S]: ComponentStyle<S[O]>}>
 
@@ -559,5 +556,9 @@ declare namespace Shared {
         placeSelf?: CSS.Properties['placeSelf']
     }
 }
+
+export type StyleObject<S, P = {}> = (
+    (props: P, theme: Shared.Theme, propsStyles: InjectedStyleProps) => {[O in keyof S]: Shared.ComponentStyle<S[O]>}
+)  
 
 export default Shared

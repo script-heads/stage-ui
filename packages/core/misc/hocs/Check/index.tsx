@@ -1,12 +1,10 @@
 import React, { forwardRef, RefForwardingComponent, useEffect, useState } from 'react'
-import useContainer from '../../hooks/useContainer'
 import CheckTypes from './types'
 
 const Check: RefForwardingComponent<HTMLDivElement, CheckTypes.PrivateProps> = (props, ref) => {
     const [focus, setFocus] = useState(false)
     const [checked, setChecked] = useState(props.checked || props.defaultValue || false)
     const { label, styles, animated, disabled,size, uppercase } = props
-    const { attributes } = useContainer(props, false, true)
 
     useEffect(() => {
         if (typeof props.checked !== 'undefined') {
@@ -51,7 +49,6 @@ const Check: RefForwardingComponent<HTMLDivElement, CheckTypes.PrivateProps> = (
 
     const containerProps = {
         ref,
-        ...attributes,
         css: styles.container({animated, disabled}),
         onClick,
         onKeyDown,

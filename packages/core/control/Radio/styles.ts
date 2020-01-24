@@ -1,12 +1,11 @@
 import Types from './types'
-import Shared from '../../types'
+import { StyleObject } from '@flow-ui/whale/types'
 import checkStyles from '@flow-ui/core/misc/hocs/Check/styles'
 
-const radioStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
+const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
     
     return {
-        ...checkStyles(props, theme),
-        
+        ...checkStyles(props, theme, styleProps),
         check: (variant) => [
             {
                 boxSizing: 'border-box',
@@ -94,4 +93,4 @@ const radioStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: T
     }
 }
 
-export default radioStyles
+export default styles

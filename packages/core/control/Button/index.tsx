@@ -1,19 +1,19 @@
-import useContainer from '@flow-ui/core/misc/hooks/useContainer'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import { useComponent } from '@flow-ui/whale'
+
 import React, { forwardRef, RefForwardingComponent } from 'react'
-import buttonStyles from './styles'
+import styles from './styles'
 import Types from './types'
 
 const Button: RefForwardingComponent<HTMLButtonElement, Types.Props> = (props, ref) => {
-
+    styles
     const {
         disabled,
         decoration = 'filled',
         shape = 'rounded',
         size = 'medium'
     } = props
-    const { attributes } = useContainer(props)
-    const styles = useStyles<Types.Overrides>(props, buttonStyles, 'Button')
+    
+    const { css, attributes } = useComponent('Button', { props, styles })
 
     const onClick = (event: React.MouseEvent<HTMLElement>) => {
         if (!disabled) {
@@ -25,7 +25,7 @@ const Button: RefForwardingComponent<HTMLButtonElement, Types.Props> = (props, r
         <button
             {...attributes}
             ref={ref}
-            css={styles.container({ shape, decoration, size })}
+            css={css.container({ shape, decoration, size })}
             onClick={onClick}
             autoFocus={props.autoFocus}
             disabled={props.disabled}

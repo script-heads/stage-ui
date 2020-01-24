@@ -12,7 +12,7 @@ import SizeConrols from './controls/size'
 import StringControls from './controls/string'
 import TextControls from './controls/text'
 import FlexControls from './controls/flex'
-import createStyles from './styles'
+import styles from './styles'
 
 const data = require('@flow-ui/documaker/definitions/types')
 const hiddenProps = [
@@ -42,7 +42,7 @@ const hiddenProps = [
 ]
 const PrefPanel = (props: { tools: ArchitectTools }) => {
     const theme = useTheme()
-    const styles = createStyles(theme)
+    const styles = styles(theme)
     const { tools } = props
 
     const literalProps: { name: string, values: string[] }[] = []

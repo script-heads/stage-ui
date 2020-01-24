@@ -1,6 +1,6 @@
 import callProp from '@flow-ui/core/misc/utils/callProp'
 import { Provider } from '@flow-ui/whale'
-import React, { Fragment, RefForwardingComponent, useImperativeHandle, useRef } from 'react'
+import React, { Fragment, RefForwardingComponent, useRef } from 'react'
 import * as themes from '../../misc/themes'
 import MountArea from './MountArea'
 import createStyles from './styles'

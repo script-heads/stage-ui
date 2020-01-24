@@ -1,13 +1,13 @@
-import useContainer from '@flow-ui/core/misc/hooks/useContainer'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import { useComponent } from '@flow-ui/whale'
 import React, { forwardRef, RefForwardingComponent, useEffect, useImperativeHandle, useRef } from 'react'
-import rangeStyles from './styles'
+import styles from './styles'
 import Types from './types'
 
 const Range: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     const { min = 0, max = 100, value, defaultValue } = props
-    const styles = useStyles(props, rangeStyles, 'Range')
-    const { attributes } = useContainer(props)
+
+    const { css, attributes } = useComponent('Range', { props, styles })
+
     const thumbRef = useRef<HTMLDivElement>(null)
     const trackRef = useRef<HTMLDivElement>(null)
     const containerRef = useRef<HTMLDivElement>(null)
@@ -60,20 +60,20 @@ const Range: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
 
     return (
         <div {...attributes} 
-            css={styles.container} 
+            css={css.container} 
             ref={containerRef} 
             onMouseDown={(e: MouseEvent) => onMove(e, true)}
             // onTouchStart={onMove}
         >
-            <div css={styles.rail} />
+            <div css={css.rail} />
             <div
-                css={styles.track}
+                css={css.track}
                 ref={trackRef}
                 style={{ width: thumbPosition + '%' }}
             />
             <div
                 ref={thumbRef}
-                css={styles.thumb}
+                css={css.thumb}
                 style={{ left: thumbPosition + '%' }}
             />
         </div>

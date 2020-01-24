@@ -1,10 +1,9 @@
-import useContainer from '@flow-ui/core/misc/hooks/useContainer'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
 import React, { forwardRef, Fragment, RefForwardingComponent, useState } from 'react'
 import createID from '../../misc/utils/createID'
 import Item from './Item'
-import menuStyles from './styles'
+import styles from './styles'
 import Types from './types'
+import { useComponent } from '@flow-ui/whale'
 
 const Menu: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     
@@ -16,8 +15,7 @@ const Menu: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
         defaultValue = '', 
         separator, 
     } = props
-    const { attributes } = useContainer(props)
-    const styles = useStyles<Types.Overrides>(props,menuStyles,'Menu')
+    const { css, attributes } = useComponent('Menu', { props, styles })
     const [value, setValue] = useState<Types.Value>(defaultValue)
     const currentValue = (typeof props.value === 'undefined' || props.value === '')
         ? value
@@ -38,7 +36,7 @@ const Menu: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
         <div
             {...attributes}
             ref={ref}
-            css={styles.container({size, flip, border})}
+            css={css.container({size, flip, border})}
         >
             {items.map((item, i) => {
                 return (
@@ -48,10 +46,10 @@ const Menu: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
                             active={item.value === currentValue}
                             onClick={() => handleSwitch(item)}
                             onEnter={() => handleSwitch(item)}
-                            styles={styles}
+                            styles={css}
                         />
                         {separator && i + 1 < items.length && (
-                            <div css={styles.separator}>
+                            <div css={css.separator}>
                                 {separator}
                             </div>
                         )}

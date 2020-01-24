@@ -1,10 +1,9 @@
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
+
 import Types from './types'
-import Shared from '../../types'
+import { StyleObject } from '@flow-ui/whale/types'
 
-const treeStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
-    const styleProps = useStyleProps(props)
-
+const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+    
     return {
         container: (variant) => [
             styleProps.all,
@@ -60,4 +59,4 @@ const treeStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Ty
     }
 }
 
-export default treeStyles
+export default styles

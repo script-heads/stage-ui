@@ -1,4 +1,4 @@
-import Shared from '@flow-ui/core/types'
+import Shared from '@flow-ui/whale/types'
 
 declare namespace TableTypes {
     interface TableColumn {
@@ -72,6 +72,7 @@ declare namespace TableTypes {
 
     interface FormProps {
         data: any
+        styles: any
         dismiss?: () => void
         columns: TableColumn[]
         Form: any

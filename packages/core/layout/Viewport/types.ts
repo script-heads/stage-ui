@@ -1,5 +1,5 @@
 import ThemeType from '../../misc/themes/types'
-import Shared from '@flow-ui/core/types'
+import Shared from '@flow-ui/whale/types'
 import ThemeTypes from '../../misc/themes/types'
 
 declare namespace ViewportTypes {

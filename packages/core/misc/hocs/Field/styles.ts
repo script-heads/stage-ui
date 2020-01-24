@@ -1,23 +1,23 @@
-import useStyleProps from '../../hooks/useStyleProps'
+import Shared from '@flow-ui/whale/types'
+import { InjectedStyleProps } from '@flow-ui/whale/utils/styleProps'
+import ThemeTypes from '../../themes/types'
 import callProp from '../../utils/callProp'
 import Types from './types'
-import Shared from '../../../types'
-import ThemeTypes from '../../themes/types'
 
 const fieldStyles = <T extends Types.Overrides>(
-    props: Types.Props, 
-    theme: ThemeTypes.Index, 
+    props: Types.Props,
+    theme: ThemeTypes.Index,
+    styleProps: InjectedStyleProps,
     params: {
         manyLines?: boolean
         additionalPadding?: string
         labelOverlayPosition?: 'top' | 'center'
         overrides?: Partial<Shared.ComponentStyles<T>>
     } = {}): Shared.ComponentStyles<Types.Overrides> => {
-    
-    const styleProps = useStyleProps(props)
+
     const color = callProp(props.color, theme.color)
-    const {manyLines, overrides, additionalPadding, labelOverlayPosition} = params
-    
+    const { manyLines, overrides, additionalPadding, labelOverlayPosition, } = params
+
     return {
         container: (variant) => [
             {
@@ -61,10 +61,10 @@ const fieldStyles = <T extends Types.Overrides>(
                     'xsmall': [
                         {
                             flexBasis: theme.assets.fieldHeight.xsmall,
-                            ...theme.typography.text[3],   
+                            ...theme.typography.text[3],
                             '--headingLabelHeight': `
                                 calc(${theme.typography.text[4].lineHeight} + 2px${additionalPadding ? ' + ' + additionalPadding : ''})
-                            `                         
+                            `
                         },
                         !manyLines && {
                             padding: '.25rem .375rem'
@@ -76,7 +76,7 @@ const fieldStyles = <T extends Types.Overrides>(
                             ...theme.typography.text[2],
                             '--headingLabelHeight': `
                                 calc(${theme.typography.text[4].lineHeight} + 2px${additionalPadding ? ' + ' + additionalPadding : ''})
-                            `                            
+                            `
                         },
                         !manyLines && {
                             padding: '.25rem .5rem'
@@ -85,7 +85,7 @@ const fieldStyles = <T extends Types.Overrides>(
                     'medium': [
                         {
                             flexBasis: theme.assets.fieldHeight.medium,
-                            ...theme.typography.text[1],                            
+                            ...theme.typography.text[1],
                         },
                         !manyLines && {
                             padding: '.25rem .75rem'
@@ -95,7 +95,7 @@ const fieldStyles = <T extends Types.Overrides>(
                         {
                             flexBasis: theme.assets.fieldHeight.large,
                             fontSize: theme.typography.header[4].fontSize,
-                            lineHeight: theme.typography.header[4].lineHeight,                            
+                            lineHeight: theme.typography.header[4].lineHeight,
                         },
                         !manyLines && {
                             padding: '.25rem .875rem'
@@ -105,7 +105,7 @@ const fieldStyles = <T extends Types.Overrides>(
                         {
                             flexBasis: theme.assets.fieldHeight.xlarge,
                             fontSize: theme.typography.header[4].fontSize,
-                            lineHeight: theme.typography.header[4].lineHeight,                            
+                            lineHeight: theme.typography.header[4].lineHeight,
                         },
                         !manyLines && {
                             padding: '.25rem .875rem'
@@ -118,9 +118,11 @@ const fieldStyles = <T extends Types.Overrides>(
                             borderWidth: '1px',
                             borderStyle: 'solid'
                         },
-                        variant({disabled: [{
-                            background: theme.color.lightest.css(),
-                        }]})
+                        variant({
+                            disabled: [{
+                                background: theme.color.lightest.css(),
+                            }]
+                        })
                     ],
                     'filled': [
                         {
@@ -128,9 +130,11 @@ const fieldStyles = <T extends Types.Overrides>(
                             borderStyle: 'solid',
                             borderColor: 'transparent'
                         },
-                        variant({disabled: [{
-                            background: theme.color.lightest.css(),
-                        }]})
+                        variant({
+                            disabled: [{
+                                background: theme.color.lightest.css(),
+                            }]
+                        })
                     ],
                     'underline': [{
                         borderBottomWidth: '1px',
@@ -201,7 +205,7 @@ const fieldStyles = <T extends Types.Overrides>(
                     'xsmall': [
                         {
                             paddingBottom: '2px',
-                            
+
                         },
                         theme.typography.text[4]
                     ]
@@ -223,7 +227,7 @@ const fieldStyles = <T extends Types.Overrides>(
                         top: 0,
                         paddingTop: 'var(--headingLabelHeight)'
                     },
-                    labelOverlayPosition  === 'center' && {
+                    labelOverlayPosition === 'center' && {
                         top: '50%',
                         transform: 'translateY(-50%)'
                     }
@@ -244,20 +248,20 @@ const fieldStyles = <T extends Types.Overrides>(
                 align: {
                     'right': variant({
                         size: {
-                            'xsmall': [{marginLeft: '.25rem'}],
-                            'small': [{marginLeft: '.25rem'}],
-                            'medium': [{marginLeft: '.5rem'}],
-                            'large': [{marginLeft: '.5rem'}],
-                            'xlarge': [{marginLeft: '.75rem'}],
+                            'xsmall': [{ marginLeft: '.25rem' }],
+                            'small': [{ marginLeft: '.25rem' }],
+                            'medium': [{ marginLeft: '.5rem' }],
+                            'large': [{ marginLeft: '.5rem' }],
+                            'xlarge': [{ marginLeft: '.75rem' }],
                         }
                     }),
                     'left': variant({
                         size: {
-                            'xsmall': [{marginRight: '.25rem'}],
-                            'small': [{marginRight: '.25rem'}],
-                            'medium': [{marginRight: '.5rem'}],
-                            'large': [{marginRight: '.5rem'}],
-                            'xlarge': [{marginRight: '.75rem'}],
+                            'xsmall': [{ marginRight: '.25rem' }],
+                            'small': [{ marginRight: '.25rem' }],
+                            'medium': [{ marginRight: '.5rem' }],
+                            'large': [{ marginRight: '.5rem' }],
+                            'xlarge': [{ marginRight: '.75rem' }],
                         }
                     })
                 }

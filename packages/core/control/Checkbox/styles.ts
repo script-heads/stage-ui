@@ -1,8 +1,8 @@
 import Types from './types'
-import Shared from '../../types'
+import { StyleObject } from '@flow-ui/whale/types'
 import checkStyles from '@flow-ui/core/misc/hocs/Check/styles'
 
-const checkboxStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
+const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
     
     return {
         ...checkStyles(props, theme),
@@ -94,4 +94,4 @@ const checkboxStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props
     }
 }
 
-export default checkboxStyles
+export default styles

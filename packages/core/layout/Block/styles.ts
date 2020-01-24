@@ -1,9 +1,7 @@
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
+import { StyleObject } from '@flow-ui/whale/types'
 import Types from './types'
-import Shared from '../../types'
 
-const BlockStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
-    const styleProps = useStyleProps(props)
+const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
     const surfaceVariants = {
         'minor': [{
             borderWidth: theme.assets.border.width,
@@ -44,4 +42,4 @@ const BlockStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: T
     }
 }
 
-export default BlockStyles
+export default styles

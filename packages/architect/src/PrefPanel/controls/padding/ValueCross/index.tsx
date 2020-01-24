@@ -2,7 +2,7 @@ import { ArchitectTools } from '@flow-ui/architect/types'
 import { Block, Button, Grid, Icon, Paragraph, useTheme } from '@flow-ui/core'
 import { ButtonGroup } from '@flow-ui/lab'
 import { useEffect, useState } from 'react'
-import createStyles from './styles'
+import styles from './styles'
 
 const staticValues = [
     0,
@@ -78,7 +78,7 @@ const ValueCross = (props: Props) => {
 
     const theme = useTheme()
 
-    const styles = createStyles(theme, {
+    const styles = styles(theme, {
         lockX,
         lockY,
         lockC

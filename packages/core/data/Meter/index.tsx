@@ -1,7 +1,6 @@
-import useContainer from '@flow-ui/core/misc/hooks/useContainer'
-import useStyles from '@flow-ui/core/misc/hooks/useStyles'
+import { useComponent } from '@flow-ui/whale'
 import React, { forwardRef, RefForwardingComponent } from 'react'
-import meterStyles from './styles'
+import styles from './styles'
 import Types from './types'
 
 const Meter: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
@@ -13,13 +12,12 @@ const Meter: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
         percent = 0,
     } = props
 
-    const { attributes } = useContainer(props)
-    const styles = useStyles(props, meterStyles, 'Meter')
+    const { css, attributes } = useComponent('Meter', { props, styles })
 
     return (
-        <div ref={ref} {...attributes} css={styles.container({decoration, shape, size})}>
+        <div ref={ref} {...attributes} css={css.container({decoration, shape, size})}>
             <div
-                css={styles.thumb({shape, size})}
+                css={css.thumb({shape, size})}
                 style={{
                     width: percent + '%'
                 }}

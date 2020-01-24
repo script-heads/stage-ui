@@ -1,4 +1,4 @@
-import Shared from "@flow-ui/core/types";
+import Shared from '@flow-ui/core/types'
 
 declare namespace SplitTypes {
     export interface Props extends Shared.AllProps {
@@ -20,6 +20,12 @@ declare namespace SplitTypes {
          * Calls when mouseUp if position did change
          */
         onChange?: (positions: number[]) => void
+    }
+
+    interface Overrides {
+        container: {
+            vertical: boolean
+        }
     }
 }
 

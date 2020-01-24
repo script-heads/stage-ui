@@ -1,11 +1,11 @@
 import Types from './types'
-import Shared from '../../types'
+import { StyleObject } from '@flow-ui/whale/types'
 import checkStyles from '@flow-ui/core/misc/hocs/Check/styles'
 
-const switchStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
+const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
 
     return {
-        ...checkStyles(props, theme),
+        ...checkStyles(props, theme, styleProps),
         check: (variant) => [
             {
                 transition: 'all 0.2s',
@@ -147,4 +147,4 @@ const switchStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: 
     }
 }
 
-export default switchStyles
+export default styles

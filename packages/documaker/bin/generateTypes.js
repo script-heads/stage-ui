@@ -60,12 +60,15 @@ function generateTypes(package, replaces = []) {
 }
 
 generateTypes('core', [
-    ['@flow-ui/core/', ''],
+    ['@flow-ui/core/types', 'types'],
+    ['layout/Modal/types', '@flow-ui/core/layout/Modal/types'],
     ['FunctionalProp<IconsetTypes.Index, React.ReactElement>', 'FunctionalProp<IconsetTypes.Index, string>']
 ])
+
 generateTypes('lab', [
-    ['@flow-ui/core/', '']
+    ['@flow-ui/core', ''],
 ])
+
 copyTypes('node_modules/@types/react/global.d.ts', 'global')
 copyTypes('node_modules/@types/react/index.d.ts', 'react', true)
 copyTypes('node_modules/csstype/index.d.ts', 'csstype', true)

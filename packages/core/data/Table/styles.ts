@@ -1,10 +1,9 @@
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
+
 import Types from './types'
-import Shared from '../../types'
+import { StyleObject } from '@flow-ui/whale/types'
 
-const tabelStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
-    const styleProps = useStyleProps(props)
-
+const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+    
     return {
         container: [
             {
@@ -213,4 +212,4 @@ const tabelStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: T
     }
 }
 
-export default tabelStyles
+export default styles

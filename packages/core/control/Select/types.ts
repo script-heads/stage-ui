@@ -1,5 +1,5 @@
 import FieldTypes from '../../misc/hocs/Field/types'
-import Shared from '../../types'
+import Shared from '@flow-ui/whale/types'
 
 declare namespace SelectTypes {
     interface Option {

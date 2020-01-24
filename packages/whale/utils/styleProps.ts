@@ -1,4 +1,4 @@
-import Shared from '@flow-ui/core/types'
+import { StyleObject } from '@flow-ui/whale/types'
 import colorProp from './colorProp'
 import CSS from 'csstype'
 
@@ -56,7 +56,7 @@ type Grid = {
     placeSelf: CSS.Properties['placeSelf']
 }
 
-interface InjectedStyleProps {
+export interface InjectedStyleProps {
     color: Color
     border: Border
     padding: Padding

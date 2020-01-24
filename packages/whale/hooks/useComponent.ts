@@ -1,32 +1,31 @@
-import Types from '../types'
-import { css } from '@emotion/core'
-import useTheme from './useTheme'
-import styleProps from '../utils/styleProps'
+import * as Emotion from '@emotion/core'
+import Types, { StyleObject } from '../types'
 import attributeProps from '../utils/attributeProps'
+import styleProps from '../utils/styleProps'
+import useTheme from './useTheme'
 
-const useComponent = <S>(options: {
+const useComponent = <S>(componentNameForOverride: string, options: {
         props, 
-        styles: Types.ComponentStyles<S> | Types.FunctionalComponentStyles<S>, 
-        name?: string,
+        styles: Types.ComponentStyles<S> | StyleObject<S>, 
         mouseFocus?: boolean,
         disableDecoration?: boolean
-    }): { styles: Types.FlowStyles<S>, attributes } => {
+    }): { css: Types.FlowStyles<S>, attributes, focus } => {
     
-    let { props, styles: componentStyles, name, mouseFocus, disableDecoration } = options
+    let { props, styles: componentStyles, mouseFocus, disableDecoration } = options
     const theme = useTheme()
     const propStyles = styleProps(props, theme)
-    const attributes = attributeProps(props, theme, mouseFocus, disableDecoration)
-    const styles: Types.FlowStyles<S> = {} as Types.FlowStyles<S>
+    const { attributes, focus } = attributeProps(props, theme, mouseFocus, disableDecoration)
+    const css: Types.FlowStyles<S> = {} as Types.FlowStyles<S>
 
     if (typeof componentStyles === 'function') {
         componentStyles = componentStyles(props,theme, propStyles)
     }
 
-    const themeOverrides = name && theme.overrides[name]
+    const themeOverrides = componentNameForOverride && theme.overrides[componentNameForOverride]
 
     Object.keys(componentStyles).map(styleName => {
         if (typeof componentStyles[styleName] === 'function') {
-            styles[styleName] = (state) => {
+            css[styleName] = (state) => {
 
                 const variant = (varaints) => {
                     let variantStyles: Types.EmotionStyles = []
@@ -53,7 +52,7 @@ const useComponent = <S>(options: {
                     return variantStyles
                 }
                 
-                return css(
+                return Emotion.css(
                     componentStyles[styleName](variant), 
                     
                     themeOverrides &&
@@ -66,7 +65,7 @@ const useComponent = <S>(options: {
                 )
             }
         } else {
-            styles[styleName] = css(
+            css[styleName] = Emotion.css(
                 componentStyles[styleName], 
                 
                 themeOverrides &&
@@ -80,7 +79,7 @@ const useComponent = <S>(options: {
         }     
     })
     
-    return { styles, attributes }
+    return { css, attributes, focus }
 }
 
 export default useComponent

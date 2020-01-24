@@ -1,10 +1,10 @@
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
+
 import callProp from '@flow-ui/core/misc/utils/callProp'
-import Shared from '../../types'
+import { StyleObject } from '@flow-ui/whale/types'
 import Types from './types'
 
-const iconStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
-    const styleProps = useStyleProps(props)
+const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+    
     const background = callProp(props.background, theme.color)
     const color = callProp(props.color, theme.color)
 
@@ -39,4 +39,4 @@ const iconStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Ty
     }
 }
 
-export default iconStyles
+export default styles

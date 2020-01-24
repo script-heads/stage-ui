@@ -1,11 +1,10 @@
 import { keyframes } from '@emotion/core'
-import useStyleProps from '@flow-ui/core/misc/hooks/useStyleProps'
 import callProp from '@flow-ui/core/misc/utils/callProp'
+import { StyleObject } from '@flow-ui/whale/types'
 import Types from './types'
-import Shared from '../../types'
 
-const spinnerStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props: Types.Props, theme) => {
-    const styleProps = useStyleProps(props)
+const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+    
     const color = callProp(props.color, theme.color) || theme.color.hardest.css()
     const duration = props.duration || 1
 
@@ -41,4 +40,4 @@ const spinnerStyles: Shared.FunctionalComponentStyles<Types.Overrides> = (props:
     }
 }
 
-export default spinnerStyles
+export default styles

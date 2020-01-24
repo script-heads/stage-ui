@@ -1,4 +1,3 @@
-import useContainer from '@flow-ui/core/misc/hooks/useContainer'
 import React, { FC } from 'react'
 import MenuTypes from './types'
 
@@ -11,11 +10,10 @@ const Item: FC<MenuTypes.ItemProps> = (props) => {
         content, 
         disabled = false,
         active } = props
-    const { attributes } = useContainer(props)
 
     return (
         <div
-            {...attributes}
+            {...props}
             css={props.styles.item({active, disabled, decoration, shape, size})}
             disabled={disabled}
             tabIndex={disabled ? -1 : 0}
