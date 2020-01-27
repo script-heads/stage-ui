@@ -3,6 +3,11 @@ import Shared from '@flow-ui/whale/types'
 declare namespace TableTypes {
 
     type TableCellKey = number | string
+    type TableSortType = 'ASC' | 'DESC'
+    type TableSortObject = {
+        key: TableCellKey
+        sort: TableSortType
+    }
 
     interface TableCellContext { 
         /**
@@ -45,6 +50,10 @@ declare namespace TableTypes {
          * Set modify mode for this cell
          */
         setModify: (modify: boolean, key?: TableCellKey) => boolean 
+        /**
+         * Reload all data in table
+         */
+        reloadData: () => void
     }
 
     type DataCollection = {
@@ -86,11 +95,18 @@ declare namespace TableTypes {
         title?: string
         width?: number | string
         render?: (cellContext: TableCellContext, index: number) => void
+        sort?: TableSortType
     }
 
     interface Props extends Shared.AllProps {
         data: Object[]
         columns: TableColumn[]
+    }
+
+    interface HeadCellProps {
+        column: TableColumn
+        styles: Shared.FlowStyles<Overrides>
+        setSort: React.Dispatch<React.SetStateAction<TableSortObject>>
     }
 
     interface CellProps {
@@ -111,7 +127,9 @@ declare namespace TableTypes {
 
     interface Overrides {
         container: void
-        headCell: void
+        headCell: {
+            sort: boolean
+        }
         row: void
         rowCell: void
         expandContainer: void

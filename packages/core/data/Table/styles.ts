@@ -17,12 +17,21 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
             },
             styleProps.all,
         ],
-        headCell: [
+        headCell: (variant) => [
             {
                 textAlign: 'left',
                 padding: '1.25rem 1rem',
                 fontWeight: 500,
-            }
+            },
+            variant({
+                sort: {
+                    cursor: 'pointer',
+                    userSelect: 'none',
+                    ':hover': {
+                        color: theme.color.primary.hex()
+                    }
+                }
+            })
         ],
         row: [
             {

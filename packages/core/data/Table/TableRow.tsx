@@ -23,12 +23,12 @@ const TableRow: RefForwardingComponent<HTMLTableDataCellElement, Types.RowProps>
                 css={styles.row}
                 key={rowIndex}
                 children={
-                    columns.map(column => (
+                    columns.map((column, columnIndex) => (
                         <TableCell
                             dc={dc}
                             getCellContext={getCellContext}
                             styles={styles}
-                            key={rowIndex}
+                            key={columnIndex}
                             column={column}
                             rowIndex={rowIndex}
                         />

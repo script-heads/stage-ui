@@ -29,7 +29,7 @@ export default () => {
         <Table 
             columns={[
                 { title: 'Fullname', key: 'name' },
-                { title: 'Age', key: 'age', width: 40, render: ctx => (
+                { title: 'Age', key: 'age', width: 120, render: ctx => (
                     <DisplayName ctx={ctx} />
                 )},
             ]} 

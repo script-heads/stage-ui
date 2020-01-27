@@ -48,7 +48,7 @@ export default () => {
                         return <DisplayName ctx={ctx} />
                     }
                 } },
-                { title: 'Age', key: 'age', width: 40 },
+                { title: 'Age', key: 'age', width: 120 },
             ]} 
             data={[
                 { name: 'Matt', age: 25 },
