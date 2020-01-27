@@ -1076,6 +1076,11 @@ declare module '@flow-ui/core/data/Table/types' {
 	/// <reference types="react" />
 	import Shared from '@flow-ui/whale/types'; namespace TableTypes {
 	    type TableCellKey = number | string;
+	    type TableSortType = 'ASC' | 'DESC';
+	    type TableSortObject = {
+	        key: TableCellKey;
+	        sort: TableSortType;
+	    };
 	    interface TableCellContext {
 	        /**
 	         * Current cell key
@@ -1117,6 +1122,10 @@ declare module '@flow-ui/core/data/Table/types' {
 	         * Set modify mode for this cell
 	         */
 	        setModify: (modify: boolean, key?: TableCellKey) => boolean;
+	        /**
+	         * Reload all data in table
+	         */
+	        reloadData: () => void;
 	    }
 	    type DataCollection = {
 	        row: Object;
@@ -1153,10 +1162,16 @@ declare module '@flow-ui/core/data/Table/types' {
 	        title?: string;
 	        width?: number | string;
 	        render?: (cellContext: TableCellContext, index: number) => void;
+	        sort?: TableSortType;
 	    }
 	    interface Props extends Shared.AllProps {
 	        data: Object[];
 	        columns: TableColumn[];
+	    }
+	    interface HeadCellProps {
+	        column: TableColumn;
+	        styles: Shared.FlowStyles<Overrides>;
+	        setSort: React.Dispatch<React.SetStateAction<TableSortObject>>;
 	    }
 	    interface CellProps {
 	        dc: DataCollection;
@@ -1174,7 +1189,9 @@ declare module '@flow-ui/core/data/Table/types' {
 	    }
 	    interface Overrides {
 	        container: void;
-	        headCell: void;
+	        headCell: {
+	            sort: boolean;
+	        };
 	        row: void;
 	        rowCell: void;
 	        expandContainer: void;
@@ -2572,6 +2589,12 @@ declare module 'data/Table/TableCell' {
 declare module 'data/Table/TableRow' {
 	import React from 'react';
 	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.RowProps & React.RefAttributes<HTMLTableDataCellElement>>;
+	export default _default;
+
+}
+declare module 'data/Table/TableHeadCell' {
+	import React from 'react';
+	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.HeadCellProps & React.RefAttributes<HTMLTableDataCellElement>>;
 	export default _default;
 
 }
