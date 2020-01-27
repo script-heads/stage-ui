@@ -6,6 +6,10 @@ export default () => {
     
     const EditName = (props: { ctx: T.TableCellContext }) => {
         let tmp = props.ctx.value as string
+        const save = () => {
+            props.ctx.row[props.ctx.key] = tmp
+            props.ctx.setModify(false)
+        }
         return (
             <Flexbox alignItems="center">
                 <Icon
@@ -13,10 +17,7 @@ export default () => {
                     mr="0.5rem"
                     color={c => c.accent.green.css()}
                     type={t => t.outline.checkmark}
-                    onClick={() => {
-                        props.ctx.row[props.ctx.key] = tmp
-                        props.ctx.setModify(false)
-                    }}
+                    onClick={save}
                 />
                 <TextField
                     autoFocus
@@ -24,6 +25,7 @@ export default () => {
                     defaultValue={tmp}
                     onChange={e => tmp = e.target.value}
                     mr="1rem"
+                    onEnter={save}
                 />
             </Flexbox>
         )
