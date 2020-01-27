@@ -8,6 +8,7 @@ import DateGridMonth from './DateGridMonth'
 import DateGridTitle from './DateGridTitle'
 import DateGridYear from './DateGridYear'
 import DatePickerTypes from './types'
+import { Divider } from '../..'
 
 let toDayWord = ''
 
@@ -50,7 +51,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
     useEffect(() => setTmpDate(value), [value])
 
     return (
-        <Flexbox column css={props.styles.dateGrind}>
+        <Flexbox {...props.attributes} column css={props.styles.dateGrind}>
             <DateGridTitle
                 styles={props.styles}
                 gridType={gridType}
@@ -87,7 +88,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
             />
             {gridType === 'day' && (
                 <Fragment>
-                    <Flexbox>
+                    <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr 1fr">
                         {moment.weekdaysMin().map(day => (
                             <Flexbox
                                 key={day}
@@ -98,42 +99,41 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                 children={day.slice(0, 2)}
                             />
                         ))}
-                    </Flexbox>
-                    {grid.map((week: Moment[], index: number) =>
-                        <Flexbox key={index}>
-                            {week.map((day: Moment) => {
-                                return (
-                                    <DateGridDay
-                                        styles={props.styles}
-                                        key={day.valueOf()}
-                                        value={day}
-                                        tmp={tmpDate}
-                                        active={value}
-                                        minValue={props.minValue}
-                                        maxValue={props.maxValue}
-                                        onClick={() => {
-                                            if (props.type === 'day') {
-                                                props.onChange(day)
-                                            }
-                                        }}
-                                    />
-                                )
-                            })}
-                        </Flexbox>
+                        {grid.map((week: Moment[]) =>
+                            week.map((day: Moment) =>
+                                <DateGridDay
+                                    styles={props.styles}
+                                    key={day.valueOf()}
+                                    value={day}
+                                    tmp={tmpDate}
+                                    active={value}
+                                    minValue={props.minValue}
+                                    maxValue={props.maxValue}
+                                    onClick={() => {
+                                        if (props.type === 'day') {
+                                            props.onChange(day)
+                                        }
+                                    }}
+                                />
+                            )
+                        )}
+                    </Grid>
+                    {!props.hideToday && (
+                        <Divider m="0.5rem 0" />
                     )}
                     {!props.hideToday && (
-                        <Button 
-                            size="small"
-                            decoration="outline"
-                            mt="0.5rem"
-                            w="100%"
-                            onClick={() => {
-                                if (props.type === 'day') {
-                                    props.onChange(now)
-                                }
-                            }}
-                            children={toDayWord}
-                        />
+                        <Flexbox justifyContent="center">
+                            <Button
+                                size="small"
+                                decoration="plain"
+                                onClick={() => {
+                                    if (props.type === 'day') {
+                                        props.onChange(now)
+                                    }
+                                }}
+                                children={toDayWord}
+                            />
+                        </Flexbox>
                     )}
                 </Fragment>
             )}

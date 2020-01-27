@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import Icon from '../../content/Icon'
 import Text from '../../content/Text'
 import Flexbox from '../../layout/Flexbox'
-import DatePickerTypes from './types'
+import CalendarTypes from './types'
 
 const Arrow = (props: { onClick: () => void, icon: 'chevronLeft' | 'chevronRight', disabled: boolean }) => (
     <Flexbox
@@ -34,7 +34,7 @@ const Title = (props: {value: string, onClick?: () => void}) => (
     />
 )
 
-const DateGridTitle = (props: DatePickerTypes.DateGridTitleProps) => {
+const DateGridTitle = (props: CalendarTypes.DateGridTitleProps) => {
 
     const { value, minValue, maxValue, gridType } = props
 

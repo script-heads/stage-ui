@@ -1,9 +1,9 @@
 import moment from 'moment'
 import React from 'react'
 import Flexbox from '../../layout/Flexbox'
-import DatePickerTypes from './types'
+import CalendarTypes from './types'
 
-const DateGridDay = (props: DatePickerTypes.DateGridCalendarProps) => {
+const DateGridDay = (props: CalendarTypes.DateGridCalendarProps) => {
     const { value, tmp, active, onClick, minValue, maxValue } = props
 
     const isDisabled =

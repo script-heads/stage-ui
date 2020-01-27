@@ -7,10 +7,10 @@ import Drop from '../../layout/Drop'
 import Popover from '../../layout/Popover'
 import Field from '../../misc/hocs/Field'
 import useMask from '../../misc/hooks/useMask'
-import DateGrid from './DateGrid'
 import maskConf from './mask'
 import styles from './styles'
 import Types from './types'
+import { Calendar } from '../..'
 const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const {
@@ -123,7 +123,9 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
                         },
                         css: css.input({isLabelOverlay}),
                         
-                        defaultValue: defaultValue ? moment(defaultValue, format) : undefined,
+                        defaultValue: defaultValue
+                            ? moment(defaultValue, format)
+                            : moment().format(format),
                         disabled: props.disabled,
                         autoComplete: props.autoComplete,
                         autoFocus: props.autoFocus,
@@ -161,8 +163,7 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
                 target={inputRef}
             >
                 <Popover css={css.drop({isActive})}>
-                    <DateGrid
-                        styles={css}
+                    <Calendar
                         value={value}
                         minValue={minValue}
                         maxValue={maxValue}

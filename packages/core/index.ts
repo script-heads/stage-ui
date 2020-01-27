@@ -13,6 +13,7 @@ export { default as Anchor  } from './content/Anchor'
  * Control
  */
 export { default as Button } from './control/Button'
+export { default as Calendar } from './control/Calendar'
 export { default as Checkbox } from './control/Checkbox'
 export { default as DatePicker } from './control/DatePicker'
 export { default as Menu } from './control/Menu'

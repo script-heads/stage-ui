@@ -1,9 +1,9 @@
 import moment from 'moment'
 import React from 'react'
 import Flexbox from '../../layout/Flexbox'
-import DatePickerTypes from './types'
+import CalendarTypes from './types'
 
-const DateGridMonth = (props: DatePickerTypes.DateGridCalendarProps) => {
+const DateGridYear = (props: CalendarTypes.DateGridCalendarProps) => {
     const { value, active, onClick, minValue, maxValue } = props
 
     const isDisabled =
@@ -12,12 +12,12 @@ const DateGridMonth = (props: DatePickerTypes.DateGridCalendarProps) => {
         false
 
     const now = moment()
-    const monthValue = value.clone().startOf('month').valueOf()
-    const nowValue = now.clone().startOf('month').valueOf()
-    const activeValue = active.clone().startOf('month').valueOf()
+    const yearValue = value.clone().startOf('year').valueOf()
+    const nowValue = now.clone().startOf('year').valueOf()
+    const activeValue = active.clone().startOf('year').valueOf()
 
-    const isActive = (activeValue === monthValue)
-    const isCurrent = (monthValue === nowValue)
+    const isActive = (activeValue === yearValue)
+    const isCurrent = (yearValue === nowValue)
 
     const css = props.styles.gridBlock({isActive, isCurrent, isDisabled, isCurrentMonth: true})
 
@@ -32,10 +32,10 @@ const DateGridMonth = (props: DatePickerTypes.DateGridCalendarProps) => {
             }}
             css={css}
             style={props.style}
-            children={value.format('MMMM')}
+            children={value.format('YYYY')}
         />
 
     )
 }
 
-export default DateGridMonth
+export default DateGridYear
