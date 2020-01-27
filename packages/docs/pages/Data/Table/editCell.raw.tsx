@@ -1,4 +1,4 @@
-import { Table, Button, TextField, Text, Flexbox } from '@flow-ui/core'
+import { Flexbox, Icon, Table, Text, TextField } from '@flow-ui/core'
 import T from '@flow-ui/core/data/Table/types'
 import React from 'react'
 
@@ -7,7 +7,17 @@ export default () => {
     const EditName = (props: { ctx: T.TableCellContext }) => {
         let tmp = props.ctx.value as string
         return (
-            <Flexbox>
+            <Flexbox alignItems="center">
+                <Icon
+                    size="1rem"
+                    mr="0.5rem"
+                    color={c => c.accent.green.css()}
+                    type={t => t.outline.checkmark}
+                    onClick={() => {
+                        props.ctx.row[props.ctx.key] = tmp
+                        props.ctx.setModify(false)
+                    }}
+                />
                 <TextField
                     autoFocus
                     name={props.ctx.column?.title}
@@ -15,26 +25,22 @@ export default () => {
                     onChange={e => tmp = e.target.value}
                     mr="1rem"
                 />
-                <Button
-                    decoration="text"
-                    children="Save"
-                    onClick={() => {
-                        props.ctx.row[props.ctx.key] = tmp
-                        props.ctx.setModify(false)
-                    }}
-                />
             </Flexbox>
         )
     }
 
     const DisplayName = (props: { ctx: T.TableCellContext }) => (
-        <Flexbox justifyContent="space-between" alignItems="center">
-            <Text>{props.ctx.value}</Text>
-            <Button
-                decoration="text"
-                children="Edit"
-                onClick={() => props.ctx.setModify(true)}
+        <Flexbox alignItems="center">
+            <Icon
+                size="1rem"
+                mr="0.5rem"
+                color={c => c.primary.css()}
+                type={t => t.outline.edit2}
+                onClick={() => {
+                    props.ctx.setModify(true)
+                }}
             />
+            <Text>{props.ctx.value}</Text>
         </Flexbox>
     )
     
