@@ -9,6 +9,7 @@ export default () => {
         return (
             <Flexbox>
                 <TextField
+                    autoFocus
                     name={props.ctx.column?.title}
                     defaultValue={tmp}
                     onChange={e => tmp = e.target.value}
