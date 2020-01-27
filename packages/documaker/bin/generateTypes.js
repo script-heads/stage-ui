@@ -61,6 +61,7 @@ function generateTypes(package, replaces = []) {
 
 generateTypes('core', [
     ['@flow-ui/core/types', 'types'],
+    ['data/Table/types', '@flow-ui/core/data/Table/types'],
     ['layout/Modal/types', '@flow-ui/core/layout/Modal/types'],
     ['FunctionalProp<IconsetTypes.Index, React.ReactElement>', 'FunctionalProp<IconsetTypes.Index, string>']
 ])

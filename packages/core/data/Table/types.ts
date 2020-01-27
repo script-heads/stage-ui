@@ -1,129 +1,120 @@
 import Shared from '@flow-ui/whale/types'
 
 declare namespace TableTypes {
+
+    type TableCellKey = number | string
+
+    interface TableCellContext { 
+        /**
+         * Current cell key
+         */
+        key: TableCellKey
+        /**
+         * Current row index
+         */
+        index: number
+        /**
+         * Current row data
+         */
+        row: Object
+        /**
+         * Link on column configuration
+         */
+        column: TableColumn | null
+        /**
+         * Raw data of cell
+         */
+        value?: React.ReactNode | string | number | null
+        /**
+         * Is current cell in modify mode
+         */
+        isModify: boolean
+        /**
+         * Is current row expanded
+         */
+        isExpand: boolean
+        /**
+         * If row visible on screen
+         */
+        isVisible: boolean
+        /**
+         * Set expanded ReactNode below current row
+         */
+        setExpand: (el: React.ReactNode | null) => boolean 
+        /**
+         * Set modify mode for this cell
+         */
+        setModify: (modify: boolean, key?: TableCellKey) => boolean 
+    }
+
+    type DataCollection = {
+        row: Object
+        isExpand: boolean
+        isVisible: boolean
+        isCellModify: { 
+            [key: string]: boolean 
+        }
+        setModifyState: { 
+            [key: string]: React.Dispatch<React.SetStateAction<boolean>> 
+        }
+        setExpandComponent?: React.Dispatch<React.SetStateAction<React.ReactNode>>
+    }
+
+    interface Ref extends TableRef, HTMLTableElement {
+
+    }
+
+    interface TableRef {
+        /**
+         * Get context for specific cell
+         */
+        getCellContext: (index: number, key: TableCellKey) => TableCellContext | null
+        /**
+         * Set expanded ReactNode below row index
+         * @returns true if success
+         */
+        setExpand: (index: number, content: React.ReactNode | null) => boolean 
+        /**
+         * Set modify mode for specific row or cell
+         * @returns true if success
+         */
+        setModify: (modify: boolean, index: number, key?: TableCellKey) => boolean 
+    }
+
     interface TableColumn {
+        key: TableCellKey
         title?: string
-        dataIndex: string
-        width?: number
-        render?: (row, value) => void
-    }
-
-    interface TableActions {
-        label: string
-        className?: string
-        onAction: (row) => void
-    }
-
-    interface TableForm {
-        key?: string | number
-        defaultData?: { [key: string]: any }
-        render: any
-        dismiss?: () => void
+        width?: number | string
+        render?: (cellContext: TableCellContext, index: number) => void
     }
 
     interface Props extends Shared.AllProps {
         data: Object[]
         columns: TableColumn[]
-        form?: TableForm
-        actions?: TableActions[]
-        border?: 'all' | 'external' | 'internal' | 'vertical' | 'horizontal'
-        indexKey?: string
-        scope?: any
-        pagination?: TablePagination
-        noDataLabel?: string
-        children?: React.ReactElement
-        onRowClick?: (row: any) => void
-        search?: boolean
-        onSearch?: (value: any) => void
-        hideHeaders?: boolean
-        className?: string
+    }
+
+    interface CellProps {
+        dc: DataCollection
+        column: TableColumn
+        rowIndex: number
+        styles: Shared.FlowStyles<Overrides>
+        getCellContext: TableRef['getCellContext']
     }
 
     interface RowProps {
-        row: any
+        dc: DataCollection
         columns: TableColumn[]
-        isSelected?: boolean
-        isExpanding?: boolean
-        isBlur?: boolean
-        actions?: any
-        border?: any
-        scope?: any
-        form?: any
-        style?: any
-        children?: any
-        onRowClick?: (row) => void
+        rowIndex: number
         styles: Shared.FlowStyles<Overrides>
-    }
-
-    interface ColumnProps {
-        row: any
-        columns: TableColumn[]
-        scope?: any
-        children?: any
-        styles: Shared.FlowStyles<Overrides>
-    }
-
-    interface ActionsProps {
-        actions: any[]
-        data: any
-        children?: any
-        styles: Shared.FlowStyles<Overrides>
-    }
-
-    interface FormProps {
-        data: any
-        styles: any
-        dismiss?: () => void
-        columns: TableColumn[]
-        Form: any
-        children?: any
-    }
-
-    interface InjectForm {
-        data: { [key: string]: any }
-        columns: TableColumn[]
-        setData: (key: string, value: any) => void
-        dismiss?: () => void
-    }
-
-    interface TablePagination {
-        pageSize: number
-        pageTotalSize?: number
-        async?: (page: number) => boolean
-    }
-
-    interface PaginationProps {
-        pagination: TablePagination
-        page: number
-        searchActive: boolean
-        search?: boolean
-        data: { [key: string]: any }[]
-        onChange: (page: number, searchBar: boolean) => void
-        children?: any
-        styles: Shared.FlowStyles<Overrides>
+        getCellContext: TableRef['getCellContext']
     }
 
     interface Overrides {
         container: void
-        content: void
-        headRow: void
-        headColumn: void
-        search: void
-        body: void
-        pagination: void
-        paginationButton: {
-            active: boolean
-        }
-        row: {
-            edited: boolean
-            withActions: boolean
-        }
-        subrow: void
-        column: void
-        more: void
-        actions: void
-        actionButtons: void
-        actionButtonsEdit: void
+        headCell: void
+        row: void
+        rowCell: void
+        expandContainer: void
     }
 }
 

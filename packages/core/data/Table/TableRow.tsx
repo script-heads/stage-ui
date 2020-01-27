@@ -1,41 +1,51 @@
-import React from 'react'
-import TableTypes from './types'
-import TableColumns from './TableColumns'
-import TableForm from './TableForm'
-import TableActions from './TableActions'
+import React, { Fragment, forwardRef, RefForwardingComponent, useState } from 'react'
+import TableCell from './TableCell'
+import Types from './types'
 
-const TableRow = (props: TableTypes.RowProps) => {
+const TableRow: RefForwardingComponent<HTMLTableDataCellElement, Types.RowProps> = (props, ref) => {
+    const { columns, rowIndex, dc, styles, getCellContext } = props
 
-    const { row, actions, columns, form, onRowClick, style } = props
-    const styles = props.styles
+    /**
+     * State with expanded row
+     * if null then DataCollection isExpand will be false
+     */
+    const [expandComponent, setExpandComponent] = useState<React.ReactNode>(null)
 
-    if (form) {
-        return TableForm({ 
-            dismiss: form.dismiss, 
-            Form: form.render, 
-            columns, 
-            styles,
-            row 
-        })
-    }
+    /**
+     * Update DataCollection state
+     */
+    dc.setExpandComponent = setExpandComponent
+    dc.isExpand = Boolean(expandComponent)
+
     return (
-        <div 
-            css={styles.row({
-                edited: false, 
-                withActions: actions && actions.length > 0
-            })} 
-            style={style} 
-            onClick={() => onRowClick && onRowClick(row)}
-        >
-            <TableColumns
-                columns={props.columns}
-                row={props.row}
-                scope={props.scope}
-                styles={styles}
+        <Fragment>
+            <tr
+                css={styles.row}
+                key={rowIndex}
+                children={
+                    columns.map(column => (
+                        <TableCell
+                            dc={dc}
+                            getCellContext={getCellContext}
+                            styles={styles}
+                            key={rowIndex}
+                            column={column}
+                            rowIndex={rowIndex}
+                        />
+                    ))
+                }
             />
-            {actions && <TableActions actions={actions} data={row} styles={styles} />}
-        </div>
-
+            {expandComponent && (
+                <tr>
+                    <td 
+                        css={styles.expandContainer}
+                        colSpan={columns.length}
+                        children={expandComponent}
+                    />
+                </tr>
+            )}
+        </Fragment>
     )
 }
-export default TableRow
+
+export default forwardRef(TableRow)

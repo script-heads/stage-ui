@@ -1,15 +1,18 @@
-import React from 'react';
-import { Table } from '@flow-ui/core';
+import { Table } from '@flow-ui/core'
+import React from 'react'
 
 export default () => {
-    const columns = [
-        { title: '#', dataIndex: 'id', width: 40 },
-        { title: 'Fullname', dataIndex: 'name' },
-        { title: 'Age', dataIndex: 'age', width: 40 }
-    ];
-    const data = [{ id: 1, name: 'Matt', age: 25 }];
-
     return (
-        <Table columns={columns} data={data} />
+        <Table 
+            columns={[
+                { title: 'Fullname', key: 'name' },
+                { title: 'Age', key: 'age', width: 40 },
+            ]} 
+            data={[
+                { name: 'Matt', age: 25 },
+                { name: 'John', age: 29 },
+                { name: 'Kate', age: 26 },
+            ]} 
+        />
     )
 }

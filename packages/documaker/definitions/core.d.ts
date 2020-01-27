@@ -1072,127 +1072,112 @@ declare module 'data/Meter/types' {
 	export default MeterTypes;
 
 }
-declare module 'data/Table/types' {
+declare module '@flow-ui/core/data/Table/types' {
 	/// <reference types="react" />
 	import Shared from '@flow-ui/whale/types'; namespace TableTypes {
-	    interface TableColumn {
-	        title?: string;
-	        dataIndex: string;
-	        width?: number;
-	        render?: (row: any, value: any) => void;
+	    type TableCellKey = number | string;
+	    interface TableCellContext {
+	        /**
+	         * Current cell key
+	         */
+	        key: TableCellKey;
+	        /**
+	         * Current row index
+	         */
+	        index: number;
+	        /**
+	         * Current row data
+	         */
+	        row: Object;
+	        /**
+	         * Link on column configuration
+	         */
+	        column: TableColumn | null;
+	        /**
+	         * Raw data of cell
+	         */
+	        value?: React.ReactNode | string | number | null;
+	        /**
+	         * Is current cell in modify mode
+	         */
+	        isModify: boolean;
+	        /**
+	         * Is current row expanded
+	         */
+	        isExpand: boolean;
+	        /**
+	         * If row visible on screen
+	         */
+	        isVisible: boolean;
+	        /**
+	         * Set expanded ReactNode below current row
+	         */
+	        setExpand: (el: React.ReactNode | null) => boolean;
+	        /**
+	         * Set modify mode for this cell
+	         */
+	        setModify: (modify: boolean, key?: TableCellKey) => boolean;
 	    }
-	    interface TableActions {
-	        label: string;
-	        className?: string;
-	        onAction: (row: any) => void;
-	    }
-	    interface TableForm {
-	        key?: string | number;
-	        defaultData?: {
-	            [key: string]: any;
+	    type DataCollection = {
+	        row: Object;
+	        isExpand: boolean;
+	        isVisible: boolean;
+	        isCellModify: {
+	            [key: string]: boolean;
 	        };
-	        render: any;
-	        dismiss?: () => void;
+	        setModifyState: {
+	            [key: string]: React.Dispatch<React.SetStateAction<boolean>>;
+	        };
+	        setExpandComponent?: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+	    };
+	    interface Ref extends TableRef, HTMLTableElement {
+	    }
+	    interface TableRef {
+	        /**
+	         * Get context for specific cell
+	         */
+	        getCellContext: (index: number, key: TableCellKey) => TableCellContext | null;
+	        /**
+	         * Set expanded ReactNode below row index
+	         * @returns true if success
+	         */
+	        setExpand: (index: number, content: React.ReactNode | null) => boolean;
+	        /**
+	         * Set modify mode for specific row or cell
+	         * @returns true if success
+	         */
+	        setModify: (modify: boolean, index: number, key?: TableCellKey) => boolean;
+	    }
+	    interface TableColumn {
+	        key: TableCellKey;
+	        title?: string;
+	        width?: number | string;
+	        render?: (cellContext: TableCellContext, index: number) => void;
 	    }
 	    interface Props extends Shared.AllProps {
 	        data: Object[];
 	        columns: TableColumn[];
-	        form?: TableForm;
-	        actions?: TableActions[];
-	        border?: 'all' | 'external' | 'internal' | 'vertical' | 'horizontal';
-	        indexKey?: string;
-	        scope?: any;
-	        pagination?: TablePagination;
-	        noDataLabel?: string;
-	        children?: React.ReactElement;
-	        onRowClick?: (row: any) => void;
-	        search?: boolean;
-	        onSearch?: (value: any) => void;
-	        hideHeaders?: boolean;
-	        className?: string;
+	    }
+	    interface CellProps {
+	        dc: DataCollection;
+	        column: TableColumn;
+	        rowIndex: number;
+	        styles: Shared.FlowStyles<Overrides>;
+	        getCellContext: TableRef['getCellContext'];
 	    }
 	    interface RowProps {
-	        row: any;
+	        dc: DataCollection;
 	        columns: TableColumn[];
-	        isSelected?: boolean;
-	        isExpanding?: boolean;
-	        isBlur?: boolean;
-	        actions?: any;
-	        border?: any;
-	        scope?: any;
-	        form?: any;
-	        style?: any;
-	        children?: any;
-	        onRowClick?: (row: any) => void;
+	        rowIndex: number;
 	        styles: Shared.FlowStyles<Overrides>;
-	    }
-	    interface ColumnProps {
-	        row: any;
-	        columns: TableColumn[];
-	        scope?: any;
-	        children?: any;
-	        styles: Shared.FlowStyles<Overrides>;
-	    }
-	    interface ActionsProps {
-	        actions: any[];
-	        data: any;
-	        children?: any;
-	        styles: Shared.FlowStyles<Overrides>;
-	    }
-	    interface FormProps {
-	        data: any;
-	        styles: any;
-	        dismiss?: () => void;
-	        columns: TableColumn[];
-	        Form: any;
-	        children?: any;
-	    }
-	    interface InjectForm {
-	        data: {
-	            [key: string]: any;
-	        };
-	        columns: TableColumn[];
-	        setData: (key: string, value: any) => void;
-	        dismiss?: () => void;
-	    }
-	    interface TablePagination {
-	        pageSize: number;
-	        pageTotalSize?: number;
-	        async?: (page: number) => boolean;
-	    }
-	    interface PaginationProps {
-	        pagination: TablePagination;
-	        page: number;
-	        searchActive: boolean;
-	        search?: boolean;
-	        data: {
-	            [key: string]: any;
-	        }[];
-	        onChange: (page: number, searchBar: boolean) => void;
-	        children?: any;
-	        styles: Shared.FlowStyles<Overrides>;
+	        getCellContext: TableRef['getCellContext'];
 	    }
 	    interface Overrides {
 	        container: void;
-	        content: void;
-	        headRow: void;
-	        headColumn: void;
-	        search: void;
-	        body: void;
-	        pagination: void;
-	        paginationButton: {
-	            active: boolean;
-	        };
-	        row: {
-	            edited: boolean;
-	            withActions: boolean;
-	        };
-	        subrow: void;
-	        column: void;
-	        more: void;
-	        actions: void;
-	        actionButtons: void;
-	        actionButtonsEdit: void;
+	        headCell: void;
+	        row: void;
+	        rowCell: void;
+	        expandContainer: void;
 	    }
 	}
 	export default TableTypes;
@@ -1512,7 +1497,7 @@ declare module 'misc/themes/types' {
 	 * Data
 	 */
 	import MeterTypes from 'data/Meter/types';
-	import TableTypes from 'data/Table/types';
+	import TableTypes from '@flow-ui/core/data/Table/types';
 	/**
 	 * Layout
 	 */
@@ -2573,56 +2558,26 @@ declare module 'data/Meter' {
 
 }
 declare module 'data/Table/styles' {
-	import Types from 'data/Table/types';
+	import Types from '@flow-ui/core/data/Table/types';
 	import { StyleObject } from '@flow-ui/whale/types'; const styles: StyleObject<Types.Overrides, Types.Props>;
 	export default styles;
 
 }
-declare module 'data/Table/TableForm' {
-	/// <reference types="react" />
-	import TableTypes from 'data/Table/types';
-	interface TableFormHOCProps {
-	    Form: TableTypes.InjectForm;
-	    styles: any;
-	    dismiss?: () => void;
-	    columns: TableTypes.TableColumn[];
-	    row?: {
-	        [key: string]: any;
-	    };
-	    defaultData?: {
-	        [key: string]: any;
-	    };
-	} const TableFormHOC: (props: TableFormHOCProps) => JSX.Element;
-	export default TableFormHOC;
-
-}
-declare module 'data/Table/TablePagination' {
-	/// <reference types="react" />
-	import TableTypes from 'data/Table/types'; const TablePagination: (props: TableTypes.PaginationProps) => JSX.Element | null;
-	export default TablePagination;
-
-}
-declare module 'data/Table/TableColumns' {
-	/// <reference types="react" />
-	import TableTypes from 'data/Table/types'; const TableColumns: (props: TableTypes.ColumnProps) => JSX.Element;
-	export default TableColumns;
-
-}
-declare module 'data/Table/TableActions' {
-	/// <reference types="react" />
-	import TableTypes from 'data/Table/types'; const TableActions: (props: TableTypes.ActionsProps) => JSX.Element;
-	export default TableActions;
+declare module 'data/Table/TableCell' {
+	import React from 'react';
+	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.CellProps & React.RefAttributes<HTMLTableDataCellElement>>;
+	export default _default;
 
 }
 declare module 'data/Table/TableRow' {
-	/// <reference types="react" />
-	import TableTypes from 'data/Table/types'; const TableRow: (props: TableTypes.RowProps) => JSX.Element;
-	export default TableRow;
+	import React from 'react';
+	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.RowProps & React.RefAttributes<HTMLTableDataCellElement>>;
+	export default _default;
 
 }
 declare module 'data/Table' {
 	import React from 'react';
-	import Types from 'data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.TableRef>>;
 	export default _default;
 
 }

@@ -1,189 +1,114 @@
 import { useComponent } from '@flow-ui/whale'
-import React, { forwardRef, RefForwardingComponent, useEffect, useState } from 'react'
-import Icon from '../../content/Icon'
-import Spinner from '../../content/Spinner'
+import React, { forwardRef, RefForwardingComponent,useRef, useImperativeHandle } from 'react'
 import styles from './styles'
-import TableForm from './TableForm'
-import TablePagination from './TablePagination'
-import TableRow from './TableRow'
 import Types from './types'
+import TableRow from './TableRow'
 
-const Table: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+type Ref = Types.TableRef
 
-    const { columns, actions, border, indexKey, scope, form, search, onRowClick, hideHeaders } = props
+const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
 
+    const tableRef = useRef<HTMLTableElement>(null)
     const { css, attributes } = useComponent('Table', { props, styles })
-
-    const [page, setPage] = useState(1)
-    const [pending, setPending] = useState(false)
-    const [searchBar, setSearchBar] = useState(false)
-    const [searchValue, setSearchValue] = useState('')
-    const [selectedItems, setSelectedItems] = useState<string[]>([])
-    const [expandedItems, setExpandedItems] = useState<string[]>([])
-
-    let { noDataLabel } = props
-    if (typeof noDataLabel === 'undefined') {
-        noDataLabel = 'Нет данных'
-    }
-    let { data, pagination } = props
-    let pageData = [] as Object[]
-
-    const isData = (data && Array.isArray(data) && data.length > 0)
-
-    if (!pagination) {
-        pagination = {
-            pageSize: 20
+    const { columns } = props
+    
+    const dc: Types.DataCollection[] = props.data.map(row => {
+        const isCellModify: Types.DataCollection['isCellModify'] = {}
+        columns.forEach(column => {
+            isCellModify[column.key] = false
+        })
+        return {
+            row,
+            isExpand: false,
+            isVisible: true,
+            isCellModify,
+            setModifyState: {}
         }
-    }
+    })
 
-    useEffect(() => {
-        if (searchValue.length > 0) {
-            data = data.filter((row) =>
-                Object.values(row).find(item => {
-                    let searchbleItem = item && item.toString ? item.toString() : null
-                    return searchbleItem && searchbleItem.toUpperCase().includes(searchValue.toUpperCase())
-                })
-            )
-        }
-    }, [searchValue])
+    const getCellContext: Ref['getCellContext'] = (index, key) => {
 
-    if (isData) {
-        const { pageSize, async } = pagination
-        if (!async) {
-            /**
-             * Отрезаем записи в таблице если есть
-             * параметры пагинации не async
-             */
-            pageData = data.filter((_, i) => pageSize * page >= (i + 1) && i >= pageSize * page - pageSize)
-        } else {
-            pageData = data
-        }
-    }
-
-    const isAddForm = (typeof form != 'undefined' && typeof form.key === 'undefined')
-
-    const SearchBar = () => {
-        if (searchBar || searchValue) {
-            return (
-                <div css={css.search}>
-                    <Icon type={i => i.outline.search} />
-                    <input
-                        value={searchValue}
-                        onChange={(event) => {
-                            props.onSearch
-                                ? props.onSearch(event.target.value)
-                                : setSearchValue(event.target.value)
-                        }}
-                        placeholder="Найти"
-                    />
-                    <div onClick={() => {
-                        setSearchBar(false)
-                        setSearchValue('')
-                        setPage(1)
-                    }}><Icon type={i => i.outline.close} /></div>
-                </div>
-            )
-        } else {
+        if (!dc[index]?.row) {
             return null
         }
+        
+        return {
+            key,
+            index: index,
+            row: dc[index].row,
+            column: columns.find(column => column.key === key) || null,
+            value: dc[index].row[key],
+            isExpand: dc[index].isExpand,
+            isModify: dc[index].isCellModify[key],
+            isVisible: dc[index].isVisible,
+            setExpand: (content) => setExpand(index, content),
+            setModify: (modify, kkey = key) => setModify(modify, index, kkey),
+        }
     }
 
-    const Columns = () => {
-        if (isData && !isAddForm) {
-            return columns.map(column => (
-                <div
-                    css={css.headColumn}
-                    key={column.dataIndex}
-                    style={column.width ? { flexBasis: column.width } : { flex: 1 }}
-                    children={column.title}
-                />
-            ))
+    const setExpand: Ref['setExpand'] = (index, content) => {
+        if (dc[index]) {
+            dc[index].setExpandComponent?.(content)
+            return true
         }
-        if (isData) {
-            return <div css={css.headColumn} style={{ flex: 1 }}>Добавить</div>
+        return false
+    } 
+
+    const setModify: Ref['setModify'] = (modify, index, key) => {
+        if (dc[index]) {
+            if (key !== undefined) {
+                if (dc[index].row.hasOwnProperty(key)) {
+                    dc[index].setModifyState[key]?.(modify)
+                    return true
+                }
+            } else {
+                Object.keys(dc[index].isCellModify).forEach(key => {
+                    dc[index].setModifyState[key]?.(modify)
+                })
+                return true
+            }
         }
-        return null
+        return false
     }
 
-    const AddForm = () => {
-        if (typeof form != 'undefined' && typeof form.key === 'undefined') {
-            return TableForm({ 
-                Form: form.render, 
-                styles: css,
-                dismiss: 
-                form.dismiss, 
-                columns, 
-                defaultData: form.defaultData 
-            })
-        }
-        return null
-    }
+    useImperativeHandle(ref, () => ({
+        getCellContext,
+        setExpand,
+        setModify,
+        ...tableRef.current
+    }))
 
     return (
-        <div ref={ref} css={css.container} {...attributes}>
-            <div css={css.content}>
-                {!hideHeaders && (
-                    <div css={css.headRow}
-                        style={actions && { marginRight: '2rem' }}
-                        children={Columns()}
-                    />
-                )}
-
-                <div css={css.body}>
-                    <SearchBar />
-                    <AddForm />
-                    {
-                        isData && pageData.map((row, index) => {
-                            const key = indexKey && row[indexKey] || index.toString()
-                            return (
-                                <TableRow
-                                    key={key}
-                                    row={row}
-                                    columns={columns}
-                                    actions={actions}
-                                    border={border}
-                                    form={(form && form.key && key == form.key) && form}
-                                    isSelected={(selectedItems.some(item => item === key))}
-                                    isExpanding={(expandedItems.some(item => item === key))}
-                                    isBlur={((form && form.key && key != form.key) || isAddForm)}
-                                    scope={scope}
-                                    onRowClick={onRowClick}
-                                    style={{
-                                        opacity: pending ? 0.2 : 1
-                                    }}
-                                    styles={css}
-                                />
-                            )
-                        })
+        <table ref={tableRef} css={css.container} {...attributes}>
+            <thead>
+                <tr
+                    children={
+                        columns.map((col, colIndex) => (
+                            <th
+                                css={css.headCell}
+                                key={colIndex}
+                                children={col.title}
+                            />
+                        ))
                     }
-                    {pending && (
-                        <Spinner />
-                    )}
-                    {(!isData && !search) && <div style={{ padding: '1.25rem' }}>{noDataLabel}</div>}
-                    {(search && data.length === 0) && <div style={{ padding: '1.25rem' }}>Ничего не найдено</div>}
-                </div>
-
-            </div>
-            {isData && data && (
-                <TablePagination
-                    pagination={pagination || {}}
-                    page={page}
-                    searchActive={searchBar || searchValue.length > 0}
-                    search={props.search}
-                    data={data}
-                    onChange={async (page, searchBar) => {
-                        setPage(page)
-                        setSearchBar(searchBar)
-                        if (props.pagination && props.pagination.async) {
-                            setPending(true)
-                            await props.pagination.async(page)
-                            setPending(false)
-                        }
-                    }}
-                    styles={css}
                 />
-            )}
-        </div>
+            </thead>
+            <tbody
+                children={
+                    dc.map((data, rowIndex) => (
+                        <TableRow
+                            dc={data}
+                            getCellContext={getCellContext}
+                            styles={css}
+                            key={rowIndex}
+                            columns={columns}
+                            rowIndex={rowIndex}
+                        />
+                    ))
+                }
+            />
+        </table>
     )
 }
+
 export default forwardRef(Table)
