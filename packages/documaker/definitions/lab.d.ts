@@ -58,8 +58,19 @@ declare module 'layout/Split/types' {
 	         */
 	        onChange?: (positions: number[]) => void;
 	    }
+	    interface Overrides {
+	        container: {
+	            vertical: boolean;
+	        };
+	    }
 	}
 	export default SplitTypes;
+
+}
+declare module 'layout/Split/styles' {
+	import { StyleObject } from '@flow-ui/whale/types';
+	import Types from 'layout/Split/types'; const styles: StyleObject<Types.Overrides, Types.Props>;
+	export default styles;
 
 }
 declare module 'layout/Split' {
@@ -111,30 +122,30 @@ declare module 'layout/ScrollView/types' {
 	    interface Ref {
 	        scrollTop: () => void;
 	    }
-	    interface Styles {
+	    interface Overrides {
 	        container: void;
 	        content: void;
 	        yBar: {
 	            active: boolean;
-	            shape: Props["shape"];
-	            size: Props["size"];
-	            position: Props["yBarPosition"];
+	            shape: Props['shape'];
+	            size: Props['size'];
+	            position: Props['yBarPosition'];
 	        };
 	        yThumb: {
 	            active: boolean;
-	            shape: Props["shape"];
-	            size: Props["size"];
+	            shape: Props['shape'];
+	            size: Props['size'];
 	        };
 	        xBar: {
 	            active: boolean;
-	            shape: Props["shape"];
-	            size: Props["size"];
-	            position: Props["xBarPosition"];
+	            shape: Props['shape'];
+	            size: Props['size'];
+	            position: Props['xBarPosition'];
 	        };
 	        xThumb: {
 	            active: boolean;
-	            shape: Props["shape"];
-	            size: Props["size"];
+	            shape: Props['shape'];
+	            size: Props['size'];
 	        };
 	    }
 	}
@@ -142,9 +153,9 @@ declare module 'layout/ScrollView/types' {
 
 }
 declare module 'layout/ScrollView/styles' {
-	import Types from 'layout/ScrollView/types';
-	import Shared from '/types'; const ScrollViewStyles: Shared.FunctionalComponentStyles<Types.Styles>;
-	export default ScrollViewStyles;
+	import { StyleObject } from '@flow-ui/whale/types';
+	import Types from 'layout/ScrollView/types'; const styles: StyleObject<Types.Overrides, Types.Props>;
+	export default styles;
 
 }
 declare module 'layout/ScrollView' {
@@ -188,11 +199,6 @@ declare module '@flow-ui/lab' {
 }
 declare module 'data/Chart/styles' {
 	import ChartTypes from 'data/Chart/types'; const _default: (props: ChartTypes.Props) => {};
-	export default _default;
-
-}
-declare module 'layout/Split/styles' {
-	import SplitTypes from 'layout/Split/types'; const _default: (props: SplitTypes.Props) => {};
 	export default _default;
 
 }
