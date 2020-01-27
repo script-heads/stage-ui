@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
-import MenuTypes from './types'
+import React, { RefForwardingComponent } from 'react'
+import Types from './types'
 
-const Item: FC<MenuTypes.ItemProps> = (props) => {
+const Item: RefForwardingComponent<HTMLDivElement, Types.ItemProps> = (props, ref) => {
 
     const { 
         decoration = 'underline',
@@ -9,13 +9,15 @@ const Item: FC<MenuTypes.ItemProps> = (props) => {
         shape = 'rounded',
         content, 
         disabled = false,
-        active } = props
+        active 
+    } = props
 
     return (
+        //@ts-ignore
         <div
+            //@ts-ignore
             {...props}
             css={props.styles.item({active, disabled, decoration, shape, size})}
-            disabled={disabled}
             tabIndex={disabled ? -1 : 0}
         >
             <div id="item-content">{content}</div>
