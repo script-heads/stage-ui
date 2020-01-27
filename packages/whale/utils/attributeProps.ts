@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default (props, theme, mouseFocus?: boolean, disableDecoration?: boolean) => {
+export default (props, theme, mouseFocus?: boolean, focusDecoration?: boolean) => {
 
     const [focus, setFocus] = useState(false)
     let isMouseDown = false
@@ -10,7 +10,7 @@ export default (props, theme, mouseFocus?: boolean, disableDecoration?: boolean)
         className: props.className,
         draggable: props.draggable,
         style: {
-            ...focus && !disableDecoration && {
+            ...focus && !focusDecoration && {
                 outline: 'none',
                 ...theme.assets.focus
             },

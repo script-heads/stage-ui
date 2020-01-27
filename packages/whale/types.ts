@@ -100,7 +100,7 @@ declare namespace WhaleTypes {
      * @name Core
      */
     interface CoreProps<S={}> {
-        cs?: Partial<ComponentStyles<S>>
+        styles?: Partial<ComponentStyles<S>>
     }
 
     /**
