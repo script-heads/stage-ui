@@ -1,34 +1,37 @@
 import * as Emotion from '@emotion/core'
-import Types, { StyleObject } from '../types'
+import WhaleTypes, {EmotionStyles} from '../types'
 import attributeProps from '../utils/attributeProps'
 import styleProps from '../utils/styleProps'
 import useTheme from './useTheme'
 
-const useComponent = <S>(componentNameForOverride: string, options: {
-        props, 
-        styles: Types.ComponentStyles<S> | StyleObject<S>, 
-        mouseFocus?: boolean,
-        disableDecoration?: boolean
-    }): { css: Types.FlowStyles<S>, attributes, focus } => {
-    
-    let { props, styles: componentStyles, mouseFocus, disableDecoration } = options
+interface Options<S> {
+    props, 
+    styles: WhaleTypes.Styles<S> | WhaleTypes.CreateStyles<S>, 
+    mouseFocus?: boolean,
+    focusDecoration?: boolean
+}
+
+const useComponent = <S>(overrideName: string, options: Options<S>) => {
+
+    let { props, styles: componentStyles, mouseFocus, focusDecoration } = options
+    const css: WhaleTypes.ComponentStyles<S> = {} as WhaleTypes.ComponentStyles<S>
+
     const theme = useTheme()
     const propStyles = styleProps(props, theme)
-    const { attributes, focus } = attributeProps(props, theme, mouseFocus, disableDecoration)
-    const css: Types.FlowStyles<S> = {} as Types.FlowStyles<S>
-
+    const { attributes, focus } = attributeProps(props, theme, mouseFocus, focusDecoration)
+    
     if (typeof componentStyles === 'function') {
         componentStyles = componentStyles(props,theme, propStyles)
     }
 
-    const themeOverrides = componentNameForOverride && theme.overrides[componentNameForOverride]
+    const themeOverrides = overrideName && theme.overrides[overrideName]
 
     Object.keys(componentStyles).map(styleName => {
         if (typeof componentStyles[styleName] === 'function') {
             css[styleName] = (state) => {
 
                 const variant = (varaints) => {
-                    let variantStyles: Types.EmotionStyles = []
+                    let variantStyles: EmotionStyles = []
                     
                     for (const variantName of Object.keys(varaints)) {
                         const variantValue = state[variantName]
