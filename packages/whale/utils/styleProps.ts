@@ -1,4 +1,4 @@
-import { StyleObject } from '@flow-ui/whale/types'
+import Shared from '@flow-ui/whale/types'
 import colorProp from './colorProp'
 import CSS from 'csstype'
 
