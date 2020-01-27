@@ -26,7 +26,6 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
             variant({
                 sort: {
                     cursor: 'pointer',
-                    userSelect: 'none',
                     ':hover': {
                         color: theme.color.primary.hex()
                     }
