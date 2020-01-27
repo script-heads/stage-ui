@@ -15,10 +15,10 @@ const TableHeadCell: RefForwardingComponent<HTMLTableDataCellElement, Types.Head
 
     if (column.sort) {
         return (
-            <th css={styles.headCell({
+            <th onClick={setSorting} css={styles.headCell({
                 sort: typeof column.sort !== 'undefined'
             })}>
-                <Flexbox alignItems="center" onClick={setSorting}>
+                <Flexbox alignItems="center">
                     {column.title}
                     {column.sort && (
                         <Icon
