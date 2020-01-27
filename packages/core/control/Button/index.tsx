@@ -5,7 +5,7 @@ import styles from './styles'
 import Types from './types'
 
 const Button: RefForwardingComponent<HTMLButtonElement, Types.Props> = (props, ref) => {
-    styles
+    
     const {
         disabled,
         decoration = 'filled',
