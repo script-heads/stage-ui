@@ -31,7 +31,7 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
     })
 
     return {
-        ...fieldStyles<Types.Overrides>(props, theme, {
+        ...fieldStyles<Types.Overrides>(props, theme, styleProps, {
             manyLines: multiselect,
             additionalPadding: multiselect ? multiselectAdditionalPadding : '',
             labelOverlayPosition: 'center',
