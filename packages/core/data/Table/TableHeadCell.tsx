@@ -35,7 +35,7 @@ const TableHeadCell: RefForwardingComponent<HTMLTableDataCellElement, Types.Head
         )
     }
     return (
-        <th css={styles.headCell}>
+        <th css={styles.headCell({ sort: false })}>
              {column.title}
         </th>
     )
