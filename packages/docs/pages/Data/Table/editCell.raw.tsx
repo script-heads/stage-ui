@@ -24,7 +24,6 @@ export default () => {
                     name={props.ctx.column?.title}
                     defaultValue={tmp}
                     onChange={e => tmp = e.target.value}
-                    mr="1rem"
                     onEnter={save}
                 />
             </Flexbox>
