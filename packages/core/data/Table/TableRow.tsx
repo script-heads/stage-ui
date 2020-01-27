@@ -10,7 +10,13 @@ const TableRow = (props: TableTypes.RowProps) => {
     const styles = props.styles
 
     if (form) {
-        return TableForm({ dismiss: form.dismiss, Form: form.render, columns, row })
+        return TableForm({ 
+            dismiss: form.dismiss, 
+            Form: form.render, 
+            columns, 
+            styles,
+            row 
+        })
     }
     return (
         <div 
