@@ -5,7 +5,7 @@ import checkStyles from '@flow-ui/core/misc/hocs/Check/styles'
 const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
     
     return {
-        ...checkStyles(props, theme),
+        ...checkStyles(props, theme, styleProps),
         
         check: (variant) => [
             {
