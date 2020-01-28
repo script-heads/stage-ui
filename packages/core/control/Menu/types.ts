@@ -39,7 +39,6 @@ declare namespace MenuTypes {
     interface ItemProps extends Item {
         active: boolean
         styles: Shared.FlowStyles<Overrides>
-        onEnter: () => void
     }
 
     interface Overrides {

@@ -45,7 +45,6 @@ const Menu: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
                             {...item}
                             active={item.value === currentValue}
                             onClick={() => handleSwitch(item)}
-                            onEnter={() => handleSwitch(item)}
                             styles={css}
                         />
                         {separator && i + 1 < items.length && (

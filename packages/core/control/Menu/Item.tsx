@@ -13,10 +13,12 @@ const Item: RefForwardingComponent<HTMLDivElement, Types.ItemProps> = (props, re
     } = props
 
     return (
-        //@ts-ignore
         <div
-            //@ts-ignore
             {...props}
+            //@ts-ignore
+            active={active ? 'true' : ''}
+            disabled={disabled}
+            style={props.style}
             css={props.styles.item({active, disabled, decoration, shape, size})}
             tabIndex={disabled ? -1 : 0}
         >
