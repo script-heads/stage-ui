@@ -4,6 +4,7 @@ import styles from './styles'
 import Types from './types'
 import TableRow from './TableRow'
 import TableHeadCell from './TableHeadCell'
+import TableFoot from './TableFoot'
 
 type Ref = Types.TableRef
 
@@ -11,7 +12,8 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
 
     const tableRef = useRef<HTMLTableElement>(null)
     const { css, attributes } = useComponent('Table', { props, styles })
-    const { columns } = props
+    const { columns, pagination } = props
+    const [currentPage, setCurrentPage] = useState(1)
     const [reloadData, reload] = useState(false)
     const [sort, setSort] = useState<Types.TableSortObject>({
         key: '',
@@ -139,7 +141,6 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
                                 styles={css}
                                 column={column}
                                 setSort={setSort}
-                                // reloadData={() => reload(!reloadData)}
                             />
                         ))
                     }
@@ -147,17 +148,34 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
             </thead>
             <tbody
                 children={
-                    dc.map((data, rowIndex) => (
-                        <TableRow
-                            dc={data}
-                            getCellContext={getCellContext}
-                            styles={css}
-                            key={rowIndex}
-                            columns={columns}
-                            rowIndex={rowIndex}
-                        />
-                    ))
+                    dc.map((dcItem, rowIndex) => {
+                        if (pagination) {
+                            const { pageSize } = pagination
+                            const startIndex = pageSize * (currentPage - 1)
+                            if (startIndex > rowIndex || rowIndex >= currentPage * pageSize) {
+                                return null
+                            }
+                            
+                        }
+                        return (
+                            <TableRow
+                                dcItem={dcItem}
+                                getCellContext={getCellContext}
+                                styles={css}
+                                key={rowIndex}
+                                columns={columns}
+                                rowIndex={rowIndex}
+                            />
+                        )
+                    })
                 }
+            />
+            <TableFoot
+                dc={dc}
+                styles={css}
+                columns={columns}
+                pagination={pagination}
+                onPageChange={setCurrentPage}
             />
         </table>
     )

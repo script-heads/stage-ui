@@ -2,8 +2,8 @@ import React, { Fragment, forwardRef, RefForwardingComponent, useState } from 'r
 import TableCell from './TableCell'
 import Types from './types'
 
-const TableRow: RefForwardingComponent<HTMLTableDataCellElement, Types.RowProps> = (props, ref) => {
-    const { columns, rowIndex, dc, styles, getCellContext } = props
+const TableRow: RefForwardingComponent<HTMLTableRowElement, Types.RowProps> = (props, ref) => {
+    const { columns, rowIndex, dcItem, styles, getCellContext } = props
 
     /**
      * State with expanded row
@@ -14,18 +14,19 @@ const TableRow: RefForwardingComponent<HTMLTableDataCellElement, Types.RowProps>
     /**
      * Update DataCollection state
      */
-    dc.setExpandComponent = setExpandComponent
-    dc.isExpand = Boolean(expandComponent)
+    dcItem.setExpandComponent = setExpandComponent
+    dcItem.isExpand = Boolean(expandComponent)
 
     return (
         <Fragment>
             <tr
+                ref={ref}
                 css={styles.row}
                 key={rowIndex}
                 children={
                     columns.map((column, columnIndex) => (
                         <TableCell
-                            dc={dc}
+                            dcItem={dcItem}
                             getCellContext={getCellContext}
                             styles={styles}
                             key={columnIndex}
@@ -36,7 +37,7 @@ const TableRow: RefForwardingComponent<HTMLTableDataCellElement, Types.RowProps>
                 }
             />
             {expandComponent && (
-                <tr>
+                <tr ref={ref}>
                     <td 
                         css={styles.expandContainer}
                         colSpan={columns.length}

@@ -15,7 +15,7 @@ const TableHeadCell: RefForwardingComponent<HTMLTableDataCellElement, Types.Head
 
     if (column.sort) {
         return (
-            <th onClick={setSorting} css={styles.headCell({
+            <th ref={ref} onClick={setSorting} css={styles.headCell({
                 sort: typeof column.sort !== 'undefined'
             })}>
                 <Flexbox alignItems="center">
@@ -35,7 +35,7 @@ const TableHeadCell: RefForwardingComponent<HTMLTableDataCellElement, Types.Head
         )
     }
     return (
-        <th css={styles.headCell({ sort: false })}>
+        <th ref={ref} css={styles.headCell({ sort: false })}>
              {column.title}
         </th>
     )

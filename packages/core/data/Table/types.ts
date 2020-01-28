@@ -8,6 +8,10 @@ declare namespace TableTypes {
         key: TableCellKey
         sort: TableSortType
     }
+    type TablePaginationOptions = {
+        pageSize: number
+        alwaysVisible?: boolean
+    }
 
     interface TableCellContext { 
         /**
@@ -101,6 +105,7 @@ declare namespace TableTypes {
     interface Props extends Shared.AllProps {
         data: Object[]
         columns: TableColumn[]
+        pagination?: TablePaginationOptions
     }
 
     interface HeadCellProps {
@@ -110,7 +115,7 @@ declare namespace TableTypes {
     }
 
     interface CellProps {
-        dc: DataCollection
+        dcItem: DataCollection
         column: TableColumn
         rowIndex: number
         styles: Shared.FlowStyles<Overrides>
@@ -118,11 +123,19 @@ declare namespace TableTypes {
     }
 
     interface RowProps {
-        dc: DataCollection
+        dcItem: DataCollection
         columns: TableColumn[]
         rowIndex: number
         styles: Shared.FlowStyles<Overrides>
         getCellContext: TableRef['getCellContext']
+    }
+
+    interface FootProps {
+        dc: DataCollection[]
+        columns: TableColumn[]
+        pagination?: TablePaginationOptions
+        onPageChange: (pageNumber: number) => void
+        styles: Shared.FlowStyles<Overrides>
     }
 
     interface Overrides {
@@ -133,6 +146,7 @@ declare namespace TableTypes {
         row: void
         rowCell: void
         expandContainer: void
+        footer: void
     }
 }
 

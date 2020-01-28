@@ -50,6 +50,14 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
             {
                 padding: '1rem',
             }
+        ],
+        footer: [
+            {
+                padding: '1.25rem 1rem',
+                borderTopWidth: theme.assets.border.width,
+                borderTopStyle: theme.assets.border.style,
+                borderTopColor: theme.assets.border.color,
+            }
         ]
     }
 }
