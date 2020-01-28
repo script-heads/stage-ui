@@ -1,8 +1,8 @@
-import { StyleObject } from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import callProp from '../../utils/callProp'
 import Types from './types'
 
-const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
 
     const labelColor = callProp(props.labelColor, theme.color)
 
@@ -34,22 +34,22 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
             },
             variant({
                 size: {
-                    xsmall: [{
-                        ...theme.typography.text[3],
+                    xs: [{
+                        ...theme.typography.text.s,
                     }],
-                    small: [{
-                        ...theme.typography.text[2],
+                    s: [{
+                        ...theme.typography.text.m,
                     }],
-                    medium: [{
-                        ...theme.typography.text[1],
+                    m: [{
+                        ...theme.typography.text.l,
                     }],
-                    large: [{
-                        fontSize: theme.typography.header[4].fontSize,
-                        lineHeight: theme.typography.header[4].lineHeight,
+                    l: [{
+                        fontSize: theme.typography.header.xs.fontSize,
+                        lineHeight: theme.typography.header.xs.lineHeight,
                     }],
-                    xlarge: [{
-                        fontSize: theme.typography.header[4].fontSize,
-                        lineHeight: theme.typography.header[4].lineHeight,
+                    xl: [{
+                        fontSize: theme.typography.header.xs.fontSize,
+                        lineHeight: theme.typography.header.xs.lineHeight,
                     }],
                 },
                 disabled: [{

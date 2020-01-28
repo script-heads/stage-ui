@@ -3,12 +3,12 @@ import { Block, Flexbox, Text, Tree, useTheme, Divider, Menu, Icon, Paragraph } 
 import { ScrollView } from '@flow-ui/lab'
 import createStyles, { StyleTypes } from './styles'
 import { useState } from 'react'
-import ThemeTypes from '@flow-ui/core/misc/themes/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import PagesTab from './layers'
 import LayersTab from './layers'
 
 export type TabProps = {
-    theme: ThemeTypes.Index
+    theme: WhaleTypes.Theme
     tools: ArchitectTools
     styles: StyleTypes
 }
@@ -46,7 +46,7 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
             <Flexbox justifyContent="space-between" alignItems="center" my=".5rem">
                 <Menu
                     px="1rem"
-                    size="small"
+                    size="s"
                     decoration="color"
                     defaultValue="layers"
                     items={[
@@ -70,7 +70,7 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                 />
             </Flexbox>
             <Divider w="unset" />
-            <ScrollView size="xsmall" css={styles.scrollView}>
+            <ScrollView size="xs" css={styles.scrollView}>
                 <Block css={styles.scrollContainer}>
                     {tab === 'pages' && (
                         <PagesTab

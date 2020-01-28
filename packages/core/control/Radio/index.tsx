@@ -7,13 +7,14 @@ import Types from './types'
 import { useComponent } from '@flow-ui/whale'
 
 const Radio: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
-    const { animated, size = 'medium', disabled } = props
+    const { animated, size = 'm', disabled } = props
 
-    const { css, attributes } = useComponent('Radio', { props, styles })
+    const { cs, attributes, events } = useComponent('Radio', { props, styles })
 
     return (
         <Check
             {...attributes}
+            {...events.all}
             {...props}
             ref={ref}
             size={size}
@@ -30,10 +31,10 @@ const Radio: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
              * Radio use
              */
             type="checkbox"
-            styles={css}
+            styles={cs}
             children={(checked) =>
-                <Block css={css.check({ animated, size, disabled })}>
-                    <div css={css.radio({ animated, size, disabled, checked })} />
+                <Block css={cs.check({ animated, size, disabled })}>
+                    <div css={cs.radio({ animated, size, disabled, checked })} />
                 </Block>
             }
         />

@@ -32,7 +32,7 @@ const SizeConrols = (props: Props) => {
                     label="Width"
                     defaultValue={props.tools.focused.props.w}
                     w="1px" 
-                    size="small" 
+                    size="s"
                     onChange={e => {
                         if (props.tools.focused) {
                             if (e.target.value) {
@@ -50,7 +50,7 @@ const SizeConrols = (props: Props) => {
                     label="Height"
                     defaultValue={props.tools.focused.props.h}
                     w="1px" 
-                    size="small" 
+                    size="s"
                     onChange={e => {
                         if (props.tools.focused) {
                             if (e.target.value) {
@@ -69,7 +69,7 @@ const SizeConrols = (props: Props) => {
                             <Button
                                 key={index}
                                 flex={1}
-                                size="xsmall"
+                                size="xs"
                                 children={index ? index : '✕'}
                                 decoration={(focused && focused.props.flex === index)
                                     ? 'filled'
@@ -94,7 +94,7 @@ const SizeConrols = (props: Props) => {
                     label="Flex"
                     defaultValue={props.tools.focused.props.flex}
                     w="1px" 
-                    size="small" 
+                    size="s"
                     onChange={e => {
                         if (props.tools.focused) {
                             if (e.target.value) {

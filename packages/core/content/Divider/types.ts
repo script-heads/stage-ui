@@ -1,11 +1,11 @@
-import Shared from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace DividerTypes {
-    interface Props extends Shared.AllProps {
+    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
         vertical?: boolean
         dash?: number
         gap?: number
-        color?: Shared.ColorProp
+        color?: WhaleTypes.ColorProp
     }
 
     interface Overrides {

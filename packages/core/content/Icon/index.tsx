@@ -7,7 +7,7 @@ import Types from './types'
 
 const Icon: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref) => {
 
-    const { css, attributes } = useComponent('Icon', { props, styles })
+    const { cs, attributes, events } = useComponent('Icon', { props, styles })
 
     const type = callProp(props.type, { filled, outline })
 
@@ -16,8 +16,9 @@ const Icon: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref) 
     return (
         <span
             {...attributes}
+            {...events.all}
             ref={ref}
-            css={css.container}
+            css={cs.container}
             children={(
                 <svg
                     viewBox="0 0 24 24"
@@ -26,7 +27,7 @@ const Icon: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref) 
                     height="1em"
                     width="1em"
                     children={type}
-                    css={css.icon}
+                    css={cs.icon}
                 />
             )
             }

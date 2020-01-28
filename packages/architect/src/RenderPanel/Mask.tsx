@@ -1,11 +1,11 @@
 import { Block, Text, useTheme } from '@flow-ui/core'
 import React, { forwardRef, RefForwardingComponent, useImperativeHandle, useRef, useState, useEffect } from 'react'
 import styles from './styles'
-import ThemeTypes from '@flow-ui/core/misc/themes/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import { ArchitectItem } from '../../types'
 
 type MaskProps = {
-    color: (color: ThemeTypes.Index['color']) => string,
+    color: (color: WhaleTypes.Theme['color']) => string,
     item?: ArchitectItem | null
 }
 export type MaskRefs = {

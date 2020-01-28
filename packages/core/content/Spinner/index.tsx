@@ -11,7 +11,7 @@ const Spinner: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref
         count = 12
     } = props
     
-    const { css, attributes } = useComponent('Spinner', { props, styles })
+    const { cs, attributes, events } = useComponent('Spinner', { props, styles })
 
     let rectShape
 
@@ -44,10 +44,10 @@ const Spinner: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref
     }
 
     return (
-        <div {...attributes} css={css.container} ref={ref}>
+        <div {...attributes} {...events.all} css={cs.container} ref={ref}>
             {
                 children
-                    ? <div css={css.children}>{children}</div>
+                    ? <div css={cs.children}>{children}</div>
                     : (
                         <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid" fill="currentColor" height="1em" width="1em">
                             {Array(count).fill('').map((e, i) =>

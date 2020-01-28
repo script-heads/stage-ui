@@ -6,14 +6,14 @@ import Types from './types'
 
 const Divider: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     
-    const { css, attributes } = useComponent('Divider', { props, styles })
+    const { cs, attributes, events } = useComponent('Divider', { props, styles })
 
     return jsx(
         'div',
         {
             ...attributes,
             ref,
-            css: css.container
+            css: cs.container
         }
     )
 }

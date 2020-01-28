@@ -1,8 +1,8 @@
-import Shared from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace TreeTypes {
 
-    interface Props extends Shared.AllProps {
+    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
         label?: React.ReactNode | string | ((isOpen: boolean) => React.ReactNode)
         children?: React.ReactNode
         decoration?: 'flat' | 'drop' | 'inline'

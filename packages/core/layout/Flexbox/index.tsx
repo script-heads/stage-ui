@@ -6,14 +6,14 @@ import Types from './types'
 
 const Flexbox: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
-    const { css, attributes } = useComponent('Flexbox', { props, styles })
+    const { cs, attributes, events } = useComponent('Flexbox', { props, styles })
 
     return jsx(
         'div',
         {
             ...attributes,
             ref: ref,
-            css: css.container
+            css: cs.container
         },
         props.children
     )

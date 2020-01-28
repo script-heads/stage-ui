@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from '@emotion/core'
-import ThemeTypes from '@flow-ui/core/misc/themes/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
 export type StyleTypes = {
     container: SerializedStyles
@@ -9,7 +9,7 @@ export type StyleTypes = {
     tag: SerializedStyles
 }
 
-const createTheme: (theme: ThemeTypes.Index) => StyleTypes = (theme) => ({
+const createTheme: (theme: WhaleTypes.Theme) => StyleTypes = (theme) => ({
     container: css({
         width: '20rem',
         borderRight: `1px solid ${theme.color.lightest.css()}`,

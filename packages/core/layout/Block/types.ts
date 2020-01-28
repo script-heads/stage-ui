@@ -1,14 +1,14 @@
-import Shared from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import CSS from 'csstype'
 
 declare namespace BlockTypes {
-    interface Props extends Shared.AllProps {
+    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
         tag?: 'div' | 'span' | 'header' | 'footer' | 'article' | 'section' | 'aside' | 'main'
         surface?: 'major' | 'medium' | 'minor'
         hoverSurface?: 'major' | 'medium' | 'minor'
         children?: React.ReactNode
-        background?: Shared.ColorProp
-        color?: Shared.ColorProp
+        background?: WhaleTypes.ColorProp
+        color?: WhaleTypes.ColorProp
         overflow?: CSS.Properties['overflow']
     }
 

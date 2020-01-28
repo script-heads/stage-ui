@@ -1,4 +1,4 @@
-import Shared from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import { Moment } from 'moment'
 import FieldTypes from '../../misc/hocs/Field/types'
 
@@ -7,7 +7,7 @@ declare namespace DatePickerTypes {
     type GridType = 'year' | 'month' | 'day'
     type Locale = 'en' | 'ru' | 'it' | 'fr' | 'de'
 
-    interface Props extends FieldTypes.Props, InputProps {
+    interface Props extends Omit<FieldTypes.Props, 'onChange'>, InputProps {
         /**
          * Type for DatePicker
          * @default day

@@ -42,7 +42,7 @@ const hiddenProps = [
 ]
 const PrefPanel = (props: { tools: ArchitectTools }) => {
     const theme = useTheme()
-    const styles = styles(theme)
+    const cs = styles(theme)
     const { tools } = props
 
     const literalProps: { name: string, values: string[] }[] = []
@@ -115,13 +115,13 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
     findProps(data[ComponentTypeName + 'Types'])
     return (
         <Block
-            css={styles.container}
+            css={cs.container}
             backgroundColor={c => c.surface.css()}
             borderColor={c => c.lightest.css()}>
             <Flexbox justifyContent="space-between" alignItems="center" my=".5rem">
                 <Menu
                     px="1rem"
-                    size="small"
+                    size="s"
                     decoration="color"
                     defaultValue="props"
                     items={[
@@ -150,13 +150,13 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
                             tools.remove()
                         }}
                         type={t => t.outline.trash2}
-                        color={c => tools.focused ? c.accent.red.hex() : c.lightest.hex()}
+                        color={c => tools.focused ? c.error.hex() : c.lightest.hex()}
                     />
                 </Block>
             </Flexbox>
             <Divider w="unset" />
-            <ScrollView size="xsmall" css={styles.scrollView}>
-                <Block css={styles.scrollContainer}>
+            <ScrollView size="xs" css={cs.scrollView}>
+                <Block css={cs.scrollContainer}>
                     {
                         !tools.focused && (
                             <Paragraph

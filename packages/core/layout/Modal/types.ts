@@ -1,6 +1,15 @@
-import Shared from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace ModalTypes {
+    
+    type ExtentedProps = 
+        WhaleTypes.AttributeProps &
+        WhaleTypes.EventProps<HTMLDivElement> &
+        WhaleTypes.CoreProps<Overrides> &
+        WhaleTypes.ColorProps &
+        WhaleTypes.BorderProps &
+        WhaleTypes.PaddingProps &
+        WhaleTypes.LayoutProps
 
     export interface Ref {
         open: (customContent?: React.ReactElement | null) => void
@@ -17,7 +26,7 @@ declare namespace ModalTypes {
         window: any
     }
 
-    interface Props extends Shared.SelfProps {
+    interface Props extends ExtentedProps {
         title?: string
         subtitle?: string
         fullSize?: boolean
@@ -47,7 +56,7 @@ declare namespace ModalTypes {
         center: boolean
         fullSize?: boolean
         children?: any
-        styles: Shared.FlowStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Overrides>
     }
 
     interface ModalWindowProps {
@@ -58,9 +67,9 @@ declare namespace ModalTypes {
         fullSize?: boolean
         hideHeader?: boolean
         children?: any
-        containerAttr?: React.HTMLAttributes<HTMLElement> & Shared.SelfProps
+        containerAttr?: ExtentedProps
         onClosePressed: () => void
-        styles: Shared.FlowStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Overrides>
     }
 
     interface ModalHeaderProps {
@@ -68,7 +77,7 @@ declare namespace ModalTypes {
         subtitle?: string
         hideHeader?: boolean
         onClosePressed: () => void
-        styles: Shared.FlowStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Overrides>
     }
 
     interface Overrides {

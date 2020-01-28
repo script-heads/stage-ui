@@ -2,7 +2,7 @@
 import React, { Fragment } from 'react'
 import { Block, Icon, Text } from '@flow-ui/core'
 import * as CoreScope from '@flow-ui/core'
-import ThemeTypes from '@flow-ui/core/misc/themes/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import * as LabScope from '@flow-ui/lab'
 //@ts-ignore
 import ts from 'typescript/lib/typescriptServices'
@@ -15,7 +15,7 @@ Object.assign(window, {
 })
 
 interface PreviewProps {
-    theme: ThemeTypes.Index
+    theme: WhaleTypes.Theme
     code: string
     grid: boolean
     fullscreen: boolean

@@ -1,24 +1,23 @@
-import Shared from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace CheckTypes {
 
     type CheckType = 'checkbox' | 'radio' | 'switch'
 
-    interface Props extends Shared.AllProps {
+    interface Props extends WhaleTypes.AllProps<HTMLInputElement, Overrides> {
         label?: string
-        labelColor?: Shared.ColorProp
+        labelColor?: WhaleTypes.ColorProp
         checked?: boolean
         disabled?: boolean
-        onChange?: (checked: boolean) => void
         defaultValue?: boolean
         uppercase?: boolean
-        size?: Shared.Size
+        size?: WhaleTypes.Size
     }
 
     interface PrivateProps extends Props {
         children: (checked: boolean, focus: boolean) => React.ReactElement
         type?: CheckType
-        styles: Shared.FlowStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Overrides>
     }
 
     interface Overrides {

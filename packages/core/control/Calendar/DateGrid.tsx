@@ -124,7 +124,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                     {!props.hideToday && (
                         <Flexbox justifyContent="center">
                             <Button
-                                size="small"
+                                size="s"
                                 decoration="plain"
                                 onClick={() => {
                                     if (props.type === 'day') {

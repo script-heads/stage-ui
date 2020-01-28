@@ -1,16 +1,16 @@
-import Shared from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace MenuTypes {
 
     type Value = string | number
 
-    interface Props extends Shared.AllProps {
+    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
         defaultValue?: Value
         value?: Value
         onChange?: (value: Value) => void
         items: Item[]
 
-        size?: Shared.Size
+        size?: WhaleTypes.Size
         decoration?:
         'filled' |
         'outline' |
@@ -19,18 +19,18 @@ declare namespace MenuTypes {
         'tab' |
         'filled-underline'
         flip?: boolean
-        distance?: string
+        spacing?: string
         direction?: 'row' | 'column'
         shape?: 'square' | 'rounded' | 'round'
         border?: 'none' | 'narrow' | 'wide'
         align?: 'start' | 'center' | 'end'
         separator?: React.ReactElement
 
-        color?: Shared.ColorProp
+        color?: WhaleTypes.ColorProp
         disabled?: boolean
     }
 
-    interface Item extends Partial<Shared.EventProps>, Partial<Props> {
+    interface Item extends Partial<Omit<WhaleTypes.EventProps<HTMLDivElement>, 'onChange'>>, Partial<Props> {
         content: React.ReactNode
         value: Value
         disabled?: boolean
@@ -38,7 +38,7 @@ declare namespace MenuTypes {
 
     interface ItemProps extends Item {
         active: boolean
-        styles: Shared.FlowStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Overrides>
     }
 
     interface Overrides {

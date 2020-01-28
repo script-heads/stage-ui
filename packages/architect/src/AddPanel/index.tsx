@@ -41,7 +41,7 @@ const AddPanel = (props: { tools: ArchitectTools }) => {
                         />
                         <Menu
                             pr={'1rem'}
-                            size="small"
+                            size="s"
                             decoration="color"
                             defaultValue="components"
                             items={[
@@ -61,7 +61,7 @@ const AddPanel = (props: { tools: ArchitectTools }) => {
                     <Divider color={c => c.lightest.hex()} />
                 </Block>
                 <Flexbox h="26rem" pt="1px">
-                    <ScrollView size="xsmall" css={{ width: '15rem' }}>
+                    <ScrollView size="xs" css={{ width: '15rem' }}>
                         {Object.keys(tools.components).map(component => (
                             component.toUpperCase().match(search.toUpperCase()) ? (
                                 <Block

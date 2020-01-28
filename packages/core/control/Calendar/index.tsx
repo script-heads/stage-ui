@@ -16,7 +16,7 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
     const now = moment()
     const [value, setValue] = useState(now)
 
-    const { css, attributes } = useComponent('Calendar', { 
+    const { cs, attributes, events } = useComponent('Calendar', { 
         props, 
         styles,  
     })
@@ -45,7 +45,7 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
     return (
         <DateGrid
             attributes={attributes}
-            styles={css}
+            styles={cs}
             value={value}
             minValue={minValue}
             maxValue={maxValue}

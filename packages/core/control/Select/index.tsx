@@ -13,7 +13,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
     const {
         shape = 'rounded',
         decoration = 'outline', 
-        size = 'medium',
+        size = 'm',
         multiselect,
         onChange,
         options = [],
@@ -45,14 +45,14 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
     const dropRef = useRef<DropTypes.Ref>(null)
     const [state, dispatch] = useReducer(SelectReducer, initialState)
 
-    const { css, attributes, focus } = useComponent('Select', { 
+    const { cs, attributes, events, focus } = useComponent('Select', { 
         props, 
         styles,
         mouseFocus: true,
-        disableDecoration: props.decoration != 'none'
+        focusDecoration: props.decoration != 'none'
     })
 
-    const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xlarge')
+    const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xl')
     const isLabelOverlay = (label && state.empty && !focus && !isLabelOutside) ? true : false
 
     useImperativeHandle(ref, () => 
@@ -113,7 +113,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
     /*
     * Keyboard control
     */
-    function handleKeyDown(event: React.KeyboardEvent<HTMLElement>) {
+    function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
         switch (event.key) {
             case 'Enter':
                 if (state.cursor != -1) {
@@ -160,12 +160,12 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
     /*
     * Set field value
     */
-    let fieldValue = <span css={css.placeholder}>{placeholder}</span>
+    let fieldValue = <span css={cs.placeholder}>{placeholder}</span>
 
     if (multiselect && (!state.empty || searchable)) {
         fieldValue =
             <Options
-                styles={css}
+                styles={cs}
                 selected={state.selectedOptions}
                 searchable={searchable}
                 disabled={disabled}
@@ -180,7 +180,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
         if (searchable) {
             fieldValue =
                 <Search
-                    styles={css}
+                    styles={cs}
                     disabled={disabled}
                     placeholder={placeholder}
                     searchValue={state.empty 
@@ -201,7 +201,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                 ref={targetRef}
 
                 focus={focus}
-                styles={css}
+                styles={cs}
                 state={state}
                 isLabelOutside={isLabelOutside}
                 isLabelOverlay={isLabelOverlay}
@@ -209,10 +209,8 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                 size={size}
                 shape={shape}
                 onClear={() => clear()}
-                
-                attributes={{
-                    ...attributes,
-                    tabIndex: props.tabIndex,
+                events={{
+                    ...events.all,
                     onClick: (e) => {
                         searchable && e.target.toString() === '[object HTMLInputElement]'
                             ? !state.open && dispatch({ type: 'toggleOpen', payload: true })
@@ -220,10 +218,12 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                         props.onClick && props.onClick(e)
                     },
                     onKeyDown: (e) => handleKeyDown(e)
+                }}
+                attributes={{
+                    ...attributes,
+                    tabIndex: props.tabIndex,
                 }}                
-
                 children={!isLabelOverlay && fieldValue}
-
                 rightChild={(
                     <Icon
                         type={i =>
@@ -246,7 +246,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                 justify="start"
                 target={targetRef}
                 children={(
-                    <div css={css.dropMenu({
+                    <div css={cs.dropMenu({
                         decoration, 
                         shape,
                         focus, 
@@ -256,7 +256,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                             .map((option, i) => (
                                 <div
                                     key={option.value}
-                                    css={css.dropItem({underCursor: i === state.cursor, size})}
+                                    css={cs.dropItem({underCursor: i === state.cursor, size})}
                                     children={option.text}
                                     onMouseDown={(e) => {
                                         toggleOption(option)

@@ -1,5 +1,4 @@
 import { jsx } from '@emotion/core'
-import { useTheme } from '@flow-ui/core'
 import { useComponent } from '@flow-ui/whale'
 import { forwardRef, RefForwardingComponent } from 'react'
 import styles from './styles'
@@ -9,16 +8,14 @@ type RefTag = HTMLSpanElement | HTMLAnchorElement | HTMLParagraphElement
 
 const Typography: RefForwardingComponent<RefTag, Types.PrivateProps> = (props, ref) => {
     
-    const theme = useTheme()
-    
-    const { attributes, css } = useComponent('Typography', { props, styles })
+    const { cs, attributes, events } = useComponent('Typography', { props, styles })
 
     return jsx(
         props.tag,
         {
             ...attributes,
             ref: ref,
-            css: css.container,
+            css: cs.container,
             download: props.download,
             href: props.href,
             hrefLang: props.hrefLang,

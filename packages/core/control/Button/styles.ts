@@ -1,10 +1,10 @@
 
 import callProp from '@flow-ui/core/misc/utils/callProp'
-import { StyleObject } from '@flow-ui/whale/types'
 import chroma from 'chroma-js'
 import Types from './types'
+import WhaleTypes from '@flow-ui/whale/types'
 
-const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
 
     const color = chroma(callProp(props.color, theme.color) || theme.color.primary.css())
 
@@ -108,30 +108,30 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
                     }]
                 },
                 size: {
-                    'xsmall': [{
+                    'xs': [{
                         padding: '0 .25rem',
-                        minHeight: theme.assets.fieldHeight.xsmall,
-                        ...theme.typography.text[4]
+                        minHeight: theme.assets.fieldHeight.xs,
+                        ...theme.typography.text.xs
                     }],
-                    'small': [{
+                    's': [{
                         padding: '0 .5rem',
-                        minHeight: theme.assets.fieldHeight.small,
-                        ...theme.typography.text[3]
+                        minHeight: theme.assets.fieldHeight.s,
+                        ...theme.typography.text.s
                     }],
-                    'medium': [{
+                    'm': [{
                         padding: '0 .75rem',
-                        minHeight: theme.assets.fieldHeight.medium,
-                        ...theme.typography.text[2]
+                        minHeight: theme.assets.fieldHeight.m,
+                        ...theme.typography.text.m
                     }],
-                    'large': [{
+                    'l': [{
                         padding: '0 1rem',
-                        minHeight: theme.assets.fieldHeight.large,
-                        ...theme.typography.text[1]
+                        minHeight: theme.assets.fieldHeight.l,
+                        ...theme.typography.text.l
                     }],
-                    'xlarge': [{
+                    'xl': [{
                         padding: '0 1.25rem',
-                        minHeight: theme.assets.fieldHeight.xlarge,
-                        ...theme.typography.header[4],
+                        minHeight: theme.assets.fieldHeight.xl,
+                        ...theme.typography.header.xs,
                     }]
                 }
             }),

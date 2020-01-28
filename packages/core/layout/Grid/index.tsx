@@ -6,14 +6,14 @@ import Types from './types'
 
 const Grid: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
-    const { css, attributes } = useComponent('Grid', { props, styles })
+    const { cs, attributes, events } = useComponent('Grid', { props, styles })
 
     return jsx(
         'div',
         {
             ...attributes,
             ref: ref,
-            css: css.container
+            css: cs.container
         },
         props.children
     )

@@ -1,6 +1,6 @@
 import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
 import { Block, Flexbox, Text, useTheme, Paragraph } from '@flow-ui/core'
-import ThemeTypes from '@flow-ui/core/misc/themes/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import { RefObject, useRef } from 'react'
 import Mask, { MaskRefs } from './Mask'
 import styles from './styles'
@@ -24,7 +24,7 @@ export const componentsTypography = [
 interface RenderItemProps {
     item: ArchitectItem,
     tools: ArchitectTools
-    theme: ThemeTypes.Index,
+    theme: WhaleTypes.Theme,
     mask: {
         hover: RefObject<MaskRefs>
         target: RefObject<MaskRefs>
@@ -54,7 +54,7 @@ const RenderItem = (props: RenderItemProps) => {
         <Text 
             align="center"
             size={2} 
-            color={c => c.accent.red.hex()}
+            color={c => c.error.hex()}
             children={`⚠ ${item.component} not found ⚠`}    
         />
 
@@ -168,7 +168,7 @@ const RenderItem = (props: RenderItemProps) => {
 
 const Render = (props: { tools: ArchitectTools }) => {
     const theme = useTheme()
-    const styles = styles(theme)
+    const cs = styles(theme)
     const { tools } = props
     const architectItems = tools.getItems()
     const hoverMask = useRef<MaskRefs>(null)
@@ -205,7 +205,7 @@ const Render = (props: { tools: ArchitectTools }) => {
     patchStyle(architectItems)
 
     return (
-        <Flexbox column flex={1} css={styles.container}>
+        <Flexbox column flex={1} css={cs.container}>
             {architectItems.length === 0 && (
                 <Flexbox justifyContent="center" pt="4.75rem" css={{ position: 'absolute', width: '100%' }}>
                     <Paragraph
@@ -217,7 +217,7 @@ const Render = (props: { tools: ArchitectTools }) => {
                 </Flexbox>
             )}
             <Block
-                css={styles.scrollContainer}
+                css={cs.scrollContainer}
                 children={
                     architectItems.map((item) => (
                         <Block key={item.id}>

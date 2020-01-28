@@ -6,14 +6,15 @@ import Types from './types'
 
 const Notifications: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
-    const { css, attributes } = useComponent('Notification', { props, styles })
+    const { cs, attributes, events } = useComponent('Notification', { props, styles })
 
     return (
         <Block 
             {...attributes}
+            {...events.all}
             ref={ref} 
             surface="minor" 
-            onClick={() => props.onClick && props.onClick()} css={css.container}
+            onClick={() => props.onClick && props.onClick()} css={cs.container}
             children={props.children}
         />
     )

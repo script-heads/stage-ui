@@ -1,11 +1,11 @@
-import Shared from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import CSS from 'csstype'
 
 declare namespace PopoverTypes {
-    interface Props extends Shared.AllProps {
+    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
         align?: 'top' | 'bottom' | 'left' | 'right' | 'none'
-        background?: Shared.ColorProp
-        color?: Shared.ColorProp
+        background?: WhaleTypes.ColorProp
+        color?: WhaleTypes.ColorProp
         children?: React.ReactNode
         arrowWidth?: CSS.Properties['width']
         arrowHeight?: CSS.Properties['height']

@@ -58,7 +58,7 @@ const LayersTab = (props: TabProps) => {
                                             />
                                             <Icon
                                                 pr={'0.25rem'}
-                                                color={c => c.accent.red.hex()}
+                                                color={c => c.error.hex()}
                                                 type={t => t.outline.trash2}
                                                 onClick={(e) => {
                                                     e.preventDefault()

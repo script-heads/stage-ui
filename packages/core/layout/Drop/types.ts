@@ -1,4 +1,4 @@
-import Shared from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace DropTypes {
   interface TargetCoordinates {
@@ -7,14 +7,21 @@ declare namespace DropTypes {
     left: number
     right: number
   }
-
-  interface Props extends Shared.SelfProps, Shared.AttributeProps, Shared.EventProps {
+  
+  interface Props extends
+    WhaleTypes.AttributeProps,
+    WhaleTypes.EventProps<HTMLDivElement>,
+    WhaleTypes.CoreProps<Overrides>,
+    WhaleTypes.ColorProps,
+    WhaleTypes.BorderProps,
+    WhaleTypes.PaddingProps,
+    WhaleTypes.LayoutProps {
     target: any
     align?: 'top' | 'bottom' | 'left' | 'right'
     justify?: 'start' | 'center' | 'end' | 'start-outside' | 'end-outside'
     stretchWidth?: boolean
     stretchHeight?: boolean
-    distance?: number
+    spacing?: number
     onClickOutside?: (event: MouseEvent, outsideTarget?: boolean) => void
     onEsc?: () => void
     children?: React.ReactNode

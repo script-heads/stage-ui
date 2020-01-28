@@ -15,7 +15,7 @@ const BooleanControls = (props: Props) => {
     return (
         <Block pb="0.5rem">
             <Switch
-                size="small"
+                size="s"
                 label={name[0].toUpperCase() + name.slice(1)}
                 onChange={value => {
                     if (props.tools.focused) {

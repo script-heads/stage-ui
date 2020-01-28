@@ -1,6 +1,5 @@
-import Shared from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import CSS from 'csstype'
-import ThemeTypes from '../../themes/types'
 
 declare namespace TypographyTypes {
 
@@ -17,13 +16,13 @@ declare namespace TypographyTypes {
 		onEnter?: () => void
 	}
 
-	interface Props extends Shared.AllProps {
+	interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 		ellipsis?: boolean
 		decoration?: CSS.Properties['textDecoration']
 
 		children?: React.ReactNode
-		color?: Shared.ColorProp
-		background?: Shared.ColorProp
+		color?: WhaleTypes.ColorProp
+		background?: WhaleTypes.ColorProp
 		align?: CSS.Properties['textAlign']
 		weight?: CSS.Properties['fontWeight']
 		size?: CSS.Properties['fontSize'] | number
@@ -37,7 +36,7 @@ declare namespace TypographyTypes {
 	
 	interface PrivateProps extends AnchorProps {
 		tag: string
-		sizesOf: keyof ThemeTypes.Typography
+		sizesOf: keyof WhaleTypes.Theme['typography']
 		specificStyles?: any
 	}
 }

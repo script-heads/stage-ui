@@ -6,7 +6,7 @@ export default () => {
     return (
         <Block>
             <Button ref={ref}>Trigger Popup</Button>
-            <Drop target={ref} distance={8}>
+            <Drop target={ref} spacing={8}>
                 <Popover>Hello world!</Popover>
             </Drop>
         </Block>   

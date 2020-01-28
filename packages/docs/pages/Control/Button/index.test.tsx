@@ -1,7 +1,7 @@
 import React from 'react'
 import * as Core from '@flow-ui/core'
 
-const sizes = ['xlarge', 'large', 'medium', 'small', 'xsmall'] as any
+const sizes = ['xl', 'l', 'm', 's', 'xs'] as any
 const buttonDecoration = ['filled', 'outline', 'plain', 'text'] as any
 
 export default () => (

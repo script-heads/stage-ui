@@ -1,8 +1,8 @@
 import fieldStyles from '@flow-ui/core/misc/hocs/Field/styles'
-import { StyleObject } from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import Types from './types'
 
-const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
 
     return {
         ...fieldStyles(props, theme, styleProps),

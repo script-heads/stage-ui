@@ -39,7 +39,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps,ErrorBoundaryStat
     render() {
         if (this.state.error || this.props.error) {
             return (
-                <Block p="2rem" h="100%" backgroundColor={c=>c.accent.red.css()}>
+                <Block p="2rem" h="100%" backgroundColor={c=>c.error.css()}>
                     <Text color={c=>c.onPrimary.css()}>{this.state.error || this.props.error}</Text>
                 </Block>
             )

@@ -1,4 +1,4 @@
-import Shared from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace TableTypes {
 
@@ -102,7 +102,7 @@ declare namespace TableTypes {
         sort?: TableSortType
     }
 
-    interface Props extends Shared.AllProps {
+    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
         data: Object[]
         columns: TableColumn[]
         pagination?: TablePaginationOptions
@@ -110,7 +110,7 @@ declare namespace TableTypes {
 
     interface HeadCellProps {
         column: TableColumn
-        styles: Shared.FlowStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Overrides>
         setSort: React.Dispatch<React.SetStateAction<TableSortObject>>
     }
 
@@ -118,7 +118,7 @@ declare namespace TableTypes {
         dcItem: DataCollection
         column: TableColumn
         rowIndex: number
-        styles: Shared.FlowStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Overrides>
         getCellContext: TableRef['getCellContext']
     }
 
@@ -126,7 +126,7 @@ declare namespace TableTypes {
         dcItem: DataCollection
         columns: TableColumn[]
         rowIndex: number
-        styles: Shared.FlowStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Overrides>
         getCellContext: TableRef['getCellContext']
     }
 
@@ -135,7 +135,7 @@ declare namespace TableTypes {
         columns: TableColumn[]
         pagination?: TablePaginationOptions
         onPageChange: (pageNumber: number) => void
-        styles: Shared.FlowStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Overrides>
     }
 
     interface Overrides {

@@ -27,7 +27,7 @@ const ValueControl = (props: { value: number, onChange: (value: number) => void 
                     <Button
                         key={index}
                         flex={1}
-                        size="xsmall"
+                        size="xs"
                         children={index ? index : '✕'}
                         decoration={(value === props.value && value !== 0)
                             ? 'filled'

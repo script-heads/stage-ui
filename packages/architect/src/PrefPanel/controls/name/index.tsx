@@ -39,7 +39,7 @@ const NameControls = (props: Props) => {
         <Block pb="0.5rem" pt="1rem">
             <TextField
                 w="100%"
-                size="small"
+                size="s"
                 label="Name"
                 value={value}
                 onChange={e => {

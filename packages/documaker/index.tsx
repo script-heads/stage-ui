@@ -9,7 +9,7 @@ import Page from './components/Page'
 import Page404 from './components/Page404'
 import PageEmpty from './components/PageEmpty'
 
-import ThemeTypes from '@flow-ui/core/misc/themes/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import * as flowThemes from '@flow-ui/core/misc/themes/index'
 import Architect from '@flow-ui/architect'
 
@@ -23,7 +23,7 @@ window.breakpoints = [960, 768]
 
 core.init()
 
-const FlowViewport = (props: { children: any, currentTheme: ThemeTypes.Index }) => (
+const FlowViewport = (props: { children: any, currentTheme: WhaleTypes.Theme }) => (
 	<Viewport theme={props.currentTheme}>
 		<Global
 			styles={{
@@ -43,7 +43,7 @@ const Documaker = () => {
 	const themes = Object.assign(flowThemes, config.themes)
 	const locationPath = '/' + window.location.pathname.slice(1)
 
-	const [currentTheme, setTheme] = useState<ThemeTypes.Index>(Object.values(themes)[0])
+	const [currentTheme, setTheme] = useState<WhaleTypes.Theme>(Object.values(themes)[0])
 	const [currentPage, setCurrentPage] = useState<PageType | '/' | '404' | null>(null)
 
 	function setPage(pageURL?: string) {

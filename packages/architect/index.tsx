@@ -253,11 +253,11 @@ class Architect extends React.Component {
  */
 const ArchitectView = (props: { tools: ArchitectTools, componentLibraryOpen: boolean }) => {
     const theme = useTheme()
-    const styles = createStyles(theme)
+    const cs = styles(theme)
 
     return (
         <Fragment>
-            <Flexbox css={styles.container}>
+            <Flexbox css={cs.container}>
                 <TreePanel tools={props.tools} />
                 <RenderPanel tools={props.tools} />
                 <PrefPanel tools={props.tools} /> 

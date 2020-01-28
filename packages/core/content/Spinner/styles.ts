@@ -1,9 +1,9 @@
 import { keyframes } from '@emotion/core'
 import callProp from '@flow-ui/core/misc/utils/callProp'
-import { StyleObject } from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import Types from './types'
 
-const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
     
     const color = callProp(props.color, theme.color) || theme.color.hardest.css()
     const duration = props.duration || 1

@@ -17,7 +17,7 @@ const Tree: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
 
     const [isOpen, setOpen] = useState((props.alwaysOpen || props.defaultOpen) ? true : false)
 
-    const { css, attributes } = useComponent('Tree', { props, styles })
+    const { cs, attributes, events } = useComponent('Tree', { props, styles })
 
     let treeChilds: React.ReactNode[] = []
     let otherChilds: React.ReactElement[] = []
@@ -60,25 +60,25 @@ const Tree: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
     let label = props.label
 
     if (typeof label === 'string') {
-        label = <Text css={css.label}>{label}</Text>
+        label = <Text css={cs.label}>{label}</Text>
     }
     if (typeof label === 'function') {
         label = label(isOpen)
     }
 
     return (
-        <Block ref={ref} css={css.container({ decoration, needIndent })}>
-            <Flexbox {...attributes} onKeyPress={keyPressHandle} onClick={openHandle} alignItems="center">
+        <Block ref={ref} css={cs.container({ decoration, needIndent })}>
+            <Flexbox {...attributes} {...events.all} onKeyPress={keyPressHandle} onClick={openHandle} alignItems="center">
                 <Icon
                     type={t => isOpen ? t.outline.arrowIosDownward : t.outline.arrowIosForward}
-                    css={css.icon({ decoration, disabled })}
+                    css={cs.icon({ decoration, disabled })}
                 />
                 {label}
             </Flexbox>
             <Block>
                 {
                     treeChilds.map((child: React.ReactElement, index) => (
-                        <Block css={css.child({ isOpen })} key={index}>
+                        <Block css={cs.child({ isOpen })} key={index}>
                             {
                                 React.cloneElement(child, {
                                     decoration: child.props.decoration || props.decoration,
@@ -91,7 +91,7 @@ const Tree: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
                 }
                 {
                     otherChilds.map((child: React.ReactElement, index) => (
-                        <Block css={css.child({ isOpen })} key={index} children={child} />
+                        <Block css={cs.child({ isOpen })} key={index} children={child} />
                     ))
                 }
             </Block>

@@ -11,7 +11,7 @@ type Ref = Types.TableRef
 const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
 
     const tableRef = useRef<HTMLTableElement>(null)
-    const { css, attributes } = useComponent('Table', { props, styles })
+    const { cs, attributes, events } = useComponent('Table', { props, styles })
     const { columns, pagination } = props
     const [currentPage, setCurrentPage] = useState(1)
     const [reloadData, reload] = useState(false)
@@ -131,14 +131,14 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
      * Render Data
      */
     return (
-        <table ref={tableRef} css={css.container} {...attributes}>
+        <table {...attributes} {...events.all} ref={tableRef} css={cs.container}>
             <thead>
                 <tr
                     children={
                         columns.map((column, colIndex) => (
                             <TableHeadCell
                                 key={colIndex}
-                                styles={css}
+                                styles={cs}
                                 column={column}
                                 setSort={setSort}
                             />
@@ -161,7 +161,7 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
                             <TableRow
                                 dcItem={dcItem}
                                 getCellContext={getCellContext}
-                                styles={css}
+                                styles={cs}
                                 key={rowIndex}
                                 columns={columns}
                                 rowIndex={rowIndex}
@@ -172,7 +172,7 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
             />
             <TableFoot
                 dc={dc}
-                styles={css}
+                styles={cs}
                 columns={columns}
                 pagination={pagination}
                 onPageChange={setCurrentPage}

@@ -1,11 +1,11 @@
 import Types from './types'
-import { StyleObject } from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import fieldStyles from '@flow-ui/core/misc/hocs/Field/styles'
 
-const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
     
     const { 
-        size = 'medium',
+        size = 'm',
         decoration = 'outline',
         multiline, 
     } = props
@@ -14,13 +14,13 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
 
     if (multiline) {
         switch (size) {
-            case 'medium':
+            case 'm':
                 multilineAdditionalPadding = '.25rem'
                 break
-            case 'large':
+            case 'l':
                 multilineAdditionalPadding = '.25rem'
                 break
-            case 'xlarge':
+            case 'xl':
                 multilineAdditionalPadding = '.5rem'
                 break
         }

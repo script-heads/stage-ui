@@ -1,7 +1,7 @@
-import Theme from './types'
-import createTheme from '../utils/createTheme'
+import WhaleTypes from '@flow-ui/whale/types'
+import { createTheme } from '@flow-ui/whale'
 
-const Light: Theme.SourceTheme = {
+const Light: WhaleTypes.SourceTheme = {
     main: {
         name: 'Light',
         color: {
@@ -22,94 +22,108 @@ const Light: Theme.SourceTheme = {
             hard: [120, 120, 120],
             hardest: [100, 100, 100],
 
-            accent: {
-                red: [188, 0, 0],
-                green: [0, 200, 0],
-                blue: [0, 122, 255],
-                orange: [255, 149, 0]
-            }
+            error: [188, 0, 0],
+            successful: [0, 200, 0],
+            warning: [255, 149, 0]
+            
         },
         radius: {
             default: '0.5rem',
             narrow: '0.25rem',
             wide: '1rem',
         },
-        distance: {
-            xsmall: '.25rem',
-            small: '.5rem',
-            medium: '1rem',
-            large: '2rem',
-            xlarge: '4rem',
+        spacing: {
+            xs: '.25rem',
+            s: '.5rem',
+            m: '1rem',
+            l: '2rem',
+            xl: '4rem',
         },
         typography: {
             display: {
-                1: {
+                xl: {
+                    fontSize: '8rem',
+                    lineHeight: 1.5,
+                },
+                l: {
                     fontSize: '6rem',
                     lineHeight: 1.5,
                 },
-                2: {
+                m: {
                     fontSize: '5.5rem',
                     lineHeight: 1.5,
                 },
-                3: {
+                s: {
                     fontSize: '4.5rem',
                     lineHeight: 1.5,
                 },
-                4: {
+                xs: {
                     fontSize: '3.5rem',
                     lineHeight: 1.5,
                 }
             },
             header: {
-                1: {
+                xl: {
+                    fontSize: '2.75rem',
+                    lineHeight: '3.75rem',
+                },
+                l: {
                     fontSize: '2rem',
                     lineHeight: '3rem',
                 },
-                2: {
+                m: {
                     fontSize: '1.5rem',
                     lineHeight: '2rem',
                 },
-                3: {
+                s: {
                     fontSize: '1.25rem',
                     lineHeight: '1.5rem',
                 },
-                4: {
+                xs: {
                     fontSize: '1.125rem',
                     lineHeight: '1.5rem',
                 }
             },
             paragraph: {
-                1: {
+                xl: {
+                    fontSize: '1.25rem',
+                    lineHeight: '1.75rem'
+                },
+                l: {
                     fontSize: '1rem',
                     lineHeight: '1.5rem'
                 },
-                2: {
+                m: {
                     fontSize: '0.875rem',
                     lineHeight: '1.25rem'
                 },
-                3: {
+                s: {
                     fontSize: '0.75rem',
                     lineHeight: '1rem'
                 },
-                4: {
+                xs: {
                     fontSize: '0.625rem',
                     lineHeight: '0.75rem'
                 }
             },
             text: {
-                1: {
+                xl: {
+                    fontSize: '1.25rem',
+                    lineHeight: '1.5rem'
+                },
+                l: {
                     fontSize: '1rem',
                     lineHeight: '1.25rem'
                 },
-                2: {
+                m: {
                     fontSize: '0.875rem',
                     lineHeight: '1rem'
                 },
-                3: {
+                s: {
                     fontSize: '0.75rem',
                     lineHeight: '0.875rem'
                 },
-                4: {
+                xs: {
                     fontSize: '0.625rem',
                     lineHeight: '0.75rem'
                 }
@@ -131,11 +145,11 @@ const Light: Theme.SourceTheme = {
             boxShadow: '0 0 0 3px ' + theme.color.primary.alpha(.3).css()
         },
         fieldHeight: {
-            xsmall: '1.5rem',
-            small: '2rem',
-            medium: '2.5rem',
-            large: '3rem',
-            xlarge: '3.5rem',
+            xs: '1.5rem',
+            s: '2rem',
+            m: '2.5rem',
+            l: '3rem',
+            xl: '3.5rem',
         }
     }),
     overrides: {}

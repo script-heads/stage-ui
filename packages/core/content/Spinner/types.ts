@@ -1,8 +1,8 @@
-import Shared from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace SpinnerTypes {
-    interface Props extends Shared.AllProps {
-        color?: Shared.ColorProp
+    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+        color?: WhaleTypes.ColorProp
         children?: React.ReactElement
         shape?: 'square' | 'rounded' | 'round'
         duration?: number

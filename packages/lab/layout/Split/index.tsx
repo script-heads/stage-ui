@@ -16,7 +16,7 @@ interface SplitElRefs {
 
 const Split: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
-    const { css, attributes } = useComponent('Split', { props, styles })
+    const { cs, attributes, events } = useComponent('Split', { props, styles })
 
     let vertical = props.direction === 'column'
 
@@ -55,8 +55,9 @@ const Split: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
     return (
         <div
             {...attributes}
+            {...events.all}
             ref={r => { refs[-1] = r; ref = { current: r } }}
-            css={css.container({
+            css={cs.container({
                 vertical
             })}
             children={

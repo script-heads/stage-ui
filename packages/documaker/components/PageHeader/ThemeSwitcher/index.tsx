@@ -1,12 +1,12 @@
 import Icon from '@flow-ui/core/content/Icon'
 import React, { Fragment, useRef, useState } from 'react'
 import { Block, Flexbox, Drop, Popover, Grid } from '@flow-ui/core'
-import ThemeTypes from '@flow-ui/core/misc/themes/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
 export interface ThemeSwitcherProps {
-    themes: Record<string,ThemeTypes.Index>
-    currentTheme: ThemeTypes.Index
-    setTheme: (theme: ThemeTypes.Index) => void
+    themes: Record<string,WhaleTypes.Theme>
+    currentTheme: WhaleTypes.Theme
+    setTheme: (theme: WhaleTypes.Theme) => void
 }
 
 const ThemeSwitcher = (props: ThemeSwitcherProps) => {
@@ -26,7 +26,8 @@ const ThemeSwitcher = (props: ThemeSwitcherProps) => {
             <Drop 
                 target={iconRef} 
                 visibility={visible ? 'visible' : 'hidden'} 
-                distance={16}
+                //TODO: wtf
+                spacing={16}
                 onClickOutside={(e,ot)=> ot && setVisible(!visible)}>
                 <Popover>
                     <Grid 

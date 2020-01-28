@@ -9,11 +9,11 @@ export default (theme, wrapper) => {
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
             'a': theme.typography.anchor,
             'p': theme.typography.paragraph,
-            'h1': theme.typography.header[1],
-            'h2': theme.typography.header[2],
-            'h3': theme.typography.header[3],
-            'h4': theme.typography.header[4],
-            ...theme.typography.text[1]
+            'h1': theme.typography.header.l,
+            'h2': theme.typography.header.m,
+            'h3': theme.typography.header.s,
+            'h4': theme.typography.header.xs,
+            ...theme.typography.text.l
         },
         `
             -moz-osx-font-smoothing: grayscale;
@@ -29,7 +29,7 @@ export default (theme, wrapper) => {
                 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
                 a, abbr, acronym, address, big, cite, code,
                 del, dfn, em, img, ins, kbd, q, s, samp,
-                small, strike, strong, sub, sup, tt, var,
+                s, strike, strong, sub, sup, tt, var,
                 b, u, i, center,
                 dl, dt, dd,
                 fieldset, form, label, legend,

@@ -6,7 +6,7 @@ import Types from './types'
 const Range: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     const { min = 0, max = 100, value, defaultValue } = props
 
-    const { css, attributes } = useComponent('Range', { props, styles })
+    const { cs, attributes, events } = useComponent('Range', { props, styles })
 
     const thumbRef = useRef<HTMLDivElement>(null)
     const trackRef = useRef<HTMLDivElement>(null)
@@ -59,21 +59,21 @@ const Range: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
     }, [props])
 
     return (
-        <div {...attributes} 
-            css={css.container} 
+        <div {...attributes} {...events.all}
+            css={cs.container} 
             ref={containerRef} 
             onMouseDown={(e: MouseEvent) => onMove(e, true)}
             // onTouchStart={onMove}
         >
-            <div css={css.rail} />
+            <div css={cs.rail} />
             <div
-                css={css.track}
+                css={cs.track}
                 ref={trackRef}
                 style={{ width: thumbPosition + '%' }}
             />
             <div
                 ref={thumbRef}
-                css={css.thumb}
+                css={cs.thumb}
                 style={{ left: thumbPosition + '%' }}
             />
         </div>

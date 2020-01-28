@@ -39,7 +39,7 @@ const TextControls = (props: Props) => {
         <Block pb="0.5rem">
             <TextField
                 w="100%"
-                size="small"
+                size="s"
                 label="Text"
                 multiline
                 value={value}

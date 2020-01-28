@@ -1,8 +1,8 @@
-import Shared from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace ButtonTypes {
 
-    interface Props extends Shared.AllProps {
+    interface Props extends WhaleTypes.AllProps<HTMLButtonElement, Overrides> {
         //Native button props
         autoFocus?: boolean
         disabled?: boolean
@@ -23,11 +23,11 @@ declare namespace ButtonTypes {
         value?: string | string[] | number
 
         //Amazing button props
-        size?: Shared.Size
+        size?: WhaleTypes.Size
         decoration?: 'filled' | 'outline' | 'text' | 'plain'
         shape?: 'square' | 'rounded' | 'round'
         uppercase?: boolean
-        color?: Shared.ColorProp
+        color?: WhaleTypes.ColorProp
         children?: React.ReactNode
     }
 

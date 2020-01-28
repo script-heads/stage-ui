@@ -1,7 +1,7 @@
 import { css } from '@emotion/core'
-import ThemeTypes from '@flow-ui/core/misc/themes/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
-export default (theme: ThemeTypes.Index) => {
+export default (theme: WhaleTypes.Theme) => {
 
     return {
         container: css({

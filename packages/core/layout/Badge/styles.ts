@@ -1,8 +1,8 @@
 
-import { StyleObject } from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import Types from './types'
 
-const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
     return {
         container: [
             {
@@ -20,9 +20,9 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
                 justifyContent: 'center',
                 position: 'absolute',
                 borderRadius: '1rem',
-                padding: theme.distance.xsmall + ' ' + theme.distance.small,
-                ...theme.typography.text[1],
-                minWidth: `calc(${theme.typography.text[1].lineHeight} - ${theme.distance.small})`,
+                padding: theme.spacing.xs + ' ' + theme.spacing.s,
+                ...theme.typography.text.l,
+                minWidth: `calc(${theme.typography.text.l.lineHeight} - ${theme.spacing.s})`,
                 top: 0,
                 right: 0,
                 transform: 'translate(50%, -50%)',

@@ -8,15 +8,16 @@ import styles from './styles'
 import Types from './types'
 
 const Checkbox: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
-    const { size = 'medium', animated, disabled } = props
+    const { size = 'm', animated, disabled } = props
 
-    const { css, attributes } = useComponent('Checkbox', { props, styles })
+    const { cs, attributes, events } = useComponent('Checkbox', { props, styles })
 
     return (
         <Check
             {...attributes}
+            {...events.all}
             {...props}
-            styles={css}
+            styles={cs}
             ref={ref}
             size={size}
             tabIndex={props.tabIndex || 0}
@@ -33,10 +34,10 @@ const Checkbox: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, re
              */
             type="checkbox"
             children={(checked, focus) =>
-                <Block css={css.check({ animated, size, disabled, focus })}>
+                <Block css={cs.check({ animated, size, disabled, focus })}>
                     <Icon
                         type={i => i.outline.checkmark}
-                        css={css.icon({ animated, size, disabled, checked })}
+                        css={cs.icon({ animated, size, disabled, checked })}
                     />
                 </Block>
             }

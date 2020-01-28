@@ -1,8 +1,8 @@
 import Types from './types'
-import { StyleObject } from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import checkStyles from '@flow-ui/core/misc/hocs/Check/styles'
 
-const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
     
     return {
         ...checkStyles(props, theme, styleProps),
@@ -27,23 +27,23 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
             }),
             variant({
                 size: {
-                    xsmall: [{
+                    xs: [{
                         width: '0.75rem',
                         height: '0.75rem'
                     }],
-                    small: [{
+                    s: [{
                         width: '1rem',
                         height: '1rem'
                     }],
-                    medium: [{
+                    m: [{
                         width: '1.25rem',
                         height: '1.25rem'
                     }],
-                    large: [{
+                    l: [{
                         width: '1.5rem',
                         height: '1.5rem'
                     }],
-                    xlarge: [{
+                    xl: [{
                         width: '2rem',
                         height: '2rem'
                     }],
@@ -66,19 +66,19 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
             },
             variant({
                 size: {
-                    xsmall: [{
+                    xs: [{
                         fontSize: '0.5rem'
                     }],
-                    small: [{
+                    s: [{
                         fontSize: '0.75rem'
                     }],
-                    medium: [{
+                    m: [{
                         fontSize: '1rem'
                     }],
-                    large: [{
+                    l: [{
                         fontSize: '1.45rem'
                     }],
-                    xlarge: [{
+                    xl: [{
                         fontSize: '1.9rem'
                     }],
                 },

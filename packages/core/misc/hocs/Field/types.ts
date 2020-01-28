@@ -1,13 +1,13 @@
-import Shared from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace FieldTypes {
 
-    interface Props extends Shared.AllProps{
+    interface Props extends Omit<WhaleTypes.AllProps<HTMLInputElement, Overrides>, 'onChange'> {
         label?: React.ReactNode
         hint?: React.ReactNode
-        size?: Shared.Size
+        size?: WhaleTypes.Size
         decoration?: 'none' | 'filled' | 'underline' | 'outline'
-        color?: Shared.ColorProp,
+        color?: WhaleTypes.ColorProp,
         shape?: 'round' | 'rounded' | 'square'
         disabled?: boolean
         rightChild?: React.ReactNode
@@ -43,11 +43,12 @@ declare namespace FieldTypes {
         focus: boolean
         isLabelOutside: boolean 
         isLabelOverlay: boolean
-        styles: Shared.FlowStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Overrides>
         state?: Object
         
         labelName?: string
-        attributes?: Object
+        attributes?: any
+        events?: any
         children?: React.ReactNode
     }   
     

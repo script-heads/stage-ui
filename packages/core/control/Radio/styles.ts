@@ -1,8 +1,8 @@
 import Types from './types'
-import { StyleObject } from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import checkStyles from '@flow-ui/core/misc/hocs/Check/styles'
 
-const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
     
     return {
         ...checkStyles(props, theme, styleProps),
@@ -21,23 +21,23 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
             },
             variant({
                 size: {
-                    xsmall: [{
+                    xs: [{
                         width: '0.75rem',
                         height: '0.75rem'
                     }],
-                    small: [{
+                    s: [{
                         width: '1rem',
                         height: '1rem'
                     }],
-                    medium: [{
+                    m: [{
                         width: '1.25rem',
                         height: '1.25rem'
                     }],
-                    large: [{
+                    l: [{
                         width: '1.5rem',
                         height: '1.5rem'
                     }],
-                    xlarge: [{
+                    xl: [{
                         width: '2rem',
                         height: '2rem'
                     }],
@@ -74,11 +74,11 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
                     opacity: 1,
                 }],
                 size: {
-                    xsmall: [{borderWidth: '0.1rem'}],
-                    small: [{borderWidth: '0.125rem'}],
-                    medium: [{borderWidth: '0.25rem'}],
-                    large: [{borderWidth: '0.25rem'}],
-                    xlarge: [{borderWidth: '0.375rem'}],
+                    xs: [{borderWidth: '0.1rem'}],
+                    s: [{borderWidth: '0.125rem'}],
+                    m: [{borderWidth: '0.25rem'}],
+                    l: [{borderWidth: '0.25rem'}],
+                    xl: [{borderWidth: '0.375rem'}],
                 },
                 animated: [{
                     transition: 'all .15s'

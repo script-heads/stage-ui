@@ -1,5 +1,5 @@
 import FieldTypes from '../../misc/hocs/Field/types'
-import Shared from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace SelectTypes {
     interface Option {
@@ -7,7 +7,7 @@ declare namespace SelectTypes {
         value: any
     }
 
-    interface Props extends FieldTypes.Props {
+    interface Props extends Omit<FieldTypes.Props, 'onChange'> {
         placeholder?: string
         options: Option[]
         multiselect?: boolean
@@ -56,7 +56,7 @@ declare namespace SelectTypes {
         searchValue: string
         onSearch: (searchValue: string) => void
         size?: number
-        styles: Shared.FlowStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Overrides>
         placeholder?: string
         defaultValue?: string
         disabled?: boolean

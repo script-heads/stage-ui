@@ -1,7 +1,7 @@
 import { css } from '@emotion/core'
-import ThemeTypes from '@flow-ui/core/misc/themes/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
-export default (theme: ThemeTypes.Index) => {
+export default (theme: WhaleTypes.Theme) => {
     return {
         container: {
         },
@@ -31,7 +31,7 @@ export default (theme: ThemeTypes.Index) => {
             textAlign: 'center',
             padding: '0.5rem 1rem',
             fontSize: '0.75rem',
-            color: theme.color.accent.red.hex(),
+            color: theme.color.error.hex(),
             marginLeft: '0.25rem',
         })
     }

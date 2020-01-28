@@ -2,11 +2,11 @@ import callProp from '@flow-ui/core/misc/utils/callProp'
 import variant from '@flow-ui/core/misc/utils/variant'
 import Types from './types'
 import fieldStyles from '../../misc/hocs/Field/styles'
-import { StyleObject } from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
-const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
     const { 
-        size = 'medium', 
+        size = 'm', 
         multiselect
     } = props
     
@@ -14,9 +14,9 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
     let backgroundColor = callProp(props.backgroundColor, theme.color)
 
     const multiselectAdditionalPadding = variant(size, {
-        'medium': '.25rem',
-        'large': '.25rem',
-        'xlarge': '.5rem'
+        'm': '.25rem',
+        'l': '.25rem',
+        'xl': '.5rem'
     })
 
     return {
@@ -97,26 +97,26 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
                 alignText: 'center'
             },
             variant(size, {
-                'xsmall': {
+                'xs': {
                     padding: '.125rem .25rem',
-                    ...theme.typography.text[4]
+                    ...theme.typography.text.xs
                 },
-                'small': {
+                's': {
                     padding: '.125rem .25rem',
-                    ...theme.typography.text[3],
+                    ...theme.typography.text.s,
                 },
-                'medium': {
+                'm': {
                     padding: '.125rem .25rem',
-                    ...theme.typography.text[2],
+                    ...theme.typography.text.m,
                 },
-                'large': {
+                'l': {
                     padding: '.125rem .25rem',
-                    ...theme.typography.text[1],
+                    ...theme.typography.text.l,
                 },
-                'xlarge': {
+                'xl': {
                     padding: '.125rem .25rem',
-                    fontSize: theme.typography.header[4].fontSize,
-                    lineHeight: theme.typography.header[4].lineHeight,
+                    fontSize: theme.typography.header.xs.fontSize,
+                    lineHeight: theme.typography.header.xs.lineHeight,
                 }
             }),
         ],
@@ -188,16 +188,16 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
             },
             variant({
                 size: {
-                    'xsmall': [theme.typography.text[3]],
-                    'small': [theme.typography.text[2]],
-                    'medium': [theme.typography.text[1]],
-                    'large': [{
-                        fontSize: theme.typography.header[4].fontSize,
-                        lineHeight: theme.typography.header[4].lineHeight,
+                    'xs': [theme.typography.text.s],
+                    's': [theme.typography.text.m],
+                    'm': [theme.typography.text.l],
+                    'l': [{
+                        fontSize: theme.typography.header.xs.fontSize,
+                        lineHeight: theme.typography.header.xs.lineHeight,
                     }],
-                    'xlarge': [{
-                        fontSize: theme.typography.header[4].fontSize,
-                        lineHeight: theme.typography.header[4].lineHeight,
+                    'xl': [{
+                        fontSize: theme.typography.header.xs.fontSize,
+                        lineHeight: theme.typography.header.xs.lineHeight,
                     }]
                 },
                 underCursor: [{

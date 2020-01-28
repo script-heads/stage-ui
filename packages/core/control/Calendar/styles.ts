@@ -1,7 +1,7 @@
-import { StyleObject } from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import Types from './types'
 
-const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
 
     return {
         dateGrind: [{
@@ -11,7 +11,7 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
 
         weekDay: [{
             userSelect: 'none',
-            ...theme.typography.text[2],
+            ...theme.typography.text.m,
             marginTop: '0.25rem',
             marginBottom: '0.5rem',
             fontWeight: 400,
@@ -41,7 +41,7 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
                 borderRadius: theme.radius.narrow,
                 color: theme.color.hardest.css(),
                 userSelect: 'none',
-                ...theme.typography.text[1],
+                ...theme.typography.text.l,
                 ':hover': {
                     background: theme.color.lightest.css()
                 }

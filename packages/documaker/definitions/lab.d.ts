@@ -1,8 +1,8 @@
 declare module 'data/Chart/types' {
 	import { ChartDataSets, ChartOptions } from 'chart.js';
-	import Shared from '/types'; namespace ChartTypes {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace ChartTypes {
 	    type ChartType = 'line' | 'pie' | 'verticalBar' | 'horizontalBar' | 'doughnut' | 'radar' | 'polar' | 'scatter' | 'bubble';
-	    interface Props extends Shared.AllProps {
+	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        /**
 	         * @default line
 	         */
@@ -10,6 +10,8 @@ declare module 'data/Chart/types' {
 	        labels: Array<string | string[]>;
 	        data: Array<number[] | ChartDataSets>;
 	        options?: ChartOptions;
+	    }
+	    interface Overrides {
 	    }
 	}
 	export default ChartTypes;
@@ -37,8 +39,8 @@ declare module 'layout/Split/Separator' {
 }
 declare module 'layout/Split/types' {
 	/// <reference types="react" />
-	import Shared from '/types'; namespace SplitTypes {
-	    interface Props extends Shared.AllProps {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace SplitTypes {
+	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onMove' | 'onChange'> {
 	        direction?: 'row' | 'column';
 	        children: React.ReactElement[];
 	        /**
@@ -68,8 +70,8 @@ declare module 'layout/Split/types' {
 
 }
 declare module 'layout/Split/styles' {
-	import { StyleObject } from '@flow-ui/whale/types';
-	import Types from 'layout/Split/types'; const styles: StyleObject<Types.Overrides, Types.Props>;
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'layout/Split/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
 }
@@ -86,8 +88,8 @@ declare module 'layout/Split' {
 }
 declare module 'layout/ScrollView/types' {
 	/// <reference types="react" />
-	import Shared from '/types'; namespace ScrollViewTypes {
-	    interface Props extends Shared.AllProps {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace ScrollViewTypes {
+	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        children?: React.ReactNode;
 	        /**
 	         * Display mode
@@ -97,12 +99,12 @@ declare module 'layout/ScrollView/types' {
 	        /**
 	         * Custom ScrollBar color
 	         */
-	        color?: Shared.ColorProp;
+	        color?: WhaleTypes.ColorProp;
 	        /**
 	         * Bars size
-	         * @default medium
+	         * @default m
 	         */
-	        size?: Shared.Size;
+	        size?: WhaleTypes.Size;
 	        /**
 	         * Bars shape
 	         * @default round
@@ -153,8 +155,8 @@ declare module 'layout/ScrollView/types' {
 
 }
 declare module 'layout/ScrollView/styles' {
-	import { StyleObject } from '@flow-ui/whale/types';
-	import Types from 'layout/ScrollView/types'; const styles: StyleObject<Types.Overrides, Types.Props>;
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'layout/ScrollView/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
 }
@@ -166,9 +168,8 @@ declare module 'layout/ScrollView' {
 }
 declare module 'control/ButtonGroup/types' {
 	/// <reference types="react" />
-	import Shared from '/types';
 	import ButtonTypes from '/control/Button/types'; namespace ButtonGroupTypes {
-	    interface Props extends Shared.AllProps, ButtonTypes.Props {
+	    interface Props extends ButtonTypes.Props {
 	        children: (React.ReactElement<ButtonTypes.Props> | React.ReactElement<ButtonTypes.Props>[]);
 	    }
 	}
@@ -176,8 +177,7 @@ declare module 'control/ButtonGroup/types' {
 
 }
 declare module 'control/ButtonGroup' {
-	import React from 'react';
-	import Types from 'control/ButtonGroup/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<Pick<any, string | number | symbol> & React.RefAttributes<HTMLDivElement>>;
 	export default _default;
 
 }
@@ -238,7 +238,7 @@ declare module 'misc/logos' {
 
 }
 declare module 'misc/themes/whiteCurrant' {
-	 const whiteCurrant: import("/misc/themes/types").default.Index;
+	 const whiteCurrant: import("@flow-ui/whale/types").default.Theme<{}>;
 	export default whiteCurrant;
 
 }

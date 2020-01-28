@@ -1,9 +1,9 @@
 import callProp from '@flow-ui/core/misc/utils/callProp'
-import { StyleObject } from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import chroma from 'chroma-js'
 import Types from './types'
 
-const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
 
     let color = chroma(
         callProp(props.color, theme.color) || theme.color.onBackground.css()
@@ -50,16 +50,16 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
             variant({
                 active: [{ opacity: 1 }],
                 size: {
-                    xsmall: [{
+                    xs: [{
                         width: '0.25rem',
                     }],
-                    small: [{
+                    s: [{
                         width: '0.5rem',
                     }],
-                    large: [{
+                    l: [{
                         width: '1rem',
                     }],
-                    xlarge: [{
+                    xl: [{
                         width: '1.25rem',
                     }]
                 },
@@ -91,16 +91,16 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
             variant({
                 active: [{ opacity: 0.4 }],
                 size: {
-                    xsmall: [{
+                    xs: [{
                         width: '0.25rem',
                     }],
-                    small: [{
+                    s: [{
                         width: '0.5rem',
                     }],
-                    large: [{
+                    l: [{
                         width: '1rem',
                     }],
-                    xlarge: [{
+                    xl: [{
                         width: '1.25rem',
                     }]
                 },
@@ -133,16 +133,16 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
             variant({
                 active: [{ opacity: 1 }],
                 size: {
-                    xsmall: [{
+                    xs: [{
                         height: '0.25rem',
                     }],
-                    small: [{
+                    s: [{
                         height: '0.5rem',
                     }],
-                    large: [{
+                    l: [{
                         height: '1rem',
                     }],
-                    xlarge: [{
+                    xl: [{
                         height: '1.25rem',
                     }]
                 },
@@ -174,16 +174,16 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
             variant({
                 active: [{ opacity: 0.4 }],
                 size: {
-                    xsmall: [{
+                    xs: [{
                         height: '0.25rem',
                     }],
-                    small: [{
+                    s: [{
                         height: '0.5rem',
                     }],
-                    large: [{
+                    l: [{
                         height: '1rem',
                     }],
-                    xlarge: [{
+                    xl: [{
                         height: '1.25rem',
                     }]
                 },

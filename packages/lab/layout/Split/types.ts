@@ -1,7 +1,7 @@
-import Shared from '@flow-ui/core/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace SplitTypes {
-    export interface Props extends Shared.AllProps {
+    export interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onMove' | 'onChange'> {
         direction?: 'row' | 'column'
         children: React.ReactElement[]
         /**

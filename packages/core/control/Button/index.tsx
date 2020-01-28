@@ -10,10 +10,10 @@ const Button: RefForwardingComponent<HTMLButtonElement, Types.Props> = (props, r
         disabled,
         decoration = 'filled',
         shape = 'rounded',
-        size = 'medium'
+        size = 'm'
     } = props
     
-    const { css, attributes } = useComponent('Button', { props, styles })
+    const { cs, attributes, events } = useComponent('Button', { props, styles })
 
     const onClick = (event: React.MouseEvent<HTMLElement>) => {
         if (!disabled) {
@@ -24,8 +24,9 @@ const Button: RefForwardingComponent<HTMLButtonElement, Types.Props> = (props, r
     return (
         <button
             {...attributes}
+            {...events.all}
             ref={ref}
-            css={css.container({ shape, decoration, size })}
+            css={cs.container({ shape, decoration, size })}
             onClick={onClick}
             autoFocus={props.autoFocus}
             disabled={props.disabled}

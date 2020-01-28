@@ -37,7 +37,7 @@ const LiteralControls = (props: Props) => {
                             values.map((value: number | string) => (
                                 <Button
                                     flex={1}
-                                    size="small"
+                                    size="s"
                                     decoration={value === currentValue ? 'filled' : 'outline'}
                                     key={value}
                                     children={value}
@@ -55,7 +55,7 @@ const LiteralControls = (props: Props) => {
                 )
                 : (
                     <Select
-                        size="small"
+                        size="s"
                         defaultValues={[
                             { text: currentValue, value: currentValue }
                         ]}

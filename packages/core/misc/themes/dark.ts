@@ -20,12 +20,9 @@ const dark = light.replace({
             hard: [180, 180, 200],
             hardest: [230, 230, 250],
 
-            accent: {
-                red: [188, 0, 0],
-                green: [0, 120, 0],
-                blue: [0, 122, 255],
-                orange: [255, 149, 0]
-            },
+            error: [188, 0, 0],
+            successful: [0, 120, 0],
+            warning: [255, 149, 0]
         },
     },
     assets: (theme) => ({

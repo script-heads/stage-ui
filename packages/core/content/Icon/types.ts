@@ -1,5 +1,6 @@
-import Shared from '@flow-ui/whale/types'
-import DeprecatedShared from '@flow-ui/core/types'
+import WhaleTypes from '@flow-ui/whale/types'
+import IconsetTypes from '@flow-ui/core/misc/icons/types'
+
 import CSS from 'csstype'
 
 declare namespace IconTypes {
@@ -9,12 +10,12 @@ declare namespace IconTypes {
 	 */
 	type Shapes = 'circle' | 'oval' | 'square'
 
-	interface Props extends Shared.AllProps {
-		type: DeprecatedShared.IconProp
+	interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+		type: ((icons: IconsetTypes.Index) => React.ReactElement) | React.ReactElement
 		shape?: Shapes
 		size?: CSS.Properties['fontSize']
-		color?: Shared.ColorProp
-		background?: Shared.ColorProp
+		color?: WhaleTypes.ColorProp
+		background?: WhaleTypes.ColorProp
 	}
 
 	interface Overrides {

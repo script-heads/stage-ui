@@ -8,15 +8,15 @@ import Types from './types'
 
 const Switch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
-    const { size = 'medium', animated, disabled } = props
+    const { size = 'm', animated, disabled } = props
 
-    const { css, attributes } = useComponent('Switch', { props, styles })
+    const { cs, attributes, events } = useComponent('Switch', { props, styles })
 
     return (
         <Check
             {...props}
             size={size}
-            styles={css}
+            styles={cs}
             tabIndex={props.tabIndex || 0}
             onFocus={(e) => {
                 props.onFocus && props.onFocus(e)
@@ -31,8 +31,8 @@ const Switch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
              */
             type="checkbox"
             children={(checked, focus) =>
-                <Block css={css.check({ animated, size, disabled, checked })}>
-                    <div css={css.switch({ animated, size, disabled, checked })} />
+                <Block css={cs.check({ animated, size, disabled, checked })}>
+                    <div css={cs.switch({ animated, size, disabled, checked })} />
                 </Block>
             }
         />

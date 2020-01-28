@@ -1,20 +1,20 @@
 import { ObjectInterpolation } from '@emotion/core'
 import callProp from '@flow-ui/core/misc/utils/callProp'
-import { StyleObject } from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import chroma from 'chroma-js'
 import Types from './types'
 
-const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
     
     const {
         decoration = 'underline',
-        size = 'medium',
+        size = 'm',
         flip = false,
         direction = 'row',
         border = 'none',
         shape,
         align,
-        distance,
+        spacing,
     } = props
 
     const sizes = getSizes(size, theme)
@@ -68,11 +68,11 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
                 width: 'fit-content',
                 flexDirection: props.direction,
             },
-            distance && {
+            spacing && {
                 '>:not(:last-child)': {
                     [direction === 'row'
                         ? 'marginRight'
-                        : 'marginBottom']: distance
+                        : 'marginBottom']: spacing
                 }
             },
             border != 'none' && borderStyles,
@@ -120,33 +120,33 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
 
 function getSizes(size, theme) {
     switch (size) {
-        case 'xsmall':
+        case 'xs':
             return {
                 item: {
                     padding: '0.25rem 0',
                 },
                 itemContent: {
                     padding: '0 .25rem',
-                    ...theme.typography.text[3],
+                    ...theme.typography.text.s,
                 },
                 underline: '.125rem',
                 borderDistance: '.75rem',
                 separatorDistance: '.25rem',
             }
-        case 'small':
+        case 's':
             return {
                 item: {
                     padding: '0.375rem 0',
                 },
                 itemContent: {
                     padding: '0 .5rem',
-                    ...theme.typography.text[2],
+                    ...theme.typography.text.m,
                 },
                 underline: '.125rem',
                 borderDistance: '1rem',
                 separatorDistance: '.375rem',
             }
-        case 'medium':
+        case 'm':
         default:
             return {
                 item: {
@@ -154,35 +154,35 @@ function getSizes(size, theme) {
                 },
                 itemContent: {
                     padding: '0 .75rem',
-                    ...theme.typography.text[1],
+                    ...theme.typography.text.l,
                 },
                 underline: '.25rem',
                 borderDistance: '1.25rem',
                 separatorDistance: '.5rem',
             }
-        case 'large':
+        case 'l':
             return {
                 item: {
                     padding: '0.625rem 0',
                 },
                 itemContent: {
                     padding: '0 1rem',
-                    fontSize: theme.typography.header[4].fontSize,
-                    lineHeight: theme.typography.header[4].lineHeight,
+                    fontSize: theme.typography.header.xs.fontSize,
+                    lineHeight: theme.typography.header.xs.lineHeight,
                 },
                 underline: '.375rem',
                 borderDistance: '1.5rem',
                 separatorDistance: '.625rem',
             }
-        case 'xlarge':
+        case 'xl':
             return {
                 item: {
                     padding: '0.75rem 0',
                 },
                 itemContent: {
                     padding: '0 1.25rem',
-                    fontSize: theme.typography.header[3].fontSize,
-                    lineHeight: theme.typography.header[3].lineHeight,
+                    fontSize: theme.typography.header.s.fontSize,
+                    lineHeight: theme.typography.header.s.lineHeight,
                 },
                 underline: '.5rem',
                 borderDistance: '1.75rem',

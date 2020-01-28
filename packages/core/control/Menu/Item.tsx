@@ -5,7 +5,7 @@ const Item: RefForwardingComponent<HTMLDivElement, Types.ItemProps> = (props, re
 
     const { 
         decoration = 'underline',
-        size = 'medium',
+        size = 'm',
         shape = 'rounded',
         content, 
         disabled = false,

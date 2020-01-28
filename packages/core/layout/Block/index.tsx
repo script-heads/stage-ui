@@ -7,14 +7,14 @@ import Types from './types'
 const Block: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     const { surface, hoverSurface } = props
     
-    const { css, attributes } = useComponent('Block', { props, styles })
+    const { cs, attributes, events } = useComponent('Block', { props, styles })
 
     return jsx(
         props.tag || 'div',
         {
             ...attributes,
             ref: ref,
-            css: css.container({ surface, hoverSurface }),
+            css: cs.container({ surface, hoverSurface }),
         },
         props.children
     )

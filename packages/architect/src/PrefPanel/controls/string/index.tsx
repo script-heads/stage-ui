@@ -48,7 +48,7 @@ const StringControls = (props: Props) => {
         <Block pb="0.5rem">
             <TextField
                 w="100%"
-                size="small"
+                size="s"
                 placeholder={props.placeholder}
                 label={name[0].toUpperCase() + name.slice(1)}
                 value={value}

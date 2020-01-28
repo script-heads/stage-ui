@@ -19,7 +19,7 @@ const FlexConrols = (props: Props) => {
 
     const DirectionButton = (props: { label: string, value: string }) => (
         <Button
-            size="small"
+            size="s"
             css={styles.legatureButton}
             style={{ fontSize: '2rem' }}
             decoration={
@@ -40,7 +40,7 @@ const FlexConrols = (props: Props) => {
 
     const JustifyButton = (props: { label: string, value: string }) => (
         <Button
-            size="small"
+            size="s"
             css={styles.legatureButton}
             decoration={
                 (
@@ -60,7 +60,7 @@ const FlexConrols = (props: Props) => {
 
     const AlignButton = (props: { label: string, value: string }) => (
         <Button
-            size="small"
+            size="s"
             css={styles.legatureButton}
             decoration={
                 (

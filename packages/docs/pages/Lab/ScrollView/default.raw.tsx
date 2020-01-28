@@ -6,7 +6,7 @@ export default () => {
     return (
         <ScrollView 
             mode="always"
-            size="medium"
+            size="m"
             shape="round"
             children={"Text ".repeat(200)}
         />

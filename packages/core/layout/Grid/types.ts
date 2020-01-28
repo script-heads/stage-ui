@@ -1,8 +1,8 @@
-import Shared from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import CSS from 'csstype'
 
 declare namespace GridTypes {
-    interface Props extends Shared.AllProps {
+    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
         inline?: boolean
         children?: React.ReactNode
 

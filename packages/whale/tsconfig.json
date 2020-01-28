@@ -12,11 +12,11 @@
     "experimentalDecorators": true,
     "alwaysStrict": true,
     "noImplicitThis": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "noImplicitReturns": true,
     "strictNullChecks": true,
-    "strictBindCallApply": true,
-    "strictFunctionTypes": true,
+    "strictBindCallApply": false,
+    "strictFunctionTypes": false,
     "strictPropertyInitialization": true
   },
   "exclude": [

@@ -6,15 +6,16 @@ import Types from './types'
 
 const Badge: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
-    const { css, attributes } = useComponent('Badge', { props, styles })
+    const { cs, attributes, events } = useComponent('Badge', { props, styles })
 
     return (
-        <div css={css.container}>
+        <div css={cs.container}>
             <div
                 {...attributes}
+                {...events.all}
                 ref={ref}
                 children={props.content}
-                css={css.holder({align: props.align})}
+                css={cs.holder({align: props.align})}
             />
             {props.children}
         </div>

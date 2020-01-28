@@ -11,7 +11,7 @@ const Modal: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
 
     const { hideHeader, fullSize, opened } = props
 
-    const { css, attributes } = useComponent('Modal', { props, styles })
+    const { cs, attributes, events } = useComponent('Modal', { props, styles })
 
     const overlayRef = useRef(null)
     const windowRef = useRef(null)
@@ -106,9 +106,9 @@ const Modal: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
 
     return (
         <ModalPortal>
-            <ModalOverlay ref={overlayRef} visible={visible} center={center} fullSize={fullSize} styles={css}>
+            <ModalOverlay ref={overlayRef} visible={visible} center={center} fullSize={fullSize} styles={cs}>
                 <ModalWindow
-                    styles={css}
+                    styles={cs}
                     ref={windowRef}
                     visible={visible}
                     center={center}

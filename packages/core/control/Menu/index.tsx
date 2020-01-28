@@ -8,14 +8,14 @@ import { useComponent } from '@flow-ui/whale'
 const Menu: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     
     const {
-        size = 'medium',
+        size = 'm',
         flip = false,
         border = 'none',
         items, 
         defaultValue = '', 
         separator, 
     } = props
-    const { css, attributes } = useComponent('Menu', { props, styles })
+    const { cs, attributes, events } = useComponent('Menu', { props, styles })
     const [value, setValue] = useState<Types.Value>(defaultValue)
     const currentValue = (typeof props.value === 'undefined' || props.value === '')
         ? value
@@ -35,8 +35,9 @@ const Menu: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
     return (
         <div
             {...attributes}
+            {...events.all}
             ref={ref}
-            css={css.container({size, flip, border})}
+            css={cs.container({size, flip, border})}
         >
             {items.map((item, i) => {
                 return (
@@ -45,10 +46,10 @@ const Menu: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
                             {...item}
                             active={item.value === currentValue}
                             onClick={() => handleSwitch(item)}
-                            styles={css}
+                            styles={cs}
                         />
                         {separator && i + 1 < items.length && (
-                            <div css={css.separator}>
+                            <div css={cs.separator}>
                                 {separator}
                             </div>
                         )}

@@ -2,7 +2,7 @@ import { Button, Flexbox } from '@flow-ui/core'
 import React, { forwardRef, RefObject } from 'react'
 import Types from './types'
 
-const ButtonGroup = (props: Types.Props, ref: RefObject<HTMLDivElement>) => {
+const ButtonGroup = (props: any, ref: RefObject<HTMLDivElement>) => {
     const { children } = props
     const childs = Array.isArray(children) ? children : [children]
     return (

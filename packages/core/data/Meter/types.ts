@@ -1,4 +1,4 @@
-import Shared from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace MeterTypes {
 
@@ -6,17 +6,17 @@ declare namespace MeterTypes {
     type MeterDecoration = 'filled' | 'outline'
     type MeterShape = 'square' | 'round'
 
-    interface Props extends Shared.AllProps {
+    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
         percent: number
 
-        size?: Shared.Size
+        size?: WhaleTypes.Size
         /**
          * @default line
          */
         type?: MeterType
         decoration?: MeterDecoration
         shape?: MeterShape
-        color?: Shared.ColorProp
+        color?: WhaleTypes.ColorProp
         /**
          * Enabled process animation
          * @default false
@@ -27,12 +27,12 @@ declare namespace MeterTypes {
     interface Overrides {
         container: {
             shape: MeterShape
-            size: Shared.Size
+            size: WhaleTypes.Size
             decoration: MeterDecoration
         },
         thumb: {
             shape: MeterShape
-            size: Shared.Size
+            size: WhaleTypes.Size
         }
     }
 }

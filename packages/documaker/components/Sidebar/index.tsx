@@ -3,7 +3,7 @@ import { PagesType, PageType } from '../../core'
 import { Text, Menu,Block, Icon, Flexbox } from '@flow-ui/core'
 import MenuTypes from '@flow-ui/core/control/Menu/types'
 import { Fragment, useState } from 'react'
-import ThemeTypes from '@flow-ui/core/misc/themes/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
 export interface SidebarProps {
 	pages: PagesType,
@@ -36,7 +36,7 @@ const Sidebar = (props: SidebarProps) => {
 		<Fragment>
 			<Block 
 				className={props.className} 
-				css={(theme: ThemeTypes.Index)=> ({
+				css={(theme: WhaleTypes.Theme)=> ({
 					[`@media (max-width: ${window.breakpoints[1]}px)`]: [
 						{
 							position: 'absolute',

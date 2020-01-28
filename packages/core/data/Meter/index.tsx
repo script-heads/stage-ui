@@ -8,16 +8,16 @@ const Meter: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
     const {
         decoration = 'filled',
         shape = 'round',
-        size = 'medium',
+        size = 'm',
         percent = 0,
     } = props
 
-    const { css, attributes } = useComponent('Meter', { props, styles })
+    const { cs, attributes, events } = useComponent('Meter', { props, styles })
 
     return (
-        <div ref={ref} {...attributes} css={css.container({decoration, shape, size})}>
+        <div ref={ref} {...attributes} {...events.all} css={cs.container({decoration, shape, size})}>
             <div
-                css={css.thumb({shape, size})}
+                css={cs.thumb({shape, size})}
                 style={{
                     width: percent + '%'
                 }}

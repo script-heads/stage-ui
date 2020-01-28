@@ -18,7 +18,7 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
         format = 'YYYY-MM-DD',
         defaultValue,
         decoration = 'outline', 
-        size = 'medium', 
+        size = 'm', 
         shape='rounded', 
         tabIndex = 0,
         label 
@@ -29,21 +29,22 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
     const now = moment()
     const [value, setValue] = useState(now)
     const [isActive, setActive] = useState(false)
+    //TODO: setEmpty
     const [isEmpty, setEmpty] = useState<boolean>(
         defaultValue === '' ||
         defaultValue === 'undefined'
     )
     
-    const { css, attributes, focus } = useComponent('DatePicker', { 
+    const { cs, attributes, events, focus } = useComponent('DatePicker', { 
         props, 
         styles,  
         mouseFocus: true,
-        disableDecoration: props.decoration != 'none'
+        focusDecoration: props.decoration !== 'none'
     })
 
     const minValue = props.minValue ? moment(props.minValue).startOf('day') : now.clone().add(-500, 'year')
     const maxValue = props.maxValue ? moment(props.maxValue).startOf('day') : now.clone().add(500, 'year')
-    const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xlarge')
+    const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xl')
     const isLabelOverlay = (label && isEmpty && !focus && !isLabelOutside) ? true : false
     const inputRef = useRef<HTMLInputElement>(null)
     const mask = props.masked && useMask(inputRef, maskConf(format, minValue, maxValue))
@@ -88,13 +89,11 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
                 size={size}
                 shape={shape}
                 focus={focus}
-                styles={css}
+                styles={cs}
                 isLabelOutside={isLabelOutside}
                 isLabelOverlay={isLabelOverlay}
-
-                attributes={{
-                    ...attributes,
-                    tabIndex,
+                events={{
+                    ...events.all,
                     onFocus: (e) => {
                         inputRef.current?.focus()
                         attributes.onFocus(e)
@@ -107,6 +106,10 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
                             setActive(true)
                         }
                     }
+                }}
+                attributes={{
+                    ...attributes,
+                    tabIndex,
                 }}
                 rightChild={props.rightChild || (
                     <Icon type={t => t.outline.calendar}/>
@@ -121,7 +124,7 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
                                 setValue(date)
                             }
                         },
-                        css: css.input({isLabelOverlay}),
+                        css: cs.input({isLabelOverlay}),
                         
                         defaultValue: defaultValue
                             ? moment(defaultValue, format)
@@ -152,7 +155,8 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
             />
             <Drop
                 visibility={isActive ? 'visible' : 'hidden'}
-                distance={9}
+                //TODO: wtf
+                spacing={9}
                 align="bottom"
                 justify="start"
                 onClickOutside={(event) => {
@@ -162,7 +166,7 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
                 }}
                 target={inputRef}
             >
-                <Popover css={css.drop({isActive})}>
+                <Popover css={cs.drop({isActive})}>
                     <Calendar
                         value={value}
                         minValue={minValue}

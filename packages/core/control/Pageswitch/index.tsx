@@ -12,7 +12,7 @@ const Pageswitch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
     const { length, options, value } = props
     const { pageSize = 20 } = options || {}
     const lastPage = Math.ceil(length / pageSize)
-    const { css, attributes } = useComponent('Pageswitch', { props, styles })
+    const { cs, attributes, events } = useComponent('Pageswitch', { props, styles })
 
     let defaultValue = value || props.defaultValue || 1
     if (defaultValue <= 0) defaultValue = 1
@@ -75,14 +75,15 @@ const Pageswitch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
     return (
         <Flexbox
             {...attributes}
+            {...events.all}
             ref={ref}
-            css={css.container}
+            css={cs.container}
             alignItems="center"
         >
             <Icon
                 mr="0.5rem"
                 size="1rem"
-                css={css.arrowButton({
+                css={cs.arrowButton({
                     disabled: currentPage <= 1
                 })}
                 type={t => t.outline.arrowIosBack}
@@ -94,7 +95,7 @@ const Pageswitch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
             <Icon
                 ml="0.5rem"
                 size="1rem"
-                css={css.arrowButton({
+                css={cs.arrowButton({
                     disabled: currentPage >= lastPage
                 })}
                 type={t => t.outline.arrowIosForward}

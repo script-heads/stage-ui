@@ -6,11 +6,11 @@ import Types from './types'
 const Popover: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     const { align = 'top' } = props
 
-    const { css, attributes } = useComponent('Popover', { props, styles })
+    const { cs, attributes, events } = useComponent('Popover', { props, styles })
 
     return (
-        <div {...attributes} ref={ref} css={css.container}>
-            <div css={css.arrow({ align })} />
+        <div {...attributes} {...events.all} ref={ref} css={cs.container}>
+            <div css={cs.arrow({ align })} />
             {props.children}
         </div>
     )

@@ -1,19 +1,17 @@
-import ThemeType from '../../misc/themes/types'
-import Shared from '@flow-ui/whale/types'
-import ThemeTypes from '../../misc/themes/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace ViewportTypes {
 
     interface Themes {
-        light: ThemeTypes.Index
-        dark: ThemeTypes.Index
+        light: WhaleTypes.Theme
+        dark: WhaleTypes.Theme
     }
 
     interface Props {
         wrapper?: boolean
         className?: string
         id?: string
-        theme?: Shared.FunctionalProp<Themes, ThemeType.Index>
+        theme?: ((theme: Themes) => WhaleTypes.Theme) | WhaleTypes.Theme
         children?: React.ReactNode
     }
 
@@ -27,7 +25,7 @@ declare namespace ViewportTypes {
     }
 
     interface Context {
-        theme: ThemeType.Index
+        theme: WhaleTypes.Theme
     }
 
     interface DialogOptions {

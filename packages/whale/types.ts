@@ -101,6 +101,7 @@ declare namespace WhaleTypes {
      */
     interface CoreProps<S={}> {
         styles?: Partial<ComponentStyles<S>>
+        animated?: boolean
     }
 
     /**
@@ -462,7 +463,7 @@ declare namespace WhaleTypes {
         flexGrow?: CSS.Properties['flexGrow']
         /**
          * Sets the flex shrink factor of a flex item. 
-         * If the size of all flex items is larger than 
+         * If the size of all flex items is lr than 
          * the flex container, items shrink to fit 
          * according to flex-shrink.
          */
@@ -552,14 +553,14 @@ declare namespace WhaleTypes {
     type ColorProp = ((colors: Theme['color']) => CSS.Properties['color'])
 
     type Styles<Component> = {
-        [Style in keyof Component]: Style extends {} 
-            ? ((variant: Variant<Style>) => EmotionStyles)
+        [Style in keyof Component]: Component[Style] extends {} 
+            ? ((variant: Variant<Component[Style]>) => EmotionStyles)
             : EmotionStyles
     }
 
     type ComponentStyles<Component> = {
-        [Style in keyof Component]: Style extends Object 
-            ? (state: Style) => SerializedStyles 
+        [Style in keyof Component]: Component[Style] extends Object 
+            ? (state: Component[Style]) => SerializedStyles 
             : SerializedStyles
     }
     
@@ -569,11 +570,11 @@ declare namespace WhaleTypes {
         >
     }>) => EmotionStyles
 
-    type CreateStyles<Component> = (
-        props: Object, 
+    type CreateStyles<Overrides, Props ={}> = (
+        props: Props, 
         theme: WhaleTypes.Theme,
         propsStyles: InjectedStyleProps 
-    ) => WhaleTypes.Styles<Component>
+    ) => WhaleTypes.Styles<Overrides>
 }
 
 declare module 'csstype' {

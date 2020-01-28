@@ -1,19 +1,22 @@
-import Shared from '@flow-ui/whale/types'
+import WhaleTypes, { EmotionStyles } from '@flow-ui/whale/types'
 import { InjectedStyleProps } from '@flow-ui/whale/utils/styleProps'
-import ThemeTypes from '../../themes/types'
 import callProp from '../../utils/callProp'
 import Types from './types'
 
+type ExtractFunction<T> = {
+    [K in keyof T]: Extract<T[K], Function>
+}
+
 const fieldStyles = <T extends Types.Overrides>(
-    props: Types.Props,
-    theme: ThemeTypes.Index,
+    props: Omit<Types.Props, 'onChange'>,
+    theme: WhaleTypes.Theme,
     styleProps: InjectedStyleProps,
     params: {
         manyLines?: boolean
         additionalPadding?: string
         labelOverlayPosition?: 'top' | 'center'
-        overrides?: Partial<Shared.ComponentStyles<T>>
-    } = {}): Shared.ComponentStyles<Types.Overrides> => {
+        overrides?: Partial<ExtractFunction<WhaleTypes.Styles<T>>>
+    } = {}): WhaleTypes.Styles<Types.Overrides> => {
 
     const color = callProp(props.color, theme.color)
     const { manyLines, overrides, additionalPadding, labelOverlayPosition, } = params
@@ -46,7 +49,7 @@ const fieldStyles = <T extends Types.Overrides>(
                 display: 'flex',
                 alignItems: 'stretch',
                 boxSizing: 'border-box',
-                '--headingLabelHeight': `calc(${theme.typography.text[2].lineHeight} + .25rem${additionalPadding ? ' + ' + additionalPadding : ''})`
+                '--headingLabelHeight': `calc(${theme.typography.text.m.lineHeight} + .25rem${additionalPadding ? ' + ' + additionalPadding : ''})`
             },
             variant({
                 shape: {
@@ -58,54 +61,54 @@ const fieldStyles = <T extends Types.Overrides>(
                     }]
                 },
                 size: {
-                    'xsmall': [
+                    'xs': [
                         {
-                            flexBasis: theme.assets.fieldHeight.xsmall,
-                            ...theme.typography.text[3],
+                            flexBasis: theme.assets.fieldHeight.xs,
+                            ...theme.typography.text.s,
                             '--headingLabelHeight': `
-                                calc(${theme.typography.text[4].lineHeight} + 2px${additionalPadding ? ' + ' + additionalPadding : ''})
+                                calc(${theme.typography.text.xs.lineHeight} + 2px${additionalPadding ? ' + ' + additionalPadding : ''})
                             `
                         },
                         !manyLines && {
                             padding: '.25rem .375rem'
                         }
                     ],
-                    'small': [
+                    's': [
                         {
-                            flexBasis: theme.assets.fieldHeight.small,
-                            ...theme.typography.text[2],
+                            flexBasis: theme.assets.fieldHeight.s,
+                            ...theme.typography.text.m,
                             '--headingLabelHeight': `
-                                calc(${theme.typography.text[4].lineHeight} + 2px${additionalPadding ? ' + ' + additionalPadding : ''})
+                                calc(${theme.typography.text.xs.lineHeight} + 2px${additionalPadding ? ' + ' + additionalPadding : ''})
                             `
                         },
                         !manyLines && {
                             padding: '.25rem .5rem'
                         }
                     ],
-                    'medium': [
+                    'm': [
                         {
-                            flexBasis: theme.assets.fieldHeight.medium,
-                            ...theme.typography.text[1],
+                            flexBasis: theme.assets.fieldHeight.m,
+                            ...theme.typography.text.l,
                         },
                         !manyLines && {
                             padding: '.25rem .75rem'
                         }
                     ],
-                    'large': [
+                    'l': [
                         {
-                            flexBasis: theme.assets.fieldHeight.large,
-                            fontSize: theme.typography.header[4].fontSize,
-                            lineHeight: theme.typography.header[4].lineHeight,
+                            flexBasis: theme.assets.fieldHeight.l,
+                            fontSize: theme.typography.header.xs.fontSize,
+                            lineHeight: theme.typography.header.xs.lineHeight,
                         },
                         !manyLines && {
                             padding: '.25rem .875rem'
                         }
                     ],
-                    'xlarge': [
+                    'xl': [
                         {
-                            flexBasis: theme.assets.fieldHeight.xlarge,
-                            fontSize: theme.typography.header[4].fontSize,
-                            lineHeight: theme.typography.header[4].lineHeight,
+                            flexBasis: theme.assets.fieldHeight.xl,
+                            fontSize: theme.typography.header.xs.fontSize,
+                            lineHeight: theme.typography.header.xs.lineHeight,
                         },
                         !manyLines && {
                             padding: '.25rem .875rem'
@@ -193,21 +196,21 @@ const fieldStyles = <T extends Types.Overrides>(
                 marginLeft: additionalPadding,
                 marginTop: additionalPadding
             },
-            theme.typography.text[2],
+            theme.typography.text.m,
             variant({
                 size: {
-                    'small': [
+                    's': [
                         {
                             paddingBottom: '2px',
                         },
-                        theme.typography.text[4]
+                        theme.typography.text.xs
                     ],
-                    'xsmall': [
+                    'xs': [
                         {
                             paddingBottom: '2px',
 
                         },
-                        theme.typography.text[4]
+                        theme.typography.text.xs
                     ]
                 },
                 isLabelOutside: [{
@@ -248,20 +251,20 @@ const fieldStyles = <T extends Types.Overrides>(
                 align: {
                     'right': variant({
                         size: {
-                            'xsmall': [{ marginLeft: '.25rem' }],
-                            'small': [{ marginLeft: '.25rem' }],
-                            'medium': [{ marginLeft: '.5rem' }],
-                            'large': [{ marginLeft: '.5rem' }],
-                            'xlarge': [{ marginLeft: '.75rem' }],
+                            'xs': [{ marginLeft: '.25rem' }],
+                            's': [{ marginLeft: '.25rem' }],
+                            'm': [{ marginLeft: '.5rem' }],
+                            'l': [{ marginLeft: '.5rem' }],
+                            'xl': [{ marginLeft: '.75rem' }],
                         }
                     }),
                     'left': variant({
                         size: {
-                            'xsmall': [{ marginRight: '.25rem' }],
-                            'small': [{ marginRight: '.25rem' }],
-                            'medium': [{ marginRight: '.5rem' }],
-                            'large': [{ marginRight: '.5rem' }],
-                            'xlarge': [{ marginRight: '.75rem' }],
+                            'xs': [{ marginRight: '.25rem' }],
+                            's': [{ marginRight: '.25rem' }],
+                            'm': [{ marginRight: '.5rem' }],
+                            'l': [{ marginRight: '.5rem' }],
+                            'xl': [{ marginRight: '.75rem' }],
                         }
                     })
                 }
@@ -274,12 +277,12 @@ const fieldStyles = <T extends Types.Overrides>(
                 paddingTop: '.25rem',
                 paddingLeft: props.decoration != 'underline' ? '.25rem' : '',
                 color: color || theme.color.hard.css(),
-                ...theme.typography.text[2],
+                ...theme.typography.text.m,
             },
             variant({
                 size: {
-                    'small': [theme.typography.text[4]],
-                    'xsmall': [theme.typography.text[4]]
+                    's': [theme.typography.text.xs],
+                    'xs': [theme.typography.text.xs]
                 }
             }),
             overrides?.hint?.(variant)

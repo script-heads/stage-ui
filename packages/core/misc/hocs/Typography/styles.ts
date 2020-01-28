@@ -1,8 +1,8 @@
-import { StyleObject } from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import callProp from '../../utils/callProp'
 import Types from './types'
 
-const styles: StyleObject<Types.Overrides, Types.PrivateProps> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.PrivateProps> = (props, theme, styleProps) => {
     return {
         container:  [
             props.specificStyles,

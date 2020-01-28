@@ -1,7 +1,7 @@
-import { StyleObject } from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import Types from './types'
 
-const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
     const surfaceVariants = {
         'minor': [{
             borderWidth: theme.assets.border.width,
@@ -11,7 +11,7 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
             background: theme.color.surface.css(),
             boxShadow: theme.assets.shadow.short
         }],
-        'medium': [{
+        'm': [{
             borderWidth: theme.assets.border.width,
             borderStyle: theme.assets.border.style,
             borderColor: theme.assets.border.color,

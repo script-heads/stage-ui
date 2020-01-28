@@ -1,7 +1,7 @@
-import Shared from '@flow-ui/core/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace ScrollViewTypes {
-    interface Props extends Shared.AllProps {
+    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
         children?: React.ReactNode
         /**
          * Display mode
@@ -11,12 +11,12 @@ declare namespace ScrollViewTypes {
         /**
          * Custom ScrollBar color
          */
-        color?: Shared.ColorProp
+        color?: WhaleTypes.ColorProp
         /**
          * Bars size
-         * @default medium
+         * @default m
          */
-        size?: Shared.Size
+        size?: WhaleTypes.Size
         /**
          * Bars shape
          * @default round

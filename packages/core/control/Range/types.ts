@@ -1,7 +1,7 @@
-import Shared from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace RangeTypes {
-    interface Props extends Shared.AllProps {
+    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
         min?: number
         max?: number
         defaultValue?: number

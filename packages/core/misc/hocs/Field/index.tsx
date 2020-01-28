@@ -10,6 +10,7 @@ const Field: RefForwardingComponent<HTMLDivElement, Types.PrivateProps> = (props
         clearable,
         onClear,
         attributes,
+        events,
         styles,
         isLabelOutside, 
     } = props
@@ -36,6 +37,7 @@ const Field: RefForwardingComponent<HTMLDivElement, Types.PrivateProps> = (props
     return (
         <div
             {...attributes}
+            {...events?.all}
             ref={ref}
             css={styles.container(state)}
         >

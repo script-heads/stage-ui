@@ -11,14 +11,14 @@ let sharedZIndex = 300
 
 const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
 
-    const { children, target: targetRef, onClickOutside, distance = 0, align,
+    const { children, target: targetRef, onClickOutside, spacing = 0, align,
         justify, stretchHeight, stretchWidth, visibility, display } = props
         
-    const { css, attributes } = useComponent('Drop', { props, styles })
+    const { cs, attributes, events } = useComponent('Drop', { props, styles })
 
     const dropRef = useRef<HTMLDivElement>(null)
 
-    let getTopCoord: GetCoord = (tr) => toStyle(tr.bottom + distance)
+    let getTopCoord: GetCoord = (tr) => toStyle(tr.bottom + spacing)
     let getLeftCoord: GetCoord = (tr, dr) => toStyle((tr.left + tr.width / 2) - dr.width / 2)
 
     const setHorizontalPosition = () => {
@@ -60,19 +60,19 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
 
     switch (align) {
         case 'top':
-            getTopCoord = (tr, dr) => toStyle(tr.top - dr.height - distance)
+            getTopCoord = (tr, dr) => toStyle(tr.top - dr.height - spacing)
             setHorizontalPosition()
             break
         case 'bottom':
-            getTopCoord = (tr) => toStyle(tr.bottom + distance)
+            getTopCoord = (tr) => toStyle(tr.bottom + spacing)
             setHorizontalPosition()
             break
         case 'left':
-            getLeftCoord = (tr, dr) => toStyle(tr.left - dr.width - distance)
+            getLeftCoord = (tr, dr) => toStyle(tr.left - dr.width - spacing)
             setVerticalPosition()
             break
         case 'right':
-            getLeftCoord = (tr) => toStyle(tr.right + distance)
+            getLeftCoord = (tr) => toStyle(tr.right + spacing)
             setVerticalPosition()
             break
     }
@@ -135,12 +135,13 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
     return ReactDOM.createPortal(
         <div
             {...attributes}
+            {...events.all}
             onClick={(e) => {
                 click(clicks+1)
                 props.onClick?.(e)
             }}
             ref={dropRef}
-            css={css.container}
+            css={cs.container}
             style={{
                 top: 0,
                 left: 0,

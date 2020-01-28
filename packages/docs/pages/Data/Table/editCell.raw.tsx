@@ -15,7 +15,7 @@ export default () => {
                 <Icon
                     size="1rem"
                     mr="0.5rem"
-                    color={c => c.accent.green.css()}
+                    color={c => c.successful.css()}
                     type={t => t.outline.checkmark}
                     onClick={save}
                 />

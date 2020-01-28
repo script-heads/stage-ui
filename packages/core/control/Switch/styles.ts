@@ -1,8 +1,8 @@
 import Types from './types'
-import { StyleObject } from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import checkStyles from '@flow-ui/core/misc/hocs/Check/styles'
 
-const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
 
     return {
         ...checkStyles(props, theme, styleProps),
@@ -17,27 +17,27 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
             },
             variant({
                 size:{
-                    xsmall: [{
+                    xs: [{
                         width: '1.125rem',
                         height: '0.25rem',
                         borderRadius: '0.75rem',
                     }],
-                    small: [{
+                    s: [{
                         width: '1.5rem',
                         height: '0.5rem',
                         borderRadius: '1rem',
                     }],
-                    medium: [{
+                    m: [{
                         width: '1.825rem',
                         height: '0.625rem',
                         borderRadius: '1.25rem',
                     }],
-                    large: [{
+                    l: [{
                         width: '2.25rem',
                         height: '0.75rem',
                         borderRadius: '1.5rem',
                     }],
-                    xlarge: [{
+                    xl: [{
                         width: '3rem',
                         height: '1rem',
                         borderRadius: '2rem',
@@ -69,7 +69,7 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
             },
             variant({
                 size:{
-                    xsmall: [
+                    xs: [
                         {
                             borderWidth: '0.1rem',
                             width: '0.75rem',
@@ -82,7 +82,7 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
                             }]
                         })
                     ],
-                    small: [
+                    s: [
                         {
                             borderWidth: '0.1rem',
                             width: '1rem',
@@ -96,7 +96,7 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
                             }]
                         })
                     ],
-                    medium: [
+                    m: [
                         {
                             borderWidth: '0.125rem',
                             width: '1.25rem',
@@ -109,7 +109,7 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
                             }]
                         })
                     ],
-                    large: [
+                    l: [
                         {
                             borderWidth: '0.175rem',
                             width: '1.5rem',
@@ -122,7 +122,7 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
                             }]
                         })
                     ],
-                    xlarge: [
+                    xl: [
                         {
                             borderWidth: '0.25rem',
                             width: '2rem',

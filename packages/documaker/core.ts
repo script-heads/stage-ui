@@ -1,4 +1,4 @@
-import ThemeTypes from '@flow-ui/core/misc/themes/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
 declare const WEBPACK_WORKDIR: string
 
@@ -13,7 +13,7 @@ export interface Config {
     name?: string
     git?: string
     homePage?: (props: HomePageProps) => JSX.Element
-    themes?: Record<string,ThemeTypes.Index>
+    themes?: Record<string,WhaleTypes.Theme>
     pages?: {
         order?: Record<string,string[]>
         types?: string[],

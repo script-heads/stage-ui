@@ -37,11 +37,11 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         }
     }))
 
-    const { css, attributes } = useComponent('ScrollView', { props, styles })
+    const { cs, attributes, events } = useComponent('ScrollView', { props, styles })
     
     const {
         shape = 'round',
-        size = 'medium',
+        size = 'm',
         mode = 'scroll',
         xBarPosition = 'bottom',
         yBarPosition = 'right',
@@ -241,18 +241,18 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
     }
 
     return (
-        <div {...attributes} css={css.container} ref={createRef}>
+        <div {...attributes} {...events.all} css={cs.container} ref={createRef}>
             <div
-                css={css.content}
+                css={cs.content}
                 ref={ref => memo.content = ref}
                 children={props.children}
             />
             <div
-                css={css.yBar({ active, size, shape, position: yBarPosition })}
+                css={cs.yBar({ active, size, shape, position: yBarPosition })}
                 ref={ref => memo.yBar = ref}
                 children={(
                     <span
-                        css={css.yThumb({ active, size, shape })}
+                        css={cs.yThumb({ active, size, shape })}
                         ref={ref => memo.yThumb = ref}
                     />
                 )}
@@ -264,11 +264,11 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                 }}
             />
             <div
-                css={css.xBar({ active, size, shape, position: xBarPosition })}
+                css={cs.xBar({ active, size, shape, position: xBarPosition })}
                 ref={ref => memo.xBar = ref}
                 children={(
                     <span
-                        css={css.xThumb({ active, size, shape })}
+                        css={cs.xThumb({ active, size, shape })}
                         ref={ref => memo.xThumb = ref}
                     />
                 )} 

@@ -11,20 +11,20 @@ type RefTypes = ((HTMLInputElement | HTMLTextAreaElement) & HTMLDivElement) | nu
 
 const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) => {
 
-    const {decoration = 'outline', size = 'medium', shape='rounded', tabIndex = 0, masked, label} = props
+    const {decoration = 'outline', size = 'm', shape='rounded', tabIndex = 0, masked, label} = props
     const [isEmpty, setEmpty] = useState<boolean>(
         props.defaultValue === '' ||
         typeof props.defaultValue === 'undefined'
     )
     
-    const { css, attributes, focus } = useComponent('TextField', { 
+    const { cs, attributes, events, focus } = useComponent('TextField', { 
         props, 
         styles,
         mouseFocus: true,
-        disableDecoration: props.decoration != 'none'
+        focusDecoration: props.decoration !== 'none'
     })
 
-    const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xlarge')
+    const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xl')
     const isLabelOverlay = (label && isEmpty && !focus && !isLabelOutside) ? true : false
     const selfRef = useRef<HTMLDivElement>(null)
     const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
@@ -59,28 +59,30 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
             size={size}
             shape={shape}
             focus={focus}
-            styles={css}
+            styles={cs}
             isLabelOutside={isLabelOutside}
             isLabelOverlay={isLabelOverlay}
 
             onClear={() => {
                 if (inputRef.current) inputRef.current.value = ''
             }}
-
-            attributes={{
-                ...attributes,
-                tabIndex,
+            events={{
+                ...events.all,
                 onFocus: (e) => {
                     inputRef.current?.focus()
                     attributes.onFocus(e)
                 },
+            }}
+            attributes={{
+                ...attributes,
+                tabIndex,
             }}
             children={jsx(
                 props.multiline ? 'textarea' : 'input',
                 {
                     ref: inputRef,
                     onKeyUp: onChange,
-                    css: css.input({isLabelOverlay}),
+                    css: cs.input({isLabelOverlay}),
 
                     defaultValue: props.defaultValue,
                     disabled: props.disabled,

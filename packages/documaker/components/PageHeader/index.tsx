@@ -1,6 +1,6 @@
 import { Flexbox, Header, Anchor, Icon, Block } from '@flow-ui/core'
 import ThemeSwitcher, { ThemeSwitcherProps } from './ThemeSwitcher'
-import ThemeTypes from '@flow-ui/core/misc/themes/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
 interface MenuProps extends ThemeSwitcherProps {
     name: string, 
@@ -16,7 +16,7 @@ const PageHeader = (props: MenuProps) => {
         <Flexbox 
             alignItems="center" 
             p="1.5rem"
-            css={(theme: ThemeTypes.Index) => ({
+            css={(theme: WhaleTypes.Theme) => ({
                 zIndex: 10,
                 [`@media (max-width: ${window.breakpoints[0]}px)`]: {
                     padding: '1rem',

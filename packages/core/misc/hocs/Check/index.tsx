@@ -15,8 +15,8 @@ const Check: RefForwardingComponent<HTMLDivElement, CheckTypes.PrivateProps> = (
     /**
      * Change handler
      */
-    function change() {
-        props.onChange && props.onChange(!checked)
+    function onChange(event: React.FormEvent<HTMLInputElement>) {
+        props.onChange && props.onChange(event)
         if (typeof props.checked === 'undefined') {
             setChecked(!checked)
         }
@@ -24,12 +24,12 @@ const Check: RefForwardingComponent<HTMLDivElement, CheckTypes.PrivateProps> = (
     /*
     * Keyboard control
     */
-    function onKeyDown(event: React.KeyboardEvent<HTMLElement>) {
+    function onKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
         /**
          * Enter or Space
          */
         if (event.keyCode === 0x0D || event.keyCode === 0x20) {
-            change()
+            onChange(event)
             /**
              * Prevent page scrolling
              */
@@ -40,9 +40,9 @@ const Check: RefForwardingComponent<HTMLDivElement, CheckTypes.PrivateProps> = (
         props.onKeyDown && props.onKeyDown(event)
     }
 
-    function onClick(e: React.MouseEvent<HTMLElement>) {
+    function onClick(e: React.MouseEvent<HTMLInputElement>) {
         if (!props.disabled) {
-            change()
+            onChange(e)
         }
         props.onClick && props.onClick(e)
     }
@@ -52,15 +52,16 @@ const Check: RefForwardingComponent<HTMLDivElement, CheckTypes.PrivateProps> = (
         css: styles.container({animated, disabled}),
         onClick,
         onKeyDown,
-        onFocus: (e: React.FocusEvent<HTMLElement>) => {
+        onFocus: (e: React.FocusEvent<HTMLInputElement>) => {
             setFocus(true)
             props.onFocus && props.onFocus(e)
         },
-        onBlur: (e: React.FocusEvent<HTMLElement>) => {
+        onBlur: (e: React.FocusEvent<HTMLInputElement>) => {
             setFocus(false)
             props.onBlur && props.onBlur(e)
         }
     }
+    
     return (
         <div {...containerProps}>
             {props.children(checked, focus)}
