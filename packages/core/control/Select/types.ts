@@ -40,20 +40,20 @@ declare namespace SelectTypes {
 
     type State = {
         selectedOptions: Option[] 
-        open: boolean,
+        open: boolean
         searchValue: string
         empty: boolean
         cursor: number
     }
 
     interface OptionsProps extends SearchProps {
-        selected: SelectTypes.Option[],
-        onClose: (option) => void,
+        selected: SelectTypes.Option[]
+        onClose: (option) => void
         searchable?: boolean
     }
 
     interface SearchProps {
-        searchValue: string,
+        searchValue: string
         onSearch: (searchValue: string) => void
         size?: number
         styles: Shared.FlowStyles<Overrides>
@@ -69,6 +69,8 @@ declare namespace SelectTypes {
         optionItem: void
         optionItemText: void
         dropMenu: {
+            open: boolean
+            shape: Props['shape']
             decoration: Props['decoration']
             focus: boolean
         }

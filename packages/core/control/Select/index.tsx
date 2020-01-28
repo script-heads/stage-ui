@@ -23,7 +23,6 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
         searchable,
         disabled,
         label,
-        tabIndex = 0
     } = props
 
     let approvedDefaultValues = defaultValues 
@@ -247,7 +246,12 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                 justify="start"
                 target={targetRef}
                 children={(
-                    <div css={css.dropMenu({decoration, focus})}>
+                    <div css={css.dropMenu({
+                        decoration, 
+                        shape,
+                        focus, 
+                        open: true
+                    })}>
                         {availableOptions
                             .map((option, i) => (
                                 <div

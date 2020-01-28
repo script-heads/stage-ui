@@ -7,9 +7,7 @@ import { StyleObject } from '@flow-ui/whale/types'
 const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
     const { 
         size = 'medium', 
-        shape = 'rounded', 
-        decoration = 'outline',
-        multiselect 
+        multiselect
     } = props
     
     let color = callProp(props.color, theme.color)
@@ -19,15 +17,6 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
         'medium': '.25rem',
         'large': '.25rem',
         'xlarge': '.5rem'
-    })
-
-    const shapeStyles = variant(shape, {
-        'rounded': {
-            borderRadius: theme.radius.narrow
-        },
-        'round': {
-            borderRadius: '4rem'
-        }
     })
 
     return {
@@ -40,7 +29,9 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
                     variant({
                         open: [{
                             borderBottomLeftRadius: 0,
-                            borderBottomRightRadius: 0
+                            borderBottomRightRadius: 0,
+                            borderTopRightRadius: theme.radius.narrow,
+                            borderTopLeftRadius: theme.radius.narrow,
                         }]
                     })
                 ]
@@ -94,15 +85,7 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
                 background: theme.color.primary.alpha(.1).css(),
                 color: theme.color.primary.css(),
                 overflow: 'hidden',
-            },
-            variant(shape, {
-                'rounded': {
-                    borderRadius: '2px',
-                },
-                'round': {
-                    borderRadius: '100%',
-                }
-            })
+            }
         ],
 
         optionItemText: [
@@ -147,11 +130,28 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
                 borderColor: theme.color.lightest.css(),
                 borderTop: 'none',
                 background: backgroundColor || theme.color.surface.css(),
-                ...shapeStyles,
                 borderTopLeftRadius: 0,
                 borderTopRightRadius: 0,
             },
             variant({
+                shape: {
+                    rounded: [{
+                        borderRadius: theme.radius.narrow
+                    }],
+                    round: [
+                        {
+                            borderRadius: '4rem'
+                        },
+                        variant({
+                            open: [{
+                                borderBottomRightRadius: theme.radius.narrow,
+                                borderBottomLeftRadius: theme.radius.narrow,
+                                borderTopLeftRadius: 0,
+                                borderTopRightRadius: 0
+                            }]
+                        })
+                    ]
+                },
                 decoration: {
                     'filled': [{
                         borderColor: 'transparent',
@@ -167,7 +167,10 @@ const styles: StyleObject<Types.Overrides, Types.Props> = (props, theme, stylePr
                 },
                 focus: [{
                     borderColor: theme.color.primary.css(),
-                }]
+                }],
+                open: [
+                    
+                ]
             }),
             {
                 borderColor: color
