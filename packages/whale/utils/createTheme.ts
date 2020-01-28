@@ -10,7 +10,7 @@ const createTheme: CreateTheme = (theme) => {
     const main = convertColors(theme.main)
     const assets = theme.assets(main)
     const overrides = theme.overrides
-    const replace: Types.Replace = (themeReplace) => {
+    const replace = (themeReplace: Types.ReplaceTheme): Types.Theme => {
         
         const newTheme = mergeObjects(
             theme,
@@ -20,7 +20,7 @@ const createTheme: CreateTheme = (theme) => {
         newTheme.assets = (theme) => mergeObjects(
             assets,
             themeReplace.assets && themeReplace.assets(theme),
-        ) as Types.Assets
+        ) as Types.ThemeAssets
 
         newTheme.main.name = newTheme.main.name || main.name + '-' + createID()
 
@@ -30,7 +30,7 @@ const createTheme: CreateTheme = (theme) => {
     return { ...main, assets, overrides, replace }
 }
 
-function convertColors(theme: Types.SourceTheme['main']): Types.Theme{
+function convertColors(theme: Types.SourceTheme['main']): Types.Theme {
     return mergeObjects(
         {},
         theme,

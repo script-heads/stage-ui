@@ -1,15 +1,23 @@
-import Shared from '@flow-ui/whale/types'
+import WhaleTypes from '@flow-ui/whale/types'
 import colorProp from './colorProp'
 import CSS from 'csstype'
 
-interface Props extends Shared.SelfProps, Shared.FlowProps {
-    [key: string]: any
-}
+interface Props extends 
+    WhaleTypes.ColorProps, 
+    WhaleTypes.BorderProps,
+    WhaleTypes.PaddingProps,
+    WhaleTypes.MarginProps,
+    WhaleTypes.LayoutProps,
+    WhaleTypes.FlexProps,
+    WhaleTypes.GridProps {
+        [key: string]: unknown
+    }
 
 type Color = {
     background: CSS.Properties['background']
     color: CSS.Properties['color']
 }
+
 type Border = {
     borderWidth: CSS.Properties['borderWidth']
     borderStyle: CSS.Properties['borderStyle']
@@ -23,6 +31,7 @@ type Padding = {
     paddingRight: CSS.Properties['paddingRight']
     paddingBottom: CSS.Properties['paddingBottom']
 }
+
 type Margin = {
     margin: CSS.Properties['margin']
     marginTop: CSS.Properties['marginTop']
@@ -30,6 +39,7 @@ type Margin = {
     marginRight: CSS.Properties['marginRight']
     marginBottom: CSS.Properties['marginBottom']
 }
+
 type Layout = {
     display: CSS.Properties['display']
     visibility: CSS.Properties['visibility']
@@ -37,6 +47,7 @@ type Layout = {
     height: CSS.Properties['height']
     transition: CSS.Properties['transition']
 }
+
 type Flex = {
     flex: CSS.Properties['flex']
     flexBasis: CSS.Properties['flexBasis']
@@ -45,6 +56,7 @@ type Flex = {
     alignSelf: CSS.Properties['alignSelf']
     justifySelf: CSS.Properties['justifySelf']
 }
+
 type Grid = {
     gridColumnStart: CSS.Properties['gridColumnStart']
     gridColumnEnd: CSS.Properties['gridColumnEnd']
@@ -70,7 +82,7 @@ export interface InjectedStyleProps {
 }
 
 const useStyleProps = (props: Props, theme): InjectedStyleProps => {
-
+    
     const color = {
         background: colorProp(props.backgroundColor, theme.color),
         color: colorProp(props.textColor, theme.color)

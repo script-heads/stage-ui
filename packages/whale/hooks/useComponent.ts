@@ -1,34 +1,38 @@
-import * as Emotion from '@emotion/core'
-import Types, { StyleObject } from '../types'
+import { css } from '@emotion/core'
+import WhaleTypes, { EmotionStyles } from '../types'
 import attributeProps from '../utils/attributeProps'
 import styleProps from '../utils/styleProps'
 import useTheme from './useTheme'
 
-const useComponent = <S>(componentNameForOverride: string, options: {
-        props, 
-        styles: Types.ComponentStyles<S> | StyleObject<S>, 
-        mouseFocus?: boolean,
-        disableDecoration?: boolean
-    }): { css: Types.FlowStyles<S>, attributes, focus } => {
+interface Options<S> {
+    props, 
+    styles: WhaleTypes.Styles<S> | WhaleTypes.CreateStyles<S>, 
+    mouseFocus?: boolean,
+    focusDecoration?: boolean
+}
+
+const useComponent = <S>(overrideName: string, options: Options<S>) => {
     
-    let { props, styles: componentStyles, mouseFocus, disableDecoration } = options
+    const { props, mouseFocus, focusDecoration } = options
+    const cs: WhaleTypes.ComponentStyles<S> = {} as WhaleTypes.ComponentStyles<S>
+
     const theme = useTheme()
+    const { attributes, events, focus } = attributeProps(props, theme, mouseFocus, focusDecoration)
+    
     const propStyles = styleProps(props, theme)
-    const { attributes, focus } = attributeProps(props, theme, mouseFocus, disableDecoration)
-    const css: Types.FlowStyles<S> = {} as Types.FlowStyles<S>
 
-    if (typeof componentStyles === 'function') {
-        componentStyles = componentStyles(props,theme, propStyles)
-    }
+    const styles = typeof options.styles === 'function'
+        ? options.styles(props, theme, propStyles)
+        : options.styles
 
-    const themeOverrides = componentNameForOverride && theme.overrides[componentNameForOverride]
+    const themeOverrides = overrideName && theme.overrides[overrideName]
 
-    Object.keys(componentStyles).map(styleName => {
-        if (typeof componentStyles[styleName] === 'function') {
-            css[styleName] = (state) => {
+    Object.keys(styles).map(styleName => {
+        if (typeof styles[styleName] === 'function') {
+            cs[styleName] = (state) => {
 
                 const variant = (varaints) => {
-                    let variantStyles: Types.EmotionStyles = []
+                    let variantStyles: EmotionStyles = []
                     
                     for (const variantName of Object.keys(varaints)) {
                         const variantValue = state[variantName]
@@ -52,34 +56,34 @@ const useComponent = <S>(componentNameForOverride: string, options: {
                     return variantStyles
                 }
                 
-                return Emotion.css(
-                    componentStyles[styleName](variant), 
+                return css(
+                    styles[styleName](variant), 
                     
                     themeOverrides &&
                     themeOverrides[styleName] && 
                     themeOverrides[styleName](variant),
                     
-                    props.overrides && 
-                    props.overrides[styleName] && 
-                    props.overrides[styleName](variant)
+                    props.styles && 
+                    props.styles[styleName] && 
+                    props.styles[styleName](variant)
                 )
             }
         } else {
-            css[styleName] = Emotion.css(
-                componentStyles[styleName], 
+            cs[styleName] = css(
+                styles[styleName], 
                 
                 themeOverrides &&
                 themeOverrides[styleName] && 
                 themeOverrides[styleName],
                 
-                props.overrides && 
-                props.overrides[styleName] && 
-                props.overrides[styleName]
+                props.styles && 
+                props.styles[styleName] && 
+                props.styles[styleName]
             )
         }     
     })
     
-    return { css, attributes, focus }
+    return { cs, attributes, events, focus }
 }
 
 export default useComponent

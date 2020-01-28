@@ -3,47 +3,68 @@ import CSS from 'csstype'
 import { Interpolation, SerializedStyles, ObjectInterpolation } from '@emotion/core'
 import { InjectedStyleProps } from './utils/styleProps'
 
-declare module 'csstype' {
-    interface Properties {
-        display?: 'block' | 'inline' | 'inline-block' | 'inline-table' | 'list-item' | 'none' | 'run-in' | 'table' | 'table-caption' | 'table-cell' | 'table-column-group' | 'table-column' | 'table-footer-group' | 'table-header-group' | 'table-row' | 'table-row-group' | 'flex' | 'grid'
-        overflow?: 'auto' | 'hidden' | 'scroll' | 'visible' | 'inherit',
-        alignSelf?: 'baseline' | 'center' | 'end' | 'flex-end' | 'flex-start' | 'inherid' | 'initial' | 'left' | 'normal' | 'right' | 'safe' | 'safe-end' | 'safe-start' | 'start' | 'stretch' | 'unsafe' | 'unset'
-        justifySelf?: 'baseline' | 'center' | 'end' | 'flex-end' | 'flex-start' | 'inherid' | 'initial' | 'left' | 'normal' | 'right' | 'safe' | 'safe-end' | 'safe-start' | 'start' | 'stretch' | 'unsafe' | 'unset'
-    }
-}
+declare namespace WhaleTypes {
 
-declare namespace Shared {
+    type Size = 'xs' | 's' | 'm' | 'l' | 'xl'
 
-    type SourceColor = [number, number, number, number?]
-
-    interface Theme extends Variables<chroma.Color> {
-        assets: Assets
-        overrides: Overrides
-        replace: Replace
+    interface Theme<Overrides = {}> extends ThemeVariables {
+        assets: ThemeAssets
+        overrides: DeepPartial<{[Component in keyof Overrides]: ComponentStyles<Component>}>
+        replace: (theme: ReplaceTheme) => Theme
     }
 
-    interface SourceTheme {
-        main: Variables<SourceColor>
-        assets: (theme: Theme) => Assets
-        overrides: Overrides
+    interface SourceTheme<Overrides = {}> {
+        main: ThemeVariables<[number, number, number, number?]>
+        assets: (theme: Theme<Overrides>) => ThemeAssets
+        overrides: DeepPartial<{[Component in keyof Overrides]: ComponentStyles<Component>}>
     }
 
-    type Replace = (theme: ReplaceTheme) => Theme
-    interface ReplaceTheme {
-        main: DeepPartial<Variables<SourceColor>>
-        assets?: (theme: Theme) => DeepPartial<Assets>
-        overrides?: Overrides
+    interface ReplaceTheme<Overrides = {}> {
+        main: DeepPartial<ThemeVariables<[number, number, number, number?]>>
+        assets?: (theme: Theme<Overrides>) => DeepPartial<ThemeAssets>
+        overrides?: DeepPartial<{[Component in keyof Overrides]: ComponentStyles<Component>}>
     }
-    interface Variables<T = SourceColor> {
+    
+    interface ThemeVariables<Color = chroma.Color> {
         name: string
-        color: Colors<T>
-        radius: Radius
-        distance: Distance
-        typography: Typography
+        color: {
+            background: Color
+            backgroundVariant: Color
+            surface: Color
+            surfaceVariant: Color
+            primary: Color
+            secondary: Color
+    
+            onBackground: Color
+            onSurface: Color
+            onPrimary: Color
+            onSecondary: Color
+    
+            lightest: Color
+            light: Color
+            hard: Color
+            hardest: Color
+    
+            error: Color
+            warning: Color
+            successful: Color
+        }
+        radius: {
+            default: string
+            narrow: string
+            wide: string
+        }
+        spacing: Record<Size,string>
+        typography: {
+            header: Record<Size,EmotionStyles>
+            text: Record<Size,EmotionStyles>
+            display: Record<Size,EmotionStyles>
+            paragraph: Record<Size,EmotionStyles>
+        }
     }
 
-    interface Assets {
-        global?: ObjectInterpolation<undefined>
+    interface ThemeAssets {
+        global?: EmotionStyles
         border: {
             width: string
             style: string
@@ -54,163 +75,37 @@ declare namespace Shared {
             short: string
             long: string
         }
-        focus: ObjectInterpolation<undefined>
-        fieldHeight: {
-            xsmall: string
-            small: string
-            medium: string
-            large: string
-            xlarge: string
-        }
+        focus: EmotionStyles
+        fieldHeight: Record<Size,string>
     }
-
-    interface Overrides {
-
-    }
-
-    type Colors<T> = {
-        background: T
-        backgroundVariant: T
-        surface: T
-        surfaceVariant: T
-        primary: T
-        secondary: T
-
-        onBackground: T
-        onSurface: T
-        onPrimary: T
-        onSecondary: T
-
-        lightest: T
-        light: T
-        hard: T
-        hardest: T
-
-        accent: {
-            red: T
-            green: T
-            blue: T
-            orange: T
-        }
-    }
-
-    type Radius = {
-        default: string
-        narrow: string
-        wide: string
-    }
-
-    interface Distance {
-        xsmall: string,
-        small: string,
-        medium: string,
-        large: string,
-        xlarge: string,
-    }
-
-    interface Typography {
-        header: {
-            1: ObjectInterpolation<undefined>
-            2: ObjectInterpolation<undefined>
-            3: ObjectInterpolation<undefined>
-            4: ObjectInterpolation<undefined>
-        },
-        text: {
-            1: ObjectInterpolation<undefined>
-            2: ObjectInterpolation<undefined>
-            3: ObjectInterpolation<undefined>
-            4: ObjectInterpolation<undefined>
-        },
-        display: {
-            1: ObjectInterpolation<undefined>
-            2: ObjectInterpolation<undefined>
-            3: ObjectInterpolation<undefined>
-            4: ObjectInterpolation<undefined>
-        },
-        paragraph: {
-            1: ObjectInterpolation<undefined>
-            2: ObjectInterpolation<undefined>
-            3: ObjectInterpolation<undefined>
-            4: ObjectInterpolation<undefined>
-        }
-    }
-
-    type DeepPartial<T> = {
-        [P in keyof T]?: T[P] extends Array<infer U>
-        ? Array<DeepPartial<U>>
-        : T[P] extends ReadonlyArray<infer U>
-        ? ReadonlyArray<DeepPartial<U>>
-        : DeepPartial<T[P]>
-    }
-
-    type EventProp<T> = (event: T) => void
-    type FunctionalProp<T, R> = ((lib: T) => R) | R
-    type ColorProp = FunctionalProp<Colors<chroma.Color>, CSS.Properties['color']>
-
-    type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
-
-    type EmotionStyles = Array<Interpolation>
-
-    type Variants<T> = Partial<{
-        [K in keyof T]: Partial<
-            Record<Extract<T[K],string>,EmotionStyles>
-        >
-    }>
-    
-    type Variant<V> = (variants: Variants<V>) => EmotionStyles
-    
-    type FlowStyle<V> = V extends Object 
-        ? (state: V) => SerializedStyles 
-        : SerializedStyles
-    
-    type ComponentStyle<V> =  V extends {} 
-        ? ((variant: Variant<V>) => EmotionStyles)
-        : EmotionStyles
-    
-    type FlowStyles<S> = {[O in keyof S]: FlowStyle<S[O]>}
-    
-    type ComponentStyles<S> = {[O in keyof S]: ComponentStyle<S[O]>}      
-
-    type OverridesStyle<S> = Partial<{[O in keyof S]: ComponentStyle<S[O]>}>
 
     /**
-     * Styles inside the component. Paddings, layout, border and color props
+     * All typical component props
      * @name All
-     * @weight 400
      */
-    interface AllProps<S={}> extends
+    interface AllProps<Container, Styles> extends
         AttributeProps,
-        EventProps,
-        SelfProps,
-        FlowProps { 
-        overrides?: ComponentStyles<S>
-    }
-
-    /**
-     * Styles inside the component. Paddings, layout, border and color props
-     * @name Self
-     * @weight 400
-     */
-    interface SelfProps extends 
+        EventProps<Container>,
+        CoreProps<Styles>, 
         ColorProps,
         BorderProps,
         PaddingProps,
-        LayoutProps {}
-
-    /**
-     * Style outsize the component. Margins, flex, grid
-     * @name Flow
-     * @weight 300
-     */
-    interface FlowProps extends 
+        LayoutProps,
         MarginProps,
         FlexProps,
         GridProps {}
 
     /**
-     * Default attributes
-     * @name Attribute
-     * @weight 200
+     * Component core props
+     * @name Core
+     */
+    interface CoreProps<S={}> {
+        styles?: Partial<ComponentStyles<S>>
+    }
+
+    /**
+     * Component attribute props
+     * @name Attributes
      */
     interface AttributeProps extends React.AriaAttributes {
         className?: string
@@ -218,105 +113,209 @@ declare namespace Shared {
         style?: React.CSSProperties
         tabIndex?: number
         role?: string
-        attrs?: Object
         draggable?: boolean
+        attrs?: Object
     }
 
     /**
-     * Default events
-     * @name Event
-     * @weight 500
+     * DOM events
+     * @name Events
      */
-    interface EventProps {
-        /**
-         * An element receives a click event when a pointing 
-         * device button (such as a mouse's primary mouse button) 
-         * is both pressed and released while the pointer is 
-         * located inside the element.
-         */
-        onClick?: EventProp<React.MouseEvent<HTMLElement>>
-        /**
-         * Event fires when an element has received focus. 
-         * The main difference between this event and focusin 
-         * is that focusin bubbles while focus does not.
-         */
-        onFocus?: EventProp<React.FocusEvent<HTMLElement>>
-        /**
-         * Event fires when an element has lost focus. 
-         * The main difference between this event and 
-         * focusout is that focusout bubbles while blur 
-         * does not.
-         */
-        onBlur?: EventProp<React.FocusEvent<HTMLElement>>
-        /**
-         * Event is fired at an Element when a pointing 
-         * device button is pressed while the pointer is 
-         * inside the element.
-         */
-        onMouseDown?: EventProp<React.MouseEvent<HTMLElement>>
-        /**
-         * Event is fired at an Element when a button on 
-         * a pointing device (such as a mouse or trackpad) 
-         * is released while the pointer is located inside it. 
-         * mouseup events are the counterpoint to onMouseDown events.
-         */
-        onMouseUp?: EventProp<React.MouseEvent<HTMLElement>>
-        /**
-         * Event is fired at an Element when a pointing 
-         * device (usually a mouse) is initially moved so 
-         * that its hotspot is within the element at which 
-         * the event was fired.
-         */
-        onMouseEnter?: EventProp<React.MouseEvent<HTMLElement>>
-        /**
-         * Event is fired at an Element when the cursor of a 
-         * pointing device (usually a mouse) is moved out of it.
-         */
-        onMouseLeave?: EventProp<React.MouseEvent<HTMLElement>>
-        /**
-         * Event is fired on context menu.
-         */
-        onContextMenu?: EventProp<React.MouseEvent<HTMLElement>>
-        /**
-         * Event is fired when one or more touch points are 
-         * placed on the touch surface.
-         */
-        onTouchStart?: EventProp<React.TouchEvent<HTMLElement>>
-        /**
-         * Event fires when one or more touch points are 
-         * removed from the touch surface.
-         */
-        onTouchEnd?: EventProp<React.TouchEvent<HTMLElement>>
-        /**
-         * Event is fired when a key that produces a character 
-         * value is pressed down. Examples of keys that produce a 
-         * character value are alphabetic, numeric, and punctuation keys.
-         * @deprecated This feature is no longer recommended.
-         */
-        onKeyPress?: EventProp<React.KeyboardEvent<HTMLElement>>
-        /**
-         * Event is fired when a key is pressed.
-         */
-        onKeyDown?: EventProp<React.KeyboardEvent<HTMLElement>>
-        /**
-         * Event is fired when a key is released.
-         */
-        onKeyUp?: EventProp<React.KeyboardEvent<HTMLElement>>
+    interface EventProps<T> {
+        // Clipboard Events
+        onCopy?: React.ClipboardEventHandler<T>
+        onCopyCapture?: React.ClipboardEventHandler<T>
+        onCut?: React.ClipboardEventHandler<T>
+        onCutCapture?: React.ClipboardEventHandler<T>
+        onPaste?: React.ClipboardEventHandler<T>
+        onPasteCapture?: React.ClipboardEventHandler<T>
 
-        onDrag?: EventProp<React.DragEvent<HTMLElement>>
-        onDragEnd?: EventProp<React.DragEvent<HTMLElement>>
-        onDragEnter?: EventProp<React.DragEvent<HTMLElement>>
-        onDragExit?: EventProp<React.DragEvent<HTMLElement>>
-        onDragLeave?: EventProp<React.DragEvent<HTMLElement>>
-        onDragOver?: EventProp<React.DragEvent<HTMLElement>>
-        onDragStart?: EventProp<React.DragEvent<HTMLElement>>
-        onDrop?: EventProp<React.DragEvent<HTMLElement>>
+        // Composition Events
+        onCompositionEnd?: React.CompositionEventHandler<T>
+        onCompositionEndCapture?: React.CompositionEventHandler<T>
+        onCompositionStart?: React.CompositionEventHandler<T>
+        onCompositionStartCapture?: React.CompositionEventHandler<T>
+        onCompositionUpdate?: React.CompositionEventHandler<T>
+        onCompositionUpdateCapture?: React.CompositionEventHandler<T>
+
+        // Focus Events
+        onFocus?: React.FocusEventHandler<T>
+        onFocusCapture?: React.FocusEventHandler<T>
+        onBlur?: React.FocusEventHandler<T>
+        onBlurCapture?: React.FocusEventHandler<T>
+
+        // Form Events
+        onChange?: React.FormEventHandler<T>
+        onChangeCapture?: React.FormEventHandler<T>
+        onBeforeInput?: React.FormEventHandler<T>
+        onBeforeInputCapture?: React.FormEventHandler<T>
+        onInput?: React.FormEventHandler<T>
+        onInputCapture?: React.FormEventHandler<T>
+        onReset?: React.FormEventHandler<T>
+        onResetCapture?: React.FormEventHandler<T>
+        onSubmit?: React.FormEventHandler<T>
+        onSubmitCapture?: React.FormEventHandler<T>
+        onInvalid?: React.FormEventHandler<T>
+        onInvalidCapture?: React.FormEventHandler<T>
+
+        // Image Events
+        onLoad?: React.ReactEventHandler<T>
+        onLoadCapture?: React.ReactEventHandler<T>
+        onError?: React.ReactEventHandler<T> // also a Media Event
+        onErrorCapture?: React.ReactEventHandler<T> // also a Media Event
+
+        // Keyboard Events
+        onKeyDown?: React.KeyboardEventHandler<T>
+        onKeyDownCapture?: React.KeyboardEventHandler<T>
+        onKeyPress?: React.KeyboardEventHandler<T>
+        onKeyPressCapture?: React.KeyboardEventHandler<T>
+        onKeyUp?: React.KeyboardEventHandler<T>
+        onKeyUpCapture?: React.KeyboardEventHandler<T>
+
+        // Media Events
+        onAbort?: React.ReactEventHandler<T>
+        onAbortCapture?: React.ReactEventHandler<T>
+        onCanPlay?: React.ReactEventHandler<T>
+        onCanPlayCapture?: React.ReactEventHandler<T>
+        onCanPlayThrough?: React.ReactEventHandler<T>
+        onCanPlayThroughCapture?: React.ReactEventHandler<T>
+        onDurationChange?: React.ReactEventHandler<T>
+        onDurationChangeCapture?: React.ReactEventHandler<T>
+        onEmptied?: React.ReactEventHandler<T>
+        onEmptiedCapture?: React.ReactEventHandler<T>
+        onEncrypted?: React.ReactEventHandler<T>
+        onEncryptedCapture?: React.ReactEventHandler<T>
+        onEnded?: React.ReactEventHandler<T>
+        onEndedCapture?: React.ReactEventHandler<T>
+        onLoadedData?: React.ReactEventHandler<T>
+        onLoadedDataCapture?: React.ReactEventHandler<T>
+        onLoadedMetadata?: React.ReactEventHandler<T>
+        onLoadedMetadataCapture?: React.ReactEventHandler<T>
+        onLoadStart?: React.ReactEventHandler<T>
+        onLoadStartCapture?: React.ReactEventHandler<T>
+        onPause?: React.ReactEventHandler<T>
+        onPauseCapture?: React.ReactEventHandler<T>
+        onPlay?: React.ReactEventHandler<T>
+        onPlayCapture?: React.ReactEventHandler<T>
+        onPlaying?: React.ReactEventHandler<T>
+        onPlayingCapture?: React.ReactEventHandler<T>
+        onProgress?: React.ReactEventHandler<T>
+        onProgressCapture?: React.ReactEventHandler<T>
+        onRateChange?: React.ReactEventHandler<T>
+        onRateChangeCapture?: React.ReactEventHandler<T>
+        onSeeked?: React.ReactEventHandler<T>
+        onSeekedCapture?: React.ReactEventHandler<T>
+        onSeeking?: React.ReactEventHandler<T>
+        onSeekingCapture?: React.ReactEventHandler<T>
+        onStalled?: React.ReactEventHandler<T>
+        onStalledCapture?: React.ReactEventHandler<T>
+        onSuspend?: React.ReactEventHandler<T>
+        onSuspendCapture?: React.ReactEventHandler<T>
+        onTimeUpdate?: React.ReactEventHandler<T>
+        onTimeUpdateCapture?: React.ReactEventHandler<T>
+        onVolumeChange?: React.ReactEventHandler<T>
+        onVolumeChangeCapture?: React.ReactEventHandler<T>
+        onWaiting?: React.ReactEventHandler<T>
+        onWaitingCapture?: React.ReactEventHandler<T>
+
+        // MouseEvents
+        onAuxClick?: React.MouseEventHandler<T>
+        onAuxClickCapture?: React.MouseEventHandler<T>
+        onClick?: React.MouseEventHandler<T>
+        onClickCapture?: React.MouseEventHandler<T>
+        onContextMenu?: React.MouseEventHandler<T>
+        onContextMenuCapture?: React.MouseEventHandler<T>
+        onDoubleClick?: React.MouseEventHandler<T>
+        onDoubleClickCapture?: React.MouseEventHandler<T>
+        onDrag?: React.DragEventHandler<T>
+        onDragCapture?: React.DragEventHandler<T>
+        onDragEnd?: React.DragEventHandler<T>
+        onDragEndCapture?: React.DragEventHandler<T>
+        onDragEnter?: React.DragEventHandler<T>
+        onDragEnterCapture?: React.DragEventHandler<T>
+        onDragExit?: React.DragEventHandler<T>
+        onDragExitCapture?: React.DragEventHandler<T>
+        onDragLeave?: React.DragEventHandler<T>
+        onDragLeaveCapture?: React.DragEventHandler<T>
+        onDragOver?: React.DragEventHandler<T>
+        onDragOverCapture?: React.DragEventHandler<T>
+        onDragStart?: React.DragEventHandler<T>
+        onDragStartCapture?: React.DragEventHandler<T>
+        onDrop?: React.DragEventHandler<T>
+        onDropCapture?: React.DragEventHandler<T>
+        onMouseDown?: React.MouseEventHandler<T>
+        onMouseDownCapture?: React.MouseEventHandler<T>
+        onMouseEnter?: React.MouseEventHandler<T>
+        onMouseLeave?: React.MouseEventHandler<T>
+        onMouseMove?: React.MouseEventHandler<T>
+        onMouseMoveCapture?: React.MouseEventHandler<T>
+        onMouseOut?: React.MouseEventHandler<T>
+        onMouseOutCapture?: React.MouseEventHandler<T>
+        onMouseOver?: React.MouseEventHandler<T>
+        onMouseOverCapture?: React.MouseEventHandler<T>
+        onMouseUp?: React.MouseEventHandler<T>
+        onMouseUpCapture?: React.MouseEventHandler<T>
+
+        // Selection Events
+        onSelect?: React.ReactEventHandler<T>
+        onSelectCapture?: React.ReactEventHandler<T>
+
+        // Touch Events
+        onTouchCancel?: React.TouchEventHandler<T>
+        onTouchCancelCapture?: React.TouchEventHandler<T>
+        onTouchEnd?: React.TouchEventHandler<T>
+        onTouchEndCapture?: React.TouchEventHandler<T>
+        onTouchMove?: React.TouchEventHandler<T>
+        onTouchMoveCapture?: React.TouchEventHandler<T>
+        onTouchStart?: React.TouchEventHandler<T>
+        onTouchStartCapture?: React.TouchEventHandler<T>
+
+        // Pointer Events
+        onPointerDown?: React.PointerEventHandler<T>
+        onPointerDownCapture?: React.PointerEventHandler<T>
+        onPointerMove?: React.PointerEventHandler<T>
+        onPointerMoveCapture?: React.PointerEventHandler<T>
+        onPointerUp?: React.PointerEventHandler<T>
+        onPointerUpCapture?: React.PointerEventHandler<T>
+        onPointerCancel?: React.PointerEventHandler<T>
+        onPointerCancelCapture?: React.PointerEventHandler<T>
+        onPointerEnter?: React.PointerEventHandler<T>
+        onPointerEnterCapture?: React.PointerEventHandler<T>
+        onPointerLeave?: React.PointerEventHandler<T>
+        onPointerLeaveCapture?: React.PointerEventHandler<T>
+        onPointerOver?: React.PointerEventHandler<T>
+        onPointerOverCapture?: React.PointerEventHandler<T>
+        onPointerOut?: React.PointerEventHandler<T>
+        onPointerOutCapture?: React.PointerEventHandler<T>
+        onGotPointerCapture?: React.PointerEventHandler<T>
+        onGotPointerCaptureCapture?: React.PointerEventHandler<T>
+        onLostPointerCapture?: React.PointerEventHandler<T>
+        onLostPointerCaptureCapture?: React.PointerEventHandler<T>
+
+        // UI Events
+        onScroll?: React.UIEventHandler<T>
+        onScrollCapture?: React.UIEventHandler<T>
+
+        // Wheel Events
+        onWheel?: React.WheelEventHandler<T>
+        onWheelCapture?: React.WheelEventHandler<T>
+
+        // Animation Events
+        onAnimationStart?: React.AnimationEventHandler<T>
+        onAnimationStartCapture?: React.AnimationEventHandler<T>
+        onAnimationEnd?: React.AnimationEventHandler<T>
+        onAnimationEndCapture?: React.AnimationEventHandler<T>
+        onAnimationIteration?: React.AnimationEventHandler<T>
+        onAnimationIterationCapture?: React.AnimationEventHandler<T>
+
+        // Transition Events
+        onTransitionEnd?: React.TransitionEventHandler<T>
+        onTransitionEndCapture?: React.TransitionEventHandler<T>
     }
 
     /**
-     * Color props
-     * @name Color
-     * @weight 400
+     * Component color styles props
+     * @name Colors
      */
     interface ColorProps {
         textColor?: ColorProp
@@ -324,9 +323,8 @@ declare namespace Shared {
     }
 
     /**
-     * Border props
+     * Component border styles props
      * @name Border
-     * @weight 400
      */
     interface BorderProps {
         borderWidth?: CSS.Properties['borderWidth']
@@ -336,9 +334,8 @@ declare namespace Shared {
     }
 
     /**
-     * Layout props
+     * Component layout styles props
      * @name Layout
-     * @weight 400
      */
     interface LayoutProps {
         /**
@@ -367,9 +364,8 @@ declare namespace Shared {
     }
 
     /**
-     * Padding props
+     * Component padding styles props
      * @name Padding
-     * @weight 400
      */
     interface PaddingProps {
         /**
@@ -403,9 +399,8 @@ declare namespace Shared {
     }
 
     /**
-     * Grid children props
+     * Component margin styles props
      * @name Margin
-     * @weight 400
      */
     interface MarginProps {
         /**
@@ -444,9 +439,8 @@ declare namespace Shared {
     }
 
     /**
-     * Flexbox children props
-     * @name Flex
-     * @weight 400
+     * Component flexbox children styles props
+     * @name Flexbox
      */
     interface FlexProps {
         /**
@@ -488,9 +482,8 @@ declare namespace Shared {
     }
 
     /**
-     * Grid children props
+     * Component grid children styles props
      * @name Grid
-     * @weight 400
      */
     interface GridProps {
         /**
@@ -555,10 +548,51 @@ declare namespace Shared {
          */
         placeSelf?: CSS.Properties['placeSelf']
     }
+
+    type ColorProp = ((colors: Theme['color']) => CSS.Properties['color'])
+
+    type Styles<Component> = {
+        [Style in keyof Component]: Style extends {} 
+            ? ((variant: Variant<Style>) => EmotionStyles)
+            : EmotionStyles
+    }
+
+    type ComponentStyles<Component> = {
+        [Style in keyof Component]: Style extends Object 
+            ? (state: Style) => SerializedStyles 
+            : SerializedStyles
+    }
+    
+    type Variant<Style> = (variants: Partial<{
+        [K in keyof Style]: Partial<
+            Record<Extract<Style[K],string>,EmotionStyles>
+        >
+    }>) => EmotionStyles
+
+    type CreateStyles<Component> = (
+        props: Object, 
+        theme: WhaleTypes.Theme,
+        propsStyles: InjectedStyleProps 
+    ) => WhaleTypes.Styles<Component>
 }
 
-export type StyleObject<S, P = {}> = (
-    (props: P, theme: Shared.Theme, propsStyles: InjectedStyleProps) => {[O in keyof S]: Shared.ComponentStyle<S[O]>}
-)  
+declare module 'csstype' {
+    interface Properties {
+        display?: 'block' | 'inline' | 'inline-block' | 'inline-table' | 'list-item' | 'none' | 'run-in' | 'table' | 'table-caption' | 'table-cell' | 'table-column-group' | 'table-column' | 'table-footer-group' | 'table-header-group' | 'table-row' | 'table-row-group' | 'flex' | 'grid'
+        overflow?: 'auto' | 'hidden' | 'scroll' | 'visible' | 'inherit',
+        alignSelf?: 'baseline' | 'center' | 'end' | 'flex-end' | 'flex-start' | 'inherid' | 'initial' | 'left' | 'normal' | 'right' | 'safe' | 'safe-end' | 'safe-start' | 'start' | 'stretch' | 'unsafe' | 'unset'
+        justifySelf?: 'baseline' | 'center' | 'end' | 'flex-end' | 'flex-start' | 'inherid' | 'initial' | 'left' | 'normal' | 'right' | 'safe' | 'safe-end' | 'safe-start' | 'start' | 'stretch' | 'unsafe' | 'unset'
+    }
+}
 
-export default Shared
+export type DeepPartial<T> = {
+    [P in keyof T]?: T[P] extends Array<infer U>
+        ? Array<DeepPartial<U>>
+        : T[P] extends ReadonlyArray<infer U>
+            ? ReadonlyArray<DeepPartial<U>>
+            : DeepPartial<T[P]>
+}
+
+export type EmotionStyles = Array<Interpolation> | ObjectInterpolation<undefined>
+
+export default WhaleTypes
