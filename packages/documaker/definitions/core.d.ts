@@ -1081,6 +1081,10 @@ declare module '@flow-ui/core/data/Table/types' {
 	        key: TableCellKey;
 	        sort: TableSortType;
 	    };
+	    type TablePaginationOptions = {
+	        pageSize: number;
+	        alwaysVisible?: boolean;
+	    };
 	    interface TableCellContext {
 	        /**
 	         * Current cell key
@@ -1167,6 +1171,7 @@ declare module '@flow-ui/core/data/Table/types' {
 	    interface Props extends Shared.AllProps {
 	        data: Object[];
 	        columns: TableColumn[];
+	        pagination?: TablePaginationOptions;
 	    }
 	    interface HeadCellProps {
 	        column: TableColumn;
@@ -1174,18 +1179,25 @@ declare module '@flow-ui/core/data/Table/types' {
 	        setSort: React.Dispatch<React.SetStateAction<TableSortObject>>;
 	    }
 	    interface CellProps {
-	        dc: DataCollection;
+	        dcItem: DataCollection;
 	        column: TableColumn;
 	        rowIndex: number;
 	        styles: Shared.FlowStyles<Overrides>;
 	        getCellContext: TableRef['getCellContext'];
 	    }
 	    interface RowProps {
-	        dc: DataCollection;
+	        dcItem: DataCollection;
 	        columns: TableColumn[];
 	        rowIndex: number;
 	        styles: Shared.FlowStyles<Overrides>;
 	        getCellContext: TableRef['getCellContext'];
+	    }
+	    interface FootProps {
+	        dc: DataCollection[];
+	        columns: TableColumn[];
+	        pagination?: TablePaginationOptions;
+	        onPageChange: (pageNumber: number) => void;
+	        styles: Shared.FlowStyles<Overrides>;
 	    }
 	    interface Overrides {
 	        container: void;
@@ -1195,6 +1207,7 @@ declare module '@flow-ui/core/data/Table/types' {
 	        row: void;
 	        rowCell: void;
 	        expandContainer: void;
+	        footer: void;
 	    }
 	}
 	export default TableTypes;
@@ -2510,6 +2523,40 @@ declare module 'control/Range' {
 	export default _default;
 
 }
+declare module 'control/Pageswitch/types' {
+	import Shared from '@flow-ui/whale/types'; namespace PageswitchTypes {
+	    interface Props extends Shared.AllProps {
+	        length: number;
+	        onChange?: (pageNumber: number, startIndex: number) => void;
+	        options?: Options;
+	        value?: number;
+	        defaultValue?: number;
+	    }
+	    interface Options {
+	        pageSize?: number;
+	    }
+	    interface Overrides {
+	        container: void;
+	        arrowButton: {
+	            disabled: boolean;
+	        };
+	    }
+	}
+	export default PageswitchTypes;
+
+}
+declare module 'control/Pageswitch/styles' {
+	import { StyleObject } from '@flow-ui/whale/types';
+	import Types from 'control/Pageswitch/types'; const styles: StyleObject<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'control/Pageswitch' {
+	import React from 'react';
+	import Types from 'control/Pageswitch/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
 declare module 'control/Select/reducer' {
 	import Types from 'control/Select/types'; const _default: (state: Types.State, action: Types.Actions) => {
 	    selectedOptions: Types.Option[];
@@ -2588,13 +2635,19 @@ declare module 'data/Table/TableCell' {
 }
 declare module 'data/Table/TableRow' {
 	import React from 'react';
-	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.RowProps & React.RefAttributes<HTMLTableDataCellElement>>;
+	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.RowProps & React.RefAttributes<HTMLTableRowElement>>;
 	export default _default;
 
 }
 declare module 'data/Table/TableHeadCell' {
 	import React from 'react';
 	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.HeadCellProps & React.RefAttributes<HTMLTableDataCellElement>>;
+	export default _default;
+
+}
+declare module 'data/Table/TableFoot' {
+	import React from 'react';
+	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.FootProps & React.RefAttributes<HTMLTableCellElement>>;
 	export default _default;
 
 }
@@ -2868,6 +2921,7 @@ declare module '@flow-ui/core' {
 	export { default as Menu } from 'control/Menu';
 	export { default as Radio } from 'control/Radio';
 	export { default as Range } from 'control/Range';
+	export { default as Pageswitch } from 'control/Pageswitch';
 	export { default as Select } from 'control/Select';
 	export { default as Switch } from 'control/Switch';
 	export { default as TextField } from 'control/TextField';
