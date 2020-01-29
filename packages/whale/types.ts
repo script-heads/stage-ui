@@ -39,12 +39,12 @@ declare namespace WhaleTypes {
             onSurface: Color
             onPrimary: Color
             onSecondary: Color
-    
+
             lightest: Color
             light: Color
             hard: Color
             hardest: Color
-    
+
             error: Color
             warning: Color
             successful: Color
@@ -54,12 +54,24 @@ declare namespace WhaleTypes {
             narrow: string
             wide: string
         }
-        spacing: Record<Size,string>
+        spacing: Record<Size, string>
         typography: {
-            header: Record<Size,EmotionStyles>
-            text: Record<Size,EmotionStyles>
-            display: Record<Size,EmotionStyles>
-            paragraph: Record<Size,EmotionStyles>
+            header: Record<Size, {
+                fontSize: string,
+                lineHeight: string
+            }>
+            text: Record<Size, {
+                fontSize: string,
+                lineHeight: string
+            }>
+            display: Record<Size, {
+                fontSize: string,
+                lineHeight: string
+            }>
+            paragraph: Record<Size, {
+                fontSize: string,
+                lineHeight: string
+            }>
         }
     }
 
