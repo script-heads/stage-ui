@@ -17,7 +17,7 @@ const Button: RefForwardingComponent<HTMLButtonElement, Types.Props> = (props, r
 
     const onClick = (event: React.MouseEvent<HTMLElement>) => {
         if (!disabled) {
-            attributes.onClick?.(event)
+            events.all.onClick?.(event)
         }
     }
 
