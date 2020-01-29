@@ -12,7 +12,7 @@ const Meter: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
         percent = 0,
     } = props
 
-    const { cs, attributes, events } = useComponent('Meter', { props, styles, styleProps: {container: ['all']} })
+    const { cs, attributes, events } = useComponent('Meter', { props, styles, styleProps: { container: ['all']} })
 
     return (
         <div ref={ref} {...attributes} {...events.all} css={cs.container({decoration, shape, size})}>

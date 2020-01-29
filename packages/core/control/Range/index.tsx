@@ -6,7 +6,7 @@ import Types from './types'
 const Range: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     const { min = 0, max = 100, value, defaultValue } = props
 
-    const { cs, attributes, events } = useComponent('Range', { props, styles, styleProps: {container: ['all']} })
+    const { cs, attributes, events } = useComponent('Range', { props, styles, styleProps: { container: ['all']} })
 
     const thumbRef = useRef<HTMLDivElement>(null)
     const trackRef = useRef<HTMLDivElement>(null)

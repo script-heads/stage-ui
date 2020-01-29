@@ -7,7 +7,7 @@ import Types from './types'
 
 const Icon: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref) => {
 
-    const { cs, attributes, events } = useComponent('Icon', { props, styles, styleProps: {container: ['all']} })
+    const { cs, attributes, events } = useComponent('Icon', { props, styles, styleProps: { container: ['all']} })
 
     const type = callProp(props.type, { filled, outline })
 
