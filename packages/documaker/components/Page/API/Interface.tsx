@@ -76,8 +76,8 @@ const Type = (props: { type: TypeInterfaceChild, last: boolean }) => {
 
     const LightText = (props: { children: string }) => (
         <Text
-            size={2}
-            color={c => c.hard.css()}
+        size="s"
+        color={c => c.hard.css()}
             children={props.children}
         />
     )
@@ -90,7 +90,7 @@ const Type = (props: { type: TypeInterfaceChild, last: boolean }) => {
         rightSide = type.values.map(value =>
             <Text
                 h="fit-content"
-                size={2}
+                size="s"
                 key={value}
                 p=".125rem 0.25rem"
                 mx=".125rem"
@@ -118,7 +118,7 @@ const Type = (props: { type: TypeInterfaceChild, last: boolean }) => {
                                 <LightText children=") => "/>
                                 <Text
                                     h="fit-content"
-                                    size={2}
+                                    size="s"
                                     p=".125rem 0.25rem"
                                     mx=".125rem"
                                     mb=".25rem"
@@ -161,7 +161,7 @@ const Type = (props: { type: TypeInterfaceChild, last: boolean }) => {
                     ml="1rem"
                     mb=".25rem"
                     display="block"
-                    size={2}
+                    size="s"
                     color={c => c.hard.css()}
                     children={comment}
                 />
