@@ -5,20 +5,23 @@ const Item: RefForwardingComponent<HTMLDivElement, Types.ItemProps> = (props, re
 
     const { 
         decoration = 'underline',
+        className,
         size = 'm',
         shape = 'rounded',
         content, 
         disabled = false,
-        active 
+        active = false,
+        onClick,
     } = props
 
     return (
         <div
-            {...props}
             //@ts-ignore
-            active={active ? 'true' : ''}
+            active={active ? 'true' : undefined}
             disabled={disabled}
             style={props.style}
+            className={className}
+            onClick={onClick}
             css={props.styles.item({active, disabled, decoration, shape, size})}
             tabIndex={disabled ? -1 : 0}
         >
