@@ -52,17 +52,6 @@ export { default as notify } from './misc/utils/notify'
 export { default as useBrowser } from './misc/hooks/useBrowser'
 export { useTheme as useTheme } from '@flow-ui/whale'
 
-/**
- * Deprecated
- */
-export { 
-    H1, H2, H3, H4, 
-    D1, D2, D3, D4,
-    T1, T2, T3, T4,
-    C1, C2, C3, C4,
-    A 
-} from './misc/deprecated'
-
 export function transformImports (importName, matches) {
     switch(importName){
         case 'Divider': return '@flow-ui/core/content/Divider'

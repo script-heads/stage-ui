@@ -23,7 +23,6 @@ const LiteralControls = (props: Props) => {
     return (
         <Block pb="0.5rem">
             <Paragraph
-                size={4}
                 pb=".25rem"
                 pl=".25rem"
                 lineHeight="0.75rem"

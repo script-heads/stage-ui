@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { PagesType, PageType } from '../../core'
-import { Text, Menu,Block, Icon, Flexbox } from '@flow-ui/core'
+import { Text, TextField, Menu, Block, Icon, Flexbox } from '@flow-ui/core'
 import MenuTypes from '@flow-ui/core/control/Menu/types'
 import { Fragment, useState } from 'react'
 import WhaleTypes from '@flow-ui/whale/types'
@@ -14,29 +14,35 @@ export interface SidebarProps {
 
 const Sidebar = (props: SidebarProps) => {
 
-	const {pages, currentPage, onChange} = props
+	const { pages, currentPage, onChange } = props
 	const [visibility, setVisibility] = useState<boolean>(false)
-	
-	const getMenuItems = (section: PageType[]): MenuTypes.Item[] => 
-		section.map(page => ({
-				css: {
-					fontWeight: '700',
-					paddingLeft:'0.75rem',
-					[`@media (max-width: ${window.breakpoints[1]}px)`]: {
-						paddingLeft:'0.25rem',
-					}
-				},
-				value: page.url,
-				content: (
-					<Text ellipsis flex={1}>{page.title}</Text>
-				)
-			}))
+	const [search, setSearch] = useState('')
+
+	const getMenuItems = (section: PageType[]): MenuTypes.Item[] =>
+		section.filter(page => {
+			if (search) {
+				return !!page.title.toUpperCase().match(search.toUpperCase())
+			}
+			return true
+		}).map(page => ({
+			css: {
+				fontWeight: '700',
+				marginLeft: '1.5rem',
+				[`@media (max-width: ${window.breakpoints[0]}px)`]: {
+					marginLeft: '1rem',
+				}
+			},
+			value: page.url,
+			content: (
+				<Text ellipsis flex={1}>{page.title}</Text>
+			)
+		}))
 
 	return (
 		<Fragment>
-			<Block 
-				className={props.className} 
-				css={(theme: WhaleTypes.Theme)=> ({
+			<Block
+				className={props.className}
+				css={(theme: WhaleTypes.Theme) => ({
 					[`@media (max-width: ${window.breakpoints[1]}px)`]: [
 						{
 							position: 'absolute',
@@ -47,26 +53,46 @@ const Sidebar = (props: SidebarProps) => {
 						!visibility && {
 							display: 'none'
 						}
-				]
-			})}>
+					]
+				})}>
+
+				<TextField
+					size="s"
+					decoration="underline"
+					ml="1.5rem"
+					mb="1.5rem"
+					leftChild={
+						<Icon type={t => t.outline.search} />
+					}
+					placeholder="Search"
+					value={search}
+					onChange={e => {
+						setSearch(e.target.value)
+					}}
+					clearable
+				/>
 				{Object.keys(pages).map((section, index) => {
 					if (pages[section].length) {
+						const menuItems = getMenuItems(pages[section])
+						if (menuItems.length === 0) {
+							return null
+						}
 						return (
-							<Block key={'section-' + index} mb="1.5rem">
-								{section != 'Index' && 
+							<Block key={'section-' + index}>
+								{search === '' && section != 'Index' &&
 									<Text
-										size={2}
 										color={c => c.light.css()}
 										children={section}
 										css={{
-											marginLeft:'1.5rem',
+											marginLeft: '1.5rem',
 											[`@media (max-width: ${window.breakpoints[0]}px)`]: {
-												marginLeft:'1rem',
+												marginLeft: '1rem',
 											}
 										}}
 									/>
 								}
-								<Menu 
+								<Menu
+									mb="1.5rem"
 									value={currentPage.url || -1}
 									decoration="color"
 									direction="column"
@@ -74,7 +100,7 @@ const Sidebar = (props: SidebarProps) => {
 										setVisibility(false)
 										onChange(value.toString())
 									}}
-									items={getMenuItems(pages[section])}
+									items={menuItems}
 								/>
 							</Block>
 						)
@@ -84,8 +110,8 @@ const Sidebar = (props: SidebarProps) => {
 			<Flexbox
 				alignItems={'center'}
 				justifyContent={'center'}
-				onClick={()=>setVisibility(v=>!v)}
-				backgroundColor={c => c.primary.css()} 
+				onClick={() => setVisibility(v => !v)}
+				backgroundColor={c => c.primary.css()}
 				css={[
 					{
 						position: 'fixed',
@@ -102,7 +128,7 @@ const Sidebar = (props: SidebarProps) => {
 					}
 				]}>
 				<Icon
-					color={c=>c.onPrimary.css()} 
+					color={c => c.onPrimary.css()}
 					size={'2rem'}
 					type={i => !visibility ? i.outline.cube : i.outline.close}
 				/>

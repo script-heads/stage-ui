@@ -4,10 +4,11 @@ import { Paragraph } from '@flow-ui/core'
 export default () => {
     return (
         <Fragment>
-            <Paragraph>Paragraph</Paragraph>
-            <Paragraph size={2}>Paragraph</Paragraph>
-            <Paragraph size={3}>Paragraph</Paragraph>
-            <Paragraph size={4}>Paragraph</Paragraph>
+            <Paragraph size="xl">Extra large</Paragraph>
+            <Paragraph size="l">Large</Paragraph>
+            <Paragraph size="m">Medium</Paragraph>
+            <Paragraph size="s">Small</Paragraph>
+            <Paragraph size="xs">Extra small</Paragraph>
         </Fragment>
     )
 }

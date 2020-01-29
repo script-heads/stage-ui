@@ -187,19 +187,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 }
             },
             variant({
-                size: {
-                    'xs': [theme.typography.text.s],
-                    's': [theme.typography.text.m],
-                    'm': [theme.typography.text.l],
-                    'l': [{
-                        fontSize: theme.typography.header.xs.fontSize,
-                        lineHeight: theme.typography.header.xs.lineHeight,
-                    }],
-                    'xl': [{
-                        fontSize: theme.typography.header.xs.fontSize,
-                        lineHeight: theme.typography.header.xs.lineHeight,
-                    }]
-                },
+                size: theme.typography.text,
                 underCursor: [{
                     background: theme.color.primary.css(),
                     color: theme.color.onPrimary.css(),

@@ -4,10 +4,11 @@ import { Text } from '@flow-ui/core'
 export default () => {
     return (
         <Fragment>
-            <Text>Text</Text>
-            <Text size={2}>Text</Text>
-            <Text size={3}>Text</Text>
-            <Text size={4}>Text</Text>
+            <Text size="xl">Extra large</Text>
+            <Text size="l">Large</Text>
+            <Text size="m">Medium</Text>
+            <Text size="s">Small</Text>
+            <Text size="xs">Extra small</Text>
         </Fragment>
     )
 }

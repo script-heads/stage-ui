@@ -9,16 +9,13 @@ npm i @flow-ui/core
 
 ```
 import React from 'react'
-import { Viewport } from '@flow-ui/core/layout/viewport'
-import { Block } from '@flow-ui/core/layout/block'
-import { H1 } from '@flow-ui/core/H'
-import { T1 } from '@flow-ui/core/T'
+import { Viewport, Block, Header, Paragraph } from '@flow-ui/core'
 
 const Hello props =>
 	<Viewport>
 	  <Block>
-	    <H1>Hello</H1>
-	    <T1>Rebass</T1>
+	    <Header>Hello</Header>
+	    <Paragraph>Rebass</Paragraph>
 	  </Block>
 	</Viewport>
 ```

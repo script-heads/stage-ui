@@ -94,7 +94,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                     justifyContent: justifyContent,
                     alignItems: 'center',
                     userSelect: 'none',
-                    ...sizes.itemContent
+                    // ...sizes.itemContent
                 }
             },
             decorations.ordinary,
@@ -126,11 +126,12 @@ function getSizes(size, theme) {
                 },
                 itemContent: {
                     padding: '0 .25rem',
-                    ...theme.typography.text.s,
+                    fontSize: '40px !important',
+                    // ...theme.typography.text.xs,
                 },
-                underline: '.125rem',
-                borderDistance: '.75rem',
-                separatorDistance: '.25rem',
+                // underline: '.125rem',
+                // borderDistance: '.75rem',
+                // separatorDistance: '.25rem',
             }
         case 's':
             return {
@@ -139,7 +140,7 @@ function getSizes(size, theme) {
                 },
                 itemContent: {
                     padding: '0 .5rem',
-                    ...theme.typography.text.m,
+                    ...theme.typography.text.s,
                 },
                 underline: '.125rem',
                 borderDistance: '1rem',
@@ -153,7 +154,7 @@ function getSizes(size, theme) {
                 },
                 itemContent: {
                     padding: '0 .75rem',
-                    ...theme.typography.text.l,
+                    ...theme.typography.text.m,
                 },
                 underline: '.25rem',
                 borderDistance: '1.25rem',
@@ -166,8 +167,8 @@ function getSizes(size, theme) {
                 },
                 itemContent: {
                     padding: '0 1rem',
-                    fontSize: theme.typography.header.xs.fontSize,
-                    lineHeight: theme.typography.header.xs.lineHeight,
+                    fontSize: theme.typography.header.l.fontSize,
+                    lineHeight: theme.typography.header.l.lineHeight,
                 },
                 underline: '.375rem',
                 borderDistance: '1.5rem',
@@ -180,8 +181,8 @@ function getSizes(size, theme) {
                 },
                 itemContent: {
                     padding: '0 1.25rem',
-                    fontSize: theme.typography.header.s.fontSize,
-                    lineHeight: theme.typography.header.s.lineHeight,
+                    fontSize: theme.typography.header.xl.fontSize,
+                    lineHeight: theme.typography.header.xl.lineHeight,
                 },
                 underline: '.5rem',
                 borderDistance: '1.75rem',

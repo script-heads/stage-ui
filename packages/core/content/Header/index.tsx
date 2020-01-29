@@ -11,6 +11,7 @@ const Header: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref
             display: 'block' 
         }}  
         ref={ref} 
+        size="m"
         {...props}
     />
 

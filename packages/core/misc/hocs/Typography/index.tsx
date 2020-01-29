@@ -14,6 +14,7 @@ const Typography: RefForwardingComponent<RefTag, Types.PrivateProps> = (props, r
         props.tag,
         {
             ...attributes,
+            ...events.all,
             ref: ref,
             css: cs.container,
             download: props.download,

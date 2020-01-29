@@ -24,7 +24,6 @@ const PageHeader = (props: MenuProps) => {
             })}>
             <Header
                 css={{ cursor: 'pointer' }}
-                size={3} 
                 children={name}
                 onClick={()=>setIndex()}
             />
@@ -35,7 +34,7 @@ const PageHeader = (props: MenuProps) => {
                 setTheme={setTheme} 
             />
             {git && (
-                <Anchor size={2} target="_blank" href={git} ml="1rem">
+                <Anchor target="_blank" href={git} ml="1rem">
                     <Icon size="1.5rem" type={t => t.outline.github}/>
                 </Anchor>
             )}

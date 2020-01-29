@@ -13,7 +13,7 @@ export default (theme, wrapper) => {
             'h2': theme.typography.header.m,
             'h3': theme.typography.header.s,
             'h4': theme.typography.header.xs,
-            ...theme.typography.text.l
+            ...theme.typography.text.m
         },
         `
             -moz-osx-font-smoothing: grayscale;

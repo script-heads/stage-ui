@@ -4,10 +4,11 @@ import { Header } from '@flow-ui/core'
 export default () => {
     return (
         <Fragment>
-            <Header>Header</Header>
-            <Header size={2}>Header</Header>
-            <Header size={3}>Header</Header>
-            <Header size={4}>Header</Header>
+            <Header size="xl">Extra large</Header>
+            <Header size="l">Large</Header>
+            <Header size="m">Medium</Header>
+            <Header size="s">Small</Header>
+            <Header size="xs">Extra small</Header>
         </Fragment>
     )
 }
