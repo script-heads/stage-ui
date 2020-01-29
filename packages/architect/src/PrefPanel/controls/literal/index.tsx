@@ -41,11 +41,13 @@ const LiteralControls = (props: Props) => {
                                     key={value}
                                     children={value}
                                     onClick={() => {
-                                        props.tools.focused.props[props.name] = value
-                                        if (value === defaultKey) {
-                                            delete props.tools.focused.props[props.name]
+                                        if (props.tools.focused) {
+                                            props.tools.focused.props[props.name] = value
+                                            if (value === defaultKey) {
+                                                delete props.tools.focused.props[props.name]
+                                            }
+                                            props.tools.update()
                                         }
-                                        props.tools.update()
                                     }}
                                 />
                             ))
@@ -62,11 +64,13 @@ const LiteralControls = (props: Props) => {
                             text: value, value
                         }))}
                         onChange={(e, option) => {
-                            props.tools.focused.props[props.name] = option.value
-                            if (option.value === defaultKey) {
-                                delete props.tools.focused.props[props.name]
+                            if (props.tools.focused && option) {
+                                props.tools.focused.props[props.name] = option.value
+                                if (option.value === defaultKey) {
+                                    delete props.tools.focused.props[props.name]
+                                }
+                                props.tools.update()
                             }
-                            props.tools.update()
                         }}
                     />
                 )}

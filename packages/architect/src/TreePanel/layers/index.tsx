@@ -40,7 +40,6 @@ const LayersTab = (props: TabProps) => {
                         <Block flex={1}>
                             <Text
                                 lineHeight={1}
-                                size={2}
                                 weight={500}
                                 children={(
                                     <Flexbox flex={1} alignItems="center" justifyContent="space-between">
@@ -148,7 +147,6 @@ const LayersTab = (props: TabProps) => {
                     <Paragraph
                         align="center"
                         pt="2rem"
-                        size={2}
                         color={c => c.light.hex()}
                         children="Components"
                     />
