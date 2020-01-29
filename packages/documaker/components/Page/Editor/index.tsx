@@ -12,11 +12,14 @@ interface EditorProps {
 }
 
 const Editor = (props: EditorProps) => {
+    
     const {cases} = props
     const [currentCase, setCurrentCase] = useState<number>(0)
     const [code, setCode] = useState<string>(cases[0].code)
-    const [grid, setGrid] = useState<boolean>(false)
-    const [fullscreen, setFullscreen] = useState<boolean>(false)
+    const [grid, setGrid] = useState(
+        localStorage.getItem('case_grid') === 'true'
+    )
+    const [fullscreen, setFullscreen] = useState(false)
     const theme = useTheme()
     const browser = useBrowser()
     
