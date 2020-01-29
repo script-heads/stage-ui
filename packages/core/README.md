@@ -1,7 +1,6 @@
-# [Flow UI Core](http://flowui.abr.tech)
+# [Flow UI](http://flowui.abr.tech)
 Consistent React UI Framework declared by your own Design System. 
 
-# Package Core
 Core components of Flow UI
 
 ## How to install?
