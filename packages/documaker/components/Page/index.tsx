@@ -1,4 +1,4 @@
-import { Block, Display, Flexbox } from '@flow-ui/core'
+import { Block, Flexbox, Header } from '@flow-ui/core'
 import { PageType } from '../../core'
 import Editor from './Editor'
 import API from './API'
@@ -32,8 +32,8 @@ const Page = (props: ContentProps) => {
                     overflow: 'hidden' 
                 }}>
                 {page.title && (
-                    <Display
-                        weight="bold"
+                    <Header
+                        size="xl"
                         children={page.title}
                     />
                 )}

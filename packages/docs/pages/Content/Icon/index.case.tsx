@@ -1,7 +1,7 @@
-import { Block, C1, Flexbox, H1, Icon } from '@flow-ui/core';
-import * as icons from '@flow-ui/core/misc/icons';
-import React, { Fragment, useState } from "react";
-import code from './default.raw';
+import { Block, Text, Flexbox, Header, Icon } from '@flow-ui/core'
+import * as icons from '@flow-ui/core/misc/icons'
+import React, { Fragment, useState } from 'react'
+import code from './default.raw'
 
 export const title = 'Icon'
 export const ns = 'IconTypes'
@@ -14,26 +14,26 @@ export default () => {
     return (
         <Fragment>
             <Flexbox alignItems="center" justifyContent="space-between" onClick={() => setOpen(!open)}>
-                <H1>Icon set</H1>
+                <Header>Icon set</Header>
                 <Icon
                     size="2rem"
                     type={t => open ? t.outline.minus : t.outline.plus}
                 />
             </Flexbox>
             {open && (
-                <Flexbox pt='1rem'>
+                <Flexbox pt="1rem">
                 <Block
                     style={{
-                        display: "grid",
+                        display: 'grid',
                         width: '100%',
-                        gridTemplateColumns: "repeat(auto-fill, 8rem)"
+                        gridTemplateColumns: 'repeat(auto-fill, 8rem)'
                     }}
                 >
                     {Object.keys(icons.outline).map(key => (
                         <Flexbox
                             column
                             key={key}
-                            p='1rem'
+                            p="1rem"
                             justifyContent="center"
                             alignItems="center"
                             alignContent="center"
@@ -44,9 +44,9 @@ export default () => {
                                 size="2rem"
                                 background={c => c.lightest.css()}
                             />
-                            <C1
+                            <Text
                                 color={c => c.light.css()}
-                                mt='.5rem'
+                                mt=".5rem"
                                 children={key}
                             />
                         </Flexbox>

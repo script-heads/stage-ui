@@ -57,28 +57,25 @@ const useComponent = <S>(overrideName: string, options: Options<S>) => {
                 }
                 
                 return css(
+                    /**
+                     * Styles from options.styles
+                     */
                     styles[styleName](variant), 
-                    
-                    themeOverrides &&
-                    themeOverrides[styleName] && 
-                    themeOverrides[styleName](variant),
-                    
-                    props.styles && 
-                    props.styles[styleName] && 
-                    props.styles[styleName](variant)
+                    /**
+                     * Theme override styles 
+                     */
+                    themeOverrides?.[styleName]?.(variant),
+                    /**
+                     * Styles from component prop styles
+                     */
+                    props.styles?.[styleName]?.(variant)
                 )
             }
         } else {
             cs[styleName] = css(
                 styles[styleName], 
-                
-                themeOverrides &&
-                themeOverrides[styleName] && 
-                themeOverrides[styleName],
-                
-                props.styles && 
-                props.styles[styleName] && 
-                props.styles[styleName]
+                themeOverrides?.[styleName],
+                props.styles?.[styleName]
             )
         }     
     })
