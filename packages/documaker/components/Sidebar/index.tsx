@@ -55,7 +55,6 @@ const Sidebar = (props: SidebarProps) => {
 							<Block key={'section-' + index} mb="1.5rem">
 								{section != 'Index' && 
 									<Text
-										size={2}
 										color={c => c.light.css()}
 										children={section}
 										css={{

@@ -33,7 +33,6 @@ const Page = (props: ContentProps) => {
                 }}>
                 {page.title && (
                     <Display
-                        size={4}
                         weight="bold"
                         children={page.title}
                     />

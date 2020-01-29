@@ -10,6 +10,7 @@ const Display: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, re
             display: 'block'
         }}  
         ref={ref} 
+        size="m"
         {...props}
     />
 

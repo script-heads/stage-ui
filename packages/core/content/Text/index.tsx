@@ -7,6 +7,7 @@ const Text: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref) 
         tag="span" 
         sizesOf="text"
         ref={ref} 
+        size="m"
         {...props}
     />
 

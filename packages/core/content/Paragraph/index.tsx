@@ -7,6 +7,7 @@ const Parapraph: RefForwardingComponent<HTMLParagraphElement, Types.Props> = (pr
         tag="p" 
         sizesOf="paragraph"  
         ref={ref} 
+        size="m"
         {...props}
     />
 

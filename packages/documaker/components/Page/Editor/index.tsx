@@ -58,7 +58,6 @@ const Editor = (props: EditorProps) => {
                 {cases.length > 1 && cases.map((c, caseIndex) => (
                     <Text
                         key={caseIndex}
-                        size={2}
                         mr={'1rem'}
                         weight={600}
                         color={c => caseIndex === currentCase 
