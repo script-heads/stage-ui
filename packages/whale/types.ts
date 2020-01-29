@@ -57,20 +57,20 @@ declare namespace WhaleTypes {
         spacing: Record<Size, string>
         typography: {
             header: Record<Size, {
-                fontSize: string,
-                lineHeight: string
+                fontSize: string
+                lineHeight: string | number
             }>
             text: Record<Size, {
-                fontSize: string,
-                lineHeight: string
+                fontSize: string
+                lineHeight: string | number
             }>
             display: Record<Size, {
-                fontSize: string,
-                lineHeight: string
+                fontSize: string
+                lineHeight: string | number
             }>
             paragraph: Record<Size, {
-                fontSize: string,
-                lineHeight: string
+                fontSize: string
+                lineHeight: string | number
             }>
         }
     }
