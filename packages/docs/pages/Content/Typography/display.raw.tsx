@@ -4,10 +4,11 @@ import { Display } from '@flow-ui/core'
 export default () => {
     return (
         <Fragment>
-            <Display>Display</Display>
-            <Display size={2}>Display</Display>
-            <Display size={3}>Display</Display>
-            <Display size={4}>Display</Display>
+            <Display size="xl">Extra large</Display>
+            <Display size="l">Large</Display>
+            <Display size="m">Medium</Display>
+            <Display size="s">Small</Display>
+            <Display size="xs">Extra small</Display>
         </Fragment>
     )
 }
