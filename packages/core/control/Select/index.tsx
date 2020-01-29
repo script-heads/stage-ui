@@ -210,14 +210,17 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                 shape={shape}
                 onClear={() => clear()}
                 events={{
-                    ...events.all,
-                    onClick: (e) => {
-                        searchable && e.target.toString() === '[object HTMLInputElement]'
-                            ? !state.open && dispatch({ type: 'toggleOpen', payload: true })
-                            : toggleOpen()
-                        props.onClick && props.onClick(e)
-                    },
-                    onKeyDown: (e) => handleKeyDown(e)
+                    ...events,
+                    all: {
+                        ...events.all,
+                        onClick: (e) => {
+                            searchable && e.target.toString().match('HTMLInputElement')
+                                ? !state.open && dispatch({ type: 'toggleOpen', payload: true })
+                                : toggleOpen()
+                            props.onClick && props.onClick(e)
+                        },
+                        onKeyDown: (e) => handleKeyDown(e)
+                    }
                 }}
                 attributes={{
                     ...attributes,

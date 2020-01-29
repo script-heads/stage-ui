@@ -64,7 +64,7 @@ const fieldStyles = <T extends Types.Overrides>(
                     'xs': [
                         {
                             flexBasis: theme.assets.fieldHeight.xs,
-                            ...theme.typography.text.s,
+                            ...theme.typography.text.xs,
                             '--headingLabelHeight': `
                                 calc(${theme.typography.text.xs.lineHeight} + 2px${additionalPadding ? ' + ' + additionalPadding : ''})
                             `
@@ -88,7 +88,7 @@ const fieldStyles = <T extends Types.Overrides>(
                     'm': [
                         {
                             flexBasis: theme.assets.fieldHeight.m,
-                            ...theme.typography.text.l,
+                            ...theme.typography.text.m,
                         },
                         !manyLines && {
                             padding: '.25rem .75rem'
@@ -97,8 +97,7 @@ const fieldStyles = <T extends Types.Overrides>(
                     'l': [
                         {
                             flexBasis: theme.assets.fieldHeight.l,
-                            fontSize: theme.typography.header.xs.fontSize,
-                            lineHeight: theme.typography.header.xs.lineHeight,
+                            ...theme.typography.header.l
                         },
                         !manyLines && {
                             padding: '.25rem .875rem'
@@ -107,8 +106,7 @@ const fieldStyles = <T extends Types.Overrides>(
                     'xl': [
                         {
                             flexBasis: theme.assets.fieldHeight.xl,
-                            fontSize: theme.typography.header.xs.fontSize,
-                            lineHeight: theme.typography.header.xs.lineHeight,
+                            ...theme.typography.header.xl
                         },
                         !manyLines && {
                             padding: '.25rem .875rem'
