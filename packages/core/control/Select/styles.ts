@@ -4,7 +4,7 @@ import Types from './types'
 import fieldStyles from '../../misc/hocs/Field/styles'
 import WhaleTypes from '@flow-ui/whale/types'
 
-const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
     const { 
         size = 'm', 
         multiselect
@@ -20,7 +20,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
     })
 
     return {
-        ...fieldStyles<Types.Overrides>(props, theme, styleProps, {
+        ...fieldStyles<Types.Overrides>(props, theme, {
             manyLines: multiselect,
             additionalPadding: multiselect ? multiselectAdditionalPadding : '',
             labelOverlayPosition: 'center',

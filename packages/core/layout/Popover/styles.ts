@@ -1,11 +1,12 @@
 
 import Types from './types'
 import WhaleTypes from '@flow-ui/whale/types'
+import {colorProp} from '@flow-ui/whale'
 
-const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
 
-    const background = styleProps.color.background || theme.color.surface.css()
-    const borderColor = styleProps.border.borderColor || theme.assets.border.color
+    const background = colorProp(props.backgroundColor, theme) || theme.color.surface.css()
+    const borderColor = colorProp(props.borderColor, theme)|| theme.assets.border.color
     const borderWidth = theme.assets.border.width
     const width = props.arrowWidth || '.75rem'
     const height = props.arrowHeight|| '.5rem'
@@ -22,8 +23,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 borderRadius: theme.radius.default,
                 filter: `drop-shadow(${theme.assets.shadow.default})`,
                 padding: theme.spacing.s
-            },
-            styleProps.all,
+            }
         ],
         arrow: (variant) => [
             {

@@ -9,7 +9,7 @@ import { useComponent } from '@flow-ui/whale'
 const Radio: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     const { animated, size = 'm', disabled } = props
 
-    const { cs, attributes, events } = useComponent('Radio', { props, styles })
+    const { cs, attributes, events } = useComponent('Radio', { props, styles, styleProps: {container: ['all']} })
 
     return (
         <Check

@@ -48,6 +48,10 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
     const { cs, attributes, events, focus } = useComponent('Select', { 
         props, 
         styles,
+        styleProps: {
+            container: ['flow','layout'], 
+            field:['color','border','padding']
+        },
         mouseFocus: true,
         focusDecoration: props.decoration != 'none'
     })

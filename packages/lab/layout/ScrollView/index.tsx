@@ -37,7 +37,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         }
     }))
 
-    const { cs, attributes, events } = useComponent('ScrollView', { props, styles })
+    const { cs, attributes, events } = useComponent('ScrollView', { props, styles, styleProps: {container: ['all']} })
     
     const {
         shape = 'round',

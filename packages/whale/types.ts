@@ -1,7 +1,6 @@
 import chroma from 'chroma-js'
 import CSS from 'csstype'
 import { Interpolation, SerializedStyles, ObjectInterpolation } from '@emotion/core'
-import { InjectedStyleProps } from './utils/styleProps'
 
 declare namespace WhaleTypes {
 
@@ -552,28 +551,27 @@ declare namespace WhaleTypes {
 
     type ColorProp = ((colors: Theme['color']) => CSS.Properties['color'])
 
-    type Styles<Component> = {
-        [Style in keyof Component]: Component[Style] extends {} 
-            ? ((variant: Variant<Component[Style]>) => EmotionStyles)
+    type Styles<StyleDefinitions> = {
+        [StyleName in keyof StyleDefinitions]: StyleDefinitions[StyleName] extends {} 
+            ? ((variant: Variant<StyleDefinitions[StyleName]>) => EmotionStyles)
             : EmotionStyles
     }
 
-    type ComponentStyles<Component> = {
-        [Style in keyof Component]: Component[Style] extends Object 
-            ? (state: Component[Style]) => SerializedStyles 
+    type ComponentStyles<StyleDefinitions> = {
+        [StyleName in keyof StyleDefinitions]: StyleDefinitions[StyleName] extends Object 
+            ? (state: StyleDefinitions[StyleName]) => SerializedStyles 
             : SerializedStyles
     }
     
     type Variant<Style> = (variants: Partial<{
-        [K in keyof Style]: Partial<
-            Record<Extract<Style[K],string>,EmotionStyles>
+        [StyleName in keyof Style]: Partial<
+            Record<Extract<Style[StyleName],string>,EmotionStyles>
         >
     }>) => EmotionStyles
 
     type CreateStyles<Overrides, Props ={}> = (
         props: Props, 
-        theme: WhaleTypes.Theme,
-        propsStyles: InjectedStyleProps 
+        theme: WhaleTypes.Theme 
     ) => WhaleTypes.Styles<Overrides>
 }
 

@@ -1,32 +1,31 @@
 import { css } from '@emotion/core'
 import WhaleTypes, { EmotionStyles } from '../types'
 import attributeProps from '../utils/attributeProps'
-import styleProps from '../utils/styleProps'
+import getStyleProps, { InjectedStyles } from '../utils/styleProps'
 import useTheme from './useTheme'
 
 interface Options<S> {
     props, 
-    styles: WhaleTypes.Styles<S> | WhaleTypes.CreateStyles<S>, 
+    styles: WhaleTypes.Styles<S> | WhaleTypes.CreateStyles<S>,
+    styleProps?: {[K in keyof S]?: (keyof InjectedStyles)[]} 
     mouseFocus?: boolean,
     focusDecoration?: boolean
 }
 
 const useComponent = <S>(overrideName: string, options: Options<S>) => {
     
-    const { props, mouseFocus, focusDecoration } = options
+    const { props, mouseFocus, focusDecoration, styleProps } = options
     const cs: WhaleTypes.ComponentStyles<S> = {} as WhaleTypes.ComponentStyles<S>
 
     const theme = useTheme()
     const { attributes, events, focus } = attributeProps(props, theme, mouseFocus, focusDecoration)
-    
-    const propStyles = styleProps(props, theme)
 
     const styles = typeof options.styles === 'function'
-        ? options.styles(props, theme, propStyles)
+        ? options.styles(props, theme)
         : options.styles
 
     const themeOverrides = overrideName && theme.overrides[overrideName]
-
+    
     Object.keys(styles).map(styleName => {
         if (typeof styles[styleName] === 'function') {
             cs[styleName] = (state) => {
@@ -58,27 +57,17 @@ const useComponent = <S>(overrideName: string, options: Options<S>) => {
                 
                 return css(
                     styles[styleName](variant), 
-                    
-                    themeOverrides &&
-                    themeOverrides[styleName] && 
-                    themeOverrides[styleName](variant),
-                    
-                    props.styles && 
-                    props.styles[styleName] && 
-                    props.styles[styleName](variant)
+                    themeOverrides?.[styleName]?.(variant),
+                    props.styles?.[styleName]?.(variant),
+                    getStyleProps(props, theme, styleProps?.[styleName])
                 )
             }
         } else {
             cs[styleName] = css(
                 styles[styleName], 
-                
-                themeOverrides &&
-                themeOverrides[styleName] && 
-                themeOverrides[styleName],
-                
-                props.styles && 
-                props.styles[styleName] && 
-                props.styles[styleName]
+                themeOverrides?.[styleName],
+                props.styles?.[styleName],
+                getStyleProps(props, theme, styleProps?.[styleName])
             )
         }     
     })

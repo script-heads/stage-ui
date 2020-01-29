@@ -11,7 +11,7 @@ type Ref = Types.TableRef
 const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
 
     const tableRef = useRef<HTMLTableElement>(null)
-    const { cs, attributes, events } = useComponent('Table', { props, styles })
+    const { cs, attributes, events } = useComponent('Table', { props, styles, styleProps: {container: ['all']} })
     const { columns, pagination } = props
     const [currentPage, setCurrentPage] = useState(1)
     const [reloadData, reload] = useState(false)

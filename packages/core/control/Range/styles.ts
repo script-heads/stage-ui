@@ -1,7 +1,7 @@
 import Types from './types'
 import WhaleTypes from '@flow-ui/whale/types'
 
-const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
     return {
         container: [
             {
@@ -9,8 +9,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 minWidth: '4rem',
                 height: 'calc(1rem + 4px)',
                 cursor: 'pointer',
-            },
-            styleProps.all,
+            }
         ],
         rail: [{
             position: 'absolute',

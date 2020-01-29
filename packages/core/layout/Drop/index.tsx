@@ -14,7 +14,7 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
     const { children, target: targetRef, onClickOutside, spacing = 0, align,
         justify, stretchHeight, stretchWidth, visibility, display } = props
         
-    const { cs, attributes, events } = useComponent('Drop', { props, styles })
+    const { cs, attributes, events } = useComponent('Drop', { props, styles, styleProps: {container: ['self']} })
 
     const dropRef = useRef<HTMLDivElement>(null)
 

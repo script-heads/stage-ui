@@ -2,10 +2,10 @@ import Types from './types'
 import WhaleTypes from '@flow-ui/whale/types'
 import checkStyles from '@flow-ui/core/misc/hocs/Check/styles'
 
-const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
     
     return {
-        ...checkStyles(props, theme, styleProps),
+        ...checkStyles(props, theme),
         
         check: (variant) => [
             {

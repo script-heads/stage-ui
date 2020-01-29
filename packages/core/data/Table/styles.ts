@@ -4,7 +4,7 @@ import WhaleTypes from '@flow-ui/whale/types'
 
 // TODO: borderBottomStyle type incorrect
 //@ts-ignore
-const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
     return {
         container: [
             {
@@ -14,8 +14,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 borderRadius: theme.radius.default,
                 background: theme.color.surface.css(),
                 boxShadow: theme.assets.shadow.short
-            },
-            styleProps.all,
+            }
         ],
         headCell: (variant) => [
             {

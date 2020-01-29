@@ -68,6 +68,7 @@ declare namespace ModalTypes {
         hideHeader?: boolean
         children?: any
         containerAttr?: ExtentedProps
+        containerEvents?: any
         onClosePressed: () => void
         styles: WhaleTypes.ComponentStyles<Overrides>
     }

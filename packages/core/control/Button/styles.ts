@@ -4,7 +4,7 @@ import chroma from 'chroma-js'
 import Types from './types'
 import WhaleTypes from '@flow-ui/whale/types'
 
-const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
 
     const color = chroma(callProp(props.color, theme.color) || theme.color.primary.css())
 
@@ -135,8 +135,6 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                     }]
                 }
             }),
-
-            styleProps.all,
 
             props.disabled && {
                 cursor: 'not-allowed'

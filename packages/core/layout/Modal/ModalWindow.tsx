@@ -9,6 +9,7 @@ const ModalWindow = forwardRef((props: ModalTypes.ModalWindowProps, ref: any) =>
             ref={ref}
             css={props.styles.window({visible: props.visible, fullSizeCenter: props.center && props.fullSize})}
             {...props.containerAttr}
+            {...props.containerEvents.all}
         >
             <ModalHeader
                 styles={props.styles}

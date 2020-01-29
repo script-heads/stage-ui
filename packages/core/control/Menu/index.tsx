@@ -15,7 +15,7 @@ const Menu: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
         defaultValue = '', 
         separator, 
     } = props
-    const { cs, attributes, events } = useComponent('Menu', { props, styles })
+    const { cs, attributes, events } = useComponent('Menu', { props, styles, styleProps: {container: ['all']} })
     const [value, setValue] = useState<Types.Value>(defaultValue)
     const currentValue = (typeof props.value === 'undefined' || props.value === '')
         ? value

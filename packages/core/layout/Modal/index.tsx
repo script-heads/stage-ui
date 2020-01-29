@@ -11,7 +11,7 @@ const Modal: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
 
     const { hideHeader, fullSize, opened } = props
 
-    const { cs, attributes, events } = useComponent('Modal', { props, styles })
+    const { cs, attributes, events } = useComponent('Modal', { props, styles, styleProps: {window: ['all']} })
 
     const overlayRef = useRef(null)
     const windowRef = useRef(null)
@@ -123,6 +123,7 @@ const Modal: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
                             : props.children
                     }
                     containerAttr={attributes}
+                    containerEvents={events}
                 />
             </ModalOverlay>
         </ModalPortal>

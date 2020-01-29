@@ -1,7 +1,7 @@
 import WhaleTypes from '@flow-ui/whale/types'
 import Types from './types'
 
-const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
     const surfaceVariants = {
         'minor': [{
             borderWidth: theme.assets.border.width,
@@ -11,7 +11,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
             background: theme.color.surface.css(),
             boxShadow: theme.assets.shadow.short
         }],
-        'm': [{
+        'medium': [{
             borderWidth: theme.assets.border.width,
             borderStyle: theme.assets.border.style,
             borderColor: theme.assets.border.color,
@@ -36,8 +36,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 '&:hover': variant({ hoverSurface: surfaceVariants }),
                 overflow: props.overflow
             },
-            variant({ surface: surfaceVariants }),
-            styleProps.all
+            variant({ surface: surfaceVariants })
         ]
     }
 }

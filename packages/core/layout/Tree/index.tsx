@@ -17,7 +17,7 @@ const Tree: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
 
     const [isOpen, setOpen] = useState((props.alwaysOpen || props.defaultOpen) ? true : false)
 
-    const { cs, attributes, events } = useComponent('Tree', { props, styles })
+    const { cs, attributes, events } = useComponent('Tree', { props, styles, styleProps: {container: ['all']} })
 
     let treeChilds: React.ReactNode[] = []
     let otherChilds: React.ReactElement[] = []

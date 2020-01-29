@@ -1,6 +1,7 @@
 import WhaleTypes from '@flow-ui/whale/types'
 import colorProp from './colorProp'
 import CSS from 'csstype'
+import { ArrayInterpolation } from '@emotion/core'
 
 interface Props extends 
     WhaleTypes.ColorProps, 
@@ -68,7 +69,7 @@ type Grid = {
     placeSelf: CSS.Properties['placeSelf']
 }
 
-export interface InjectedStyleProps {
+export interface InjectedStyles {
     color: Color
     border: Border
     padding: Padding
@@ -81,7 +82,9 @@ export interface InjectedStyleProps {
     all: Margin & Flex & Grid & Padding & Layout & Color & Border
 }
 
-const useStyleProps = (props: Props, theme): InjectedStyleProps => {
+type InjectedStylesNames = keyof InjectedStyles
+
+export const useStyleProps = (props: Props, theme): InjectedStyles => {
     
     const color = {
         background: colorProp(props.backgroundColor, theme.color),
@@ -170,4 +173,16 @@ const useStyleProps = (props: Props, theme): InjectedStyleProps => {
     }
 }
 
-export default useStyleProps
+const getStyleProps = (props: Props, theme, styleProps?: InjectedStylesNames[]) => {
+    if (!styleProps) return []
+    
+    const styles = [] as InjectedStyles[InjectedStylesNames][]
+    
+    styleProps.forEach(value => {
+        styles.push(useStyleProps(props, theme)[value])
+    })
+
+    return styles
+}
+
+export default getStyleProps

@@ -37,7 +37,11 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
     
     const { cs, attributes, events, focus } = useComponent('DatePicker', { 
         props, 
-        styles,  
+        styles,
+        styleProps: {
+            container: ['flow','layout'], 
+            field:['color','border','padding']
+        },  
         mouseFocus: true,
         focusDecoration: props.decoration !== 'none'
     })

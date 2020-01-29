@@ -20,6 +20,10 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
     const { cs, attributes, events, focus } = useComponent('TextField', { 
         props, 
         styles,
+        styleProps: {
+            container: ['flow','layout'], 
+            field:['color','border','padding']
+        },
         mouseFocus: true,
         focusDecoration: props.decoration !== 'none'
     })

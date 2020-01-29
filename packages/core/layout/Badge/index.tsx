@@ -6,7 +6,14 @@ import Types from './types'
 
 const Badge: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
-    const { cs, attributes, events } = useComponent('Badge', { props, styles })
+    const { cs, attributes, events } = useComponent('Badge', { 
+        props, 
+        styles, 
+        styleProps: {
+            container: ['flow'], 
+            holder: ['self']
+        } 
+    })
 
     return (
         <div css={cs.container}>

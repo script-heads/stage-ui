@@ -11,7 +11,7 @@ const Spinner: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref
         count = 12
     } = props
     
-    const { cs, attributes, events } = useComponent('Spinner', { props, styles })
+    const { cs, attributes, events } = useComponent('Spinner', { props, styles, styleProps: {container: ['all']} })
 
     let rectShape
 

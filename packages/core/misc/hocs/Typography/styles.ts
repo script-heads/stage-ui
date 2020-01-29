@@ -2,7 +2,7 @@ import WhaleTypes from '@flow-ui/whale/types'
 import callProp from '../../utils/callProp'
 import Types from './types'
 
-const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.PrivateProps> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.PrivateProps> = (props, theme) => {
     return {
         container:  [
             props.specificStyles,
@@ -24,8 +24,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.PrivateProps> = (pr
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
                 minWidth: 0,
-            },
-            styleProps.all
+            }
         ]
     }
 }

@@ -10,7 +10,7 @@ import Types from './types'
 const Checkbox: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     const { size = 'm', animated, disabled } = props
 
-    const { cs, attributes, events } = useComponent('Checkbox', { props, styles })
+    const { cs, attributes, events } = useComponent('Checkbox', { props, styles, styleProps: {container: ['all']} })
 
     return (
         <Check

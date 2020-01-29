@@ -1,5 +1,4 @@
-import WhaleTypes, { EmotionStyles } from '@flow-ui/whale/types'
-import { InjectedStyleProps } from '@flow-ui/whale/utils/styleProps'
+import WhaleTypes from '@flow-ui/whale/types'
 import callProp from '../../utils/callProp'
 import Types from './types'
 
@@ -10,7 +9,6 @@ type ExtractFunction<T> = {
 const fieldStyles = <T extends Types.Overrides>(
     props: Omit<Types.Props, 'onChange'>,
     theme: WhaleTypes.Theme,
-    styleProps: InjectedStyleProps,
     params: {
         manyLines?: boolean
         additionalPadding?: string
@@ -32,8 +30,6 @@ const fieldStyles = <T extends Types.Overrides>(
                 overflow: 'hidden',
                 outline: 'none'
             },
-            styleProps.flow,
-            styleProps.layout,
             overrides?.container?.(variant)
         ],
 
@@ -161,9 +157,6 @@ const fieldStyles = <T extends Types.Overrides>(
             {
                 borderColor: color,
             },
-            styleProps.color,
-            styleProps.border,
-            styleProps.padding,
             overrides?.field?.(variant)
         ],
 

@@ -6,13 +6,17 @@ import Types from './types'
 
 const Block: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     const { surface, hoverSurface } = props
-    
-    const { cs, attributes, events } = useComponent('Block', { props, styles })
+    const { cs, attributes, events } = useComponent('Block', { 
+        props, 
+        styles, 
+        styleProps: {container: ['all']}
+    })
 
     return jsx(
         props.tag || 'div',
         {
             ...attributes,
+            ...events.all,
             ref: ref,
             css: cs.container({ surface, hoverSurface }),
         },

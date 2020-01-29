@@ -3,7 +3,7 @@ import WhaleTypes from '@flow-ui/whale/types'
 import chroma from 'chroma-js'
 import Types from './types'
 
-const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
 
     let color = chroma(
         callProp(props.color, theme.color) || theme.color.onBackground.css()
@@ -16,7 +16,6 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 overflow: 'hidden',
                 height: '100%',
             },
-            styleProps.all,
             {
                 padding: '0 !important',
                 margin: '0 !important',

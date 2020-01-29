@@ -2,7 +2,7 @@ import WhaleTypes from '@flow-ui/whale/types'
 import callProp from '../../utils/callProp'
 import Types from './types'
 
-const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme, styleProps) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
 
     const labelColor = callProp(props.labelColor, theme.color)
 
@@ -22,8 +22,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 animated: [{
                     transition: 'all .15s'
                 }]
-            }),
-            styleProps.all
+            })
         ],
 
         label: (variant) => [
