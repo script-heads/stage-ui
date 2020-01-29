@@ -1,13 +1,13 @@
 # [Flow UI Core](http://flowui.abr.tech)
 Consistent React UI Framework declared by your own Design System. 
 
-# Package Lab 🧪
-External and developing components for Flow UI
+# Package Whale
+Theme utils for Flow UI
 
 ## How to install?
 
 ```
-yarn add @flow-ui/lab
+yarn add @flow-ui/whale
 ```
 
 ***

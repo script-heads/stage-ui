@@ -1,8 +1,13 @@
 # [Flow UI Core](http://flowui.abr.tech)
 Consistent React UI Framework declared by your own Design System. 
 
+# Package Core
+Core components of Flow UI
+
+## How to install?
+
 ```
-npm i @flow-ui/core
+yarn add @flow-ui/core
 ```
 
 ## Getting started
@@ -19,3 +24,6 @@ const Hello props =>
 	  </Block>
 	</Viewport>
 ```
+
+***
+[MIT License](https://github.com/abr-tech/FlowUI/blob/master/LICENSE)
