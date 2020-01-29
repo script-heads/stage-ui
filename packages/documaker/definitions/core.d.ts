@@ -1,5 +1,5 @@
 declare module 'content/Divider/types' {
-	import WhaleTypes from '@flow-ui/whale/types'; namespace DividerTypes {
+	import WhaleTypes from 'types'; namespace DividerTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        vertical?: boolean;
 	        dash?: number;
@@ -19,7 +19,7 @@ declare module 'misc/utils/callProp' {
 
 }
 declare module 'content/Divider/styles' {
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import Types from 'content/Divider/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
@@ -550,7 +550,7 @@ declare module 'misc/icons' {
 }
 declare module 'content/Icon/types' {
 	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import IconsetTypes from '@flow-ui/core/misc/icons/types';
 	import CSS from 'csstype'; namespace IconTypes {
 	    /**
@@ -574,7 +574,7 @@ declare module 'content/Icon/types' {
 
 }
 declare module 'content/Icon/styles' {
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import Types from 'content/Icon/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
@@ -587,7 +587,7 @@ declare module 'content/Icon' {
 }
 declare module 'content/Spinner/types' {
 	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types'; namespace SpinnerTypes {
+	import WhaleTypes from 'types'; namespace SpinnerTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        color?: WhaleTypes.ColorProp;
 	        children?: React.ReactElement;
@@ -605,7 +605,7 @@ declare module 'content/Spinner/types' {
 
 }
 declare module 'content/Spinner/styles' {
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import Types from 'content/Spinner/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
@@ -618,7 +618,7 @@ declare module 'content/Spinner' {
 }
 declare module 'misc/hocs/Typography/types' {
 	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import CSS from 'csstype'; namespace TypographyTypes {
 	    interface AnchorProps extends Props {
 	        download?: any;
@@ -659,7 +659,7 @@ declare module 'misc/hocs/Typography/types' {
 
 }
 declare module 'misc/hocs/Typography/styles' {
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import Types from 'misc/hocs/Typography/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.PrivateProps>;
 	export default styles;
 
@@ -703,7 +703,7 @@ declare module 'content/Anchor' {
 }
 declare module 'control/Button/types' {
 	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types'; namespace ButtonTypes {
+	import WhaleTypes from 'types'; namespace ButtonTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLButtonElement, Overrides> {
 	        autoFocus?: boolean;
 	        disabled?: boolean;
@@ -742,7 +742,7 @@ declare module 'control/Button/types' {
 }
 declare module 'control/Button/styles' {
 	import Types from 'control/Button/types';
-	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	import WhaleTypes from 'types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
 }
@@ -754,7 +754,7 @@ declare module 'control/Button' {
 }
 declare module 'layout/Flexbox/types' {
 	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import CSS from 'csstype'; namespace FlexboxTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        column?: boolean;
@@ -776,7 +776,7 @@ declare module 'layout/Flexbox/types' {
 
 }
 declare module 'layout/Flexbox/styles' {
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import Types from 'layout/Flexbox/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
@@ -790,7 +790,7 @@ declare module 'layout/Flexbox' {
 }
 declare module 'layout/Grid/types' {
 	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import CSS from 'csstype'; namespace GridTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        inline?: boolean;
@@ -817,7 +817,7 @@ declare module 'layout/Grid/types' {
 
 }
 declare module 'layout/Grid/styles' {
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import Types from 'layout/Grid/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
@@ -831,7 +831,7 @@ declare module 'layout/Grid' {
 }
 declare module 'misc/hocs/Field/types' {
 	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types'; namespace FieldTypes {
+	import WhaleTypes from 'types'; namespace FieldTypes {
 	    interface Props extends Omit<WhaleTypes.AllProps<HTMLInputElement, Overrides>, 'onChange'> {
 	        label?: React.ReactNode;
 	        hint?: React.ReactNode;
@@ -883,7 +883,7 @@ declare module 'misc/hocs/Field/types' {
 
 }
 declare module 'control/Calendar/types' {
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import { Moment } from 'moment';
 	import { CSSProperties } from 'react'; namespace CalendarTypes {
 	    type GridType = 'year' | 'month' | 'day';
@@ -998,7 +998,7 @@ declare module 'control/Calendar/DateGrid' {
 
 }
 declare module 'control/Calendar/styles' {
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import Types from 'control/Calendar/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
@@ -1011,7 +1011,7 @@ declare module 'control/Calendar' {
 }
 declare module 'layout/Block/types' {
 	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import CSS from 'csstype'; namespace BlockTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        tag?: 'div' | 'span' | 'header' | 'footer' | 'article' | 'section' | 'aside' | 'main';
@@ -1033,7 +1033,7 @@ declare module 'layout/Block/types' {
 
 }
 declare module 'layout/Block/styles' {
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import Types from 'layout/Block/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
@@ -1047,7 +1047,7 @@ declare module 'layout/Block' {
 }
 declare module 'misc/hocs/Check/types' {
 	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types'; namespace CheckTypes {
+	import WhaleTypes from 'types'; namespace CheckTypes {
 	    type CheckType = 'checkbox' | 'radio' | 'switch';
 	    interface Props extends WhaleTypes.AllProps<HTMLInputElement, Overrides> {
 	        label?: string;
@@ -1108,14 +1108,14 @@ declare module 'control/Checkbox/types' {
 
 }
 declare module 'misc/hocs/Check/styles' {
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import Types from 'misc/hocs/Check/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
 }
 declare module 'control/Checkbox/styles' {
 	import Types from 'control/Checkbox/types';
-	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	import WhaleTypes from 'types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
 }
@@ -1127,7 +1127,7 @@ declare module 'control/Checkbox' {
 }
 declare module 'layout/Drop/types' {
 	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types'; namespace DropTypes {
+	import WhaleTypes from 'types'; namespace DropTypes {
 	    interface TargetCoordinates {
 	        top: number;
 	        bottom: number;
@@ -1156,7 +1156,7 @@ declare module 'layout/Drop/types' {
 
 }
 declare module 'layout/Drop/styles' {
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import Types from 'layout/Drop/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
@@ -1169,7 +1169,7 @@ declare module 'layout/Drop' {
 }
 declare module 'layout/Popover/types' {
 	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import CSS from 'csstype'; namespace PopoverTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        align?: 'top' | 'bottom' | 'left' | 'right' | 'none';
@@ -1191,7 +1191,7 @@ declare module 'layout/Popover/types' {
 }
 declare module 'layout/Popover/styles' {
 	import Types from 'layout/Popover/types';
-	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	import WhaleTypes from 'types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
 }
@@ -1223,11 +1223,10 @@ declare module 'control/DatePicker/mask' {
 
 }
 declare module 'misc/hocs/Field/styles' {
-	import WhaleTypes from '@flow-ui/whale/types';
-	import { InjectedStyleProps } from '@flow-ui/whale/utils/styleProps';
+	import WhaleTypes from 'types';
 	import Types from 'misc/hocs/Field/types'; type ExtractFunction<T> = {
 	    [K in keyof T]: Extract<T[K], Function>;
-	}; const fieldStyles: <T extends Types.Overrides<{}>>(props: Pick<Types.Props, "alignSelf" | "backgroundColor" | "color" | "display" | "flexBasis" | "flexGrow" | "flexShrink" | "gridColumnEnd" | "gridColumnStart" | "gridRowEnd" | "gridRowStart" | "justifySelf" | "visibility" | "borderColor" | "borderRadius" | "borderStyle" | "borderWidth" | "flex" | "gridArea" | "gridColumn" | "gridRow" | "placeSelf" | "size" | "style" | "disabled" | "label" | "p" | "className" | "id" | "tabIndex" | "role" | "draggable" | "attrs" | "aria-activedescendant" | "aria-atomic" | "aria-autocomplete" | "aria-busy" | "aria-checked" | "aria-colcount" | "aria-colindex" | "aria-colspan" | "aria-controls" | "aria-current" | "aria-describedby" | "aria-details" | "aria-disabled" | "aria-dropeffect" | "aria-errormessage" | "aria-expanded" | "aria-flowto" | "aria-grabbed" | "aria-haspopup" | "aria-hidden" | "aria-invalid" | "aria-keyshortcuts" | "aria-label" | "aria-labelledby" | "aria-level" | "aria-live" | "aria-modal" | "aria-multiline" | "aria-multiselectable" | "aria-orientation" | "aria-owns" | "aria-placeholder" | "aria-posinset" | "aria-pressed" | "aria-readonly" | "aria-relevant" | "aria-required" | "aria-roledescription" | "aria-rowcount" | "aria-rowindex" | "aria-rowspan" | "aria-selected" | "aria-setsize" | "aria-sort" | "aria-valuemax" | "aria-valuemin" | "aria-valuenow" | "aria-valuetext" | "onCopy" | "onCopyCapture" | "onCut" | "onCutCapture" | "onPaste" | "onPasteCapture" | "onCompositionEnd" | "onCompositionEndCapture" | "onCompositionStart" | "onCompositionStartCapture" | "onCompositionUpdate" | "onCompositionUpdateCapture" | "onFocus" | "onFocusCapture" | "onBlur" | "onBlurCapture" | "onChangeCapture" | "onBeforeInput" | "onBeforeInputCapture" | "onInput" | "onInputCapture" | "onReset" | "onResetCapture" | "onSubmit" | "onSubmitCapture" | "onInvalid" | "onInvalidCapture" | "onLoad" | "onLoadCapture" | "onError" | "onErrorCapture" | "onKeyDown" | "onKeyDownCapture" | "onKeyPress" | "onKeyPressCapture" | "onKeyUp" | "onKeyUpCapture" | "onAbort" | "onAbortCapture" | "onCanPlay" | "onCanPlayCapture" | "onCanPlayThrough" | "onCanPlayThroughCapture" | "onDurationChange" | "onDurationChangeCapture" | "onEmptied" | "onEmptiedCapture" | "onEncrypted" | "onEncryptedCapture" | "onEnded" | "onEndedCapture" | "onLoadedData" | "onLoadedDataCapture" | "onLoadedMetadata" | "onLoadedMetadataCapture" | "onLoadStart" | "onLoadStartCapture" | "onPause" | "onPauseCapture" | "onPlay" | "onPlayCapture" | "onPlaying" | "onPlayingCapture" | "onProgress" | "onProgressCapture" | "onRateChange" | "onRateChangeCapture" | "onSeeked" | "onSeekedCapture" | "onSeeking" | "onSeekingCapture" | "onStalled" | "onStalledCapture" | "onSuspend" | "onSuspendCapture" | "onTimeUpdate" | "onTimeUpdateCapture" | "onVolumeChange" | "onVolumeChangeCapture" | "onWaiting" | "onWaitingCapture" | "onAuxClick" | "onAuxClickCapture" | "onClick" | "onClickCapture" | "onContextMenu" | "onContextMenuCapture" | "onDoubleClick" | "onDoubleClickCapture" | "onDrag" | "onDragCapture" | "onDragEnd" | "onDragEndCapture" | "onDragEnter" | "onDragEnterCapture" | "onDragExit" | "onDragExitCapture" | "onDragLeave" | "onDragLeaveCapture" | "onDragOver" | "onDragOverCapture" | "onDragStart" | "onDragStartCapture" | "onDrop" | "onDropCapture" | "onMouseDown" | "onMouseDownCapture" | "onMouseEnter" | "onMouseLeave" | "onMouseMove" | "onMouseMoveCapture" | "onMouseOut" | "onMouseOutCapture" | "onMouseOver" | "onMouseOverCapture" | "onMouseUp" | "onMouseUpCapture" | "onSelect" | "onSelectCapture" | "onTouchCancel" | "onTouchCancelCapture" | "onTouchEnd" | "onTouchEndCapture" | "onTouchMove" | "onTouchMoveCapture" | "onTouchStart" | "onTouchStartCapture" | "onPointerDown" | "onPointerDownCapture" | "onPointerMove" | "onPointerMoveCapture" | "onPointerUp" | "onPointerUpCapture" | "onPointerCancel" | "onPointerCancelCapture" | "onPointerEnter" | "onPointerLeave" | "onPointerOver" | "onPointerOverCapture" | "onPointerOut" | "onPointerOutCapture" | "onGotPointerCapture" | "onGotPointerCaptureCapture" | "onLostPointerCapture" | "onLostPointerCaptureCapture" | "onScroll" | "onScrollCapture" | "onWheel" | "onWheelCapture" | "onAnimationStart" | "onAnimationStartCapture" | "onAnimationEnd" | "onAnimationEndCapture" | "onAnimationIteration" | "onAnimationIterationCapture" | "onTransitionEnd" | "onTransitionEndCapture" | "styles" | "animated" | "textColor" | "px" | "py" | "pr" | "pl" | "pt" | "pb" | "w" | "h" | "m" | "mx" | "my" | "mr" | "ml" | "mt" | "mb" | "shape" | "onEnter" | "decoration" | "hint" | "rightChild" | "leftChild" | "clearable" | "onClear">, theme: WhaleTypes.Theme<{}>, styleProps: InjectedStyleProps, params?: {
+	}; const fieldStyles: <T extends Types.Overrides<{}>>(props: Pick<Types.Props, "alignSelf" | "backgroundColor" | "color" | "display" | "flexBasis" | "flexGrow" | "flexShrink" | "gridColumnEnd" | "gridColumnStart" | "gridRowEnd" | "gridRowStart" | "justifySelf" | "visibility" | "borderColor" | "borderRadius" | "borderStyle" | "borderWidth" | "flex" | "gridArea" | "gridColumn" | "gridRow" | "placeSelf" | "size" | "style" | "disabled" | "label" | "p" | "className" | "id" | "tabIndex" | "role" | "draggable" | "attrs" | "aria-activedescendant" | "aria-atomic" | "aria-autocomplete" | "aria-busy" | "aria-checked" | "aria-colcount" | "aria-colindex" | "aria-colspan" | "aria-controls" | "aria-current" | "aria-describedby" | "aria-details" | "aria-disabled" | "aria-dropeffect" | "aria-errormessage" | "aria-expanded" | "aria-flowto" | "aria-grabbed" | "aria-haspopup" | "aria-hidden" | "aria-invalid" | "aria-keyshortcuts" | "aria-label" | "aria-labelledby" | "aria-level" | "aria-live" | "aria-modal" | "aria-multiline" | "aria-multiselectable" | "aria-orientation" | "aria-owns" | "aria-placeholder" | "aria-posinset" | "aria-pressed" | "aria-readonly" | "aria-relevant" | "aria-required" | "aria-roledescription" | "aria-rowcount" | "aria-rowindex" | "aria-rowspan" | "aria-selected" | "aria-setsize" | "aria-sort" | "aria-valuemax" | "aria-valuemin" | "aria-valuenow" | "aria-valuetext" | "onCopy" | "onCopyCapture" | "onCut" | "onCutCapture" | "onPaste" | "onPasteCapture" | "onCompositionEnd" | "onCompositionEndCapture" | "onCompositionStart" | "onCompositionStartCapture" | "onCompositionUpdate" | "onCompositionUpdateCapture" | "onFocus" | "onFocusCapture" | "onBlur" | "onBlurCapture" | "onChangeCapture" | "onBeforeInput" | "onBeforeInputCapture" | "onInput" | "onInputCapture" | "onReset" | "onResetCapture" | "onSubmit" | "onSubmitCapture" | "onInvalid" | "onInvalidCapture" | "onLoad" | "onLoadCapture" | "onError" | "onErrorCapture" | "onKeyDown" | "onKeyDownCapture" | "onKeyPress" | "onKeyPressCapture" | "onKeyUp" | "onKeyUpCapture" | "onAbort" | "onAbortCapture" | "onCanPlay" | "onCanPlayCapture" | "onCanPlayThrough" | "onCanPlayThroughCapture" | "onDurationChange" | "onDurationChangeCapture" | "onEmptied" | "onEmptiedCapture" | "onEncrypted" | "onEncryptedCapture" | "onEnded" | "onEndedCapture" | "onLoadedData" | "onLoadedDataCapture" | "onLoadedMetadata" | "onLoadedMetadataCapture" | "onLoadStart" | "onLoadStartCapture" | "onPause" | "onPauseCapture" | "onPlay" | "onPlayCapture" | "onPlaying" | "onPlayingCapture" | "onProgress" | "onProgressCapture" | "onRateChange" | "onRateChangeCapture" | "onSeeked" | "onSeekedCapture" | "onSeeking" | "onSeekingCapture" | "onStalled" | "onStalledCapture" | "onSuspend" | "onSuspendCapture" | "onTimeUpdate" | "onTimeUpdateCapture" | "onVolumeChange" | "onVolumeChangeCapture" | "onWaiting" | "onWaitingCapture" | "onAuxClick" | "onAuxClickCapture" | "onClick" | "onClickCapture" | "onContextMenu" | "onContextMenuCapture" | "onDoubleClick" | "onDoubleClickCapture" | "onDrag" | "onDragCapture" | "onDragEnd" | "onDragEndCapture" | "onDragEnter" | "onDragEnterCapture" | "onDragExit" | "onDragExitCapture" | "onDragLeave" | "onDragLeaveCapture" | "onDragOver" | "onDragOverCapture" | "onDragStart" | "onDragStartCapture" | "onDrop" | "onDropCapture" | "onMouseDown" | "onMouseDownCapture" | "onMouseEnter" | "onMouseLeave" | "onMouseMove" | "onMouseMoveCapture" | "onMouseOut" | "onMouseOutCapture" | "onMouseOver" | "onMouseOverCapture" | "onMouseUp" | "onMouseUpCapture" | "onSelect" | "onSelectCapture" | "onTouchCancel" | "onTouchCancelCapture" | "onTouchEnd" | "onTouchEndCapture" | "onTouchMove" | "onTouchMoveCapture" | "onTouchStart" | "onTouchStartCapture" | "onPointerDown" | "onPointerDownCapture" | "onPointerMove" | "onPointerMoveCapture" | "onPointerUp" | "onPointerUpCapture" | "onPointerCancel" | "onPointerCancelCapture" | "onPointerEnter" | "onPointerLeave" | "onPointerOver" | "onPointerOverCapture" | "onPointerOut" | "onPointerOutCapture" | "onGotPointerCapture" | "onGotPointerCaptureCapture" | "onLostPointerCapture" | "onLostPointerCaptureCapture" | "onScroll" | "onScrollCapture" | "onWheel" | "onWheelCapture" | "onAnimationStart" | "onAnimationStartCapture" | "onAnimationEnd" | "onAnimationEndCapture" | "onAnimationIteration" | "onAnimationIterationCapture" | "onTransitionEnd" | "onTransitionEndCapture" | "styles" | "animated" | "textColor" | "px" | "py" | "pr" | "pl" | "pt" | "pb" | "w" | "h" | "m" | "mx" | "my" | "mr" | "ml" | "mt" | "mb" | "shape" | "onEnter" | "decoration" | "hint" | "rightChild" | "leftChild" | "clearable" | "onClear">, theme: WhaleTypes.Theme<{}>, params?: {
 	    manyLines?: boolean | undefined;
 	    additionalPadding?: string | undefined;
 	    labelOverlayPosition?: "top" | "center" | undefined;
@@ -1319,7 +1318,7 @@ declare module 'control/DatePicker/types' {
 
 }
 declare module 'control/DatePicker/styles' {
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import Types from 'control/DatePicker/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
@@ -1332,7 +1331,7 @@ declare module 'control/DatePicker' {
 }
 declare module 'control/Menu/types' {
 	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types'; namespace MenuTypes {
+	import WhaleTypes from 'types'; namespace MenuTypes {
 	    type Value = string | number;
 	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
 	        defaultValue?: Value;
@@ -1386,7 +1385,7 @@ declare module 'control/Menu/Item' {
 
 }
 declare module 'control/Menu/styles' {
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import Types from 'control/Menu/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
@@ -1420,7 +1419,7 @@ declare module 'control/Radio/types' {
 }
 declare module 'control/Radio/styles' {
 	import Types from 'control/Radio/types';
-	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	import WhaleTypes from 'types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
 }
@@ -1431,7 +1430,7 @@ declare module 'control/Radio' {
 
 }
 declare module 'control/Range/types' {
-	import WhaleTypes from '@flow-ui/whale/types'; namespace RangeTypes {
+	import WhaleTypes from 'types'; namespace RangeTypes {
 	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
 	        min?: number;
 	        max?: number;
@@ -1453,7 +1452,7 @@ declare module 'control/Range/types' {
 }
 declare module 'control/Range/styles' {
 	import Types from 'control/Range/types';
-	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	import WhaleTypes from 'types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
 }
@@ -1464,7 +1463,7 @@ declare module 'control/Range' {
 
 }
 declare module 'control/Pageswitch/types' {
-	import WhaleTypes from '@flow-ui/whale/types'; namespace PageswitchTypes {
+	import WhaleTypes from 'types'; namespace PageswitchTypes {
 	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
 	        length: number;
 	        onChange?: (pageNumber: number, startIndex: number) => void;
@@ -1486,7 +1485,7 @@ declare module 'control/Pageswitch/types' {
 
 }
 declare module 'control/Pageswitch/styles' {
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import Types from 'control/Pageswitch/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
@@ -1499,7 +1498,7 @@ declare module 'control/Pageswitch' {
 }
 declare module 'control/Select/types' {
 	import FieldTypes from 'misc/hocs/Field/types';
-	import WhaleTypes from '@flow-ui/whale/types'; namespace SelectTypes {
+	import WhaleTypes from 'types'; namespace SelectTypes {
 	    interface Option {
 	        text: string;
 	        value: any;
@@ -1592,7 +1591,7 @@ declare module 'misc/utils/variant' {
 }
 declare module 'control/Select/styles' {
 	import Types from 'control/Select/types';
-	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	import WhaleTypes from 'types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
 }
@@ -1626,7 +1625,7 @@ declare module 'control/Switch/types' {
 }
 declare module 'control/Switch/styles' {
 	import Types from 'control/Switch/types';
-	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	import WhaleTypes from 'types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
 }
@@ -1688,7 +1687,7 @@ declare module 'control/TextField/types' {
 }
 declare module 'control/TextField/styles' {
 	import Types from 'control/TextField/types';
-	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	import WhaleTypes from 'types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
 }
@@ -1699,7 +1698,7 @@ declare module 'control/TextField' {
 
 }
 declare module 'data/Meter/types' {
-	import WhaleTypes from '@flow-ui/whale/types'; namespace MeterTypes {
+	import WhaleTypes from 'types'; namespace MeterTypes {
 	    type MeterType = 'line' | 'circle';
 	    type MeterDecoration = 'filled' | 'outline';
 	    type MeterShape = 'square' | 'round';
@@ -1735,7 +1734,7 @@ declare module 'data/Meter/types' {
 
 }
 declare module 'data/Meter/styles' {
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import Types from 'data/Meter/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
@@ -1748,7 +1747,7 @@ declare module 'data/Meter' {
 }
 declare module '@flow-ui/core/data/Table/types' {
 	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types'; namespace TableTypes {
+	import WhaleTypes from 'types'; namespace TableTypes {
 	    type TableCellKey = number | string;
 	    type TableSortType = 'ASC' | 'DESC';
 	    type TableSortObject = {
@@ -1889,7 +1888,7 @@ declare module '@flow-ui/core/data/Table/types' {
 }
 declare module 'data/Table/styles' {
 	import Types from '@flow-ui/core/data/Table/types';
-	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	import WhaleTypes from 'types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
 }
@@ -1925,7 +1924,7 @@ declare module 'data/Table' {
 }
 declare module 'layout/Badge/types' {
 	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types'; namespace BadgeTypes {
+	import WhaleTypes from 'types'; namespace BadgeTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        content: React.ReactNode;
 	        align?: 'top' | 'bottom' | 'left' | 'right' | 'top-right' | 'bottom-right' | 'top-left' | 'bottom-left';
@@ -1942,7 +1941,7 @@ declare module 'layout/Badge/types' {
 
 }
 declare module 'layout/Badge/styles' {
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import Types from 'layout/Badge/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
@@ -1955,7 +1954,7 @@ declare module 'layout/Badge' {
 }
 declare module '@flow-ui/core/layout/Modal/types' {
 	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types'; namespace ModalTypes {
+	import WhaleTypes from 'types'; namespace ModalTypes {
 	    type ExtentedProps = WhaleTypes.AttributeProps & WhaleTypes.EventProps<HTMLDivElement> & WhaleTypes.CoreProps<Overrides> & WhaleTypes.ColorProps & WhaleTypes.BorderProps & WhaleTypes.PaddingProps & WhaleTypes.LayoutProps;
 	    interface Ref {
 	        open: (customContent?: React.ReactElement | null) => void;
@@ -2007,6 +2006,7 @@ declare module '@flow-ui/core/layout/Modal/types' {
 	        hideHeader?: boolean;
 	        children?: any;
 	        containerAttr?: ExtentedProps;
+	        containerEvents?: any;
 	        onClosePressed: () => void;
 	        styles: WhaleTypes.ComponentStyles<Overrides>;
 	    }
@@ -2057,7 +2057,7 @@ declare module 'layout/Modal/ModalWindow' {
 
 }
 declare module 'layout/Modal/styles' {
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import Types from '@flow-ui/core/layout/Modal/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
@@ -2105,7 +2105,7 @@ declare module 'layout/Notification/types' {
 
 }
 declare module 'layout/Notification/styles' {
-	import WhaleTypes from '@flow-ui/whale/types';
+	import WhaleTypes from 'types';
 	import Types from 'layout/Notification/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
@@ -2118,7 +2118,7 @@ declare module 'layout/Notification' {
 }
 declare module 'layout/Tree/types' {
 	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types'; namespace TreeTypes {
+	import WhaleTypes from 'types'; namespace TreeTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        label?: React.ReactNode | string | ((isOpen: boolean) => React.ReactNode);
 	        children?: React.ReactNode;
@@ -2147,7 +2147,7 @@ declare module 'layout/Tree/types' {
 }
 declare module 'layout/Tree/styles' {
 	import Types from 'layout/Tree/types';
-	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	import WhaleTypes from 'types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
 }
@@ -2158,12 +2158,12 @@ declare module 'layout/Tree' {
 
 }
 declare module 'misc/themes/light' {
-	import WhaleTypes from '@flow-ui/whale/types'; const _default: WhaleTypes.Theme<{}>;
+	import WhaleTypes from 'types'; const _default: WhaleTypes.Theme<{}>;
 	export default _default;
 
 }
 declare module 'misc/themes/dark' {
-	 const dark: import("@flow-ui/whale/types").default.Theme<{}>;
+	 const dark: import("types").default.Theme<{}>;
 	export default dark;
 
 }
@@ -2174,7 +2174,7 @@ declare module 'misc/themes' {
 }
 declare module 'layout/Viewport/types' {
 	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types'; namespace ViewportTypes {
+	import WhaleTypes from 'types'; namespace ViewportTypes {
 	    interface Themes {
 	        light: WhaleTypes.Theme;
 	        dark: WhaleTypes.Theme;
