@@ -35,7 +35,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
             variant({
                 decoration: {
                     drop: [{
-                        display: 'inline-block',
+                        display: 'inline-flex',
                         marginRight: '0.25rem',
                     }]
                 },
