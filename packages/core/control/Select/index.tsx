@@ -170,6 +170,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
         fieldValue =
             <Options
                 styles={cs}
+                size={size}
                 selected={state.selectedOptions}
                 searchable={searchable}
                 disabled={disabled}
@@ -233,6 +234,8 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                 children={!isLabelOverlay && fieldValue}
                 rightChild={(
                     <Icon
+                        alignSelf="center"
+                        css={cs.dropIcon({ size })}
                         type={i =>
                             i.filled[state.open ? 'arrowIosUpward' : 'arrowIosDownward']
                         }
@@ -257,6 +260,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                         decoration, 
                         shape,
                         focus, 
+                        size,
                         open: true
                     })}>
                         {availableOptions
@@ -280,7 +284,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
 
 const Options = (props: Types.OptionsProps ) => {
 
-    const { selected, onClose, styles, searchable } = props
+    const { selected, onClose, styles, searchable, size } = props
 
     return (
         <div css={styles.options}>
@@ -296,7 +300,7 @@ const Options = (props: Types.OptionsProps ) => {
                     />
                 </div>
             ))}
-            {searchable && <Search {...props} size={4} />}
+            {searchable && <Search {...props} />}
         </div>
     )
 }
@@ -311,7 +315,6 @@ const Search = (props: Types.SearchProps) => {
             disabled={disabled}
             value={searchValue}
             css={styles.input}
-            size={props.size}
             autoFocus
             onChange={e => onSearch(e.target.value)}
         />

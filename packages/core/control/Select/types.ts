@@ -50,12 +50,12 @@ declare namespace SelectTypes {
         selected: SelectTypes.Option[]
         onClose: (option) => void
         searchable?: boolean
+        size: WhaleTypes.Size
     }
 
     interface SearchProps {
         searchValue: string
         onSearch: (searchValue: string) => void
-        size?: number
         styles: WhaleTypes.ComponentStyles<Overrides>
         placeholder?: string
         defaultValue?: string
@@ -68,9 +68,13 @@ declare namespace SelectTypes {
         options: void
         optionItem: void
         optionItemText: void
+        dropIcon: {
+            size: Props['size']
+        }
         dropMenu: {
             open: boolean
             shape: Props['shape']
+            size: Props['size']
             decoration: Props['decoration']
             focus: boolean
         }

@@ -30,8 +30,6 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                         open: [{
                             borderBottomLeftRadius: 0,
                             borderBottomRightRadius: 0,
-                            borderTopRightRadius: theme.radius.narrow,
-                            borderTopLeftRadius: theme.radius.narrow,
                         }]
                     })
                 ]
@@ -120,7 +118,11 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 }
             }),
         ],
-
+        dropIcon: (variant) => [
+            variant({
+                size: theme.typography.text
+            }),
+        ],
         dropMenu: (variant) => [
             {
                 overflow: 'auto',
@@ -139,9 +141,6 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                         borderRadius: theme.radius.narrow
                     }],
                     round: [
-                        {
-                            borderRadius: '4rem'
-                        },
                         variant({
                             open: [{
                                 borderBottomRightRadius: theme.radius.narrow,
@@ -153,24 +152,25 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                     ]
                 },
                 decoration: {
-                    'filled': [{
+                    filled: {
                         borderColor: 'transparent',
-                    }],
-                    'underline': [{
+                    },
+                    underline: {
                         borderColor: 'transparent',
                         paddingLeft: 0,
                         paddingRight: 0,
-                    }],
-                    'none': [{
+                    },
+                    none: {
                         borderColor: 'transparent',
-                    }]
+                    }
                 },
-                focus: [{
+                focus: {
                     borderColor: theme.color.primary.css(),
-                }],
-                open: [
-                    
-                ]
+                },
+                open: {
+                    borderTopLeftRadius: 0,
+                    borderTopRightRadius: 0,
+                }
             }),
             {
                 borderColor: color

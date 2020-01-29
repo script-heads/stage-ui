@@ -49,12 +49,20 @@ const fieldStyles = <T extends Types.Overrides>(
             },
             variant({
                 shape: {
-                    'rounded': [{
+                    rounded: [{
                         borderRadius: theme.radius.narrow
                     }],
-                    'round': [{
-                        borderRadius: '4rem'
-                    }]
+                    round: [
+                        variant({
+                            size: {
+                                xl: { borderRadius: '1.75rem' },
+                                l:  { borderRadius: '2.062rem' },
+                                m:  { borderRadius: '1.25rem' },
+                                s:  { borderRadius: '1rem' },
+                                xs: { borderRadius: '0.812rem' }
+                            },
+                        })
+                    ]
                 },
                 size: {
                     'xs': [
@@ -105,7 +113,7 @@ const fieldStyles = <T extends Types.Overrides>(
                             ...theme.typography.header.xl
                         },
                         !manyLines && {
-                            padding: '.25rem .875rem'
+                            padding: '.5rem 1rem'
                         }
                     ]
                 },
@@ -194,7 +202,7 @@ const fieldStyles = <T extends Types.Overrides>(
                         {
                             paddingBottom: '2px',
                         },
-                        theme.typography.text.xs
+                        theme.typography.text.s
                     ],
                     'xs': [
                         {
@@ -240,7 +248,7 @@ const fieldStyles = <T extends Types.Overrides>(
             },
             variant({
                 align: {
-                    'right': variant({
+                    right: variant({
                         size: {
                             'xs': [{ marginLeft: '.25rem' }],
                             's': [{ marginLeft: '.25rem' }],
@@ -249,7 +257,7 @@ const fieldStyles = <T extends Types.Overrides>(
                             'xl': [{ marginLeft: '.75rem' }],
                         }
                     }),
-                    'left': variant({
+                    left: variant({
                         size: {
                             'xs': [{ marginRight: '.25rem' }],
                             's': [{ marginRight: '.25rem' }],
@@ -272,7 +280,7 @@ const fieldStyles = <T extends Types.Overrides>(
             },
             variant({
                 size: {
-                    's': [theme.typography.text.xs],
+                    's': [theme.typography.text.s],
                     'xs': [theme.typography.text.xs]
                 }
             }),
