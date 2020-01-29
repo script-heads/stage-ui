@@ -1,4 +1,5 @@
 import WhaleTypes from '@flow-ui/whale/types'
+import FlowTypes from '@flow-ui/core/types'
 import { createTheme } from '@flow-ui/whale'
 
 const Light: WhaleTypes.SourceTheme = {
@@ -24,7 +25,7 @@ const Light: WhaleTypes.SourceTheme = {
 
             error: [188, 0, 0],
             successful: [0, 200, 0],
-            warning: [255, 149, 0]
+            warning: [255, 149, 0],
             
         },
         radius: {
@@ -155,4 +156,4 @@ const Light: WhaleTypes.SourceTheme = {
     overrides: {}
 }
 
-export default createTheme(Light)
+export default createTheme<FlowTypes.Overrides>(Light)

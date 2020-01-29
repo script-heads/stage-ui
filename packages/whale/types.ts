@@ -9,7 +9,7 @@ declare namespace WhaleTypes {
     interface Theme<Overrides = {}> extends ThemeVariables {
         assets: ThemeAssets
         overrides: DeepPartial<{[Component in keyof Overrides]: ComponentStyles<Component>}>
-        replace: (theme: ReplaceTheme) => Theme
+        replace: (theme: ReplaceTheme<Overrides>) => Theme<Overrides>
     }
 
     interface SourceTheme<Overrides = {}> {
@@ -47,6 +47,8 @@ declare namespace WhaleTypes {
             error: Color
             warning: Color
             successful: Color
+
+            palette?: Record<string, Color>
         }
         radius: {
             default: string
@@ -58,19 +60,19 @@ declare namespace WhaleTypes {
             header: Record<Size, {
                 fontSize: string
                 lineHeight: string | number
-            }>
+            } & EmotionStyles>
             text: Record<Size, {
                 fontSize: string
                 lineHeight: string | number
-            }>
+            } & EmotionStyles>
             display: Record<Size, {
                 fontSize: string
                 lineHeight: string | number
-            }>
+            } & EmotionStyles>
             paragraph: Record<Size, {
                 fontSize: string
                 lineHeight: string | number
-            }>
+            } & EmotionStyles>
         }
     }
 

@@ -1,3 +1,4 @@
+export {default as updateContext} from './utils/updateContext'
 export {default as Provider} from './components/Provider'
 
 export {default as useTheme} from './hooks/useTheme'

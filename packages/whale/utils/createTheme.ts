@@ -3,19 +3,17 @@ import chroma from 'chroma-js'
 import createID from './createID'
 import mergeObjects from './mergeObjects'
 
-export type CreateTheme = (theme: Types.SourceTheme) => Types.Theme
-
-const createTheme: CreateTheme = (theme) => {
+const createTheme = <Overrides = {}>(theme: Types.SourceTheme<Overrides>): Types.Theme<Overrides> => {
 
     const main = convertColors(theme.main)
     const assets = theme.assets(main)
     const overrides = theme.overrides
-    const replace = (themeReplace: Types.ReplaceTheme): Types.Theme => {
+    const replace = (themeReplace: Types.ReplaceTheme<Overrides>): Types.Theme<Overrides>  => {
         
         const newTheme = mergeObjects(
             theme,
             themeReplace,
-        ) as Types.SourceTheme
+        ) as Types.SourceTheme<Overrides> 
 
         newTheme.assets = (theme) => mergeObjects(
             assets,
