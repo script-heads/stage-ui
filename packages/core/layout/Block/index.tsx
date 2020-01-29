@@ -13,6 +13,7 @@ const Block: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
         props.tag || 'div',
         {
             ...attributes,
+            ...events.all,
             ref: ref,
             css: cs.container({ surface, hoverSurface }),
         },

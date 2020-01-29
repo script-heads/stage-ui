@@ -12,6 +12,7 @@ const Flexbox: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref
         'div',
         {
             ...attributes,
+            ...events.all,
             ref: ref,
             css: cs.container
         },
