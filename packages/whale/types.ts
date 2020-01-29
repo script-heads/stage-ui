@@ -281,9 +281,9 @@ declare namespace WhaleTypes {
         onPointerCancel?: React.PointerEventHandler<T>
         onPointerCancelCapture?: React.PointerEventHandler<T>
         onPointerEnter?: React.PointerEventHandler<T>
-        onPointerEnterCapture?: React.PointerEventHandler<T>
+        // onPointerEnterCapture?: React.PointerEventHandler<T>
         onPointerLeave?: React.PointerEventHandler<T>
-        onPointerLeaveCapture?: React.PointerEventHandler<T>
+        // onPointerLeaveCapture?: React.PointerEventHandler<T>
         onPointerOver?: React.PointerEventHandler<T>
         onPointerOverCapture?: React.PointerEventHandler<T>
         onPointerOut?: React.PointerEventHandler<T>
