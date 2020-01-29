@@ -22,12 +22,9 @@ const whiteCurrant = light.replace({
 			hard: [120, 120, 120],
 			hardest: [80, 80, 80],
 
-			accent: {
-				red: [188, 0, 0],
-				green: [0, 200, 0],
-				blue: [0, 122, 255],
-				orange: [255, 149, 0]
-			},
+			error: [188, 0, 0],
+			successful: [0, 200, 0],
+			warning: [255, 149, 0]
 		}
 	}
 })

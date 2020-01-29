@@ -51,11 +51,11 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                     defaultValue="layers"
                     items={[
                         {
-                            content: (<><Icon mr={'0.25rem'} type={t => t.outline.layers}/>Layers</>),
+                            content: (<><Icon mx={'0.25rem'} type={t => t.outline.layers}/>Layers</>),
                             value: 'layers',
                         },
                         { 
-                            content: (<><Icon mr={'0.25rem'} type={t => t.outline.browser}/>Pages</>),
+                            content: (<><Icon mx={'0.25rem'} type={t => t.outline.browser}/>Pages</>),
                             value: 'pages',
                         }
                     ]}

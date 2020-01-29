@@ -6,7 +6,7 @@ import { useState } from 'react'
 
 const AddPanel = (props: { tools: ArchitectTools }) => {
     const theme = useTheme()
-    const styles = styles(theme)
+    const cs = styles(theme)
     const { tools } = props
     const [search, setSearch] = useState('')
     const [currentComponent, setCurrentComponent] = useState('')
@@ -14,16 +14,16 @@ const AddPanel = (props: { tools: ArchitectTools }) => {
     return (
         <>
             <div
-                css={styles.backgroundLayer}
+                css={cs.backgroundLayer}
                 onClick={() => {
                     props.tools.componentLibraryHide()
                 }}
             />
-            <Block css={styles.container}>
+            <Block css={cs.container}>
                 <Block h="4rem">
                     <Flexbox h="100%">
                         <TextField
-                            css={styles.searchBar}
+                            css={cs.searchBar}
                             decoration="none"
                             placeholder="Search"
                             value={search}
@@ -66,7 +66,7 @@ const AddPanel = (props: { tools: ArchitectTools }) => {
                             component.toUpperCase().match(search.toUpperCase()) ? (
                                 <Block
                                     draggable
-                                    css={styles.component(currentComponent === component)}
+                                    css={cs.component(currentComponent === component)}
                                     key={component}
                                     children={component}
                                     onMouseDown={() => {

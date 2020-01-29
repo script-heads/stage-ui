@@ -78,7 +78,7 @@ const ValueCross = (props: Props) => {
 
     const theme = useTheme()
 
-    const styles = styles(theme, {
+    const cs = styles(theme, {
         lockX,
         lockY,
         lockC
@@ -131,7 +131,7 @@ const ValueCross = (props: Props) => {
                 color={c => c.light.hex()}
                 children={props.label}
             />
-            <Grid css={styles.container} templateColumns="5.25rem 5.25rem 5.25rem" templateRows="1fr 4rem 1fr">
+            <Grid css={cs.container} templateColumns="5.25rem 5.25rem 5.25rem" templateRows="1fr 4rem 1fr">
                 <div />
                 <ValueControl 
                     value={values[0]} 
@@ -142,8 +142,8 @@ const ValueCross = (props: Props) => {
                     value={values[1]} 
                     onChange={(value) => onChange(1, value)}
                 />
-                <div css={styles.lock}>
-                    <div css={styles.lockX} onClick={() => {
+                <div css={cs.lock}>
+                    <div css={cs.lockX} onClick={() => {
                         setLockX(!lockX)
                         if (lockX) {
                             setLockC(false)
@@ -151,7 +151,7 @@ const ValueCross = (props: Props) => {
                     }}>
                         <div />
                     </div>
-                    <div css={styles.lockY} onClick={() => {
+                    <div css={cs.lockY} onClick={() => {
                         setLockY(!lockY)
                         if (lockY) {
                             setLockC(false)
@@ -160,7 +160,7 @@ const ValueCross = (props: Props) => {
                         <div />
                     </div>
                     <div
-                        css={styles.lockC}
+                        css={cs.lockC}
                         onClick={() => {
                             setLockC(!lockC)
                             setLockX(!lockC)

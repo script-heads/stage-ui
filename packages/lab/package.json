@@ -1,12 +1,12 @@
 {
   "name": "@flow-ui/lab",
   "author": "ABR Tech",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "license": "MIT",
   "scripts": {
     "type-check": "tsc --noEmit",
     "type-check:watch": "yarn type-check -- --watch",
-    "build": "yarn build:types && yarn build:js && cp package.json ../../build/lab/package.json",
+    "build": "yarn build:types && yarn build:js && cp package.json ../../build/lab/package.json&& cp README.md ../../build/lab/README.md",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel ./ --out-dir ../../build/lab --extensions \".ts,.tsx\" --ignore \"node_modules/\""
   },

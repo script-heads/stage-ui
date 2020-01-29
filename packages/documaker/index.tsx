@@ -28,7 +28,7 @@ const FlowViewport = (props: { children: any, currentTheme: WhaleTypes.Theme }) 
 		<Global
 			styles={{
 				'html,body,#documaker': {
-					minHeight: '100%',
+					minHeight: '100vh',
 					overscrollBehavior: 'none'
 				}
 			}}
@@ -42,9 +42,22 @@ const Documaker = () => {
 	const { config, pages } = core
 	const themes = Object.assign(flowThemes, config.themes)
 	const locationPath = '/' + window.location.pathname.slice(1)
+	
+	let defaultTheme = Object.values(themes)[0]
+	const currentSavedTheme = localStorage.getItem('current_theme')
+	if (currentSavedTheme) {
+		if (themes[currentSavedTheme]) {
+			defaultTheme = themes[currentSavedTheme]
+		}
+	}
 
-	const [currentTheme, setTheme] = useState<WhaleTypes.Theme>(Object.values(themes)[0])
+	const [currentTheme, setCurrentTheme] = useState<WhaleTypes.Theme>(defaultTheme)
 	const [currentPage, setCurrentPage] = useState<PageType | '/' | '404' | null>(null)
+
+	function setTheme(theme: WhaleTypes.Theme) {
+		localStorage.setItem('current_theme', theme.name.toLowerCase())
+		setCurrentTheme(theme)
+	}
 
 	function setPage(pageURL?: string) {
 		const nextPage = pageURL != '/'

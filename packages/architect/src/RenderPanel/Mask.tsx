@@ -15,7 +15,7 @@ export type MaskRefs = {
 
 const Mask: RefForwardingComponent<MaskRefs, MaskProps> = (props, ref) => {
     const theme = useTheme()
-    const styles = styles(theme)
+    const cs = styles(theme)
     const selectMask = useRef<HTMLDivElement>(null)
     const [name, setName] = useState('')
 
@@ -50,12 +50,12 @@ const Mask: RefForwardingComponent<MaskRefs, MaskProps> = (props, ref) => {
 
     return (
         <Block
-            css={styles.mask(props.color(theme.color))}
+            css={cs.mask(props.color(theme.color))}
             ref={selectMask}
             children={
                 name 
                 && 
-                <Text size={3} css={styles.maskName(props.color(theme.color))}>{name}</Text>
+                <Text size="xs" css={cs.maskName(props.color(theme.color))}>{name}</Text>
             }
         />
     )

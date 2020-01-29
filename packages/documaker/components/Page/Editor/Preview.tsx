@@ -1,9 +1,9 @@
 
-import React, { Fragment } from 'react'
-import { Block, Icon, Text } from '@flow-ui/core'
 import * as CoreScope from '@flow-ui/core'
-import WhaleTypes from '@flow-ui/whale/types'
+import { Block } from '@flow-ui/core'
 import * as LabScope from '@flow-ui/lab'
+import WhaleTypes from '@flow-ui/whale/types'
+import React from 'react'
 //@ts-ignore
 import ts from 'typescript/lib/typescriptServices'
 
@@ -45,7 +45,7 @@ const Preview = (props: PreviewProps) => {
                         '&::before': {
                             content: '\'\'',
                             position: 'absolute',
-                            zIndex: -1,
+                            // zIndex: -1,
                             left: 0, right: 0, bottom: 0, top: 0,
                             backgroundColor: theme.color.background.hex(),
                             backgroundImage: `

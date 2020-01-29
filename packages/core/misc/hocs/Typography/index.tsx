@@ -8,7 +8,7 @@ type RefTag = HTMLSpanElement | HTMLAnchorElement | HTMLParagraphElement
 
 const Typography: RefForwardingComponent<RefTag, Types.PrivateProps> = (props, ref) => {
     
-    const { cs, attributes, events } = useComponent('Typography', { props, styles, styleProps: {container: ['all']} })
+    const { cs, attributes, events } = useComponent('Typography', { props, styles, styleProps: { container: ['all']} })
 
     return jsx(
         props.tag,

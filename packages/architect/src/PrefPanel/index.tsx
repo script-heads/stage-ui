@@ -126,10 +126,10 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
                     defaultValue="props"
                     items={[
                         { 
-                            content: (<><Icon mr={'0.25rem'} type={t => t.outline.cube}/>Design</>), 
+                            content: (<><Icon mx={'0.25rem'} type={t => t.outline.cube}/>Design</>), 
                             value: 'props' },
                         { 
-                            content: (<><Icon mr={'0.25rem'} type={t => t.outline.link}/>Logics</>), 
+                            content: (<><Icon mx={'0.25rem'} type={t => t.outline.link}/>Logics</>), 
                             value: 'actions', 
                             disabled: true 
                         }
@@ -162,7 +162,6 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
                             <Paragraph
                                 align="center"
                                 pt="2rem"
-                                size={2}
                                 color={c => c.light.hex()}
                                 children="Preferences panel"
                             />
