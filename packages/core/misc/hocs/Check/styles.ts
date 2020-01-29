@@ -33,25 +33,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 color: labelColor
             },
             variant({
-                size: {
-                    xs: [{
-                        ...theme.typography.text.s,
-                    }],
-                    s: [{
-                        ...theme.typography.text.m,
-                    }],
-                    m: [{
-                        ...theme.typography.text.l,
-                    }],
-                    l: [{
-                        fontSize: theme.typography.header.xs.fontSize,
-                        lineHeight: theme.typography.header.xs.lineHeight,
-                    }],
-                    xl: [{
-                        fontSize: theme.typography.header.xs.fontSize,
-                        lineHeight: theme.typography.header.xs.lineHeight,
-                    }],
-                },
+                size: theme.typography.text,
                 disabled: [{
                     color: callProp(theme.color.light.css(), theme.color)
                 }],
