@@ -42,11 +42,11 @@ const Light: WhaleTypes.SourceTheme = {
         typography: {
             display: {
                 xl: {
-                    fontSize: '8rem',
+                    fontSize: '7.5rem',
                     lineHeight: 1.5,
                 },
                 l: {
-                    fontSize: '6rem',
+                    fontSize: '6.5rem',
                     lineHeight: 1.5,
                 },
                 m: {
@@ -64,8 +64,8 @@ const Light: WhaleTypes.SourceTheme = {
             },
             header: {
                 xl: {
-                    fontSize: '2.75rem',
-                    lineHeight: '3.75rem',
+                    fontSize: '2.5rem',
+                    lineHeight: '3.5rem',
                 },
                 l: {
                     fontSize: '2rem',
@@ -86,46 +86,46 @@ const Light: WhaleTypes.SourceTheme = {
             },
             paragraph: {
                 xl: {
-                    fontSize: '1.25rem',
+                    fontSize: '1.5rem',
                     lineHeight: '1.75rem'
                 },
                 l: {
-                    fontSize: '1rem',
-                    lineHeight: '1.5rem'
-                },
-                m: {
-                    fontSize: '0.875rem',
-                    lineHeight: '1.25rem'
-                },
-                s: {
-                    fontSize: '0.75rem',
-                    lineHeight: '1rem'
-                },
-                xs: {
-                    fontSize: '0.625rem',
-                    lineHeight: '0.75rem'
-                }
-            },
-            text: {
-                xl: {
                     fontSize: '1.25rem',
                     lineHeight: '1.5rem'
                 },
+                m: {
+                    fontSize: '1rem',
+                    lineHeight: '1.5rem'
+                },
+                s: {
+                    fontSize: '0.875rem',
+                    lineHeight: '1.25rem'
+                },
+                xs: {
+                    fontSize: '0.75rem',
+                    lineHeight: '1rem'
+                },
+            },
+            text: {
+                xl: {
+                    fontSize: '1.5rem',
+                    lineHeight: '1.75rem'
+                },
                 l: {
+                    fontSize: '1.25rem',
+                    lineHeight: '1.5rem'
+                },
+                m: {
                     fontSize: '1rem',
                     lineHeight: '1.25rem'
                 },
-                m: {
+                s: {
                     fontSize: '0.875rem',
                     lineHeight: '1rem'
                 },
-                s: {
+                xs: {
                     fontSize: '0.75rem',
                     lineHeight: '0.875rem'
-                },
-                xs: {
-                    fontSize: '0.625rem',
-                    lineHeight: '0.75rem'
                 }
             },
         }

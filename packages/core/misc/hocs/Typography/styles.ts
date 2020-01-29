@@ -6,8 +6,12 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.PrivateProps> = (pr
     return {
         container:  [
             props.specificStyles,
-            theme.typography[props.sizesOf][props.size || 1],
-            typeof props.size != 'number' && {
+            theme.typography[props.sizesOf][props.size || 'm'],
+            /**
+             * If size is custom
+             * like 1rem or 1px
+             */
+            props.size && !['xs','s','m','l','xl'].includes(props.size) && {
                 fontSize: props.size,
             },
             {
