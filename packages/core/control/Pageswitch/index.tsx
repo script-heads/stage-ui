@@ -91,7 +91,7 @@ const Pageswitch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
                 // onMouseUp={() => mouseDown = false}
 
             />
-            <Text size="1rem">{currentPage}/{lastPage}</Text>
+            <Text size="s">{currentPage}/{lastPage}</Text>
             <Icon
                 ml="0.5rem"
                 size="1rem"
