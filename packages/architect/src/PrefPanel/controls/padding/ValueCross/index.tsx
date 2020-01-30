@@ -1,5 +1,6 @@
 import { ArchitectTools } from '@flow-ui/architect/types'
-import { Block, Button, Grid, Icon, Paragraph, useTheme } from '@flow-ui/core'
+import { Block, Button, Grid, Paragraph, useTheme } from '@flow-ui/core'
+import { Lock } from '@flow-ui/core/icons'
 import { ButtonGroup } from '@flow-ui/lab'
 import { useEffect, useState } from 'react'
 import styles from './styles'
@@ -167,9 +168,7 @@ const ValueCross = (props: Props) => {
                             setLockY(!lockC)
                         }}
                         children={(
-                            <Icon
-                                type={t => t.outline.lock}
-                            />
+                            <Lock />
                         )}
                     />
                 </div>

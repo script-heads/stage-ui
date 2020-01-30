@@ -1,4 +1,5 @@
-import { Block, Flexbox, Icon, Text, useBrowser, useTheme } from '@flow-ui/core'
+import { Block, Flexbox, Text, useBrowser, useTheme } from '@flow-ui/core'
+import { Collapse, Expand, Grid } from '@flow-ui/core/icons'
 import { PageType } from '@flow-ui/documaker/core'
 import monaco from '@flow-ui/documaker/monaco'
 import { Split } from '@flow-ui/lab'
@@ -73,7 +74,7 @@ const Editor = (props: EditorProps) => {
                     />
                 ))}
                 <Block flex={1} />
-                <Icon
+                <Grid
                     p="0.75rem"
                     pr="0.5rem"
                     size="1.25rem"
@@ -90,15 +91,13 @@ const Editor = (props: EditorProps) => {
                         )
                         setGrid(!grid)
                     }}
-                    type={t => t.outline.grid}
                 />
-                <Icon
+                <Expand
                     p="0.75rem"
                     pr="0.5rem"
                     size="1.25rem"
                     color={c => c.onSurface.css()}
                     onClick={() => setFullscreen(true)}
-                    type={t => t.outline.expand}
                 />
             </Flexbox>
             <Block
@@ -146,10 +145,9 @@ const Editor = (props: EditorProps) => {
                             />
                         </ErrorBoundary>
                         {fullscreen && (
-                            <Icon
+                            <Collapse
                                 shape="oval"
                                 background={c => c.lightest.css()}
-                                type={t => t.outline.collapse}
                                 css={{
                                     position: 'fixed',
                                     top: '1rem',

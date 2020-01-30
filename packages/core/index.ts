@@ -2,7 +2,6 @@
  * Content
  */
 export { default as Divider } from './content/Divider'
-export { default as Icon } from './content/Icon'
 export { default as Spinner } from './content/Spinner'
 export { default as Header  } from './content/Header'
 export { default as Display  } from './content/Display'
@@ -55,7 +54,6 @@ export { default as useTheme } from './misc/hooks/useTheme'
 export function transformImports (importName, matches) {
     switch(importName){
         case 'Divider': return '@flow-ui/core/content/Divider'
-        case 'Icon': return '@flow-ui/core/content/Icon'
         case 'Spinner': return '@flow-ui/core/content/Spinner'
         case 'Header': return '@flow-ui/core/content/Header'
         case 'Display': return '@flow-ui/core/content/Display'

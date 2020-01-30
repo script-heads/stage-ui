@@ -1,6 +1,7 @@
 
 import * as CoreScope from '@flow-ui/core'
 import { Block } from '@flow-ui/core'
+import * as Icon from '@flow-ui/core/icons'
 import * as LabScope from '@flow-ui/lab'
 import WhaleTypes from '@flow-ui/whale/types'
 import React from 'react'
@@ -11,7 +12,8 @@ Object.assign(window, {
     React,
     ...React,
     ...CoreScope,
-    ...LabScope
+    ...LabScope,
+    Icon
 })
 
 interface PreviewProps {
@@ -60,7 +62,10 @@ const Preview = (props: PreviewProps) => {
                         }
                     }
                 ]}>
-                {/* {Function('"use strict";return (' + traspiledCode + ')')()} */}
+                {/* <span
+                    style={{ position: 'relative' }}
+                    children={Function('"use strict";return (' + traspiledCode + ')')()}
+                /> */}
             </Block>
         </Block>                        
     )

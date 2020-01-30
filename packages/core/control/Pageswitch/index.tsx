@@ -1,11 +1,9 @@
 import { useComponent } from '@flow-ui/whale'
-import React, { forwardRef, RefForwardingComponent, useState, useEffect } from 'react'
+import React, { forwardRef, RefForwardingComponent, useEffect, useState } from 'react'
+import { Flexbox, Text } from '../..'
+import { ArrowIosBack, ArrowIosForward } from '../../icons'
 import styles from './styles'
 import Types from './types'
-import { Text, Icon, Flexbox } from '../..'
-
-let repeatValue = 1
-let mouseDown = false
 
 const Pageswitch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
@@ -43,34 +41,15 @@ const Pageswitch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
 
     const nextPage = () => {
         if (currentPage < lastPage) {
-            repeatValue = 1
-            // mouseDown = true
-            // repeatSetValue()
-            setPageValue()
+            setPage(currentPage + 1)
         }
     }
 
     const prevPage = () => {
         if (currentPage > 1) {
-            repeatValue = -1
-            // mouseDown = true
-            // repeatSetValue()
-            setPageValue()
+            setPage(currentPage - 1)
         }
     }
-
-    const setPageValue = () => {
-        setPage(currentPage + repeatValue)
-    }
-
-    // const repeatSetValue = () => {
-    //     setTimeout(() => {
-    //         if (mouseDown) {
-    //             setPageValue()
-    //             repeatSetValue()
-    //         }
-    //     }, 100)
-    // }
 
     return (
         <Flexbox
@@ -80,27 +59,22 @@ const Pageswitch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
             css={cs.container}
             alignItems="center"
         >
-            <Icon
+            <ArrowIosBack
                 mr="0.5rem"
                 size="1rem"
                 css={cs.arrowButton({
                     disabled: currentPage <= 1
                 })}
-                type={t => t.outline.arrowIosBack}
-                onMouseDown={() => prevPage()}
-                // onMouseUp={() => mouseDown = false}
-
+                onClick={() => prevPage()}
             />
             <Text size="s">{currentPage}/{lastPage}</Text>
-            <Icon
+            <ArrowIosForward
                 ml="0.5rem"
                 size="1rem"
                 css={cs.arrowButton({
                     disabled: currentPage >= lastPage
                 })}
-                type={t => t.outline.arrowIosForward}
-                onMouseDown={() => nextPage()}
-                // onMouseUp={() => mouseDown = false}
+                onClick={() => nextPage()}
             />
         </Flexbox>
     )

@@ -1,12 +1,10 @@
+import { Spinner, Button } from '@flow-ui/core'
 import React from 'react'
-import { Spinner, Icon } from '@flow-ui/core'
 
 export default () => {
     return (
-        <Spinner size='4rem' >
-            <Icon 
-                type={i => i.outline.settings}
-            />
+        <Spinner h="5rem">
+            <Button children="Button" />
         </Spinner>
     )
 }

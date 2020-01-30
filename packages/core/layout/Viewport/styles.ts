@@ -38,7 +38,6 @@ export default (theme, wrapper) => {
                 figure, figcaption, footer, header, hgroup, 
                 menu, nav, output, ruby, section, summary,
                 time, mark, audio, video {
-                    position: relative;
                     margin: 0;
                     padding: 0;
                     border: 0;

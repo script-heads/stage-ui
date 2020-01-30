@@ -1,5 +1,6 @@
 import { ArchitectItem } from '@flow-ui/architect/types'
-import { Block, Flexbox, Icon, Paragraph, Text, Tree } from '@flow-ui/core'
+import { Block, Flexbox, Paragraph, Text, Tree } from '@flow-ui/core'
+import { Copy, Trash2 } from '@flow-ui/core/icons'
 import { Fragment } from 'react'
 import { TabProps } from '..'
 
@@ -45,9 +46,8 @@ const LayersTab = (props: TabProps) => {
                                     <Flexbox flex={1} alignItems="center" justifyContent="space-between">
                                         <span>{name}</span>
                                         <span id={`ctrl-${item.id}`}>
-                                            <Icon
+                                            <Copy
                                                 pr={'0.25rem'}
-                                                type={t => t.outline.copy}
                                                 onClick={(e) => {
                                                     e.preventDefault()
                                                     e.stopPropagation()
@@ -55,10 +55,9 @@ const LayersTab = (props: TabProps) => {
                                                     props.tools.duplicate()
                                                 }}
                                             />
-                                            <Icon
+                                            <Trash2
                                                 pr={'0.25rem'}
                                                 color={c => c.error.hex()}
-                                                type={t => t.outline.trash2}
                                                 onClick={(e) => {
                                                     e.preventDefault()
                                                     e.stopPropagation()

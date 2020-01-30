@@ -1,8 +1,9 @@
 import { jsx } from '@emotion/core'
+import { Calendar as CalendarIcon } from '@flow-ui/core/icons'
 import { useComponent } from '@flow-ui/whale'
 import moment, { Moment } from 'moment'
 import React, { forwardRef, Fragment, RefForwardingComponent, useLayoutEffect, useRef, useState } from 'react'
-import Icon from '../../content/Icon'
+import { Calendar } from '../..'
 import Drop from '../../layout/Drop'
 import Popover from '../../layout/Popover'
 import Field from '../../misc/hocs/Field'
@@ -10,7 +11,7 @@ import useMask from '../../misc/hooks/useMask'
 import maskConf from './mask'
 import styles from './styles'
 import Types from './types'
-import { Calendar } from '../..'
+
 const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const {
@@ -116,7 +117,7 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
                     tabIndex,
                 }}
                 rightChild={props.rightChild || (
-                    <Icon type={t => t.outline.calendar}/>
+                    <CalendarIcon />
                 )}
                 children={jsx(
                     'input',

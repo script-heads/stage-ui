@@ -1,6 +1,7 @@
-import { Header, Text, Divider, Icon, Flexbox, Block, Paragraph } from '@flow-ui/core'
+import { Block, Divider, Flexbox, Header, Paragraph, Text } from '@flow-ui/core'
+import { Minus, Plus } from '@flow-ui/core/icons'
 import React, { Fragment, useState } from 'react'
-import { TypeInterfaceChild, TypeInterface } from '../API'
+import { TypeInterface, TypeInterfaceChild } from '../API'
 
 const toggleArrayItem = (a, v): any[] => {
     let i = a.indexOf(v)
@@ -44,29 +45,29 @@ const Interface = (props: { data: TypeInterface, separatedTypes?: string[] }) =>
         <Block>
             <Header>{main.name}</Header>
             {renderTypes(main.children)}
-            {cut.map((cutInterface, index) => (
-                <Fragment key={cutInterface.name + index}>
-                    <Flexbox
-                        py="1rem"
-                        alignItems="center"
-                        justifyContent="space-between"
-                        css={{ cursor: 'pointer' }}
-                        onClick={() => setOpenedCuts(toggleArrayItem(openedCuts, cutInterface.name))}>
-                        <Text
-                            weight="bold"
-                            children={cutInterface.name}
-                        />
-                        <Icon
-                            type={i => openedCuts.includes(cutInterface.name)
-                                ? i.filled.minus
-                                : i.filled.plus
-                            }
-                        />
-                    </Flexbox>
-                    <Divider />
-                    {openedCuts.includes(cutInterface.name) && renderTypes(cutInterface.children)}
-                </Fragment>
-            ))}
+            {cut.map((cutInterface, index) => {
+                const PlusMinusIcon = openedCuts.includes(cutInterface.name)
+                    ? Minus
+                    : Plus
+                return (
+                    <Fragment key={cutInterface.name + index}>
+                        <Flexbox
+                            py="1rem"
+                            alignItems="center"
+                            justifyContent="space-between"
+                            css={{ cursor: 'pointer' }}
+                            onClick={() => setOpenedCuts(toggleArrayItem(openedCuts, cutInterface.name))}>
+                            <Text
+                                weight="bold"
+                                children={cutInterface.name}
+                            />
+                            <PlusMinusIcon />
+                        </Flexbox>
+                        <Divider />
+                        {openedCuts.includes(cutInterface.name) && renderTypes(cutInterface.children)}
+                    </Fragment>
+                )
+            })}
         </Block>
     )
 }

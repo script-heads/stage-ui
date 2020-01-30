@@ -1,30 +1,33 @@
-import { Flexbox, Icon, Table, Text } from '@flow-ui/core'
+import { Flexbox, Table, Text } from '@flow-ui/core'
 import T from '@flow-ui/core/data/Table/types'
+import { ArrowIosDownward, ArrowIosUpward } from '@flow-ui/core/icons'
 import React from 'react'
 
 export default () => {
-
-    const ExpandCell = (props: { ctx: T.TableCellContext }) => (
-        <Flexbox alignItems="center" onClick={() => {
-            if (props.ctx.isExpand) {
-                props.ctx.setExpand(null)
-            } else {
-                props.ctx.setExpand(
-                    <Text>Any ReactNode here.</Text>
-                )
-            }
-        }}>
-            <Icon
-                mr="0.5rem"
-                color={c => c.primary.css()}
-                type={t => props.ctx.isExpand
-                    ? t.outline.arrowIosUpward
-                    : t.outline.arrowIosDownward
+    const ExpandCell = (props: { ctx: T.TableCellContext }) => {
+        
+        const ExpandIcon = props.ctx.isExpand
+            ? ArrowIosUpward
+            : ArrowIosDownward
+   
+        return (
+            <Flexbox alignItems="center" onClick={() => {
+                if (props.ctx.isExpand) {
+                    props.ctx.setExpand(null)
+                } else {
+                    props.ctx.setExpand(
+                        <Text>Any ReactNode here.</Text>
+                    )
                 }
-            />
-            <Text>{props.ctx.value}</Text>
-        </Flexbox>
-    )
+            }}>
+                <ExpandIcon
+                    mr="0.5rem"
+                    color={c => c.primary.css()}
+                />
+                <Text>{props.ctx.value}</Text>
+            </Flexbox>
+        )
+    }
 
     return (
         <Table

@@ -1,7 +1,7 @@
-import Icon from '@flow-ui/core/content/Icon'
 import React, { Fragment, useRef, useState } from 'react'
 import { Block, Flexbox, Drop, Popover, Grid } from '@flow-ui/core'
 import WhaleTypes from '@flow-ui/whale/types'
+import { ColorPalette } from '@flow-ui/core/icons'
 
 export interface ThemeSwitcherProps {
     themes: Record<string,WhaleTypes.Theme>
@@ -16,15 +16,15 @@ const ThemeSwitcher = (props: ThemeSwitcherProps) => {
 
     return (
         <Fragment>
-            <Icon
+            <ColorPalette
                 size="1.5rem" 
-                type={c=>c.outline.colorPalette} 
                 ref={iconRef} 
                 onClick={()=>setVisible(!visible)}
                 color={c=>c.primary.css()}
             />
             <Drop 
                 target={iconRef} 
+                //@ts-ignore
                 visibility={visible ? 'visible' : 'hidden'} 
                 //TODO: wtf
                 spacing={16}

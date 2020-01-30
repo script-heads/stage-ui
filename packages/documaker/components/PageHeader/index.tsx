@@ -1,6 +1,7 @@
-import { Flexbox, Header, Anchor, Icon, Block } from '@flow-ui/core'
-import ThemeSwitcher, { ThemeSwitcherProps } from './ThemeSwitcher'
+import { Anchor, Block, Flexbox, Header } from '@flow-ui/core'
+import { Github } from '@flow-ui/core/icons'
 import WhaleTypes from '@flow-ui/whale/types'
+import ThemeSwitcher, { ThemeSwitcherProps } from './ThemeSwitcher'
 
 interface MenuProps extends ThemeSwitcherProps {
     name: string, 
@@ -35,7 +36,7 @@ const PageHeader = (props: MenuProps) => {
             />
             {git && (
                 <Anchor target="_blank" href={git} ml="1rem">
-                    <Icon size="1.5rem" type={t => t.outline.github}/>
+                    <Github size="1.5rem" />
                 </Anchor>
             )}
         </Flexbox>

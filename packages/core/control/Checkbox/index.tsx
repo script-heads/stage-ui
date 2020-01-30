@@ -1,7 +1,7 @@
 
 import { useComponent } from '@flow-ui/whale'
 import React, { forwardRef, RefForwardingComponent } from 'react'
-import Icon from '../../content/Icon'
+import { Checkmark } from '../../icons'
 import Block from '../../layout/Block'
 import Check from '../../misc/hocs/Check'
 import styles from './styles'
@@ -35,8 +35,7 @@ const Checkbox: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, re
             type="checkbox"
             children={(checked, focus) =>
                 <Block css={cs.check({ animated, size, disabled, focus })}>
-                    <Icon
-                        type={i => i.outline.checkmark}
+                    <Checkmark
                         css={cs.icon({ animated, size, disabled, checked })}
                     />
                 </Block>

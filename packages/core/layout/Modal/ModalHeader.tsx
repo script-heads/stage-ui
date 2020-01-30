@@ -1,10 +1,9 @@
 import React from 'react'
-import ModalTypes from './types'
-
 import Header from '../../content/Header'
 import Paragraph from '../../content/Paragraph'
+import { Close } from '../../icons'
 import Flexbox from '../Flexbox'
-import Icon from '../../content/Icon'
+import ModalTypes from './types'
 
 const ModalHeader = (props: ModalTypes.ModalHeaderProps) => {
 
@@ -19,10 +18,9 @@ const ModalHeader = (props: ModalTypes.ModalHeaderProps) => {
                     <Header css={props.styles.header}>{props.title}</Header>
                     <Paragraph color={c => c.hard.css()} mt={'0.5rem'}>{props.subtitle}</Paragraph>
                 </Flexbox>
-                <Icon
+                <Close
                     css={props.styles.cross}
                     onClick={props.onClosePressed}
-                    type={i => i.outline.close}
                     color={c => c.light.css()}
                     size="2.5rem"
                 />

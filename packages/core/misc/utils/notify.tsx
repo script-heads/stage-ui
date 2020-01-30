@@ -1,13 +1,13 @@
 import React from 'react'
-import Icon from '../../content/Icon'
+import Header from '../../content/Header'
+import Paragraph from '../../content/Paragraph'
+import { Close } from '../../icons'
 import Block from '../../layout/Block'
 import Flexbox from '../../layout/Flexbox'
 import Notification from '../../layout/Notification'
 import NotificationType from '../../layout/Notification/types'
 import { addElement, removeElement } from '../../layout/Viewport/MountArea'
 import createID from './createID'
-import Paragraph from '../../content/Paragraph'
-import Header from '../../content/Header'
 
 export default (options: NotificationType.NotifyOptions) => {
     let timer
@@ -27,11 +27,10 @@ export default (options: NotificationType.NotifyOptions) => {
                                 <Paragraph>{options.message}</Paragraph>
                             </Block>
                             <Block pl="0.5rem">
-                                <Icon
+                                <Close
                                     size="1.25rem"
                                     alignSelf="flex-end"
                                     color={c => c.light.css()}
-                                    type={t => t.outline.close}
                                     onClick={() => {
                                         clearInterval(timer)
                                         removeElement(key)

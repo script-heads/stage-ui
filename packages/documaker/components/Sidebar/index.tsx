@@ -1,9 +1,10 @@
-import * as React from 'react'
-import { PagesType, PageType } from '../../core'
-import { Text, TextField, Menu, Block, Icon, Flexbox } from '@flow-ui/core'
+import { Block, Flexbox, Icon, Menu, Text, TextField } from '@flow-ui/core'
 import MenuTypes from '@flow-ui/core/control/Menu/types'
-import { Fragment, useState } from 'react'
+import { Search, Cube, Close } from '@flow-ui/core/icons'
 import WhaleTypes from '@flow-ui/whale/types'
+import * as React from 'react'
+import { Fragment, useState } from 'react'
+import { PagesType, PageType } from '../../core'
 
 export interface SidebarProps {
 	pages: PagesType,
@@ -38,6 +39,10 @@ const Sidebar = (props: SidebarProps) => {
 			)
 		}))
 
+	const VisibilityIcon = !visibility
+		? Cube
+		: Close
+		
 	return (
 		<Fragment>
 			<Block
@@ -62,7 +67,7 @@ const Sidebar = (props: SidebarProps) => {
 					ml="1.5rem"
 					mb="1.5rem"
 					leftChild={
-						<Icon type={t => t.outline.search} />
+						<Search />
 					}
 					placeholder="Search"
 					value={search}
@@ -127,10 +132,9 @@ const Sidebar = (props: SidebarProps) => {
 						}
 					}
 				]}>
-				<Icon
+				<VisibilityIcon
 					color={c => c.onPrimary.css()}
 					size={'2rem'}
-					type={i => !visibility ? i.outline.cube : i.outline.close}
 				/>
 			</Flexbox>
 		</Fragment>

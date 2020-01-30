@@ -1,9 +1,11 @@
 import { ArchitectTools } from '@flow-ui/architect/types'
-import { Block, Divider, Flexbox, Icon, Menu, Paragraph, useTheme } from '@flow-ui/core'
+import { Block, Divider, Flexbox, Menu, Paragraph, useTheme } from '@flow-ui/core'
+import { Copy, Cube, Link, Trash2 } from '@flow-ui/core/icons'
 import { ScrollView } from '@flow-ui/lab'
 import { Fragment } from 'react'
 import { componentsTypography } from '../RenderPanel'
 import BooleanControls from './controls/boolean'
+import FlexControls from './controls/flex'
 import LiteralControls from './controls/literal'
 import MarginControls from './controls/margin'
 import NameControls from './controls/name'
@@ -11,7 +13,6 @@ import PaddingControls from './controls/padding'
 import SizeConrols from './controls/size'
 import StringControls from './controls/string'
 import TextControls from './controls/text'
-import FlexControls from './controls/flex'
 import styles from './styles'
 
 const data = require('@flow-ui/documaker/definitions/types')
@@ -126,30 +127,28 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
                     defaultValue="props"
                     items={[
                         { 
-                            content: (<><Icon mx={'0.25rem'} type={t => t.outline.cube}/>Design</>), 
+                            content: (<><Cube mx={'0.25rem'} />Design</>), 
                             value: 'props' },
                         { 
-                            content: (<><Icon mx={'0.25rem'} type={t => t.outline.link}/>Logics</>), 
+                            content: (<><Link mx={'0.25rem'} />Logics</>), 
                             value: 'actions', 
                             disabled: true 
                         }
                     ]}
                 />
                 <Block>
-                    <Icon
+                    <Copy
                         mr="1rem"
                         onClick={() => {
                             tools.duplicate()
                         }}
-                        type={t => t.outline.copy}
                         color={c => tools.focused ? c.onSurface.hex() : c.lightest.hex()}
                     />
-                    <Icon
+                    <Trash2
                         mr="1rem"
                         onClick={() => {
                             tools.remove()
                         }}
-                        type={t => t.outline.trash2}
                         color={c => tools.focused ? c.error.hex() : c.lightest.hex()}
                     />
                 </Block>

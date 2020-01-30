@@ -37,7 +37,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
 
             variant({
                 decoration: {
-                    'outline': [{
+                    outline: [{
                         borderColor: color.alpha(.7).css(),
                         color: color.css(),
                         '&:hover:not([disabled])': {
@@ -51,7 +51,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                             color: theme.color.light.css(),
                         }
                     }],
-                    'text': [{
+                    text: [{
                         color: color.css(),
                         '&:hover:not([disabled])': {
                             background: color.alpha(.05).css(),

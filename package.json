@@ -11,14 +11,20 @@
     "start": "yarn workspace @flow-ui/docs start",
     "test": "yarn workspace @flow-ui/docs test",
     "approve": "yarn workspace @flow-ui/docs approve",
-    "gen": "yarn gen:createTypes && yarn gen:convertTypes && yarn gen:generateTypes",
+    "gen": "yarn gen:createTypes && yarn gen:convertTypes && yarn gen:generateTypes && yarn gen:fixTypes",
     "gen:createTypes": "cd ./packages/documaker && typedoc -mode file --json ./definitions/original.json ../docs/pages",
-    "gen:convertTypes": "cd ./packages/documaker && node ./bin/convertTypes.js",
-    "gen:generateTypes": "cd ./packages/documaker && node ./bin/generateTypes.js",
+    "gen:convertTypes": "cd ./packages/documaker && node ./scripts/convertTypes.js",
+    "gen:generateTypes": "cd ./packages/documaker && node ./scripts/generateTypes.js",
+    "gen:fixTypes": "cd ./packages/documaker && node ./scripts/fixTypes.js",
     "pub:whale": "git pull && cd ./packages/whale && npm version patch && yarn build && cd ../../build/whale && npm publish --access public && cd .. && rm -rf ./whale",
     "pub:core": "git pull && cd ./packages/core && npm version patch && yarn build && cd ../../build/core && npm publish --access public && cd .. && rm -rf ./core",
     "pub:lab": "git pull && cd ./packages/lab && npm version patch && yarn build && cd ../../build/lab && npm publish --access public && cd .. && rm -rf ./lab",
     "gitpush": "git commit . -m 'Update version' && git push",
     "pm2": "pm2 start --name FlowUI npm -- start"
+  },
+  "dependencies": {
+    "@yarnpkg/pnpify": "^2.0.0-rc.17",
+    "tslint": "^6.0.0",
+    "typescript": "^3.7.5"
   }
 }

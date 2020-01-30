@@ -1,8 +1,9 @@
 import { ArchitectTools } from '@flow-ui/architect/types'
-import { Block, useTheme, Flexbox, Divider, TextField, Text, Icon, Menu, Header } from '@flow-ui/core'
+import { Block, useTheme, Flexbox, Divider, TextField, Text, Menu, Header } from '@flow-ui/core'
 import styles from './styles'
 import { ScrollView } from '@flow-ui/lab'
 import { useState } from 'react'
+import { Search, Grid, Layers, ArrowCircleDown } from '@flow-ui/core/icons'
 
 const AddPanel = (props: { tools: ArchitectTools }) => {
     const theme = useTheme()
@@ -31,12 +32,7 @@ const AddPanel = (props: { tools: ArchitectTools }) => {
                                 setSearch(e.target.value)
                             }}
                             leftChild={
-                                <Icon
-                                    size={'2rem'}
-                                    pr="0.5rem"
-                                    type={i => i.outline.search}
-
-                                />
+                                <Search />
                             }
                         />
                         <Menu
@@ -46,13 +42,12 @@ const AddPanel = (props: { tools: ArchitectTools }) => {
                             defaultValue="components"
                             items={[
                                 {
-                                    content: <Icon size={'1.5rem'}
-                                        type={i => i.outline.layout} />,
+                                    content: <Layers size={'1.5rem'} />,
                                     value: 'components'
                                 },
                                 {
                                     disabled: true,
-                                    content: <Icon size={'1.5rem'} type={i => i.outline.grid} />,
+                                    content: <Grid size={'1.5rem'} />,
                                     value: 'icons'
                                 }
                             ]}
@@ -62,6 +57,7 @@ const AddPanel = (props: { tools: ArchitectTools }) => {
                 </Block>
                 <Flexbox h="26rem" pt="1px">
                     <ScrollView size="xs" css={{ width: '15rem' }}>
+                        
                         {Object.keys(tools.components).map(component => (
                             component.toUpperCase().match(search.toUpperCase()) ? (
                                 <Block

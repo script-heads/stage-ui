@@ -8,7 +8,7 @@ const Anchor: RefForwardingComponent<HTMLAnchorElement, Types.AnchorProps> = (pr
     
     return (
         <Typography
-            tabIndex={props.tabIndex || (props.onClick || props.onEnter) && 0}
+           tabIndex={props.tabIndex || (props.onClick || props.onEnter) && 0}
             tag="a"
             sizesOf="text"
             specificStyles={{

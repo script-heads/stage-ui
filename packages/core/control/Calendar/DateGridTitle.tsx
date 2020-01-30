@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
-import Icon from '../../content/Icon'
 import Text from '../../content/Text'
+import { ChevronLeft, ChevronRight } from '../../icons'
 import Flexbox from '../../layout/Flexbox'
 import CalendarTypes from './types'
 
@@ -13,11 +13,9 @@ const Arrow = (props: { onClick: () => void, icon: 'chevronLeft' | 'chevronRight
             cursor: props.disabled ? 'not-allowed' : 'pointer'
         }}
         children={(
-            <Icon
-                size={'2rem'}
-                type={i => i.outline[props.icon]}
-                color={c => props.disabled ? c.light.css() : c.primary.css()}
-            />
+            props.icon === 'chevronLeft'
+                ? <ChevronLeft size={'2rem'} color={c => props.disabled ? c.light.css() : c.primary.css()} />
+                : <ChevronRight size={'2rem'} color={c => props.disabled ? c.light.css() : c.primary.css()} />
         )}
     />
 )

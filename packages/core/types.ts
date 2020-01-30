@@ -3,7 +3,6 @@ import WhaleTypes from '@flow-ui/whale/types'
  * Content
  */
 import DividerTypes from './content/Divider/types'
-import IconTypes from './content/Icon/types'
 import SpinnerTypes from './content/Spinner/types'
 /**
  * Control
@@ -39,7 +38,6 @@ declare namespace FlowTypes {
 
     interface Overrides {
         Divider?: Partial<WhaleTypes.Styles<DividerTypes.Overrides>>
-        Icon?: Partial<WhaleTypes.Styles<IconTypes.Overrides>>
         Spinner?: Partial<WhaleTypes.Styles<SpinnerTypes.Overrides>>
         Button?: Partial<WhaleTypes.Styles<ButtonTypes.Overrides>>
         Checkbox?: Partial<WhaleTypes.Styles<CheckboxTypes.Overrides>>

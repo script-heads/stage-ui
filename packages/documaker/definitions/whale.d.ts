@@ -1,4 +1,4 @@
-declare module 'types' {
+declare module '@flow-ui/whale/types' {
 	/// <reference types="react" />
 	import chroma from 'chroma-js';
 	import CSS from 'csstype';
@@ -9,7 +9,7 @@ declare module 'types' {
 	        overrides: DeepPartial<{
 	            [Component in keyof Overrides]: ComponentStyles<Component>;
 	        }>;
-	        replace: (theme: ReplaceTheme) => Theme;
+	        replace: (theme: ReplaceTheme<Overrides>) => Theme<Overrides>;
 	    }
 	    interface SourceTheme<Overrides = {}> {
 	        main: ThemeVariables<[number, number, number, number?]>;
@@ -45,6 +45,8 @@ declare module 'types' {
 	            error: Color;
 	            warning: Color;
 	            successful: Color;
+	            info: Color;
+	            palette?: Record<string, Color>;
 	        };
 	        radius: {
 	            default: string;
@@ -56,19 +58,19 @@ declare module 'types' {
 	            header: Record<Size, {
 	                fontSize: string;
 	                lineHeight: string | number;
-	            }>;
+	            } & EmotionStyles>;
 	            text: Record<Size, {
 	                fontSize: string;
 	                lineHeight: string | number;
-	            }>;
+	            } & EmotionStyles>;
 	            display: Record<Size, {
 	                fontSize: string;
 	                lineHeight: string | number;
-	            }>;
+	            } & EmotionStyles>;
 	            paragraph: Record<Size, {
 	                fontSize: string;
 	                lineHeight: string | number;
-	            }>;
+	            } & EmotionStyles>;
 	        };
 	    }
 	    interface ThemeAssets {
@@ -527,10 +529,26 @@ declare module 'types' {
 	export default WhaleTypes;
 
 }
+declare module 'utils/updateContext' {
+	import React from 'react';
+	import WhaleTypes from 'types';
+	export let WhaleContext: React.Context<WhaleTypes.Theme<{}>>; const updateContext: <Theme>(defaultTheme?: any) => {
+	    Context: React.Context<Theme>;
+	};
+	export default updateContext;
+
+}
 declare module 'components/Provider' {
 	import React from 'react';
-	import Types from 'types';
-	export const Context: React.Context<Types.Theme<{}>>; const Provider: (props: any) => JSX.Element;
+	import { Options } from '@emotion/cache';
+	import { SerializedStyles } from '@emotion/core';
+	import WhaleTypes, { EmotionStyles } from 'types';
+	interface ProviderProps {
+	    theme?: WhaleTypes.Theme;
+	    global?: EmotionStyles | SerializedStyles;
+	    cache?: Options;
+	    children?: React.ReactNode;
+	} const Provider: <T extends ProviderProps>(props: T) => JSX.Element;
 	export default Provider;
 
 }
@@ -1345,12 +1363,12 @@ declare module 'utils/mergeObjects' {
 
 }
 declare module 'utils/createTheme' {
-	import Types from 'types';
-	export type CreateTheme = (theme: Types.SourceTheme) => Types.Theme; const createTheme: CreateTheme;
+	import Types from 'types'; const createTheme: <Overrides = {}>(theme: Types.SourceTheme<Overrides>) => Types.Theme<Overrides>;
 	export default createTheme;
 
 }
 declare module '@flow-ui/whale' {
+	export { default as updateContext } from 'utils/updateContext';
 	export { default as Provider } from 'components/Provider';
 	export { default as useTheme } from 'hooks/useTheme';
 	export { default as useComponent } from 'hooks/useComponent';

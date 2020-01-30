@@ -1,5 +1,6 @@
-import { Block, Text, Flexbox, Header, Icon } from '@flow-ui/core'
-import * as icons from '@flow-ui/core/misc/icons'
+import { Block, Flexbox, Header, Text } from '@flow-ui/core'
+import * as icons from '@flow-ui/core/icons'
+import { Minus, Plus } from '@flow-ui/core/icons'
 import React, { Fragment, useState } from 'react'
 import code from './default.raw'
 
@@ -11,14 +12,16 @@ export const cases = [
 
 export default () => {
     const [open, setOpen] = useState(false)
+
+    const OpenCloseIcon = open
+        ? Minus
+        : Plus
+
     return (
         <Fragment>
             <Flexbox alignItems="center" justifyContent="space-between" onClick={() => setOpen(!open)}>
                 <Header>Icon set</Header>
-                <Icon
-                    size="2rem"
-                    type={t => open ? t.outline.minus : t.outline.plus}
-                />
+                <OpenCloseIcon size="2rem" />
             </Flexbox>
             {open && (
                 <Flexbox pt="1rem">
@@ -29,28 +32,30 @@ export default () => {
                         gridTemplateColumns: 'repeat(auto-fill, 8rem)'
                     }}
                 >
-                    {Object.keys(icons.outline).map(key => (
-                        <Flexbox
-                            column
-                            key={key}
-                            p="1rem"
-                            justifyContent="center"
-                            alignItems="center"
-                            alignContent="center"
-                        >
-                            <Icon
-                                type={t => t.outline[key]}
-                                shape="oval"
-                                size="2rem"
-                                background={c => c.lightest.css()}
-                            />
-                            <Text
-                                color={c => c.light.css()}
-                                mt=".5rem"
-                                children={key}
-                            />
-                        </Flexbox>
-                    ))}
+                    {Object.keys(icons).map(key => {
+                        const PreviewIcon = icons[key]
+                        return (
+                            <Flexbox
+                                column
+                                key={key}
+                                p="1rem"
+                                justifyContent="center"
+                                alignItems="center"
+                                alignContent="center"
+                            >
+                                <PreviewIcon
+                                    shape="oval"
+                                    size="2rem"
+                                    background={c => c.lightest.css()}
+                                />
+                                <Text
+                                    color={c => c.light.css()}
+                                    mt=".5rem"
+                                    children={key}
+                                />
+                            </Flexbox>
+                        )
+                    })}
                 </Block>
             </Flexbox>
             )}

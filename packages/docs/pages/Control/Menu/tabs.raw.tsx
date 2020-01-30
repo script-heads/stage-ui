@@ -1,13 +1,13 @@
-import React, { Fragment, useState } from 'react';
-import { Menu, Icon, Block } from '@flow-ui/core';
+import { Block, Menu } from '@flow-ui/core'
+import React, { Fragment, useState } from 'react'
 
 export default () => {
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState(0)
     return (
         <Fragment>
             <Menu
-                ml={"0.5rem"}
-                mr={"0.5rem"}
+                ml={'0.5rem'}
+                mr={'0.5rem'}
                 mb={'-1px'}
                 decoration="tab"
                 value={value}
@@ -18,7 +18,7 @@ export default () => {
                 ]}
                 onChange={(e: number) => setValue(e)}
             />
-            <Block surface='major' p="1rem">
+            <Block surface="major" p="1rem">
                 Active tab: {value}
             </Block>
         </Fragment>

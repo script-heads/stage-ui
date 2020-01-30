@@ -1,8 +1,8 @@
-import React from 'react';
-import { Icon } from "@flow-ui/core";
+import { Compass } from '@flow-ui/core/icons'
+import React from 'react'
 
 const ExampleIcon = () => (
-    <Icon type={t => t.outline.compass} />
+    <Compass />
 )
 
-export default ExampleIcon;
+export default ExampleIcon

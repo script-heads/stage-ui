@@ -1,5 +1,5 @@
 declare module 'content/Divider/types' {
-	import WhaleTypes from 'types'; namespace DividerTypes {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace DividerTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        vertical?: boolean;
 	        dash?: number;
@@ -19,7 +19,7 @@ declare module 'misc/utils/callProp' {
 
 }
 declare module 'content/Divider/styles' {
-	import WhaleTypes from 'types';
+	import WhaleTypes from '@flow-ui/whale/types';
 	import Types from 'content/Divider/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
@@ -31,563 +31,9 @@ declare module 'content/Divider' {
 	export default _default;
 
 }
-declare module 'misc/icons/types' {
-	 namespace IconsetTypes {
-	    type Filled = {
-	        activity: React.ReactElement;
-	        alertCircle: React.ReactElement;
-	        alertTriangle: React.ReactElement;
-	        archive: React.ReactElement;
-	        arrowBack: React.ReactElement;
-	        arrowCircleDown: React.ReactElement;
-	        arrowCircleLeft: React.ReactElement;
-	        arrowCircleRight: React.ReactElement;
-	        arrowCircleUp: React.ReactElement;
-	        arrowDown: React.ReactElement;
-	        arrowDownward: React.ReactElement;
-	        arrowForward: React.ReactElement;
-	        arrowIosBack: React.ReactElement;
-	        arrowIosDownward: React.ReactElement;
-	        arrowIosForward: React.ReactElement;
-	        arrowIosUpward: React.ReactElement;
-	        arrowLeft: React.ReactElement;
-	        arrowRight: React.ReactElement;
-	        arrowUp: React.ReactElement;
-	        arrowUpward: React.ReactElement;
-	        arrowheadDown: React.ReactElement;
-	        arrowheadLeft: React.ReactElement;
-	        arrowheadRight: React.ReactElement;
-	        arrowheadUp: React.ReactElement;
-	        at: React.ReactElement;
-	        attach2: React.ReactElement;
-	        attach: React.ReactElement;
-	        award: React.ReactElement;
-	        backspace: React.ReactElement;
-	        barChart2: React.ReactElement;
-	        barChart: React.ReactElement;
-	        battery: React.ReactElement;
-	        behance: React.ReactElement;
-	        bellOff: React.ReactElement;
-	        bell: React.ReactElement;
-	        bluetooth: React.ReactElement;
-	        bookOpen: React.ReactElement;
-	        book: React.ReactElement;
-	        bookmark: React.ReactElement;
-	        briefcase: React.ReactElement;
-	        browser: React.ReactElement;
-	        brush: React.ReactElement;
-	        bulb: React.ReactElement;
-	        calendar: React.ReactElement;
-	        camera: React.ReactElement;
-	        car: React.ReactElement;
-	        cast: React.ReactElement;
-	        charging: React.ReactElement;
-	        checkmarkCircle2: React.ReactElement;
-	        checkmarkCircle: React.ReactElement;
-	        checkmarkSquare2: React.ReactElement;
-	        checkmarkSquare: React.ReactElement;
-	        checkmark: React.ReactElement;
-	        chevronDown: React.ReactElement;
-	        chevronLeft: React.ReactElement;
-	        chevronRight: React.ReactElement;
-	        chevronUp: React.ReactElement;
-	        clipboard: React.ReactElement;
-	        clock: React.ReactElement;
-	        closeCircle: React.ReactElement;
-	        closeSquare: React.ReactElement;
-	        close: React.ReactElement;
-	        cloudDownload: React.ReactElement;
-	        cloudUpload: React.ReactElement;
-	        codeDownload: React.ReactElement;
-	        code: React.ReactElement;
-	        collapse: React.ReactElement;
-	        colorPalette: React.ReactElement;
-	        colorPicker: React.ReactElement;
-	        compass: React.ReactElement;
-	        copy: React.ReactElement;
-	        cornerDownLeft: React.ReactElement;
-	        cornerDownRight: React.ReactElement;
-	        cornerLeftDown: React.ReactElement;
-	        cornerLeftUp: React.ReactElement;
-	        cornerRightDown: React.ReactElement;
-	        cornerRightUp: React.ReactElement;
-	        cornerUpLeft: React.ReactElement;
-	        cornerUpRight: React.ReactElement;
-	        creditCard: React.ReactElement;
-	        crop: React.ReactElement;
-	        cube: React.ReactElement;
-	        diagonalArrowLeftDown: React.ReactElement;
-	        diagonalArrowLeftUp: React.ReactElement;
-	        diagonalArrowRightDown: React.ReactElement;
-	        diagonalArrowRightUp: React.ReactElement;
-	        doneAll: React.ReactElement;
-	        download: React.ReactElement;
-	        dropletOff: React.ReactElement;
-	        droplet: React.ReactElement;
-	        edit2: React.ReactElement;
-	        edit: React.ReactElement;
-	        email: React.ReactElement;
-	        expand: React.ReactElement;
-	        externalLink: React.ReactElement;
-	        eyeOff2: React.ReactElement;
-	        eyeOff: React.ReactElement;
-	        eye: React.ReactElement;
-	        facebook: React.ReactElement;
-	        fileAdd: React.ReactElement;
-	        fileRemove: React.ReactElement;
-	        fileText: React.ReactElement;
-	        file: React.ReactElement;
-	        film: React.ReactElement;
-	        flag: React.ReactElement;
-	        flashOff: React.ReactElement;
-	        flash: React.ReactElement;
-	        flip2: React.ReactElement;
-	        flip: React.ReactElement;
-	        folderAdd: React.ReactElement;
-	        folderRemove: React.ReactElement;
-	        folder: React.ReactElement;
-	        funnel: React.ReactElement;
-	        gift: React.ReactElement;
-	        github: React.ReactElement;
-	        globe2: React.ReactElement;
-	        globe3: React.ReactElement;
-	        globe: React.ReactElement;
-	        google: React.ReactElement;
-	        grid: React.ReactElement;
-	        hardDrive: React.ReactElement;
-	        hash: React.ReactElement;
-	        headphones: React.ReactElement;
-	        heart: React.ReactElement;
-	        home: React.ReactElement;
-	        image2: React.ReactElement;
-	        image: React.ReactElement;
-	        inbox: React.ReactElement;
-	        info: React.ReactElement;
-	        keypad: React.ReactElement;
-	        layers: React.ReactElement;
-	        layout: React.ReactElement;
-	        link2: React.ReactElement;
-	        link: React.ReactElement;
-	        linkedin: React.ReactElement;
-	        list: React.ReactElement;
-	        lock: React.ReactElement;
-	        logIn: React.ReactElement;
-	        logOut: React.ReactElement;
-	        map: React.ReactElement;
-	        maximize: React.ReactElement;
-	        menu2: React.ReactElement;
-	        menuArrow: React.ReactElement;
-	        menu: React.ReactElement;
-	        messageCircle: React.ReactElement;
-	        messageSquare: React.ReactElement;
-	        micOff: React.ReactElement;
-	        mic: React.ReactElement;
-	        minimize: React.ReactElement;
-	        minusCircle: React.ReactElement;
-	        minusSquare: React.ReactElement;
-	        minus: React.ReactElement;
-	        monitor: React.ReactElement;
-	        moon: React.ReactElement;
-	        moreHorizontal: React.ReactElement;
-	        moreVertical: React.ReactElement;
-	        move: React.ReactElement;
-	        music: React.ReactElement;
-	        navigation2: React.ReactElement;
-	        navigation: React.ReactElement;
-	        npm: React.ReactElement;
-	        options2: React.ReactElement;
-	        options: React.ReactElement;
-	        pantone: React.ReactElement;
-	        paperPlane: React.ReactElement;
-	        pauseCircle: React.ReactElement;
-	        people: React.ReactElement;
-	        percent: React.ReactElement;
-	        personAdd: React.ReactElement;
-	        personDelete: React.ReactElement;
-	        personDone: React.ReactElement;
-	        personRemove: React.ReactElement;
-	        person: React.ReactElement;
-	        phoneCall: React.ReactElement;
-	        phoneMissed: React.ReactElement;
-	        phoneOff: React.ReactElement;
-	        phone: React.ReactElement;
-	        pieChart2: React.ReactElement;
-	        pieChart: React.ReactElement;
-	        pin: React.ReactElement;
-	        playCircle: React.ReactElement;
-	        plusCircle: React.ReactElement;
-	        plusSquare: React.ReactElement;
-	        plus: React.ReactElement;
-	        power: React.ReactElement;
-	        pricetags: React.ReactElement;
-	        printer: React.ReactElement;
-	        questionMarkCircle: React.ReactElement;
-	        questionMark: React.ReactElement;
-	        radioButtonOff: React.ReactElement;
-	        radioButtonOn: React.ReactElement;
-	        radio: React.ReactElement;
-	        recording: React.ReactElement;
-	        refresh: React.ReactElement;
-	        repeat: React.ReactElement;
-	        rewindLeft: React.ReactElement;
-	        rewindRight: React.ReactElement;
-	        save: React.ReactElement;
-	        scissors: React.ReactElement;
-	        search: React.ReactElement;
-	        settings2: React.ReactElement;
-	        settings: React.ReactElement;
-	        shake: React.ReactElement;
-	        share: React.ReactElement;
-	        shieldOff: React.ReactElement;
-	        shield: React.ReactElement;
-	        shoppingBag: React.ReactElement;
-	        shoppingCart: React.ReactElement;
-	        shuffle2: React.ReactElement;
-	        shuffle: React.ReactElement;
-	        skipBack: React.ReactElement;
-	        skipForward: React.ReactElement;
-	        slash: React.ReactElement;
-	        smartphone: React.ReactElement;
-	        speaker: React.ReactElement;
-	        square: React.ReactElement;
-	        star: React.ReactElement;
-	        stopCircle: React.ReactElement;
-	        sun: React.ReactElement;
-	        swap: React.ReactElement;
-	        sync: React.ReactElement;
-	        text: React.ReactElement;
-	        thermometerMinus: React.ReactElement;
-	        thermometerPlus: React.ReactElement;
-	        thermometer: React.ReactElement;
-	        toggleLeft: React.ReactElement;
-	        toggleRight: React.ReactElement;
-	        trash2: React.ReactElement;
-	        trash: React.ReactElement;
-	        trendingDown: React.ReactElement;
-	        trendingUp: React.ReactElement;
-	        tv: React.ReactElement;
-	        twitter: React.ReactElement;
-	        umbrella: React.ReactElement;
-	        undo: React.ReactElement;
-	        unlock: React.ReactElement;
-	        upload: React.ReactElement;
-	        videoOff: React.ReactElement;
-	        video: React.ReactElement;
-	        volumeDown: React.ReactElement;
-	        volumeMute: React.ReactElement;
-	        volumeOff: React.ReactElement;
-	        volumeUp: React.ReactElement;
-	        wifiOff: React.ReactElement;
-	        wifi: React.ReactElement;
-	    };
-	    type Outline = {
-	        activity: React.ReactElement;
-	        alertCircle: React.ReactElement;
-	        alertTriangle: React.ReactElement;
-	        archive: React.ReactElement;
-	        arrowBack: React.ReactElement;
-	        arrowCircleDown: React.ReactElement;
-	        arrowCircleLeft: React.ReactElement;
-	        arrowCircleRight: React.ReactElement;
-	        arrowCircleUp: React.ReactElement;
-	        arrowDown: React.ReactElement;
-	        arrowDownward: React.ReactElement;
-	        arrowForward: React.ReactElement;
-	        arrowIosBack: React.ReactElement;
-	        arrowIosDownward: React.ReactElement;
-	        arrowIosForward: React.ReactElement;
-	        arrowIosUpward: React.ReactElement;
-	        arrowLeft: React.ReactElement;
-	        arrowRight: React.ReactElement;
-	        arrowUp: React.ReactElement;
-	        arrowUpward: React.ReactElement;
-	        arrowheadDown: React.ReactElement;
-	        arrowheadLeft: React.ReactElement;
-	        arrowheadRight: React.ReactElement;
-	        arrowheadUp: React.ReactElement;
-	        at: React.ReactElement;
-	        attach2: React.ReactElement;
-	        attach: React.ReactElement;
-	        award: React.ReactElement;
-	        backspace: React.ReactElement;
-	        barChart2: React.ReactElement;
-	        barChart: React.ReactElement;
-	        battery: React.ReactElement;
-	        behance: React.ReactElement;
-	        bellOff: React.ReactElement;
-	        bell: React.ReactElement;
-	        bluetooth: React.ReactElement;
-	        bookOpen: React.ReactElement;
-	        book: React.ReactElement;
-	        bookmark: React.ReactElement;
-	        briefcase: React.ReactElement;
-	        browser: React.ReactElement;
-	        brush: React.ReactElement;
-	        bulb: React.ReactElement;
-	        calendar: React.ReactElement;
-	        camera: React.ReactElement;
-	        car: React.ReactElement;
-	        cast: React.ReactElement;
-	        charging: React.ReactElement;
-	        checkmarkCircle2: React.ReactElement;
-	        checkmarkCircle: React.ReactElement;
-	        checkmark: React.ReactElement;
-	        checkmarkSquare2: React.ReactElement;
-	        checkmarkSquare: React.ReactElement;
-	        chevronDown: React.ReactElement;
-	        chevronLeft: React.ReactElement;
-	        chevronRight: React.ReactElement;
-	        chevronUp: React.ReactElement;
-	        clipboard: React.ReactElement;
-	        clock: React.ReactElement;
-	        closeCircle: React.ReactElement;
-	        close: React.ReactElement;
-	        closeSquare: React.ReactElement;
-	        cloudDownload: React.ReactElement;
-	        cloudUpload: React.ReactElement;
-	        codeDownload: React.ReactElement;
-	        code: React.ReactElement;
-	        collapse: React.ReactElement;
-	        colorPalette: React.ReactElement;
-	        colorPicker: React.ReactElement;
-	        compass: React.ReactElement;
-	        copy: React.ReactElement;
-	        cornerDownLeft: React.ReactElement;
-	        cornerDownRight: React.ReactElement;
-	        cornerLeftDown: React.ReactElement;
-	        cornerLeftUp: React.ReactElement;
-	        cornerRightDown: React.ReactElement;
-	        cornerRightUp: React.ReactElement;
-	        cornerUpLeft: React.ReactElement;
-	        cornerUpRight: React.ReactElement;
-	        creditCard: React.ReactElement;
-	        crop: React.ReactElement;
-	        cube: React.ReactElement;
-	        diagonalArrowLeftDown: React.ReactElement;
-	        diagonalArrowLeftUp: React.ReactElement;
-	        diagonalArrowRightDown: React.ReactElement;
-	        diagonalArrowRightUp: React.ReactElement;
-	        doneAll: React.ReactElement;
-	        download: React.ReactElement;
-	        dropletOff: React.ReactElement;
-	        droplet: React.ReactElement;
-	        edit2: React.ReactElement;
-	        edit: React.ReactElement;
-	        email: React.ReactElement;
-	        expand: React.ReactElement;
-	        externalLink: React.ReactElement;
-	        eyeOff2: React.ReactElement;
-	        eyeOff: React.ReactElement;
-	        eye: React.ReactElement;
-	        facebook: React.ReactElement;
-	        fileAdd: React.ReactElement;
-	        file: React.ReactElement;
-	        fileRemove: React.ReactElement;
-	        fileText: React.ReactElement;
-	        film: React.ReactElement;
-	        flag: React.ReactElement;
-	        flashOff: React.ReactElement;
-	        flash: React.ReactElement;
-	        flip2: React.ReactElement;
-	        flip: React.ReactElement;
-	        folderAdd: React.ReactElement;
-	        folder: React.ReactElement;
-	        folderRemove: React.ReactElement;
-	        funnel: React.ReactElement;
-	        gift: React.ReactElement;
-	        github: React.ReactElement;
-	        globe2: React.ReactElement;
-	        globe: React.ReactElement;
-	        google: React.ReactElement;
-	        grid: React.ReactElement;
-	        hardDrive: React.ReactElement;
-	        hash: React.ReactElement;
-	        headphones: React.ReactElement;
-	        heart: React.ReactElement;
-	        home: React.ReactElement;
-	        image: React.ReactElement;
-	        inbox: React.ReactElement;
-	        info: React.ReactElement;
-	        keypad: React.ReactElement;
-	        layers: React.ReactElement;
-	        layout: React.ReactElement;
-	        link2: React.ReactElement;
-	        link: React.ReactElement;
-	        linkedin: React.ReactElement;
-	        list: React.ReactElement;
-	        loader: React.ReactElement;
-	        lock: React.ReactElement;
-	        logIn: React.ReactElement;
-	        logOut: React.ReactElement;
-	        map: React.ReactElement;
-	        maximize: React.ReactElement;
-	        menu2: React.ReactElement;
-	        menuArrow: React.ReactElement;
-	        menu: React.ReactElement;
-	        messageCircle: React.ReactElement;
-	        messageSquare: React.ReactElement;
-	        micOff: React.ReactElement;
-	        mic: React.ReactElement;
-	        minimize: React.ReactElement;
-	        minusCircle: React.ReactElement;
-	        minus: React.ReactElement;
-	        minusSquare: React.ReactElement;
-	        monitor: React.ReactElement;
-	        moon: React.ReactElement;
-	        moreHorizontal: React.ReactElement;
-	        moreVertical: React.ReactElement;
-	        move: React.ReactElement;
-	        music: React.ReactElement;
-	        navigation2: React.ReactElement;
-	        navigation: React.ReactElement;
-	        npm: React.ReactElement;
-	        options2: React.ReactElement;
-	        options: React.ReactElement;
-	        pantone: React.ReactElement;
-	        paperPlane: React.ReactElement;
-	        pauseCircle: React.ReactElement;
-	        people: React.ReactElement;
-	        percent: React.ReactElement;
-	        personAdd: React.ReactElement;
-	        personDelete: React.ReactElement;
-	        personDone: React.ReactElement;
-	        person: React.ReactElement;
-	        personRemove: React.ReactElement;
-	        phoneCall: React.ReactElement;
-	        phoneMissed: React.ReactElement;
-	        phoneOff: React.ReactElement;
-	        phone: React.ReactElement;
-	        pieChart: React.ReactElement;
-	        pin: React.ReactElement;
-	        playCircle: React.ReactElement;
-	        plusCircle: React.ReactElement;
-	        plus: React.ReactElement;
-	        plusSquare: React.ReactElement;
-	        power: React.ReactElement;
-	        pricetags: React.ReactElement;
-	        printer: React.ReactElement;
-	        questionMarkCircle: React.ReactElement;
-	        questionMark: React.ReactElement;
-	        radioButtonOff: React.ReactElement;
-	        radioButtonOn: React.ReactElement;
-	        radio: React.ReactElement;
-	        recording: React.ReactElement;
-	        refresh: React.ReactElement;
-	        repeat: React.ReactElement;
-	        rewindLeft: React.ReactElement;
-	        rewindRight: React.ReactElement;
-	        save: React.ReactElement;
-	        scissors: React.ReactElement;
-	        search: React.ReactElement;
-	        settings2: React.ReactElement;
-	        settings: React.ReactElement;
-	        shake: React.ReactElement;
-	        share: React.ReactElement;
-	        shieldOff: React.ReactElement;
-	        shield: React.ReactElement;
-	        shoppingBag: React.ReactElement;
-	        shoppingCart: React.ReactElement;
-	        shuffle2: React.ReactElement;
-	        shuffle: React.ReactElement;
-	        skipBack: React.ReactElement;
-	        skipForward: React.ReactElement;
-	        slash: React.ReactElement;
-	        smartphone: React.ReactElement;
-	        speaker: React.ReactElement;
-	        square: React.ReactElement;
-	        star: React.ReactElement;
-	        stopCircle: React.ReactElement;
-	        sun: React.ReactElement;
-	        swap: React.ReactElement;
-	        sync: React.ReactElement;
-	        text: React.ReactElement;
-	        thermometerMinus: React.ReactElement;
-	        thermometer: React.ReactElement;
-	        thermometerPlus: React.ReactElement;
-	        toggleLeft: React.ReactElement;
-	        toggleRight: React.ReactElement;
-	        trash2: React.ReactElement;
-	        trash: React.ReactElement;
-	        trendingDown: React.ReactElement;
-	        trendingUp: React.ReactElement;
-	        tv: React.ReactElement;
-	        twitter: React.ReactElement;
-	        umbrella: React.ReactElement;
-	        undo: React.ReactElement;
-	        unlock: React.ReactElement;
-	        upload: React.ReactElement;
-	        videoOff: React.ReactElement;
-	        video: React.ReactElement;
-	        volumeDown: React.ReactElement;
-	        volumeMute: React.ReactElement;
-	        volumeOff: React.ReactElement;
-	        volumeUp: React.ReactElement;
-	        wifiOff: React.ReactElement;
-	        wifi: React.ReactElement;
-	    };
-	    interface Index {
-	        filled: Filled;
-	        outline: Outline;
-	    }
-	}
-	export default IconsetTypes;
-
-}
-declare module 'misc/icons/filled' {
-	import IconTypes from 'misc/icons/types'; const filled: IconTypes.Filled;
-	export default filled;
-
-}
-declare module 'misc/icons/outline' {
-	import IconTypes from 'misc/icons/types'; const outline: IconTypes.Outline;
-	export default outline;
-
-}
-declare module 'misc/icons' {
-	export { default as filled } from 'misc/icons/filled';
-	export { default as outline } from 'misc/icons/outline';
-
-}
-declare module 'content/Icon/types' {
-	/// <reference types="react" />
-	import WhaleTypes from 'types';
-	import IconsetTypes from '@flow-ui/core/misc/icons/types';
-	import CSS from 'csstype'; namespace IconTypes {
-	    /**
-	     * TODO: circle и oval добавляют только padding
-	     * пример <Icon shape="circle" type={(t) => t.outline.cube} />
-	     */
-	    type Shapes = 'circle' | 'oval' | 'square';
-	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
-	        type: ((icons: IconsetTypes.Index) => React.ReactElement) | React.ReactElement;
-	        shape?: Shapes;
-	        size?: CSS.Properties['fontSize'];
-	        color?: WhaleTypes.ColorProp;
-	        background?: WhaleTypes.ColorProp;
-	    }
-	    interface Overrides {
-	        container: void;
-	        icon: void;
-	    }
-	}
-	export default IconTypes;
-
-}
-declare module 'content/Icon/styles' {
-	import WhaleTypes from 'types';
-	import Types from 'content/Icon/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'content/Icon' {
-	import React from 'react';
-	import Types from 'content/Icon/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
-	export default _default;
-
-}
 declare module 'content/Spinner/types' {
 	/// <reference types="react" />
-	import WhaleTypes from 'types'; namespace SpinnerTypes {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace SpinnerTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        color?: WhaleTypes.ColorProp;
 	        children?: React.ReactElement;
@@ -605,7 +51,7 @@ declare module 'content/Spinner/types' {
 
 }
 declare module 'content/Spinner/styles' {
-	import WhaleTypes from 'types';
+	import WhaleTypes from '@flow-ui/whale/types';
 	import Types from 'content/Spinner/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
@@ -618,7 +64,7 @@ declare module 'content/Spinner' {
 }
 declare module 'misc/hocs/Typography/types' {
 	/// <reference types="react" />
-	import WhaleTypes from 'types';
+	import WhaleTypes from '@flow-ui/whale/types';
 	import CSS from 'csstype'; namespace TypographyTypes {
 	    interface AnchorProps extends Props {
 	        download?: any;
@@ -640,7 +86,7 @@ declare module 'misc/hocs/Typography/types' {
 	        background?: WhaleTypes.ColorProp;
 	        align?: CSS.Properties['textAlign'];
 	        weight?: CSS.Properties['fontWeight'];
-	        size?: WhaleTypes.Size;
+	        size?: WhaleTypes.Size & string;
 	        lineHeight?: CSS.Properties['lineHeight'];
 	        transform?: CSS.Properties['textTransform'];
 	    }
@@ -659,7 +105,7 @@ declare module 'misc/hocs/Typography/types' {
 
 }
 declare module 'misc/hocs/Typography/styles' {
-	import WhaleTypes from 'types';
+	import WhaleTypes from '@flow-ui/whale/types';
 	import Types from 'misc/hocs/Typography/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.PrivateProps>;
 	export default styles;
 
@@ -703,7 +149,7 @@ declare module 'content/Anchor' {
 }
 declare module 'control/Button/types' {
 	/// <reference types="react" />
-	import WhaleTypes from 'types'; namespace ButtonTypes {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace ButtonTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLButtonElement, Overrides> {
 	        autoFocus?: boolean;
 	        disabled?: boolean;
@@ -742,7 +188,7 @@ declare module 'control/Button/types' {
 }
 declare module 'control/Button/styles' {
 	import Types from 'control/Button/types';
-	import WhaleTypes from 'types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
 }
@@ -754,7 +200,7 @@ declare module 'control/Button' {
 }
 declare module 'layout/Flexbox/types' {
 	/// <reference types="react" />
-	import WhaleTypes from 'types';
+	import WhaleTypes from '@flow-ui/whale/types';
 	import CSS from 'csstype'; namespace FlexboxTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        column?: boolean;
@@ -776,7 +222,7 @@ declare module 'layout/Flexbox/types' {
 
 }
 declare module 'layout/Flexbox/styles' {
-	import WhaleTypes from 'types';
+	import WhaleTypes from '@flow-ui/whale/types';
 	import Types from 'layout/Flexbox/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
@@ -790,7 +236,7 @@ declare module 'layout/Flexbox' {
 }
 declare module 'layout/Grid/types' {
 	/// <reference types="react" />
-	import WhaleTypes from 'types';
+	import WhaleTypes from '@flow-ui/whale/types';
 	import CSS from 'csstype'; namespace GridTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        inline?: boolean;
@@ -817,7 +263,7 @@ declare module 'layout/Grid/types' {
 
 }
 declare module 'layout/Grid/styles' {
-	import WhaleTypes from 'types';
+	import WhaleTypes from '@flow-ui/whale/types';
 	import Types from 'layout/Grid/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
@@ -831,7 +277,7 @@ declare module 'layout/Grid' {
 }
 declare module 'misc/hocs/Field/types' {
 	/// <reference types="react" />
-	import WhaleTypes from 'types'; namespace FieldTypes {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace FieldTypes {
 	    interface Props extends Omit<WhaleTypes.AllProps<HTMLInputElement, Overrides>, 'onChange'> {
 	        label?: React.ReactNode;
 	        hint?: React.ReactNode;
@@ -883,7 +329,7 @@ declare module 'misc/hocs/Field/types' {
 
 }
 declare module 'control/Calendar/types' {
-	import WhaleTypes from 'types';
+	import WhaleTypes from '@flow-ui/whale/types';
 	import { Moment } from 'moment';
 	import { CSSProperties } from 'react'; namespace CalendarTypes {
 	    type GridType = 'year' | 'month' | 'day';
@@ -979,6 +425,1526 @@ declare module 'control/Calendar/DateGridMonth' {
 	export default DateGridMonth;
 
 }
+declare module 'misc/hocs/Icon/types' {
+	/// <reference types="react" />
+	import WhaleTypes from '@flow-ui/whale/types';
+	import CSS from 'csstype'; namespace IconTypes {
+	    /**
+	     * TODO: circle и oval добавляют только padding
+	     */
+	    type Shapes = 'circle' | 'oval' | 'square';
+	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+	        svg: React.ReactElement;
+	        shape?: Shapes;
+	        size?: CSS.Properties['fontSize'];
+	        color?: WhaleTypes.ColorProp;
+	        background?: WhaleTypes.ColorProp;
+	    }
+	    interface IconProps extends Omit<Props, 'svg'> {
+	        type?: 'filled' | 'outline';
+	        shape?: Shapes;
+	        size?: CSS.Properties['fontSize'];
+	        color?: WhaleTypes.ColorProp;
+	        background?: WhaleTypes.ColorProp;
+	    }
+	    interface Overrides {
+	        container: void;
+	        icon: void;
+	    }
+	}
+	export default IconTypes;
+
+}
+declare module 'misc/hocs/Icon/styles' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'misc/hocs/Icon/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'misc/hocs/Icon' {
+	import React from 'react';
+	import Types from 'misc/hocs/Icon/types'; type Icons = {
+	    filled: React.ReactElement;
+	    outline: React.ReactElement;
+	};
+	export const createIcon: (props: Types.IconProps | undefined, ref: React.Ref<HTMLSpanElement>, icons: Icons) => JSX.Element;
+	export type Props = Types.IconProps;
+	export {};
+
+}
+declare module 'icons/svg/activity' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/alertCircle' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/alertTriangle' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/archive' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/arrowBack' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/arrowCircleDown' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/arrowCircleLeft' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/arrowCircleRight' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/arrowCircleUp' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/arrowDown' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/arrowDownward' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/arrowForward' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/arrowIosBack' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/arrowIosDownward' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/arrowIosForward' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/arrowIosUpward' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/arrowLeft' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/arrowRight' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/arrowUp' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/arrowUpward' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/arrowheadDown' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/arrowheadLeft' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/arrowheadRight' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/arrowheadUp' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/at' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/attach2' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/attach' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/award' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/backspace' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/barChart2' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/barChart' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/battery' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/behance' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/bellOff' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/bell' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/bluetooth' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/bookOpen' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/book' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/bookmark' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/briefcase' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/browser' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/brush' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/bulb' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/calendar' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/camera' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/car' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/cast' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/charging' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/checkmarkCircle2' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/checkmarkCircle' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/checkmarkSquare2' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/checkmarkSquare' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/checkmark' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/chevronDown' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/chevronLeft' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/chevronRight' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/chevronUp' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/clipboard' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/clock' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/closeCircle' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/closeSquare' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/close' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/cloudDownload' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/cloudUpload' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/codeDownload' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/code' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/collapse' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/colorPalette' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/colorPicker' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/compass' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/copy' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/cornerDownLeft' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/cornerDownRight' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/cornerLeftDown' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/cornerLeftUp' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/cornerRightDown' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/cornerRightUp' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/cornerUpLeft' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/cornerUpRight' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/creditCard' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/crop' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/cube' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/diagonalArrowLeftDown' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/diagonalArrowLeftUp' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/diagonalArrowRightDown' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/diagonalArrowRightUp' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/doneAll' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/download' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/dropletOff' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/droplet' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/edit2' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/edit' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/email' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/expand' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/externalLink' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/eyeOff2' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/eyeOff' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/eye' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/facebook' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/fileAdd' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/fileRemove' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/fileText' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/file' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/film' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/flag' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/flashOff' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/flash' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/flip2' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/flip' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/folderAdd' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/folderRemove' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/folder' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/funnel' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/gift' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/github' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/globe2' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/globe3' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/globe' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/google' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/grid' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/hardDrive' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/hash' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/headphones' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/heart' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/home' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/image2' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/image' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/inbox' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/info' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/keypad' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/layers' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/layout' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/link2' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/link' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/linkedin' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/list' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/lock' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/logIn' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/logOut' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/map' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/maximize' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/menu2' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/menuArrow' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/menu' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/messageCircle' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/messageSquare' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/micOff' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/mic' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/minimize' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/minusCircle' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/minusSquare' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/minus' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/monitor' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/moon' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/moreHorizontal' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/moreVertical' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/move' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/music' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/navigation2' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/navigation' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/npm' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/options2' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/options' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/pantone' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/paperPlane' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/pauseCircle' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/people' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/percent' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/personAdd' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/personDelete' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/personDone' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/personRemove' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/person' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/phoneCall' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/phoneMissed' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/phoneOff' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/phone' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/pieChart2' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/pieChart' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/pin' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/playCircle' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/plusCircle' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/plusSquare' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/plus' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/power' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/pricetags' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/printer' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/questionMarkCircle' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/questionMark' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/radioButtonOff' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/radioButtonOn' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/radio' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/recording' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/refresh' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/repeat' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/rewindLeft' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/rewindRight' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/save' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/scissors' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/search' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/settings2' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/settings' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/shake' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/share' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/shieldOff' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/shield' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/shoppingBag' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/shoppingCart' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/shuffle2' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/shuffle' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/skipBack' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/skipForward' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/slash' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/smartphone' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/speaker' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/square' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/star' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/stopCircle' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/sun' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/swap' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/sync' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/text' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/thermometerMinus' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/thermometerPlus' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/thermometer' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/toggleLeft' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/toggleRight' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/trash2' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/trash' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/trendingDown' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/trendingUp' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/tv' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/twitter' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/umbrella' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/undo' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/unlock' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/upload' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/videoOff' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/video' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/volumeDown' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/volumeMute' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/volumeOff' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/volumeUp' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/wifiOff' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'icons/svg/wifi' {
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module '@flow-ui/core/icons' {
+	export { default as Activity } from 'icons/svg/activity';
+	export { default as AlertCircle } from 'icons/svg/alertCircle';
+	export { default as AlertTriangle } from 'icons/svg/alertTriangle';
+	export { default as Archive } from 'icons/svg/archive';
+	export { default as ArrowBack } from 'icons/svg/arrowBack';
+	export { default as ArrowCircleDown } from 'icons/svg/arrowCircleDown';
+	export { default as ArrowCircleLeft } from 'icons/svg/arrowCircleLeft';
+	export { default as ArrowCircleRight } from 'icons/svg/arrowCircleRight';
+	export { default as ArrowCircleUp } from 'icons/svg/arrowCircleUp';
+	export { default as ArrowDown } from 'icons/svg/arrowDown';
+	export { default as ArrowDownward } from 'icons/svg/arrowDownward';
+	export { default as ArrowForward } from 'icons/svg/arrowForward';
+	export { default as ArrowIosBack } from 'icons/svg/arrowIosBack';
+	export { default as ArrowIosDownward } from 'icons/svg/arrowIosDownward';
+	export { default as ArrowIosForward } from 'icons/svg/arrowIosForward';
+	export { default as ArrowIosUpward } from 'icons/svg/arrowIosUpward';
+	export { default as ArrowLeft } from 'icons/svg/arrowLeft';
+	export { default as ArrowRight } from 'icons/svg/arrowRight';
+	export { default as ArrowUp } from 'icons/svg/arrowUp';
+	export { default as ArrowUpward } from 'icons/svg/arrowUpward';
+	export { default as ArrowheadDown } from 'icons/svg/arrowheadDown';
+	export { default as ArrowheadLeft } from 'icons/svg/arrowheadLeft';
+	export { default as ArrowheadRight } from 'icons/svg/arrowheadRight';
+	export { default as ArrowheadUp } from 'icons/svg/arrowheadUp';
+	export { default as At } from 'icons/svg/at';
+	export { default as Attach2 } from 'icons/svg/attach2';
+	export { default as Attach } from 'icons/svg/attach';
+	export { default as Award } from 'icons/svg/award';
+	export { default as Backspace } from 'icons/svg/backspace';
+	export { default as BarChart2 } from 'icons/svg/barChart2';
+	export { default as BarChart } from 'icons/svg/barChart';
+	export { default as Battery } from 'icons/svg/battery';
+	export { default as Behance } from 'icons/svg/behance';
+	export { default as BellOff } from 'icons/svg/bellOff';
+	export { default as Bell } from 'icons/svg/bell';
+	export { default as Bluetooth } from 'icons/svg/bluetooth';
+	export { default as BookOpen } from 'icons/svg/bookOpen';
+	export { default as Book } from 'icons/svg/book';
+	export { default as Bookmark } from 'icons/svg/bookmark';
+	export { default as Briefcase } from 'icons/svg/briefcase';
+	export { default as Browser } from 'icons/svg/browser';
+	export { default as Brush } from 'icons/svg/brush';
+	export { default as Bulb } from 'icons/svg/bulb';
+	export { default as Calendar } from 'icons/svg/calendar';
+	export { default as Camera } from 'icons/svg/camera';
+	export { default as Car } from 'icons/svg/car';
+	export { default as Cast } from 'icons/svg/cast';
+	export { default as Charging } from 'icons/svg/charging';
+	export { default as CheckmarkCircle2 } from 'icons/svg/checkmarkCircle2';
+	export { default as CheckmarkCircle } from 'icons/svg/checkmarkCircle';
+	export { default as CheckmarkSquare2 } from 'icons/svg/checkmarkSquare2';
+	export { default as CheckmarkSquare } from 'icons/svg/checkmarkSquare';
+	export { default as Checkmark } from 'icons/svg/checkmark';
+	export { default as ChevronDown } from 'icons/svg/chevronDown';
+	export { default as ChevronLeft } from 'icons/svg/chevronLeft';
+	export { default as ChevronRight } from 'icons/svg/chevronRight';
+	export { default as ChevronUp } from 'icons/svg/chevronUp';
+	export { default as Clipboard } from 'icons/svg/clipboard';
+	export { default as Clock } from 'icons/svg/clock';
+	export { default as CloseCircle } from 'icons/svg/closeCircle';
+	export { default as CloseSquare } from 'icons/svg/closeSquare';
+	export { default as Close } from 'icons/svg/close';
+	export { default as CloudDownload } from 'icons/svg/cloudDownload';
+	export { default as CloudUpload } from 'icons/svg/cloudUpload';
+	export { default as CodeDownload } from 'icons/svg/codeDownload';
+	export { default as Code } from 'icons/svg/code';
+	export { default as Collapse } from 'icons/svg/collapse';
+	export { default as ColorPalette } from 'icons/svg/colorPalette';
+	export { default as ColorPicker } from 'icons/svg/colorPicker';
+	export { default as Compass } from 'icons/svg/compass';
+	export { default as Copy } from 'icons/svg/copy';
+	export { default as CornerDownLeft } from 'icons/svg/cornerDownLeft';
+	export { default as CornerDownRight } from 'icons/svg/cornerDownRight';
+	export { default as CornerLeftDown } from 'icons/svg/cornerLeftDown';
+	export { default as CornerLeftUp } from 'icons/svg/cornerLeftUp';
+	export { default as CornerRightDown } from 'icons/svg/cornerRightDown';
+	export { default as CornerRightUp } from 'icons/svg/cornerRightUp';
+	export { default as CornerUpLeft } from 'icons/svg/cornerUpLeft';
+	export { default as CornerUpRight } from 'icons/svg/cornerUpRight';
+	export { default as CreditCard } from 'icons/svg/creditCard';
+	export { default as Crop } from 'icons/svg/crop';
+	export { default as Cube } from 'icons/svg/cube';
+	export { default as DiagonalArrowLeftDown } from 'icons/svg/diagonalArrowLeftDown';
+	export { default as DiagonalArrowLeftUp } from 'icons/svg/diagonalArrowLeftUp';
+	export { default as DiagonalArrowRightDown } from 'icons/svg/diagonalArrowRightDown';
+	export { default as DiagonalArrowRightUp } from 'icons/svg/diagonalArrowRightUp';
+	export { default as DoneAll } from 'icons/svg/doneAll';
+	export { default as Download } from 'icons/svg/download';
+	export { default as DropletOff } from 'icons/svg/dropletOff';
+	export { default as Droplet } from 'icons/svg/droplet';
+	export { default as Edit2 } from 'icons/svg/edit2';
+	export { default as Edit } from 'icons/svg/edit';
+	export { default as Email } from 'icons/svg/email';
+	export { default as Expand } from 'icons/svg/expand';
+	export { default as ExternalLink } from 'icons/svg/externalLink';
+	export { default as EyeOff2 } from 'icons/svg/eyeOff2';
+	export { default as EyeOff } from 'icons/svg/eyeOff';
+	export { default as Eye } from 'icons/svg/eye';
+	export { default as Facebook } from 'icons/svg/facebook';
+	export { default as FileAdd } from 'icons/svg/fileAdd';
+	export { default as FileRemove } from 'icons/svg/fileRemove';
+	export { default as FileText } from 'icons/svg/fileText';
+	export { default as File } from 'icons/svg/file';
+	export { default as Film } from 'icons/svg/film';
+	export { default as Flag } from 'icons/svg/flag';
+	export { default as FlashOff } from 'icons/svg/flashOff';
+	export { default as Flash } from 'icons/svg/flash';
+	export { default as Flip2 } from 'icons/svg/flip2';
+	export { default as Flip } from 'icons/svg/flip';
+	export { default as FolderAdd } from 'icons/svg/folderAdd';
+	export { default as FolderRemove } from 'icons/svg/folderRemove';
+	export { default as Folder } from 'icons/svg/folder';
+	export { default as Funnel } from 'icons/svg/funnel';
+	export { default as Gift } from 'icons/svg/gift';
+	export { default as Github } from 'icons/svg/github';
+	export { default as Globe2 } from 'icons/svg/globe2';
+	export { default as Globe3 } from 'icons/svg/globe3';
+	export { default as Globe } from 'icons/svg/globe';
+	export { default as Google } from 'icons/svg/google';
+	export { default as Grid } from 'icons/svg/grid';
+	export { default as HardDrive } from 'icons/svg/hardDrive';
+	export { default as Hash } from 'icons/svg/hash';
+	export { default as Headphones } from 'icons/svg/headphones';
+	export { default as Heart } from 'icons/svg/heart';
+	export { default as Home } from 'icons/svg/home';
+	export { default as Image2 } from 'icons/svg/image2';
+	export { default as Image } from 'icons/svg/image';
+	export { default as Inbox } from 'icons/svg/inbox';
+	export { default as Info } from 'icons/svg/info';
+	export { default as Keypad } from 'icons/svg/keypad';
+	export { default as Layers } from 'icons/svg/layers';
+	export { default as Layout } from 'icons/svg/layout';
+	export { default as Link2 } from 'icons/svg/link2';
+	export { default as Link } from 'icons/svg/link';
+	export { default as Linkedin } from 'icons/svg/linkedin';
+	export { default as List } from 'icons/svg/list';
+	export { default as Lock } from 'icons/svg/lock';
+	export { default as LogIn } from 'icons/svg/logIn';
+	export { default as LogOut } from 'icons/svg/logOut';
+	export { default as Map } from 'icons/svg/map';
+	export { default as Maximize } from 'icons/svg/maximize';
+	export { default as Menu2 } from 'icons/svg/menu2';
+	export { default as MenuArrow } from 'icons/svg/menuArrow';
+	export { default as Menu } from 'icons/svg/menu';
+	export { default as MessageCircle } from 'icons/svg/messageCircle';
+	export { default as MessageSquare } from 'icons/svg/messageSquare';
+	export { default as MicOff } from 'icons/svg/micOff';
+	export { default as Mic } from 'icons/svg/mic';
+	export { default as Minimize } from 'icons/svg/minimize';
+	export { default as MinusCircle } from 'icons/svg/minusCircle';
+	export { default as MinusSquare } from 'icons/svg/minusSquare';
+	export { default as Minus } from 'icons/svg/minus';
+	export { default as Monitor } from 'icons/svg/monitor';
+	export { default as Moon } from 'icons/svg/moon';
+	export { default as MoreHorizontal } from 'icons/svg/moreHorizontal';
+	export { default as MoreVertical } from 'icons/svg/moreVertical';
+	export { default as Move } from 'icons/svg/move';
+	export { default as Music } from 'icons/svg/music';
+	export { default as Navigation2 } from 'icons/svg/navigation2';
+	export { default as Navigation } from 'icons/svg/navigation';
+	export { default as Npm } from 'icons/svg/npm';
+	export { default as Options2 } from 'icons/svg/options2';
+	export { default as Options } from 'icons/svg/options';
+	export { default as Pantone } from 'icons/svg/pantone';
+	export { default as PaperPlane } from 'icons/svg/paperPlane';
+	export { default as PauseCircle } from 'icons/svg/pauseCircle';
+	export { default as People } from 'icons/svg/people';
+	export { default as Percent } from 'icons/svg/percent';
+	export { default as PersonAdd } from 'icons/svg/personAdd';
+	export { default as PersonDelete } from 'icons/svg/personDelete';
+	export { default as PersonDone } from 'icons/svg/personDone';
+	export { default as PersonRemove } from 'icons/svg/personRemove';
+	export { default as Person } from 'icons/svg/person';
+	export { default as PhoneCall } from 'icons/svg/phoneCall';
+	export { default as PhoneMissed } from 'icons/svg/phoneMissed';
+	export { default as PhoneOff } from 'icons/svg/phoneOff';
+	export { default as Phone } from 'icons/svg/phone';
+	export { default as PieChart2 } from 'icons/svg/pieChart2';
+	export { default as PieChart } from 'icons/svg/pieChart';
+	export { default as Pin } from 'icons/svg/pin';
+	export { default as PlayCircle } from 'icons/svg/playCircle';
+	export { default as PlusCircle } from 'icons/svg/plusCircle';
+	export { default as PlusSquare } from 'icons/svg/plusSquare';
+	export { default as Plus } from 'icons/svg/plus';
+	export { default as Power } from 'icons/svg/power';
+	export { default as Pricetags } from 'icons/svg/pricetags';
+	export { default as Printer } from 'icons/svg/printer';
+	export { default as QuestionMarkCircle } from 'icons/svg/questionMarkCircle';
+	export { default as QuestionMark } from 'icons/svg/questionMark';
+	export { default as RadioButtonOff } from 'icons/svg/radioButtonOff';
+	export { default as RadioButtonOn } from 'icons/svg/radioButtonOn';
+	export { default as Radio } from 'icons/svg/radio';
+	export { default as Recording } from 'icons/svg/recording';
+	export { default as Refresh } from 'icons/svg/refresh';
+	export { default as Repeat } from 'icons/svg/repeat';
+	export { default as RewindLeft } from 'icons/svg/rewindLeft';
+	export { default as RewindRight } from 'icons/svg/rewindRight';
+	export { default as Save } from 'icons/svg/save';
+	export { default as Scissors } from 'icons/svg/scissors';
+	export { default as Search } from 'icons/svg/search';
+	export { default as Settings2 } from 'icons/svg/settings2';
+	export { default as Settings } from 'icons/svg/settings';
+	export { default as Shake } from 'icons/svg/shake';
+	export { default as Share } from 'icons/svg/share';
+	export { default as ShieldOff } from 'icons/svg/shieldOff';
+	export { default as Shield } from 'icons/svg/shield';
+	export { default as ShoppingBag } from 'icons/svg/shoppingBag';
+	export { default as ShoppingCart } from 'icons/svg/shoppingCart';
+	export { default as Shuffle2 } from 'icons/svg/shuffle2';
+	export { default as Shuffle } from 'icons/svg/shuffle';
+	export { default as SkipBack } from 'icons/svg/skipBack';
+	export { default as SkipForward } from 'icons/svg/skipForward';
+	export { default as Slash } from 'icons/svg/slash';
+	export { default as Smartphone } from 'icons/svg/smartphone';
+	export { default as Speaker } from 'icons/svg/speaker';
+	export { default as Square } from 'icons/svg/square';
+	export { default as Star } from 'icons/svg/star';
+	export { default as StopCircle } from 'icons/svg/stopCircle';
+	export { default as Sun } from 'icons/svg/sun';
+	export { default as Swap } from 'icons/svg/swap';
+	export { default as Sync } from 'icons/svg/sync';
+	export { default as Text } from 'icons/svg/text';
+	export { default as ThermometerMinus } from 'icons/svg/thermometerMinus';
+	export { default as ThermometerPlus } from 'icons/svg/thermometerPlus';
+	export { default as Thermometer } from 'icons/svg/thermometer';
+	export { default as ToggleLeft } from 'icons/svg/toggleLeft';
+	export { default as ToggleRight } from 'icons/svg/toggleRight';
+	export { default as Trash2 } from 'icons/svg/trash2';
+	export { default as Trash } from 'icons/svg/trash';
+	export { default as TrendingDown } from 'icons/svg/trendingDown';
+	export { default as TrendingUp } from 'icons/svg/trendingUp';
+	export { default as Tv } from 'icons/svg/tv';
+	export { default as Twitter } from 'icons/svg/twitter';
+	export { default as Umbrella } from 'icons/svg/umbrella';
+	export { default as Undo } from 'icons/svg/undo';
+	export { default as Unlock } from 'icons/svg/unlock';
+	export { default as Upload } from 'icons/svg/upload';
+	export { default as VideoOff } from 'icons/svg/videoOff';
+	export { default as Video } from 'icons/svg/video';
+	export { default as VolumeDown } from 'icons/svg/volumeDown';
+	export { default as VolumeMute } from 'icons/svg/volumeMute';
+	export { default as VolumeOff } from 'icons/svg/volumeOff';
+	export { default as VolumeUp } from 'icons/svg/volumeUp';
+	export { default as wifiOff } from 'icons/svg/wifiOff';
+	export { default as Wifi } from 'icons/svg/wifi';
+
+}
 declare module 'control/Calendar/DateGridTitle' {
 	/// <reference types="react" />
 	import CalendarTypes from 'control/Calendar/types'; const DateGridTitle: (props: CalendarTypes.DateGridTitleProps) => JSX.Element;
@@ -998,7 +1964,7 @@ declare module 'control/Calendar/DateGrid' {
 
 }
 declare module 'control/Calendar/styles' {
-	import WhaleTypes from 'types';
+	import WhaleTypes from '@flow-ui/whale/types';
 	import Types from 'control/Calendar/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
@@ -1011,7 +1977,7 @@ declare module 'control/Calendar' {
 }
 declare module 'layout/Block/types' {
 	/// <reference types="react" />
-	import WhaleTypes from 'types';
+	import WhaleTypes from '@flow-ui/whale/types';
 	import CSS from 'csstype'; namespace BlockTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        tag?: 'div' | 'span' | 'header' | 'footer' | 'article' | 'section' | 'aside' | 'main';
@@ -1033,21 +1999,14 @@ declare module 'layout/Block/types' {
 
 }
 declare module 'layout/Block/styles' {
-	import WhaleTypes from 'types';
+	import WhaleTypes from '@flow-ui/whale/types';
 	import Types from 'layout/Block/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
 
 }
-declare module 'layout/Block' {
-	/// <reference types="react" />
-	/// <reference types="@emotion/core" />
-	import Types from 'layout/Block/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
-	export default _default;
-
-}
 declare module 'misc/hocs/Check/types' {
 	/// <reference types="react" />
-	import WhaleTypes from 'types'; namespace CheckTypes {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace CheckTypes {
 	    type CheckType = 'checkbox' | 'radio' | 'switch';
 	    interface Props extends WhaleTypes.AllProps<HTMLInputElement, Overrides> {
 	        label?: string;
@@ -1079,12 +2038,6 @@ declare module 'misc/hocs/Check/types' {
 	export default CheckTypes;
 
 }
-declare module 'misc/hocs/Check' {
-	import React from 'react';
-	import CheckTypes from 'misc/hocs/Check/types'; const _default: React.ForwardRefExoticComponent<CheckTypes.PrivateProps & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
-
-}
 declare module 'control/Checkbox/types' {
 	import CheckTypes from 'misc/hocs/Check/types'; namespace CheckboxTypes {
 	    interface Props extends CheckTypes.Props {
@@ -1105,134 +2058,6 @@ declare module 'control/Checkbox/types' {
 	    }
 	}
 	export default CheckboxTypes;
-
-}
-declare module 'misc/hocs/Check/styles' {
-	import WhaleTypes from 'types';
-	import Types from 'misc/hocs/Check/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'control/Checkbox/styles' {
-	import Types from 'control/Checkbox/types';
-	import WhaleTypes from 'types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'control/Checkbox' {
-	import React from 'react';
-	import Types from 'control/Checkbox/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
-
-}
-declare module 'layout/Drop/types' {
-	/// <reference types="react" />
-	import WhaleTypes from 'types'; namespace DropTypes {
-	    interface TargetCoordinates {
-	        top: number;
-	        bottom: number;
-	        left: number;
-	        right: number;
-	    }
-	    interface Props extends WhaleTypes.AttributeProps, WhaleTypes.EventProps<HTMLDivElement>, WhaleTypes.CoreProps<Overrides>, WhaleTypes.ColorProps, WhaleTypes.BorderProps, WhaleTypes.PaddingProps, WhaleTypes.LayoutProps {
-	        target: any;
-	        align?: 'top' | 'bottom' | 'left' | 'right';
-	        justify?: 'start' | 'center' | 'end' | 'start-outside' | 'end-outside';
-	        stretchWidth?: boolean;
-	        stretchHeight?: boolean;
-	        spacing?: number;
-	        onClickOutside?: (event: MouseEvent, outsideTarget?: boolean) => void;
-	        onEsc?: () => void;
-	        children?: React.ReactNode;
-	    }
-	    interface Ref extends Partial<HTMLDivElement> {
-	        updatePosition: () => void;
-	    }
-	    interface Overrides {
-	        container: void;
-	    }
-	}
-	export default DropTypes;
-
-}
-declare module 'layout/Drop/styles' {
-	import WhaleTypes from 'types';
-	import Types from 'layout/Drop/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'layout/Drop' {
-	import React from 'react';
-	import Types from 'layout/Drop/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
-	export default _default;
-
-}
-declare module 'layout/Popover/types' {
-	/// <reference types="react" />
-	import WhaleTypes from 'types';
-	import CSS from 'csstype'; namespace PopoverTypes {
-	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
-	        align?: 'top' | 'bottom' | 'left' | 'right' | 'none';
-	        background?: WhaleTypes.ColorProp;
-	        color?: WhaleTypes.ColorProp;
-	        children?: React.ReactNode;
-	        arrowWidth?: CSS.Properties['width'];
-	        arrowHeight?: CSS.Properties['height'];
-	    }
-	    interface Overrides {
-	        container: void;
-	        arrow: {
-	            align: Props['align'];
-	        };
-	    }
-	}
-	export default PopoverTypes;
-
-}
-declare module 'layout/Popover/styles' {
-	import Types from 'layout/Popover/types';
-	import WhaleTypes from 'types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'layout/Popover' {
-	import React from 'react';
-	import Types from 'layout/Popover/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
-
-}
-declare module 'misc/hocs/Field' {
-	import React from 'react';
-	import Types from 'misc/hocs/Field/types'; const _default: React.ForwardRefExoticComponent<Types.PrivateProps & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
-
-}
-declare module 'misc/utils/createID' {
-	 const _default: () => string;
-	export default _default;
-
-}
-declare module 'misc/hooks/useMask' {
-	import IMask from 'imask'; const _default: (ref: any, masked: any) => IMask.InputMask<IMask.AnyMaskedOptions>;
-	export default _default;
-
-}
-declare module 'control/DatePicker/mask' {
-	import moment from 'moment'; const _default: (format: string, min: moment.Moment, max: moment.Moment) => any;
-	export default _default;
-
-}
-declare module 'misc/hocs/Field/styles' {
-	import WhaleTypes from 'types';
-	import Types from 'misc/hocs/Field/types'; type ExtractFunction<T> = {
-	    [K in keyof T]: Extract<T[K], Function>;
-	}; const fieldStyles: <T extends Types.Overrides<{}>>(props: Pick<Types.Props, "alignSelf" | "backgroundColor" | "color" | "display" | "flexBasis" | "flexGrow" | "flexShrink" | "gridColumnEnd" | "gridColumnStart" | "gridRowEnd" | "gridRowStart" | "justifySelf" | "visibility" | "borderColor" | "borderRadius" | "borderStyle" | "borderWidth" | "flex" | "gridArea" | "gridColumn" | "gridRow" | "placeSelf" | "size" | "style" | "disabled" | "label" | "p" | "className" | "id" | "tabIndex" | "role" | "draggable" | "attrs" | "aria-activedescendant" | "aria-atomic" | "aria-autocomplete" | "aria-busy" | "aria-checked" | "aria-colcount" | "aria-colindex" | "aria-colspan" | "aria-controls" | "aria-current" | "aria-describedby" | "aria-details" | "aria-disabled" | "aria-dropeffect" | "aria-errormessage" | "aria-expanded" | "aria-flowto" | "aria-grabbed" | "aria-haspopup" | "aria-hidden" | "aria-invalid" | "aria-keyshortcuts" | "aria-label" | "aria-labelledby" | "aria-level" | "aria-live" | "aria-modal" | "aria-multiline" | "aria-multiselectable" | "aria-orientation" | "aria-owns" | "aria-placeholder" | "aria-posinset" | "aria-pressed" | "aria-readonly" | "aria-relevant" | "aria-required" | "aria-roledescription" | "aria-rowcount" | "aria-rowindex" | "aria-rowspan" | "aria-selected" | "aria-setsize" | "aria-sort" | "aria-valuemax" | "aria-valuemin" | "aria-valuenow" | "aria-valuetext" | "onCopy" | "onCopyCapture" | "onCut" | "onCutCapture" | "onPaste" | "onPasteCapture" | "onCompositionEnd" | "onCompositionEndCapture" | "onCompositionStart" | "onCompositionStartCapture" | "onCompositionUpdate" | "onCompositionUpdateCapture" | "onFocus" | "onFocusCapture" | "onBlur" | "onBlurCapture" | "onChangeCapture" | "onBeforeInput" | "onBeforeInputCapture" | "onInput" | "onInputCapture" | "onReset" | "onResetCapture" | "onSubmit" | "onSubmitCapture" | "onInvalid" | "onInvalidCapture" | "onLoad" | "onLoadCapture" | "onError" | "onErrorCapture" | "onKeyDown" | "onKeyDownCapture" | "onKeyPress" | "onKeyPressCapture" | "onKeyUp" | "onKeyUpCapture" | "onAbort" | "onAbortCapture" | "onCanPlay" | "onCanPlayCapture" | "onCanPlayThrough" | "onCanPlayThroughCapture" | "onDurationChange" | "onDurationChangeCapture" | "onEmptied" | "onEmptiedCapture" | "onEncrypted" | "onEncryptedCapture" | "onEnded" | "onEndedCapture" | "onLoadedData" | "onLoadedDataCapture" | "onLoadedMetadata" | "onLoadedMetadataCapture" | "onLoadStart" | "onLoadStartCapture" | "onPause" | "onPauseCapture" | "onPlay" | "onPlayCapture" | "onPlaying" | "onPlayingCapture" | "onProgress" | "onProgressCapture" | "onRateChange" | "onRateChangeCapture" | "onSeeked" | "onSeekedCapture" | "onSeeking" | "onSeekingCapture" | "onStalled" | "onStalledCapture" | "onSuspend" | "onSuspendCapture" | "onTimeUpdate" | "onTimeUpdateCapture" | "onVolumeChange" | "onVolumeChangeCapture" | "onWaiting" | "onWaitingCapture" | "onAuxClick" | "onAuxClickCapture" | "onClick" | "onClickCapture" | "onContextMenu" | "onContextMenuCapture" | "onDoubleClick" | "onDoubleClickCapture" | "onDrag" | "onDragCapture" | "onDragEnd" | "onDragEndCapture" | "onDragEnter" | "onDragEnterCapture" | "onDragExit" | "onDragExitCapture" | "onDragLeave" | "onDragLeaveCapture" | "onDragOver" | "onDragOverCapture" | "onDragStart" | "onDragStartCapture" | "onDrop" | "onDropCapture" | "onMouseDown" | "onMouseDownCapture" | "onMouseEnter" | "onMouseLeave" | "onMouseMove" | "onMouseMoveCapture" | "onMouseOut" | "onMouseOutCapture" | "onMouseOver" | "onMouseOverCapture" | "onMouseUp" | "onMouseUpCapture" | "onSelect" | "onSelectCapture" | "onTouchCancel" | "onTouchCancelCapture" | "onTouchEnd" | "onTouchEndCapture" | "onTouchMove" | "onTouchMoveCapture" | "onTouchStart" | "onTouchStartCapture" | "onPointerDown" | "onPointerDownCapture" | "onPointerMove" | "onPointerMoveCapture" | "onPointerUp" | "onPointerUpCapture" | "onPointerCancel" | "onPointerCancelCapture" | "onPointerEnter" | "onPointerLeave" | "onPointerOver" | "onPointerOverCapture" | "onPointerOut" | "onPointerOutCapture" | "onGotPointerCapture" | "onGotPointerCaptureCapture" | "onLostPointerCapture" | "onLostPointerCaptureCapture" | "onScroll" | "onScrollCapture" | "onWheel" | "onWheelCapture" | "onAnimationStart" | "onAnimationStartCapture" | "onAnimationEnd" | "onAnimationEndCapture" | "onAnimationIteration" | "onAnimationIterationCapture" | "onTransitionEnd" | "onTransitionEndCapture" | "styles" | "animated" | "textColor" | "px" | "py" | "pr" | "pl" | "pt" | "pb" | "w" | "h" | "m" | "mx" | "my" | "mr" | "ml" | "mt" | "mb" | "shape" | "onEnter" | "decoration" | "hint" | "rightChild" | "leftChild" | "clearable" | "onClear">, theme: WhaleTypes.Theme<{}>, params?: {
-	    manyLines?: boolean | undefined;
-	    additionalPadding?: string | undefined;
-	    labelOverlayPosition?: "top" | "center" | undefined;
-	    overrides?: Partial<ExtractFunction<WhaleTypes.Styles<T>>> | undefined;
-	}) => WhaleTypes.Styles<Types.Overrides<{}>>;
-	export default fieldStyles;
 
 }
 declare module 'control/DatePicker/types' {
@@ -1317,21 +2142,9 @@ declare module 'control/DatePicker/types' {
 	export default DatePickerTypes;
 
 }
-declare module 'control/DatePicker/styles' {
-	import WhaleTypes from 'types';
-	import Types from 'control/DatePicker/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'control/DatePicker' {
-	import React from 'react';
-	import Types from 'control/DatePicker/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
-
-}
 declare module 'control/Menu/types' {
 	/// <reference types="react" />
-	import WhaleTypes from 'types'; namespace MenuTypes {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace MenuTypes {
 	    type Value = string | number;
 	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
 	        defaultValue?: Value;
@@ -1378,24 +2191,6 @@ declare module 'control/Menu/types' {
 	export default MenuTypes;
 
 }
-declare module 'control/Menu/Item' {
-	import { RefForwardingComponent } from 'react';
-	import Types from 'control/Menu/types'; const Item: RefForwardingComponent<HTMLDivElement, Types.ItemProps>;
-	export default Item;
-
-}
-declare module 'control/Menu/styles' {
-	import WhaleTypes from 'types';
-	import Types from 'control/Menu/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'control/Menu' {
-	import React from 'react';
-	import Types from 'control/Menu/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
-
-}
 declare module 'control/Radio/types' {
 	import CheckTypes from 'misc/hocs/Check/types'; namespace RadioTypes {
 	    interface Props extends CheckTypes.Props {
@@ -1417,20 +2212,8 @@ declare module 'control/Radio/types' {
 	export default RadioTypes;
 
 }
-declare module 'control/Radio/styles' {
-	import Types from 'control/Radio/types';
-	import WhaleTypes from 'types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'control/Radio' {
-	import React from 'react';
-	import Types from 'control/Radio/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
-
-}
 declare module 'control/Range/types' {
-	import WhaleTypes from 'types'; namespace RangeTypes {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace RangeTypes {
 	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
 	        min?: number;
 	        max?: number;
@@ -1450,55 +2233,9 @@ declare module 'control/Range/types' {
 	export default RangeTypes;
 
 }
-declare module 'control/Range/styles' {
-	import Types from 'control/Range/types';
-	import WhaleTypes from 'types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'control/Range' {
-	import React from 'react';
-	import Types from 'control/Range/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
-
-}
-declare module 'control/Pageswitch/types' {
-	import WhaleTypes from 'types'; namespace PageswitchTypes {
-	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
-	        length: number;
-	        onChange?: (pageNumber: number, startIndex: number) => void;
-	        options?: Options;
-	        value?: number;
-	        defaultValue?: number;
-	    }
-	    interface Options {
-	        pageSize?: number;
-	    }
-	    interface Overrides {
-	        container: void;
-	        arrowButton: {
-	            disabled: boolean;
-	        };
-	    }
-	}
-	export default PageswitchTypes;
-
-}
-declare module 'control/Pageswitch/styles' {
-	import WhaleTypes from 'types';
-	import Types from 'control/Pageswitch/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'control/Pageswitch' {
-	import React from 'react';
-	import Types from 'control/Pageswitch/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
-
-}
 declare module 'control/Select/types' {
 	import FieldTypes from 'misc/hocs/Field/types';
-	import WhaleTypes from 'types'; namespace SelectTypes {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace SelectTypes {
 	    interface Option {
 	        text: string;
 	        value: any;
@@ -1538,11 +2275,11 @@ declare module 'control/Select/types' {
 	        selected: SelectTypes.Option[];
 	        onClose: (option: any) => void;
 	        searchable?: boolean;
+	        size: WhaleTypes.Size;
 	    }
 	    interface SearchProps {
 	        searchValue: string;
 	        onSearch: (searchValue: string) => void;
-	        size?: number;
 	        styles: WhaleTypes.ComponentStyles<Overrides>;
 	        placeholder?: string;
 	        defaultValue?: string;
@@ -1558,9 +2295,13 @@ declare module 'control/Select/types' {
 	        options: void;
 	        optionItem: void;
 	        optionItemText: void;
+	        dropIcon: {
+	            size: Props['size'];
+	        };
 	        dropMenu: {
 	            open: boolean;
 	            shape: Props['shape'];
+	            size: Props['size'];
 	            decoration: Props['decoration'];
 	            focus: boolean;
 	        };
@@ -1571,34 +2312,6 @@ declare module 'control/Select/types' {
 	    }
 	}
 	export default SelectTypes;
-
-}
-declare module 'control/Select/reducer' {
-	import Types from 'control/Select/types'; const _default: (state: Types.State, action: Types.Actions) => {
-	    selectedOptions: Types.Option[];
-	    empty: boolean;
-	    searchValue: string;
-	    cursor: number;
-	    open: boolean;
-	};
-	export default _default;
-
-}
-declare module 'misc/utils/variant' {
-	 const _default: <T>(prop: any, variant: { [K in T]?: any; }) => any;
-	export default _default;
-
-}
-declare module 'control/Select/styles' {
-	import Types from 'control/Select/types';
-	import WhaleTypes from 'types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'control/Select' {
-	import React from 'react';
-	import Types from 'control/Select/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
 
 }
 declare module 'control/Switch/types' {
@@ -1621,18 +2334,6 @@ declare module 'control/Switch/types' {
 	    }
 	}
 	export default SwitchTypes;
-
-}
-declare module 'control/Switch/styles' {
-	import Types from 'control/Switch/types';
-	import WhaleTypes from 'types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'control/Switch' {
-	import React from 'react';
-	import Types from 'control/Switch/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
 
 }
 declare module 'control/TextField/types' {
@@ -1685,20 +2386,8 @@ declare module 'control/TextField/types' {
 	export default TextFieldTypes;
 
 }
-declare module 'control/TextField/styles' {
-	import Types from 'control/TextField/types';
-	import WhaleTypes from 'types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'control/TextField' {
-	import React from 'react';
-	import Types from 'control/TextField/types'; type RefTypes = ((HTMLInputElement | HTMLTextAreaElement) & HTMLDivElement) | null | {}; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<RefTypes>>;
-	export default _default;
-
-}
 declare module 'data/Meter/types' {
-	import WhaleTypes from 'types'; namespace MeterTypes {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace MeterTypes {
 	    type MeterType = 'line' | 'circle';
 	    type MeterDecoration = 'filled' | 'outline';
 	    type MeterShape = 'square' | 'round';
@@ -1733,21 +2422,9 @@ declare module 'data/Meter/types' {
 	export default MeterTypes;
 
 }
-declare module 'data/Meter/styles' {
-	import WhaleTypes from 'types';
-	import Types from 'data/Meter/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'data/Meter' {
-	import React from 'react';
-	import Types from 'data/Meter/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
-
-}
 declare module '@flow-ui/core/data/Table/types' {
 	/// <reference types="react" />
-	import WhaleTypes from 'types'; namespace TableTypes {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace TableTypes {
 	    type TableCellKey = number | string;
 	    type TableSortType = 'ASC' | 'DESC';
 	    type TableSortObject = {
@@ -1886,45 +2563,9 @@ declare module '@flow-ui/core/data/Table/types' {
 	export default TableTypes;
 
 }
-declare module 'data/Table/styles' {
-	import Types from '@flow-ui/core/data/Table/types';
-	import WhaleTypes from 'types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'data/Table/TableCell' {
-	import React from 'react';
-	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.CellProps & React.RefAttributes<HTMLTableDataCellElement>>;
-	export default _default;
-
-}
-declare module 'data/Table/TableRow' {
-	import React from 'react';
-	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.RowProps & React.RefAttributes<HTMLTableRowElement>>;
-	export default _default;
-
-}
-declare module 'data/Table/TableHeadCell' {
-	import React from 'react';
-	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.HeadCellProps & React.RefAttributes<HTMLTableDataCellElement>>;
-	export default _default;
-
-}
-declare module 'data/Table/TableFoot' {
-	import React from 'react';
-	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.FootProps & React.RefAttributes<HTMLTableCellElement>>;
-	export default _default;
-
-}
-declare module 'data/Table' {
-	import React from 'react';
-	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.TableRef>>;
-	export default _default;
-
-}
 declare module 'layout/Badge/types' {
 	/// <reference types="react" />
-	import WhaleTypes from 'types'; namespace BadgeTypes {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace BadgeTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        content: React.ReactNode;
 	        align?: 'top' | 'bottom' | 'left' | 'right' | 'top-right' | 'bottom-right' | 'top-left' | 'bottom-left';
@@ -1940,21 +2581,39 @@ declare module 'layout/Badge/types' {
 	export default BadgeTypes;
 
 }
-declare module 'layout/Badge/styles' {
-	import WhaleTypes from 'types';
-	import Types from 'layout/Badge/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'layout/Badge' {
-	import React from 'react';
-	import Types from 'layout/Badge/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
+declare module 'layout/Drop/types' {
+	/// <reference types="react" />
+	import WhaleTypes from '@flow-ui/whale/types'; namespace DropTypes {
+	    interface TargetCoordinates {
+	        top: number;
+	        bottom: number;
+	        left: number;
+	        right: number;
+	    }
+	    interface Props extends WhaleTypes.AttributeProps, WhaleTypes.EventProps<HTMLDivElement>, WhaleTypes.CoreProps<Overrides>, WhaleTypes.ColorProps, WhaleTypes.BorderProps, WhaleTypes.PaddingProps, WhaleTypes.LayoutProps {
+	        target: any;
+	        align?: 'top' | 'bottom' | 'left' | 'right';
+	        justify?: 'start' | 'center' | 'end' | 'start-outside' | 'end-outside';
+	        stretchWidth?: boolean;
+	        stretchHeight?: boolean;
+	        spacing?: number;
+	        onClickOutside?: (event: MouseEvent, outsideTarget?: boolean) => void;
+	        onEsc?: () => void;
+	        children?: React.ReactNode;
+	    }
+	    interface Ref extends Partial<HTMLDivElement> {
+	        updatePosition: () => void;
+	    }
+	    interface Overrides {
+	        container: void;
+	    }
+	}
+	export default DropTypes;
 
 }
 declare module '@flow-ui/core/layout/Modal/types' {
 	/// <reference types="react" />
-	import WhaleTypes from 'types'; namespace ModalTypes {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace ModalTypes {
 	    type ExtentedProps = WhaleTypes.AttributeProps & WhaleTypes.EventProps<HTMLDivElement> & WhaleTypes.CoreProps<Overrides> & WhaleTypes.ColorProps & WhaleTypes.BorderProps & WhaleTypes.PaddingProps & WhaleTypes.LayoutProps;
 	    interface Ref {
 	        open: (customContent?: React.ReactElement | null) => void;
@@ -2033,41 +2692,6 @@ declare module '@flow-ui/core/layout/Modal/types' {
 	export default ModalTypes;
 
 }
-declare module 'layout/Modal/ModalOverlay' {
-	import React from 'react';
-	import ModalTypes from '@flow-ui/core/layout/Modal/types'; const ModalOverlay: React.ForwardRefExoticComponent<ModalTypes.ModalOverlayProps & React.RefAttributes<unknown>>;
-	export default ModalOverlay;
-
-}
-declare module 'layout/Modal/ModalPortal' {
-	 const _default: (props: any) => import("react").ReactPortal;
-	export default _default;
-
-}
-declare module 'layout/Modal/ModalHeader' {
-	/// <reference types="react" />
-	import ModalTypes from '@flow-ui/core/layout/Modal/types'; const ModalHeader: (props: ModalTypes.ModalHeaderProps) => JSX.Element | null;
-	export default ModalHeader;
-
-}
-declare module 'layout/Modal/ModalWindow' {
-	import ModalTypes from '@flow-ui/core/layout/Modal/types';
-	import React from 'react'; const ModalWindow: React.ForwardRefExoticComponent<ModalTypes.ModalWindowProps & React.RefAttributes<unknown>>;
-	export default ModalWindow;
-
-}
-declare module 'layout/Modal/styles' {
-	import WhaleTypes from 'types';
-	import Types from '@flow-ui/core/layout/Modal/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'layout/Modal' {
-	import React from 'react';
-	import Types from '@flow-ui/core/layout/Modal/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
-	export default _default;
-
-}
 declare module 'layout/Notification/types' {
 	 namespace NotificationTypes {
 	    interface Props {
@@ -2104,21 +2728,31 @@ declare module 'layout/Notification/types' {
 	export default NotificationTypes;
 
 }
-declare module 'layout/Notification/styles' {
-	import WhaleTypes from 'types';
-	import Types from 'layout/Notification/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'layout/Notification' {
-	import React from 'react';
-	import Types from 'layout/Notification/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
+declare module 'layout/Popover/types' {
+	/// <reference types="react" />
+	import WhaleTypes from '@flow-ui/whale/types';
+	import CSS from 'csstype'; namespace PopoverTypes {
+	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+	        align?: 'top' | 'bottom' | 'left' | 'right' | 'none';
+	        background?: WhaleTypes.ColorProp;
+	        color?: WhaleTypes.ColorProp;
+	        children?: React.ReactNode;
+	        arrowWidth?: CSS.Properties['width'];
+	        arrowHeight?: CSS.Properties['height'];
+	    }
+	    interface Overrides {
+	        container: void;
+	        arrow: {
+	            align: Props['align'];
+	        };
+	    }
+	}
+	export default PopoverTypes;
 
 }
 declare module 'layout/Tree/types' {
 	/// <reference types="react" />
-	import WhaleTypes from 'types'; namespace TreeTypes {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace TreeTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        label?: React.ReactNode | string | ((isOpen: boolean) => React.ReactNode);
 	        children?: React.ReactNode;
@@ -2145,25 +2779,79 @@ declare module 'layout/Tree/types' {
 	export default TreeTypes;
 
 }
-declare module 'layout/Tree/styles' {
-	import Types from 'layout/Tree/types';
-	import WhaleTypes from 'types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'layout/Tree' {
-	import React from 'react';
-	import Types from 'layout/Tree/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
+declare module 'types' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	/**
+	 * Content
+	 */
+	import DividerTypes from 'content/Divider/types';
+	import SpinnerTypes from 'content/Spinner/types';
+	/**
+	 * Control
+	 */
+	import ButtonTypes from 'control/Button/types';
+	import CheckboxTypes from 'control/Checkbox/types';
+	import DatePickerTypes from 'control/DatePicker/types';
+	import MenuTypes from 'control/Menu/types';
+	import RadioTypes from 'control/Radio/types';
+	import RangeTypes from 'control/Range/types';
+	import SelectTypes from 'control/Select/types';
+	import SwitchTypes from 'control/Switch/types';
+	import TextFieldTypes from 'control/TextField/types';
+	/**
+	 * Data
+	 */
+	import MeterTypes from 'data/Meter/types';
+	import TableTypes from '@flow-ui/core/data/Table/types';
+	/**
+	 * Layout
+	 */
+	import BadgeTypes from 'layout/Badge/types';
+	import BlockTypes from 'layout/Block/types';
+	import DropTypes from 'layout/Drop/types';
+	import FlexboxTypes from 'layout/Flexbox/types';
+	import GridTypes from 'layout/Grid/types';
+	import ModalTypes from '@flow-ui/core/layout/Modal/types';
+	import NotificationTypes from 'layout/Notification/types';
+	import PopoverTypes from 'layout/Popover/types';
+	import TreeTypes from 'layout/Tree/types'; namespace FlowTypes {
+	    interface Overrides {
+	        Divider?: Partial<WhaleTypes.Styles<DividerTypes.Overrides>>;
+	        Spinner?: Partial<WhaleTypes.Styles<SpinnerTypes.Overrides>>;
+	        Button?: Partial<WhaleTypes.Styles<ButtonTypes.Overrides>>;
+	        Checkbox?: Partial<WhaleTypes.Styles<CheckboxTypes.Overrides>>;
+	        DatePicker?: Partial<WhaleTypes.Styles<DatePickerTypes.Overrides>>;
+	        Menu?: Partial<WhaleTypes.Styles<MenuTypes.Overrides>>;
+	        Radio?: Partial<WhaleTypes.Styles<RadioTypes.Overrides>>;
+	        Range?: Partial<WhaleTypes.Styles<RangeTypes.Overrides>>;
+	        Select?: Partial<WhaleTypes.Styles<SelectTypes.Overrides>>;
+	        Switch?: Partial<WhaleTypes.Styles<SwitchTypes.Overrides>>;
+	        TextField?: Partial<WhaleTypes.Styles<TextFieldTypes.Overrides>>;
+	        Meter?: Partial<WhaleTypes.Styles<MeterTypes.Overrides>>;
+	        Table?: Partial<WhaleTypes.Styles<TableTypes.Overrides>>;
+	        Badge?: Partial<WhaleTypes.Styles<BadgeTypes.Overrides>>;
+	        Block?: Partial<WhaleTypes.Styles<BlockTypes.Overrides>>;
+	        Drop?: Partial<WhaleTypes.Styles<DropTypes.Overrides>>;
+	        Flexbox?: Partial<WhaleTypes.Styles<FlexboxTypes.Overrides>>;
+	        Grid?: Partial<WhaleTypes.Styles<GridTypes.Overrides>>;
+	        Modal?: Partial<WhaleTypes.Styles<ModalTypes.Overrides>>;
+	        Notification?: Partial<WhaleTypes.Styles<NotificationTypes.Overrides>>;
+	        Popover?: Partial<WhaleTypes.Styles<PopoverTypes.Overrides>>;
+	        Tree?: Partial<WhaleTypes.Styles<TreeTypes.Overrides>>;
+	    }
+	    type Theme = WhaleTypes.Theme<Overrides>;
+	}
+	export default FlowTypes;
 
 }
 declare module 'misc/themes/light' {
-	import WhaleTypes from 'types'; const _default: WhaleTypes.Theme<{}>;
+	import WhaleTypes from '@flow-ui/whale/types';
+	import FlowTypes from '@flow-ui/core/types'; const _default: WhaleTypes.Theme<FlowTypes.Overrides>;
 	export default _default;
 
 }
 declare module 'misc/themes/dark' {
-	 const dark: import("types").default.Theme<{}>;
+	 const dark: import("@flow-ui/whale/types").default.Theme<import("../../types").default.Overrides>;
 	export default dark;
 
 }
@@ -2174,7 +2862,7 @@ declare module 'misc/themes' {
 }
 declare module 'layout/Viewport/types' {
 	/// <reference types="react" />
-	import WhaleTypes from 'types'; namespace ViewportTypes {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace ViewportTypes {
 	    interface Themes {
 	        light: WhaleTypes.Theme;
 	        dark: WhaleTypes.Theme;
@@ -2226,6 +2914,11 @@ declare module 'layout/Viewport/types' {
 	export default ViewportTypes;
 
 }
+declare module 'misc/utils/createID' {
+	 const _default: () => string;
+	export default _default;
+
+}
 declare module 'layout/Viewport/MountArea' {
 	import React, { FC } from 'react';
 	import ViewportTypes from 'layout/Viewport/types';
@@ -2242,9 +2935,359 @@ declare module 'layout/Viewport/styles' {
 
 }
 declare module 'layout/Viewport' {
-	import { RefForwardingComponent } from 'react';
-	import Types from 'layout/Viewport/types'; const Viewport: RefForwardingComponent<{}, Types.Props>;
+	import React, { RefForwardingComponent } from 'react';
+	import Types from 'layout/Viewport/types';
+	import FlowTypes from 'types';
+	export const Context: React.Context<FlowTypes.Theme>; const Viewport: RefForwardingComponent<{}, Types.Props>;
 	export default Viewport;
+
+}
+declare module 'misc/hooks/useTheme' {
+	 const _default: () => import("../../types").default.Theme;
+	export default _default;
+
+}
+declare module 'layout/Block' {
+	/// <reference types="react" />
+	/// <reference types="@emotion/core" />
+	import Types from 'layout/Block/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'misc/hocs/Check' {
+	import React from 'react';
+	import CheckTypes from 'misc/hocs/Check/types'; const _default: React.ForwardRefExoticComponent<CheckTypes.PrivateProps & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'misc/hocs/Check/styles' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'misc/hocs/Check/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'control/Checkbox/styles' {
+	import Types from 'control/Checkbox/types';
+	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'control/Checkbox' {
+	import React from 'react';
+	import Types from 'control/Checkbox/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'layout/Drop/styles' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'layout/Drop/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'layout/Drop' {
+	import React from 'react';
+	import Types from 'layout/Drop/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
+	export default _default;
+
+}
+declare module 'layout/Popover/styles' {
+	import Types from 'layout/Popover/types';
+	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'layout/Popover' {
+	import React from 'react';
+	import Types from 'layout/Popover/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'misc/hocs/Field' {
+	import React from 'react';
+	import Types from 'misc/hocs/Field/types'; const _default: React.ForwardRefExoticComponent<Types.PrivateProps & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'misc/hooks/useMask' {
+	import IMask from 'imask'; const _default: (ref: any, masked: any) => IMask.InputMask<IMask.AnyMaskedOptions>;
+	export default _default;
+
+}
+declare module 'control/DatePicker/mask' {
+	import moment from 'moment'; const _default: (format: string, min: moment.Moment, max: moment.Moment) => any;
+	export default _default;
+
+}
+declare module 'misc/hocs/Field/styles' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'misc/hocs/Field/types'; type ExtractFunction<T> = {
+	    [K in keyof T]: Extract<T[K], Function>;
+	}; const fieldStyles: <T extends Types.Overrides<{}>>(props: Pick<Types.Props, "alignSelf" | "backgroundColor" | "color" | "display" | "flexBasis" | "flexGrow" | "flexShrink" | "gridColumnEnd" | "gridColumnStart" | "gridRowEnd" | "gridRowStart" | "justifySelf" | "visibility" | "borderColor" | "borderRadius" | "borderStyle" | "borderWidth" | "flex" | "gridArea" | "gridColumn" | "gridRow" | "placeSelf" | "size" | "style" | "disabled" | "label" | "p" | "className" | "id" | "tabIndex" | "role" | "draggable" | "attrs" | "aria-activedescendant" | "aria-atomic" | "aria-autocomplete" | "aria-busy" | "aria-checked" | "aria-colcount" | "aria-colindex" | "aria-colspan" | "aria-controls" | "aria-current" | "aria-describedby" | "aria-details" | "aria-disabled" | "aria-dropeffect" | "aria-errormessage" | "aria-expanded" | "aria-flowto" | "aria-grabbed" | "aria-haspopup" | "aria-hidden" | "aria-invalid" | "aria-keyshortcuts" | "aria-label" | "aria-labelledby" | "aria-level" | "aria-live" | "aria-modal" | "aria-multiline" | "aria-multiselectable" | "aria-orientation" | "aria-owns" | "aria-placeholder" | "aria-posinset" | "aria-pressed" | "aria-readonly" | "aria-relevant" | "aria-required" | "aria-roledescription" | "aria-rowcount" | "aria-rowindex" | "aria-rowspan" | "aria-selected" | "aria-setsize" | "aria-sort" | "aria-valuemax" | "aria-valuemin" | "aria-valuenow" | "aria-valuetext" | "onCopy" | "onCopyCapture" | "onCut" | "onCutCapture" | "onPaste" | "onPasteCapture" | "onCompositionEnd" | "onCompositionEndCapture" | "onCompositionStart" | "onCompositionStartCapture" | "onCompositionUpdate" | "onCompositionUpdateCapture" | "onFocus" | "onFocusCapture" | "onBlur" | "onBlurCapture" | "onChangeCapture" | "onBeforeInput" | "onBeforeInputCapture" | "onInput" | "onInputCapture" | "onReset" | "onResetCapture" | "onSubmit" | "onSubmitCapture" | "onInvalid" | "onInvalidCapture" | "onLoad" | "onLoadCapture" | "onError" | "onErrorCapture" | "onKeyDown" | "onKeyDownCapture" | "onKeyPress" | "onKeyPressCapture" | "onKeyUp" | "onKeyUpCapture" | "onAbort" | "onAbortCapture" | "onCanPlay" | "onCanPlayCapture" | "onCanPlayThrough" | "onCanPlayThroughCapture" | "onDurationChange" | "onDurationChangeCapture" | "onEmptied" | "onEmptiedCapture" | "onEncrypted" | "onEncryptedCapture" | "onEnded" | "onEndedCapture" | "onLoadedData" | "onLoadedDataCapture" | "onLoadedMetadata" | "onLoadedMetadataCapture" | "onLoadStart" | "onLoadStartCapture" | "onPause" | "onPauseCapture" | "onPlay" | "onPlayCapture" | "onPlaying" | "onPlayingCapture" | "onProgress" | "onProgressCapture" | "onRateChange" | "onRateChangeCapture" | "onSeeked" | "onSeekedCapture" | "onSeeking" | "onSeekingCapture" | "onStalled" | "onStalledCapture" | "onSuspend" | "onSuspendCapture" | "onTimeUpdate" | "onTimeUpdateCapture" | "onVolumeChange" | "onVolumeChangeCapture" | "onWaiting" | "onWaitingCapture" | "onAuxClick" | "onAuxClickCapture" | "onClick" | "onClickCapture" | "onContextMenu" | "onContextMenuCapture" | "onDoubleClick" | "onDoubleClickCapture" | "onDrag" | "onDragCapture" | "onDragEnd" | "onDragEndCapture" | "onDragEnter" | "onDragEnterCapture" | "onDragExit" | "onDragExitCapture" | "onDragLeave" | "onDragLeaveCapture" | "onDragOver" | "onDragOverCapture" | "onDragStart" | "onDragStartCapture" | "onDrop" | "onDropCapture" | "onMouseDown" | "onMouseDownCapture" | "onMouseEnter" | "onMouseLeave" | "onMouseMove" | "onMouseMoveCapture" | "onMouseOut" | "onMouseOutCapture" | "onMouseOver" | "onMouseOverCapture" | "onMouseUp" | "onMouseUpCapture" | "onSelect" | "onSelectCapture" | "onTouchCancel" | "onTouchCancelCapture" | "onTouchEnd" | "onTouchEndCapture" | "onTouchMove" | "onTouchMoveCapture" | "onTouchStart" | "onTouchStartCapture" | "onPointerDown" | "onPointerDownCapture" | "onPointerMove" | "onPointerMoveCapture" | "onPointerUp" | "onPointerUpCapture" | "onPointerCancel" | "onPointerCancelCapture" | "onPointerEnter" | "onPointerLeave" | "onPointerOver" | "onPointerOverCapture" | "onPointerOut" | "onPointerOutCapture" | "onGotPointerCapture" | "onGotPointerCaptureCapture" | "onLostPointerCapture" | "onLostPointerCaptureCapture" | "onScroll" | "onScrollCapture" | "onWheel" | "onWheelCapture" | "onAnimationStart" | "onAnimationStartCapture" | "onAnimationEnd" | "onAnimationEndCapture" | "onAnimationIteration" | "onAnimationIterationCapture" | "onTransitionEnd" | "onTransitionEndCapture" | "styles" | "animated" | "textColor" | "px" | "py" | "pr" | "pl" | "pt" | "pb" | "w" | "h" | "m" | "mx" | "my" | "mr" | "ml" | "mt" | "mb" | "shape" | "onEnter" | "decoration" | "hint" | "rightChild" | "leftChild" | "clearable" | "onClear">, theme: WhaleTypes.Theme<{}>, params?: {
+	    manyLines?: boolean | undefined;
+	    additionalPadding?: string | undefined;
+	    labelOverlayPosition?: "top" | "center" | undefined;
+	    overrides?: Partial<ExtractFunction<WhaleTypes.Styles<T>>> | undefined;
+	}) => WhaleTypes.Styles<Types.Overrides<{}>>;
+	export default fieldStyles;
+
+}
+declare module 'control/DatePicker/styles' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'control/DatePicker/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'control/DatePicker' {
+	import React from 'react';
+	import Types from 'control/DatePicker/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'control/Menu/Item' {
+	import { RefForwardingComponent } from 'react';
+	import Types from 'control/Menu/types'; const Item: RefForwardingComponent<HTMLDivElement, Types.ItemProps>;
+	export default Item;
+
+}
+declare module 'control/Menu/styles' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'control/Menu/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'control/Menu' {
+	import React from 'react';
+	import Types from 'control/Menu/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'control/Radio/styles' {
+	import Types from 'control/Radio/types';
+	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'control/Radio' {
+	import React from 'react';
+	import Types from 'control/Radio/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'control/Range/styles' {
+	import Types from 'control/Range/types';
+	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'control/Range' {
+	import React from 'react';
+	import Types from 'control/Range/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'control/Pageswitch/types' {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace PageswitchTypes {
+	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
+	        length: number;
+	        onChange?: (pageNumber: number, startIndex: number) => void;
+	        options?: Options;
+	        value?: number;
+	        defaultValue?: number;
+	    }
+	    interface Options {
+	        pageSize?: number;
+	    }
+	    interface Overrides {
+	        container: void;
+	        arrowButton: {
+	            disabled: boolean;
+	        };
+	    }
+	}
+	export default PageswitchTypes;
+
+}
+declare module 'control/Pageswitch/styles' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'control/Pageswitch/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'control/Pageswitch' {
+	import React from 'react';
+	import Types from 'control/Pageswitch/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'control/Select/reducer' {
+	import Types from 'control/Select/types'; const _default: (state: Types.State, action: Types.Actions) => {
+	    selectedOptions: Types.Option[];
+	    empty: boolean;
+	    searchValue: string;
+	    cursor: number;
+	    open: boolean;
+	};
+	export default _default;
+
+}
+declare module 'misc/utils/variant' {
+	 const _default: <T>(prop: any, variant: { [K in T]?: any; }) => any;
+	export default _default;
+
+}
+declare module 'control/Select/styles' {
+	import Types from 'control/Select/types';
+	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'control/Select' {
+	import React from 'react';
+	import Types from 'control/Select/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'control/Switch/styles' {
+	import Types from 'control/Switch/types';
+	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'control/Switch' {
+	import React from 'react';
+	import Types from 'control/Switch/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'control/TextField/styles' {
+	import Types from 'control/TextField/types';
+	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'control/TextField' {
+	import React from 'react';
+	import Types from 'control/TextField/types'; type RefTypes = ((HTMLInputElement | HTMLTextAreaElement) & HTMLDivElement) | null | {}; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<RefTypes>>;
+	export default _default;
+
+}
+declare module 'data/Meter/styles' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'data/Meter/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'data/Meter' {
+	import React from 'react';
+	import Types from 'data/Meter/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'data/Table/styles' {
+	import Types from '@flow-ui/core/data/Table/types';
+	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'data/Table/TableCell' {
+	import React from 'react';
+	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.CellProps & React.RefAttributes<HTMLTableDataCellElement>>;
+	export default _default;
+
+}
+declare module 'data/Table/TableRow' {
+	import React from 'react';
+	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.RowProps & React.RefAttributes<HTMLTableRowElement>>;
+	export default _default;
+
+}
+declare module 'data/Table/TableHeadCell' {
+	import React from 'react';
+	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.HeadCellProps & React.RefAttributes<HTMLTableDataCellElement>>;
+	export default _default;
+
+}
+declare module 'data/Table/TableFoot' {
+	import React from 'react';
+	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.FootProps & React.RefAttributes<HTMLTableCellElement>>;
+	export default _default;
+
+}
+declare module 'data/Table' {
+	import React from 'react';
+	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.TableRef>>;
+	export default _default;
+
+}
+declare module 'layout/Badge/styles' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'layout/Badge/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'layout/Badge' {
+	import React from 'react';
+	import Types from 'layout/Badge/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'layout/Modal/ModalOverlay' {
+	import React from 'react';
+	import ModalTypes from '@flow-ui/core/layout/Modal/types'; const ModalOverlay: React.ForwardRefExoticComponent<ModalTypes.ModalOverlayProps & React.RefAttributes<unknown>>;
+	export default ModalOverlay;
+
+}
+declare module 'layout/Modal/ModalPortal' {
+	 const _default: (props: any) => import("react").ReactPortal;
+	export default _default;
+
+}
+declare module 'layout/Modal/ModalHeader' {
+	/// <reference types="react" />
+	import ModalTypes from '@flow-ui/core/layout/Modal/types'; const ModalHeader: (props: ModalTypes.ModalHeaderProps) => JSX.Element | null;
+	export default ModalHeader;
+
+}
+declare module 'layout/Modal/ModalWindow' {
+	import ModalTypes from '@flow-ui/core/layout/Modal/types';
+	import React from 'react'; const ModalWindow: React.ForwardRefExoticComponent<ModalTypes.ModalWindowProps & React.RefAttributes<unknown>>;
+	export default ModalWindow;
+
+}
+declare module 'layout/Modal/styles' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from '@flow-ui/core/layout/Modal/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'layout/Modal' {
+	import React from 'react';
+	import Types from '@flow-ui/core/layout/Modal/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
+	export default _default;
+
+}
+declare module 'layout/Notification/styles' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'layout/Notification/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'layout/Notification' {
+	import React from 'react';
+	import Types from 'layout/Notification/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'layout/Tree/styles' {
+	import Types from 'layout/Tree/types';
+	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'layout/Tree' {
+	import React from 'react';
+	import Types from 'layout/Tree/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
 
 }
 declare module 'misc/utils/dialog' {
@@ -2284,7 +3327,6 @@ declare module '@flow-ui/core' {
 	 * Content
 	 */
 	export { default as Divider } from 'content/Divider';
-	export { default as Icon } from 'content/Icon';
 	export { default as Spinner } from 'content/Spinner';
 	export { default as Header } from 'content/Header';
 	export { default as Display } from 'content/Display';
@@ -2332,8 +3374,8 @@ declare module '@flow-ui/core' {
 	 * Misc
 	 */
 	export { default as useBrowser } from 'misc/hooks/useBrowser';
-	export { useTheme as useTheme } from '@flow-ui/whale';
-	export function transformImports(importName: any, matches: any): "@flow-ui/core/content/Divider" | "@flow-ui/core/content/Icon" | "@flow-ui/core/content/Spinner" | "@flow-ui/core/content/Header" | "@flow-ui/core/content/Display" | "@flow-ui/core/content/Paragraph" | "@flow-ui/core/content/Text" | "@flow-ui/core/content/Anchor" | "@flow-ui/core/control/Button" | "@flow-ui/core/control/Checkbox" | "@flow-ui/core/control/DatePicker" | "@flow-ui/core/control/Menu" | "@flow-ui/core/control/Radio" | "@flow-ui/core/control/Range" | "@flow-ui/core/control/Select" | "@flow-ui/core/control/Switch" | "@flow-ui/core/control/TextField" | "@flow-ui/core/data/Meter" | "@flow-ui/core/data/Table" | "@flow-ui/core/layout/Badge" | "@flow-ui/core/layout/Block" | "@flow-ui/core/layout/Drop" | "@flow-ui/core/layout/Flexbox" | "@flow-ui/core/layout/Grid" | "@flow-ui/core/layout/Modal" | "@flow-ui/core/layout/Notification" | "@flow-ui/core/layout/Popover" | "@flow-ui/core/layout/Tree" | "@flow-ui/core/layout/Viewport" | "@flow-ui/core/misc/utils/dialog" | "@flow-ui/core/misc/utils/notify" | "@flow-ui/core/misc/hooks/useBrowser" | "/";
+	export { default as useTheme } from 'misc/hooks/useTheme';
+	export function transformImports(importName: any, matches: any): "@flow-ui/core/content/Divider" | "@flow-ui/core/content/Spinner" | "@flow-ui/core/content/Header" | "@flow-ui/core/content/Display" | "@flow-ui/core/content/Paragraph" | "@flow-ui/core/content/Text" | "@flow-ui/core/content/Anchor" | "@flow-ui/core/control/Button" | "@flow-ui/core/control/Checkbox" | "@flow-ui/core/control/DatePicker" | "@flow-ui/core/control/Menu" | "@flow-ui/core/control/Radio" | "@flow-ui/core/control/Range" | "@flow-ui/core/control/Select" | "@flow-ui/core/control/Switch" | "@flow-ui/core/control/TextField" | "@flow-ui/core/data/Meter" | "@flow-ui/core/data/Table" | "@flow-ui/core/layout/Badge" | "@flow-ui/core/layout/Block" | "@flow-ui/core/layout/Drop" | "@flow-ui/core/layout/Flexbox" | "@flow-ui/core/layout/Grid" | "@flow-ui/core/layout/Modal" | "@flow-ui/core/layout/Notification" | "@flow-ui/core/layout/Popover" | "@flow-ui/core/layout/Tree" | "@flow-ui/core/layout/Viewport" | "@flow-ui/core/misc/utils/dialog" | "@flow-ui/core/misc/utils/notify" | "@flow-ui/core/misc/hooks/useBrowser" | "/";
 
 }
 declare module 'misc/hooks/useSharedObject' {

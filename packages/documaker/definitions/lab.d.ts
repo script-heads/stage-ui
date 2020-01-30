@@ -238,7 +238,7 @@ declare module 'misc/logos' {
 
 }
 declare module 'misc/themes/whiteCurrant' {
-	 const whiteCurrant: import("@flow-ui/whale/types").default.Theme<{}>;
+	 const whiteCurrant: import("@flow-ui/whale/types").default.Theme<import("/types").default.Overrides>;
 	export default whiteCurrant;
 
 }

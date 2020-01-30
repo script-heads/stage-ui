@@ -307,7 +307,7 @@ declare namespace React {
         unstable_observedBits?: number;
     }
 
-    // TODO: similar to how Fragment is actually a symbol, the values returned from updateContext,
+    // TODO: similar to how Fragment is actually a symbol, the values returned from createContext,
     // forwardRef and memo are actually objects that are treated specially by the renderer; see:
     // https://github.com/facebook/react/blob/v16.6.0/packages/react/src/ReactContext.js#L35-L48
     // https://github.com/facebook/react/blob/v16.6.0/packages/react/src/forwardRef.js#L42-L45
@@ -344,7 +344,7 @@ declare namespace React {
         Consumer: Consumer<T>;
         displayName?: string;
     }
-    function updateContext<T>(
+    function createContext<T>(
         // If you thought this should be optional, see
         // https://github.com/DefinitelyTyped/DefinitelyTyped/pull/24509#issuecomment-382213106
         defaultValue: T,
@@ -414,7 +414,7 @@ declare namespace React {
          *
          * ```ts
          * type MyContext = number
-         * const Ctx = React.updateContext<MyContext>(0)
+         * const Ctx = React.createContext<MyContext>(0)
          *
          * class Foo extends React.Component {
          *   static contextType = Ctx
@@ -850,7 +850,7 @@ declare namespace React {
 
     // This will technically work if you give a Consumer<T> or Provider<T> but it's deprecated and warns
     /**
-     * Accepts a context object (the value returned from `React.updateContext`) and returns the current
+     * Accepts a context object (the value returned from `React.createContext`) and returns the current
      * context value, as given by the nearest context provider for the given context.
      *
      * @version 16.8.0

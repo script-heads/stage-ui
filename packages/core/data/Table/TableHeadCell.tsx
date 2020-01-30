@@ -1,6 +1,7 @@
 import React, { forwardRef, RefForwardingComponent } from 'react'
+import { Flexbox } from '../..'
+import { ArrowIosDownward, ArrowIosUpward } from '../../icons'
 import Types from './types'
-import { Icon, Flexbox } from '../..'
 
 const TableHeadCell: RefForwardingComponent<HTMLTableDataCellElement, Types.HeadCellProps> = (props, ref) => {
     const { column, styles, setSort } = props
@@ -14,6 +15,9 @@ const TableHeadCell: RefForwardingComponent<HTMLTableDataCellElement, Types.Head
     }
 
     if (column.sort) {
+        const ArrowIcon = column.sort === 'ASC'
+            ? ArrowIosDownward
+            : ArrowIosUpward
         return (
             <th ref={ref} onClick={setSorting} css={styles.headCell({
                 sort: typeof column.sort !== 'undefined'
@@ -21,14 +25,7 @@ const TableHeadCell: RefForwardingComponent<HTMLTableDataCellElement, Types.Head
                 <Flexbox alignItems="center">
                     {column.title}
                     {column.sort && (
-                        <Icon
-                            ml="0.25rem"
-                            type={
-                                t => column.sort === 'ASC'
-                                    ? t.outline.arrowIosDownward
-                                    : t.outline.arrowIosUpward
-                            }
-                        />
+                        <ArrowIcon ml="0.25rem" />
                     )}
                 </Flexbox>
             </th>

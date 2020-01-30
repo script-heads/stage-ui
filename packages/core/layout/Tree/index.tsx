@@ -1,9 +1,9 @@
-import Icon from '@flow-ui/core/content/Icon'
 import Text from '@flow-ui/core/content/Text'
 import Block from '@flow-ui/core/layout/Block'
 import Flexbox from '@flow-ui/core/layout/Flexbox'
 import { useComponent } from '@flow-ui/whale'
 import React, { forwardRef, RefForwardingComponent, useState } from 'react'
+import { ArrowIosDownward, ArrowIosForward } from '../../icons'
 import styles from './styles'
 import Types from './types'
 
@@ -66,11 +66,14 @@ const Tree: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
         label = label(isOpen)
     }
 
+    const ArrowIcon = isOpen
+        ? ArrowIosDownward
+        : ArrowIosForward
+
     return (
         <Block ref={ref} css={cs.container({ decoration, needIndent })}>
             <Flexbox {...attributes} {...events.all} onKeyPress={keyPressHandle} onClick={openHandle} alignItems="center">
-                <Icon
-                    type={t => isOpen ? t.outline.arrowIosDownward : t.outline.arrowIosForward}
+                <ArrowIcon
                     css={cs.icon({ decoration, disabled })}
                 />
                 {label}

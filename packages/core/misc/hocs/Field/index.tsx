@@ -1,5 +1,5 @@
 import React, { forwardRef, RefForwardingComponent } from 'react'
-import Icon from '../../../content/Icon'
+import { Close } from '../../../icons'
 import Types from './types'
 
 const Field: RefForwardingComponent<HTMLDivElement, Types.PrivateProps> = (props, ref) => {
@@ -55,8 +55,7 @@ const Field: RefForwardingComponent<HTMLDivElement, Types.PrivateProps> = (props
                     </div>
                     {(clearable || props.rightChild) && (
                         <div css={styles.child({align: 'right', ...state})}>
-                            {clearable && <Icon
-                                type={i => i.filled.close}
+                            {clearable && <Close
                                 onClick={(e) => {
                                     e.stopPropagation()
                                     onClear && onClear()

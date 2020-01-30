@@ -1,5 +1,6 @@
-import React from 'react';
-import { Menu, Icon } from '@flow-ui/core';
+import { Menu } from '@flow-ui/core'
+import * as Icon from '@flow-ui/core/icons'
+import React from 'react'
 
 export default () => {
     return (
@@ -13,11 +14,7 @@ export default () => {
                 },
                 {
                     value: 1, 
-                    content: (
-                        <Icon
-                            type={i => i.outline.cube}
-                        />
-                    )
+                    content: <Icon.Cube />
                 }
             ]}
         />

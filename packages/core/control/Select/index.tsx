@@ -1,12 +1,12 @@
+import { useComponent } from '@flow-ui/whale'
 import React, { forwardRef, Fragment, RefForwardingComponent, useEffect, useImperativeHandle, useReducer, useRef } from 'react'
-import Icon from '../../content/Icon'
+import { ArrowIosDownward, ArrowIosUpward, Close } from '../../icons'
 import Drop from '../../layout/Drop'
 import DropTypes from '../../layout/Drop/types'
 import Field from '../../misc/hocs/Field'
 import SelectReducer from './reducer'
 import styles from './styles'
 import Types from './types'
-import { useComponent } from '@flow-ui/whale'
 
 const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
@@ -233,17 +233,23 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                 }}                
                 children={!isLabelOverlay && fieldValue}
                 rightChild={(
-                    <Icon
-                        alignSelf="center"
-                        css={cs.dropIcon({ size })}
-                        type={i =>
-                            i.filled[state.open ? 'arrowIosUpward' : 'arrowIosDownward']
-                        }
-                        onClick={(e) => {
-                            e.stopPropagation()
-                            toggleOpen()
-                        }}
-                    />
+                    state.open
+                        ? <ArrowIosUpward
+                            alignSelf="center"
+                            css={cs.dropIcon({ size })}
+                            onClick={(e) => {
+                                e.stopPropagation()
+                                toggleOpen()
+                            }}
+                        />
+                        : <ArrowIosDownward
+                            alignSelf="center"
+                            css={cs.dropIcon({ size })}
+                            onClick={(e) => {
+                                e.stopPropagation()
+                                toggleOpen()
+                            }}
+                        />
                 )}
             />
             <Drop
@@ -291,8 +297,7 @@ const Options = (props: Types.OptionsProps ) => {
             {selected.map(option => (
                 <div key={option.value} css={styles.optionItem}>
                     <span css={styles.optionItemText}>{option.text}</span>
-                    <Icon
-                        type={(i) => i.outline.close}
+                    <Close
                         onClick={(e) => {
                             e.stopPropagation()
                             onClose(option)

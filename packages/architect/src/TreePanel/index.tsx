@@ -1,11 +1,11 @@
-import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
-import { Block, Flexbox, Text, Tree, useTheme, Divider, Menu, Icon, Paragraph } from '@flow-ui/core'
+import { ArchitectTools } from '@flow-ui/architect/types'
+import { Block, Divider, Flexbox, Menu, useTheme } from '@flow-ui/core'
+import { Browser, Layers, Plus } from '@flow-ui/core/icons'
 import { ScrollView } from '@flow-ui/lab'
-import createStyles, { StyleTypes } from './styles'
-import { useState } from 'react'
 import WhaleTypes from '@flow-ui/whale/types'
-import PagesTab from './layers'
-import LayersTab from './layers'
+import { useState } from 'react'
+import { default as LayersTab, default as PagesTab } from './layers'
+import createStyles, { StyleTypes } from './styles'
 
 export type TabProps = {
     theme: WhaleTypes.Theme
@@ -51,19 +51,18 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                     defaultValue="layers"
                     items={[
                         {
-                            content: (<><Icon mx={'0.25rem'} type={t => t.outline.layers}/>Layers</>),
+                            content: (<><Layers mx={'0.25rem'} />Layers</>),
                             value: 'layers',
                         },
                         { 
-                            content: (<><Icon mx={'0.25rem'} type={t => t.outline.browser}/>Pages</>),
+                            content: (<><Browser mx={'0.25rem'} />Pages</>),
                             value: 'pages',
                         }
                     ]}
                     onChange={toolBarActions.onTabChange}
                 />
-                <Icon
+                <Plus
                     mr="1rem"
-                    type={i => i.outline.plus}
                     onClick={() => {
                         tools.componentLibraryShow()
                     }}
