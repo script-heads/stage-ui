@@ -4,7 +4,8 @@
   "version": "0.1.4",
   "license": "MIT",
   "dependencies": {
-    "@emotion/core": "^10.0.22",
+    "@emotion/cache": "^10.0.27",
+    "@emotion/core": "^10.0.27",
     "chroma-js": "^2.1.0",
     "emotion-theming": "^10.0.19"
   },
@@ -16,11 +17,6 @@
     "build:js": "babel ./ --out-dir ../../build/whale --extensions \".ts,.tsx\" --ignore \"node_modules/\""
   },
   "devDependencies": {
-    "@types/chroma-js": "^1.4.3",
-    "@emotion/babel-preset-css-prop": "^10.0.23",
-    "csstype": "^2.6.8",
-    "tslint": "^5.20.1",
-    "typescript": "^3.7.4",
     "@babel/cli": "^7.7.5",
     "@babel/core": "^7.7.5",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
@@ -30,6 +26,15 @@
     "@babel/preset-env": "^7.7.6",
     "@babel/preset-react": "^7.7.4",
     "@babel/preset-typescript": "^7.7.4",
-    "babel-loader": "^8.0.6"
+    "@emotion/babel-preset-css-prop": "^10.0.23",
+    "@types/chroma-js": "^1.4.3",
+    "csstype": "^2.6.8",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.4"
+  },
+  "peerDependencies": {
+    "@babel/runtime": "*",
+    "react": "*",
+    "react-dom": "*"
   }
 }

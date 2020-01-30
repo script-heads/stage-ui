@@ -11,9 +11,11 @@
     "build:js": "babel ./ --out-dir ../../build/lab --extensions \".ts,.tsx\" --ignore \"node_modules/\""
   },
   "dependencies": {
-    "@flow-ui/core": "~0.1.0",
     "@emotion/core": "^10.0.22",
+    "@flow-ui/core": "workspace:*",
+    "@flow-ui/whale": "workspace:*",
     "chart.js": "^2.9.3",
+    "chroma-js": "^2.1.0",
     "react-chartjs-2": "^2.8.0"
   },
   "devDependencies": {
@@ -28,9 +30,14 @@
     "@babel/preset-typescript": "^7.7.4",
     "@emotion/babel-preset-css-prop": "^10.0.23",
     "@types/chroma-js": "^1.4.3",
-    "babel-loader": "^8.0.6",
     "csstype": "^2.6.8",
     "tslint": "^5.20.1",
     "typescript": "^3.7.4"
+  },
+  "peerDependencies": {
+    "@babel/runtime": "*",
+    "@emotion/css": "*",
+    "react": "*",
+    "react-dom": "*"
   }
 }

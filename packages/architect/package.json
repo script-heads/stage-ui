@@ -3,10 +3,17 @@
   "author": "ABR Tech",
   "version": "0.0.1",
   "license": "MIT",
-  "scripts": {
-  },
-  "devDependencies": {
-  },
+  "scripts": {},
   "dependencies": {
+    "@emotion/core": "10.0.27",
+    "@flow-ui/core": "workspace:*",
+    "@flow-ui/documaker": "workspace:*",
+    "@flow-ui/lab": "workspace:*"
+  },
+  "peerDependencies": {
+    "@babel/runtime": "*",
+    "@emotion/css": "*",
+    "react": "*",
+    "react-dom": "*"
   }
 }

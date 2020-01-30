@@ -24,10 +24,10 @@ interface PreviewProps {
 
 const Preview = (props: PreviewProps) => {
     const {theme, code, grid, fullscreen, setFullscreen} = props
-    const traspiledCode = code && ts.transpile(code, {
-        jsx: 'react',
-        module: 'es6',
-    }).split('export default ')[1].trim().slice(0, -1) + '()'
+    // const traspiledCode = code && transpile(code, {
+    //     jsx: 'react',
+    //     module: 'es6',
+    // }).split('export default ')[1].trim().slice(0, -1) + '()'
     
     return (
         <Block h="100%" css={{ position: 'relative' }}>
@@ -60,7 +60,7 @@ const Preview = (props: PreviewProps) => {
                         }
                     }
                 ]}>
-                {Function('"use strict";return (' + traspiledCode + ')')()}
+                {/* {Function('"use strict";return (' + traspiledCode + ')')()} */}
             </Block>
         </Block>                        
     )

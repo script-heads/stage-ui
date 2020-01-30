@@ -4,20 +4,25 @@
   "version": "0.1.0",
   "license": "MIT",
   "main": "index.ts",
-  "bin": {
-    "documaker": "./bin/documaker.js"
-  },
+  "bin": "./bin/documaker.js",
   "scripts": {
     "start": "./bin/documaker.js",
     "build": "webpack"
   },
   "dependencies": {
-    "@flow-ui/core": "~0.1.0",
+    "@babel/runtime": "7.8.4",
+    "@emotion/core": "10.0.27",
+    "@emotion/css": "10.0.27",
+    "@flow-ui/architect": "workspace:*",
+    "@flow-ui/core": "workspace:*",
+    "@flow-ui/lab": "workspace:*",
+    "chroma-js": "^2.1.0",
     "file-loader": "^5.0.2",
     "monaco-editor": "^0.19.2",
     "monaco-editor-webpack-plugin": "^1.8.2",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "typescript": "^3.7.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.5",
@@ -38,13 +43,16 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-emotion": "^10.0.13",
     "babel-plugin-transform-imports": "^2.0.0",
+    "clipanion": "^2.1.5",
     "css-loader": "^3.3.2",
     "esm": "^3.2.25",
+    "pnp-webpack-plugin": "^1.6.0",
     "raw-loader": "^4.0.0",
+    "resolve": "1.15.0",
     "source-map-loader": "^0.2.4",
     "style-loader": "^1.0.1",
+    "ts-pnp": "^1.1.5",
     "tslint": "^5.20.1",
-    "typescript": "^3.7.4",
     "webpack": "^4.41.3",
     "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.3.10",

@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 const FilterWarningsPlugin = require('webpack-filter-warnings-plugin')
+const PnpWebpackPlugin = require(`pnp-webpack-plugin`)
 
 module.exports = function (workdir) {
     return {
@@ -21,7 +22,10 @@ module.exports = function (workdir) {
         devtool: 'source-map',
 
         resolve: {
-            extensions: ['.ts', '.tsx', '.js', '.json']
+            extensions: ['.ts', '.tsx', '.js', '.json'],
+            plugins: [
+                PnpWebpackPlugin,
+            ],
         },
 
         module: {
@@ -31,25 +35,25 @@ module.exports = function (workdir) {
                     oneOf: [
                         {
                             test: /\.raw\.tsx?$/,
-                            use: 'raw-loader',
+                            use: require.resolve('raw-loader'),
                         },
                         {
                             test: /\.tsx?$/,
                             use: {
-                                loader: 'babel-loader',
+                                loader: require.resolve('babel-loader'),
                                 options: {
                                     presets: [
-                                        '@babel/preset-env',
-                                        '@babel/preset-typescript',
-                                        '@babel/preset-react',
-                                        '@emotion/babel-preset-css-prop'
+                                        require.resolve('@babel/preset-env'),
+                                        require.resolve('@babel/preset-typescript'),
+                                        require.resolve('@babel/preset-react'),
+                                        require.resolve('@emotion/babel-preset-css-prop')
                                     ],
                                     plugins: [
-                                        '@babel/proposal-class-properties',
-                                        '@babel/proposal-object-rest-spread',
-                                        '@babel/plugin-transform-runtime',
-                                        ['@babel/plugin-transform-typescript', { allowNamespaces: true }],
-                                        ['@babel/plugin-proposal-optional-chaining', {
+                                        require.resolve('@babel/plugin-proposal-class-properties'),
+                                        require.resolve('@babel/plugin-proposal-object-rest-spread'),
+                                        require.resolve('@babel/plugin-transform-runtime'),
+                                        [require.resolve('@babel/plugin-transform-typescript'), { allowNamespaces: true }],
+                                        [require.resolve('@babel/plugin-proposal-optional-chaining'), {
                                             loose: true
                                         }],
                                     ]
@@ -60,12 +64,12 @@ module.exports = function (workdir) {
                 },
                 {
                     test: /\.css$/,
-                    use: ['style-loader', 'css-loader']
+                    use: [require.resolve('style-loader'), require.resolve('css-loader')]
                 },
                 {
                     test: /\.(ttf|eot|svg|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                     use: [{
-                        loader: 'file-loader'
+                        loader: require.resolve('file-loader')
                     }]
                 }
             ]

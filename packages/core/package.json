@@ -11,15 +11,16 @@
     "build:js": "babel ./ --out-dir ../../build/core --extensions \".ts,.tsx\" --ignore \"node_modules/\""
   },
   "dependencies": {
-    "@emotion/core": "^10.0.22",
+    "@emotion/core": "10.0.27",
+    "@flow-ui/whale": "workspace:*",
     "chroma-js": "^2.1.0",
     "emotion-theming": "^10.0.19",
     "imask": "^5.2.1",
     "moment": "^2.24.0",
-    "@flow-ui/whale": "^0.1.1"
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   },
   "devDependencies": {
-    "@types/chroma-js": "^1.4.3",
     "@babel/cli": "^7.7.5",
     "@babel/core": "^7.7.5",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
@@ -30,9 +31,13 @@
     "@babel/preset-react": "^7.7.4",
     "@babel/preset-typescript": "^7.7.4",
     "@emotion/babel-preset-css-prop": "^10.0.23",
-    "babel-loader": "^8.0.6",
+    "@types/chroma-js": "^1.4.3",
     "csstype": "^2.6.8",
     "tslint": "^5.20.1",
     "typescript": "^3.7.4"
+  },
+  "peerDependencies": {
+    "@babel/runtime": "*",
+    "@emotion/css": "*"
   }
 }

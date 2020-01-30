@@ -19,13 +19,18 @@
     "typedoc": "^0.15.1"
   },
   "dependencies": {
+    "@babel/runtime": "7.8.4",
     "@emotion/core": "^10.0.14",
-    "@flow-ui/core": "~0.1.0",
-    "@flow-ui/documaker": "~0.1.0",
-    "@flow-ui/lab": "~0.1.0",
+    "@emotion/css": "10.0.27",
+    "@flow-ui/core": "workspace:*",
+    "@flow-ui/documaker": "workspace:*",
+    "@flow-ui/lab": "workspace:*",
     "@types/react-syntax-highlighter": "^11.0.1",
     "backstopjs": "^4.3.2",
     "dts-bundle-generator": "^3.2.0",
-    "react-syntax-highlighter": "^12.2.1"
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-syntax-highlighter": "^12.2.1",
+    "typescript": "^3.7.4"
   }
 }
