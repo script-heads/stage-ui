@@ -23,10 +23,10 @@ const Light: WhaleTypes.SourceTheme = {
             hard: [120, 120, 120],
             hardest: [100, 100, 100],
 
-            error: [188, 0, 0],
-            successful: [0, 200, 0],
-            warning: [255, 149, 0],
-            
+            error: [224, 32, 32],
+            successful: [109, 212, 0],
+            warning: [250, 100, 0],
+            info: [0, 145, 255]
         },
         radius: {
             default: '0.5rem',

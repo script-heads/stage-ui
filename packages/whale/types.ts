@@ -47,6 +47,7 @@ declare namespace WhaleTypes {
             error: Color
             warning: Color
             successful: Color
+            info: Color
 
             palette?: Record<string, Color>
         }
