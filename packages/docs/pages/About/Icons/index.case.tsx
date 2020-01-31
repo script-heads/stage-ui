@@ -1,14 +1,17 @@
 import { Block, Flexbox, Header, Text } from '@flow-ui/core'
-import { ScrollView } from '@flow-ui/lab'
 import * as icons from '@flow-ui/core/icons'
 import { Minus, Plus } from '@flow-ui/core/icons'
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import code from './default.raw'
+import shapes from './shapes.raw'
+import rotate from './rotate.raw'
 
 export const title = 'Icons collection'
 export const ns = 'IconTypes'
 export const cases = [
-    { label: 'Basic', code }
+    { label: 'Basic', code },
+    { label: 'Shapes', code: shapes },
+    { label: 'Rotate', code: rotate },
 ]
 
 const Delay = (props) => {

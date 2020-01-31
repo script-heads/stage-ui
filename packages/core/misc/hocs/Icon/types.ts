@@ -13,14 +13,11 @@ declare namespace IconTypes {
 		size?: WhaleTypes.Size | string
 		color?: WhaleTypes.ColorProp
 		background?: WhaleTypes.ColorProp
+		rotate?: number
 	}
 
 	interface IconProps extends Omit<Props, 'svg'> {
 		type?: IconType
-		shape?: IconShapes
-		size?: WhaleTypes.Size | string
-		color?: WhaleTypes.ColorProp
-		background?: WhaleTypes.ColorProp
 	}
 
 	interface Overrides {

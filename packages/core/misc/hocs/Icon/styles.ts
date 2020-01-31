@@ -7,7 +7,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
     
     const background = callProp(props.background, theme.color)
     const color = callProp(props.color, theme.color)
-    
+
     return {
         container: (variant) => [
             {
@@ -57,10 +57,15 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 }
             })
         ],
-        icon: [{
-            display: 'inline-block',
-            verticalAlign: 'middle',
-        }]
+        icon: [
+            {
+                display: 'inline-block',
+                verticalAlign: 'middle',
+            },
+            props.rotate !== undefined && {
+                transform: `rotate(${props.rotate}deg)`
+            }
+        ]
     }
 }
 
