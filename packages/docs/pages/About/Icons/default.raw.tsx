@@ -3,6 +3,14 @@ import React from 'react'
 
 export default () => {
     return (
-        <Icon.Activity />
+        <React.Fragment>
+            <Icon.Clock 
+                size="4rem" 
+            />
+            <Icon.Clock 
+                size="4rem" 
+                type="filled" 
+            />
+        </React.Fragment>
     )
 }

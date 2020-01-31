@@ -14,7 +14,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
             ...theme.typography.text.m,
             marginTop: '0.25rem',
             marginBottom: '0.5rem',
-            fontWeight: 400,
+            fontWeight: 500,
         }],
 
         title: [{
@@ -41,7 +41,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 borderRadius: theme.radius.narrow,
                 color: theme.color.hardest.css(),
                 userSelect: 'none',
-                ...theme.typography.text.l,
+                ...theme.typography.text.m,
                 ':hover': {
                     background: theme.color.lightest.css()
                 }
