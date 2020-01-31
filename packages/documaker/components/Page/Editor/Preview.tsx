@@ -5,8 +5,9 @@ import * as Icon from '@flow-ui/core/icons'
 import * as LabScope from '@flow-ui/lab'
 import WhaleTypes from '@flow-ui/whale/types'
 import React from 'react'
+
 //@ts-ignore
-import ts from 'typescript/lib/typescriptServices'
+import { transpile } from '@flow-ui/documaker/scripts/typescriptServices'
 
 Object.assign(window, {
     React,
@@ -26,10 +27,10 @@ interface PreviewProps {
 
 const Preview = (props: PreviewProps) => {
     const {theme, code, grid, fullscreen, setFullscreen} = props
-    // const traspiledCode = code && transpile(code, {
-    //     jsx: 'react',
-    //     module: 'es6',
-    // }).split('export default ')[1].trim().slice(0, -1) + '()'
+    const traspiledCode = code && transpile(code, {
+        jsx: 'react',
+        module: 'es6',
+    }).split('export default ')[1].trim().slice(0, -1) + '()'
     
     return (
         <Block h="100%" css={{ position: 'relative' }}>
@@ -62,10 +63,10 @@ const Preview = (props: PreviewProps) => {
                         }
                     }
                 ]}>
-                {/* <span
+                <span
                     style={{ position: 'relative' }}
                     children={Function('"use strict";return (' + traspiledCode + ')')()}
-                /> */}
+                />
             </Block>
         </Block>                        
     )

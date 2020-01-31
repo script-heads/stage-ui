@@ -10,7 +10,7 @@
     "build": "webpack"
   },
   "dependencies": {
-    "@babel/runtime": "7.8.4",
+    "@babel/runtime": "^7.8.4",
     "@emotion/core": "10.0.27",
     "@emotion/css": "10.0.27",
     "@flow-ui/architect": "workspace:*",
