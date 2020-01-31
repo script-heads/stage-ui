@@ -2,7 +2,7 @@ import { Block, Flexbox, Header, Text } from '@flow-ui/core'
 import { ScrollView } from '@flow-ui/lab'
 import * as icons from '@flow-ui/core/icons'
 import { Minus, Plus } from '@flow-ui/core/icons'
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import code from './default.raw'
 
 export const title = 'Icons collection'
@@ -11,9 +11,24 @@ export const cases = [
     { label: 'Basic', code }
 ]
 
+const Delay = (props) => {
+    const [display, setDisplay] = useState(false)
+
+    useEffect(() => {
+        setTimeout(() => {
+            setDisplay(true)
+        }, 1 * (props.index + 1))
+    }, [])
+
+    if (!display) {
+        return null
+    }
+
+    return props.children
+}
+
 export default () => {
     const [open, setOpen] = useState(false)
-
     const OpenCloseIcon = open
         ? Minus
         : Plus
@@ -24,13 +39,6 @@ export default () => {
                 <Header>Icon set</Header>
                 <OpenCloseIcon size="2rem" />
             </Flexbox>
-            <ScrollView h={"400px"}>
-                {
-                    Array(1000).fill('').map((_, i) => (
-                        <div key={i}>{i}</div>
-                    ))
-                }
-            </ScrollView>
             {open && (
                 <Flexbox pt="1rem">
                 <Block
@@ -40,28 +48,29 @@ export default () => {
                         gridTemplateColumns: 'repeat(auto-fill, 8rem)'
                     }}
                 >
-                    {Object.keys(icons).map(key => {
+                    {Object.keys(icons).map((key, index) => {
                         const PreviewIcon = icons[key]
                         return (
-                            <Flexbox
-                                column
-                                key={key}
-                                p="1rem"
-                                justifyContent="center"
-                                alignItems="center"
-                                alignContent="center"
-                            >
-                                <PreviewIcon
-                                    shape="oval"
-                                    size="2rem"
-                                    background={c => c.lightest.css()}
-                                />
-                                <Text
-                                    color={c => c.light.css()}
-                                    mt=".5rem"
-                                    children={key}
-                                />
-                            </Flexbox>
+                            <Delay key={key} index={index}>
+                                <Flexbox
+                                    column
+                                    p="1rem"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                    alignContent="center"
+                                >
+                                    <PreviewIcon
+                                        shape="oval"
+                                        size="2rem"
+                                        background={c => c.lightest.css()}
+                                    />
+                                    <Text
+                                        color={c => c.light.css()}
+                                        mt=".5rem"
+                                        children={key}
+                                    />
+                                </Flexbox>
+                            </Delay>
                         )
                     })}
                 </Block>

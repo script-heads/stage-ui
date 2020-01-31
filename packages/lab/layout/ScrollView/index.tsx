@@ -3,13 +3,6 @@ import React, { forwardRef, useEffect, useMemo, useState, useImperativeHandle, R
 import styles from './styles'
 import Types from './types'
 
-interface ScrollParams {
-    deltaX: number
-    deltaY: number
-    preventDefault: () => void
-    stopPropagation: () => void
-    cursorHandle?: boolean
-}
 interface MemoParams { 
     y: boolean
     x: boolean
@@ -67,7 +60,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         mode: mode || 'scroll'
     }), [])
 
-    const updateY = (e: ScrollParams) => {
+    const updateY = (e: Types.ScrollParams) => {
         if (!memo.content || !memo.container) return
 
         const total = memo.content.offsetHeight
@@ -114,7 +107,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         return false
     }
 
-    const updateX = (e: ScrollParams) => {
+    const updateX = (e: Types.ScrollParams) => {
         if (!memo.content || !memo.container) return
 
         const total = memo.content.offsetWidth
@@ -160,18 +153,12 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         return false
     }
     
-    function updateScroll(e: ScrollParams) {
+    function updateScroll(e: Types.ScrollParams) {
         if (!memo.container || !memo.content) {
             return
         }
         const y = updateY(e)
         const x = updateX(e)
-
-        document.dispatchEvent(
-            new CustomEvent('onflowscroll', { 
-                detail: e 
-            })
-        )
 
         if ((y || x) && memo.mode === 'scroll') {
             setActive(true)
@@ -181,7 +168,18 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             }
             memo.timeout = setTimeout(() => setActive(false), 500)
         }
-        props.onScroll?.()
+        const event = {
+            scrollTop: memo.content.offsetTop,
+            scrollLeft: memo.content.offsetLeft,
+            scrollWidth: memo.content.offsetWidth,
+            scrollHeight: memo.content.offsetHeight,
+        }
+        props.onScroll?.(event)
+        document.dispatchEvent(
+            new CustomEvent('onflowscroll', { 
+                detail: event
+            })
+        )
     }
 
     function yMouseDown() {

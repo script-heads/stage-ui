@@ -2,7 +2,22 @@ import React from 'react'
 import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace ScrollViewTypes {
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+
+    interface ScrollViewEvent {
+        scrollTop: number
+        scrollLeft: number
+        scrollWidth: number
+        scrollHeight: number
+    }
+    interface ScrollParams {
+        deltaX: number
+        deltaY: number
+        preventDefault: () => void
+        stopPropagation: () => void
+        cursorHandle?: boolean
+    }
+    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onScroll'> {
+
         children?: React.ReactNode
         /**
          * Display mode
@@ -34,9 +49,9 @@ declare namespace ScrollViewTypes {
          */
         yBarPosition?: 'left' | 'right'
 
-        onScroll?: () => void
+        onScroll?: (event: ScrollViewEvent) => void
     }
-    
+
     interface Ref {
         scrollTop: () => void
     }
