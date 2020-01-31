@@ -48,7 +48,6 @@ export { default as notify } from './misc/utils/notify'
 /**
  * Misc
  */
-export { default as useBrowser } from './misc/hooks/useBrowser'
 export { default as useTheme } from './misc/hooks/useTheme'
 
 export function transformImports (importName, matches) {

@@ -1,7 +1,7 @@
 import { css } from '@emotion/core'
 import React, { FC, useState, Fragment } from 'react'
 import ViewportTypes from './types'
-import createID from '../../misc/utils/createID'
+import createID from '@flow-ui/whale/utils/createID'
 
 export let addElement: (children: React.ReactElement, key?: string) => string
 export let removeElement: (key: string) => void

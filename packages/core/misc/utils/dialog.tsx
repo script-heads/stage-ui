@@ -3,7 +3,7 @@ import ModalTypes from '@flow-ui/core/layout/Modal/types'
 import React from 'react'
 import { addElement, removeElement } from '../../layout/Viewport/MountArea'
 import ViewportTypes from '../../layout/Viewport/types'
-import createID from './createID'
+import createID from '@flow-ui/whale/utils/createID'
 
 export default (options: ViewportTypes.DialogOptions) => {
     let key = createID()

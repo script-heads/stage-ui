@@ -101,12 +101,13 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
                     ...events.all,
                     onFocus: (e) => {
                         inputRef.current?.focus()
-                        attributes.onFocus(e)
+                        events?.all?.onFocus(e)
                         if (!props.disabled) {
                             setActive(true)
                         }
                     },
-                    onClick:() => {
+                    onClick:(e) => {
+                        events?.all?.onClick(e)
                         if (!props.disabled) {
                             setActive(true)
                         }

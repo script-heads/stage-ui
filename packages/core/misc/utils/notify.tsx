@@ -7,7 +7,7 @@ import Flexbox from '../../layout/Flexbox'
 import Notification from '../../layout/Notification'
 import NotificationType from '../../layout/Notification/types'
 import { addElement, removeElement } from '../../layout/Viewport/MountArea'
-import createID from './createID'
+import createID from '@flow-ui/whale/utils/createID'
 
 export default (options: NotificationType.NotifyOptions) => {
     let timer

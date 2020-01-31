@@ -67,7 +67,9 @@ declare namespace SelectTypes {
         input: void
         options: void
         optionItem: void
-        optionItemText: void
+        optionItemText: {
+            size: Props['size']
+        }
         dropIcon: {
             size: Props['size']
         }

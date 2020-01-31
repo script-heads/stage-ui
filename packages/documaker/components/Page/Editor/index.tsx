@@ -1,4 +1,4 @@
-import { Block, Flexbox, Text, useBrowser, useTheme } from '@flow-ui/core'
+import { Block, Flexbox, Text, useTheme } from '@flow-ui/core'
 import { Collapse, Expand, Grid } from '@flow-ui/core/icons'
 import { PageType } from '@flow-ui/documaker/core'
 import monaco from '@flow-ui/documaker/monaco'
@@ -20,17 +20,44 @@ const Editor = (props: EditorProps) => {
     const [grid, setGrid] = useState(
         localStorage.getItem('case_grid') === 'true'
     )
+    const isMobile = () => (
+        document.body.offsetWidth < window.breakpoints[1]
+    )
+    let directionVar: 'row' | 'column' = isMobile() ? 'column' : 'row'
     const [fullscreen, setFullscreen] = useState(false)
     const theme = useTheme()
-    const browser = useBrowser()
-    
+    const [direction, setDirection] = useState(directionVar)
+
     useEffect(() => {
+        /**
+         * Handle mobile
+         */
+        const handleDirection = () => {
+            const t = isMobile()
+
+            if (!t && directionVar !== 'row') {
+                directionVar = 'row'
+                setDirection('row')
+            }
+            if (t && directionVar !== 'column') {
+                directionVar = 'column'
+                setDirection('column')
+            }
+        }
+
+        window.addEventListener('resize', handleDirection)
+        /**
+         * Creates monaco editor
+         */
         monaco.create({
             id: 'documaker-code-editor',
             code: cases[0].code, 
             setCode,
         })
-        return monaco.remove
+        return () => {
+            window.removeEventListener('resize', handleDirection)
+            monaco.remove()
+        }
     }, [])
 
     useEffect(() => {
@@ -125,7 +152,7 @@ const Editor = (props: EditorProps) => {
                         zIndex: 10,
                     }
                 ]}>
-                <Split direction={browser.width > window.breakpoints[1] ? 'row' : 'column'}>
+                <Split direction={direction}>
                     <Block
                         id="documaker-code-editor"
                         h="100%"

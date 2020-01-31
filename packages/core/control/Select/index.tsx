@@ -215,17 +215,14 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                 shape={shape}
                 onClear={() => clear()}
                 events={{
-                    ...events,
-                    all: {
-                        ...events.all,
-                        onClick: (e) => {
-                            searchable && e.target.toString().match('HTMLInputElement')
-                                ? !state.open && dispatch({ type: 'toggleOpen', payload: true })
-                                : toggleOpen()
-                            props.onClick && props.onClick(e)
-                        },
-                        onKeyDown: (e) => handleKeyDown(e)
-                    }
+                    ...events.all,
+                    onClick: (e) => {
+                        searchable && e.target.toString().match('HTMLInputElement')
+                            ? !state.open && dispatch({ type: 'toggleOpen', payload: true })
+                            : toggleOpen()
+                        props.onClick && props.onClick(e)
+                    },
+                    onKeyDown: (e) => handleKeyDown(e)
                 }}
                 attributes={{
                     ...attributes,
@@ -296,7 +293,7 @@ const Options = (props: Types.OptionsProps ) => {
         <div css={styles.options}>
             {selected.map(option => (
                 <div key={option.value} css={styles.optionItem}>
-                    <span css={styles.optionItemText}>{option.text}</span>
+                    <span css={styles.optionItemText({ size })}>{option.text}</span>
                     <Close
                         onClick={(e) => {
                             e.stopPropagation()

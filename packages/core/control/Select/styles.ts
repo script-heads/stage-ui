@@ -1,5 +1,4 @@
 import callProp from '@flow-ui/core/misc/utils/callProp'
-import variant from '@flow-ui/core/misc/utils/variant'
 import Types from './types'
 import fieldStyles from '../../misc/hocs/Field/styles'
 import WhaleTypes from '@flow-ui/whale/types'
@@ -13,11 +12,19 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
     let color = callProp(props.color, theme.color)
     let backgroundColor = callProp(props.backgroundColor, theme.color)
 
-    const multiselectAdditionalPadding = variant(size, {
-        'm': '.25rem',
-        'l': '.25rem',
-        'xl': '.5rem'
-    })
+    let multiselectAdditionalPadding = ''
+
+    switch (size) {
+        case 'm':
+            multiselectAdditionalPadding = '.25rem'
+            break
+        case 'l':
+            multiselectAdditionalPadding = '.25rem'
+            break
+        case 'xl':
+            multiselectAdditionalPadding = '.5rem'
+            break
+    }   
 
     return {
         ...fieldStyles<Types.Overrides>(props, theme, {
@@ -86,7 +93,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
             }
         ],
 
-        optionItemText: [
+        optionItemText: (variant) => [
             {
                 minHeight: '100%',
                 borderRightWidth: '1px',
@@ -94,27 +101,29 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 borderRightColor: theme.color.primary.alpha(.5).css(),
                 alignText: 'center'
             },
-            variant(size, {
-                'xs': {
-                    padding: '.125rem .25rem',
-                    ...theme.typography.text.xs
-                },
-                's': {
-                    padding: '.125rem .25rem',
-                    ...theme.typography.text.s,
-                },
-                'm': {
-                    padding: '.125rem .25rem',
-                    ...theme.typography.text.m,
-                },
-                'l': {
-                    padding: '.125rem .25rem',
-                    ...theme.typography.text.l,
-                },
-                'xl': {
-                    padding: '.125rem .25rem',
-                    fontSize: theme.typography.header.xs.fontSize,
-                    lineHeight: theme.typography.header.xs.lineHeight,
+            variant({
+                size: {
+                    xs: {
+                        padding: '.125rem .25rem',
+                        ...theme.typography.text.xs
+                    },
+                    s: {
+                        padding: '.125rem .25rem',
+                        ...theme.typography.text.s,
+                    },
+                    m: {
+                        padding: '.125rem .25rem',
+                        ...theme.typography.text.m,
+                    },
+                    l: {
+                        padding: '.125rem .25rem',
+                        ...theme.typography.text.l,
+                    },
+                    xl: {
+                        padding: '.125rem .25rem',
+                        fontSize: theme.typography.header.xs.fontSize,
+                        lineHeight: theme.typography.header.xs.lineHeight,
+                    }
                 }
             }),
         ],

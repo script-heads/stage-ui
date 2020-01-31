@@ -37,7 +37,7 @@ const Field: RefForwardingComponent<HTMLDivElement, Types.PrivateProps> = (props
     return (
         <div
             {...attributes}
-            {...events?.all}
+            {...events}
             ref={ref}
             css={styles.container(state)}
         >
