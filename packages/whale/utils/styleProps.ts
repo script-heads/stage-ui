@@ -142,6 +142,10 @@ export const useStyleProps = (props: Props, theme): InjectedStyles => {
         placeSelf: props.placeSelf,
     }
 
+    const flow = Object.assign({}, margin, flex, grid)
+    const self = Object.assign({}, color, border, padding, layout)
+    const all = Object.assign({}, flow, self)
+    
     return {
         color,
         border,
@@ -150,26 +154,10 @@ export const useStyleProps = (props: Props, theme): InjectedStyles => {
         layout,
         flex,
         grid,
-        flow: {
-            ...margin,
-            ...flex,
-            ...grid,
-        },
-        self: {
-            ...color,
-            ...border,
-            ...padding,
-            ...layout,
-        },
-        all: {
-            ...color,
-            ...border,
-            ...padding,
-            ...margin,
-            ...layout,
-            ...flex,
-            ...grid,
-        }
+        
+        flow,
+        self,
+        all
     }
 }
 
