@@ -9,27 +9,53 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
     const color = callProp(props.color, theme.color)
     
     return {
-        container: [
+        container: (variant) => [
             {
                 width: 'min-content',
-                height: props.size || '1rem',
-                fontSize: props.size || '1rem',
                 display: 'inline-flex',
                 color,
-                background
+                background,
+                height: theme.typography.text.m.fontSize,
+                fontSize: theme.typography.text.m.fontSize,
             },
-            props.onClick && {
-                cursor: 'pointer'
+            props.size && !['xs','s','m','l','xl'].includes(props.size) && {
+                height: props.size,
+                fontSize: props.size,
             },
-            props.shape === 'oval' && {
-                borderRadius: '50%',
-                padding: '0.4em',
-            },
-            props.shape === 'circle' && {
-                borderRadius: '50%',
-                border: '1px solid ' + color,
-                padding: '0.4em',
-            },
+            variant({
+                size: {
+                    xs: {
+                        height: theme.typography.text.xs.fontSize,
+                        fontSize: theme.typography.text.xs.fontSize,
+                    },
+                    s: {
+                        height: theme.typography.text.s.fontSize,
+                        fontSize: theme.typography.text.s.fontSize,
+                    },
+                    l: {
+                        height: theme.typography.text.l.fontSize,
+                        fontSize: theme.typography.text.l.fontSize,
+                    },
+                    xl: {
+                        height: theme.typography.text.xl.fontSize,
+                        fontSize: theme.typography.text.xl.fontSize,
+                    }
+                },
+                shape: {
+                    circle: {
+                        borderRadius: '50%',
+                        border: '1px solid ' + color,
+                        padding: '0.4em',
+                    },
+                    oval: {
+                        borderRadius: '50%',
+                        padding: '0.4em',
+                    }
+                },
+                clickable: {
+                    cursor: 'pointer'
+                }
+            })
         ],
         icon: [{
             display: 'inline-block',

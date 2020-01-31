@@ -5,6 +5,7 @@ import Types from './types'
 
 const Svg: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref) => {
 
+    const { size = 'm', shape } = props
     const { cs, attributes, events } = useComponent('Icon', {
         props,
         styles,
@@ -18,7 +19,11 @@ const Svg: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref) =
             {...attributes}
             {...events.all}
             ref={ref}
-            css={cs.container}
+            css={cs.container({ 
+                size, 
+                shape,
+                clickable: !!props.onClick
+            })}
             children={(
                 <svg
                     viewBox="0 0 24 24"
