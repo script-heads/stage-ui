@@ -1,3 +1,4 @@
+import React from 'react'
 import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace ScrollViewTypes {
@@ -32,6 +33,8 @@ declare namespace ScrollViewTypes {
          * @default right
          */
         yBarPosition?: 'left' | 'right'
+
+        onScroll?: () => void
     }
     
     interface Ref {

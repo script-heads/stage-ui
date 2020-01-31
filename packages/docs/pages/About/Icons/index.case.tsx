@@ -1,10 +1,11 @@
 import { Block, Flexbox, Header, Text } from '@flow-ui/core'
+import { ScrollView } from '@flow-ui/lab'
 import * as icons from '@flow-ui/core/icons'
 import { Minus, Plus } from '@flow-ui/core/icons'
 import React, { Fragment, useState } from 'react'
 import code from './default.raw'
 
-export const title = 'Icon'
+export const title = 'Icons collection'
 export const ns = 'IconTypes'
 export const cases = [
     { label: 'Basic', code }
@@ -23,6 +24,13 @@ export default () => {
                 <Header>Icon set</Header>
                 <OpenCloseIcon size="2rem" />
             </Flexbox>
+            <ScrollView h={"400px"}>
+                {
+                    Array(1000).fill('').map((_, i) => (
+                        <div key={i}>{i}</div>
+                    ))
+                }
+            </ScrollView>
             {open && (
                 <Flexbox pt="1rem">
                 <Block

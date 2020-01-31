@@ -1,14 +1,15 @@
 import { useComponent } from '@flow-ui/whale'
-import React, { forwardRef, Fragment, RefForwardingComponent, useEffect, useMemo, createRef } from 'react'
+import React, { forwardRef, Fragment, RefForwardingComponent, useEffect, useMemo } from 'react'
 import Separator from './Separator'
 import Types from './types'
 import styles from './styles'
-
 export type SplitElRef = (HTMLDivElement & {
     _vertical?: true
     _onMove?: () => void
     _onChange?: () => void
 }) | null
+
+
 
 interface SplitElRefs {
     [key: number]: SplitElRef
@@ -16,7 +17,10 @@ interface SplitElRefs {
 
 const Split: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
-    const { cs, attributes, events } = useComponent('Split', { props, styles })
+    const { cs, attributes, events } = useComponent('Split', { 
+        props, 
+        styles
+    })
 
     let vertical = props.direction === 'column'
 

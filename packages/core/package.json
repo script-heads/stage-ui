@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@emotion/core": "10.0.27",
-    "@flow-ui/whale": "workspace:*",
+    "@flow-ui/whale": "^0.1.4",
     "chroma-js": "^2.1.0",
     "emotion-theming": "^10.0.19",
     "imask": "^5.2.1",

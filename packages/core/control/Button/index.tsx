@@ -12,7 +12,7 @@ const Button: RefForwardingComponent<HTMLButtonElement, Types.Props> = (props, r
         shape = 'rounded',
         size = 'm'
     } = props
-    
+
     const { cs, attributes, events } = useComponent('Button', { props, styles, styleProps: { container: ['all']} })
 
     const onClick = (event: React.MouseEvent<HTMLElement>) => {

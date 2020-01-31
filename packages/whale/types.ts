@@ -1,3 +1,4 @@
+import React from 'react'
 import chroma from 'chroma-js'
 import CSS from 'csstype'
 import { Interpolation, SerializedStyles, ObjectInterpolation } from '@emotion/core'

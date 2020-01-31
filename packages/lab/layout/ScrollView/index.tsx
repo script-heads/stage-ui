@@ -37,7 +37,13 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         }
     }))
 
-    const { cs, attributes, events } = useComponent('ScrollView', { props, styles, styleProps: { container: ['all']} })
+    const { cs, attributes, events } = useComponent('ScrollView', { 
+        props, 
+        styles, 
+        styleProps: { 
+            container: ['all']
+        } 
+    })
     
     const {
         shape = 'round',
@@ -175,6 +181,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             }
             memo.timeout = setTimeout(() => setActive(false), 500)
         }
+        props.onScroll?.()
     }
 
     function yMouseDown() {

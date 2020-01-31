@@ -1,3 +1,4 @@
+import React from 'react'
 import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace SplitTypes {
@@ -26,6 +27,7 @@ declare namespace SplitTypes {
         container: {
             vertical: boolean
         }
+        test: void
     }
 }
 
