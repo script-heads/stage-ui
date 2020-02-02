@@ -12,7 +12,7 @@ interface Options<S> {
     focusDecoration?: boolean
 }
 
-const useComponent = <S>(overrideName: string, options: Options<S>) => {
+const useComponent = <S, P>(overrideName: string, options: Options<S>, params = {}) => {
     
     const { props, mouseFocus, focusDecoration, styleProps } = options
     const cs: WhaleTypes.ComponentStyles<S> = {} as WhaleTypes.ComponentStyles<S>
@@ -21,7 +21,7 @@ const useComponent = <S>(overrideName: string, options: Options<S>) => {
     const { attributes, events, focus } = attributeProps(props, theme, mouseFocus, focusDecoration)
 
     const styles = typeof options.styles === 'function'
-        ? options.styles(props, theme)
+        ? options.styles(props, theme, params)
         : options.styles
 
     const themeOverrides = overrideName && theme.overrides[overrideName]

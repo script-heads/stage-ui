@@ -1,49 +1,64 @@
+import { Drop, ScrollView } from '@flow-ui/core'
+import DropTypes from '@flow-ui/core/layout/Drop/types'
+import Field from '@flow-ui/core/misc/hocs/Field'
 import { useComponent } from '@flow-ui/whale'
-import React, { forwardRef, Fragment, RefForwardingComponent, useEffect, useImperativeHandle, useReducer, useRef } from 'react'
-import { ArrowIosDownward, ArrowIosUpward, Close } from '../../icons'
-import Drop from '../../layout/Drop'
-import DropTypes from '../../layout/Drop/types'
-import Field from '../../misc/hocs/Field'
-import SelectReducer from './reducer'
+import React, { forwardRef, Fragment, RefForwardingComponent, useEffect, useRef, useState } from 'react'
+import { ArrowIosDownward, Close } from '../../icons'
 import styles from './styles'
 import Types from './types'
 
 const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const {
-        shape = 'rounded',
         decoration = 'outline', 
-        size = 'm',
-        multiselect,
-        onChange,
-        options = [],
-        values,
-        defaultValues = [],
-        placeholder,
-        searchable,
-        disabled,
-        label,
+        size = 'm', 
+        shape='rounded', 
+        tabIndex = 0,
+        maxScrollHeight = '16rem',
+        keepOpen = false,
     } = props
 
-    let approvedDefaultValues = defaultValues 
-        ? options.filter(option => includeOption(defaultValues, option)) 
-        : []
-
-    if (!multiselect && approvedDefaultValues.length != 0) {
-        approvedDefaultValues = [approvedDefaultValues[0]]
+    /**
+     * Object for variant styles
+     */
+    const styleState: Types.StyleState = { 
+        decoration, 
+        shape, 
+        size 
     }
-
-    const initialState: Types.State = {
-        selectedOptions: approvedDefaultValues,
-        open: false,
-        searchValue: '',
-        empty: approvedDefaultValues.length === 0,
-        cursor: -1
-    }
-
-    const targetRef = useRef<HTMLDivElement>(null)
+    /**
+     * References
+     */
+    const fieldRef = useRef<HTMLDivElement>(null)
     const dropRef = useRef<DropTypes.Ref>(null)
-    const [state, dispatch] = useReducer(SelectReducer, initialState)
+    /**
+     * Drop will show only 
+     * if isOpen === true
+     * and values.length > 0
+     */
+    const [isOpen, setOpen] = useState(false)
+    /**
+     * Value need for search
+     */
+    const [searchQuery, setSearchQuery] = useState('')
+    /**
+     * Store of selected values
+     */
+    const [values, setValues] = useState<Types.Option[]>([])
+    /**
+     * This options will be shown in drop
+     */
+    const options = props.options.filter(option => {
+            // Filter only unselected values
+            if (values.find(o => o.value === option.value)) {
+                return false
+            }
+            // Filter only matching search
+            if (searchQuery && !option.text.toUpperCase().match(searchQuery.toUpperCase())) {
+                return false
+            }
+            return true
+        })
 
     const { cs, attributes, events, focus } = useComponent('Select', { 
         props, 
@@ -52,232 +67,217 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
             container: ['flow','layout'], 
             field:['color','border','padding']
         },
-        mouseFocus: true,
-        focusDecoration: props.decoration != 'none'
+        mouseFocus: false,
+        focusDecoration: true
+    }, {
+        isOpen: isOpen && options.length > 0
     })
 
-    const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xl')
-    const isLabelOverlay = (label && state.empty && !focus && !isLabelOutside) ? true : false
-
-    useImperativeHandle(ref, () => 
-        targetRef.current as HTMLDivElement
-    )
-
+    /**
+     * Component did mount
+     */
     useEffect(() => {
-        if (values) {
-            dispatch({type: 'setSelectedOptions', payload: values})
+        if (props.defaultValues) {
+            setValues(props.defaultValues)
         }
-    }, [values])
+    }, [])
 
-    const availableOptions = getAvailableOptions(
-        options,
-        state.selectedOptions,
-        state.searchValue,
-    )
-
-    function toggleOpen() {
-        if (state.open) {
-            dispatch({type: 'toggleOpen', payload: false})
-        } else if(!disabled && availableOptions.length != 0) {
-            dispatch({type: 'toggleOpen', payload: true})
-        }      
-    }
-
-    function toggleOption (option: Types.Option) {
-        const empty: Types.Option[] = []
-        let nextSelectedOptions = state.selectedOptions
-        if (multiselect) {
-            includeOption(state.selectedOptions, option)
-                ? nextSelectedOptions = state.selectedOptions.filter(selectedOption =>
-                    selectedOption.value != option.value
-                )
-                : nextSelectedOptions.push(option)
-        } else {
-            nextSelectedOptions = [option]
+    /**
+     * Component will receive value
+     */
+    useEffect(() => {
+        if (props.values) {
+            setValues(props.values)
         }
-        !values && dispatch({type: 'setSelectedOptions', payload: nextSelectedOptions})
-        onChange?.(empty.concat(nextSelectedOptions), option)
-        setTimeout(() => dropRef?.current?.updatePosition())
-    }
+    }, [props.values])
 
-    function reduceSelectedOptions () {
-        const empty: Types.Option[] = []
-        const nextSelectedOptions = state.selectedOptions.slice(0, -1)
-        !values && dispatch({type: 'setSelectedOptions', payload: nextSelectedOptions})
-        onChange?.(empty.concat(nextSelectedOptions) as Types.Option[])
-        setTimeout(() => dropRef?.current?.updatePosition())
-    }
-
-    function clear () {
-        !values && dispatch({type: 'clear'})
-        onChange?.([])
-        setTimeout(() => dropRef?.current?.updatePosition())
-    }
-                
     /*
     * Keyboard control
+    * TODO: handle keyboard control
     */
     function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
         switch (event.key) {
             case 'Enter':
-                if (state.cursor != -1) {
-                    toggleOption(availableOptions[state.cursor])
-                }
-                dispatch({ type: 'toggleOpen', payload: !state.open })
                 break
             case 'ArrowUp':
-                event.preventDefault()
-                state.cursor > 0 && dispatch({
-                    type: 'setCursor',
-                    payload: state.cursor - 1
-                })
                 break
             case 'ArrowDown':
-                event.preventDefault()
-                state.cursor < availableOptions.length - 1 && dispatch({
-                    type: 'setCursor',
-                    payload: state.cursor + 1
-                })
                 break
             case 'Backspace':
-                !searchable || !state.searchValue && reduceSelectedOptions()
                 break
         }
         props.onKeyDown && props.onKeyDown(event)
     }
 
-    function handleSearch (value) {
-        dispatch({ type: 'search', payload: value })
-        const nextAvailableOptions = getAvailableOptions(
-            options,
-            state.selectedOptions,
-            value,
-        )
+    /**
+     * Open and close select drop
+     */
+    function toggleOpen(e) {
+        e.stopPropagation()
+        setOpen(!isOpen)
+    }
 
-        if (nextAvailableOptions.length != 0) {
-            !state.open && dispatch({ type: 'toggleOpen', payload: true })
+    /**
+     * Update drop position
+     * uses after select field changing height
+     */
+    function updateDropLayout() {
+        setTimeout(() => {
+            dropRef.current?.updatePosition()
+        },1)
+    }
+
+    /**
+     * Call when ever values change
+     * support controlled and uncontrolled
+     * second arg need if you need filter values by search
+     */
+    function onChange(values: Types.Option[], search = '') {
+        setSearchQuery(search)
+        if (props.values !== undefined) {
+            props.onChange?.(values)
         } else {
-            state.open && dispatch({ type: 'toggleOpen', payload: false })
+            setValues(values)
         }
     }
-    
-    /*
-    * Set field value
-    */
-    let fieldValue = <span css={cs.placeholder}>{placeholder}</span>
 
-    if (multiselect && (!state.empty || searchable)) {
-        fieldValue =
-            <Options
-                styles={cs}
-                size={size}
-                selected={state.selectedOptions}
-                searchable={searchable}
-                disabled={disabled}
-                placeholder={state.empty ? placeholder : ''}
-                searchValue={state.searchValue}
-                onSearch={handleSearch}
-                onClose={(option) => toggleOption(option)}
-            />
+    /**
+     * Setting values
+     */
+    function setOption(value: Types.Option) {
+        if (props.multiselect) {
+            onChange(values.concat(value))
+        } else {
+            onChange([value])
+        }
+        if (!keepOpen) {
+            setOpen(false)
+        }
+        updateDropLayout()
     }
 
-    if (!multiselect) {
-        if (searchable) {
-            fieldValue =
-                <Search
-                    styles={cs}
-                    disabled={disabled}
-                    placeholder={placeholder}
-                    searchValue={state.empty 
-                        ? state.searchValue 
-                        : state.selectedOptions[0].text
-                    }
-                    onSearch={handleSearch}
-                />
-        } else if (!state.empty) {
-            fieldValue = <span>{state.selectedOptions[0].text}</span>
-        }
+    /**
+     * Unsetting values
+     */
+    function unsetOption(value: Types.Option) {
+        onChange(values.filter(v => v.value !== value.value))
+        updateDropLayout()
+    }
+
+    /**
+     * Clears values
+     * also can set filter for search
+     */
+    function clearValues(search = '') {
+        onChange([], search)
+        updateDropLayout()
     }
 
     return (
         <Fragment>
             <Field
                 {...props}
-                ref={targetRef}
 
-                focus={focus}
                 styles={cs}
-                state={state}
-                isLabelOutside={isLabelOutside}
-                isLabelOverlay={isLabelOverlay}
-                decoration={decoration}
+                ref={fieldRef}
+
                 size={size}
+                focus={focus}
                 shape={shape}
-                onClear={() => clear()}
+                decoration={decoration}
+                clearable={props.clearable && values.length > 0}
+                onClear={() => clearValues()}
+
+                attributes={{ ...attributes, tabIndex }}
                 events={{
                     ...events.all,
                     onClick: (e) => {
-                        searchable && e.target.toString().match('HTMLInputElement')
-                            ? !state.open && dispatch({ type: 'toggleOpen', payload: true })
-                            : toggleOpen()
-                        props.onClick && props.onClick(e)
+                        // searchable && e.target.toString().match('HTMLInputElement')
+                        //     ? !state.open && dispatch({ type: 'toggleOpen', payload: true })
+                        //     : toggleOpen()
+                        toggleOpen(e)
+                        events.all.onClick?.(e)
                     },
                     onKeyDown: (e) => handleKeyDown(e)
                 }}
-                attributes={{
-                    ...attributes,
-                    tabIndex: props.tabIndex,
-                }}                
-                children={!isLabelOverlay && fieldValue}
                 rightChild={(
-                    state.open
-                        ? <ArrowIosUpward
-                            alignSelf="center"
-                            css={cs.dropIcon({ size })}
+                    props.rightChild || <ArrowIosDownward
+                        alignSelf="center"
+                        size={size}
+                        rotate={(isOpen && options.length > 0) ? 180 : 0}
+                        onClick={(e) => {
+                            toggleOpen(e)
+                        }}
+                    />
+                )}
+                children={(
+                    <div css={cs.selectedOptionsContainer}>
+                        {props.multiselect && values.map(option => (
+                            <div css={cs.tag(styleState)} key={option.value}>
+                                {option.text}
+                                <Close
+                                    size={size}
+                                    css={cs.tagRemove(styleState)}
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        unsetOption(option)
+                                    }}
+                                />
+                            </div>
+                        ))}
+                        <input
+                            size={5}
+                            disabled={!props.searchable}
+                            css={cs.selectedOptionInput({
+                                searchMode: searchQuery !== '',
+                                multiselect: !!props.multiselect
+                            })}
+                            placeholder={(!props.multiselect || values.length === 0) ? props.placeholder : ''}
+                            value={(!props.multiselect && values[0]?.text) || searchQuery}
+                            onChange={(e) => {
+                                if (props.multiselect) {
+                                    setSearchQuery(e.target.value)
+                                } else {
+                                    clearValues(e.target.value)
+                                }
+                            }}
                             onClick={(e) => {
                                 e.stopPropagation()
-                                toggleOpen()
+                                setOpen(true)
                             }}
                         />
-                        : <ArrowIosDownward
-                            alignSelf="center"
-                            css={cs.dropIcon({ size })}
-                            onClick={(e) => {
-                                e.stopPropagation()
-                                toggleOpen()
-                            }}
-                        />
+                    </div>
                 )}
             />
             <Drop
-                visibility={state.open ? 'visible' : 'hidden'}
+            
+                display={(isOpen && options.length > 0) ? 'block' : 'none'}
                 ref={dropRef}
-                onClickOutside={(e, ot) => {
-                    ot && state.open && dispatch({type: 'toggleOpen', payload: false})
+                onClickOutside={(e, outTarget) => {
+                    if (outTarget) {
+                        toggleOpen(e)
+                    }
                 }}
                 stretchWidth
                 justify="start"
-                target={targetRef}
+                target={fieldRef}
                 children={(
-                    <div css={cs.dropMenu({
-                        decoration, 
-                        shape,
-                        focus, 
-                        size,
-                        open: true
-                    })}>
-                        {availableOptions
-                            .map((option, i) => (
+                    <div css={cs.drop(styleState)}>
+                        <ScrollView
+                            size="xs" 
+                            style={{ maxHeight: maxScrollHeight }}
+                            sendFlowScollEvent={false}
+                            children={options.map(option => (
                                 <div
+                                    css={cs.dropItem(styleState)}
                                     key={option.value}
-                                    css={cs.dropItem({underCursor: i === state.cursor, size})}
                                     children={option.text}
-                                    onMouseDown={(e) => {
-                                        toggleOption(option)
-                                        !multiselect && state.open && dispatch({type: 'toggleOpen', payload: false})
+                                    onClick={() => {
+                                        setOption(option)
                                     }}
                                 />
                             ))}
+                        />
                     </div>
                 )}
             />
@@ -286,59 +286,15 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
 }
 
 const Options = (props: Types.OptionsProps ) => {
-
-    const { selected, onClose, styles, searchable, size } = props
-
     return (
-        <div css={styles.options}>
-            {selected.map(option => (
-                <div key={option.value} css={styles.optionItem}>
-                    <span css={styles.optionItemText({ size })}>{option.text}</span>
-                    <Close
-                        onClick={(e) => {
-                            e.stopPropagation()
-                            onClose(option)
-                        }}
-                    />
-                </div>
-            ))}
-            {searchable && <Search {...props} />}
-        </div>
+        <div/>
     )
 }
 
 const Search = (props: Types.SearchProps) => {
-    const { searchValue, onSearch, styles, defaultValue, placeholder, disabled } = props
-
     return (
-        <input
-            defaultValue={defaultValue}
-            placeholder={placeholder}
-            disabled={disabled}
-            value={searchValue}
-            css={styles.input}
-            autoFocus
-            onChange={e => onSearch(e.target.value)}
-        />
+        <input />
     )
 }
 
-function getAvailableOptions(options: Types.Option[], selectedOptions: Types.Option[], search: string) {
-    return options.filter(option =>
-        !includeOption(selectedOptions, option) &&
-        option.text
-            .toLocaleUpperCase()
-            .includes(search.toLocaleUpperCase())
-    )
-}
-
-function includeOption(options: Types.Option[], option: Types.Option) {
-    let includes = false
-    options.map(o => {
-        if(o.value === option.value) {
-            includes = true
-        }
-    })
-    return includes
-}
 export default forwardRef(Select)

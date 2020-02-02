@@ -22,7 +22,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 }]
             })
         ],
-        input: (variant) => [
+        input: [
             {
                 outline: 0,
                 padding: 0,
@@ -38,12 +38,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 '&::placeholder': {
                     color: theme.color.light.css()
                 }
-            },
-            variant({
-                isLabelOverlay: [{
-                    opacity: '0'
-                }]
-            }),  
+            } 
         ]
     }
 }

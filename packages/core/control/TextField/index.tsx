@@ -11,11 +11,14 @@ type RefTypes = ((HTMLInputElement | HTMLTextAreaElement) & HTMLDivElement) | nu
 
 const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) => {
 
-    const {decoration = 'outline', size = 'm', shape='rounded', tabIndex = 0, masked, label} = props
-    const [isEmpty, setEmpty] = useState<boolean>(
-        props.defaultValue === '' ||
-        typeof props.defaultValue === 'undefined'
-    )
+    const { 
+        decoration = 'outline', 
+        size = 'm', 
+        shape = 'rounded', 
+        tabIndex = 0, 
+        masked,
+        multiline = false
+    } = props
     
     const { cs, attributes, events, focus } = useComponent('TextField', { 
         props, 
@@ -28,15 +31,13 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
         focusDecoration: props.decoration !== 'none'
     })
 
-    const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xl')
-    const isLabelOverlay = (label && isEmpty && !focus && !isLabelOutside) ? true : false
-    const selfRef = useRef<HTMLDivElement>(null)
+    const fieldRef = useRef<HTMLDivElement>(null)
     const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
     const mask = masked && useMask(inputRef, masked)
 
-    useImperativeHandle(ref, () => selfRef && inputRef && {
+    useImperativeHandle(ref, () => fieldRef && inputRef && {
         ...inputRef.current,
-        ...selfRef.current,
+        ...fieldRef.current,
     })
 
     useEffect(() => {
@@ -46,35 +47,37 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
             } else if (inputRef.current) {
                 inputRef.current.value = props.value.toString()
             }
-            setEmpty(props.value === '')
         }
     }, [props.value])
 
     function onChange(event) {
-        props.onChange && props.onChange(event)
-        setEmpty(event.target.value === '')
+        props.onChange?.(event)
+    }
+    function onClear() {
+        if (inputRef.current) {
+            inputRef.current.value = ''
+            inputRef.current.dispatchEvent(
+                new Event('change')
+            )
+        }
     }
 
     return (
         <Field
             {...props}
-            ref={selfRef}
+            ref={fieldRef}
             decoration={decoration}
             size={size}
             shape={shape}
             focus={focus}
             styles={cs}
-            isLabelOutside={isLabelOutside}
-            isLabelOverlay={isLabelOverlay}
 
-            onClear={() => {
-                if (inputRef.current) inputRef.current.value = ''
-            }}
+            onClear={onClear}
             events={{
                 ...events.all,
                 onFocus: (e) => {
                     inputRef.current?.focus()
-                    attributes.onFocus(e)
+                    events.all.onFocus(e)
                 },
             }}
             attributes={{
@@ -86,7 +89,7 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
                 {
                     ref: inputRef,
                     onKeyUp: onChange,
-                    css: cs.input({isLabelOverlay}),
+                    css: cs.input({ size, multiline }),
 
                     defaultValue: props.defaultValue,
                     disabled: props.disabled,
@@ -116,10 +119,9 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
                     cols: props.cols,
                     rows: props.rows,
                     wrap: props.wrap,
-
                     tabIndex: props.tabIndex,
-                    onFocus: (e) => props.onFocus && props.onFocus(e),
-                    onBlur: (e) => props.onBlur && props.onBlur(e)
+                    onFocus: (e) => events.all.onFocus(e),
+                    onBlur: (e) => events.all.onBlur(e)
                 }
             )}
         />

@@ -39,7 +39,9 @@ export { default as Modal } from './layout/Modal'
 export { default as Notification } from './layout/Notification'
 export { default as Popover } from './layout/Popover'
 export { default as Tree } from './layout/Tree'
+export { default as ScrollView } from './layout/ScrollView'
 export { default as Viewport } from './layout/Viewport'
+
 /**
  * Utils
  */
@@ -88,6 +90,7 @@ export function transformImports (importName, matches) {
         case 'Notification': return '@flow-ui/core/layout/Notification'
         case 'Popover': return '@flow-ui/core/layout/Popover'
         case 'Tree': return '@flow-ui/core/layout/Tree'
+        case 'ScrollView': return '@flow-ui/core/layout/ScrollView'
         case 'Viewport': return '@flow-ui/core/layout/Viewport'
         /**
          * Utils

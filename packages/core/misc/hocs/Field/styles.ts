@@ -1,4 +1,4 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import WhaleTypes, { EmotionStyles } from '@flow-ui/whale/types'
 import callProp from '../../utils/callProp'
 import Types from './types'
 
@@ -9,16 +9,11 @@ type ExtractFunction<T> = {
 const fieldStyles = <T extends Types.Overrides>(
     props: Omit<Types.Props, 'onChange'>,
     theme: WhaleTypes.Theme,
-    params: {
-        manyLines?: boolean
-        additionalPadding?: string
-        labelOverlayPosition?: 'top' | 'center'
-        overrides?: Partial<ExtractFunction<WhaleTypes.Styles<T>>>
-    } = {}): WhaleTypes.Styles<Types.Overrides> => {
+    stylePatch?: Partial<ExtractFunction<WhaleTypes.Styles<T>>>
+): WhaleTypes.Styles<Types.Overrides> => {
 
     const color = callProp(props.color, theme.color)
-    const { manyLines, overrides, additionalPadding, labelOverlayPosition, } = params
-
+  
     return {
         container: (variant) => [
             {
@@ -30,7 +25,7 @@ const fieldStyles = <T extends Types.Overrides>(
                 overflow: 'hidden',
                 outline: 'none'
             },
-            overrides?.container?.(variant)
+            stylePatch?.container?.(variant)
         ],
 
         field: (variant) => [
@@ -40,99 +35,70 @@ const fieldStyles = <T extends Types.Overrides>(
                 flexGrow: 1,
                 background: theme.color.surface.css(),
                 borderColor: theme.color.lightest.css(),
+                borderRadius: theme.radius.narrow,
+                borderWidth: '1px',
+                borderStyle: 'solid',
                 outline: 'none',
-                padding: '.25rem',
                 display: 'flex',
                 alignItems: 'stretch',
                 boxSizing: 'border-box',
-                '--headingLabelHeight': `calc(${theme.typography.text.m.lineHeight} + .25rem${additionalPadding ? ' + ' + additionalPadding : ''})`
             },
+            theme.assets.field.m,
+            theme.typography.text.m,
             variant({
                 shape: {
-                    rounded: [{
-                        borderRadius: theme.radius.narrow
-                    }],
+                    square: {
+                        borderRadius: 0
+                    },
                     round: [
+                        {
+                            borderRadius: `calc(${theme.assets.field.m.minHeight}/2)`
+                        },
                         variant({
                             size: {
-                                xl: { borderRadius: '1.75rem' },
-                                l:  { borderRadius: '2.062rem' },
-                                m:  { borderRadius: '1.25rem' },
-                                s:  { borderRadius: '1rem' },
-                                xs: { borderRadius: '0.812rem' }
+                                xl: { borderRadius: `calc(${theme.assets.field.xl.minHeight}/2)` },
+                                l:  { borderRadius: `calc(${theme.assets.field.l.minHeight}/2)` },
+                                s:  { borderRadius: `calc(${theme.assets.field.s.minHeight}/2)` },
+                                xs: { borderRadius: `calc(${theme.assets.field.xs.minHeight}/2)` }
                             },
                         })
                     ]
                 },
                 size: {
-                    'xs': [
-                        {
-                            flexBasis: theme.assets.fieldHeight.xs,
-                            ...theme.typography.text.xs,
-                            '--headingLabelHeight': `
-                                calc(${theme.typography.text.xs.lineHeight} + 2px${additionalPadding ? ' + ' + additionalPadding : ''})
-                            `
-                        },
-                        !manyLines && {
-                            padding: '.25rem .375rem'
-                        }
+                    xs: [
+                        theme.assets.field.xs,
+                        theme.typography.text.xs,
                     ],
-                    's': [
-                        {
-                            flexBasis: theme.assets.fieldHeight.s,
-                            ...theme.typography.text.m,
-                            '--headingLabelHeight': `
-                                calc(${theme.typography.text.xs.lineHeight} + 2px${additionalPadding ? ' + ' + additionalPadding : ''})
-                            `
-                        },
-                        !manyLines && {
-                            padding: '.25rem .5rem'
-                        }
+                    s: [
+                        theme.assets.field.s,
+                        theme.typography.text.s,
                     ],
-                    'm': [
-                        {
-                            flexBasis: theme.assets.fieldHeight.m,
-                            ...theme.typography.text.m,
-                        },
-                        !manyLines && {
-                            padding: '.25rem .75rem'
-                        }
+                    l: [
+                        theme.assets.field.l,
+                        theme.typography.text.l,
                     ],
-                    'l': [
-                        {
-                            flexBasis: theme.assets.fieldHeight.l,
-                            ...theme.typography.header.l
-                        },
-                        !manyLines && {
-                            padding: '.25rem .875rem'
-                        }
-                    ],
-                    'xl': [
-                        {
-                            flexBasis: theme.assets.fieldHeight.xl,
-                            ...theme.typography.header.xl
-                        },
-                        !manyLines && {
-                            padding: '.5rem 1rem'
-                        }
+                    xl: [
+                        theme.assets.field.xl,
+                        theme.typography.text.xl,
                     ]
                 },
+                focus: {
+                    borderColor: theme.color.primary.css()
+                },
+                disabled: {
+                    color: theme.color.light.css(),
+                    cursor: 'not-allowed'
+                },
                 decoration: {
-                    'outline': [
-                        {
-                            borderWidth: '1px',
-                            borderStyle: 'solid'
-                        },
+                    outline: [
                         variant({
                             disabled: [{
                                 background: theme.color.lightest.css(),
                             }]
                         })
                     ],
-                    'filled': [
+                    filled: [
                         {
-                            borderWidth: '1px',
-                            borderStyle: 'solid',
                             borderColor: 'transparent'
                         },
                         variant({
@@ -141,101 +107,61 @@ const fieldStyles = <T extends Types.Overrides>(
                             }]
                         })
                     ],
-                    'underline': [{
-                        borderBottomWidth: '1px',
-                        borderBottomStyle: 'solid',
+                    underline: {
+                        borderTopColor: 'transparent',
+                        borderLeftColor: 'transparent',
+                        borderRightColor: 'transparent',
                         background: 'transparent',
                         paddingLeft: 0,
                         paddingRight: 0,
-                    }],
-                    'none': [{
+                        borderRadius: 0,
+                    },
+                    none: {
                         background: 'transparent',
-                    }]
+                        borderColor: 'transparent',
+                    }
                 },
-                focus: [{
-                    borderColor: theme.color.primary.css()
-                }],
-                disabled: [{
-                    color: theme.color.light.css(),
-                    cursor: 'not-allowed'
-                }]
             }),
-            {
-                borderColor: color,
-            },
-            overrides?.field?.(variant)
+            stylePatch?.field?.(variant)
         ],
 
         content: (variant) => [
             {
                 display: 'flex',
-                flexBasis: '12rem',
                 flexGrow: 1,
                 flexShrink: 1,
-                borderColor: 'inherit',
-                background: 'inherit',
                 flexDirection: 'column',
                 justifyContent: 'center',
                 overflow: 'hidden'
             },
-            variant({
-                isLabelOverlay: [{
-                    paddingTop: 'var(--headingLabelHeight)',
-                }]
-            }),
-            overrides?.content?.(variant)
+            stylePatch?.content?.(variant)
         ],
 
         label: (variant) => [
             {
                 color: theme.color.hard.css(),
-                paddingBottom: '.25rem',
-            },
-            additionalPadding && {
-                marginLeft: additionalPadding,
-                marginTop: additionalPadding
+                display: 'flex',
+                userSelect: 'none',
+                paddingBottom: '0.125rem'
             },
             theme.typography.text.m,
             variant({
                 size: {
-                    's': [
-                        {
-                            paddingBottom: '2px',
-                        },
-                        theme.typography.text.s
+                    xs: [
+                        theme.typography.text.xs,
                     ],
-                    'xs': [
-                        {
-                            paddingBottom: '2px',
-
-                        },
-                        theme.typography.text.xs
+                    s: [
+                        theme.typography.text.s,
+                    ],
+                    l: [
+                        theme.typography.text.l,
+                    ],
+                    xl: [
+                        theme.typography.text.xl,
                     ]
-                },
-                isLabelOutside: [{
-                    paddingBottom: '.25rem',
-                    paddingLeft: '.25rem',
-                }],
-                isLabelOverlay: [
-                    {
-                        fontSize: 'inherit',
-                        position: 'absolute',
-                        display: 'flex',
-                        userSelect: 'none',
-                        marginTop: 0,
-                        paddingBottom: 0
-                    },
-                    (!labelOverlayPosition || labelOverlayPosition === 'top') && {
-                        top: 0,
-                        paddingTop: 'var(--headingLabelHeight)'
-                    },
-                    labelOverlayPosition === 'center' && {
-                        top: '50%',
-                        transform: 'translateY(-50%)'
-                    }
-                ],
+                }
             }),
-            overrides?.label?.(variant)
+            stylePatch?.label?.(variant)
         ],
 
         child: (variant) => [
@@ -248,27 +174,44 @@ const fieldStyles = <T extends Types.Overrides>(
             },
             variant({
                 align: {
-                    right: variant({
-                        size: {
-                            'xs': [{ marginLeft: '.25rem' }],
-                            's': [{ marginLeft: '.25rem' }],
-                            'm': [{ marginLeft: '.5rem' }],
-                            'l': [{ marginLeft: '.5rem' }],
-                            'xl': [{ marginLeft: '.75rem' }],
-                        }
-                    }),
-                    left: variant({
-                        size: {
-                            'xs': [{ marginRight: '.25rem' }],
-                            's': [{ marginRight: '.25rem' }],
-                            'm': [{ marginRight: '.5rem' }],
-                            'l': [{ marginRight: '.5rem' }],
-                            'xl': [{ marginRight: '.75rem' }],
-                        }
-                    })
+                    left: [
+                        {
+                            marginRight: '.375rem' 
+                        },
+                        variant({
+                            size: {
+                                xs: { marginRight: '.125rem' },
+                                s: { marginRight: '.25rem' },
+                                l: { marginRight: '.5rem' },
+                                xl: { marginRight: '.75rem' },
+                            }
+                        })
+                    ],
+                    right: [
+                        {
+                            marginLeft: '.375rem'
+                        },
+                        variant({
+                            size: {
+                                xs: { marginLeft: '.125rem' },
+                                s: { marginLeft: '.25rem' },
+                                l: { marginLeft: '.5rem' },
+                                xl: { marginLeft: '.75rem' },
+                            }
+                        })
+                    ],
                 }
             }),
-            overrides?.child?.(variant)
+            stylePatch?.child?.(variant)
+        ],
+
+        clearButton: (variant) => [
+            {
+                ':hover': {
+                    color: theme.color.primary.css(),
+                }
+            },
+            stylePatch?.clearButton?.(variant)
         ],
 
         hint: (variant) => [
@@ -280,11 +223,11 @@ const fieldStyles = <T extends Types.Overrides>(
             },
             variant({
                 size: {
-                    's': [theme.typography.text.s],
-                    'xs': [theme.typography.text.xs]
+                    s: [theme.typography.text.s],
+                    xs: [theme.typography.text.xs]
                 }
             }),
-            overrides?.hint?.(variant)
+            stylePatch?.hint?.(variant)
         ]
     }
 }

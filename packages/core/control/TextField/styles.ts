@@ -4,33 +4,13 @@ import fieldStyles from '@flow-ui/core/misc/hocs/Field/styles'
 
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
     
-    const { 
-        size = 'm',
-        decoration = 'outline',
-        multiline, 
-    } = props
-
-    let multilineAdditionalPadding = ''
-
-    if (multiline) {
-        switch (size) {
-            case 'm':
-                multilineAdditionalPadding = '.25rem'
-                break
-            case 'l':
-                multilineAdditionalPadding = '.25rem'
-                break
-            case 'xl':
-                multilineAdditionalPadding = '.5rem'
-                break
-        }
-    }
+    const minHeight =
+        theme.assets.field[props.size || 'm']?.minHeight ||
+        theme.assets.field.m.minHeight ||
+        '2.5rem'
 
     return {
-        ...fieldStyles(props, theme, {
-            manyLines: multiline,
-            additionalPadding: multilineAdditionalPadding
-        }),
+        ...fieldStyles(props, theme, {}),
         input: (variant) => [
             {
                 outline: 0,
@@ -46,16 +26,14 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 cursor: 'inherit',
                 '&::placeholder': {
                     color: theme.color.light.css()
-                }
-            },
-            multiline && decoration != 'underline' && {
-                padding: multilineAdditionalPadding
+                },
             },
             variant({
-                isLabelOverlay: [{
-                    opacity: '0'
-                }]
-            }),   
+                multiline: {
+                    margin: `calc(${minHeight} / 4.5) 0`,
+                    minHeight: `calc(${minHeight} * 2)`
+                },
+            })
         ],
     }
 }

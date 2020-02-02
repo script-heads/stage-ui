@@ -10,32 +10,27 @@ declare namespace SelectTypes {
     interface Props extends Omit<FieldTypes.Props, 'onChange'> {
         placeholder?: string
         options: Option[]
+        /**
+         * Allow selecting multiple values
+         */
         multiselect?: boolean
+        /**
+         * Allow search values
+         */
         searchable?: boolean
+        /**
+         * Select will not close after
+         * option clicked
+         */
+        keepOpen?: boolean
         values?: Option[]
         defaultValues?: Option[]
+        /**
+         * Max size of scroll area
+         * at select drop view
+         */
+        maxScrollHeight?: string
         onChange?: (values: Option[], changedValue?: Option) => void
-    }
-
-    type Actions = 
-    {
-        type: 'setSelectedOptions'
-        payload: Option[]
-    } |
-    {
-        type: 'toggleOpen'
-        payload: boolean
-    } |
-    {
-        type: 'search'
-        payload: string
-    } |
-    {
-        type: 'setCursor'
-        payload: number
-    } |
-    {
-        type: 'clear'
     }
 
     type State = {
@@ -61,29 +56,28 @@ declare namespace SelectTypes {
         defaultValue?: string
         disabled?: boolean
     }
-    
-    interface Overrides extends FieldTypes.Overrides<{field: {open: boolean}}> {
-        placeholder: void
-        input: void
-        options: void
-        optionItem: void
-        optionItemText: {
-            size: Props['size']
+
+    interface StyleState {
+        shape: Props['shape']
+        size: Props['size'] 
+        decoration: Props['decoration']
+    }
+
+    interface StyleParams {
+        isOpen: boolean
+    }
+    interface Overrides extends FieldTypes.Overrides {
+        selectedOptionInput: {
+            searchMode: boolean
+            multiselect: boolean
         }
-        dropIcon: {
-            size: Props['size']
-        }
-        dropMenu: {
-            open: boolean
-            shape: Props['shape']
-            size: Props['size']
-            decoration: Props['decoration']
-            focus: boolean
-        }
-        dropItem: {
-            size: Props['size']
-            underCursor: boolean
-        }
+        
+        selectedOptionsContainer: void
+        tag: StyleState
+        tagRemove: StyleState
+
+        drop: StyleState
+        dropItem: StyleState
     }
 }
 

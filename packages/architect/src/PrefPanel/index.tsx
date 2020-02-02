@@ -1,7 +1,7 @@
 import { ArchitectTools } from '@flow-ui/architect/types'
 import { Block, Divider, Flexbox, Menu, Paragraph, useTheme } from '@flow-ui/core'
 import { Copy, Cube, Link, Trash2 } from '@flow-ui/core/icons'
-import { ScrollView } from '@flow-ui/lab'
+import { ScrollView } from '@flow-ui/core'
 import { Fragment } from 'react'
 import { componentsTypography } from '../RenderPanel'
 import BooleanControls from './controls/boolean'

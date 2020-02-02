@@ -38,7 +38,7 @@ declare module 'layout/Split/Separator' {
 
 }
 declare module 'layout/Split/types' {
-	/// <reference types="react" />
+	import React from 'react';
 	import WhaleTypes from '@flow-ui/whale/types'; namespace SplitTypes {
 	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onMove' | 'onChange'> {
 	        direction?: 'row' | 'column';
@@ -64,6 +64,7 @@ declare module 'layout/Split/types' {
 	        container: {
 	            vertical: boolean;
 	        };
+	        test: void;
 	    }
 	}
 	export default SplitTypes;
@@ -83,86 +84,6 @@ declare module 'layout/Split' {
 	    _onMove?: () => void;
 	    _onChange?: () => void;
 	}) | null; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
-
-}
-declare module 'layout/ScrollView/types' {
-	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types'; namespace ScrollViewTypes {
-	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
-	        children?: React.ReactNode;
-	        /**
-	         * Display mode
-	         * @default scroll
-	         */
-	        mode?: 'always' | 'scroll' | 'hidden';
-	        /**
-	         * Custom ScrollBar color
-	         */
-	        color?: WhaleTypes.ColorProp;
-	        /**
-	         * Bars size
-	         * @default m
-	         */
-	        size?: WhaleTypes.Size;
-	        /**
-	         * Bars shape
-	         * @default round
-	         */
-	        shape?: 'square' | 'round';
-	        /**
-	         * Position of X bar
-	         * @default bottom
-	         */
-	        xBarPosition?: 'top' | 'bottom';
-	        /**
-	         * Position of Y bar
-	         * @default right
-	         */
-	        yBarPosition?: 'left' | 'right';
-	    }
-	    interface Ref {
-	        scrollTop: () => void;
-	    }
-	    interface Overrides {
-	        container: void;
-	        content: void;
-	        yBar: {
-	            active: boolean;
-	            shape: Props['shape'];
-	            size: Props['size'];
-	            position: Props['yBarPosition'];
-	        };
-	        yThumb: {
-	            active: boolean;
-	            shape: Props['shape'];
-	            size: Props['size'];
-	        };
-	        xBar: {
-	            active: boolean;
-	            shape: Props['shape'];
-	            size: Props['size'];
-	            position: Props['xBarPosition'];
-	        };
-	        xThumb: {
-	            active: boolean;
-	            shape: Props['shape'];
-	            size: Props['size'];
-	        };
-	    }
-	}
-	export default ScrollViewTypes;
-
-}
-declare module 'layout/ScrollView/styles' {
-	import WhaleTypes from '@flow-ui/whale/types';
-	import Types from 'layout/ScrollView/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'layout/ScrollView' {
-	import React from 'react';
-	import Types from 'layout/ScrollView/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
 	export default _default;
 
 }
@@ -190,7 +111,6 @@ declare module '@flow-ui/lab' {
 	 * Layout
 	 */
 	export { default as Split } from 'layout/Split';
-	export { default as ScrollView } from 'layout/ScrollView';
 	/**
 	 * Control
 	 */

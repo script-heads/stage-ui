@@ -109,28 +109,23 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 },
                 size: {
                     'xs': [{
-                        padding: '0 .25rem',
-                        minHeight: theme.assets.fieldHeight.xs,
+                        ...theme.assets.field.xs,
                         ...theme.typography.text.xs
                     }],
                     's': [{
-                        padding: '0 .5rem',
-                        minHeight: theme.assets.fieldHeight.s,
+                        ...theme.assets.field.s,
                         ...theme.typography.text.s
                     }],
                     'm': [{
-                        padding: '0 .75rem',
-                        minHeight: theme.assets.fieldHeight.m,
+                        ...theme.assets.field.m,
                         ...theme.typography.text.m
                     }],
                     'l': [{
-                        padding: '0 1rem',
-                        minHeight: theme.assets.fieldHeight.l,
+                        ...theme.assets.field.l,
                         ...theme.typography.text.l
                     }],
                     'xl': [{
-                        padding: '0 1.25rem',
-                        minHeight: theme.assets.fieldHeight.xl,
+                        ...theme.assets.field.xl,
                         ...theme.typography.header.xs,
                     }]
                 }

@@ -1,7 +1,7 @@
 import { ArchitectTools } from '@flow-ui/architect/types'
 import { Block, useTheme, Flexbox, Divider, TextField, Text, Menu, Header } from '@flow-ui/core'
 import styles from './styles'
-import { ScrollView } from '@flow-ui/lab'
+import { ScrollView } from '@flow-ui/core'
 import { useState } from 'react'
 import { Search, Grid, Layers, ArrowCircleDown } from '@flow-ui/core/icons'
 

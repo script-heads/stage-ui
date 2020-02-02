@@ -1,5 +1,5 @@
 declare module '@flow-ui/whale/types' {
-	/// <reference types="react" />
+	import React from 'react';
 	import chroma from 'chroma-js';
 	import CSS from 'csstype';
 	import { Interpolation, SerializedStyles, ObjectInterpolation } from '@emotion/core'; namespace WhaleTypes {
@@ -86,7 +86,10 @@ declare module '@flow-ui/whale/types' {
 	            long: string;
 	        };
 	        focus: EmotionStyles;
-	        fieldHeight: Record<Size, string>;
+	        field: Record<Size, {
+	            minHeight: string;
+	            padding: string;
+	        }>;
 	    }
 	    /**
 	     * All typical component props
@@ -513,7 +516,7 @@ declare module '@flow-ui/whale/types' {
 	    type Variant<Style> = (variants: Partial<{
 	        [StyleName in keyof Style]: Partial<Record<Extract<Style[StyleName], string>, EmotionStyles>>;
 	    }>) => EmotionStyles;
-	    type CreateStyles<Overrides, Props = {}> = (props: Props, theme: WhaleTypes.Theme) => WhaleTypes.Styles<Overrides>;
+	    type CreateStyles<Overrides, Props = {}, T = {}> = (props: Props, theme: WhaleTypes.Theme, params?: T) => WhaleTypes.Styles<Overrides>;
 	} module 'csstype' {
 	    interface Properties {
 	        display?: 'block' | 'inline' | 'inline-block' | 'inline-table' | 'list-item' | 'none' | 'run-in' | 'table' | 'table-caption' | 'table-cell' | 'table-column-group' | 'table-column' | 'table-footer-group' | 'table-header-group' | 'table-row' | 'table-row-group' | 'flex' | 'grid';
@@ -704,9 +707,9 @@ declare module 'utils/attributeProps' {
 	            onSubmitCapture: any;
 	            onInvalid: any;
 	            onInvalidCapture: any;
-	            onFocus: (event: any) => void;
+	            onFocus: (e: any) => void;
 	            onFocusCapture: any;
-	            onBlur: (event: any) => void;
+	            onBlur: (e: any) => void;
 	            onBlurCapture: any;
 	            onCompositionEnd: any;
 	            onCompositionEndCapture: any;
@@ -738,9 +741,9 @@ declare module 'utils/attributeProps' {
 	            onCompositionUpdateCapture: any;
 	        };
 	        focusEvents: {
-	            onFocus: (event: any) => void;
+	            onFocus: (e: any) => void;
 	            onFocusCapture: any;
-	            onBlur: (event: any) => void;
+	            onBlur: (e: any) => void;
 	            onBlurCapture: any;
 	        };
 	        formEvents: {
@@ -995,7 +998,7 @@ declare module 'hooks/useComponent' {
 	    };
 	    mouseFocus?: boolean;
 	    focusDecoration?: boolean;
-	} const useComponent: <S>(overrideName: string, options: Options<S>) => {
+	} const useComponent: <S, P>(overrideName: string, options: Options<S>, params?: {}) => {
 	    cs: WhaleTypes.ComponentStyles<S>;
 	    attributes: any;
 	    events: {
@@ -1142,9 +1145,9 @@ declare module 'hooks/useComponent' {
 	            onSubmitCapture: any;
 	            onInvalid: any;
 	            onInvalidCapture: any;
-	            onFocus: (event: any) => void;
+	            onFocus: (e: any) => void;
 	            onFocusCapture: any;
-	            onBlur: (event: any) => void;
+	            onBlur: (e: any) => void;
 	            onBlurCapture: any;
 	            onCompositionEnd: any;
 	            onCompositionEndCapture: any;
@@ -1176,9 +1179,9 @@ declare module 'hooks/useComponent' {
 	            onCompositionUpdateCapture: any;
 	        };
 	        focusEvents: {
-	            onFocus: (event: any) => void;
+	            onFocus: (e: any) => void;
 	            onFocusCapture: any;
-	            onBlur: (event: any) => void;
+	            onBlur: (e: any) => void;
 	            onBlurCapture: any;
 	        };
 	        formEvents: {

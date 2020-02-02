@@ -4,7 +4,6 @@ import WhaleTypes from '@flow-ui/whale/types'
 import { RefObject, useRef } from 'react'
 import Mask, { MaskRefs } from './Mask'
 import styles from './styles'
-import { ScrollView } from '@flow-ui/lab'
 
 export const componentsInvisibleWhenEmpty = [
     'Block',
@@ -53,7 +52,6 @@ const RenderItem = (props: RenderItemProps) => {
     let Component = (props) => (
         <Text 
             align="center"
-            size={2} 
             color={c => c.error.hex()}
             children={`⚠ ${item.component} not found ⚠`}    
         />
@@ -210,7 +208,6 @@ const Render = (props: { tools: ArchitectTools }) => {
                 <Flexbox justifyContent="center" pt="4.75rem" css={{ position: 'absolute', width: '100%' }}>
                     <Paragraph
                         align="center"
-                        size={2}
                         color={c => c.light.hex()}
                         children="Create any component by droping it here."
                     />

@@ -40,18 +40,18 @@ export default (props, theme, mouseFocus?: boolean, focusDecoration?: boolean) =
     }
     
     const focusEvents = {
-        onFocus: (event) => {
-            event.stopPropagation()
+        onFocus: (e) => {
+            e.stopPropagation()
             if (mouseFocus || !isMouseDown) {
                 setFocus(true)
             }
-            props.onFocus && props.onFocus(event)
+            props.onFocus && props.onFocus(e)
         },
         onFocusCapture: props.onFocusCapture,
-        onBlur: (event) => {
-            event.stopPropagation()
+        onBlur: (e) => {
+            e.stopPropagation()
             setFocus(false)
-            props.onBlur && props.onBlur(event)
+            props.onBlur && props.onBlur(eval)
         },
         onBlurCapture: props.onBlurCapture,
     }

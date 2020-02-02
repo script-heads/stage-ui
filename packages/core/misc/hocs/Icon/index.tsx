@@ -18,6 +18,7 @@ const Svg: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref) =
         <span
             {...attributes}
             {...events.all}
+            
             ref={ref}
             css={cs.container({ 
                 size, 

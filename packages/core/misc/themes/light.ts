@@ -145,12 +145,27 @@ const Light: WhaleTypes.SourceTheme = {
         focus: {
             boxShadow: '0 0 0 3px ' + theme.color.primary.alpha(.3).css()
         },
-        fieldHeight: {
-            xs: '1.5rem',
-            s: '2rem',
-            m: '2.5rem',
-            l: '3rem',
-            xl: '3.5rem',
+        field: {
+            xs: {
+                padding: '0 0.25rem',
+                minHeight: '1.5rem',
+            },
+            s: {
+                padding: '0 0.5rem',
+                minHeight: '2rem',
+            },
+            m: {
+                padding: '0 0.75rem',
+                minHeight: '2.5rem',
+            },
+            l: {
+                padding: '0 1rem',
+                minHeight: '3rem',
+            },
+            xl: {
+                padding: '0 1.25rem',
+                minHeight: '3.5rem',
+            },
         }
     }),
     overrides: {}

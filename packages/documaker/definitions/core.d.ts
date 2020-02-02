@@ -298,8 +298,6 @@ declare module 'misc/hocs/Field/types' {
 	        shape: Props['shape'];
 	        size: Props['size'];
 	        decoration: Props['decoration'];
-	        isLabelOutside: boolean;
-	        isLabelOverlay: boolean;
 	    }
 	    interface Overrides<T extends {
 	        [T in keyof Overrides]?: Object;
@@ -311,12 +309,11 @@ declare module 'misc/hocs/Field/types' {
 	        child: {
 	            align: 'right' | 'left';
 	        } & State & T['child'];
+	        clearButton: State & T['clearButton'];
 	        hint: State & T['hint'];
 	    }
 	    interface PrivateProps extends Props {
 	        focus: boolean;
-	        isLabelOutside: boolean;
-	        isLabelOverlay: boolean;
 	        styles: WhaleTypes.ComponentStyles<Overrides>;
 	        state?: Object;
 	        labelName?: string;
@@ -427,28 +424,29 @@ declare module 'control/Calendar/DateGridMonth' {
 }
 declare module 'misc/hocs/Icon/types' {
 	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types';
-	import CSS from 'csstype'; namespace IconTypes {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace IconTypes {
 	    /**
 	     * TODO: circle и oval добавляют только padding
 	     */
-	    type Shapes = 'circle' | 'oval' | 'square';
+	    type IconShapes = 'circle' | 'oval' | 'square';
+	    type IconType = 'filled' | 'outline';
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        svg: React.ReactElement;
-	        shape?: Shapes;
-	        size?: CSS.Properties['fontSize'];
+	        shape?: IconShapes;
+	        size?: WhaleTypes.Size | string;
 	        color?: WhaleTypes.ColorProp;
 	        background?: WhaleTypes.ColorProp;
+	        rotate?: number;
 	    }
 	    interface IconProps extends Omit<Props, 'svg'> {
-	        type?: 'filled' | 'outline';
-	        shape?: Shapes;
-	        size?: CSS.Properties['fontSize'];
-	        color?: WhaleTypes.ColorProp;
-	        background?: WhaleTypes.ColorProp;
+	        type?: IconType;
 	    }
 	    interface Overrides {
-	        container: void;
+	        container: {
+	            shape?: IconShapes;
+	            size: WhaleTypes.Size | string;
+	            clickable?: boolean;
+	        };
 	        icon: void;
 	    }
 	}
@@ -2134,9 +2132,7 @@ declare module 'control/DatePicker/types' {
 	        drop: {
 	            isActive: boolean;
 	        };
-	        input: {
-	            isLabelOverlay: boolean;
-	        };
+	        input: void;
 	    }
 	}
 	export default DatePickerTypes;
@@ -2243,27 +2239,28 @@ declare module 'control/Select/types' {
 	    interface Props extends Omit<FieldTypes.Props, 'onChange'> {
 	        placeholder?: string;
 	        options: Option[];
+	        /**
+	         * Allow selecting multiple values
+	         */
 	        multiselect?: boolean;
+	        /**
+	         * Allow search values
+	         */
 	        searchable?: boolean;
+	        /**
+	         * Select will not close after
+	         * option clicked
+	         */
+	        keepOpen?: boolean;
 	        values?: Option[];
 	        defaultValues?: Option[];
+	        /**
+	         * Max size of scroll area
+	         * at select drop view
+	         */
+	        maxScrollHeight?: string;
 	        onChange?: (values: Option[], changedValue?: Option) => void;
 	    }
-	    type Actions = {
-	        type: 'setSelectedOptions';
-	        payload: Option[];
-	    } | {
-	        type: 'toggleOpen';
-	        payload: boolean;
-	    } | {
-	        type: 'search';
-	        payload: string;
-	    } | {
-	        type: 'setCursor';
-	        payload: number;
-	    } | {
-	        type: 'clear';
-	    };
 	    type State = {
 	        selectedOptions: Option[];
 	        open: boolean;
@@ -2285,30 +2282,24 @@ declare module 'control/Select/types' {
 	        defaultValue?: string;
 	        disabled?: boolean;
 	    }
-	    interface Overrides extends FieldTypes.Overrides<{
-	        field: {
-	            open: boolean;
+	    interface StyleState {
+	        shape: Props['shape'];
+	        size: Props['size'];
+	        decoration: Props['decoration'];
+	    }
+	    interface StyleParams {
+	        isOpen: boolean;
+	    }
+	    interface Overrides extends FieldTypes.Overrides {
+	        selectedOptionInput: {
+	            searchMode: boolean;
+	            multiselect: boolean;
 	        };
-	    }> {
-	        placeholder: void;
-	        input: void;
-	        options: void;
-	        optionItem: void;
-	        optionItemText: void;
-	        dropIcon: {
-	            size: Props['size'];
-	        };
-	        dropMenu: {
-	            open: boolean;
-	            shape: Props['shape'];
-	            size: Props['size'];
-	            decoration: Props['decoration'];
-	            focus: boolean;
-	        };
-	        dropItem: {
-	            size: Props['size'];
-	            underCursor: boolean;
-	        };
+	        selectedOptionsContainer: void;
+	        tag: StyleState;
+	        tagRemove: StyleState;
+	        drop: StyleState;
+	        dropItem: StyleState;
 	    }
 	}
 	export default SelectTypes;
@@ -2339,7 +2330,8 @@ declare module 'control/Switch/types' {
 declare module 'control/TextField/types' {
 	import { ChangeEventHandler } from 'react';
 	import IMask from 'imask';
-	import FieldTypes from 'misc/hocs/Field/types'; namespace TextFieldTypes {
+	import FieldTypes from 'misc/hocs/Field/types';
+	import WhaleTypes from '@flow-ui/whale/types'; namespace TextFieldTypes {
 	    type InputTypes = 'email' | 'hidden' | 'number' | 'password' | 'reset' | 'search' | 'tel' | 'text' | 'url';
 	    interface Props extends FieldTypes.Props, InputProps, TextAreaProps {
 	        defaultValue?: string | number;
@@ -2379,7 +2371,8 @@ declare module 'control/TextField/types' {
 	    }
 	    interface Overrides extends FieldTypes.Overrides {
 	        input: {
-	            isLabelOverlay: boolean;
+	            multiline: boolean;
+	            size: WhaleTypes.Size;
 	        };
 	    }
 	}
@@ -2914,11 +2907,6 @@ declare module 'layout/Viewport/types' {
 	export default ViewportTypes;
 
 }
-declare module 'misc/utils/createID' {
-	 const _default: () => string;
-	export default _default;
-
-}
 declare module 'layout/Viewport/MountArea' {
 	import React, { FC } from 'react';
 	import ViewportTypes from 'layout/Viewport/types';
@@ -3022,12 +3010,7 @@ declare module 'misc/hocs/Field/styles' {
 	import WhaleTypes from '@flow-ui/whale/types';
 	import Types from 'misc/hocs/Field/types'; type ExtractFunction<T> = {
 	    [K in keyof T]: Extract<T[K], Function>;
-	}; const fieldStyles: <T extends Types.Overrides<{}>>(props: Pick<Types.Props, "alignSelf" | "backgroundColor" | "color" | "display" | "flexBasis" | "flexGrow" | "flexShrink" | "gridColumnEnd" | "gridColumnStart" | "gridRowEnd" | "gridRowStart" | "justifySelf" | "visibility" | "borderColor" | "borderRadius" | "borderStyle" | "borderWidth" | "flex" | "gridArea" | "gridColumn" | "gridRow" | "placeSelf" | "size" | "style" | "disabled" | "label" | "p" | "className" | "id" | "tabIndex" | "role" | "draggable" | "attrs" | "aria-activedescendant" | "aria-atomic" | "aria-autocomplete" | "aria-busy" | "aria-checked" | "aria-colcount" | "aria-colindex" | "aria-colspan" | "aria-controls" | "aria-current" | "aria-describedby" | "aria-details" | "aria-disabled" | "aria-dropeffect" | "aria-errormessage" | "aria-expanded" | "aria-flowto" | "aria-grabbed" | "aria-haspopup" | "aria-hidden" | "aria-invalid" | "aria-keyshortcuts" | "aria-label" | "aria-labelledby" | "aria-level" | "aria-live" | "aria-modal" | "aria-multiline" | "aria-multiselectable" | "aria-orientation" | "aria-owns" | "aria-placeholder" | "aria-posinset" | "aria-pressed" | "aria-readonly" | "aria-relevant" | "aria-required" | "aria-roledescription" | "aria-rowcount" | "aria-rowindex" | "aria-rowspan" | "aria-selected" | "aria-setsize" | "aria-sort" | "aria-valuemax" | "aria-valuemin" | "aria-valuenow" | "aria-valuetext" | "onCopy" | "onCopyCapture" | "onCut" | "onCutCapture" | "onPaste" | "onPasteCapture" | "onCompositionEnd" | "onCompositionEndCapture" | "onCompositionStart" | "onCompositionStartCapture" | "onCompositionUpdate" | "onCompositionUpdateCapture" | "onFocus" | "onFocusCapture" | "onBlur" | "onBlurCapture" | "onChangeCapture" | "onBeforeInput" | "onBeforeInputCapture" | "onInput" | "onInputCapture" | "onReset" | "onResetCapture" | "onSubmit" | "onSubmitCapture" | "onInvalid" | "onInvalidCapture" | "onLoad" | "onLoadCapture" | "onError" | "onErrorCapture" | "onKeyDown" | "onKeyDownCapture" | "onKeyPress" | "onKeyPressCapture" | "onKeyUp" | "onKeyUpCapture" | "onAbort" | "onAbortCapture" | "onCanPlay" | "onCanPlayCapture" | "onCanPlayThrough" | "onCanPlayThroughCapture" | "onDurationChange" | "onDurationChangeCapture" | "onEmptied" | "onEmptiedCapture" | "onEncrypted" | "onEncryptedCapture" | "onEnded" | "onEndedCapture" | "onLoadedData" | "onLoadedDataCapture" | "onLoadedMetadata" | "onLoadedMetadataCapture" | "onLoadStart" | "onLoadStartCapture" | "onPause" | "onPauseCapture" | "onPlay" | "onPlayCapture" | "onPlaying" | "onPlayingCapture" | "onProgress" | "onProgressCapture" | "onRateChange" | "onRateChangeCapture" | "onSeeked" | "onSeekedCapture" | "onSeeking" | "onSeekingCapture" | "onStalled" | "onStalledCapture" | "onSuspend" | "onSuspendCapture" | "onTimeUpdate" | "onTimeUpdateCapture" | "onVolumeChange" | "onVolumeChangeCapture" | "onWaiting" | "onWaitingCapture" | "onAuxClick" | "onAuxClickCapture" | "onClick" | "onClickCapture" | "onContextMenu" | "onContextMenuCapture" | "onDoubleClick" | "onDoubleClickCapture" | "onDrag" | "onDragCapture" | "onDragEnd" | "onDragEndCapture" | "onDragEnter" | "onDragEnterCapture" | "onDragExit" | "onDragExitCapture" | "onDragLeave" | "onDragLeaveCapture" | "onDragOver" | "onDragOverCapture" | "onDragStart" | "onDragStartCapture" | "onDrop" | "onDropCapture" | "onMouseDown" | "onMouseDownCapture" | "onMouseEnter" | "onMouseLeave" | "onMouseMove" | "onMouseMoveCapture" | "onMouseOut" | "onMouseOutCapture" | "onMouseOver" | "onMouseOverCapture" | "onMouseUp" | "onMouseUpCapture" | "onSelect" | "onSelectCapture" | "onTouchCancel" | "onTouchCancelCapture" | "onTouchEnd" | "onTouchEndCapture" | "onTouchMove" | "onTouchMoveCapture" | "onTouchStart" | "onTouchStartCapture" | "onPointerDown" | "onPointerDownCapture" | "onPointerMove" | "onPointerMoveCapture" | "onPointerUp" | "onPointerUpCapture" | "onPointerCancel" | "onPointerCancelCapture" | "onPointerEnter" | "onPointerLeave" | "onPointerOver" | "onPointerOverCapture" | "onPointerOut" | "onPointerOutCapture" | "onGotPointerCapture" | "onGotPointerCaptureCapture" | "onLostPointerCapture" | "onLostPointerCaptureCapture" | "onScroll" | "onScrollCapture" | "onWheel" | "onWheelCapture" | "onAnimationStart" | "onAnimationStartCapture" | "onAnimationEnd" | "onAnimationEndCapture" | "onAnimationIteration" | "onAnimationIterationCapture" | "onTransitionEnd" | "onTransitionEndCapture" | "styles" | "animated" | "textColor" | "px" | "py" | "pr" | "pl" | "pt" | "pb" | "w" | "h" | "m" | "mx" | "my" | "mr" | "ml" | "mt" | "mb" | "shape" | "onEnter" | "decoration" | "hint" | "rightChild" | "leftChild" | "clearable" | "onClear">, theme: WhaleTypes.Theme<{}>, params?: {
-	    manyLines?: boolean | undefined;
-	    additionalPadding?: string | undefined;
-	    labelOverlayPosition?: "top" | "center" | undefined;
-	    overrides?: Partial<ExtractFunction<WhaleTypes.Styles<T>>> | undefined;
-	}) => WhaleTypes.Styles<Types.Overrides<{}>>;
+	}; const fieldStyles: <T extends Types.Overrides<{}>>(props: Pick<Types.Props, "alignSelf" | "backgroundColor" | "color" | "display" | "flexBasis" | "flexGrow" | "flexShrink" | "gridColumnEnd" | "gridColumnStart" | "gridRowEnd" | "gridRowStart" | "justifySelf" | "visibility" | "borderColor" | "borderRadius" | "borderStyle" | "borderWidth" | "flex" | "gridArea" | "gridColumn" | "gridRow" | "placeSelf" | "size" | "style" | "disabled" | "label" | "p" | "className" | "id" | "tabIndex" | "role" | "draggable" | "attrs" | "aria-activedescendant" | "aria-atomic" | "aria-autocomplete" | "aria-busy" | "aria-checked" | "aria-colcount" | "aria-colindex" | "aria-colspan" | "aria-controls" | "aria-current" | "aria-describedby" | "aria-details" | "aria-disabled" | "aria-dropeffect" | "aria-errormessage" | "aria-expanded" | "aria-flowto" | "aria-grabbed" | "aria-haspopup" | "aria-hidden" | "aria-invalid" | "aria-keyshortcuts" | "aria-label" | "aria-labelledby" | "aria-level" | "aria-live" | "aria-modal" | "aria-multiline" | "aria-multiselectable" | "aria-orientation" | "aria-owns" | "aria-placeholder" | "aria-posinset" | "aria-pressed" | "aria-readonly" | "aria-relevant" | "aria-required" | "aria-roledescription" | "aria-rowcount" | "aria-rowindex" | "aria-rowspan" | "aria-selected" | "aria-setsize" | "aria-sort" | "aria-valuemax" | "aria-valuemin" | "aria-valuenow" | "aria-valuetext" | "onCopy" | "onCopyCapture" | "onCut" | "onCutCapture" | "onPaste" | "onPasteCapture" | "onCompositionEnd" | "onCompositionEndCapture" | "onCompositionStart" | "onCompositionStartCapture" | "onCompositionUpdate" | "onCompositionUpdateCapture" | "onFocus" | "onFocusCapture" | "onBlur" | "onBlurCapture" | "onChangeCapture" | "onBeforeInput" | "onBeforeInputCapture" | "onInput" | "onInputCapture" | "onReset" | "onResetCapture" | "onSubmit" | "onSubmitCapture" | "onInvalid" | "onInvalidCapture" | "onLoad" | "onLoadCapture" | "onError" | "onErrorCapture" | "onKeyDown" | "onKeyDownCapture" | "onKeyPress" | "onKeyPressCapture" | "onKeyUp" | "onKeyUpCapture" | "onAbort" | "onAbortCapture" | "onCanPlay" | "onCanPlayCapture" | "onCanPlayThrough" | "onCanPlayThroughCapture" | "onDurationChange" | "onDurationChangeCapture" | "onEmptied" | "onEmptiedCapture" | "onEncrypted" | "onEncryptedCapture" | "onEnded" | "onEndedCapture" | "onLoadedData" | "onLoadedDataCapture" | "onLoadedMetadata" | "onLoadedMetadataCapture" | "onLoadStart" | "onLoadStartCapture" | "onPause" | "onPauseCapture" | "onPlay" | "onPlayCapture" | "onPlaying" | "onPlayingCapture" | "onProgress" | "onProgressCapture" | "onRateChange" | "onRateChangeCapture" | "onSeeked" | "onSeekedCapture" | "onSeeking" | "onSeekingCapture" | "onStalled" | "onStalledCapture" | "onSuspend" | "onSuspendCapture" | "onTimeUpdate" | "onTimeUpdateCapture" | "onVolumeChange" | "onVolumeChangeCapture" | "onWaiting" | "onWaitingCapture" | "onAuxClick" | "onAuxClickCapture" | "onClick" | "onClickCapture" | "onContextMenu" | "onContextMenuCapture" | "onDoubleClick" | "onDoubleClickCapture" | "onDrag" | "onDragCapture" | "onDragEnd" | "onDragEndCapture" | "onDragEnter" | "onDragEnterCapture" | "onDragExit" | "onDragExitCapture" | "onDragLeave" | "onDragLeaveCapture" | "onDragOver" | "onDragOverCapture" | "onDragStart" | "onDragStartCapture" | "onDrop" | "onDropCapture" | "onMouseDown" | "onMouseDownCapture" | "onMouseEnter" | "onMouseLeave" | "onMouseMove" | "onMouseMoveCapture" | "onMouseOut" | "onMouseOutCapture" | "onMouseOver" | "onMouseOverCapture" | "onMouseUp" | "onMouseUpCapture" | "onSelect" | "onSelectCapture" | "onTouchCancel" | "onTouchCancelCapture" | "onTouchEnd" | "onTouchEndCapture" | "onTouchMove" | "onTouchMoveCapture" | "onTouchStart" | "onTouchStartCapture" | "onPointerDown" | "onPointerDownCapture" | "onPointerMove" | "onPointerMoveCapture" | "onPointerUp" | "onPointerUpCapture" | "onPointerCancel" | "onPointerCancelCapture" | "onPointerEnter" | "onPointerLeave" | "onPointerOver" | "onPointerOverCapture" | "onPointerOut" | "onPointerOutCapture" | "onGotPointerCapture" | "onGotPointerCaptureCapture" | "onLostPointerCapture" | "onLostPointerCaptureCapture" | "onScroll" | "onScrollCapture" | "onWheel" | "onWheelCapture" | "onAnimationStart" | "onAnimationStartCapture" | "onAnimationEnd" | "onAnimationEndCapture" | "onAnimationIteration" | "onAnimationIterationCapture" | "onTransitionEnd" | "onTransitionEndCapture" | "styles" | "animated" | "textColor" | "px" | "py" | "pr" | "pl" | "pt" | "pb" | "w" | "h" | "m" | "mx" | "my" | "mr" | "ml" | "mt" | "mb" | "shape" | "onEnter" | "decoration" | "hint" | "rightChild" | "leftChild" | "clearable" | "onClear">, theme: WhaleTypes.Theme<{}>, stylePatch?: Partial<ExtractFunction<WhaleTypes.Styles<T>>> | undefined) => WhaleTypes.Styles<Types.Overrides<{}>>;
 	export default fieldStyles;
 
 }
@@ -3119,25 +3102,9 @@ declare module 'control/Pageswitch' {
 	export default _default;
 
 }
-declare module 'control/Select/reducer' {
-	import Types from 'control/Select/types'; const _default: (state: Types.State, action: Types.Actions) => {
-	    selectedOptions: Types.Option[];
-	    empty: boolean;
-	    searchValue: string;
-	    cursor: number;
-	    open: boolean;
-	};
-	export default _default;
-
-}
-declare module 'misc/utils/variant' {
-	 const _default: <T>(prop: any, variant: { [K in T]?: any; }) => any;
-	export default _default;
-
-}
 declare module 'control/Select/styles' {
 	import Types from 'control/Select/types';
-	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props, Types.StyleParams>;
 	export default styles;
 
 }
@@ -3290,6 +3257,105 @@ declare module 'layout/Tree' {
 	export default _default;
 
 }
+declare module 'layout/ScrollView/types' {
+	import React from 'react';
+	import WhaleTypes from '@flow-ui/whale/types'; namespace ScrollViewTypes {
+	    interface ScrollViewEvent {
+	        scrollTop: number;
+	        scrollLeft: number;
+	        scrollWidth: number;
+	        scrollHeight: number;
+	    }
+	    interface ScrollParams {
+	        deltaX: number;
+	        deltaY: number;
+	        preventDefault: () => void;
+	        stopPropagation: () => void;
+	        cursorHandle?: boolean;
+	    }
+	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onScroll'> {
+	        children?: React.ReactNode;
+	        /**
+	         * Display mode
+	         * @default scroll
+	         */
+	        mode?: 'always' | 'scroll' | 'hidden';
+	        /**
+	         * Custom ScrollBar color
+	         */
+	        color?: WhaleTypes.ColorProp;
+	        /**
+	         * Bars size
+	         * @default m
+	         */
+	        size?: WhaleTypes.Size;
+	        /**
+	         * Bars shape
+	         * @default round
+	         */
+	        shape?: 'square' | 'round';
+	        /**
+	         * Position of X bar
+	         * @default bottom
+	         */
+	        xBarPosition?: 'top' | 'bottom';
+	        /**
+	         * Position of Y bar
+	         * @default right
+	         */
+	        yBarPosition?: 'left' | 'right';
+	        /**
+	         * If false
+	         * onflowscroll will not dispatch
+	         */
+	        sendFlowScollEvent?: boolean;
+	        onScroll?: (event: ScrollViewEvent) => void;
+	    }
+	    interface Ref {
+	        scrollTop: () => void;
+	    }
+	    interface Overrides {
+	        container: void;
+	        content: void;
+	        yBar: {
+	            active: boolean;
+	            shape: Props['shape'];
+	            size: Props['size'];
+	            position: Props['yBarPosition'];
+	        };
+	        yThumb: {
+	            active: boolean;
+	            shape: Props['shape'];
+	            size: Props['size'];
+	        };
+	        xBar: {
+	            active: boolean;
+	            shape: Props['shape'];
+	            size: Props['size'];
+	            position: Props['xBarPosition'];
+	        };
+	        xThumb: {
+	            active: boolean;
+	            shape: Props['shape'];
+	            size: Props['size'];
+	        };
+	    }
+	}
+	export default ScrollViewTypes;
+
+}
+declare module 'layout/ScrollView/styles' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'layout/ScrollView/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'layout/ScrollView' {
+	import React from 'react';
+	import Types from 'layout/ScrollView/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
+	export default _default;
+
+}
 declare module 'misc/utils/dialog' {
 	import ViewportTypes from 'layout/Viewport/types'; const _default: (options: ViewportTypes.DialogOptions) => void;
 	export default _default;
@@ -3297,28 +3363,6 @@ declare module 'misc/utils/dialog' {
 }
 declare module 'misc/utils/notify' {
 	import NotificationType from 'layout/Notification/types'; const _default: (options: NotificationType.NotifyOptions) => void;
-	export default _default;
-
-}
-declare module 'misc/hooks/useBrowser' {
-	 const _default: () => {
-	    height: number;
-	    width: number;
-	    isDesktop: boolean;
-	    isTablet: boolean;
-	    isMobile: boolean;
-	    tableMinWidth: number;
-	    resolutionMobileMinimum: number;
-	    resolutionTabletMinimum: number;
-	    resolutionDesktopMinimum: number;
-	    info: {
-	        vendor: string;
-	        name: string;
-	        version: string;
-	        language: string;
-	        geolocation: Geolocation;
-	    };
-	};
 	export default _default;
 
 }
@@ -3364,6 +3408,7 @@ declare module '@flow-ui/core' {
 	export { default as Notification } from 'layout/Notification';
 	export { default as Popover } from 'layout/Popover';
 	export { default as Tree } from 'layout/Tree';
+	export { default as ScrollView } from 'layout/ScrollView';
 	export { default as Viewport } from 'layout/Viewport';
 	/**
 	 * Utils
@@ -3373,18 +3418,8 @@ declare module '@flow-ui/core' {
 	/**
 	 * Misc
 	 */
-	export { default as useBrowser } from 'misc/hooks/useBrowser';
 	export { default as useTheme } from 'misc/hooks/useTheme';
-	export function transformImports(importName: any, matches: any): "@flow-ui/core/content/Divider" | "@flow-ui/core/content/Spinner" | "@flow-ui/core/content/Header" | "@flow-ui/core/content/Display" | "@flow-ui/core/content/Paragraph" | "@flow-ui/core/content/Text" | "@flow-ui/core/content/Anchor" | "@flow-ui/core/control/Button" | "@flow-ui/core/control/Checkbox" | "@flow-ui/core/control/DatePicker" | "@flow-ui/core/control/Menu" | "@flow-ui/core/control/Radio" | "@flow-ui/core/control/Range" | "@flow-ui/core/control/Select" | "@flow-ui/core/control/Switch" | "@flow-ui/core/control/TextField" | "@flow-ui/core/data/Meter" | "@flow-ui/core/data/Table" | "@flow-ui/core/layout/Badge" | "@flow-ui/core/layout/Block" | "@flow-ui/core/layout/Drop" | "@flow-ui/core/layout/Flexbox" | "@flow-ui/core/layout/Grid" | "@flow-ui/core/layout/Modal" | "@flow-ui/core/layout/Notification" | "@flow-ui/core/layout/Popover" | "@flow-ui/core/layout/Tree" | "@flow-ui/core/layout/Viewport" | "@flow-ui/core/misc/utils/dialog" | "@flow-ui/core/misc/utils/notify" | "@flow-ui/core/misc/hooks/useBrowser" | "/";
-
-}
-declare module 'misc/hooks/useSharedObject' {
-	 const useMemoEffect: <T>(createObject: () => T) => T | null;
-	export default useMemoEffect;
-
-}
-declare module 'misc/utils/mergeObjects' {
-	export default function mergeObjects(target?: Object, source?: Object, modify?: (value: any) => any): Object;
+	export function transformImports(importName: any, matches: any): "@flow-ui/core/content/Divider" | "@flow-ui/core/content/Spinner" | "@flow-ui/core/content/Header" | "@flow-ui/core/content/Display" | "@flow-ui/core/content/Paragraph" | "@flow-ui/core/content/Text" | "@flow-ui/core/content/Anchor" | "@flow-ui/core/control/Button" | "@flow-ui/core/control/Checkbox" | "@flow-ui/core/control/DatePicker" | "@flow-ui/core/control/Menu" | "@flow-ui/core/control/Radio" | "@flow-ui/core/control/Range" | "@flow-ui/core/control/Select" | "@flow-ui/core/control/Switch" | "@flow-ui/core/control/TextField" | "@flow-ui/core/data/Meter" | "@flow-ui/core/data/Table" | "@flow-ui/core/layout/Badge" | "@flow-ui/core/layout/Block" | "@flow-ui/core/layout/Drop" | "@flow-ui/core/layout/Flexbox" | "@flow-ui/core/layout/Grid" | "@flow-ui/core/layout/Modal" | "@flow-ui/core/layout/Notification" | "@flow-ui/core/layout/Popover" | "@flow-ui/core/layout/Tree" | "@flow-ui/core/layout/ScrollView" | "@flow-ui/core/layout/Viewport" | "@flow-ui/core/misc/utils/dialog" | "@flow-ui/core/misc/utils/notify" | "@flow-ui/core/misc/hooks/useBrowser" | "/";
 
 }
 declare module 'misc/utils/validate' {

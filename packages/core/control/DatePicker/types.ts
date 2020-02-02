@@ -79,9 +79,7 @@ declare namespace DatePickerTypes {
         drop: {
             isActive: boolean
         }
-        input: {
-            isLabelOverlay: boolean
-        }
+        input: void
     }
 }
 

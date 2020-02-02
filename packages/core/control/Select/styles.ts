@@ -3,208 +3,211 @@ import Types from './types'
 import fieldStyles from '../../misc/hocs/Field/styles'
 import WhaleTypes from '@flow-ui/whale/types'
 
-const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
-    const { 
-        size = 'm', 
-        multiselect
-    } = props
-    
-    let color = callProp(props.color, theme.color)
-    let backgroundColor = callProp(props.backgroundColor, theme.color)
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props, Types.StyleParams> = (props, theme, params) => {
 
-    let multiselectAdditionalPadding = ''
-
-    switch (size) {
-        case 'm':
-            multiselectAdditionalPadding = '.25rem'
-            break
-        case 'l':
-            multiselectAdditionalPadding = '.25rem'
-            break
-        case 'xl':
-            multiselectAdditionalPadding = '.5rem'
-            break
-    }   
+    const minHeight =
+        theme.assets.field[props.size || 'm']?.minHeight ||
+        theme.assets.field.m.minHeight ||
+        '2.5rem'
 
     return {
         ...fieldStyles<Types.Overrides>(props, theme, {
-            manyLines: multiselect,
-            additionalPadding: multiselect ? multiselectAdditionalPadding : '',
-            labelOverlayPosition: 'center',
-            overrides: {
-                field: (variant) => [
-                    variant({
-                        open: [{
-                            borderBottomLeftRadius: 0,
-                            borderBottomRightRadius: 0,
-                        }]
-                    })
-                ]
-            }
-        }),
-
-        placeholder: [{
-            color: theme.color.light.css(),
-            userSelect: 'none',
-            cursor: 'pointer',
-            padding: multiselectAdditionalPadding,
-        }],
-
-        input:[{
-            outline: 0,
-            padding: 0,
-            margin: 0,
-            border: 'none',
-            backgroundImage: 'none',
-            backgroundColor: 'transparent',
-            boxShadow: 'none',
-            font: 'inherit',
-            color: 'inherit',
-            cursor: 'inherit',
-            flex: 1,
-            '&::placeholder': {
-                color: theme.color.light.css()
-            }
-        }],
-
-        options: [{
-            display: 'flex',
-            flexWrap: 'wrap',
-            marginBottom: '-.25rem',
-            marginRight: '-.25rem',
-            padding: multiselectAdditionalPadding,
-            '> *': {
-                marginBottom: '.25rem !important',
-                marginRight: '.25rem',
-            }
-        }],
-
-        optionItem: [
-            {
-                display: 'flex',
-                alignItems: 'center',
-                borderWidth: '1px',
-                height: 'fit-content',
-                borderStyle: 'solid',
-                borderColor: theme.color.primary.alpha(.5).css(),
-                background: theme.color.primary.alpha(.1).css(),
-                color: theme.color.primary.css(),
-                overflow: 'hidden',
-            }
-        ],
-
-        optionItemText: (variant) => [
-            {
-                minHeight: '100%',
-                borderRightWidth: '1px',
-                borderRightStyle: 'solid',
-                borderRightColor: theme.color.primary.alpha(.5).css(),
-                alignText: 'center'
-            },
-            variant({
-                size: {
-                    xs: {
-                        padding: '.125rem .25rem',
-                        ...theme.typography.text.xs
-                    },
-                    s: {
-                        padding: '.125rem .25rem',
-                        ...theme.typography.text.s,
-                    },
-                    m: {
-                        padding: '.125rem .25rem',
-                        ...theme.typography.text.m,
-                    },
-                    l: {
-                        padding: '.125rem .25rem',
-                        ...theme.typography.text.l,
-                    },
-                    xl: {
-                        padding: '.125rem .25rem',
-                        fontSize: theme.typography.header.xs.fontSize,
-                        lineHeight: theme.typography.header.xs.lineHeight,
+            field: (variant) => [
+                params?.isOpen && {
+                    borderColor: theme.color.primary.css(),
+                    borderBottomColor: theme.color.lightest.css(),
+                    borderBottomLeftRadius: 0,
+                    borderBottomRightRadius: 0,
+                },
+                variant({
+                    decoration: {
+                        filled: [
+                            params?.isOpen && {
+                                borderColor: 'transparent',
+                            }
+                        ],
+                        none: [
+                            params?.isOpen && {
+                                borderColor: 'transparent',
+                            }
+                        ],
+                        underline: [
+                            params?.isOpen && {
+                                borderColor: 'transparent',
+                            }
+                        ]
                     }
-                }
-            }),
-        ],
-        dropIcon: (variant) => [
-            variant({
-                size: theme.typography.text
-            }),
-        ],
-        dropMenu: (variant) => [
+                }),
+            ]
+        }),
+        drop: (variant) => [
             {
-                overflow: 'auto',
-                maxHeight: '10rem',
-                borderStyle: 'solid',
+                position: 'relative',
+                background: theme.color.surface.css(),
+                borderColor: theme.color.primary.css(),
+                borderRadius: theme.radius.narrow,
                 borderWidth: '1px',
-                borderColor: theme.color.lightest.css(),
-                borderTop: 'none',
-                background: backgroundColor || theme.color.surface.css(),
-                borderTopLeftRadius: 0,
-                borderTopRightRadius: 0,
+                borderStyle: 'solid',
+                boxSizing: 'border-box',
+                overflow: 'hidden'
             },
             variant({
                 shape: {
-                    rounded: [{
-                        borderRadius: theme.radius.narrow
-                    }],
+                    square: {
+                        borderRadius: 0
+                    },
                     round: [
+                        {
+                            borderRadius: `calc(${theme.assets.field.m.minHeight}/2)`
+                        },
                         variant({
-                            open: [{
-                                borderBottomRightRadius: theme.radius.narrow,
-                                borderBottomLeftRadius: theme.radius.narrow,
-                                borderTopLeftRadius: 0,
-                                borderTopRightRadius: 0
-                            }]
+                            size: {
+                                xl: { borderRadius: `calc(${theme.assets.field.xl.minHeight}/2)` },
+                                l:  { borderRadius: `calc(${theme.assets.field.l.minHeight}/2)` },
+                                s:  { borderRadius: `calc(${theme.assets.field.s.minHeight}/2)` },
+                                xs: { borderRadius: `calc(${theme.assets.field.xs.minHeight}/2)` }
+                            },
                         })
                     ]
                 },
                 decoration: {
-                    filled: {
-                        borderColor: 'transparent',
-                    },
+                    filled: [
+                        {
+                            borderColor: 'transparent'
+                        },
+                    ],
                     underline: {
-                        borderColor: 'transparent',
+                        borderTopColor: 'transparent',
+                        borderLeftColor: 'transparent',
+                        borderRightColor: 'transparent',
+                        background: 'transparent',
                         paddingLeft: 0,
                         paddingRight: 0,
+                        borderRadius: 0,
                     },
                     none: {
+                        background: 'transparent',
                         borderColor: 'transparent',
                     }
                 },
-                focus: {
-                    borderColor: theme.color.primary.css(),
-                },
-                open: {
-                    borderTopLeftRadius: 0,
-                    borderTopRightRadius: 0,
-                }
             }),
             {
-                borderColor: color
+                borderTopLeftRadius: 0,
+                borderTopRightRadius: 0,
+                borderTop: 'none',
             }
         ],
-
-        dropItem: (variant) =>[
+        dropItem: (variant) => [
+            theme.typography.text.m,
+            theme.assets.field,
             {
-                cursor: 'pointer',
-                padding: '0.5rem 0.75rem',
-                height: 'fit-content',
+                display: 'flex',
+                alignItems: 'center',
                 ':hover': {
-                    background: theme.color.background.css()
+                    color: theme.color.primary.css(),
+                    backgroundColor: theme.color.primary.alpha(0.1).css()
                 }
             },
             variant({
-                size: theme.typography.text,
-                underCursor: [{
-                    background: theme.color.primary.css(),
-                    color: theme.color.onPrimary.css(),
-                    ':hover': {
-                        background: theme.color.primary.css()
-                    }
-                }]
+                size: theme.typography.text
+            }),
+            variant({
+                size: theme.assets.field
             })
+        ],
+
+        selectedOptionsContainer: [{
+            display: 'flex',
+            flexWrap: 'wrap',
+            margin: `calc(${minHeight} / 10) 0`,
+            // marginLeft: 0,
+            // marginBottom: `calc(${minHeight} / 5)`,
+        }],
+        selectedOptionInput: (variant) => [
+            {
+                flex: 1,
+                outline: 0,
+                padding: 0,
+                margin: 0,
+                border: 'none',
+                backgroundImage: 'none',
+                backgroundColor: 'transparent',
+                resize: 'vertical',
+                boxShadow: 'none',
+                color: 'inherit',
+                font: 'inherit',
+                cursor: 'inherit',
+                '&::placeholder': {
+                    color: theme.color.light.css()
+                },
+            },
+            variant({
+                searchMode: {
+                    color: theme.color.hard.css()
+                },
+                // multiselect: {
+                //     width: 'auto',
+                //     minWidth: '1rem'
+                // }
+            })
+        ],
+        tag: (variant) => [
+            {
+                display: 'inline-flex',
+                background: theme.color.primary.alpha(0.2).css(),
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                borderColor: theme.color.primary.css(),
+                borderRadius: `calc(${theme.radius.narrow} / 2)`,
+                boxSizing: 'border-box',
+                color: theme.color.primary.css(),
+                padding: `0 calc(${minHeight} / 5)`,
+                marginRight: `calc(${minHeight} / 10)`,
+                // marginLeft: 0,
+                // marginBottom: 0,
+                alignItems: 'center'
+            },
+            variant({
+                shape: {
+                    square: {
+                        borderRadius: 0
+                    },
+                    round: {
+                        borderRadius: `100px`
+                    }
+                },
+                decoration: {
+                    filled: [
+                        {
+                            borderColor: 'transparent'
+                        },
+                    ],
+                    underline: {
+                        borderBottomWidth: '1px',
+                        borderBottomStyle: 'solid',
+                        background: 'transparent',
+                        paddingLeft: 0,
+                        paddingRight: 0,
+                        borderRadius: 0,
+                    },
+                    none: {
+                        background: 'transparent',
+                    }
+                }
+            })
+        ],
+        tagRemove: (variant) => [
+            {
+                marginLeft: `calc(${minHeight} / 10)`,
+                marginRight: `calc(-${minHeight} / 10)`,
+                borderLeft: '1px solid',
+                borderColor: theme.color.primary.alpha(0.2).css(),
+                color: theme.color.primary.alpha(0.8).css(),
+                cursor: 'pointer',
+                ':hover': {
+                    color: theme.color.primary.css()
+                },
+            },
         ],
     }
 }

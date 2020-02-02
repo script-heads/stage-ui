@@ -12,7 +12,6 @@ const Field: RefForwardingComponent<HTMLDivElement, Types.PrivateProps> = (props
         attributes,
         events,
         styles,
-        isLabelOutside, 
     } = props
 
     const state = {
@@ -21,18 +20,8 @@ const Field: RefForwardingComponent<HTMLDivElement, Types.PrivateProps> = (props
         decoration: props.decoration,
         shape: props.shape,
         disabled: props.disabled,
-        isLabelOverlay: props.isLabelOverlay,
-        isLabelOutside,
         ...props.state
     }
-
-    const Label = (
-        <label
-            css={styles.label(state)}
-            htmlFor={labelName}
-            children={label}
-        />
-    )
 
     return (
         <div
@@ -41,28 +30,53 @@ const Field: RefForwardingComponent<HTMLDivElement, Types.PrivateProps> = (props
             ref={ref}
             css={styles.container(state)}
         >
-            {label && isLabelOutside && Label}
+            {label !== undefined && (
+                <label
+                    css={styles.label(state)}
+                    htmlFor={labelName}
+                    children={label}
+                />
+            )}
             {
                 <div css={styles.field(state)}>
                     {props.leftChild && (
-                        <div css={styles.child({align: 'right', ...state})}>
-                            {props.leftChild}
-                        </div>
+                        <div 
+                            css={styles.child({align: 'left', ...state})}
+                            children={props.leftChild}
+                        />
                     )}
-                    <div css={styles.content(state)}>
-                        {label && !isLabelOutside && Label}
-                        {props.children}
-                    </div>
-                    {(clearable || props.rightChild) && (
-                        <div css={styles.child({align: 'right', ...state})}>
-                            {clearable && <Close
-                                onClick={(e) => {
-                                    e.stopPropagation()
-                                    onClear && onClear()
-                                }}
-                            />}
-                            {props.rightChild}
-                        </div>
+                    <div 
+                        css={styles.content(state)}
+                        children={props.children}
+                    />
+                    {clearable && (
+                        <div
+                            css={styles.child({ align: 'right', ...state })}
+                            children={(
+                                <Close
+                                    onMouseDown={e => {
+                                        if (onClear) {
+                                            e.stopPropagation()
+                                            onClear()
+                                        }
+                                    }}
+                                    onTouchStart={e => {
+                                        if (onClear) {
+                                            e.stopPropagation()
+                                            onClear()
+                                        }
+                                    }}
+                                    css={styles.clearButton}
+                                    size={state.size}
+                                />
+                            )}
+                        />
+                    )}
+                     {props.rightChild && (
+                        <div 
+                            css={styles.child({align: 'right', ...state})}
+                            children={props.rightChild}
+                        />
                     )}
                 </div>
             }

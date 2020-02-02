@@ -49,8 +49,7 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
 
     const minValue = props.minValue ? moment(props.minValue).startOf('day') : now.clone().add(-500, 'year')
     const maxValue = props.maxValue ? moment(props.maxValue).startOf('day') : now.clone().add(500, 'year')
-    const isLabelOutside = ['outline', 'filled'].includes(decoration) && !(size === 'xl')
-    const isLabelOverlay = (label && isEmpty && !focus && !isLabelOutside) ? true : false
+
     const inputRef = useRef<HTMLInputElement>(null)
     const mask = props.masked && useMask(inputRef, maskConf(format, minValue, maxValue))
 
@@ -95,19 +94,17 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
                 shape={shape}
                 focus={focus}
                 styles={cs}
-                isLabelOutside={isLabelOutside}
-                isLabelOverlay={isLabelOverlay}
                 events={{
                     ...events.all,
                     onFocus: (e) => {
                         inputRef.current?.focus()
-                        events?.all?.onFocus(e)
+                        events?.all?.onFocus?.(e)
                         if (!props.disabled) {
                             setActive(true)
                         }
                     },
                     onClick:(e) => {
-                        events?.all?.onClick(e)
+                        events.all.onClick?.(e)
                         if (!props.disabled) {
                             setActive(true)
                         }
@@ -130,7 +127,7 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
                                 setValue(date)
                             }
                         },
-                        css: cs.input({isLabelOverlay}),
+                        css: cs.input,
                         
                         defaultValue: defaultValue
                             ? moment(defaultValue, format)

@@ -24,8 +24,6 @@ declare namespace FieldTypes {
         shape: Props['shape']
         size: Props['size'] 
         decoration: Props['decoration']
-        isLabelOutside: boolean 
-        isLabelOverlay: boolean
     }
 
     interface Overrides<T extends {[T in keyof Overrides]?: Object} = {}> {
@@ -36,13 +34,12 @@ declare namespace FieldTypes {
         child: {
             align: 'right' | 'left'
         } & State & T['child']
+        clearButton: State & T['clearButton']
         hint: State & T['hint']
     }
 
     interface PrivateProps extends Props {
         focus: boolean
-        isLabelOutside: boolean 
-        isLabelOverlay: boolean
         styles: WhaleTypes.ComponentStyles<Overrides>
         state?: Object
         

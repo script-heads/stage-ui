@@ -91,7 +91,10 @@ declare namespace WhaleTypes {
             long: string
         }
         focus: EmotionStyles
-        fieldHeight: Record<Size,string>
+        field: Record<Size, {
+            minHeight: string
+            padding: string
+        }>
     }
 
     /**
@@ -585,9 +588,10 @@ declare namespace WhaleTypes {
         >
     }>) => EmotionStyles
 
-    type CreateStyles<Overrides, Props ={}> = (
+    type CreateStyles<Overrides, Props = {}, T = {}> = (
         props: Props, 
-        theme: WhaleTypes.Theme 
+        theme: WhaleTypes.Theme,
+        params?: T 
     ) => WhaleTypes.Styles<Overrides>
 }
 
