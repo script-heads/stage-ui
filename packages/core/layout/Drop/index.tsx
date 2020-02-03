@@ -92,7 +92,7 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
             const style = rect && dropRef.current?.style
 
             if (style) {
-                style.display = 'none'
+                style.visibility = 'hidden'
                 if (stretchHeight) style.height = toStyle(rect.height)
                 if (stretchWidth) style.width = toStyle(rect.width)
             }
@@ -133,7 +133,7 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
             const dr: ClientRect = dropRef.current.getBoundingClientRect()
             const style = dropRef.current.style
 
-            style.display = ''
+            style.visibility = ''
             style.top = getTopCoord(tr, dr)
             style.left = getLeftCoord(tr, dr)
         }
@@ -142,7 +142,7 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
         if (dropRef?.current) {
             const style = dropRef.current.style
 
-            style.display = ''
+            style.visibility = ''
             style.top = e.clientY + 'px'
             style.left = e.clientX + 'px'
         }
@@ -186,7 +186,7 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
                 top: 0,
                 left: 0,
                 zIndex,
-                display: 'none',
+                visibility: 'hidden',
                 pointerEvents: followCursor && 'none',
                 ...attributes.style
             }}
