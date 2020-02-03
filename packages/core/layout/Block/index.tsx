@@ -1,4 +1,4 @@
-import { jsx } from '@emotion/core'
+import { jsx, ClassNames } from '@emotion/core'
 import { useComponent } from '@flow-ui/whale'
 import { forwardRef, RefForwardingComponent } from 'react'
 import styles from './styles'
@@ -20,6 +20,7 @@ const Block: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
             ...attributes,
             ...events.all,
             ref: ref,
+            className: props.className,
             css: cs.container({ surface, hoverSurface }),
         },
         props.children

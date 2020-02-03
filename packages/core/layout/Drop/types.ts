@@ -19,7 +19,7 @@ declare namespace DropTypes {
     /**
      * Target where to place drop
      */
-    target: any
+    target?: any
     /**
      * Will mount or unmount Drop
      */
@@ -29,6 +29,7 @@ declare namespace DropTypes {
     justify?: 'start' | 'center' | 'end' | 'start-outside' | 'end-outside'
     stretchWidth?: boolean
     stretchHeight?: boolean
+    followCursor?: boolean
     /**
      * Space around drop
      * like margin or so

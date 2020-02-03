@@ -12,7 +12,7 @@ let sharedZIndex = 300
 const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
 
     const { children, target: targetRef, onClickOutside, spacing = 0, align,
-        justify, stretchHeight, stretchWidth, visible } = props
+        justify, stretchHeight, stretchWidth, visible, followCursor } = props
         
     const { cs, attributes, events } = useComponent('Drop', { props, styles, styleProps: { container: ['self']} })
 
@@ -88,7 +88,7 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
 
     useEffect(() => {
         if (visibleState) {
-            const rect = (stretchHeight || stretchWidth) ? targetRef.current?.getBoundingClientRect() : null
+            const rect = (stretchHeight || stretchWidth) ? targetRef?.current?.getBoundingClientRect() : null
             const style = rect && dropRef.current?.style
     
             if (style) {
@@ -97,19 +97,27 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
             }
             sharedZIndex++
             updatePosition()
-            document.addEventListener('scroll', updatePosition, true)
-            document.addEventListener('onflowscroll', updatePosition, true)
-            document.addEventListener('mouseup', handleClickOutside)
-            window.addEventListener('resize', updatePosition)
-
+            
+            if (followCursor) {
+                window.addEventListener('mousemove', updateFollowCursor)
+            } else {
+                document.addEventListener('scroll', updatePosition, true)
+                document.addEventListener('onflowscroll', updatePosition, true)
+                document.addEventListener('mouseup', handleClickOutside)
+                window.addEventListener('resize', updatePosition)
+            }
         }
         return () => {
-            document.removeEventListener('scroll', updatePosition, true)
-            document.removeEventListener('onflowscroll', updatePosition, true)
-            document.removeEventListener('mouseup', handleClickOutside)
-            window.removeEventListener('resize', updatePosition)
+            if (followCursor) {
+                window.removeEventListener('mousemove', updateFollowCursor)
+            } else {
+                document.removeEventListener('scroll', updatePosition, true)
+                document.removeEventListener('onflowscroll', updatePosition, true)
+                document.removeEventListener('mouseup', handleClickOutside)
+                window.removeEventListener('resize', updatePosition)
+            }
         }
-    }, [visibleState])
+    }, [visibleState, followCursor])
 
     function handleClickOutside(event: MouseEvent) {
         if (onClickOutside && !dropRef?.current?.contains(event.target as Node)) {
@@ -118,17 +126,24 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
     }
 
     function updatePosition() {
-        if (targetRef.current && dropRef.current) {
+        if (targetRef?.current && dropRef?.current) {
             const tr: ClientRect = targetRef.current.getBoundingClientRect()
             const dr: ClientRect = dropRef.current.getBoundingClientRect()
             const style = dropRef.current.style
 
-            style.visibility = ''
             style.top = getTopCoord(tr, dr)
             style.left = getLeftCoord(tr, dr)
         }
     }
-
+    function updateFollowCursor(e: MouseEvent) {
+        // console.log(e.pageX)
+        if (dropRef?.current) {
+            const style = dropRef.current.style
+            style.top = e.clientY + 'px'
+            style.left = e.clientX + 'px'
+        }
+    }
+    
     function setVisible(state: boolean) {
         if (visible !== undefined) {
             console.warn('Do not use setVisibe on controlled <Drop/> component')
@@ -166,8 +181,8 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
             style={{
                 top: 0,
                 left: 0,
-                visibility: 'hidden',
                 zIndex,
+                pointerEvents: followCursor && 'none',
                 ...attributes.style
             }}
             children={children}

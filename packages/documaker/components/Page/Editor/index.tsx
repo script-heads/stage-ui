@@ -9,12 +9,35 @@ import ErrorBoundary from './ErrorBoundary'
 import Preview from './Preview'
 
 interface EditorProps {
-    cases: Exclude<PageType['cases'],undefined>
+    cases: Exclude<PageType['cases'], undefined>
 }
 
+const MonacoEditor = React.memo((props: { setCode: (code: string) => void }) => {
+    useEffect(() => {
+        /**
+         * Creates monaco editor
+         */
+        monaco.create({
+            id: 'documaker-code-editor',
+            code: '',
+            setCode: props.setCode,
+        })
+    }, [])
+    return (
+        <Block
+            id="documaker-code-editor"
+            h="100%"
+            w="100%"
+            css={{
+                boxShadow: 'none !important',
+            }}
+        />
+    )
+}, () => true)
+
 const Editor = (props: EditorProps) => {
-    
-    const {cases} = props
+
+    const { cases } = props
     const [currentCase, setCurrentCase] = useState<number>(0)
     const [code, setCode] = useState<string>(cases[0].code)
     const [grid, setGrid] = useState(
@@ -46,14 +69,7 @@ const Editor = (props: EditorProps) => {
         }
 
         window.addEventListener('resize', handleDirection)
-        /**
-         * Creates monaco editor
-         */
-        monaco.create({
-            id: 'documaker-code-editor',
-            code: cases[0].code, 
-            setCode,
-        })
+
         return () => {
             window.removeEventListener('resize', handleDirection)
             monaco.remove()
@@ -64,7 +80,7 @@ const Editor = (props: EditorProps) => {
         monaco.setTheme(
             chroma.contrast('#fff', theme.color.background) > 3
                 ? 'vs-dark'
-                : 'vs'  
+                : 'vs'
         )
     }, [theme])
 
@@ -78,8 +94,8 @@ const Editor = (props: EditorProps) => {
     }, [currentCase])
 
     useEffect(() => {
-        document.body.style.overflow = fullscreen 
-            ? 'hidden' 
+        document.body.style.overflow = fullscreen
+            ? 'hidden'
             : 'auto'
     }, [fullscreen])
 
@@ -92,12 +108,12 @@ const Editor = (props: EditorProps) => {
                         m="1rem"
                         ml="0.5rem"
                         weight={600}
-                        color={c => caseIndex === currentCase 
+                        color={c => caseIndex === currentCase
                             ? c.primary.css()
                             : c.onBackground.css()}
                         children={c.label}
                         onClick={() => setCurrentCase(caseIndex)}
-                        css={{cursor: 'pointer'}}
+                        css={{ cursor: 'pointer' }}
                     />
                 ))}
                 <Block flex={1} />
@@ -111,9 +127,9 @@ const Editor = (props: EditorProps) => {
                     }
                     onClick={() => {
                         localStorage.setItem(
-                            'case_grid', 
-                            !grid 
-                                ? 'true' 
+                            'case_grid',
+                            !grid
+                                ? 'true'
                                 : 'false'
                         )
                         setGrid(!grid)
@@ -130,11 +146,11 @@ const Editor = (props: EditorProps) => {
             <Block
                 mb="2rem"
                 h="24rem"
-                borderColor={c=>c.lightest.css()}
+                borderColor={c => c.lightest.css()}
                 borderWidth="1px"
                 borderStyle="solid"
                 borderRadius={theme.radius.default}
-                backgroundColor={c=>c.background.css()}
+                backgroundColor={c => c.background.css()}
                 css={[
                     {
                         overflow: 'hidden'
@@ -153,21 +169,14 @@ const Editor = (props: EditorProps) => {
                     }
                 ]}>
                 <Split direction={direction}>
-                    <Block
-                        id="documaker-code-editor"
-                        h="100%"
-                        w="100%"
-                        css={{
-                            boxShadow: 'none !important',
-                        }}
-                    />
+                    <MonacoEditor setCode={setCode} />
                     <Block h="100%" flex={1}>
                         <ErrorBoundary>
                             <Preview
                                 theme={theme}
                                 code={code}
-                                grid={grid} 
-                                fullscreen={fullscreen} 
+                                grid={grid}
+                                fullscreen={fullscreen}
                                 setFullscreen={setFullscreen}
                             />
                         </ErrorBoundary>
@@ -190,5 +199,7 @@ const Editor = (props: EditorProps) => {
         </Fragment>
     )
 }
-
 export default Editor
+// export default React.memo(Editor, () => {
+//     return true
+// })

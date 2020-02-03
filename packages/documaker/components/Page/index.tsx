@@ -2,6 +2,7 @@ import { Block, Flexbox, Header } from '@flow-ui/core'
 import { PageType } from '../../core'
 import Editor from './Editor'
 import API from './API'
+import React from 'react'
 
 interface ContentProps {
     currentPage: PageType | null
@@ -13,7 +14,7 @@ const Page = (props: ContentProps) => {
     const {currentPage: page, types, separatedTypes} = props
 
     if (!page) return null
-    
+
     return (
         <Flexbox
             flex={1}
