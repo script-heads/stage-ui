@@ -1,10 +1,11 @@
-import { Block, Flexbox, Icon, Menu, Text, TextField } from '@flow-ui/core'
+import { Block, Flexbox, Menu, Text, TextField } from '@flow-ui/core'
 import MenuTypes from '@flow-ui/core/control/Menu/types'
-import { Search, Cube, Close } from '@flow-ui/core/icons'
+import { Close, Cube, Search } from '@flow-ui/core/icons'
 import WhaleTypes from '@flow-ui/whale/types'
 import * as React from 'react'
 import { Fragment, useState } from 'react'
 import { PagesType, PageType } from '../../core'
+import MenuSection from './MenuSection'
 
 export interface SidebarProps {
 	pages: PagesType,
@@ -14,9 +15,8 @@ export interface SidebarProps {
 }
 
 const Sidebar = (props: SidebarProps) => {
-
-	const { pages, currentPage, onChange } = props
-	const [visibility, setVisibility] = useState<boolean>(false)
+	const { pages } = props
+	const [visibility, setMobileVisible] = useState<boolean>(false)
 	const [search, setSearch] = useState('')
 
 	const getMenuItems = (section: PageType[]): MenuTypes.Item[] =>
@@ -83,31 +83,14 @@ const Sidebar = (props: SidebarProps) => {
 							return null
 						}
 						return (
-							<Block key={'section-' + index}>
-								{search === '' && section != 'Index' &&
-									<Text
-										color={c => c.light.css()}
-										children={section}
-										css={{
-											marginLeft: '1.5rem',
-											[`@media (max-width: ${window.breakpoints[0]}px)`]: {
-												marginLeft: '1rem',
-											}
-										}}
-									/>
-								}
-								<Menu
-									mb="1.5rem"
-									value={currentPage.url || -1}
-									decoration="color"
-									direction="column"
-									onChange={(value) => {
-										setVisibility(false)
-										onChange(value.toString())
-									}}
-									items={menuItems}
-								/>
-							</Block>
+							<MenuSection 
+								{...props}
+								menuItems={menuItems}
+								search={search}
+								section={section}
+								setMobileVisible={setMobileVisible}
+								key={'section-' + index}
+							/>
 						)
 					}
 				})}
@@ -115,7 +98,7 @@ const Sidebar = (props: SidebarProps) => {
 			<Flexbox
 				alignItems={'center'}
 				justifyContent={'center'}
-				onClick={() => setVisibility(v => !v)}
+				onClick={() => setMobileVisible(v => !v)}
 				backgroundColor={c => c.primary.css()}
 				css={[
 					{
