@@ -207,6 +207,7 @@ const fieldStyles = <T extends Types.Overrides>(
 
         clearButton: (variant) => [
             {
+                cursor: 'pointer',
                 ':hover': {
                     color: theme.color.primary.css(),
                 }

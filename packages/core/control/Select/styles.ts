@@ -103,6 +103,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props, Types.StyleP
             {
                 display: 'flex',
                 alignItems: 'center',
+                cursor: 'pointer',
                 ':hover': {
                     color: theme.color.primary.css(),
                     backgroundColor: theme.color.primary.alpha(0.1).css()

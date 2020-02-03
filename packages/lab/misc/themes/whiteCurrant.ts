@@ -25,7 +25,7 @@ const whiteCurrant = light.replace({
 			error: [188, 0, 0],
 			successful: [0, 200, 0],
 			warning: [255, 149, 0]
-		}
+		},
 	}
 })
 
