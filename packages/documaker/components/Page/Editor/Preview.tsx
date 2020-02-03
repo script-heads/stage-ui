@@ -64,7 +64,7 @@ const Preview = (props: PreviewProps) => {
                     }
                 ]}>
                 <span
-                    style={{ position: 'relative' }}
+                    style={{ position: 'relative', display: 'block', height: '100%' }}
                     children={Function('"use strict";return (' + traspiledCode + ')')()}
                 />
             </Block>

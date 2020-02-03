@@ -1,4 +1,4 @@
-import { Block, Text, Header } from '@flow-ui/core'
+import { Block, Text } from '@flow-ui/core'
 import React from 'react'
 import Syntax from '../../../components/Syntax'
 import ViewportCode from '../Getting started/viewport.raw'
