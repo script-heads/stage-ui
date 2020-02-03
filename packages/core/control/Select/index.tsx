@@ -246,8 +246,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                 )}
             />
             <Drop
-            
-                display={(isOpen && options.length > 0) ? 'block' : 'none'}
+                visible={(isOpen && options.length > 0)}
                 ref={dropRef}
                 onClickOutside={(e, outTarget) => {
                     if (outTarget) {

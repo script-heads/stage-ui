@@ -12,11 +12,12 @@ let sharedZIndex = 300
 const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
 
     const { children, target: targetRef, onClickOutside, spacing = 0, align,
-        justify, stretchHeight, stretchWidth, visibility, display } = props
+        justify, stretchHeight, stretchWidth, visible } = props
         
     const { cs, attributes, events } = useComponent('Drop', { props, styles, styleProps: { container: ['self']} })
 
     const dropRef = useRef<HTMLDivElement>(null)
+    const [visibleState, setVisibleState] = useState(visible || true)
 
     let getTopCoord: GetCoord = (tr) => toStyle(tr.bottom + spacing)
     let getLeftCoord: GetCoord = (tr, dr) => toStyle((tr.left + tr.width / 2) - dr.width / 2)
@@ -76,17 +77,24 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
             setVerticalPosition()
             break
     }
+    /**
+     * Support controlled component
+     */
+    useEffect(() => {
+        if (visible !== undefined) {
+            setVisibleState(visible)
+        }
+    }, [visible])
 
     useEffect(() => {
-        const rect = (stretchHeight || stretchWidth) ? targetRef.current?.getBoundingClientRect() : null
-        const style = rect && dropRef.current?.style
-
-        if (style) {
-            if (stretchHeight) style.height = toStyle(rect.height)
-            if (stretchWidth) style.width = toStyle(rect.width)
-        }
-
-        if (visibility != 'hidden' && display != 'none') {
+        if (visibleState) {
+            const rect = (stretchHeight || stretchWidth) ? targetRef.current?.getBoundingClientRect() : null
+            const style = rect && dropRef.current?.style
+    
+            if (style) {
+                if (stretchHeight) style.height = toStyle(rect.height)
+                if (stretchWidth) style.width = toStyle(rect.width)
+            }
             sharedZIndex++
             updatePosition()
             document.addEventListener('scroll', updatePosition, true)
@@ -101,7 +109,7 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
             document.removeEventListener('mouseup', handleClickOutside)
             window.removeEventListener('resize', updatePosition)
         }
-    }, [visibility, display])
+    }, [visibleState])
 
     function handleClickOutside(event: MouseEvent) {
         if (onClickOutside && !dropRef?.current?.contains(event.target as Node)) {
@@ -121,16 +129,29 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
         }
     }
 
+    function setVisible(state: boolean) {
+        if (visible !== undefined) {
+            console.warn('Do not use setVisibe on controlled <Drop/> component')
+            return
+        }
+        setVisibleState(state)
+    }
+
     useImperativeHandle(ref, () => ({
         ...dropRef.current,
         updatePosition,
+        setVisible
     }))
 
     /**
      * zIndex magic stuff
      */
     const [clicks, click] = useState(0)
-    const zIndex = useMemo(() => sharedZIndex, [visibility, display, clicks])
+    const zIndex = useMemo(() => sharedZIndex, [visibleState, clicks])
+
+    if (visibleState === false) {
+        return null
+    }
 
     return ReactDOM.createPortal(
         <div

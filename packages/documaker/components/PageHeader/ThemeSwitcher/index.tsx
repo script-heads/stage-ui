@@ -24,11 +24,10 @@ const ThemeSwitcher = (props: ThemeSwitcherProps) => {
             />
             <Drop 
                 target={iconRef} 
-                //@ts-ignore
-                visibility={visible ? 'visible' : 'hidden'} 
-                //TODO: wtf
+                visible={visible} 
                 spacing={16}
-                onClickOutside={(e,ot)=> ot && setVisible(!visible)}>
+                onClickOutside={(e,ot)=> ot && setVisible(!visible)}
+                >
                 <Popover>
                     <Grid 
                         templateRows="auto auto" 

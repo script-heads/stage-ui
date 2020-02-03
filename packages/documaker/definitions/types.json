@@ -4864,7 +4864,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 11054,
+                    "id": 11060,
                     "name": "children",
                     "type": "reference",
                     "overwrites": {
@@ -10452,7 +10452,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 10715,
+                    "id": 10721,
                     "name": "data",
                     "type": "reference",
                     "values": [
@@ -10460,7 +10460,7 @@
                     ]
                 },
                 {
-                    "id": 10714,
+                    "id": 10720,
                     "name": "labels",
                     "type": "reference",
                     "values": [
@@ -10468,7 +10468,7 @@
                     ]
                 },
                 {
-                    "id": 10716,
+                    "id": 10722,
                     "name": "options",
                     "type": "reference",
                     "values": [
@@ -10477,7 +10477,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 10713,
+                    "id": 10719,
                     "name": "type",
                     "comment": {
                         "tags": [
@@ -23742,12 +23742,13 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 8051,
-                    "name": "updatePosition",
+                    "id": 8055,
+                    "name": "setVisible",
+                    "comment": "Can be use ONLY on\nuncontrolled compnents",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 8052,
+                            "id": 8056,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -23756,7 +23757,57 @@
                             },
                             "signatures": [
                                 {
-                                    "id": 8053,
+                                    "id": 8057,
+                                    "name": "__call",
+                                    "kind": 4096,
+                                    "kindString": "Call signature",
+                                    "flags": {},
+                                    "parameters": [
+                                        {
+                                            "id": 8058,
+                                            "name": "state",
+                                            "kind": 32768,
+                                            "kindString": "Parameter",
+                                            "flags": {},
+                                            "type": {
+                                                "type": "intrinsic",
+                                                "name": "boolean"
+                                            }
+                                        }
+                                    ],
+                                    "type": {
+                                        "type": "intrinsic",
+                                        "name": "void"
+                                    }
+                                }
+                            ],
+                            "sources": [
+                                {
+                                    "fileName": "packages/core/layout/Drop/types.ts",
+                                    "line": 59,
+                                    "character": 15
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "id": 8052,
+                    "name": "updatePosition",
+                    "comment": "Update self position of drop\nuseful when target changes origins and sizes",
+                    "type": {
+                        "type": "reflection",
+                        "declaration": {
+                            "id": 8053,
+                            "name": "__type",
+                            "kind": 65536,
+                            "kindString": "Type literal",
+                            "flags": {
+                                "isExported": true
+                            },
+                            "signatures": [
+                                {
+                                    "id": 8054,
                                     "name": "__call",
                                     "kind": 4096,
                                     "kindString": "Call signature",
@@ -23770,7 +23821,7 @@
                             "sources": [
                                 {
                                     "fileName": "packages/core/layout/Drop/types.ts",
-                                    "line": 31,
+                                    "line": 54,
                                     "character": 19
                                 }
                             ]
@@ -23786,7 +23837,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 7804,
+                    "id": 7805,
                     "name": "align",
                     "type": "stringLiteral",
                     "values": [
@@ -23798,7 +23849,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 7817,
+                    "id": 7818,
                     "name": "children",
                     "type": "reference",
                     "values": [
@@ -23807,7 +23858,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 7805,
+                    "id": 7806,
                     "name": "justify",
                     "type": "stringLiteral",
                     "values": [
@@ -23820,8 +23871,9 @@
                     "isOptional": true
                 },
                 {
-                    "id": 7809,
+                    "id": 7810,
                     "name": "onClickOutside",
+                    "comment": "Event will calls on\noutside mouse clicks",
                     "type": "reflection",
                     "values": [
                         "(event: MouseEvent, outsideTarget: undefined) => void"
@@ -23829,8 +23881,9 @@
                     "isOptional": true
                 },
                 {
-                    "id": 7814,
+                    "id": 7815,
                     "name": "onEsc",
+                    "comment": "Calls whenever esc pressed",
                     "type": "reflection",
                     "values": [
                         "() => void"
@@ -23838,8 +23891,9 @@
                     "isOptional": true
                 },
                 {
-                    "id": 7808,
+                    "id": 7809,
                     "name": "spacing",
+                    "comment": "Space around drop\nlike margin or so",
                     "type": "intrinsic",
                     "values": [
                         "number"
@@ -23847,7 +23901,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 7807,
+                    "id": 7808,
                     "name": "stretchHeight",
                     "type": "intrinsic",
                     "values": [
@@ -23857,7 +23911,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 7806,
+                    "id": 7807,
                     "name": "stretchWidth",
                     "type": "intrinsic",
                     "values": [
@@ -23869,10 +23923,22 @@
                 {
                     "id": 7803,
                     "name": "target",
+                    "comment": "Target where to place drop",
                     "type": "intrinsic",
                     "values": [
                         "any"
                     ]
+                },
+                {
+                    "id": 7804,
+                    "name": "visible",
+                    "comment": "Will mount or unmount Drop",
+                    "type": "intrinsic",
+                    "values": [
+                        "false",
+                        "true"
+                    ],
+                    "isOptional": true
                 }
             ],
             "extendedTypes": [
@@ -25718,7 +25784,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 8056,
+                    "id": 8061,
                     "name": "container",
                     "type": "intrinsic",
                     "values": [
@@ -28888,7 +28954,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 9216,
+                    "id": 9221,
                     "name": "Badge",
                     "type": "reference",
                     "values": [
@@ -28897,7 +28963,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9217,
+                    "id": 9222,
                     "name": "Block",
                     "type": "reference",
                     "values": [
@@ -28906,7 +28972,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9205,
+                    "id": 9210,
                     "name": "Button",
                     "type": "reference",
                     "values": [
@@ -28915,7 +28981,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9206,
+                    "id": 9211,
                     "name": "Checkbox",
                     "type": "reference",
                     "values": [
@@ -28924,7 +28990,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9207,
+                    "id": 9212,
                     "name": "DatePicker",
                     "type": "reference",
                     "values": [
@@ -28933,7 +28999,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9203,
+                    "id": 9208,
                     "name": "Divider",
                     "type": "reference",
                     "values": [
@@ -28942,7 +29008,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9218,
+                    "id": 9223,
                     "name": "Drop",
                     "type": "reference",
                     "values": [
@@ -28951,7 +29017,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9219,
+                    "id": 9224,
                     "name": "Flexbox",
                     "type": "reference",
                     "values": [
@@ -28960,7 +29026,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9220,
+                    "id": 9225,
                     "name": "Grid",
                     "type": "reference",
                     "values": [
@@ -28969,7 +29035,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9208,
+                    "id": 9213,
                     "name": "Menu",
                     "type": "reference",
                     "values": [
@@ -28978,7 +29044,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9214,
+                    "id": 9219,
                     "name": "Meter",
                     "type": "reference",
                     "values": [
@@ -28987,7 +29053,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9221,
+                    "id": 9226,
                     "name": "Modal",
                     "type": "reference",
                     "values": [
@@ -28996,7 +29062,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9222,
+                    "id": 9227,
                     "name": "Notification",
                     "type": "reference",
                     "values": [
@@ -29005,7 +29071,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9223,
+                    "id": 9228,
                     "name": "Popover",
                     "type": "reference",
                     "values": [
@@ -29014,7 +29080,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9209,
+                    "id": 9214,
                     "name": "Radio",
                     "type": "reference",
                     "values": [
@@ -29023,7 +29089,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9210,
+                    "id": 9215,
                     "name": "Range",
                     "type": "reference",
                     "values": [
@@ -29032,7 +29098,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9211,
+                    "id": 9216,
                     "name": "Select",
                     "type": "reference",
                     "values": [
@@ -29041,7 +29107,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9204,
+                    "id": 9209,
                     "name": "Spinner",
                     "type": "reference",
                     "values": [
@@ -29050,7 +29116,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9212,
+                    "id": 9217,
                     "name": "Switch",
                     "type": "reference",
                     "values": [
@@ -29059,7 +29125,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9215,
+                    "id": 9220,
                     "name": "Table",
                     "type": "reference",
                     "values": [
@@ -29068,7 +29134,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9213,
+                    "id": 9218,
                     "name": "TextField",
                     "type": "reference",
                     "values": [
@@ -29077,7 +29143,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9224,
+                    "id": 9229,
                     "name": "Tree",
                     "type": "reference",
                     "values": [
@@ -37089,7 +37155,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 8600,
+                    "id": 8605,
                     "name": "center",
                     "type": "intrinsic",
                     "values": [
@@ -37097,7 +37163,7 @@
                     ]
                 },
                 {
-                    "id": 8601,
+                    "id": 8606,
                     "name": "fullSize",
                     "type": "intrinsic",
                     "values": [
@@ -37107,7 +37173,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8599,
+                    "id": 8604,
                     "name": "visible",
                     "type": "intrinsic",
                     "values": [
@@ -37123,7 +37189,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 8087,
+                    "id": 8092,
                     "name": "center",
                     "type": "intrinsic",
                     "values": [
@@ -37131,12 +37197,12 @@
                     ]
                 },
                 {
-                    "id": 8063,
+                    "id": 8068,
                     "name": "close",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 8064,
+                            "id": 8069,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -37145,14 +37211,14 @@
                             },
                             "signatures": [
                                 {
-                                    "id": 8065,
+                                    "id": 8070,
                                     "name": "__call",
                                     "kind": 4096,
                                     "kindString": "Call signature",
                                     "flags": {},
                                     "parameters": [
                                         {
-                                            "id": 8066,
+                                            "id": 8071,
                                             "name": "didClose",
                                             "kind": 32768,
                                             "kindString": "Parameter",
@@ -37169,14 +37235,14 @@
                                                     {
                                                         "type": "reflection",
                                                         "declaration": {
-                                                            "id": 8067,
+                                                            "id": 8072,
                                                             "name": "__type",
                                                             "kind": 65536,
                                                             "kindString": "Type literal",
                                                             "flags": {},
                                                             "signatures": [
                                                                 {
-                                                                    "id": 8068,
+                                                                    "id": 8073,
                                                                     "name": "__call",
                                                                     "kind": 4096,
                                                                     "kindString": "Call signature",
@@ -37210,7 +37276,7 @@
                     }
                 },
                 {
-                    "id": 8088,
+                    "id": 8093,
                     "name": "customContent",
                     "type": "intrinsic",
                     "values": [
@@ -37219,12 +37285,12 @@
                     ]
                 },
                 {
-                    "id": 8059,
+                    "id": 8064,
                     "name": "open",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 8060,
+                            "id": 8065,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -37233,14 +37299,14 @@
                             },
                             "signatures": [
                                 {
-                                    "id": 8061,
+                                    "id": 8066,
                                     "name": "__call",
                                     "kind": 4096,
                                     "kindString": "Call signature",
                                     "flags": {},
                                     "parameters": [
                                         {
-                                            "id": 8062,
+                                            "id": 8067,
                                             "name": "customContent",
                                             "kind": 32768,
                                             "kindString": "Parameter",
@@ -37279,7 +37345,7 @@
                     }
                 },
                 {
-                    "id": 8089,
+                    "id": 8094,
                     "name": "overlay",
                     "type": "intrinsic",
                     "values": [
@@ -37287,12 +37353,12 @@
                     ]
                 },
                 {
-                    "id": 8077,
+                    "id": 8082,
                     "name": "setCenter",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 8078,
+                            "id": 8083,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -37301,14 +37367,14 @@
                             },
                             "signatures": [
                                 {
-                                    "id": 8079,
+                                    "id": 8084,
                                     "name": "__call",
                                     "kind": 4096,
                                     "kindString": "Call signature",
                                     "flags": {},
                                     "parameters": [
                                         {
-                                            "id": 8080,
+                                            "id": 8085,
                                             "name": "center",
                                             "kind": 32768,
                                             "kindString": "Parameter",
@@ -37336,12 +37402,12 @@
                     }
                 },
                 {
-                    "id": 8081,
+                    "id": 8086,
                     "name": "setCustomContent",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 8082,
+                            "id": 8087,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -37350,14 +37416,14 @@
                             },
                             "signatures": [
                                 {
-                                    "id": 8083,
+                                    "id": 8088,
                                     "name": "__call",
                                     "kind": 4096,
                                     "kindString": "Call signature",
                                     "flags": {},
                                     "parameters": [
                                         {
-                                            "id": 8084,
+                                            "id": 8089,
                                             "name": "customContent",
                                             "kind": 32768,
                                             "kindString": "Parameter",
@@ -37394,12 +37460,12 @@
                     }
                 },
                 {
-                    "id": 8073,
+                    "id": 8078,
                     "name": "setSubtitle",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 8074,
+                            "id": 8079,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -37408,14 +37474,14 @@
                             },
                             "signatures": [
                                 {
-                                    "id": 8075,
+                                    "id": 8080,
                                     "name": "__call",
                                     "kind": 4096,
                                     "kindString": "Call signature",
                                     "flags": {},
                                     "parameters": [
                                         {
-                                            "id": 8076,
+                                            "id": 8081,
                                             "name": "subtitle",
                                             "kind": 32768,
                                             "kindString": "Parameter",
@@ -37443,12 +37509,12 @@
                     }
                 },
                 {
-                    "id": 8069,
+                    "id": 8074,
                     "name": "setTitle",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 8070,
+                            "id": 8075,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -37457,14 +37523,14 @@
                             },
                             "signatures": [
                                 {
-                                    "id": 8071,
+                                    "id": 8076,
                                     "name": "__call",
                                     "kind": 4096,
                                     "kindString": "Call signature",
                                     "flags": {},
                                     "parameters": [
                                         {
-                                            "id": 8072,
+                                            "id": 8077,
                                             "name": "title",
                                             "kind": 32768,
                                             "kindString": "Parameter",
@@ -37492,7 +37558,7 @@
                     }
                 },
                 {
-                    "id": 8086,
+                    "id": 8091,
                     "name": "subtitle",
                     "type": "intrinsic",
                     "values": [
@@ -37501,7 +37567,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8085,
+                    "id": 8090,
                     "name": "title",
                     "type": "intrinsic",
                     "values": [
@@ -37510,7 +37576,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8090,
+                    "id": 8095,
                     "name": "window",
                     "type": "intrinsic",
                     "values": [
@@ -37526,7 +37592,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 8095,
+                    "id": 8100,
                     "name": "children",
                     "type": "intrinsic",
                     "values": [
@@ -37535,7 +37601,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8101,
+                    "id": 8106,
                     "name": "didClose",
                     "type": "reflection",
                     "values": [
@@ -37544,7 +37610,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8107,
+                    "id": 8112,
                     "name": "didOpen",
                     "type": "reflection",
                     "values": [
@@ -37553,7 +37619,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8094,
+                    "id": 8099,
                     "name": "fullSize",
                     "type": "intrinsic",
                     "values": [
@@ -37563,7 +37629,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8097,
+                    "id": 8102,
                     "name": "hideHeader",
                     "type": "intrinsic",
                     "values": [
@@ -37573,7 +37639,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8098,
+                    "id": 8103,
                     "name": "onClose",
                     "type": "reflection",
                     "values": [
@@ -37582,7 +37648,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8104,
+                    "id": 8109,
                     "name": "onOpen",
                     "type": "reflection",
                     "values": [
@@ -37591,7 +37657,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8096,
+                    "id": 8101,
                     "name": "opened",
                     "type": "intrinsic",
                     "values": [
@@ -37601,7 +37667,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8093,
+                    "id": 8098,
                     "name": "subtitle",
                     "type": "intrinsic",
                     "values": [
@@ -37610,7 +37676,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8092,
+                    "id": 8097,
                     "name": "title",
                     "type": "intrinsic",
                     "values": [
@@ -37627,7 +37693,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 8640,
+                    "id": 8645,
                     "name": "cross",
                     "type": "intrinsic",
                     "values": [
@@ -37635,7 +37701,7 @@
                     ]
                 },
                 {
-                    "id": 8639,
+                    "id": 8644,
                     "name": "header",
                     "type": "intrinsic",
                     "values": [
@@ -37643,12 +37709,12 @@
                     ]
                 },
                 {
-                    "id": 8631,
+                    "id": 8636,
                     "name": "overlay",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 8632,
+                            "id": 8637,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -37657,7 +37723,7 @@
                             },
                             "children": [
                                 {
-                                    "id": 8634,
+                                    "id": 8639,
                                     "name": "center",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -37692,7 +37758,7 @@
                                     }
                                 },
                                 {
-                                    "id": 8633,
+                                    "id": 8638,
                                     "name": "visible",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -37732,8 +37798,8 @@
                                     "title": "Variables",
                                     "kind": 32,
                                     "children": [
-                                        8634,
-                                        8633
+                                        8639,
+                                        8638
                                     ]
                                 }
                             ],
@@ -37748,12 +37814,12 @@
                     }
                 },
                 {
-                    "id": 8635,
+                    "id": 8640,
                     "name": "window",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 8636,
+                            "id": 8641,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -37762,7 +37828,7 @@
                             },
                             "children": [
                                 {
-                                    "id": 8638,
+                                    "id": 8643,
                                     "name": "fullSizeCenter",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -37797,7 +37863,7 @@
                                     }
                                 },
                                 {
-                                    "id": 8637,
+                                    "id": 8642,
                                     "name": "visible",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -37837,8 +37903,8 @@
                                     "title": "Variables",
                                     "kind": 32,
                                     "children": [
-                                        8638,
-                                        8637
+                                        8643,
+                                        8642
                                     ]
                                 }
                             ],
@@ -37861,7 +37927,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 8612,
+                    "id": 8617,
                     "name": "center",
                     "type": "intrinsic",
                     "values": [
@@ -37869,7 +37935,7 @@
                     ]
                 },
                 {
-                    "id": 8615,
+                    "id": 8620,
                     "name": "children",
                     "type": "intrinsic",
                     "values": [
@@ -37878,7 +37944,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8616,
+                    "id": 8621,
                     "name": "containerAttr",
                     "type": "reference",
                     "values": [
@@ -37887,7 +37953,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8617,
+                    "id": 8622,
                     "name": "containerEvents",
                     "type": "intrinsic",
                     "values": [
@@ -37896,7 +37962,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8613,
+                    "id": 8618,
                     "name": "fullSize",
                     "type": "intrinsic",
                     "values": [
@@ -37906,7 +37972,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8614,
+                    "id": 8619,
                     "name": "hideHeader",
                     "type": "intrinsic",
                     "values": [
@@ -37916,12 +37982,12 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8618,
+                    "id": 8623,
                     "name": "onClosePressed",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 8619,
+                            "id": 8624,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -37930,7 +37996,7 @@
                             },
                             "signatures": [
                                 {
-                                    "id": 8620,
+                                    "id": 8625,
                                     "name": "__call",
                                     "kind": 4096,
                                     "kindString": "Call signature",
@@ -37952,7 +38018,7 @@
                     }
                 },
                 {
-                    "id": 8621,
+                    "id": 8626,
                     "name": "styles",
                     "type": "reference",
                     "values": [
@@ -37960,7 +38026,7 @@
                     ]
                 },
                 {
-                    "id": 8610,
+                    "id": 8615,
                     "name": "subtitle",
                     "type": "intrinsic",
                     "values": [
@@ -37969,7 +38035,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8609,
+                    "id": 8614,
                     "name": "title",
                     "type": "intrinsic",
                     "values": [
@@ -37978,7 +38044,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8611,
+                    "id": 8616,
                     "name": "visible",
                     "type": "intrinsic",
                     "values": [
@@ -37994,7 +38060,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 8604,
+                    "id": 8609,
                     "name": "center",
                     "type": "intrinsic",
                     "values": [
@@ -38002,7 +38068,7 @@
                     ]
                 },
                 {
-                    "id": 8606,
+                    "id": 8611,
                     "name": "children",
                     "type": "intrinsic",
                     "values": [
@@ -38011,7 +38077,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8605,
+                    "id": 8610,
                     "name": "fullSize",
                     "type": "intrinsic",
                     "values": [
@@ -38021,7 +38087,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8607,
+                    "id": 8612,
                     "name": "styles",
                     "type": "reference",
                     "values": [
@@ -38029,7 +38095,7 @@
                     ]
                 },
                 {
-                    "id": 8603,
+                    "id": 8608,
                     "name": "visible",
                     "type": "intrinsic",
                     "values": [
@@ -38045,7 +38111,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 8625,
+                    "id": 8630,
                     "name": "hideHeader",
                     "type": "intrinsic",
                     "values": [
@@ -38055,12 +38121,12 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8626,
+                    "id": 8631,
                     "name": "onClosePressed",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 8627,
+                            "id": 8632,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -38069,7 +38135,7 @@
                             },
                             "signatures": [
                                 {
-                                    "id": 8628,
+                                    "id": 8633,
                                     "name": "__call",
                                     "kind": 4096,
                                     "kindString": "Call signature",
@@ -38091,7 +38157,7 @@
                     }
                 },
                 {
-                    "id": 8629,
+                    "id": 8634,
                     "name": "styles",
                     "type": "reference",
                     "values": [
@@ -38099,7 +38165,7 @@
                     ]
                 },
                 {
-                    "id": 8624,
+                    "id": 8629,
                     "name": "subtitle",
                     "type": "intrinsic",
                     "values": [
@@ -38108,7 +38174,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8623,
+                    "id": 8628,
                     "name": "title",
                     "type": "intrinsic",
                     "values": [
@@ -38125,7 +38191,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 8345,
+                    "id": 8350,
                     "name": "innerRef",
                     "type": "intrinsic",
                     "values": [
@@ -38140,7 +38206,7 @@
                     "weight": 99999,
                     "children": [
                         {
-                            "id": 8095,
+                            "id": 8100,
                             "name": "children",
                             "type": "intrinsic",
                             "values": [
@@ -38149,7 +38215,7 @@
                             "isOptional": true
                         },
                         {
-                            "id": 8101,
+                            "id": 8106,
                             "name": "didClose",
                             "type": "reflection",
                             "values": [
@@ -38158,7 +38224,7 @@
                             "isOptional": true
                         },
                         {
-                            "id": 8107,
+                            "id": 8112,
                             "name": "didOpen",
                             "type": "reflection",
                             "values": [
@@ -38167,7 +38233,7 @@
                             "isOptional": true
                         },
                         {
-                            "id": 8094,
+                            "id": 8099,
                             "name": "fullSize",
                             "type": "intrinsic",
                             "values": [
@@ -38177,7 +38243,7 @@
                             "isOptional": true
                         },
                         {
-                            "id": 8097,
+                            "id": 8102,
                             "name": "hideHeader",
                             "type": "intrinsic",
                             "values": [
@@ -38187,7 +38253,7 @@
                             "isOptional": true
                         },
                         {
-                            "id": 8098,
+                            "id": 8103,
                             "name": "onClose",
                             "type": "reflection",
                             "values": [
@@ -38196,7 +38262,7 @@
                             "isOptional": true
                         },
                         {
-                            "id": 8104,
+                            "id": 8109,
                             "name": "onOpen",
                             "type": "reflection",
                             "values": [
@@ -38205,7 +38271,7 @@
                             "isOptional": true
                         },
                         {
-                            "id": 8096,
+                            "id": 8101,
                             "name": "opened",
                             "type": "intrinsic",
                             "values": [
@@ -38215,7 +38281,7 @@
                             "isOptional": true
                         },
                         {
-                            "id": 8093,
+                            "id": 8098,
                             "name": "subtitle",
                             "type": "intrinsic",
                             "values": [
@@ -38224,7 +38290,7 @@
                             "isOptional": true
                         },
                         {
-                            "id": 8092,
+                            "id": 8097,
                             "name": "title",
                             "type": "intrinsic",
                             "values": [
@@ -38245,7 +38311,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 8644,
+                    "id": 8649,
                     "name": "children",
                     "type": "reference",
                     "values": [
@@ -38254,7 +38320,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8645,
+                    "id": 8650,
                     "name": "onClick",
                     "type": "reflection",
                     "values": [
@@ -38271,7 +38337,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 8657,
+                    "id": 8662,
                     "name": "container",
                     "type": "intrinsic",
                     "values": [
@@ -38287,7 +38353,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 8655,
+                    "id": 8660,
                     "name": "customContent",
                     "comment": "if custom content filled then title and message will be ignored",
                     "type": "reference",
@@ -38297,7 +38363,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8650,
+                    "id": 8655,
                     "name": "message",
                     "comment": "Message of notification",
                     "type": "intrinsic",
@@ -38306,7 +38372,7 @@
                     ]
                 },
                 {
-                    "id": 8652,
+                    "id": 8657,
                     "name": "onClick",
                     "comment": "Will call on notificaion click",
                     "type": "reflection",
@@ -38316,7 +38382,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8651,
+                    "id": 8656,
                     "name": "timeout",
                     "comment": "Notification will be removed after timeout\nvalue in milisecods",
                     "type": "intrinsic",
@@ -38326,7 +38392,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8649,
+                    "id": 8654,
                     "name": "title",
                     "comment": "Title of notification",
                     "type": "intrinsic",
@@ -38345,7 +38411,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 10001,
+                    "id": 10006,
                     "name": "defaultValue",
                     "type": "intrinsic",
                     "values": [
@@ -38354,7 +38420,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9993,
+                    "id": 9998,
                     "name": "length",
                     "type": "intrinsic",
                     "values": [
@@ -38362,7 +38428,7 @@
                     ]
                 },
                 {
-                    "id": 9994,
+                    "id": 9999,
                     "name": "onChange",
                     "type": "reflection",
                     "values": [
@@ -38371,7 +38437,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9999,
+                    "id": 10004,
                     "name": "options",
                     "type": "reference",
                     "values": [
@@ -38380,7 +38446,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 10000,
+                    "id": 10005,
                     "name": "value",
                     "type": "intrinsic",
                     "values": [
@@ -38397,12 +38463,12 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 10007,
+                    "id": 10012,
                     "name": "arrowButton",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 10008,
+                            "id": 10013,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -38411,7 +38477,7 @@
                             },
                             "children": [
                                 {
-                                    "id": 10009,
+                                    "id": 10014,
                                     "name": "disabled",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -38437,7 +38503,7 @@
                                     "title": "Variables",
                                     "kind": 32,
                                     "children": [
-                                        10009
+                                        10014
                                     ]
                                 }
                             ],
@@ -38452,7 +38518,7 @@
                     }
                 },
                 {
-                    "id": 10006,
+                    "id": 10011,
                     "name": "container",
                     "type": "intrinsic",
                     "values": [
@@ -38468,7 +38534,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 10004,
+                    "id": 10009,
                     "name": "pageSize",
                     "type": "intrinsic",
                     "values": [
@@ -38487,7 +38553,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 8660,
+                    "id": 8665,
                     "name": "align",
                     "type": "stringLiteral",
                     "values": [
@@ -38500,7 +38566,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8665,
+                    "id": 8670,
                     "name": "arrowHeight",
                     "type": {
                         "type": "indexedAccess",
@@ -38516,7 +38582,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8664,
+                    "id": 8669,
                     "name": "arrowWidth",
                     "type": {
                         "type": "indexedAccess",
@@ -38532,7 +38598,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8661,
+                    "id": 8666,
                     "name": "background",
                     "type": "reference",
                     "values": [
@@ -38541,7 +38607,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8663,
+                    "id": 8668,
                     "name": "children",
                     "type": "reference",
                     "values": [
@@ -38550,7 +38616,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8662,
+                    "id": 8667,
                     "name": "color",
                     "type": "reference",
                     "values": [
@@ -40791,12 +40857,12 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 8921,
+                    "id": 8926,
                     "name": "arrow",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 8922,
+                            "id": 8927,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -40805,7 +40871,7 @@
                             },
                             "children": [
                                 {
-                                    "id": 8923,
+                                    "id": 8928,
                                     "name": "align",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -40838,7 +40904,7 @@
                                     "title": "Variables",
                                     "kind": 32,
                                     "children": [
-                                        8923
+                                        8928
                                     ]
                                 }
                             ],
@@ -40853,7 +40919,7 @@
                     }
                 },
                 {
-                    "id": 8920,
+                    "id": 8925,
                     "name": "container",
                     "type": "intrinsic",
                     "values": [
@@ -43824,7 +43890,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 10484,
+                    "id": 10490,
                     "name": "scrollHeight",
                     "type": "intrinsic",
                     "values": [
@@ -43832,7 +43898,7 @@
                     ]
                 },
                 {
-                    "id": 10482,
+                    "id": 10488,
                     "name": "scrollLeft",
                     "type": "intrinsic",
                     "values": [
@@ -43840,7 +43906,7 @@
                     ]
                 },
                 {
-                    "id": 10481,
+                    "id": 10487,
                     "name": "scrollTop",
                     "type": "intrinsic",
                     "values": [
@@ -43848,7 +43914,7 @@
                     ]
                 },
                 {
-                    "id": 10483,
+                    "id": 10489,
                     "name": "scrollWidth",
                     "type": "intrinsic",
                     "values": [
@@ -43864,7 +43930,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 10494,
+                    "id": 10500,
                     "name": "cursorHandle",
                     "type": "intrinsic",
                     "values": [
@@ -43874,7 +43940,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 10486,
+                    "id": 10492,
                     "name": "deltaX",
                     "type": "intrinsic",
                     "values": [
@@ -43882,7 +43948,7 @@
                     ]
                 },
                 {
-                    "id": 10487,
+                    "id": 10493,
                     "name": "deltaY",
                     "type": "intrinsic",
                     "values": [
@@ -43890,12 +43956,12 @@
                     ]
                 },
                 {
-                    "id": 10488,
+                    "id": 10494,
                     "name": "preventDefault",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 10489,
+                            "id": 10495,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -43904,7 +43970,7 @@
                             },
                             "signatures": [
                                 {
-                                    "id": 10490,
+                                    "id": 10496,
                                     "name": "__call",
                                     "kind": 4096,
                                     "kindString": "Call signature",
@@ -43926,12 +43992,12 @@
                     }
                 },
                 {
-                    "id": 10491,
+                    "id": 10497,
                     "name": "stopPropagation",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 10492,
+                            "id": 10498,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -43940,7 +44006,7 @@
                             },
                             "signatures": [
                                 {
-                                    "id": 10493,
+                                    "id": 10499,
                                     "name": "__call",
                                     "kind": 4096,
                                     "kindString": "Call signature",
@@ -43970,12 +44036,12 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 10510,
+                    "id": 10516,
                     "name": "scrollTop",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 10511,
+                            "id": 10517,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -43984,7 +44050,7 @@
                             },
                             "signatures": [
                                 {
-                                    "id": 10512,
+                                    "id": 10518,
                                     "name": "__call",
                                     "kind": 4096,
                                     "kindString": "Call signature",
@@ -44014,7 +44080,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 10496,
+                    "id": 10502,
                     "name": "children",
                     "type": "reference",
                     "values": [
@@ -44023,7 +44089,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 10498,
+                    "id": 10504,
                     "name": "color",
                     "comment": "Custom ScrollBar color",
                     "type": "reference",
@@ -44033,7 +44099,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 10497,
+                    "id": 10503,
                     "name": "mode",
                     "comment": "Display mode",
                     "type": "stringLiteral",
@@ -44048,7 +44114,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 10504,
+                    "id": 10510,
                     "name": "onScroll",
                     "type": "reflection",
                     "values": [
@@ -44057,7 +44123,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 10503,
+                    "id": 10509,
                     "name": "sendFlowScollEvent",
                     "comment": "If false\nonflowscroll will not dispatch",
                     "type": "intrinsic",
@@ -44068,7 +44134,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 10500,
+                    "id": 10506,
                     "name": "shape",
                     "comment": "Bars shape",
                     "type": "stringLiteral",
@@ -44082,7 +44148,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 10499,
+                    "id": 10505,
                     "name": "size",
                     "comment": "Bars size",
                     "type": "stringLiteral",
@@ -44099,7 +44165,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 10501,
+                    "id": 10507,
                     "name": "xBarPosition",
                     "comment": "Position of X bar",
                     "type": "stringLiteral",
@@ -44113,7 +44179,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 10502,
+                    "id": 10508,
                     "name": "yBarPosition",
                     "comment": "Position of Y bar",
                     "type": "stringLiteral",
@@ -44135,7 +44201,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 10514,
+                    "id": 10520,
                     "name": "container",
                     "type": "intrinsic",
                     "values": [
@@ -44143,7 +44209,7 @@
                     ]
                 },
                 {
-                    "id": 10515,
+                    "id": 10521,
                     "name": "content",
                     "type": "intrinsic",
                     "values": [
@@ -44151,12 +44217,12 @@
                     ]
                 },
                 {
-                    "id": 10527,
+                    "id": 10533,
                     "name": "xBar",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 10528,
+                            "id": 10534,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -44165,7 +44231,7 @@
                             },
                             "children": [
                                 {
-                                    "id": 10529,
+                                    "id": 10535,
                                     "name": "active",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -44186,7 +44252,7 @@
                                     }
                                 },
                                 {
-                                    "id": 10532,
+                                    "id": 10538,
                                     "name": "position",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -44214,7 +44280,7 @@
                                     }
                                 },
                                 {
-                                    "id": 10530,
+                                    "id": 10536,
                                     "name": "shape",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -44242,7 +44308,7 @@
                                     }
                                 },
                                 {
-                                    "id": 10531,
+                                    "id": 10537,
                                     "name": "size",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -44275,10 +44341,10 @@
                                     "title": "Variables",
                                     "kind": 32,
                                     "children": [
-                                        10529,
-                                        10532,
-                                        10530,
-                                        10531
+                                        10535,
+                                        10538,
+                                        10536,
+                                        10537
                                     ]
                                 }
                             ],
@@ -44293,12 +44359,12 @@
                     }
                 },
                 {
-                    "id": 10533,
+                    "id": 10539,
                     "name": "xThumb",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 10534,
+                            "id": 10540,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -44307,7 +44373,7 @@
                             },
                             "children": [
                                 {
-                                    "id": 10535,
+                                    "id": 10541,
                                     "name": "active",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -44328,7 +44394,7 @@
                                     }
                                 },
                                 {
-                                    "id": 10536,
+                                    "id": 10542,
                                     "name": "shape",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -44356,7 +44422,7 @@
                                     }
                                 },
                                 {
-                                    "id": 10537,
+                                    "id": 10543,
                                     "name": "size",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -44389,9 +44455,9 @@
                                     "title": "Variables",
                                     "kind": 32,
                                     "children": [
-                                        10535,
-                                        10536,
-                                        10537
+                                        10541,
+                                        10542,
+                                        10543
                                     ]
                                 }
                             ],
@@ -44406,12 +44472,12 @@
                     }
                 },
                 {
-                    "id": 10516,
+                    "id": 10522,
                     "name": "yBar",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 10517,
+                            "id": 10523,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -44420,7 +44486,7 @@
                             },
                             "children": [
                                 {
-                                    "id": 10518,
+                                    "id": 10524,
                                     "name": "active",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -44441,7 +44507,7 @@
                                     }
                                 },
                                 {
-                                    "id": 10521,
+                                    "id": 10527,
                                     "name": "position",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -44469,7 +44535,7 @@
                                     }
                                 },
                                 {
-                                    "id": 10519,
+                                    "id": 10525,
                                     "name": "shape",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -44497,7 +44563,7 @@
                                     }
                                 },
                                 {
-                                    "id": 10520,
+                                    "id": 10526,
                                     "name": "size",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -44530,10 +44596,10 @@
                                     "title": "Variables",
                                     "kind": 32,
                                     "children": [
-                                        10518,
-                                        10521,
-                                        10519,
-                                        10520
+                                        10524,
+                                        10527,
+                                        10525,
+                                        10526
                                     ]
                                 }
                             ],
@@ -44548,12 +44614,12 @@
                     }
                 },
                 {
-                    "id": 10522,
+                    "id": 10528,
                     "name": "yThumb",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 10523,
+                            "id": 10529,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -44562,7 +44628,7 @@
                             },
                             "children": [
                                 {
-                                    "id": 10524,
+                                    "id": 10530,
                                     "name": "active",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -44583,7 +44649,7 @@
                                     }
                                 },
                                 {
-                                    "id": 10525,
+                                    "id": 10531,
                                     "name": "shape",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -44611,7 +44677,7 @@
                                     }
                                 },
                                 {
-                                    "id": 10526,
+                                    "id": 10532,
                                     "name": "size",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -44644,9 +44710,9 @@
                                     "title": "Variables",
                                     "kind": 32,
                                     "children": [
-                                        10524,
-                                        10525,
-                                        10526
+                                        10530,
+                                        10531,
+                                        10532
                                     ]
                                 }
                             ],
@@ -47950,7 +48016,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 10998,
+                    "id": 11004,
                     "name": "areaSize",
                     "comment": "Split area size, value in pixels",
                     "type": "intrinsic",
@@ -47960,7 +48026,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 10997,
+                    "id": 11003,
                     "name": "children",
                     "type": "reference",
                     "values": [
@@ -47968,7 +48034,7 @@
                     ]
                 },
                 {
-                    "id": 10996,
+                    "id": 11002,
                     "name": "direction",
                     "type": "stringLiteral",
                     "values": [
@@ -47978,7 +48044,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 11004,
+                    "id": 11010,
                     "name": "onChange",
                     "comment": "Calls when mouseUp if position did change",
                     "type": "reflection",
@@ -47988,7 +48054,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 11000,
+                    "id": 11006,
                     "name": "onMove",
                     "comment": "Calls when split area moves",
                     "type": "reflection",
@@ -47998,7 +48064,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 10999,
+                    "id": 11005,
                     "name": "positions",
                     "comment": "You can give it array of numbers (in percent)",
                     "type": "intrinsic",
@@ -48016,12 +48082,12 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 11010,
+                    "id": 11016,
                     "name": "container",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 11011,
+                            "id": 11017,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -48030,7 +48096,7 @@
                             },
                             "children": [
                                 {
-                                    "id": 11012,
+                                    "id": 11018,
                                     "name": "vertical",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -48056,7 +48122,7 @@
                                     "title": "Variables",
                                     "kind": 32,
                                     "children": [
-                                        11012
+                                        11018
                                     ]
                                 }
                             ],
@@ -48071,7 +48137,7 @@
                     }
                 },
                 {
-                    "id": 11013,
+                    "id": 11019,
                     "name": "test",
                     "type": "intrinsic",
                     "values": [
@@ -55563,7 +55629,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 8932,
+                    "id": 8937,
                     "name": "alwaysOpen",
                     "type": "intrinsic",
                     "values": [
@@ -55573,7 +55639,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8930,
+                    "id": 8935,
                     "name": "children",
                     "type": "reference",
                     "values": [
@@ -55582,7 +55648,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8931,
+                    "id": 8936,
                     "name": "decoration",
                     "type": "stringLiteral",
                     "values": [
@@ -55593,7 +55659,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8933,
+                    "id": 8938,
                     "name": "defaultOpen",
                     "type": "intrinsic",
                     "values": [
@@ -55603,7 +55669,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8934,
+                    "id": 8939,
                     "name": "indent",
                     "type": "intrinsic",
                     "values": [
@@ -55613,7 +55679,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 8926,
+                    "id": 8931,
                     "name": "label",
                     "type": "reflection",
                     "values": [
@@ -57856,12 +57922,12 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 9198,
+                    "id": 9203,
                     "name": "child",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 9199,
+                            "id": 9204,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -57870,7 +57936,7 @@
                             },
                             "children": [
                                 {
-                                    "id": 9200,
+                                    "id": 9205,
                                     "name": "isOpen",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -57896,7 +57962,7 @@
                                     "title": "Variables",
                                     "kind": 32,
                                     "children": [
-                                        9200
+                                        9205
                                     ]
                                 }
                             ],
@@ -57911,12 +57977,12 @@
                     }
                 },
                 {
-                    "id": 9189,
+                    "id": 9194,
                     "name": "container",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 9190,
+                            "id": 9195,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -57925,7 +57991,7 @@
                             },
                             "children": [
                                 {
-                                    "id": 9191,
+                                    "id": 9196,
                                     "name": "decoration",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -57953,7 +58019,7 @@
                                     }
                                 },
                                 {
-                                    "id": 9192,
+                                    "id": 9197,
                                     "name": "needIndent",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -57979,8 +58045,8 @@
                                     "title": "Variables",
                                     "kind": 32,
                                     "children": [
-                                        9191,
-                                        9192
+                                        9196,
+                                        9197
                                     ]
                                 }
                             ],
@@ -57995,12 +58061,12 @@
                     }
                 },
                 {
-                    "id": 9194,
+                    "id": 9199,
                     "name": "icon",
                     "type": {
                         "type": "reflection",
                         "declaration": {
-                            "id": 9195,
+                            "id": 9200,
                             "name": "__type",
                             "kind": 65536,
                             "kindString": "Type literal",
@@ -58009,7 +58075,7 @@
                             },
                             "children": [
                                 {
-                                    "id": 9196,
+                                    "id": 9201,
                                     "name": "decoration",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -58037,7 +58103,7 @@
                                     }
                                 },
                                 {
-                                    "id": 9197,
+                                    "id": 9202,
                                     "name": "disabled",
                                     "kind": 32,
                                     "kindString": "Variable",
@@ -58063,8 +58129,8 @@
                                     "title": "Variables",
                                     "kind": 32,
                                     "children": [
-                                        9196,
-                                        9197
+                                        9201,
+                                        9202
                                     ]
                                 }
                             ],
@@ -58079,7 +58145,7 @@
                     }
                 },
                 {
-                    "id": 9193,
+                    "id": 9198,
                     "name": "label",
                     "type": "intrinsic",
                     "values": [
@@ -65486,7 +65552,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 9359,
+                    "id": 9364,
                     "name": "dark",
                     "type": "reference",
                     "values": [
@@ -65494,7 +65560,7 @@
                     ]
                 },
                 {
-                    "id": 9358,
+                    "id": 9363,
                     "name": "light",
                     "type": "reference",
                     "values": [
@@ -65510,7 +65576,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 9368,
+                    "id": 9373,
                     "name": "children",
                     "type": "reference",
                     "values": [
@@ -65519,7 +65585,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9362,
+                    "id": 9367,
                     "name": "className",
                     "type": "intrinsic",
                     "values": [
@@ -65528,7 +65594,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9363,
+                    "id": 9368,
                     "name": "id",
                     "type": "intrinsic",
                     "values": [
@@ -65537,7 +65603,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9364,
+                    "id": 9369,
                     "name": "theme",
                     "type": "reference",
                     "values": [
@@ -65547,7 +65613,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9361,
+                    "id": 9366,
                     "name": "wrapper",
                     "type": "intrinsic",
                     "values": [
@@ -65565,7 +65631,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 9373,
+                    "id": 9378,
                     "name": "children",
                     "type": "reference",
                     "values": [
@@ -65573,7 +65639,7 @@
                     ]
                 },
                 {
-                    "id": 9372,
+                    "id": 9377,
                     "name": "key",
                     "type": "intrinsic",
                     "values": [
@@ -65589,7 +65655,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 9370,
+                    "id": 9375,
                     "name": "className",
                     "type": "intrinsic",
                     "values": [
@@ -65606,7 +65672,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 9380,
+                    "id": 9385,
                     "name": "buttonText",
                     "comment": "Button text",
                     "type": "intrinsic",
@@ -65616,7 +65682,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9382,
+                    "id": 9387,
                     "name": "customContent",
                     "comment": "if custom content filled then message and buttonText will be ignored",
                     "type": "reference",
@@ -65626,7 +65692,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9381,
+                    "id": 9386,
                     "name": "hideHeader",
                     "comment": "Hides modal window header",
                     "type": "intrinsic",
@@ -65637,7 +65703,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9379,
+                    "id": 9384,
                     "name": "message",
                     "comment": "Message of dialog",
                     "type": "intrinsic",
@@ -65647,7 +65713,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9378,
+                    "id": 9383,
                     "name": "subtitle",
                     "comment": "Subtitle of modal window header",
                     "type": "intrinsic",
@@ -65657,7 +65723,7 @@
                     "isOptional": true
                 },
                 {
-                    "id": 9377,
+                    "id": 9382,
                     "name": "title",
                     "comment": "Title of modal window header",
                     "type": "intrinsic",
@@ -65675,7 +65741,7 @@
             "weight": 99999,
             "children": [
                 {
-                    "id": 9375,
+                    "id": 9380,
                     "name": "theme",
                     "type": "reference",
                     "values": [

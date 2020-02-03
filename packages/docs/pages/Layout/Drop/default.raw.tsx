@@ -1,8 +1,8 @@
-import React, {useRef} from 'react';
-import { Drop, Button, Popover, Block } from '@flow-ui/core';
+import React, {useRef} from 'react'
+import { Drop, Button, Popover, Block } from '@flow-ui/core'
 
 export default () => {
-    const ref = useRef(null);
+    const ref = useRef(null)
     return (
         <Block>
             <Button ref={ref}>Trigger Popup</Button>
