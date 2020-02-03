@@ -1,4 +1,4 @@
-import code from './default.raw';
+import code from './default.raw'
 
 export const title = 'Radio'
 export const subtitle = ''

@@ -1,5 +1,5 @@
-import code from './default.raw';
-import custom from './custom.raw';
+import code from './default.raw'
+import custom from './custom.raw'
 
 export const title = 'Dialog'
 export const subtitle = 'Function will create dialog in modal'
