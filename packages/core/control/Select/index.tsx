@@ -91,6 +91,14 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
         }
     }, [props.values])
 
+    /**
+     * Update drop position after
+     * field changing his height
+     */
+    useEffect(() => {
+        isOpen && dropRef.current?.updatePosition()
+    }, [values])
+
     /*
     * Keyboard control
     * TODO: handle keyboard control
@@ -115,16 +123,6 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
     function toggleOpen(e) {
         e.stopPropagation()
         setOpen(!isOpen)
-    }
-
-    /**
-     * Update drop position
-     * uses after select field changing height
-     */
-    function updateDropLayout() {
-        setTimeout(() => {
-            dropRef.current?.updatePosition()
-        },1)
     }
 
     /**
@@ -153,7 +151,6 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
         if (!keepOpen) {
             setOpen(false)
         }
-        updateDropLayout()
     }
 
     /**
@@ -161,7 +158,6 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
      */
     function unsetOption(value: Types.Option) {
         onChange(values.filter(v => v.value !== value.value))
-        updateDropLayout()
     }
 
     /**
@@ -170,7 +166,6 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
      */
     function clearValues(search = '') {
         onChange([], search)
-        updateDropLayout()
     }
 
     return (
@@ -192,9 +187,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                 events={{
                     ...events.all,
                     onClick: (e) => {
-                        // searchable && e.target.toString().match('HTMLInputElement')
-                        //     ? !state.open && dispatch({ type: 'toggleOpen', payload: true })
-                        //     : toggleOpen()
+                        e.preventDefault()
                         toggleOpen(e)
                         events.all.onClick?.(e)
                     },
@@ -206,6 +199,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                         size={size}
                         rotate={(isOpen && options.length > 0) ? 180 : 0}
                         onClick={(e) => {
+                            e.preventDefault()
                             toggleOpen(e)
                         }}
                     />
@@ -219,6 +213,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                                     size={size}
                                     css={cs.tagRemove(styleState)}
                                     onClick={(e) => {
+                                        e.preventDefault()
                                         e.stopPropagation()
                                         unsetOption(option)
                                     }}
@@ -242,6 +237,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                                 }
                             }}
                             onClick={(e) => {
+                                e.preventDefault()
                                 e.stopPropagation()
                                 setOpen(true)
                             }}
@@ -272,7 +268,8 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                                     css={cs.dropItem(styleState)}
                                     key={option.value}
                                     children={option.text}
-                                    onClick={() => {
+                                    onClick={(e) => {
+                                        e.preventDefault()
                                         setOption(option)
                                     }}
                                 />
