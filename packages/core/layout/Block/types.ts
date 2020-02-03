@@ -7,8 +7,6 @@ declare namespace BlockTypes {
         surface?: 'major' | 'medium' | 'minor'
         hoverSurface?: 'major' | 'medium' | 'minor'
         children?: React.ReactNode
-        background?: WhaleTypes.ColorProp
-        color?: WhaleTypes.ColorProp
         overflow?: CSS.Properties['overflow']
     }
 
