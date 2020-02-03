@@ -15,9 +15,7 @@ const Init = (component: string, props = {}) => ({
 
 const components: ArchitectTools['components'] = {
     Divider: Init('Divider'),
-    Icon: Init('Icon', {
-        children: [],
-    }),
+
     Spinner: Init('Spinner'),
     Header: Init('Header', {
         text: 'Header',

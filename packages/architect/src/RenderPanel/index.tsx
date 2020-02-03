@@ -77,17 +77,20 @@ const RenderItem = (props: RenderItemProps) => {
     }
 
     const convertedProps: {[key: string]: unknown} = {}
-    if (item.component === 'Icon') {
-        if (item.props.type) {
-            const keys = item.props.type.split('.') || []
-            convertedProps.type = (t) => {
-                if (t[keys[0]]) {
-                    return t[keys[0]][keys[1]]
-                }
-                return t.outline.questionMark
-            }
-        }
-    }
+    /**
+     * Icon is deprecated
+     */
+    // if (item.component === 'Icon') {
+    //     if (item.props.type) {
+    //         const keys = item.props.type.split('.') || []
+    //         convertedProps.type = (t) => {
+    //             if (t[keys[0]]) {
+    //                 return t[keys[0]][keys[1]]
+    //             }
+    //             return t.outline.questionMark
+    //         }
+    //     }
+    // }
     return (
         <span
             ref={ref}

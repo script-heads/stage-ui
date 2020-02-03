@@ -102,15 +102,6 @@ const HelloWorldForm: ArchitectItem[] = [
                                 component: 'Block',
                                 text: 'Help',
                                 props: {}
-                            },
-                            {
-                                $:{},
-                                id: uuid(),
-                                component: 'Icon',
-                                props: {
-                                    pl: '0.25rem',
-                                    type: 'outline.questionMarkCircle',
-                                }
                             }
                         ]
                     },
