@@ -4,6 +4,7 @@ import styles from './styles'
 import Types from './types'
 
 interface MemoParams { 
+    mounted: boolean
     y: boolean
     x: boolean
     events: boolean
@@ -48,7 +49,9 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
     } = props
 
     const [active, setActive] = useState(mode === 'always')
+    
     const memo: MemoParams = useMemo(() => ({
+        mounted: false,
         y: false,
         x: false,
         events: false,
@@ -167,7 +170,9 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                 clearTimeout(memo.timeout)
                 memo.timeout = null
             }
-            memo.timeout = setTimeout(() => setActive(false), 500)
+            memo.timeout = setTimeout(() => {
+                memo.mounted && setActive(false)
+            }, 500)
         }
         const event = {
             scrollTop: memo.content.offsetTop,
@@ -221,6 +226,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         if (memo.timeout && mode !== 'always') {
             clearTimeout(memo.timeout)
         }
+        memo.mounted = true
         memo.mode = mode
         setActive(memo.mode == 'always' ? true : false)
         updateScroll({
@@ -230,8 +236,12 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             stopPropagation: () => null
         })
         return () => {
+            memo.mounted = false
             window.removeEventListener('mouseup', mouseUp)
             window.removeEventListener('mousemove', mouseMove)
+            memo.yThumb?.removeEventListener('mousedown', yMouseDown)
+            memo.xThumb?.removeEventListener('mousedown', xMouseDown)
+            memo.content?.removeEventListener('wheel', updateScroll)
         }
     }, [props])
 
