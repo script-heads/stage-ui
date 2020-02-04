@@ -7,7 +7,7 @@ const HelloWorldForm: ArchitectItem[] = [
         id: uuid(),
         component: 'Block',
         props: {
-            surface: 'major',
+            decoration: 'neumorphism',
             pt: '0.5rem',
             pl: '1rem',
             pr: '1rem',

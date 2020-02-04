@@ -130,13 +130,12 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
      * support controlled and uncontrolled
      * second arg need if you need filter values by search
      */
-    function onChange(values: Types.Option[], search = '') {
+    function onChange(values: Types.Option[], value?: Types.Option, search = '') {
         setSearchQuery(search)
-        if (props.values !== undefined) {
-            props.onChange?.(values)
-        } else {
+        if (props.values === undefined) {
             setValues(values)
         }
+        props.onChange?.(values)
     }
 
     /**
@@ -144,9 +143,9 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
      */
     function setOption(value: Types.Option) {
         if (props.multiselect) {
-            onChange(values.concat(value))
+            onChange(values.concat(value), value)
         } else {
-            onChange([value])
+            onChange([value], value)
         }
         if (!keepOpen) {
             setOpen(false)
@@ -157,7 +156,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
      * Unsetting values
      */
     function unsetOption(value: Types.Option) {
-        onChange(values.filter(v => v.value !== value.value))
+        onChange(values.filter(v => v.value !== value.value), value)
     }
 
     /**
@@ -165,7 +164,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
      * also can set filter for search
      */
     function clearValues(search = '') {
-        onChange([], search)
+        onChange([], undefined, search)
     }
 
     return (
