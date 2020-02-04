@@ -1,6 +1,5 @@
-import React from 'react';
-import { Block } from '@flow-ui/core';
-import { ScrollView } from '@flow-ui/core';
+import { ScrollView } from '@flow-ui/core'
+import React from 'react'
 
 export default () => {
     return (
@@ -8,7 +7,7 @@ export default () => {
             mode="always"
             size="m"
             shape="round"
-            children={"Text ".repeat(200)}
+            children={'Text '.repeat(200)}
         />
     )
 }

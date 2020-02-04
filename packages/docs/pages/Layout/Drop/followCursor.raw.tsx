@@ -5,7 +5,7 @@ export default () => {
     return (
         <Drop followCursor>
             <Block
-                surface="major"
+                decoration="minorShadow"
                 children="Let me go!"
                 p=".5rem 1rem"
             />

@@ -1,12 +1,12 @@
 import code from './default.raw'
-import withSurface from './withSurface.raw'
-import withHover from './withHover.raw'
+import shadowSurface from './shadowSurface.raw'
+import neumorphismSurface from './neumorphismSurface.raw'
 
 export const title = 'Block'
 export const subtitle = 'Block — minimal layout component. For example this case wrap in block'
 export const ns = 'BlockTypes'
 export const cases = [
     { label: 'Basic', code },
-    { label: 'With surface', code: withSurface },
-    { label: 'With hover', code: withHover },
+    { label: 'Shadows', code: shadowSurface },
+    { label: 'Neumorphism', code: neumorphismSurface },
 ]

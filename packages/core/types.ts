@@ -35,6 +35,7 @@ import PopoverTypes from './layout/Popover/types'
 import TreeTypes from './layout/Tree/types'
 
 declare namespace FlowTypes {
+    type LayoutDecoration = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' |  'neumorphism'
 
     interface Overrides {
         Divider?: Partial<WhaleTypes.Styles<DividerTypes.Overrides>>

@@ -1,42 +1,15 @@
 import WhaleTypes from '@flow-ui/whale/types'
 import Types from './types'
+import applyLayoutDecoration from '@flow-ui/core/misc/utils/applyLayoutDecoration'
 
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
-    const surfaceVariants = {
-        'minor': [{
-            borderWidth: theme.assets.border.width,
-            borderStyle: theme.assets.border.style,
-            borderColor: theme.assets.border.color,
-            borderRadius: theme.radius.default,
-            background: theme.color.surface.css(),
-            boxShadow: theme.assets.shadow.short
-        }],
-        'medium': [{
-            borderWidth: theme.assets.border.width,
-            borderStyle: theme.assets.border.style,
-            borderColor: theme.assets.border.color,
-            borderRadius: theme.radius.default,
-            background: theme.color.surface.css(),
-            boxShadow: theme.assets.shadow.default
-        }],
-        'major': [{
-            borderWidth: theme.assets.border.width,
-            borderStyle: theme.assets.border.style,
-            borderColor: theme.assets.border.color,
-            borderRadius: theme.radius.default,
-            background: theme.color.surface.css(),
-            boxShadow: theme.assets.shadow.long
-        }]
-    }
-
     return {
-        container: (variant) => [
+        container: [
             {
                 position: 'relative',
-                '&:hover': variant({ hoverSurface: surfaceVariants }),
                 overflow: props.overflow
             },
-            variant({ surface: surfaceVariants })
+            applyLayoutDecoration(props, theme)
         ]
     }
 }

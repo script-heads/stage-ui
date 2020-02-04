@@ -1,4 +1,4 @@
-import React, { RefForwardingComponent } from 'react'
+import React, { RefForwardingComponent, useMemo } from 'react'
 import Types from './types'
 
 const Item: RefForwardingComponent<HTMLDivElement, Types.ItemProps> = (props, ref) => {
@@ -13,7 +13,6 @@ const Item: RefForwardingComponent<HTMLDivElement, Types.ItemProps> = (props, re
         active = false,
         onClick,
     } = props
-
     return (
         <div
             //@ts-ignore
