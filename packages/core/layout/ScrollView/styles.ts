@@ -23,7 +23,11 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
         ],
         content: [{
             position: 'relative',
-            width: 'fit-content',
+            /**
+             * causing issue with
+             * crop content
+             */
+            // width: 'fit-content',
             height: 'fit-content',
             minWidth: '100%',
             minHeight: '100%',

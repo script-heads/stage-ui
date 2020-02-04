@@ -128,14 +128,14 @@ const Documaker = () => {
 						setIndex={() => historyPush('/')}
 					/>
 					<Flexbox css={{ minHeight: '100%' }}>
-						<ScrollView h="calc(100vh - 5rem)">
+						<ScrollView size="xs" h="calc(100vh - 5rem)" yBarPosition="left">
 							<Sidebar
 								currentPage={currentPage as PageType}
 								pages={pages}
 								onChange={(pageURL) => historyPush(pageURL)}
 							/>
 						</ScrollView>
-						<ScrollView h="calc(100vh - 5rem)" w="100%">
+						<ScrollView size="xs" h="calc(100vh - 5rem)" w="100%">
 							<Page
 								currentPage={currentPage as PageType}
 								types={config.pages?.types}
