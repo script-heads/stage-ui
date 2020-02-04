@@ -4,13 +4,14 @@ import { Prism, PrismLight } from 'react-syntax-highlighter'
 import light from 'react-syntax-highlighter/dist/esm/styles/prism/prism'
 import dark from 'react-syntax-highlighter/dist/esm/styles/prism/vs-dark'
 
-const Syntax = (props: { code: any }) => {
+const Syntax = (props: { code: string }) => {
     const theme = useTheme()
     const isDark = theme.name.toUpperCase().match('DARK') ? true : false
     const style = isDark ? dark : light
     const HL = isDark ? Prism : PrismLight
-    const styles: any = {
-        fontSize: '0.75rem',
+    const styles = {
+        fontSize: theme.typography.text.m.fontSize,
+        fontWeight: 600,
         borderRadius: theme.radius.default,
         borderWidth: '1px',
         borderStyle: 'solid',
