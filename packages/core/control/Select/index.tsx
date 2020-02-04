@@ -135,7 +135,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
         if (props.values === undefined) {
             setValues(values)
         }
-        props.onChange?.(values)
+        props.onChange?.(values, value)
     }
 
     /**
