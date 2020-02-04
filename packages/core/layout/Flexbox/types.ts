@@ -19,7 +19,7 @@ declare namespace FlexboxTypes {
 
     interface Overrides {
         container: {
-            decoration: FlowTypes.LayoutDecoration
+            decoration?: FlowTypes.LayoutDecoration
         }
     }
 }

@@ -27,7 +27,7 @@ declare namespace GridTypes {
     }
     interface Overrides {
         container: {
-            decoration: FlowTypes.LayoutDecoration
+            decoration?: FlowTypes.LayoutDecoration
         }
     }
 }
