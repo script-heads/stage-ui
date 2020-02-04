@@ -169,8 +169,7 @@ const Editor = (props: EditorProps) => {
                     }
                 ]}>
                 <Split direction={direction}>
-                    <MonacoEditor setCode={setCode} />
-                    <Block h="100%" flex={1}>
+                    <Block h="100%" flex={1} overflow="hidden">
                         <ErrorBoundary>
                             <Preview
                                 theme={theme}
@@ -194,6 +193,7 @@ const Editor = (props: EditorProps) => {
                             />
                         )}
                     </Block>
+                    <MonacoEditor setCode={setCode} />
                 </Split>
             </Block>
         </Fragment>

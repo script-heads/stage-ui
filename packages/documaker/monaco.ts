@@ -91,6 +91,7 @@ class Monaco {
             automaticLayout: true,
             fontSize: 14,
             fontWeight: '600',
+            scrollBeyondLastLine: false,
         })
 
         this.editor.onDidChangeModelContent(event => {
