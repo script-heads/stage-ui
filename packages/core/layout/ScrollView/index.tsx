@@ -221,6 +221,19 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         }
     }
 
+    /**
+     * ScrollTop if content height
+     * not fits his container
+     */
+    useEffect(() => {
+        const { content, container } = memo
+        if (content && container) {
+            if (container.offsetHeight-content.offsetTop > content.offsetHeight) {
+                content.style.top = ''
+            }
+        }
+    })
+
     useEffect(() => {
         if (memo.timeout && mode !== 'always') {
             clearTimeout(memo.timeout)
