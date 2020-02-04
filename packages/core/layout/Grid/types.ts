@@ -26,7 +26,9 @@ declare namespace GridTypes {
         justifyItems?: CSS.Properties['justifyItems']
     }
     interface Overrides {
-        container: void
+        container: {
+            decoration: FlowTypes.LayoutDecoration
+        }
     }
 }
 

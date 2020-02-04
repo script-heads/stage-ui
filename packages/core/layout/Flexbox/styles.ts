@@ -4,7 +4,8 @@ import applyLayoutDecoration from '@flow-ui/core/misc/utils/applyLayoutDecoratio
 
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
     return {
-        container: [
+        container: (variant) => [
+            applyLayoutDecoration(props, theme),
             {
                 position: 'relative',
                 display: props.inline ? 'inline-flex' : 'flex',
@@ -16,7 +17,6 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 flexFlow: props.flow,
                 flexWrap: props.wrap,
             },
-            applyLayoutDecoration(props, theme)
         ]
     }
 }

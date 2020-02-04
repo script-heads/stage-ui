@@ -19,7 +19,9 @@ const Block: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
             ...events.all,
             ref: ref,
             className: props.className,
-            css: cs.container,
+            css: cs.container({
+                decoration: props.decoration
+            }),
         },
         props.children
     )

@@ -35,8 +35,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         props, 
         styles, 
         styleProps: { 
-            container: ['flow'],
-            content: ['self']
+            container: ['all']
         } 
     })
     
@@ -239,9 +238,6 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             memo.mounted = false
             window.removeEventListener('mouseup', mouseUp)
             window.removeEventListener('mousemove', mouseMove)
-            memo.yThumb?.removeEventListener('mousedown', yMouseDown)
-            memo.xThumb?.removeEventListener('mousedown', xMouseDown)
-            memo.content?.removeEventListener('wheel', updateScroll)
         }
     }, [props])
 

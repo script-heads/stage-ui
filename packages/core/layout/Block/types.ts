@@ -11,7 +11,9 @@ declare namespace BlockTypes {
     }
 
     interface Overrides {
-        container: void
+        container: {
+            decoration: FlowTypes.LayoutDecoration
+        }
     }
 }
 

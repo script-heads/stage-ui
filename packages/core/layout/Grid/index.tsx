@@ -14,7 +14,9 @@ const Grid: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
             ...attributes,
             ...events.all,
             ref: ref,
-            css: cs.container
+            css: cs.container({
+                decoration: props.decoration
+            })
         },
         props.children
     )

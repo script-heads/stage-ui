@@ -15,9 +15,6 @@ export default () => {
                 { text: 'Tropical', value: 4 },
                 { text: 'Berries', value: 5 },
                 { text: 'Melons', value: 6 },
-                { text: 'Melons', value: 8 },
-                { text: 'Melons', value: 9 },
-                { text: 'Melons', value: 10 },
             ]}
         />
     )

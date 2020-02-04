@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom'
 import { Global } from '@emotion/core'
 import React, { Fragment, useState, useMemo } from 'react'
-import { Viewport, Flexbox, Header, Text } from '@flow-ui/core'
+import { Viewport, Flexbox, Header, Text, ScrollView } from '@flow-ui/core'
 import core, { PageType } from './core'
 import Sidebar from './components/Sidebar'
 import PageHeader from './components/PageHeader'
@@ -42,7 +42,7 @@ const Documaker = () => {
 	const { config, pages } = core
 	const themes = Object.assign(flowThemes, config.themes)
 	const locationPath = '/' + window.location.pathname.slice(1)
-	
+
 	let defaultTheme = Object.values(themes)[0]
 	const currentSavedTheme = localStorage.getItem('current_theme')
 	if (currentSavedTheme) {
@@ -102,7 +102,7 @@ const Documaker = () => {
 			</FlowViewport>
 		)
 	}
-	
+
 	return (
 		<FlowViewport currentTheme={currentTheme}>
 			{currentPage === null && <PageEmpty />}
@@ -128,16 +128,21 @@ const Documaker = () => {
 						setIndex={() => historyPush('/')}
 					/>
 					<Flexbox css={{ minHeight: '100%' }}>
-						<Sidebar
-							currentPage={currentPage as PageType}
-							pages={pages}
-							onChange={(pageURL) => historyPush(pageURL)}
-						/>
-						<Page
-							currentPage={currentPage as PageType}
-							types={config.pages?.types}
-							separatedTypes={config.pages?.separatedTypes}
-						/>
+						<ScrollView h="calc(100vh - 5rem)">
+							<Sidebar
+								currentPage={currentPage as PageType}
+								pages={pages}
+								onChange={(pageURL) => historyPush(pageURL)}
+							/>
+						</ScrollView>
+						<ScrollView h="calc(100vh - 5rem)" w="100%">
+							<Page
+								currentPage={currentPage as PageType}
+								types={config.pages?.types}
+								separatedTypes={config.pages?.separatedTypes}
+							/>
+						</ScrollView>
+
 					</Flexbox>
 				</Fragment>
 			}

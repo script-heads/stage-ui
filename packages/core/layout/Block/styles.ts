@@ -4,12 +4,12 @@ import applyLayoutDecoration from '@flow-ui/core/misc/utils/applyLayoutDecoratio
 
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
     return {
-        container: [
+        container: (variant) => [
+            applyLayoutDecoration(props, theme),
             {
                 position: 'relative',
                 overflow: props.overflow
             },
-            applyLayoutDecoration(props, theme)
         ]
     }
 }
