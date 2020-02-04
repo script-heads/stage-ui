@@ -18,7 +18,7 @@ export default () => {
                 ]}
                 onChange={(e: number) => setValue(e)}
             />
-            <Block surface="major" p="1rem">
+            <Block decoration="majorShadow"  p="1rem">
                 Active tab: {value}
             </Block>
         </Fragment>
