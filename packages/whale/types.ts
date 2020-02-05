@@ -22,7 +22,7 @@ declare namespace WhaleTypes {
     interface ReplaceTheme<Overrides = {}> {
         main: DeepPartial<ThemeVariables<[number, number, number, number?]>>
         assets?: (theme: Theme<Overrides>) => DeepPartial<ThemeAssets>
-        overrides?: DeepPartial<{[Component in keyof Overrides]: ComponentStyles<Component>}>
+        overrides?: DeepPartial<{[Component in keyof Overrides]: Overrides[Component]}>
     }
     
     interface ThemeVariables<Color = chroma.Color> {
