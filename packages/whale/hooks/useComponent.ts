@@ -3,6 +3,7 @@ import WhaleTypes, { EmotionStyles } from '../types'
 import attributeProps from '../utils/attributeProps'
 import getStyleProps, { InjectedStyles } from '../utils/styleProps'
 import useTheme from './useTheme'
+import { useMemo } from 'react'
 
 interface Options<S> {
     props, 
@@ -17,7 +18,8 @@ const useComponent = <S, P>(overrideName: string, options: Options<S>, params = 
     const { props, mouseFocus, focusDecoration, styleProps } = options
     const cs: WhaleTypes.ComponentStyles<S> = {} as WhaleTypes.ComponentStyles<S>
 
-    const theme = useTheme()
+    const theme = useMemo(() => useTheme(), [])
+    
     const { attributes, events, focus } = attributeProps(props, theme, mouseFocus, focusDecoration)
 
     const styles = typeof options.styles === 'function'

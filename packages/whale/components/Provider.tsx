@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useMemo } from 'react'
 import createCache, { Options } from '@emotion/cache'
 import { ThemeProvider } from 'emotion-theming'
 import { CacheProvider, Global, SerializedStyles } from '@emotion/core'
@@ -15,10 +15,10 @@ interface ProviderProps {
 const Provider = <T extends ProviderProps>(props: T) => {
 
     const {theme, global, children} = props
-    const cache = useCallback(() => createCache(props.cache),[])
+    const cache = useMemo(() => createCache(props.cache),[])
 
     const Content = (
-        <CacheProvider value={cache()}>
+        <CacheProvider value={cache}>
             <Global styles={global}/>
             {children}
         </CacheProvider>
