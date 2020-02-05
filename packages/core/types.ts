@@ -38,32 +38,33 @@ import ScrollView from './layout/ScrollView/types'
 
 declare namespace FlowTypes {
     type LayoutDecoration = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' |  'neumorphism'
-
+    type Override<T> = Partial<WhaleTypes.Styles<T>>
+    
     interface Overrides {
-        Divider?: Partial<WhaleTypes.Styles<DividerTypes.Overrides>>
-        Spinner?: Partial<WhaleTypes.Styles<SpinnerTypes.Overrides>>
-        Button?: Partial<WhaleTypes.Styles<ButtonTypes.Overrides>>
-        Calendar?: Partial<WhaleTypes.Styles<Calendar.Overrides>>
-        Checkbox?: Partial<WhaleTypes.Styles<CheckboxTypes.Overrides>>
-        DatePicker?: Partial<WhaleTypes.Styles<DatePickerTypes.Overrides>>
-        Menu?: Partial<WhaleTypes.Styles<MenuTypes.Overrides>>
-        Radio?: Partial<WhaleTypes.Styles<RadioTypes.Overrides>>
-        Range?: Partial<WhaleTypes.Styles<RangeTypes.Overrides>>
-        Select?: Partial<WhaleTypes.Styles<SelectTypes.Overrides>>
-        Switch?: Partial<WhaleTypes.Styles<SwitchTypes.Overrides>>
-        TextField?: Partial<WhaleTypes.Styles<TextFieldTypes.Overrides>>
-        Meter?: Partial<WhaleTypes.Styles<MeterTypes.Overrides>>
-        Table?: Partial<WhaleTypes.Styles<TableTypes.Overrides>>
-        Badge?: Partial<WhaleTypes.Styles<BadgeTypes.Overrides>>
-        Block?: Partial<WhaleTypes.Styles<BlockTypes.Overrides>>
-        Drop?: Partial<WhaleTypes.Styles<DropTypes.Overrides>>
-        Flexbox?: Partial<WhaleTypes.Styles<FlexboxTypes.Overrides>>
-        Grid?: Partial<WhaleTypes.Styles<GridTypes.Overrides>>
-        Modal?: Partial<WhaleTypes.Styles<ModalTypes.Overrides>>
-        Notification?: Partial<WhaleTypes.Styles<NotificationTypes.Overrides>>
-        Popover?: Partial<WhaleTypes.Styles<PopoverTypes.Overrides>>
-        Tree?: Partial<WhaleTypes.Styles<TreeTypes.Overrides>>
-        ScrollView?: Partial<WhaleTypes.Styles<ScrollView.Overrides>>
+        Divider?: Override<DividerTypes.Overrides>
+        Spinner?: Override<SpinnerTypes.Overrides>
+        Button?: Override<ButtonTypes.Overrides>
+        Calendar?: Override<Calendar.Overrides>
+        Checkbox?: Override<CheckboxTypes.Overrides>
+        DatePicker?: Override<DatePickerTypes.Overrides>
+        Menu?: Override<MenuTypes.Overrides>
+        Radio?: Override<RadioTypes.Overrides>
+        Range?: Override<RangeTypes.Overrides>
+        Select?: Override<SelectTypes.Overrides>
+        Switch?: Override<SwitchTypes.Overrides>
+        TextField?: Override<TextFieldTypes.Overrides>
+        Meter?: Override<MeterTypes.Overrides>
+        Table?: Override<TableTypes.Overrides>
+        Badge?: Override<BadgeTypes.Overrides>
+        Block?: Override<BlockTypes.Overrides>
+        Drop?: Override<DropTypes.Overrides>
+        Flexbox?: Override<FlexboxTypes.Overrides>
+        Grid?: Override<GridTypes.Overrides>
+        Modal?: Override<ModalTypes.Overrides>
+        Notification?: Override<NotificationTypes.Overrides>
+        Popover?: Override<PopoverTypes.Overrides>
+        Tree?: Override<TreeTypes.Overrides>
+        ScrollView?: Override<ScrollView.Overrides>
     }
 
     type Theme = WhaleTypes.Theme<Overrides>
