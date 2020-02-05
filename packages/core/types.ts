@@ -8,6 +8,7 @@ import SpinnerTypes from './content/Spinner/types'
  * Control
  */
 import ButtonTypes from './control/Button/types'
+import Calendar from './control/Calendar/types'
 import CheckboxTypes from './control/Checkbox/types'
 import DatePickerTypes from './control/DatePicker/types'
 import MenuTypes from './control/Menu/types'
@@ -33,6 +34,7 @@ import ModalTypes from './layout/Modal/types'
 import NotificationTypes from './layout/Notification/types'
 import PopoverTypes from './layout/Popover/types'
 import TreeTypes from './layout/Tree/types'
+import ScrollView from './layout/ScrollView/types'
 
 declare namespace FlowTypes {
     type LayoutDecoration = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' |  'neumorphism'
@@ -41,6 +43,7 @@ declare namespace FlowTypes {
         Divider?: Partial<WhaleTypes.Styles<DividerTypes.Overrides>>
         Spinner?: Partial<WhaleTypes.Styles<SpinnerTypes.Overrides>>
         Button?: Partial<WhaleTypes.Styles<ButtonTypes.Overrides>>
+        Calendar?: Partial<WhaleTypes.Styles<Calendar.Overrides>>
         Checkbox?: Partial<WhaleTypes.Styles<CheckboxTypes.Overrides>>
         DatePicker?: Partial<WhaleTypes.Styles<DatePickerTypes.Overrides>>
         Menu?: Partial<WhaleTypes.Styles<MenuTypes.Overrides>>
@@ -60,6 +63,7 @@ declare namespace FlowTypes {
         Notification?: Partial<WhaleTypes.Styles<NotificationTypes.Overrides>>
         Popover?: Partial<WhaleTypes.Styles<PopoverTypes.Overrides>>
         Tree?: Partial<WhaleTypes.Styles<TreeTypes.Overrides>>
+        ScrollView?: Partial<WhaleTypes.Styles<ScrollView.Overrides>>
     }
 
     type Theme = WhaleTypes.Theme<Overrides>
