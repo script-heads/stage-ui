@@ -4,7 +4,7 @@ import { Flexbox, Block } from '@flow-ui/core'
 export default () => {
     return (
         <Flexbox>
-            <Block decoration="surface" p="1rem" m="0.125rem">Alice</Block>
+            <Block flex={1} decoration="surface" p="1rem" m="0.125rem">Alice</Block>
             <Block decoration="surface" p="1rem" m="0.125rem">Bob</Block>
             <Block decoration="surface" p="1rem" m="0.125rem">Baker</Block>
         </Flexbox>

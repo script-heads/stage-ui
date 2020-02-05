@@ -1,1 +1,1 @@
-export { default as whiteCurrant } from './whiteCurrant';
+export { default as whiteCurrant } from './whiteCurrant'
