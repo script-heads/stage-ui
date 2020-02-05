@@ -1,5 +1,5 @@
-import React from 'react';
-import { Flexbox, Block } from "@flow-ui/core";
+import React from 'react'
+import { Flexbox, Block } from '@flow-ui/core'
 
 const ExampleFlow = () => (
     <Flexbox p="1rem">
@@ -8,4 +8,4 @@ const ExampleFlow = () => (
     </Flexbox>
 )
 
-export default ExampleFlow;
+export default ExampleFlow

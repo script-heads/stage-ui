@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button } from "@flow-ui/core";
+import React from 'react'
+import { Button } from '@flow-ui/core';
 
 const ExampleColor = () => (
     <Button color={c => c.error.css()}>
@@ -7,4 +7,4 @@ const ExampleColor = () => (
     </Button>
 )
 
-export default ExampleColor;
+export default ExampleColor
