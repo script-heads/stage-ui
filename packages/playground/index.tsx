@@ -6,8 +6,8 @@ import custom from './themes/custom'
 const Playground = () => {
 	const theme = useTheme()
 	return (
-		<Viewport theme={custom}>
-			<Button children="hello" color={c=> c.palette.red.css()}/>
+		<Viewport>
+			<Button children="hello"/>
 		</Viewport>
 	)
 }
