@@ -1,19 +1,13 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
-import { Viewport, Button } from '@flow-ui/core'
-
-declare global {
-	namespace Whale {
-		interface Palette {
-			red: 'red'
-		}
-	}
-}
+import { Viewport, Button, useTheme } from '@flow-ui/core'
+import custom from './themes/custom'
 
 const Playground = () => {
+	const theme = useTheme()
 	return (
-		<Viewport>
-			<Button children="hello" color={c=> c.palette?.red}/>
+		<Viewport theme={custom}>
+			<Button children="hello" color={c=> c.palette.red.css()}/>
 		</Viewport>
 	)
 }

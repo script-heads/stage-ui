@@ -5,7 +5,9 @@ import { Interpolation, SerializedStyles, ObjectInterpolation, InterpolationWith
 
 declare global {
 	namespace Whale {
-		interface Palette {
+		interface Palette<Color> {
+        }
+        interface Overrides {
 		}
 	}
 }
@@ -14,22 +16,22 @@ declare namespace WhaleTypes {
 
     type Size = 'xs' | 's' | 'm' | 'l' | 'xl'
 
-    interface Theme<Overrides = {}> extends ThemeVariables {
+    interface Theme extends ThemeVariables {
         assets: ThemeAssets
-        overrides: DeepPartial<{[Component in keyof Overrides]: ComponentStyles<Component>}>
-        replace: (theme: ReplaceTheme<Overrides>) => Theme<Overrides>
+        overrides: DeepPartial<{[Component in keyof Whale.Overrides]: ComponentStyles<Component>}>
+        replace: (theme: ReplaceTheme) => Theme
     }
 
-    interface SourceTheme<Overrides = {}> {
+    interface SourceTheme {
         main: ThemeVariables<[number, number, number, number?]>
-        assets: (theme: Theme<Overrides>) => ThemeAssets
-        overrides: DeepPartial<{[Component in keyof Overrides]: ComponentStyles<Component>}>
+        assets: (theme: Theme) => ThemeAssets
+        overrides: DeepPartial<{[Component in keyof Whale.Overrides]: ComponentStyles<Component>}>
     }
 
-    interface ReplaceTheme<Overrides = {}> {
+    interface ReplaceTheme {
         main: DeepPartial<ThemeVariables<[number, number, number, number?]>>
-        assets?: (theme: Theme<Overrides>) => DeepPartial<ThemeAssets>
-        overrides?: DeepPartial<{[Component in keyof Overrides]: Overrides[Component]}>
+        assets?: (theme: Theme) => DeepPartial<ThemeAssets>
+        overrides?: DeepPartial<{[Component in keyof Whale.Overrides]: Whale.Overrides[Component]}>
     }
     
     interface ThemeVariables<Color = chroma.Color> {
@@ -57,7 +59,7 @@ declare namespace WhaleTypes {
             successful: Color
             info: Color
 
-            palette?: Whale.Palette
+            palette: Whale.Palette<Color>
         }
         radius: {
             default: string

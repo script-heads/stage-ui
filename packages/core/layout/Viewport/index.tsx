@@ -4,10 +4,7 @@ import * as themes from '../../misc/themes'
 import MountArea from './MountArea'
 import createStyles from './styles'
 import Types from './types'
-import FlowTypes from '../../types'
-import { updateContext, Provider } from '@flow-ui/whale'
-
-export const {Context} = updateContext<FlowTypes.Theme>(themes.light)
+import { Provider } from '@flow-ui/whale'
 
 const Viewport: RefForwardingComponent<{}, Types.Props> = (props) => {
 

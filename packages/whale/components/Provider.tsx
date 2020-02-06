@@ -3,7 +3,6 @@ import createCache, { Options } from '@emotion/cache'
 import { ThemeProvider } from 'emotion-theming'
 import { CacheProvider, Global, SerializedStyles } from '@emotion/core'
 import WhaleTypes, {EmotionStyles} from '../types'
-import {WhaleContext} from '../utils/updateContext'
 
 interface ProviderProps {
     theme?: WhaleTypes.Theme
@@ -11,6 +10,8 @@ interface ProviderProps {
     cache?: Options
     children?: React.ReactNode
 }
+
+export let WhaleContext = React.createContext({} as WhaleTypes.Theme)
 
 const Provider = <T extends ProviderProps>(props: T) => {
 
