@@ -3,7 +3,6 @@ import WhaleTypes, { EmotionStyles } from '../types'
 import attributeProps from '../utils/attributeProps'
 import getStyleProps, { InjectedStyles } from '../utils/styleProps'
 import useTheme from './useTheme'
-import { useMemo } from 'react'
 
 interface Options<S> {
     props,

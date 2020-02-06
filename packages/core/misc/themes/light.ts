@@ -26,7 +26,8 @@ const Light: WhaleTypes.SourceTheme = {
             error: [224, 32, 32],
             successful: [109, 212, 0],
             warning: [250, 100, 0],
-            info: [0, 145, 255]
+            info: [0, 145, 255],
+            palette: {}
         },
         radius: {
             default: '0.5rem',
@@ -171,4 +172,4 @@ const Light: WhaleTypes.SourceTheme = {
     overrides: {}
 }
 
-export default createTheme<FlowTypes.Overrides>(Light)
+export default createTheme(Light)

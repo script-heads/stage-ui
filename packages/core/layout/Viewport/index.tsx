@@ -8,7 +8,7 @@ import { Provider } from '@flow-ui/whale'
 
 const Viewport: RefForwardingComponent<{}, Types.Props> = (props) => {
 
-    const theme = callProp(props.theme, themes) || themes.light
+    const theme = (props.theme && typeof props.theme === 'string') ? themes[props.theme] : themes.light
     const styles = createStyles(theme, false)
     const containerRef = useRef<HTMLDivElement>(null)
     

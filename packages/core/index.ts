@@ -50,7 +50,7 @@ export { default as notify } from './misc/utils/notify'
 /**
  * Misc
  */
-export { default as useTheme } from './misc/hooks/useTheme'
+export { useTheme as useTheme } from '@flow-ui/whale'
 
 export function transformImports (importName, matches) {
     switch(importName){

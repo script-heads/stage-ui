@@ -11,7 +11,7 @@ interface ProviderProps {
     children?: React.ReactNode
 }
 
-export let WhaleContext = React.createContext({} as WhaleTypes.Theme)
+export const WhaleContext = React.createContext({} as WhaleTypes.Theme)
 
 const Provider = <T extends ProviderProps>(props: T) => {
 
@@ -24,7 +24,7 @@ const Provider = <T extends ProviderProps>(props: T) => {
             {children}
         </CacheProvider>
     )
-    
+
     if (theme) {
         return (
             <WhaleContext.Provider value={theme}>

@@ -2,27 +2,34 @@ declare module '@flow-ui/whale/types' {
 	import React from 'react';
 	import chroma from 'chroma-js';
 	import CSS from 'csstype';
-	import { Interpolation, SerializedStyles, ObjectInterpolation } from '@emotion/core'; namespace WhaleTypes {
+	import { Interpolation, SerializedStyles, ObjectInterpolation } from '@emotion/core'; global {
+	    namespace Whale {
+	        interface Palette<Color> {
+	        }
+	        interface Overrides {
+	        }
+	    }
+	} namespace WhaleTypes {
 	    type Size = 'xs' | 's' | 'm' | 'l' | 'xl';
-	    interface Theme<Overrides = {}> extends ThemeVariables {
+	    interface Theme extends ThemeVariables {
 	        assets: ThemeAssets;
 	        overrides: DeepPartial<{
-	            [Component in keyof Overrides]: ComponentStyles<Component>;
+	            [Component in keyof Whale.Overrides]: ComponentStyles<Component>;
 	        }>;
-	        replace: (theme: ReplaceTheme<Overrides>) => Theme<Overrides>;
+	        replace: (theme: ReplaceTheme) => Theme;
 	    }
-	    interface SourceTheme<Overrides = {}> {
+	    interface SourceTheme {
 	        main: ThemeVariables<[number, number, number, number?]>;
-	        assets: (theme: Theme<Overrides>) => ThemeAssets;
+	        assets: (theme: Theme) => ThemeAssets;
 	        overrides: DeepPartial<{
-	            [Component in keyof Overrides]: ComponentStyles<Component>;
+	            [Component in keyof Whale.Overrides]: ComponentStyles<Component>;
 	        }>;
 	    }
-	    interface ReplaceTheme<Overrides = {}> {
+	    interface ReplaceTheme {
 	        main: DeepPartial<ThemeVariables<[number, number, number, number?]>>;
-	        assets?: (theme: Theme<Overrides>) => DeepPartial<ThemeAssets>;
+	        assets?: (theme: Theme) => DeepPartial<ThemeAssets>;
 	        overrides?: DeepPartial<{
-	            [Component in keyof Overrides]: ComponentStyles<Component>;
+	            [Component in keyof Whale.Overrides]: Whale.Overrides[Component];
 	        }>;
 	    }
 	    interface ThemeVariables<Color = chroma.Color> {
@@ -46,7 +53,7 @@ declare module '@flow-ui/whale/types' {
 	            warning: Color;
 	            successful: Color;
 	            info: Color;
-	            palette?: Record<string, Color>;
+	            palette: Whale.Palette<Color>;
 	        };
 	        radius: {
 	            default: string;
@@ -532,15 +539,6 @@ declare module '@flow-ui/whale/types' {
 	export default WhaleTypes;
 
 }
-declare module 'utils/updateContext' {
-	import React from 'react';
-	import WhaleTypes from 'types';
-	export let WhaleContext: React.Context<WhaleTypes.Theme<{}>>; const updateContext: <Theme>(defaultTheme?: any) => {
-	    Context: React.Context<Theme>;
-	};
-	export default updateContext;
-
-}
 declare module 'components/Provider' {
 	import React from 'react';
 	import { Options } from '@emotion/cache';
@@ -551,12 +549,13 @@ declare module 'components/Provider' {
 	    global?: EmotionStyles | SerializedStyles;
 	    cache?: Options;
 	    children?: React.ReactNode;
-	} const Provider: <T extends ProviderProps>(props: T) => JSX.Element;
+	}
+	export const WhaleContext: React.Context<WhaleTypes.Theme>; const Provider: <T extends ProviderProps>(props: T) => JSX.Element;
 	export default Provider;
 
 }
 declare module 'hooks/useTheme' {
-	 const _default: () => import("../types").default.Theme<{}>;
+	 const _default: () => import("../types").default.Theme;
 	export default _default;
 
 }
@@ -1366,12 +1365,11 @@ declare module 'utils/mergeObjects' {
 
 }
 declare module 'utils/createTheme' {
-	import Types from 'types'; const createTheme: <Overrides = {}>(theme: Types.SourceTheme<Overrides>) => Types.Theme<Overrides>;
+	import Types from 'types'; const createTheme: <Overrides = {}>(theme: Types.SourceTheme) => Types.Theme;
 	export default createTheme;
 
 }
 declare module '@flow-ui/whale' {
-	export { default as updateContext } from 'utils/updateContext';
 	export { default as Provider } from 'components/Provider';
 	export { default as useTheme } from 'hooks/useTheme';
 	export { default as useComponent } from 'hooks/useComponent';

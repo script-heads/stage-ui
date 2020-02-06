@@ -87,6 +87,29 @@ declare module 'layout/Split' {
 	export default _default;
 
 }
+declare module 'layout/Toolbar/types' {
+	import FlexboxTypes from '/layout/Flexbox/types'; namespace BlockTypes {
+	    interface Props extends FlexboxTypes.Props {
+	    }
+	    interface Overrides {
+	        container: void;
+	    }
+	}
+	export default BlockTypes;
+
+}
+declare module 'layout/Toolbar/styles' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'layout/Toolbar/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'layout/Toolbar' {
+	import React from 'react';
+	import Types from 'layout/Toolbar/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
 declare module 'control/ButtonGroup/types' {
 	/// <reference types="react" />
 	import ButtonTypes from '/control/Button/types'; namespace ButtonGroupTypes {
@@ -111,6 +134,7 @@ declare module '@flow-ui/lab' {
 	 * Layout
 	 */
 	export { default as Split } from 'layout/Split';
+	export { default as Toolbar } from 'layout/Toolbar';
 	/**
 	 * Control
 	 */
@@ -155,14 +179,5 @@ declare module 'misc/logos' {
 	export { default as MRG } from 'misc/logos/mrg';
 	export { default as ABR } from 'misc/logos/abr';
 	export { default as Smorodina } from 'misc/logos/smorodina';
-
-}
-declare module 'misc/themes/whiteCurrant' {
-	 const whiteCurrant: import("@flow-ui/whale/types").default.Theme<import("/types").default.Overrides>;
-	export default whiteCurrant;
-
-}
-declare module 'misc/themes' {
-	export { default as whiteCurrant } from 'misc/themes/whiteCurrant';
 
 }

@@ -11,7 +11,7 @@ declare namespace ViewportTypes {
         wrapper?: boolean
         className?: string
         id?: string
-        theme?: ((theme: Themes) => WhaleTypes.Theme) | WhaleTypes.Theme
+        theme?: 'dark' | 'light' | WhaleTypes.Theme
         children?: React.ReactNode
     }
 
