@@ -1,4 +1,4 @@
-import { Button, dialog, Divider, Header, Block, Paragraph, Flexbox } from '@flow-ui/core'
+import { Button, dialog, Flexbox, Header, Paragraph } from '@flow-ui/core'
 import * as Icon from '@flow-ui/core/icons'
 import React from 'react'
 
