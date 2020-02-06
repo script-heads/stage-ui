@@ -6,8 +6,8 @@ const Light: WhaleTypes.SourceTheme = {
     main: {
         name: 'Light',
         color: {
-            background: [250, 250, 250],
-            backgroundVariant: [240, 240, 240],
+            background: [245, 245, 245],
+            backgroundVariant: [235, 235, 235],
             surface: [255, 255, 255],
             surfaceVariant: [230, 230, 230],
             primary: [74, 139, 252],
