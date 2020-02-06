@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@emotion/core": "^10.0.22",
-    "@flow-ui/core": "file:../core",
     "chart.js": "^2.9.3",
     "chroma-js": "^2.1.0",
     "react": "^16.12.0",

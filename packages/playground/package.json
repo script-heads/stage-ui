@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@emotion/core": "10.0.27",
-    "@flow-ui/core": "file:../core",
     "file-loader": "^5.0.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
