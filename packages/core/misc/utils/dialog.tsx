@@ -8,6 +8,9 @@ import createID from '@flow-ui/whale/utils/createID'
 export default (options: ViewportTypes.DialogOptions) => {
     let key = createID()
     let modal: ModalTypes.Ref
+    const close = () => {
+        modal.close()
+    }
 
     addElement(
         (
@@ -20,9 +23,7 @@ export default (options: ViewportTypes.DialogOptions) => {
                     removeElement(key)
                 }}
                 children={(
-                    options.customContent ? (
-                        options.customContent
-                    ) : (
+                    options.customContent ? options.customContent(close) : (
                             <Flexbox column>
                                 <Block>
                                     {options.message}
