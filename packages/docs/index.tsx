@@ -1,24 +1,168 @@
-import { Text, Header, Button, Flexbox } from '@flow-ui/core'
+import { Block, Button, Checkbox, Display, Divider, Flexbox, Meter, Paragraph, Range, Switch, TextField, useTheme } from '@flow-ui/core'
+import { Cube, Email, PaperPlane, People, Settings } from '@flow-ui/core/icons'
 import { HomePageProps } from '@flow-ui/documaker/core'
+import { useEffect, useState } from 'react'
+import css from '@emotion/css'
+
+const promoStyle = {
+    container: css({
+        justifyContent: 'space-around',
+        margin: '2rem',
+        '@media(max-width:980px)': {
+            flexDirection:'column',
+            alignItems: 'center',
+            textAlign: 'center',
+        }
+    })
+}
+let promoData = {
+    iconCount: 1,
+    buttonText: 'Submit',
+    shape: 'rounded',
+    buttonDecoration: 'filled',
+    emailText: '',
+    emailIcon: false,
+    switchOn: false,
+    checkOn: false,
+    meterPercent: 20,
+    c1:'transparent',
+    c2:'transparent',
+    c3:'transparent',
+    c4:'transparent',
+    t: 1000
+}
 
 export default (props: HomePageProps) => {
 
+    const theme = useTheme()
+    const [pd, setPd] = useState(promoData)
+
+    useEffect(() => {
+        let nextStep = 0
+        const steps = [
+            { 
+                t: 50, 
+                meterPercent: 30,
+                c1: theme.color.lightest.css(),
+                c2: theme.color.lightest.css(),
+                c3: theme.color.lightest.css(),
+                c4: theme.color.lightest.css(),
+                shape: 'rounded',
+                buttonDecoration: 'filled',
+            },
+            { t: 250, iconCount: 2 },
+            { t: 250, iconCount: 3, meterPercent: 10 },
+            { t: 250, iconCount: 4, checkOn: false, emailIcon: false,  c1: theme.color.primary.css(), },
+            { t: 250, emailText: 'E', switchOn: true, },
+            { 
+                t: 250, 
+                emailText: 'E-',
+                c2: theme.color.primary.css(),
+                c1: theme.color.lightest.css()
+            },
+            { t: 250, emailText: 'E-Ma', meterPercent: 40, },
+            { t: 250, emailText: 'E-Mai', checkOn: true },
+            { 
+                t: 250, 
+                emailText: 'E-Mail', 
+                c3: theme.color.primary.css(),
+                c2: theme.color.lightest.css(),
+                switchOn: false,
+                meterPercent: 30,
+                buttonText: 'S',
+                buttonDecoration: 'outline',
+            },
+            { 
+                t: 250, 
+                buttonText: 'Su', 
+                emailIcon: true, 
+                meterPercent: 70,
+                shape: 'round',
+            },
+            { t: 250, buttonText: 'Sub', meterPercent: 90 },
+            {
+                t: 250,
+                buttonText: 'Subm',
+                buttonDecoration: 'text',
+                meterPercent: 70,
+                c4: theme.color.primary.css(),
+                c3: theme.color.lightest.css(),
+            },
+            { t: 250, buttonText: 'Submi', meterPercent: 50 },
+            { t: 500, buttonText: 'Submit', switchOn: false, shape: 'square', }
+        ]
+        const next = () => {
+            promoData = {
+                ...promoData,
+                ...steps[nextStep]
+            }
+            setPd(promoData)
+            const { t } = steps[nextStep]
+            nextStep = nextStep + 1 === steps.length ? 0 : nextStep + 1
+            setTimeout(() => {
+                next()
+            }, t)
+        }
+        next()
+    },[])
+
     return (
-        <Flexbox column alignItems="center" mt="2rem" flex={1}>
-            <Header>FlowUI</Header>
-            <Text color={c => c.light.hex()}>Consistent React UI Framework declared by your own Design System.</Text>
-            <Flexbox mt="1rem">
-                <Button
-                    onClick={() => props.history.push(props.pages.docs)}
-                    children="Documentation"
+        <Flexbox flex={1} css={promoStyle.container}>
+            <Flexbox column justifyContent="center">
+                <Display weight={800}>FlowUI</Display>
+                <Paragraph
+                    w="22rem"
+                    size="l"
+                    color={c => c.light.hex()}
+                    children="Consistent React UI Framework declared by your own Design System."
                 />
-                <Button
-                    ml="0.25rem"
-                    color={c => c.lightest.hex()}
-                    onClick={() => props.history.push('architect')}
-                    children="🚧 Architect"
-                />
+                <Flexbox mt="2rem" wrap="wrap">
+                    <Button
+                        size="l"
+                        mb="0.5rem"
+                        mr="0.5rem"
+                        onClick={() => props.history.push(props.pages.docs)}
+                        children="See documentation"
+                    />
+                    <Button
+                        size="l"
+                        mb="0.5rem"
+                        color={c => c.lightest.hex()}
+                        onClick={() => props.history.push('architect')}
+                        children="🚧 Architect"
+                    />
+                </Flexbox>
             </Flexbox>
+            <Block w="20rem" m="2rem" decoration="surface" overflow="hidden">
+                <Block p="2rem">
+                    <Flexbox justifyContent="space-around" pb="1rem">
+                        {pd.iconCount > 0 && <People size="2rem" color={c => pd.c1} />}
+                        {pd.iconCount > 1 && <Cube size="2rem" color={c => pd.c2} />}
+                        {pd.iconCount > 2 && <PaperPlane size="2rem" color={c => pd.c3} />}
+                        {pd.iconCount > 3 && <Settings size="2rem" color={c=> pd.c4} />}
+                    </Flexbox>
+                    <Range css={{ '>div': { transition: 'all .1s' } }} value={pd.meterPercent} />
+                    <Flexbox justifyContent="space-around" py="1rem">
+                        <Switch checked={pd.switchOn} />
+                        <Checkbox checked={pd.checkOn} />
+                    </Flexbox>
+                    <Meter css={{ '>div': { transition: 'all .1s' } }} percent={100 - pd.meterPercent} />
+                    <Divider my="1rem" />
+                    <TextField
+                        shape={pd.shape as any}
+                        leftChild={pd.emailIcon ? <Email /> : undefined}
+                        placeholder={pd.emailText}
+                    />
+                    <Flexbox justifyContent="center" pt="1rem">
+                        <Button
+                            decoration={pd.buttonDecoration as any}
+                            shape={pd.shape as any}
+                            flex={1}
+                            children={pd.buttonText}
+                        />
+                    </Flexbox>
+                </Block>
+            </Block>
         </Flexbox>
     )
 }
