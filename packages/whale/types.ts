@@ -1,7 +1,14 @@
 import React from 'react'
 import chroma from 'chroma-js'
 import CSS from 'csstype'
-import { Interpolation, SerializedStyles, ObjectInterpolation } from '@emotion/core'
+import { Interpolation, SerializedStyles, ObjectInterpolation, InterpolationWithTheme } from '@emotion/core'
+
+declare global {
+	namespace Whale {
+		interface Palette {
+		}
+	}
+}
 
 declare namespace WhaleTypes {
 
@@ -50,7 +57,7 @@ declare namespace WhaleTypes {
             successful: Color
             info: Color
 
-            palette?: Record<string, Color>
+            palette?: Whale.Palette
         }
         radius: {
             default: string

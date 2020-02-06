@@ -9,7 +9,7 @@ interface ProviderProps {
     theme?: WhaleTypes.Theme
     global?: EmotionStyles | SerializedStyles
     cache?: Options
-    children?: React.ReactNode,
+    children?: React.ReactNode
 }
 
 const Provider = <T extends ProviderProps>(props: T) => {

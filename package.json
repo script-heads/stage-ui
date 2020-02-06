@@ -8,6 +8,7 @@
     "packages/*"
   ],
   "scripts": {
+    "playground": "yarn workspace @flow-ui/playground start",
     "start": "yarn workspace @flow-ui/docs start",
     "test": "yarn workspace @flow-ui/docs test",
     "approve": "yarn workspace @flow-ui/docs approve",
