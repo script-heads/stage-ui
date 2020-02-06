@@ -52,7 +52,7 @@ declare namespace ViewportTypes {
         /**
          * if custom content filled then message and buttonText will be ignored
          */
-        customContent?: React.ReactElement
+        customContent?: (close: () => void) => React.ReactElement
     }
 }
 
