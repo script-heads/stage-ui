@@ -1,5 +1,5 @@
-import React from 'react';
-import { Tree } from '@flow-ui/core';
+import React from 'react'
+import { Tree } from '@flow-ui/core'
 
 export default () => {
     return (

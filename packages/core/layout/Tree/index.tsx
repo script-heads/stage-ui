@@ -1,51 +1,65 @@
-import Text from '@flow-ui/core/content/Text'
-import Block from '@flow-ui/core/layout/Block'
 import Flexbox from '@flow-ui/core/layout/Flexbox'
 import { useComponent } from '@flow-ui/whale'
-import React, { forwardRef, RefForwardingComponent, useState } from 'react'
-import { ArrowIosDownward, ArrowIosForward } from '../../icons'
+import React, { forwardRef, RefForwardingComponent, useState, Fragment } from 'react'
 import styles from './styles'
+import TreeLabel from './TreeLabel'
 import Types from './types'
+import TreeLeftChild from './TreeLeftChild'
+import TreeRightChild from './TreeRightChild'
+import { Block } from '../..'
 
-const Tree: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+const Tree: RefForwardingComponent<HTMLDivElement, Types.Props> = (props: Types.PrivateProps, ref) => {
     let {
         children,
+        leftChild,
+        rightChild,
+        label,
+        size,
         decoration = 'drop' as Types.Props['decoration'],
-        //@ts-ignore
-        lvl = 0
+        /**
+         * private props
+         */
+        lvl = 0,
+        isParentOpen = true
     } = props
 
-    const [isOpen, setOpen] = useState((props.alwaysOpen || props.defaultOpen) ? true : false)
+    const [isOpen, setOpen] = useState((props.open || props.defaultOpen) ? true : false)
 
-    const { cs, attributes, events } = useComponent('Tree', { props, styles, styleProps: { container: ['all']} })
+    const { cs, attributes, events } = useComponent('Tree', {
+        props,
+        styles,
+        styleProps: { 
+            row: ['all'] 
+        }
+    })
 
-    let treeChilds: React.ReactNode[] = []
-    let otherChilds: React.ReactElement[] = []
+    let childs: ({
+        child?: React.ReactNode
+        tree?: Types.ExtentedReactElement
+    })[] = []
 
     if (!Array.isArray(children)) {
         children = [children]
     }
 
-    for (const child of children as any) {
+    for (const child of children as Types.ExtentedReactElement[]) {
         try {
             if (child.type.render.name === 'Tree') {
-                treeChilds.push(child)
+                childs.push({ tree: child })
                 continue
             }
             throw new Error()
         } catch (error) {
             if (child) {
-                otherChilds.push(child)
+                childs.push({ child })
             }
         }
     }
 
-    const hasTreeChilds = treeChilds.length > 0 || otherChilds.length > 0
-    const needIndent = lvl > 0 && (props.indent === true || (props.indent !== false && decoration === 'drop'))
-    const disabled = decoration === 'drop' && (props.alwaysOpen || hasTreeChilds === false)
+    const hasChilds = childs.length > 0
 
     const openHandle = (event) => {
-        if (!props.alwaysOpen && hasTreeChilds) {
+        if (!props.open && hasChilds) {
             setOpen(!isOpen)
         }
         attributes.onClick && attributes.onClick(event)
@@ -57,48 +71,66 @@ const Tree: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
         }
     }
 
-    let label = props.label
-
-    if (typeof label === 'string') {
-        label = <Text css={cs.label}>{label}</Text>
+    const variant = { decoration, size, hasChilds }
+    const options = { isOpen, isParentOpen, hasChilds, lvl }
+    const Container = lvl === 0 ? Block : Fragment
+    let containerProps = {}
+    if (lvl === 0) {
+        containerProps = {
+            css: cs.container(variant)
+        }
     }
-    if (typeof label === 'function') {
-        label = label(isOpen)
-    }
-
-    const ArrowIcon = isOpen
-        ? ArrowIosDownward
-        : ArrowIosForward
-
     return (
-        <Block ref={ref} css={cs.container({ decoration, needIndent })}>
-            <Flexbox {...attributes} {...events.all} onKeyPress={keyPressHandle} onClick={openHandle} alignItems="center">
-                <ArrowIcon
-                    css={cs.icon({ decoration, disabled })}
+        <Container {...containerProps}>
+            {isParentOpen && (
+                <Flexbox
+                    ref={ref}
+                    css={cs.row(variant)}
+                    {...attributes}
+                    {...events.all}
+                    onKeyPress={keyPressHandle}
+                    onClick={openHandle}
+                    alignItems="center"
+                    children={(
+                        <>
+                            <TreeLeftChild
+                                css={cs.arrow(variant)}
+                                options={options}
+                                size={size}
+                                children={leftChild}
+                            />
+                            <TreeLabel
+                                css={cs.label(variant)}
+                                options={options}
+                                size={size}
+                                children={label}
+                            />
+                            <TreeRightChild
+                                options={options}
+                                size={size}
+                                children={rightChild}
+                            />
+                        </>
+                    )}
                 />
-                {label}
-            </Flexbox>
-            <Block>
-                {
-                    treeChilds.map((child: React.ReactElement, index) => (
-                        <Block css={cs.child({ isOpen })} key={index}>
-                            {
-                                React.cloneElement(child, {
-                                    decoration: child.props.decoration || props.decoration,
-                                    alwaysOpen: child.props.alwaysOpen || props.alwaysOpen,
-                                    lvl: lvl + 1
+            )}
+            {
+                childs.map((child, index) => (
+                    <Fragment key={index}>
+                        {
+                            child.tree
+                                ? React.cloneElement(child.tree as any, {
+                                    size: child.tree.props.size || props.size,
+                                    decoration: child.tree.props.decoration || props.decoration,
+                                    lvl: lvl + 1,
+                                    isParentOpen: !isParentOpen ? false : isOpen
                                 })
-                            }
-                        </Block>
-                    ))
-                }
-                {
-                    otherChilds.map((child: React.ReactElement, index) => (
-                        <Block css={cs.child({ isOpen })} key={index} children={child} />
-                    ))
-                }
-            </Block>
-        </Block>
+                                : isParentOpen ? child.child : null
+                        }
+                    </Fragment>
+                ))
+            }
+        </Container>
     )
 }
 

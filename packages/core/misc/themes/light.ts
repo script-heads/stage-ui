@@ -1,5 +1,4 @@
 import WhaleTypes from '@flow-ui/whale/types'
-import FlowTypes from '@flow-ui/core/types'
 import { createTheme } from '@flow-ui/whale'
 
 const Light: WhaleTypes.SourceTheme = {
@@ -38,8 +37,8 @@ const Light: WhaleTypes.SourceTheme = {
             xs: '.25rem',
             s: '.5rem',
             m: '1rem',
-            l: '2rem',
-            xl: '4rem',
+            l: '1.5rem',
+            xl: '1.75rem',
         },
         typography: {
             display: {

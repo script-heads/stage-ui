@@ -1,48 +1,102 @@
-
 import Types from './types'
 import WhaleTypes from '@flow-ui/whale/types'
 
-const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
+const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.PrivateProps> = (props, theme) => {
     
     return {
         container: (variant) => [
             variant({
                 decoration: {
-                    inline: [{
-                        display: 'flex',
-                        alignItems: 'flex-start',
-                    }]
+                    finder: {
+                        '>div:nth-of-type(even)': {
+                            background: theme.color.background.css()
+                        }
+                    }
                 },
-                needIndent: [{
-                    paddingLeft: '1rem'
-                }]
             }),
         ],
-        label: [
+        row: (variant) => [
+            variant({
+                decoration: {
+                    finder: [
+                        {
+                            padding: `calc(${theme.spacing.m} / 2)`
+                        },
+                        variant({
+                            size: {
+                                xs:{
+                                    padding: `calc(${theme.spacing.xs} / 2)`,
+                                },
+                                s: {
+                                    padding: `calc(${theme.spacing.s} / 2)`,
+                                },
+                                l: {
+                                    padding: `calc(${theme.spacing.l} / 2)`,
+                                },
+                                xl:{
+                                    padding: `calc(${theme.spacing.xl} / 2)`,
+                                }
+                            }
+                        })
+                    ]
+                }
+            })
+        ],
+
+        label: (variant) => [
             {
                 cursor: 'pointer',
                 userSelect: 'none',
-            },
-            props.alwaysOpen && {
-                cursor: 'default',
-            }
-        ],
-        icon: (variant) => [
-            {
-                display: 'none',
-                opacity: 1
+                flex: 1,
             },
             variant({
                 decoration: {
-                    drop: [{
-                        display: 'inline-flex',
-                        marginRight: '0.25rem',
-                    }]
+                    finder: {
+                        fontWeight: 500
+                    }
+                }
+            })
+        ],
+        
+        arrow: (variant) => [
+            {
+                opacity: 0,
+                cursor: 'pointer',
+                height: 'auto',
+                color: theme.color.light.css(),
+                fontSize: theme.typography.text.m.fontSize,
+                paddingRight: `calc(${theme.spacing.m} / 2)`,
+                paddingLeft: `calc(${theme.typography.text.m.fontSize} * ${props.lvl * 1})`,
+            },
+            variant({
+                hasChilds: {
+                    opacity: 1,
                 },
-                disabled: [{
-                    cursor: 'not-allowed',
-                    opacity: 0
-                }]
+                size: {
+                    xs:{
+                        fontSize: theme.typography.text.xs.fontSize,
+                        paddingRight: `calc(${theme.spacing.xs} / 2)`,
+                        paddingLeft: `calc(${theme.typography.text.xs.fontSize} * ${props.lvl * 1})`,
+                    },
+                    s: {
+                        fontSize: theme.typography.text.s.fontSize,
+                        paddingRight: `calc(${theme.spacing.s} / 2)`,
+                        paddingLeft: `calc(${theme.typography.text.s.fontSize} * ${props.lvl * 1})`,
+
+                    },
+                    l: {
+                        fontSize: theme.typography.text.l.fontSize,
+                        paddingRight: `calc(${theme.spacing.l} / 2)`,
+                        paddingLeft: `calc(${theme.typography.text.l.fontSize} * ${props.lvl * 1})`,
+
+                    },
+                    xl:{
+                        fontSize: theme.typography.text.xl.fontSize,
+                        paddingRight: `calc(${theme.spacing.xl} / 2)`,
+                        paddingLeft: `calc(${theme.typography.text.xl.fontSize} * ${props.lvl * 1})`,
+
+                    }
+                }
             }),
         ],
         child: (variant) => [

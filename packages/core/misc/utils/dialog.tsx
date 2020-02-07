@@ -1,9 +1,9 @@
 import { Block, Button, Flexbox, Modal } from '@flow-ui/core'
 import ModalTypes from '@flow-ui/core/layout/Modal/types'
-import React from 'react'
-import { addElement, removeElement } from '../../layout/Viewport/MountArea'
-import ViewportTypes from '../../layout/Viewport/types'
+import { addElement, removeElement } from '@flow-ui/core/layout/Viewport/MountArea'
+import ViewportTypes from '@flow-ui/core/layout/Viewport/types'
 import createID from '@flow-ui/whale/utils/createID'
+import React from 'react'
 
 export default (options: ViewportTypes.DialogOptions) => {
     let key = createID()

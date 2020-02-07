@@ -198,6 +198,120 @@ declare module 'control/Button' {
 	export default _default;
 
 }
+declare module 'misc/utils/applyLayoutDecoration' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	export type LayoutDecoration = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' | 'neumorphism'; type Props = WhaleTypes.AllProps<HTMLDivElement, {}> & {
+	    decoration?: LayoutDecoration;
+	}; const applyLayoutDecoration: (props: Props, theme: WhaleTypes.Theme) => {
+	    background: string;
+	    borderRadius: string;
+	    borderWidth: string;
+	    borderStyle: string;
+	    borderColor: string;
+	    boxShadow?: undefined;
+	} | {
+	    background: string;
+	    borderRadius: string;
+	    borderWidth: string;
+	    borderStyle: string;
+	    borderColor: string;
+	    boxShadow: string;
+	} | {
+	    background: string;
+	    borderRadius: string;
+	    boxShadow: string;
+	    borderWidth?: undefined;
+	    borderStyle?: undefined;
+	    borderColor?: undefined;
+	} | undefined;
+	export default applyLayoutDecoration;
+
+}
+declare module 'layout/Flexbox/types' {
+	/// <reference types="react" />
+	import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration';
+	import WhaleTypes from '@flow-ui/whale/types';
+	import CSS from 'csstype'; namespace FlexboxTypes {
+	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+	        column?: boolean;
+	        inline?: boolean;
+	        decoration?: LayoutDecoration;
+	        alignItems?: CSS.Properties['alignItems'];
+	        alignContent?: CSS.Properties['alignContent'];
+	        justifyContent?: CSS.Properties['justifyContent'];
+	        justifyItems?: CSS.Properties['justifyItems'];
+	        direction?: CSS.Properties['flexDirection'];
+	        wrap?: CSS.Properties['flexWrap'];
+	        flow?: CSS.Properties['flexFlow'];
+	        children?: React.ReactNode;
+	    }
+	    interface Overrides {
+	        container: {
+	            decoration?: LayoutDecoration;
+	        };
+	    }
+	}
+	export default FlexboxTypes;
+
+}
+declare module 'layout/Flexbox/styles' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'layout/Flexbox/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'layout/Flexbox' {
+	/// <reference types="react" />
+	/// <reference types="@emotion/core" />
+	import Types from 'layout/Flexbox/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'layout/Grid/types' {
+	/// <reference types="react" />
+	import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration';
+	import WhaleTypes from '@flow-ui/whale/types';
+	import CSS from 'csstype'; namespace GridTypes {
+	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+	        inline?: boolean;
+	        children?: React.ReactNode;
+	        decoration?: LayoutDecoration;
+	        templateColumns?: CSS.Properties['gridTemplateColumns'];
+	        templateRows?: CSS.Properties['gridTemplateRows'];
+	        templateAreas?: CSS.Properties['gridTemplateAreas'];
+	        columnGap?: CSS.Properties['gridColumnGap'];
+	        rowGap?: CSS.Properties['gridRowGap'];
+	        gap?: CSS.Properties['gridGap'];
+	        autoColumns?: CSS.Properties['gridAutoColumns'];
+	        autoRows?: CSS.Properties['gridAutoRows'];
+	        autoFlow?: CSS.Properties['gridAutoFlow'];
+	        alignItems?: CSS.Properties['alignItems'];
+	        alignContent?: CSS.Properties['alignContent'];
+	        justifyContent?: CSS.Properties['justifyContent'];
+	        justifyItems?: CSS.Properties['justifyItems'];
+	    }
+	    interface Overrides {
+	        container: {
+	            decoration?: LayoutDecoration;
+	        };
+	    }
+	}
+	export default GridTypes;
+
+}
+declare module 'layout/Grid/styles' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'layout/Grid/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'layout/Grid' {
+	/// <reference types="react" />
+	/// <reference types="@emotion/core" />
+	import Types from 'layout/Grid/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
 declare module 'misc/hocs/Field/types' {
 	/// <reference types="react" />
 	import WhaleTypes from '@flow-ui/whale/types'; namespace FieldTypes {
@@ -331,1096 +445,6 @@ declare module 'control/Calendar/types' {
 	    }
 	}
 	export default CalendarTypes;
-
-}
-declare module 'misc/hocs/Check/types' {
-	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types'; namespace CheckTypes {
-	    type CheckType = 'checkbox' | 'radio' | 'switch';
-	    interface Props extends WhaleTypes.AllProps<HTMLInputElement, Overrides> {
-	        label?: string;
-	        labelColor?: WhaleTypes.ColorProp;
-	        checked?: boolean;
-	        disabled?: boolean;
-	        defaultValue?: boolean;
-	        uppercase?: boolean;
-	        size?: WhaleTypes.Size;
-	    }
-	    interface PrivateProps extends Props {
-	        children: (checked: boolean, focus: boolean) => React.ReactElement;
-	        type?: CheckType;
-	        styles: WhaleTypes.ComponentStyles<Overrides>;
-	    }
-	    interface Overrides {
-	        container: {
-	            disabled: Props['disabled'];
-	            animated: Props['animated'];
-	        };
-	        label: {
-	            disabled: Props['disabled'];
-	            size: Props['size'];
-	            uppercase: Props['uppercase'];
-	            animated: Props['animated'];
-	        };
-	    }
-	}
-	export default CheckTypes;
-
-}
-declare module 'control/Checkbox/types' {
-	import CheckTypes from 'misc/hocs/Check/types'; namespace CheckboxTypes {
-	    interface Props extends CheckTypes.Props {
-	    }
-	    interface Overrides extends CheckTypes.Overrides {
-	        check: {
-	            size: Props['size'];
-	            animated: Props['animated'];
-	            disabled: Props['disabled'];
-	            focus: boolean;
-	        };
-	        icon: {
-	            checked: Props['checked'];
-	            size: Props['size'];
-	            animated: Props['animated'];
-	            disabled: Props['disabled'];
-	        };
-	    }
-	}
-	export default CheckboxTypes;
-
-}
-declare module 'control/DatePicker/types' {
-	import { Moment } from 'moment';
-	import FieldTypes from 'misc/hocs/Field/types'; namespace DatePickerTypes {
-	    type GridType = 'year' | 'month' | 'day';
-	    type Locale = 'en' | 'ru' | 'it' | 'fr' | 'de';
-	    interface Props extends Omit<FieldTypes.Props, 'onChange'>, InputProps {
-	        /**
-	         * Type for DatePicker
-	         * @default day
-	         */
-	        type?: GridType;
-	        /**
-	         * Property value could be a string
-	         * if you pass format property aswell
-	         * otherwise value should be instance of Date
-	         */
-	        value?: Moment | Date | string;
-	        defaultValue?: Moment | Date | string;
-	        /**
-	         * Format moment YYYY-MM-DD
-	         * @default YYYY-MM-DD
-	         */
-	        format?: string;
-	        /**
-	         * Min datetime that could be selected
-	         */
-	        minValue?: Moment | Date | string;
-	        /**
-	         * Max datetime that could be selected
-	         */
-	        maxValue?: Moment | Date | string;
-	        /**
-	         * Callback function will with Date object
-	         * or string if format property was passed.
-	         */
-	        onChange?: (moment: Moment, value: string) => void;
-	        /**
-	         * Do not close datepicker on change
-	         * latest value
-	         */
-	        stayOpen?: boolean;
-	        /**
-	         * Enable mask input
-	         */
-	        masked?: boolean;
-	        /**
-	         * @default ru
-	         */
-	        locale?: Locale;
-	        /**
-	         * Hide today button
-	         */
-	        hideToday?: boolean;
-	    }
-	    interface InputProps {
-	        autoComplete?: string;
-	        autoFocus?: boolean;
-	        list?: string;
-	        name?: string;
-	        placeholder?: string;
-	        pattern?: string;
-	        readOnly?: boolean;
-	        required?: boolean;
-	        form?: string;
-	        formAction?: string;
-	        formEncType?: string;
-	        formMethod?: string;
-	        formNoValidate?: boolean;
-	        formTarget?: string;
-	    }
-	    interface Overrides extends FieldTypes.Overrides {
-	        drop: {
-	            isActive: boolean;
-	        };
-	        input: void;
-	    }
-	}
-	export default DatePickerTypes;
-
-}
-declare module 'control/Menu/types' {
-	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types'; namespace MenuTypes {
-	    type Value = string | number;
-	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
-	        defaultValue?: Value;
-	        value?: Value;
-	        onChange?: (value: Value) => void;
-	        items: Item[];
-	        size?: WhaleTypes.Size;
-	        decoration?: 'filled' | 'outline' | 'color' | 'underline' | 'tab' | 'filled-underline';
-	        flip?: boolean;
-	        spacing?: string;
-	        direction?: 'row' | 'column';
-	        shape?: 'square' | 'rounded' | 'round';
-	        border?: 'none' | 'narrow' | 'wide';
-	        align?: 'start' | 'center' | 'end';
-	        separator?: React.ReactElement;
-	        color?: WhaleTypes.ColorProp;
-	        disabled?: boolean;
-	    }
-	    interface Item extends Partial<Omit<WhaleTypes.EventProps<HTMLDivElement>, 'onChange'>>, Partial<Props> {
-	        content: React.ReactNode;
-	        value: Value;
-	        disabled?: boolean;
-	    }
-	    interface ItemProps extends Item {
-	        active: boolean;
-	        styles: WhaleTypes.ComponentStyles<Overrides>;
-	    }
-	    interface Overrides {
-	        container: {
-	            size: Props['size'];
-	            flip: Props['flip'];
-	            border: Props['border'];
-	        };
-	        item: {
-	            shape: Props['shape'];
-	            disabled: boolean;
-	            active: boolean;
-	            size: Props['size'];
-	            decoration: Props['decoration'];
-	        };
-	        separator: void;
-	    }
-	}
-	export default MenuTypes;
-
-}
-declare module 'control/Radio/types' {
-	import CheckTypes from 'misc/hocs/Check/types'; namespace RadioTypes {
-	    interface Props extends CheckTypes.Props {
-	    }
-	    interface Overrides extends CheckTypes.Overrides {
-	        check: {
-	            size: Props['size'];
-	            animated: Props['animated'];
-	            disabled: Props['disabled'];
-	        };
-	        radio: {
-	            checked: Props['checked'];
-	            size: Props['size'];
-	            animated: Props['animated'];
-	            disabled: Props['disabled'];
-	        };
-	    }
-	}
-	export default RadioTypes;
-
-}
-declare module 'control/Range/types' {
-	import WhaleTypes from '@flow-ui/whale/types'; namespace RangeTypes {
-	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
-	        min?: number;
-	        max?: number;
-	        defaultValue?: number;
-	        value?: number;
-	        onChange?: (value: number) => void;
-	        mode?: 'single' | 'range';
-	        className?: string;
-	    }
-	    interface Overrides {
-	        container: void;
-	        rail: void;
-	        track: void;
-	        thumb: void;
-	    }
-	}
-	export default RangeTypes;
-
-}
-declare module 'control/Select/types' {
-	import FieldTypes from 'misc/hocs/Field/types';
-	import WhaleTypes from '@flow-ui/whale/types'; namespace SelectTypes {
-	    interface Option {
-	        text: string;
-	        value: any;
-	    }
-	    interface Props extends Omit<FieldTypes.Props, 'onChange'> {
-	        placeholder?: string;
-	        options: Option[];
-	        /**
-	         * Allow selecting multiple values
-	         */
-	        multiselect?: boolean;
-	        /**
-	         * Allow search values
-	         */
-	        searchable?: boolean;
-	        /**
-	         * Select will not close after
-	         * option clicked
-	         */
-	        keepOpen?: boolean;
-	        values?: Option[];
-	        defaultValues?: Option[];
-	        /**
-	         * Max size of scroll area
-	         * at select drop view
-	         */
-	        maxScrollHeight?: string;
-	        onChange?: (values: Option[], changedValue?: Option) => void;
-	    }
-	    type State = {
-	        selectedOptions: Option[];
-	        open: boolean;
-	        searchValue: string;
-	        empty: boolean;
-	        cursor: number;
-	    };
-	    interface OptionsProps extends SearchProps {
-	        selected: SelectTypes.Option[];
-	        onClose: (option: any) => void;
-	        searchable?: boolean;
-	        size: WhaleTypes.Size;
-	    }
-	    interface SearchProps {
-	        searchValue: string;
-	        onSearch: (searchValue: string) => void;
-	        styles: WhaleTypes.ComponentStyles<Overrides>;
-	        placeholder?: string;
-	        defaultValue?: string;
-	        disabled?: boolean;
-	    }
-	    interface StyleState {
-	        shape: Props['shape'];
-	        size: Props['size'];
-	        decoration: Props['decoration'];
-	    }
-	    interface StyleParams {
-	        isOpen: boolean;
-	    }
-	    interface Overrides extends FieldTypes.Overrides {
-	        selectedOptionInput: {
-	            searchMode: boolean;
-	            multiselect: boolean;
-	        };
-	        selectedOptionsContainer: void;
-	        tag: StyleState;
-	        tagRemove: StyleState;
-	        drop: StyleState;
-	        dropItem: StyleState;
-	    }
-	}
-	export default SelectTypes;
-
-}
-declare module 'control/Switch/types' {
-	import CheckTypes from 'misc/hocs/Check/types'; namespace SwitchTypes {
-	    interface Props extends CheckTypes.Props {
-	    }
-	    interface Overrides extends CheckTypes.Overrides {
-	        check: {
-	            checked: Props['checked'];
-	            size: Props['size'];
-	            animated: Props['animated'];
-	            disabled: Props['disabled'];
-	        };
-	        switch: {
-	            checked: Props['checked'];
-	            size: Props['size'];
-	            animated: Props['animated'];
-	            disabled: Props['disabled'];
-	        };
-	    }
-	}
-	export default SwitchTypes;
-
-}
-declare module 'control/TextField/types' {
-	import { ChangeEventHandler } from 'react';
-	import IMask from 'imask';
-	import FieldTypes from 'misc/hocs/Field/types';
-	import WhaleTypes from '@flow-ui/whale/types'; namespace TextFieldTypes {
-	    type InputTypes = 'email' | 'hidden' | 'number' | 'password' | 'reset' | 'search' | 'tel' | 'text' | 'url';
-	    interface Props extends FieldTypes.Props, InputProps, TextAreaProps {
-	        defaultValue?: string | number;
-	        align?: 'left' | 'right';
-	        multiline?: boolean;
-	        masked?: IMask.AnyMaskedOptions;
-	        onChange?: ChangeEventHandler<HTMLInputElement>;
-	    }
-	    interface InputProps {
-	        autoComplete?: string;
-	        autoFocus?: boolean;
-	        list?: string;
-	        name?: string;
-	        placeholder?: string;
-	        pattern?: string;
-	        readOnly?: boolean;
-	        required?: boolean;
-	        type?: InputTypes;
-	        value?: string | number;
-	        form?: string;
-	        formAction?: string;
-	        formEncType?: string;
-	        formMethod?: string;
-	        formNoValidate?: boolean;
-	        formTarget?: string;
-	        max?: number | string;
-	        maxLength?: number;
-	        min?: number | string;
-	        minLength?: number;
-	        step?: number | string;
-	        width?: number | string;
-	    }
-	    interface TextAreaProps {
-	        cols?: number;
-	        rows?: number;
-	        wrap?: string;
-	    }
-	    interface Overrides extends FieldTypes.Overrides {
-	        input: {
-	            multiline: boolean;
-	            size: WhaleTypes.Size;
-	        };
-	    }
-	}
-	export default TextFieldTypes;
-
-}
-declare module 'data/Meter/types' {
-	import WhaleTypes from '@flow-ui/whale/types'; namespace MeterTypes {
-	    type MeterType = 'line' | 'circle';
-	    type MeterDecoration = 'filled' | 'outline';
-	    type MeterShape = 'square' | 'round';
-	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
-	        percent: number;
-	        size?: WhaleTypes.Size;
-	        /**
-	         * @default line
-	         */
-	        type?: MeterType;
-	        decoration?: MeterDecoration;
-	        shape?: MeterShape;
-	        color?: WhaleTypes.ColorProp;
-	        /**
-	         * Enabled process animation
-	         * @default false
-	         */
-	        loading?: boolean;
-	    }
-	    interface Overrides {
-	        container: {
-	            shape: MeterShape;
-	            size: WhaleTypes.Size;
-	            decoration: MeterDecoration;
-	        };
-	        thumb: {
-	            shape: MeterShape;
-	            size: WhaleTypes.Size;
-	        };
-	    }
-	}
-	export default MeterTypes;
-
-}
-declare module '@flow-ui/core/data/Table/types' {
-	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types'; namespace TableTypes {
-	    type TableCellKey = number | string;
-	    type TableSortType = 'ASC' | 'DESC';
-	    type TableSortObject = {
-	        key: TableCellKey;
-	        sort: TableSortType;
-	    };
-	    type TablePaginationOptions = {
-	        pageSize: number;
-	        alwaysVisible?: boolean;
-	    };
-	    interface TableCellContext {
-	        /**
-	         * Current cell key
-	         */
-	        key: TableCellKey;
-	        /**
-	         * Current row index
-	         */
-	        index: number;
-	        /**
-	         * Current row data
-	         */
-	        row: Object;
-	        /**
-	         * Link on column configuration
-	         */
-	        column: TableColumn | null;
-	        /**
-	         * Raw data of cell
-	         */
-	        value?: React.ReactNode | string | number | null;
-	        /**
-	         * Is current cell in modify mode
-	         */
-	        isModify: boolean;
-	        /**
-	         * Is current row expanded
-	         */
-	        isExpand: boolean;
-	        /**
-	         * If row visible on screen
-	         */
-	        isVisible: boolean;
-	        /**
-	         * Set expanded ReactNode below current row
-	         */
-	        setExpand: (el: React.ReactNode | null) => boolean;
-	        /**
-	         * Set modify mode for this cell
-	         */
-	        setModify: (modify: boolean, key?: TableCellKey) => boolean;
-	        /**
-	         * Reload all data in table
-	         */
-	        reloadData: () => void;
-	    }
-	    type DataCollection = {
-	        row: Object;
-	        isExpand: boolean;
-	        isVisible: boolean;
-	        isCellModify: {
-	            [key: string]: boolean;
-	        };
-	        setModifyState: {
-	            [key: string]: React.Dispatch<React.SetStateAction<boolean>>;
-	        };
-	        setExpandComponent?: React.Dispatch<React.SetStateAction<React.ReactNode>>;
-	    };
-	    interface Ref extends TableRef, HTMLTableElement {
-	    }
-	    interface TableRef {
-	        /**
-	         * Get context for specific cell
-	         */
-	        getCellContext: (index: number, key: TableCellKey) => TableCellContext | null;
-	        /**
-	         * Set expanded ReactNode below row index
-	         * @returns true if success
-	         */
-	        setExpand: (index: number, content: React.ReactNode | null) => boolean;
-	        /**
-	         * Set modify mode for specific row or cell
-	         * @returns true if success
-	         */
-	        setModify: (modify: boolean, index: number, key?: TableCellKey) => boolean;
-	    }
-	    interface TableColumn {
-	        key: TableCellKey;
-	        title?: string;
-	        width?: number | string;
-	        render?: (cellContext: TableCellContext, index: number) => void;
-	        sort?: TableSortType;
-	    }
-	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
-	        data: Object[];
-	        columns: TableColumn[];
-	        pagination?: TablePaginationOptions;
-	    }
-	    interface HeadCellProps {
-	        column: TableColumn;
-	        styles: WhaleTypes.ComponentStyles<Overrides>;
-	        setSort: React.Dispatch<React.SetStateAction<TableSortObject>>;
-	    }
-	    interface CellProps {
-	        dcItem: DataCollection;
-	        column: TableColumn;
-	        rowIndex: number;
-	        styles: WhaleTypes.ComponentStyles<Overrides>;
-	        getCellContext: TableRef['getCellContext'];
-	    }
-	    interface RowProps {
-	        dcItem: DataCollection;
-	        columns: TableColumn[];
-	        rowIndex: number;
-	        styles: WhaleTypes.ComponentStyles<Overrides>;
-	        getCellContext: TableRef['getCellContext'];
-	    }
-	    interface FootProps {
-	        dc: DataCollection[];
-	        columns: TableColumn[];
-	        pagination?: TablePaginationOptions;
-	        onPageChange: (pageNumber: number) => void;
-	        styles: WhaleTypes.ComponentStyles<Overrides>;
-	    }
-	    interface Overrides {
-	        container: void;
-	        headCell: {
-	            sort: boolean;
-	        };
-	        row: void;
-	        rowCell: void;
-	        expandContainer: void;
-	        footer: void;
-	    }
-	}
-	export default TableTypes;
-
-}
-declare module 'layout/Badge/types' {
-	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types'; namespace BadgeTypes {
-	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
-	        content: React.ReactNode;
-	        align?: 'top' | 'bottom' | 'left' | 'right' | 'top-right' | 'bottom-right' | 'top-left' | 'bottom-left';
-	        children?: React.ReactNode;
-	    }
-	    interface Overrides {
-	        container: void;
-	        holder: {
-	            align: Props['align'];
-	        };
-	    }
-	}
-	export default BadgeTypes;
-
-}
-declare module 'layout/Block/types' {
-	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types';
-	import CSS from 'csstype';
-	import FlowTypes from 'types'; namespace BlockTypes {
-	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
-	        tag?: 'div' | 'span' | 'header' | 'footer' | 'article' | 'section' | 'aside' | 'main';
-	        decoration?: FlowTypes.LayoutDecoration;
-	        children?: React.ReactNode;
-	        overflow?: CSS.Properties['overflow'];
-	    }
-	    interface Overrides {
-	        container: {
-	            decoration?: FlowTypes.LayoutDecoration;
-	        };
-	    }
-	}
-	export default BlockTypes;
-
-}
-declare module 'layout/Drop/types' {
-	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types'; namespace DropTypes {
-	    interface TargetCoordinates {
-	        top: number;
-	        bottom: number;
-	        left: number;
-	        right: number;
-	    }
-	    interface Props extends WhaleTypes.AttributeProps, WhaleTypes.EventProps<HTMLDivElement>, WhaleTypes.CoreProps<Overrides>, WhaleTypes.ColorProps, WhaleTypes.BorderProps, WhaleTypes.PaddingProps, WhaleTypes.LayoutProps {
-	        /**
-	         * Target where to place drop
-	         */
-	        target?: any;
-	        /**
-	         * Will mount or unmount Drop
-	         */
-	        visible?: boolean;
-	        align?: 'top' | 'bottom' | 'left' | 'right';
-	        justify?: 'start' | 'center' | 'end' | 'start-outside' | 'end-outside';
-	        stretchWidth?: boolean;
-	        stretchHeight?: boolean;
-	        followCursor?: boolean;
-	        /**
-	         * Space around drop
-	         * like margin or so
-	         */
-	        spacing?: number;
-	        /**
-	         * Event will calls on
-	         * outside mouse clicks
-	         */
-	        onClickOutside?: (event: MouseEvent, outsideTarget?: boolean) => void;
-	        /**
-	         * Calls whenever esc pressed
-	         */
-	        onEsc?: () => void;
-	        children?: React.ReactNode;
-	    }
-	    interface Ref extends Partial<HTMLDivElement> {
-	        /**
-	         * Update self position of drop
-	         * useful when target changes origins and sizes
-	         */
-	        updatePosition: () => void;
-	        /**
-	         * Can be use ONLY on
-	         * uncontrolled compnents
-	         */
-	        setVisible: (state: boolean) => void;
-	    }
-	    interface Overrides {
-	        container: void;
-	    }
-	}
-	export default DropTypes;
-
-}
-declare module 'layout/Grid/types' {
-	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types';
-	import CSS from 'csstype';
-	import FlowTypes from 'types'; namespace GridTypes {
-	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
-	        inline?: boolean;
-	        children?: React.ReactNode;
-	        decoration?: FlowTypes.LayoutDecoration;
-	        templateColumns?: CSS.Properties['gridTemplateColumns'];
-	        templateRows?: CSS.Properties['gridTemplateRows'];
-	        templateAreas?: CSS.Properties['gridTemplateAreas'];
-	        columnGap?: CSS.Properties['gridColumnGap'];
-	        rowGap?: CSS.Properties['gridRowGap'];
-	        gap?: CSS.Properties['gridGap'];
-	        autoColumns?: CSS.Properties['gridAutoColumns'];
-	        autoRows?: CSS.Properties['gridAutoRows'];
-	        autoFlow?: CSS.Properties['gridAutoFlow'];
-	        alignItems?: CSS.Properties['alignItems'];
-	        alignContent?: CSS.Properties['alignContent'];
-	        justifyContent?: CSS.Properties['justifyContent'];
-	        justifyItems?: CSS.Properties['justifyItems'];
-	    }
-	    interface Overrides {
-	        container: {
-	            decoration?: FlowTypes.LayoutDecoration;
-	        };
-	    }
-	}
-	export default GridTypes;
-
-}
-declare module '@flow-ui/core/layout/Modal/types' {
-	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types'; namespace ModalTypes {
-	    type ExtentedProps = WhaleTypes.AttributeProps & WhaleTypes.EventProps<HTMLDivElement> & WhaleTypes.CoreProps<Overrides> & WhaleTypes.ColorProps & WhaleTypes.BorderProps & WhaleTypes.PaddingProps & WhaleTypes.LayoutProps;
-	    interface Ref {
-	        open: (customContent?: React.ReactElement | null) => void;
-	        close: (didClose?: () => void) => void;
-	        setTitle: (title: string) => void;
-	        setSubtitle: (subtitle: string) => void;
-	        setCenter: (center: boolean) => void;
-	        setCustomContent: (customContent: React.ReactElement | null) => void;
-	        title?: string;
-	        subtitle?: string;
-	        center: boolean;
-	        customContent: React.ReactElement | null;
-	        overlay: any;
-	        window: any;
-	    }
-	    interface Props extends ExtentedProps {
-	        title?: string;
-	        subtitle?: string;
-	        fullSize?: boolean;
-	        children?: any;
-	        opened?: boolean;
-	        hideHeader?: boolean;
-	        onClose?: () => void;
-	        didClose?: () => void;
-	        onOpen?: () => void;
-	        didOpen?: () => void;
-	    }
-	    interface InnerProps extends Props {
-	        innerRef: any;
-	    }
-	    interface StyleProps {
-	        visible: boolean;
-	        center: boolean;
-	        fullSize?: boolean;
-	    }
-	    interface ModalOverlayProps {
-	        visible: boolean;
-	        center: boolean;
-	        fullSize?: boolean;
-	        children?: any;
-	        styles: WhaleTypes.ComponentStyles<Overrides>;
-	    }
-	    interface ModalWindowProps {
-	        title?: string;
-	        subtitle?: string;
-	        visible: boolean;
-	        center: boolean;
-	        fullSize?: boolean;
-	        hideHeader?: boolean;
-	        children?: any;
-	        containerAttr?: ExtentedProps;
-	        containerEvents?: any;
-	        onClosePressed: () => void;
-	        styles: WhaleTypes.ComponentStyles<Overrides>;
-	    }
-	    interface ModalHeaderProps {
-	        title?: string;
-	        subtitle?: string;
-	        hideHeader?: boolean;
-	        onClosePressed: () => void;
-	        styles: WhaleTypes.ComponentStyles<Overrides>;
-	    }
-	    interface Overrides {
-	        overlay: {
-	            visible?: boolean;
-	            center?: boolean;
-	        };
-	        window: {
-	            visible?: boolean;
-	            fullSizeCenter?: boolean;
-	        };
-	        header: void;
-	        cross: void;
-	    }
-	}
-	export default ModalTypes;
-
-}
-declare module 'layout/Notification/types' {
-	 namespace NotificationTypes {
-	    interface Props {
-	        children?: React.ReactNode;
-	        onClick?: () => void;
-	    }
-	    interface NotifyOptions {
-	        /**
-	         * Title of notification
-	         */
-	        title: string;
-	        /**
-	         * Message of notification
-	         */
-	        message: string;
-	        /**
-	         * Notification will be removed after timeout
-	         * value in milisecods
-	         */
-	        timeout?: number;
-	        /**
-	         * Will call on notificaion click
-	         */
-	        onClick?: () => void;
-	        /**
-	         * if custom content filled then title and message will be ignored
-	         */
-	        customContent?: React.ReactElement;
-	    }
-	    interface Overrides {
-	        container: void;
-	    }
-	}
-	export default NotificationTypes;
-
-}
-declare module 'layout/Popover/types' {
-	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types';
-	import CSS from 'csstype'; namespace PopoverTypes {
-	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
-	        align?: 'top' | 'bottom' | 'left' | 'right' | 'none';
-	        background?: WhaleTypes.ColorProp;
-	        color?: WhaleTypes.ColorProp;
-	        children?: React.ReactNode;
-	        arrowWidth?: CSS.Properties['width'];
-	        arrowHeight?: CSS.Properties['height'];
-	    }
-	    interface Overrides {
-	        container: void;
-	        arrow: {
-	            align: Props['align'];
-	        };
-	    }
-	}
-	export default PopoverTypes;
-
-}
-declare module 'layout/Tree/types' {
-	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types'; namespace TreeTypes {
-	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
-	        label?: React.ReactNode | string | ((isOpen: boolean) => React.ReactNode);
-	        children?: React.ReactNode;
-	        decoration?: 'flat' | 'drop' | 'inline';
-	        alwaysOpen?: boolean;
-	        defaultOpen?: boolean;
-	        indent?: boolean;
-	    }
-	    interface Overrides {
-	        container: {
-	            decoration: Props['decoration'];
-	            needIndent: boolean;
-	        };
-	        label: void;
-	        icon: {
-	            decoration: Props['decoration'];
-	            disabled: boolean;
-	        };
-	        child: {
-	            isOpen: boolean;
-	        };
-	    }
-	}
-	export default TreeTypes;
-
-}
-declare module 'layout/ScrollView/types' {
-	import React from 'react';
-	import WhaleTypes from '@flow-ui/whale/types'; namespace ScrollViewTypes {
-	    interface ScrollViewEvent {
-	        scrollTop: number;
-	        scrollLeft: number;
-	        scrollWidth: number;
-	        scrollHeight: number;
-	    }
-	    interface ScrollParams {
-	        deltaX: number;
-	        deltaY: number;
-	        preventDefault: () => void;
-	        stopPropagation: () => void;
-	        cursorHandle?: boolean;
-	    }
-	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onScroll'> {
-	        children?: React.ReactNode;
-	        /**
-	         * Display mode
-	         * @default scroll
-	         */
-	        mode?: 'always' | 'scroll' | 'hidden';
-	        /**
-	         * Custom ScrollBar color
-	         */
-	        color?: WhaleTypes.ColorProp;
-	        /**
-	         * Bars size
-	         * @default m
-	         */
-	        size?: WhaleTypes.Size;
-	        /**
-	         * Bars shape
-	         * @default round
-	         */
-	        shape?: 'square' | 'round';
-	        /**
-	         * Position of X bar
-	         * @default bottom
-	         */
-	        xBarPosition?: 'top' | 'bottom';
-	        /**
-	         * Position of Y bar
-	         * @default right
-	         */
-	        yBarPosition?: 'left' | 'right';
-	        /**
-	         * If false
-	         * onflowscroll will not dispatch
-	         */
-	        sendFlowScollEvent?: boolean;
-	        onScroll?: (event: ScrollViewEvent) => void;
-	    }
-	    interface Ref {
-	        scrollTop: () => void;
-	    }
-	    interface Overrides {
-	        container: void;
-	        content: void;
-	        yBar: {
-	            active: boolean;
-	            shape: Props['shape'];
-	            size: Props['size'];
-	            position: Props['yBarPosition'];
-	        };
-	        yThumb: {
-	            active: boolean;
-	            shape: Props['shape'];
-	            size: Props['size'];
-	        };
-	        xBar: {
-	            active: boolean;
-	            shape: Props['shape'];
-	            size: Props['size'];
-	            position: Props['xBarPosition'];
-	        };
-	        xThumb: {
-	            active: boolean;
-	            shape: Props['shape'];
-	            size: Props['size'];
-	        };
-	    }
-	}
-	export default ScrollViewTypes;
-
-}
-declare module 'types' {
-	import WhaleTypes from '@flow-ui/whale/types';
-	/**
-	 * Content
-	 */
-	import DividerTypes from 'content/Divider/types';
-	import SpinnerTypes from 'content/Spinner/types';
-	/**
-	 * Control
-	 */
-	import ButtonTypes from 'control/Button/types';
-	import Calendar from 'control/Calendar/types';
-	import CheckboxTypes from 'control/Checkbox/types';
-	import DatePickerTypes from 'control/DatePicker/types';
-	import MenuTypes from 'control/Menu/types';
-	import RadioTypes from 'control/Radio/types';
-	import RangeTypes from 'control/Range/types';
-	import SelectTypes from 'control/Select/types';
-	import SwitchTypes from 'control/Switch/types';
-	import TextFieldTypes from 'control/TextField/types';
-	/**
-	 * Data
-	 */
-	import MeterTypes from 'data/Meter/types';
-	import TableTypes from '@flow-ui/core/data/Table/types';
-	/**
-	 * Layout
-	 */
-	import BadgeTypes from 'layout/Badge/types';
-	import BlockTypes from 'layout/Block/types';
-	import DropTypes from 'layout/Drop/types';
-	import FlexboxTypes from 'layout/Flexbox/types';
-	import GridTypes from 'layout/Grid/types';
-	import ModalTypes from '@flow-ui/core/layout/Modal/types';
-	import NotificationTypes from 'layout/Notification/types';
-	import PopoverTypes from 'layout/Popover/types';
-	import TreeTypes from 'layout/Tree/types';
-	import ScrollView from 'layout/ScrollView/types'; namespace FlowTypes {
-	    type LayoutDecoration = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' | 'neumorphism';
-	    type Override<T> = Partial<WhaleTypes.Styles<T>>;
-	    interface Overrides {
-	        Divider?: Override<DividerTypes.Overrides>;
-	        Spinner?: Override<SpinnerTypes.Overrides>;
-	        Button?: Override<ButtonTypes.Overrides>;
-	        Calendar?: Override<Calendar.Overrides>;
-	        Checkbox?: Override<CheckboxTypes.Overrides>;
-	        DatePicker?: Override<DatePickerTypes.Overrides>;
-	        Menu?: Override<MenuTypes.Overrides>;
-	        Radio?: Override<RadioTypes.Overrides>;
-	        Range?: Override<RangeTypes.Overrides>;
-	        Select?: Override<SelectTypes.Overrides>;
-	        Switch?: Override<SwitchTypes.Overrides>;
-	        TextField?: Override<TextFieldTypes.Overrides>;
-	        Meter?: Override<MeterTypes.Overrides>;
-	        Table?: Override<TableTypes.Overrides>;
-	        Badge?: Override<BadgeTypes.Overrides>;
-	        Block?: Override<BlockTypes.Overrides>;
-	        Drop?: Override<DropTypes.Overrides>;
-	        Flexbox?: Override<FlexboxTypes.Overrides>;
-	        Grid?: Override<GridTypes.Overrides>;
-	        Modal?: Override<ModalTypes.Overrides>;
-	        Notification?: Override<NotificationTypes.Overrides>;
-	        Popover?: Override<PopoverTypes.Overrides>;
-	        Tree?: Override<TreeTypes.Overrides>;
-	        ScrollView?: Override<ScrollView.Overrides>;
-	    }
-	    type Theme = WhaleTypes.Theme<Overrides>;
-	}
-	export default FlowTypes;
-
-}
-declare module 'layout/Flexbox/types' {
-	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types';
-	import CSS from 'csstype';
-	import FlowTypes from 'types'; namespace FlexboxTypes {
-	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
-	        column?: boolean;
-	        inline?: boolean;
-	        decoration?: FlowTypes.LayoutDecoration;
-	        alignItems?: CSS.Properties['alignItems'];
-	        alignContent?: CSS.Properties['alignContent'];
-	        justifyContent?: CSS.Properties['justifyContent'];
-	        justifyItems?: CSS.Properties['justifyItems'];
-	        direction?: CSS.Properties['flexDirection'];
-	        wrap?: CSS.Properties['flexWrap'];
-	        flow?: CSS.Properties['flexFlow'];
-	        children?: React.ReactNode;
-	    }
-	    interface Overrides {
-	        container: {
-	            decoration?: FlowTypes.LayoutDecoration;
-	        };
-	    }
-	}
-	export default FlexboxTypes;
-
-}
-declare module 'misc/utils/applyLayoutDecoration' {
-	import WhaleTypes from '@flow-ui/whale/types';
-	import FlowTypes from '@flow-ui/core/types'; type Props = WhaleTypes.AllProps<HTMLDivElement, {}> & {
-	    decoration?: FlowTypes.LayoutDecoration;
-	}; const applyLayoutDecoration: (props: Props, theme: WhaleTypes.Theme) => {
-	    background: string;
-	    borderRadius: string;
-	    borderWidth: string;
-	    borderStyle: string;
-	    borderColor: string;
-	    boxShadow?: undefined;
-	} | {
-	    background: string;
-	    borderRadius: string;
-	    borderWidth: string;
-	    borderStyle: string;
-	    borderColor: string;
-	    boxShadow: string;
-	} | {
-	    background: string;
-	    borderRadius: string;
-	    boxShadow: string;
-	    borderWidth?: undefined;
-	    borderStyle?: undefined;
-	    borderColor?: undefined;
-	} | undefined;
-	export default applyLayoutDecoration;
-
-}
-declare module 'layout/Flexbox/styles' {
-	import WhaleTypes from '@flow-ui/whale/types';
-	import Types from 'layout/Flexbox/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'layout/Flexbox' {
-	/// <reference types="react" />
-	/// <reference types="@emotion/core" />
-	import Types from 'layout/Flexbox/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
-	export default _default;
-
-}
-declare module 'layout/Grid/styles' {
-	import WhaleTypes from '@flow-ui/whale/types';
-	import Types from 'layout/Grid/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
-	export default styles;
-
-}
-declare module 'layout/Grid' {
-	/// <reference types="react" />
-	/// <reference types="@emotion/core" />
-	import Types from 'layout/Grid/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
-	export default _default;
 
 }
 declare module 'control/Calendar/DateGridDay' {
@@ -2986,6 +2010,26 @@ declare module 'control/Calendar' {
 	export default _default;
 
 }
+declare module 'layout/Block/types' {
+	/// <reference types="react" />
+	import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration';
+	import WhaleTypes from '@flow-ui/whale/types';
+	import CSS from 'csstype'; namespace BlockTypes {
+	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+	        tag?: 'div' | 'span' | 'header' | 'footer' | 'article' | 'section' | 'aside' | 'main';
+	        decoration?: LayoutDecoration;
+	        children?: React.ReactNode;
+	        overflow?: CSS.Properties['overflow'];
+	    }
+	    interface Overrides {
+	        container: {
+	            decoration?: LayoutDecoration;
+	        };
+	    }
+	}
+	export default BlockTypes;
+
+}
 declare module 'layout/Block/styles' {
 	import WhaleTypes from '@flow-ui/whale/types';
 	import Types from 'layout/Block/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
@@ -2999,10 +2043,66 @@ declare module 'layout/Block' {
 	export default _default;
 
 }
+declare module 'misc/hocs/Check/types' {
+	/// <reference types="react" />
+	import WhaleTypes from '@flow-ui/whale/types'; namespace CheckTypes {
+	    type CheckType = 'checkbox' | 'radio' | 'switch';
+	    interface Props extends WhaleTypes.AllProps<HTMLInputElement, Overrides> {
+	        label?: string;
+	        labelColor?: WhaleTypes.ColorProp;
+	        checked?: boolean;
+	        disabled?: boolean;
+	        defaultValue?: boolean;
+	        uppercase?: boolean;
+	        size?: WhaleTypes.Size;
+	    }
+	    interface PrivateProps extends Props {
+	        children: (checked: boolean, focus: boolean) => React.ReactElement;
+	        type?: CheckType;
+	        styles: WhaleTypes.ComponentStyles<Overrides>;
+	    }
+	    interface Overrides {
+	        container: {
+	            disabled: Props['disabled'];
+	            animated: Props['animated'];
+	        };
+	        label: {
+	            disabled: Props['disabled'];
+	            size: Props['size'];
+	            uppercase: Props['uppercase'];
+	            animated: Props['animated'];
+	        };
+	    }
+	}
+	export default CheckTypes;
+
+}
 declare module 'misc/hocs/Check' {
 	import React from 'react';
 	import CheckTypes from 'misc/hocs/Check/types'; const _default: React.ForwardRefExoticComponent<CheckTypes.PrivateProps & React.RefAttributes<HTMLDivElement>>;
 	export default _default;
+
+}
+declare module 'control/Checkbox/types' {
+	import CheckTypes from 'misc/hocs/Check/types'; namespace CheckboxTypes {
+	    interface Props extends CheckTypes.Props {
+	    }
+	    interface Overrides extends CheckTypes.Overrides {
+	        check: {
+	            size: Props['size'];
+	            animated: Props['animated'];
+	            disabled: Props['disabled'];
+	            focus: boolean;
+	        };
+	        icon: {
+	            checked: Props['checked'];
+	            size: Props['size'];
+	            animated: Props['animated'];
+	            disabled: Props['disabled'];
+	        };
+	    }
+	}
+	export default CheckboxTypes;
 
 }
 declare module 'misc/hocs/Check/styles' {
@@ -3023,6 +2123,64 @@ declare module 'control/Checkbox' {
 	export default _default;
 
 }
+declare module 'layout/Drop/types' {
+	/// <reference types="react" />
+	import WhaleTypes from '@flow-ui/whale/types'; namespace DropTypes {
+	    interface TargetCoordinates {
+	        top: number;
+	        bottom: number;
+	        left: number;
+	        right: number;
+	    }
+	    interface Props extends WhaleTypes.AttributeProps, WhaleTypes.EventProps<HTMLDivElement>, WhaleTypes.CoreProps<Overrides>, WhaleTypes.ColorProps, WhaleTypes.BorderProps, WhaleTypes.PaddingProps, WhaleTypes.LayoutProps {
+	        /**
+	         * Target where to place drop
+	         */
+	        target?: any;
+	        /**
+	         * Will mount or unmount Drop
+	         */
+	        visible?: boolean;
+	        align?: 'top' | 'bottom' | 'left' | 'right';
+	        justify?: 'start' | 'center' | 'end' | 'start-outside' | 'end-outside';
+	        stretchWidth?: boolean;
+	        stretchHeight?: boolean;
+	        followCursor?: boolean;
+	        /**
+	         * Space around drop
+	         * like margin or so
+	         */
+	        spacing?: number;
+	        /**
+	         * Event will calls on
+	         * outside mouse clicks
+	         */
+	        onClickOutside?: (event: MouseEvent, outsideTarget?: boolean) => void;
+	        /**
+	         * Calls whenever esc pressed
+	         */
+	        onEsc?: () => void;
+	        children?: React.ReactNode;
+	    }
+	    interface Ref extends Partial<HTMLDivElement> {
+	        /**
+	         * Update self position of drop
+	         * useful when target changes origins and sizes
+	         */
+	        updatePosition: () => void;
+	        /**
+	         * Can be use ONLY on
+	         * uncontrolled compnents
+	         */
+	        setVisible: (state: boolean) => void;
+	    }
+	    interface Overrides {
+	        container: void;
+	    }
+	}
+	export default DropTypes;
+
+}
 declare module 'layout/Drop/styles' {
 	import WhaleTypes from '@flow-ui/whale/types';
 	import Types from 'layout/Drop/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
@@ -3033,6 +2191,28 @@ declare module 'layout/Drop' {
 	import React from 'react';
 	import Types from 'layout/Drop/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
 	export default _default;
+
+}
+declare module 'layout/Popover/types' {
+	/// <reference types="react" />
+	import WhaleTypes from '@flow-ui/whale/types';
+	import CSS from 'csstype'; namespace PopoverTypes {
+	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+	        align?: 'top' | 'bottom' | 'left' | 'right' | 'none';
+	        background?: WhaleTypes.ColorProp;
+	        color?: WhaleTypes.ColorProp;
+	        children?: React.ReactNode;
+	        arrowWidth?: CSS.Properties['width'];
+	        arrowHeight?: CSS.Properties['height'];
+	    }
+	    interface Overrides {
+	        container: void;
+	        arrow: {
+	            align: Props['align'];
+	        };
+	    }
+	}
+	export default PopoverTypes;
 
 }
 declare module 'layout/Popover/styles' {
@@ -3067,8 +2247,88 @@ declare module 'misc/hocs/Field/styles' {
 	import WhaleTypes from '@flow-ui/whale/types';
 	import Types from 'misc/hocs/Field/types'; type ExtractFunction<T> = {
 	    [K in keyof T]: Extract<T[K], Function>;
-	}; const fieldStyles: <T extends Types.Overrides<{}>>(props: Pick<Types.Props, "m" | "borderWidth" | "borderStyle" | "borderRadius" | "visibility" | "display" | "flex" | "flexBasis" | "flexGrow" | "flexShrink" | "alignSelf" | "justifySelf" | "gridColumnStart" | "gridColumnEnd" | "gridRowStart" | "gridRowEnd" | "gridColumn" | "gridRow" | "gridArea" | "placeSelf" | "color" | "label" | "p" | "style" | "backgroundColor" | "borderColor" | "size" | "disabled" | "className" | "id" | "tabIndex" | "role" | "draggable" | "attrs" | "aria-activedescendant" | "aria-atomic" | "aria-autocomplete" | "aria-busy" | "aria-checked" | "aria-colcount" | "aria-colindex" | "aria-colspan" | "aria-controls" | "aria-current" | "aria-describedby" | "aria-details" | "aria-disabled" | "aria-dropeffect" | "aria-errormessage" | "aria-expanded" | "aria-flowto" | "aria-grabbed" | "aria-haspopup" | "aria-hidden" | "aria-invalid" | "aria-keyshortcuts" | "aria-label" | "aria-labelledby" | "aria-level" | "aria-live" | "aria-modal" | "aria-multiline" | "aria-multiselectable" | "aria-orientation" | "aria-owns" | "aria-placeholder" | "aria-posinset" | "aria-pressed" | "aria-readonly" | "aria-relevant" | "aria-required" | "aria-roledescription" | "aria-rowcount" | "aria-rowindex" | "aria-rowspan" | "aria-selected" | "aria-setsize" | "aria-sort" | "aria-valuemax" | "aria-valuemin" | "aria-valuenow" | "aria-valuetext" | "onCopy" | "onCopyCapture" | "onCut" | "onCutCapture" | "onPaste" | "onPasteCapture" | "onCompositionEnd" | "onCompositionEndCapture" | "onCompositionStart" | "onCompositionStartCapture" | "onCompositionUpdate" | "onCompositionUpdateCapture" | "onFocus" | "onFocusCapture" | "onBlur" | "onBlurCapture" | "onChangeCapture" | "onBeforeInput" | "onBeforeInputCapture" | "onInput" | "onInputCapture" | "onReset" | "onResetCapture" | "onSubmit" | "onSubmitCapture" | "onInvalid" | "onInvalidCapture" | "onLoad" | "onLoadCapture" | "onError" | "onErrorCapture" | "onKeyDown" | "onKeyDownCapture" | "onKeyPress" | "onKeyPressCapture" | "onKeyUp" | "onKeyUpCapture" | "onAbort" | "onAbortCapture" | "onCanPlay" | "onCanPlayCapture" | "onCanPlayThrough" | "onCanPlayThroughCapture" | "onDurationChange" | "onDurationChangeCapture" | "onEmptied" | "onEmptiedCapture" | "onEncrypted" | "onEncryptedCapture" | "onEnded" | "onEndedCapture" | "onLoadedData" | "onLoadedDataCapture" | "onLoadedMetadata" | "onLoadedMetadataCapture" | "onLoadStart" | "onLoadStartCapture" | "onPause" | "onPauseCapture" | "onPlay" | "onPlayCapture" | "onPlaying" | "onPlayingCapture" | "onProgress" | "onProgressCapture" | "onRateChange" | "onRateChangeCapture" | "onSeeked" | "onSeekedCapture" | "onSeeking" | "onSeekingCapture" | "onStalled" | "onStalledCapture" | "onSuspend" | "onSuspendCapture" | "onTimeUpdate" | "onTimeUpdateCapture" | "onVolumeChange" | "onVolumeChangeCapture" | "onWaiting" | "onWaitingCapture" | "onAuxClick" | "onAuxClickCapture" | "onClick" | "onClickCapture" | "onContextMenu" | "onContextMenuCapture" | "onDoubleClick" | "onDoubleClickCapture" | "onDrag" | "onDragCapture" | "onDragEnd" | "onDragEndCapture" | "onDragEnter" | "onDragEnterCapture" | "onDragExit" | "onDragExitCapture" | "onDragLeave" | "onDragLeaveCapture" | "onDragOver" | "onDragOverCapture" | "onDragStart" | "onDragStartCapture" | "onDrop" | "onDropCapture" | "onMouseDown" | "onMouseDownCapture" | "onMouseEnter" | "onMouseLeave" | "onMouseMove" | "onMouseMoveCapture" | "onMouseOut" | "onMouseOutCapture" | "onMouseOver" | "onMouseOverCapture" | "onMouseUp" | "onMouseUpCapture" | "onSelect" | "onSelectCapture" | "onTouchCancel" | "onTouchCancelCapture" | "onTouchEnd" | "onTouchEndCapture" | "onTouchMove" | "onTouchMoveCapture" | "onTouchStart" | "onTouchStartCapture" | "onPointerDown" | "onPointerDownCapture" | "onPointerMove" | "onPointerMoveCapture" | "onPointerUp" | "onPointerUpCapture" | "onPointerCancel" | "onPointerCancelCapture" | "onPointerEnter" | "onPointerLeave" | "onPointerOver" | "onPointerOverCapture" | "onPointerOut" | "onPointerOutCapture" | "onGotPointerCapture" | "onGotPointerCaptureCapture" | "onLostPointerCapture" | "onLostPointerCaptureCapture" | "onScroll" | "onScrollCapture" | "onWheel" | "onWheelCapture" | "onAnimationStart" | "onAnimationStartCapture" | "onAnimationEnd" | "onAnimationEndCapture" | "onAnimationIteration" | "onAnimationIterationCapture" | "onTransitionEnd" | "onTransitionEndCapture" | "styles" | "animated" | "textColor" | "px" | "py" | "pr" | "pl" | "pt" | "pb" | "w" | "h" | "mx" | "my" | "mr" | "ml" | "mt" | "mb" | "shape" | "onEnter" | "decoration" | "hint" | "rightChild" | "leftChild" | "clearable" | "onClear">, theme: WhaleTypes.Theme, stylePatch?: Partial<ExtractFunction<WhaleTypes.Styles<T>>> | undefined) => WhaleTypes.Styles<Types.Overrides<{}>>;
+	}; const fieldStyles: <T extends Types.Overrides<{}>>(props: Pick<Types.Props, "alignSelf" | "backgroundColor" | "color" | "display" | "flexBasis" | "flexGrow" | "flexShrink" | "gridColumnEnd" | "gridColumnStart" | "gridRowEnd" | "gridRowStart" | "justifySelf" | "visibility" | "borderColor" | "borderRadius" | "borderStyle" | "borderWidth" | "flex" | "gridArea" | "gridColumn" | "gridRow" | "placeSelf" | "size" | "style" | "disabled" | "label" | "p" | "className" | "id" | "tabIndex" | "role" | "draggable" | "attrs" | "aria-activedescendant" | "aria-atomic" | "aria-autocomplete" | "aria-busy" | "aria-checked" | "aria-colcount" | "aria-colindex" | "aria-colspan" | "aria-controls" | "aria-current" | "aria-describedby" | "aria-details" | "aria-disabled" | "aria-dropeffect" | "aria-errormessage" | "aria-expanded" | "aria-flowto" | "aria-grabbed" | "aria-haspopup" | "aria-hidden" | "aria-invalid" | "aria-keyshortcuts" | "aria-label" | "aria-labelledby" | "aria-level" | "aria-live" | "aria-modal" | "aria-multiline" | "aria-multiselectable" | "aria-orientation" | "aria-owns" | "aria-placeholder" | "aria-posinset" | "aria-pressed" | "aria-readonly" | "aria-relevant" | "aria-required" | "aria-roledescription" | "aria-rowcount" | "aria-rowindex" | "aria-rowspan" | "aria-selected" | "aria-setsize" | "aria-sort" | "aria-valuemax" | "aria-valuemin" | "aria-valuenow" | "aria-valuetext" | "onCopy" | "onCopyCapture" | "onCut" | "onCutCapture" | "onPaste" | "onPasteCapture" | "onCompositionEnd" | "onCompositionEndCapture" | "onCompositionStart" | "onCompositionStartCapture" | "onCompositionUpdate" | "onCompositionUpdateCapture" | "onFocus" | "onFocusCapture" | "onBlur" | "onBlurCapture" | "onChangeCapture" | "onBeforeInput" | "onBeforeInputCapture" | "onInput" | "onInputCapture" | "onReset" | "onResetCapture" | "onSubmit" | "onSubmitCapture" | "onInvalid" | "onInvalidCapture" | "onLoad" | "onLoadCapture" | "onError" | "onErrorCapture" | "onKeyDown" | "onKeyDownCapture" | "onKeyPress" | "onKeyPressCapture" | "onKeyUp" | "onKeyUpCapture" | "onAbort" | "onAbortCapture" | "onCanPlay" | "onCanPlayCapture" | "onCanPlayThrough" | "onCanPlayThroughCapture" | "onDurationChange" | "onDurationChangeCapture" | "onEmptied" | "onEmptiedCapture" | "onEncrypted" | "onEncryptedCapture" | "onEnded" | "onEndedCapture" | "onLoadedData" | "onLoadedDataCapture" | "onLoadedMetadata" | "onLoadedMetadataCapture" | "onLoadStart" | "onLoadStartCapture" | "onPause" | "onPauseCapture" | "onPlay" | "onPlayCapture" | "onPlaying" | "onPlayingCapture" | "onProgress" | "onProgressCapture" | "onRateChange" | "onRateChangeCapture" | "onSeeked" | "onSeekedCapture" | "onSeeking" | "onSeekingCapture" | "onStalled" | "onStalledCapture" | "onSuspend" | "onSuspendCapture" | "onTimeUpdate" | "onTimeUpdateCapture" | "onVolumeChange" | "onVolumeChangeCapture" | "onWaiting" | "onWaitingCapture" | "onAuxClick" | "onAuxClickCapture" | "onClick" | "onClickCapture" | "onContextMenu" | "onContextMenuCapture" | "onDoubleClick" | "onDoubleClickCapture" | "onDrag" | "onDragCapture" | "onDragEnd" | "onDragEndCapture" | "onDragEnter" | "onDragEnterCapture" | "onDragExit" | "onDragExitCapture" | "onDragLeave" | "onDragLeaveCapture" | "onDragOver" | "onDragOverCapture" | "onDragStart" | "onDragStartCapture" | "onDrop" | "onDropCapture" | "onMouseDown" | "onMouseDownCapture" | "onMouseEnter" | "onMouseLeave" | "onMouseMove" | "onMouseMoveCapture" | "onMouseOut" | "onMouseOutCapture" | "onMouseOver" | "onMouseOverCapture" | "onMouseUp" | "onMouseUpCapture" | "onSelect" | "onSelectCapture" | "onTouchCancel" | "onTouchCancelCapture" | "onTouchEnd" | "onTouchEndCapture" | "onTouchMove" | "onTouchMoveCapture" | "onTouchStart" | "onTouchStartCapture" | "onPointerDown" | "onPointerDownCapture" | "onPointerMove" | "onPointerMoveCapture" | "onPointerUp" | "onPointerUpCapture" | "onPointerCancel" | "onPointerCancelCapture" | "onPointerEnter" | "onPointerLeave" | "onPointerOver" | "onPointerOverCapture" | "onPointerOut" | "onPointerOutCapture" | "onGotPointerCapture" | "onGotPointerCaptureCapture" | "onLostPointerCapture" | "onLostPointerCaptureCapture" | "onScroll" | "onScrollCapture" | "onWheel" | "onWheelCapture" | "onAnimationStart" | "onAnimationStartCapture" | "onAnimationEnd" | "onAnimationEndCapture" | "onAnimationIteration" | "onAnimationIterationCapture" | "onTransitionEnd" | "onTransitionEndCapture" | "styles" | "animated" | "textColor" | "px" | "py" | "pr" | "pl" | "pt" | "pb" | "w" | "h" | "m" | "mx" | "my" | "mr" | "ml" | "mt" | "mb" | "shape" | "onEnter" | "decoration" | "hint" | "rightChild" | "leftChild" | "clearable" | "onClear">, theme: WhaleTypes.Theme, stylePatch?: Partial<ExtractFunction<WhaleTypes.Styles<T>>> | undefined) => WhaleTypes.Styles<Types.Overrides<{}>>;
 	export default fieldStyles;
+
+}
+declare module 'control/DatePicker/types' {
+	import { Moment } from 'moment';
+	import FieldTypes from 'misc/hocs/Field/types'; namespace DatePickerTypes {
+	    type GridType = 'year' | 'month' | 'day';
+	    type Locale = 'en' | 'ru' | 'it' | 'fr' | 'de';
+	    interface Props extends Omit<FieldTypes.Props, 'onChange'>, InputProps {
+	        /**
+	         * Type for DatePicker
+	         * @default day
+	         */
+	        type?: GridType;
+	        /**
+	         * Property value could be a string
+	         * if you pass format property aswell
+	         * otherwise value should be instance of Date
+	         */
+	        value?: Moment | Date | string;
+	        defaultValue?: Moment | Date | string;
+	        /**
+	         * Format moment YYYY-MM-DD
+	         * @default YYYY-MM-DD
+	         */
+	        format?: string;
+	        /**
+	         * Min datetime that could be selected
+	         */
+	        minValue?: Moment | Date | string;
+	        /**
+	         * Max datetime that could be selected
+	         */
+	        maxValue?: Moment | Date | string;
+	        /**
+	         * Callback function will with Date object
+	         * or string if format property was passed.
+	         */
+	        onChange?: (moment: Moment, value: string) => void;
+	        /**
+	         * Do not close datepicker on change
+	         * latest value
+	         */
+	        stayOpen?: boolean;
+	        /**
+	         * Enable mask input
+	         */
+	        masked?: boolean;
+	        /**
+	         * @default ru
+	         */
+	        locale?: Locale;
+	        /**
+	         * Hide today button
+	         */
+	        hideToday?: boolean;
+	    }
+	    interface InputProps {
+	        autoComplete?: string;
+	        autoFocus?: boolean;
+	        list?: string;
+	        name?: string;
+	        placeholder?: string;
+	        pattern?: string;
+	        readOnly?: boolean;
+	        required?: boolean;
+	        form?: string;
+	        formAction?: string;
+	        formEncType?: string;
+	        formMethod?: string;
+	        formNoValidate?: boolean;
+	        formTarget?: string;
+	    }
+	    interface Overrides extends FieldTypes.Overrides {
+	        drop: {
+	            isActive: boolean;
+	        };
+	        input: void;
+	    }
+	}
+	export default DatePickerTypes;
 
 }
 declare module 'control/DatePicker/styles' {
@@ -3081,6 +2341,55 @@ declare module 'control/DatePicker' {
 	import React from 'react';
 	import Types from 'control/DatePicker/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
 	export default _default;
+
+}
+declare module 'control/Menu/types' {
+	/// <reference types="react" />
+	import WhaleTypes from '@flow-ui/whale/types'; namespace MenuTypes {
+	    type Value = string | number;
+	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
+	        defaultValue?: Value;
+	        value?: Value;
+	        onChange?: (value: Value) => void;
+	        items: Item[];
+	        size?: WhaleTypes.Size;
+	        decoration?: 'filled' | 'outline' | 'color' | 'underline' | 'tab' | 'filled-underline';
+	        flip?: boolean;
+	        spacing?: string;
+	        direction?: 'row' | 'column';
+	        shape?: 'square' | 'rounded' | 'round';
+	        border?: 'none' | 'narrow' | 'wide';
+	        align?: 'start' | 'center' | 'end';
+	        separator?: React.ReactElement;
+	        color?: WhaleTypes.ColorProp;
+	        disabled?: boolean;
+	    }
+	    interface Item extends Partial<Omit<WhaleTypes.EventProps<HTMLDivElement>, 'onChange'>>, Partial<Props> {
+	        content: React.ReactNode;
+	        value: Value;
+	        disabled?: boolean;
+	    }
+	    interface ItemProps extends Item {
+	        active: boolean;
+	        styles: WhaleTypes.ComponentStyles<Overrides>;
+	    }
+	    interface Overrides {
+	        container: {
+	            size: Props['size'];
+	            flip: Props['flip'];
+	            border: Props['border'];
+	        };
+	        item: {
+	            shape: Props['shape'];
+	            disabled: boolean;
+	            active: boolean;
+	            size: Props['size'];
+	            decoration: Props['decoration'];
+	        };
+	        separator: void;
+	    }
+	}
+	export default MenuTypes;
 
 }
 declare module 'control/Menu/Item' {
@@ -3101,6 +2410,27 @@ declare module 'control/Menu' {
 	export default _default;
 
 }
+declare module 'control/Radio/types' {
+	import CheckTypes from 'misc/hocs/Check/types'; namespace RadioTypes {
+	    interface Props extends CheckTypes.Props {
+	    }
+	    interface Overrides extends CheckTypes.Overrides {
+	        check: {
+	            size: Props['size'];
+	            animated: Props['animated'];
+	            disabled: Props['disabled'];
+	        };
+	        radio: {
+	            checked: Props['checked'];
+	            size: Props['size'];
+	            animated: Props['animated'];
+	            disabled: Props['disabled'];
+	        };
+	    }
+	}
+	export default RadioTypes;
+
+}
 declare module 'control/Radio/styles' {
 	import Types from 'control/Radio/types';
 	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
@@ -3111,6 +2441,27 @@ declare module 'control/Radio' {
 	import React from 'react';
 	import Types from 'control/Radio/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
 	export default _default;
+
+}
+declare module 'control/Range/types' {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace RangeTypes {
+	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
+	        min?: number;
+	        max?: number;
+	        defaultValue?: number;
+	        value?: number;
+	        onChange?: (value: number) => void;
+	        mode?: 'single' | 'range';
+	        className?: string;
+	    }
+	    interface Overrides {
+	        container: void;
+	        rail: void;
+	        track: void;
+	        thumb: void;
+	    }
+	}
+	export default RangeTypes;
 
 }
 declare module 'control/Range/styles' {
@@ -3159,6 +2510,82 @@ declare module 'control/Pageswitch' {
 	export default _default;
 
 }
+declare module 'control/Select/types' {
+	import FieldTypes from 'misc/hocs/Field/types';
+	import WhaleTypes from '@flow-ui/whale/types'; namespace SelectTypes {
+	    interface Option {
+	        text: string;
+	        value: any;
+	    }
+	    interface Props extends Omit<FieldTypes.Props, 'onChange'> {
+	        placeholder?: string;
+	        options: Option[];
+	        /**
+	         * Allow selecting multiple values
+	         */
+	        multiselect?: boolean;
+	        /**
+	         * Allow search values
+	         */
+	        searchable?: boolean;
+	        /**
+	         * Select will not close after
+	         * option clicked
+	         */
+	        keepOpen?: boolean;
+	        values?: Option[];
+	        defaultValues?: Option[];
+	        /**
+	         * Max size of scroll area
+	         * at select drop view
+	         */
+	        maxScrollHeight?: string;
+	        onChange?: (values: Option[], changedValue?: Option) => void;
+	    }
+	    type State = {
+	        selectedOptions: Option[];
+	        open: boolean;
+	        searchValue: string;
+	        empty: boolean;
+	        cursor: number;
+	    };
+	    interface OptionsProps extends SearchProps {
+	        selected: SelectTypes.Option[];
+	        onClose: (option: any) => void;
+	        searchable?: boolean;
+	        size: WhaleTypes.Size;
+	    }
+	    interface SearchProps {
+	        searchValue: string;
+	        onSearch: (searchValue: string) => void;
+	        styles: WhaleTypes.ComponentStyles<Overrides>;
+	        placeholder?: string;
+	        defaultValue?: string;
+	        disabled?: boolean;
+	    }
+	    interface StyleState {
+	        shape: Props['shape'];
+	        size: Props['size'];
+	        decoration: Props['decoration'];
+	    }
+	    interface StyleParams {
+	        isOpen: boolean;
+	    }
+	    interface Overrides extends FieldTypes.Overrides {
+	        selectedOptionInput: {
+	            searchMode: boolean;
+	            multiselect: boolean;
+	        };
+	        selectedOptionsContainer: void;
+	        tag: StyleState;
+	        tagRemove: StyleState;
+	        drop: StyleState;
+	        dropItem: StyleState;
+	    }
+	}
+	export default SelectTypes;
+
+}
 declare module 'control/Select/styles' {
 	import Types from 'control/Select/types';
 	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props, Types.StyleParams>;
@@ -3169,6 +2596,28 @@ declare module 'control/Select' {
 	import React from 'react';
 	import Types from 'control/Select/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
 	export default _default;
+
+}
+declare module 'control/Switch/types' {
+	import CheckTypes from 'misc/hocs/Check/types'; namespace SwitchTypes {
+	    interface Props extends CheckTypes.Props {
+	    }
+	    interface Overrides extends CheckTypes.Overrides {
+	        check: {
+	            checked: Props['checked'];
+	            size: Props['size'];
+	            animated: Props['animated'];
+	            disabled: Props['disabled'];
+	        };
+	        switch: {
+	            checked: Props['checked'];
+	            size: Props['size'];
+	            animated: Props['animated'];
+	            disabled: Props['disabled'];
+	        };
+	    }
+	}
+	export default SwitchTypes;
 
 }
 declare module 'control/Switch/styles' {
@@ -3183,6 +2632,58 @@ declare module 'control/Switch' {
 	export default _default;
 
 }
+declare module 'control/TextField/types' {
+	import { ChangeEventHandler } from 'react';
+	import IMask from 'imask';
+	import FieldTypes from 'misc/hocs/Field/types';
+	import WhaleTypes from '@flow-ui/whale/types'; namespace TextFieldTypes {
+	    type InputTypes = 'email' | 'hidden' | 'number' | 'password' | 'reset' | 'search' | 'tel' | 'text' | 'url';
+	    interface Props extends FieldTypes.Props, InputProps, TextAreaProps {
+	        defaultValue?: string | number;
+	        align?: 'left' | 'right';
+	        multiline?: boolean;
+	        masked?: IMask.AnyMaskedOptions;
+	        onChange?: ChangeEventHandler<HTMLInputElement>;
+	    }
+	    interface InputProps {
+	        autoComplete?: string;
+	        autoFocus?: boolean;
+	        list?: string;
+	        name?: string;
+	        placeholder?: string;
+	        pattern?: string;
+	        readOnly?: boolean;
+	        required?: boolean;
+	        type?: InputTypes;
+	        value?: string | number;
+	        form?: string;
+	        formAction?: string;
+	        formEncType?: string;
+	        formMethod?: string;
+	        formNoValidate?: boolean;
+	        formTarget?: string;
+	        max?: number | string;
+	        maxLength?: number;
+	        min?: number | string;
+	        minLength?: number;
+	        step?: number | string;
+	        width?: number | string;
+	    }
+	    interface TextAreaProps {
+	        cols?: number;
+	        rows?: number;
+	        wrap?: string;
+	    }
+	    interface Overrides extends FieldTypes.Overrides {
+	        input: {
+	            multiline: boolean;
+	            size: WhaleTypes.Size;
+	        };
+	    }
+	}
+	export default TextFieldTypes;
+
+}
 declare module 'control/TextField/styles' {
 	import Types from 'control/TextField/types';
 	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
@@ -3195,6 +2696,42 @@ declare module 'control/TextField' {
 	export default _default;
 
 }
+declare module 'data/Meter/types' {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace MeterTypes {
+	    type MeterType = 'line' | 'circle';
+	    type MeterDecoration = 'filled' | 'outline';
+	    type MeterShape = 'square' | 'round';
+	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+	        percent: number;
+	        size?: WhaleTypes.Size;
+	        /**
+	         * @default line
+	         */
+	        type?: MeterType;
+	        decoration?: MeterDecoration;
+	        shape?: MeterShape;
+	        color?: WhaleTypes.ColorProp;
+	        /**
+	         * Enabled process animation
+	         * @default false
+	         */
+	        loading?: boolean;
+	    }
+	    interface Overrides {
+	        container: {
+	            shape: MeterShape;
+	            size: WhaleTypes.Size;
+	            decoration: MeterDecoration;
+	        };
+	        thumb: {
+	            shape: MeterShape;
+	            size: WhaleTypes.Size;
+	        };
+	    }
+	}
+	export default MeterTypes;
+
+}
 declare module 'data/Meter/styles' {
 	import WhaleTypes from '@flow-ui/whale/types';
 	import Types from 'data/Meter/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
@@ -3205,6 +2742,147 @@ declare module 'data/Meter' {
 	import React from 'react';
 	import Types from 'data/Meter/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
 	export default _default;
+
+}
+declare module '@flow-ui/core/data/Table/types' {
+	/// <reference types="react" />
+	import WhaleTypes from '@flow-ui/whale/types'; namespace TableTypes {
+	    type TableCellKey = number | string;
+	    type TableSortType = 'ASC' | 'DESC';
+	    type TableSortObject = {
+	        key: TableCellKey;
+	        sort: TableSortType;
+	    };
+	    type TablePaginationOptions = {
+	        pageSize: number;
+	        alwaysVisible?: boolean;
+	    };
+	    interface TableCellContext {
+	        /**
+	         * Current cell key
+	         */
+	        key: TableCellKey;
+	        /**
+	         * Current row index
+	         */
+	        index: number;
+	        /**
+	         * Current row data
+	         */
+	        row: Object;
+	        /**
+	         * Link on column configuration
+	         */
+	        column: TableColumn | null;
+	        /**
+	         * Raw data of cell
+	         */
+	        value?: React.ReactNode | string | number | null;
+	        /**
+	         * Is current cell in modify mode
+	         */
+	        isModify: boolean;
+	        /**
+	         * Is current row expanded
+	         */
+	        isExpand: boolean;
+	        /**
+	         * If row visible on screen
+	         */
+	        isVisible: boolean;
+	        /**
+	         * Set expanded ReactNode below current row
+	         */
+	        setExpand: (el: React.ReactNode | null) => boolean;
+	        /**
+	         * Set modify mode for this cell
+	         */
+	        setModify: (modify: boolean, key?: TableCellKey) => boolean;
+	        /**
+	         * Reload all data in table
+	         */
+	        reloadData: () => void;
+	    }
+	    type DataCollection = {
+	        row: Object;
+	        isExpand: boolean;
+	        isVisible: boolean;
+	        isCellModify: {
+	            [key: string]: boolean;
+	        };
+	        setModifyState: {
+	            [key: string]: React.Dispatch<React.SetStateAction<boolean>>;
+	        };
+	        setExpandComponent?: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+	    };
+	    interface Ref extends TableRef, HTMLTableElement {
+	    }
+	    interface TableRef {
+	        /**
+	         * Get context for specific cell
+	         */
+	        getCellContext: (index: number, key: TableCellKey) => TableCellContext | null;
+	        /**
+	         * Set expanded ReactNode below row index
+	         * @returns true if success
+	         */
+	        setExpand: (index: number, content: React.ReactNode | null) => boolean;
+	        /**
+	         * Set modify mode for specific row or cell
+	         * @returns true if success
+	         */
+	        setModify: (modify: boolean, index: number, key?: TableCellKey) => boolean;
+	    }
+	    interface TableColumn {
+	        key: TableCellKey;
+	        title?: string;
+	        width?: number | string;
+	        render?: (cellContext: TableCellContext, index: number) => void;
+	        sort?: TableSortType;
+	    }
+	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+	        data: Object[];
+	        columns: TableColumn[];
+	        pagination?: TablePaginationOptions;
+	    }
+	    interface HeadCellProps {
+	        column: TableColumn;
+	        styles: WhaleTypes.ComponentStyles<Overrides>;
+	        setSort: React.Dispatch<React.SetStateAction<TableSortObject>>;
+	    }
+	    interface CellProps {
+	        dcItem: DataCollection;
+	        column: TableColumn;
+	        rowIndex: number;
+	        styles: WhaleTypes.ComponentStyles<Overrides>;
+	        getCellContext: TableRef['getCellContext'];
+	    }
+	    interface RowProps {
+	        dcItem: DataCollection;
+	        columns: TableColumn[];
+	        rowIndex: number;
+	        styles: WhaleTypes.ComponentStyles<Overrides>;
+	        getCellContext: TableRef['getCellContext'];
+	    }
+	    interface FootProps {
+	        dc: DataCollection[];
+	        columns: TableColumn[];
+	        pagination?: TablePaginationOptions;
+	        onPageChange: (pageNumber: number) => void;
+	        styles: WhaleTypes.ComponentStyles<Overrides>;
+	    }
+	    interface Overrides {
+	        container: void;
+	        headCell: {
+	            sort: boolean;
+	        };
+	        row: void;
+	        rowCell: void;
+	        expandContainer: void;
+	        footer: void;
+	    }
+	}
+	export default TableTypes;
 
 }
 declare module 'data/Table/styles' {
@@ -3243,6 +2921,24 @@ declare module 'data/Table' {
 	export default _default;
 
 }
+declare module 'layout/Badge/types' {
+	/// <reference types="react" />
+	import WhaleTypes from '@flow-ui/whale/types'; namespace BadgeTypes {
+	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+	        content: React.ReactNode;
+	        align?: 'top' | 'bottom' | 'left' | 'right' | 'top-right' | 'bottom-right' | 'top-left' | 'bottom-left';
+	        children?: React.ReactNode;
+	    }
+	    interface Overrides {
+	        container: void;
+	        holder: {
+	            align: Props['align'];
+	        };
+	    }
+	}
+	export default BadgeTypes;
+
+}
 declare module 'layout/Badge/styles' {
 	import WhaleTypes from '@flow-ui/whale/types';
 	import Types from 'layout/Badge/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
@@ -3253,6 +2949,87 @@ declare module 'layout/Badge' {
 	import React from 'react';
 	import Types from 'layout/Badge/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
 	export default _default;
+
+}
+declare module '@flow-ui/core/layout/Modal/types' {
+	/// <reference types="react" />
+	import WhaleTypes from '@flow-ui/whale/types'; namespace ModalTypes {
+	    type ExtentedProps = WhaleTypes.AttributeProps & WhaleTypes.EventProps<HTMLDivElement> & WhaleTypes.CoreProps<Overrides> & WhaleTypes.ColorProps & WhaleTypes.BorderProps & WhaleTypes.PaddingProps & WhaleTypes.LayoutProps;
+	    interface Ref {
+	        open: (customContent?: React.ReactElement | null) => void;
+	        close: (didClose?: () => void) => void;
+	        setTitle: (title: string) => void;
+	        setSubtitle: (subtitle: string) => void;
+	        setCenter: (center: boolean) => void;
+	        setCustomContent: (customContent: React.ReactElement | null) => void;
+	        title?: string;
+	        subtitle?: string;
+	        center: boolean;
+	        customContent: React.ReactElement | null;
+	        overlay: any;
+	        window: any;
+	    }
+	    interface Props extends ExtentedProps {
+	        title?: string;
+	        subtitle?: string;
+	        fullSize?: boolean;
+	        children?: any;
+	        opened?: boolean;
+	        hideHeader?: boolean;
+	        onClose?: () => void;
+	        didClose?: () => void;
+	        onOpen?: () => void;
+	        didOpen?: () => void;
+	    }
+	    interface InnerProps extends Props {
+	        innerRef: any;
+	    }
+	    interface StyleProps {
+	        visible: boolean;
+	        center: boolean;
+	        fullSize?: boolean;
+	    }
+	    interface ModalOverlayProps {
+	        visible: boolean;
+	        center: boolean;
+	        fullSize?: boolean;
+	        children?: any;
+	        styles: WhaleTypes.ComponentStyles<Overrides>;
+	    }
+	    interface ModalWindowProps {
+	        title?: string;
+	        subtitle?: string;
+	        visible: boolean;
+	        center: boolean;
+	        fullSize?: boolean;
+	        hideHeader?: boolean;
+	        children?: any;
+	        containerAttr?: ExtentedProps;
+	        containerEvents?: any;
+	        onClosePressed: () => void;
+	        styles: WhaleTypes.ComponentStyles<Overrides>;
+	    }
+	    interface ModalHeaderProps {
+	        title?: string;
+	        subtitle?: string;
+	        hideHeader?: boolean;
+	        onClosePressed: () => void;
+	        styles: WhaleTypes.ComponentStyles<Overrides>;
+	    }
+	    interface Overrides {
+	        overlay: {
+	            visible?: boolean;
+	            center?: boolean;
+	        };
+	        window: {
+	            visible?: boolean;
+	            fullSizeCenter?: boolean;
+	        };
+	        header: void;
+	        cross: void;
+	    }
+	}
+	export default ModalTypes;
 
 }
 declare module 'layout/Modal/ModalOverlay' {
@@ -3290,6 +3067,42 @@ declare module 'layout/Modal' {
 	export default _default;
 
 }
+declare module 'layout/Notification/types' {
+	 namespace NotificationTypes {
+	    interface Props {
+	        children?: React.ReactNode;
+	        onClick?: () => void;
+	    }
+	    interface NotifyOptions {
+	        /**
+	         * Title of notification
+	         */
+	        title: string;
+	        /**
+	         * Message of notification
+	         */
+	        message: string;
+	        /**
+	         * Notification will be removed after timeout
+	         * value in milisecods
+	         */
+	        timeout?: number;
+	        /**
+	         * Will call on notificaion click
+	         */
+	        onClick?: () => void;
+	        /**
+	         * if custom content filled then title and message will be ignored
+	         */
+	        customContent?: React.ReactElement;
+	    }
+	    interface Overrides {
+	        container: void;
+	    }
+	}
+	export default NotificationTypes;
+
+}
 declare module 'layout/Notification/styles' {
 	import WhaleTypes from '@flow-ui/whale/types';
 	import Types from 'layout/Notification/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
@@ -3302,16 +3115,189 @@ declare module 'layout/Notification' {
 	export default _default;
 
 }
+declare module 'layout/Tree/types' {
+	/// <reference types="react" />
+	import WhaleTypes from '@flow-ui/whale/types'; namespace TreeTypes {
+	    type RenderChildOptions = {
+	        isOpen: boolean;
+	        isParentOpen: boolean;
+	        hasChilds: boolean;
+	        lvl: number;
+	    };
+	    type RenderChild = (options: RenderChildOptions) => React.ReactNode;
+	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+	        label?: React.ReactNode | string | RenderChild;
+	        leftChild?: React.ReactNode | string | RenderChild;
+	        rightChild?: React.ReactNode | string | RenderChild;
+	        children?: React.ReactNode;
+	        decoration?: 'none' | 'finder';
+	        size?: WhaleTypes.Size;
+	        open?: boolean;
+	        defaultOpen?: boolean;
+	        indent?: boolean;
+	    }
+	    interface PrivateProps extends Props {
+	        lvl: number;
+	        isParentOpen: boolean;
+	    }
+	    interface TreeLabelProps {
+	        children?: Props['label'];
+	        className?: Props['className'];
+	        size: Props['size'];
+	        options: RenderChildOptions;
+	    }
+	    interface TreeLeftChildProps {
+	        children?: Props['leftChild'];
+	        className?: Props['className'];
+	        size: Props['size'];
+	        options: RenderChildOptions;
+	    }
+	    interface TreeRightChildProps {
+	        children?: Props['leftChild'];
+	        className?: Props['className'];
+	        size: Props['size'];
+	        options: RenderChildOptions;
+	    }
+	    interface ExtentedReactElement extends Omit<React.ReactElement, 'type'> {
+	        type: {
+	            render: {
+	                name: string;
+	            };
+	        };
+	    }
+	    interface StyleState {
+	        hasChilds: boolean;
+	        decoration: Props['decoration'];
+	        size: Props['size'];
+	    }
+	    interface Overrides {
+	        container: StyleState;
+	        row: StyleState;
+	        label: StyleState;
+	        arrow: StyleState;
+	        child: {
+	            isOpen: boolean;
+	        };
+	    }
+	}
+	export default TreeTypes;
+
+}
 declare module 'layout/Tree/styles' {
 	import Types from 'layout/Tree/types';
-	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	import WhaleTypes from '@flow-ui/whale/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.PrivateProps>;
 	export default styles;
+
+}
+declare module 'layout/Tree/TreeLabel' {
+	/// <reference types="react" />
+	import Types from 'layout/Tree/types'; const TreeLabel: (props: Types.TreeLabelProps) => JSX.Element;
+	export default TreeLabel;
+
+}
+declare module 'layout/Tree/TreeLeftChild' {
+	/// <reference types="react" />
+	import Types from 'layout/Tree/types'; const TreeLeftChild: (props: Types.TreeLeftChildProps) => JSX.Element;
+	export default TreeLeftChild;
+
+}
+declare module 'layout/Tree/TreeRightChild' {
+	/// <reference types="react" />
+	import Types from 'layout/Tree/types'; const TreeRightChild: (props: Types.TreeRightChildProps) => JSX.Element;
+	export default TreeRightChild;
 
 }
 declare module 'layout/Tree' {
 	import React from 'react';
 	import Types from 'layout/Tree/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
 	export default _default;
+
+}
+declare module 'layout/ScrollView/types' {
+	import React from 'react';
+	import WhaleTypes from '@flow-ui/whale/types'; namespace ScrollViewTypes {
+	    interface ScrollViewEvent {
+	        scrollTop: number;
+	        scrollLeft: number;
+	        scrollWidth: number;
+	        scrollHeight: number;
+	    }
+	    interface ScrollParams {
+	        deltaX: number;
+	        deltaY: number;
+	        preventDefault: () => void;
+	        stopPropagation: () => void;
+	        cursorHandle?: boolean;
+	    }
+	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onScroll'> {
+	        children?: React.ReactNode;
+	        /**
+	         * Display mode
+	         * @default scroll
+	         */
+	        mode?: 'always' | 'scroll' | 'hidden';
+	        /**
+	         * Custom ScrollBar color
+	         */
+	        color?: WhaleTypes.ColorProp;
+	        /**
+	         * Bars size
+	         * @default m
+	         */
+	        size?: WhaleTypes.Size;
+	        /**
+	         * Bars shape
+	         * @default round
+	         */
+	        shape?: 'square' | 'round';
+	        /**
+	         * Position of X bar
+	         * @default bottom
+	         */
+	        xBarPosition?: 'top' | 'bottom';
+	        /**
+	         * Position of Y bar
+	         * @default right
+	         */
+	        yBarPosition?: 'left' | 'right';
+	        /**
+	         * If false
+	         * onflowscroll will not dispatch
+	         */
+	        sendFlowScollEvent?: boolean;
+	        onScroll?: (event: ScrollViewEvent) => void;
+	    }
+	    interface Ref {
+	        scrollTop: () => void;
+	    }
+	    interface Overrides {
+	        container: void;
+	        content: void;
+	        yBar: {
+	            active: boolean;
+	            shape: Props['shape'];
+	            size: Props['size'];
+	            position: Props['yBarPosition'];
+	        };
+	        yThumb: {
+	            active: boolean;
+	            shape: Props['shape'];
+	            size: Props['size'];
+	        };
+	        xBar: {
+	            active: boolean;
+	            shape: Props['shape'];
+	            size: Props['size'];
+	            position: Props['xBarPosition'];
+	        };
+	        xThumb: {
+	            active: boolean;
+	            shape: Props['shape'];
+	            size: Props['size'];
+	        };
+	    }
+	}
+	export default ScrollViewTypes;
 
 }
 declare module 'layout/ScrollView/styles' {
@@ -3417,12 +3403,12 @@ declare module 'layout/Viewport' {
 
 }
 declare module 'misc/utils/dialog' {
-	import ViewportTypes from 'layout/Viewport/types'; const _default: (options: ViewportTypes.DialogOptions) => void;
+	import ViewportTypes from '@flow-ui/core/layout/Viewport/types'; const _default: (options: ViewportTypes.DialogOptions) => void;
 	export default _default;
 
 }
 declare module 'misc/utils/notify' {
-	import NotificationType from 'layout/Notification/types'; const _default: (options: NotificationType.NotifyOptions) => void;
+	import NotificationType from '@flow-ui/core/layout/Notification/types'; const _default: (options: NotificationType.NotifyOptions) => void;
 	export default _default;
 
 }
@@ -3478,8 +3464,7 @@ declare module '@flow-ui/core' {
 	/**
 	 * Misc
 	 */
-	export { useTheme as useTheme } from '@flow-ui/whale';
-	export function transformImports(importName: any, matches: any): "@flow-ui/core/content/Divider" | "@flow-ui/core/content/Spinner" | "@flow-ui/core/content/Header" | "@flow-ui/core/content/Display" | "@flow-ui/core/content/Paragraph" | "@flow-ui/core/content/Text" | "@flow-ui/core/content/Anchor" | "@flow-ui/core/control/Button" | "@flow-ui/core/control/Checkbox" | "@flow-ui/core/control/DatePicker" | "@flow-ui/core/control/Menu" | "@flow-ui/core/control/Radio" | "@flow-ui/core/control/Range" | "@flow-ui/core/control/Select" | "@flow-ui/core/control/Switch" | "@flow-ui/core/control/TextField" | "@flow-ui/core/data/Meter" | "@flow-ui/core/data/Table" | "@flow-ui/core/layout/Badge" | "@flow-ui/core/layout/Block" | "@flow-ui/core/layout/Drop" | "@flow-ui/core/layout/Flexbox" | "@flow-ui/core/layout/Grid" | "@flow-ui/core/layout/Modal" | "@flow-ui/core/layout/Notification" | "@flow-ui/core/layout/Popover" | "@flow-ui/core/layout/Tree" | "@flow-ui/core/layout/ScrollView" | "@flow-ui/core/layout/Viewport" | "@flow-ui/core/misc/utils/dialog" | "@flow-ui/core/misc/utils/notify" | "@flow-ui/core/misc/hooks/useBrowser" | "/";
+	export { useTheme } from '@flow-ui/whale';
 
 }
 declare module 'misc/utils/validate' {
