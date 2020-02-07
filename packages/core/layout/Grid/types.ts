@@ -1,12 +1,12 @@
+import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration'
 import WhaleTypes from '@flow-ui/whale/types'
 import CSS from 'csstype'
-import FlowTypes from '../../types'
 
 declare namespace GridTypes {
     interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
         inline?: boolean
         children?: React.ReactNode
-        decoration?: FlowTypes.LayoutDecoration
+        decoration?: LayoutDecoration
 
         templateColumns?: CSS.Properties['gridTemplateColumns']
         templateRows?: CSS.Properties['gridTemplateRows']
@@ -27,7 +27,7 @@ declare namespace GridTypes {
     }
     interface Overrides {
         container: {
-            decoration?: FlowTypes.LayoutDecoration
+            decoration?: LayoutDecoration
         }
     }
 }

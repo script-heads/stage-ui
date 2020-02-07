@@ -1,7 +1,13 @@
-import WhaleTypes, { EmotionStyles } from '@flow-ui/whale/types'
-import FlowTypes from '@flow-ui/core/types'
+import WhaleTypes from '@flow-ui/whale/types'
 
-type Props = WhaleTypes.AllProps<HTMLDivElement, {}> & { decoration?: FlowTypes.LayoutDecoration }
+export type LayoutDecoration =
+    'surface'
+    | 'minorShadow'
+    | 'mediumShadow'
+    | 'majorShadow'
+    | 'neumorphism'
+
+type Props = WhaleTypes.AllProps<HTMLDivElement, {}> & { decoration?: LayoutDecoration }
 
 const applyLayoutDecoration = (props: Props, theme: WhaleTypes.Theme) => {
 
@@ -37,7 +43,7 @@ const applyLayoutDecoration = (props: Props, theme: WhaleTypes.Theme) => {
             borderColor: theme.assets.border.color,
             boxShadow: theme.assets.shadow.long
         }
-        case 'neumorphism': 
+        case 'neumorphism':
             const isDark = theme.color.background.get('lab.l') < 70
             return {
                 background: theme.color.background.css(),

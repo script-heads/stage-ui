@@ -1,12 +1,12 @@
+import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration'
 import WhaleTypes from '@flow-ui/whale/types'
 import CSS from 'csstype'
-import FlowTypes from '../../types'
 
 declare namespace FlexboxTypes {
     interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
         column?: boolean
         inline?: boolean
-        decoration?: FlowTypes.LayoutDecoration
+        decoration?: LayoutDecoration
         alignItems?: CSS.Properties['alignItems']
         alignContent?: CSS.Properties['alignContent']
         justifyContent?: CSS.Properties['justifyContent']
@@ -19,7 +19,7 @@ declare namespace FlexboxTypes {
 
     interface Overrides {
         container: {
-            decoration?: FlowTypes.LayoutDecoration
+            decoration?: LayoutDecoration
         }
     }
 }

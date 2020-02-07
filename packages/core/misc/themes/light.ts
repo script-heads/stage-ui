@@ -1,5 +1,4 @@
 import WhaleTypes from '@flow-ui/whale/types'
-import FlowTypes from '@flow-ui/core/types'
 import { createTheme } from '@flow-ui/whale'
 
 const Light: WhaleTypes.SourceTheme = {
