@@ -38,8 +38,8 @@ const Light: WhaleTypes.SourceTheme = {
             xs: '.25rem',
             s: '.5rem',
             m: '1rem',
-            l: '2rem',
-            xl: '4rem',
+            l: '1.5rem',
+            xl: '1.75rem',
         },
         typography: {
             display: {
