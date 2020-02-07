@@ -49,6 +49,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
             props.wrapper 
                 ? attachTheme
                 : { 'html': attachTheme },
+            props.global
         ]
     }
 }

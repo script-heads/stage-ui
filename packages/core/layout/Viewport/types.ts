@@ -1,5 +1,6 @@
 import WhaleTypes from '@flow-ui/whale/types'
 import { Options } from '@emotion/cache'
+import { SerializedStyles } from '@emotion/core'
 
 declare namespace ViewportTypes {
 
@@ -12,6 +13,7 @@ declare namespace ViewportTypes {
         wrapper?: boolean
         cache?: Options
         theme?: 'dark' | 'light' | WhaleTypes.Theme
+        global?: SerializedStyles
     }
 
     interface MountArea {
