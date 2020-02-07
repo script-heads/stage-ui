@@ -68,9 +68,4 @@ declare namespace FlowTypes {
     }
 }
 
-declare global {
-	namespace Whale {
-        interface Overrides extends FlowTypes.Overrides {}
-	}
-}
 export default FlowTypes
