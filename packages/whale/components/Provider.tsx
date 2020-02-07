@@ -6,7 +6,7 @@ import WhaleTypes, {EmotionStyles} from '../types'
 
 interface ProviderProps {
     theme?: WhaleTypes.Theme
-    global?: EmotionStyles | SerializedStyles
+    global?: SerializedStyles
     cache?: Options
     children?: React.ReactNode
 }
@@ -14,7 +14,6 @@ interface ProviderProps {
 export const WhaleContext = React.createContext({} as WhaleTypes.Theme)
 
 const Provider = <T extends ProviderProps>(props: T) => {
-
     const {theme, global, children} = props
     const cache = useMemo(() => createCache(props.cache),[])
 
@@ -24,7 +23,7 @@ const Provider = <T extends ProviderProps>(props: T) => {
             {children}
         </CacheProvider>
     )
-
+    
     if (theme) {
         return (
             <WhaleContext.Provider value={theme}>

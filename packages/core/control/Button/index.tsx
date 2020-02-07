@@ -1,4 +1,4 @@
-import { useComponent } from '@flow-ui/whale'
+import { useComponent, useTheme } from '@flow-ui/whale'
 
 import React, { forwardRef, RefForwardingComponent } from 'react'
 import styles from './styles'
@@ -20,7 +20,7 @@ const Button: RefForwardingComponent<HTMLButtonElement, Types.Props> = (props, r
             events.all.onClick?.(event)
         }
     }
-
+    
     return (
         <button
             {...attributes}

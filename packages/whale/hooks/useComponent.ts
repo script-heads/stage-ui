@@ -9,14 +9,14 @@ interface Options<S> {
     styles: WhaleTypes.Styles<S> | WhaleTypes.CreateStyles<S>,
     styleProps?: { [K in keyof S]?: (keyof InjectedStyles)[] }
     mouseFocus?: boolean,
-    focusDecoration?: boolean
+    focusDecoration?: boolean,
+    theme?: WhaleTypes.Theme
 }
 
 const useComponent = <S, P>(overrideName: string, options: Options<S>, params = {}) => {
-
     const { props, mouseFocus, focusDecoration, styleProps } = options
 
-    const theme = useTheme()
+    const theme = options.theme || useTheme()
 
     const { attributes, events, focus } = attributeProps(props, theme, mouseFocus, focusDecoration)
 
