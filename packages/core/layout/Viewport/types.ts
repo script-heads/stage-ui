@@ -1,4 +1,5 @@
 import WhaleTypes from '@flow-ui/whale/types'
+import { Options } from '@emotion/cache'
 
 declare namespace ViewportTypes {
 
@@ -7,12 +8,10 @@ declare namespace ViewportTypes {
         dark: WhaleTypes.Theme
     }
 
-    interface Props {
+    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
         wrapper?: boolean
-        className?: string
-        id?: string
+        cache?: Options
         theme?: 'dark' | 'light' | WhaleTypes.Theme
-        children?: React.ReactNode
     }
 
     interface MountArea {
@@ -53,6 +52,10 @@ declare namespace ViewportTypes {
          * if custom content filled then message and buttonText will be ignored
          */
         customContent?: (close: () => void) => React.ReactElement
+    }
+
+    interface Overrides {
+        container: void
     }
 }
 

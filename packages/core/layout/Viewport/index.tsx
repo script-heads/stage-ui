@@ -1,37 +1,52 @@
-import callProp from '@flow-ui/core/misc/utils/callProp'
-import React, { Fragment, RefForwardingComponent, useRef } from 'react'
+import React, { Fragment, RefForwardingComponent, useRef, forwardRef, useImperativeHandle } from 'react'
 import * as themes from '../../misc/themes'
 import MountArea from './MountArea'
-import createStyles from './styles'
+import styles from './styles'
 import Types from './types'
-import { Provider } from '@flow-ui/whale'
+import { Provider, useComponent } from '@flow-ui/whale'
 
-const Viewport: RefForwardingComponent<{}, Types.Props> = (props) => {
-
-    const theme = (props.theme && typeof props.theme === 'string') ? themes[props.theme] : themes.light
-    const styles = createStyles(theme, false)
-    const containerRef = useRef<HTMLDivElement>(null)
+const Viewport: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     
-    const cache = {
+    const { wrapper, cache } = props
+    const theme = (typeof props.theme === 'string' 
+        ? themes[props.theme] 
+        : props.theme
+        ) || themes.light
+
+    const viewportRef = useRef<HTMLDivElement>(null)
+    useImperativeHandle(ref, () => viewportRef.current as HTMLDivElement)
+
+    const EmotionCache = {
         key: 'flow',
-        container: (props.wrapper && containerRef.current ) ? containerRef.current : undefined
+        container:  (viewportRef && viewportRef.current) || undefined,
+        ...cache
     }
 
-    const Content = (
-        <Fragment>
-            {props.children}
-            <MountArea />
-        </Fragment>
-    )
+    const {cs, attributes, events} = useComponent('Viewport', {
+        props, 
+        styles, 
+        styleProps: {container: ['all']},
+        theme
+    })
 
-    return (
-        <Provider theme={theme} global={styles.global} cache={cache}>
-            {props.wrapper
-                ? <div ref={containerRef} children={Content} />
-                : Content
-            }
+    const Content = (
+        <Provider theme={theme} global={!wrapper ? cs.container : undefined} cache={EmotionCache}>
+            <Fragment>
+                {props.children}
+                <MountArea />
+            </Fragment>
         </Provider>
     )
+
+    return wrapper 
+        ? <div 
+            {...attributes} 
+            {...events.all} 
+            ref={viewportRef} 
+            children={Content} 
+            css={cs.container} 
+        />
+        : Content
 }
 
-export default Viewport
+export default forwardRef(Viewport)

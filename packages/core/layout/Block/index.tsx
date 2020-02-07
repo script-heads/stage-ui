@@ -11,7 +11,7 @@ const Block: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
         styles, 
         styleProps: { container: ['all'] }
     })
-
+    
     return jsx(
         props.tag || 'div',
         {

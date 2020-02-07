@@ -5,11 +5,14 @@ import { ArrowIosForward } from '@flow-ui/core/icons'
 import custom from './themes/custom'
 
 const Playground = () => {
-	const theme = useTheme()
 	return (
 		<Viewport theme={custom}>
+<<<<<<< HEAD
 			<Button children="hello" color={c=> c.palette.red.css()}/>
 			<ArrowIosForward/>
+=======
+			<Button children="hello" color={c=>c.palette.red.css()}/>
+>>>>>>> 0234bf6a5becb46f510efa3757a924677ab5229c
 		</Viewport>
 	)
 }
