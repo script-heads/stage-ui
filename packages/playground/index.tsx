@@ -1,6 +1,6 @@
-import ReactDOM from 'react-dom'
+import { Button, Viewport } from '@flow-ui/core'
 import React from 'react'
-import { Viewport, Button, useTheme } from '@flow-ui/core'
+import ReactDOM from 'react-dom'
 import custom from './themes/custom'
 
 const Playground = () => {
