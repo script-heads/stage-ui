@@ -1,4 +1,4 @@
-import { Block, Flexbox, Menu, Text, TextField } from '@flow-ui/core'
+import { Block, Flexbox, Menu, Text, TextField, Header, Paragraph } from '@flow-ui/core'
 import MenuTypes from '@flow-ui/core/control/Menu/types'
 import { Close, Cube, Search } from '@flow-ui/core/icons'
 import WhaleTypes from '@flow-ui/whale/types'
@@ -6,9 +6,12 @@ import * as React from 'react'
 import { Fragment, useState } from 'react'
 import { PagesType, PageType } from '../../core'
 import MenuSection from './MenuSection'
+import ThemeSwitcher, { ThemeSwitcherProps } from '../ThemeSwitcher'
 
-export interface SidebarProps {
-	pages: PagesType,
+export interface SidebarProps extends ThemeSwitcherProps {
+	title?: string
+	setIndex: () => void
+	pages: PagesType
 	currentPage: PageType
 	onChange: (pageId: string) => void
 	className?: string
@@ -27,8 +30,8 @@ const Sidebar = (props: SidebarProps) => {
 			return true
 		}).map(page => ({
 			css: {
-				fontWeight: '700',
-				marginLeft: '1.5rem',
+				fontWeight: '600',
+				marginLeft: '1rem',
 				[`@media (max-width: ${window.breakpoints[0]}px)`]: {
 					marginLeft: '1rem',
 				}
@@ -46,8 +49,10 @@ const Sidebar = (props: SidebarProps) => {
 	return (
 		<Fragment>
 			<Block
-				className={props.className}
-				css={(theme: WhaleTypes.Theme) => ({
+				p="1.5rem"
+				css={(theme: WhaleTypes.Theme) => ([{
+					background: theme.color.surface.css()
+				},{
 					[`@media (max-width: ${window.breakpoints[1]}px)`]: [
 						{
 							position: 'absolute',
@@ -55,17 +60,57 @@ const Sidebar = (props: SidebarProps) => {
 							backgroundColor: theme.color.background.css(),
 							zIndex: 200,
 						},
-						!visibility && {
-							display: 'none'
-						}
+						// !visibility && {
+						// 	display: 'none'
+						// }
 					]
-				})}>
-
+				}])}>
+				<Block 
+					m="-0.5rem" 
+					p="0.5rem" 
+					ml="-1.5rem" 
+					pl="1.5rem" 
+					// css={{ opacity: 0.4 }}
+					// backgroundColor={c => c.onSurface.css()}
+					>
+					<Header 
+						size="s"
+						weight="bold"
+						// color={c => c.surface.css()}
+						css={{ cursor: 'pointer' }}
+						onClick={props.setIndex}
+						children={props.title}
+					/>
+					<Block
+						css={{
+							position: 'absolute',
+							top: '1rem',
+							right: '1rem',
+							zIndex: 10
+						}}
+						children={(
+							<ThemeSwitcher
+								themes={props.themes}
+								currentTheme={props.currentTheme}
+								setTheme={props.setTheme}
+							/>
+						)}
+					/>
+					<Paragraph
+						size="s"
+						css={{ opacity: 0.5 }}
+						onClick={props.setIndex}
+						weight={600}
+						// color={c => c.surface.css()}
+						children={'Documentation'}
+					/>
+				</Block>
 				<TextField
 					size="s"
+					my="1.5rem"
+					mx="-1.5rem"
+					px="1.5rem"
 					decoration="underline"
-					ml="1.5rem"
-					mb="1.5rem"
 					leftChild={
 						<Search />
 					}

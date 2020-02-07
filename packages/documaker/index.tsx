@@ -1,17 +1,16 @@
-import ReactDOM from 'react-dom'
 import { Global } from '@emotion/core'
-import React, { Fragment, useState, useMemo } from 'react'
-import { Viewport, Flexbox, Header, Text, ScrollView } from '@flow-ui/core'
-import core, { PageType } from './core'
-import Sidebar from './components/Sidebar'
-import PageHeader from './components/PageHeader'
+import Architect from '@flow-ui/architect'
+import { Flexbox, ScrollView, Viewport, Block } from '@flow-ui/core'
+import * as flowThemes from '@flow-ui/core/misc/themes/index'
+import WhaleTypes from '@flow-ui/whale/types'
+import React, { Fragment, useMemo, useState } from 'react'
+import ReactDOM from 'react-dom'
 import Page from './components/Page'
 import Page404 from './components/Page404'
 import PageEmpty from './components/PageEmpty'
-
-import WhaleTypes from '@flow-ui/whale/types'
-import * as flowThemes from '@flow-ui/core/misc/themes/index'
-import Architect from '@flow-ui/architect'
+import PageHeader from './components/PageHeader'
+import Sidebar from './components/Sidebar'
+import core, { PageType } from './core'
 
 declare global {
 	interface Window {
@@ -119,23 +118,28 @@ const Documaker = () => {
 			}
 			{currentPage && typeof currentPage === 'object' &&
 				<Fragment>
-					<PageHeader
+					{/* <PageHeader
 						themes={themes}
 						currentTheme={currentTheme}
 						setTheme={setTheme}
 						name={config.name + ' - Documentation'}
 						git={config.git}
 						setIndex={() => historyPush('/')}
-					/>
+					/> */}
 					<Flexbox css={{ minHeight: '100%' }}>
-						<ScrollView size="xs" h="calc(100vh - 5rem)" yBarPosition="left">
+						<ScrollView size="xs" h="100vh" yBarPosition="left">
 							<Sidebar
+								title={config.name}
+								themes={themes}
+								currentTheme={currentTheme}
+								setTheme={setTheme}
+								setIndex={() => historyPush('/')}
 								currentPage={currentPage as PageType}
 								pages={pages}
 								onChange={(pageURL) => historyPush(pageURL)}
 							/>
 						</ScrollView>
-						<ScrollView size="xs" h="calc(100vh - 5rem)" w="100%">
+						<ScrollView size="xs" h="100vh" w="100%">
 							<Page
 								currentPage={currentPage as PageType}
 								types={config.pages?.types}

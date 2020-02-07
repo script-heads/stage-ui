@@ -1,7 +1,7 @@
 import { Anchor, Block, Flexbox, Header } from '@flow-ui/core'
 import { Github } from '@flow-ui/core/icons'
 import WhaleTypes from '@flow-ui/whale/types'
-import ThemeSwitcher, { ThemeSwitcherProps } from './ThemeSwitcher'
+import ThemeSwitcher, { ThemeSwitcherProps } from '../ThemeSwitcher'
 
 interface MenuProps extends ThemeSwitcherProps {
     name: string, 
@@ -15,6 +15,7 @@ const PageHeader = (props: MenuProps) => {
 
     return (
         <Flexbox 
+            backgroundColor={c => c.onSurface.css()}
             alignItems="center" 
             p="1.5rem"
             css={(theme: WhaleTypes.Theme) => ({
@@ -24,8 +25,9 @@ const PageHeader = (props: MenuProps) => {
                 }
             })}>
             <Header
+                color={c => c.surface.css()}
                 css={{ cursor: 'pointer' }}
-                children={name}
+                children="Architect"
                 onClick={()=>setIndex()}
             />
             <Block flex={1} />

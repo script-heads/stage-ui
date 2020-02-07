@@ -20,7 +20,7 @@ const Page = (props: ContentProps) => {
             flex={1}
             justifyContent="center" 
             css={{
-                padding: '0 4rem', 
+                padding: '1rem 4rem', 
                 overflow: 'hidden',
                 [`@media (max-width: ${window.breakpoints[0]}px)`]: {
                     padding: '0 1rem'
@@ -35,6 +35,8 @@ const Page = (props: ContentProps) => {
                 {page.title && (
                     <Header
                         size="xl"
+                        my="1rem"
+                        weight={800}
                         children={page.title}
                     />
                 )}

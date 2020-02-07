@@ -16,10 +16,10 @@ const MenuSection = (props: MenuSectionProps) => {
 		<Block>
 			{search === '' && section != 'Index' &&
 				<Text
+					size="s"
 					color={c => c.light.css()}
 					children={section}
 					css={{
-						marginLeft: '1.5rem',
 						[`@media (max-width: ${window.breakpoints[0]}px)`]: {
 							marginLeft: '1rem',
 						}
@@ -27,7 +27,7 @@ const MenuSection = (props: MenuSectionProps) => {
 				/>
 			}
 			<Menu
-				mb="1.5rem"
+				mb="1rem"
 				value={currentPage.url || -1}
 				decoration="color"
 				direction="column"

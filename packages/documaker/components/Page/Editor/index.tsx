@@ -41,7 +41,7 @@ const Editor = (props: EditorProps) => {
     const [currentCase, setCurrentCase] = useState<number>(0)
     const [code, setCode] = useState<string>(cases[0].code)
     const [grid, setGrid] = useState(
-        localStorage.getItem('case_grid') === 'true'
+        !(localStorage.getItem('case_grid') === 'false')
     )
     const isMobile = () => (
         document.body.offsetWidth < window.breakpoints[1]
@@ -101,12 +101,16 @@ const Editor = (props: EditorProps) => {
 
     return (
         <Fragment>
-            <Flexbox alignItems="center">
-                {cases.length > 1 && cases.map((c, caseIndex) => (
+            <Flexbox mt="1.5rem" p="1rem" decoration="surface" alignItems="center" css={{
+                borderBottom: 0,
+                borderBottomLeftRadius: 0,
+                borderBottomRightRadius: 0,
+            }}>
+                {cases.map((c, caseIndex) => (
                     <Text
+                        mr="1rem"
                         key={caseIndex}
-                        m="1rem"
-                        ml="0.5rem"
+                        
                         weight={600}
                         color={c => caseIndex === currentCase
                             ? c.primary.css()
@@ -118,9 +122,8 @@ const Editor = (props: EditorProps) => {
                 ))}
                 <Block flex={1} />
                 <Grid
-                    p="0.75rem"
-                    pr="0.5rem"
                     size="1.25rem"
+                    mr="1rem"
                     color={c => grid
                         ? c.primary.css()
                         : c.onSurface.css()
@@ -136,8 +139,6 @@ const Editor = (props: EditorProps) => {
                     }}
                 />
                 <Expand
-                    p="0.75rem"
-                    pr="0.5rem"
                     size="1.25rem"
                     color={c => c.onSurface.css()}
                     onClick={() => setFullscreen(true)}
@@ -146,14 +147,13 @@ const Editor = (props: EditorProps) => {
             <Block
                 mb="2rem"
                 h="24rem"
-                borderColor={c => c.lightest.css()}
-                borderWidth="1px"
-                borderStyle="solid"
-                borderRadius={theme.radius.default}
+                decoration="surface"
                 backgroundColor={c => c.background.css()}
                 css={[
                     {
-                        overflow: 'hidden'
+                        overflow: 'hidden',
+                        borderTopLeftRadius: 0,
+                        borderTopRightRadius: 0,
                     },
                     fullscreen && {
                         position: 'fixed',
