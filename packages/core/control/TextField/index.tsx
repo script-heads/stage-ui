@@ -56,6 +56,10 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
     function onClear() {
         if (inputRef.current) {
             inputRef.current.value = ''
+            /**
+             * TODO: fullevent
+             */
+            onChange({ target: { value: '' } })
             inputRef.current.dispatchEvent(
                 new Event('change')
             )
@@ -88,7 +92,7 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
                 props.multiline ? 'textarea' : 'input',
                 {
                     ref: inputRef,
-                    onKeyUp: onChange,
+                    onChange: onChange,
                     css: cs.input({ size, multiline }),
 
                     defaultValue: props.defaultValue,
