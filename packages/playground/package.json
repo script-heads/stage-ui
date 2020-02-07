@@ -33,7 +33,9 @@
     "@types/webpack-env": "^1.14.1",
     "babel-loader": "^8.0.6",
     "babel-plugin-emotion": "^10.0.13",
+    "babel-plugin-import": "^1.13.0",
     "babel-plugin-transform-imports": "^2.0.0",
+    "esm": "^3.2.25",
     "source-map-loader": "^0.2.4",
     "transform-imports": "^2.1.1",
     "tslint": "^5.20.1",
@@ -41,7 +43,6 @@
     "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0",
-    "webpack-filter-warnings-plugin": "^1.2.1",
-    "esm": "^3.2.25"
+    "webpack-filter-warnings-plugin": "^1.2.1"
   }
 }
