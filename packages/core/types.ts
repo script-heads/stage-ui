@@ -66,9 +66,6 @@ declare namespace FlowTypes {
         Tree?: Override<TreeTypes.Overrides>
         ScrollView?: Override<ScrollView.Overrides>
     }
-
-    type Theme = WhaleTypes.Theme<Overrides>
-
 }
 
 export default FlowTypes

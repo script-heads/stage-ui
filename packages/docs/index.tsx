@@ -1,4 +1,4 @@
-import { Block, Button, Checkbox, Display, Divider, Flexbox, Meter, Paragraph, Range, Switch, TextField, useTheme } from '@flow-ui/core'
+import { Block, Button, Radio, Checkbox, Display, Divider, Flexbox, Meter, Paragraph, Range, Switch, TextField, useTheme } from '@flow-ui/core'
 import { Cube, Email, PaperPlane, People, Settings } from '@flow-ui/core/icons'
 import { HomePageProps } from '@flow-ui/documaker/core'
 import { useEffect, useState } from 'react'
@@ -23,6 +23,7 @@ let promoData = {
     emailText: '',
     emailIcon: false,
     switchOn: false,
+    radioOn: false,
     checkOn: false,
     meterPercent: 20,
     c1:'transparent',
@@ -48,19 +49,20 @@ export default (props: HomePageProps) => {
                 c3: theme.color.lightest.css(),
                 c4: theme.color.lightest.css(),
                 shape: 'rounded',
+                radioOn: true,
                 buttonDecoration: 'filled',
             },
             { t: 250, iconCount: 2 },
             { t: 250, iconCount: 3, meterPercent: 10 },
             { t: 250, iconCount: 4, checkOn: false, emailIcon: false,  c1: theme.color.primary.css(), },
-            { t: 250, emailText: 'E', switchOn: true, },
+            { t: 250, emailText: 'E', switchOn: true, radioOn: false, },
             { 
                 t: 250, 
                 emailText: 'E-',
                 c2: theme.color.primary.css(),
                 c1: theme.color.lightest.css()
             },
-            { t: 250, emailText: 'E-Ma', meterPercent: 40, },
+            { t: 250, emailText: 'E-Ma', meterPercent: 40, radioOn: true,  },
             { t: 250, emailText: 'E-Mai', checkOn: true },
             { 
                 t: 250, 
@@ -85,6 +87,7 @@ export default (props: HomePageProps) => {
                 buttonText: 'Subm',
                 buttonDecoration: 'text',
                 meterPercent: 70,
+                radioOn: false,
                 c4: theme.color.primary.css(),
                 c3: theme.color.lightest.css(),
             },
@@ -144,6 +147,7 @@ export default (props: HomePageProps) => {
                     <Range css={{ '>div': { transition: 'all .1s' } }} value={pd.meterPercent} />
                     <Flexbox justifyContent="space-around" py="1rem">
                         <Switch checked={pd.switchOn} />
+                        <Radio checked={pd.radioOn} />
                         <Checkbox checked={pd.checkOn} />
                     </Flexbox>
                     <Meter css={{ '>div': { transition: 'all .1s' } }} percent={100 - pd.meterPercent} />

@@ -181,3 +181,12 @@ declare module 'misc/logos' {
 	export { default as Smorodina } from 'misc/logos/smorodina';
 
 }
+declare module 'misc/themes/whiteCurrant' {
+	 const whiteCurrant: import("@flow-ui/whale/types").default.Theme;
+	export default whiteCurrant;
+
+}
+declare module 'misc/themes' {
+	export { default as whiteCurrant } from 'misc/themes/whiteCurrant';
+
+}
