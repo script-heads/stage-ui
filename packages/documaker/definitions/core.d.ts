@@ -349,7 +349,7 @@ declare module 'misc/hocs/Field/types' {
 	        clearButton: State & T['clearButton'];
 	        hint: State & T['hint'];
 	    }
-	    interface PrivateProps extends Props {
+	    interface PrivateProps extends Omit<Props, 'styles'> {
 	        focus: boolean;
 	        styles: WhaleTypes.ComponentStyles<Overrides>;
 	        state?: Object;
@@ -2056,7 +2056,7 @@ declare module 'misc/hocs/Check/types' {
 	        uppercase?: boolean;
 	        size?: WhaleTypes.Size;
 	    }
-	    interface PrivateProps extends Props {
+	    interface PrivateProps extends Omit<Props, 'styles'> {
 	        children: (checked: boolean, focus: boolean) => React.ReactElement;
 	        type?: CheckType;
 	        styles: WhaleTypes.ComponentStyles<Overrides>;
@@ -2369,7 +2369,7 @@ declare module 'control/Menu/types' {
 	        value: Value;
 	        disabled?: boolean;
 	    }
-	    interface ItemProps extends Item {
+	    interface ItemProps extends Omit<Item, 'styles'> {
 	        active: boolean;
 	        styles: WhaleTypes.ComponentStyles<Overrides>;
 	    }
@@ -3312,6 +3312,74 @@ declare module 'layout/ScrollView' {
 	export default _default;
 
 }
+declare module 'types' {
+	/**
+	 * Content
+	 */
+	import DividerTypes from 'content/Divider/types';
+	import SpinnerTypes from 'content/Spinner/types';
+	/**
+	 * Control
+	 */
+	import ButtonTypes from 'control/Button/types';
+	import Calendar from 'control/Calendar/types';
+	import CheckboxTypes from 'control/Checkbox/types';
+	import DatePickerTypes from 'control/DatePicker/types';
+	import MenuTypes from 'control/Menu/types';
+	import RadioTypes from 'control/Radio/types';
+	import RangeTypes from 'control/Range/types';
+	import SelectTypes from 'control/Select/types';
+	import SwitchTypes from 'control/Switch/types';
+	import TextFieldTypes from 'control/TextField/types';
+	/**
+	 * Data
+	 */
+	import MeterTypes from 'data/Meter/types';
+	import TableTypes from '@flow-ui/core/data/Table/types';
+	/**
+	 * Layout
+	 */
+	import BadgeTypes from 'layout/Badge/types';
+	import BlockTypes from 'layout/Block/types';
+	import DropTypes from 'layout/Drop/types';
+	import FlexboxTypes from 'layout/Flexbox/types';
+	import GridTypes from 'layout/Grid/types';
+	import ModalTypes from '@flow-ui/core/layout/Modal/types';
+	import NotificationTypes from 'layout/Notification/types';
+	import PopoverTypes from 'layout/Popover/types';
+	import TreeTypes from 'layout/Tree/types';
+	import ScrollView from 'layout/ScrollView/types'; namespace FlowTypes {
+	    type LayoutDecoration = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' | 'neumorphism';
+	    interface Overrides {
+	        Divider?: DividerTypes.Overrides;
+	        Spinner?: SpinnerTypes.Overrides;
+	        Button?: ButtonTypes.Overrides;
+	        Calendar?: Calendar.Overrides;
+	        Checkbox?: CheckboxTypes.Overrides;
+	        DatePicker?: DatePickerTypes.Overrides;
+	        Menu?: MenuTypes.Overrides;
+	        Radio?: RadioTypes.Overrides;
+	        Range?: RangeTypes.Overrides;
+	        Select?: SelectTypes.Overrides;
+	        Switch?: SwitchTypes.Overrides;
+	        TextField?: TextFieldTypes.Overrides;
+	        Meter?: MeterTypes.Overrides;
+	        Table?: TableTypes.Overrides;
+	        Badge?: BadgeTypes.Overrides;
+	        Block?: BlockTypes.Overrides;
+	        Drop?: DropTypes.Overrides;
+	        Flexbox?: FlexboxTypes.Overrides;
+	        Grid?: GridTypes.Overrides;
+	        Modal?: ModalTypes.Overrides;
+	        Notification?: NotificationTypes.Overrides;
+	        Popover?: PopoverTypes.Overrides;
+	        Tree?: TreeTypes.Overrides;
+	        ScrollView?: ScrollView.Overrides;
+	    }
+	}
+	export default FlowTypes;
+
+}
 declare module 'misc/themes/light' {
 	import WhaleTypes from '@flow-ui/whale/types'; const _default: WhaleTypes.Theme;
 	export default _default;
@@ -3323,22 +3391,30 @@ declare module 'misc/themes/dark' {
 
 }
 declare module 'misc/themes' {
+	import FlowTypes from 'types'; global {
+	    namespace Whale {
+	        interface Overrides extends FlowTypes.Overrides {
+	        }
+	    }
+	}
 	export { default as light } from 'misc/themes/light';
 	export { default as dark } from 'misc/themes/dark';
 
 }
 declare module 'layout/Viewport/types' {
 	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types'; namespace ViewportTypes {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import { Options } from '@emotion/cache';
+	import { SerializedStyles } from '@emotion/core'; namespace ViewportTypes {
 	    interface Themes {
 	        light: WhaleTypes.Theme;
 	        dark: WhaleTypes.Theme;
 	    }
-	    interface Props {
+	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        wrapper?: boolean;
-	        className?: string;
-	        id?: string;
+	        cache?: Options;
 	        theme?: 'dark' | 'light' | WhaleTypes.Theme;
+	        global?: SerializedStyles;
 	        children?: React.ReactNode;
 	    }
 	    interface MountArea {
@@ -3377,6 +3453,9 @@ declare module 'layout/Viewport/types' {
 	         */
 	        customContent?: (close: () => void) => React.ReactElement;
 	    }
+	    interface Overrides {
+	        container: void;
+	    }
 	}
 	export default ViewportTypes;
 
@@ -3390,16 +3469,15 @@ declare module 'layout/Viewport/MountArea' {
 
 }
 declare module 'layout/Viewport/styles' {
-	 const _default: (theme: any, wrapper: any) => {
-	    global: import("@emotion/utils").SerializedStyles;
-	};
-	export default _default;
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'layout/Viewport/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
 
 }
 declare module 'layout/Viewport' {
-	import { RefForwardingComponent } from 'react';
-	import Types from 'layout/Viewport/types'; const Viewport: RefForwardingComponent<{}, Types.Props>;
-	export default Viewport;
+	import React from 'react';
+	import Types from 'layout/Viewport/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
 
 }
 declare module 'misc/utils/dialog' {

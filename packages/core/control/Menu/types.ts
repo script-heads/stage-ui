@@ -36,7 +36,7 @@ declare namespace MenuTypes {
         disabled?: boolean
     }
 
-    interface ItemProps extends Item {
+    interface ItemProps extends Omit<Item, 'styles'> {
         active: boolean
         styles: WhaleTypes.ComponentStyles<Overrides>
     }

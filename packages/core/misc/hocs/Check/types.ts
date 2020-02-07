@@ -14,7 +14,7 @@ declare namespace CheckTypes {
         size?: WhaleTypes.Size
     }
 
-    interface PrivateProps extends Props {
+    interface PrivateProps extends Omit<Props, 'styles'> {
         children: (checked: boolean, focus: boolean) => React.ReactElement
         type?: CheckType
         styles: WhaleTypes.ComponentStyles<Overrides>

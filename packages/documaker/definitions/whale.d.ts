@@ -13,23 +13,23 @@ declare module '@flow-ui/whale/types' {
 	    type Size = 'xs' | 's' | 'm' | 'l' | 'xl';
 	    interface Theme extends ThemeVariables {
 	        assets: ThemeAssets;
-	        overrides: DeepPartial<{
-	            [Component in keyof Whale.Overrides]: ComponentStyles<Component>;
+	        overrides?: Partial<{
+	            [Component in keyof Whale.Overrides]: Styles<Whale.Overrides[Component]>;
 	        }>;
 	        replace: (theme: ReplaceTheme) => Theme;
 	    }
 	    interface SourceTheme {
 	        main: ThemeVariables<[number, number, number, number?]>;
 	        assets: (theme: Theme) => ThemeAssets;
-	        overrides: DeepPartial<{
-	            [Component in keyof Whale.Overrides]: ComponentStyles<Component>;
+	        overrides?: Partial<{
+	            [Component in keyof Whale.Overrides]: Styles<Whale.Overrides[Component]>;
 	        }>;
 	    }
 	    interface ReplaceTheme {
 	        main: DeepPartial<ThemeVariables<[number, number, number, number?]>>;
 	        assets?: (theme: Theme) => DeepPartial<ThemeAssets>;
-	        overrides?: DeepPartial<{
-	            [Component in keyof Whale.Overrides]: Whale.Overrides[Component];
+	        overrides?: Partial<{
+	            [Component in keyof Whale.Overrides]: Styles<Whale.Overrides[Component]>;
 	        }>;
 	    }
 	    interface ThemeVariables<Color = chroma.Color> {
@@ -109,7 +109,7 @@ declare module '@flow-ui/whale/types' {
 	     * @name Core
 	     */
 	    interface CoreProps<S = {}> {
-	        styles?: Partial<ComponentStyles<S>>;
+	        styles?: Partial<Styles<S>>;
 	        animated?: boolean;
 	    }
 	    /**
@@ -543,10 +543,10 @@ declare module 'components/Provider' {
 	import React from 'react';
 	import { Options } from '@emotion/cache';
 	import { SerializedStyles } from '@emotion/core';
-	import WhaleTypes, { EmotionStyles } from 'types';
+	import WhaleTypes from 'types';
 	interface ProviderProps {
 	    theme?: WhaleTypes.Theme;
-	    global?: EmotionStyles | SerializedStyles;
+	    global?: SerializedStyles;
 	    cache?: Options;
 	    children?: React.ReactNode;
 	}
@@ -997,6 +997,7 @@ declare module 'hooks/useComponent' {
 	    };
 	    mouseFocus?: boolean;
 	    focusDecoration?: boolean;
+	    theme?: WhaleTypes.Theme;
 	} const useComponent: <S, P>(overrideName: string, options: Options<S>, params?: {}) => {
 	    cs: WhaleTypes.ComponentStyles<S>;
 	    attributes: any;

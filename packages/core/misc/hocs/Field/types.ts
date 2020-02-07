@@ -38,7 +38,7 @@ declare namespace FieldTypes {
         hint: State & T['hint']
     }
 
-    interface PrivateProps extends Props {
+    interface PrivateProps extends Omit<Props, 'styles'> {
         focus: boolean
         styles: WhaleTypes.ComponentStyles<Overrides>
         state?: Object
