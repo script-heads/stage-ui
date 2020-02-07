@@ -1,7 +1,7 @@
 {
   "name": "@flow-ui/whale",
   "author": "ABR Tech",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "license": "MIT",
   "scripts": {
     "type-check": "tsc --noEmit",

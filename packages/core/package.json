@@ -1,7 +1,7 @@
 {
   "name": "@flow-ui/core",
   "author": "ABR Tech",
-  "version": "0.1.25",
+  "version": "0.1.26",
   "license": "MIT",
   "scripts": {
     "type-check": "tsc --noEmit",
