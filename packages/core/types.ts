@@ -38,33 +38,32 @@ import ScrollView from './layout/ScrollView/types'
 
 declare namespace FlowTypes {
     type LayoutDecoration = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' |  'neumorphism'
-    type Override<T> = Partial<WhaleTypes.Styles<T>>
     
     interface Overrides {
-        Divider?: Override<DividerTypes.Overrides>
-        Spinner?: Override<SpinnerTypes.Overrides>
-        Button?: Override<ButtonTypes.Overrides>
-        Calendar?: Override<Calendar.Overrides>
-        Checkbox?: Override<CheckboxTypes.Overrides>
-        DatePicker?: Override<DatePickerTypes.Overrides>
-        Menu?: Override<MenuTypes.Overrides>
-        Radio?: Override<RadioTypes.Overrides>
-        Range?: Override<RangeTypes.Overrides>
-        Select?: Override<SelectTypes.Overrides>
-        Switch?: Override<SwitchTypes.Overrides>
-        TextField?: Override<TextFieldTypes.Overrides>
-        Meter?: Override<MeterTypes.Overrides>
-        Table?: Override<TableTypes.Overrides>
-        Badge?: Override<BadgeTypes.Overrides>
-        Block?: Override<BlockTypes.Overrides>
-        Drop?: Override<DropTypes.Overrides>
-        Flexbox?: Override<FlexboxTypes.Overrides>
-        Grid?: Override<GridTypes.Overrides>
-        Modal?: Override<ModalTypes.Overrides>
-        Notification?: Override<NotificationTypes.Overrides>
-        Popover?: Override<PopoverTypes.Overrides>
-        Tree?: Override<TreeTypes.Overrides>
-        ScrollView?: Override<ScrollView.Overrides>
+        Divider?: DividerTypes.Overrides
+        Spinner?: SpinnerTypes.Overrides
+        Button?: ButtonTypes.Overrides
+        Calendar?: Calendar.Overrides
+        Checkbox?: CheckboxTypes.Overrides
+        DatePicker?: DatePickerTypes.Overrides
+        Menu?: MenuTypes.Overrides
+        Radio?: RadioTypes.Overrides
+        Range?: RangeTypes.Overrides
+        Select?: SelectTypes.Overrides
+        Switch?: SwitchTypes.Overrides
+        TextField?: TextFieldTypes.Overrides
+        Meter?: MeterTypes.Overrides
+        Table?: TableTypes.Overrides
+        Badge?: BadgeTypes.Overrides
+        Block?: BlockTypes.Overrides
+        Drop?: DropTypes.Overrides
+        Flexbox?: FlexboxTypes.Overrides
+        Grid?: GridTypes.Overrides
+        Modal?: ModalTypes.Overrides
+        Notification?: NotificationTypes.Overrides
+        Popover?: PopoverTypes.Overrides
+        Tree?: TreeTypes.Overrides
+        ScrollView?: ScrollView.Overrides
     }
 }
 

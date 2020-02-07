@@ -14,6 +14,7 @@ declare namespace ViewportTypes {
         cache?: Options
         theme?: 'dark' | 'light' | WhaleTypes.Theme
         global?: SerializedStyles
+        children?: React.ReactNode
     }
 
     interface MountArea {

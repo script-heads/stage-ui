@@ -18,20 +18,20 @@ declare namespace WhaleTypes {
 
     interface Theme extends ThemeVariables {
         assets: ThemeAssets
-        overrides: DeepPartial<{[Component in keyof Whale.Overrides]: ComponentStyles<Component>}>
+        overrides?: Partial<{[Component in keyof Whale.Overrides]: Styles<Whale.Overrides[Component]>}>
         replace: (theme: ReplaceTheme) => Theme
     }
 
     interface SourceTheme {
         main: ThemeVariables<[number, number, number, number?]>
         assets: (theme: Theme) => ThemeAssets
-        overrides: DeepPartial<{[Component in keyof Whale.Overrides]: ComponentStyles<Component>}>
+        overrides?: Partial<{[Component in keyof Whale.Overrides]: Styles<Whale.Overrides[Component]>}>
     }
 
     interface ReplaceTheme {
         main: DeepPartial<ThemeVariables<[number, number, number, number?]>>
         assets?: (theme: Theme) => DeepPartial<ThemeAssets>
-        overrides?: DeepPartial<{[Component in keyof Whale.Overrides]: Whale.Overrides[Component]}>
+        overrides?: Partial<{[Component in keyof Whale.Overrides]: Styles<Whale.Overrides[Component]>}>
     }
     
     interface ThemeVariables<Color = chroma.Color> {
@@ -127,7 +127,7 @@ declare namespace WhaleTypes {
      * @name Core
      */
     interface CoreProps<S={}> {
-        styles?: Partial<ComponentStyles<S>>
+        styles?: Partial<Styles<S>>
         animated?: boolean
     }
 

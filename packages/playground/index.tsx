@@ -6,7 +6,11 @@ import custom from './themes/custom'
 const Playground = () => {
 	return (
 		<Viewport theme={custom}>
-			<Button children="hello" color={c=>c.palette.red.css()}/>
+			<Button 
+				children="hello" 
+				color={c=>c.palette.red.css()} 
+				styles={{container: (variant) => ({backgroundColor: 'yellow'})}}
+			/>
 		</Viewport>
 	)
 }

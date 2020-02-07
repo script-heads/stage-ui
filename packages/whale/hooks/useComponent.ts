@@ -30,7 +30,7 @@ const useComponent = <S, P>(overrideName: string, options: Options<S>, params = 
         ? options.styles(props, theme, params)
         : options.styles
 
-    const themeOverrides = overrideName && theme.overrides[overrideName]
+    const themeOverrides = overrideName && theme.overrides?.[overrideName]
 
     Object.keys(styles).map(styleName => {
         if (typeof styles[styleName] === 'function') {
