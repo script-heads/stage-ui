@@ -10,7 +10,7 @@ const TreeLeftChild = (props: Types.TreeLeftChildProps) => {
     }
     return (
         <>
-            {children ? children : (
+            {children !== undefined ? children : (
                 <ArrowIosForward
                     rotate={options.isOpen ? 90 : 0}
                     className={className}

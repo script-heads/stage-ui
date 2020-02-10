@@ -18,18 +18,16 @@ const createTheme: (theme: WhaleTypes.Theme) => StyleTypes = (theme) => ({
         height: 'calc(100vh - 6rem)',
     }),
     scrollContainer: css({ 
-        padding: '1rem 0 0 1rem',
+        paddingTop: '1rem',
     }),
     item: (selected: boolean) => css(
         [
             {
                 display: 'block',
-                padding: '0.5rem 0 0.5rem 1rem',
+                padding: '0.25rem 0.5rem',
                 margin: '1px 0',
                 borderRightWidth: '4px',
                 borderRightStyle: 'solid',
-                borderBottomLeftRadius: '1rem',
-                borderTopLeftRadius: '1rem',
                 borderRightColor: theme.color.primary.alpha(0).hex(),
                 'span[id^=\'ctrl\']': {
                     visibility: 'hidden'

@@ -1,6 +1,6 @@
 import { ArchitectItem } from '@flow-ui/architect/types'
 import { Block, Flexbox, Paragraph, Text, Tree } from '@flow-ui/core'
-import { Copy, Trash2 } from '@flow-ui/core/icons'
+import { Copy, Trash2, ArrowIosForward } from '@flow-ui/core/icons'
 import { Fragment } from 'react'
 import { TabProps } from '..'
 
@@ -35,38 +35,58 @@ const LayersTab = (props: TabProps) => {
 
             return (
                 <Tree
+                    decoration="none"
+                    leftChild={null}
                     defaultOpen
                     key={item.id}
-                    label={(
+                    label={(options) => (
                         <Block flex={1}>
                             <Text
                                 lineHeight={1}
-                                weight={500}
+                                size="xs"
                                 children={(
-                                    <Flexbox flex={1} alignItems="center" justifyContent="space-between">
-                                        <span>{name}</span>
-                                        <span id={`ctrl-${item.id}`}>
-                                            <Copy
-                                                pr={'0.25rem'}
-                                                onClick={(e) => {
-                                                    e.preventDefault()
-                                                    e.stopPropagation()
-                                                    props.tools.focused = item
-                                                    props.tools.duplicate()
-                                                }}
+                                    <Block pl={options.lvl * 1 + 'rem'}>
+                                        <Flexbox flex={1} alignItems="center">
+                                            <ArrowIosForward 
+                                                mr="0.25rem"
+                                                display={ options.hasChilds ? undefined : 'none'}
+                                                rotate={options.isOpen ? 90 : 0}
                                             />
-                                            <Trash2
-                                                pr={'0.25rem'}
-                                                color={c => c.error.hex()}
+                                            <span
                                                 onClick={(e) => {
-                                                    e.preventDefault()
                                                     e.stopPropagation()
-                                                    props.tools.focused = item
-                                                    props.tools.remove()
+                                                    e.preventDefault()
+                                                    if (!isFocused) {
+                                                        tools.focused = item
+                                                        tools.update()
+                                                    }
                                                 }}
+                                                css={{ flex: 1 }}
+                                                children={name}
                                             />
-                                        </span>
-                                    </Flexbox>
+                                            <span id={`ctrl-${item.id}`}>
+                                                <Copy
+                                                    pr={'0.25rem'}
+                                                    onClick={(e) => {
+                                                        e.preventDefault()
+                                                        e.stopPropagation()
+                                                        props.tools.focused = item
+                                                        props.tools.duplicate()
+                                                    }}
+                                                />
+                                                <Trash2
+                                                    pr={'0.25rem'}
+                                                    color={c => c.error.hex()}
+                                                    onClick={(e) => {
+                                                        e.preventDefault()
+                                                        e.stopPropagation()
+                                                        props.tools.focused = item
+                                                        props.tools.remove()
+                                                    }}
+                                                />
+                                            </span>
+                                        </Flexbox>
+                                    </Block>
                                 )}
                                 draggable
                                 flex={1}
@@ -90,14 +110,6 @@ const LayersTab = (props: TabProps) => {
                                     e.stopPropagation()
                                     e.target.style.background = ''
                                     tools.move()
-                                }}
-                                onClick={(e) => {
-                                    e.stopPropagation()
-                                    e.preventDefault()
-                                    if (!isFocused) {
-                                        tools.focused = item
-                                        tools.update()
-                                    }
                                 }}
                             />
                             {(!item.children || item.children.length === 0) && (
