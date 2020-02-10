@@ -16,7 +16,7 @@ export default () => {
                 <Icon.Checkmark
                     size="1rem"
                     mr="0.5rem"
-                    color={c => c.successful.css()}
+                    color={c => c.successful}
                     onClick={save}
                 />
                 <TextField
@@ -35,7 +35,7 @@ export default () => {
             <Icon.Edit2
                 size="1rem"
                 mr="0.5rem"
-                color={c => c.primary.css()}
+                color={c => c.primary}
                 onClick={() => {
                     props.ctx.setModify(true)
                 }}

@@ -6,23 +6,23 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
     return {
         container: [
             {
-                color: theme.color.hard.css(),
+                color: theme.color.hard.rgb().string(),
                 userSelect: 'none',
             },
         ],
         arrowButton: (variant) => [
             {
-                color: theme.color.hardest.css(),
+                color: theme.color.hardest.rgb().string(),
                 ':hover': {
-                    color: theme.color.primary.css()
+                    color: theme.color.primary.rgb().string()
                 }
             }, 
             variant({
                 disabled: {
                     cursor: 'not-allowed',
-                    color: theme.color.lightest.css(),
+                    color: theme.color.lightest.rgb().string(),
                     ':hover': {
-                        color: theme.color.lightest.css()
+                        color: theme.color.lightest.rgb().string()
                     }
                 }
             })

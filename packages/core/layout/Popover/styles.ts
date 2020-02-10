@@ -5,8 +5,8 @@ import {colorProp} from '@flow-ui/whale'
 
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
 
-    const background = colorProp(props.backgroundColor, theme) || theme.color.surface.css()
-    const borderColor = colorProp(props.borderColor, theme)|| theme.assets.border.color
+    const background = (colorProp(props.backgroundColor, theme) || theme.color.surface).rgb().string()
+    const borderColor = colorProp(props.borderColor, theme)?.rgb().string() || theme.assets.border.color
     const borderWidth = theme.assets.border.width
     const width = props.arrowWidth || '.75rem'
     const height = props.arrowHeight|| '.5rem'

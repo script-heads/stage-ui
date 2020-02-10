@@ -1,9 +1,9 @@
 import Types from '../types'
-import chroma from 'chroma-js'
 import createID from './createID'
 import mergeObjects from './mergeObjects'
+import Color from 'color'
 
-const createTheme = <Overrides = {}>(theme: Types.SourceTheme): Types.Theme=> {
+const createTheme = (theme: Types.SourceTheme): Types.Theme=> {
 
     const main = convertColors(theme.main)
     const assets = theme.assets(main)
@@ -33,7 +33,7 @@ function convertColors(theme: Types.SourceTheme['main']): Types.Theme {
         {},
         theme,
         (value) => value instanceof Array
-            ? chroma(value)
+            ? Color(value)
             : value
     ) as Types.Theme
 }

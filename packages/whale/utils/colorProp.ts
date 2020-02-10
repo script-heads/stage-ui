@@ -1,5 +1,9 @@
-export default <P, L>(prop: P, lib: L): Exclude<P, Function> => {
-    return typeof prop === 'function'
+import Color from 'color'
+
+export default <P, L>(prop: P, lib: L): Color | undefined => {
+    const color = typeof prop === 'function'
         ? prop(lib)
         : prop
+
+    return prop ? Color(color) : undefined
 }

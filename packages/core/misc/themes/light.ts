@@ -135,7 +135,7 @@ const Light: WhaleTypes.SourceTheme = {
         border: {
             width: '1px',
             style: 'solid',
-            color: theme.color.lightest.css()
+            color: theme.color.lightest.rgb().string()
         },
         shadow: {
             default: `0px 4px 8px rgba(0,0,0,0.15)`,
@@ -143,7 +143,7 @@ const Light: WhaleTypes.SourceTheme = {
             long: `0 16px 16px rgba(0,0,0,0.15)`,
         },
         focus: {
-            boxShadow: '0 0 0 3px ' + theme.color.primary.alpha(.3).css()
+            boxShadow: '0 0 0 3px ' + theme.color.primary.alpha(.3).rgb().string()
         },
         field: {
             xs: {

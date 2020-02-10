@@ -1,7 +1,6 @@
 import { ObjectInterpolation } from '@emotion/core'
-import callProp from '@flow-ui/core/misc/utils/callProp'
 import WhaleTypes from '@flow-ui/whale/types'
-import chroma from 'chroma-js'
+import colorProp from '@flow-ui/whale/utils/colorProp'
 import Types from './types'
 
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
@@ -47,7 +46,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
             zIndex: -1,
             position: 'absolute',
             content: '\'\'',
-            background: theme.color.lightest.css(),
+            background: theme.color.lightest.rgb().string(),
             margin: direction === 'column' && decoration === 'underline'
                 ? sizes.item.padding
                 : 0,
@@ -192,7 +191,7 @@ function getSizes(size, theme) {
 }
 
 function getDecorations(theme, sizes, props) {
-    let color = chroma(callProp(props.color, theme.color) || theme.color.primary.css())
+    let color = colorProp(props.color, theme.color) || theme.color.primary
     let { flip, direction, decoration } = props
 
     switch (decoration) {
@@ -202,7 +201,7 @@ function getDecorations(theme, sizes, props) {
                 active: {
                     ...underlineStyles(flip, direction, color, sizes.underline),
                     '&[disabled]': {
-                        color: theme.color.light.css(),
+                        color: theme.color.light.rgb().string(),
                         ...underlineStyles(flip, direction, theme.color.light, sizes.underline),
                     },
                     '&:hover:not([disabled])': {
@@ -211,7 +210,7 @@ function getDecorations(theme, sizes, props) {
                 },
                 ordinary: {
                     '&[disabled]': {
-                        color: theme.color.light.css(),
+                        color: theme.color.light.rgb().string(),
                     },
                     '&:hover:not([disabled])': {
                         ...underlineStyles(flip, direction, color.alpha(.1), sizes.underline)
@@ -221,32 +220,32 @@ function getDecorations(theme, sizes, props) {
         case 'filled':
             return {
                 active: {
-                    background: color.css(),
-                    color: chroma.contrast(color, theme.color.onPrimary) > 3
-                        ? theme.color.onPrimary.css()
-                        : theme.color.onSurface.css(),
+                    background: color.rgb().string(),
+                    color: color.contrast(theme.color.onPrimary) > 3
+                        ? theme.color.onPrimary.rgb().string()
+                        : theme.color.onSurface.rgb().string(),
                     '&:hover:not([disabled])': {
-                        background: color.css(),
+                        background: color.rgb().string(),
                     },
                     '&:active:not([disabled])': {
-                        background: color.get('hsl.l') > .2
-                            ? color.darken(.2).css()
-                            : color.brighten(.75).css(),
+                        background: color.hsl().array()[2] > .2
+                            ? color.darken(.2).rgb().string()
+                            : color.lighten(.75).rgb().string(),
                     },
                     '&[disabled]': {
-                        background: theme.color.lightest.css(),
-                        color: theme.color.light.css(),
+                        background: theme.color.lightest.rgb().string(),
+                        color: theme.color.light.rgb().string(),
                     }
                 },
                 ordinary: {
                     '&:hover:not([disabled])': {
-                        background: color.alpha(.05).css(),
+                        background: color.alpha(.05).rgb().string(),
                     },
                     '&:active:not([disabled])': {
-                        background: color.alpha(.02).css(),
+                        background: color.alpha(.02).rgb().string(),
                     },
                     '&[disabled]': {
-                        color: theme.color.light.css(),
+                        color: theme.color.light.rgb().string(),
                     }
                 },
                 shape: theme.radius.narrow
@@ -254,51 +253,51 @@ function getDecorations(theme, sizes, props) {
         case 'outline':
             return {
                 active: {
-                    border: '1px solid ' + color.alpha(.7).css(),
+                    border: '1px solid ' + color.alpha(.7).rgb().string(),
                     '&:hover:not([disabled])': {
-                        border: '1px solid ' + color.alpha(.7).css(),
+                        border: '1px solid ' + color.alpha(.7).rgb().string(),
                     },
-                    color: color.css(),
+                    color: color.rgb().string(),
                     '&:active:not([disabled])': {
-                        background: color.alpha(.02).css(),
+                        background: color.alpha(.02).rgb().string(),
                     },
                     '&[disabled]': {
-                        border: '1px solid ' + theme.color.lightest.css(),
-                        color: theme.color.light.css(),
+                        border: '1px solid ' + theme.color.lightest.rgb().string(),
+                        color: theme.color.light.rgb().string(),
                     }
                 },
                 ordinary: {
                     border: '1px solid transparent',
                     '&:hover:not([disabled])': {
-                        border: '1px solid ' + theme.color.lightest.css(),
+                        border: '1px solid ' + theme.color.lightest.rgb().string(),
                     },
                     '&:active:not([disabled])': {
-                        background: color.alpha(.02).css(),
+                        background: color.alpha(.02).rgb().string(),
                     },
                     '&[disabled]': {
-                        color: theme.color.light.css(),
+                        color: theme.color.light.rgb().string(),
                     }
                 },
                 shape: theme.radius.narrow
             }
         case 'tab':
             let borderStyles = tabBorderStyles(direction, flip)
-            color = chroma(callProp(props.color, theme.color) || theme.color.surface.css())
+            color = colorProp(props.color, theme.color) || theme.color.surface
             return {
                 active: {
-                    background: color.css(),
-                    border: '1px solid ' + theme.color.lightest.css(),
+                    background: color.rgb().string(),
+                    border: '1px solid ' + theme.color.lightest.rgb().string(),
                     '&:hover:not([disabled])': {
-                        background: color.css(),
+                        background: color.rgb().string(),
                     },
                     '&:active:not([disabled])': {
-                        background: color.alpha(.02).css(),
+                        background: color.alpha(.02).rgb().string(),
                     },
                     '&[disabled]': {
-                        border: '1px solid ' + theme.color.lightest.css(),
+                        border: '1px solid ' + theme.color.lightest.rgb().string(),
                         ...borderStyles,
-                        background: color.css(),
-                        color: theme.color.light.css(),
+                        background: color.rgb().string(),
+                        color: theme.color.light.rgb().string(),
                     },
                     ...borderStyles
                 },
@@ -306,13 +305,13 @@ function getDecorations(theme, sizes, props) {
                     borderColor: 'transparent',
                     background: 'transparent',
                     '&:hover:not([disabled])': {
-                        background: theme.color.lightest.alpha(.5).css(),
+                        background: theme.color.lightest.alpha(.5).rgb().string(),
                     },
                     '&:active:not([disabled])': {
-                        background: theme.color.lightest.alpha(.25).css(),
+                        background: theme.color.lightest.alpha(.25).rgb().string(),
                     },
                     '&[disabled]': {
-                        color: theme.color.light.css(),
+                        color: theme.color.light.rgb().string(),
                     },
                     ...borderStyles,
                 },
@@ -321,42 +320,42 @@ function getDecorations(theme, sizes, props) {
         case 'filled-underline':
             return {
                 active: {
-                    background: color.alpha(.15).css(),
+                    background: color.alpha(.15).rgb().string(),
                     '&:hover:not([disabled])': {
-                        background: color.alpha(.15).css(),
+                        background: color.alpha(.15).rgb().string(),
                     },
                     ...underlineStyles(flip, direction, color, true),
                     '&[disabled]': {
-                        background: theme.color.lightest.css(),
-                        color: theme.color.light.css(),
+                        background: theme.color.lightest.rgb().string(),
+                        color: theme.color.light.rgb().string(),
                     }
                 },
                 ordinary: {
                     '&:hover:not([disabled])': {
-                        background: color.alpha(.05).css(),
+                        background: color.alpha(.05).rgb().string(),
                     },
                     '&:active:not([disabled])': {
-                        background: color.alpha(.02).css(),
+                        background: color.alpha(.02).rgb().string(),
                     },
                     '&[disabled]': {
-                        color: theme.color.light.css(),
+                        color: theme.color.light.rgb().string(),
                     }
                 }
             }
         case 'color':
             return {
                 active: {
-                    color: color.css(),
+                    color: color.rgb().string(),
                     '&:hover:not([disabled])': {
-                        color: color.css(),
+                        color: color.rgb().string(),
                     },
                     '&[disabled]': {
-                        color: theme.color.light.css(),
+                        color: theme.color.light.rgb().string(),
                     }
                 },
                 ordinary: {
                     '&[disabled]': {
-                        color: theme.color.lightest.css(),
+                        color: theme.color.lightest.rgb().string(),
                     }
                 }
             }
@@ -370,7 +369,7 @@ function underlineStyles(flip, direction, color, size, alwaysFull?) {
         '&::after': {
             position: 'absolute',
             content: '\'\'',
-            background: color.css(),
+            background: color.rgb().string(),
             ...linePosition(direction, flip, size)
         }
     }

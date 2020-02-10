@@ -22,7 +22,7 @@ export default () => {
             }}>
                 <ExpandIcon
                     mr="0.5rem"
-                    color={c => c.primary.css()}
+                    color={c => c.primary}
                 />
                 <Text>{props.ctx.value}</Text>
             </Flexbox>

@@ -1,7 +1,6 @@
 import WhaleTypes from '@flow-ui/whale/types'
 import colorProp from './colorProp'
 import CSS from 'csstype'
-import { ArrayInterpolation } from '@emotion/core'
 
 interface Props extends 
     WhaleTypes.ColorProps, 
@@ -84,90 +83,124 @@ export interface InjectedStyles {
 
 type InjectedStylesNames = keyof InjectedStyles
 
-export const useStyleProps = (props: Props, theme): InjectedStyles => {
+const colorResolver = (propValue, propName, theme) => {
+    return colorProp(propValue, theme.color)?.rgb().string()
+}
+
+const pmResolver = (propValue, propName: 'px' | 'mx' | 'py' | 'my', theme) => {
+    switch (propName) {
+        case 'px':
+        case 'mx':
+            return `0 ${propValue}`
+        case 'py':
+        case 'my':
+            return `${propValue} 0`
+    }
+}
+
+const animatedResolver = (propValue, propName, theme) => {
+    return propValue ? 'all .15s' : undefined
+}
+
+const nameResolver = {
+    //Color
+    backgroundColor: ['color', 'backgroundColor', colorResolver],
+    textColor: ['color', 'color', colorResolver],
+
+    //Border
+    borderWidth: ['border', 'borderWidth'],
+    borderStyle: ['border', 'borderStyle'],
+    borderColor: ['border', 'borderColor', colorResolver],
+    borderRadius: ['border', 'borderRadius'],
+
+    //Padding
+    p: ['padding', 'padding'],
+    px: ['padding', 'padding', pmResolver],
+    py: ['padding', 'padding', pmResolver],
+    pt: ['padding', 'paddingTop'],
+    pr: ['padding', 'paddingRight'],
+    pb: ['padding', 'paddingBottom'],
+    pl: ['padding', 'paddingLeft'],        
+
+    //Margin
+    m: ['margin', 'margin'],
+    mx: ['margin', 'margin', pmResolver],
+    my: ['margin', 'margin', pmResolver],
+    mt: ['margin', 'marginTop'],
+    mr: ['margin', 'marginRight'],
+    mb: ['margin', 'marginBottom'],
+    ml: ['margin', 'marginLeft'],
+
+    //Layout
+    display: ['layout', 'display'],
+    visibility: ['layout', 'visibility'],
+    w: ['layout', 'width'],
+    h: ['layout', 'height'],
+    animated: ['layout', 'transition', animatedResolver],
+
+    //Flex
+    flex: ['flex','flex'],
+    flexBasis: ['flex','flexBasis'],
+    flexGrow: ['flex','flexGrow'],
+    flexShrink: ['flex','flexShrink'],
+    alignSelf: ['flex','alignSelf'],
+    justifySelf: ['flex','justifySelf'],
+
+    //Grid
+    gridColumnStart: ['grid','gridColumnStart'],
+    gridColumnEnd: ['grid','gridColumnEnd'],
+    gridRowStart: ['grid','gridRowStart'],
+    gridRowEnd: ['grid','gridRowEnd'],
+    gridColumn: ['grid','gridColumn'],
+    gridRow: ['grid','gridRow'],
+    gridArea: ['grid','gridArea'],
+    placeSelf: ['grid','placeSelf'],
+}
+
+export const useStyleProps = (props: Props, theme, queries) => {
     
-    const color = {
-        background: colorProp(props.backgroundColor, theme.color),
-        color: colorProp(props.textColor, theme.color)
-    }
-
-    const border = {
-        borderWidth: props.borderWidth,
-        borderStyle: props.borderStyle,
-        borderColor: colorProp(props.borderColor, theme.color),
-        borderRadius: props.borderRadius
-    }
-
-    const padding = {
-        padding: props.p || (props.px || props.py) && `${props.py || '0'} ${props.px || '0'}`,
-        paddingTop: props.pt,
-        paddingLeft: props.pl,
-        paddingRight: props.pr,
-        paddingBottom: props.pb,
-    }
-
-    const margin = {
-        margin: props.m || (props.mx || props.my) && `${props.my || '0'} ${props.mx || '0'}`,
-        marginTop: props.mt,
-        marginLeft: props.ml,
-        marginRight: props.mr,
-        marginBottom: props.mb,
-    }
-
-    const layout = {
-        display: props.display,
-        visibility: props.visibility,
-        width: props.w,
-        height: props.h,
-        transition: props.animated ? 'all .15s' : undefined
-    }
-
-    const flex = {
-        flex: props.flex,
-        flexBasis: props.flexBasis,
-        flexGrow: props.flexGrow,
-        flexShrink: props.flexShrink,
-        alignSelf: props.alignSelf,
-        justifySelf: props.justifySelf,
-    }
-
-    const grid = {
-        gridColumnStart: props.gridColumnStart,
-        gridColumnEnd: props.gridColumnEnd,
-        gridRowStart: props.gridRowStart,
-        gridRowEnd: props.gridRowEnd,
-        gridColumn: props.gridColumn,
-        gridRow: props.gridRow,
-        gridArea: props.gridArea,
-        placeSelf: props.placeSelf,
-    }
-
-    const flow = Object.assign({}, margin, flex, grid)
-    const self = Object.assign({}, color, border, padding, layout)
+    const styles = {} as InjectedStyles
+    
+    Object.keys(props).forEach(propName => {
+        if (nameResolver[propName]) {
+            const value = props[propName]
+            const section = nameResolver[propName][0]
+            const styleName = nameResolver[propName][1]
+            const resolver = nameResolver[propName][2]
+            if (!styles[section]) styles[section] = {}
+            if (Array.isArray(value)) {
+                value.forEach((point, index) => { 
+                    styles[section][index ? queries[index] : styleName] = resolver 
+                        ? resolver(point,propName,theme) 
+                        : point
+                })
+            } else {
+                styles[section][styleName] = resolver 
+                    ? resolver(value,propName,theme) 
+                    : value
+            }
+        }
+    })
+    
+    const flow = Object.assign({}, styles.margin, styles.flex, styles.grid)
+    const self = Object.assign({}, styles.color, styles.border, styles.padding, styles.layout)
     const all = Object.assign({}, flow, self)
     
     return {
-        color,
-        border,
-        padding,
-        margin,
-        layout,
-        flex,
-        grid,
-        
+        ...styles,
         flow,
         self,
         all
     }
 }
 
-const getStyleProps = (props: Props, theme, styleProps?: InjectedStylesNames[]) => {
+const getStyleProps = (props: Props, theme, queries, styleProps?: InjectedStylesNames[]) => {
     if (!styleProps) return []
     
     const styles = [] as InjectedStyles[InjectedStylesNames][]
     
     styleProps.forEach(value => {
-        styles.push(useStyleProps(props, theme)[value])
+        styles.push(useStyleProps(props, theme, queries)[value])
     })
 
     return styles

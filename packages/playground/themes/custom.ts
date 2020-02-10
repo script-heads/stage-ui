@@ -23,10 +23,10 @@ export default light.replace({
         }
     },
     overrides: {
-        Button: {
-            container: (variant) => [
-                {backgroundColor: 'green'}
-            ]
-        }
+        // Button: {
+        //     container: (variant) => [
+        //         {backgroundColor: 'green'}
+        //     ]
+        // }
     }
 })

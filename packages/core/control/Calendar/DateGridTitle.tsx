@@ -14,8 +14,8 @@ const Arrow = (props: { onClick: () => void, icon: 'chevronLeft' | 'chevronRight
         }}
         children={(
             props.icon === 'chevronLeft'
-                ? <ChevronLeft size={'2rem'} color={c => props.disabled ? c.light.css() : c.primary.css()} />
-                : <ChevronRight size={'2rem'} color={c => props.disabled ? c.light.css() : c.primary.css()} />
+                ? <ChevronLeft size={'2rem'} color={c => props.disabled ? c.light : c.primary} />
+                : <ChevronRight size={'2rem'} color={c => props.disabled ? c.light : c.primary} />
         )}
     />
 )

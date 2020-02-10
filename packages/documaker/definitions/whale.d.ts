@@ -1,6 +1,6 @@
 declare module '@flow-ui/whale/types' {
 	import React from 'react';
-	import chroma from 'chroma-js';
+	import QIXColor from 'color';
 	import CSS from 'csstype';
 	import { Interpolation, SerializedStyles, ObjectInterpolation } from '@emotion/core'; global {
 	    namespace Whale {
@@ -32,7 +32,7 @@ declare module '@flow-ui/whale/types' {
 	            [Component in keyof Whale.Overrides]: Styles<Whale.Overrides[Component]>;
 	        }>;
 	    }
-	    interface ThemeVariables<Color = chroma.Color> {
+	    interface ThemeVariables<Color = QIXColor> {
 	        name: string;
 	        color: {
 	            background: Color;
@@ -60,6 +60,7 @@ declare module '@flow-ui/whale/types' {
 	            narrow: string;
 	            wide: string;
 	        };
+	        breakpoints?: string[];
 	        spacing: Record<Size, string>;
 	        typography: {
 	            header: Record<Size, {
@@ -302,10 +303,10 @@ declare module '@flow-ui/whale/types' {
 	     * @name Border
 	     */
 	    interface BorderProps {
-	        borderWidth?: CSS.Properties['borderWidth'];
-	        borderStyle?: CSS.Properties['borderStyle'];
+	        borderWidth?: Breakpointify<CSS.Properties['borderWidth']>;
+	        borderStyle?: Breakpointify<CSS.Properties['borderStyle']>;
 	        borderColor?: ColorProp;
-	        borderRadius?: CSS.Properties['borderRadius'];
+	        borderRadius?: Breakpointify<CSS.Properties['borderRadius']>;
 	    }
 	    /**
 	     * Component layout styles props
@@ -315,26 +316,22 @@ declare module '@flow-ui/whale/types' {
 	        /**
 	         * Width alias
 	         */
-	        w?: CSS.Properties['width'];
+	        w?: Breakpointify<CSS.Properties['width']>;
 	        /**
 	         * Heigth alias
 	         */
-	        h?: CSS.Properties['height'];
+	        h?: Breakpointify<CSS.Properties['height']>;
 	        /**
 	         * Shows or hides an element without changing the layout
 	         * of a document.
 	         */
-	        visibility?: CSS.Properties['visibility'];
+	        visibility?: Breakpointify<CSS.Properties['visibility']>;
 	        /**
 	         * Sets whether an element is treated as a block or
 	         * inline element and the layout used for its children,
 	         * such as flow layout, grid or flex.
 	         */
-	        display?: CSS.Properties['display'];
-	        /**
-	         * Enables transition animation
-	         */
-	        animated?: boolean;
+	        display?: Breakpointify<CSS.Properties['display']>;
 	    }
 	    /**
 	     * Component padding styles props
@@ -344,31 +341,31 @@ declare module '@flow-ui/whale/types' {
 	        /**
 	         * Padding alias
 	         */
-	        p?: CSS.Properties['padding'];
+	        p?: Breakpointify<CSS.Properties['padding']>;
 	        /**
 	         * Padding horizontal alias
 	         */
-	        px?: CSS.Properties['padding'];
+	        px?: Breakpointify<CSS.Properties['padding']>;
 	        /**
 	         * Padding vertical alias
 	         */
-	        py?: CSS.Properties['padding'];
+	        py?: Breakpointify<CSS.Properties['padding']>;
 	        /**
 	         * PaddingRight alias
 	         */
-	        pr?: CSS.Properties['paddingRight'];
+	        pr?: Breakpointify<CSS.Properties['paddingRight']>;
 	        /**
 	         * PaddingLeft alias
 	         */
-	        pl?: CSS.Properties['paddingLeft'];
+	        pl?: Breakpointify<CSS.Properties['paddingLeft']>;
 	        /**
 	         * PaddingTop alias
 	         */
-	        pt?: CSS.Properties['paddingTop'];
+	        pt?: Breakpointify<CSS.Properties['paddingTop']>;
 	        /**
 	         * PaddingBottom alias
 	         */
-	        pb?: CSS.Properties['paddingBottom'];
+	        pb?: Breakpointify<CSS.Properties['paddingBottom']>;
 	    }
 	    /**
 	     * Component margin styles props
@@ -378,31 +375,31 @@ declare module '@flow-ui/whale/types' {
 	        /**
 	         * Margin alias
 	         */
-	        m?: CSS.Properties['margin'];
+	        m?: Breakpointify<CSS.Properties['margin']>;
 	        /**
 	         * Margin horizontal alias
 	         */
-	        mx?: CSS.Properties['margin'];
+	        mx?: Breakpointify<CSS.Properties['margin']>;
 	        /**
 	         * Margin vertical alias
 	         */
-	        my?: CSS.Properties['margin'];
+	        my?: Breakpointify<CSS.Properties['margin']>;
 	        /**
 	         * MarginRight alias
 	         */
-	        mr?: CSS.Properties['marginRight'];
+	        mr?: Breakpointify<CSS.Properties['marginRight']>;
 	        /**
 	         * MarginLeft alias
 	         */
-	        ml?: CSS.Properties['marginLeft'];
+	        ml?: Breakpointify<CSS.Properties['marginLeft']>;
 	        /**
 	         * MarginTop alias
 	         */
-	        mt?: CSS.Properties['marginTop'];
+	        mt?: Breakpointify<CSS.Properties['marginTop']>;
 	        /**
 	         * MarginBottom alias
 	         */
-	        mb?: CSS.Properties['marginBottom'];
+	        mb?: Breakpointify<CSS.Properties['marginBottom']>;
 	    }
 	    /**
 	     * Component flexbox children styles props
@@ -413,38 +410,38 @@ declare module '@flow-ui/whale/types' {
 	         * Sets how a flex item will grow or shrink to fit the
 	         * space available in its flex container.
 	         */
-	        flex?: CSS.Properties['flex'];
+	        flex?: Breakpointify<CSS.Properties['flex']>;
 	        /**
 	         * Sets the initial main size of a flex item. It sets the
 	         * size of the content box unless otherwise set with box-sizing.
 	         */
-	        flexBasis?: CSS.Properties['flexBasis'];
+	        flexBasis?: Breakpointify<CSS.Properties['flexBasis']>;
 	        /**
 	         * Sets the flex grow factor of a flex item main size.
 	         * It specifies how much of the remaining space in the
 	         * flex container should be assigned to the item
 	         * (the flex grow factor).
 	         */
-	        flexGrow?: CSS.Properties['flexGrow'];
+	        flexGrow?: Breakpointify<CSS.Properties['flexGrow']>;
 	        /**
 	         * Sets the flex shrink factor of a flex item.
 	         * If the size of all flex items is lr than
 	         * the flex container, items shrink to fit
 	         * according to flex-shrink.
 	         */
-	        flexShrink?: CSS.Properties['flexShrink'];
+	        flexShrink?: Breakpointify<CSS.Properties['flexShrink']>;
 	        /**
 	         * Property overrides a grid or flex item's
 	         * align-items value. In Grid, it aligns the
 	         * item inside the grid area. In Flexbox,
 	         * it aligns the item on the cross axis.
 	         */
-	        alignSelf?: CSS.Properties['alignSelf'];
+	        alignSelf?: Breakpointify<CSS.Properties['alignSelf']>;
 	        /**
 	         * Sets the way a box is justified inside its
 	         * alignment container along the appropriate axis.
 	         */
-	        justifySelf?: CSS.Properties['justifySelf'];
+	        justifySelf?: Breakpointify<CSS.Properties['justifySelf']>;
 	    }
 	    /**
 	     * Component grid children styles props
@@ -458,28 +455,28 @@ declare module '@flow-ui/whale/types' {
 	         * This start position defines the block-start edge
 	         * of the grid area.
 	         */
-	        gridColumnStart?: CSS.Properties['gridColumnStart'];
+	        gridColumnStart?: Breakpointify<CSS.Properties['gridColumnStart']>;
 	        /**
 	         * Specifies a grid item’s end position within the
 	         * grid column by contributing a line, a span, or
 	         * nothing (automatic) to its grid placement, thereby
 	         * specifying the block-end edge of its grid area.
 	         */
-	        gridColumnEnd?: CSS.Properties['gridColumnEnd'];
+	        gridColumnEnd?: Breakpointify<CSS.Properties['gridColumnEnd']>;
 	        /**
 	         * Specifies a grid item’s start position within the
 	         * grid row by contributing a line, a span, or nothing
 	         * (automatic) to its grid placement, thereby specifying
 	         * the inline-start edge of its grid area.
 	         */
-	        gridRowStart?: CSS.Properties['gridRowStart'];
+	        gridRowStart?: Breakpointify<CSS.Properties['gridRowStart']>;
 	        /**
 	         * Specifies a grid item’s end position within the grid
 	         * row by contributing a line, a span, or nothing
 	         * (automatic) to its grid placement, thereby
 	         * specifying the inline-end edge of its grid area.
 	         */
-	        gridRowEnd?: CSS.Properties['gridRowEnd'];
+	        gridRowEnd?: Breakpointify<CSS.Properties['gridRowEnd']>;
 	        /**
 	         * Shorthand property for grid-column-start and
 	         * grid-column-end specifying a grid item's size
@@ -488,7 +485,7 @@ declare module '@flow-ui/whale/types' {
 	         * placement, thereby specifying the inline-start and
 	         * inline-end edge of its grid area.
 	         */
-	        gridColumn?: CSS.Properties['gridColumn'];
+	        gridColumn?: Breakpointify<CSS.Properties['gridColumn']>;
 	        /**
 	         * Shorthand property for grid-row-start and grid-row-end
 	         * specifying a grid item’s size and location within the
@@ -496,7 +493,7 @@ declare module '@flow-ui/whale/types' {
 	         * (automatic) to its grid placement, thereby specifying
 	         * the inline-start and inline-end edge of its grid area.
 	         */
-	        gridRow?: CSS.Properties['gridRow'];
+	        gridRow?: Breakpointify<CSS.Properties['gridRow']>;
 	        /**
 	         * Shorthand property for grid-row-start, grid-column-start,
 	         * grid-row-end and grid-column-end, specifying a grid item’s
@@ -504,16 +501,16 @@ declare module '@flow-ui/whale/types' {
 	         * span, or nothing (automatic) to its grid placement, thereby
 	         * specifying the edges of its grid area.
 	         */
-	        gridArea?: CSS.Properties['gridArea'];
+	        gridArea?: Breakpointify<CSS.Properties['gridArea']>;
 	        /**
 	         * Shorthand property sets both the align-self and justify-self
 	         * properties. The first value is the align-self property value,
 	         * the second the justify-self one. If the second value is not
 	         * present, the first value is also used for it.
 	         */
-	        placeSelf?: CSS.Properties['placeSelf'];
+	        placeSelf?: Breakpointify<CSS.Properties['placeSelf']>;
 	    }
-	    type ColorProp = ((colors: Theme['color']) => CSS.Properties['color']);
+	    type ColorProp = Breakpointify<((colors: Theme['color']) => QIXColor) | CSS.Properties['color'] | QIXColor>;
 	    type Styles<StyleDefinitions> = {
 	        [StyleName in keyof StyleDefinitions]: StyleDefinitions[StyleName] extends {} ? ((variant: Variant<StyleDefinitions[StyleName]>) => EmotionStyles) : EmotionStyles;
 	    };
@@ -536,6 +533,7 @@ declare module '@flow-ui/whale/types' {
 	    [P in keyof T]?: T[P] extends Array<infer U> ? Array<DeepPartial<U>> : T[P] extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : DeepPartial<T[P]>;
 	};
 	export type EmotionStyles = Array<Interpolation> | ObjectInterpolation<undefined>;
+	export type Breakpointify<T> = T[] | T;
 	export default WhaleTypes;
 
 }
@@ -918,7 +916,31 @@ declare module 'utils/attributeProps' {
 
 }
 declare module 'utils/colorProp' {
-	 const _default: <P, L>(prop: P, lib: L) => Exclude<P, Function>;
+	import Color from 'color'; const _default: <P, L>(prop: P, lib: L) => Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | undefined;
 	export default _default;
 
 }
@@ -982,7 +1004,18 @@ declare module 'utils/styleProps' {
 	    self: Padding & Layout & Color & Border;
 	    all: Margin & Flex & Grid & Padding & Layout & Color & Border;
 	}
-	export const useStyleProps: (props: Props, theme: any) => InjectedStyles; const getStyleProps: (props: Props, theme: any, styleProps?: ("flex" | "grid" | "padding" | "margin" | "color" | "all" | "border" | "layout" | "flow" | "self")[] | undefined) => (Color | Border | Padding | Margin | Layout | Flex | Grid | (Margin & Flex & Grid) | (Padding & Layout & Color & Border) | (Margin & Flex & Grid & Padding & Layout & Color & Border))[];
+	export const useStyleProps: (props: Props, theme: any, queries: any) => {
+	    flow: Margin & Flex & Grid;
+	    self: any;
+	    all: any;
+	    color: Color;
+	    border: Border;
+	    padding: Padding;
+	    margin: Margin;
+	    layout: Layout;
+	    flex: Flex;
+	    grid: Grid;
+	}; const getStyleProps: (props: Props, theme: any, queries: any, styleProps?: ("color" | "flex" | "grid" | "padding" | "margin" | "all" | "border" | "layout" | "flow" | "self")[] | undefined) => (Color | Border | Padding | Margin | Layout | Flex | Grid | (Margin & Flex & Grid) | (Padding & Layout & Color & Border) | (Margin & Flex & Grid & Padding & Layout & Color & Border))[];
 	export default getStyleProps;
 
 }
@@ -1366,7 +1399,7 @@ declare module 'utils/mergeObjects' {
 
 }
 declare module 'utils/createTheme' {
-	import Types from 'types'; const createTheme: <Overrides = {}>(theme: Types.SourceTheme) => Types.Theme;
+	import Types from 'types'; const createTheme: (theme: Types.SourceTheme) => Types.Theme;
 	export default createTheme;
 
 }

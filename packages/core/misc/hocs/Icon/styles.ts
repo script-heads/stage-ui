@@ -1,20 +1,20 @@
 
-import callProp from '@flow-ui/core/misc/utils/callProp'
+import colorProp from '@flow-ui/whale/utils/colorProp'
 import WhaleTypes from '@flow-ui/whale/types'
 import Types from './types'
 
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
     
-    const background = callProp(props.background, theme.color)
-    const color = callProp(props.color, theme.color)
+    const background = colorProp(props.background, theme.color)
+    const color = colorProp(props.color, theme.color)
 
     return {
         container: (variant) => [
             {
                 width: 'min-content',
                 display: 'inline-flex',
-                color,
-                background,
+                color: color?.rgb().string(),
+                background: background?.rgb().string(),
                 height: theme.typography.text.m.fontSize,
                 fontSize: theme.typography.text.m.fontSize,
             },
@@ -44,7 +44,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 shape: {
                     circle: {
                         borderRadius: '50%',
-                        border: '1px solid ' + color,
+                        border: '1px solid ' + color?.rgb().string(),
                         padding: '0.4em',
                     },
                     oval: {

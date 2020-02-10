@@ -6,13 +6,13 @@ export default () => {
         <React.Fragment>
             <Icon.Cube
                 shape="oval"
-                color={c => c.onPrimary.css()}
-                background={c => c.primary.css()} 
+                color={c => c.onPrimary}
+                background={c => c.primary} 
                 size="2rem" 
             />
             <Icon.Archive
                 shape="circle"
-                color={c => c.primary.css()} 
+                color={c => c.primary} 
                 size="2rem"
                 ml=".5rem"
             />

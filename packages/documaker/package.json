@@ -13,7 +13,6 @@
     "@babel/runtime": "^7.8.4",
     "@emotion/core": "10.0.27",
     "@emotion/css": "10.0.27",
-    "chroma-js": "^2.1.0",
     "file-loader": "^5.0.2",
     "monaco-editor": "^0.19.2",
     "monaco-editor-webpack-plugin": "^1.8.2",

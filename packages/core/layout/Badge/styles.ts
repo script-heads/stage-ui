@@ -14,7 +14,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
             {
                 zIndex: 1,
                 display: 'flex',
-                color: theme.color.onPrimary.css(),
+                color: theme.color.onPrimary.rgb().string(),
                 alignContent: 'center',
                 justifyContent: 'center',
                 position: 'absolute',
@@ -24,7 +24,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 top: 0,
                 right: 0,
                 transform: 'translate(50%, -50%)',
-                background: theme.color.primary.css(),
+                background: theme.color.primary.rgb().string(),
                 ...theme.typography.text.m,
             },
             variant({

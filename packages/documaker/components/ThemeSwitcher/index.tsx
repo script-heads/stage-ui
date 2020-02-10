@@ -20,7 +20,7 @@ const ThemeSwitcher = (props: ThemeSwitcherProps) => {
                 size="1.5rem" 
                 ref={iconRef} 
                 onClick={()=>setVisible(!visible)}
-                color={c=>c.primary.css()}
+                color={c=>c.primary}
             />
             <Drop 
                 target={iconRef} 
@@ -47,8 +47,8 @@ const ThemeSwitcher = (props: ThemeSwitcherProps) => {
                                 borderWidth="2px"
                                 borderStyle="solid"
                                 borderColor={c=> currentTheme.name === themes[theme].name
-                                    ? c.primary.css()
-                                    : c.lightest.css()
+                                    ? c.primary
+                                    : c.lightest
                                 }
                                 onClick={() => {
                                     setTheme(themes[theme])
@@ -58,7 +58,7 @@ const ThemeSwitcher = (props: ThemeSwitcherProps) => {
                                     css={{
                                         borderTopLeftRadius: '16rem', 
                                         borderBottomLeftRadius: '16rem',
-                                        background: themes[theme].color.primary.css()
+                                        background: themes[theme].color.primary.rgb().string()
                                     }} 
                                 />
                                 <Block
@@ -66,7 +66,7 @@ const ThemeSwitcher = (props: ThemeSwitcherProps) => {
                                     css={{
                                         borderTopRightRadius: '16rem', 
                                         borderBottomRightRadius: '16rem',
-                                        background: themes[theme].color.background.css()
+                                        background: themes[theme].color.background.rgb().string()
                                     }} 
                                 />
                             </Flexbox>

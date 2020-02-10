@@ -65,10 +65,10 @@ export default () => {
                                     <PreviewIcon
                                         shape="oval"
                                         size="2rem"
-                                        background={c => c.lightest.css()}
+                                        background={c => c.lightest}
                                     />
                                     <Text
-                                        color={c => c.light.css()}
+                                        color={c => c.light}
                                         mt=".5rem"
                                         children={key}
                                     />

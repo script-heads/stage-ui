@@ -16,12 +16,12 @@ const ModalHeader = (props: ModalTypes.ModalHeaderProps) => {
             <Flexbox>
                 <Flexbox flex={1} column>
                     <Header css={props.styles.header}>{props.title}</Header>
-                    <Paragraph color={c => c.hard.css()} mt={'0.5rem'}>{props.subtitle}</Paragraph>
+                    <Paragraph color={c => c.hard} mt={'0.5rem'}>{props.subtitle}</Paragraph>
                 </Flexbox>
                 <Close
                     css={props.styles.cross}
                     onClick={props.onClosePressed}
-                    color={c => c.light.css()}
+                    color={c => c.light}
                     size="2.5rem"
                 />
             </Flexbox>

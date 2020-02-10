@@ -1,11 +1,11 @@
 import { keyframes } from '@emotion/core'
-import callProp from '@flow-ui/core/misc/utils/callProp'
 import WhaleTypes from '@flow-ui/whale/types'
+import colorProp from '@flow-ui/whale/utils/colorProp'
 import Types from './types'
 
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
     
-    const color = callProp(props.color, theme.color) || theme.color.hardest.css()
+    const color = (colorProp(props.color, theme.color) || theme.color.hardest).rgb().string()
     const duration = props.duration || 1
 
     const spinAnimation = keyframes({

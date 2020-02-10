@@ -1,4 +1,4 @@
-import { Button, Viewport } from '@flow-ui/core'
+import { Button, Viewport, Text } from '@flow-ui/core'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import custom from './themes/custom'
@@ -8,8 +8,8 @@ const Playground = () => {
 		<Viewport theme={custom}>
 			<Button 
 				children="hello" 
-				color={c=>c.palette.red.css()} 
-				styles={{container: (variant) => ({backgroundColor: 'yellow'})}}
+				color={c=>c.palette.red} 
+				// styles={{container: (variant) => ({backgroundColor: 'yellow'})}}
 			/>
 		</Viewport>
 	)

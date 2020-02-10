@@ -7,8 +7,8 @@ export default () => {
         <React.Fragment>
             <Icon.ArrowIosForward
                 shape="oval"
-                color={c => c.onPrimary.css()}
-                background={c => c.primary.css()} 
+                color={c => c.onPrimary}
+                background={c => c.primary} 
                 size="2rem" 
                 rotate={deg}
                 onClick={() => {

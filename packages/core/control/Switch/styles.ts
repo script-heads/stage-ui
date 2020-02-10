@@ -13,7 +13,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: theme.color.lightest.css(),
+                backgroundColor: theme.color.lightest.rgb().string(),
             },
             variant({
                 size:{
@@ -44,7 +44,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                     }],
                 },
                 checked: [{
-                    backgroundColor: theme.color.primary.css()
+                    backgroundColor: theme.color.primary.rgb().string()
                 }],
                 animated: [{
                     transition: 'all .15s'
@@ -52,7 +52,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
             }),
             variant({
                 disabled: [{
-                    backgroundColor: theme.color.lightest.css()
+                    backgroundColor: theme.color.lightest.rgb().string()
                 }]
             }) 
         ],
@@ -63,8 +63,8 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 boxSizing: 'border-box',
                 borderRadius: '50%',
                 borderStyle: 'solid',
-                borderColor: theme.color.primary.css(),
-                background: theme.color.surface.css(),
+                borderColor: theme.color.primary.rgb().string(),
+                background: theme.color.surface.rgb().string(),
                 boxShadow: theme.assets.shadow.default,
             },
             variant({
@@ -137,7 +137,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                     ]
                 },
                 disabled: [{
-                    borderColor: theme.color.lightest.css()
+                    borderColor: theme.color.lightest.rgb().string()
                 }],
                 animated: [{
                     transition: 'all .15s'

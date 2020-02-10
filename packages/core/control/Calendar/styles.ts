@@ -6,7 +6,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
     return {
         dateGrind: [{
             position: 'relative',
-            color: theme.color.onSurface.css(),
+            color: theme.color.onSurface.rgb().string(),
         }],
 
         weekDay: [{
@@ -18,7 +18,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
         }],
 
         title: [{
-            color: theme.color.onSurface.css(),
+            color: theme.color.onSurface.rgb().string(),
             padding: '0.25rem'
         }],
 
@@ -34,37 +34,37 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 cursor: 'pointer',
                 margin:'0.125rem',
                 opacity: 1,
-                background: theme.color.background.css(),
+                background: theme.color.background.rgb().string(),
                 borderWidth: theme.assets.border.width,
                 borderStyle: theme.assets.border.style,
-                borderColor: theme.color.surface.css(),
+                borderColor: theme.color.surface.rgb().string(),
                 borderRadius: theme.radius.narrow,
-                color: theme.color.hardest.css(),
+                color: theme.color.hardest.rgb().string(),
                 userSelect: 'none',
                 ...theme.typography.text.m,
                 ':hover': {
-                    background: theme.color.lightest.css()
+                    background: theme.color.lightest.rgb().string()
                 }
             },
             variant({
                 isCurrent: [{
-                    borderColor: theme.color.primary.css()
+                    borderColor: theme.color.primary.rgb().string()
                 }],
                 isDisabled: [{
                     opacity: 0.3,
                     ':hover': {
-                        background: theme.color.background.css()
+                        background: theme.color.background.rgb().string()
                     }
                 }], 
                 isCurrentMonth: [{
-                    color: theme.color.onSurface.css(),
-                    background: theme.color.surface.css()
+                    color: theme.color.onSurface.rgb().string(),
+                    background: theme.color.surface.rgb().string()
                 }],
                 isActive: [{
-                    background: theme.color.primary.css(),
-                    color: theme.color.onPrimary.css(),
+                    background: theme.color.primary.rgb().string(),
+                    color: theme.color.onPrimary.rgb().string(),
                     ':hover': {
-                        background: theme.color.primary.css()
+                        background: theme.color.primary.rgb().string()
                     }
                 }], 
             })

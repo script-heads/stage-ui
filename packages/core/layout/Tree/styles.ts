@@ -9,7 +9,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.PrivateProps> = (pr
                 decoration: {
                     finder: {
                         '>div:nth-of-type(even)': {
-                            background: theme.color.background.css()
+                            background: theme.color.background.rgb().string()
                         }
                     }
                 },
@@ -63,7 +63,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.PrivateProps> = (pr
                 opacity: 0,
                 cursor: 'pointer',
                 height: 'auto',
-                color: theme.color.light.css(),
+                color: theme.color.light.rgb().string(),
                 fontSize: theme.typography.text.m.fontSize,
                 paddingRight: `calc(${theme.spacing.m} / 2)`,
                 paddingLeft: `calc(${theme.typography.text.m.fontSize} * ${props.lvl * 1})`,

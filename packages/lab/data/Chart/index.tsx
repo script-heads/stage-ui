@@ -27,51 +27,51 @@ const Chart: RefForwardingComponent<ChartRef, Types.Props> = (props, ref) => {
 
     const defaultOptions: ChartOptions = {
         title: {
-            fontColor: theme.color.onSurface.css()
+            fontColor: theme.color.onSurface.rgb().string()
         },
         legend: {
             labels: {
-                fontColor: theme.color.onSurface.css()
+                fontColor: theme.color.onSurface.rgb().string()
             }
         },
 
         scales: {
             xAxes: [{
                 gridLines: {
-                    color: theme.color.lightest.css()
+                    color: theme.color.lightest.rgb().string()
                 },
                 ticks: {
                     beginAtZero: true,
-                    fontColor: theme.color.hard.css()
+                    fontColor: theme.color.hard.rgb().string()
                 },
             }],
             yAxes: [{
                 gridLines: {
-                    color: theme.color.lightest.css()
+                    color: theme.color.lightest.rgb().string()
                 },
                 ticks: {
-                    fontColor: theme.color.hard.css()
+                    fontColor: theme.color.hard.rgb().string()
                 },
             }]
         },
         elements: {
             point: {
 
-                backgroundColor: theme.color.surface.css(),
-                borderColor: theme.color.primary.css(),
+                backgroundColor: theme.color.surface.rgb().string(),
+                borderColor: theme.color.primary.rgb().string(),
                 radius: 4,
             },
             line: {
-                borderColor: theme.color.primary.css(),
-                backgroundColor: theme.color.primary.alpha(0.2).css(),
+                borderColor: theme.color.primary.rgb().string(),
+                backgroundColor: theme.color.primary.alpha(0.2).rgb().string(),
             },
             rectangle: {
-                borderColor: theme.color.primary.css(),
-                backgroundColor: theme.color.primary.alpha(0.2).css(),
+                borderColor: theme.color.primary.rgb().string(),
+                backgroundColor: theme.color.primary.alpha(0.2).rgb().string(),
             },
             arc: {
-                borderColor: theme.color.primary.css(),
-                backgroundColor: theme.color.primary.alpha(0.2).css(),
+                borderColor: theme.color.primary.rgb().string(),
+                backgroundColor: theme.color.primary.alpha(0.2).rgb().string(),
             }
         }
     }

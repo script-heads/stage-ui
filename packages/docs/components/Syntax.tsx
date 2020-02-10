@@ -14,8 +14,8 @@ const Syntax = (props: { code: () => JSX.Element | string }) => {
         borderRadius: theme.radius.default,
         borderWidth: '1px',
         borderStyle: 'solid',
-        borderColor: theme.color.lightest.css(),
-        background: theme.color.surface.css(),
+        borderColor: theme.color.lightest,
+        background: theme.color.surface,
     }
     return (
         <HL

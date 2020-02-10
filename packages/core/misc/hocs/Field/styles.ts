@@ -1,5 +1,5 @@
-import WhaleTypes, { EmotionStyles } from '@flow-ui/whale/types'
-import callProp from '../../utils/callProp'
+import WhaleTypes from '@flow-ui/whale/types'
+import colorProp from '@flow-ui/whale/utils/colorProp'
 import Types from './types'
 
 type ExtractFunction<T> = {
@@ -12,8 +12,8 @@ const fieldStyles = <T extends Types.Overrides>(
     stylePatch?: Partial<ExtractFunction<WhaleTypes.Styles<T>>>
 ): WhaleTypes.Styles<Types.Overrides> => {
 
-    const color = callProp(props.color, theme.color)
-  
+    const color = colorProp(props.color, theme.color)
+
     return {
         container: (variant) => [
             {
@@ -33,8 +33,8 @@ const fieldStyles = <T extends Types.Overrides>(
                 position: 'relative',
                 flexShrink: 0,
                 flexGrow: 1,
-                background: theme.color.surface.css(),
-                borderColor: theme.color.lightest.css(),
+                background: theme.color.surface.rgb().string(),
+                borderColor: theme.color.lightest.rgb().string(),
                 borderRadius: theme.radius.narrow,
                 borderWidth: '1px',
                 borderStyle: 'solid',
@@ -83,17 +83,17 @@ const fieldStyles = <T extends Types.Overrides>(
                     ]
                 },
                 focus: {
-                    borderColor: theme.color.primary.css()
+                    borderColor: theme.color.primary.rgb().string()
                 },
                 disabled: {
-                    color: theme.color.light.css(),
+                    color: theme.color.light.rgb().string(),
                     cursor: 'not-allowed'
                 },
                 decoration: {
                     outline: [
                         variant({
                             disabled: [{
-                                background: theme.color.lightest.css(),
+                                background: theme.color.lightest.rgb().string(),
                             }]
                         })
                     ],
@@ -103,7 +103,7 @@ const fieldStyles = <T extends Types.Overrides>(
                         },
                         variant({
                             disabled: [{
-                                background: theme.color.lightest.css(),
+                                background: theme.color.lightest.rgb().string(),
                             }]
                         })
                     ],
@@ -139,7 +139,7 @@ const fieldStyles = <T extends Types.Overrides>(
 
         label: (variant) => [
             {
-                color: theme.color.hard.css(),
+                color: theme.color.hard.rgb().string(),
                 display: 'flex',
                 userSelect: 'none',
                 paddingBottom: '0.125rem'
@@ -166,7 +166,7 @@ const fieldStyles = <T extends Types.Overrides>(
 
         child: (variant) => [
             {
-                color: color || theme.color.light.css(),
+                color: color?.rgb().string() || theme.color.light.rgb().string(),
                 flexGrow: 0,
                 flexShrink: 1,
                 display: 'flex',
@@ -209,7 +209,7 @@ const fieldStyles = <T extends Types.Overrides>(
             {
                 cursor: 'pointer',
                 ':hover': {
-                    color: theme.color.primary.css(),
+                    color: theme.color.primary.rgb().string(),
                 }
             },
             stylePatch?.clearButton?.(variant)
@@ -219,7 +219,7 @@ const fieldStyles = <T extends Types.Overrides>(
             {
                 paddingTop: '.25rem',
                 paddingLeft: props.decoration != 'underline' ? '.25rem' : '',
-                color: color || theme.color.hard.css(),
+                color: color?.rgb().string() || theme.color.hard.rgb().string(),
                 ...theme.typography.text.m,
             },
             variant({

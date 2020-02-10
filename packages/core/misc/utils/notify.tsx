@@ -26,7 +26,7 @@ export default (options: NotificationType.NotifyOptions) => {
                                 <Close
                                     size="1.25rem"
                                     alignSelf="flex-end"
-                                    color={c => c.light.css()}
+                                    color={c => c.light}
                                     onClick={() => {
                                         clearInterval(timer)
                                         removeElement(key)
