@@ -17,5 +17,5 @@ const Playground = () => {
 
 ReactDOM.render(
 	<Playground />,
-	document.getElementById('playground')
+	document.getElementById('app')
 )

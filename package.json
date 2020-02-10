@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "playground": "yarn workspace @flow-ui/playground start",
+    "playground:a": "yarn workspace @flow-ui/playground analyze",
     "start": "yarn workspace @flow-ui/docs start",
     "test": "yarn workspace @flow-ui/docs test",
     "approve": "yarn workspace @flow-ui/docs approve",

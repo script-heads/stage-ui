@@ -2,34 +2,26 @@ const path = require('path')
 const coreImportPlugin = require('@flow-ui/core/importPlugin')
 const webpack = require('webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const CopyWebPack = require('copy-webpack-plugin')
+const ProjectDIR = path.resolve(__dirname) + '/'
+const SourceDIR = ProjectDIR
+const BuildDIR = ProjectDIR + '../../build/playground/' + 'app'
+const Mode = process.env.ENV === 'production' ? 'production' : 'development'
 
-module.exports = {
-    mode: 'production',
+const config = {
+
+    mode: Mode,
 
     entry: {
-        app: [__dirname + '/index.tsx']
+        app: SourceDIR  + 'index.tsx'
     },
+
+    externals: {},
 
     output: {
-        filename: 'playground.js',
-        path: __dirname + '/public',
-        publicPath: '/',
+        path: path.resolve(BuildDIR),
     },
-
-    devtool: 'source-map',
-
-    performance: {
-        hints: false,
-    },
-
-    devServer: {
-        host: '0.0.0.0',
-        contentBase: path.resolve(__dirname + '/public'),
-        hot: false,
-        inline: true,
-        historyApiFallback: true,
-    },
-
+    
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json'],
     },
@@ -75,10 +67,54 @@ module.exports = {
             }
         ]
     },
-    plugins: [
-        new BundleAnalyzerPlugin(),
-        new webpack.NamedModulesPlugin(),
-        // new webpack.HotModuleReplacementPlugin(),
-        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /ru/),
-    ]
+
+    target: 'web',
+    context: __dirname,
+    stats: 'errors-only',
 }
+
+const plugins = [
+    //moment optimizations
+    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /ru/),
+
+    new webpack.DefinePlugin({
+        'ENV_MODE': JSON.stringify(Mode),
+    }),
+]
+
+/**
+ * Копируем файлы
+ */
+plugins.push(new CopyWebPack([
+    // { from: ProjectDIR + 'public/assets', to: BuildDIR + '/assets' },
+    { from: ProjectDIR + 'public/index.html' },
+]))
+
+/**
+ * Настройки для дебага
+ */
+if (process.env.DEBUG === 'true') {
+    config.devtool = 'source-map'
+    config.devServer = {
+        host: '0.0.0.0',
+        contentBase: path.resolve(BuildDIR, process.env.ENV),
+        hot: true,
+        inline: true,
+        historyApiFallback: true,
+    }
+    plugins.push(new webpack.NamedModulesPlugin())
+    plugins.push(new webpack.HotModuleReplacementPlugin())
+} else {
+    config.devtool = false
+}
+
+/**
+ * Настройки для аналитики
+ */
+if (process.env.ANALYZE === 'true') {
+    plugins.push(new BundleAnalyzerPlugin())
+}
+
+config.plugins = plugins
+
+module.exports = config

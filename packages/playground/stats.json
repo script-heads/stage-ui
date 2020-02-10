@@ -1,0 +1,1161 @@
+Webpack Bundle Analyzer is started at http://127.0.0.1:8888
+Use Ctrl+C to close it
+{
+  "errors": [],
+  "warnings": [],
+  "modules": [
+    {
+      "id": 0,
+      "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/react/index.js",
+      "name": "/Users/ekatanata/Projects/FlowUI/node_modules/react/index.js",
+      "index": 4,
+      "index2": 4,
+      "size": 190,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx",
+      "issuerId": null,
+      "issuerName": "./index.tsx",
+      "issuerPath": [
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx",
+          "name": "./index.tsx",
+          "profile": {
+            "factory": 23,
+            "building": 478
+          }
+        }
+      ],
+      "profile": {
+        "factory": 60,
+        "building": 265,
+        "dependencies": 168
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "id": 1,
+      "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/defineProperty.js",
+      "name": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/defineProperty.js",
+      "index": 3,
+      "index2": 1,
+      "size": 289,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/core/layout/Viewport/index.tsx",
+      "issuerId": null,
+      "issuerName": "../core/layout/Viewport/index.tsx",
+      "issuerPath": [
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx",
+          "name": "./index.tsx",
+          "profile": {
+            "factory": 23,
+            "building": 478
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/core/layout/Viewport/index.tsx",
+          "name": "../core/layout/Viewport/index.tsx",
+          "profile": {
+            "factory": 60,
+            "building": 265,
+            "dependencies": 168
+          }
+        }
+      ],
+      "profile": {
+        "factory": 168,
+        "building": 4,
+        "dependencies": 34
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "id": 2,
+      "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/extends.js",
+      "name": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/extends.js",
+      "index": 2,
+      "index2": 0,
+      "size": 427,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/core/control/Button/index.tsx",
+      "issuerId": null,
+      "issuerName": "../core/control/Button/index.tsx",
+      "issuerPath": [
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx",
+          "name": "./index.tsx",
+          "profile": {
+            "factory": 23,
+            "building": 478
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/core/control/Button/index.tsx",
+          "name": "../core/control/Button/index.tsx",
+          "profile": {
+            "factory": 60,
+            "building": 265,
+            "dependencies": 168
+          }
+        }
+      ],
+      "profile": {
+        "factory": 170,
+        "building": 80,
+        "dependencies": 56
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "id": 3,
+      "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/chroma-js/chroma.js",
+      "name": "/Users/ekatanata/Projects/FlowUI/node_modules/chroma-js/chroma.js",
+      "index": 37,
+      "index2": 31,
+      "size": 100003,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/core/control/Button/styles.ts",
+      "issuerId": null,
+      "issuerName": "../core/control/Button/styles.ts",
+      "issuerPath": [
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx",
+          "name": "./index.tsx",
+          "profile": {
+            "factory": 23,
+            "building": 478
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/core/control/Button/index.tsx",
+          "name": "../core/control/Button/index.tsx",
+          "profile": {
+            "factory": 60,
+            "building": 265,
+            "dependencies": 168
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/core/control/Button/styles.ts",
+          "name": "../core/control/Button/styles.ts",
+          "profile": {
+            "factory": 170,
+            "building": 80,
+            "dependencies": 56
+          }
+        }
+      ],
+      "profile": {
+        "factory": 72,
+        "building": 72
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "id": 4,
+      "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/slicedToArray.js",
+      "name": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/slicedToArray.js",
+      "index": 30,
+      "index2": 26,
+      "size": 319,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/core/layout/Viewport/MountArea.tsx",
+      "issuerId": null,
+      "issuerName": "../core/layout/Viewport/MountArea.tsx",
+      "issuerPath": [
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx",
+          "name": "./index.tsx",
+          "profile": {
+            "factory": 23,
+            "building": 478
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/core/layout/Viewport/index.tsx",
+          "name": "../core/layout/Viewport/index.tsx",
+          "profile": {
+            "factory": 60,
+            "building": 265,
+            "dependencies": 168
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/core/layout/Viewport/MountArea.tsx",
+          "name": "../core/layout/Viewport/MountArea.tsx",
+          "profile": {
+            "factory": 168,
+            "building": 4,
+            "dependencies": 34
+          }
+        }
+      ],
+      "profile": {
+        "factory": 15,
+        "building": 85
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "id": 5,
+      "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/object-assign/index.js",
+      "name": "/Users/ekatanata/Projects/FlowUI/node_modules/object-assign/index.js",
+      "index": 6,
+      "index2": 2,
+      "size": 2108,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/cjs/react-dom.production.min.js",
+      "issuerId": 16,
+      "issuerName": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/cjs/react-dom.production.min.js",
+      "issuerPath": [
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx",
+          "name": "./index.tsx",
+          "profile": {
+            "factory": 23,
+            "building": 478
+          }
+        },
+        {
+          "id": 9,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/index.js",
+          "name": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/index.js",
+          "profile": {
+            "factory": 60,
+            "building": 265,
+            "dependencies": 168
+          }
+        },
+        {
+          "id": 16,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/cjs/react-dom.production.min.js",
+          "name": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/cjs/react-dom.production.min.js",
+          "profile": {
+            "factory": 22,
+            "building": 145,
+            "dependencies": 138
+          }
+        }
+      ],
+      "profile": {
+        "factory": 277,
+        "building": 6
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "id": 6,
+      "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/inheritsLoose.js",
+      "name": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/inheritsLoose.js",
+      "index": 17,
+      "index2": 9,
+      "size": 223,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/Users/ekatanata/Projects/FlowUI/node_modules/@emotion/core/dist/core.browser.esm.js",
+      "issuerId": null,
+      "issuerName": "/Users/ekatanata/Projects/FlowUI/node_modules/@emotion/core/dist/core.browser.esm.js",
+      "issuerPath": [
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx",
+          "name": "./index.tsx",
+          "profile": {
+            "factory": 23,
+            "building": 478
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/@emotion/core/dist/core.browser.esm.js",
+          "name": "/Users/ekatanata/Projects/FlowUI/node_modules/@emotion/core/dist/core.browser.esm.js",
+          "profile": {
+            "factory": 60,
+            "building": 265,
+            "dependencies": 168
+          }
+        }
+      ],
+      "profile": {
+        "factory": 277,
+        "building": 18,
+        "dependencies": 10
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "id": 7,
+      "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js",
+      "name": "/Users/ekatanata/Projects/FlowUI/node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js",
+      "index": 24,
+      "index2": 19,
+      "size": 2743,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/Users/ekatanata/Projects/FlowUI/node_modules/emotion-theming/dist/emotion-theming.browser.esm.js",
+      "issuerId": null,
+      "issuerName": "/Users/ekatanata/Projects/FlowUI/node_modules/emotion-theming/dist/emotion-theming.browser.esm.js",
+      "issuerPath": [
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx",
+          "name": "./index.tsx",
+          "profile": {
+            "factory": 23,
+            "building": 478
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/core/control/Button/index.tsx",
+          "name": "../core/control/Button/index.tsx",
+          "profile": {
+            "factory": 60,
+            "building": 265,
+            "dependencies": 168
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/whale/index.ts",
+          "name": "../whale/index.ts",
+          "profile": {
+            "factory": 170,
+            "building": 80,
+            "dependencies": 56
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/whale/components/Provider.tsx",
+          "name": "../whale/components/Provider.tsx",
+          "profile": {
+            "factory": 5,
+            "building": 92,
+            "dependencies": 173
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/emotion-theming/dist/emotion-theming.browser.esm.js",
+          "name": "/Users/ekatanata/Projects/FlowUI/node_modules/emotion-theming/dist/emotion-theming.browser.esm.js",
+          "profile": {
+            "factory": 110,
+            "building": 1,
+            "dependencies": 1
+          }
+        }
+      ],
+      "profile": {
+        "factory": 2,
+        "building": 2
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "id": 8,
+      "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/typeof.js",
+      "name": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/typeof.js",
+      "index": 40,
+      "index2": 33,
+      "size": 479,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/whale/utils/mergeObjects.ts",
+      "issuerId": null,
+      "issuerName": "../whale/utils/mergeObjects.ts",
+      "issuerPath": [
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx",
+          "name": "./index.tsx",
+          "profile": {
+            "factory": 23,
+            "building": 478
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/core/control/Button/index.tsx",
+          "name": "../core/control/Button/index.tsx",
+          "profile": {
+            "factory": 60,
+            "building": 265,
+            "dependencies": 168
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/whale/index.ts",
+          "name": "../whale/index.ts",
+          "profile": {
+            "factory": 170,
+            "building": 80,
+            "dependencies": 56
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/whale/utils/createTheme.ts",
+          "name": "../whale/utils/createTheme.ts",
+          "profile": {
+            "factory": 5,
+            "building": 92,
+            "dependencies": 173
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/whale/utils/mergeObjects.ts",
+          "name": "../whale/utils/mergeObjects.ts",
+          "profile": {
+            "factory": 173,
+            "building": 18
+          }
+        }
+      ],
+      "profile": {
+        "factory": 89,
+        "building": 1
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "id": 9,
+      "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/index.js",
+      "name": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/index.js",
+      "index": 47,
+      "index2": 49,
+      "size": 1363,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx",
+      "issuerId": null,
+      "issuerName": "./index.tsx",
+      "issuerPath": [
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx",
+          "name": "./index.tsx",
+          "profile": {
+            "factory": 23,
+            "building": 478
+          }
+        }
+      ],
+      "profile": {
+        "factory": 60,
+        "building": 265,
+        "dependencies": 168
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "id": 10,
+      "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/react/cjs/react.production.min.js",
+      "name": "/Users/ekatanata/Projects/FlowUI/node_modules/react/cjs/react.production.min.js",
+      "index": 5,
+      "index2": 3,
+      "size": 6645,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/Users/ekatanata/Projects/FlowUI/node_modules/react/index.js",
+      "issuerId": 0,
+      "issuerName": "/Users/ekatanata/Projects/FlowUI/node_modules/react/index.js",
+      "issuerPath": [
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx",
+          "name": "./index.tsx",
+          "profile": {
+            "factory": 23,
+            "building": 478
+          }
+        },
+        {
+          "id": 0,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/react/index.js",
+          "name": "/Users/ekatanata/Projects/FlowUI/node_modules/react/index.js",
+          "profile": {
+            "factory": 60,
+            "building": 265,
+            "dependencies": 168
+          }
+        }
+      ],
+      "profile": {
+        "factory": 23,
+        "building": 154,
+        "dependencies": 269
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "id": 11,
+      "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/react-is/index.js",
+      "name": "/Users/ekatanata/Projects/FlowUI/node_modules/react-is/index.js",
+      "index": 25,
+      "index2": 18,
+      "size": 196,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/Users/ekatanata/Projects/FlowUI/node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js",
+      "issuerId": 7,
+      "issuerName": "/Users/ekatanata/Projects/FlowUI/node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js",
+      "issuerPath": [
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx",
+          "name": "./index.tsx",
+          "profile": {
+            "factory": 23,
+            "building": 478
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/core/control/Button/index.tsx",
+          "name": "../core/control/Button/index.tsx",
+          "profile": {
+            "factory": 60,
+            "building": 265,
+            "dependencies": 168
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/whale/index.ts",
+          "name": "../whale/index.ts",
+          "profile": {
+            "factory": 170,
+            "building": 80,
+            "dependencies": 56
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/whale/components/Provider.tsx",
+          "name": "../whale/components/Provider.tsx",
+          "profile": {
+            "factory": 5,
+            "building": 92,
+            "dependencies": 173
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/emotion-theming/dist/emotion-theming.browser.esm.js",
+          "name": "/Users/ekatanata/Projects/FlowUI/node_modules/emotion-theming/dist/emotion-theming.browser.esm.js",
+          "profile": {
+            "factory": 110,
+            "building": 1,
+            "dependencies": 1
+          }
+        },
+        {
+          "id": 7,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js",
+          "name": "/Users/ekatanata/Projects/FlowUI/node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js",
+          "profile": {
+            "factory": 2,
+            "building": 2
+          }
+        }
+      ],
+      "profile": {
+        "factory": 2,
+        "building": 0
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "id": 12,
+      "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/react-is/cjs/react-is.production.min.js",
+      "name": "/Users/ekatanata/Projects/FlowUI/node_modules/react-is/cjs/react-is.production.min.js",
+      "index": 26,
+      "index2": 17,
+      "size": 2557,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/Users/ekatanata/Projects/FlowUI/node_modules/react-is/index.js",
+      "issuerId": 11,
+      "issuerName": "/Users/ekatanata/Projects/FlowUI/node_modules/react-is/index.js",
+      "issuerPath": [
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx",
+          "name": "./index.tsx",
+          "profile": {
+            "factory": 23,
+            "building": 478
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/core/control/Button/index.tsx",
+          "name": "../core/control/Button/index.tsx",
+          "profile": {
+            "factory": 60,
+            "building": 265,
+            "dependencies": 168
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/whale/index.ts",
+          "name": "../whale/index.ts",
+          "profile": {
+            "factory": 170,
+            "building": 80,
+            "dependencies": 56
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/whale/components/Provider.tsx",
+          "name": "../whale/components/Provider.tsx",
+          "profile": {
+            "factory": 5,
+            "building": 92,
+            "dependencies": 173
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/emotion-theming/dist/emotion-theming.browser.esm.js",
+          "name": "/Users/ekatanata/Projects/FlowUI/node_modules/emotion-theming/dist/emotion-theming.browser.esm.js",
+          "profile": {
+            "factory": 110,
+            "building": 1,
+            "dependencies": 1
+          }
+        },
+        {
+          "id": 7,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js",
+          "name": "/Users/ekatanata/Projects/FlowUI/node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js",
+          "profile": {
+            "factory": 2,
+            "building": 2
+          }
+        },
+        {
+          "id": 11,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/react-is/index.js",
+          "name": "/Users/ekatanata/Projects/FlowUI/node_modules/react-is/index.js",
+          "profile": {
+            "factory": 2,
+            "building": 0
+          }
+        }
+      ],
+      "profile": {
+        "factory": 1,
+        "building": 3
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "id": 13,
+      "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/arrayWithHoles.js",
+      "name": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/arrayWithHoles.js",
+      "index": 31,
+      "index2": 23,
+      "size": 106,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/slicedToArray.js",
+      "issuerId": 4,
+      "issuerName": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/slicedToArray.js",
+      "issuerPath": [
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx",
+          "name": "./index.tsx",
+          "profile": {
+            "factory": 23,
+            "building": 478
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/core/layout/Viewport/index.tsx",
+          "name": "../core/layout/Viewport/index.tsx",
+          "profile": {
+            "factory": 60,
+            "building": 265,
+            "dependencies": 168
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/core/layout/Viewport/MountArea.tsx",
+          "name": "../core/layout/Viewport/MountArea.tsx",
+          "profile": {
+            "factory": 168,
+            "building": 4,
+            "dependencies": 34
+          }
+        },
+        {
+          "id": 4,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/slicedToArray.js",
+          "name": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/slicedToArray.js",
+          "profile": {
+            "factory": 15,
+            "building": 85
+          }
+        }
+      ],
+      "profile": {
+        "factory": 81,
+        "building": 2
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "id": 14,
+      "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/iterableToArrayLimit.js",
+      "name": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/iterableToArrayLimit.js",
+      "index": 32,
+      "index2": 24,
+      "size": 647,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/slicedToArray.js",
+      "issuerId": 4,
+      "issuerName": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/slicedToArray.js",
+      "issuerPath": [
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx",
+          "name": "./index.tsx",
+          "profile": {
+            "factory": 23,
+            "building": 478
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/core/layout/Viewport/index.tsx",
+          "name": "../core/layout/Viewport/index.tsx",
+          "profile": {
+            "factory": 60,
+            "building": 265,
+            "dependencies": 168
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/core/layout/Viewport/MountArea.tsx",
+          "name": "../core/layout/Viewport/MountArea.tsx",
+          "profile": {
+            "factory": 168,
+            "building": 4,
+            "dependencies": 34
+          }
+        },
+        {
+          "id": 4,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/slicedToArray.js",
+          "name": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/slicedToArray.js",
+          "profile": {
+            "factory": 15,
+            "building": 85
+          }
+        }
+      ],
+      "profile": {
+        "factory": 81,
+        "building": 2
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "id": 15,
+      "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/nonIterableRest.js",
+      "name": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/nonIterableRest.js",
+      "index": 33,
+      "index2": 25,
+      "size": 146,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/slicedToArray.js",
+      "issuerId": 4,
+      "issuerName": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/slicedToArray.js",
+      "issuerPath": [
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx",
+          "name": "./index.tsx",
+          "profile": {
+            "factory": 23,
+            "building": 478
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/core/layout/Viewport/index.tsx",
+          "name": "../core/layout/Viewport/index.tsx",
+          "profile": {
+            "factory": 60,
+            "building": 265,
+            "dependencies": 168
+          }
+        },
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/core/layout/Viewport/MountArea.tsx",
+          "name": "../core/layout/Viewport/MountArea.tsx",
+          "profile": {
+            "factory": 168,
+            "building": 4,
+            "dependencies": 34
+          }
+        },
+        {
+          "id": 4,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/slicedToArray.js",
+          "name": "/Users/ekatanata/Projects/FlowUI/node_modules/@babel/runtime/helpers/slicedToArray.js",
+          "profile": {
+            "factory": 15,
+            "building": 85
+          }
+        }
+      ],
+      "profile": {
+        "factory": 81,
+        "building": 2
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "id": 16,
+      "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/cjs/react-dom.production.min.js",
+      "name": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/cjs/react-dom.production.min.js",
+      "index": 48,
+      "index2": 48,
+      "size": 119155,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/index.js",
+      "issuerId": 9,
+      "issuerName": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/index.js",
+      "issuerPath": [
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx",
+          "name": "./index.tsx",
+          "profile": {
+            "factory": 23,
+            "building": 478
+          }
+        },
+        {
+          "id": 9,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/index.js",
+          "name": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/index.js",
+          "profile": {
+            "factory": 60,
+            "building": 265,
+            "dependencies": 168
+          }
+        }
+      ],
+      "profile": {
+        "factory": 22,
+        "building": 145,
+        "dependencies": 138
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "id": 17,
+      "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/scheduler/index.js",
+      "name": "/Users/ekatanata/Projects/FlowUI/node_modules/scheduler/index.js",
+      "index": 49,
+      "index2": 47,
+      "size": 198,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/cjs/react-dom.production.min.js",
+      "issuerId": 16,
+      "issuerName": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/cjs/react-dom.production.min.js",
+      "issuerPath": [
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx",
+          "name": "./index.tsx",
+          "profile": {
+            "factory": 23,
+            "building": 478
+          }
+        },
+        {
+          "id": 9,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/index.js",
+          "name": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/index.js",
+          "profile": {
+            "factory": 60,
+            "building": 265,
+            "dependencies": 168
+          }
+        },
+        {
+          "id": 16,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/cjs/react-dom.production.min.js",
+          "name": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/cjs/react-dom.production.min.js",
+          "profile": {
+            "factory": 22,
+            "building": 145,
+            "dependencies": 138
+          }
+        }
+      ],
+      "profile": {
+        "factory": 277,
+        "building": 6
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "id": 18,
+      "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/scheduler/cjs/scheduler.production.min.js",
+      "name": "/Users/ekatanata/Projects/FlowUI/node_modules/scheduler/cjs/scheduler.production.min.js",
+      "index": 50,
+      "index2": 46,
+      "size": 5109,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/Users/ekatanata/Projects/FlowUI/node_modules/scheduler/index.js",
+      "issuerId": 17,
+      "issuerName": "/Users/ekatanata/Projects/FlowUI/node_modules/scheduler/index.js",
+      "issuerPath": [
+        {
+          "id": null,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx",
+          "name": "./index.tsx",
+          "profile": {
+            "factory": 23,
+            "building": 478
+          }
+        },
+        {
+          "id": 9,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/index.js",
+          "name": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/index.js",
+          "profile": {
+            "factory": 60,
+            "building": 265,
+            "dependencies": 168
+          }
+        },
+        {
+          "id": 16,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/cjs/react-dom.production.min.js",
+          "name": "/Users/ekatanata/Projects/FlowUI/node_modules/react-dom/cjs/react-dom.production.min.js",
+          "profile": {
+            "factory": 22,
+            "building": 145,
+            "dependencies": 138
+          }
+        },
+        {
+          "id": 17,
+          "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/scheduler/index.js",
+          "name": "/Users/ekatanata/Projects/FlowUI/node_modules/scheduler/index.js",
+          "profile": {
+            "factory": 277,
+            "building": 6
+          }
+        }
+      ],
+      "profile": {
+        "factory": 4,
+        "building": 11
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "id": 19,
+      "identifier": "/Users/ekatanata/Projects/FlowUI/node_modules/babel-loader/lib/index.js??ref--4-oneOf-0!/Users/ekatanata/Projects/FlowUI/packages/playground/index.tsx b06b0b102fd0e0d5b5eb3fe44a6ad044",
+      "name": "./index.tsx + 32 modules",
+      "index": 0,
+      "index2": 51,
+      "size": 106048,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": null,
+      "issuerId": null,
+      "issuerName": null,
+      "issuerPath": null,
+      "failed": false,
+      "errors": 0,
+      "warnings": 0
+    }
+  ],
+  "filteredModules": 0,
+  "logging": {
+    "webpack.buildChunkGraph.visitModules": {
+      "entries": [],
+      "filteredEntries": 2,
+      "debug": false
+    }
+  }
+}
