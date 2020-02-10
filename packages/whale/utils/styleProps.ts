@@ -26,18 +26,10 @@ type Border = {
 }
 type Padding = {
     padding: CSS.Properties['padding']
-    paddingTop: CSS.Properties['paddingTop']
-    paddingLeft: CSS.Properties['paddingLeft']
-    paddingRight: CSS.Properties['paddingRight']
-    paddingBottom: CSS.Properties['paddingBottom']
 }
 
 type Margin = {
     margin: CSS.Properties['margin']
-    marginTop: CSS.Properties['marginTop']
-    marginLeft: CSS.Properties['marginLeft']
-    marginRight: CSS.Properties['marginRight']
-    marginBottom: CSS.Properties['marginBottom']
 }
 
 type Layout = {
@@ -81,21 +73,40 @@ export interface InjectedStyles {
     all: Margin & Flex & Grid & Padding & Layout & Color & Border
 }
 
+type Resolver = (propName: any, propsName: string, theme: WhaleTypes.Theme, context: ResolverContext) => string
+type ResolverContext = {
+    padding: [string, string, string, string],
+    margin: [string, string, string, string]
+}
+
 type InjectedStylesNames = keyof InjectedStyles
 
-const colorResolver = (propValue, propName, theme) => {
+const colorResolver: Resolver = (propValue, propName, theme, ctx) => {
     return colorProp(propValue, theme.color)?.rgb().string()
 }
 
-const pmResolver = (propValue, propName: 'px' | 'mx' | 'py' | 'my', theme) => {
-    switch (propName) {
-        case 'px':
-        case 'mx':
-            return `0 ${propValue}`
-        case 'py':
-        case 'my':
-            return `${propValue} 0`
+const pmResolver: Resolver = (propValue, propName, theme, ctx) => {
+    const arrv = propValue.split(' ')
+    const key = propName[0] === 'p' ? 'padding' : 'margin'
+    const isX = propName[1] === 'x'
+    const isY = propName[1] === 'y'
+   
+    if (propName.length === 1) {
+        ctx[key][0] = arrv[0]
+        ctx[key][1] = arrv[2] ? arrv[1] : arrv[0]
+        ctx[key][2] = arrv[2] || arrv[0]
+        ctx[key][3] = arrv[3] || arrv[0]
+    } else {
+        if (propName[1] === 't' || propName[1] === 'b' || isY) {
+            ctx[key][0] = arrv[0]
+            if (isY) ctx[key][2] = arrv[1] || arrv[0]
+        }
+        if (propName[1] === 'l' || propName[1] === 'r' || isX) {
+            ctx[key][1] = arrv[0]
+            if (isX) ctx[key][3] = arrv[1] || arrv[0]
+        }
     }
+    return ctx[key].join(' ')
 }
 
 const animatedResolver = (propValue, propName, theme) => {
@@ -114,22 +125,22 @@ const nameResolver = {
     borderRadius: ['border', 'borderRadius'],
 
     //Padding
-    p: ['padding', 'padding'],
+    p: ['padding', 'padding', pmResolver],
     px: ['padding', 'padding', pmResolver],
     py: ['padding', 'padding', pmResolver],
-    pt: ['padding', 'paddingTop'],
-    pr: ['padding', 'paddingRight'],
-    pb: ['padding', 'paddingBottom'],
-    pl: ['padding', 'paddingLeft'],        
+    pt: ['padding', 'padding', pmResolver],
+    pr: ['padding', 'padding', pmResolver],
+    pb: ['padding', 'padding', pmResolver],
+    pl: ['padding', 'padding', pmResolver],        
 
     //Margin
     m: ['margin', 'margin'],
     mx: ['margin', 'margin', pmResolver],
     my: ['margin', 'margin', pmResolver],
-    mt: ['margin', 'marginTop'],
-    mr: ['margin', 'marginRight'],
-    mb: ['margin', 'marginBottom'],
-    ml: ['margin', 'marginLeft'],
+    mt: ['margin', 'margin', pmResolver],
+    mr: ['margin', 'margin', pmResolver],
+    mb: ['margin', 'margin', pmResolver],
+    ml: ['margin', 'margin', pmResolver],
 
     //Layout
     display: ['layout', 'display'],
@@ -160,7 +171,10 @@ const nameResolver = {
 export const useStyleProps = (props: Props, theme, queries) => {
     
     const styles = {} as InjectedStyles
-    
+    const context: ResolverContext = {
+        margin: ['0','0','0','0'],
+        padding: ['0','0','0','0'],
+    }
     Object.keys(props).forEach(propName => {
         if (nameResolver[propName]) {
             const value = props[propName]
@@ -171,12 +185,12 @@ export const useStyleProps = (props: Props, theme, queries) => {
             if (Array.isArray(value)) {
                 value.forEach((point, index) => { 
                     styles[section][index ? queries[index] : styleName] = resolver 
-                        ? resolver(point,propName,theme) 
+                        ? resolver(point,propName,theme,context) 
                         : point
                 })
             } else {
                 styles[section][styleName] = resolver 
-                    ? resolver(value,propName,theme) 
+                    ? resolver(value,propName,theme,context) 
                     : value
             }
         }
