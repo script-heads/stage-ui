@@ -9,10 +9,10 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
         container: [
             {
                 width: '100%',
-                backgroundColor: theme.color.surface.css(),
+                backgroundColor: theme.color.surface.rgb().string(),
                 borderCollapse: 'inherit',
                 borderRadius: theme.radius.default,
-                background: theme.color.surface.css(),
+                background: theme.color.surface.rgb().string(),
                 boxShadow: theme.assets.shadow.short
             }
         ],

@@ -17,7 +17,7 @@ const MenuSection = (props: MenuSectionProps) => {
 			{search === '' && section != 'Index' &&
 				<Text
 					size="s"
-					color={c => c.light.css()}
+					color={c => c.light}
 					children={section}
 					// css={{
 					// 	[`@media (max-width: ${window.breakpoints[0]}px)`]: {

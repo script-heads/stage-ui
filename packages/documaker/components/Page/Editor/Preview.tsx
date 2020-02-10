@@ -50,12 +50,12 @@ const Preview = (props: PreviewProps) => {
                             position: 'absolute',
                             // zIndex: -1,
                             left: 0, right: 0, bottom: 0, top: 0,
-                            backgroundColor: theme.color.background.hex(),
+                            backgroundColor: theme.color.background.rgb().string(),
                             backgroundImage: `
-                                linear-gradient(45deg, ${theme.color.surface.hex()} 25%, transparent 25%),
-                                linear-gradient(-45deg, ${theme.color.surface.hex()} 25%, transparent 25%), 
-                                linear-gradient(45deg, transparent 75%, ${theme.color.surface.hex()} 75%), 
-                                linear-gradient(-45deg, transparent 75%, ${theme.color.surface.hex()} 75%)
+                                linear-gradient(45deg, ${theme.color.surface.rgb().string()} 25%, transparent 25%),
+                                linear-gradient(-45deg, ${theme.color.surface.rgb().string()} 25%, transparent 25%), 
+                                linear-gradient(45deg, transparent 75%, ${theme.color.surface.rgb().string()} 75%), 
+                                linear-gradient(-45deg, transparent 75%, ${theme.color.surface.rgb().string()} 75%)
                             `,
                             backgroundSize: '2rem 2rem',
                             backgroundPosition: '0 0, 0 1rem, 1rem -1rem, -1rem 0px',

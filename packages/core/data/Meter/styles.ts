@@ -1,13 +1,12 @@
 
-import callProp from '@flow-ui/core/misc/utils/callProp'
+import colorProp from '@flow-ui/whale/utils/colorProp'
 import WhaleTypes from '@flow-ui/whale/types'
-import chroma from 'chroma-js'
 import Types from './types'
 
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
     const { loading } = props
 
-    const color = chroma(callProp(props.color, theme.color) || theme.color.primary.css())
+    const color = colorProp(props.color, theme.color) || theme.color.primary
 
     return {
         container: (variant) => [
@@ -20,7 +19,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 borderWidth: '1px',
                 borderStyle: 'solid',
                 borderColor: 'transparent',
-                background: theme.color.surface.css(),
+                background: theme.color.surface.rgb().string(),
                 height: '0.75rem',
             },
             variant({
@@ -47,7 +46,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                     outline: [
                         {
                             background: 'transparent',
-                            borderColor: color.css(),
+                            borderColor: color.rgb().string(),
                             padding: '0.15rem',
                         },
                         variant({
@@ -75,7 +74,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
         thumb: (variant) => [
             {
                 height: '100%',
-                background: color.css(),
+                background: color.rgb().string(),
                 animation: loading ? 'move 2s linear infinite' : 'none',
                 position: 'relative',
                 overflow: 'hidden',

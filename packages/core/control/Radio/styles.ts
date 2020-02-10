@@ -12,9 +12,9 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: theme.color.surface.css(),
-                backgroundColor: theme.color.surface.css(),
-                borderColor: theme.color.primary.css(),
+                color: theme.color.surface.rgb().string(),
+                backgroundColor: theme.color.surface.rgb().string(),
+                borderColor: theme.color.primary.rgb().string(),
                 borderWidth: theme.assets.border.width,
                 borderStyle: theme.assets.border.style,
                 borderRadius: '50%'
@@ -46,9 +46,9 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                     transition: 'all .15s'
                 }],
                 disabled: [{
-                    color: theme.color.hardest.css(),
-                    backgroundColor: theme.color.lightest.css(),
-                    borderColor: theme.color.lightest.css()
+                    color: theme.color.hardest.rgb().string(),
+                    backgroundColor: theme.color.lightest.rgb().string(),
+                    borderColor: theme.color.lightest.rgb().string()
                 }]
             }),
             
@@ -64,8 +64,8 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 borderRadius: '50%',
                 borderWidth: '0.25rem',
                 borderStyle: 'solid',
-                borderColor: theme.color.surface.css(),
-                backgroundColor: theme.color.primary.css(),
+                borderColor: theme.color.surface.rgb().string(),
+                backgroundColor: theme.color.primary.rgb().string(),
                 boxShadow: theme.assets.shadow.default,
             },
             variant({
@@ -84,7 +84,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                     transition: 'all .15s'
                 }],
                 disabled: [{
-                    borderColor: theme.color.lightest.css(),
+                    borderColor: theme.color.lightest.rgb().string(),
                     boxShadow: 'none',
                 }]
             })

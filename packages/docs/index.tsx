@@ -44,31 +44,31 @@ export default (props: HomePageProps) => {
             { 
                 t: 50, 
                 meterPercent: 30,
-                c1: theme.color.lightest.css(),
-                c2: theme.color.lightest.css(),
-                c3: theme.color.lightest.css(),
-                c4: theme.color.lightest.css(),
+                c1: theme.color.lightest,
+                c2: theme.color.lightest,
+                c3: theme.color.lightest,
+                c4: theme.color.lightest,
                 shape: 'rounded',
                 radioOn: true,
                 buttonDecoration: 'filled',
             },
             { t: 250, iconCount: 2 },
             { t: 250, iconCount: 3, meterPercent: 10 },
-            { t: 250, iconCount: 4, checkOn: false, emailIcon: false,  c1: theme.color.primary.css(), },
+            { t: 250, iconCount: 4, checkOn: false, emailIcon: false,  c1: theme.color.primary, },
             { t: 250, emailText: 'E', switchOn: true, radioOn: false, },
             { 
                 t: 250, 
                 emailText: 'E-',
-                c2: theme.color.primary.css(),
-                c1: theme.color.lightest.css()
+                c2: theme.color.primary,
+                c1: theme.color.lightest
             },
             { t: 250, emailText: 'E-Ma', meterPercent: 40, radioOn: true,  },
             { t: 250, emailText: 'E-Mai', checkOn: true },
             { 
                 t: 250, 
                 emailText: 'E-Mail', 
-                c3: theme.color.primary.css(),
-                c2: theme.color.lightest.css(),
+                c3: theme.color.primary,
+                c2: theme.color.lightest,
                 switchOn: false,
                 meterPercent: 30,
                 buttonText: 'S',
@@ -88,8 +88,8 @@ export default (props: HomePageProps) => {
                 buttonDecoration: 'text',
                 meterPercent: 70,
                 radioOn: false,
-                c4: theme.color.primary.css(),
-                c3: theme.color.lightest.css(),
+                c4: theme.color.primary,
+                c3: theme.color.lightest,
             },
             { t: 250, buttonText: 'Submi', meterPercent: 50 },
             { t: 500, buttonText: 'Submit', switchOn: false, shape: 'square', }
@@ -116,7 +116,7 @@ export default (props: HomePageProps) => {
                 <Paragraph
                     w="22rem"
                     size="l"
-                    color={c => c.light.hex()}
+                    color={c => c.light}
                     children="Consistent React UI Framework declared by your own Design System."
                 />
                 <Flexbox mt="2rem" wrap="wrap">
@@ -130,7 +130,7 @@ export default (props: HomePageProps) => {
                     <Button
                         size="l"
                         mb="0.5rem"
-                        color={c => c.lightest.hex()}
+                        color={c => c.lightest}
                         onClick={() => props.history.push('architect')}
                         children="🚧 Architect"
                     />
@@ -139,10 +139,10 @@ export default (props: HomePageProps) => {
             <Block w="20rem" m="2rem" decoration="surface" overflow="hidden">
                 <Block p="2rem">
                     <Flexbox justifyContent="space-around" pb="1rem">
-                        {pd.iconCount > 0 && <People size="2rem" color={c => pd.c1} />}
-                        {pd.iconCount > 1 && <Cube size="2rem" color={c => pd.c2} />}
-                        {pd.iconCount > 2 && <PaperPlane size="2rem" color={c => pd.c3} />}
-                        {pd.iconCount > 3 && <Settings size="2rem" color={c=> pd.c4} />}
+                        {pd.iconCount > 0 && <People size="2rem" color={pd.c1} />}
+                        {pd.iconCount > 1 && <Cube size="2rem" color={pd.c2} />}
+                        {pd.iconCount > 2 && <PaperPlane size="2rem" color={pd.c3} />}
+                        {pd.iconCount > 3 && <Settings size="2rem" color={pd.c4} />}
                     </Flexbox>
                     <Range css={{ '>div': { transition: 'all .1s' } }} value={pd.meterPercent} />
                     <Flexbox justifyContent="space-around" py="1rem">

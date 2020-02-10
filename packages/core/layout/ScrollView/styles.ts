@@ -1,13 +1,10 @@
-import callProp from '@flow-ui/core/misc/utils/callProp'
 import WhaleTypes from '@flow-ui/whale/types'
-import chroma from 'chroma-js'
+import colorProp from '@flow-ui/whale/utils/colorProp'
 import Types from './types'
 
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
 
-    let color = chroma(
-        callProp(props.color, theme.color) || theme.color.onBackground.css()
-    )
+    let color = colorProp(props.color, theme.color) || theme.color.onBackground
 
     return {
         container: [
@@ -41,7 +38,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 right: 0,
                 width: '0.75rem',
                 borderRadius: '5rem',
-                backgroundColor: color.alpha(0.1).css(),
+                backgroundColor: color?.alpha(0.1).rgb().string(),
                 transition: 'opacity 0.5s',
                 willChange: 'opacity',
                 opacity: 0,
@@ -86,7 +83,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 width: '0.75rem',
                 height: '100%',
                 borderRadius: '1rem',
-                backgroundColor: color.css(),
+                backgroundColor: color.rgb().string(),
                 opacity: 0,
                 transition: 'opacity 0.5s',
                 willChange: 'opacity',
@@ -124,7 +121,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 height: '0.5rem',
                 width: '100%',
                 borderRadius: '1rem',
-                backgroundColor: color.alpha(0.1).css(),
+                backgroundColor: color.alpha(0.1).rgb().string(),
                 transition: 'opacity 0.5s',
                 willChange: 'opacity',
                 opacity: 0,
@@ -169,7 +166,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 height: '0.5rem',
                 width: '100%',
                 borderRadius: '1rem',
-                backgroundColor: color.css(),
+                backgroundColor: color.rgb().string(),
                 opacity: 0,
                 transition: 'opacity 0.5s',
                 willChange: 'opacity',

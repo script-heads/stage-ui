@@ -8,11 +8,11 @@ const Anchor: RefForwardingComponent<HTMLAnchorElement, Types.AnchorProps> = (pr
     
     return (
         <Typography
-           tabIndex={props.tabIndex || (props.onClick || props.onEnter) && 0}
+            tabIndex={props.tabIndex || (props.onClick || props.onEnter) && 0}
             tag="a"
             sizesOf="text"
             specificStyles={{
-                color: theme.color.primary.css(),
+                color: theme.color.primary,
                 '&:hover': {
                     textDecoration: 'underline'
                 },

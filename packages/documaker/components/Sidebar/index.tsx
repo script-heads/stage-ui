@@ -51,13 +51,13 @@ const Sidebar = (props: SidebarProps) => {
 			<Block
 				p="1.5rem"
 				css={(theme: WhaleTypes.Theme) => ([{
-					background: theme.color.surface.css()
+					background: theme.color.surface.rgb().string()
 				},{
 					[`@media (max-width: ${window.breakpoints[1]}px)`]: [
 						{
 							position: 'absolute',
 							width: '100%',
-							backgroundColor: theme.color.background.css(),
+							backgroundColor: theme.color.background.rgb().string(),
 							zIndex: 200,
 						},
 						// !visibility && {
@@ -65,18 +65,18 @@ const Sidebar = (props: SidebarProps) => {
 						// }
 					]
 				}])}>
-				<Block 
+				<Block
 					m="-0.5rem" 
 					p="0.5rem" 
 					ml="-1.5rem" 
 					pl="1.5rem" 
 					// css={{ opacity: 0.4 }}
-					// backgroundColor={c => c.onSurface.css()}
+					// backgroundColor={c => c.onSurface}
 					>
 					<Header 
 						size="s"
 						weight="bold"
-						// color={c => c.surface.css()}
+						// color={c => c.surface}
 						css={{ cursor: 'pointer' }}
 						onClick={props.setIndex}
 						children={props.title}
@@ -101,7 +101,7 @@ const Sidebar = (props: SidebarProps) => {
 						css={{ opacity: 0.5 }}
 						onClick={props.setIndex}
 						weight={600}
-						// color={c => c.surface.css()}
+						// color={c => c.surface}
 						children={'Documentation'}
 					/>
 				</Block>
@@ -144,7 +144,7 @@ const Sidebar = (props: SidebarProps) => {
 				alignItems={'center'}
 				justifyContent={'center'}
 				onClick={() => setMobileVisible(v => !v)}
-				backgroundColor={c => c.primary.css()}
+				backgroundColor={c => c.primary}
 				css={[
 					{
 						position: 'fixed',
@@ -161,7 +161,7 @@ const Sidebar = (props: SidebarProps) => {
 					}
 				]}>
 				<VisibilityIcon
-					color={c => c.onPrimary.css()}
+					color={c => c.onPrimary}
 					size={'2rem'}
 				/>
 			</Flexbox>

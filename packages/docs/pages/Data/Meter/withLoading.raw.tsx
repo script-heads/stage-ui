@@ -6,7 +6,7 @@ export default () => {
         <Meter
             loading
             percent={100}
-            color={c => c.secondary.css()}
+            color={c => c.secondary}
         />
     )
 }

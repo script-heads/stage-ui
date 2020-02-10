@@ -196,7 +196,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                     props.rightChild || <ArrowIosDownward
                         alignSelf="center"
                         size={size}
-                        color={c => isOpen ? c.primary.css() : c.light.css()}
+                        color={c => isOpen ? c.primary : c.light}
                         rotate={(isOpen && options.length > 0) ? 180 : 0}
                         onClick={(e) => {
                             e.preventDefault()

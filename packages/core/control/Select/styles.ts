@@ -14,8 +14,8 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props, Types.StyleP
         ...fieldStyles<Types.Overrides>(props, theme, {
             field: (variant) => [
                 params?.isOpen && {
-                    borderColor: theme.color.primary.css(),
-                    borderBottomColor: theme.color.lightest.css(),
+                    borderColor: theme.color.primary.rgb().string(),
+                    borderBottomColor: theme.color.lightest.rgb().string(),
                     borderBottomLeftRadius: 0,
                     borderBottomRightRadius: 0,
                 },
@@ -43,8 +43,8 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props, Types.StyleP
         drop: (variant) => [
             {
                 position: 'relative',
-                background: theme.color.surface.css(),
-                borderColor: theme.color.primary.css(),
+                background: theme.color.surface.rgb().string(),
+                borderColor: theme.color.primary.rgb().string(),
                 borderRadius: theme.radius.narrow,
                 borderWidth: '1px',
                 borderStyle: 'solid',
@@ -105,8 +105,8 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props, Types.StyleP
                 alignItems: 'center',
                 cursor: 'pointer',
                 ':hover': {
-                    color: theme.color.primary.css(),
-                    backgroundColor: theme.color.primary.alpha(0.1).css()
+                    color: theme.color.primary.rgb().string(),
+                    backgroundColor: theme.color.primary.alpha(0.1).rgb().string()
                 }
             },
             variant({
@@ -139,12 +139,12 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props, Types.StyleP
                 font: 'inherit',
                 cursor: 'inherit',
                 '&::placeholder': {
-                    color: theme.color.light.css()
+                    color: theme.color.light.rgb().string()
                 },
             },
             variant({
                 searchMode: {
-                    color: theme.color.hard.css()
+                    color: theme.color.hard.rgb().string()
                 },
                 // multiselect: {
                 //     width: 'auto',
@@ -155,13 +155,13 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props, Types.StyleP
         tag: (variant) => [
             {
                 display: 'inline-flex',
-                background: theme.color.primary.alpha(0.2).css(),
+                background: theme.color.primary.alpha(0.2).rgb().string(),
                 borderWidth: '1px',
                 borderStyle: 'solid',
-                borderColor: theme.color.primary.css(),
+                borderColor: theme.color.primary.rgb().string(),
                 borderRadius: `calc(${theme.radius.narrow} / 2)`,
                 boxSizing: 'border-box',
-                color: theme.color.primary.css(),
+                color: theme.color.primary.rgb().string(),
                 padding: `0 calc(${minHeight} / 5)`,
                 marginRight: `calc(${minHeight} / 10)`,
                 // marginLeft: 0,
@@ -202,11 +202,11 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props, Types.StyleP
                 marginLeft: `calc(${minHeight} / 10)`,
                 marginRight: `calc(-${minHeight} / 10)`,
                 borderLeft: '1px solid',
-                borderColor: theme.color.primary.alpha(0.2).css(),
-                color: theme.color.primary.alpha(0.8).css(),
+                borderColor: theme.color.primary.alpha(0.2).rgb().string(),
+                color: theme.color.primary.alpha(0.8).rgb().string(),
                 cursor: 'pointer',
                 ':hover': {
-                    color: theme.color.primary.css()
+                    color: theme.color.primary.rgb().string()
                 },
             },
         ],

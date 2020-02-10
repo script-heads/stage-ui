@@ -13,16 +13,16 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: theme.color.primary.css(),
-                borderColor: theme.color.lightest.css(),
-                backgroundColor: theme.color.surface.css(),
+                color: theme.color.primary.rgb().string(),
+                borderColor: theme.color.lightest.rgb().string(),
+                backgroundColor: theme.color.surface.rgb().string(),
                 borderWidth: theme.assets.border.width,
                 borderStyle: theme.assets.border.style,
                 borderRadius: theme.radius.narrow,
             },
             variant({
                 focus: [{
-                    borderColor: theme.color.primary.alpha(0.5).css()
+                    borderColor: theme.color.primary.alpha(0.5).rgb().string()
                 }]
             }),
             variant({
@@ -52,9 +52,9 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                     transition: 'all .15s'
                 }],
                 disabled: [{
-                    color: theme.color.hardest.css(),
-                    borderColor: theme.color.lightest.css(),
-                    backgroundColor: theme.color.lightest.css(),
+                    color: theme.color.hardest.rgb().string(),
+                    borderColor: theme.color.lightest.rgb().string(),
+                    backgroundColor: theme.color.lightest.rgb().string(),
                 }],
             }),
         ],

@@ -28,7 +28,7 @@ const dark = light.replace({
     },
     assets: (theme) => ({
         border: {
-            color: theme.color.lightest.css()
+            color: theme.color.lightest.rgb().string()
         },
     })
 })

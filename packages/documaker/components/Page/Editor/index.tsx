@@ -3,10 +3,10 @@ import { Collapse, Expand, Grid } from '@flow-ui/core/icons'
 import { PageType } from '@flow-ui/documaker/core'
 import monaco from '@flow-ui/documaker/monaco'
 import { Split } from '@flow-ui/lab'
-import chroma from 'chroma-js'
 import React, { Fragment, useEffect, useState } from 'react'
 import ErrorBoundary from './ErrorBoundary'
 import Preview from './Preview'
+import Color from 'color'
 
 interface EditorProps {
     cases: Exclude<PageType['cases'], undefined>
@@ -78,7 +78,7 @@ const Editor = (props: EditorProps) => {
 
     useEffect(() => {
         monaco.setTheme(
-            chroma.contrast('#fff', theme.color.background) > 3
+            theme.color.background.contrast(Color('#fff')) > 3
                 ? 'vs-dark'
                 : 'vs'
         )
@@ -113,8 +113,8 @@ const Editor = (props: EditorProps) => {
                         
                         weight={600}
                         color={c => caseIndex === currentCase
-                            ? c.primary.css()
-                            : c.onBackground.css()}
+                            ? c.primary
+                            : c.onBackground}
                         children={c.label}
                         onClick={() => setCurrentCase(caseIndex)}
                         css={{ cursor: 'pointer' }}
@@ -125,8 +125,8 @@ const Editor = (props: EditorProps) => {
                     size="1.25rem"
                     mr="1rem"
                     color={c => grid
-                        ? c.primary.css()
-                        : c.onSurface.css()
+                        ? c.primary
+                        : c.onSurface
                     }
                     onClick={() => {
                         localStorage.setItem(
@@ -140,7 +140,7 @@ const Editor = (props: EditorProps) => {
                 />
                 <Expand
                     size="1.25rem"
-                    color={c => c.onSurface.css()}
+                    color={c => c.onSurface}
                     onClick={() => setFullscreen(true)}
                 />
             </Flexbox>
@@ -148,7 +148,7 @@ const Editor = (props: EditorProps) => {
                 mb="2rem"
                 h="24rem"
                 decoration="surface"
-                backgroundColor={c => c.background.css()}
+                backgroundColor={c => c.background}
                 css={[
                     {
                         overflow: 'hidden',
@@ -182,7 +182,7 @@ const Editor = (props: EditorProps) => {
                         {fullscreen && (
                             <Collapse
                                 shape="oval"
-                                background={c => c.lightest.css()}
+                                background={c => c.lightest}
                                 css={{
                                     position: 'fixed',
                                     top: '1rem',

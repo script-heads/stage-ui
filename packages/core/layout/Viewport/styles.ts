@@ -4,8 +4,8 @@ import Types from './types'
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
 
     const attachTheme = {
-        background: theme.color.background.css(),
-        color: theme.color.onBackground.css(),
+        background: theme.color.background.rgb().string(),
+        color: theme.color.onBackground.rgb().string(),
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
         'p': theme.typography.paragraph,
         'h1': theme.typography.header.l,

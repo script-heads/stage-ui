@@ -6,15 +6,15 @@ export default () => {
     const Content = props => (
         <Flexbox column alignItems="center">
             <Icon.AlertTriangle 
-                color={c => c.warning.css()}
+                color={c => c.warning}
                 size="4rem"
             />
             <Header 
-                color={c => c.warning.css()}
+                color={c => c.warning}
                 children="Alert"
             />
             <Paragraph
-                color={c => c.hard.css()}
+                color={c => c.hard}
                 children="Warning happened"
             />
             <Button

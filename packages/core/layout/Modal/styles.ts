@@ -36,7 +36,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
             {
                 opacity: 0,
                 zIndex: 200,
-                backgroundColor: theme.color.backgroundVariant.css(),
+                backgroundColor: theme.color.backgroundVariant.rgb().string(),
                 minHeight: '1rem',
                 minWidth: '15rem',
                 maxWidth: '40rem',

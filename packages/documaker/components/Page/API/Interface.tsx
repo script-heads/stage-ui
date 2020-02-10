@@ -78,7 +78,7 @@ const Type = (props: { type: TypeInterfaceChild, last: boolean }) => {
     const LightText = (props: { children: string }) => (
         <Text
         size="s"
-        color={c => c.hard.css()}
+        color={c => c.hard}
             children={props.children}
         />
     )
@@ -96,7 +96,7 @@ const Type = (props: { type: TypeInterfaceChild, last: boolean }) => {
                 p=".125rem 0.25rem"
                 mx=".125rem"
                 mb=".25rem"
-                backgroundColor={c => c.lightest.css()}
+                backgroundColor={c => c.lightest}
                 css={{ borderRadius: '.25rem' }}
                 children={`${value}`}
             />
@@ -123,7 +123,7 @@ const Type = (props: { type: TypeInterfaceChild, last: boolean }) => {
                                     p=".125rem 0.25rem"
                                     mx=".125rem"
                                     mb=".25rem"
-                                    backgroundColor={c => c.lightest.css()}
+                                    backgroundColor={c => c.lightest}
                                     css={{ borderRadius: '.25rem' }}
                                     children={`${signature.type.name}`}
                                 />
@@ -163,7 +163,7 @@ const Type = (props: { type: TypeInterfaceChild, last: boolean }) => {
                     mb=".25rem"
                     display="block"
                     size="s"
-                    color={c => c.hard.css()}
+                    color={c => c.hard}
                     children={comment}
                 />
             </Block>

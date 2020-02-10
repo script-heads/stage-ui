@@ -17,6 +17,8 @@ const useComponent = <S, P>(overrideName: string, options: Options<S>, params = 
     const { props, mouseFocus, focusDecoration, styleProps } = options
 
     const theme = options.theme || useTheme()
+    theme.breakpoints = theme.breakpoints || ['576px','768px','992px','1200px']
+    const queries = theme.breakpoints.map(bp => `@media (min-width: ${bp})`)
 
     const { attributes, events, focus } = attributeProps(props, theme, mouseFocus, focusDecoration)
 
@@ -65,7 +67,7 @@ const useComponent = <S, P>(overrideName: string, options: Options<S>, params = 
                     styles[styleName](variant),
                     themeOverrides?.[styleName]?.(variant),
                     props.styles?.[styleName]?.(variant),
-                    getStyleProps(props, theme, styleProps?.[styleName])
+                    getStyleProps(props, theme, queries, styleProps?.[styleName])
                 )
             }
         } else {
@@ -73,7 +75,7 @@ const useComponent = <S, P>(overrideName: string, options: Options<S>, params = 
                 styles[styleName],
                 themeOverrides?.[styleName],
                 props.styles?.[styleName],
-                getStyleProps(props, theme, styleProps?.[styleName])
+                getStyleProps(props, theme, queries, styleProps?.[styleName])
             )
         }
     })

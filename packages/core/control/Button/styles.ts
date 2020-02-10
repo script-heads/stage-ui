@@ -1,12 +1,11 @@
 
-import callProp from '@flow-ui/core/misc/utils/callProp'
-import chroma from 'chroma-js'
+import colorProp from '@flow-ui/whale/utils/colorProp'
 import Types from './types'
 import WhaleTypes from '@flow-ui/whale/types'
 
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
 
-    const color = chroma(callProp(props.color, theme.color) || theme.color.primary.css())
+    const color = colorProp(props.color, theme.color) || theme.color.primary
 
     return {
         container: (variant) => [
@@ -38,64 +37,64 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
             variant({
                 decoration: {
                     outline: [{
-                        borderColor: color.alpha(.7).css(),
-                        color: color.css(),
+                        borderColor: color.alpha(.7).rgb().string(),
+                        color: color.rgb().string(),
                         '&:hover:not([disabled])': {
-                            background: color.alpha(.05).css(),
+                            background: color.alpha(.05).rgb().string(),
                         },
                         '&:active:not([disabled])': {
-                            background: color.alpha(.02).css(),
+                            background: color.alpha(.02).rgb().string(),
                         },
                         '&:disabled': {
-                            borderColor: theme.color.lightest.css(),
-                            color: theme.color.light.css(),
+                            borderColor: theme.color.lightest.rgb().string(),
+                            color: theme.color.light.rgb().string(),
                         }
                     }],
                     text: [{
-                        color: color.css(),
+                        color: color.rgb().string(),
                         '&:hover:not([disabled])': {
-                            background: color.alpha(.05).css(),
+                            background: color.alpha(.05).rgb().string(),
                         },
                         '&:active:not([disabled])': {
-                            background: color.alpha(.02).css(),
+                            background: color.alpha(.02).rgb().string(),
                         },
                         '&:disabled': {
-                            color: theme.color.light.css(),
+                            color: theme.color.light.rgb().string(),
                         }
                     }],
                     'plain': [{
                         borderColor: theme.assets.border.color,
-                        background: theme.color.surface.css(),
-                        color: theme.color.onSurface.css(),
+                        background: theme.color.surface.rgb().string(),
+                        color: theme.color.onSurface.rgb().string(),
                         '&:hover:not([disabled])': {
-                            background: color.alpha(.05).css(),
+                            background: color.alpha(.05).rgb().string(),
                         },
                         '&:active:not([disabled])': {
-                            background: color.alpha(.02).css(),
+                            background: color.alpha(.02).rgb().string(),
                         },
                         '&:disabled': {
-                            background: theme.color.lightest.css(),
-                            color: theme.color.light.css(),
+                            background: theme.color.lightest.rgb().string(),
+                            color: theme.color.light.rgb().string(),
                         }
                     }],
                     'filled': [{
-                        background: color.css(),
-                        color: chroma.contrast(color, theme.color.onPrimary) > 3
-                            ? theme.color.onPrimary.css()
-                            : theme.color.onSurface.css(),
+                        background: color.rgb().string(),
+                        color: color.contrast(theme.color.onPrimary) > 3
+                            ? theme.color.onPrimary.rgb().string()
+                            : theme.color.onSurface.rgb().string(),
                         '&:hover:not([disabled])': {
-                            background: color.get('hsl.l') > .2
-                                ? color.darken(.6).css()
-                                : color.brighten(1.5).css(),
+                            background: color.hsl().array()[2] > .2
+                                ? color.darken(.6).rgb().string()
+                                : color.lighten(1.5).rgb().string(),
                         },
                         '&:active:not([disabled])': {
-                            background: color.get('hsl.l') > .2
-                                ? color.darken(.2).css()
-                                : color.brighten(.75).css(),
+                            background: color.hsl().array()[2] > .2
+                                ? color.darken(.2).rgb().string()
+                                : color.lighten(.75).rgb().string(),
                         },
                         '&:disabled': {
-                            background: theme.color.lightest.css(),
-                            color: theme.color.light.css(),
+                            background: theme.color.lightest.rgb().string(),
+                            color: theme.color.light.rgb().string(),
                         }
                     }]
                 },
