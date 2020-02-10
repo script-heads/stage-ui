@@ -2,16 +2,16 @@ import WhaleTypes from '@flow-ui/whale/types'
 import colorProp from './colorProp'
 import CSS from 'csstype'
 
-interface Props extends 
-    WhaleTypes.ColorProps, 
+interface Props extends
+    WhaleTypes.ColorProps,
     WhaleTypes.BorderProps,
     WhaleTypes.PaddingProps,
     WhaleTypes.MarginProps,
     WhaleTypes.LayoutProps,
     WhaleTypes.FlexProps,
     WhaleTypes.GridProps {
-        [key: string]: unknown
-    }
+    [key: string]: unknown
+}
 
 type Color = {
     background: CSS.Properties['background']
@@ -73,7 +73,13 @@ export interface InjectedStyles {
     all: Margin & Flex & Grid & Padding & Layout & Color & Border
 }
 
-type Resolver = (propName: any, propsName: string, theme: WhaleTypes.Theme, context: ResolverContext) => string
+type Resolver = (resolverParams: {
+    propValue: any
+    propName: string
+    theme: WhaleTypes.Theme
+    ctx: ResolverContext
+}) => string | void
+
 type ResolverContext = {
     padding: [string, string, string, string],
     margin: [string, string, string, string]
@@ -81,36 +87,39 @@ type ResolverContext = {
 
 type InjectedStylesNames = keyof InjectedStyles
 
-const colorResolver: Resolver = (propValue, propName, theme, ctx) => {
+const colorResolver: Resolver = (params) => {
+    const { propValue, theme } = params
     return colorProp(propValue, theme.color)?.rgb().string()
 }
 
-const pmResolver: Resolver = (propValue, propName, theme, ctx) => {
-    const arrv = propValue.split(' ')
-    const key = propName[0] === 'p' ? 'padding' : 'margin'
-    const isX = propName[1] === 'x'
-    const isY = propName[1] === 'y'
-   
+const spacingResolver: Resolver = (params) => {
+    const { propValue, propName, ctx } = params
+    const k = propName[0] === 'p' ? 'padding' : 'margin'
+    const x = propName[1] === 'x'
+    const y = propName[1] === 'y'
+    const t = propName[1] === 't'
+    const b = propName[1] === 'b'
+    const l = propName[1] === 'l'
+    const r = propName[1] === 'r'
+    const v = propValue.split(' ')
     if (propName.length === 1) {
-        ctx[key][0] = arrv[0]
-        ctx[key][1] = arrv[2] ? arrv[1] : arrv[0]
-        ctx[key][2] = arrv[2] || arrv[0]
-        ctx[key][3] = arrv[3] || arrv[0]
+        ctx[k][0] = v[0]
+        ctx[k][1] = v[2] ? v[1] : v[0]
+        ctx[k][2] = v[2] || v[0]
+        ctx[k][3] = v[3] || v[0]
     } else {
-        if (propName[1] === 't' || propName[1] === 'b' || isY) {
-            ctx[key][0] = arrv[0]
-            if (isY) ctx[key][2] = arrv[1] || arrv[0]
-        }
-        if (propName[1] === 'l' || propName[1] === 'r' || isX) {
-            ctx[key][1] = arrv[0]
-            if (isX) ctx[key][3] = arrv[1] || arrv[0]
-        }
+        if (t || y) ctx[k][0] = v[0]
+        if (r || x) ctx[k][1] = v[0]
+        if (b) ctx[k][2] = v[0]
+        if (l) ctx[k][3] = v[0]
+        if (y) ctx[k][2] = v[1] || v[0]
+        if (x) ctx[k][3] = v[1] || v[0]
     }
-    return ctx[key].join(' ')
+    return ctx[k].join(' ')
 }
 
-const animatedResolver = (propValue, propName, theme) => {
-    return propValue ? 'all .15s' : undefined
+const animatedResolver: Resolver = (params) => {
+    return params.propValue ? 'all .15s' : undefined
 }
 
 const nameResolver = {
@@ -125,22 +134,22 @@ const nameResolver = {
     borderRadius: ['border', 'borderRadius'],
 
     //Padding
-    p: ['padding', 'padding', pmResolver],
-    px: ['padding', 'padding', pmResolver],
-    py: ['padding', 'padding', pmResolver],
-    pt: ['padding', 'padding', pmResolver],
-    pr: ['padding', 'padding', pmResolver],
-    pb: ['padding', 'padding', pmResolver],
-    pl: ['padding', 'padding', pmResolver],        
+    p: ['padding', 'padding', spacingResolver],
+    px: ['padding', 'padding', spacingResolver],
+    py: ['padding', 'padding', spacingResolver],
+    pt: ['padding', 'padding', spacingResolver],
+    pr: ['padding', 'padding', spacingResolver],
+    pb: ['padding', 'padding', spacingResolver],
+    pl: ['padding', 'padding', spacingResolver],
 
     //Margin
-    m: ['margin', 'margin'],
-    mx: ['margin', 'margin', pmResolver],
-    my: ['margin', 'margin', pmResolver],
-    mt: ['margin', 'margin', pmResolver],
-    mr: ['margin', 'margin', pmResolver],
-    mb: ['margin', 'margin', pmResolver],
-    ml: ['margin', 'margin', pmResolver],
+    m: ['margin', 'margin', spacingResolver],
+    mx: ['margin', 'margin', spacingResolver],
+    my: ['margin', 'margin', spacingResolver],
+    mt: ['margin', 'margin', spacingResolver],
+    mr: ['margin', 'margin', spacingResolver],
+    mb: ['margin', 'margin', spacingResolver],
+    ml: ['margin', 'margin', spacingResolver],
 
     //Layout
     display: ['layout', 'display'],
@@ -150,56 +159,57 @@ const nameResolver = {
     animated: ['layout', 'transition', animatedResolver],
 
     //Flex
-    flex: ['flex','flex'],
-    flexBasis: ['flex','flexBasis'],
-    flexGrow: ['flex','flexGrow'],
-    flexShrink: ['flex','flexShrink'],
-    alignSelf: ['flex','alignSelf'],
-    justifySelf: ['flex','justifySelf'],
+    flex: ['flex', 'flex'],
+    flexBasis: ['flex', 'flexBasis'],
+    flexGrow: ['flex', 'flexGrow'],
+    flexShrink: ['flex', 'flexShrink'],
+    alignSelf: ['flex', 'alignSelf'],
+    justifySelf: ['flex', 'justifySelf'],
 
     //Grid
-    gridColumnStart: ['grid','gridColumnStart'],
-    gridColumnEnd: ['grid','gridColumnEnd'],
-    gridRowStart: ['grid','gridRowStart'],
-    gridRowEnd: ['grid','gridRowEnd'],
-    gridColumn: ['grid','gridColumn'],
-    gridRow: ['grid','gridRow'],
-    gridArea: ['grid','gridArea'],
-    placeSelf: ['grid','placeSelf'],
+    gridColumnStart: ['grid', 'gridColumnStart'],
+    gridColumnEnd: ['grid', 'gridColumnEnd'],
+    gridRowStart: ['grid', 'gridRowStart'],
+    gridRowEnd: ['grid', 'gridRowEnd'],
+    gridColumn: ['grid', 'gridColumn'],
+    gridRow: ['grid', 'gridRow'],
+    gridArea: ['grid', 'gridArea'],
+    placeSelf: ['grid', 'placeSelf'],
 }
 
 export const useStyleProps = (props: Props, theme, queries) => {
-    
+
     const styles = {} as InjectedStyles
-    const context: ResolverContext = {
-        margin: ['0','0','0','0'],
-        padding: ['0','0','0','0'],
+    const ctx: ResolverContext = {
+        margin: ['0', '0', '0', '0'],
+        padding: ['0', '0', '0', '0'],
     }
+
     Object.keys(props).forEach(propName => {
         if (nameResolver[propName]) {
             const value = props[propName]
             const section = nameResolver[propName][0]
             const styleName = nameResolver[propName][1]
-            const resolver = nameResolver[propName][2]
+            const resolver = nameResolver[propName][2] as Resolver
             if (!styles[section]) styles[section] = {}
             if (Array.isArray(value)) {
-                value.forEach((point, index) => { 
-                    styles[section][index ? queries[index] : styleName] = resolver 
-                        ? resolver(point,propName,theme,context) 
+                value.forEach((point, index) => {
+                    styles[section][index ? queries[index] : styleName] = resolver
+                        ? resolver({ propValue: point, propName, theme, ctx })
                         : point
                 })
             } else {
-                styles[section][styleName] = resolver 
-                    ? resolver(value,propName,theme,context) 
+                styles[section][styleName] = resolver
+                    ? resolver({ propValue: value, propName, theme, ctx })
                     : value
             }
         }
     })
-    
+
     const flow = Object.assign({}, styles.margin, styles.flex, styles.grid)
     const self = Object.assign({}, styles.color, styles.border, styles.padding, styles.layout)
     const all = Object.assign({}, flow, self)
-    
+
     return {
         ...styles,
         flow,
@@ -210,9 +220,9 @@ export const useStyleProps = (props: Props, theme, queries) => {
 
 const getStyleProps = (props: Props, theme, queries, styleProps?: InjectedStylesNames[]) => {
     if (!styleProps) return []
-    
+
     const styles = [] as InjectedStyles[InjectedStylesNames][]
-    
+
     styleProps.forEach(value => {
         styles.push(useStyleProps(props, theme, queries)[value])
     })
