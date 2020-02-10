@@ -94,7 +94,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                     justifyContent: justifyContent,
                     alignItems: 'center',
                     userSelect: 'none',
-                    // ...sizes.itemContent
+                    ...sizes.itemContent
                 }
             },
             decorations.ordinary,

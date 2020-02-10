@@ -15,7 +15,7 @@ const createTheme: (theme: WhaleTypes.Theme) => StyleTypes = (theme) => ({
         borderRight: `1px solid ${theme.color.lightest.css()}`,
     }),
     scrollView: css({ 
-        height: 'calc(100vh - 7.5rem)',
+        height: 'calc(100vh - 6rem)',
     }),
     scrollContainer: css({ 
         padding: '1rem 0 0 1rem',

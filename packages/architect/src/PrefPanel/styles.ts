@@ -8,7 +8,7 @@ export default (theme: WhaleTypes.Theme) => {
             borderLeft: `1px solid ${theme.color.lightest.css()}`,
         }),
         scrollView: css({ 
-            height: 'calc(100vh - 7.5rem)',
+            height: 'calc(100vh - 6rem)',
         }),
         scrollContainer: css({ 
             padding: '0 1rem',

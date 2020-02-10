@@ -121,16 +121,16 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
             borderColor={c => c.lightest.css()}>
             <Flexbox justifyContent="space-between" alignItems="center" my=".5rem">
                 <Menu
-                    px="1rem"
                     size="s"
+                    ml="0.5rem"
                     decoration="color"
                     defaultValue="props"
                     items={[
                         { 
-                            content: (<><Cube mx={'0.25rem'} />Design</>), 
+                            content: (<><Cube mr={'0.25rem'} />Design</>), 
                             value: 'props' },
                         { 
-                            content: (<><Link mx={'0.25rem'} />Logics</>), 
+                            content: (<><Link mr={'0.25rem'} />Logics</>), 
                             value: 'actions', 
                             disabled: true 
                         }

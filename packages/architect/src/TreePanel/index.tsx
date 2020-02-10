@@ -45,17 +45,17 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
             borderColor={c => c.lightest.css()}>
             <Flexbox justifyContent="space-between" alignItems="center" my=".5rem">
                 <Menu
-                    px="1rem"
                     size="s"
+                    ml="0.5rem"
                     decoration="color"
                     defaultValue="layers"
                     items={[
                         {
-                            content: (<><Layers mx={'0.25rem'} />Layers</>),
+                            content: (<><Layers mr={'0.25rem'} />Layers</>),
                             value: 'layers',
                         },
-                        { 
-                            content: (<><Browser mx={'0.25rem'} />Pages</>),
+                        {
+                            content: (<><Browser mr={'0.25rem'} />Pages</>),
                             value: 'pages',
                         }
                     ]}

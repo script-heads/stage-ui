@@ -8,7 +8,6 @@ import ReactDOM from 'react-dom'
 import Page from './components/Page'
 import Page404 from './components/Page404'
 import PageEmpty from './components/PageEmpty'
-import PageHeader from './components/PageHeader'
 import Sidebar from './components/Sidebar'
 import core, { PageType } from './core'
 
@@ -89,15 +88,14 @@ const Documaker = () => {
 	if (location.pathname.match('architect')) {
 		return (
 			<FlowViewport currentTheme={currentTheme}>
-				<PageHeader
+				<Architect 
+					title={config.name}
+					git={config.git}
 					themes={themes}
 					currentTheme={currentTheme}
 					setTheme={setTheme}
-					name={config.name + ' - Architect'}
-					git={config.git}
 					setIndex={() => historyPush('/')}
 				/>
-				<Architect />
 			</FlowViewport>
 		)
 	}
@@ -118,14 +116,6 @@ const Documaker = () => {
 			}
 			{currentPage && typeof currentPage === 'object' &&
 				<Fragment>
-					{/* <PageHeader
-						themes={themes}
-						currentTheme={currentTheme}
-						setTheme={setTheme}
-						name={config.name + ' - Documentation'}
-						git={config.git}
-						setIndex={() => historyPush('/')}
-					/> */}
 					<Flexbox css={{ minHeight: '100%' }}>
 						<ScrollView size="xs" h="100vh" yBarPosition="left">
 							<Sidebar

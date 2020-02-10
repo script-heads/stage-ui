@@ -19,11 +19,11 @@ const MenuSection = (props: MenuSectionProps) => {
 					size="s"
 					color={c => c.light.css()}
 					children={section}
-					css={{
-						[`@media (max-width: ${window.breakpoints[0]}px)`]: {
-							marginLeft: '1rem',
-						}
-					}}
+					// css={{
+					// 	[`@media (max-width: ${window.breakpoints[0]}px)`]: {
+					// 		marginLeft: '1rem',
+					// 	}
+					// }}
 				/>
 			}
 			<Menu

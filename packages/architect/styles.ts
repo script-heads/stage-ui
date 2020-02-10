@@ -7,7 +7,7 @@ export default (theme: WhaleTypes.Theme) => ({
         overflow: 'hidden',
         left: 0, 
         right: 0, 
-        top: '4.5rem',
+        top: '3rem',
         bottom: 0,
         background: theme.color.background.hex(),
         borderTop: `1px solid ${theme.color.lightest.css()}`

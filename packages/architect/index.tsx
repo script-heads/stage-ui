@@ -2,11 +2,13 @@ import PrefPanel from '@flow-ui/architect/src/PrefPanel'
 import RenderPanel from '@flow-ui/architect/src/RenderPanel'
 import TreePanel from '@flow-ui/architect/src/TreePanel'
 import AddPanel from '@flow-ui/architect/src/AddPanel'
+import HeaderPanel from '@flow-ui/architect/src/HeaderPanel'
 import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
 import React, { Fragment } from 'react'
 import styles from './styles'
-import { useTheme, Flexbox } from '@flow-ui/core'
+import { useTheme, Flexbox, Header } from '@flow-ui/core'
 import components from './components'
+import WhaleTypes from '@flow-ui/whale/types'
 
 export function uuid() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -15,8 +17,21 @@ export function uuid() {
     })
 }
 
-class Architect extends React.Component {
-    constructor(props: {}) {
+interface ArchitectProps {
+    title?: string
+    git?: string
+    themes: Record<string,WhaleTypes.Theme>
+    currentTheme: WhaleTypes.Theme
+    setTheme: (theme: WhaleTypes.Theme) => void
+    setIndex: () => void
+}
+interface ArchitectViewProps extends ArchitectProps { 
+    tools: ArchitectTools
+    componentLibraryOpen: boolean 
+}
+
+class Architect extends React.Component<ArchitectProps> {
+    constructor(props: ArchitectProps) {
         super(props)
         this.init(require('./demoData').default)
     }
@@ -240,8 +255,9 @@ class Architect extends React.Component {
 
     render() {
         return (
-            <ArchitectView 
-                tools={this.tools} 
+            <ArchitectView
+                {...this.props}
+                tools={this.tools}
                 componentLibraryOpen={this.componentLibraryOpen}
             />
         )
@@ -251,12 +267,13 @@ class Architect extends React.Component {
 /**
  * That is just for hooks
  */
-const ArchitectView = (props: { tools: ArchitectTools, componentLibraryOpen: boolean }) => {
-    const theme = useTheme()
-    const cs = styles(theme)
+const ArchitectView = (props: ArchitectViewProps) => {
+    
+    const cs = styles(props.currentTheme)
 
     return (
         <Fragment>
+            <HeaderPanel {...props} />
             <Flexbox css={cs.container}>
                 <TreePanel tools={props.tools} />
                 <RenderPanel tools={props.tools} />
