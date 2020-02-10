@@ -19,6 +19,7 @@ export type ArchitectItem = {
 export interface ArchitectTools {
     components: Record<string, {
         component: any
+        hidden: boolean
         create: () => ArchitectItem
     }>
     getItems: () => ArchitectItem[]

@@ -2,14 +2,27 @@ import { ArchitectTools } from '@flow-ui/architect/types'
 import { Block, useTheme, Flexbox, Divider, TextField, Text, Menu, Header } from '@flow-ui/core'
 import styles from './styles'
 import { ScrollView } from '@flow-ui/core'
-import { useState } from 'react'
+import { useState, Fragment } from 'react'
 import { Search, Grid, Layers, ArrowCircleDown } from '@flow-ui/core/icons'
+import ComponentsView from './ComponentsView'
+import IconsView from './IconsView'
 
 const AddPanel = (props: { tools: ArchitectTools }) => {
     const theme = useTheme()
     const cs = styles(theme)
     const { tools } = props
     const [search, setSearch] = useState('')
+    const menuValues = [
+        {
+            content: <Layers size={'1.5rem'} />,
+            value: 'components'
+        },
+        {
+            content: <Grid size={'1.5rem'} />,
+            value: 'icons'
+        }
+    ]
+    const [menuValue, setMenuValue] = useState(menuValues[0].value)
     const [currentComponent, setCurrentComponent] = useState('')
 
     return (
@@ -20,7 +33,7 @@ const AddPanel = (props: { tools: ArchitectTools }) => {
                     props.tools.componentLibraryHide()
                 }}
             />
-            <Block css={cs.container}>
+            <div css={cs.container}>
                 <Block h="4rem">
                     <Flexbox h="100%">
                         <TextField
@@ -40,67 +53,32 @@ const AddPanel = (props: { tools: ArchitectTools }) => {
                             size="s"
                             decoration="color"
                             defaultValue="components"
-                            items={[
-                                {
-                                    content: <Layers size={'1.5rem'} />,
-                                    value: 'components'
-                                },
-                                {
-                                    disabled: true,
-                                    content: <Grid size={'1.5rem'} />,
-                                    value: 'icons'
-                                }
-                            ]}
+                            value={menuValue}
+                            onChange={(menuValue: string) => {
+                                setMenuValue(menuValue)
+                            }}
+                            items={menuValues}
                         />
                     </Flexbox>
                     <Divider color={c => c.lightest.hex()} />
                 </Block>
                 <Flexbox h="26rem" pt="1px">
-                    <ScrollView size="xs" css={{ width: '15rem' }}>
-                        
-                        {Object.keys(tools.components).map(component => (
-                            component.toUpperCase().match(search.toUpperCase()) ? (
-                                <Block
-                                    draggable
-                                    css={cs.component(currentComponent === component)}
-                                    key={component}
-                                    children={component}
-                                    onMouseDown={() => {
-                                        setCurrentComponent(component)
-                                    }}
-                                    onDragStart={e => {
-                                        e.stopPropagation()
-                                        tools.captured = tools.components[component].create()
-                                        /**
-                                         * Other ways drag and drop will not work
-                                         */
-                                        setTimeout(tools.componentLibraryHide)
-                                    }}
-                                />
-
-                            ) : null
-                        ))}
-                    </ScrollView>
-                    <Divider vertical color={c => c.lightest.hex()} />
-                    <Block p="2rem">
-                        {currentComponent !== '' ? (
-                            <>
-                                <Header>{currentComponent}</Header>
-                                <Text
-                                    color={c => c.light.hex()}
-                                    children="No description."
-                                />
-                            </>
-                        ) : (
-                                <Text
-                                    color={c => c.light.hex()}
-                                    children="Find component what you want and then Drag and Drop it to workspace"
-                                />
-                            )}
-
-                    </Block>
+                    {menuValue === 'components' && (
+                        <ComponentsView
+                            tools={props.tools}
+                            search={search}
+                            styles={cs}
+                        />
+                    )}
+                    {menuValue === 'icons' && (
+                        <IconsView
+                            tools={props.tools}
+                            search={search}
+                            styles={cs}
+                        />
+                    )}
                 </Flexbox>
-            </Block>
+            </div>
         </>
     )
 }

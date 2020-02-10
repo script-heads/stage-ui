@@ -1,15 +1,16 @@
 import { ArchitectTools } from '@flow-ui/architect/types'
 import * as Core from '@flow-ui/core'
+import * as Icon from '@flow-ui/core/icons'
 import { uuid } from '.'
 
-const Init = (component: string, props = {}) => ({
-    component: Core[component],
+export const Init = (component: string, params: any = {}, hidden = false) => ({
+    component: Core[component] || Icon[component],
+    hidden,
     create: () => ({
         id: uuid(),
         $: {},
-        props: {},
+        props: params.props || {},
         component,
-        ...props
     })
 })
 
@@ -39,7 +40,9 @@ const components: ArchitectTools['components'] = {
         text: 'Button',
     }),
     Checkbox: Init('Checkbox', {
-        label: 'Checkbox'
+        props: {
+            label: 'Checkbox'
+        }
     }),
     // DatePicker: Init('DatePicker'),
     Menu: Init('Menu', {
@@ -52,12 +55,22 @@ const components: ArchitectTools['components'] = {
         }
     }),
     Radio: Init('Radio', {
-        label: 'Radio'
+        props: {
+            label: 'Radio'
+        }
     }),
     Range: Init('Range'),
-    Select: Init('Select'),
+    Select: Init('Select', {
+        props: {
+            label: 'Title',
+            placeholder: 'Select an option',
+            options: []
+        }
+    }),
     Switch: Init('Switch', {
-        label: 'Switch'
+        props: {
+            label: 'Switch'
+        }
     }),
     TextField: Init('TextField'),
     /**
@@ -71,10 +84,10 @@ const components: ArchitectTools['components'] = {
      * Layout
      */
     Badge: Init('Badge', {
-        children: [],
         props: {
             content: '10'
-        }
+        },
+        children: [],
     }),
     Block: Init('Block', {
         children: []
@@ -92,6 +105,18 @@ const components: ArchitectTools['components'] = {
         label: 'Tree',
         children: []
     }),
+    /**
+     * Generate iconst
+     */
+    ...(() => {
+        let iconsCompoenetsTemp = {}
+        for (const IconCompoenent in Icon) {
+            iconsCompoenetsTemp[IconCompoenent] = Init(IconCompoenent, {
+                label: IconCompoenent
+            }, true)
+        }
+        return iconsCompoenetsTemp
+    })()
 }
 
 export default components

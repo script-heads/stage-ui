@@ -1,7 +1,14 @@
-import { css } from '@emotion/core'
+import { css, SerializedStyles } from '@emotion/core'
 import WhaleTypes from '@flow-ui/whale/types'
 
-export default (theme: WhaleTypes.Theme) => {
+export type AddPanelStyles = {
+    backgroundLayer: SerializedStyles
+    container: SerializedStyles
+    searchBar: SerializedStyles
+    component: (focused: boolean) => SerializedStyles
+}
+
+export default (theme: WhaleTypes.Theme): AddPanelStyles => {
     return {
         backgroundLayer: css({
             zIndex: 10,
