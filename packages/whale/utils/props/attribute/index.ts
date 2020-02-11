@@ -1,6 +1,4 @@
-import WhaleTypes from '@flow-ui/whale/types'
-
-export default (props, theme: WhaleTypes.Theme, setFocus: React.Dispatch<React.SetStateAction<boolean>>, mouseFocus?: boolean, focusDecoration?: boolean) => {
+export default (props, setFocus: React.Dispatch<React.SetStateAction<boolean>>, mouseFocus?: boolean) => {
 
     let isMouseDown = false
 
@@ -8,13 +6,7 @@ export default (props, theme: WhaleTypes.Theme, setFocus: React.Dispatch<React.S
         id: props.id,
         className: props.className,
         draggable: props.draggable,
-        style: {
-            ...focus && !focusDecoration && {
-                outline: 'none',
-                ...theme.assets.focus
-            },
-            ...props.style
-        },
+        style: props.style,
         tabIndex: props.tabIndex,
         role: props.role,
         ...props.attrs && props.attrs

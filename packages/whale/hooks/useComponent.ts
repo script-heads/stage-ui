@@ -28,7 +28,7 @@ const useComponent = <S>(overrideName: string, options: Options<S>, params: Obje
 
     const [focus, setFocus] = useState(false)
 
-    return useMemo(() => {
+    const { cs, attributes, events } = useMemo(() => {
         if (!theme.breakpoints || !theme.breakpoints.length) {
             theme.breakpoints = defaultBreakpoints
         }
@@ -49,8 +49,7 @@ const useComponent = <S>(overrideName: string, options: Options<S>, params: Obje
             setFocus,
             {
                 styleProps,
-                mouseFocus, 
-                focusDecoration 
+                mouseFocus 
             } 
         )
         
@@ -60,9 +59,19 @@ const useComponent = <S>(overrideName: string, options: Options<S>, params: Obje
             overrides
         )
         
-        return { cs, attributes, events, focus, theme }
+        return { cs, attributes, events }
 
-    }, [props, styles, mouseFocus, focusDecoration, theme, params, overrideName])
+    }, [props, styles, mouseFocus, theme, params, overrideName])
+
+    if (focus && focusDecoration != false) {
+        attributes.style = {
+            outline: 'none', 
+            ...theme.assets.focus, 
+            ...attributes.style
+        }
+    }
+
+    return {cs, attributes, events, focus, theme}
 }
 
 export default useComponent

@@ -4,8 +4,7 @@ import useStylesProps from '../utils/props/style'
 
 interface Options {
     styleProps?: Partial<Record<string, string[]>>
-    mouseFocus?: boolean,
-    focusDecoration?: boolean,
+    mouseFocus?: boolean
 }
 
 type SetFocus = React.Dispatch<React.SetStateAction<boolean>>
@@ -14,10 +13,8 @@ const useComponentProps = (props, theme: WhaleTypes.Theme, setFocus: SetFocus, o
 
     const { attributes, events } = useAttributesProps(
         props,
-        theme,
         setFocus,
-        options.mouseFocus,
-        options.focusDecoration
+        options.mouseFocus
     )
 
     let propStyles = {}
