@@ -60,7 +60,7 @@ const AddPanel = (props: { tools: ArchitectTools }) => {
                             items={menuValues}
                         />
                     </Flexbox>
-                    <Divider color={c => c.lightest.hex()} />
+                    <Divider color={c => c.lightest} />
                 </Block>
                 <Flexbox h="26rem" pt="1px">
                     {menuValue === 'components' && (

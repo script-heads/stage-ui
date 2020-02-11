@@ -29,7 +29,7 @@ const LayersTab = (props: TabProps) => {
             const splitterAfterSetHover = (state: boolean) => {
                 const el = document.getElementById(`split-${item.id}`)
                 if (el) {
-                    el.style.background = state ? theme.color.primary.alpha(0.5).hex() : ''
+                    el.style.background = state ? theme.color.primary.alpha(0.5).rgb().string() : ''
                 }
             }
 
@@ -76,7 +76,7 @@ const LayersTab = (props: TabProps) => {
                                                 />
                                                 <Trash2
                                                     pr={'0.25rem'}
-                                                    color={c => c.error.hex()}
+                                                    color={c => c.error}
                                                     onClick={(e) => {
                                                         e.preventDefault()
                                                         e.stopPropagation()
@@ -99,7 +99,7 @@ const LayersTab = (props: TabProps) => {
                                     e.stopPropagation()
                                     e.preventDefault()
                                     tools.target = item
-                                    e.target.style.backgroundColor = theme.color.primary.alpha(0.5).hex()
+                                    e.target.style.backgroundColor = theme.color.primary.alpha(0.5).rgb().string()
                                 }}
                                 onDragLeave={(e: Event) => {
                                     e.stopPropagation()
@@ -158,7 +158,7 @@ const LayersTab = (props: TabProps) => {
                     <Paragraph
                         align="center"
                         pt="2rem"
-                        color={c => c.light.hex()}
+                        color={c => c.light}
                         children="Components"
                     />
                 )

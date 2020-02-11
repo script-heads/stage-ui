@@ -65,7 +65,7 @@ const ComponentsView = (props: { tools: ArchitectTools, search: string, styles: 
                                 >
                                     <PreviewIcon
                                         size="2rem"
-                                        color={c => c.light.css()}
+                                        color={c => c.light}
                                     />
                                     <Text
                                         size="xs"

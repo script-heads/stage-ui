@@ -7,7 +7,7 @@ export default (theme: WhaleTypes.Theme) => {
         container: css({
             padding: '1rem',
             border: '1px solid',
-            borderColor: theme.color.lightest.hex(),
+            borderColor: theme.color.lightest.rgb().string(),
             borderRadius: theme.radius.default
         }),
         legatureButton: css({

@@ -41,8 +41,8 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
             //     tools.move()
             // }}
             css={styles.container}
-            backgroundColor={c => c.surface.css()}
-            borderColor={c => c.lightest.css()}>
+            backgroundColor={c => c.surface}
+            borderColor={c => c.lightest}>
             <Flexbox justifyContent="space-between" alignItems="center" my=".5rem">
                 <Menu
                     size="s"

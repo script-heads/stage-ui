@@ -129,7 +129,7 @@ const ValueCross = (props: Props) => {
                 pb=".25rem"
                 pl=".25rem"
                 lineHeight="0.75rem"
-                color={c => c.light.hex()}
+                color={c => c.light}
                 children={props.label}
             />
             <Grid css={cs.container} templateColumns="5.25rem 5.25rem 5.25rem" templateRows="1fr 4rem 1fr">

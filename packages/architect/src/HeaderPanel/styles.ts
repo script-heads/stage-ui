@@ -4,7 +4,7 @@ import WhaleTypes from '@flow-ui/whale/types'
 export default (theme: WhaleTypes.Theme) => {
     return {
         container: css({
-            background: theme.color.surface.css(),
+            background: theme.color.surface.rgb().string(),
             justifyContent: 'space-between',
             alignItems: 'center',
             height: '3rem',

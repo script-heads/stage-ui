@@ -27,9 +27,9 @@ export default (theme: WhaleTypes.Theme): AddPanelStyles => {
             left: '50%',
             marginTop: '-15rem',
             marginLeft: '-20rem',
-            background: theme.color.surface.hex(),
+            background: theme.color.surface.rgb().string(),
             border: '0.5px solid',
-            borderColor: theme.color.lightest.hex(),
+            borderColor: theme.color.lightest.rgb().string(),
             boxShadow: '0 0.5rem 5rem rgba(0,0,0,0.3)',
             borderRadius: '0.5rem',
             overflow: 'hidden'
@@ -41,8 +41,8 @@ export default (theme: WhaleTypes.Theme): AddPanelStyles => {
             cursor: 'pointer',
             padding: '1rem 2rem',
             background: focused
-                ? theme.color.primary.alpha(0.2).hex()
-                : theme.color.surface.hex()
+                ? theme.color.primary.alpha(0.2).rgb().string()
+                : theme.color.surface.rgb().string()
         })
     }
 }

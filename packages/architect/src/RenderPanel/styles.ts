@@ -31,7 +31,7 @@ export default (theme: WhaleTypes.Theme) => {
             textAlign: 'center',
             padding: '0.5rem 1rem',
             fontSize: '0.75rem',
-            color: theme.color.error.hex(),
+            color: theme.color.error.rgb().string(),
             marginLeft: '0.25rem',
         })
     }

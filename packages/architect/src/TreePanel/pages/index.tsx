@@ -12,7 +12,7 @@ const PagesTab = (props: TabProps) => {
                     <Paragraph
                         align="center"
                         pt="2rem"
-                        color={c => c.light.hex()}
+                        color={c => c.light}
                         children="Pages"
                     />
                 )

@@ -52,7 +52,7 @@ const RenderItem = (props: RenderItemProps) => {
     let Component = (props) => (
         <Text 
             align="center"
-            color={c => c.error.hex()}
+            color={c => c.error}
             children={`⚠ ${item.component} not found ⚠`}    
         />
 
@@ -184,7 +184,7 @@ const Render = (props: { tools: ArchitectTools }) => {
                         <Flexbox
                             column
                             css={{
-                                color: theme.color.secondary.css(),
+                                color: theme.color.secondary.rgb().string(),
                                 textAlign: 'center',
                                 fontSize: '11px',
                             }}
@@ -211,7 +211,7 @@ const Render = (props: { tools: ArchitectTools }) => {
                 <Flexbox justifyContent="center" pt="4.75rem" css={{ position: 'absolute', width: '100%' }}>
                     <Paragraph
                         align="center"
-                        color={c => c.light.hex()}
+                        color={c => c.light}
                         children="Create any component by droping it here."
                     />
                 </Flexbox>
@@ -251,11 +251,11 @@ const Render = (props: { tools: ArchitectTools }) => {
                     tools.update()
                 }}
             />
-            <Mask ref={hoverMask} color={c => c.primary.alpha(0.5).hex()} />
-            <Mask ref={targetMask} color={c => c.primary.hex()} />
+            <Mask ref={hoverMask} color={c => c.primary.alpha(0.5).rgb().string()} />
+            <Mask ref={targetMask} color={c => c.primary.rgb().string()} />
             <Mask
                 ref={focusMask}
-                color={c => c.secondary.hex()}
+                color={c => c.secondary.rgb().string()}
                 item={tools.focused}
             />
         </Flexbox>
