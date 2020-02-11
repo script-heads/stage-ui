@@ -347,8 +347,8 @@ declare namespace WhaleTypes {
      * @name Colors
      */
     interface ColorProps {
-        textColor?: ColorProp
-        backgroundColor?: ColorProp
+        textColor?: Breakpointify<ColorProp>
+        backgroundColor?: Breakpointify<ColorProp>
     }
 
     /**
@@ -358,7 +358,7 @@ declare namespace WhaleTypes {
     interface BorderProps {
         borderWidth?: Breakpointify<CSS.Properties['borderWidth']>
         borderStyle?: Breakpointify<CSS.Properties['borderStyle']>
-        borderColor?: ColorProp
+        borderColor?: Breakpointify<ColorProp>
         borderRadius?: Breakpointify<CSS.Properties['borderRadius']>
     }
 
@@ -574,11 +574,9 @@ declare namespace WhaleTypes {
         placeSelf?: Breakpointify<CSS.Properties['placeSelf']>
     }
 
-    type ColorProp = Breakpointify<SourceColorProp>
-
-    type SourceColorProp = ((colors: Theme['color']) => QIXColor | string) 
-        | string 
-        | QIXColor
+    type ColorProp = ((colors: Theme['color']) => QIXColor | string) 
+    | string 
+    | QIXColor
 
     type Styles<StyleDefinitions> = {
         [StyleName in keyof StyleDefinitions]: StyleDefinitions[StyleName] extends {} 

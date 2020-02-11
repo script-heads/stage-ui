@@ -12,7 +12,7 @@ const fieldStyles = <T extends Types.Overrides>(
     stylePatch?: Partial<ExtractFunction<WhaleTypes.Styles<T>>>
 ): WhaleTypes.Styles<Types.Overrides> => {
 
-    const color = colorProp(props.color, theme.color)
+    const color = colorProp(theme, props.color)
 
     return {
         container: (variant) => [

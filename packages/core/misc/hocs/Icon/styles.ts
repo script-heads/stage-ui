@@ -5,8 +5,8 @@ import Types from './types'
 
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
     
-    const background = colorProp(props.background, theme.color)
-    const color = colorProp(props.color, theme.color)
+    const background = colorProp(theme, props.background)
+    const color = colorProp(theme, props.color)
 
     return {
         container: (variant) => [

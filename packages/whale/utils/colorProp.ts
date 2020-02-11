@@ -1,11 +1,11 @@
 import Color from 'color'
 import WhaleTypes from '../types'
 
-export default (prop: WhaleTypes.SourceColorProp | undefined, colors: WhaleTypes.Theme['color']) => {
+export default (theme: WhaleTypes.Theme, prop?: WhaleTypes.ColorProp) => {
     if (!prop) return undefined
     
     const sourceColor = typeof prop === 'function'
-        ? prop(colors)
+        ? prop(theme.color)
         : prop
     
     if (typeof sourceColor === 'string') return Color(sourceColor)

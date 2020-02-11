@@ -191,7 +191,7 @@ function getSizes(size, theme) {
 }
 
 function getDecorations(theme, sizes, props) {
-    let color = colorProp(props.color, theme.color) || theme.color.primary
+    let color = colorProp(theme, props.color) || theme.color.primary
     let { flip, direction, decoration } = props
 
     switch (decoration) {
@@ -282,7 +282,7 @@ function getDecorations(theme, sizes, props) {
             }
         case 'tab':
             let borderStyles = tabBorderStyles(direction, flip)
-            color = colorProp(props.color, theme.color) || theme.color.surface
+            color = colorProp(theme, props.color) || theme.color.surface
             return {
                 active: {
                     background: color.rgb().string(),

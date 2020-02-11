@@ -5,7 +5,7 @@ import WhaleTypes from '@flow-ui/whale/types'
 
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
 
-    const color = colorProp(props.color, theme.color) || theme.color.primary
+    const color = colorProp(theme, props.color) || theme.color.primary
 
     return {
         container: (variant) => [

@@ -4,7 +4,7 @@ import Types from './types'
 
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
 
-    const labelColor = colorProp(props.labelColor, theme.color)
+    const labelColor = colorProp(theme, props.labelColor)
 
     return {
         container: (variant) => [
@@ -34,7 +34,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
             variant({
                 size: theme.typography.text,
                 disabled: [{
-                    color: colorProp(theme.color.light, theme.color)?.rgb().string()
+                    color: colorProp(theme, theme.color.light)?.rgb().string()
                 }],
                 uppercase: [{
                     textTransform: 'uppercase'

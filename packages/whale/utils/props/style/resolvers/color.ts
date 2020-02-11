@@ -3,7 +3,7 @@ import { StyleResolver } from '../types'
 
 const resolver: StyleResolver = (params) => {
     const { propValue, theme } = params
-    return colorProp(propValue, theme.color)?.rgb().string()
+    return colorProp(theme, propValue)?.rgb().string()
 }
 
 export default resolver

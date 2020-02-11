@@ -1,6 +1,6 @@
 import WhaleTypes from '@flow-ui/whale/types'
-import callProp from '../../utils/callProp'
 import Types from './types'
+import { colorProp } from '@flow-ui/whale'
 
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.PrivateProps> = (props, theme) => {
     return {
@@ -20,8 +20,8 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.PrivateProps> = (pr
                 textDecoration: props.decoration,
                 textTransform: props.transform,
                 textAlign: props.align,
-                color: callProp(props.color, theme.color),
-                background: callProp(props.background, theme.color),
+                color: colorProp(theme, props.color)?.rgb().string(),
+                background: colorProp(theme, props.color)?.rgb().string(),
             },
             props.ellipsis && {
                 whiteSpace: 'nowrap',

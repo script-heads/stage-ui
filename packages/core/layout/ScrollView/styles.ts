@@ -4,7 +4,7 @@ import Types from './types'
 
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
 
-    let color = colorProp(props.color, theme.color) || theme.color.onBackground
+    let color = colorProp(theme, props.color) || theme.color.onBackground
 
     return {
         container: [
