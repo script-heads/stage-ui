@@ -574,11 +574,11 @@ declare namespace WhaleTypes {
         placeSelf?: Breakpointify<CSS.Properties['placeSelf']>
     }
 
-    type ColorProp = Breakpointify<
-        ((colors: Theme['color']) => QIXColor) 
-        | CSS.Properties['color'] 
+    type ColorProp = Breakpointify<SourceColorProp>
+
+    type SourceColorProp = ((colors: Theme['color']) => QIXColor | string) 
+        | string 
         | QIXColor
-    >
 
     type Styles<StyleDefinitions> = {
         [StyleName in keyof StyleDefinitions]: StyleDefinitions[StyleName] extends {} 
