@@ -22,7 +22,7 @@ declare namespace TypographyTypes {
 
 		children?: React.ReactNode
 		color?: WhaleTypes.ColorProp
-		background?: WhaleTypes.ColorProp
+		backgroundColor?: WhaleTypes.ColorProp
 		align?: CSS.Properties['textAlign']
 		weight?: CSS.Properties['fontWeight']
 		size?: WhaleTypes.Size & string
