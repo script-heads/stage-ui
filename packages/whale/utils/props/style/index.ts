@@ -61,7 +61,7 @@ const resolvers: StyleResolverObject = {
 export default (props: StyleProps, theme: WhaleTypes.Theme, styleProps: Partial<Record<string,string[]>>) => {
     const queries = theme.breakpoints.map(bp => `@media (min-width: ${bp})`)
 
-    const returnStyles = [] as InjectedStyles[InjectedStylesNames][]
+    const patchedStyles: Record<string, Record<string, string>> = {}
     const styles = {} as InjectedStyles
         
     const ctx: StyleResolverContext = {
@@ -91,12 +91,17 @@ export default (props: StyleProps, theme: WhaleTypes.Theme, styleProps: Partial<
     const all = Object.assign({}, flow, self)
     const combined = Object.assign({ flow, self, all }, styles)
 
-    Object.keys(styleProps).forEach(styleName => {
-        
+    Object.keys(styleProps).forEach(className => {
+        if (!patchedStyles[className]) {
+            patchedStyles[className] = {}
+        }
+        (styleProps[className] || []).forEach(styleType =>
+            Object.assign(
+                patchedStyles[className],
+                combined[styleType]
+            )
+        )
     })
-    for (let styleProp of styleProps) {
-        returnStyles.push(combined[styleProp])
-    }
 
-    return returnStyles
+    return patchedStyles
 }

@@ -12,7 +12,6 @@ interface ProviderProps {
 }
 
 export const WhaleContext = React.createContext({} as WhaleTypes.Theme)
-const defaultBreakpoints = ['576px','768px','992px','1200px']
 
 const Provider = <T extends ProviderProps>(props: T) => {
     
@@ -27,11 +26,6 @@ const Provider = <T extends ProviderProps>(props: T) => {
     )
     
     if (theme) {
-
-        if (!theme.breakpoints || !theme.breakpoints.length) {
-            theme.breakpoints = defaultBreakpoints
-        }
-
         return (
             <WhaleContext.Provider value={theme}>
                 <ThemeProvider theme={theme}>
