@@ -68,7 +68,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
             field:['color','border','padding']
         },
         mouseFocus: false,
-        focusDecoration: true
+        focusDecoration: false
     }, {
         isOpen: isOpen && options.length > 0
     })

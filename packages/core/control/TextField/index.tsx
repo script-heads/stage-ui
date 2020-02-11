@@ -28,7 +28,7 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
             field:['color','border','padding']
         },
         mouseFocus: true,
-        focusDecoration: props.decoration !== 'none'
+        focusDecoration: false
     })
 
     const fieldRef = useRef<HTMLDivElement>(null)

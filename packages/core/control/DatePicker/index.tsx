@@ -44,7 +44,7 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
             field:['color','border','padding']
         },  
         mouseFocus: true,
-        focusDecoration: props.decoration !== 'none'
+        focusDecoration: false
     })
 
     const minValue = props.minValue ? moment(props.minValue).startOf('day') : now.clone().add(-500, 'year')
