@@ -13,6 +13,7 @@ interface Options<S> {
     focusDecoration?: boolean,
     theme?: WhaleTypes.Theme
 }
+const defaultBreakpoints = ['576px','768px','992px','1200px']
 
 const useComponent = <S>(overrideName: string, options: Options<S>, params: Object = {}) => {
     
@@ -28,12 +29,16 @@ const useComponent = <S>(overrideName: string, options: Options<S>, params: Obje
     const [focus, setFocus] = useState(false)
 
     return useMemo(() => {
+        if (!theme.breakpoints || !theme.breakpoints.length) {
+            theme.breakpoints = defaultBreakpoints
+        }
+        
         const resolvedStyles = typeof styles === 'function'
             ? styles(props, theme, params)
             : styles
 
         const overrides = theme.overrides?.[overrideName]
-        
+
         const { 
             attributes, 
             events, 
