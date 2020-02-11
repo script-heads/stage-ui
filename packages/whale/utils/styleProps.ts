@@ -91,38 +91,36 @@ const colorResolver: Resolver = (params) => {
     const { propValue, theme } = params
     return colorProp(propValue, theme.color)?.rgb().string()
 }
-
+/**
+ * Function resolving p,pt,pr,pb,pr,m..props
+ * into single css string
+ */
 const spacingResolver: Resolver = (params) => {
-    const { propValue, propName, ctx } = params
-    const k = propName[0] === 'p' ? 'padding' : 'margin'
-    const x = propName[1] === 'x'
-    const y = propName[1] === 'y'
-    const t = propName[1] === 't'
-    const b = propName[1] === 'b'
-    const l = propName[1] === 'l'
-    const r = propName[1] === 'r'
-    const v = propValue.split(' ')
-    if (propName.length === 1) {
-        ctx[k][0] = v[0]
-        ctx[k][1] = v[2] ? v[1] : v[0]
-        ctx[k][2] = v[2] || v[0]
-        ctx[k][3] = v[3] || v[0]
+    const { propName: n, propValue, ctx } = params, 
+        k = n[0] == 'p' ? 'padding' : 'margin',
+        x = n[1] == 'x', y = n[1] == 'y', 
+        t = n[1] == 't', b = n[1] == 'b', 
+        l = n[1] == 'l', r = n[1] == 'r', 
+        v = propValue.split(' ')
+    if (n.length == 1) {
+        if (v[1] == void 0) v[1] = v[0]
+        if (v[2] == void 0) v[2] = v[0]
+        if (v[3] == void 0) v[3] = v[1]
+        ctx[k] = v
     } else {
         if (t || y) ctx[k][0] = v[0]
         if (r || x) ctx[k][1] = v[0]
-        if (b) ctx[k][2] = v[0]
-        if (l) ctx[k][3] = v[0]
-        if (y) ctx[k][2] = v[1] || v[0]
-        if (x) ctx[k][3] = v[1] || v[0]
+        if (b || y) ctx[k][2] = v[1] || v[0]
+        if (l || x) ctx[k][3] = v[1] || v[0]
     }
     return ctx[k].join(' ')
 }
 
 const animatedResolver: Resolver = (params) => {
-    return params.propValue ? 'all .15s' : undefined
+    return params.propValue ? 'all .15s' : void 0
 }
 
-const nameResolver = {
+const propResolvers = {
     //Color
     backgroundColor: ['color', 'backgroundColor', colorResolver],
     textColor: ['color', 'color', colorResolver],
@@ -186,11 +184,11 @@ export const useStyleProps = (props: Props, theme, queries) => {
     }
 
     Object.keys(props).forEach(propName => {
-        if (nameResolver[propName]) {
+        if (propResolvers[propName]) {
             const value = props[propName]
-            const section = nameResolver[propName][0]
-            const styleName = nameResolver[propName][1]
-            const resolver = nameResolver[propName][2] as Resolver
+            const section = propResolvers[propName][0]
+            const styleName = propResolvers[propName][1]
+            const resolver = propResolvers[propName][2] as Resolver
             if (!styles[section]) styles[section] = {}
             if (Array.isArray(value)) {
                 value.forEach((point, index) => {
