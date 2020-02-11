@@ -23,7 +23,7 @@ declare namespace WhaleTypes {
     }
 
     interface SourceTheme {
-        main: ThemeVariables<[number, number, number, number?]>
+        main: ThemeVariables<[number, number, number, number?], string[] | undefined>
         assets: (theme: Theme) => ThemeAssets
         overrides?: Partial<{[Component in keyof Whale.Overrides]: Styles<Whale.Overrides[Component]>}>
     }
@@ -34,7 +34,7 @@ declare namespace WhaleTypes {
         overrides?: Partial<{[Component in keyof Whale.Overrides]: Styles<Whale.Overrides[Component]>}>
     }
     
-    interface ThemeVariables<Color = QIXColor> {
+    interface ThemeVariables<Color = QIXColor, BP = string[]> {
         name: string
         color: {
             background: Color
@@ -66,7 +66,7 @@ declare namespace WhaleTypes {
             narrow: string
             wide: string
         },
-        breakpoints?: string[],
+        breakpoints: BP,
         spacing: Record<Size, string>
         typography: {
             header: Record<Size, {

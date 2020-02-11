@@ -1,9 +1,7 @@
 import WhaleTypes from '@flow-ui/whale/types'
-import { useState } from 'react'
 
-export default (props, theme: WhaleTypes.Theme, mouseFocus?: boolean, focusDecoration?: boolean) => {
+export default (props, theme: WhaleTypes.Theme, setFocus: React.Dispatch<React.SetStateAction<boolean>>, mouseFocus?: boolean, focusDecoration?: boolean) => {
 
-    const [focus, setFocus] = useState(false)
     let isMouseDown = false
 
     const attributes = {
@@ -287,7 +285,6 @@ export default (props, theme: WhaleTypes.Theme, mouseFocus?: boolean, focusDecor
             wheelEvents,
             animationEvents,
             transitionEvents,
-        },
-        focus
+        }
     }
 }

@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import createCache, { Options } from '@emotion/cache'
 import { ThemeProvider } from 'emotion-theming'
 import { CacheProvider, Global, SerializedStyles } from '@emotion/core'
-import WhaleTypes, {EmotionStyles} from '../types'
+import WhaleTypes from '../types'
 
 interface ProviderProps {
     theme?: WhaleTypes.Theme
@@ -12,8 +12,10 @@ interface ProviderProps {
 }
 
 export const WhaleContext = React.createContext({} as WhaleTypes.Theme)
+const defaultBreakpoints = ['576px','768px','992px','1200px']
 
 const Provider = <T extends ProviderProps>(props: T) => {
+    
     const {theme, global, children} = props
     const cache = useMemo(() => createCache(props.cache),[])
 
@@ -25,6 +27,11 @@ const Provider = <T extends ProviderProps>(props: T) => {
     )
     
     if (theme) {
+
+        if (!theme.breakpoints || !theme.breakpoints.length) {
+            theme.breakpoints = defaultBreakpoints
+        }
+
         return (
             <WhaleContext.Provider value={theme}>
                 <ThemeProvider theme={theme}>

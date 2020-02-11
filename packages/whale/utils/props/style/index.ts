@@ -58,8 +58,8 @@ const resolvers: StyleResolverObject = {
     placeSelf: ['grid', 'placeSelf'],
 }
 
-export default (props: StyleProps, theme: WhaleTypes.Theme, queries: string[], styleProps?: InjectedStylesNames[]) => {
-    if (!styleProps) return []
+export default (props: StyleProps, theme: WhaleTypes.Theme, styleProps: Partial<Record<string,string[]>>) => {
+    const queries = theme.breakpoints.map(bp => `@media (min-width: ${bp})`)
 
     const returnStyles = [] as InjectedStyles[InjectedStylesNames][]
     const styles = {} as InjectedStyles
@@ -91,6 +91,9 @@ export default (props: StyleProps, theme: WhaleTypes.Theme, queries: string[], s
     const all = Object.assign({}, flow, self)
     const combined = Object.assign({ flow, self, all }, styles)
 
+    Object.keys(styleProps).forEach(styleName => {
+        
+    })
     for (let styleProp of styleProps) {
         returnStyles.push(combined[styleProp])
     }

@@ -1,87 +1,63 @@
-import { css } from '@emotion/core'
-import WhaleTypes, { EmotionStyles } from '../types'
-import propsAttribute from '../utils/props/attribute'
-import propsStyle from '../utils/props/style'
+import WhaleTypes from '../types'
 import { InjectedStyles } from '../utils/props/style/types'
 import useTheme from './useTheme'
+import useComponentProps from './useComponentProps'
+import createComponentStyles from '../utils/createComponentStyles'
+import { useState, useMemo } from 'react'
 
 interface Options<S> {
     props,
     styles: WhaleTypes.Styles<S> | WhaleTypes.CreateStyles<S>,
-    styleProps?: { [K in keyof S]?: (keyof InjectedStyles)[] }
+    styleProps?: Partial<Record<keyof S, (keyof InjectedStyles)[]>>
     mouseFocus?: boolean,
     focusDecoration?: boolean,
     theme?: WhaleTypes.Theme
 }
 
-const useComponent = <S, P>(overrideName: string, options: Options<S>, params = {}) => {
-    const { props, mouseFocus, focusDecoration, styleProps } = options
+const useComponent = <S>(overrideName: string, options: Options<S>, params: Object = {}) => {
+    
+    const { 
+        props,
+        styles,
+        styleProps,
+        mouseFocus,
+        focusDecoration,
+        theme = useTheme() 
+    } = options
 
-    const theme = options.theme || useTheme()
-    theme.breakpoints = theme.breakpoints || ['576px','768px','992px','1200px']
-    const queries = theme.breakpoints.map(bp => `@media (min-width: ${bp})`)
+    const [focus, setFocus] = useState(false)
 
-    const { attributes, events, focus } = propsAttribute(props, theme, mouseFocus, focusDecoration)
+    return useMemo(() => {
+        const resolvedStyles = typeof styles === 'function'
+            ? styles(props, theme, params)
+            : styles
 
-    /**
-     * Memo not working here properly
-     * Field hoc not updating when using memo here
-     */
-    const cs: WhaleTypes.ComponentStyles<S> = {} as WhaleTypes.ComponentStyles<S>
+        const overrides = theme.overrides?.[overrideName]
+        
+        const { 
+            attributes, 
+            events, 
+            propStyles 
+        } = useComponentProps(
+            props,
+            theme, 
+            setFocus,
+            {
+                styleProps,
+                mouseFocus, 
+                focusDecoration 
+            } 
+        )
+        
+        const cs = createComponentStyles(
+            resolvedStyles, 
+            propStyles, 
+            overrides
+        )
+        
+        return { cs, attributes, events, focus, theme }
 
-    const styles = typeof options.styles === 'function'
-        ? options.styles(props, theme, params)
-        : options.styles
-
-    const themeOverrides = overrideName && theme.overrides?.[overrideName]
-
-    Object.keys(styles).map(styleName => {
-        if (typeof styles[styleName] === 'function') {
-            cs[styleName] = (state) => {
-
-                const variant = (varaints) => {
-                    let variantStyles: EmotionStyles = []
-
-                    for (const variantName of Object.keys(varaints)) {
-                        const variantValue = state[variantName]
-
-                        if (typeof variantValue === 'string') {
-                            variantStyles.push(varaints[variantName][variantValue])
-                        }
-
-                        if (typeof variantValue === 'boolean' && variantValue === true) {
-                            variantStyles.push(varaints[variantName])
-                        }
-
-                        if (!Object.keys(state).includes(variantName)) {
-                            console.warn(
-                                `Can't find value of "${variantName}" variant in "${styleName}" style. 
-                                    Function has been called with:`,
-                                state
-                            )
-                        }
-                    }
-                    return variantStyles
-                }
-
-                return css(
-                    styles[styleName](variant),
-                    themeOverrides?.[styleName]?.(variant),
-                    props.styles?.[styleName]?.(variant),
-                    propsStyle(props, theme, queries, styleProps?.[styleName])
-                )
-            }
-        } else {
-            cs[styleName] = css(
-                styles[styleName],
-                themeOverrides?.[styleName],
-                props.styles?.[styleName],
-                propsStyle(props, theme, queries, styleProps?.[styleName])
-            )
-        }
-    })
-
-    return { cs, attributes, events, focus }
+    }, [props, styles, mouseFocus, focusDecoration, theme, params, overrideName])
 }
 
 export default useComponent
