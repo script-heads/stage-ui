@@ -4,8 +4,8 @@ import CSS from 'csstype'
 declare namespace PopoverTypes {
     interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
         align?: 'top' | 'bottom' | 'left' | 'right' | 'none'
-        background?: WhaleTypes.ColorProp
-        color?: WhaleTypes.ColorProp
+        borderColor?: WhaleTypes.ColorProp
+        backgroundColor?: WhaleTypes.ColorProp
         children?: React.ReactNode
         arrowWidth?: CSS.Properties['width']
         arrowHeight?: CSS.Properties['height']
