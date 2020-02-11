@@ -12,7 +12,7 @@ export type StyleTypes = {
 const createTheme: (theme: WhaleTypes.Theme) => StyleTypes = (theme) => ({
     container: css({
         width: '20rem',
-        borderRight: `1px solid ${theme.color.lightest.css()}`,
+        borderRight: `1px solid ${theme.color.lightest}`,
     }),
     scrollView: css({ 
         height: 'calc(100vh - 6rem)',
@@ -28,12 +28,12 @@ const createTheme: (theme: WhaleTypes.Theme) => StyleTypes = (theme) => ({
                 margin: '1px 0',
                 borderRightWidth: '4px',
                 borderRightStyle: 'solid',
-                borderRightColor: theme.color.primary.alpha(0).hex(),
+                borderRightColor: theme.color.primary.alpha(0).rgb().string(),
                 'span[id^=\'ctrl\']': {
                     visibility: 'hidden'
                 },
                 '&:hover': {
-                    background: theme.color.hard.alpha(.1).css(),
+                    background: theme.color.hard.alpha(.1).rgb().string(),
                     'span[id^=\'ctrl\']': {
                         visibility: 'visible'
                     }
@@ -41,10 +41,10 @@ const createTheme: (theme: WhaleTypes.Theme) => StyleTypes = (theme) => ({
                 }
             },
             selected && {
-                borderRightColor: theme.color.primary.alpha(1).hex(),
-                background: theme.color.primary.alpha(.1).css(),
+                borderRightColor: theme.color.primary.alpha(1).rgb().string(),
+                background: theme.color.primary.alpha(.1).rgb().string(),
                 '&:hover': {
-                    background: theme.color.primary.alpha(.1).css()
+                    background: theme.color.primary.alpha(.1).rgb().string()
                 },
             }
     ]
@@ -52,8 +52,8 @@ const createTheme: (theme: WhaleTypes.Theme) => StyleTypes = (theme) => ({
     tag: css([{
         padding: '0.125rem 0.5rem',
         borderRadius: '1rem',
-        color: theme.color.onSecondary.hex(),
-        background: theme.color.secondary.hex()
+        color: theme.color.onSecondary.rgb().string(),
+        background: theme.color.secondary.rgb().string()
     }])
 })
 

@@ -14,7 +14,7 @@ export default (theme: WhaleTypes.Theme, state: State) => {
         container: css({
             padding: '1rem',
             border: '1px solid',
-            borderColor: theme.color.lightest.hex(),
+            borderColor: theme.color.lightest.rgb().string(),
             borderRadius: theme.radius.default
         }),
         lock: css({
@@ -26,13 +26,13 @@ export default (theme: WhaleTypes.Theme, state: State) => {
             height: '7px',
             top: '50%',
             marginTop: '-3px',
-            background: theme.color.primary.alpha(0.1).hex(),
+            background: theme.color.primary.alpha(0.1).rgb().string(),
             '> div': {
                 position: 'absolute',
                 width: '100%',
                 height: '1px',
                 top: '3px',
-                background: theme.color.primary.alpha(lockX ? 1 : 0.2).hex()
+                background: theme.color.primary.alpha(lockX ? 1 : 0.2).rgb().string()
             }
         }),
         lockY: css({
@@ -41,13 +41,13 @@ export default (theme: WhaleTypes.Theme, state: State) => {
             width: '7px',
             left: '50%',
             marginLeft: '-3px',
-            background: theme.color.primary.alpha(0.1).hex(),
+            background: theme.color.primary.alpha(0.1).rgb().string(),
             '> div': {
                 position: 'absolute',
                 height: '100%',
                 width: '1px',
                 left: '3px',
-                background: theme.color.primary.alpha(lockY ? 1 : 0.2).hex()
+                background: theme.color.primary.alpha(lockY ? 1 : 0.2).rgb().string()
             }
         }),
         lockC: css({
@@ -62,14 +62,14 @@ export default (theme: WhaleTypes.Theme, state: State) => {
             left: '50%',
             marginTop: '-0.75rem',
             marginLeft: '-0.75rem',
-            background: theme.color.surface.hex(),
+            background: theme.color.surface.rgb().string(),
             border: '1px solid',
-            borderTopColor: theme.color.primary.alpha((lockY) ? 1 : 0.2).hex(),
-            borderBottomColor: theme.color.primary.alpha((lockY) ? 1 : 0.2).hex(),
-            borderLeftColor: theme.color.primary.alpha((lockX) ? 1 : 0.2).hex(),
-            borderRightColor: theme.color.primary.alpha((lockX) ? 1 : 0.2).hex(),
+            borderTopColor: theme.color.primary.alpha((lockY) ? 1 : 0.2).rgb().string(),
+            borderBottomColor: theme.color.primary.alpha((lockY) ? 1 : 0.2).rgb().string(),
+            borderLeftColor: theme.color.primary.alpha((lockX) ? 1 : 0.2).rgb().string(),
+            borderRightColor: theme.color.primary.alpha((lockX) ? 1 : 0.2).rgb().string(),
             '> span': {
-                color: theme.color.primary.alpha((lockC) ? 1 : 0.2).hex(),
+                color: theme.color.primary.alpha((lockC) ? 1 : 0.2).rgb().string(),
                 flex: 1,
                 justifyContent:'center',
             }

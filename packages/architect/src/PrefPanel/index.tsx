@@ -117,8 +117,8 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
     return (
         <Block
             css={cs.container}
-            backgroundColor={c => c.surface.css()}
-            borderColor={c => c.lightest.css()}>
+            backgroundColor={c => c.surface}
+            borderColor={c => c.lightest}>
             <Flexbox justifyContent="space-between" alignItems="center" my=".5rem">
                 <Menu
                     size="s"
@@ -142,14 +142,14 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
                         onClick={() => {
                             tools.duplicate()
                         }}
-                        color={c => tools.focused ? c.onSurface.hex() : c.lightest.hex()}
+                        color={c => tools.focused ? c.onSurface : c.lightest}
                     />
                     <Trash2
                         mr="1rem"
                         onClick={() => {
                             tools.remove()
                         }}
-                        color={c => tools.focused ? c.error.hex() : c.lightest.hex()}
+                        color={c => tools.focused ? c.error : c.lightest}
                     />
                 </Block>
             </Flexbox>
@@ -161,7 +161,7 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
                             <Paragraph
                                 align="center"
                                 pt="2rem"
-                                color={c => c.light.hex()}
+                                color={c => c.light}
                                 children="Preferences panel"
                             />
                         )
@@ -192,7 +192,7 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
                                             pb=".25rem"
                                             pl=".25rem"
                                             lineHeight="0.75rem"
-                                            color={c => c.light.hex()}
+                                            color={c => c.light}
                                             children="Flags"
                                         />
                                         <Block p="0.25rem">

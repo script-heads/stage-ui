@@ -26,7 +26,7 @@ const LiteralControls = (props: Props) => {
                 pb=".25rem"
                 pl=".25rem"
                 lineHeight="0.75rem"
-                color={c => c.light.hex()}
+                color={c => c.light}
                 children={props.name[0].toUpperCase() + props.name.slice(1)}
             />
             {values.length < 5

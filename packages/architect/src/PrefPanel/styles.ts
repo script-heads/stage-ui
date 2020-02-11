@@ -5,7 +5,7 @@ export default (theme: WhaleTypes.Theme) => {
     return {
         container: css({
             width: '20rem',
-            borderLeft: `1px solid ${theme.color.lightest.css()}`,
+            borderLeft: `1px solid ${theme.color.lightest}`,
         }),
         scrollView: css({ 
             height: 'calc(100vh - 6rem)',
@@ -19,10 +19,10 @@ export default (theme: WhaleTypes.Theme) => {
                 top: '0.25rem',
                 right: '0.5rem',
                 borderRadius: '1rem',
-                color: theme.color.light.hex(),
+                color: theme.color.light.rgb().string(),
             }, active && {
-                color: theme.color.onPrimary.hex(),
-                background: theme.color.primary.hex()
+                color: theme.color.onPrimary.rgb().string(),
+                background: theme.color.primary.rgb().string()
             })
         )
     }

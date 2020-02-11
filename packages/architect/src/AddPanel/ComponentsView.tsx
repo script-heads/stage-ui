@@ -35,19 +35,19 @@ const ComponentsView = (props: { tools: ArchitectTools, search: string, styles: 
                     ) : null
                 ))}
             </ScrollView>
-            <Divider vertical color={c => c.lightest.hex()} />
+            <Divider vertical color={c => c.lightest} />
             <Block p="2rem">
                 {currentComponent !== '' ? (
                     <>
                         <Header>{currentComponent}</Header>
                         <Text
-                            color={c => c.light.hex()}
+                            color={c => c.light}
                             children="No description."
                         />
                     </>
                 ) : (
                         <Text
-                            color={c => c.light.hex()}
+                            color={c => c.light}
                             children="Find component what you want and then Drag and Drop it to workspace"
                         />
                     )}

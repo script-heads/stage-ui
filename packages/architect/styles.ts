@@ -9,7 +9,7 @@ export default (theme: WhaleTypes.Theme) => ({
         right: 0, 
         top: '3rem',
         bottom: 0,
-        background: theme.color.background.hex(),
-        borderTop: `1px solid ${theme.color.lightest.css()}`
+        background: theme.color.background.rgb().string(),
+        borderTop: `1px solid ${theme.color.lightest}`
     })
 })
