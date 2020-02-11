@@ -44,7 +44,7 @@ const applyLayoutDecoration = (props: Props, theme: WhaleTypes.Theme) => {
             boxShadow: theme.assets.shadow.long
         }
         case 'neumorphism':
-            const isDark = theme.color.background.lab().array()[1] < 70
+            const isDark = theme.color.background.isDark()
             return {
                 background: theme.color.background.rgb().string(),
                 borderRadius: theme.radius.default,
