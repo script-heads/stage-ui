@@ -31,10 +31,6 @@ const Sidebar = (props: SidebarProps) => {
 		}).map(page => ({
 			css: {
 				fontWeight: '600',
-				// marginLeft: '1rem',
-				// [`@media (max-width: ${window.breakpoints[0]}px)`]: {
-				// 	marginLeft: '1rem',
-				// }
 			},
 			value: page.url,
 			content: (

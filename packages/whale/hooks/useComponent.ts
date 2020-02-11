@@ -1,7 +1,8 @@
 import { css } from '@emotion/core'
 import WhaleTypes, { EmotionStyles } from '../types'
-import attributeProps from '../utils/attributeProps'
-import getStyleProps, { InjectedStyles } from '../utils/styleProps'
+import propsAttribute from '../utils/props/attribute'
+import propsStyle from '../utils/props/style'
+import { InjectedStyles } from '../utils/props/style/types'
 import useTheme from './useTheme'
 
 interface Options<S> {
@@ -20,7 +21,7 @@ const useComponent = <S, P>(overrideName: string, options: Options<S>, params = 
     theme.breakpoints = theme.breakpoints || ['576px','768px','992px','1200px']
     const queries = theme.breakpoints.map(bp => `@media (min-width: ${bp})`)
 
-    const { attributes, events, focus } = attributeProps(props, theme, mouseFocus, focusDecoration)
+    const { attributes, events, focus } = propsAttribute(props, theme, mouseFocus, focusDecoration)
 
     /**
      * Memo not working here properly
@@ -67,7 +68,7 @@ const useComponent = <S, P>(overrideName: string, options: Options<S>, params = 
                     styles[styleName](variant),
                     themeOverrides?.[styleName]?.(variant),
                     props.styles?.[styleName]?.(variant),
-                    getStyleProps(props, theme, queries, styleProps?.[styleName])
+                    propsStyle(props, theme, queries, styleProps?.[styleName])
                 )
             }
         } else {
@@ -75,7 +76,7 @@ const useComponent = <S, P>(overrideName: string, options: Options<S>, params = 
                 styles[styleName],
                 themeOverrides?.[styleName],
                 props.styles?.[styleName],
-                getStyleProps(props, theme, queries, styleProps?.[styleName])
+                propsStyle(props, theme, queries, styleProps?.[styleName])
             )
         }
     })
