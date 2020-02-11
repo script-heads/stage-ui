@@ -21,7 +21,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.PrivateProps> = (pr
                 textTransform: props.transform,
                 textAlign: props.align,
                 color: colorProp(theme, props.color)?.rgb().string(),
-                background: colorProp(theme, props.color)?.rgb().string(),
+                background: colorProp(theme, props.background)?.rgb().string(),
             },
             props.ellipsis && {
                 whiteSpace: 'nowrap',
