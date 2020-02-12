@@ -63,7 +63,7 @@ declare namespace ScrollViewTypes {
     interface Overrides {
         container: void
         content: void
-        mobile: boid
+        mobile: void
         yBar: {
             active: boolean,
             shape: Props['shape']
