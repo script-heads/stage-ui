@@ -14,7 +14,7 @@ interface Options<Styles,Props,Params> {
     theme?: WhaleTypes.Theme
 }
 
-const defaultBreakpoints = ['576px','768px','992px','1200px']
+const defaultBreakpoints = ['1199.98px','991.98px','767.98px','575.98px']
 
 const useComponent = <Styles,Props,Params extends Object>(
     overrideName: string, 

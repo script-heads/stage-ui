@@ -63,7 +63,7 @@ const createPropStyles = <Props, StyleProps>(
     theme: WhaleTypes.Theme, 
     styleProps: StyleProps) => {
 
-    const queries = theme.breakpoints.map(bp => `@media (min-width: ${bp})`)
+    const queries = theme.breakpoints.map(bp => `@media (max-width: ${bp})`)
 
     const propStyles = {} as Record<keyof StyleProps, EmotionStyles>
     const styles = {} as WhalePropsTypes.InjectedStyles
@@ -84,9 +84,15 @@ const createPropStyles = <Props, StyleProps>(
         if (!Array.isArray(values)) values = [values]
 
         values.forEach((value, i) => {
-            styles[sectionName][i ? queries[i] : styleName] = resolver
-                ? resolver({ propValue: value, propName, theme, ctx })
-                : value
+            const cssValue = resolver ? resolver({ propValue: value, propName, theme, ctx }) : value
+            if (i) {
+                if (!styles[sectionName][queries[i]]) {
+                    styles[sectionName][queries[i]] = {}
+                }
+                styles[sectionName][queries[i]][styleName] = cssValue
+            } else {
+                styles[sectionName][styleName] = cssValue
+            }
         })
     }
 
