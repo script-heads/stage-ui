@@ -2,17 +2,13 @@ import { ArchitectTools, ArchitectItem } from '@flow-ui/architect/types'
 import { Button, Flexbox, TextField, Grid, useTheme, Block, Paragraph, Menu } from '@flow-ui/core'
 import createStyle from './styles'
 import { Fragment } from 'react'
+import { context } from '../../../..'
 
-type Props = {
-    tools: ArchitectTools
-}
-
-const FlexConrols = (props: Props) => {
-    if (!props.tools.focused) {
+const FlexConrols = () => {
+    if (!context.tools.focused) {
         return null
     }
-    const { tools } = props
-    const focused = tools.focused as ArchitectItem
+    const focused = context.tools.focused as ArchitectItem
     const { direction, justifyContent, alignItems } = focused.props
     const theme = useTheme()
     const styles = createStyle(theme)
@@ -33,7 +29,7 @@ const FlexConrols = (props: Props) => {
             children={props.label}
             onClick={() => {
                 focused.props.direction = props.value
-                tools.update()
+                context.tools.update()
             }}
         />
     )
@@ -53,7 +49,7 @@ const FlexConrols = (props: Props) => {
             children={props.label}
             onClick={() => {
                 focused.props.justifyContent = props.value
-                tools.update()
+                context.tools.update()
             }}
         />
     )
@@ -73,7 +69,7 @@ const FlexConrols = (props: Props) => {
             children={props.label}
             onClick={() => {
                 focused.props.alignItems = props.value
-                tools.update()
+                context.tools.update()
             }}
         />
     )

@@ -1,7 +1,8 @@
-import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
-import { Block, Flexbox, Text, useTheme, Paragraph } from '@flow-ui/core'
+import { ArchitectItem } from '@flow-ui/architect/types'
+import { Block, Flexbox, Paragraph, Text, useTheme } from '@flow-ui/core'
 import WhaleTypes from '@flow-ui/whale/types'
-import { RefObject, useRef } from 'react'
+import { RefObject, useRef, useState } from 'react'
+import { context } from '../..'
 import Mask, { MaskRefs } from './Mask'
 import styles from './styles'
 
@@ -22,7 +23,6 @@ export const componentsTypography = [
 
 interface RenderItemProps {
     item: ArchitectItem,
-    tools: ArchitectTools
     theme: WhaleTypes.Theme,
     mask: {
         hover: RefObject<MaskRefs>
@@ -33,7 +33,7 @@ interface RenderItemProps {
 }
 const RenderItem = (props: RenderItemProps) => {
 
-    const { item, tools, theme, mask } = props
+    const { item, theme, mask } = props
 
     const ref: RefObject<HTMLSpanElement> = useRef(null)
 
@@ -51,22 +51,21 @@ const RenderItem = (props: RenderItemProps) => {
 
     let Component = (props) => (
         <Text 
+            {...props}
             align="center"
             color={c => c.error}
             children={`⚠ ${item.component} not found ⚠`}    
         />
-
     )
 
-    if (tools.components[item.component]) {
-        Component = tools.components[item.component].component
+    if (context.tools.components[item.component]) {
+        Component = context.tools.components[item.component].component
     }
 
     let children = item.children?.map((child) =>
         <RenderItem
             mask={mask}
             key={child.id}
-            tools={tools}
             item={child}
             theme={theme}
         />
@@ -77,20 +76,7 @@ const RenderItem = (props: RenderItemProps) => {
     }
 
     const convertedProps: {[key: string]: unknown} = {}
-    /**
-     * Icon is deprecated
-     */
-    // if (item.component === 'Icon') {
-    //     if (item.props.type) {
-    //         const keys = item.props.type.split('.') || []
-    //         convertedProps.type = (t) => {
-    //             if (t[keys[0]]) {
-    //                 return t[keys[0]][keys[1]]
-    //             }
-    //             return t.outline.questionMark
-    //         }
-    //     }
-    // }
+
     return (
         <span
             ref={ref}
@@ -103,7 +89,7 @@ const RenderItem = (props: RenderItemProps) => {
                     {...convertedProps}
                     draggable
                     onMouseEnter={(e) => {
-                        if (mask.hover.current && !tools.captured) {
+                        if (mask.hover.current && !context.tools.captured) {
                             mask.hover.current.update(
                                 item.$.getRect(),
                                 item.component
@@ -117,24 +103,24 @@ const RenderItem = (props: RenderItemProps) => {
                     }}
                     onDragStart={(e) => {
                         e.stopPropagation()
-                        tools.captured = item
+                        context.tools.captured = item
                     }}
                     onDragOver={(e) => {
                         e.stopPropagation()
                         e.preventDefault()
-                        if (tools.captured) {
-                            if (tools.captured.id === item.id) {
-                                tools.target = item.parent
+                        if (context.tools.captured) {
+                            if (context.tools.captured.id === item.id) {
+                                context.tools.target = item.parent
                             } else {
-                                tools.target = item
+                                context.tools.target = item
                             }
-                            if (!tools.target?.children) {
-                                tools.target = tools.target?.parent
+                            if (!context.tools.target?.children) {
+                                context.tools.target = context.tools.target?.parent
                             }
-                            if (tools.target && mask.target.current) {
+                            if (context.tools.target && mask.target.current) {
                                 mask.target.current.update(
-                                    tools.target.$.getRect(),
-                                    tools.target.component
+                                    context.tools.target.$.getRect(),
+                                    context.tools.target.component
                                 )
                             }
                         }
@@ -150,15 +136,15 @@ const RenderItem = (props: RenderItemProps) => {
                     }}
                     onDrop={(e) => {
                         e.stopPropagation()
-                        props.tools.move()
+                        context.tools.move()
                         if (mask.target.current) {
                             mask.target.current.hide()
                         }
                     }}
                     onClick={(e) => {
                         e.stopPropagation()
-                        tools.focused = item
-                        tools.update()
+                        context.tools.focused = item
+                        context.tools.update()
                     }}
                     children={children}
                 />
@@ -167,15 +153,15 @@ const RenderItem = (props: RenderItemProps) => {
     )
 }
 
-const Render = (props: { tools: ArchitectTools }) => {
+const Render = () => {
     const theme = useTheme()
     const cs = styles(theme)
-    const { tools } = props
-    const architectItems = tools.getItems()
+    const architectItems = context.tools.getItems()
     const hoverMask = useRef<MaskRefs>(null)
     const targetMask = useRef<MaskRefs>(null)
     const focusMask = useRef<MaskRefs>(null)
-
+    const [tooltip, setTooltip] = useState('')
+    
     function patchStyle(items: ArchitectItem[]) {
         for (const item of items) {
             if (componentsInvisibleWhenEmpty.includes(item.component)) {
@@ -227,7 +213,6 @@ const Render = (props: { tools: ArchitectTools }) => {
                                     target: targetMask,
                                     focus: focusMask
                                 }}
-                                tools={tools}
                                 item={item}
                                 theme={theme}
                             />
@@ -237,18 +222,18 @@ const Render = (props: { tools: ArchitectTools }) => {
                 onDragOver={(e) => {
                     e.stopPropagation()
                     e.preventDefault()
-                    tools.target = null
+                    context.tools.target = null
                 }}
                 onDrop={(e) => {
                     e.stopPropagation()
-                    if (tools.captured) {
-                        tools.move()
+                    if (context.tools.captured) {
+                        context.tools.move()
                     }
                 }}
                 onClick={(e) => {
                     e.stopPropagation()
-                    tools.focused = null
-                    tools.update()
+                    context.tools.focused = null
+                    context.tools.update()
                 }}
             />
             <Mask ref={hoverMask} color={c => c.primary.alpha(0.5).rgb().string()} />
@@ -256,7 +241,7 @@ const Render = (props: { tools: ArchitectTools }) => {
             <Mask
                 ref={focusMask}
                 color={c => c.secondary.rgb().string()}
-                item={tools.focused}
+                item={context.tools.focused}
             />
         </Flexbox>
     )

@@ -1,8 +1,7 @@
-import { ArchitectTools } from '@flow-ui/architect/types'
-import { Block, Divider, Flexbox, Menu, Paragraph, useTheme } from '@flow-ui/core'
+import { Block, Divider, Flexbox, Menu, Paragraph, ScrollView, useTheme } from '@flow-ui/core'
 import { Copy, Cube, Link, Trash2 } from '@flow-ui/core/icons'
-import { ScrollView } from '@flow-ui/core'
 import { Fragment } from 'react'
+import { context } from '../..'
 import { componentsTypography } from '../RenderPanel'
 import BooleanControls from './controls/boolean'
 import FlexControls from './controls/flex'
@@ -41,10 +40,9 @@ const hiddenProps = [
     'hrefLang',
     'href',
 ]
-const PrefPanel = (props: { tools: ArchitectTools }) => {
+const PrefPanel = () => {
     const theme = useTheme()
     const cs = styles(theme)
-    const { tools } = props
 
     const literalProps: { name: string, values: string[] }[] = []
     const stringProps: string[] = []
@@ -109,8 +107,8 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
         }
     }
 
-    let ComponentTypeName = tools.focused?.component
-    if (componentsTypography.includes(tools.focused?.component || '-')) {
+    let ComponentTypeName = context.tools.focused?.component
+    if (componentsTypography.includes(context.tools.focused?.component || '-')) {
         ComponentTypeName = 'Typography'
     }
     findProps(data[ComponentTypeName + 'Types'])
@@ -140,16 +138,16 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
                     <Copy
                         mr="1rem"
                         onClick={() => {
-                            tools.duplicate()
+                            context.tools.duplicate()
                         }}
-                        color={c => tools.focused ? c.onSurface : c.lightest}
+                        color={c => context.tools.focused ? c.onSurface : c.lightest}
                     />
                     <Trash2
                         mr="1rem"
                         onClick={() => {
-                            tools.remove()
+                            context.tools.remove()
                         }}
-                        color={c => tools.focused ? c.error : c.lightest}
+                        color={c => context.tools.focused ? c.error : c.lightest}
                     />
                 </Block>
             </Flexbox>
@@ -157,7 +155,7 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
             <ScrollView size="xs" css={cs.scrollView}>
                 <Block css={cs.scrollContainer}>
                     {
-                        !tools.focused && (
+                        !context.tools.focused && (
                             <Paragraph
                                 align="center"
                                 pt="2rem"
@@ -167,19 +165,18 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
                         )
                     }
                     {
-                        !!tools.focused && (
+                        !!context.tools.focused && (
                             <Fragment>
-                                <NameControls {...props} />
-                                <TextControls {...props} />
-                                {tools.focused.component === 'Flexbox' && (
-                                    <FlexControls {...props} />
+                                <NameControls />
+                                <TextControls />
+                                {context.tools.focused.component === 'Flexbox' && (
+                                    <FlexControls />
                                 )}
-                                <PaddingControls {...props} />
-                                <MarginControls {...props} />
-                                <SizeConrols {...props} />
+                                <PaddingControls />
+                                <MarginControls />
+                                <SizeConrols />
                                 {literalProps.map((item, index) => (
                                     <LiteralControls
-                                        {...props}
                                         key={index}
                                         name={item.name}
                                         values={item.values}
@@ -198,7 +195,6 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
                                         <Block p="0.25rem">
                                             {booleanProps.map((name, index) => (
                                                 <BooleanControls
-                                                    {...props}
                                                     key={index}
                                                     name={name}
                                                 />
@@ -209,7 +205,7 @@ const PrefPanel = (props: { tools: ArchitectTools }) => {
                                 )}
                                 {stringProps.map((name, index) => (
                                     <StringControls
-                                        {...props}
+                                       
                                         key={index}
                                         name={name}
                                     />

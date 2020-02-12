@@ -1,19 +1,18 @@
-import { ArchitectTools } from '@flow-ui/architect/types'
-import { Block, Divider, Header, ScrollView, Text, useTheme } from '@flow-ui/core'
+import { Block, Divider, Header, ScrollView, Text } from '@flow-ui/core'
 import { useState } from 'react'
-import styles, { AddPanelStyles } from './styles'
+import { context } from '../..'
+import { AddPanelStyles } from './styles'
 
-const ComponentsView = (props: { tools: ArchitectTools, search: string, styles: AddPanelStyles }) => {
+const ComponentsView = (props: { search: string, styles: AddPanelStyles }) => {
     
-    const { tools } = props
     const [currentComponent, setCurrentComponent] = useState('')
 
     return (
         <>
             <ScrollView size="xs" css={{ width: '15rem' }}>
-                {Object.keys(tools.components).map(component => (
+                {Object.keys(context.tools.components).map(component => (
                     component.toUpperCase().match(props.search.toUpperCase()) ? (
-                        tools.components[component].hidden === false && (
+                        context.tools.components[component].hidden === false && (
                             <div
                                 draggable
                                 css={props.styles.component(currentComponent === component)}
@@ -24,11 +23,11 @@ const ComponentsView = (props: { tools: ArchitectTools, search: string, styles: 
                                 }}
                                 onDragStart={e => {
                                     e.stopPropagation()
-                                    tools.captured = tools.components[component].create()
+                                    context.tools.captured = context.tools.components[component].create()
                                     /**
                                      * Other ways drag and drop will not work
                                      */
-                                    setTimeout(tools.componentLibraryHide)
+                                    setTimeout(context.tools.componentLibraryHide)
                                 }}
                             />
                         )

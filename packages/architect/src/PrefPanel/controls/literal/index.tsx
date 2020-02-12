@@ -1,21 +1,21 @@
 import { ArchitectTools } from '@flow-ui/architect/types'
 import { Block, Button, Paragraph, Select } from '@flow-ui/core'
 import { ButtonGroup } from '@flow-ui/lab'
+import { context } from '../../../..'
 
 type Props = {
     name: string,
     values: string[] | number[]
-    tools: ArchitectTools
 }
 
 const LiteralControls = (props: Props) => {
-    if (!props.tools.focused) {
+    if (!context.tools.focused) {
         return null
     }
 
     const defaultKey = 'default'
     const values = [defaultKey].concat(props.values as string[])
-    const focusedValue = props.tools.focused.props[props.name]
+    const focusedValue = context.tools.focused.props[props.name]
     let currentValue = values.find(item => item === focusedValue)
     if (!currentValue) {
         currentValue = values[0]
@@ -41,12 +41,12 @@ const LiteralControls = (props: Props) => {
                                     key={value}
                                     children={value}
                                     onClick={() => {
-                                        if (props.tools.focused) {
-                                            props.tools.focused.props[props.name] = value
+                                        if (context.tools.focused) {
+                                            context.tools.focused.props[props.name] = value
                                             if (value === defaultKey) {
-                                                delete props.tools.focused.props[props.name]
+                                                delete context.tools.focused.props[props.name]
                                             }
-                                            props.tools.update()
+                                            context.tools.update()
                                         }
                                     }}
                                 />
@@ -64,12 +64,12 @@ const LiteralControls = (props: Props) => {
                             text: value, value
                         }))}
                         onChange={(e, option) => {
-                            if (props.tools.focused && option) {
-                                props.tools.focused.props[props.name] = option.value
+                            if (context.tools.focused && option) {
+                                context.tools.focused.props[props.name] = option.value
                                 if (option.value === defaultKey) {
-                                    delete props.tools.focused.props[props.name]
+                                    delete context.tools.focused.props[props.name]
                                 }
-                                props.tools.update()
+                                context.tools.update()
                             }
                         }}
                     />

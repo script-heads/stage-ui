@@ -1,8 +1,8 @@
-import { ArchitectTools } from '@flow-ui/architect/types'
 import { Block, Button, Grid, Paragraph, useTheme } from '@flow-ui/core'
 import { Lock } from '@flow-ui/core/icons'
 import { ButtonGroup } from '@flow-ui/lab'
 import { useEffect, useState } from 'react'
+import { context } from '../../../../..'
 import styles from './styles'
 
 const staticValues = [
@@ -15,7 +15,6 @@ const staticValues = [
 ]
 
 type Props = {
-    tools: ArchitectTools,
     propKeys: string[]
     label: string
 }
@@ -43,8 +42,8 @@ const ValueControl = (props: { value: number, onChange: (value: number) => void 
     )
 }
 const ValueCross = (props: Props) => {
-    const { propKeys, tools } = props
-    const { focused } = tools
+    const { propKeys } = props
+    const { focused } = context.tools
     if (!focused) {
         return null
     }
@@ -71,7 +70,7 @@ const ValueCross = (props: Props) => {
         if (kr && kr === kl && kt === kb && kt === kr) {
             setLockC(true)
         }
-    }, [props.tools.focused?.id])
+    }, [context.tools.focused?.id])
 
     const [lockX, setLockX] = useState(false)
     const [lockY, setLockY] = useState(false)
@@ -120,7 +119,7 @@ const ValueCross = (props: Props) => {
             }
         })
         setValues(newValues)
-        props.tools.update()
+        context.tools.update()
     }
 
     return (

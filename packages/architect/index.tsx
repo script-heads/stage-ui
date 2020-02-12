@@ -25,36 +25,18 @@ interface ArchitectProps {
     setTheme: (theme: WhaleTypes.Theme) => void
     setIndex: () => void
 }
-interface ArchitectViewProps extends ArchitectProps { 
-    tools: ArchitectTools
-    componentLibraryOpen: boolean 
+
+export const context = {
+    componentLibraryOpen: false,
+    tools: {} as ArchitectTools
 }
 
 class Architect extends React.Component<ArchitectProps> {
     constructor(props: ArchitectProps) {
         super(props)
         this.init(require('./demoData').default)
+        context.tools = this.tools
     }
-
-    // componentDidMount() {
-    //     window.addEventListener('keydown', this.handleKey.bind(this))
-    // }
-    // componentWillUnmount() {
-    //     window.addEventListener('keydown', this.handleKey.bind(this))
-    // }
-
-    // /**
-    //  * Handling keyboard events
-    //  */
-    // handleKey(e: KeyboardEvent) {
-    //     switch(e.keyCode) {
-    //         //Backspace
-    //         case 8: 
-    //             this.tools.remove()
-    //         break
-    //     }
-    // }
-
     /**
      * This method will set items
      * but not rerender em.
@@ -73,12 +55,7 @@ class Architect extends React.Component<ArchitectProps> {
             })
         }
         recursive(this.items)
-    }
-    /**
-     * Is component library panel visible
-     */
-    private componentLibraryOpen: boolean = false
-    /**
+    }    /**
      * Store with all items
      */
     private items: ArchitectItem[] = []
@@ -239,11 +216,11 @@ class Architect extends React.Component<ArchitectProps> {
             }
         },
         componentLibraryShow: () => {
-            this.componentLibraryOpen = true
+            context.componentLibraryOpen = true
             this.forceUpdate()
         },
         componentLibraryHide: () => {
-            this.componentLibraryOpen = false
+            context.componentLibraryOpen = false
             this.forceUpdate()
         },
         /**
@@ -257,8 +234,6 @@ class Architect extends React.Component<ArchitectProps> {
         return (
             <ArchitectView
                 {...this.props}
-                tools={this.tools}
-                componentLibraryOpen={this.componentLibraryOpen}
             />
         )
     }
@@ -267,21 +242,30 @@ class Architect extends React.Component<ArchitectProps> {
 /**
  * That is just for hooks
  */
-const ArchitectView = (props: ArchitectViewProps) => {
+const ArchitectView = (props: ArchitectProps) => {
     
-    const cs = styles(props.currentTheme)
+    const cs = React.useMemo(() => styles(props.currentTheme), [
+        props.currentTheme
+    ])
 
     return (
         <Fragment>
-            <HeaderPanel {...props} />
+            <HeaderPanel 
+                title={props.title}
+                currentTheme={props.currentTheme}
+                setIndex={props.setIndex}
+                setTheme={props.setTheme}
+                themes={props.themes}
+                git={props.git}
+            />
             <Flexbox css={cs.container}>
-                <TreePanel tools={props.tools} />
-                <RenderPanel tools={props.tools} />
-                <PrefPanel tools={props.tools} /> 
+                <TreePanel/>
+                <RenderPanel />
+                <PrefPanel /> 
             </Flexbox>
             {
-                props.componentLibraryOpen && (
-                    <AddPanel tools={props.tools} />
+                context.componentLibraryOpen && (
+                    <AddPanel />
                 )
             }
         </Fragment>

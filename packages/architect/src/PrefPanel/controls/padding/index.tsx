@@ -1,16 +1,12 @@
-import { ArchitectTools } from '@flow-ui/architect/types'
+import { context } from '../../../..'
 import ValueCross from './ValueCross'
 
-type Props = {
-    tools: ArchitectTools
-}
-const PaddingControls = (props: Props) => {
-    if (!props.tools.focused) {
+const PaddingControls = () => {
+    if (!context.tools.focused) {
         return null
     }
     return (
         <ValueCross 
-            {...props}
             label="Padding"
             propKeys={['pt','pl','pr','pb']}
         />

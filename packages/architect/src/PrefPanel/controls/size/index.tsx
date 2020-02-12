@@ -1,13 +1,9 @@
-import { ArchitectTools } from '@flow-ui/architect/types'
-import { Block, Flexbox, Button, Paragraph } from '@flow-ui/core'
+import { Block, Button, Flexbox, Paragraph } from '@flow-ui/core'
 import { ButtonGroup } from '@flow-ui/lab'
+import { context } from '../../../..'
 
-type Props = {
-    tools: ArchitectTools
-}
-
-const SizeConrols = (props: Props) => {
-    if (!props.tools.focused) {
+const SizeConrols = () => {
+    if (!context.tools.focused) {
         return null
     }
     const valueTypes = [
@@ -29,17 +25,17 @@ const SizeConrols = (props: Props) => {
                 {/* <TextField 
                     placeholder="auto" 
                     label="Width"
-                    defaultValue={props.tools.focused.props.w}
+                    defaultValue={context.tools.focused.props.w}
                     w="1px" 
                     size="s"
                     onChange={e => {
-                        if (props.tools.focused) {
+                        if (context.tools.focused) {
                             if (e.target.value) {
-                                props.tools.focused.props.w = e.target.value + valueType
+                                context.tools.focused.props.w = e.target.value + valueType
                             } else {
-                                delete props.tools.focused.props.w
+                                delete context.tools.focused.props.w
                             }
-                            props.tools.update()
+                            context.tools.update()
                         }
                     }}
                 />
@@ -47,23 +43,23 @@ const SizeConrols = (props: Props) => {
                     ml="1rem"
                     placeholder="auto" 
                     label="Height"
-                    defaultValue={props.tools.focused.props.h}
+                    defaultValue={context.tools.focused.props.h}
                     w="1px" 
                     size="s"
                     onChange={e => {
-                        if (props.tools.focused) {
+                        if (context.tools.focused) {
                             if (e.target.value) {
-                                props.tools.focused.props.h = e.target.value + valueType
+                                context.tools.focused.props.h = e.target.value + valueType
                             } else {
-                                delete props.tools.focused.props.h
+                                delete context.tools.focused.props.h
                             }
-                            props.tools.update()
+                            context.tools.update()
                         }
                     }}
                 /> */}
                 <ButtonGroup flex={1}>
                     {Array(11).fill(0).map((_, index) => {
-                        const focused = props.tools.focused
+                        const focused = context.tools.focused
                         return (
                             <Button
                                 key={index}
@@ -80,7 +76,7 @@ const SizeConrols = (props: Props) => {
                                         } else {
                                             delete focused.props.flex
                                         }
-                                        props.tools.update()
+                                        context.tools.update()
                                     }
                                 }}
                             />
@@ -91,17 +87,17 @@ const SizeConrols = (props: Props) => {
                     ml="1rem"
                     placeholder="auto" 
                     label="Flex"
-                    defaultValue={props.tools.focused.props.flex}
+                    defaultValue={context.tools.focused.props.flex}
                     w="1px" 
                     size="s"
                     onChange={e => {
-                        if (props.tools.focused) {
+                        if (context.tools.focused) {
                             if (e.target.value) {
-                                props.tools.focused.props.flex = e.target.value
+                                context.tools.focused.props.flex = e.target.value
                             } else {
-                                delete props.tools.focused.props.flex
+                                delete context.tools.focused.props.flex
                             }
-                            props.tools.update()
+                            context.tools.update()
                         }
                     }}
                 /> */}

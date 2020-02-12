@@ -1,15 +1,13 @@
-import { ArchitectTools } from '@flow-ui/architect/types'
-import { Block, Divider, Flexbox, Menu, useTheme } from '@flow-ui/core'
+import { Block, Divider, Flexbox, Menu, ScrollView, useTheme } from '@flow-ui/core'
 import { Browser, Layers, Plus } from '@flow-ui/core/icons'
-import { ScrollView } from '@flow-ui/core'
 import WhaleTypes from '@flow-ui/whale/types'
 import { useState } from 'react'
+import { context } from '../..'
 import { default as LayersTab, default as PagesTab } from './layers'
 import createStyles, { StyleTypes } from './styles'
 
 export type TabProps = {
     theme: WhaleTypes.Theme
-    tools: ArchitectTools
     styles: StyleTypes
 }
 
@@ -19,12 +17,10 @@ const tabs = [
     
 ]
 
-const ComponentTree = (props: { tools: ArchitectTools }) => {
+const ComponentTree = () => {
     const theme = useTheme()
     const styles = createStyles(theme)
     const [tab, setTab] = useState<TabValues>('layers')
-
-    const { tools } = props
 
     const toolBarActions = {
         onTabChange: (tab: TabValues) => setTab(tab),
@@ -32,14 +28,6 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
 
     return (
         <Block
-            // onDragOver={(e) => {
-            //     e.stopPropagation()
-            //     e.preventDefault()
-            // }}
-            // onDrop={(e) => {
-            //     e.stopPropagation()
-            //     tools.move()
-            // }}
             css={styles.container}
             backgroundColor={c => c.surface}
             borderColor={c => c.lightest}>
@@ -64,7 +52,7 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                 <Plus
                     mr="1rem"
                     onClick={() => {
-                        tools.componentLibraryShow()
+                        context.tools.componentLibraryShow()
                     }}
                 />
             </Flexbox>
@@ -75,14 +63,12 @@ const ComponentTree = (props: { tools: ArchitectTools }) => {
                         <PagesTab
                             theme={theme}
                             styles={styles}
-                            tools={tools}
                         />
                     )}
                     {!tab || tab === 'layers' && (
                         <LayersTab
                             theme={theme}
                             styles={styles}
-                            tools={tools}
                         />
                     )}
                 </Block>

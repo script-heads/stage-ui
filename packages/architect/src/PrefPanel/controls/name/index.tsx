@@ -1,36 +1,32 @@
-import { ArchitectTools } from '@flow-ui/architect/types'
 import { Block, TextField } from '@flow-ui/core'
-import { useState, useEffect } from 'react'
-
-type Props = {
-    tools: ArchitectTools
-}
+import { useEffect, useState } from 'react'
+import { context } from '../../../..'
 
 let timer: NodeJS.Timeout | null = null
 
-const NameControls = (props: Props) => {
-    if (!props.tools.focused) {
+const NameControls = () => {
+    if (!context.tools.focused) {
         return null
     }
     const [value, setValue] = useState('')
 
     useEffect(() => {
-        if (props.tools.focused) {
-            setValue(props.tools.focused.name || '')
+        if (context.tools.focused) {
+            setValue(context.tools.focused.name || '')
         }
-    }, [props.tools.focused?.id])
+    }, [context.tools.focused?.id])
 
     const handleChange = (value: string) => {
         if (timer) {
             clearTimeout(timer)
         }
         timer = setTimeout(() => {
-            if (props.tools.focused) {
-                props.tools.focused.name = value
+            if (context.tools.focused) {
+                context.tools.focused.name = value
                 if (!value) {
-                    delete props.tools.focused.name
+                    delete context.tools.focused.name
                 }
-                props.tools.update()
+                context.tools.update()
             }
         }, 100)
     }

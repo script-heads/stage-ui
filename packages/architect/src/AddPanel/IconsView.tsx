@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { AddPanelStyles } from './styles'
 import * as icons from '@flow-ui/core/icons'
 import components, { Init } from '../../components'
+import { context } from '../..'
 
 let Delay = (props) => {
     const [display, setDisplay] = useState(false)
@@ -23,9 +24,8 @@ let Delay = (props) => {
 
 Delay = React.memo(Delay, (pProps, nProps) => pProps.active === nProps.active)
 
-const ComponentsView = (props: { tools: ArchitectTools, search: string, styles: AddPanelStyles }) => {
+const ComponentsView = (props: { search: string, styles: AddPanelStyles }) => {
 
-    const { tools } = props
     const [currentComponent, setCurrentComponent] = useState('')
 
     return (
@@ -56,11 +56,11 @@ const ComponentsView = (props: { tools: ArchitectTools, search: string, styles: 
                                     onDragStart={e => {
                                         e.stopPropagation()
 
-                                        tools.captured = tools.components[key].create()
+                                        context.tools.captured = context.tools.components[key].create()
                                         /**
                                          * Other ways drag and drop will not work
                                          */
-                                        setTimeout(tools.componentLibraryHide)
+                                        setTimeout(context.tools.componentLibraryHide)
                                     }}
                                 >
                                     <PreviewIcon

@@ -1,16 +1,17 @@
-import { ArchitectTools } from '@flow-ui/architect/types'
-import { Block, useTheme, Flexbox, Divider, TextField, Text, Menu, Header } from '@flow-ui/core'
-import styles from './styles'
-import { ScrollView } from '@flow-ui/core'
-import { useState, Fragment } from 'react'
-import { Search, Grid, Layers, ArrowCircleDown } from '@flow-ui/core/icons'
+import { Block, Divider, Flexbox, Menu, TextField, useTheme } from '@flow-ui/core'
+import { Grid, Layers, Search } from '@flow-ui/core/icons'
+import { useState } from 'react'
 import ComponentsView from './ComponentsView'
 import IconsView from './IconsView'
+import styles from './styles'
+import { context } from '../..'
 
-const AddPanel = (props: { tools: ArchitectTools }) => {
+const AddPanel = () => {
+    if (!context.componentLibraryOpen) {
+        return null
+    }
     const theme = useTheme()
     const cs = styles(theme)
-    const { tools } = props
     const [search, setSearch] = useState('')
     const menuValues = [
         {
@@ -30,7 +31,7 @@ const AddPanel = (props: { tools: ArchitectTools }) => {
             <div
                 css={cs.backgroundLayer}
                 onClick={() => {
-                    props.tools.componentLibraryHide()
+                    context.tools.componentLibraryHide()
                 }}
             />
             <div css={cs.container}>
@@ -65,14 +66,12 @@ const AddPanel = (props: { tools: ArchitectTools }) => {
                 <Flexbox h="26rem" pt="1px">
                     {menuValue === 'components' && (
                         <ComponentsView
-                            tools={props.tools}
                             search={search}
                             styles={cs}
                         />
                     )}
                     {menuValue === 'icons' && (
                         <IconsView
-                            tools={props.tools}
                             search={search}
                             styles={cs}
                         />

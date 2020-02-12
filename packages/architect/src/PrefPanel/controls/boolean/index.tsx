@@ -1,13 +1,12 @@
-import { ArchitectTools } from '@flow-ui/architect/types'
 import { Block, Switch } from '@flow-ui/core'
+import { context } from '../../../..'
 
 type Props = {
     name: string
-    tools: ArchitectTools
 }
 
 const BooleanControls = (props: Props) => {
-    if (!props.tools.focused) {
+    if (!context.tools.focused) {
         return null
     }
     let { name } = props
@@ -18,9 +17,9 @@ const BooleanControls = (props: Props) => {
                 size="s"
                 label={name[0].toUpperCase() + name.slice(1)}
                 onChange={value => {
-                    if (props.tools.focused) {
-                        props.tools.focused.props[props.name] = value
-                        props.tools.update()
+                    if (context.tools.focused) {
+                        context.tools.focused.props[props.name] = value
+                        context.tools.update()
                     }
                 }}
             />

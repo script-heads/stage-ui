@@ -1,13 +1,14 @@
 import { ArchitectItem } from '@flow-ui/architect/types'
 import { Block, Flexbox, Paragraph, Text, Tree } from '@flow-ui/core'
-import { Copy, Trash2, ArrowIosForward } from '@flow-ui/core/icons'
+import { ArrowIosForward, Copy, Trash2 } from '@flow-ui/core/icons'
 import { Fragment } from 'react'
 import { TabProps } from '..'
+import { context } from '../../..'
 
 type Event = any
 
 const LayersTab = (props: TabProps) => {
-    const { theme, styles, tools } = props
+    const { theme, styles } = props
 
     const renderTree = (items: ArchitectItem[]) => {
         return items.map((item, index) => {
@@ -24,7 +25,7 @@ const LayersTab = (props: TabProps) => {
                 name += ` (${item.props.placeholder})`
             }
 
-            const isFocused = tools.focused?.id === item.id
+            const isFocused = context.tools.focused?.id === item.id
 
             const splitterAfterSetHover = (state: boolean) => {
                 const el = document.getElementById(`split-${item.id}`)
@@ -57,8 +58,8 @@ const LayersTab = (props: TabProps) => {
                                                     e.stopPropagation()
                                                     e.preventDefault()
                                                     if (!isFocused) {
-                                                        tools.focused = item
-                                                        tools.update()
+                                                        context.tools.focused = item
+                                                        context.tools.update()
                                                     }
                                                 }}
                                                 css={{ flex: 1 }}
@@ -70,8 +71,8 @@ const LayersTab = (props: TabProps) => {
                                                     onClick={(e) => {
                                                         e.preventDefault()
                                                         e.stopPropagation()
-                                                        props.tools.focused = item
-                                                        props.tools.duplicate()
+                                                        context.tools.focused = item
+                                                        context.tools.duplicate()
                                                     }}
                                                 />
                                                 <Trash2
@@ -80,8 +81,8 @@ const LayersTab = (props: TabProps) => {
                                                     onClick={(e) => {
                                                         e.preventDefault()
                                                         e.stopPropagation()
-                                                        props.tools.focused = item
-                                                        props.tools.remove()
+                                                        context.tools.focused = item
+                                                        context.tools.remove()
                                                     }}
                                                 />
                                             </span>
@@ -93,12 +94,12 @@ const LayersTab = (props: TabProps) => {
                                 css={styles.item(isFocused)}
                                 onDragStart={(e) => {
                                     e.stopPropagation()
-                                    tools.captured = item
+                                    context.tools.captured = item
                                 }}
                                 onDragOver={(e: Event) => {
                                     e.stopPropagation()
                                     e.preventDefault()
-                                    tools.target = item
+                                    context.tools.target = item
                                     e.target.style.backgroundColor = theme.color.primary.alpha(0.5).rgb().string()
                                 }}
                                 onDragLeave={(e: Event) => {
@@ -109,7 +110,7 @@ const LayersTab = (props: TabProps) => {
                                 onDrop={(e: Event) => {
                                     e.stopPropagation()
                                     e.target.style.background = ''
-                                    tools.move()
+                                    context.tools.move()
                                 }}
                             />
                             {(!item.children || item.children.length === 0) && (
@@ -136,9 +137,9 @@ const LayersTab = (props: TabProps) => {
                                         e.stopPropagation()
                                         splitterAfterSetHover(false)
                                         if (item.parent) {
-                                            tools.target = item.parent
-                                            tools.targetIndex = index + 1
-                                            tools.move()
+                                            context.tools.target = item.parent
+                                            context.tools.targetIndex = index + 1
+                                            context.tools.move()
                                         }
                                     }}
                                 />
@@ -154,7 +155,7 @@ const LayersTab = (props: TabProps) => {
     return (
         <Fragment>
             {
-                tools.getItems().length === 0 && (
+                context.tools.getItems().length === 0 && (
                     <Paragraph
                         align="center"
                         pt="2rem"
@@ -164,7 +165,7 @@ const LayersTab = (props: TabProps) => {
                 )
             }
             {
-                renderTree(tools.getItems())
+                renderTree(context.tools.getItems())
             }
         </Fragment>
     )
