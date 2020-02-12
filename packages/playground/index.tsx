@@ -8,8 +8,8 @@ const Playground = () => {
 		<Viewport theme={custom}>
 			<Button 
 				children="hello" 
-				color={c=>c.palette.red} 
-				// styles={{container: (variant) => ({backgroundColor: 'yellow'})}}
+				// color={c=>c.palette.red} 
+				styles={{container: (variant) => ({backgroundColor: 'yellow'})}}
 			/>
 			<Text color={c => c.lightest}>Test</Text>
 		</Viewport>

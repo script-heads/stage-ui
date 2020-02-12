@@ -2,14 +2,18 @@ import WhaleTypes from '../../types'
 import createAttributes from './attribute'
 import createPropStyles from './style'
 
-interface Options {
-    styleProps?: Partial<Record<string, string[]>>
+interface Options<StyleProps> {
+    styleProps?: StyleProps
     mouseFocus?: boolean
 }
 
 type SetFocus = React.Dispatch<React.SetStateAction<boolean>>
 
-const attachProps = (props, theme: WhaleTypes.Theme, setFocus: SetFocus, options: Options) => {
+const attachProps = <Props, StyleProps>(
+    props: Props, 
+    theme: WhaleTypes.Theme, 
+    setFocus: SetFocus, 
+    options: Options<StyleProps>) => {
 
     const { attributes, events } = createAttributes(
         props,

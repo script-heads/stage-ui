@@ -1,6 +1,8 @@
-export default (props, setFocus: React.Dispatch<React.SetStateAction<boolean>>, mouseFocus?: boolean) => {
 
-    let isMouseDown = false
+let isMouseDown = false
+type SetFocus = React.Dispatch<React.SetStateAction<boolean>>
+
+const createAttributes = (props, setFocus: SetFocus, mouseFocus?: boolean) => {
 
     const attributes = {
         id: props.id,
@@ -280,3 +282,5 @@ export default (props, setFocus: React.Dispatch<React.SetStateAction<boolean>>, 
         }
     }
 }
+
+export default createAttributes

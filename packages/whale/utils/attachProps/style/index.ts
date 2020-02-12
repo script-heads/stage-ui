@@ -1,9 +1,9 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import WhaleTypes, {EmotionStyles} from '@flow-ui/whale/types'
 import resolveColor from './resolvers/color'
 import resolvePaddingMargin from './resolvers/paddingMargin'
-import { StyleResolverContext, StyleResolverObject, InjectedStylesNames, InjectedStyles, StyleProps } from './types'
+import WhalePropsTypes from '../types'
 
-const resolvers: StyleResolverObject = {
+const resolvers: WhalePropsTypes.StyleResolverObject = {
     //Color
     backgroundColor: ['color', 'backgroundColor', resolveColor],
     textColor: ['color', 'color', resolveColor],
@@ -58,13 +58,17 @@ const resolvers: StyleResolverObject = {
     placeSelf: ['grid', 'placeSelf'],
 }
 
-export default (props: StyleProps, theme: WhaleTypes.Theme, styleProps: Partial<Record<string,string[]>>) => {
+const createPropStyles = <Props, StyleProps>(
+    props: Props, 
+    theme: WhaleTypes.Theme, 
+    styleProps: StyleProps) => {
+
     const queries = theme.breakpoints.map(bp => `@media (min-width: ${bp})`)
 
-    const patchedStyles: Record<string, Record<string, string>> = {}
-    const styles = {} as InjectedStyles
+    const propStyles = {} as Record<keyof StyleProps, EmotionStyles>
+    const styles = {} as WhalePropsTypes.InjectedStyles
         
-    const ctx: StyleResolverContext = {
+    const ctx: WhalePropsTypes.StyleResolverContext = {
         margin: ['0', '0', '0', '0'],
         padding: ['0', '0', '0', '0'],
     }
@@ -92,16 +96,18 @@ export default (props: StyleProps, theme: WhaleTypes.Theme, styleProps: Partial<
     const combined = Object.assign({ flow, self, all }, styles)
 
     Object.keys(styleProps).forEach(className => {
-        if (!patchedStyles[className]) {
-            patchedStyles[className] = {}
+        if (!propStyles[className]) {
+            propStyles[className] = {}
         }
         (styleProps[className] || []).forEach(styleType =>
             Object.assign(
-                patchedStyles[className],
+                propStyles[className],
                 combined[styleType]
             )
         )
     })
 
-    return patchedStyles
+    return propStyles
 }
+
+export default createPropStyles

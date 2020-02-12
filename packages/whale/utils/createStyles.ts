@@ -1,16 +1,15 @@
 import WhaleTypes, { EmotionStyles } from '../types'
 import { css } from '@emotion/core'
 
-type createComponentStyles = <S>(
-    styles: WhaleTypes.Styles<S>, 
-    propStyles: { [K in keyof S]?: EmotionStyles }, 
+const createComponentStyles= <Styles, Props extends {styles?: Partial<WhaleTypes.Styles<Styles>>}>(
+    styles: WhaleTypes.Styles<Styles>, 
+    propStyles: Partial<Record<keyof Styles, EmotionStyles>>, 
+    props: Props,
     overrideName: string, 
     overrides: WhaleTypes.Theme['overrides']
-) => WhaleTypes.ComponentStyles<S>
+) => {
 
-const createComponentStyles: createComponentStyles = (styles, propStyles, overrideName, overrides) => {
-
-    const ComponentStyles = {} as WhaleTypes.ComponentStyles<any>
+    const ComponentStyles = {} as WhaleTypes.ComponentStyles<Styles>
     const ComponentOverrides = overrides?.[overrideName]
 
     Object.keys(styles).map(styleName => {
@@ -48,6 +47,7 @@ const createComponentStyles: createComponentStyles = (styles, propStyles, overri
                     },
                     styles[styleName](variant),
                     ComponentOverrides?.[styleName]?.(variant),
+                    props.styles?.[styleName]?.(variant),
                     propStyles[styleName]
                 )
             }
@@ -58,6 +58,7 @@ const createComponentStyles: createComponentStyles = (styles, propStyles, overri
                 },
                 styles[styleName],
                 ComponentOverrides?.[styleName],
+                props.styles?.[styleName],
                 propStyles[styleName]
             )
         }

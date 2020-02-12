@@ -1,10 +1,10 @@
-import { StyleResolver } from '../types'
+import WhalePropsTypes from '../../types'
 
 /**
  * Function resolving p,pt,pr,pb,pr,m..props
  * into single css string
  */
-const resolver: StyleResolver = (params) => {
+const resolver: WhalePropsTypes.StyleResolver = (params) => {
     const { propName: n, propValue, ctx } = params, 
         k = n[0] == 'p' ? 'padding' : 'margin',
         x = n[1] == 'x', y = n[1] == 'y', 

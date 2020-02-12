@@ -1,14 +1,14 @@
 import WhaleTypes from '../types'
-import { InjectedStyles } from '../utils/props/style/types'
+import WhalePropsTypes from '../utils/attachProps/types'
 import useTheme from './useTheme'
-import attachProps from '../utils/props'
+import attachProps from '../utils/attachProps'
 import createStyles from '../utils/createStyles'
 import { useState, useMemo } from 'react'
 
-interface Options<S> {
-    props,
-    styles: WhaleTypes.Styles<S> | WhaleTypes.CreateStyles<S>,
-    styleProps?: Partial<Record<keyof S, (keyof InjectedStyles)[]>>
+interface Options<Styles,Props,Params> {
+    props: Props,
+    styles: WhaleTypes.Styles<Styles> | WhaleTypes.CreateStyles<Styles,Props,Params>,
+    styleProps?: Partial<Record<keyof Styles, (keyof WhalePropsTypes.InjectedStyles)[]>>
     mouseFocus?: boolean,
     focusDecoration?: boolean,
     theme?: WhaleTypes.Theme
@@ -16,8 +16,11 @@ interface Options<S> {
 
 const defaultBreakpoints = ['576px','768px','992px','1200px']
 
-const useComponent = <S>(overrideName: string, options: Options<S>, params: Object = {}) => {
-    
+const useComponent = <Styles,Props,Params extends Object>(
+    overrideName: string, 
+    options: Options<Styles,Props,Params>, 
+    params: Params = {} as Params) => {
+
     const { 
         props,
         styles,
@@ -52,9 +55,10 @@ const useComponent = <S>(overrideName: string, options: Options<S>, params: Obje
             } 
         )
         
-        const cs = createStyles<S>(
-            resolvedStyles, 
+        const cs = createStyles(
+            resolvedStyles,
             propStyles,
+            props, 
             overrideName, 
             theme.overrides
         )
