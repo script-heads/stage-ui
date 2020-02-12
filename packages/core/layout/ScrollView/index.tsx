@@ -2,6 +2,9 @@ import { useComponent } from '@flow-ui/whale'
 import React, { forwardRef, useEffect, useMemo, useState, useImperativeHandle, RefForwardingComponent } from 'react'
 import styles from './styles'
 import Types from './types'
+import UAParser from './UAParser'
+const deviceType = UAParser().device.type
+const legacyScroll = deviceType === 'mobile' || deviceType === 'tablet'
 
 interface MemoParams { 
     mounted: boolean
@@ -226,15 +229,20 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
      * not fits his container
      */
     useEffect(() => {
-        const { content, container } = memo
-        if (content && container) {
-            if (container.offsetHeight-content.offsetTop > content.offsetHeight) {
-                content.style.top = ''
+        if (!legacyScroll) {
+            const { content, container } = memo
+            if (content && container) {
+                if (container.offsetHeight-content.offsetTop > content.offsetHeight) {
+                    content.style.top = ''
+                }
             }
         }
     })
 
     useEffect(() => {
+        if (legacyScroll) {
+            return () => void 0
+        }
         if (memo.timeout && mode !== 'always') {
             clearTimeout(memo.timeout)
         }
@@ -273,6 +281,16 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             }
         }
         memo.container = ref
+    }
+
+    if (legacyScroll) {
+        return (
+            <div
+                css={cs.mobile}
+                ref={ref => memo.content = ref}
+                children={props.children}
+            />
+        )
     }
 
     return (
