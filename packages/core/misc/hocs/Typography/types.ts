@@ -3,7 +3,7 @@ import CSS from 'csstype'
 
 declare namespace TypographyTypes {
 
-	interface AnchorProps extends Props {
+	interface LinkProps extends Props {
 		download?: any
 		href?: string
 		hrefLang?: string
@@ -34,7 +34,7 @@ declare namespace TypographyTypes {
         container: T['container']
 	}
 	
-	interface PrivateProps extends AnchorProps {
+	interface PrivateProps extends LinkProps {
 		tag: string
 		sizesOf: keyof WhaleTypes.Theme['typography']
 		specificStyles?: any

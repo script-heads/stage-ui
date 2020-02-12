@@ -19,7 +19,9 @@ declare module '@flow-ui/whale/types' {
 	        replace: (theme: ReplaceTheme) => Theme;
 	    }
 	    interface SourceTheme {
-	        main: ThemeVariables<[number, number, number, number?]>;
+	        main: Omit<ThemeVariables<[number, number, number, number?]>, 'breakpoints'> & {
+	            breakpoints?: string[];
+	        };
 	        assets: (theme: Theme) => ThemeAssets;
 	        overrides?: Partial<{
 	            [Component in keyof Whale.Overrides]: Styles<Whale.Overrides[Component]>;
@@ -60,7 +62,7 @@ declare module '@flow-ui/whale/types' {
 	            narrow: string;
 	            wide: string;
 	        };
-	        breakpoints?: string[];
+	        breakpoints: string[];
 	        spacing: Record<Size, string>;
 	        typography: {
 	            header: Record<Size, {
@@ -295,8 +297,8 @@ declare module '@flow-ui/whale/types' {
 	     * @name Colors
 	     */
 	    interface ColorProps {
-	        textColor?: ColorProp;
-	        backgroundColor?: ColorProp;
+	        textColor?: Breakpointify<ColorProp>;
+	        backgroundColor?: Breakpointify<ColorProp>;
 	    }
 	    /**
 	     * Component border styles props
@@ -305,7 +307,7 @@ declare module '@flow-ui/whale/types' {
 	    interface BorderProps {
 	        borderWidth?: Breakpointify<CSS.Properties['borderWidth']>;
 	        borderStyle?: Breakpointify<CSS.Properties['borderStyle']>;
-	        borderColor?: ColorProp;
+	        borderColor?: Breakpointify<ColorProp>;
 	        borderRadius?: Breakpointify<CSS.Properties['borderRadius']>;
 	    }
 	    /**
@@ -510,9 +512,9 @@ declare module '@flow-ui/whale/types' {
 	         */
 	        placeSelf?: Breakpointify<CSS.Properties['placeSelf']>;
 	    }
-	    type ColorProp = Breakpointify<((colors: Theme['color']) => QIXColor) | CSS.Properties['color'] | QIXColor>;
+	    type ColorProp = ((colors: Theme['color']) => QIXColor | string) | string | QIXColor;
 	    type Styles<StyleDefinitions> = {
-	        [StyleName in keyof StyleDefinitions]: StyleDefinitions[StyleName] extends {} ? ((variant: Variant<StyleDefinitions[StyleName]>) => EmotionStyles) : EmotionStyles;
+	        [StyleName in keyof StyleDefinitions]: StyleDefinitions[StyleName] extends Object ? ((variant: Variant<StyleDefinitions[StyleName]>) => EmotionStyles) : EmotionStyles;
 	    };
 	    type ComponentStyles<StyleDefinitions> = {
 	        [StyleName in keyof StyleDefinitions]: StyleDefinitions[StyleName] extends Object ? (state: StyleDefinitions[StyleName]) => SerializedStyles : SerializedStyles;
@@ -557,8 +559,102 @@ declare module 'hooks/useTheme' {
 	export default _default;
 
 }
-declare module 'utils/attributeProps' {
-	 const _default: (props: any, theme: any, mouseFocus?: boolean | undefined, focusDecoration?: boolean | undefined) => {
+declare module 'utils/props/style/types' {
+	import CSS from 'csstype'
+
+	export type StyleResolverObject = {
+	    [key: string] : [string, string, StyleResolver?]
+	}
+
+	export type StyleResolverContext = {
+	    padding: [string, string, string, string],
+	    margin: [string, string, string, string]
+	}
+
+	export type StyleResolver = (resolverParams: {
+	    propValue: any
+	    propName: string
+	    theme: WhaleTypes.Theme
+	    ctx: StyleResolverContext
+	}) => string | void
+
+
+
+	export interface StyleProps extends
+	    WhaleTypes.ColorProps,
+	    WhaleTypes.BorderProps,
+	    WhaleTypes.PaddingProps,
+	    WhaleTypes.MarginProps,
+	    WhaleTypes.LayoutProps,
+	    WhaleTypes.FlexProps,
+	    WhaleTypes.GridProps {
+	    [key: string]: unknown
+	}
+
+	type Color = {
+	    background: CSS.Properties['background']
+	    color: CSS.Properties['color']
+	}
+
+	type Border = {
+	    borderWidth: CSS.Properties['borderWidth']
+	    borderStyle: CSS.Properties['borderStyle']
+	    borderColor: CSS.Properties['borderColor']
+	    borderRadius: CSS.Properties['borderRadius']
+	}
+	type Padding = {
+	    padding: CSS.Properties['padding']
+	}
+
+	type Margin = {
+	    margin: CSS.Properties['margin']
+	}
+
+	type Layout = {
+	    display: CSS.Properties['display']
+	    visibility: CSS.Properties['visibility']
+	    width: CSS.Properties['width']
+	    height: CSS.Properties['height']
+	    transition: CSS.Properties['transition']
+	}
+
+	type Flex = {
+	    flex: CSS.Properties['flex']
+	    flexBasis: CSS.Properties['flexBasis']
+	    flexGrow: CSS.Properties['flexGrow']
+	    flexShrink: CSS.Properties['flexShrink']
+	    alignSelf: CSS.Properties['alignSelf']
+	    justifySelf: CSS.Properties['justifySelf']
+	}
+
+	type Grid = {
+	    gridColumnStart: CSS.Properties['gridColumnStart']
+	    gridColumnEnd: CSS.Properties['gridColumnEnd']
+	    gridRowStart: CSS.Properties['gridRowStart']
+	    gridRowEnd: CSS.Properties['gridRowEnd']
+	    gridColumn: CSS.Properties['gridColumn']
+	    gridRow: CSS.Properties['gridRow']
+	    gridArea: CSS.Properties['gridArea']
+	    placeSelf: CSS.Properties['placeSelf']
+	}
+
+	export interface InjectedStyles {
+	    color: Color
+	    border: Border
+	    padding: Padding
+	    margin: Margin
+	    layout: Layout
+	    flex: Flex
+	    grid: Grid
+	    flow: Margin & Flex & Grid
+	    self: Padding & Layout & Color & Border
+	    all: Margin & Flex & Grid & Padding & Layout & Color & Border
+	}
+
+	export type InjectedStylesNames = keyof InjectedStyles
+}
+declare module 'utils/props/attribute' {
+	 const _default: (props: any, setFocus: import("react").Dispatch<import("react").SetStateAction<boolean>>, mouseFocus?: boolean | undefined) => {
 	    attributes: any;
 	    events: {
 	        all: {
@@ -910,13 +1006,537 @@ declare module 'utils/attributeProps' {
 	            onTransitionEndCapture: any;
 	        };
 	    };
-	    focus: boolean;
 	};
 	export default _default;
 
 }
 declare module 'utils/colorProp' {
-	import Color from 'color'; const _default: <P, L>(prop: P, lib: L) => Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	import Color from 'color';
+	import WhaleTypes from 'types'; const _default: (theme: WhaleTypes.Theme, prop?: string | ((colors: {
+	    background: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }>;
+	    backgroundVariant: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }>;
+	    surface: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }>;
+	    surfaceVariant: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }>;
+	    primary: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }>;
+	    secondary: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }>;
+	    onBackground: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }>;
+	    onSurface: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }>;
+	    onPrimary: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }>;
+	    onSecondary: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }>;
+	    lightest: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }>;
+	    light: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }>;
+	    hard: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }>;
+	    hardest: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }>;
+	    error: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }>;
+	    warning: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }>;
+	    successful: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }>;
+	    info: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }>;
+	    palette: Whale.Palette<Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }> | ArrayLike<number> | {
+	        [key: string]: any;
+	    }>>;
+	}) => string | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}>) | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | ArrayLike<number> | {
+	    [key: string]: any;
+	}> | undefined) => Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
 	    [key: string]: any;
 	}> | ArrayLike<number> | {
 	    [key: string]: any;
@@ -944,94 +1564,404 @@ declare module 'utils/colorProp' {
 	export default _default;
 
 }
-declare module 'utils/styleProps' {
+declare module 'utils/props/style/resolvers/color' {
+	import { StyleResolver } from 'utils/props/style/types'; const resolver: StyleResolver;
+	export default resolver;
+
+}
+declare module 'utils/props/style/resolvers/paddingMargin' {
+	import { StyleResolver } from 'utils/props/style/types'; const resolver: StyleResolver;
+	export default resolver;
+
+}
+declare module 'utils/props/style' {
 	import WhaleTypes from '@flow-ui/whale/types';
-	import CSS from 'csstype';
-	interface Props extends WhaleTypes.ColorProps, WhaleTypes.BorderProps, WhaleTypes.PaddingProps, WhaleTypes.MarginProps, WhaleTypes.LayoutProps, WhaleTypes.FlexProps, WhaleTypes.GridProps {
-	    [key: string]: unknown;
-	} type Color = {
-	    background: CSS.Properties['background'];
-	    color: CSS.Properties['color'];
-	}; type Border = {
-	    borderWidth: CSS.Properties['borderWidth'];
-	    borderStyle: CSS.Properties['borderStyle'];
-	    borderColor: CSS.Properties['borderColor'];
-	    borderRadius: CSS.Properties['borderRadius'];
-	}; type Padding = {
-	    padding: CSS.Properties['padding'];
-	    paddingTop: CSS.Properties['paddingTop'];
-	    paddingLeft: CSS.Properties['paddingLeft'];
-	    paddingRight: CSS.Properties['paddingRight'];
-	    paddingBottom: CSS.Properties['paddingBottom'];
-	}; type Margin = {
-	    margin: CSS.Properties['margin'];
-	    marginTop: CSS.Properties['marginTop'];
-	    marginLeft: CSS.Properties['marginLeft'];
-	    marginRight: CSS.Properties['marginRight'];
-	    marginBottom: CSS.Properties['marginBottom'];
-	}; type Layout = {
-	    display: CSS.Properties['display'];
-	    visibility: CSS.Properties['visibility'];
-	    width: CSS.Properties['width'];
-	    height: CSS.Properties['height'];
-	    transition: CSS.Properties['transition'];
-	}; type Flex = {
-	    flex: CSS.Properties['flex'];
-	    flexBasis: CSS.Properties['flexBasis'];
-	    flexGrow: CSS.Properties['flexGrow'];
-	    flexShrink: CSS.Properties['flexShrink'];
-	    alignSelf: CSS.Properties['alignSelf'];
-	    justifySelf: CSS.Properties['justifySelf'];
-	}; type Grid = {
-	    gridColumnStart: CSS.Properties['gridColumnStart'];
-	    gridColumnEnd: CSS.Properties['gridColumnEnd'];
-	    gridRowStart: CSS.Properties['gridRowStart'];
-	    gridRowEnd: CSS.Properties['gridRowEnd'];
-	    gridColumn: CSS.Properties['gridColumn'];
-	    gridRow: CSS.Properties['gridRow'];
-	    gridArea: CSS.Properties['gridArea'];
-	    placeSelf: CSS.Properties['placeSelf'];
+	import { StyleProps } from 'utils/props/style/types'; const _default: (props: StyleProps, theme: WhaleTypes.Theme, styleProps: Partial<Record<string, string[]>>) => Record<string, Record<string, string>>;
+	export default _default;
+
+}
+declare module 'utils/props' {
+	/// <reference types="react" />
+	/// <reference types="@emotion/core" />
+	import WhaleTypes from 'types';
+	interface Options {
+	    styleProps?: Partial<Record<string, string[]>>;
+	    mouseFocus?: boolean;
+	} const attachProps: (props: any, theme: WhaleTypes.Theme, setFocus: import("react").Dispatch<import("react").SetStateAction<boolean>>, options: Options) => {
+	    attributes: any;
+	    events: {
+	        all: {
+	            onTransitionEnd: any;
+	            onTransitionEndCapture: any;
+	            onAnimationStart: any;
+	            onAnimationStartCapture: any;
+	            onAnimationEnd: any;
+	            onAnimationEndCapture: any;
+	            onAnimationIteration: any;
+	            onAnimationIterationCapture: any;
+	            onWheel: any;
+	            onWheelCapture: any;
+	            onScroll: any;
+	            onScrollCapture: any;
+	            onPointerDown: any;
+	            onPointerDownCapture: any;
+	            onPointerMove: any;
+	            onPointerMoveCapture: any;
+	            onPointerUp: any;
+	            onPointerUpCapture: any;
+	            onPointerCancel: any;
+	            onPointerCancelCapture: any;
+	            onPointerEnter: any;
+	            onPointerLeave: any;
+	            onPointerOver: any;
+	            onPointerOverCapture: any;
+	            onPointerOut: any;
+	            onPointerOutCapture: any;
+	            onGotPointerCapture: any;
+	            onGotPointerCaptureCapture: any;
+	            onLostPointerCapture: any;
+	            onLostPointerCaptureCapture: any;
+	            onTouchCancel: any;
+	            onTouchCancelCapture: any;
+	            onTouchEnd: any;
+	            onTouchEndCapture: any;
+	            onTouchMove: any;
+	            onTouchMoveCapture: any;
+	            onTouchStart: any;
+	            onTouchStartCapture: any;
+	            onSelect: any;
+	            onSelectCapture: any;
+	            onAuxClick: any;
+	            onAuxClickCapture: any;
+	            onClick: any;
+	            onClickCapture: any;
+	            onContextMenu: any;
+	            onContextMenuCapture: any;
+	            onDoubleClick: any;
+	            onDoubleClickCapture: any;
+	            onDrag: any;
+	            onDragCapture: any;
+	            onDragEnd: any;
+	            onDragEndCapture: any;
+	            onDragEnter: any;
+	            onDragEnterCapture: any;
+	            onDragExit: any;
+	            onDragExitCapture: any;
+	            onDragLeave: any;
+	            onDragLeaveCapture: any;
+	            onDragOver: any;
+	            onDragOverCapture: any;
+	            onDragStart: any;
+	            onDragStartCapture: any;
+	            onDrop: any;
+	            onDropCapture: any;
+	            onMouseDown: (event: any) => void;
+	            onMouseDownCapture: any;
+	            onMouseEnter: any;
+	            onMouseLeave: any;
+	            onMouseMove: any;
+	            onMouseMoveCapture: any;
+	            onMouseOut: any;
+	            onMouseOutCapture: any;
+	            onMouseOver: any;
+	            onMouseOverCapture: any;
+	            onMouseUp: (event: any) => void;
+	            onMouseUpCapture: any;
+	            onAbort: any;
+	            onAbortCapture: any;
+	            onCanPlay: any;
+	            onCanPlayCapture: any;
+	            onCanPlayThrough: any;
+	            onCanPlayThroughCapture: any;
+	            onDurationChange: any;
+	            onDurationChangeCapture: any;
+	            onEmptied: any;
+	            onEmptiedCapture: any;
+	            onEncrypted: any;
+	            onEncryptedCapture: any;
+	            onEnded: any;
+	            onEndedCapture: any;
+	            onLoadedData: any;
+	            onLoadedDataCapture: any;
+	            onLoadedMetadata: any;
+	            onLoadedMetadataCapture: any;
+	            onLoadStart: any;
+	            onLoadStartCapture: any;
+	            onPause: any;
+	            onPauseCapture: any;
+	            onPlay: any;
+	            onPlayCapture: any;
+	            onPlaying: any;
+	            onPlayingCapture: any;
+	            onProgress: any;
+	            onProgressCapture: any;
+	            onRateChange: any;
+	            onRateChangeCapture: any;
+	            onSeeked: any;
+	            onSeekedCapture: any;
+	            onSeeking: any;
+	            onSeekingCapture: any;
+	            onStalled: any;
+	            onStalledCapture: any;
+	            onSuspend: any;
+	            onSuspendCapture: any;
+	            onTimeUpdate: any;
+	            onTimeUpdateCapture: any;
+	            onVolumeChange: any;
+	            onVolumeChangeCapture: any;
+	            onWaiting: any;
+	            onWaitingCapture: any;
+	            onKeyDown: (event: any) => void;
+	            onKeyDownCapture: any;
+	            onKeyPress: any;
+	            onKeyPressCapture: any;
+	            onKeyUp: any;
+	            onKeyUpCapture: any;
+	            onLoad: any;
+	            onLoadCapture: any;
+	            onError: any;
+	            onErrorCapture: any;
+	            onChange: any;
+	            onChangeCapture: any;
+	            onBeforeInput: any;
+	            onBeforeInputCapture: any;
+	            onInput: any;
+	            onInputCapture: any;
+	            onReset: any;
+	            onResetCapture: any;
+	            onSubmit: any;
+	            onSubmitCapture: any;
+	            onInvalid: any;
+	            onInvalidCapture: any;
+	            onFocus: (e: any) => void;
+	            onFocusCapture: any;
+	            onBlur: (e: any) => void;
+	            onBlurCapture: any;
+	            onCompositionEnd: any;
+	            onCompositionEndCapture: any;
+	            onCompositionStart: any;
+	            onCompositionStartCapture: any;
+	            onCompositionUpdate: any;
+	            onCompositionUpdateCapture: any;
+	            onCopy: any;
+	            onCopyCapture: any;
+	            onCut: any;
+	            onCutCapture: any;
+	            onPaste: any;
+	            onPasteCapture: any;
+	        };
+	        clipboardEvents: {
+	            onCopy: any;
+	            onCopyCapture: any;
+	            onCut: any;
+	            onCutCapture: any;
+	            onPaste: any;
+	            onPasteCapture: any;
+	        };
+	        compositionEvents: {
+	            onCompositionEnd: any;
+	            onCompositionEndCapture: any;
+	            onCompositionStart: any;
+	            onCompositionStartCapture: any;
+	            onCompositionUpdate: any;
+	            onCompositionUpdateCapture: any;
+	        };
+	        focusEvents: {
+	            onFocus: (e: any) => void;
+	            onFocusCapture: any;
+	            onBlur: (e: any) => void;
+	            onBlurCapture: any;
+	        };
+	        formEvents: {
+	            onChange: any;
+	            onChangeCapture: any;
+	            onBeforeInput: any;
+	            onBeforeInputCapture: any;
+	            onInput: any;
+	            onInputCapture: any;
+	            onReset: any;
+	            onResetCapture: any;
+	            onSubmit: any;
+	            onSubmitCapture: any;
+	            onInvalid: any;
+	            onInvalidCapture: any;
+	        };
+	        imageEvents: {
+	            onLoad: any;
+	            onLoadCapture: any;
+	            onError: any;
+	            onErrorCapture: any;
+	        };
+	        keyboardEvents: {
+	            onKeyDown: (event: any) => void;
+	            onKeyDownCapture: any;
+	            onKeyPress: any;
+	            onKeyPressCapture: any;
+	            onKeyUp: any;
+	            onKeyUpCapture: any;
+	        };
+	        mediaEvents: {
+	            onAbort: any;
+	            onAbortCapture: any;
+	            onCanPlay: any;
+	            onCanPlayCapture: any;
+	            onCanPlayThrough: any;
+	            onCanPlayThroughCapture: any;
+	            onDurationChange: any;
+	            onDurationChangeCapture: any;
+	            onEmptied: any;
+	            onEmptiedCapture: any;
+	            onEncrypted: any;
+	            onEncryptedCapture: any;
+	            onEnded: any;
+	            onEndedCapture: any;
+	            onLoadedData: any;
+	            onLoadedDataCapture: any;
+	            onLoadedMetadata: any;
+	            onLoadedMetadataCapture: any;
+	            onLoadStart: any;
+	            onLoadStartCapture: any;
+	            onPause: any;
+	            onPauseCapture: any;
+	            onPlay: any;
+	            onPlayCapture: any;
+	            onPlaying: any;
+	            onPlayingCapture: any;
+	            onProgress: any;
+	            onProgressCapture: any;
+	            onRateChange: any;
+	            onRateChangeCapture: any;
+	            onSeeked: any;
+	            onSeekedCapture: any;
+	            onSeeking: any;
+	            onSeekingCapture: any;
+	            onStalled: any;
+	            onStalledCapture: any;
+	            onSuspend: any;
+	            onSuspendCapture: any;
+	            onTimeUpdate: any;
+	            onTimeUpdateCapture: any;
+	            onVolumeChange: any;
+	            onVolumeChangeCapture: any;
+	            onWaiting: any;
+	            onWaitingCapture: any;
+	        };
+	        mouseEvents: {
+	            onAuxClick: any;
+	            onAuxClickCapture: any;
+	            onClick: any;
+	            onClickCapture: any;
+	            onContextMenu: any;
+	            onContextMenuCapture: any;
+	            onDoubleClick: any;
+	            onDoubleClickCapture: any;
+	            onDrag: any;
+	            onDragCapture: any;
+	            onDragEnd: any;
+	            onDragEndCapture: any;
+	            onDragEnter: any;
+	            onDragEnterCapture: any;
+	            onDragExit: any;
+	            onDragExitCapture: any;
+	            onDragLeave: any;
+	            onDragLeaveCapture: any;
+	            onDragOver: any;
+	            onDragOverCapture: any;
+	            onDragStart: any;
+	            onDragStartCapture: any;
+	            onDrop: any;
+	            onDropCapture: any;
+	            onMouseDown: (event: any) => void;
+	            onMouseDownCapture: any;
+	            onMouseEnter: any;
+	            onMouseLeave: any;
+	            onMouseMove: any;
+	            onMouseMoveCapture: any;
+	            onMouseOut: any;
+	            onMouseOutCapture: any;
+	            onMouseOver: any;
+	            onMouseOverCapture: any;
+	            onMouseUp: (event: any) => void;
+	            onMouseUpCapture: any;
+	        };
+	        selectionEvents: {
+	            onSelect: any;
+	            onSelectCapture: any;
+	        };
+	        touchEvents: {
+	            onTouchCancel: any;
+	            onTouchCancelCapture: any;
+	            onTouchEnd: any;
+	            onTouchEndCapture: any;
+	            onTouchMove: any;
+	            onTouchMoveCapture: any;
+	            onTouchStart: any;
+	            onTouchStartCapture: any;
+	        };
+	        pointerEvents: {
+	            onPointerDown: any;
+	            onPointerDownCapture: any;
+	            onPointerMove: any;
+	            onPointerMoveCapture: any;
+	            onPointerUp: any;
+	            onPointerUpCapture: any;
+	            onPointerCancel: any;
+	            onPointerCancelCapture: any;
+	            onPointerEnter: any;
+	            onPointerLeave: any;
+	            onPointerOver: any;
+	            onPointerOverCapture: any;
+	            onPointerOut: any;
+	            onPointerOutCapture: any;
+	            onGotPointerCapture: any;
+	            onGotPointerCaptureCapture: any;
+	            onLostPointerCapture: any;
+	            onLostPointerCaptureCapture: any;
+	        };
+	        scrollEvents: {
+	            onScroll: any;
+	            onScrollCapture: any;
+	        };
+	        wheelEvents: {
+	            onWheel: any;
+	            onWheelCapture: any;
+	        };
+	        animationEvents: {
+	            onAnimationStart: any;
+	            onAnimationStartCapture: any;
+	            onAnimationEnd: any;
+	            onAnimationEndCapture: any;
+	            onAnimationIteration: any;
+	            onAnimationIterationCapture: any;
+	        };
+	        transitionEvents: {
+	            onTransitionEnd: any;
+	            onTransitionEndCapture: any;
+	        };
+	    };
+	    propStyles: {};
 	};
-	export interface InjectedStyles {
-	    color: Color;
-	    border: Border;
-	    padding: Padding;
-	    margin: Margin;
-	    layout: Layout;
-	    flex: Flex;
-	    grid: Grid;
-	    flow: Margin & Flex & Grid;
-	    self: Padding & Layout & Color & Border;
-	    all: Margin & Flex & Grid & Padding & Layout & Color & Border;
-	}
-	export const useStyleProps: (props: Props, theme: any, queries: any) => {
-	    flow: Margin & Flex & Grid;
-	    self: any;
-	    all: any;
-	    color: Color;
-	    border: Border;
-	    padding: Padding;
-	    margin: Margin;
-	    layout: Layout;
-	    flex: Flex;
-	    grid: Grid;
-	}; const getStyleProps: (props: Props, theme: any, queries: any, styleProps?: ("color" | "flex" | "grid" | "padding" | "margin" | "all" | "border" | "layout" | "flow" | "self")[] | undefined) => (Color | Border | Padding | Margin | Layout | Flex | Grid | (Margin & Flex & Grid) | (Padding & Layout & Color & Border) | (Margin & Flex & Grid & Padding & Layout & Color & Border))[];
-	export default getStyleProps;
+	export default attachProps;
+
+}
+declare module 'utils/createStyles' {
+	import WhaleTypes, { EmotionStyles } from 'types'; type createComponentStyles = <S>(styles: WhaleTypes.Styles<S>, propStyles: {
+	    [K in keyof S]?: EmotionStyles;
+	}, overrideName: string, overrides: WhaleTypes.Theme['overrides']) => WhaleTypes.ComponentStyles<S>; const createComponentStyles: createComponentStyles;
+	export default createComponentStyles;
 
 }
 declare module 'hooks/useComponent' {
 	import WhaleTypes from 'types';
-	import { InjectedStyles } from 'utils/styleProps';
+	import { InjectedStyles } from 'utils/props/style/types';
 	interface Options<S> {
 	    props: any;
 	    styles: WhaleTypes.Styles<S> | WhaleTypes.CreateStyles<S>;
-	    styleProps?: {
-	        [K in keyof S]?: (keyof InjectedStyles)[];
-	    };
+	    styleProps?: Partial<Record<keyof S, (keyof InjectedStyles)[]>>;
 	    mouseFocus?: boolean;
 	    focusDecoration?: boolean;
 	    theme?: WhaleTypes.Theme;
-	} const useComponent: <S, P>(overrideName: string, options: Options<S>, params?: {}) => {
+	} const useComponent: <S>(overrideName: string, options: Options<S>, params?: Object) => {
 	    cs: WhaleTypes.ComponentStyles<S>;
 	    attributes: any;
 	    events: {
@@ -1385,6 +2315,7 @@ declare module 'hooks/useComponent' {
 	        };
 	    };
 	    focus: boolean;
+	    theme: WhaleTypes.Theme;
 	};
 	export default useComponent;
 
@@ -1395,7 +2326,7 @@ declare module 'utils/createID' {
 
 }
 declare module 'utils/mergeObjects' {
-	export default function mergeObjects(target?: Object, source?: Object, modify?: (value: any) => any): Object;
+	export default function mergeObjects(target?: Object, src?: Object, modify?: (value: any) => any): Object;
 
 }
 declare module 'utils/createTheme' {

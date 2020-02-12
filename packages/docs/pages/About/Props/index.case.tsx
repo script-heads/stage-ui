@@ -1,5 +1,5 @@
 
-import { Block, Header, Anchor, Paragraph } from '@flow-ui/core'
+import { Block, Header, Link, Paragraph } from '@flow-ui/core'
 import React from 'react'
 import ColorCode from './color.raw'
 import FlowCode from './flow.raw'
@@ -19,7 +19,7 @@ export default () => (
         <Paragraph>But more usefull will be give it a function which will provide typed color object for you</Paragraph>
         <Paragraph>We using theme color object as first argument of function then each color are instance of Chroma.js</Paragraph>
         <Syntax code={ColorCode} />
-        <Paragraph pb="1rem">For more information you may also check <Anchor
+        <Paragraph pb="1rem">For more information you may also check <Link
             href="https://vis4.net/chromajs/"
             target="_blank"
             children="https://vis4.net/chromajs/"

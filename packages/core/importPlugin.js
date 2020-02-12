@@ -1,5 +1,5 @@
 const transforms = {
-    'core/content': ['Divider', 'Spinner', 'Header', 'Display', 'Paragraph', 'Text', 'Anchor'],
+    'core/content': ['Divider', 'Spinner', 'Header', 'Display', 'Paragraph', 'Text', 'Link'],
     'core/control': ['Button', 'Calendar', 'Checkbox', 'DatePicker', 'Menu', 'Radio', 'Range', 'Pageswitch', 'Select', 'Switch', 'TextField'],
     'core/layout': ['Badge', 'Block', 'Drop', 'Flexbox', 'Grid', 'Modal', 'Notification', 'Popover', 'Tree', 'ScrollView', 'Viewport'],
     'core/data': ['Meter', 'Table'],

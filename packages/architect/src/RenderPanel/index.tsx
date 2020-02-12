@@ -17,7 +17,7 @@ export const componentsTypography = [
     'Header',
     'Display',
     'Paragraph',
-    'Anchor',
+    'Link',
     'Text'
 ]
 

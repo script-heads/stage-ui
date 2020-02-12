@@ -1,8 +1,8 @@
 import WhaleTypes from '../types'
 import { InjectedStyles } from '../utils/props/style/types'
 import useTheme from './useTheme'
-import useComponentProps from './useComponentProps'
-import createComponentStyles from '../utils/createComponentStyles'
+import attachProps from '../utils/props'
+import createStyles from '../utils/createStyles'
 import { useState, useMemo } from 'react'
 
 interface Options<S> {
@@ -13,6 +13,7 @@ interface Options<S> {
     focusDecoration?: boolean,
     theme?: WhaleTypes.Theme
 }
+
 const defaultBreakpoints = ['576px','768px','992px','1200px']
 
 const useComponent = <S>(overrideName: string, options: Options<S>, params: Object = {}) => {
@@ -34,16 +35,14 @@ const useComponent = <S>(overrideName: string, options: Options<S>, params: Obje
         }
         
         const resolvedStyles = typeof styles === 'function'
-            ? styles(props, theme, params)
+            ? styles(props, theme, params) 
             : styles
-
-        const overrides = theme.overrides?.[overrideName]
 
         const { 
             attributes, 
             events, 
             propStyles 
-        } = useComponentProps(
+        } = attachProps(
             props,
             theme, 
             setFocus,
@@ -53,10 +52,11 @@ const useComponent = <S>(overrideName: string, options: Options<S>, params: Obje
             } 
         )
         
-        const cs = createComponentStyles(
+        const cs = createStyles<S>(
             resolvedStyles, 
-            propStyles, 
-            overrides
+            propStyles,
+            overrideName, 
+            theme.overrides
         )
         
         return { cs, attributes, events }

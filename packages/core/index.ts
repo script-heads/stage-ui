@@ -7,7 +7,7 @@ export { default as Header  } from './content/Header'
 export { default as Display  } from './content/Display'
 export { default as Paragraph  } from './content/Paragraph'
 export { default as Text  } from './content/Text'
-export { default as Anchor  } from './content/Anchor'
+export { default as Link  } from './content/Link'
 /**
  * Control
  */

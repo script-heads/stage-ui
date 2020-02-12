@@ -30,8 +30,8 @@ const components: ArchitectTools['components'] = {
     Text: Init('Text', {
         text: 'Text',
     }),
-    Anchor: Init('Anchor', {
-        text: 'Anchor',
+    Link: Init('Link', {
+        text: 'Link',
     }),
     /**
      * Control

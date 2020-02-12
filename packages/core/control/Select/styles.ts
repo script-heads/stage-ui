@@ -1,4 +1,3 @@
-import callProp from '@flow-ui/core/misc/utils/callProp'
 import Types from './types'
 import fieldStyles from '../../misc/hocs/Field/styles'
 import WhaleTypes from '@flow-ui/whale/types'

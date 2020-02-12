@@ -23,7 +23,7 @@ declare namespace WhaleTypes {
     }
 
     interface SourceTheme {
-        main: ThemeVariables<[number, number, number, number?], string[] | undefined>
+        main: Omit<ThemeVariables<[number, number, number, number?]>, 'breakpoints'> & {breakpoints?: string[]}
         assets: (theme: Theme) => ThemeAssets
         overrides?: Partial<{[Component in keyof Whale.Overrides]: Styles<Whale.Overrides[Component]>}>
     }
@@ -34,7 +34,7 @@ declare namespace WhaleTypes {
         overrides?: Partial<{[Component in keyof Whale.Overrides]: Styles<Whale.Overrides[Component]>}>
     }
     
-    interface ThemeVariables<Color = QIXColor, BP = string[]> {
+    interface ThemeVariables<Color = QIXColor> {
         name: string
         color: {
             background: Color
@@ -66,7 +66,7 @@ declare namespace WhaleTypes {
             narrow: string
             wide: string
         },
-        breakpoints: BP,
+        breakpoints: string[],
         spacing: Record<Size, string>
         typography: {
             header: Record<Size, {
@@ -574,12 +574,10 @@ declare namespace WhaleTypes {
         placeSelf?: Breakpointify<CSS.Properties['placeSelf']>
     }
 
-    type ColorProp = ((colors: Theme['color']) => QIXColor | string) 
-    | string 
-    | QIXColor
+    type ColorProp = ((colors: Theme['color']) => QIXColor | string) | string | QIXColor
 
     type Styles<StyleDefinitions> = {
-        [StyleName in keyof StyleDefinitions]: StyleDefinitions[StyleName] extends {} 
+        [StyleName in keyof StyleDefinitions]: StyleDefinitions[StyleName] extends Object
             ? ((variant: Variant<StyleDefinitions[StyleName]>) => EmotionStyles)
             : EmotionStyles
     }

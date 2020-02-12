@@ -1,5 +1,5 @@
 import { ArchitectTools } from '@flow-ui/architect/types'
-import { Block, Header, Paragraph, Flexbox, Anchor } from '@flow-ui/core'
+import { Block, Header, Paragraph, Flexbox, Link } from '@flow-ui/core'
 import styles from './styles'
 import WhaleTypes from '@flow-ui/whale/types'
 import ThemeSwitcher from '@flow-ui/documaker/components/ThemeSwitcher'
@@ -42,9 +42,9 @@ const HeaderPanel = (props: HeaderPanelProps) => {
                     setTheme={props.setTheme}
                 />
                 {props.git && (
-                    <Anchor target="_blank" href={props.git} ml="1rem">
+                    <Link target="_blank" href={props.git} ml="1rem">
                         <Github size="1.5rem" />
-                    </Anchor>
+                    </Link>
                 )}
             </div>
         </Flexbox>
