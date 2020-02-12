@@ -6,7 +6,7 @@ import { Block } from '@flow-ui/core'
 const App = () => {
 	return (
 		<Block p={['4rem','3rem','2rem','1rem']}>
-			<PlaygroundToolbar />
+			<PlaygroundToolbar  />
 			<PlaygroundTable />
 		</Block>
 	)
