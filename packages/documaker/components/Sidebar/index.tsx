@@ -47,6 +47,7 @@ const Sidebar = (props: SidebarProps) => {
 			<Block
 				p="1.5rem"
 				css={(theme: WhaleTypes.Theme) => ([{
+					boxSizing: 'border-box',
 					background: theme.color.surface.rgb().string()
 				},{
 					[`@media (max-width: ${window.breakpoints[1]}px)`]: [
@@ -56,9 +57,9 @@ const Sidebar = (props: SidebarProps) => {
 							backgroundColor: theme.color.background.rgb().string(),
 							zIndex: 200,
 						},
-						// !visibility && {
-						// 	display: 'none'
-						// }
+						!visibility && {
+							display: 'none'
+						}
 					]
 				}])}>
 				<Block
