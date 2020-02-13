@@ -64,7 +64,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 position: 'relative',
                 justifyContent: 'center',
                 alignItems: 'stretch',
-                width: 'fit-content',
+                width: 'auto',
                 flexDirection: props.direction,
             },
             spacing && {
