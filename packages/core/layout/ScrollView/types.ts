@@ -57,6 +57,7 @@ declare namespace ScrollViewTypes {
     }
 
     interface Ref {
+        updateScroll: () => void
         scrollTop: () => void
     }
 

@@ -24,6 +24,14 @@ interface MemoParams {
 const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
 
     useImperativeHandle(ref, () => ({
+        updateScroll: () => {
+            updateScroll({
+                deltaX: 0,
+                deltaY: 0,
+                preventDefault: () => null,
+                stopPropagation: () => null
+            })
+        },
         scrollTop: () => {
             updateScroll({
                 deltaX: -1e+10,
