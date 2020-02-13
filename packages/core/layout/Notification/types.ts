@@ -1,8 +1,8 @@
+import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace NotificationTypes {
-    interface Props {
+    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
         children?: React.ReactNode
-        onClick?: () => void
     }
 
     interface NotifyOptions {

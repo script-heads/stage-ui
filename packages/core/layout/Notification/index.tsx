@@ -16,9 +16,11 @@ const Notifications: RefForwardingComponent<HTMLDivElement, Types.Props> = (prop
         <Block 
             {...attributes}
             {...events.all}
+            onChange={undefined}
             ref={ref} 
             decoration="surface" 
-            onClick={() => props.onClick && props.onClick()} css={cs.container}
+            onClick={(e) => props.onClick && props.onClick(e)} 
+            css={cs.container}
             children={props.children}
         />
     )

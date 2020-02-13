@@ -55,6 +55,7 @@ const Pageswitch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
         <Flexbox
             {...attributes}
             {...events.all}
+            onChange={undefined}
             ref={ref}
             css={cs.container}
             alignItems="center"

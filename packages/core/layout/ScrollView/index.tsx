@@ -294,7 +294,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
     }
 
     return (
-        <div {...attributes} {...events.all} css={cs.container} ref={createRef}>
+        <div {...attributes} {...events.all} onScroll={undefined} css={cs.container} ref={createRef}>
             <div
                 css={cs.content}
                 ref={ref => memo.content = ref}

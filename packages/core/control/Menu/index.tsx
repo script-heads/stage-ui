@@ -37,6 +37,7 @@ const Menu: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
         <div
             {...attributes}
             {...events.all}
+            onChange={undefined}
             ref={ref}
             css={cs.container({size, flip, border})}
         >

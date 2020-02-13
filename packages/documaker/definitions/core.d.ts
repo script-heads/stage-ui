@@ -71,7 +71,6 @@ declare module 'misc/hocs/Typography/types' {
 	        target?: string;
 	        type?: string;
 	        referrerPolicy?: string;
-	        onEnter?: () => void;
 	    }
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        ellipsis?: boolean;
@@ -2127,7 +2126,7 @@ declare module 'layout/Drop/types' {
 	        left: number;
 	        right: number;
 	    }
-	    interface Props extends WhaleTypes.AttributeProps, WhaleTypes.EventProps<HTMLDivElement>, WhaleTypes.CoreProps<Overrides>, WhaleTypes.ColorProps, WhaleTypes.BorderProps, WhaleTypes.PaddingProps, WhaleTypes.LayoutProps {
+	    interface Props extends WhaleTypes.AttributeProps, WhaleTypes.AllEventProps<HTMLDivElement>, WhaleTypes.CoreProps<Overrides>, WhaleTypes.ColorProps, WhaleTypes.BorderProps, WhaleTypes.PaddingProps, WhaleTypes.LayoutProps {
 	        /**
 	         * Target where to place drop
 	         */
@@ -2242,7 +2241,7 @@ declare module 'misc/hocs/Field/styles' {
 	import WhaleTypes from '@flow-ui/whale/types';
 	import Types from 'misc/hocs/Field/types'; type ExtractFunction<T> = {
 	    [K in keyof T]: Extract<T[K], Function>;
-	}; const fieldStyles: <T extends Types.Overrides<{}>>(props: Pick<Types.Props, "alignSelf" | "backgroundColor" | "color" | "display" | "flexBasis" | "flexGrow" | "flexShrink" | "gridColumnEnd" | "gridColumnStart" | "gridRowEnd" | "gridRowStart" | "justifySelf" | "visibility" | "borderColor" | "borderRadius" | "borderStyle" | "borderWidth" | "flex" | "gridArea" | "gridColumn" | "gridRow" | "placeSelf" | "size" | "style" | "disabled" | "label" | "p" | "styles" | "className" | "id" | "tabIndex" | "role" | "draggable" | "attrs" | "aria-activedescendant" | "aria-atomic" | "aria-autocomplete" | "aria-busy" | "aria-checked" | "aria-colcount" | "aria-colindex" | "aria-colspan" | "aria-controls" | "aria-current" | "aria-describedby" | "aria-details" | "aria-disabled" | "aria-dropeffect" | "aria-errormessage" | "aria-expanded" | "aria-flowto" | "aria-grabbed" | "aria-haspopup" | "aria-hidden" | "aria-invalid" | "aria-keyshortcuts" | "aria-label" | "aria-labelledby" | "aria-level" | "aria-live" | "aria-modal" | "aria-multiline" | "aria-multiselectable" | "aria-orientation" | "aria-owns" | "aria-placeholder" | "aria-posinset" | "aria-pressed" | "aria-readonly" | "aria-relevant" | "aria-required" | "aria-roledescription" | "aria-rowcount" | "aria-rowindex" | "aria-rowspan" | "aria-selected" | "aria-setsize" | "aria-sort" | "aria-valuemax" | "aria-valuemin" | "aria-valuenow" | "aria-valuetext" | "onCopy" | "onCopyCapture" | "onCut" | "onCutCapture" | "onPaste" | "onPasteCapture" | "onCompositionEnd" | "onCompositionEndCapture" | "onCompositionStart" | "onCompositionStartCapture" | "onCompositionUpdate" | "onCompositionUpdateCapture" | "onFocus" | "onFocusCapture" | "onBlur" | "onBlurCapture" | "onChangeCapture" | "onBeforeInput" | "onBeforeInputCapture" | "onInput" | "onInputCapture" | "onReset" | "onResetCapture" | "onSubmit" | "onSubmitCapture" | "onInvalid" | "onInvalidCapture" | "onLoad" | "onLoadCapture" | "onError" | "onErrorCapture" | "onKeyDown" | "onKeyDownCapture" | "onKeyPress" | "onKeyPressCapture" | "onKeyUp" | "onKeyUpCapture" | "onAbort" | "onAbortCapture" | "onCanPlay" | "onCanPlayCapture" | "onCanPlayThrough" | "onCanPlayThroughCapture" | "onDurationChange" | "onDurationChangeCapture" | "onEmptied" | "onEmptiedCapture" | "onEncrypted" | "onEncryptedCapture" | "onEnded" | "onEndedCapture" | "onLoadedData" | "onLoadedDataCapture" | "onLoadedMetadata" | "onLoadedMetadataCapture" | "onLoadStart" | "onLoadStartCapture" | "onPause" | "onPauseCapture" | "onPlay" | "onPlayCapture" | "onPlaying" | "onPlayingCapture" | "onProgress" | "onProgressCapture" | "onRateChange" | "onRateChangeCapture" | "onSeeked" | "onSeekedCapture" | "onSeeking" | "onSeekingCapture" | "onStalled" | "onStalledCapture" | "onSuspend" | "onSuspendCapture" | "onTimeUpdate" | "onTimeUpdateCapture" | "onVolumeChange" | "onVolumeChangeCapture" | "onWaiting" | "onWaitingCapture" | "onAuxClick" | "onAuxClickCapture" | "onClick" | "onClickCapture" | "onContextMenu" | "onContextMenuCapture" | "onDoubleClick" | "onDoubleClickCapture" | "onDrag" | "onDragCapture" | "onDragEnd" | "onDragEndCapture" | "onDragEnter" | "onDragEnterCapture" | "onDragExit" | "onDragExitCapture" | "onDragLeave" | "onDragLeaveCapture" | "onDragOver" | "onDragOverCapture" | "onDragStart" | "onDragStartCapture" | "onDrop" | "onDropCapture" | "onMouseDown" | "onMouseDownCapture" | "onMouseEnter" | "onMouseLeave" | "onMouseMove" | "onMouseMoveCapture" | "onMouseOut" | "onMouseOutCapture" | "onMouseOver" | "onMouseOverCapture" | "onMouseUp" | "onMouseUpCapture" | "onSelect" | "onSelectCapture" | "onTouchCancel" | "onTouchCancelCapture" | "onTouchEnd" | "onTouchEndCapture" | "onTouchMove" | "onTouchMoveCapture" | "onTouchStart" | "onTouchStartCapture" | "onPointerDown" | "onPointerDownCapture" | "onPointerMove" | "onPointerMoveCapture" | "onPointerUp" | "onPointerUpCapture" | "onPointerCancel" | "onPointerCancelCapture" | "onPointerEnter" | "onPointerLeave" | "onPointerOver" | "onPointerOverCapture" | "onPointerOut" | "onPointerOutCapture" | "onGotPointerCapture" | "onGotPointerCaptureCapture" | "onLostPointerCapture" | "onLostPointerCaptureCapture" | "onScroll" | "onScrollCapture" | "onWheel" | "onWheelCapture" | "onAnimationStart" | "onAnimationStartCapture" | "onAnimationEnd" | "onAnimationEndCapture" | "onAnimationIteration" | "onAnimationIterationCapture" | "onTransitionEnd" | "onTransitionEndCapture" | "animated" | "textColor" | "px" | "py" | "pr" | "pl" | "pt" | "pb" | "w" | "h" | "m" | "mx" | "my" | "mr" | "ml" | "mt" | "mb" | "shape" | "onEnter" | "decoration" | "hint" | "rightChild" | "leftChild" | "clearable" | "onClear">, theme: WhaleTypes.Theme, stylePatch?: Partial<ExtractFunction<WhaleTypes.Styles<T>>> | undefined) => WhaleTypes.Styles<Types.Overrides<{}>>;
+	}; const fieldStyles: <T extends Types.Overrides<{}>>(props: Pick<Types.Props, "alignSelf" | "backgroundColor" | "color" | "display" | "flexBasis" | "flexGrow" | "flexShrink" | "gridColumnEnd" | "gridColumnStart" | "gridRowEnd" | "gridRowStart" | "justifySelf" | "visibility" | "borderColor" | "borderRadius" | "borderStyle" | "borderWidth" | "flex" | "gridArea" | "gridColumn" | "gridRow" | "placeSelf" | "size" | "style" | "disabled" | "label" | "p" | "styles" | "onChangeCapture" | "onBeforeInput" | "onBeforeInputCapture" | "onInput" | "onInputCapture" | "onReset" | "onResetCapture" | "onSubmit" | "onSubmitCapture" | "onInvalid" | "onInvalidCapture" | "className" | "id" | "tabIndex" | "role" | "draggable" | "attrs" | "aria-activedescendant" | "aria-atomic" | "aria-autocomplete" | "aria-busy" | "aria-checked" | "aria-colcount" | "aria-colindex" | "aria-colspan" | "aria-controls" | "aria-current" | "aria-describedby" | "aria-details" | "aria-disabled" | "aria-dropeffect" | "aria-errormessage" | "aria-expanded" | "aria-flowto" | "aria-grabbed" | "aria-haspopup" | "aria-hidden" | "aria-invalid" | "aria-keyshortcuts" | "aria-label" | "aria-labelledby" | "aria-level" | "aria-live" | "aria-modal" | "aria-multiline" | "aria-multiselectable" | "aria-orientation" | "aria-owns" | "aria-placeholder" | "aria-posinset" | "aria-pressed" | "aria-readonly" | "aria-relevant" | "aria-required" | "aria-roledescription" | "aria-rowcount" | "aria-rowindex" | "aria-rowspan" | "aria-selected" | "aria-setsize" | "aria-sort" | "aria-valuemax" | "aria-valuemin" | "aria-valuenow" | "aria-valuetext" | "onFocus" | "onFocusCapture" | "onBlur" | "onBlurCapture" | "onLoad" | "onLoadCapture" | "onError" | "onErrorCapture" | "onAbort" | "onAbortCapture" | "onCanPlay" | "onCanPlayCapture" | "onCanPlayThrough" | "onCanPlayThroughCapture" | "onDurationChange" | "onDurationChangeCapture" | "onEmptied" | "onEmptiedCapture" | "onEncrypted" | "onEncryptedCapture" | "onEnded" | "onEndedCapture" | "onLoadedData" | "onLoadedDataCapture" | "onLoadedMetadata" | "onLoadedMetadataCapture" | "onLoadStart" | "onLoadStartCapture" | "onPause" | "onPauseCapture" | "onPlay" | "onPlayCapture" | "onPlaying" | "onPlayingCapture" | "onProgress" | "onProgressCapture" | "onRateChange" | "onRateChangeCapture" | "onSeeked" | "onSeekedCapture" | "onSeeking" | "onSeekingCapture" | "onStalled" | "onStalledCapture" | "onSuspend" | "onSuspendCapture" | "onTimeUpdate" | "onTimeUpdateCapture" | "onVolumeChange" | "onVolumeChangeCapture" | "onWaiting" | "onWaitingCapture" | "onAuxClick" | "onAuxClickCapture" | "onClick" | "onClickCapture" | "onContextMenu" | "onContextMenuCapture" | "onDoubleClick" | "onDoubleClickCapture" | "onDrag" | "onDragCapture" | "onDragEnd" | "onDragEndCapture" | "onDragEnter" | "onDragEnterCapture" | "onDragExit" | "onDragExitCapture" | "onDragLeave" | "onDragLeaveCapture" | "onDragOver" | "onDragOverCapture" | "onDragStart" | "onDragStartCapture" | "onDrop" | "onDropCapture" | "onMouseDown" | "onMouseDownCapture" | "onMouseEnter" | "onMouseLeave" | "onMouseMove" | "onMouseMoveCapture" | "onMouseOut" | "onMouseOutCapture" | "onMouseOver" | "onMouseOverCapture" | "onMouseUp" | "onMouseUpCapture" | "onTouchCancel" | "onTouchCancelCapture" | "onTouchEnd" | "onTouchEndCapture" | "onTouchMove" | "onTouchMoveCapture" | "onTouchStart" | "onTouchStartCapture" | "onWheel" | "onWheelCapture" | "onPointerDown" | "onPointerDownCapture" | "onPointerMove" | "onPointerMoveCapture" | "onPointerUp" | "onPointerUpCapture" | "onPointerCancel" | "onPointerCancelCapture" | "onPointerEnter" | "onPointerLeave" | "onPointerOver" | "onPointerOverCapture" | "onPointerOut" | "onPointerOutCapture" | "onGotPointerCapture" | "onGotPointerCaptureCapture" | "onLostPointerCapture" | "onLostPointerCaptureCapture" | "onKeyDown" | "onKeyDownCapture" | "onKeyPress" | "onKeyPressCapture" | "onKeyUp" | "onKeyUpCapture" | "onEnter" | "onEsc" | "onSelect" | "onSelectCapture" | "onAnimationStart" | "onAnimationStartCapture" | "onAnimationEnd" | "onAnimationEndCapture" | "onAnimationIteration" | "onAnimationIterationCapture" | "onCopy" | "onCopyCapture" | "onCut" | "onCutCapture" | "onPaste" | "onPasteCapture" | "onTransitionEnd" | "onTransitionEndCapture" | "onCompositionEnd" | "onCompositionEndCapture" | "onCompositionStart" | "onCompositionStartCapture" | "onCompositionUpdate" | "onCompositionUpdateCapture" | "onScroll" | "onScrollCapture" | "animated" | "textColor" | "px" | "py" | "pr" | "pl" | "pt" | "pb" | "w" | "h" | "m" | "mx" | "my" | "mr" | "ml" | "mt" | "mb" | "shape" | "decoration" | "hint" | "rightChild" | "leftChild" | "clearable" | "onClear">, theme: WhaleTypes.Theme, stylePatch?: Partial<ExtractFunction<WhaleTypes.Styles<T>>> | undefined) => WhaleTypes.Styles<Types.Overrides<{}>>;
 	export default fieldStyles;
 
 }
@@ -2359,7 +2358,7 @@ declare module 'control/Menu/types' {
 	        color?: WhaleTypes.ColorProp;
 	        disabled?: boolean;
 	    }
-	    interface Item extends Partial<Omit<WhaleTypes.EventProps<HTMLDivElement>, 'onChange'>>, Partial<Props> {
+	    interface Item extends Partial<Omit<WhaleTypes.AllEventProps<HTMLDivElement>, 'onChange'>>, Partial<Props> {
 	        content: React.ReactNode;
 	        value: Value;
 	        disabled?: boolean;
@@ -2741,7 +2740,8 @@ declare module 'data/Meter' {
 }
 declare module '@flow-ui/core/data/Table/types' {
 	/// <reference types="react" />
-	import WhaleTypes from '@flow-ui/whale/types'; namespace TableTypes {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration'; namespace TableTypes {
 	    type TableCellKey = number | string;
 	    type TableSortType = 'ASC' | 'DESC';
 	    type TableSortObject = {
@@ -2838,6 +2838,7 @@ declare module '@flow-ui/core/data/Table/types' {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        data: Object[];
 	        columns: TableColumn[];
+	        decoration?: LayoutDecoration;
 	        pagination?: TablePaginationOptions;
 	    }
 	    interface HeadCellProps {
@@ -2949,7 +2950,7 @@ declare module 'layout/Badge' {
 declare module '@flow-ui/core/layout/Modal/types' {
 	/// <reference types="react" />
 	import WhaleTypes from '@flow-ui/whale/types'; namespace ModalTypes {
-	    type ExtentedProps = WhaleTypes.AttributeProps & WhaleTypes.EventProps<HTMLDivElement> & WhaleTypes.CoreProps<Overrides> & WhaleTypes.ColorProps & WhaleTypes.BorderProps & WhaleTypes.PaddingProps & WhaleTypes.LayoutProps;
+	    type ExtentedProps = WhaleTypes.AttributeProps & WhaleTypes.AllEventProps<HTMLDivElement> & WhaleTypes.CoreProps<Overrides> & WhaleTypes.ColorProps & WhaleTypes.BorderProps & WhaleTypes.PaddingProps & WhaleTypes.LayoutProps;
 	    interface Ref {
 	        open: (customContent?: React.ReactElement | null) => void;
 	        close: (didClose?: () => void) => void;
@@ -3063,10 +3064,10 @@ declare module 'layout/Modal' {
 
 }
 declare module 'layout/Notification/types' {
-	 namespace NotificationTypes {
-	    interface Props {
+	/// <reference types="react" />
+	import WhaleTypes from '@flow-ui/whale/types'; namespace NotificationTypes {
+	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        children?: React.ReactNode;
-	        onClick?: () => void;
 	    }
 	    interface NotifyOptions {
 	        /**
@@ -3268,6 +3269,7 @@ declare module 'layout/ScrollView/types' {
 	    interface Overrides {
 	        container: void;
 	        content: void;
+	        mobile: void;
 	        yBar: {
 	            active: boolean;
 	            shape: Props['shape'];

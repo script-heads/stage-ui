@@ -9,8 +9,6 @@ export type SplitElRef = (HTMLDivElement & {
     _onChange?: () => void
 }) | null
 
-
-
 interface SplitElRefs {
     [key: number]: SplitElRef
 }
@@ -60,6 +58,7 @@ const Split: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
         <div
             {...attributes}
             {...events.all}
+            onChange={undefined}
             ref={r => { refs[-1] = r; ref = { current: r } }}
             css={cs.container({
                 vertical

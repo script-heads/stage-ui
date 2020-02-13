@@ -19,11 +19,11 @@ const Range: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
 
     let isActive = false
 
-    function onUp(e: MouseEvent) {
+    function onUp(e) {
         isActive = false
     }
  
-    function onMove(e: MouseEvent, force?: boolean) {
+    function onMove(e, force?: boolean) {
         if (force) {
             isActive = true
         }
@@ -59,10 +59,13 @@ const Range: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
     }, [props])
 
     return (
-        <div {...attributes} {...events.all}
+        <div 
+            {...attributes} 
+            {...events.all}
+            onChange={undefined}
             css={cs.container} 
             ref={containerRef} 
-            onMouseDown={(e: MouseEvent) => onMove(e, true)}
+            onMouseDown={(e) => onMove(e, true)}
             // onTouchStart={onMove}
         >
             <div css={cs.rail} />
