@@ -3,11 +3,11 @@ import WhalePropsTypes from '../utils/attachProps/types'
 import useTheme from './useTheme'
 import attachProps from '../utils/attachProps'
 import createStyles from '../utils/createStyles'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, CSSProperties } from 'react'
 
-interface Options<Styles,Props,Params> {
+interface Options<Styles,Props> {
     props: Props,
-    styles: WhaleTypes.Styles<Styles> | WhaleTypes.CreateStyles<Styles,Props,Params>,
+    styles: WhaleTypes.Styles<Styles> | WhaleTypes.CreateStyles<Styles,Props>,
     styleProps?: Partial<Record<keyof Styles, (keyof WhalePropsTypes.InjectedStyles)[]>>
     mouseFocus?: boolean,
     focusDecoration?: boolean,
@@ -16,10 +16,10 @@ interface Options<Styles,Props,Params> {
 
 const defaultBreakpoints = ['1199.98px','991.98px','767.98px','575.98px']
 
-const useComponent = <Styles,Props,Params extends Object>(
+const useComponent = <Styles,Props>(
     overrideName: string, 
-    options: Options<Styles,Props,Params>, 
-    params: Params = {} as Params) => {
+    options: Options<Styles,Props>, 
+    params: Object = {}) => {
 
     const { 
         props,
@@ -45,7 +45,7 @@ const useComponent = <Styles,Props,Params extends Object>(
             attributes, 
             events, 
             propStyles 
-        } = attachProps(
+        } = attachProps<Styles,Props>(
             props,
             theme, 
             setFocus,
@@ -72,7 +72,7 @@ const useComponent = <Styles,Props,Params extends Object>(
             outline: 'none', 
             ...theme.assets.focus, 
             ...attributes.style
-        }
+        } as CSSProperties
     }
 
     return {cs, attributes, events, focus, theme}
