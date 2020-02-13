@@ -1,5 +1,5 @@
 import WhaleTypes from '@flow-ui/whale/types'
-
+import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration'
 declare namespace TableTypes {
 
     type TableCellKey = number | string
@@ -105,6 +105,7 @@ declare namespace TableTypes {
     interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
         data: Object[]
         columns: TableColumn[]
+        decoration?: LayoutDecoration
         pagination?: TablePaginationOptions
     }
 
