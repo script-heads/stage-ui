@@ -1,11 +1,17 @@
-import { Block, Button } from '@flow-ui/core'
+import { Flexbox, Button, TextField, Divider } from '@flow-ui/core'
 import React from 'react'
+import { Search } from '@flow-ui/core/icons'
 
 const PlaygroundToolbar = () => {
     return (
-        <Block p="0.5rem" mb="0.5rem" decoration="surface">
-            <Button>Text</Button>
-        </Block>
+        <Flexbox p="1rem" mb="0.5rem" decoration="surface">
+            <TextField
+                leftChild={<Search />}
+                placeholder="Search"
+            />
+            <Divider vertical mx="0.5rem" h="2.5rem" />
+            <Button decoration="text">Reload</Button>
+        </Flexbox>
     )
 }
 

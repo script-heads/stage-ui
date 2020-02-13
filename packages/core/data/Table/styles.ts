@@ -1,19 +1,17 @@
 
 import Types from './types'
 import WhaleTypes from '@flow-ui/whale/types'
+import applyLayoutDecoration from '@flow-ui/core/misc/utils/applyLayoutDecoration'
 
 // TODO: borderBottomStyle type incorrect
 //@ts-ignore
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
     return {
         container: [
+            applyLayoutDecoration({ decoration: 'surface', ...props }, theme),
             {
                 width: '100%',
-                backgroundColor: theme.color.surface.rgb().string(),
                 borderCollapse: 'inherit',
-                borderRadius: theme.radius.default,
-                background: theme.color.surface.rgb().string(),
-                boxShadow: theme.assets.shadow.short
             }
         ],
         headCell: (variant) => [
