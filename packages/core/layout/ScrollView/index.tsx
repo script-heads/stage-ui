@@ -207,6 +207,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
     function mouseUp() {
         memo.y = false
         memo.x = false
+        window.removeEventListener('mouseup', mouseUp)
     }
 
     function mouseMove(e: MouseEvent) {
@@ -312,9 +313,6 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                 onMouseEnter={() => {
                     window.addEventListener('mouseup', mouseUp, { passive: true })
                 }}
-                onMouseLeave={() => {
-                    window.removeEventListener('mouseup', mouseUp)
-                }}
             />
             <div
                 css={cs.xBar({ active, size, shape, position: xBarPosition })}
@@ -327,9 +325,6 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                 )} 
                 onMouseEnter={() => {
                     window.addEventListener('mouseup', mouseUp, { passive: true })
-                }}
-                onMouseLeave={() => {
-                    window.removeEventListener('mouseup', mouseUp)
                 }}
             />
         </div>

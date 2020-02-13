@@ -1,12 +1,14 @@
-import { Menu } from '@flow-ui/core'
+import { Menu, Divider } from '@flow-ui/core'
 import { Cube } from '@flow-ui/core/icons'
 import React from 'react'
 
-const PlaygroundMenu = () => {
+const PlaygroundSidebar = () => {
     return (
         <Menu
-            my="1rem"
-            w="fit-content"
+            direction="column"
+            decoration="filled"
+            // my="1rem"
+            m="1rem"
             defaultValue={0}
             items={[
                 { 
@@ -30,4 +32,4 @@ const PlaygroundMenu = () => {
     )
 }
 
-export default PlaygroundMenu
+export default PlaygroundSidebar
