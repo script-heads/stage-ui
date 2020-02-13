@@ -3264,6 +3264,7 @@ declare module 'layout/ScrollView/types' {
 	        onScroll?: (event: ScrollViewEvent) => void;
 	    }
 	    interface Ref {
+	        updateScroll: () => void;
 	        scrollTop: () => void;
 	    }
 	    interface Overrides {
