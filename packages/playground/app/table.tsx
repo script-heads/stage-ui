@@ -1,12 +1,12 @@
-import { Flexbox, Table, Text, TextField } from '@flow-ui/core'
+import { Flexbox, Table, Text, TextField, Meter, Range } from '@flow-ui/core'
 import T from '@flow-ui/core/data/Table/types'
 import { ArrowIosDownward, Edit2, Checkmark } from '@flow-ui/core/icons'
 import React from 'react'
 
-const EditName = (props: { ctx: T.TableCellContext }) => {
-    let tmp = props.ctx.value as string
+const EditAge = (props: { ctx: T.TableCellContext }) => {
+    const [value, setValue] = React.useState(parseInt(props.ctx.value as string))
     const save = () => {
-        props.ctx.row[props.ctx.key] = tmp
+        props.ctx.row[props.ctx.key] = value
         props.ctx.setModify(false)
     }
     return (
@@ -18,17 +18,25 @@ const EditName = (props: { ctx: T.TableCellContext }) => {
                 onClick={save}
             />
             <TextField
+                flex={1}
+                type="number"
+                mr="0.5rem"
                 autoFocus
                 name={props.ctx.column?.title}
-                defaultValue={tmp}
-                onChange={e => tmp = e.target.value}
+                value={value}
+                onChange={e =>setValue(parseInt(e.target.value))}
                 onEnter={save}
+            />
+            <Range
+                flex={3}
+                value={value}
+                onChange={(value) => setValue(value)}
             />
         </Flexbox>
     )
 }
 
-const DisplayName = (props: { ctx: T.TableCellContext }) => (
+const DisplayAge = (props: { ctx: T.TableCellContext }) => (
     <Flexbox alignItems="center">
         <Edit2
             size="1rem"
@@ -38,7 +46,12 @@ const DisplayName = (props: { ctx: T.TableCellContext }) => (
                 props.ctx.setModify(true)
             }}
         />
-        <Text>{props.ctx.value}</Text>
+        <Text mr={'0.5rem'}>{props.ctx.value}</Text>
+        <Meter 
+            loading={parseInt(props.ctx.value as string) < 18}
+            flex={1}
+            percent={parseInt(props.ctx.value as string)} 
+        />
     </Flexbox>
 )
 
@@ -78,22 +91,22 @@ const PlaygroundTable = () => {
                     title: 'age', 
                     key: 'age', 
                     sort: 'ASC',
-                    width: '20rem',
+                    width: '50%',
                     render: ctx => {
                         if (ctx.isModify) {
-                            return <EditName ctx={ctx} />
+                            return <EditAge ctx={ctx} />
                         } else {
-                            return <DisplayName ctx={ctx} />
+                            return <DisplayAge ctx={ctx} />
                         }
                     }
                 },
             ]}
             data={[
                 { name: 'Matt', age: 25 },
-                { name: 'John', age: 29 },
+                { name: 'John', age: 16 },
                 { name: 'Kate', age: 26 },
-                { name: 'Bob', age: 32 },
-                { name: 'Elice', age: 19 },
+                { name: 'Bob', age: 49 },
+                { name: 'Elice', age: 17 },
                 { name: 'George', age: 32 },
             ]}
             pagination={{
