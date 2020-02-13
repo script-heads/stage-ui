@@ -160,8 +160,8 @@ declare namespace WhaleTypes {
         FormEventProps<T>,
         FocusEventProps<T>,
         ImageEventProps<T>,
-        MediaEventsProps<T>,
-        MouseEventsProps<T>,
+        MediaEventProps<T>,
+        MouseEventProps<T>,
         TouchEventProps<T>,
         WheelEventProps<T>,
         PointerEventProps<T>,
@@ -514,7 +514,7 @@ declare namespace WhaleTypes {
      * Media events
      * @name MediaEvents
      */
-    interface MediaEventsProps<T> {
+    interface MediaEventProps<T> {
         onAbort?: React.ReactEventHandler<T>
         onAbortCapture?: React.ReactEventHandler<T>
         onCanPlay?: React.ReactEventHandler<T>
@@ -562,10 +562,10 @@ declare namespace WhaleTypes {
     }
     
     /**
-     * Mouse events
+     * Mouse event
      * @name MouseEvents
      */
-    interface MouseEventsProps<T> {
+    interface MouseEventProps<T> {
         onAuxClick?: React.MouseEventHandler<T>
         onAuxClickCapture?: React.MouseEventHandler<T>
         onClick?: React.MouseEventHandler<T>

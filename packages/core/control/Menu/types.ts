@@ -30,7 +30,7 @@ declare namespace MenuTypes {
         disabled?: boolean
     }
 
-    interface Item extends Partial<Omit<WhaleTypes.EventProps<HTMLDivElement>, 'onChange'>>, Partial<Props> {
+    interface Item extends Partial<Omit<WhaleTypes.AllEventProps<HTMLDivElement>, 'onChange'>>, Partial<Props> {
         content: React.ReactNode
         value: Value
         disabled?: boolean

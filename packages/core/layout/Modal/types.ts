@@ -4,7 +4,7 @@ declare namespace ModalTypes {
     
     type ExtentedProps = 
         WhaleTypes.AttributeProps &
-        WhaleTypes.EventProps<HTMLDivElement> &
+        WhaleTypes.AllEventProps<HTMLDivElement> &
         WhaleTypes.CoreProps<Overrides> &
         WhaleTypes.ColorProps &
         WhaleTypes.BorderProps &

@@ -81,7 +81,7 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
                 ...events.all,
                 onFocus: (e) => {
                     inputRef.current?.focus()
-                    events.all.onFocus(e)
+                    events.all.onFocus?.(e)
                 },
             }}
             attributes={{
@@ -124,8 +124,8 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
                     rows: props.rows,
                     wrap: props.wrap,
                     tabIndex: props.tabIndex,
-                    onFocus: (e) => events.all.onFocus(e),
-                    onBlur: (e) => events.all.onBlur(e)
+                    onFocus: (e) => events.all.onFocus?.(e),
+                    onBlur: (e) => events.all.onBlur?.(e)
                 }
             )}
         />

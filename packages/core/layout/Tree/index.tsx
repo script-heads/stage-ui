@@ -62,10 +62,10 @@ const Tree: RefForwardingComponent<HTMLDivElement, Types.Props> = (props: Types.
         if (!props.open && hasChilds) {
             setOpen(!isOpen)
         }
-        attributes.onClick && attributes.onClick(event)
+        events.all.onClick && events.all.onClick(event)
     }
 
-    const keyPressHandle = (event: KeyboardEvent) => {
+    const keyPressHandle = (event: React.KeyboardEvent<HTMLDivElement>) => {
         if (event.key === 'Enter') {
             openHandle(event)
         }

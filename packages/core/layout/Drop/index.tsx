@@ -171,7 +171,7 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
     if (visibleState === false) {
         return null
     }
-
+    
     return ReactDOM.createPortal(
         <div
             {...attributes}
@@ -189,7 +189,7 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
                 visibility: 'hidden',
                 pointerEvents: followCursor && 'none',
                 ...attributes.style
-            }}
+            }as React.CSSProperties}
             children={children}
         />,
         document.body

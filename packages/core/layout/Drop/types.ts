@@ -10,7 +10,7 @@ declare namespace DropTypes {
   
   interface Props extends
     WhaleTypes.AttributeProps,
-    WhaleTypes.EventProps<HTMLDivElement>,
+    WhaleTypes.AllEventProps<HTMLDivElement>,
     WhaleTypes.CoreProps<Overrides>,
     WhaleTypes.ColorProps,
     WhaleTypes.BorderProps,
