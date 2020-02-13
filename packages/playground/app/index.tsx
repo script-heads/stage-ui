@@ -20,7 +20,7 @@ const App = () => {
 				<PlaygroundTree />
 				<PlaygroundTable />
 			</Grid>
-			<PlaygroundControl />
+			<PlaygroundControl/>
 		</Block>
 	)
 }

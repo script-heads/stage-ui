@@ -1,6 +1,6 @@
-import { Flexbox, Button, Text, Grid, Divider } from '@flow-ui/core'
+import { Button, dialog, Divider, Flexbox, notify, Text } from '@flow-ui/core'
+import { QuestionMarkCircle, Save } from '@flow-ui/core/icons'
 import React from 'react'
-import { QuestionMarkCircle, Save, Trash2, Copy } from '@flow-ui/core/icons'
 
 const PlaygroundControl = () => {
     return (
@@ -14,13 +14,23 @@ const PlaygroundControl = () => {
             <Button decoration="plain" mr="0.5rem">
                 <Text>Cancel</Text>
             </Button>
-            <Button color={c => c.primary} mr="0.5rem">
-                <Text>Clone</Text>
-                <Copy />
+            <Button color={c => c.primary} mr="0.5rem" onClick={() => {
+                notify({
+                    title: 'Hello',
+                    message: 'I\'m notification displayed in right corner of your window',
+                    timeout: 3000
+                })
+            }}>
+                <Text>Notification</Text>
             </Button>
-            <Button color={c => c.error} mr="0.5rem">
-                <Text>Delete</Text>
-                <Trash2 />
+            <Button color={c => c.error} mr="0.5rem"onClick={() => {
+                dialog({
+                    title: 'Hello',
+                    message: 'Ops, something went wrong',
+                    buttonText: 'Close'
+                })
+            }}>
+                <Text>Dialog</Text>
             </Button>
             <Button color={c => c.secondary}>
                 <Text>Save</Text>
