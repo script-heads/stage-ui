@@ -258,16 +258,16 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         memo.mounted = true
         memo.mode = mode
         setActive(memo.mode == 'always' ? true : false)
-        /**
-         * causing issue
-         * with blink on mount
-         */
-        // updateScroll({
-        //     deltaX: 0,
-        //     deltaY: 0,
-        //     preventDefault: () => null,
-        //     stopPropagation: () => null
-        // })
+ 
+        if (memo.mode === 'always') {
+            updateScroll({
+                deltaX: 0,
+                deltaY: 0,
+                preventDefault: () => null,
+                stopPropagation: () => null
+            })
+        }
+        
         return () => {
             memo.mounted = false
             window.removeEventListener('mouseup', mouseUp)
