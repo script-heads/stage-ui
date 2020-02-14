@@ -6,7 +6,7 @@
   "scripts": {
     "type-check": "tsc --noEmit",
     "type-check:watch": "yarn type-check -- --watch",
-    "build": "yarn build:types && yarn build:js && cp package.json ../../build/core/package.json && cp README.md ../../build/core/README.md",
+    "build": "yarn build:types && yarn build:js && cp package.json README.md importPlugin.js ../../build/core/",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel ./ --out-dir ../../build/core --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
     "icons:generate": "node ./scripts/iconsGenerate"

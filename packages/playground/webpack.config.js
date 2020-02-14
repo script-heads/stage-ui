@@ -112,8 +112,9 @@ if (process.env.DEBUG === 'true') {
  * Настройки для аналитики
  */
 if (process.env.ANALYZE === 'true') {
-    config.optimization = {}
-    config.optimization.concatenateModules = false
+    config.optimization = {
+        concatenateModules: false
+    }
     plugins.push(new BundleAnalyzerPlugin())
 }
 
