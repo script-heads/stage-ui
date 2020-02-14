@@ -1,7 +1,6 @@
+import { Flexbox, Text } from '@flow-ui/core'
+import { ChevronLeft, ChevronRight } from '@flow-ui/core/icons'
 import React, { Fragment } from 'react'
-import Text from '../../content/Text'
-import { ChevronLeft, ChevronRight } from '../../icons'
-import Flexbox from '../../layout/Flexbox'
 import CalendarTypes from './types'
 
 const Arrow = (props: { onClick: () => void, icon: 'chevronLeft' | 'chevronRight', disabled: boolean }) => (

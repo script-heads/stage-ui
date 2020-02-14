@@ -1,5 +1,5 @@
+import { ArrowIosForward } from '@flow-ui/core/icons'
 import React from 'react'
-import { ArrowIosForward } from '../../icons'
 import Types from './types'
 
 const TreeLeftChild = (props: Types.TreeLeftChildProps) => {

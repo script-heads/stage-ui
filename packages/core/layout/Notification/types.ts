@@ -22,7 +22,7 @@ declare namespace NotificationTypes {
         /**
          * Will call on notificaion click
          */
-        onClick?: () => void
+        onClick?: (e: any) => void
         /**
          * if custom content filled then title and message will be ignored
          */

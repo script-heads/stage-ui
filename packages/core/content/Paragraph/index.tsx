@@ -1,6 +1,6 @@
 import React, { forwardRef, RefForwardingComponent } from 'react'
-import Typography from '../../misc/hocs/Typography'
-import Types from '../../misc/hocs/Typography/types'
+import Typography from '@flow-ui/core/misc/hocs/Typography'
+import Types from '@flow-ui/core/misc/hocs/Typography/types'
 
 const Parapraph: RefForwardingComponent<HTMLParagraphElement, Types.Props> = (props, ref) =>
     <Typography 

@@ -1,11 +1,11 @@
 import { jsx } from '@emotion/core'
-import { useComponent } from '@flow-ui/whale'
+import Field from '@flow-ui/core/misc/hocs/Field'
 import useMask from '@flow-ui/core/misc/hooks/useMask'
-
-import React, { forwardRef, RefForwardingComponent, useEffect, useImperativeHandle, useRef, useState } from 'react'
-import Field from '../../misc/hocs/Field'
+import { useComponent } from '@flow-ui/whale'
+import React, { forwardRef, RefForwardingComponent, useEffect, useImperativeHandle, useRef } from 'react'
 import styles from './styles'
 import Types from './types'
+
 
 type RefTypes = ((HTMLInputElement | HTMLTextAreaElement) & HTMLDivElement) | null | {}
 

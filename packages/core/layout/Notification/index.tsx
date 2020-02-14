@@ -1,6 +1,6 @@
+import { Block } from '@flow-ui/core'
 import { useComponent } from '@flow-ui/whale'
 import React, { forwardRef, RefForwardingComponent } from 'react'
-import Block from '../Block'
 import styles from './styles'
 import Types from './types'
 

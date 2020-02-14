@@ -1,12 +1,12 @@
-import React, { Fragment } from 'react'
-import PlaygroundMenu from './menu'
-import PlaygroundToolbar from './toolbar'
-import PlaygroundTable from './table'
-import PlaygroundTree from './tree'
+import { Block, Flexbox, Grid, Header, ScrollView, Spinner } from '@flow-ui/core'
+import React from 'react'
 import PlaygroundControl from './control'
-
-import { Block, Header, Flexbox, Spinner, Grid, ScrollView } from '@flow-ui/core'
+import PlaygroundMenu from './menu'
 import PlaygroundSidebar from './sidebar'
+import PlaygroundTable from './table'
+import PlaygroundToolbar from './toolbar'
+import PlaygroundTree from './tree'
+
 
 const App = () => {
 	return (

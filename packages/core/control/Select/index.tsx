@@ -1,9 +1,9 @@
 import { Drop, ScrollView } from '@flow-ui/core'
+import { ArrowIosDownward, Close } from '@flow-ui/core/icons'
 import DropTypes from '@flow-ui/core/layout/Drop/types'
 import Field from '@flow-ui/core/misc/hocs/Field'
 import { useComponent } from '@flow-ui/whale'
 import React, { forwardRef, Fragment, RefForwardingComponent, useEffect, useRef, useState } from 'react'
-import { ArrowIosDownward, Close } from '../../icons'
 import styles from './styles'
 import Types from './types'
 

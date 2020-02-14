@@ -1,5 +1,4 @@
 import React from 'react'
-import { ArrowIosForward } from '../../icons'
 import Types from './types'
 
 const TreeRightChild = (props: Types.TreeRightChildProps) => {

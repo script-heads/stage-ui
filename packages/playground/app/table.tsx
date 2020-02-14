@@ -1,6 +1,6 @@
-import { Flexbox, Table, Text, TextField, Meter, Range } from '@flow-ui/core'
+import { Flexbox, Meter, Range, Table, Text, TextField } from '@flow-ui/core'
 import T from '@flow-ui/core/data/Table/types'
-import { ArrowIosDownward, Edit2, Checkmark } from '@flow-ui/core/icons'
+import { ArrowIosDownward, Checkmark, Edit2 } from '@flow-ui/core/icons'
 import React from 'react'
 
 const EditAge = (props: { ctx: T.TableCellContext }) => {

@@ -1,7 +1,7 @@
 
+import WhaleTypes from '@flow-ui/whale/types'
 import colorProp from '@flow-ui/whale/utils/colorProp'
 import Types from './types'
-import WhaleTypes from '@flow-ui/whale/types'
 
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
 

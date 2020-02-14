@@ -1,7 +1,7 @@
 import React, { forwardRef, RefForwardingComponent } from 'react'
-import { useTheme } from '../..'
-import Typography from '../../misc/hocs/Typography'
-import Types from '../../misc/hocs/Typography/types'
+import { useTheme } from '@flow-ui/core'
+import Typography from '@flow-ui/core/misc/hocs/Typography'
+import Types from '@flow-ui/core/misc/hocs/Typography/types'
 
 const Link: RefForwardingComponent<HTMLAnchorElement, Types.LinkProps> = (props, ref) => {
     const theme = useTheme()

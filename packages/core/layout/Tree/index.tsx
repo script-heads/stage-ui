@@ -1,12 +1,11 @@
-import Flexbox from '@flow-ui/core/layout/Flexbox'
+import { Block, Flexbox } from '@flow-ui/core'
 import { useComponent } from '@flow-ui/whale'
-import React, { forwardRef, RefForwardingComponent, useState, Fragment } from 'react'
+import React, { forwardRef, Fragment, RefForwardingComponent, useState } from 'react'
 import styles from './styles'
 import TreeLabel from './TreeLabel'
-import Types from './types'
 import TreeLeftChild from './TreeLeftChild'
 import TreeRightChild from './TreeRightChild'
-import { Block } from '../..'
+import Types from './types'
 
 const Tree: RefForwardingComponent<HTMLDivElement, Types.Props> = (props: Types.PrivateProps, ref) => {
     let {

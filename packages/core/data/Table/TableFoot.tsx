@@ -1,6 +1,6 @@
-import React, { forwardRef, RefForwardingComponent, useState } from 'react'
+import { Flexbox, Pageswitch } from '@flow-ui/core'
+import React, { forwardRef, RefForwardingComponent } from 'react'
 import Types from './types'
-import { Pageswitch, Flexbox } from '../..'
 
 const TableFoot: RefForwardingComponent<HTMLTableCellElement, Types.FootProps> = (props, ref) => {
     const { columns, pagination, dc, styles, onPageChange } = props

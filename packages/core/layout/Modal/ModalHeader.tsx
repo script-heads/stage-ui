@@ -1,8 +1,6 @@
+import { Flexbox, Header, Paragraph } from '@flow-ui/core'
+import { Close } from '@flow-ui/core/icons'
 import React from 'react'
-import Header from '../../content/Header'
-import Paragraph from '../../content/Paragraph'
-import { Close } from '../../icons'
-import Flexbox from '../Flexbox'
 import ModalTypes from './types'
 
 const ModalHeader = (props: ModalTypes.ModalHeaderProps) => {

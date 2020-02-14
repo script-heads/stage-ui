@@ -1,5 +1,5 @@
 import React, { forwardRef, RefForwardingComponent } from 'react'
-import { Close } from '../../../icons'
+import { Close } from '@flow-ui/core/icons'
 import Types from './types'
 
 const Field: RefForwardingComponent<HTMLDivElement, Types.PrivateProps> = (props, ref) => {

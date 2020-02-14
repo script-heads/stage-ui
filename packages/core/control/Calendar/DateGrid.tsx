@@ -1,24 +1,21 @@
+import { Button, Divider, Flexbox, Grid } from '@flow-ui/core'
 import moment, { Moment } from 'moment'
 import React, { Fragment, useEffect, useState } from 'react'
-import Button from '../../control/Button'
-import Flexbox from '../../layout/Flexbox'
-import Grid from '../../layout/Grid'
 import DateGridDay from './DateGridDay'
 import DateGridMonth from './DateGridMonth'
 import DateGridTitle from './DateGridTitle'
 import DateGridYear from './DateGridYear'
 import DatePickerTypes from './types'
-import { Divider } from '../..'
 
 let toDayWord = ''
 
 const DateGrid = (props: DatePickerTypes.DateGridProps) => {
-    
+
     const { value } = props
     const now = moment()
 
     if (!toDayWord) {
-        for(const char of now.calendar()) {
+        for (const char of now.calendar()) {
             if (char === ' ' || char === ',') {
                 break
             }
@@ -42,7 +39,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
         grid.push(
             Array(7)
                 .fill(null)
-                .map(() => 
+                .map(() =>
                     start.add(1, 'day').clone()
                 )
         )
@@ -148,7 +145,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                     key={index}
                                     value={clone}
                                     tmp={tmpDate}
-                                    style={{ padding: '0 0.5rem'}}
+                                    style={{ padding: '0 0.5rem' }}
                                     active={value}
                                     minValue={props.minValue}
                                     maxValue={props.maxValue}
@@ -178,7 +175,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                     key={index}
                                     value={clone}
                                     tmp={tmpDate}
-                                    style={{ padding: '0 1rem'}}
+                                    style={{ padding: '0 1rem' }}
                                     active={value}
                                     minValue={props.minValue}
                                     maxValue={props.maxValue}

@@ -1,4 +1,4 @@
-import CheckTypes from '../../misc/hocs/Check/types'
+import CheckTypes from '@flow-ui/core/misc/hocs/Check/types'
 
 declare namespace CheckboxTypes {
     interface Props extends CheckTypes.Props {

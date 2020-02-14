@@ -1,8 +1,8 @@
-import { Button, Viewport, Text } from '@flow-ui/core'
-import React, { useState } from 'react'
+import { Viewport } from '@flow-ui/core'
+import React from 'react'
 import ReactDOM from 'react-dom'
-import custom from './themes/custom'
 import App from './app'
+import custom from './themes/custom'
 
 const Playground = () => {
 	return (

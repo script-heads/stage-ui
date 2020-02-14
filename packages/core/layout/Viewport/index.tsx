@@ -1,5 +1,5 @@
 import React, { Fragment, RefForwardingComponent, useRef, forwardRef, useImperativeHandle } from 'react'
-import * as themes from '../../misc/themes'
+import * as themes from '@flow-ui/core/misc/themes'
 import MountArea from './MountArea'
 import styles from './styles'
 import Types from './types'

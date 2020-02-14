@@ -1,6 +1,6 @@
+import { Flexbox } from '@flow-ui/core'
 import moment from 'moment'
 import React from 'react'
-import Flexbox from '../../layout/Flexbox'
 import CalendarTypes from './types'
 
 const DateGridDay = (props: CalendarTypes.DateGridCalendarProps) => {

@@ -1,4 +1,4 @@
-import { Menu, Divider } from '@flow-ui/core'
+import { Menu } from '@flow-ui/core'
 import { Cube } from '@flow-ui/core/icons'
 import React from 'react'
 

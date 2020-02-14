@@ -2,7 +2,7 @@ import { useComponent } from '@flow-ui/whale'
 import React, { forwardRef, useEffect, useMemo, useState, useImperativeHandle, RefForwardingComponent } from 'react'
 import styles from './styles'
 import Types from './types'
-import isWebKit from '../../misc/utils/isWebKit'
+import isWebKit from '@flow-ui/core/misc/utils/isWebKit'
 
 const isLegacyScrollSupport = isWebKit
 const isTouchScreenSupport = Boolean('ontouchstart' in window)

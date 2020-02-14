@@ -1,6 +1,6 @@
+import { Flexbox } from '@flow-ui/core'
+import { ArrowIosDownward, ArrowIosUpward } from '@flow-ui/core/icons'
 import React, { forwardRef, RefForwardingComponent } from 'react'
-import { Flexbox } from '../..'
-import { ArrowIosDownward, ArrowIosUpward } from '../../icons'
 import Types from './types'
 
 const TableHeadCell: RefForwardingComponent<HTMLTableDataCellElement, Types.HeadCellProps> = (props, ref) => {

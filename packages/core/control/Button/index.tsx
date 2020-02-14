@@ -1,8 +1,8 @@
-import { useComponent, useTheme } from '@flow-ui/whale'
-
+import { useComponent } from '@flow-ui/whale'
 import React, { forwardRef, RefForwardingComponent } from 'react'
 import styles from './styles'
 import Types from './types'
+
 
 const Button: RefForwardingComponent<HTMLButtonElement, Types.Props> = (props, ref) => {
     

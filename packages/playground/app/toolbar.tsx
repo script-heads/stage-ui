@@ -1,6 +1,6 @@
-import { Flexbox, Button, TextField, Divider, Select, DatePicker } from '@flow-ui/core'
+import { Button, DatePicker, Divider, Flexbox, Select, TextField } from '@flow-ui/core'
+import { Funnel, Refresh, Search } from '@flow-ui/core/icons'
 import React from 'react'
-import { Search, Funnel, Refresh } from '@flow-ui/core/icons'
 
 const PlaygroundToolbar = () => {
     return (

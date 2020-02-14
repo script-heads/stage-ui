@@ -1,7 +1,6 @@
 import WhaleTypes from '@flow-ui/whale/types'
 import { Moment } from 'moment'
 import { CSSProperties } from 'react'
-import FieldTypes from '../../misc/hocs/Field/types'
 
 declare namespace CalendarTypes {
 
