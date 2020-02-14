@@ -4,12 +4,14 @@ import React, { useRef } from 'react'
 
 export default () => {
     const ref = useRef<ScrollViewTypes.Ref>(null)
-    
+
     return (
-        <ScrollView ref={ref}>
-            {
-                'Text '.repeat(200)
-            }
+        <ScrollView
+            mode="always"
+            size="xs"
+            shape="round"
+            ref={ref}>
+            {'˚ •'.repeat(1000)}
             <Button
                 onClick={() => {
                     ref.current?.scrollTop()

@@ -5,9 +5,9 @@ export default () => {
     return (
         <ScrollView 
             mode="always"
-            size="m"
+            size="xs"
             shape="round"
-            children={'Text '.repeat(200)}
+            children={'˚ •'.repeat(1000)}
         />
     )
 }
