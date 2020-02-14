@@ -1,7 +1,6 @@
-import React, { useRef } from 'react';
-import { Block, Button } from '@flow-ui/core';
-import { ScrollView } from '@flow-ui/core';
-import ScrollViewTypes from '@flow-ui/core/layout/ScrollView/types';
+import { Button, ScrollView } from '@flow-ui/core'
+import ScrollViewTypes from '@flow-ui/core/layout/ScrollView/types'
+import React, { useRef } from 'react'
 
 export default () => {
     const ref = useRef<ScrollViewTypes.Ref>(null)
@@ -9,11 +8,11 @@ export default () => {
     return (
         <ScrollView ref={ref}>
             {
-                "Text ".repeat(200)
+                'Text '.repeat(200)
             }
             <Button
                 onClick={() => {
-                    ref.current!.scrollTop()
+                    ref.current?.scrollTop()
                 }}
                 children="Scroll top"
             />
