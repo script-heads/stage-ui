@@ -41,6 +41,9 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 padding: 0;
                 margin: 0;
             }
+            ::-webkit-scrollbar {
+                display: none
+            }
         `
 
     return {
