@@ -52,7 +52,7 @@ const config = {
                                     ['@babel/plugin-proposal-optional-chaining', {
                                         loose: true
                                     }],
-                                    ...coreImportPlugin,
+                                    ...require('@flow-ui/core/babelImportPlugins')
                                 ]
                             }
                         }
