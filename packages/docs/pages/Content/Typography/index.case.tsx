@@ -11,5 +11,5 @@ export const cases = [
     { label: 'Display', code: display },
     { label: 'Text', code: text },
     { label: 'Paragraph', code: paragraph },
-    { label: 'Linl', code: link },
+    { label: 'Link', code: link },
 ]
