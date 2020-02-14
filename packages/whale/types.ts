@@ -432,7 +432,7 @@ declare namespace WhaleTypes {
          * the second the justify-self one. If the second value is not 
          * present, the first value is also used for it.
          */
-        placeSelf?: Breakpointify<Omit<FlexSelf>
+        placeSelf?: Breakpointify<FlexSelf>
     }
 
     /**
