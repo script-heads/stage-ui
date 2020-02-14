@@ -1,11 +1,11 @@
 {
   "name": "@flow-ui/whale",
   "author": "ABR Tech",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "license": "MIT",
   "scripts": {
     "pub": "git pull && yarn build && npm version patch && cd ../../build/whale && npm version patch && npm publish --access public && cd .. && rm -rf ./whale",
-    "build": "yarn build:types && yarn build:js && cp package.json README.md importPlugin.js ../../build/whale/ && node ../../scripts/buildConfig whale",
+    "build": "yarn build:types && yarn build:js && cp package.json README.md ../../build/whale/ && node ../../scripts/buildConfig whale",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel ./ --out-dir ../../build/whale --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
     "type-check": "tsc --noEmit",

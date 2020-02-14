@@ -3270,7 +3270,7 @@ declare module 'layout/ScrollView/types' {
 	    interface Overrides {
 	        container: void;
 	        content: void;
-	        mobile: void;
+	        legacy: void;
 	        yBar: {
 	            active: boolean;
 	            shape: Props['shape'];
@@ -3302,6 +3302,11 @@ declare module 'layout/ScrollView/styles' {
 	import WhaleTypes from '@flow-ui/whale/types';
 	import Types from 'layout/ScrollView/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
 	export default styles;
+
+}
+declare module 'misc/utils/isWebKit' {
+	 const isWebKit: boolean;
+	export default isWebKit;
 
 }
 declare module 'layout/ScrollView' {

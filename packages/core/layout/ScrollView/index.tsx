@@ -332,7 +332,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             <div
                 {...attributes}
                 {...events.all}
-                onScroll={updateScroll}
+                onScroll={e=> updateScroll(e as any)}
                 css={isLegacyScrollSupport ? cs.legacy : cs.container}
                 ref={createRef}>
                 <div
