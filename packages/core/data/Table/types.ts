@@ -107,6 +107,7 @@ declare namespace TableTypes {
         columns: TableColumn[]
         decoration?: LayoutDecoration
         pagination?: TablePaginationOptions
+        footer?: React.ReactNode
     }
 
     interface HeadCellProps {
@@ -134,6 +135,7 @@ declare namespace TableTypes {
     interface FootProps {
         dc: DataCollection[]
         columns: TableColumn[]
+        footerContent?: Props['footer']
         pagination?: TablePaginationOptions
         onPageChange: (pageNumber: number) => void
         styles: WhaleTypes.ComponentStyles<Overrides>

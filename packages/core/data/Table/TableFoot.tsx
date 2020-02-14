@@ -3,17 +3,16 @@ import React, { forwardRef, RefForwardingComponent } from 'react'
 import Types from './types'
 
 const TableFoot: RefForwardingComponent<HTMLTableCellElement, Types.FootProps> = (props, ref) => {
-    const { columns, pagination, dc, styles, onPageChange } = props
+    const { columns, pagination, dc, styles, footerContent, onPageChange } = props
    
     let needDisplay = false
     const paginationNeedDisplay = pagination && (
         pagination.alwaysVisible || dc.length > pagination.pageSize
     )
 
-    if (paginationNeedDisplay) {
+    if (paginationNeedDisplay || footerContent) {
         needDisplay = true
     }
-
     if (!needDisplay) {
         return null
     }
@@ -22,7 +21,8 @@ const TableFoot: RefForwardingComponent<HTMLTableCellElement, Types.FootProps> =
         <tfoot>
             <tr>
                 <td ref={ref} css={styles.footer} colSpan={columns.length}>
-                    <Flexbox justifyContent="flex-end">
+                    <Flexbox justifyContent={footerContent ? 'space-between' : 'flex-end'}>
+                        {footerContent}
                         {paginationNeedDisplay && (
                             <Pageswitch
                                 length={dc.length}

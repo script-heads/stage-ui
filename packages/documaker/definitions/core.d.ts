@@ -2678,6 +2678,7 @@ declare module '@flow-ui/core/data/Table/types' {
 	        columns: TableColumn[];
 	        decoration?: LayoutDecoration;
 	        pagination?: TablePaginationOptions;
+	        footer?: React.ReactNode;
 	    }
 	    interface HeadCellProps {
 	        column: TableColumn;
@@ -2701,6 +2702,7 @@ declare module '@flow-ui/core/data/Table/types' {
 	    interface FootProps {
 	        dc: DataCollection[];
 	        columns: TableColumn[];
+	        footerContent?: Props['footer'];
 	        pagination?: TablePaginationOptions;
 	        onPageChange: (pageNumber: number) => void;
 	        styles: WhaleTypes.ComponentStyles<Overrides>;
