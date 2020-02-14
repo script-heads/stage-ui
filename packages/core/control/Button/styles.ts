@@ -84,7 +84,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                             : theme.color.onSurface.rgb().string(),
                         '&:hover:not([disabled])': {
                             background: color.hsl().array()[2] > .2
-                                ? color.darken(.6).rgb().string()
+                                ? color.darken(.3).rgb().string()
                                 : color.lighten(1.5).rgb().string(),
                         },
                         '&:active:not([disabled])': {
