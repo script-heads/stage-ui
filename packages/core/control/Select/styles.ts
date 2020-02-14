@@ -137,6 +137,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props, Types.StyleP
                 color: 'inherit',
                 font: 'inherit',
                 cursor: 'inherit',
+                textOverflow: 'ellipsis',
                 '&::placeholder': {
                     color: theme.color.light.rgb().string()
                 },
