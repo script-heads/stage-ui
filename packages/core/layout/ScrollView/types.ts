@@ -64,7 +64,7 @@ declare namespace ScrollViewTypes {
     interface Overrides {
         container: void
         content: void
-        mobile: void
+        legacy: void
         yBar: {
             active: boolean,
             shape: Props['shape']

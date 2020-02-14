@@ -30,8 +30,10 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
             minHeight: '100%',
             willChange: 'left, top',
         }],
-        mobile: [{
+        legacy: [{
+            position: 'relative',
             overflow: 'auto',
+            height: '100%',
         }],
         yBar: (variant) => [
             {

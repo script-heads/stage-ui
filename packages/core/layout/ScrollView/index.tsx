@@ -2,11 +2,12 @@ import { useComponent } from '@flow-ui/whale'
 import React, { forwardRef, useEffect, useMemo, useState, useImperativeHandle, RefForwardingComponent } from 'react'
 import styles from './styles'
 import Types from './types'
-import UAParser from './UAParser'
-const deviceType = UAParser().device.type
-const legacyScroll = deviceType === 'mobile' || deviceType === 'tablet'
+import isWebKit from '../../misc/utils/isWebKit'
 
-interface MemoParams { 
+const isLegacyScrollSupport = isWebKit
+const isTouchScreenSupport = Boolean('ontouchstart' in window)
+
+interface MemoParams {
     mounted: boolean
     y: boolean
     x: boolean
@@ -42,14 +43,15 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         }
     }))
 
-    const { cs, attributes, events } = useComponent('ScrollView', { 
-        props, 
-        styles, 
-        styleProps: { 
-            container: ['all']
-        } 
+    const { cs, attributes, events } = useComponent('ScrollView', {
+        props,
+        styles,
+        styleProps: {
+            container: ['all'],
+            legacy: ['all']
+        }
     })
-    
+
     const {
         shape = 'round',
         size = 'm',
@@ -59,7 +61,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
     } = props
 
     const [active, setActive] = useState(mode === 'always')
-    
+
     const memo: MemoParams = useMemo(() => ({
         mounted: false,
         y: false,
@@ -77,7 +79,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
     const updateY = (e: Types.ScrollParams) => {
         if (!memo.content || !memo.container) return
 
-        const total = memo.content.offsetHeight
+        const total = memo.content.scrollHeight
         const content = memo.container.offsetHeight
 
         if (memo.yBar) {
@@ -88,11 +90,13 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             return false
         }
 
-        const min = 0
-        const max = -(total - content)
+        // const min = 0
+        // const max = -(total - content)
+
         const ratio = (content / total) * 100
-        const offset = memo.content.offsetTop
-        let delta = e.deltaY
+        const offset = -memo.container.scrollTop | memo.content.offsetTop
+
+        let delta = e.deltaY || 0
 
         if (e.cursorHandle) {
             delta = delta * 100 / ratio
@@ -100,22 +104,26 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
 
         let value = offset - delta
 
-        if (value > min) value = min
-        if (value < max) value = max
+        // if (value > min) value = min
+        // if (value < max) value = max
 
-        if (offset !== value || value === 0) {
+        if (memo.yBar && memo.yThumb) {
+            memo.yBar.style.height = content + 'px'
+            memo.yThumb.style.height = content * ratio / 100 + 'px'
+            memo.yThumb.style.transform = `translateY(${-(value * ratio / 100)}px)`
+        }
 
-            memo.content.style.top = value + 'px'
-
-            if (memo.yBar && memo.yThumb) {
-                memo.yBar.style.height = content + 'px'
-                memo.yThumb.style.height = content * ratio / 100 + 'px'
-                memo.yThumb.style.transform = `translateY(${-(value * ratio / 100)}px)`    
-            }
+        if (!isLegacyScrollSupport) {
+            if (offset !== value || value === 0) {
+                memo.content.style.top = value + 'px'
+                e.preventDefault()
+                e.stopPropagation()
     
+                return true
+            }
+        } else {
             e.preventDefault()
             e.stopPropagation()
-
             return true
         }
         return false
@@ -124,9 +132,9 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
     const updateX = (e: Types.ScrollParams) => {
         if (!memo.content || !memo.container) return
 
-        const total = memo.content.offsetWidth
+        const total = memo.content.scrollWidth
         const content = memo.container.offsetWidth
-        
+
         if (memo.xBar) {
             memo.xBar.style.visibility = total > content ? 'visible' : 'hidden'
         }
@@ -135,10 +143,12 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             return false
         }
 
-        const min = 0
-        const max = -(total - content)
+        // const min = 0
+        // const max = -(total - content)
+
         const ratio = (content / total) * 100
-        const offset = memo.content.offsetLeft
+        const offset = -memo.container.scrollLeft | memo.content.offsetLeft
+
         let delta = e.deltaX
 
         if (e.cursorHandle) {
@@ -147,49 +157,59 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
 
         let value = offset + -delta
 
-        if (value > min) value = min
-        if (value < max) value = max
+        // if (value > min) value = min
+        // if (value < max) value = max
 
-        if (offset !== value || value === 0) {
-            memo.content.style.left = value + 'px'
+        if (memo.xBar && memo.xThumb) {
+            memo.xBar.style.width = content + 'px'
+            memo.xThumb.style.width = content * ratio / 100 + 'px'
+            memo.xThumb.style.transform = `translateX(${-(value * ratio / 100)}px)`
+        }
 
-            if (memo.xBar && memo.xThumb) {
-                memo.xBar.style.width = content + 'px'
-                memo.xThumb.style.width = content * ratio / 100 + 'px'
-                memo.xThumb.style.transform = `translateX(${-(value * ratio / 100)}px)`    
+        if (!isLegacyScrollSupport) {
+            if (offset !== value || value === 0) {
+                memo.content.style.left = value + 'px'
+                e.preventDefault()
+                e.stopPropagation()
+    
+                return true
             }
-
+        } else {
             e.preventDefault()
             e.stopPropagation()
-
             return true
         }
+
         return false
     }
-    
+
     function updateScroll(e: Types.ScrollParams) {
         if (!memo.container || !memo.content) {
             return
         }
-        const y = updateY(e)
-        const x = updateX(e)
-
-        if ((y || x) && memo.mode === 'scroll') {
-            setActive(true)
-            if (memo.timeout) {
-                clearTimeout(memo.timeout)
-                memo.timeout = null
+        if (isTouchScreenSupport === false) {
+            const y = updateY(e)
+            const x = updateX(e)
+    
+            if ((y || x) && memo.mode === 'scroll') {
+                setActive(true)
+                if (memo.timeout) {
+                    clearTimeout(memo.timeout)
+                    memo.timeout = null
+                }
+                memo.timeout = setTimeout(() => {
+                    memo.mounted && setActive(false)
+                }, 500)
             }
-            memo.timeout = setTimeout(() => {
-                memo.mounted && setActive(false)
-            }, 500)
         }
+        
         const event = {
-            scrollTop: memo.content.offsetTop,
-            scrollLeft: memo.content.offsetLeft,
+            scrollTop: memo.container.scrollTop || memo.content.offsetTop,
+            scrollLeft: memo.container.scrollLeft || memo.content.offsetLeft,
             scrollWidth: memo.content.offsetWidth,
             scrollHeight: memo.content.offsetHeight,
         }
+        
         props.onScroll?.(event)
         /**
          * Was issue with <Drop/> updateLayoyt
@@ -197,7 +217,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
          */
         if (props.sendFlowScollEvent !== false) {
             document.dispatchEvent(
-                new CustomEvent('onflowscroll', { 
+                new CustomEvent('onflowscroll', {
                     detail: event
                 })
             )
@@ -238,10 +258,10 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
      * not fits his container
      */
     useEffect(() => {
-        if (!legacyScroll) {
+        if (!isLegacyScrollSupport) {
             const { content, container } = memo
             if (content && container) {
-                if (container.offsetHeight-content.offsetTop > content.offsetHeight) {
+                if (container.offsetHeight - content.offsetTop > content.offsetHeight) {
                     content.style.top = ''
                 }
             }
@@ -249,16 +269,28 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
     })
 
     useEffect(() => {
-        if (legacyScroll) {
-            return () => void 0
+
+        const resize = () => {
+            updateScroll({
+                deltaX: 0,
+                deltaY: 0,
+                preventDefault: () => null,
+                stopPropagation: () => null
+            })
         }
-        if (memo.timeout && mode !== 'always') {
-            clearTimeout(memo.timeout)
+
+        if (mode === 'always') {
+            window.addEventListener('resize', resize)
+        } else {
+            if (memo.timeout) {
+                clearTimeout(memo.timeout)
+            }
         }
+
         memo.mounted = true
         memo.mode = mode
         setActive(memo.mode == 'always' ? true : false)
- 
+
         if (memo.mode === 'always') {
             updateScroll({
                 deltaX: 0,
@@ -267,9 +299,10 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                 stopPropagation: () => null
             })
         }
-        
+
         return () => {
             memo.mounted = false
+            window.removeEventListener('resize', resize)
             window.removeEventListener('mouseup', mouseUp)
             window.removeEventListener('mousemove', mouseMove)
         }
@@ -285,30 +318,29 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             if (memo.xThumb) {
                 memo.xThumb.addEventListener('mousedown', xMouseDown, { passive: true })
             }
-            if (memo.content) {
-                memo.content.addEventListener('wheel', updateScroll)
+            if (!isLegacyScrollSupport) {
+                if (memo.content) {
+                    memo.content.addEventListener('wheel', updateScroll)
+                }
             }
         }
         memo.container = ref
     }
 
-    if (legacyScroll) {
-        return (
-            <div
-                css={cs.mobile}
-                ref={ref => memo.content = ref}
-                children={props.children}
-            />
-        )
-    }
-
     return (
-        <div {...attributes} {...events.all} onScroll={undefined} css={cs.container} ref={createRef}>
+        <>
             <div
-                css={cs.content}
-                ref={ref => memo.content = ref}
-                children={props.children}
-            />
+                {...attributes}
+                {...events.all}
+                onScroll={updateScroll}
+                css={isLegacyScrollSupport ? cs.legacy : cs.container}
+                ref={createRef}>
+                <div
+                    css={cs.content}
+                    ref={ref => memo.content = ref}
+                    children={props.children}
+                />
+            </div>
             <div
                 css={cs.yBar({ active, size, shape, position: yBarPosition })}
                 ref={ref => memo.yBar = ref}
@@ -330,12 +362,12 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                         css={cs.xThumb({ active, size, shape })}
                         ref={ref => memo.xThumb = ref}
                     />
-                )} 
+                )}
                 onMouseEnter={() => {
                     window.addEventListener('mouseup', mouseUp, { passive: true })
                 }}
             />
-        </div>
+        </>
     )
 }
 
