@@ -1,8 +1,9 @@
 
-import { Block, Header, Link, Paragraph } from '@flow-ui/core'
+import { Block, Header, Link, Paragraph as P } from '@flow-ui/core'
 import React from 'react'
-import ColorCode from './color.raw'
+import colorProps from './colorProps.raw'
 import FlowCode from './flow.raw'
+import StyleProp from './styleProp.raw'
 import Syntax from '../../../components/Syntax'
 
 export const title = 'Props'
@@ -10,31 +11,24 @@ export const sticky = true
 
 export default () => (
     <Block>
-        <Paragraph>Some components have functional props</Paragraph>
-        <Paragraph>Let's see couple examples below</Paragraph>
-
-        <Header p="1rem 0">Color</Header>
-        <Paragraph>For example let's see Button component</Paragraph>
-        <Paragraph>Button have prop color you can just give it a string like "#000000" which apparently makes it black</Paragraph>
-        <Paragraph>But more usefull will be give it a function which will provide typed color object for you</Paragraph>
-        <Paragraph>We using theme color object as first argument of function then each color are instance of Chroma.js</Paragraph>
-        <Syntax code={ColorCode} />
-        <Paragraph pb="1rem">For more information you may also check <Link
-            href="https://vis4.net/chromajs/"
-            target="_blank"
-            children="https://vis4.net/chromajs/"
-        /></Paragraph>
-
-        <Header p="1rem 0">Short props</Header>
-        <Paragraph>All flow components have a short props</Paragraph>
-        <Paragraph>Let's see couple examples below</Paragraph>
-
-        <Header p="1rem 0">Self flow</Header>
-        <Paragraph>Flow components have margin / padding and width / height aliases</Paragraph>
-        <Paragraph>margins: m mr ml mt mb mh mv</Paragraph>
-        <Paragraph>paddings: p pr pl pt pb ph pv</Paragraph>
-        <Paragraph>height: h</Paragraph>
-        <Paragraph>width: w</Paragraph>
-        <Syntax code={FlowCode} />
+        <P>FlowUI comonents have special props to customize thier styles</P>
+        <Header>Styles prop</Header>
+        <P>Like style tag in HTML or CSS prop in emotion with 
+            styles prop you can provide custom styles to any component.</P>
+        <P>Component may render in DOM many different HTML elements which have unique classNames.
+            So in style object you can provide CSS for each of them. 
+            If it's a typescript project you instantly have a tip what classes exist in this component. 
+            If it's not you may have find this information on comonent documentation page. 
+            Also here you access component internal state for attach some styles in these cases.
+            More about it written in <Link href="/overrides">Overrides</Link> section.</P>
+        <Syntax code={StyleProp}/>
+        <Header>Color props</Header>
+        <P>All colors described in Theme FlowUI turn into Objects with useful 
+            methods that give you the opportunity to to adjust the color depending on the situation.
+            To access theme colors provide function in these props. 
+            They recive theme colors and return one to component.
+            Also you may put here ordinary color string or variable directly from Theme.
+        </P>
+        <Syntax code={colorProps}/>
     </Block>
 )

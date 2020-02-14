@@ -1,4 +1,4 @@
-import { Block, Paragraph } from '@flow-ui/core'
+import { Block, Paragraph as P, Link } from '@flow-ui/core'
 import React from 'react'
 import Syntax from '../../../components/Syntax'
 import ViewportCode from '../Getting started/viewport.raw'
@@ -8,8 +8,10 @@ export const sticky = true
 
 export default () => (
     <Block>
-        <Paragraph>The main rule is you should wrap entire application with <b>Viewport</b>.</Paragraph>
-        <Paragraph>Viewport provides theme in all components, use <b>prop</b> theme to change it</Paragraph>
+        <P>Install FlowUI.</P>
+        <Syntax code={'npm i @flow-ui/core'} />
+        <P>Use <Link href="/viewport">Viewport</Link> component at the top level of your application. 
+        It provide theme to all Flow components, apply some Reset CSS and had another useful configurations.</P>
         <Syntax code={ViewportCode} />
     </Block>
 )

@@ -1,28 +1,23 @@
 import { useTheme } from '@flow-ui/core'
 import React from 'react'
-import { Prism, PrismLight } from 'react-syntax-highlighter'
+import { Prism } from 'react-syntax-highlighter'
 import light from 'react-syntax-highlighter/dist/esm/styles/prism/prism'
 import dark from 'react-syntax-highlighter/dist/esm/styles/prism/vs-dark'
 
-const Syntax = (props: { code: () => JSX.Element | string }) => {
+const Syntax = (props: { code?: (() => JSX.Element )| string, children?: string }) => {
     const theme = useTheme()
     const isDark = theme.name.toUpperCase().match('DARK') ? true : false
-    const style = isDark ? dark : light
-    const HL = isDark ? Prism : PrismLight
     const styles = {
+        padding: '1rem',
         fontSize: theme.typography.text.s.fontSize,
         borderRadius: theme.radius.default,
-        borderWidth: '1px',
-        borderStyle: 'solid',
-        borderColor: theme.color.lightest,
         background: theme.color.surface,
     }
     return (
-        <HL
-            showLineNumbers
+        <Prism
             language="typescript"
-            style={style}
-            children={props.code}
+            style={isDark ? dark : light}
+            children={props.children || props.code}
             customStyle={styles}
         />
     )

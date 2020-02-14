@@ -1,10 +1,15 @@
-import { Viewport } from '@flow-ui/core'
+import ReactDOM from 'react-dom'
 import React from 'react'
+import { Viewport } from '@flow-ui/core'
+import App from './app'
 
-const ExampleViewport = () => (
+const Index = () => (
     <Viewport>
-        Hello world
+        <App/>
     </Viewport>
 )
 
-export default ExampleViewport
+ReactDOM.render(
+	<Index />,
+	document.getElementById('documaker')
+)
