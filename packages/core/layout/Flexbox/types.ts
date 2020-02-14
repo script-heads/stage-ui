@@ -7,10 +7,11 @@ declare namespace FlexboxTypes {
         column?: boolean
         inline?: boolean
         decoration?: LayoutDecoration
-        alignItems?: CSS.Properties['alignItems']
-        alignContent?: CSS.Properties['alignContent']
-        justifyContent?: CSS.Properties['justifyContent']
-        justifyItems?: CSS.Properties['justifyItems']
+        alignItems?: WhaleTypes.FlexSelf
+        alignContent?: WhaleTypes.FlexSelf | WhaleTypes.FlexSpace
+        placeContent?: WhaleTypes.FlexSelf | WhaleTypes.FlexSpace
+        justifyContent?: WhaleTypes.FlexSelf | WhaleTypes.FlexSpace
+        justifyItems?: WhaleTypes.FlexSelf | WhaleTypes.FlexSpace
         direction?: CSS.Properties['flexDirection']
         wrap?: CSS.Properties['flexWrap']
         flow?: CSS.Properties['flexFlow']

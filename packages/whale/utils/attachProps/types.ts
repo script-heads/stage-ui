@@ -76,8 +76,9 @@ declare namespace WhalePropsTypes {
         flexBasis: CSS.Properties['flexBasis']
         flexGrow: CSS.Properties['flexGrow']
         flexShrink: CSS.Properties['flexShrink']
-        alignSelf: CSS.Properties['alignSelf']
-        justifySelf: CSS.Properties['justifySelf']
+        alignSelf: WhaleTypes.FlexSelf
+        justifySelf: WhaleTypes.FlexSelf
+        placeSelf: WhaleTypes.FlexSelf
     }
     
     type GridStyles = {

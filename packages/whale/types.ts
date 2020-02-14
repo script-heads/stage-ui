@@ -318,6 +318,13 @@ declare namespace WhaleTypes {
     }
 
     /**
+     * Used for flex attributes
+     * CSS props have string witch kills helps at ide
+     */
+    type FlexSpace = 'space-around' | 'space-between' | 'space-evenly'
+    type FlexSelf = 'inherit' | 'auto' | 'baseline' | 'center' | 'flex-start' | 'flex-end' | 'stretch'
+
+    /**
      * Component flexbox children styles props
      * @name Flexbox
      */
@@ -352,12 +359,12 @@ declare namespace WhaleTypes {
          * item inside the grid area. In Flexbox, 
          * it aligns the item on the cross axis.
          */
-        alignSelf?: Breakpointify<CSS.Properties['alignSelf']>
+        alignSelf?: Breakpointify<FlexSelf>
         /**
          * Sets the way a box is justified inside its 
          * alignment container along the appropriate axis.
          */
-        justifySelf?: Breakpointify<CSS.Properties['justifySelf']>
+        justifySelf?: Breakpointify<FlexSelf>
     }
 
     /**
@@ -425,7 +432,7 @@ declare namespace WhaleTypes {
          * the second the justify-self one. If the second value is not 
          * present, the first value is also used for it.
          */
-        placeSelf?: Breakpointify<CSS.Properties['placeSelf']>
+        placeSelf?: Breakpointify<Omit<FlexSelf>
     }
 
     /**
@@ -700,8 +707,6 @@ declare module 'csstype' {
     interface Properties {
         display?: 'block' | 'inline' | 'inline-block' | 'inline-table' | 'list-item' | 'none' | 'run-in' | 'table' | 'table-caption' | 'table-cell' | 'table-column-group' | 'table-column' | 'table-footer-group' | 'table-header-group' | 'table-row' | 'table-row-group' | 'flex' | 'grid'
         overflow?: 'auto' | 'hidden' | 'scroll' | 'visible' | 'inherit',
-        alignSelf?: 'baseline' | 'center' | 'end' | 'flex-end' | 'flex-start' | 'inherid' | 'initial' | 'left' | 'normal' | 'right' | 'safe' | 'safe-end' | 'safe-start' | 'start' | 'stretch' | 'unsafe' | 'unset'
-        justifySelf?: 'baseline' | 'center' | 'end' | 'flex-end' | 'flex-start' | 'inherid' | 'initial' | 'left' | 'normal' | 'right' | 'safe' | 'safe-end' | 'safe-start' | 'start' | 'stretch' | 'unsafe' | 'unset'
     }
 }
 
