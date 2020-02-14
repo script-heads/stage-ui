@@ -4,11 +4,12 @@
   "version": "0.1.9",
   "license": "MIT",
   "scripts": {
-    "type-check": "tsc --noEmit",
-    "type-check:watch": "yarn type-check -- --watch",
-    "build": "yarn build:types && yarn build:js && cp package.json ../../build/whale/package.json && cp README.md ../../build/whale/README.md",
+    "pub": "git pull && yarn build && npm version patch && cd ../../build/whale && npm version patch && npm publish --access public && cd .. && rm -rf ./whale",
+    "build": "yarn build:types && yarn build:js && cp package.json README.md importPlugin.js ../../build/whale/ && node ../../scripts/buildConfig whale",
     "build:types": "tsc --emitDeclarationOnly",
-    "build:js": "babel ./ --out-dir ../../build/whale --extensions \".ts,.tsx\" --ignore \"node_modules/\""
+    "build:js": "babel ./ --out-dir ../../build/whale --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "yarn type-check -- --watch"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.5",

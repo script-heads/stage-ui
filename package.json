@@ -18,9 +18,9 @@
     "gen:convertTypes": "cd ./packages/documaker && node ./scripts/convertTypes.js",
     "gen:generateTypes": "cd ./packages/documaker && node ./scripts/generateTypes.js",
     "gen:fixTypes": "cd ./packages/documaker && node ./scripts/fixTypes.js",
-    "pub:whale": "git pull && cd ./packages/whale && npm version patch && yarn build && cd ../../build/whale && npm publish --access public && cd .. && rm -rf ./whale",
-    "pub:core": "git pull && cd ./packages/core && npm version patch && yarn build && cd ../../build/core && npm publish --access public && cd .. && rm -rf ./core",
-    "pub:lab": "git pull && cd ./packages/lab && npm version patch && yarn build && cd ../../build/lab && npm publish --access public && cd .. && rm -rf ./lab",
+    "pub:core": "cd ./packages/core && yarn pub",
+    "pub:lab": "cd ./packages/lab && yarn pub",
+    "pub:whale": "cd ./packages/whale && yarn pub",
     "gitpush": "git commit . -m 'Update version' && git push",
     "pm2": "pm2 start --name FlowUI npm -- start"
   },
