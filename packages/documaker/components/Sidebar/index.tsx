@@ -1,4 +1,4 @@
-import { Block, Flexbox, Menu, Text, TextField, Header, Paragraph } from '@flow-ui/core'
+import { Block, Flexbox, Text, TextField } from '@flow-ui/core'
 import MenuTypes from '@flow-ui/core/control/Menu/types'
 import { Close, Cube, Search } from '@flow-ui/core/icons'
 import WhaleTypes from '@flow-ui/whale/types'
@@ -70,8 +70,8 @@ const Sidebar = (props: SidebarProps) => {
 					// css={{ opacity: 0.4 }}
 					// backgroundColor={c => c.onSurface}
 					>
-					<Header 
-						size="s"
+					<Text 
+						size="1.25rem"
 						weight="bold"
 						// color={c => c.surface}
 						css={{ cursor: 'pointer' }}
@@ -93,7 +93,7 @@ const Sidebar = (props: SidebarProps) => {
 							/>
 						)}
 					/>
-					<Paragraph
+					<Text
 						size="s"
 						css={{ opacity: 0.5 }}
 						onClick={props.setIndex}
