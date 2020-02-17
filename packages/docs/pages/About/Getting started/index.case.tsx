@@ -1,3 +1,4 @@
+/// <reference path="../../../global.d.ts" />
 import { Block, Paragraph as P, Link } from '@flow-ui/core'
 import React from 'react'
 import Syntax from '../../../components/Syntax'

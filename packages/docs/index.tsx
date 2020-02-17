@@ -1,4 +1,18 @@
-import { Block, Button, Radio, Checkbox, Display, Divider, Flexbox, Meter, Paragraph, Range, Switch, TextField, useTheme } from '@flow-ui/core'
+import { 
+    Block, 
+    Button, 
+    Radio, 
+    Checkbox, 
+    Display, 
+    Divider, 
+    Flexbox, 
+    Meter, 
+    Paragraph, 
+    Range, 
+    Switch, 
+    TextField, 
+    useTheme 
+} from '@flow-ui/core'
 import { Cube, Email, PaperPlane, People, Settings } from '@flow-ui/core/icons'
 import { HomePageProps } from '@flow-ui/documaker/core'
 import { useEffect, useState } from 'react'
