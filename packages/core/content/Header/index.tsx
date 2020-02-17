@@ -4,7 +4,15 @@ import Types from '@flow-ui/core/misc/hocs/Typography/types'
 
 const Header: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref) =>
     <Typography 
-        tag="span" 
+        tag={
+            {
+                'xl': 'h1',
+                'l': 'h2',
+                'm': 'h3',
+                's': 'h4',
+                'xs': 'h5',
+            }[props.size || 'm']
+        } 
         sizesOf="header"
         specificStyles={{
             fontWeight: 700,
