@@ -6,6 +6,7 @@ const Field: RefForwardingComponent<HTMLDivElement, Types.PrivateProps> = (props
 
     const {
         labelName,
+        labelType = 'outside',
         label,
         clearable,
         onClear,
@@ -18,6 +19,7 @@ const Field: RefForwardingComponent<HTMLDivElement, Types.PrivateProps> = (props
         focus: props.focus,
         size: props.size, 
         decoration: props.decoration,
+        labelType: props.labelType,
         shape: props.shape,
         disabled: props.disabled,
         ...props.state
@@ -30,7 +32,7 @@ const Field: RefForwardingComponent<HTMLDivElement, Types.PrivateProps> = (props
             ref={ref}
             css={styles.container(state)}
         >
-            {label !== undefined && (
+            {label !== undefined && labelType === 'outside' &&  (
                 <label
                     css={styles.label(state)}
                     htmlFor={labelName}
@@ -45,10 +47,16 @@ const Field: RefForwardingComponent<HTMLDivElement, Types.PrivateProps> = (props
                             children={props.leftChild}
                         />
                     )}
-                    <div 
-                        css={styles.content(state)}
-                        children={props.children}
-                    />
+                    <div css={styles.content(state)}>
+                        {label !== undefined && labelType === 'inside' && (
+                            <label
+                                css={styles.label(state)}
+                                htmlFor={labelName}
+                                children={label}
+                            />
+                        )}
+                        {props.children}
+                    </div>
                     {clearable && (
                         <div
                             css={styles.child({ align: 'right', ...state })}

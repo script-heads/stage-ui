@@ -57,8 +57,8 @@ const fieldStyles = <T extends Types.Overrides>(
                         variant({
                             size: {
                                 xl: { borderRadius: `calc(${theme.assets.field.xl.minHeight}/2)` },
-                                l:  { borderRadius: `calc(${theme.assets.field.l.minHeight}/2)` },
-                                s:  { borderRadius: `calc(${theme.assets.field.s.minHeight}/2)` },
+                                l: { borderRadius: `calc(${theme.assets.field.l.minHeight}/2)` },
+                                s: { borderRadius: `calc(${theme.assets.field.s.minHeight}/2)` },
                                 xs: { borderRadius: `calc(${theme.assets.field.xs.minHeight}/2)` }
                             },
                         })
@@ -134,7 +134,7 @@ const fieldStyles = <T extends Types.Overrides>(
                 justifyContent: 'center',
                 overflow: 'hidden'
             },
-            stylePatch?.content?.(variant)
+            stylePatch?.content?.(variant),
         ],
 
         label: (variant) => [
@@ -159,6 +159,36 @@ const fieldStyles = <T extends Types.Overrides>(
                     xl: [
                         theme.typography.text.xl,
                     ]
+                },
+                labelType: {
+                    inside: [
+                        {
+                            lineHeight: 0.7,
+                            fontSize: '0.85rem',
+                            paddingTop: '0.25rem',
+                        },
+                        variant({
+                            size: {
+                                xs: { 
+                                    fontSize: '0.5rem',
+                                    lineHeight: 0.2,
+                                 },
+                                s: { 
+                                    fontSize: '0.625rem',
+                                    lineHeight: 0.6,
+                                    paddingTop: '0.125rem',
+                                },
+                                l: { 
+                                    fontSize: '1rem',
+                                    lineHeight: 0.8,
+                                },
+                                xl: { 
+                                    fontSize: '1.25rem',
+                                    lineHeight: 1,
+                                }
+                            }
+                        })
+                    ]
                 }
             }),
             stylePatch?.label?.(variant)
@@ -176,7 +206,7 @@ const fieldStyles = <T extends Types.Overrides>(
                 align: {
                     left: [
                         {
-                            marginRight: '.375rem' 
+                            marginRight: '.375rem'
                         },
                         variant({
                             size: {
@@ -200,7 +230,7 @@ const fieldStyles = <T extends Types.Overrides>(
                             }
                         })
                     ],
-                }
+                },
             }),
             stylePatch?.child?.(variant)
         ],

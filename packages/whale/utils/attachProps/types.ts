@@ -14,9 +14,10 @@ declare namespace WhalePropsTypes {
     type StyleResolver = (resolverParams: {
         propValue: any
         propName: string
+        styleName: string
         theme: WhaleTypes.Theme
         ctx: StyleResolverContext
-    }) => string | void
+    }) => string | Record<string, string> | void
     
     interface StyleProps extends
         WhaleTypes.ColorProps,
@@ -30,6 +31,7 @@ declare namespace WhalePropsTypes {
     }
     
     interface InjectedStyles {
+        event: ColorStyles
         color: ColorStyles
         border: BorderStyles
         padding: PaddingStyles
@@ -76,8 +78,9 @@ declare namespace WhalePropsTypes {
         flexBasis: CSS.Properties['flexBasis']
         flexGrow: CSS.Properties['flexGrow']
         flexShrink: CSS.Properties['flexShrink']
-        alignSelf: CSS.Properties['alignSelf']
-        justifySelf: CSS.Properties['justifySelf']
+        alignSelf: WhaleTypes.FlexSelf
+        justifySelf: WhaleTypes.FlexSelf
+        placeSelf: WhaleTypes.FlexSelf
     }
     
     type GridStyles = {

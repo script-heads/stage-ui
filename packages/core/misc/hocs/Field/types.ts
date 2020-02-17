@@ -4,6 +4,7 @@ declare namespace FieldTypes {
 
     interface Props extends Omit<WhaleTypes.AllProps<HTMLInputElement, Overrides>, 'onChange'> {
         label?: React.ReactNode
+        labelType?: 'none' | 'outside' |'inside'
         hint?: React.ReactNode
         size?: WhaleTypes.Size
         decoration?: 'none' | 'filled' | 'underline' | 'outline'
@@ -24,6 +25,7 @@ declare namespace FieldTypes {
         shape: Props['shape']
         size: Props['size'] 
         decoration: Props['decoration']
+        labelType: Props['labelType']
     }
 
     interface Overrides<T extends {[T in keyof Overrides]?: Object} = {}> {

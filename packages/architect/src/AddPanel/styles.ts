@@ -38,7 +38,6 @@ export default (theme: WhaleTypes.Theme): AddPanelStyles => {
             boxShadow: 'none !important'
         }),
         component: (focused: boolean) => css({
-            cursor: 'pointer',
             padding: '1rem 2rem',
             background: focused
                 ? theme.color.primary.alpha(0.2).rgb().string()

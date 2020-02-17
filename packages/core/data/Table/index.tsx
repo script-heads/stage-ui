@@ -12,7 +12,7 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
 
     const tableRef = useRef<HTMLTableElement>(null)
     const { cs, attributes, events } = useComponent('Table', { props, styles, styleProps: { container: ['all']} })
-    const { columns, pagination } = props
+    const { columns, pagination, footer } = props
     const [currentPage, setCurrentPage] = useState(1)
     const [reloadData, reload] = useState(false)
     const [sort, setSort] = useState<Types.TableSortObject>({
@@ -173,6 +173,7 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
             <TableFoot
                 dc={dc}
                 styles={cs}
+                footerContent={footer}
                 columns={columns}
                 pagination={pagination}
                 onPageChange={setCurrentPage}

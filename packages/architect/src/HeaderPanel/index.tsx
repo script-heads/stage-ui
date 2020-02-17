@@ -23,7 +23,6 @@ const HeaderPanel = (props: HeaderPanelProps) => {
                 <Header
                     size="xs"
                     weight="bold"
-                    css={{ cursor: 'pointer' }}
                     onClick={props.setIndex}
                     children={props.title}
                 />

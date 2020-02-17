@@ -24,6 +24,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 color: 'inherit',
                 font: 'inherit',
                 cursor: 'inherit',
+                textOverflow: 'ellipsis',
                 '&::placeholder': {
                     color: theme.color.light.rgb().string()
                 },

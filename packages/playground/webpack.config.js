@@ -1,5 +1,4 @@
 const path = require('path')
-const coreImportPlugin = require('@flow-ui/core/importPlugin')
 const webpack = require('webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const CopyWebPack = require('copy-webpack-plugin')

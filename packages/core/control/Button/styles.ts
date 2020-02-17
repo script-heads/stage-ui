@@ -11,7 +11,6 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
         container: (variant) => [
             {
                 fontWeight: 600,
-                cursor: 'pointer',
                 whiteSpace: 'nowrap',
                 outline: 'none',
                 boxShadow: 'unset',
@@ -25,7 +24,6 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 justifyContent: 'center',
                 alignItems: 'center',
                 width: 'fit-content',
-                userSelect: 'none',
                 '&:active': {
                     borderStyle: 'solid'
                 },
@@ -84,7 +82,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                             : theme.color.onSurface.rgb().string(),
                         '&:hover:not([disabled])': {
                             background: color.hsl().array()[2] > .2
-                                ? color.darken(.6).rgb().string()
+                                ? color.darken(.3).rgb().string()
                                 : color.lighten(1.5).rgb().string(),
                         },
                         '&:active:not([disabled])': {

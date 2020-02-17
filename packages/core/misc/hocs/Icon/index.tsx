@@ -23,7 +23,6 @@ const Svg: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref) =
             css={cs.container({ 
                 size, 
                 shape,
-                clickable: !!props.onClick
             })}
             children={(
                 <svg

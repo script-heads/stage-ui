@@ -24,7 +24,6 @@ declare namespace IconTypes {
 		container: {
 			shape?: IconShapes
 			size: WhaleTypes.Size | string
-			clickable?: boolean
 		}
 		icon: void
 	}
