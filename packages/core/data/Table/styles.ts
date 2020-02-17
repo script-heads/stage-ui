@@ -24,6 +24,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
             variant({
                 sort: {
                     cursor: 'pointer',
+                    userSelect: 'none',
                     ':hover': {
                         color: theme.color.primary.rgb().string()
                     }

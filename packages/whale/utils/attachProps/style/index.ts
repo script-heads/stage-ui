@@ -1,9 +1,13 @@
 import WhaleTypes, {EmotionStyles} from '@flow-ui/whale/types'
+import resolveEvent from './resolvers/event'
 import resolveColor from './resolvers/color'
 import resolvePaddingMargin from './resolvers/paddingMargin'
 import WhalePropsTypes from '../types'
 
 const resolvers: WhalePropsTypes.StyleResolverObject = {
+    //Event
+    onClick: ['event', '', resolveEvent],
+
     //Color
     backgroundColor: ['color', 'backgroundColor', resolveColor],
     textColor: ['color', 'color', resolveColor],
@@ -84,21 +88,36 @@ const createPropStyles = <Props, StyleProps>(
         if (!Array.isArray(values)) values = [values]
 
         values.forEach((value, i) => {
-            const cssValue = resolver ? resolver({ propValue: value, propName, theme, ctx }) : value
+            const cssValue = resolver ? resolver({ 
+                propValue: value, 
+                propName, 
+                styleName,
+                theme, 
+                ctx 
+            }) : value
+
             if (i) {
                 if (!styles[sectionName][queries[i]]) {
                     styles[sectionName][queries[i]] = {}
                 }
-                styles[sectionName][queries[i]][styleName] = cssValue
+                if (typeof cssValue === 'object') {
+                    Object.assign(styles[sectionName][queries[i]], cssValue)
+                } else {
+                    styles[sectionName][queries[i]][styleName] = cssValue
+                }
             } else {
-                styles[sectionName][styleName] = cssValue
+                if (typeof cssValue === 'object') {
+                    Object.assign(styles[sectionName], cssValue)
+                } else {
+                    styles[sectionName][styleName] = cssValue
+                }
             }
         })
     }
 
     const flow = Object.assign({}, styles.margin, styles.flex, styles.grid)
     const self = Object.assign({}, styles.color, styles.border, styles.padding, styles.layout)
-    const all = Object.assign({}, flow, self)
+    const all = Object.assign({}, flow, self, styles.event)
     const combined = Object.assign({ flow, self, all }, styles)
 
     Object.keys(styleProps).forEach(className => {

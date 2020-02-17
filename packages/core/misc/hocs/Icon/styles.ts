@@ -52,9 +52,6 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                         padding: '0.4em',
                     }
                 },
-                clickable: {
-                    cursor: 'pointer'
-                }
             })
         ],
         icon: [

@@ -33,7 +33,6 @@ const TableCell: RefForwardingComponent<HTMLTableDataCellElement, Types.CellProp
             }}
             children={content}
         />
-
     )
 }
 

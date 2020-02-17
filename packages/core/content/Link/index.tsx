@@ -16,7 +16,6 @@ const Link: RefForwardingComponent<HTMLAnchorElement, Types.LinkProps> = (props,
                 '&:hover': {
                     textDecoration: 'underline'
                 },
-                cursor: 'pointer'
             }}
             ref={ref}
             {...props}

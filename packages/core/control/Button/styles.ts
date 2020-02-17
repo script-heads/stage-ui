@@ -11,7 +11,6 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
         container: (variant) => [
             {
                 fontWeight: 600,
-                cursor: 'pointer',
                 whiteSpace: 'nowrap',
                 outline: 'none',
                 boxShadow: 'unset',
@@ -25,7 +24,6 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 justifyContent: 'center',
                 alignItems: 'center',
                 width: 'fit-content',
-                userSelect: 'none',
                 '&:active': {
                     borderStyle: 'solid'
                 },
