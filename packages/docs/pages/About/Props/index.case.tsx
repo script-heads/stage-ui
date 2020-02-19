@@ -2,9 +2,15 @@
 /// <reference path="../../../global.d.ts" />
 import { Block, Header, Link, Paragraph as P } from '@flow-ui/core'
 import React from 'react'
+import styleProp from './styleProp.raw'
 import colorProps from './colorProps.raw'
-import StyleProp from './styleProp.raw'
+import spacingProps from './spacingProps.raw'
+import flexGridProps from './flexGridProps.raw'
+import layoutProps from './layoutProps.raw'
+import borderProps from './borderProps.raw'
+
 import Syntax from '../../../components/Syntax'
+import List from '../../../components/List'
 
 export const title = 'Props'
 export const sticky = true
@@ -21,7 +27,7 @@ export default () => (
             If it's not you may have find this information on comonent documentation page. 
             Also here you access component internal state for attach some styles in these cases.
             More about it written in <Link href="/overrides">Overrides</Link> section.</P>
-        <Syntax code={StyleProp}/>
+        <Syntax code={styleProp}/>
         <Header>Color</Header>
         <P>All colors described in Theme FlowUI turn into Objects with useful 
             methods that give you the opportunity to to adjust the color depending on the situation.
@@ -31,62 +37,72 @@ export default () => (
         </P>
         <Syntax code={colorProps}/>
         <Header>Margin and Padding</Header>
-        <P>Shorthand for margin and padding styles</P>
-        <Syntax code={colorProps}/>
-        <ul>
-            <li>m: margin</li>
-            <li>mt: margin-top</li>
-            <li>mr: margin-right</li>
-            <li>mb: margin-bottom</li>
-            <li>ml: margin-left</li>
-            <li>mx: margin-left and margin-right</li>
-            <li>my: margin-top and margin-bottom</li>
-            <li>p : padding</li>
-            <li>pt: padding-top</li>
-            <li>pr: padding-right</li>
-            <li>pb: padding-bottom</li>
-            <li>pl: padding-left</li>
-            <li>px: padding-left and padding-right</li>
-            <li>py: padding-top and padding-bottom</li>
-        </ul>
+        <P>Shorthand for margin and padding styles with size alias from theme spacing</P>
+        <Syntax code={spacingProps}/>
+        <List 
+            data={[
+                'm: margin',
+                'mt: margin-top',
+                'mr: margin-right',
+                'mb: margin-bottom',
+                'ml: margin-left',
+                'mx: margin-left and margin-right',
+                'my: margin-top and margin-bottom',
+                'p : padding',
+                'pt: padding-top',
+                'pr: padding-right',
+                'pb: padding-bottom',
+                'pl: padding-left',
+                'px: padding-left and padding-right',
+                'py: padding-top and padding-bottom'
+            ]}
+            higlightBefore=":"
+        />
         <Header>Flexbox and grid</Header>
         <P>Shorthand for flexbox and grid children styles</P>
-        <Syntax code={colorProps}/>
-        <ul>
-            <li>flex: flex</li>
-            <li>flexBasis: flex-basis</li>
-            <li>flexGrow: flex-grow</li>
-            <li>flexShrink: flex-shrink</li>
-            <li>alignSelf: align-self</li>
-            <li>justifySelf: justify-self</li>
-        </ul>
-        <ul>
-            <li>gridColumn: grid-column</li>
-            <li>gridRow: grid-row</li>
-            <li>gridArea: grid-area</li>
-            <li>gridColumnStart: grid-column-start</li>
-            <li>gridColumnEnd: grid-column-end</li>
-            <li>gridRowStart: grid-row-start</li>
-            <li>gridRowEnd: grid-row-end</li>
-            <li>placeSelf: place-self</li>
-        </ul>
+        <Syntax code={flexGridProps}/>
+        <List 
+            data={[
+                'flex: flex',
+                'flexBasis: flex-basis',
+                'flexGrow: flex-grow',
+                'flexShrink: flex-shrink',
+                'alignSelf: align-self',
+                'justifySelf: justify-self',
+                'gridColumn: grid-column',
+                'gridRow: grid-row',
+                'gridArea: grid-area',
+                'gridColumnStart: grid-column-start',
+                'gridColumnEnd: grid-column-end',
+                'gridRowStart: grid-row-start',
+                'gridRowEnd: grid-row-end',
+                'placeSelf: place-self'
+            ]}
+            higlightBefore=":"
+        />
         <Header>Layout</Header>
         <P>Shorthand for layout styles</P>
-        <Syntax code={colorProps}/>
-        <ul>
-            <li>w: width</li>
-            <li>h: height</li>
-            <li>visibility: visibility</li>
-            <li>display: display</li>
-        </ul>
+        <Syntax code={layoutProps}/>
+        <List 
+            data={[
+                'w: width',
+                'h: height',
+                'visibility: visibility',
+                'display: display'
+            ]}
+            higlightBefore=":"
+        />
         <Header>Border</Header>
         <P>Shorthand for border styles</P>
-        <Syntax code={colorProps}/>
-        <ul>
-            <li>borderWidth: border-width</li>
-            <li>borderStyle: border-style</li>
-            <li>borderColor: border-color</li>
-            <li>borderRadius: border-radius</li>
-        </ul>
+        <Syntax code={borderProps}/>
+        <List 
+            data={[
+                'borderWidth: border-width',
+                'borderStyle: border-style',
+                'borderColor: border-color',
+                'borderRadius: border-radius'
+            ]}
+            higlightBefore=":"
+        />
     </Block>
 )

@@ -1,8 +1,12 @@
-<Button
+<Menu
     styles={{
         container: {
             backgroundColor: 'yellow'
-        }
-    }}>
-    Hello
-</Button>
+        },
+        item: (variant) => variant({
+            active: {
+                backgroundColor: 'red'
+            }
+        })
+    }}
+/>
