@@ -1,4 +1,5 @@
 import WhaleTypes from '../../../types'
+import { Options } from '../../../hooks/useComponent'
 
 let isMouseDown = false
 
@@ -172,7 +173,7 @@ const resolver = {
 const createAttributes = <Styles,Props extends WhaleTypes.AllProps<unknown,Styles>>(
     props: Props, 
     setFocus: React.Dispatch<React.SetStateAction<boolean>>, 
-    mouseFocus?: boolean) => {
+    options?: Options<Styles,Props>) => {
 
     const allProps = {
         attributes: {} as WhaleTypes.AttributeProps,
@@ -199,15 +200,19 @@ const createAttributes = <Styles,Props extends WhaleTypes.AllProps<unknown,Style
     
     allProps.focus.onFocus = (e) => {
         e.stopPropagation()
-        if (mouseFocus || !isMouseDown) {
-            setFocus(true)
+        if (options?.focusDecoration !== false) {
+            if (options?.mouseFocus || !isMouseDown) {
+                setFocus(true)
+            }
         }
         props.onFocus && props.onFocus(e)
     }
     
     allProps.focus.onBlur = (e) => {
         e.stopPropagation()
-        setFocus(false)
+        if (options?.focusDecoration !== false) {
+            setFocus(false)
+        }
         props.onBlur && props.onBlur(e)
     }
 

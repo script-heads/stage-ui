@@ -5,10 +5,11 @@ import attachProps from '../utils/attachProps'
 import createStyles from '../utils/createStyles'
 import { useState, useMemo, CSSProperties } from 'react'
 
-interface Options<Styles,Props> {
+export interface Options<Styles,Props> {
     props: Props,
     styles: WhaleTypes.Styles<Styles> | WhaleTypes.CreateStyles<Styles,Props>,
     styleProps?: Partial<Record<keyof Styles, (keyof WhalePropsTypes.InjectedStyles)[]>>
+    styleLabel?: string,
     mouseFocus?: boolean,
     focusDecoration?: boolean,
     theme?: WhaleTypes.Theme
@@ -24,7 +25,7 @@ const useComponent = <Styles,Props>(
     const { 
         props,
         styles,
-        styleProps,
+        styleLabel = '',
         mouseFocus,
         focusDecoration,
         theme = useTheme() 
@@ -45,19 +46,12 @@ const useComponent = <Styles,Props>(
             attributes, 
             events, 
             propStyles 
-        } = attachProps<Styles,Props>(
-            props,
-            theme, 
-            setFocus,
-            {
-                styleProps,
-                mouseFocus 
-            } 
-        )
+        } = attachProps<Styles,Props>(props, theme, setFocus,options)
         
         const cs = createStyles(
             resolvedStyles,
             propStyles,
+            styleLabel,
             props, 
             overrideName, 
             theme.overrides

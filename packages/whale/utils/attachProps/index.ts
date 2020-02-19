@@ -1,12 +1,8 @@
 import WhaleTypes from '../../types'
+import { Options } from '../../hooks/useComponent'
 import createAttributes from './attribute'
 import createPropStyles from './style'
 import WhalePropsTypes from './types'
-
-interface Options<Styles> {
-    styleProps?: Partial<Record<keyof Styles, (keyof WhalePropsTypes.InjectedStyles)[]>>
-    mouseFocus?: boolean
-}
 
 type SetFocus = React.Dispatch<React.SetStateAction<boolean>>
 
@@ -14,12 +10,12 @@ const attachProps = <Styles, Props>(
     props: Props, 
     theme: WhaleTypes.Theme, 
     setFocus: SetFocus, 
-    options: Options<Styles>) => {
+    options: Options<Styles, Props>) => {
 
     const { attributes, events } = createAttributes<Styles,Props>(
         props,
         setFocus,
-        options.mouseFocus
+        options
     )
 
     let propStyles = {}

@@ -4,11 +4,11 @@ import { css } from '@emotion/core'
 const createComponentStyles= <Styles, Props extends {styles?: Partial<WhaleTypes.Styles<Styles>>}>(
     styles: WhaleTypes.Styles<Styles>, 
     propStyles: Partial<Record<keyof Styles, EmotionStyles>>, 
+    styleLabel: string,
     props: Props,
     overrideName: string, 
     overrides: WhaleTypes.Theme['overrides']
 ) => {
-
     const ComponentStyles = {} as WhaleTypes.ComponentStyles<Styles>
     const ComponentOverrides = overrides?.[overrideName]
 
@@ -42,7 +42,7 @@ const createComponentStyles= <Styles, Props extends {styles?: Partial<WhaleTypes
                 }
 
                 return css(
-                    {
+                    styleLabel.length === 0 && {
                         label: `${overrideName}-${styleName}`
                     },
                     styles[styleName](variant),
@@ -53,7 +53,7 @@ const createComponentStyles= <Styles, Props extends {styles?: Partial<WhaleTypes
             }
         } else {
             ComponentStyles[styleName] = css(
-                {
+                styleLabel.length === 0 && {
                     label: `${overrideName}-${styleName}`
                 },
                 styles[styleName],
