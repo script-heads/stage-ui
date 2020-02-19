@@ -69,14 +69,16 @@ const Sidebar = (props: SidebarProps) => {
 					// css={{ opacity: 0.4 }}
 					// backgroundColor={c => c.onSurface}
 					>
-					<Text 
-						size="1.25rem"
-						weight="bold"
-						// color={c => c.surface}
-						css={{ cursor: 'pointer' }}
-						onClick={props.setIndex}
-						children={props.title}
-					/>
+					<Block>
+						<Text 
+							size="xl"
+							weight="bold"
+							// color={c => c.surface}
+							css={{ cursor: 'pointer' }}
+							onClick={props.setIndex}
+							children={props.title}
+						/>
+					</Block>
 					<Block
 						css={{
 							position: 'absolute',
