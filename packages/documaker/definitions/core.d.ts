@@ -312,7 +312,6 @@ declare module 'misc/hocs/Icon/types' {
 	        container: {
 	            shape?: IconShapes;
 	            size: WhaleTypes.Size | string;
-	            clickable?: boolean;
 	        };
 	        icon: void;
 	    }
@@ -1925,6 +1924,7 @@ declare module 'misc/hocs/Field/types' {
 	import WhaleTypes from '@flow-ui/whale/types'; namespace FieldTypes {
 	    interface Props extends Omit<WhaleTypes.AllProps<HTMLInputElement, Overrides>, 'onChange'> {
 	        label?: React.ReactNode;
+	        labelType?: 'none' | 'outside' | 'inside';
 	        hint?: React.ReactNode;
 	        size?: WhaleTypes.Size;
 	        decoration?: 'none' | 'filled' | 'underline' | 'outline';
@@ -1943,6 +1943,7 @@ declare module 'misc/hocs/Field/types' {
 	        shape: Props['shape'];
 	        size: Props['size'];
 	        decoration: Props['decoration'];
+	        labelType: Props['labelType'];
 	    }
 	    interface Overrides<T extends {
 	        [T in keyof Overrides]?: Object;
@@ -2089,56 +2090,77 @@ declare module 'control/DatePicker' {
 declare module 'control/Menu/types' {
 	/// <reference types="react" />
 	import WhaleTypes from '@flow-ui/whale/types'; namespace MenuTypes {
-	    type Value = string | number;
+	    type MenuValue = string | number;
+	    type MenuDirection = 'row' | 'column' | 'row-reverse' | 'column-reverse';
+	    type MenuDecoration = 'filled' | 'color' | 'marker' | 'marker-reverse';
+	    type MenuAlign = 'flex-start' | 'flex-end' | 'stretch' | 'center';
+	    type MenuShape = 'square' | 'rounded' | 'round';
+	    interface Context {
+	        values: Record<string, () => void>;
+	        current?: MenuValue;
+	        controlled?: boolean;
+	        onChange?: (value?: MenuValue) => void;
+	    }
 	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
-	        defaultValue?: Value;
-	        value?: Value;
-	        onChange?: (value: Value) => void;
-	        items: Item[];
+	        defaultValue?: MenuValue;
+	        value?: MenuValue;
+	        data?: React.ReactNode[];
+	        onChange?: (value?: MenuValue) => void;
+	        decoration?: MenuDecoration;
+	        direction?: MenuDirection;
+	        shape?: MenuShape;
 	        size?: WhaleTypes.Size;
-	        decoration?: 'filled' | 'outline' | 'color' | 'underline' | 'tab' | 'filled-underline';
-	        flip?: boolean;
-	        spacing?: string;
-	        direction?: 'row' | 'column';
-	        shape?: 'square' | 'rounded' | 'round';
-	        border?: 'none' | 'narrow' | 'wide';
-	        align?: 'start' | 'center' | 'end';
-	        separator?: React.ReactElement;
-	        color?: WhaleTypes.ColorProp;
-	        disabled?: boolean;
+	        align?: MenuAlign;
+	        children?: React.ReactNode;
 	    }
-	    interface Item extends Partial<Omit<WhaleTypes.AllEventProps<HTMLDivElement>, 'onChange'>>, Partial<Props> {
-	        content: React.ReactNode;
-	        value: Value;
-	        disabled?: boolean;
-	    }
-	    interface ItemProps extends Omit<Item, 'styles'> {
-	        active: boolean;
-	        styles: WhaleTypes.ComponentStyles<Overrides>;
+	    interface StyleState {
+	        decoration: Props['decoration'];
 	    }
 	    interface Overrides {
-	        container: {
-	            size: Props['size'];
-	            flip: Props['flip'];
-	            border: Props['border'];
-	        };
-	        item: {
-	            shape: Props['shape'];
-	            disabled: boolean;
-	            active: boolean;
-	            size: Props['size'];
-	            decoration: Props['decoration'];
-	        };
-	        separator: void;
+	        container: StyleState;
+	        item: StyleState;
+	        group: StyleState;
+	        groupTitle: StyleState;
+	        subMenu: StyleState;
+	        subMenuContent: StyleState;
+	        subMenuArrow: StyleState;
+	        leftChild: StyleState;
+	        middleChild: StyleState;
+	        rightChild: StyleState;
 	    }
 	}
 	export default MenuTypes;
 
 }
-declare module 'control/Menu/Item' {
-	import { RefForwardingComponent } from 'react';
-	import Types from 'control/Menu/types'; const Item: RefForwardingComponent<HTMLDivElement, Types.ItemProps>;
-	export default Item;
+declare module 'control/Menu/MenuItem/types' {
+	/// <reference types="react" />
+	import WhaleTypes from '@flow-ui/whale/types';
+	import MenuTypes from 'control/Menu/types'; namespace MenuItemTypes {
+	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
+	        title?: React.ReactNode;
+	        disabled?: boolean;
+	        value?: MenuTypes.MenuValue;
+	        children?: React.ReactNode;
+	        leftChild?: React.ReactNode;
+	        rightChild?: React.ReactNode;
+	    }
+	    interface Overrides {
+	        container: void;
+	    }
+	}
+	export default MenuItemTypes;
+
+}
+declare module 'control/Menu/MenuItem/styles' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'control/Menu/MenuItem/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'control/Menu/MenuItem' {
+	import React from 'react';
+	import Types from 'control/Menu/MenuItem/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
 
 }
 declare module 'control/Menu/styles' {
@@ -2147,9 +2169,78 @@ declare module 'control/Menu/styles' {
 	export default styles;
 
 }
+declare module 'control/Menu/Submenu/types' {
+	/// <reference types="react" />
+	import WhaleTypes from '@flow-ui/whale/types'; namespace SubmenuTypes {
+	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
+	        title?: React.ReactNode;
+	        disabled?: boolean;
+	        indent?: string;
+	        open?: boolean;
+	        defaultOpen?: boolean;
+	        children?: React.ReactNode;
+	        leftChild?: React.ReactNode;
+	        rightChild?: React.ReactNode;
+	    }
+	    interface Overrides {
+	        container: void;
+	    }
+	}
+	export default SubmenuTypes;
+
+}
+declare module 'control/Menu/Submenu/styles' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'control/Menu/Submenu/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'control/Menu/Submenu' {
+	import React from 'react';
+	import Types from 'control/Menu/Submenu/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'control/Menu/MenuGroup/types' {
+	/// <reference types="react" />
+	import WhaleTypes from '@flow-ui/whale/types'; namespace MenuGroupTypes {
+	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
+	        title: React.ReactNode;
+	        children?: React.ReactNode;
+	        leftChild?: React.ReactNode;
+	        rightChild?: React.ReactNode;
+	    }
+	    interface Overrides {
+	        container: void;
+	    }
+	}
+	export default MenuGroupTypes;
+
+}
+declare module 'control/Menu/MenuGroup/styles' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'control/Menu/MenuGroup/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'control/Menu/MenuGroup' {
+	import React from 'react';
+	import Types from 'control/Menu/MenuGroup/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
 declare module 'control/Menu' {
 	import React from 'react';
-	import Types from 'control/Menu/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	import Types from 'control/Menu/types';
+	/**
+	 * Hook used in every Menu.Item
+	 * most optimized method to change item value
+	 */
+	export const useValue: (value?: string | number | undefined) => [boolean, () => void, Types.Context]; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>> & {
+	    Item: React.ForwardRefExoticComponent<import("./MenuItem/types").default.Props & React.RefAttributes<HTMLDivElement>>;
+	    Group: React.ForwardRefExoticComponent<import("./MenuGroup/types").default.Props & React.RefAttributes<HTMLDivElement>>;
+	    Submenu: React.ForwardRefExoticComponent<import("./Submenu/types").default.Props & React.RefAttributes<HTMLDivElement>>;
+	};
 	export default _default;
 
 }
@@ -2839,10 +2930,11 @@ declare module 'layout/Flexbox/types' {
 	        column?: boolean;
 	        inline?: boolean;
 	        decoration?: LayoutDecoration;
-	        alignItems?: CSS.Properties['alignItems'];
-	        alignContent?: CSS.Properties['alignContent'];
-	        justifyContent?: CSS.Properties['justifyContent'];
-	        justifyItems?: CSS.Properties['justifyItems'];
+	        alignItems?: WhaleTypes.FlexSelf;
+	        alignContent?: WhaleTypes.FlexSelf | WhaleTypes.FlexSpace;
+	        placeContent?: WhaleTypes.FlexSelf | WhaleTypes.FlexSpace;
+	        justifyContent?: WhaleTypes.FlexSelf | WhaleTypes.FlexSpace;
+	        justifyItems?: WhaleTypes.FlexSelf | WhaleTypes.FlexSpace;
 	        direction?: CSS.Properties['flexDirection'];
 	        wrap?: CSS.Properties['flexWrap'];
 	        flow?: CSS.Properties['flexFlow'];

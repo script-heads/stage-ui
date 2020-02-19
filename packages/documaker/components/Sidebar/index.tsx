@@ -1,11 +1,9 @@
-import { Block, Flexbox, Text, TextField } from '@flow-ui/core'
-import MenuTypes from '@flow-ui/core/control/Menu/types'
+import { Menu, Block, Flexbox, Text, TextField } from '@flow-ui/core'
 import { Close, Cube, Search } from '@flow-ui/core/icons'
 import WhaleTypes from '@flow-ui/whale/types'
 import * as React from 'react'
 import { Fragment, useState } from 'react'
 import { PagesType, PageType } from '../../core'
-import MenuSection from './MenuSection'
 import ThemeSwitcher, { ThemeSwitcherProps } from '../ThemeSwitcher'
 
 export interface SidebarProps extends ThemeSwitcherProps {
@@ -22,26 +20,27 @@ const Sidebar = (props: SidebarProps) => {
 	const [visibility, setMobileVisible] = useState<boolean>(false)
 	const [search, setSearch] = useState('')
 
-	const getMenuItems = (section: PageType[]): MenuTypes.Item[] =>
+	const getMenuItems = (section: PageType[]) =>
 		section.filter(page => {
 			if (search) {
 				return !!page.title.toUpperCase().match(search.toUpperCase())
 			}
 			return true
-		}).map(page => ({
-			css: {
-				fontWeight: '600',
-			},
-			value: page.url,
-			content: (
-				<Text ellipsis flex={1}>{page.title}</Text>
-			)
-		}))
+		}).map(page => (
+			<Menu.Item
+				style={{
+					fontWeight: 'bold'
+				}}
+				key={page.url}
+				value={page.url}
+				title={page.title}
+			/>
+		))
 
 	const VisibilityIcon = !visibility
 		? Cube
 		: Close
-		
+
 	return (
 		<Fragment>
 			<Block
@@ -49,7 +48,7 @@ const Sidebar = (props: SidebarProps) => {
 				css={(theme: WhaleTypes.Theme) => ([{
 					boxSizing: 'border-box',
 					background: theme.color.surface.rgb().string()
-				},{
+				}, {
 					[`@media (max-width: ${window.breakpoints[1]}px)`]: [
 						{
 							position: 'absolute',
@@ -118,24 +117,29 @@ const Sidebar = (props: SidebarProps) => {
 					}}
 					clearable
 				/>
-				{Object.keys(pages).map((section, index) => {
-					if (pages[section].length) {
-						const menuItems = getMenuItems(pages[section])
-						if (menuItems.length === 0) {
-							return null
+				<Menu 
+					mx="-1.5rem"
+					decoration="marker"
+					value={props.currentPage.url}
+					onChange={value => {
+						if (typeof value === 'string') {
+							props.onChange(value)
 						}
-						return (
-							<MenuSection 
-								{...props}
-								menuItems={menuItems}
-								search={search}
-								section={section}
-								setMobileVisible={setMobileVisible}
-								key={'section-' + index}
-							/>
-						)
+					}}
+					children={
+						Object.keys(pages).map((section, index) => {
+							const menuItems = getMenuItems(pages[section])
+							if (menuItems.length === 0) {
+								return null
+							}
+							return (
+								<Menu.Group pb="l" key={index} title={section}>
+									{menuItems}
+								</Menu.Group>
+							)
+						})
 					}
-				})}
+				/>
 			</Block>
 			<Flexbox
 				alignItems={'center'}

@@ -1,65 +1,125 @@
-import React, { forwardRef, Fragment, RefForwardingComponent, useState } from 'react'
-import createID from '@flow-ui/whale/utils/createID'
-import Item from './Item'
-import styles from './styles'
-import Types from './types'
 import { useComponent } from '@flow-ui/whale'
+import React, { forwardRef, RefForwardingComponent } from 'react'
+import MenuItem from './MenuItem'
+import styles from './styles'
+import Submenu from './Submenu'
+import MenuGroup from './MenuGroup'
+import Types from './types'
+
+const Context = React.createContext<Types.Context>({ values: {} })
+
+/**
+ * Hook used in every Menu.Item
+ * most optimized method to change item value
+ */
+export const useValue = (value?: Types.MenuValue): [boolean, () => void, Types.Context] => {
+    const [_, update] = React.useState(false)
+    const ctx = React.useContext(Context)
+    if (ctx === void 0) {
+        throw Error('Hook useValue could be used only within Menu component!')
+    }
+    if (value !== void 0) {
+        ctx.values[value] = () => update(!_)
+    }
+    return [value !== void 0 ? ctx.current === value : false, () => {
+        if (value === void 0 || ctx.controlled) {
+            return
+        }
+        const valuePrevious = ctx.current
+        ctx.current = value
+        if (valuePrevious !== void 0 && ctx.values[valuePrevious]) {
+            ctx.values[valuePrevious]()
+        }
+        if (ctx.current !== void 0 && ctx.values[ctx.current]) {
+            ctx.values[ctx.current]()
+        }
+    }, ctx]
+}
 
 const Menu: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     
     const {
-        size = 'm',
-        flip = false,
-        border = 'none',
-        items, 
-        defaultValue = '', 
-        separator, 
+        decoration = 'filled',
     } = props
-    const { cs, attributes, events } = useComponent('Menu', { props, styles, styleProps: { container: ['all']} })
 
-    const [value, setValue] = useState<Types.Value>(defaultValue)
-    const currentValue = (typeof props.value === 'undefined' || props.value === '')
-        ? value
-        : props.value
-        
-    function handleSwitch(item: Types.Item) {
-        if (!item.disabled) {
-            if (!props.value) {
-                setValue(item.value)
-            }
-            props.onChange && props.onChange(item.value)
-        }
+    const { cs, attributes, events } = useComponent('Menu', { 
+        props, 
+        styles, 
+        styleProps: { 
+            container: ['all'],
+        },
+        styleLabel: 'Menu',
+        focusDecoration: false
+    })
+
+    const defaultValue = React.useMemo(() => props.defaultValue, [])
+    
+    const styleState: Types.StyleState = { 
+        decoration
     }
+    const css = [
+        cs.container(styleState), 
+        `
+            [data-flow=menu-item] { ${cs.item(styleState).styles} };
+            [data-flow=menu-group] { ${cs.group(styleState).styles} };
+            [data-flow=menu-group-title] { ${cs.groupTitle(styleState).styles} };
+            [data-flow=sub-menu] { ${cs.subMenu(styleState).styles} };
+            [data-flow=sub-menu-arrow] { ${cs.subMenuArrow(styleState).styles} };
+            [data-flow=sub-menu-content] { ${cs.subMenuContent(styleState).styles} };
+            [data-flow=left] { ${cs.leftChild(styleState).styles} };
+            [data-flow=middle] { ${cs.middleChild(styleState).styles} };
+            [data-flow=right] { ${cs.rightChild(styleState).styles} };
+        `
+    ]
 
-    if (!items || !Array.isArray(items)) return null
+    let children = props.children
+    if (props.data) {
+        children = props.data.map((item, index) => (
+            <MenuItem
+                value={index}
+                key={index}
+                title={item}
+            />
+        ))
+    }
+    
+    let current = defaultValue
+    if (props.value !== void 0) {
+        current = props.value
+    }
 
     return (
         <div
+            data-flow="menu"
             {...attributes}
             {...events.all}
-            onChange={undefined}
             ref={ref}
-            css={cs.container({size, flip, border})}
-        >
-            {items.map((item, i) => {
-                return (
-                    <Fragment key={createID()}>
-                        <Item
-                            {...item}
-                            active={item.value === currentValue}
-                            onClick={() => handleSwitch(item)}
-                            styles={cs}
-                        />
-                        {separator && i + 1 < items.length && (
-                            <div css={cs.separator}>
-                                {separator}
-                            </div>
-                        )}
-                    </Fragment>
-                )
-            })}
-        </div>
+            onChange={undefined}
+            css={css}
+            children={(
+                <Context.Provider
+                    value={{
+                        values: {},
+                        controlled: props.value !== void 0,
+                        current,
+                        onChange: props.onChange
+                    }}
+                    children={children}
+                />
+            )}
+        />
     )
 }
 
-export default forwardRef(Menu)
+const Default = forwardRef(Menu)
+
+export default {
+    ...Default,
+    Item: MenuItem,
+    Group: MenuGroup,
+    Submenu: Submenu
+} as typeof Default & {
+    Item: typeof MenuItem
+    Group: typeof MenuGroup
+    Submenu: typeof Submenu
+}

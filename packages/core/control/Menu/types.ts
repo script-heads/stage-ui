@@ -1,60 +1,49 @@
 import WhaleTypes from '@flow-ui/whale/types'
-
+import Menu from './'
 declare namespace MenuTypes {
 
-    type Value = string | number
+    type MenuValue = string | number
+    type MenuDirection = 'row' | 'column' | 'row-reverse' | 'column-reverse'
+    type MenuDecoration = 'filled' | 'color' | 'marker' | 'marker-reverse' 
+    type MenuAlign = 'flex-start' | 'flex-end' | 'stretch' | 'center'
+    type MenuShape = 'square' | 'rounded' | 'round'
 
+    interface Context { 
+        values: Record<string, () => void>
+        current?: MenuValue
+        controlled?: boolean
+        onChange?: (value?: MenuValue) => void
+    }
+    
     interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
-        defaultValue?: Value
-        value?: Value
-        onChange?: (value: Value) => void
-        items: Item[]
 
+        defaultValue?: MenuValue
+        value?: MenuValue
+        data?: React.ReactNode[]
+        onChange?: (value?: MenuValue) => void
+        
+        decoration?: MenuDecoration
+        direction?: MenuDirection
+        shape?: MenuShape
         size?: WhaleTypes.Size
-        decoration?:
-        'filled' |
-        'outline' |
-        'color' |
-        'underline' |
-        'tab' |
-        'filled-underline'
-        flip?: boolean
-        spacing?: string
-        direction?: 'row' | 'column'
-        shape?: 'square' | 'rounded' | 'round'
-        border?: 'none' | 'narrow' | 'wide'
-        align?: 'start' | 'center' | 'end'
-        separator?: React.ReactElement
-
-        color?: WhaleTypes.ColorProp
-        disabled?: boolean
+        align?: MenuAlign
+        
+        children?: React.ReactNode
     }
-
-    interface Item extends Partial<Omit<WhaleTypes.AllEventProps<HTMLDivElement>, 'onChange'>>, Partial<Props> {
-        content: React.ReactNode
-        value: Value
-        disabled?: boolean
+    interface StyleState {
+        decoration: Props['decoration']
     }
-
-    interface ItemProps extends Omit<Item, 'styles'> {
-        active: boolean
-        styles: WhaleTypes.ComponentStyles<Overrides>
-    }
-
     interface Overrides {
-        container: {
-            size: Props['size']
-            flip: Props['flip']
-            border: Props['border']
-        }
-        item: {
-            shape: Props['shape']
-            disabled: boolean
-            active: boolean
-            size: Props['size']
-            decoration: Props['decoration']
-        }
-        separator: void
+        container: StyleState
+        item: StyleState
+        group: StyleState
+        groupTitle: StyleState
+        subMenu: StyleState
+        subMenuContent: StyleState
+        subMenuArrow: StyleState
+        leftChild: StyleState
+        middleChild: StyleState
+        rightChild: StyleState
     }
 }
 

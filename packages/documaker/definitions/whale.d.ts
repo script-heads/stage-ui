@@ -668,13 +668,15 @@ declare module 'utils/attachProps/types' {
 	    type StyleResolver = (resolverParams: {
 	        propValue: any;
 	        propName: string;
+	        styleName: string;
 	        theme: WhaleTypes.Theme;
 	        ctx: StyleResolverContext;
-	    }) => string | void;
+	    }) => string | Record<string, string> | void;
 	    interface StyleProps extends WhaleTypes.ColorProps, WhaleTypes.BorderProps, WhaleTypes.PaddingProps, WhaleTypes.MarginProps, WhaleTypes.LayoutProps, WhaleTypes.FlexProps, WhaleTypes.GridProps {
 	        [key: string]: unknown;
 	    }
 	    interface InjectedStyles {
+	        event: ColorStyles;
 	        color: ColorStyles;
 	        border: BorderStyles;
 	        padding: PaddingStyles;
@@ -736,7 +738,8 @@ declare module 'utils/attachProps/types' {
 declare module 'utils/attachProps/attribute' {
 	/// <reference types="react" />
 	/// <reference types="@emotion/core" />
-	import WhaleTypes from 'types'; const createAttributes: <Styles, Props extends WhaleTypes.AllProps<unknown, Styles>>(props: Props, setFocus: import("react").Dispatch<import("react").SetStateAction<boolean>>, mouseFocus?: boolean | undefined) => {
+	import WhaleTypes from 'types';
+	import { Options } from 'hooks/useComponent'; const createAttributes: <Styles, Props extends WhaleTypes.AllProps<unknown, Styles>>(props: Props, setFocus: import("react").Dispatch<import("react").SetStateAction<boolean>>, options?: Options<Styles, Props> | undefined) => {
 	    attributes: WhaleTypes.AttributeProps;
 	    events: {
 	        form: Pick<Props, "onChange" | "onChangeCapture" | "onBeforeInput" | "onBeforeInputCapture" | "onInput" | "onInputCapture" | "onReset" | "onResetCapture" | "onSubmit" | "onSubmitCapture" | "onInvalid" | "onInvalidCapture">;
@@ -919,6 +922,11 @@ declare module 'utils/attachProps/attribute' {
 	    };
 	};
 	export default createAttributes;
+
+}
+declare module 'utils/attachProps/style/resolvers/event' {
+	import WhalePropsTypes from 'utils/attachProps/types'; const resolver: WhalePropsTypes.StyleResolver;
+	export default resolver;
 
 }
 declare module 'utils/colorProp' {
@@ -1494,11 +1502,7 @@ declare module 'utils/attachProps' {
 	/// <reference types="react" />
 	/// <reference types="@emotion/core" />
 	import WhaleTypes from 'types';
-	import WhalePropsTypes from 'utils/attachProps/types';
-	interface Options<Styles> {
-	    styleProps?: Partial<Record<keyof Styles, (keyof WhalePropsTypes.InjectedStyles)[]>>;
-	    mouseFocus?: boolean;
-	} const attachProps: <Styles, Props>(props: Props, theme: WhaleTypes.Theme, setFocus: import("react").Dispatch<import("react").SetStateAction<boolean>>, options: Options<Styles>) => {
+	import { Options } from 'hooks/useComponent'; const attachProps: <Styles, Props>(props: Props, theme: WhaleTypes.Theme, setFocus: import("react").Dispatch<import("react").SetStateAction<boolean>>, options: Options<Styles, Props>) => {
 	    attributes: WhaleTypes.AttributeProps;
 	    events: {
 	        form: Pick<Props, "onChange" | "onChangeCapture" | "onBeforeInput" | "onBeforeInputCapture" | "onInput" | "onInputCapture" | "onReset" | "onResetCapture" | "onSubmit" | "onSubmitCapture" | "onInvalid" | "onInvalidCapture">;
@@ -1687,17 +1691,18 @@ declare module 'utils/attachProps' {
 declare module 'utils/createStyles' {
 	import WhaleTypes, { EmotionStyles } from 'types'; const createComponentStyles: <Styles, Props extends {
 	    styles?: Partial<WhaleTypes.Styles<Styles>> | undefined;
-	}>(styles: WhaleTypes.Styles<Styles>, propStyles: Partial<Record<keyof Styles, EmotionStyles>>, props: Props, overrideName: string, overrides: Partial<{}> | undefined) => WhaleTypes.ComponentStyles<Styles>;
+	}>(styles: WhaleTypes.Styles<Styles>, propStyles: Partial<Record<keyof Styles, EmotionStyles>>, styleLabel: string, props: Props, overrideName: string, overrides: Partial<{}> | undefined) => WhaleTypes.ComponentStyles<Styles>;
 	export default createComponentStyles;
 
 }
 declare module 'hooks/useComponent' {
 	import WhaleTypes from 'types';
 	import WhalePropsTypes from 'utils/attachProps/types';
-	interface Options<Styles, Props> {
+	export interface Options<Styles, Props> {
 	    props: Props;
 	    styles: WhaleTypes.Styles<Styles> | WhaleTypes.CreateStyles<Styles, Props>;
 	    styleProps?: Partial<Record<keyof Styles, (keyof WhalePropsTypes.InjectedStyles)[]>>;
+	    styleLabel?: string;
 	    mouseFocus?: boolean;
 	    focusDecoration?: boolean;
 	    theme?: WhaleTypes.Theme;
