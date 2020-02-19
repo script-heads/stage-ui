@@ -8,7 +8,7 @@ export default {
     homePage,
     pages: {
         order: {
-            About: ['Getting started','Props','Theming','Overrides'],
+            About: ['Getting started','Theming','Overrides','Props', 'Icons', 'Bundle'],
             Content: [],
             Layout: [],
             Control: [],

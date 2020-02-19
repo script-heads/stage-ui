@@ -6,7 +6,7 @@ import code from './default.raw'
 import shapes from './shapes.raw'
 import rotate from './rotate.raw'
 
-export const title = 'Icons collection'
+export const title = 'Icons'
 export const ns = 'IconTypes'
 export const cases = [
     { label: 'Basic', code },

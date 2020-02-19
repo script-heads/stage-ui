@@ -2,7 +2,7 @@ import { Block, Paragraph, Header } from '@flow-ui/core'
 import React from 'react'
 import Syntax from '../../../components/Syntax'
 
-export const title = 'Bundle Size'
+export const title = 'Bundle'
 export const sticky = true
         'icons'
 
