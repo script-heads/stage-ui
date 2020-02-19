@@ -15,6 +15,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 borderSpacing: 0,
             }
         ],
+        row: [],
         headCell: (variant) => [
             {
                 textAlign: 'left',
@@ -31,18 +32,12 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 }
             })
         ],
-        row: [
-            {
-                '> td': {
-                    borderTopWidth: theme.assets.border.width,
-                    borderTopStyle: theme.assets.border.style,
-                    borderTopColor: theme.assets.border.color,
-                }
-            }
-        ],
         rowCell: [
             {
                 padding: '1rem',
+                borderTopWidth: theme.assets.border.width,
+                borderTopStyle: theme.assets.border.style,
+                borderTopColor: theme.assets.border.color,
             }
         ],
         expandContainer: [
