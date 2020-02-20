@@ -1,4 +1,4 @@
-import { Menu, Block, Flexbox, Text, TextField } from '@flow-ui/core'
+import { Menu, Block, Flexbox, Text, TextField, ScrollView } from '@flow-ui/core'
 import { Close, Cube, Grid } from '@flow-ui/core/icons'
 import WhaleTypes from '@flow-ui/whale/types'
 import * as React from 'react'
@@ -43,12 +43,9 @@ const Sidebar = (props: SidebarProps) => {
 
 	return (
 		<Fragment>
-			<Block
-				p="1rem"
-				css={(theme: WhaleTypes.Theme) => ([{
-					boxSizing: 'border-box',
-				}, {
-					[`@media (max-width: ${window.breakpoints[1]}px)`]: [
+			<ScrollView mode="hidden" w="15rem" h="100vh" backgroundColor={c => c.surface}
+				css={(theme: WhaleTypes.Theme) => ({
+					[`@media (max-width: ${theme.breakpoints[2]})`]: [
 						{
 							position: 'absolute',
 							width: '100%',
@@ -58,65 +55,68 @@ const Sidebar = (props: SidebarProps) => {
 							display: 'none'
 						}
 					]
-				}])}>
-				<Flexbox px="0.5rem" justifyContent="space-around">
-					<Text
-						flex={1}
-						size="xl"
-						weight="bold"
-						// color={c => c.surface}
-						css={{ cursor: 'pointer' }}
-						onClick={props.setIndex}
-						children={props.title}
+				})}>
+				<Block p="1rem">
+					<Flexbox px="0.5rem" justifyContent="space-around">
+						<Text
+							flex={1}
+							size="xl"
+							weight="bold"
+							// color={c => c.surface}
+							css={{ cursor: 'pointer' }}
+							onClick={props.setIndex}
+							children={props.title}
+						/>
+						<ThemeSwitcher
+							themes={props.themes}
+							currentTheme={props.currentTheme}
+							setTheme={props.setTheme}
+						/>
+					</Flexbox>
+					<TextField
+						size="s"
+						my="1rem 0.5rem"
+						decoration="none"
+						placeholder="Filter..."
+						value={search}
+						onChange={e => {
+							setSearch(e.target.value)
+						}}
 					/>
-					<ThemeSwitcher
-						themes={props.themes}
-						currentTheme={props.currentTheme}
-						setTheme={props.setTheme}
-					/>
-				</Flexbox>
-				<TextField
-					size="s"
-					my="1rem 0.5rem"
-					decoration="none"
-					placeholder="Filter..."
-					value={search}
-					onChange={e => {
-						setSearch(e.target.value)
-					}}
-				/>
-				<Menu 
-					column
-					mx="-0.5rem"
-					decoration="marker"
-					shape="round"
-					defaultValue={props.currentPage.url}
-					onChange={value => {
-						if (typeof value === 'string') {
-							props.onChange(value)
-						}
-					}}
-					children={
-						Object.keys(pages).map((section, index) => {
-							const menuItems = getMenuItems(pages[section])
-							if (menuItems.length === 0) {
-								return null
+					<Menu
+						column
+						mx="-0.5rem"
+						decoration="marker"
+						shape="round"
+						defaultValue={props.currentPage.url}
+						onChange={value => {
+							if (typeof value === 'string') {
+								props.onChange(value)
+								setMobileVisible(false)
 							}
-							return (
-								<Menu.Submenu pb="l" key={index} title={section} defaultOpen={true}>
-									{menuItems}
-								</Menu.Submenu>
-							)
-						})
-					}
-				/>
-			</Block>
+						}}
+						children={
+							Object.keys(pages).map((section, index) => {
+								const menuItems = getMenuItems(pages[section])
+								if (menuItems.length === 0) {
+									return null
+								}
+								return (
+									<Menu.Submenu pb="l" key={index} title={section} defaultOpen={true}>
+										{menuItems}
+									</Menu.Submenu>
+								)
+							})
+						}
+					/>
+				</Block>
+			</ScrollView>
 			<Flexbox
 				alignItems={'center'}
 				justifyContent={'center'}
 				onClick={() => setMobileVisible(v => !v)}
 				backgroundColor={c => c.primary}
-				css={[
+				css={(theme) => [
 					{
 						position: 'fixed',
 						width: '3.5rem',
@@ -126,7 +126,7 @@ const Sidebar = (props: SidebarProps) => {
 						right: '1rem',
 						bottom: '1rem',
 						zIndex: 210,
-						[`@media (min-width: ${window.breakpoints[1]}px)`]: {
+						[`@media (min-width: ${theme.breakpoints[2]})`]: {
 							display: 'none'
 						}
 					}

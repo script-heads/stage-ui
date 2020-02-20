@@ -19,16 +19,8 @@ const Page = (props: ContentProps) => {
         <Flexbox
             flex={1}
             justifyContent="center" 
-            // p={['1rem 4rem','1rem 4rem','0 1rem','0 1rem']}
+            p={['1rem 4rem','1rem 4rem','0 1rem','0 1rem']}
             // w={['auto','auto','auto','100vw']}
-            css={{
-                padding: '1rem 4rem', 
-                boxSizing: 'border-box',
-                [`@media (max-width: ${window.breakpoints[0]}px)`]: {
-                    padding: '0 1rem',
-                    width: '100vw',
-                }
-            }}
             >
             <Block 
                 css={{ 
