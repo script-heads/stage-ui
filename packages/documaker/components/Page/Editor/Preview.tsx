@@ -13,6 +13,8 @@ Object.assign(window, {
     React,
     ...React,
     FlowScope: {
+        React,
+        ...React,
         ...IconScope,
         ...CoreScope,
         ...LabScope,
@@ -38,7 +40,6 @@ const Preview = (props: PreviewProps) => {
      */
     traspiledCode = traspiledCode.split('export default ')[1].trim().slice(0, -1)
     traspiledCode = traspiledCode.replace(/createElement\(/g, 'createElement(FlowScope.')
-    traspiledCode = traspiledCode.replace(/FlowScope.React.Fragment/g, 'React.Fragment')
     traspiledCode.match(/var \S+/g)?.map(varible => {
         const varName = varible.split('var ')[1]
         traspiledCode = traspiledCode.replace(new RegExp(`FlowScope.${varName}`, 'g'), varName)

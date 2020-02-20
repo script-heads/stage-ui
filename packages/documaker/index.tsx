@@ -117,7 +117,7 @@ const Documaker = () => {
 			{currentPage && typeof currentPage === 'object' &&
 				<Fragment>
 					<Flexbox css={{ minHeight: '100%' }}>
-						<ScrollView size="xs" h="100vh" yBarPosition="left">
+						<ScrollView mode="hidden" h="100vh">
 							<Sidebar
 								title={config.name}
 								themes={themes}
@@ -129,7 +129,7 @@ const Documaker = () => {
 								onChange={(pageURL) => historyPush(pageURL)}
 							/>
 						</ScrollView>
-						<ScrollView size="xs" h="100vh" w="100%">
+						<ScrollView size="s" h="100vh" w="100%">
 							<Page
 								currentPage={currentPage as PageType}
 								types={config.pages?.types}
