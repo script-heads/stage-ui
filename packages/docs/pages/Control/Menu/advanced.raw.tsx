@@ -6,9 +6,7 @@ export default () => {
     return (
         <Menu
             column
-            p="1rem"
             defaultValue="Video"
-            shape="round"
             backgroundColor={c => c.surface}>
             <Menu.Group title="Menu">
                 <Menu.Item
