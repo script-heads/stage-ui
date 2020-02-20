@@ -54,9 +54,15 @@ const Page = (props: ContentProps) => {
                         <Editor cases={page.cases} />
                     }
                     {page.default &&
-                        <Block style={{ maxWidth: '45rem' }}>
-                            <page.default />
-                        </Block>
+                        <Block
+                            style={{
+                                width: '100%',
+                                maxWidth: '45rem'
+                            }}
+                            children={
+                                <page.default />
+                            }
+                        />
                     }
                 </Flexbox>
                 {page.ns && (
