@@ -8,7 +8,6 @@ export default () => {
     return (
         <ScrollView
             mode="always"
-            size="xs"
             shape="round"
             ref={ref}>
             {'˚ •'.repeat(1000)}

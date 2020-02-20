@@ -41,7 +41,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 position: 'absolute',
                 top: 0,
                 right: 0,
-                width: '0.75rem',
+                width: '0.5rem',
                 borderRadius: '5rem',
                 backgroundColor: color?.alpha(0.1).rgb().string(),
                 transition: 'opacity 0.5s',
@@ -59,13 +59,13 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                         width: '0.25rem',
                     }],
                     s: [{
-                        width: '0.5rem',
+                        width: '0.375rem',
                     }],
                     l: [{
-                        width: '1rem',
+                        width: '0.625rem',
                     }],
                     xl: [{
-                        width: '1.25rem',
+                        width: '0.75rem',
                     }]
                 },
                 shape: {
@@ -85,7 +85,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
             {
                 zIndex: 999,
                 display: 'block',
-                width: '0.75rem',
+                width: '0.5rem',
                 height: '100%',
                 borderRadius: '1rem',
                 backgroundColor: color.rgb().string(),
@@ -100,13 +100,13 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                         width: '0.25rem',
                     }],
                     s: [{
-                        width: '0.5rem',
+                        width: '0.375rem',
                     }],
                     l: [{
-                        width: '1rem',
+                        width: '0.625rem',
                     }],
                     xl: [{
-                        width: '1.25rem',
+                        width: '0.75rem',
                     }]
                 },
                 shape: {

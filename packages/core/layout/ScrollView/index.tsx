@@ -189,6 +189,27 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         return false
     }
 
+    function moveScrollBy(direction: 'x' | 'y', pageOffset: number) {
+        const isX = direction === 'x'
+        const rect = memo[`${direction}Thumb`]?.getBoundingClientRect()
+        if (rect && memo.container) {
+            const delta = pageOffset - rect[direction] - rect[isX ? 'width' : 'height'] / 2
+            if (isLegacyScrollSupport) {
+                const movePoint = memo.container[isX ? 'scrollLeft' : 'scrollTop'] + delta
+                memo.container?.scrollTo(
+                    isX ? movePoint : 0, 
+                    isX ? 0 : movePoint,
+                )
+            } else {
+                updateScroll({
+                    deltaX: isX ? delta : 0,
+                    deltaY: isX ? 0 : delta,
+                    preventDefault: () => null,
+                    stopPropagation: () => null
+                })
+            }
+        }
+    }
     function updateScroll(e: Types.ScrollParams) {
         if (!memo.container || !memo.content) {
             return
@@ -359,6 +380,18 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                 onMouseEnter={() => {
                     window.addEventListener('mouseup', mouseUp, { passive: true })
                 }}
+                onMouseDown={(e) => {
+                    moveScrollBy('y', e.pageY)
+                    yMouseDown()
+                    e.preventDefault()
+                }}
+                onMouseUp={mouseUp}
+                onMouseMove={(e) => {
+                    if (memo.y) {
+                        moveScrollBy('y', e.pageY)
+                        e.preventDefault()
+                    }
+                }}
             />
             <div
                 css={cs.xBar({ active, size, shape, position: xBarPosition })}
@@ -371,6 +404,18 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                 )}
                 onMouseEnter={() => {
                     window.addEventListener('mouseup', mouseUp, { passive: true })
+                }}
+                onMouseDown={(e) => {
+                    moveScrollBy('x', e.pageX)
+                    xMouseDown()
+                    e.preventDefault()
+                }}
+                onMouseUp={mouseUp}
+                onMouseMove={(e) => {
+                    if (memo.x) {
+                        moveScrollBy('x', e.pageX)
+                        e.preventDefault()
+                    }
                 }}
             />
         </>
