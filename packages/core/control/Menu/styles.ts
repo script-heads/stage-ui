@@ -114,6 +114,9 @@
                         '> [data-flow=menu-item]': [
                             {
                                 color: theme.color.primary.rgb().string(),
+                                ':hover': {
+                                    color: theme.color.primary.rgb().string(),
+                                }
                             }
                         ]
                     }],
