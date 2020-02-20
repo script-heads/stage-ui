@@ -11,7 +11,7 @@ const Syntax = (props: { code?: (() => JSX.Element )| string, children?: string 
         padding: '1rem',
         fontSize: theme.assets.typography.text.s.fontSize,
         borderRadius: theme.radius.default,
-        background: theme.color.surface,
+        background: theme.color.background,
     }
     return (
         <Prism

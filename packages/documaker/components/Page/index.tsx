@@ -36,28 +36,40 @@ const Page = (props: ContentProps) => {
                     maxWidth: '64rem', 
                     overflow: 'hidden' 
                 }}>
-                {page.title && (
-                    <Header
-                        size="xl"
-                        my="1rem"
-                        weight={800}
-                        children={page.title}
-                    />
-                )}
-                {page.cases &&
-                    <Editor cases={page.cases}/>
-                }
-                {page.default && 
-                    <Block mt="2rem">
-                        <page.default />
-                    </Block>
-                }
+                <Flexbox column alignItems="center">
+                    {page.title && (
+                        <Block style={{ 
+                            width: '100%',
+                            maxWidth: page.cases === void 0 ? '45rem' : '100%'
+                        }}>
+                            <Header
+                                size="xl"
+                                my="1rem"
+                                weight={800}
+                                children={page.title}
+                            />
+                        </Block>
+                    )}
+                    {page.cases &&
+                        <Editor cases={page.cases} />
+                    }
+                    {page.default &&
+                        <Block style={{ maxWidth: '45rem' }}>
+                            <page.default />
+                        </Block>
+                    }
+                </Flexbox>
                 {page.ns && (
-                    <API
-                        name={page.ns}
-                        types={types}
-                        separatedTypes={separatedTypes}
-                    />
+                    <Block style={{ 
+                        width: '100%',
+                        maxWidth: page.cases === void 0 ? '45rem' : '100%'
+                     }}>
+                        <API
+                            name={page.ns}
+                            types={types}
+                            separatedTypes={separatedTypes}
+                        />
+                    </Block>
                 )}
             </Block>
         </Flexbox>

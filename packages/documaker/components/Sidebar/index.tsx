@@ -44,16 +44,14 @@ const Sidebar = (props: SidebarProps) => {
 	return (
 		<Fragment>
 			<Block
-				p="1.5rem"
+				p="1rem"
 				css={(theme: WhaleTypes.Theme) => ([{
 					boxSizing: 'border-box',
-					background: theme.color.surface.rgb().string()
 				}, {
 					[`@media (max-width: ${window.breakpoints[1]}px)`]: [
 						{
 							position: 'absolute',
 							width: '100%',
-							backgroundColor: theme.color.background.rgb().string(),
 							zIndex: 200,
 						},
 						!visibility && {
@@ -61,42 +59,27 @@ const Sidebar = (props: SidebarProps) => {
 						}
 					]
 				}])}>
-				<Block mx="-0.5rem">
-					<Flexbox justifyContent="space-around">
-						<Text 
-							flex={1}
-							size="xl"
-							weight="bold"
-							// color={c => c.surface}
-							css={{ cursor: 'pointer' }}
-							onClick={props.setIndex}
-							children={props.title}
-						/>
-						<ThemeSwitcher
-								themes={props.themes}
-								currentTheme={props.currentTheme}
-								setTheme={props.setTheme}
-							/>
-					</Flexbox>
+				<Flexbox px="0.5rem" justifyContent="space-around">
 					<Text
-						size="s"
-						css={{ opacity: 0.5 }}
-						onClick={props.setIndex}
-						weight={600}
+						flex={1}
+						size="xl"
+						weight="bold"
 						// color={c => c.surface}
-						children={'Documentation'}
+						css={{ cursor: 'pointer' }}
+						onClick={props.setIndex}
+						children={props.title}
 					/>
-				</Block>
+					<ThemeSwitcher
+						themes={props.themes}
+						currentTheme={props.currentTheme}
+						setTheme={props.setTheme}
+					/>
+				</Flexbox>
 				<TextField
 					size="s"
-					my="1.5rem"
-					mx="-1.5rem"
-					px="1rem"
-					decoration="underline"
-					leftChild={
-						<Cube />
-					}
-					placeholder="Filter"
+					my="1rem 0.5rem"
+					decoration="none"
+					placeholder="Filter..."
 					value={search}
 					onChange={e => {
 						setSearch(e.target.value)
@@ -104,8 +87,9 @@ const Sidebar = (props: SidebarProps) => {
 				/>
 				<Menu 
 					column
-					mx="-1.5rem"
+					mx="-0.5rem"
 					decoration="marker"
+					shape="round"
 					defaultValue={props.currentPage.url}
 					onChange={value => {
 						if (typeof value === 'string') {

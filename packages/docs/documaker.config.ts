@@ -4,7 +4,7 @@ import themes from './themes'
 export default {
     name: 'FlowUI',
     git: 'https://github.com/abr-tech/FlowUI',
-    themes,
+    themes: [],
     homePage,
     pages: {
         order: {

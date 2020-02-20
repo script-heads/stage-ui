@@ -112,7 +112,7 @@ export default (props: HomePageProps) => {
             promoData = {
                 ...promoData,
                 ...steps[nextStep]
-            }
+            } as any
             setPd(promoData)
             const { t } = steps[nextStep]
             nextStep = nextStep + 1 === steps.length ? 0 : nextStep + 1

@@ -100,7 +100,7 @@ const Editor = (props: EditorProps) => {
     }, [fullscreen])
 
     return (
-        <Fragment>
+        <Block w="100%">
             <Flexbox mt="1.5rem" p="1rem" decoration="surface" alignItems="center" css={{
                 borderBottom: 0,
                 borderBottomLeftRadius: 0,
@@ -196,7 +196,7 @@ const Editor = (props: EditorProps) => {
                     <MonacoEditor setCode={setCode} />
                 </Split>
             </Block>
-        </Fragment>
+        </Block>
     )
 }
 export default Editor

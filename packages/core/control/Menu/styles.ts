@@ -35,7 +35,7 @@
                     cursor: 'pointer',
                     userSelect: 'none',
                     padding: `calc(${spacing} / 2) ${spacing}`,
-                    color: theme.color.hardest.rgb().string(),
+                    color: theme.color.onBackground.rgb().string(),
                     ':hover:not([data-flow-disabled]):not([data-flow-active])': [
                         variant({
                             decoration: {

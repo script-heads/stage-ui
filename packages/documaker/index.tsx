@@ -101,7 +101,7 @@ const Documaker = () => {
 	}
 
 	return (
-		<FlowViewport currentTheme={currentTheme}>
+		<FlowViewport currentTheme={currentTheme} >
 			{currentPage === null && <PageEmpty />}
 			{currentPage === '404' && <Page404 />}
 			{currentPage === '/' && config.homePage &&
@@ -117,7 +117,7 @@ const Documaker = () => {
 			{currentPage && typeof currentPage === 'object' &&
 				<Fragment>
 					<Flexbox css={{ minHeight: '100%' }}>
-						<ScrollView mode="hidden" h="100vh">
+						<ScrollView mode="hidden" w="15rem" h="100vh" backgroundColor={c => c.surface}>
 							<Sidebar
 								title={config.name}
 								themes={themes}
@@ -129,7 +129,7 @@ const Documaker = () => {
 								onChange={(pageURL) => historyPush(pageURL)}
 							/>
 						</ScrollView>
-						<ScrollView size="s" h="100vh" w="100%">
+						<ScrollView size="s" h="100vh" w="100%" backgroundColor={c => c.surface}>
 							<Page
 								currentPage={currentPage as PageType}
 								types={config.pages?.types}
