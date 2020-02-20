@@ -119,21 +119,18 @@ const PrefPanel = () => {
             borderColor={c => c.lightest}>
             <Flexbox justifyContent="space-between" alignItems="center" my=".5rem">
                 <Menu
+                    direction="row"
                     size="s"
                     ml="0.5rem"
                     decoration="color"
-                    defaultValue="props"
-                    items={[
-                        { 
-                            content: (<><Cube mr={'0.25rem'} />Design</>), 
-                            value: 'props' },
-                        { 
-                            content: (<><Link mr={'0.25rem'} />Logics</>), 
-                            value: 'actions', 
-                            disabled: true 
-                        }
-                    ]}
-                />
+                    value="design"
+                >
+                    <Menu.Item
+                        value="design"
+                        leftChild={<Cube />}
+                        title="Design"
+                    />
+                </Menu>
                 <Block>
                     <Copy
                         mr="1rem"

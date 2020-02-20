@@ -76,12 +76,6 @@ const FlexConrols = () => {
 
     return (
         <Fragment>
-            {/* <Menu
-                items={[
-                    { value: 'justifyContent', content: 'Vertical' },
-                    { value: 'alignItems', content: 'Horizontal' }
-                ]}
-            /> */}
             <Block pb="0.5rem">
                 <Paragraph
                     pb=".25rem"

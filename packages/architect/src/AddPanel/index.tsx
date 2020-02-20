@@ -13,17 +13,8 @@ const AddPanel = () => {
     const theme = useTheme()
     const cs = styles(theme)
     const [search, setSearch] = useState('')
-    const menuValues = [
-        {
-            content: <Layers size={'1.5rem'} />,
-            value: 'components'
-        },
-        {
-            content: <Grid size={'1.5rem'} />,
-            value: 'icons'
-        }
-    ]
-    const [menuValue, setMenuValue] = useState(menuValues[0].value)
+   
+    const [menuValue, setMenuValue] = useState(0)
     const [currentComponent, setCurrentComponent] = useState('')
 
     return (
@@ -36,7 +27,7 @@ const AddPanel = () => {
             />
             <div css={cs.container}>
                 <Block h="4rem">
-                    <Flexbox h="100%">
+                    <Flexbox h="100%" alignItems="center"></Flexbox>
                         <TextField
                             css={cs.searchBar}
                             decoration="none"
@@ -50,27 +41,28 @@ const AddPanel = () => {
                             }
                         />
                         <Menu
-                            pr={'1rem'}
+                            direction="row"
+                            pr="1rem"
                             size="s"
                             decoration="color"
                             defaultValue="components"
                             value={menuValue}
-                            onChange={(menuValue: string) => {
-                                setMenuValue(menuValue)
+                            onChange={(index: number) => {
+                                setMenuValue(index)
                             }}
-                            items={menuValues}
+                            data={[<Layers size={'1.5rem'} />, <Grid size={'1.5rem'} />]}
                         />
                     </Flexbox>
                     <Divider color={c => c.lightest} />
                 </Block>
                 <Flexbox h="26rem" pt="1px">
-                    {menuValue === 'components' && (
+                    {menuValue === 0 && (
                         <ComponentsView
                             search={search}
                             styles={cs}
                         />
                     )}
-                    {menuValue === 'icons' && (
+                    {menuValue === 1 && (
                         <IconsView
                             search={search}
                             styles={cs}

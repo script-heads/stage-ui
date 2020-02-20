@@ -21,12 +21,14 @@ const HeaderPanel = (props: HeaderPanelProps) => {
         <Flexbox css={cs.container}>
             <div>
                 <Header
+                    m="0"
                     size="xs"
                     weight="bold"
                     onClick={props.setIndex}
                     children={props.title}
                 />
                 <Paragraph
+                    m="0"
                     size="xs"
                     css={{ opacity: 0.5 }}
                     onClick={props.setIndex}

@@ -33,22 +33,24 @@ const ComponentTree = () => {
             borderColor={c => c.lightest}>
             <Flexbox justifyContent="space-between" alignItems="center" my=".5rem">
                 <Menu
+                    direction="row"
                     size="s"
                     ml="0.5rem"
                     decoration="color"
-                    defaultValue="layers"
-                    items={[
-                        {
-                            content: (<><Layers mr={'0.25rem'} />Layers</>),
-                            value: 'layers',
-                        },
-                        {
-                            content: (<><Browser mr={'0.25rem'} />Pages</>),
-                            value: 'pages',
-                        }
-                    ]}
+                    value={tab}
                     onChange={toolBarActions.onTabChange}
-                />
+                >
+                    <Menu.Item 
+                        value="layers"
+                        title="Layers"
+                        leftChild={<Layers />}
+                    />
+                    <Menu.Item 
+                        value="pages"
+                        title="Pages"
+                        leftChild={<Browser />}
+                    />
+                </Menu>
                 <Plus
                     mr="1rem"
                     onClick={() => {
