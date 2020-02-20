@@ -6,7 +6,9 @@ export default () => {
     return (
         <Menu
             defaultValue={0}
-            data={['Home', 'Settings']}
+            decoration="marker"
+            backgroundColor={c => c.surface}
+            data={['Video', 'Music', 'News']}
         />
     )
 }
