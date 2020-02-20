@@ -28,6 +28,7 @@ const Sidebar = (props: SidebarProps) => {
 			return true
 		}).map(page => (
 			<Menu.Item
+				tabIndex={0}
 				style={{
 					fontWeight: 'bold'
 				}}

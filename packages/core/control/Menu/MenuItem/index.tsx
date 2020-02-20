@@ -18,7 +18,6 @@ const MenuItem: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, re
         styleProps: { 
             container: ['all'],
         },
-        focusDecoration: false
     })
 
     const [active, setActive, ctx] = useValue(props.value)
@@ -76,8 +75,19 @@ const MenuItem: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, re
                     events.all.onClick?.(e)
                 }
             }}
+            onKeyPress={(e) => {
+                /**
+                 * Handle Space/Enter at focus
+                 */
+                if (!disabled && [13,32].includes(e.charCode)) {
+                    setActive()
+                    ctx.onChange?.(props.value)
+                    e.preventDefault()
+                }
+                events.all.onKeyPress?.(e)
+            }}
             ref={containerRef} css={cs.container}>
-            <span data-flow-indent='' />
+            <span data-flow-indent="" />
             {leftChild && <span data-flow="left">{leftChild}</span>}
             <span data-flow="middle">{props.children || props.title}</span>
             {rightChild && <span data-flow="right">{rightChild}</span>}
