@@ -21,6 +21,7 @@
                 {
                     ...typography,
                     display: 'flex',
+                    outline: 'none',
                     flexDirection: props.direction || (props.column ? 'column' : 'row'),
                     ...isRow ? ({
                         justifyContent: props.align || 'stretch',
@@ -34,6 +35,7 @@
                     display: 'flex',
                     cursor: 'pointer',
                     userSelect: 'none',
+                    outline: 'none',
                     padding: `calc(${spacing} / 2) ${spacing}`,
                     color: theme.color.onBackground.rgb().string(),
                     ':hover:not([data-flow-disabled]):not([data-flow-active])': [
@@ -110,6 +112,7 @@
             subMenu: (variant) => [
                 {
                     position: 'relative',
+                    outline: 'none',
                     '&[data-flow-active]': [{
                         '> [data-flow=menu-item]': [
                             {
