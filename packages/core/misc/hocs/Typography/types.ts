@@ -35,7 +35,7 @@ declare namespace TypographyTypes {
 	
 	interface PrivateProps extends LinkProps {
 		tag: string
-		sizesOf: keyof WhaleTypes.Theme['typography']
+		sizesOf: keyof WhaleTypes.ThemeAssets['typography']
 		specificStyles?: any
 	}
 }

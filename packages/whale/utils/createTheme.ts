@@ -26,7 +26,7 @@ const createTheme = (theme: Types.SourceTheme): Types.Theme=> {
         newTheme.overrides = (main, assets) => mergeObjects(
             overrides,
             themeReplace.overrides && themeReplace.overrides(main, assets),
-        ) as Types.ThemeAssets
+        ) as Partial<{[Component in keyof Whale.Overrides]: Types.Styles<Whale.Overrides[Component]>}>
 
         return createTheme(newTheme)
     }
