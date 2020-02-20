@@ -11,6 +11,10 @@ declare namespace RangeTypes {
         className?: string
     }
 
+    interface Ref {
+        container: HTMLDivElement
+        setValue: (value: number) => void
+    }
     interface Overrides {
         container: void
         rail: void

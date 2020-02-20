@@ -1,9 +1,9 @@
 import { useComponent } from '@flow-ui/whale'
-import React, { forwardRef, RefForwardingComponent, useEffect, useImperativeHandle, useRef } from 'react'
+import React, { useState, forwardRef, RefForwardingComponent, useEffect, useImperativeHandle, useRef } from 'react'
 import styles from './styles'
 import Types from './types'
 
-const Range: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+const Range: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
     const { min = 0, max = 100, value, defaultValue } = props
 
     const { cs, attributes, events } = useComponent('Range', { props, styles, styleProps: { container: ['all']} })
@@ -11,11 +11,16 @@ const Range: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
     const thumbRef = useRef<HTMLDivElement>(null)
     const trackRef = useRef<HTMLDivElement>(null)
     const containerRef = useRef<HTMLDivElement>(null)
-    const thumbPosition = value2Percent(value || defaultValue || 0, min, max)
+    const [position, setPosition] = useState(value2Percent(value || defaultValue || 0, min, max))
 
-    useImperativeHandle(ref, () =>
-        containerRef.current as HTMLDivElement
-    )
+    useImperativeHandle(ref, () => ({
+        container: containerRef.current as HTMLDivElement,
+        setValue: (value: number) => {
+            setPosition(
+                value2Percent(value, min, max)
+            )
+        }
+    }))
 
     let isActive = false
 
@@ -72,12 +77,12 @@ const Range: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
             <div
                 css={cs.track}
                 ref={trackRef}
-                style={{ width: thumbPosition + '%' }}
+                style={{ width: position + '%' }}
             />
             <div
                 ref={thumbRef}
                 css={cs.thumb}
-                style={{ left: thumbPosition + '%' }}
+                style={{ left: position + '%' }}
             />
         </div>
     )
