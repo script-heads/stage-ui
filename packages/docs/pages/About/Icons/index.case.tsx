@@ -1,5 +1,5 @@
 import { Block, Flexbox, Header, Text } from '@flow-ui/core'
-import * as icons from '@flow-ui/core/icons'
+import * as AllIcons from '@flow-ui/core/icons'
 import { Minus, Plus } from '@flow-ui/core/icons'
 import React, { Fragment, useEffect, useState } from 'react'
 import code from './default.raw'
@@ -51,8 +51,8 @@ export default () => {
                         gridTemplateColumns: 'repeat(auto-fill, 8rem)'
                     }}
                 >
-                    {Object.keys(icons).map((key, index) => {
-                        const PreviewIcon = icons[key]
+                    {Object.keys(AllIcons).map((key, index) => {
+                        const PreviewIcon = AllIcons[key]
                         return (
                             <Delay key={key} index={index}>
                                 <Flexbox

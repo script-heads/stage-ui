@@ -1,6 +1,6 @@
 import React from 'react'
 import { TextField } from '@flow-ui/core'
-import  * as Icon from '@flow-ui/core/icons'
+import { Person } from '@flow-ui/core/icons'
 
 export default () => {
     return (
@@ -8,7 +8,7 @@ export default () => {
             size="m"
             shape="rounded"
             clearable
-            leftChild={<Icon.Person/>}
+            leftChild={<Person />}
             label="Your name"
             placeholder="John"
         />
