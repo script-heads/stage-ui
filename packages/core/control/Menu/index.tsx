@@ -1,5 +1,5 @@
 import { useComponent } from '@flow-ui/whale'
-import React, { forwardRef, RefForwardingComponent } from 'react'
+import React, { forwardRef, RefForwardingComponent, useState, useLayoutEffect } from 'react'
 import MenuItem from './MenuItem'
 import styles from './styles'
 import Submenu from './Submenu'
@@ -42,6 +42,22 @@ const Menu: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
         decoration = 'filled',
     } = props
 
+    const [ctx, setCtx] = useState({
+        values: {},
+        controlled: props.value !== void 0,
+        current: props.value,
+        onChange: props.onChange
+    })
+    
+    useLayoutEffect(() => {
+        if (ctx.current === void 0 && props.defaultValue !== void 0) {
+            setCtx({
+                ...ctx,
+                current: props.defaultValue
+            })
+        }
+    }, [])
+
     const { cs, attributes, events } = useComponent('Menu', { 
         props, 
         styles, 
@@ -51,8 +67,6 @@ const Menu: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
         styleLabel: 'Menu',
         focusDecoration: false
     })
-
-    const defaultValue = React.useMemo(() => props.defaultValue, [])
     
     const styleState: Types.StyleState = { 
         decoration
@@ -82,11 +96,6 @@ const Menu: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
             />
         ))
     }
-    
-    let current = defaultValue
-    if (props.value !== void 0) {
-        current = props.value
-    }
 
     return (
         <div
@@ -98,12 +107,7 @@ const Menu: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
             css={css}
             children={(
                 <Context.Provider
-                    value={{
-                        values: {},
-                        controlled: props.value !== void 0,
-                        current,
-                        onChange: props.onChange
-                    }}
+                    value={ctx}
                     children={children}
                 />
             )}

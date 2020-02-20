@@ -66,8 +66,6 @@ const Sidebar = (props: SidebarProps) => {
 					p="0.5rem" 
 					ml="-1.5rem" 
 					pl="1.5rem" 
-					// css={{ opacity: 0.4 }}
-					// backgroundColor={c => c.onSurface}
 					>
 					<Block>
 						<Text 
@@ -122,7 +120,7 @@ const Sidebar = (props: SidebarProps) => {
 				<Menu 
 					mx="-1.5rem"
 					decoration="marker"
-					value={props.currentPage.url}
+					defaultValue={props.currentPage.url}
 					onChange={value => {
 						if (typeof value === 'string') {
 							props.onChange(value)
