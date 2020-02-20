@@ -1,20 +1,24 @@
 
 import * as CoreScope from '@flow-ui/core'
 import { Block } from '@flow-ui/core'
-import * as Icon from '@flow-ui/core/icons'
+import * as IconScope from '@flow-ui/core/icons'
 import * as LabScope from '@flow-ui/lab'
 import WhaleTypes from '@flow-ui/whale/types'
 import React from 'react'
 
 //@ts-ignore
-import { transpile } from '@flow-ui/documaker/scripts/typescriptServices'
+import { transpile } from './typescriptServices'
 
 Object.assign(window, {
     React,
     ...React,
-    ...CoreScope,
-    ...LabScope,
-    Icon
+    FlowScope: {
+        React,
+        ...React,
+        ...IconScope,
+        ...CoreScope,
+        ...LabScope,
+    }
 })
 
 interface PreviewProps {
@@ -26,11 +30,21 @@ interface PreviewProps {
 }
 
 const Preview = (props: PreviewProps) => {
-    const {theme, code, grid, fullscreen, setFullscreen} = props
-    const traspiledCode = code && transpile(code, {
+    const { theme, code, grid, fullscreen, setFullscreen } = props
+    let traspiledCode = code && transpile(code, {
         jsx: 'react',
         module: 'es6',
-    }).split('export default ')[1].trim().slice(0, -1) + '()'
+    })
+    /**
+     * Butch of crutchs before execute :)
+     */
+    traspiledCode = traspiledCode.split('export default ')[1].trim().slice(0, -1)
+    traspiledCode = traspiledCode.replace(/createElement\(/g, 'createElement(FlowScope.')
+    traspiledCode.match(/var \S+/g)?.map(varible => {
+        const varName = varible.split('var ')[1]
+        traspiledCode = traspiledCode.replace(new RegExp(`FlowScope.${varName}`, 'g'), varName)
+    })
+    traspiledCode += '()'
     
     return (
         <Block h="100%" css={{ position: 'relative' }}>

@@ -1,11 +1,11 @@
 import { Button, dialog, Flexbox, Header, Paragraph } from '@flow-ui/core'
-import * as Icon from '@flow-ui/core/icons'
+import { AlertTriangle } from '@flow-ui/core/icons'
 import React from 'react'
 
 export default () => {
     const Content = props => (
         <Flexbox column alignItems="center">
-            <Icon.AlertTriangle 
+            <AlertTriangle 
                 color={c => c.warning}
                 size="4rem"
             />

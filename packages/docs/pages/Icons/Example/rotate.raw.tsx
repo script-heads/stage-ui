@@ -1,11 +1,11 @@
-import * as Icon from '@flow-ui/core/icons'
+import { ArrowIosForward } from '@flow-ui/core/icons'
 import React, { useState } from 'react'
 
 export default () => {
     const [deg, setDegree] = useState(0)
     return (
         <React.Fragment>
-            <Icon.ArrowIosForward
+            <ArrowIosForward
                 shape="oval"
                 color={c => c.onPrimary}
                 background={c => c.primary} 

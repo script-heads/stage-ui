@@ -88,6 +88,7 @@ class Monaco {
             minimap: {
                 enabled: false
             },
+            lineNumbers: 'off',
             automaticLayout: true,
             fontSize: 14,
             fontWeight: '600',

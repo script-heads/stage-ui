@@ -1,13 +1,13 @@
-import * as Icon from '@flow-ui/core/icons'
+import { Clock } from '@flow-ui/core/icons'
 import React from 'react'
 
 export default () => {
     return (
         <React.Fragment>
-            <Icon.Clock 
+            <Clock 
                 size="4rem" 
             />
-            <Icon.Clock 
+            <Clock 
                 size="4rem" 
                 type="filled" 
             />

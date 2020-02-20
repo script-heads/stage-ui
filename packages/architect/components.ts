@@ -1,10 +1,10 @@
 import { ArchitectTools } from '@flow-ui/architect/types'
 import * as Core from '@flow-ui/core'
-import * as Icon from '@flow-ui/core/icons'
+import * as IconScope from '@flow-ui/core/icons'
 import { uuid } from '.'
 
 export const Init = (component: string, params: any = {}, hidden = false) => ({
-    component: Core[component] || Icon[component],
+    component: Core[component] || IconScope[component],
     hidden,
     create: () => ({
         id: uuid(),
@@ -110,7 +110,7 @@ const components: ArchitectTools['components'] = {
      */
     ...(() => {
         let iconsCompoenetsTemp = {}
-        for (const IconCompoenent in Icon) {
+        for (const IconCompoenent in IconScope) {
             iconsCompoenetsTemp[IconCompoenent] = Init(IconCompoenent, {
                 label: IconCompoenent
             }, true)

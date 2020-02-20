@@ -1,6 +1,6 @@
 import { Flexbox, Table, Text, TextField } from '@flow-ui/core'
 import T from '@flow-ui/core/data/Table/types'
-import * as Icon from '@flow-ui/core/icons'
+import { Checkmark, Edit2 } from '@flow-ui/core/icons'
 import React from 'react'
 
 export default () => {
@@ -13,7 +13,7 @@ export default () => {
         }
         return (
             <Flexbox alignItems="center">
-                <Icon.Checkmark
+                <Checkmark
                     size="1rem"
                     mr="0.5rem"
                     color={c => c.successful}
@@ -32,7 +32,7 @@ export default () => {
 
     const DisplayName = (props: { ctx: T.TableCellContext }) => (
         <Flexbox alignItems="center">
-            <Icon.Edit2
+            <Edit2
                 size="1rem"
                 mr="0.5rem"
                 color={c => c.primary}

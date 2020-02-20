@@ -1,15 +1,11 @@
 import { Flexbox, Table, Text } from '@flow-ui/core'
 import T from '@flow-ui/core/data/Table/types'
-import * as Icon from '@flow-ui/core/icons'
+import { ArrowIosUpward } from '@flow-ui/core/icons'
 import React from 'react'
 
 export default () => {
     const ExpandCell = (props: { ctx: T.TableCellContext }) => {
         
-        const ExpandIcon = props.ctx.isExpand
-            ? Icon.ArrowIosUpward
-            : Icon.ArrowIosDownward
-   
         return (
             <Flexbox alignItems="center" onClick={() => {
                 if (props.ctx.isExpand) {
@@ -20,9 +16,10 @@ export default () => {
                     )
                 }
             }}>
-                <ExpandIcon
+                <ArrowIosUpward
                     mr="0.5rem"
                     color={c => c.primary}
+                    rotate={props.ctx.isExpand ? 180 : 0}
                 />
                 <Text>{props.ctx.value}</Text>
             </Flexbox>

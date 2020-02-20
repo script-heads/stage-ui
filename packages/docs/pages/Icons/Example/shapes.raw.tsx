@@ -1,18 +1,18 @@
-import * as Icon from '@flow-ui/core/icons'
+import { Cube, Archive } from '@flow-ui/core/icons'
 import React from 'react'
 
 export default () => {
     return (
         <React.Fragment>
-            <Icon.Cube
+            <Cube
                 shape="oval"
                 color={c => c.onPrimary}
-                background={c => c.primary} 
-                size="2rem" 
+                background={c => c.primary}
+                size="2rem"
             />
-            <Icon.Archive
+            <Archive
                 shape="circle"
-                color={c => c.primary} 
+                color={c => c.primary}
                 size="2rem"
                 ml=".5rem"
             />

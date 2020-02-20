@@ -2,7 +2,7 @@ import { ArchitectTools } from '@flow-ui/architect/types'
 import { ScrollView, Flexbox, Text, Block } from '@flow-ui/core'
 import React, { useEffect, useState } from 'react'
 import { AddPanelStyles } from './styles'
-import * as icons from '@flow-ui/core/icons'
+import * as IconScope from '@flow-ui/core/icons'
 import components, { Init } from '../../components'
 import { context } from '../..'
 
@@ -38,8 +38,8 @@ const ComponentsView = (props: { search: string, styles: AddPanelStyles }) => {
                         gridTemplateColumns: 'repeat(auto-fill, 8rem)'
                     }}
                 >
-                    {Object.keys(icons).map((key, index) => {
-                        const PreviewIcon = icons[key]
+                    {Object.keys(IconScope).map((key, index) => {
+                        const PreviewIcon = IconScope[key]
                         return (
                             <Delay key={key} index={index} active={currentComponent === key}>
                                 <Flexbox
