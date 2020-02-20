@@ -38,7 +38,6 @@ export default () => {
                         leftChild={<Icon.Person />}
                     />
                     <Menu.Item
-                        value="Quit"
                         title="Quit"
                         leftChild={<Icon.AlertCircle />}
                     />

@@ -1,5 +1,6 @@
 import React from 'react'
-import { Text, Block } from '@flow-ui/core'
+import { Flexbox, Text, Block, Divider } from '@flow-ui/core'
+import { Code } from '@flow-ui/core/icons'
 
 interface ErrorBoundaryProps {
     error?: string | null
@@ -39,8 +40,20 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps,ErrorBoundaryStat
     render() {
         if (this.state.error || this.props.error) {
             return (
-                <Block p="2rem" h="100%" backgroundColor={c=>c.error}>
-                    <Text color={c=>c.onPrimary}>{this.state.error || this.props.error}</Text>
+                <Block p="2rem" h="100%" backgroundColor={c=>c.surface}>
+                    <Text color={c=>c.error}>{this.state.error || this.props.error}</Text>
+                    <Divider color={c => c.lightest} my="0.5rem" />
+                    <Flexbox 
+                        mb="1rem"
+                        borderRadius="4px" 
+                        alignItems="center"
+                        justifyContent="space-between" 
+                        // backgroundColor={c=>c.error.alpha(0.1)} 
+                        // textColor={c => c.error}
+                        >
+                        <Text color={c => c.light} size="s">Looks like you typed wrong</Text>
+                        <Code color={c => c.light} ml="0.5rem" />
+                    </Flexbox>
                 </Block>
             )
         }
