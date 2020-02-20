@@ -23,7 +23,7 @@ const Light: WhaleTypes.SourceTheme = {
             hardest: [100, 100, 100],
 
             error: [224, 32, 32],
-            successful: [109, 212, 0],
+            success: [109, 212, 0],
             warning: [250, 100, 0],
             info: [0, 145, 255],
             palette: {}

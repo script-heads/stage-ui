@@ -87,7 +87,7 @@ declare namespace WhaleTypes {
 
             error: Color
             warning: Color
-            successful: Color
+            success: Color
             info: Color
 
             palette: Whale.Palette<Color>

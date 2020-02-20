@@ -22,7 +22,7 @@ const dark = light.replace({
             hardest: [230, 230, 250],
 
             error: [188, 0, 0],
-            successful: [0, 120, 0],
+            success: [0, 120, 0],
             warning: [255, 149, 0]
         },
     },
