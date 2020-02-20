@@ -163,9 +163,9 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props, Types.StyleP
                 boxSizing: 'border-box',
                 color: theme.color.primary.rgb().string(),
                 padding: `0 calc(${minHeight} / 5)`,
-                marginRight: `calc(${minHeight} / 10)`,
-                // marginLeft: 0,
-                // marginBottom: 0,
+                margin: `calc(${minHeight} / 20)`,
+                marginRight: 'calc(${minHeight} / 10)',
+                marginLeft: 0,
                 alignItems: 'center'
             },
             variant({

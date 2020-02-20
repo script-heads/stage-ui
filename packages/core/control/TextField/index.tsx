@@ -6,7 +6,6 @@ import React, { forwardRef, RefForwardingComponent, useEffect, useImperativeHand
 import styles from './styles'
 import Types from './types'
 
-
 type RefTypes = ((HTMLInputElement | HTMLTextAreaElement) & HTMLDivElement) | null | {}
 
 const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) => {
