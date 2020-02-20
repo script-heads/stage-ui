@@ -20,6 +20,7 @@ const TableRow: RefForwardingComponent<HTMLTableRowElement, Types.RowProps> = (p
     return (
         <Fragment>
             <tr
+                {...props.events}
                 ref={ref}
                 css={styles.row}
                 key={rowIndex}

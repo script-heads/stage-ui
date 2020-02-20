@@ -2762,7 +2762,12 @@ declare module '@flow-ui/core/data/Table/types' {
 	        render?: (cellContext: TableCellContext, index: number) => void;
 	        sort?: TableSortType;
 	    }
-	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+	    interface RowEvents {
+	        onRowClick?: (rowIndex: number, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
+	        onRowMouseEnter?: (rowIndex: number, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
+	        onRowMouseLeave?: (rowIndex: number, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
+	    }
+	    interface Props extends RowEvents, WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        data: Object[];
 	        columns: TableColumn[];
 	        decoration?: LayoutDecoration;
@@ -2787,6 +2792,7 @@ declare module '@flow-ui/core/data/Table/types' {
 	        rowIndex: number;
 	        styles: WhaleTypes.ComponentStyles<Overrides>;
 	        getCellContext: TableRef['getCellContext'];
+	        events: RowEvents;
 	    }
 	    interface FootProps {
 	        dc: DataCollection[];

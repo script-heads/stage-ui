@@ -157,6 +157,22 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
                             }
                             
                         }
+                        /**
+                         * Row events map
+                         */
+                        const events: Types.RowEvents = {}
+                        /**
+                         * We'll call onRow*Event* at on*Event*
+                         * with injected rowIndex.
+                         */
+                        Object.keys(props).forEach(key => {
+                            if (key.match('onRow')) {
+                                events[key.replace('Row', '')] = (e: MouseEvent) => {
+                                    return props[key](rowIndex, e)
+                                }
+                            }
+                        })
+
                         return (
                             <TableRow
                                 dcItem={dcItem}
@@ -165,6 +181,7 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
                                 key={rowIndex}
                                 columns={columns}
                                 rowIndex={rowIndex}
+                                events={events}
                             />
                         )
                     })

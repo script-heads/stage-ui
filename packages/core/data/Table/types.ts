@@ -73,9 +73,7 @@ declare namespace TableTypes {
         setExpandComponent?: React.Dispatch<React.SetStateAction<React.ReactNode>>
     }
 
-    interface Ref extends TableRef, HTMLTableElement {
-
-    }
+    interface Ref extends TableRef, HTMLTableElement {}
 
     interface TableRef {
         /**
@@ -102,7 +100,12 @@ declare namespace TableTypes {
         sort?: TableSortType
     }
 
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+    interface RowEvents {
+        onRowClick?: (rowIndex: number, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+        onRowMouseEnter?: (rowIndex: number, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+        onRowMouseLeave?: (rowIndex: number, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+    }
+    interface Props extends RowEvents, WhaleTypes.AllProps<HTMLDivElement, Overrides> {
         data: Object[]
         columns: TableColumn[]
         decoration?: LayoutDecoration
@@ -130,6 +133,7 @@ declare namespace TableTypes {
         rowIndex: number
         styles: WhaleTypes.ComponentStyles<Overrides>
         getCellContext: TableRef['getCellContext']
+        events: RowEvents
     }
 
     interface FootProps {
