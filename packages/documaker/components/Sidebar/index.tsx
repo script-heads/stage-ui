@@ -1,5 +1,5 @@
 import { Menu, Block, Flexbox, Text, TextField } from '@flow-ui/core'
-import { Close, Cube, Search } from '@flow-ui/core/icons'
+import { Close, Cube, Grid } from '@flow-ui/core/icons'
 import WhaleTypes from '@flow-ui/whale/types'
 import * as React from 'react'
 import { Fragment, useState } from 'react'
@@ -61,14 +61,10 @@ const Sidebar = (props: SidebarProps) => {
 						}
 					]
 				}])}>
-				<Block
-					m="-0.5rem" 
-					p="0.5rem" 
-					ml="-1.5rem" 
-					pl="1.5rem" 
-					>
-					<Block>
+				<Block mx="-0.5rem">
+					<Flexbox justifyContent="space-around">
 						<Text 
+							flex={1}
 							size="xl"
 							weight="bold"
 							// color={c => c.surface}
@@ -76,22 +72,12 @@ const Sidebar = (props: SidebarProps) => {
 							onClick={props.setIndex}
 							children={props.title}
 						/>
-					</Block>
-					<Block
-						css={{
-							position: 'absolute',
-							top: '1rem',
-							right: '1rem',
-							zIndex: 10
-						}}
-						children={(
-							<ThemeSwitcher
+						<ThemeSwitcher
 								themes={props.themes}
 								currentTheme={props.currentTheme}
 								setTheme={props.setTheme}
 							/>
-						)}
-					/>
+					</Flexbox>
 					<Text
 						size="s"
 						css={{ opacity: 0.5 }}
@@ -105,17 +91,16 @@ const Sidebar = (props: SidebarProps) => {
 					size="s"
 					my="1.5rem"
 					mx="-1.5rem"
-					px="1.5rem"
+					px="1rem"
 					decoration="underline"
 					leftChild={
-						<Search />
+						<Cube />
 					}
-					placeholder="Search"
+					placeholder="Filter"
 					value={search}
 					onChange={e => {
 						setSearch(e.target.value)
 					}}
-					clearable
 				/>
 				<Menu 
 					column
@@ -134,9 +119,9 @@ const Sidebar = (props: SidebarProps) => {
 								return null
 							}
 							return (
-								<Menu.Group pb="l" key={index} title={section}>
+								<Menu.Submenu pb="l" key={index} title={section} defaultOpen={true}>
 									{menuItems}
-								</Menu.Group>
+								</Menu.Submenu>
 							)
 						})
 					}

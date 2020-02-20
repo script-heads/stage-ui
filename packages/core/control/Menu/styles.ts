@@ -37,9 +37,24 @@
                     userSelect: 'none',
                     padding: `calc(${spacing} / 2) ${spacing}`,
                     color: theme.color.hardest.rgb().string(),
-                    ':hover:not(&[data-flow-disabled])': {
-                        color: theme.color.onSurface.rgb().string(),
-                    },
+                    ':hover:not([data-flow-disabled]):not([data-flow-active])': [
+                        variant({
+                            decoration: {
+                                'filled': {
+                                    color: theme.color.onSurface.rgb().string(),
+                                },
+                                'marker': {
+                                    color: theme.color.onSurface.rgb().string(),
+                                },
+                                'marker-reverse': {
+                                    color: theme.color.onSurface.rgb().string(),
+                                },
+                                'color': {
+                                    color: theme.color.primary.rgb().string(),
+                                },
+                            }
+                        })
+                    ],        
                     '&[data-flow-active]': [
                         {
                             cursor: 'default',
@@ -50,9 +65,6 @@
                                     background: theme.color.primary.rgb().string(),
                                     color: theme.color.onPrimary.rgb().string(),
                                     borderRadius,
-                                    ':hover:not(&[data-flow-disabled])': {
-                                        color: theme.color.onPrimary.rgb().string(),
-                                    }
                                 },
                                 'marker': {
                                     position: 'relative',
@@ -86,9 +98,6 @@
                                 },
                                 'color': {
                                     color: theme.color.primary.rgb().string(),
-                                    ':hover:not(&[data-flow-disabled])': {
-                                        color: theme.color.primary.rgb().string(),
-                                    }
                                 },
                             }
                         })
