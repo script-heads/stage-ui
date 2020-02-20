@@ -19,7 +19,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
         container: [
             vertical
                 ? {
-                    height: '100%',
+                    height: 'auto',
                     width: '1px',
                     ...(gap || dash)
                         ? {
