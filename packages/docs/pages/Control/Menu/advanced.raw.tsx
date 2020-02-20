@@ -4,20 +4,25 @@ import React from 'react'
 
 export default () => {
     return (
-        <Menu column defaultValue={0} backgroundColor={c => c.surface}>
+        <Menu 
+            column 
+            p="1rem"
+            defaultValue="Video" 
+            shape="round"
+            backgroundColor={c => c.surface}>
             <Menu.Group title="Menu">
                 <Menu.Item
-                    value={0}
+                    value="Video"
                     title="Video"
                     leftChild={<Icon.Video/>}
                 />
                 <Menu.Item
-                    value={1}
+                    value="Music"
                     title="Music"
                     leftChild={<Icon.Music/>}
                 />
                 <Menu.Item
-                    value={2}
+                    value="News"
                     title="News"
                     leftChild={<Icon.DoneAll/>}
                 />
@@ -28,12 +33,12 @@ export default () => {
                     leftChild={<Icon.Settings />}
                 >
                     <Menu.Item
-                        value={2}
+                        value="Profile"
                         title="Profile"
                         leftChild={<Icon.Person />}
                     />
                     <Menu.Item
-                        value={2}
+                        value="Quit"
                         title="Quit"
                         leftChild={<Icon.AlertCircle />}
                     />
