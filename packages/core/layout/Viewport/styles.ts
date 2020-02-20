@@ -7,12 +7,12 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
         background: theme.color.background.rgb().string(),
         color: theme.color.onBackground.rgb().string(),
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-        'p': theme.typography.paragraph,
-        'h1': theme.typography.header.l,
-        'h2': theme.typography.header.m,
-        'h3': theme.typography.header.s,
-        'h4': theme.typography.header.xs,
-        ...theme.typography.text.m 
+        'p': theme.assets.typography.paragraph,
+        'h1': theme.assets.typography.header.l,
+        'h2': theme.assets.typography.header.m,
+        'h3': theme.assets.typography.header.s,
+        'h4': theme.assets.typography.header.xs,
+        ...theme.assets.typography.text.m 
     }
 
     const reset = 

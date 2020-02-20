@@ -44,7 +44,7 @@ const fieldStyles = <T extends Types.Overrides>(
                 boxSizing: 'border-box',
             },
             theme.assets.field.m,
-            theme.typography.text.m,
+            theme.assets.typography.text.m,
             variant({
                 shape: {
                     square: {
@@ -67,19 +67,19 @@ const fieldStyles = <T extends Types.Overrides>(
                 size: {
                     xs: [
                         theme.assets.field.xs,
-                        theme.typography.text.xs,
+                        theme.assets.typography.text.xs,
                     ],
                     s: [
                         theme.assets.field.s,
-                        theme.typography.text.s,
+                        theme.assets.typography.text.s,
                     ],
                     l: [
                         theme.assets.field.l,
-                        theme.typography.text.l,
+                        theme.assets.typography.text.l,
                     ],
                     xl: [
                         theme.assets.field.xl,
-                        theme.typography.text.xl,
+                        theme.assets.typography.text.xl,
                     ]
                 },
                 focus: {
@@ -144,20 +144,20 @@ const fieldStyles = <T extends Types.Overrides>(
                 userSelect: 'none',
                 paddingBottom: '0.125rem'
             },
-            theme.typography.text.m,
+            theme.assets.typography.text.m,
             variant({
                 size: {
                     xs: [
-                        theme.typography.text.xs,
+                        theme.assets.typography.text.xs,
                     ],
                     s: [
-                        theme.typography.text.s,
+                        theme.assets.typography.text.s,
                     ],
                     l: [
-                        theme.typography.text.l,
+                        theme.assets.typography.text.l,
                     ],
                     xl: [
-                        theme.typography.text.xl,
+                        theme.assets.typography.text.xl,
                     ]
                 },
                 labelType: {
@@ -250,12 +250,12 @@ const fieldStyles = <T extends Types.Overrides>(
                 paddingTop: '.25rem',
                 paddingLeft: props.decoration != 'underline' ? '.25rem' : '',
                 color: color?.rgb().string() || theme.color.hard.rgb().string(),
-                ...theme.typography.text.m,
+                ...theme.assets.typography.text.m,
             },
             variant({
                 size: {
-                    s: [theme.typography.text.s],
-                    xs: [theme.typography.text.xs]
+                    s: [theme.assets.typography.text.s],
+                    xs: [theme.assets.typography.text.xs]
                 }
             }),
             stylePatch?.hint?.(variant)

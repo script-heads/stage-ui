@@ -64,9 +64,9 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.PrivateProps> = (pr
                 cursor: 'pointer',
                 height: 'auto',
                 color: theme.color.light.rgb().string(),
-                fontSize: theme.typography.text.m.fontSize,
+                fontSize: theme.assets.typography.text.m.fontSize,
                 paddingRight: `calc(${theme.spacing.m} / 2)`,
-                paddingLeft: `calc(${theme.typography.text.m.fontSize} * ${props.lvl * 1})`,
+                paddingLeft: `calc(${theme.assets.typography.text.m.fontSize} * ${props.lvl * 1})`,
             },
             variant({
                 hasChilds: {
@@ -74,26 +74,26 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.PrivateProps> = (pr
                 },
                 size: {
                     xs:{
-                        fontSize: theme.typography.text.xs.fontSize,
+                        fontSize: theme.assets.typography.text.xs.fontSize,
                         paddingRight: `calc(${theme.spacing.xs} / 2)`,
-                        paddingLeft: `calc(${theme.typography.text.xs.fontSize} * ${props.lvl * 1})`,
+                        paddingLeft: `calc(${theme.assets.typography.text.xs.fontSize} * ${props.lvl * 1})`,
                     },
                     s: {
-                        fontSize: theme.typography.text.s.fontSize,
+                        fontSize: theme.assets.typography.text.s.fontSize,
                         paddingRight: `calc(${theme.spacing.s} / 2)`,
-                        paddingLeft: `calc(${theme.typography.text.s.fontSize} * ${props.lvl * 1})`,
+                        paddingLeft: `calc(${theme.assets.typography.text.s.fontSize} * ${props.lvl * 1})`,
 
                     },
                     l: {
-                        fontSize: theme.typography.text.l.fontSize,
+                        fontSize: theme.assets.typography.text.l.fontSize,
                         paddingRight: `calc(${theme.spacing.l} / 2)`,
-                        paddingLeft: `calc(${theme.typography.text.l.fontSize} * ${props.lvl * 1})`,
+                        paddingLeft: `calc(${theme.assets.typography.text.l.fontSize} * ${props.lvl * 1})`,
 
                     },
                     xl:{
-                        fontSize: theme.typography.text.xl.fontSize,
+                        fontSize: theme.assets.typography.text.xl.fontSize,
                         paddingRight: `calc(${theme.spacing.xl} / 2)`,
-                        paddingLeft: `calc(${theme.typography.text.xl.fontSize} * ${props.lvl * 1})`,
+                        paddingLeft: `calc(${theme.assets.typography.text.xl.fontSize} * ${props.lvl * 1})`,
 
                     }
                 }

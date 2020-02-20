@@ -1,0 +1,21 @@
+import { createTheme } from '@flow-ui/core'
+
+const light = createTheme({
+    main,
+    assets,
+    overrides
+})
+
+const dark = light.replace({
+    main: {
+        colors: {
+            // Some changes
+        }
+    }
+})
+
+export default (props) => {
+    return (
+        <Viewport theme={props.dark ? dark : light}/>
+    )
+}

@@ -39,6 +39,21 @@ const Light: WhaleTypes.SourceTheme = {
             m: '1rem',
             l: '1.5rem',
             xl: '1.75rem',
+        }
+    },
+    assets: (theme) => ({
+        border: {
+            width: '1px',
+            style: 'solid',
+            color: theme.color.lightest.rgb().string()
+        },
+        shadow: {
+            default: `0px 4px 8px rgba(0,0,0,0.15)`,
+            short: `0px 2px 4px rgba(0,0,0,0.15)`,
+            long: `0 16px 16px rgba(0,0,0,0.15)`,
+        },
+        focus: {
+            boxShadow: '0 0 0 3px ' + theme.color.primary.alpha(.3).rgb().string()
         },
         typography: {
             display: {
@@ -129,21 +144,6 @@ const Light: WhaleTypes.SourceTheme = {
                     lineHeight: '0.875rem'
                 }
             },
-        }
-    },
-    assets: (theme) => ({
-        border: {
-            width: '1px',
-            style: 'solid',
-            color: theme.color.lightest.rgb().string()
-        },
-        shadow: {
-            default: `0px 4px 8px rgba(0,0,0,0.15)`,
-            short: `0px 2px 4px rgba(0,0,0,0.15)`,
-            long: `0 16px 16px rgba(0,0,0,0.15)`,
-        },
-        focus: {
-            boxShadow: '0 0 0 3px ' + theme.color.primary.alpha(.3).rgb().string()
         },
         field: {
             xs: {
@@ -167,8 +167,7 @@ const Light: WhaleTypes.SourceTheme = {
                 minHeight: '3.5rem',
             },
         }
-    }),
-    overrides: {}
+    })
 }
 
 export default createTheme(Light)

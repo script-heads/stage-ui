@@ -20,12 +20,12 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 position: 'absolute',
                 borderRadius: '1rem',
                 padding: theme.spacing.xs + ' ' + theme.spacing.s,
-                minWidth: `calc(${theme.typography.text.l.lineHeight} - ${theme.spacing.s})`,
+                minWidth: `calc(${theme.assets.typography.text.l.lineHeight} - ${theme.spacing.s})`,
                 top: 0,
                 right: 0,
                 transform: 'translate(50%, -50%)',
                 background: theme.color.primary.rgb().string(),
-                ...theme.typography.text.m,
+                ...theme.assets.typography.text.m,
             },
             variant({
                 align: {

@@ -107,23 +107,23 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 size: {
                     xs: [{
                         ...theme.assets.field.xs,
-                        ...theme.typography.text.xs
+                        ...theme.assets.typography.text.xs
                     }],
                     s: [{
                         ...theme.assets.field.s,
-                        ...theme.typography.text.s
+                        ...theme.assets.typography.text.s
                     }],
                     m: [{
                         ...theme.assets.field.m,
-                        ...theme.typography.text.m
+                        ...theme.assets.typography.text.m
                     }],
                     l: [{
                         ...theme.assets.field.l,
-                        ...theme.typography.text.l
+                        ...theme.assets.typography.text.l
                     }],
                     xl: [{
                         ...theme.assets.field.xl,
-                        ...theme.typography.header.xs,
+                        ...theme.assets.typography.header.xs,
                     }]
                 }
             }),

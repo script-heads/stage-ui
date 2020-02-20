@@ -53,14 +53,16 @@ declare namespace WhaleTypes {
 
     interface SourceTheme {
         main: Omit<ThemeVariables<[number, number, number, number?]>, 'breakpoints'> & {breakpoints?: string[]}
-        assets: (theme: Theme) => ThemeAssets
-        overrides?: Partial<{[Component in keyof Whale.Overrides]: Styles<Whale.Overrides[Component]>}>
+        assets: (main: ThemeVariables) => ThemeAssets
+        overrides?: (main: ThemeVariables, assets: ThemeAssets) => 
+            Partial<{[Component in keyof Whale.Overrides]: Styles<Whale.Overrides[Component]>}>
     }
 
     interface ReplaceTheme {
         main: DeepPartial<ThemeVariables<[number, number, number, number?]>>
-        assets?: (theme: Theme) => DeepPartial<ThemeAssets>
-        overrides?: Partial<{[Component in keyof Whale.Overrides]: Styles<Whale.Overrides[Component]>}>
+        assets?: (main: ThemeVariables) => DeepPartial<ThemeAssets>
+        overrides?: (main: ThemeVariables, assets: ThemeAssets) => 
+            Partial<{[Component in keyof Whale.Overrides]: Styles<Whale.Overrides[Component]>}>
     }
     
     interface ThemeVariables<Color = QIXColor> {
@@ -97,24 +99,6 @@ declare namespace WhaleTypes {
         },
         breakpoints: string[],
         spacing: Record<Size, string>
-        typography: {
-            header: Record<Size, {
-                fontSize: string
-                lineHeight: string | number
-            } & EmotionStyles>
-            text: Record<Size, {
-                fontSize: string
-                lineHeight: string | number
-            } & EmotionStyles>
-            display: Record<Size, {
-                fontSize: string
-                lineHeight: string | number
-            } & EmotionStyles>
-            paragraph: Record<Size, {
-                fontSize: string
-                lineHeight: string | number
-            } & EmotionStyles>
-        }
     }
 
     interface ThemeAssets  {
@@ -134,6 +118,24 @@ declare namespace WhaleTypes {
             minHeight: string
             padding: string
         }>
+        typography: {
+            header: Record<Size, {
+                fontSize: string
+                lineHeight: string | number
+            } & EmotionStyles>
+            text: Record<Size, {
+                fontSize: string
+                lineHeight: string | number
+            } & EmotionStyles>
+            display: Record<Size, {
+                fontSize: string
+                lineHeight: string | number
+            } & EmotionStyles>
+            paragraph: Record<Size, {
+                fontSize: string
+                lineHeight: string | number
+            } & EmotionStyles>
+        }
     }
 
     /**

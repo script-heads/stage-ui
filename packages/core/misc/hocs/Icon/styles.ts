@@ -15,8 +15,8 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 display: 'inline-flex',
                 color: color?.rgb().string(),
                 background: background?.rgb().string(),
-                height: theme.typography.text.m.fontSize,
-                fontSize: theme.typography.text.m.fontSize,
+                height: theme.assets.typography.text.m.fontSize,
+                fontSize: theme.assets.typography.text.m.fontSize,
             },
             props.size && !['xs','s','m','l','xl'].includes(props.size) && {
                 height: props.size,
@@ -25,20 +25,20 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
             variant({
                 size: {
                     xs: {
-                        height: theme.typography.text.xs.fontSize,
-                        fontSize: theme.typography.text.xs.fontSize,
+                        height: theme.assets.typography.text.xs.fontSize,
+                        fontSize: theme.assets.typography.text.xs.fontSize,
                     },
                     s: {
-                        height: theme.typography.text.s.fontSize,
-                        fontSize: theme.typography.text.s.fontSize,
+                        height: theme.assets.typography.text.s.fontSize,
+                        fontSize: theme.assets.typography.text.s.fontSize,
                     },
                     l: {
-                        height: theme.typography.text.l.fontSize,
-                        fontSize: theme.typography.text.l.fontSize,
+                        height: theme.assets.typography.text.l.fontSize,
+                        fontSize: theme.assets.typography.text.l.fontSize,
                     },
                     xl: {
-                        height: theme.typography.text.xl.fontSize,
-                        fontSize: theme.typography.text.xl.fontSize,
+                        height: theme.assets.typography.text.xl.fontSize,
+                        fontSize: theme.assets.typography.text.xl.fontSize,
                     }
                 },
                 shape: {

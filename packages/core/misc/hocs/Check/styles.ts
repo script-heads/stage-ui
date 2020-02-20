@@ -32,7 +32,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 color: labelColor?.rgb().string()
             },
             variant({
-                size: theme.typography.text,
+                size: theme.assets.typography.text,
                 disabled: [{
                     color: colorProp(theme, theme.color.light)?.rgb().string()
                 }],

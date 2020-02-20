@@ -9,7 +9,7 @@ const Syntax = (props: { code?: (() => JSX.Element )| string, children?: string 
     const isDark = theme.name.toUpperCase().match('DARK') ? true : false
     const styles = {
         padding: '1rem',
-        fontSize: theme.typography.text.s.fontSize,
+        fontSize: theme.assets.typography.text.s.fontSize,
         borderRadius: theme.radius.default,
         background: theme.color.surface,
     }

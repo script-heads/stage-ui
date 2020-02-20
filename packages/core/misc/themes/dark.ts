@@ -30,9 +30,7 @@ const dark = light.replace({
         border: {
             color: theme.color.lightest.rgb().string()
         },
-    }),
-    overrides: {
-    }
+    })
 })
 
 export default dark

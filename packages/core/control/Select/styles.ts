@@ -97,7 +97,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props, Types.StyleP
             }
         ],
         dropItem: (variant) => [
-            theme.typography.text.m,
+            theme.assets.typography.text.m,
             theme.assets.field,
             {
                 display: 'flex',
@@ -109,7 +109,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props, Types.StyleP
                 }
             },
             variant({
-                size: theme.typography.text
+                size: theme.assets.typography.text
             }),
             variant({
                 size: theme.assets.field
