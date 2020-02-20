@@ -21,7 +21,7 @@ declare namespace MenuTypes {
         value?: MenuValue
         data?: React.ReactNode[]
         onChange?: (value?: MenuValue) => void
-        
+        column?: boolean
         decoration?: MenuDecoration
         direction?: MenuDirection
         shape?: MenuShape

@@ -118,6 +118,7 @@ const Sidebar = (props: SidebarProps) => {
 					clearable
 				/>
 				<Menu 
+					column
 					mx="-1.5rem"
 					decoration="marker"
 					defaultValue={props.currentPage.url}

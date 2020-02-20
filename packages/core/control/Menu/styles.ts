@@ -7,7 +7,8 @@
 
         const spacing = theme.spacing[size || 'm'] || theme.spacing['m']
         const typography = theme.typography.text[size || 'm'] || theme.typography.text['m']
-        const isRow = props.direction?.[0] === 'r'
+        const isRow = props.direction?.[0] === 'r' || !props.column
+
         let borderRadius = '0'
         if (shape === 'rounded') {
             borderRadius = theme.radius.narrow
@@ -21,7 +22,7 @@
                 {
                     ...typography,
                     display: 'flex',
-                    flexDirection: props.direction || 'column',
+                    flexDirection: props.direction || (props.column ? 'column' : 'row'),
                     ...isRow ? ({
                         justifyContent: props.align || 'stretch',
                     }) : ({
@@ -153,7 +154,7 @@
             group: (variant) => [
                 {
                     display: 'flex',
-                    flexDirection: props.direction || 'column',
+                    flexDirection: props.direction || (props.column ? 'column' : 'row'),
                     alignItems: 'stretch',
                 }
             ],
