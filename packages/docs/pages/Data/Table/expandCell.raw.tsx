@@ -1,6 +1,6 @@
 import { Flexbox, Table, Text } from '@flow-ui/core'
 import T from '@flow-ui/core/data/Table/types'
-import { ArrowIosUpward } from '@flow-ui/core/icons'
+import { ArrowIosDownward } from '@flow-ui/core/icons'
 import React from 'react'
 
 export default () => {
@@ -16,7 +16,7 @@ export default () => {
                     )
                 }
             }}>
-                <ArrowIosUpward
+                <ArrowIosDownward
                     mr="0.5rem"
                     color={c => c.primary}
                     rotate={props.ctx.isExpand ? 180 : 0}
