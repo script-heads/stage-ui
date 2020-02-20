@@ -31,31 +31,40 @@ module.exports = function (workdir) {
         module: {
             rules: [
                 {
-                    test: /(\.raw|\.raw\.tsx)$/,
+                    test: /\.raw?$/,
                     use: require.resolve('raw-loader'),
                 },
                 {
                     test: /\.tsx?$/,
-                    use: {
-                        loader: require.resolve('babel-loader'),
-                        options: {
-                            presets: [
-                                require.resolve('@babel/preset-env'),
-                                require.resolve('@babel/preset-typescript'),
-                                require.resolve('@babel/preset-react'),
-                                require.resolve('@emotion/babel-preset-css-prop')
-                            ],
-                            plugins: [
-                                require.resolve('@babel/plugin-proposal-class-properties'),
-                                require.resolve('@babel/plugin-proposal-object-rest-spread'),
-                                require.resolve('@babel/plugin-transform-runtime'),
-                                [require.resolve('@babel/plugin-transform-typescript'), { allowNamespaces: true }],
-                                [require.resolve('@babel/plugin-proposal-optional-chaining'), {
-                                    loose: true
-                                }],
-                            ]
+                    oneOf: [
+                        {
+                            test: /\.raw\.tsx?$/,
+                            use: require.resolve('raw-loader'),
+                        },
+                        {
+                            test: /\.tsx?$/,
+                            use: {
+                                loader: require.resolve('babel-loader'),
+                                options: {
+                                    presets: [
+                                        require.resolve('@babel/preset-env'),
+                                        require.resolve('@babel/preset-typescript'),
+                                        require.resolve('@babel/preset-react'),
+                                        require.resolve('@emotion/babel-preset-css-prop')
+                                    ],
+                                    plugins: [
+                                        require.resolve('@babel/plugin-proposal-class-properties'),
+                                        require.resolve('@babel/plugin-proposal-object-rest-spread'),
+                                        require.resolve('@babel/plugin-transform-runtime'),
+                                        [require.resolve('@babel/plugin-transform-typescript'), { allowNamespaces: true }],
+                                        [require.resolve('@babel/plugin-proposal-optional-chaining'), {
+                                            loose: true
+                                        }],
+                                    ]
+                                }
+                            }
                         }
-                    }
+                    ]
                 },
                 {
                     test: /\.css$/,
