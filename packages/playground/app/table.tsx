@@ -14,7 +14,7 @@ const EditAge = (props: { ctx: T.TableCellContext }) => {
             <Checkmark
                 size="1rem"
                 mr="0.5rem"
-                color={c => c.successful}
+                color={c => c.success}
                 onClick={save}
             />
             <TextField
