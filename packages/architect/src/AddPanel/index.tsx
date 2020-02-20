@@ -27,7 +27,7 @@ const AddPanel = () => {
             />
             <div css={cs.container}>
                 <Block h="4rem">
-                    <Flexbox h="100%" alignItems="center"></Flexbox>
+                    <Flexbox h="100%" alignItems="center">
                         <TextField
                             css={cs.searchBar}
                             decoration="none"
