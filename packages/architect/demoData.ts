@@ -8,10 +8,10 @@ const HelloWorldForm: ArchitectItem[] = [
         component: 'Block',
         props: {
             decoration: 'surface',
-            pt: '0.5rem',
-            pl: '1rem',
-            pr: '1rem',
-            pb: '1rem',
+            pt: 's',
+            pl: 'm',
+            pr: 'm',
+            pb: 'm',
         },
         children: [
             {
@@ -20,7 +20,8 @@ const HelloWorldForm: ArchitectItem[] = [
                 component: 'Header',
                 text: 'Hello world',
                 props: {
-                    pb: '1rem',
+                    mt: 'xs',
+                    mb: 's',
                 },
             },
             {
@@ -30,7 +31,7 @@ const HelloWorldForm: ArchitectItem[] = [
                 component: 'Block',
                 text: '',
                 props: {
-                    pb: '1rem',
+                    pb: 'm',
                 },
                 children: [
                     {
@@ -40,7 +41,7 @@ const HelloWorldForm: ArchitectItem[] = [
                         text: '',
                         props: {
                             label: 'First name',
-                            mb: '1rem',
+                            mb: 'm',
                         }
                     },
                     {
@@ -50,7 +51,7 @@ const HelloWorldForm: ArchitectItem[] = [
                         text: '',
                         props: {
                             label: 'Last name',
-                            mb: '1rem',
+                            mb: 'm',
                         }
                     },
                     {
@@ -60,7 +61,7 @@ const HelloWorldForm: ArchitectItem[] = [
                         text: '',
                         props: {
                             label: 'Comment',
-                            mb: '1rem',
+                            mb: 'm',
                             multiline: true
                         }
                     },
@@ -72,8 +73,7 @@ const HelloWorldForm: ArchitectItem[] = [
                 component: 'Divider',
                 text: '',
                 props: {
-                    mt: '1rem',
-                    mb: '1rem',
+                    mb: 'm',
                 }
             },
             {
@@ -132,7 +132,7 @@ const HelloWorldForm: ArchitectItem[] = [
                         component: 'Button',
                         text: 'Submit',
                         props: {
-                            ml: '0.5rem',
+                            ml: 'xs',
                             type: 'submit'
                         },
                         children: []

@@ -6,20 +6,22 @@ import { context } from '../../../../..'
 import styles from './styles'
 
 const staticValues = [
-    0,
-    0.125,
-    0.25,
-    0.5,
-    0.75,
-    1,
+    '-', 'xs','s','m','l','xl'
 ]
+const findMap = {
+    'xs': 1,
+    's': 2,
+    'm': 3,
+    'l': 4,
+    'xl': 5
+}
 
 type Props = {
     propKeys: string[]
     label: string
 }
 
-const ValueControl = (props: { value: number, onChange: (value: number) => void }) => {
+const ValueControl = (props: { value: string, onChange: (value: string) => void }) => {
     return (
         <ButtonGroup alignSelf="center">
             {
@@ -28,8 +30,8 @@ const ValueControl = (props: { value: number, onChange: (value: number) => void 
                         key={index}
                         flex={1}
                         size="xs"
-                        children={index ? index : '✕'}
-                        decoration={(value === props.value && value !== 0)
+                        children={value}
+                        decoration={(value === props.value && value !== '-')
                             ? 'filled'
                             : 'outline'}
                         onClick={() => {
@@ -48,13 +50,13 @@ const ValueCross = (props: Props) => {
         return null
     }
 
-    const [values, setValues] = useState([0,0,0,0])
+    const [values, setValues] = useState(['-','-','-','-'])
 
     useEffect(() => {
-        const kt = parseFloat(focused.props[propKeys[0]] || staticValues[0])
-        const kl = parseFloat(focused.props[propKeys[1]] || staticValues[0])
-        const kr = parseFloat(focused.props[propKeys[2]] || staticValues[0])
-        const kb = parseFloat(focused.props[propKeys[3]] || staticValues[0])
+        const kt = focused.props[propKeys[0]] || staticValues[0]
+        const kl = focused.props[propKeys[1]] || staticValues[0]
+        const kr = focused.props[propKeys[2]] || staticValues[0]
+        const kb = focused.props[propKeys[3]] || staticValues[0]
         
         setLockX(false)
         setLockX(false)
@@ -84,41 +86,39 @@ const ValueCross = (props: Props) => {
         lockC
     })
 
-    const onChange = (index: number, value: number) => {
-        let newValues = values.map((v, i) => (i === index) ? value : v)
+    const onChange = (index: number, value: string) => {
+        let newValues = values
+        newValues[index] = value
+
         if (lockX) {
-            const val = [1, 2].includes(index)
-                ? value
-                : Math.max(newValues[1], newValues[2])
-            newValues[1] = val
-            newValues[2] = val
+            newValues[1] = value
+            newValues[2] = value
             if (lockC) {
-                newValues[0] = val
-                newValues[3] = val
+                newValues[0] = value
+                newValues[3] = value
             }
         }
+
         if (lockY) {
-            const val = [0, 3].includes(index)
-                ? value
-                : Math.max(newValues[0], newValues[3])
-            newValues[0] = val
-            newValues[3] = val
+            newValues[0] = value
+            newValues[3] = value
             if (lockC) {
-                newValues[1] = val
-                newValues[2] = val
+                newValues[1] = value
+                newValues[2] = value
             }
         }
+        
         newValues.forEach((value, index) => {
             if (!focused) {
                 return
             }
-            if (value) {
-                focused.props[propKeys[index]] = value + 'rem'
+            if (value !== '-') {
+                focused.props[propKeys[index]] = value
             } else {
                 delete focused.props[propKeys[index]]
             }
         })
-        setValues(newValues)
+        setValues(values)
         context.tools.update()
     }
 
