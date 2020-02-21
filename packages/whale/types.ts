@@ -65,7 +65,7 @@ declare namespace WhaleTypes {
             Partial<{[Component in keyof Whale.Overrides]: Styles<Whale.Overrides[Component]>}>
     }
     
-    interface ThemeVariables<Color = QIXColor> {
+    interface ThemeVariables<Color = QIXColor<[number, number, number, number?]>> {
         name: string
         color: {
             background: Color
