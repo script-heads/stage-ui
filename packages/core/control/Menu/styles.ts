@@ -38,6 +38,12 @@
                     outline: 'none',
                     padding: `calc(${spacing} / 2) ${spacing}`,
                     color: theme.color.onBackground.rgb().string(),
+                    ':before': {
+                        content: `''`,
+                        transition: 'all 0.15s',
+                        position: 'absolute',
+                        borderRadius,
+                    },
                     ':hover:not([data-flow-disabled]):not([data-flow-active])': [
                         variant({
                             decoration: {
@@ -72,12 +78,9 @@
                                     paddingLeft: spacing,
                                     color: theme.color.primary.rgb().string(),
                                     ':before': {
-                                        content: `''`,
-                                        position: 'absolute',
                                         width: isRow ? `100%` : `calc(${spacing} / 4)`,
                                         height: isRow ? `calc(${spacing} / 4)` : `100%`,
                                         background: theme.color.primary.rgb().string(),
-                                        borderRadius,
                                         left: 0,
                                         bottom: 0,
                                     }
@@ -87,12 +90,9 @@
                                     paddingLeft: spacing,
                                     color: theme.color.primary.rgb().string(),
                                     ':before': {
-                                        content: `''`,
-                                        position: 'absolute',
                                         width: isRow ? `100%` : `calc(${spacing} / 4)`,
                                         height: isRow ? `calc(${spacing} / 4)` : `100%`,
                                         background: theme.color.primary.rgb().string(),
-                                        borderRadius,
                                         right: 0,
                                         top: 0,
                                     }
@@ -149,6 +149,7 @@
                 {
                     height: typography.fontSize,
                     width: typography.fontSize,
+                    transition: 'transform 0.15s'
                 }
             ],
 
