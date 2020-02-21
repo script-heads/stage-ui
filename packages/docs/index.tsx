@@ -1,22 +1,8 @@
-import { 
-    Block, 
-    Button, 
-    Radio, 
-    Checkbox, 
-    Display, 
-    Divider, 
-    Flexbox, 
-    Meter, 
-    Paragraph, 
-    Range, 
-    Switch, 
-    TextField, 
-    useTheme 
-} from '@flow-ui/core'
+import css from '@emotion/css'
+import { Badge, Block, Button, Checkbox, Display, Divider, Flexbox, Meter, Paragraph, Radio, Range, Switch, TextField, useTheme } from '@flow-ui/core'
 import { Cube, Email, PaperPlane, People, Settings } from '@flow-ui/core/icons'
 import { HomePageProps } from '@flow-ui/documaker/core'
 import { useEffect, useState } from 'react'
-import css from '@emotion/css'
 
 const promoStyle = {
     container: css({
@@ -126,7 +112,9 @@ export default (props: HomePageProps) => {
     return (
         <Flexbox flex={1} css={promoStyle.container}>
             <Flexbox column justifyContent="center">
-                <Display weight={800}>FlowUI</Display>
+                <Badge content="β" size="l">
+                    <Display m="0" lineHeight={1} weight={800}>FlowUI</Display>
+                </Badge>
                 <Paragraph
                     w="22rem"
                     size="l"

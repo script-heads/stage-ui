@@ -1,5 +1,5 @@
-import { Menu, Block, Flexbox, Text, TextField, ScrollView } from '@flow-ui/core'
-import { Close, Cube, Grid } from '@flow-ui/core/icons'
+import { Menu, Block, Badge, Flexbox, Text, TextField, ScrollView } from '@flow-ui/core'
+import { Close, Cube } from '@flow-ui/core/icons'
 import WhaleTypes from '@flow-ui/whale/types'
 import * as React from 'react'
 import { Fragment, useState } from 'react'
@@ -59,15 +59,17 @@ const Sidebar = (props: SidebarProps) => {
 				})}>
 				<Block p="1rem">
 					<Flexbox px="0.5rem" justifyContent="space-around">
-						<Text
-							flex={1}
-							size="xl"
-							weight="bold"
-							// color={c => c.surface}
-							css={{ cursor: 'pointer' }}
-							onClick={props.setIndex}
-							children={props.title}
-						/>
+						<Block flex={1}>
+							<Badge content="β" size="xs">
+								<Text
+									size="xl"
+									weight="bold"
+									css={{ cursor: 'pointer' }}
+									onClick={props.setIndex}
+									children={props.title}
+								/>
+							</Badge>
+						</Block>
 						<ThemeSwitcher
 							themes={props.themes}
 							currentTheme={props.currentTheme}

@@ -35,19 +35,19 @@ declare module '@flow-ui/whale/types' {
 	        main: Omit<ThemeVariables<[number, number, number, number?]>, 'breakpoints'> & {
 	            breakpoints?: string[];
 	        };
-	        assets: (theme: Theme) => ThemeAssets;
-	        overrides?: Partial<{
+	        assets: (main: ThemeVariables) => ThemeAssets;
+	        overrides?: (main: ThemeVariables, assets: ThemeAssets) => Partial<{
 	            [Component in keyof Whale.Overrides]: Styles<Whale.Overrides[Component]>;
 	        }>;
 	    }
 	    interface ReplaceTheme {
 	        main: DeepPartial<ThemeVariables<[number, number, number, number?]>>;
-	        assets?: (theme: Theme) => DeepPartial<ThemeAssets>;
-	        overrides?: Partial<{
+	        assets?: (main: ThemeVariables) => DeepPartial<ThemeAssets>;
+	        overrides?: (main: ThemeVariables, assets: ThemeAssets) => Partial<{
 	            [Component in keyof Whale.Overrides]: Styles<Whale.Overrides[Component]>;
 	        }>;
 	    }
-	    interface ThemeVariables<Color = QIXColor> {
+	    interface ThemeVariables<Color = QIXColor<[number, number, number, number?]>> {
 	        name: string;
 	        color: {
 	            background: Color;
@@ -66,7 +66,7 @@ declare module '@flow-ui/whale/types' {
 	            hardest: Color;
 	            error: Color;
 	            warning: Color;
-	            successful: Color;
+	            success: Color;
 	            info: Color;
 	            palette: Whale.Palette<Color>;
 	        };
@@ -77,24 +77,6 @@ declare module '@flow-ui/whale/types' {
 	        };
 	        breakpoints: string[];
 	        spacing: Record<Size, string>;
-	        typography: {
-	            header: Record<Size, {
-	                fontSize: string;
-	                lineHeight: string | number;
-	            } & EmotionStyles>;
-	            text: Record<Size, {
-	                fontSize: string;
-	                lineHeight: string | number;
-	            } & EmotionStyles>;
-	            display: Record<Size, {
-	                fontSize: string;
-	                lineHeight: string | number;
-	            } & EmotionStyles>;
-	            paragraph: Record<Size, {
-	                fontSize: string;
-	                lineHeight: string | number;
-	            } & EmotionStyles>;
-	        };
 	    }
 	    interface ThemeAssets {
 	        global?: EmotionStyles;
@@ -113,6 +95,24 @@ declare module '@flow-ui/whale/types' {
 	            minHeight: string;
 	            padding: string;
 	        }>;
+	        typography: {
+	            header: Record<Size, {
+	                fontSize: string;
+	                lineHeight: string | number;
+	            } & EmotionStyles>;
+	            text: Record<Size, {
+	                fontSize: string;
+	                lineHeight: string | number;
+	            } & EmotionStyles>;
+	            display: Record<Size, {
+	                fontSize: string;
+	                lineHeight: string | number;
+	            } & EmotionStyles>;
+	            paragraph: Record<Size, {
+	                fontSize: string;
+	                lineHeight: string | number;
+	            } & EmotionStyles>;
+	        };
 	    }
 	    /**
 	     * All typical component props
@@ -956,481 +956,25 @@ declare module 'utils/colorProp' {
 	}> | ArrayLike<number> | {
 	    [key: string]: any;
 	}> | ((colors: {
-	    background: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }>;
-	    backgroundVariant: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }>;
-	    surface: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }>;
-	    surfaceVariant: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }>;
-	    primary: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }>;
-	    secondary: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }>;
-	    onBackground: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }>;
-	    onSurface: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }>;
-	    onPrimary: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }>;
-	    onSecondary: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }>;
-	    lightest: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }>;
-	    light: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }>;
-	    hard: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }>;
-	    hardest: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }>;
-	    error: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }>;
-	    warning: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }>;
-	    successful: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }>;
-	    info: Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }>;
-	    palette: Whale.Palette<Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }> | ArrayLike<number> | {
-	        [key: string]: any;
-	    }>>;
+	    background: Color<[number, number, number, (number | undefined)?]>;
+	    backgroundVariant: Color<[number, number, number, (number | undefined)?]>;
+	    surface: Color<[number, number, number, (number | undefined)?]>;
+	    surfaceVariant: Color<[number, number, number, (number | undefined)?]>;
+	    primary: Color<[number, number, number, (number | undefined)?]>;
+	    secondary: Color<[number, number, number, (number | undefined)?]>;
+	    onBackground: Color<[number, number, number, (number | undefined)?]>;
+	    onSurface: Color<[number, number, number, (number | undefined)?]>;
+	    onPrimary: Color<[number, number, number, (number | undefined)?]>;
+	    onSecondary: Color<[number, number, number, (number | undefined)?]>;
+	    lightest: Color<[number, number, number, (number | undefined)?]>;
+	    light: Color<[number, number, number, (number | undefined)?]>;
+	    hard: Color<[number, number, number, (number | undefined)?]>;
+	    hardest: Color<[number, number, number, (number | undefined)?]>;
+	    error: Color<[number, number, number, (number | undefined)?]>;
+	    warning: Color<[number, number, number, (number | undefined)?]>;
+	    success: Color<[number, number, number, (number | undefined)?]>;
+	    info: Color<[number, number, number, (number | undefined)?]>;
+	    palette: Whale.Palette<Color<[number, number, number, (number | undefined)?]>>;
 	}) => string | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
 	    [key: string]: any;
 	}> | ArrayLike<number> | {

@@ -91,7 +91,7 @@ declare module 'misc/hocs/Typography/types' {
 	    }
 	    interface PrivateProps extends LinkProps {
 	        tag: string;
-	        sizesOf: keyof WhaleTypes.Theme['typography'];
+	        sizesOf: keyof WhaleTypes.ThemeAssets['typography'];
 	        specificStyles?: any;
 	    }
 	}
@@ -2289,6 +2289,10 @@ declare module 'control/Range/types' {
 	        mode?: 'single' | 'range';
 	        className?: string;
 	    }
+	    interface Ref {
+	        container: HTMLDivElement;
+	        setValue: (value: number) => void;
+	    }
 	    interface Overrides {
 	        container: void;
 	        rail: void;
@@ -2307,7 +2311,7 @@ declare module 'control/Range/styles' {
 }
 declare module 'control/Range' {
 	import React from 'react';
-	import Types from 'control/Range/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	import Types from 'control/Range/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
 	export default _default;
 
 }
@@ -2858,6 +2862,8 @@ declare module 'layout/Badge/types' {
 	import WhaleTypes from '@flow-ui/whale/types'; namespace BadgeTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        content: React.ReactNode;
+	        size?: WhaleTypes.Size;
+	        shape?: 'square' | 'rounded' | 'round';
 	        align?: 'top' | 'bottom' | 'left' | 'right' | 'top-right' | 'bottom-right' | 'top-left' | 'bottom-left';
 	        children?: React.ReactNode;
 	    }
@@ -2865,6 +2871,7 @@ declare module 'layout/Badge/types' {
 	        container: void;
 	        holder: {
 	            align: Props['align'];
+	            shape: Props['shape'];
 	        };
 	    }
 	}
@@ -3647,6 +3654,7 @@ declare module '@flow-ui/core' {
 	 * Misc
 	 */
 	export { useTheme } from '@flow-ui/whale';
+	export { createTheme } from '@flow-ui/whale';
 
 }
 declare module 'misc/utils/validate' {
