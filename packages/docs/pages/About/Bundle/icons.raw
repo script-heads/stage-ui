@@ -1,0 +1,8 @@
+// DON'T DO THAT
+import * as Icons from '@flow-ui/core/icons'
+
+export default () => {
+    return (
+        <Icons.Clock/>
+    )
+}

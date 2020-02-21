@@ -1,0 +1,11 @@
+{
+    test: /\.tsx?$/,
+    use: {
+        loader: 'babel-loader',
+        options: {
+            plugins: [
+                ...require('@flow-ui/core/babelImportPlugins'),
+            ]
+        }
+    }
+}

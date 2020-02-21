@@ -1,5 +1,7 @@
-import { Block, Paragraph, Header } from '@flow-ui/core'
+import { Block, Paragraph as P, Header } from '@flow-ui/core'
 import React from 'react'
+import config from './config.raw'
+import icons from './icons.raw'
 import Syntax from '../../../components/Syntax'
 
 export const title = 'Bundle'
@@ -8,24 +10,28 @@ export const sticky = true
 
 export default () => (
     <Block>
-        <Header p="1rem 0">Size matters</Header>
-        <Paragraph>Flow-UI package is large.</Paragraph>
-        <Header p="1rem 0">How to reduce the bundle size?</Header>
-        <Paragraph>Lets see how we can configure babel-loaded to reduce the bundle size.</Paragraph>
-        <Header size="xs" pt="1rem">1 - Install babel-plugin-import for webpack </Header>
-        <Syntax code={'yarn add -D babel-plugin-import' as any}/>
-        <Header size="xs">2 - Add babelImportPlugins into webpack.config</Header>
-        <Syntax code={`{
-    test: /\.tsx?$/,
-    use: {
-        loader: 'babel-loader',
-        options: {
-            plugins: [
-                ...require('@flow-ui/core/babelImportPlugins'),
-            ]
-        }
-    }
-}` as any}/>
-                    
+        <P>
+            It is convenient to import components from
+            the FlowUI index file, however, this design
+            leads to the fact that all components get
+            into the bundle at once. This may lead to
+            its undesirable increase.
+        </P>
+        <Syntax code={`import {Button} from '@flow-ui/core'`}/>
+        <P>
+            To avoid this please use our babel plugin.
+        </P>
+        <Header>Install</Header>
+        <Syntax code={'yarn add -D babel-plugin-import'}/>
+        <Header>Configure</Header>
+        <Syntax code={config}/>
+        <Header>Сaveat</Header>
+        <P>
+            Avoid imports all icons with * syntax.
+            Plugin can't transform this construction
+            and all icons will be packed in bundle.
+            It's about 300kb.
+        </P>  
+        <Syntax code={icons}/>     
     </Block>
 )
