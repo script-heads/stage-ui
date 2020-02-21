@@ -101,9 +101,9 @@ declare namespace TableTypes {
     }
 
     interface RowEvents {
-        onRowClick?: (rowIndex: number, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
-        onRowMouseEnter?: (rowIndex: number, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
-        onRowMouseLeave?: (rowIndex: number, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+        onRowClick?: (dc: DataCollection, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+        onRowMouseEnter?: (dc: DataCollection, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+        onRowMouseLeave?: (dc: DataCollection, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
     }
     interface Props extends RowEvents, WhaleTypes.AllProps<HTMLDivElement, Overrides> {
         data: Object[]

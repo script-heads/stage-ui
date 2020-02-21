@@ -60,15 +60,16 @@ const Sidebar = (props: SidebarProps) => {
 				<Block p="1rem">
 					<Flexbox px="0.5rem" justifyContent="space-around">
 						<Block flex={1}>
-							<Badge content="β" size="xs">
-								<Text
-									size="xl"
-									weight="bold"
-									css={{ cursor: 'pointer' }}
-									onClick={props.setIndex}
-									children={props.title}
-								/>
-							</Badge>
+							<Text
+								size="xl"
+								weight="bold"
+								css={{ cursor: 'pointer' }}
+								onClick={props.setIndex}
+								children={props.title}
+							/>
+							<Text size="xs" lineHeight="0" css={{
+								verticalAlign: 'text-top',
+							}} textColor={c => c.primary}>β</Text>
 						</Block>
 						<ThemeSwitcher
 							themes={props.themes}

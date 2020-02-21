@@ -168,7 +168,7 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
                         Object.keys(props).forEach(key => {
                             if (key.match('onRow')) {
                                 events[key.replace('Row', '')] = (e: MouseEvent) => {
-                                    return props[key](rowIndex, e)
+                                    return props[key](dcItem, e)
                                 }
                             }
                         })
