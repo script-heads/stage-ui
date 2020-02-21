@@ -22,7 +22,10 @@ const Badge: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
                 {...events.all}
                 ref={ref}
                 children={props.content}
-                css={cs.holder({align: props.align})}
+                css={cs.holder({
+                    align: props.align,
+                    shape: props.shape
+                })}
             />
             {props.children}
         </div>

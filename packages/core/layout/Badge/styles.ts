@@ -3,6 +3,11 @@ import WhaleTypes from '@flow-ui/whale/types'
 import Types from './types'
 
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
+    const { assets, spacing } = theme
+    const { text } = assets.typography
+    const typography = text[props.size || 'm'] || text['m']
+    const padding = typography.fontSize
+    
     return {
         container: [
             {
@@ -14,20 +19,28 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
             {
                 zIndex: 1,
                 display: 'flex',
+                width: 'fit-content',
                 color: theme.color.onPrimary.rgb().string(),
                 alignContent: 'center',
                 justifyContent: 'center',
                 position: 'absolute',
-                borderRadius: '1rem',
-                padding: theme.spacing.xs + ' ' + theme.spacing.s,
-                minWidth: `calc(${theme.assets.typography.text.l.lineHeight} - ${theme.spacing.s})`,
+                padding: `calc(${padding} / 4) calc(${padding} / 2)`,
                 top: 0,
                 right: 0,
                 transform: 'translate(50%, -50%)',
                 background: theme.color.primary.rgb().string(),
-                ...theme.assets.typography.text.m,
+                borderRadius: '100rem',
+                ...typography,
             },
             variant({
+                shape: {
+                    rounded: {
+                        borderRadius: theme.radius.narrow
+                    },
+                    square: {
+                        borderRadius: '0'
+                    }
+                },
                 align: {
                 'top-right': [{
                     top: 0,
