@@ -79,6 +79,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 position: 'relative',
                 overflow: 'hidden',
                 borderRadius: '4rem',
+                transition: 'width 0.25s',
                 '&:after': loading && [
                     {
                         content: `''`,
