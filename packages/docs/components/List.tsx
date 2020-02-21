@@ -27,7 +27,7 @@ export default (props: {data: string[], higlightBefore?: string}) => {
                         <li key={child + index}>
                             <span
                                 css={{
-                                    backgroundColor: theme.color.primary.lighten(.45).rgb().string(),
+                                    backgroundColor: theme.color.primary.lighten(.5).rgb().string(),
                                     padding: '.05rem .3rem .1rem',
                                     borderRadius: '.2rem'
                                 }}>
