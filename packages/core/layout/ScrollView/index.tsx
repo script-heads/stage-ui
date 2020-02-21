@@ -96,9 +96,6 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             return false
         }
 
-        // const min = 0
-        // const max = -(total - content)
-
         const ratio = (content / total) * 100
         const offset = -memo.container.scrollTop | memo.content.offsetTop
 
@@ -109,9 +106,6 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         }
 
         let value = offset - delta
-
-        // if (value > min) value = min
-        // if (value < max) value = max
 
         if (memo.yBar && memo.yThumb) {
             memo.yBar.style.height = content + 'px'
@@ -149,9 +143,6 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             return false
         }
 
-        // const min = 0
-        // const max = -(total - content)
-
         const ratio = (content / total) * 100
         const offset = -memo.container.scrollLeft | memo.content.offsetLeft
 
@@ -162,9 +153,6 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         }
 
         let value = offset + -delta
-
-        // if (value > min) value = min
-        // if (value < max) value = max
 
         if (memo.xBar && memo.xThumb) {
             memo.xBar.style.width = content + 'px'
@@ -189,28 +177,33 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         return false
     }
 
-    function moveScrollBy(direction: 'x' | 'y', pageOffset: number) {
-        const isX = direction === 'x'
-        const rect = memo[`${direction}Thumb`]?.getBoundingClientRect()
+    const scrollToHandle = useMemo(() => (e: MouseEvent | React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        if (!memo.x && !memo.y) return
+
+        e.preventDefault()
+        const rect = memo[memo.x ? 'xThumb' : 'yThumb']?.getBoundingClientRect()
         if (rect && memo.container) {
-            const delta = pageOffset - rect[direction] - rect[isX ? 'width' : 'height'] / 2
+            const delta = memo.x ? e.pageX : e.pageY
+                - rect[memo.x ? 'x' : 'y']
+                - rect[memo.x ? 'width' : 'height'] / 2
             if (isLegacyScrollSupport) {
-                const movePoint = memo.container[isX ? 'scrollLeft' : 'scrollTop'] + delta
+                const currentScroll = memo.container[memo.x ? 'scrollLeft' : 'scrollTop']
                 memo.container?.scrollTo(
-                    isX ? movePoint : 0, 
-                    isX ? 0 : movePoint,
+                    memo.x ? currentScroll + delta : 0, 
+                    memo.y ? currentScroll + delta : 0,
                 )
             } else {
                 updateScroll({
-                    deltaX: isX ? delta : 0,
-                    deltaY: isX ? 0 : delta,
+                    deltaX: memo.x ? delta : 0,
+                    deltaY: memo.y ? delta : 0,
                     preventDefault: () => null,
                     stopPropagation: () => null
                 })
             }
         }
-    }
-    function updateScroll(e: Types.ScrollParams) {
+    }, [])
+    
+    const updateScroll = useMemo(() => (e: Types.ScrollParams) => {
         if (!memo.container || !memo.content) {
             return
         }
@@ -249,23 +242,24 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                 })
             )
         }
-    }
+    }, [])
 
-    function yMouseDown() {
+    const yMouseDown = useMemo(() => () => {
         memo.y = true
-    }
+    }, [])
 
-    function xMouseDown() {
+    const xMouseDown = useMemo(() => () => {
         memo.x = true
-    }
+    }, [])
 
-    function mouseUp() {
+    const mouseUp = useMemo(() => () => {
         memo.y = false
         memo.x = false
         window.removeEventListener('mouseup', mouseUp)
-    }
+        window.removeEventListener('mousemove', scrollToHandle)
+    }, [])
 
-    function mouseMove(e: MouseEvent) {
+    const moveScrollContentByMouse = useMemo(() => (e: MouseEvent) => {
         const deltaY = memo.y ? e.movementY : 0
         const deltaX = memo.x ? e.movementX : 0
 
@@ -278,7 +272,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                 cursorHandle: true
             })
         }
-    }
+    }, [])
 
     /**
      * ScrollTop if content height
@@ -306,6 +300,8 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             })
         }
 
+        document.addEventListener('mouseleave', mouseUp)
+
         if (mode === 'always') {
             window.addEventListener('resize', resize)
         } else {
@@ -331,35 +327,37 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             memo.mounted = false
             window.removeEventListener('resize', resize)
             window.removeEventListener('mouseup', mouseUp)
-            window.removeEventListener('mousemove', mouseMove)
+            window.removeEventListener('mousemove', moveScrollContentByMouse)
+            document.removeEventListener('mouseleave', mouseUp)
         }
     }, [props])
 
-    function createRef(ref: HTMLDivElement) {
+    const createRef = useMemo(() => (ref: HTMLDivElement) => {
         if (ref && !memo.events) {
             memo.events = true
-            window.addEventListener('mousemove', mouseMove, { passive: true })
+
             if (memo.yThumb) {
-                memo.yThumb.addEventListener('mousedown', yMouseDown, { passive: true })
+                memo.yThumb.addEventListener('mousedown', yMouseDown)
             }
             if (memo.xThumb) {
-                memo.xThumb.addEventListener('mousedown', xMouseDown, { passive: true })
+                memo.xThumb.addEventListener('mousedown', xMouseDown)
             }
             if (!isLegacyScrollSupport) {
+                window.addEventListener('mousemove', moveScrollContentByMouse)
                 if (memo.content) {
                     memo.content.addEventListener('wheel', updateScroll)
                 }
             }
         }
         memo.container = ref
-    }
+    }, [])
 
     return (
         <>
             <div
                 {...attributes}
                 {...events.all}
-                onScroll={e=> updateScroll(e as any)}
+                onScroll={e => updateScroll(e as any)}
                 css={isLegacyScrollSupport ? cs.legacy : cs.container}
                 ref={createRef}>
                 <div
@@ -378,20 +376,14 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                     />
                 )}
                 onMouseEnter={() => {
-                    window.addEventListener('mouseup', mouseUp, { passive: true })
+                    window.addEventListener('mouseup', mouseUp)
                 }}
                 onMouseDown={(e) => {
-                    moveScrollBy('y', e.pageY)
                     yMouseDown()
-                    e.preventDefault()
+                    scrollToHandle(e)
+                    window.addEventListener('mousemove', scrollToHandle)
                 }}
                 onMouseUp={mouseUp}
-                onMouseMove={(e) => {
-                    if (memo.y) {
-                        moveScrollBy('y', e.pageY)
-                        e.preventDefault()
-                    }
-                }}
             />
             <div
                 css={cs.xBar({ active, size, shape, position: xBarPosition })}
@@ -403,20 +395,14 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                     />
                 )}
                 onMouseEnter={() => {
-                    window.addEventListener('mouseup', mouseUp, { passive: true })
+                    window.addEventListener('mouseup', mouseUp)
                 }}
                 onMouseDown={(e) => {
-                    moveScrollBy('x', e.pageX)
                     xMouseDown()
-                    e.preventDefault()
+                    scrollToHandle(e)
+                    window.addEventListener('mousemove', scrollToHandle)
                 }}
                 onMouseUp={mouseUp}
-                onMouseMove={(e) => {
-                    if (memo.x) {
-                        moveScrollBy('x', e.pageX)
-                        e.preventDefault()
-                    }
-                }}
             />
         </>
     )
