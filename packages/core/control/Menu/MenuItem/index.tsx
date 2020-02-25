@@ -18,6 +18,7 @@ const MenuItem: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, re
         styleProps: { 
             container: ['all'],
         },
+        mouseFocus: false
     })
 
     const [active, setActive, ctx] = useValue(props.value)
