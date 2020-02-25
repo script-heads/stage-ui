@@ -8,8 +8,13 @@ type RefTag = HTMLSpanElement | HTMLAnchorElement | HTMLParagraphElement
 
 const Typography: RefForwardingComponent<RefTag, Types.PrivateProps> = (props, ref) => {
     
-    const { cs, attributes, events } = useComponent('Typography', { props, styles, styleProps: { container: ['all']} })
-
+    const { cs, attributes, events } = useComponent('Typography', { 
+        props, 
+        styles, 
+        styleProps: { container: ['all'] },
+        mouseFocus: props.mouseFocus 
+    })
+ 
     return useMemo(() => (
         jsx(
             props.tag,
@@ -30,7 +35,7 @@ const Typography: RefForwardingComponent<RefTag, Types.PrivateProps> = (props, r
             },
             props.children
         )
-    ), [props])
+    ), [props, attributes])
 }
 
 export default forwardRef(Typography)

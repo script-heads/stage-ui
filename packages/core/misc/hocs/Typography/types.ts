@@ -37,6 +37,7 @@ declare namespace TypographyTypes {
 		tag: string
 		sizesOf: keyof WhaleTypes.ThemeAssets['typography']
 		specificStyles?: any
+		mouseFocus?: boolean
 	}
 }
 

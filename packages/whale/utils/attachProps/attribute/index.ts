@@ -173,7 +173,7 @@ const resolver = {
 const createAttributes = <Styles,Props extends WhaleTypes.AllProps<unknown,Styles>>(
     props: Props, 
     setFocus: React.Dispatch<React.SetStateAction<boolean>>, 
-    options?: Options<Styles,Props>) => {
+    options: Options<Styles,Props>) => {
 
     const allProps = {
         attributes: {} as WhaleTypes.AttributeProps,
@@ -200,8 +200,8 @@ const createAttributes = <Styles,Props extends WhaleTypes.AllProps<unknown,Style
     
     allProps.focus.onFocus = (e) => {
         e.stopPropagation()
-        if (options?.focusDecoration !== false) {
-            if (options?.mouseFocus || !isMouseDown) {
+        if (options.focusDecoration != false) {
+            if (options.mouseFocus != false || !isMouseDown) {
                 setFocus(true)
             }
         }
@@ -210,7 +210,7 @@ const createAttributes = <Styles,Props extends WhaleTypes.AllProps<unknown,Style
     
     allProps.focus.onBlur = (e) => {
         e.stopPropagation()
-        if (options?.focusDecoration !== false) {
+        if (options.focusDecoration != false) {
             setFocus(false)
         }
         props.onBlur && props.onBlur(e)

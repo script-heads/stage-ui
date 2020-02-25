@@ -8,15 +8,18 @@ const Link: RefForwardingComponent<HTMLAnchorElement, Types.LinkProps> = (props,
     
     return (
         <Typography
-            tabIndex={props.tabIndex || (props.onClick || props.onEnter) && 0}
             tag="a"
+            tabIndex={props.tabIndex || 0}
             sizesOf="text"
             specificStyles={{
-                color: theme.color.primary,
+                outline: 'none',
+                color: theme.color.primary.hex(),
+                textDecoration: 'unset',
                 '&:hover': {
                     textDecoration: 'underline'
                 },
             }}
+            mouseFocus={false}
             ref={ref}
             {...props}
         />
