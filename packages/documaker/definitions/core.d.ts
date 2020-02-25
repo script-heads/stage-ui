@@ -93,6 +93,7 @@ declare module 'misc/hocs/Typography/types' {
 	        tag: string;
 	        sizesOf: keyof WhaleTypes.ThemeAssets['typography'];
 	        specificStyles?: any;
+	        mouseFocus?: boolean;
 	    }
 	}
 	export default TypographyTypes;
@@ -278,13 +279,11 @@ declare module 'control/Calendar/types' {
 
 }
 declare module 'control/Calendar/DateGridDay' {
-	/// <reference types="react" />
 	import CalendarTypes from 'control/Calendar/types'; const DateGridDay: (props: CalendarTypes.DateGridCalendarProps) => JSX.Element;
 	export default DateGridDay;
 
 }
 declare module 'control/Calendar/DateGridMonth' {
-	/// <reference types="react" />
 	import CalendarTypes from 'control/Calendar/types'; const DateGridMonth: (props: CalendarTypes.DateGridCalendarProps) => JSX.Element;
 	export default DateGridMonth;
 
@@ -1810,19 +1809,16 @@ declare module '@flow-ui/core/icons' {
 
 }
 declare module 'control/Calendar/DateGridTitle' {
-	/// <reference types="react" />
 	import CalendarTypes from 'control/Calendar/types'; const DateGridTitle: (props: CalendarTypes.DateGridTitleProps) => JSX.Element;
 	export default DateGridTitle;
 
 }
 declare module 'control/Calendar/DateGridYear' {
-	/// <reference types="react" />
 	import CalendarTypes from 'control/Calendar/types'; const DateGridYear: (props: CalendarTypes.DateGridCalendarProps) => JSX.Element;
 	export default DateGridYear;
 
 }
 declare module 'control/Calendar/DateGrid' {
-	/// <reference types="react" />
 	import DatePickerTypes from 'control/Calendar/types'; const DateGrid: (props: DatePickerTypes.DateGridProps) => JSX.Element;
 	export default DateGrid;
 
@@ -2768,9 +2764,9 @@ declare module '@flow-ui/core/data/Table/types' {
 	        sort?: TableSortType;
 	    }
 	    interface RowEvents {
-	        onRowClick?: (rowIndex: number, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
-	        onRowMouseEnter?: (rowIndex: number, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
-	        onRowMouseLeave?: (rowIndex: number, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
+	        onRowClick?: (dc: DataCollection, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
+	        onRowMouseEnter?: (dc: DataCollection, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
+	        onRowMouseLeave?: (dc: DataCollection, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
 	    }
 	    interface Props extends RowEvents, WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        data: Object[];
@@ -3114,7 +3110,6 @@ declare module 'layout/Modal/ModalPortal' {
 
 }
 declare module 'layout/Modal/ModalHeader' {
-	/// <reference types="react" />
 	import ModalTypes from '@flow-ui/core/layout/Modal/types'; const ModalHeader: (props: ModalTypes.ModalHeaderProps) => JSX.Element | null;
 	export default ModalHeader;
 
@@ -3294,19 +3289,16 @@ declare module 'layout/Tree/styles' {
 
 }
 declare module 'layout/Tree/TreeLabel' {
-	/// <reference types="react" />
 	import Types from 'layout/Tree/types'; const TreeLabel: (props: Types.TreeLabelProps) => JSX.Element;
 	export default TreeLabel;
 
 }
 declare module 'layout/Tree/TreeLeftChild' {
-	/// <reference types="react" />
 	import Types from 'layout/Tree/types'; const TreeLeftChild: (props: Types.TreeLeftChildProps) => JSX.Element;
 	export default TreeLeftChild;
 
 }
 declare module 'layout/Tree/TreeRightChild' {
-	/// <reference types="react" />
 	import Types from 'layout/Tree/types'; const TreeRightChild: (props: Types.TreeRightChildProps) => JSX.Element;
 	export default TreeRightChild;
 

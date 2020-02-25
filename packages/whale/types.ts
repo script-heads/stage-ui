@@ -252,31 +252,31 @@ declare namespace WhaleTypes {
         /**
          * Padding alias
          */
-        p?: Breakpointify<CSS.Properties['padding']>
+        p?: Breakpointify<string | number>
         /**
          * Padding horizontal alias
          */
-        px?: Breakpointify<CSS.Properties['padding']>
+        px?: Breakpointify<string | number>
         /**
          * Padding vertical alias
          */
-        py?: Breakpointify<CSS.Properties['padding']>
+        py?: Breakpointify<string | number>
         /**
          * PaddingRight alias
          */
-        pr?: Breakpointify<CSS.Properties['paddingRight']>
+        pr?: Breakpointify<string | number>
         /**
          * PaddingLeft alias
          */
-        pl?: Breakpointify<CSS.Properties['paddingLeft']>
+        pl?: Breakpointify<string | number>
         /**
          * PaddingTop alias
          */
-        pt?: Breakpointify<CSS.Properties['paddingTop']>
+        pt?: Breakpointify<string | number>
         /**
          * PaddingBottom alias
          */
-        pb?: Breakpointify<CSS.Properties['paddingBottom']>
+        pb?: Breakpointify<string | number>
     }
 
     /**
@@ -287,31 +287,31 @@ declare namespace WhaleTypes {
         /**
          * Margin alias
          */
-        m?: Breakpointify<CSS.Properties['margin']>
+        m?: Breakpointify<string | number>
         /**
          * Margin horizontal alias
          */
-        mx?: Breakpointify<CSS.Properties['margin']>
+        mx?: Breakpointify<string | number>
         /**
          * Margin vertical alias
          */
-        my?: Breakpointify<CSS.Properties['margin']>
+        my?: Breakpointify<string | number>
         /**
          * MarginRight alias
          */
-        mr?: Breakpointify<CSS.Properties['marginRight']>
+        mr?: Breakpointify<string | number>
         /**
          * MarginLeft alias
          */
-        ml?: Breakpointify<CSS.Properties['marginLeft']>
+        ml?: Breakpointify<string | number>
         /**
          * MarginTop alias
          */
-        mt?: Breakpointify<CSS.Properties['marginTop']>
+        mt?: Breakpointify<string | number>
         /**
          * MarginBottom alias
          */
-        mb?: Breakpointify<CSS.Properties['marginBottom']>
+        mb?: Breakpointify<string | number>
         /**
          * Sets how an element is positioned in a document. 
          * The top, right, bottom, and left properties determine 

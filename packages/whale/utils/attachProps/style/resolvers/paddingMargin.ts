@@ -5,12 +5,18 @@ import WhalePropsTypes from '../../types'
  * into single css string
  */
 const resolver: WhalePropsTypes.StyleResolver = (params) => {
-    const { propName: n, propValue, ctx, theme } = params, 
+    let { propName: n, propValue, ctx, theme } = params,
         k = n[0] == 'p' ? 'padding' : 'margin',
         x = n[1] == 'x', y = n[1] == 'y', 
         t = n[1] == 't', b = n[1] == 'b', 
-        l = n[1] == 'l', r = n[1] == 'r', 
-        v = propValue.split(' ').map(value => theme.spacing[value] || value)
+        l = n[1] == 'l', r = n[1] == 'r' 
+
+    if (typeof propValue === 'number') {
+        propValue = propValue.toString() + 'px'
+    }
+
+    const v = propValue.split(' ').map(value => theme.spacing[value] || value)
+    
     if (n.length == 1) {
         if (v[1] == void 0) v[1] = v[0]
         if (v[2] == void 0) v[2] = v[0]
