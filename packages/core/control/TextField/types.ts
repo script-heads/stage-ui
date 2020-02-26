@@ -1,5 +1,4 @@
 import { ChangeEventHandler } from 'react'
-import IMask from 'imask'
 import FieldTypes from '../../misc/hocs/Field/types'
 import WhaleTypes from '@flow-ui/whale/types'
 
@@ -20,7 +19,6 @@ declare namespace TextFieldTypes {
         defaultValue?: string | number
         align?: 'left' | 'right'
         multiline?: boolean
-        masked?: IMask.AnyMaskedOptions
         onChange?: ChangeEventHandler<HTMLInputElement>
     }
 

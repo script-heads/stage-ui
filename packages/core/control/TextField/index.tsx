@@ -1,8 +1,7 @@
 import { jsx } from '@emotion/core'
 import Field from '@flow-ui/core/misc/hocs/Field'
-import useMask from '@flow-ui/core/misc/hooks/useMask'
 import { useComponent } from '@flow-ui/whale'
-import React, { forwardRef, RefForwardingComponent, useEffect, useImperativeHandle, useRef } from 'react'
+import React, { forwardRef, RefForwardingComponent, useImperativeHandle, useRef } from 'react'
 import styles from './styles'
 import Types from './types'
 
@@ -15,7 +14,6 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
         size = 'm', 
         shape = 'rounded', 
         tabIndex = 0, 
-        masked,
         multiline = false
     } = props
     
@@ -24,7 +22,7 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
         styles,
         styleProps: {
             container: ['flow','layout'], 
-            field:['color','border','padding']
+            field: ['color','border','padding']
         },
         mouseFocus: true,
         focusDecoration: false
@@ -32,35 +30,20 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
 
     const fieldRef = useRef<HTMLDivElement>(null)
     const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
-    const mask = masked && useMask(inputRef, masked)
 
     useImperativeHandle(ref, () => fieldRef && inputRef && {
         ...inputRef.current,
         ...fieldRef.current,
     })
 
-    useEffect(() => {
-        if (typeof props.value != 'undefined') {
-            if (mask) {
-                mask.value = props.value.toString()
-            } else if (inputRef.current) {
-                inputRef.current.value = props.value.toString()
-            }
-        }
-    }, [props.value])
-
-    function onChange(event) {
-        props.onChange?.(event)
-    }
     function onClear() {
         if (inputRef.current) {
-            inputRef.current.value = ''
-            /**
-             * TODO: fullevent
-             */
-            onChange({ target: { value: '' } })
+            Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value")
+                ?.set
+                ?.call(inputRef.current, '')
+
             inputRef.current.dispatchEvent(
-                new Event('change')
+                new Event('input', { bubbles: true})
             )
         }
     }
@@ -91,10 +74,11 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
                 props.multiline ? 'textarea' : 'input',
                 {
                     ref: inputRef,
-                    onChange: onChange,
                     css: cs.input({ size, multiline }),
 
+                    onChange: props.onChange,
                     defaultValue: props.defaultValue,
+                    value: props.value,
                     disabled: props.disabled,
                     autoComplete: props.autoComplete,
                     autoFocus: props.autoFocus,
@@ -124,7 +108,7 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
                     wrap: props.wrap,
                     tabIndex: props.tabIndex,
                     onFocus: (e) => events.all.onFocus?.(e),
-                    onBlur: (e) => events.all.onBlur?.(e)
+                    onBlur: (e) => events.all.onBlur?.(e),
                 }
             )}
         />
