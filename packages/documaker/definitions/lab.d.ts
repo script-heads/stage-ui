@@ -24,6 +24,37 @@ declare module 'data/Chart' {
 	export default _default;
 
 }
+declare module 'data/MeterStack/types' {
+	/// <reference types="react" />
+	import WhaleTypes from '@flow-ui/whale/types';
+	import MeterTypes from '/data/Meter/types'; namespace MeterStackTypes {
+	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+	        size?: MeterTypes.Props['size'];
+	        decoration?: MeterTypes.Props['decoration'];
+	        shape?: MeterTypes.Props['shape'];
+	        children: React.ReactElement<MeterTypes.Props>[];
+	    }
+	    interface Overrides {
+	        container: void;
+	        meterContainer: MeterTypes.Overrides['container'];
+	        meterThumb: MeterTypes.Overrides['thumb'];
+	    }
+	}
+	export default MeterStackTypes;
+
+}
+declare module 'data/MeterStack/styles' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'data/MeterStack/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props>;
+	export default styles;
+
+}
+declare module 'data/MeterStack' {
+	import React from 'react';
+	import Types from 'data/MeterStack/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
 declare module 'layout/Split/Separator' {
 	/// <reference types="react" />
 	import { SplitElRef } from 'layout/Split';
@@ -130,6 +161,7 @@ declare module '@flow-ui/lab' {
 	 * Data
 	 */
 	export { default as Chart } from 'data/Chart';
+	export { default as MeterStack } from 'data/MeterStack';
 	/**
 	 * Layout
 	 */
