@@ -12,7 +12,14 @@ const Button: RefForwardingComponent<HTMLButtonElement, Types.Props> = (props, r
         size = 'm'
     } = props
 
-    const { cs, attributes, events} = useComponent('Button', { props, styles, styleProps: { container: ['all']}, mouseFocus: false })
+    const { cs, attributes, events} = useComponent('Button', { 
+        props, 
+        styles, 
+        styleProps: { 
+            container: ['all']
+        }, 
+        mouseFocus: false 
+    })
 
     const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         if (!disabled) {
