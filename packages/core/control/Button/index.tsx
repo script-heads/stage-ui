@@ -1,8 +1,7 @@
 import { useComponent } from '@flow-ui/whale'
-import React, { forwardRef, RefForwardingComponent } from 'react'
+import React, { Fragment, forwardRef, RefForwardingComponent } from 'react'
 import styles from './styles'
 import Types from './types'
-
 
 const Button: RefForwardingComponent<HTMLButtonElement, Types.Props> = (props, ref) => {
     
@@ -21,12 +20,14 @@ const Button: RefForwardingComponent<HTMLButtonElement, Types.Props> = (props, r
         }
     }
     
+    const styleState = { shape, decoration, size }
+
     return (
         <button
             {...attributes}
             {...events.all}
             ref={ref}
-            css={cs.container({ shape, decoration, size })}
+            css={cs.container(styleState)}
             onClick={onClick}
             autoFocus={props.autoFocus}
             disabled={props.disabled}
@@ -39,7 +40,23 @@ const Button: RefForwardingComponent<HTMLButtonElement, Types.Props> = (props, r
             name={props.name}
             type={props.type}
             value={props.value}
-            children={props.children}
+            children={(
+                <Fragment>
+                    {props.leftChild && (
+                        <div 
+                            css={cs.child({ align: 'left', ...styleState })}
+                            children={props.leftChild}
+                        />
+                    )}
+                    {props.children}
+                    {props.rightChild && (
+                        <div 
+                            css={cs.child({ align: 'right', ...styleState })}
+                            children={props.rightChild}
+                        />
+                    )}
+                </Fragment>
+            )}
         />
     )
 }

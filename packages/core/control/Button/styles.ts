@@ -5,7 +5,9 @@ import Types from './types'
 
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
 
+    const { size, shape } = props
     const color = colorProp(theme, props.color) || theme.color.primary
+    const typography = theme.assets.typography.text[size || 'm'] || theme.assets.typography.text['m']
 
     return {
         container: (variant) => [
@@ -135,6 +137,51 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
             props.uppercase && {
                 textTransform: 'uppercase'
             },
+        ],
+        child: (variant) => [
+            {
+                flexGrow: 0,
+                flexShrink: 1,
+                display: 'flex',
+                alignItems: 'center',
+                ' > span': {
+                    height: 'auto',
+                    '> svg': {
+                        height: typography.fontSize,
+                        width: typography.fontSize
+                    }
+                },
+            },
+            variant({
+                align: {
+                    left: [
+                        {
+                            marginRight: '.375rem'
+                        },
+                        variant({
+                            size: {
+                                xs: { marginRight: '.125rem' },
+                                s: { marginRight: '.25rem' },
+                                l: { marginRight: '.5rem' },
+                                xl: { marginRight: '.75rem' },
+                            }
+                        })
+                    ],
+                    right: [
+                        {
+                            marginLeft: '.375rem'
+                        },
+                        variant({
+                            size: {
+                                xs: { marginLeft: '.125rem' },
+                                s: { marginLeft: '.25rem' },
+                                l: { marginLeft: '.5rem' },
+                                xl: { marginLeft: '.75rem' },
+                            }
+                        })
+                    ],
+                },
+            }),
         ]
     }
 }

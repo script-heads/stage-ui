@@ -29,13 +29,19 @@ declare namespace ButtonTypes {
         uppercase?: boolean
         color?: WhaleTypes.ColorProp
         children?: React.ReactNode
+        rightChild?: React.ReactNode
+        leftChild?: React.ReactNode
     }
 
+    interface StyleState {
+        decoration: Props['decoration']
+        shape: Props['shape']
+        size: Props['size']
+    }
     interface Overrides {
-        container:{
-            decoration: Props['decoration']
-            shape: Props['shape']
-            size: Props['size']
+        container: StyleState
+        child: StyleState & { 
+            align: 'left' | 'right' 
         }
     }
 }

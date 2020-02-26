@@ -523,26 +523,13 @@ declare namespace React {
         displayName?: string;
     }
 
-    interface ForwardRefRenderFunction<T, P = {}> {
+    interface RefForwardingComponent<T, P = {}> {
         (props: PropsWithChildren<P>, ref: Ref<T>): ReactElement | null;
+        propTypes?: WeakValidationMap<P>;
+        contextTypes?: ValidationMap<any>;
+        defaultProps?: Partial<P>;
         displayName?: string;
-        // explicit rejected with `never` required due to
-        // https://github.com/microsoft/TypeScript/issues/36826
-        /**
-         * defaultProps are not supported on render functions
-         */
-        defaultProps?: never;
-        /**
-         * propTypes are not supported on render functions
-         */
-        propTypes?: never;
     }
-
-    /**
-     * @deprecated Use ForwardRefRenderingFunction. forwardRef doesn't accept a
-     *             "real" component.
-     */
-    interface RefForwardingComponent <T, P = {}> extends ForwardRefRenderFunction<T, P> {}
 
     interface ComponentClass<P = {}, S = ComponentState> extends StaticLifecycle<P, S> {
         new (props: P, context?: any): Component<P, S>;
@@ -764,7 +751,7 @@ declare namespace React {
         propTypes?: WeakValidationMap<P>;
     }
 
-    function forwardRef<T, P = {}>(render: ForwardRefRenderFunction<T, P>): ForwardRefExoticComponent<PropsWithoutRef<P> & RefAttributes<T>>;
+    function forwardRef<T, P = {}>(Component: RefForwardingComponent<T, P>): ForwardRefExoticComponent<PropsWithoutRef<P> & RefAttributes<T>>;
 
     /** Ensures that the props do not include ref at all */
     type PropsWithoutRef<P> =
@@ -2010,7 +1997,6 @@ declare namespace React {
         crossOrigin?: "anonymous" | "use-credentials" | "";
         decoding?: "async" | "auto" | "sync";
         height?: number | string;
-        loading?: "eager" | "lazy";
         sizes?: string;
         src?: string;
         srcSet?: string;
@@ -2446,7 +2432,6 @@ declare namespace React {
         overlineThickness?: number | string;
         paintOrder?: number | string;
         panose1?: number | string;
-        path?: string;
         pathLength?: number | string;
         patternContentUnits?: string;
         patternTransform?: number | string;
