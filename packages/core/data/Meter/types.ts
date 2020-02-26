@@ -1,19 +1,16 @@
 import WhaleTypes from '@flow-ui/whale/types'
+import MeterThumbTypes from './MeterThumb/types'
 
 declare namespace MeterTypes {
 
-    type MeterType = 'line' | 'circle'
     type MeterDecoration = 'filled' | 'outline'
     type MeterShape = 'square' | 'round'
 
     interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
-        percent: number
+        percent?: number
 
         size?: WhaleTypes.Size
-        /**
-         * @default line
-         */
-        type?: MeterType
+
         decoration?: MeterDecoration
         shape?: MeterShape
         color?: WhaleTypes.ColorProp
@@ -22,6 +19,8 @@ declare namespace MeterTypes {
          * @default false
          */
         loading?: boolean
+
+        children?: React.ReactElement<MeterThumbTypes.Props>[]
     }
 
     interface Overrides {

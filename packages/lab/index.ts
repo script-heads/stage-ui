@@ -2,7 +2,6 @@
  * Data
  */
 export { default as Chart } from './data/Chart'
-export { default as MeterStack } from './data/MeterStack'
 
 /**
  * Layout
