@@ -2600,18 +2600,36 @@ declare module 'control/TextField' {
 	export default _default;
 
 }
+declare module 'data/Meter/MeterThumb/types' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import MeterTypes from 'data/Meter/types'; namespace MeterThumbTypes {
+	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+	        percent: MeterTypes.Props['percent'];
+	        color?: MeterTypes.Props['color'];
+	        /**
+	         * Enabled process animation
+	         * @default false
+	         */
+	        loading?: MeterTypes.Props['loading'];
+	    }
+	    interface PrivateProps extends MeterTypes.Props {
+	    }
+	    interface Overrides {
+	        container: MeterTypes.Overrides['thumb'];
+	    }
+	}
+	export default MeterThumbTypes;
+
+}
 declare module 'data/Meter/types' {
-	import WhaleTypes from '@flow-ui/whale/types'; namespace MeterTypes {
-	    type MeterType = 'line' | 'circle';
+	/// <reference types="react" />
+	import WhaleTypes from '@flow-ui/whale/types';
+	import MeterThumbTypes from 'data/Meter/MeterThumb/types'; namespace MeterTypes {
 	    type MeterDecoration = 'filled' | 'outline';
 	    type MeterShape = 'square' | 'round';
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
-	        percent: number;
+	        percent?: number;
 	        size?: WhaleTypes.Size;
-	        /**
-	         * @default line
-	         */
-	        type?: MeterType;
 	        decoration?: MeterDecoration;
 	        shape?: MeterShape;
 	        color?: WhaleTypes.ColorProp;
@@ -2620,6 +2638,7 @@ declare module 'data/Meter/types' {
 	         * @default false
 	         */
 	        loading?: boolean;
+	        children?: React.ReactElement<MeterThumbTypes.Props>[];
 	    }
 	    interface Overrides {
 	        container: {
@@ -2642,9 +2661,23 @@ declare module 'data/Meter/styles' {
 	export default styles;
 
 }
+declare module 'data/Meter/MeterThumb/styles' {
+	import WhaleTypes from '@flow-ui/whale/types';
+	import Types from 'data/Meter/MeterThumb/types'; const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.PrivateProps>;
+	export default styles;
+
+}
+declare module 'data/Meter/MeterThumb' {
+	import { RefForwardingComponent } from 'react';
+	import Types from 'data/Meter/MeterThumb/types'; const MeterThumb: RefForwardingComponent<HTMLDivElement, Types.PrivateProps>;
+	export default MeterThumb;
+
+}
 declare module 'data/Meter' {
 	import React from 'react';
-	import Types from 'data/Meter/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	import Types from 'data/Meter/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>> & {
+	    Thumb: React.RefForwardingComponent<HTMLDivElement, import("./MeterThumb/types").default.PrivateProps>;
+	};
 	export default _default;
 
 }

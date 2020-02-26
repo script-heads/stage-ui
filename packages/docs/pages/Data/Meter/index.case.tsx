@@ -1,5 +1,5 @@
 import code from './default.raw'
-import withLoading from './withLoading.raw'
+import advanced from './advanced.raw'
 
 export const title = 'Meter'
 export const subtitle = ''
@@ -10,7 +10,7 @@ export const cases = [
         code
     },
     {
-        label: 'With loading',
-        code: withLoading
+        label: 'Advanced',
+        code: advanced
     }
 ]
