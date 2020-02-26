@@ -21,6 +21,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 borderColor: 'transparent',
                 background: theme.color.surface.rgb().string(),
                 height: '0.75rem',
+                zIndex: 1,
             },
             variant({
                 shape: {
@@ -80,6 +81,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 overflow: 'hidden',
                 borderRadius: '4rem',
                 transition: 'width 0.25s',
+                boxSizing: 'border-box',
                 '&:after': loading && [
                     {
                         content: `''`,

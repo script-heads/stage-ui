@@ -1,4 +1,5 @@
-import { Viewport } from '@flow-ui/core'
+import { Viewport, Meter } from '@flow-ui/core'
+import MeterStack from '@flow-ui/lab/data/MeterStack'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './app'
