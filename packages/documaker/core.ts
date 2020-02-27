@@ -25,6 +25,7 @@ export interface PageType {
     id: string
     url: string
     title: string
+    subtitle: string
     ns?: string
     cases?: {
         label: string

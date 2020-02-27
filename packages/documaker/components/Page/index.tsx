@@ -1,4 +1,4 @@
-import { Block, Flexbox, Header } from '@flow-ui/core'
+import { Block, Flexbox, Header, Paragraph } from '@flow-ui/core'
 import { PageType } from '../../core'
 import Editor from './Editor'
 import API from './API'
@@ -29,19 +29,26 @@ const Page = (props: ContentProps) => {
                     overflow: 'hidden' 
                 }}>
                 <Flexbox column alignItems="center">
-                    {page.title && (
-                        <Block style={{ 
+                {page.title && (
+                        <Block mt="1rem" style={{ 
                             width: '100%',
                             maxWidth: page.cases === void 0 ? '45rem' : '100%'
                         }}>
                             <Header
+                                my={0}
                                 size="xl"
-                                my="1rem"
                                 weight={800}
                                 children={page.title}
                             />
+                            {page.subtitle && (
+                                <Paragraph 
+                                    weight={500}
+                                    children={page.subtitle}
+                                />
+                            )}
                         </Block>
                     )}
+                    
                     {page.cases &&
                         <Editor cases={page.cases} />
                     }
