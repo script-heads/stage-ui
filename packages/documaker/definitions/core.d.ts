@@ -2538,7 +2538,6 @@ declare module 'control/Switch' {
 }
 declare module 'control/TextField/types' {
 	import { ChangeEventHandler } from 'react';
-	import IMask from 'imask';
 	import FieldTypes from 'misc/hocs/Field/types';
 	import WhaleTypes from '@flow-ui/whale/types'; namespace TextFieldTypes {
 	    type InputTypes = 'email' | 'hidden' | 'number' | 'password' | 'reset' | 'search' | 'tel' | 'text' | 'url';
@@ -2546,7 +2545,6 @@ declare module 'control/TextField/types' {
 	        defaultValue?: string | number;
 	        align?: 'left' | 'right';
 	        multiline?: boolean;
-	        masked?: IMask.AnyMaskedOptions;
 	        onChange?: ChangeEventHandler<HTMLInputElement>;
 	    }
 	    interface InputProps {
@@ -2604,7 +2602,7 @@ declare module 'data/Meter/MeterThumb/types' {
 	import WhaleTypes from '@flow-ui/whale/types';
 	import MeterTypes from 'data/Meter/types'; namespace MeterThumbTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
-	        percent: MeterTypes.Props['percent'];
+	        value: MeterTypes.Props['value'];
 	        color?: MeterTypes.Props['color'];
 	        /**
 	         * Enabled process animation
@@ -2628,7 +2626,7 @@ declare module 'data/Meter/types' {
 	    type MeterDecoration = 'filled' | 'outline';
 	    type MeterShape = 'square' | 'round';
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
-	        percent?: number;
+	        value?: number;
 	        size?: WhaleTypes.Size;
 	        decoration?: MeterDecoration;
 	        shape?: MeterShape;
