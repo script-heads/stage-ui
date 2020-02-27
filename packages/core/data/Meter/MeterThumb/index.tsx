@@ -19,6 +19,22 @@ const MeterThumb: RefForwardingComponent<HTMLDivElement, Types.PrivateProps> = (
         }
     })
 
+    // TODO: circle support
+    // return (
+    //     <svg viewBox="22 22 44 44">
+    //         <circle
+    //             cx="44"
+    //             cy="44"
+    //             r="18"
+    //             fill="none"
+    //             stroke="#000000"
+    //             strokeWidth="4"
+    //             strokeDasharray="113.1"
+    //             strokeDashoffset="10"
+    //         />
+    //     </svg>
+    // )
+    
     return (
         <div
             {...attributes}
