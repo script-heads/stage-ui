@@ -8,7 +8,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.PrivateProps> = (pr
 
     const color = colorProp(theme, props.color) || theme.color.primary
     const field = theme.assets.field[props.size || 'm'] || theme.assets.field.m
-
+    
     return {
         container: (variant) => [
             {
@@ -33,11 +33,11 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.PrivateProps> = (pr
                         top: '0; left: 0; bottom: 0; right: 0',
                         backgroundImage: `linear-gradient(
                             -45deg, 
-                            rgba(255, 255, 255, .2) 25%, 
+                            ${theme.color.surface.alpha(0.2).string()} 25%, 
                             transparent 25%, 
                             transparent 50%, 
-                            rgba(255, 255, 255, .2) 50%, 
-                            rgba(255, 255, 255, .2) 75%, 
+                            ${theme.color.surface.alpha(0.2).string()} 50%, 
+                            ${theme.color.surface.alpha(0.2).string()} 75%, 
                             transparent 75%, 
                             transparent
                         )`,
