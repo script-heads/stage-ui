@@ -43,6 +43,7 @@ export default () => {
                                 alignContent="center"
                             >
                                 <PreviewIcon
+                                    type="filled"
                                     shape="oval"
                                     size="2rem"
                                     background={c => c.lightest}

@@ -18,6 +18,7 @@
     "gen:convertTypes": "cd ./packages/documaker && node ./scripts/convertTypes.js",
     "gen:generateTypes": "cd ./packages/documaker && node ./scripts/generateTypes.js",
     "gen:fixTypes": "cd ./packages/documaker && node ./scripts/fixTypes.js",
+    "gen:evaicons": "cd ./packages/core && yarn icons:generate",
     "pub:core": "cd ./packages/core && yarn pub",
     "pub:lab": "cd ./packages/lab && yarn pub",
     "pub:whale": "cd ./packages/whale && yarn pub",
