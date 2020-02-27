@@ -77,7 +77,7 @@ const Type = (props: { type: TypeInterfaceChild, last: boolean }) => {
 
     const LightText = (props: { children: string }) => (
         <Text
-        size="s"
+        size="xs"
         color={c => c.hard}
             children={props.children}
         />
@@ -91,12 +91,23 @@ const Type = (props: { type: TypeInterfaceChild, last: boolean }) => {
         rightSide = type.values.map(value =>
             <Text
                 h="fit-content"
-                size="s"
+                size="xs"
                 key={value}
                 p=".125rem 0.25rem"
                 mx=".125rem"
                 mb=".25rem"
-                backgroundColor={c => c.lightest}
+                backgroundColor={c => {
+                    if (value === 'string') {
+                        return c.error.alpha(0.2)
+                    }
+                    if (value === 'number') {
+                        return c.success.alpha(0.2)
+                    }
+                    if (value === 'Boolean') {
+                        return c.primary.alpha(0.2)
+                    }
+                    return c.onSurface.alpha(0.1)
+                }}
                 css={{ borderRadius: '.25rem' }}
                 children={`${value}`}
             />
@@ -119,11 +130,11 @@ const Type = (props: { type: TypeInterfaceChild, last: boolean }) => {
                                 <LightText children=") => "/>
                                 <Text
                                     h="fit-content"
-                                    size="s"
+                                    size="xs"
                                     p=".125rem 0.25rem"
                                     mx=".125rem"
                                     mb=".25rem"
-                                    backgroundColor={c => c.lightest}
+                                    backgroundColor={c => c.primary.alpha(0.2)}
                                     css={{ borderRadius: '.25rem' }}
                                     children={`${signature.type.name}`}
                                 />
@@ -149,20 +160,34 @@ const Type = (props: { type: TypeInterfaceChild, last: boolean }) => {
                         mr=".5rem"
                         css={{ whiteSpace: 'nowrap' }}
                         flex={1}>
-                        &bull;&ensp;
-                        {type.deprecated !== void 0 && '[Deprecated] '}
+                        {type.deprecated && (
+                            <Text color={c => c.error}>[Deprecated] </Text>
+                        )}
                         {type.name}
                         {(type.isOptional ? '?' : '')}
                     </Text>
                     <Flexbox wrap="wrap" justifyContent="flex-end">
                         {rightSide}
+                        {type.breakpointify && (
+                            <Text
+                                h="fit-content"
+                                size="xs"
+                                p=".125rem 0.25rem"
+                                mx=".125rem"
+                                mb=".25rem"
+                                backgroundColor={c => c.success.alpha(0.1)}
+                                css={{ borderRadius: '.25rem' }}
+                                children={`Support breakpoints`}
+                            />
+                        )}
+
                     </Flexbox>
                 </Flexbox>
                 <Paragraph
                     ml="1rem"
                     mb=".25rem"
                     display="block"
-                    size="s"
+                    size="xs"
                     color={c => c.hard}
                     children={comment}
                 />

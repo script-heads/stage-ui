@@ -7,23 +7,61 @@ declare namespace GridTypes {
         inline?: boolean
         children?: React.ReactNode
         decoration?: LayoutDecoration
-
+        /**
+         * @displayType string
+         */
         templateColumns?: CSS.Properties['gridTemplateColumns']
+        /**
+         * @displayType string
+         */
         templateRows?: CSS.Properties['gridTemplateRows']
+        /**
+         * @displayType string
+         */
         templateAreas?: CSS.Properties['gridTemplateAreas']
 
+        /**
+         * @displayType string
+         */
         columnGap?: CSS.Properties['gridColumnGap']
+        /**
+         * @displayType string
+         */
         rowGap?: CSS.Properties['gridRowGap']
+        /**
+         * @displayType string
+         */
         gap?: CSS.Properties['gridGap']
 
+        /**
+         * @displayType string
+         */
         autoColumns?: CSS.Properties['gridAutoColumns']
+        /**
+         * @displayType string
+         */
         autoRows?: CSS.Properties['gridAutoRows']
+        /**
+         * @displayType string
+         */
         autoFlow?: CSS.Properties['gridAutoFlow']
 
-        alignItems?: CSS.Properties['alignItems']
-        alignContent?: CSS.Properties['alignContent']
-        justifyContent?: CSS.Properties['justifyContent']
-        justifyItems?: CSS.Properties['justifyItems']
+        /**
+         * @displayType string
+         */
+        alignItems?: WhaleTypes.GridSelf
+        /**
+         * @displayType inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
+         */
+        alignContent?: WhaleTypes.GridSpace | WhaleTypes.GridSelf
+        /**
+         * @displayType inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
+         */
+        justifyContent?: WhaleTypes.GridSpace | WhaleTypes.GridSelf
+        /**
+         * @displayType inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
+         */
+        justifyItems?: WhaleTypes.GridSpace | WhaleTypes.GridSelf
     }
     interface Overrides {
         container: {

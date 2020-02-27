@@ -7,13 +7,29 @@ declare namespace FlexboxTypes {
         column?: boolean
         inline?: boolean
         decoration?: LayoutDecoration
+        
         alignItems?: WhaleTypes.FlexSelf
+        /**
+         * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
+         */
         alignContent?: WhaleTypes.FlexSelf | WhaleTypes.FlexSpace
+        /**
+         * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
+         */
         placeContent?: WhaleTypes.FlexSelf | WhaleTypes.FlexSpace
+        /**
+         * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
+         */
         justifyContent?: WhaleTypes.FlexSelf | WhaleTypes.FlexSpace
+        /**
+         * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
+         */
         justifyItems?: WhaleTypes.FlexSelf | WhaleTypes.FlexSpace
-        direction?: CSS.Properties['flexDirection']
-        wrap?: CSS.Properties['flexWrap']
+        direction?: WhaleTypes.FlexDirection
+        wrap?: WhaleTypes.FlexWrap
+        /**
+         * Short for direction and wrap
+         */
         flow?: CSS.Properties['flexFlow']
         children?: React.ReactNode
     }

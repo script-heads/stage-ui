@@ -14,7 +14,23 @@ export default {
             Control: [],
             Util: []
         },
-        types: ['Props','Overrides'],
-        separatedTypes: ['All','Attribute','Event','Self','Flow'],
+        types: [
+            'Props',
+            'Overrides'
+        ],
+        separatedTypes: [
+            'All',
+            'AllEvents',
+            'Attributes',
+            'Core',
+            'Colors',
+            'Border',
+            'Padding',
+            'Layout',
+            'Self',
+            'Flow',
+            'Flex',
+            'Grid'
+        ],
     }
 }

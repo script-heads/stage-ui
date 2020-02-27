@@ -42,6 +42,7 @@ export interface TypeInterfaceChild {
     comment?: string
     tags?: { [key: string]: string }
     deprecated?: string | true
+    breakpointify?: true
     type: 'stringLiteral' | 'intrinsic' | 'reference' | Reflection | Intersection
     values: string[]
 }

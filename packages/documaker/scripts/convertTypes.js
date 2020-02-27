@@ -79,9 +79,15 @@ for (const namespace of doc.children) {
                 children.map(child => {
                     if (child.comment) {
                         if (child.comment.tags) {
+                            
+                            const displayType = child.comment.tags.find(item => item.tag === 'displaytype')
+                            const breakpointify = child.comment.tags.find(tag => tag.tag === "breakpointify")
                             let deprecated = child.comment.tags.find(tag => tag.tag === "deprecated")
                             if (deprecated) {
                                 child.deprecated = deprecated.text || true
+                            }
+                            if (breakpointify) {
+                                child.breakpointify = true
                             }
                             for (const i of Object.keys(child.comment.tags)) {
                                 const tag = child.comment.tags[i];
@@ -89,6 +95,10 @@ for (const namespace of doc.children) {
                                     child.tags = {}
                                 }
                                 child.tags[tag.tag] = tag.text.replace('\n', '')
+                            }
+                            if (displayType) {
+                                child.values = displayType.text.split('|').filter(item => item !== '').map(item => item.trim())
+                                return
                             }
                         }
                         if (child.comment.shortText) {
@@ -122,54 +132,65 @@ for (const namespace of doc.children) {
                         child.type = "intrinsic"
                     }
                     if (child.type.type === "union") {
-
+                        
                         let type = "unknown"
                         child.values = []
                         child.type.types.map(item => {
-                            let isArray = item.type === "array";
-                            if (isArray) {
-                                item.type = item.elementType.type;
-                                if (item.elementType.name) {
-                                    item.name = item.elementType.name + "[]";
+                            try {
+                                const displayType = child.type.reference.comment.tags.find(item => item.tag === 'displaytype')
+                                if (displayType) {
+                                    child.values = displayType.text.split('|').filter(item => item !== '').map(item => item.trim())
                                 }
-                                if (item.elementType.value) {
-                                    item.value = item.elementType.value + "[]";
+                            } catch (e) {
+                                let isArray = item.type === "array";
+                                if (isArray) {
+                                    item.type = item.elementType.type;
+                                    if (item.elementType.name) {
+                                        item.name = item.elementType.name + "[]";
+                                    }
+                                    if (item.elementType.value) {
+                                        item.value = item.elementType.value + "[]";
+                                    }
                                 }
-                            }
-                            if (item.type === "reference") {
-                                type = "reference"
-                                child.values.push(item.name)
-                            }
-                            if (item.type === "stringLiteral") {
-                                type = "stringLiteral"
-                                if (item.value !== "undefined") {
-                                    child.values.push(item.value)
-                                }
-                            }
-                            if (item.type === "intrinsic") {
-                                type = "intrinsic"
-                                if (item.name !== "undefined") {
+                                if (item.type === "reference") {
+                                    type = "reference"
                                     child.values.push(item.name)
                                 }
-                            }
-                            if (item.type === "reflection") {
-                                type = "reflection"
-                                if (item.declaration) {
-                                    const signatures = item.declaration.signatures || []
-                                    if (signatures.length === 1) {
-                                        const s = signatures[0];
-                                        let params = (s.parameters || [])
-                                            .map(param => `${param.name}: ${param.type.name}`)
-                                            .join(", ")
-                                        child.values.push(`(${params}) => ${s.type.name}`)
+                                if (item.type === "stringLiteral") {
+                                    type = "stringLiteral"
+                                    if (item.value !== "undefined") {
+                                        child.values.push(item.value)
+                                    }
+                                }
+                                if (item.type === "intrinsic") {
+                                    type = "intrinsic"
+                                    if (item.name !== "undefined") {
+                                        child.values.push(item.name)
+                                    }
+                                }
+                                if (item.type === "reflection") {
+                                    type = "reflection"
+                                    if (item.declaration) {
+                                        const signatures = item.declaration.signatures || []
+                                        if (signatures.length === 1) {
+                                            const s = signatures[0];
+                                            let params = (s.parameters || [])
+                                                .map(param => `${param.name}: ${param.type.name}`)
+                                                .join(", ")
+                                            child.values.push(`(${params}) => ${s.type.name}`)
+                                        }
                                     }
                                 }
                             }
+
                         })
-                        if (child.values.length === 0) {
-                            child.values.push("unknown")
-                        }
+                        // if (child.values.length === 0) {
+                        //     child.values.push("unknown")
+                        // }
                         child.type = type
+                        if (child.values.length === 2 && child.values[0] === 'false') {
+                            child.values = ['Boolean']
+                        }
                     }
                     if (child.flags) {
                         child.isOptional = child.flags.isOptional
