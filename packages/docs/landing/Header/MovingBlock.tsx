@@ -12,7 +12,7 @@ let promoData = {
     switchOn: false,
     radioOn: false,
     checkOn: false,
-    meterPercent: 20,
+    meterValue: 20,
     c1: 'transparent',
     c2: 'transparent',
     c3: 'transparent',
@@ -30,7 +30,7 @@ export default () => {
         const steps = [
             {
                 t: 50,
-                meterPercent: 30,
+                meterValue: 30,
                 c1: theme.color.lightest,
                 c2: theme.color.lightest,
                 c3: theme.color.lightest,
@@ -40,7 +40,7 @@ export default () => {
                 buttonDecoration: 'filled',
             },
             { t: 250, iconCount: 2 },
-            { t: 250, iconCount: 3, meterPercent: 10 },
+            { t: 250, iconCount: 3, meterValue: 10 },
             { t: 250, iconCount: 4, checkOn: false, emailIcon: false, c1: theme.color.primary, },
             { t: 250, emailText: 'E', switchOn: true, radioOn: false, },
             {
@@ -49,7 +49,7 @@ export default () => {
                 c2: theme.color.primary,
                 c1: theme.color.lightest
             },
-            { t: 250, emailText: 'E-Ma', meterPercent: 40, radioOn: true, },
+            { t: 250, emailText: 'E-Ma', meterValue: 40, radioOn: true, },
             { t: 250, emailText: 'E-Mai', checkOn: true },
             {
                 t: 250,
@@ -57,7 +57,7 @@ export default () => {
                 c3: theme.color.primary,
                 c2: theme.color.lightest,
                 switchOn: false,
-                meterPercent: 30,
+                meterValue: 30,
                 buttonText: 'S',
                 buttonDecoration: 'outline',
             },
@@ -65,20 +65,20 @@ export default () => {
                 t: 250,
                 buttonText: 'Su',
                 emailIcon: true,
-                meterPercent: 70,
+                meterValue: 70,
                 shape: 'round',
             },
-            { t: 250, buttonText: 'Sub', meterPercent: 90 },
+            { t: 250, buttonText: 'Sub', meterValue: 90 },
             {
                 t: 250,
                 buttonText: 'Subm',
                 buttonDecoration: 'text',
-                meterPercent: 70,
+                meterValue: 70,
                 radioOn: false,
                 c4: theme.color.primary,
                 c3: theme.color.lightest,
             },
-            { t: 250, buttonText: 'Submi', meterPercent: 50 },
+            { t: 250, buttonText: 'Submi', meterValue: 50 },
             { t: 500, buttonText: 'Submit', switchOn: false, shape: 'square', }
         ]
         const next = () => {
@@ -105,13 +105,13 @@ export default () => {
                     {pd.iconCount > 2 && <PaperPlane size="2rem" color={pd.c3} />}
                     {pd.iconCount > 3 && <Settings size="2rem" color={pd.c4} />}
                 </Flexbox>
-                <Range css={{ '>div': { transition: 'all .1s' } }} value={pd.meterPercent} />
+                <Range css={{ '>div': { transition: 'all .1s' } }} value={pd.meterValue} />
                 <Flexbox justifyContent="space-around" py="1rem">
                     <Switch checked={pd.switchOn} />
                     <Radio checked={pd.radioOn} />
                     <Checkbox checked={pd.checkOn} />
                 </Flexbox>
-                <Meter css={{ '>div': { transition: 'all .1s' } }} percent={100 - pd.meterPercent} />
+                <Meter css={{ '>div': { transition: 'all .1s' } }} value={100 - pd.meterValue} />
                 <Divider my="1rem" />
                 <TextField
                     shape={pd.shape as any}

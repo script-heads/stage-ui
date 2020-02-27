@@ -6,12 +6,12 @@ export default () => {
         <Meter>
             <Meter.Thumb 
                 loading
-                percent={100} 
+                value={100} 
                 color={c => c.onSurface}
             />
             <Meter.Thumb 
                 m="xs" 
-                percent={30} 
+                value={30} 
             />
         </Meter>
     )

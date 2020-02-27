@@ -9,9 +9,9 @@ export default () => {
                 border: '1px solid #fff',
             }]
         }}>
-            <Meter percent={100} color={c => c.error} />
-            <Meter loading percent={60} color={c => c.primary} />
-            <Meter percent={20} color={c => c.success} />
+            <Meter value={100} color={c => c.error} />
+            <Meter loading value={60} color={c => c.primary} />
+            <Meter value={20} color={c => c.success} />
         </MeterStack>
     )
 }

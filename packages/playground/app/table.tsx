@@ -50,7 +50,7 @@ const DisplayAge = (props: { ctx: T.TableCellContext }) => (
         <Meter 
             loading={parseInt(props.ctx.value as string) < 18}
             flex={1}
-            percent={parseInt(props.ctx.value as string)} 
+            value={parseInt(props.ctx.value as string)} 
         />
     </Flexbox>
 )

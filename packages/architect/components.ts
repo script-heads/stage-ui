@@ -77,7 +77,7 @@ const components: ArchitectTools['components'] = {
      * Data
      */
     // Meter: Init('Meter', {
-    //     percent: 45
+    //     value: 45
     // }),
     Table: Init('Table'),
     /**

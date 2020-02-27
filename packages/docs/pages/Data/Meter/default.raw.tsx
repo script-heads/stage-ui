@@ -3,6 +3,6 @@ import { Meter } from '@flow-ui/core';
 
 export default () => {
     return (
-        <Meter percent={35} />
+        <Meter value={35} />
     )
 }
