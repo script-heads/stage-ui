@@ -4,7 +4,7 @@ import MeterTypes from '../types'
 declare namespace MeterThumbTypes {
 
     interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
-        percent: MeterTypes.Props['percent']
+        value: MeterTypes.Props['value']
         color?: MeterTypes.Props['color']
         /**
          * Enabled process animation

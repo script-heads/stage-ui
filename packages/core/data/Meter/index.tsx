@@ -10,7 +10,7 @@ const Meter: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
         decoration = 'filled',
         shape = 'round',
         size = 'm',
-        percent = 0,
+        value = 0,
     } = props
 
     const { cs, attributes, events } = useComponent('Meter', { props, styles, styleProps: { container: ['all']} })
@@ -38,7 +38,7 @@ const Meter: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
                         styles={{
                             container: props.styles?.thumb
                         }}
-                        percent={percent}
+                        value={value}
                     /> 
                 )
             }

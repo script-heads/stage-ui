@@ -7,7 +7,7 @@ declare namespace MeterTypes {
     type MeterShape = 'square' | 'round'
 
     interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
-        percent?: number
+        value?: number
 
         size?: WhaleTypes.Size
 

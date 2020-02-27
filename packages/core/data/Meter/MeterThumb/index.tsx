@@ -8,7 +8,7 @@ const MeterThumb: RefForwardingComponent<HTMLDivElement, Types.PrivateProps> = (
     const {
         shape = 'round',
         size = 'm',
-        percent = 0,
+        value = 0,
     } = props
 
     const { cs, attributes, events } = useComponent('MeterThumb', {
@@ -25,7 +25,7 @@ const MeterThumb: RefForwardingComponent<HTMLDivElement, Types.PrivateProps> = (
             {...events.all}
             css={cs.container({ shape, size })}
             style={{
-                width: percent + '%'
+                width: value + '%'
             }}
         />
     )
