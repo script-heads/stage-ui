@@ -4,11 +4,7 @@ import { HomePageProps } from '@flow-ui/documaker/core'
 export default () => {
     return (
         <Flexbox justifyContent="center" backgroundColor={c => c.onSurface}>
-            <Block textColor={c => c.surface} css={{
-                width: '45rem',
-                minWidth: '45rem'
-            }}>
-                <Header children="FlowUI" />
+            <Block w="62rem" px="2rem">
             </Block>
         </Flexbox>
     )
