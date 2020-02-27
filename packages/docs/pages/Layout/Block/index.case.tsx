@@ -3,7 +3,7 @@ import shadowSurface from './shadowSurface.raw'
 import neumorphismSurface from './neumorphismSurface.raw'
 
 export const title = 'Block'
-export const subtitle = 'Block — minimal layout component. For example this case wrap in block'
+export const subtitle = 'minimal layout component. renders as <div/>'
 export const ns = 'BlockTypes'
 export const cases = [
     { label: 'Basic', code },

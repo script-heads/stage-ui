@@ -5,7 +5,7 @@ import spaceBetween from './spaceBetween.raw'
 import column from './column.raw'
 
 export const title = 'Flexbox'
-export const subtitle = ''
+export const subtitle = 'quickly manage the responsive layout, alignment, and sizing'
 export const ns = 'FlexboxTypes'
 export const cases = [
     {

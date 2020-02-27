@@ -3,7 +3,7 @@ import finder from './finder.raw'
 import custom from './custom.raw'
 
 export const title = 'Tree'
-export const subtitle = ''
+export const subtitle = 'presents a hierarchical list'
 export const ns = 'TreeTypes'
 export const cases = [
     {

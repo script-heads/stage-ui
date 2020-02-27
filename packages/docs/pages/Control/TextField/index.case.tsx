@@ -3,7 +3,7 @@ import labelInside from './labelInside.raw'
 import withMask from './withMask.raw'
 
 export const title = 'TextField'
-export const subtitle = ''
+export const subtitle = 'allow users to input basic data'
 export const ns = 'TextFieldTypes'
 export const cases = [
     {

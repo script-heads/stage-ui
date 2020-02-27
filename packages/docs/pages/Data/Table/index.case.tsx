@@ -5,7 +5,7 @@ import sorting from './sorting.raw'
 import pagination from './pagination.raw'
 
 export const title = 'Table'
-export const subtitle = ''
+export const subtitle = 'displays complex data as table'
 export const ns = 'TableTypes'
 export const cases = [
     { label: 'Basic', code },

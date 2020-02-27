@@ -3,7 +3,7 @@ import multiselect from './multiselect.raw'
 import keepOpen from './keepOpen.raw'
 
 export const title = 'Select'
-export const subtitle = ''
+export const subtitle = 'allow users to select one or couple items from list'
 export const ns = 'SelectTypes'
 export const cases = [
     {
