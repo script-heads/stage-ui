@@ -3,6 +3,7 @@ import resolveEvent from './resolvers/event'
 import resolveColor from './resolvers/color'
 import resolvePaddingMargin from './resolvers/paddingMargin'
 import WhalePropsTypes from '../types'
+import mergeObjects from '../../mergeObjects'
 
 const resolvers: WhalePropsTypes.StyleResolverObject = {
     //Event
@@ -133,10 +134,22 @@ const createPropStyles = <Props, StyleProps>(
             }
         })
     }
+    
+    let flow = {}, self = {}, all = {}
 
-    const flow = Object.assign({}, styles.margin, styles.flex, styles.grid)
-    const self = Object.assign({}, styles.color, styles.border, styles.padding, styles.layout)
-    const all = Object.assign({}, flow, self, styles.event)
+    flow = mergeObjects(flow, styles.margin)
+    flow = mergeObjects(flow, styles.flex)
+    flow = mergeObjects(flow, styles.grid)
+
+    self = mergeObjects(self, styles.color)
+    self = mergeObjects(self, styles.border)
+    self = mergeObjects(self, styles.padding)
+    self = mergeObjects(self, styles.layout)
+
+    all = mergeObjects(all, flow)
+    all = mergeObjects(all, self)
+    all = mergeObjects(all, styles.event)
+
     const combined = Object.assign({ flow, self, all }, styles)
 
     Object.keys(styleProps).forEach(className => {
