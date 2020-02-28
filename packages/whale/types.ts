@@ -511,6 +511,43 @@ declare namespace WhaleTypes {
          */
         gridArea?: Breakpointify<CSS.Properties['gridArea']>
         /**
+         * @breakpointify
+         */
+        gridTemplateColumns?: Breakpointify<CSS.Properties['gridTemplateColumns']>
+        /**
+         * @breakpointify
+         */
+        gridTemplateRows?: Breakpointify<CSS.Properties['gridTemplateRows']>
+        /**
+         * @breakpointify
+         */
+        gridTemplateAreas?: Breakpointify<CSS.Properties['gridTemplateAreas']>
+        /**
+         * @breakpointify
+         */
+        gridColumnGap?: Breakpointify<CSS.Properties['gridColumnGap']>
+        /**
+         * @breakpointify
+         */
+        gridRowGap?: Breakpointify<CSS.Properties['gridRowGap']>
+        /**
+         * @breakpointify
+         */
+        gridGap?: Breakpointify<CSS.Properties['gridGap']>
+        /**
+         * @breakpointify
+         */
+        gridAutoColumns?: Breakpointify<CSS.Properties['gridAutoColumns']>
+        /**
+         * @breakpointify
+         */
+        gridAutoRows?: Breakpointify<CSS.Properties['gridAutoRows']>
+        /**
+         * @breakpointify
+         */
+        gridAutoFlow?: Breakpointify<CSS.Properties['gridAutoFlow']>
+        
+        /**
          * Shorthand property sets both the align-self and justify-self 
          * properties. The first value is the align-self property value, 
          * the second the justify-self one. If the second value is not 

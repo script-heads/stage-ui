@@ -1,7 +1,7 @@
 {
   "name": "@flow-ui/whale",
   "author": "ABR Tech",
-  "version": "0.1.14",
+  "version": "0.1.16",
   "license": "MIT",
   "scripts": {
     "pub": "git pull && yarn build && npm version patch && cd ../../build/whale && npm version patch && npm publish --access public && cd .. && rm -rf ./whale",

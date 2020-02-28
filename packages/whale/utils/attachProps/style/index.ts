@@ -59,6 +59,16 @@ const resolvers: WhalePropsTypes.StyleResolverObject = {
     gridColumn: ['grid', 'gridColumn'],
     gridRow: ['grid', 'gridRow'],
     gridArea: ['grid', 'gridArea'],
+    gridTemplateColumns: ['grid', 'gridTemplateColumns'],
+    gridTemplateRows: ['grid', 'gridTemplateRows'],
+    gridTemplateAreas: ['grid', 'gridTemplateAreas'],
+    gridColumnGap: ['grid', 'gridColumnGap'],
+    gridRowGap: ['grid', 'gridRowGap'],
+    gridGap: ['grid', 'gridGap'],
+    gridAutoColumns: ['grid', 'gridAutoColumns'],
+    gridAutoRows: ['grid', 'gridAutoRows'],
+    gridAutoFlow: ['grid', 'gridAutoFlow'],
+
     placeSelf: ['grid', 'placeSelf'],
 }
 
