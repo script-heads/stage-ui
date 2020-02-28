@@ -9,8 +9,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
             {
                 position: 'relative',
                 display: props.inline ? 'inline-flex' : 'flex',
-                flexDirection: props.column ? 'column' : props.direction,
-         
+                flexDirection: props.column ? 'column' : undefined,
             },
         ]
     }
