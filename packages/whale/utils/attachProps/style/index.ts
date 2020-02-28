@@ -38,18 +38,27 @@ const resolvers: WhalePropsTypes.StyleResolverObject = {
 
     //Layout
     display: ['layout', 'display'],
+    position: ['layout', 'position'],
+    fontSize: ['layout', 'fontSize'],
     visibility: ['layout', 'visibility'],
     w: ['layout', 'width'],
     h: ['layout', 'height'],
-    // animated: ['layout', 'transition'],
-
+        
     //Flex
+    wrap: ['flex', 'wrap'],
+    flow: ['flex', 'flow'],
     flex: ['flex', 'flex'],
+    direction: ['flex', 'direction'],
     flexBasis: ['flex', 'flexBasis'],
     flexGrow: ['flex', 'flexGrow'],
     flexShrink: ['flex', 'flexShrink'],
     alignSelf: ['flex', 'alignSelf'],
     justifySelf: ['flex', 'justifySelf'],
+    alignItems: ['flex', 'alignItems'],
+    alignContent: ['flex', 'alignContent'],
+    justifyContent: ['flex', 'justifyContent'],
+    justifyItems: ['flex', 'justifyItems'],
+    placeContent: ['flex', 'placeContent'],
 
     //Grid
     gridColumnStart: ['grid', 'gridColumnStart'],
