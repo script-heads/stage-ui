@@ -49,7 +49,7 @@ const resolvers: WhalePropsTypes.StyleResolverObject = {
     wrap: ['flex', 'wrap'],
     flow: ['flex', 'flow'],
     flex: ['flex', 'flex'],
-    direction: ['flex', 'direction'],
+    direction: ['flex', 'flexDirection'],
     flexBasis: ['flex', 'flexBasis'],
     flexGrow: ['flex', 'flexGrow'],
     flexShrink: ['flex', 'flexShrink'],
