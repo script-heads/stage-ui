@@ -25,7 +25,6 @@ declare namespace TypographyTypes {
 		align?: CSS.Properties['textAlign']
 		weight?: CSS.Properties['fontWeight']
 		size?: WhaleTypes.Size | string
-		lineHeight?: CSS.Properties['lineHeight']
 		transform?: CSS.Properties['textTransform']
 	}
 

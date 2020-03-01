@@ -286,6 +286,18 @@ declare namespace WhaleTypes {
          * @breakpointify
          */
         fontSize?: Breakpointify<CSS.Properties['fontSize']>
+        /**
+         * @breakpointify
+         */
+        lineHeight?: Breakpointify<CSS.Properties['lineHeight']>
+        /**
+         * @breakpointify
+         */
+        letterSpacing?: Breakpointify<CSS.Properties['fontSize']>
+        /**
+         * @breakpointify
+         */
+        textAlign?: Breakpointify<CSS.Properties['textAlign']>
     }
 
     /**
