@@ -100,6 +100,9 @@ declare namespace TableTypes {
         sort?: TableSortType
     }
 
+    // interface RowDelegates {
+    //     tableRowHeight?: (dc: DataCollection) => number
+    // }
     interface RowEvents {
         onRowClick?: (dc: DataCollection, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
         onRowMouseEnter?: (dc: DataCollection, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
@@ -111,6 +114,10 @@ declare namespace TableTypes {
         decoration?: LayoutDecoration
         pagination?: TablePaginationOptions
         footer?: React.ReactNode
+        experemental?: {
+            renderType: 'mountOnly' | 'mountUnmount'
+            tableRowHeight: (dc: DataCollection) => number
+        }
     }
 
     interface HeadCellProps {
@@ -134,6 +141,7 @@ declare namespace TableTypes {
         styles: WhaleTypes.ComponentStyles<Overrides>
         getCellContext: TableRef['getCellContext']
         events: RowEvents
+        experimental?: Props['experemental']
     }
 
     interface FootProps {

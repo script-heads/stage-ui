@@ -182,6 +182,7 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
                                 columns={columns}
                                 rowIndex={rowIndex}
                                 events={events}
+                                experimental={props.experemental}
                             />
                         )
                     })
