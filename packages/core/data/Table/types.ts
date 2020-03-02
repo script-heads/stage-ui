@@ -180,7 +180,7 @@ declare namespace TableTypes {
          */
         footer?: React.ReactNode
         /**
-         * Table will render rows. 
+         * How Table will render rows. 
          * any type except 'default' requires rowHeight delegate!
          * 
          * default - Render all rows at onec. 
