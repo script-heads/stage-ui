@@ -183,7 +183,7 @@ declare namespace TableTypes {
          * How Table will render rows. 
          * any type except 'default' requires rowHeight delegate!
          * 
-         * default - Render all rows at onec. 
+         * default - Render all rows at once. 
          * whenBecomeVisible - Render row only when it become visible. 
          * onlyWhenVisible - Render row when it become visible and unmount when row away from screen. 
          */ 
