@@ -1,7 +1,7 @@
 {
   "name": "@flow-ui/core",
   "author": "ABR Tech",
-  "version": "0.1.47",
+  "version": "0.1.48",
   "license": "MIT",
   "scripts": {
     "pub": "git pull && yarn build && npm version patch && cd ../../build/core && npm version patch && npm publish --access public && cd .. && rm -rf ./core",
