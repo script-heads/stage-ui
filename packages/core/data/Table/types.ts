@@ -2,6 +2,21 @@ import WhaleTypes from '@flow-ui/whale/types'
 import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration'
 declare namespace TableTypes {
 
+    type RowMountType =
+        /**
+         * Render all rows at onec
+         */
+        'default' |
+        /**
+         * Render row only when it become visible
+         */
+        'whenBecomeVisible' |
+        /**
+         * Render row when it become visible
+         * and unmount when row away from screen
+         */
+        'onlyWhenVisible'
+
     type TableCellKey = number | string
     type TableSortType = 'ASC' | 'DESC'
     type TableSortObject = {
@@ -60,7 +75,7 @@ declare namespace TableTypes {
         reloadData: () => void
     }
 
-    type DataCollection = {
+    type RowContext = {
         row: Object
         isExpand: boolean
         isVisible: boolean
@@ -71,6 +86,7 @@ declare namespace TableTypes {
             [key: string]: React.Dispatch<React.SetStateAction<boolean>> 
         }
         setExpandComponent?: React.Dispatch<React.SetStateAction<React.ReactNode>>
+        setNeedDisplay?: (forceUnmount?: boolean) => boolean
     }
 
     interface Ref extends TableRef, HTMLTableElement {}
@@ -93,31 +109,85 @@ declare namespace TableTypes {
     }
 
     interface TableColumn {
+        /**
+         * Unique key of row like id/name or something like that
+         */
         key: TableCellKey
+        /**
+         * Title that will be placed at TableHead
+         */
         title?: string
+        /**
+         * Specific width of column
+         */
         width?: number | string
+        /**
+         * Custom render for a TableCell
+         */
         render?: (cellContext: TableCellContext, index: number) => void
+        /**
+         * Enables sorting for a column
+         * support ASC | DESC
+         */
         sort?: TableSortType
     }
 
-    // interface RowDelegates {
-    //     tableRowHeight?: (dc: DataCollection) => number
-    // }
     interface RowEvents {
-        onRowClick?: (dc: DataCollection, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
-        onRowMouseEnter?: (dc: DataCollection, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
-        onRowMouseLeave?: (dc: DataCollection, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+        /**
+         * Calls when ever row clicked
+         */
+        onRowClick?: (rowCtxItem: RowContext, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+        /**
+         * Calls when mouse enters row
+         */
+        onRowMouseEnter?: (rowCtxItem: RowContext, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+        /**
+         * Calls when mouse leaves row
+         */
+        onRowMouseLeave?: (rowCtxItem: RowContext, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
     }
-    interface Props extends RowEvents, WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+
+    interface RowDelegates {
+        /**
+         * Delegate tells to TableRow what size it is.
+         * Required when rowMountType not default
+         */
+        rowHeight?: (rowCtxItem: RowContext) => number
+        /**
+         * Delegate tells TableRow render or not
+         */
+        rowShouldRender?: (rowCtxItem: RowContext) => boolean
+    }
+    interface Props extends RowEvents, RowDelegates, WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+        /**
+         * Array of any data objects can be provided
+         */
         data: Object[]
+        /**
+         * Settings of columns
+         */
         columns: TableColumn[]
+        /**
+         * Applies decoration on table
+         */
         decoration?: LayoutDecoration
+        /**
+         * Pagination settings
+         */
         pagination?: TablePaginationOptions
+        /**
+         * React element will be placed at footer
+         */
         footer?: React.ReactNode
-        experimental?: {
-            renderType: 'mountOnly' | 'mountUnmount'
-            tableRowHeight: (dc: DataCollection) => number
-        }
+        /**
+         * Table will render rows. 
+         * any type except 'default' requires rowHeight delegate!
+         * 
+         * default - Render all rows at onec. 
+         * whenBecomeVisible - Render row only when it become visible. 
+         * onlyWhenVisible - Render row when it become visible and unmount when row away from screen. 
+         */ 
+        rowMountType?: RowMountType
     }
 
     interface HeadCellProps {
@@ -127,7 +197,7 @@ declare namespace TableTypes {
     }
 
     interface CellProps {
-        dcItem: DataCollection
+        rowCtxItem: RowContext
         column: TableColumn
         rowIndex: number
         styles: WhaleTypes.ComponentStyles<Overrides>
@@ -135,17 +205,23 @@ declare namespace TableTypes {
     }
 
     interface RowProps {
-        dcItem: DataCollection
+        rowCtxItem: RowContext
         columns: TableColumn[]
         rowIndex: number
         styles: WhaleTypes.ComponentStyles<Overrides>
         getCellContext: TableRef['getCellContext']
         events: RowEvents
-        experimental?: Props['experimental']
+        rowMountType?: Props['rowMountType']
+        enableRenderOptimization: boolean
+        delegates: {
+            rowHeight?: Props['rowHeight']
+            rowShouldRender?: Props['rowShouldRender']
+
+        }
     }
 
     interface FootProps {
-        dc: DataCollection[]
+        rowCtx: RowContext[]
         columns: TableColumn[]
         footerContent?: Props['footer']
         pagination?: TablePaginationOptions

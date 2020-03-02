@@ -81,7 +81,6 @@ declare module 'misc/hocs/Typography/types' {
 	        align?: CSS.Properties['textAlign'];
 	        weight?: CSS.Properties['fontWeight'];
 	        size?: WhaleTypes.Size | string;
-	        lineHeight?: CSS.Properties['lineHeight'];
 	        transform?: CSS.Properties['textTransform'];
 	    }
 	    interface Overrides<T extends {
@@ -7636,7 +7635,7 @@ declare module 'misc/hocs/Field/styles' {
 	import WhaleTypes from '@flow-ui/whale/types';
 	import Types from 'misc/hocs/Field/types'; type ExtractFunction<T> = {
 	    [K in keyof T]: Extract<T[K], Function>;
-	}; const fieldStyles: <T extends Types.Overrides<{}>>(props: Pick<Types.Props, "alignSelf" | "backgroundColor" | "color" | "display" | "flexBasis" | "flexGrow" | "flexShrink" | "gridColumnEnd" | "gridColumnStart" | "gridRowEnd" | "gridRowStart" | "justifySelf" | "visibility" | "borderColor" | "borderRadius" | "borderStyle" | "borderWidth" | "flex" | "gridArea" | "gridColumn" | "gridRow" | "placeSelf" | "size" | "style" | "disabled" | "label" | "p" | "styles" | "onChangeCapture" | "onBeforeInput" | "onBeforeInputCapture" | "onInput" | "onInputCapture" | "onReset" | "onResetCapture" | "onSubmit" | "onSubmitCapture" | "onInvalid" | "onInvalidCapture" | "className" | "id" | "tabIndex" | "role" | "draggable" | "attrs" | "aria-activedescendant" | "aria-atomic" | "aria-autocomplete" | "aria-busy" | "aria-checked" | "aria-colcount" | "aria-colindex" | "aria-colspan" | "aria-controls" | "aria-current" | "aria-describedby" | "aria-details" | "aria-disabled" | "aria-dropeffect" | "aria-errormessage" | "aria-expanded" | "aria-flowto" | "aria-grabbed" | "aria-haspopup" | "aria-hidden" | "aria-invalid" | "aria-keyshortcuts" | "aria-label" | "aria-labelledby" | "aria-level" | "aria-live" | "aria-modal" | "aria-multiline" | "aria-multiselectable" | "aria-orientation" | "aria-owns" | "aria-placeholder" | "aria-posinset" | "aria-pressed" | "aria-readonly" | "aria-relevant" | "aria-required" | "aria-roledescription" | "aria-rowcount" | "aria-rowindex" | "aria-rowspan" | "aria-selected" | "aria-setsize" | "aria-sort" | "aria-valuemax" | "aria-valuemin" | "aria-valuenow" | "aria-valuetext" | "onFocus" | "onFocusCapture" | "onBlur" | "onBlurCapture" | "onLoad" | "onLoadCapture" | "onError" | "onErrorCapture" | "onAbort" | "onAbortCapture" | "onCanPlay" | "onCanPlayCapture" | "onCanPlayThrough" | "onCanPlayThroughCapture" | "onDurationChange" | "onDurationChangeCapture" | "onEmptied" | "onEmptiedCapture" | "onEncrypted" | "onEncryptedCapture" | "onEnded" | "onEndedCapture" | "onLoadedData" | "onLoadedDataCapture" | "onLoadedMetadata" | "onLoadedMetadataCapture" | "onLoadStart" | "onLoadStartCapture" | "onPause" | "onPauseCapture" | "onPlay" | "onPlayCapture" | "onPlaying" | "onPlayingCapture" | "onProgress" | "onProgressCapture" | "onRateChange" | "onRateChangeCapture" | "onSeeked" | "onSeekedCapture" | "onSeeking" | "onSeekingCapture" | "onStalled" | "onStalledCapture" | "onSuspend" | "onSuspendCapture" | "onTimeUpdate" | "onTimeUpdateCapture" | "onVolumeChange" | "onVolumeChangeCapture" | "onWaiting" | "onWaitingCapture" | "onAuxClick" | "onAuxClickCapture" | "onClick" | "onClickCapture" | "onContextMenu" | "onContextMenuCapture" | "onDoubleClick" | "onDoubleClickCapture" | "onDrag" | "onDragCapture" | "onDragEnd" | "onDragEndCapture" | "onDragEnter" | "onDragEnterCapture" | "onDragExit" | "onDragExitCapture" | "onDragLeave" | "onDragLeaveCapture" | "onDragOver" | "onDragOverCapture" | "onDragStart" | "onDragStartCapture" | "onDrop" | "onDropCapture" | "onMouseDown" | "onMouseDownCapture" | "onMouseEnter" | "onMouseLeave" | "onMouseMove" | "onMouseMoveCapture" | "onMouseOut" | "onMouseOutCapture" | "onMouseOver" | "onMouseOverCapture" | "onMouseUp" | "onMouseUpCapture" | "onTouchCancel" | "onTouchCancelCapture" | "onTouchEnd" | "onTouchEndCapture" | "onTouchMove" | "onTouchMoveCapture" | "onTouchStart" | "onTouchStartCapture" | "onWheel" | "onWheelCapture" | "onPointerDown" | "onPointerDownCapture" | "onPointerMove" | "onPointerMoveCapture" | "onPointerUp" | "onPointerUpCapture" | "onPointerCancel" | "onPointerCancelCapture" | "onPointerEnter" | "onPointerLeave" | "onPointerOver" | "onPointerOverCapture" | "onPointerOut" | "onPointerOutCapture" | "onGotPointerCapture" | "onGotPointerCaptureCapture" | "onLostPointerCapture" | "onLostPointerCaptureCapture" | "onKeyDown" | "onKeyDownCapture" | "onKeyPress" | "onKeyPressCapture" | "onKeyUp" | "onKeyUpCapture" | "onEnter" | "onEsc" | "onSelect" | "onSelectCapture" | "onAnimationStart" | "onAnimationStartCapture" | "onAnimationEnd" | "onAnimationEndCapture" | "onAnimationIteration" | "onAnimationIterationCapture" | "onCopy" | "onCopyCapture" | "onCut" | "onCutCapture" | "onPaste" | "onPasteCapture" | "onTransitionEnd" | "onTransitionEndCapture" | "onCompositionEnd" | "onCompositionEndCapture" | "onCompositionStart" | "onCompositionStartCapture" | "onCompositionUpdate" | "onCompositionUpdateCapture" | "onScroll" | "onScrollCapture" | "animated" | "textColor" | "px" | "py" | "pr" | "pl" | "pt" | "pb" | "w" | "h" | "m" | "mx" | "my" | "mr" | "ml" | "mt" | "mb" | "shape" | "decoration" | "rightChild" | "leftChild" | "labelType" | "hint" | "clearable" | "onClear">, theme: WhaleTypes.Theme, stylePatch?: Partial<ExtractFunction<WhaleTypes.Styles<T>>> | undefined) => WhaleTypes.Styles<Types.Overrides<{}>>;
+	}; const fieldStyles: <T extends Types.Overrides<{}>>(props: Pick<Types.Props, "alignSelf" | "backgroundColor" | "color" | "display" | "flexBasis" | "flexGrow" | "flexShrink" | "fontSize" | "gridColumnEnd" | "gridColumnStart" | "gridRowEnd" | "gridRowStart" | "justifySelf" | "letterSpacing" | "lineHeight" | "position" | "textAlign" | "visibility" | "borderColor" | "borderRadius" | "borderStyle" | "borderWidth" | "flex" | "gridArea" | "gridColumn" | "gridRow" | "placeSelf" | "size" | "style" | "disabled" | "label" | "p" | "styles" | "onChangeCapture" | "onBeforeInput" | "onBeforeInputCapture" | "onInput" | "onInputCapture" | "onReset" | "onResetCapture" | "onSubmit" | "onSubmitCapture" | "onInvalid" | "onInvalidCapture" | "className" | "id" | "tabIndex" | "role" | "draggable" | "attrs" | "aria-activedescendant" | "aria-atomic" | "aria-autocomplete" | "aria-busy" | "aria-checked" | "aria-colcount" | "aria-colindex" | "aria-colspan" | "aria-controls" | "aria-current" | "aria-describedby" | "aria-details" | "aria-disabled" | "aria-dropeffect" | "aria-errormessage" | "aria-expanded" | "aria-flowto" | "aria-grabbed" | "aria-haspopup" | "aria-hidden" | "aria-invalid" | "aria-keyshortcuts" | "aria-label" | "aria-labelledby" | "aria-level" | "aria-live" | "aria-modal" | "aria-multiline" | "aria-multiselectable" | "aria-orientation" | "aria-owns" | "aria-placeholder" | "aria-posinset" | "aria-pressed" | "aria-readonly" | "aria-relevant" | "aria-required" | "aria-roledescription" | "aria-rowcount" | "aria-rowindex" | "aria-rowspan" | "aria-selected" | "aria-setsize" | "aria-sort" | "aria-valuemax" | "aria-valuemin" | "aria-valuenow" | "aria-valuetext" | "onFocus" | "onFocusCapture" | "onBlur" | "onBlurCapture" | "onLoad" | "onLoadCapture" | "onError" | "onErrorCapture" | "onAbort" | "onAbortCapture" | "onCanPlay" | "onCanPlayCapture" | "onCanPlayThrough" | "onCanPlayThroughCapture" | "onDurationChange" | "onDurationChangeCapture" | "onEmptied" | "onEmptiedCapture" | "onEncrypted" | "onEncryptedCapture" | "onEnded" | "onEndedCapture" | "onLoadedData" | "onLoadedDataCapture" | "onLoadedMetadata" | "onLoadedMetadataCapture" | "onLoadStart" | "onLoadStartCapture" | "onPause" | "onPauseCapture" | "onPlay" | "onPlayCapture" | "onPlaying" | "onPlayingCapture" | "onProgress" | "onProgressCapture" | "onRateChange" | "onRateChangeCapture" | "onSeeked" | "onSeekedCapture" | "onSeeking" | "onSeekingCapture" | "onStalled" | "onStalledCapture" | "onSuspend" | "onSuspendCapture" | "onTimeUpdate" | "onTimeUpdateCapture" | "onVolumeChange" | "onVolumeChangeCapture" | "onWaiting" | "onWaitingCapture" | "onAuxClick" | "onAuxClickCapture" | "onClick" | "onClickCapture" | "onContextMenu" | "onContextMenuCapture" | "onDoubleClick" | "onDoubleClickCapture" | "onDrag" | "onDragCapture" | "onDragEnd" | "onDragEndCapture" | "onDragEnter" | "onDragEnterCapture" | "onDragExit" | "onDragExitCapture" | "onDragLeave" | "onDragLeaveCapture" | "onDragOver" | "onDragOverCapture" | "onDragStart" | "onDragStartCapture" | "onDrop" | "onDropCapture" | "onMouseDown" | "onMouseDownCapture" | "onMouseEnter" | "onMouseLeave" | "onMouseMove" | "onMouseMoveCapture" | "onMouseOut" | "onMouseOutCapture" | "onMouseOver" | "onMouseOverCapture" | "onMouseUp" | "onMouseUpCapture" | "onTouchCancel" | "onTouchCancelCapture" | "onTouchEnd" | "onTouchEndCapture" | "onTouchMove" | "onTouchMoveCapture" | "onTouchStart" | "onTouchStartCapture" | "onWheel" | "onWheelCapture" | "onPointerDown" | "onPointerDownCapture" | "onPointerMove" | "onPointerMoveCapture" | "onPointerUp" | "onPointerUpCapture" | "onPointerCancel" | "onPointerCancelCapture" | "onPointerEnter" | "onPointerLeave" | "onPointerOver" | "onPointerOverCapture" | "onPointerOut" | "onPointerOutCapture" | "onGotPointerCapture" | "onGotPointerCaptureCapture" | "onLostPointerCapture" | "onLostPointerCaptureCapture" | "onKeyDown" | "onKeyDownCapture" | "onKeyPress" | "onKeyPressCapture" | "onKeyUp" | "onKeyUpCapture" | "onEnter" | "onEsc" | "onSelect" | "onSelectCapture" | "onAnimationStart" | "onAnimationStartCapture" | "onAnimationEnd" | "onAnimationEndCapture" | "onAnimationIteration" | "onAnimationIterationCapture" | "onCopy" | "onCopyCapture" | "onCut" | "onCutCapture" | "onPaste" | "onPasteCapture" | "onTransitionEnd" | "onTransitionEndCapture" | "onCompositionEnd" | "onCompositionEndCapture" | "onCompositionStart" | "onCompositionStartCapture" | "onCompositionUpdate" | "onCompositionUpdateCapture" | "onScroll" | "onScrollCapture" | "animated" | "textColor" | "px" | "py" | "pr" | "pl" | "pt" | "pb" | "w" | "h" | "m" | "mx" | "my" | "mr" | "ml" | "mt" | "mb" | "shape" | "decoration" | "rightChild" | "leftChild" | "labelType" | "hint" | "clearable" | "onClear">, theme: WhaleTypes.Theme, stylePatch?: Partial<ExtractFunction<WhaleTypes.Styles<T>>> | undefined) => WhaleTypes.Styles<Types.Overrides<{}>>;
 	export default fieldStyles;
 
 }
@@ -8350,6 +8349,20 @@ declare module '@flow-ui/core/data/Table/types' {
 	/// <reference types="react" />
 	import WhaleTypes from '@flow-ui/whale/types';
 	import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration'; namespace TableTypes {
+	    type RowMountType = 
+	    /**
+	     * Render all rows at onec
+	     */
+	    'default' | 
+	    /**
+	     * Render row only when it become visible
+	     */
+	    'whenBecomeVisible' | 
+	    /**
+	     * Render row when it become visible
+	     * and unmount when row away from screen
+	     */
+	    'onlyWhenVisible';
 	    type TableCellKey = number | string;
 	    type TableSortType = 'ASC' | 'DESC';
 	    type TableSortObject = {
@@ -8406,7 +8419,7 @@ declare module '@flow-ui/core/data/Table/types' {
 	         */
 	        reloadData: () => void;
 	    }
-	    type DataCollection = {
+	    type RowContext = {
 	        row: Object;
 	        isExpand: boolean;
 	        isVisible: boolean;
@@ -8417,6 +8430,7 @@ declare module '@flow-ui/core/data/Table/types' {
 	            [key: string]: React.Dispatch<React.SetStateAction<boolean>>;
 	        };
 	        setExpandComponent?: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+	        setNeedDisplay?: (forceUnmount?: boolean) => boolean;
 	    };
 	    interface Ref extends TableRef, HTMLTableElement {
 	    }
@@ -8437,23 +8451,83 @@ declare module '@flow-ui/core/data/Table/types' {
 	        setModify: (modify: boolean, index: number, key?: TableCellKey) => boolean;
 	    }
 	    interface TableColumn {
+	        /**
+	         * Unique key of row like id/name or something like that
+	         */
 	        key: TableCellKey;
+	        /**
+	         * Title that will be placed at TableHead
+	         */
 	        title?: string;
+	        /**
+	         * Specific width of column
+	         */
 	        width?: number | string;
+	        /**
+	         * Custom render for a TableCell
+	         */
 	        render?: (cellContext: TableCellContext, index: number) => void;
+	        /**
+	         * Enables sorting for a column
+	         * support ASC | DESC
+	         */
 	        sort?: TableSortType;
 	    }
 	    interface RowEvents {
-	        onRowClick?: (dc: DataCollection, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
-	        onRowMouseEnter?: (dc: DataCollection, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
-	        onRowMouseLeave?: (dc: DataCollection, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
+	        /**
+	         * Calls when ever row clicked
+	         */
+	        onRowClick?: (rowCtxItem: RowContext, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
+	        /**
+	         * Calls when mouse enters row
+	         */
+	        onRowMouseEnter?: (rowCtxItem: RowContext, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
+	        /**
+	         * Calls when mouse leaves row
+	         */
+	        onRowMouseLeave?: (rowCtxItem: RowContext, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
 	    }
-	    interface Props extends RowEvents, WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+	    interface RowDelegates {
+	        /**
+	         * Delegate tells to TableRow what size it is.
+	         * Required when rowMountType not default
+	         */
+	        rowHeight?: (rowCtxItem: RowContext) => number;
+	        /**
+	         * Delegate tells TableRow render or not
+	         */
+	        rowShouldRender?: (rowCtxItem: RowContext) => boolean;
+	    }
+	    interface Props extends RowEvents, RowDelegates, WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+	        /**
+	         * Array of any data objects can be provided
+	         */
 	        data: Object[];
+	        /**
+	         * Settings of columns
+	         */
 	        columns: TableColumn[];
+	        /**
+	         * Applies decoration on table
+	         */
 	        decoration?: LayoutDecoration;
+	        /**
+	         * Pagination settings
+	         */
 	        pagination?: TablePaginationOptions;
+	        /**
+	         * React element will be placed at footer
+	         */
 	        footer?: React.ReactNode;
+	        /**
+	         * Table will render rows.
+	         * any type except 'default' requires rowHeight delegate!
+	         *
+	         * default - Render all rows at onec.
+	         * whenBecomeVisible - Render row only when it become visible.
+	         * onlyWhenVisible - Render row when it become visible and unmount when row away from screen.
+	         */
+	        rowMountType?: RowMountType;
 	    }
 	    interface HeadCellProps {
 	        column: TableColumn;
@@ -8461,22 +8535,28 @@ declare module '@flow-ui/core/data/Table/types' {
 	        setSort: React.Dispatch<React.SetStateAction<TableSortObject>>;
 	    }
 	    interface CellProps {
-	        dcItem: DataCollection;
+	        rowCtxItem: RowContext;
 	        column: TableColumn;
 	        rowIndex: number;
 	        styles: WhaleTypes.ComponentStyles<Overrides>;
 	        getCellContext: TableRef['getCellContext'];
 	    }
 	    interface RowProps {
-	        dcItem: DataCollection;
+	        rowCtxItem: RowContext;
 	        columns: TableColumn[];
 	        rowIndex: number;
 	        styles: WhaleTypes.ComponentStyles<Overrides>;
 	        getCellContext: TableRef['getCellContext'];
 	        events: RowEvents;
+	        rowMountType?: Props['rowMountType'];
+	        enableRenderOptimization: boolean;
+	        delegates: {
+	            rowHeight?: Props['rowHeight'];
+	            rowShouldRender?: Props['rowShouldRender'];
+	        };
 	    }
 	    interface FootProps {
-	        dc: DataCollection[];
+	        rowCtx: RowContext[];
 	        columns: TableColumn[];
 	        footerContent?: Props['footer'];
 	        pagination?: TablePaginationOptions;
@@ -8614,35 +8694,11 @@ declare module 'layout/Drop' {
 declare module 'layout/Flexbox/types' {
 	/// <reference types="react" />
 	import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration';
-	import WhaleTypes from '@flow-ui/whale/types';
-	import CSS from 'csstype'; namespace FlexboxTypes {
-	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace FlexboxTypes {
+	    interface Props extends WhaleTypes.FlexboxContainerProps, WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        column?: boolean;
 	        inline?: boolean;
 	        decoration?: LayoutDecoration;
-	        alignItems?: WhaleTypes.FlexSelf;
-	        /**
-	         * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
-	         */
-	        alignContent?: WhaleTypes.FlexSelf | WhaleTypes.FlexSpace;
-	        /**
-	         * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
-	         */
-	        placeContent?: WhaleTypes.FlexSelf | WhaleTypes.FlexSpace;
-	        /**
-	         * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
-	         */
-	        justifyContent?: WhaleTypes.FlexSelf | WhaleTypes.FlexSpace;
-	        /**
-	         * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
-	         */
-	        justifyItems?: WhaleTypes.FlexSelf | WhaleTypes.FlexSpace;
-	        direction?: WhaleTypes.FlexDirection;
-	        wrap?: WhaleTypes.FlexWrap;
-	        /**
-	         * Short for direction and wrap
-	         */
-	        flow?: CSS.Properties['flexFlow'];
 	        children?: React.ReactNode;
 	    }
 	    interface Overrides {
@@ -8672,62 +8728,55 @@ declare module 'layout/Grid/types' {
 	import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration';
 	import WhaleTypes from '@flow-ui/whale/types';
 	import CSS from 'csstype'; namespace GridTypes {
-	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+	    interface Props extends WhaleTypes.GridContainerProps, WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 	        inline?: boolean;
 	        children?: React.ReactNode;
 	        decoration?: LayoutDecoration;
 	        /**
 	         * @displayType string
+	         * @deprecated
 	         */
 	        templateColumns?: CSS.Properties['gridTemplateColumns'];
 	        /**
 	         * @displayType string
+	         * @deprecated
 	         */
 	        templateRows?: CSS.Properties['gridTemplateRows'];
 	        /**
 	         * @displayType string
+	         * @deprecated
 	         */
 	        templateAreas?: CSS.Properties['gridTemplateAreas'];
 	        /**
 	         * @displayType string
+	         * @deprecated
 	         */
 	        columnGap?: CSS.Properties['gridColumnGap'];
 	        /**
 	         * @displayType string
+	         * @deprecated
 	         */
 	        rowGap?: CSS.Properties['gridRowGap'];
 	        /**
 	         * @displayType string
+	         * @deprecated
 	         */
 	        gap?: CSS.Properties['gridGap'];
 	        /**
 	         * @displayType string
+	         * @deprecated
 	         */
 	        autoColumns?: CSS.Properties['gridAutoColumns'];
 	        /**
 	         * @displayType string
+	         * @deprecated
 	         */
 	        autoRows?: CSS.Properties['gridAutoRows'];
 	        /**
 	         * @displayType string
+	         * @deprecated
 	         */
 	        autoFlow?: CSS.Properties['gridAutoFlow'];
-	        /**
-	         * @displayType string
-	         */
-	        alignItems?: WhaleTypes.GridSelf;
-	        /**
-	         * @displayType inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
-	         */
-	        alignContent?: WhaleTypes.GridSpace | WhaleTypes.GridSelf;
-	        /**
-	         * @displayType inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
-	         */
-	        justifyContent?: WhaleTypes.GridSpace | WhaleTypes.GridSelf;
-	        /**
-	         * @displayType inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
-	         */
-	        justifyItems?: WhaleTypes.GridSpace | WhaleTypes.GridSelf;
 	    }
 	    interface Overrides {
 	        container: {

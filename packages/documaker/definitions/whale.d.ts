@@ -26,7 +26,7 @@ declare module '@flow-ui/whale/types' {
 	    type Variant<StyleDefinitions> = (variants: Partial<{
 	        [StyleName in keyof StyleDefinitions]: Partial<Record<Extract<StyleDefinitions[StyleName], string>, EmotionStyles>>;
 	    }>) => EmotionStyles;
-	    type CreateStyles<Overrides, Props = {}, Params = {}> = (props: Props, theme: WhaleTypes.Theme, params?: Params) => WhaleTypes.Styles<Overrides>;
+	    type CreateStyles<Overrides, Props = {}, Params = {}> = (props: Props, theme: Theme, params?: Params) => Styles<Overrides>;
 	    interface Theme extends ThemeVariables {
 	        assets: ThemeAssets;
 	        overrides?: Partial<{
@@ -211,6 +211,12 @@ declare module '@flow-ui/whale/types' {
 	         */
 	        h?: Breakpointify<CSS.Properties['height']>;
 	        /**
+	         * Specifies the type of positioning method used for an element
+	         * (static, relative, fixed, absolute or sticky).
+	         * @breakpointify
+	         */
+	        position?: Breakpointify<CSS.Properties['position']>;
+	        /**
 	         * Shows or hides an element without changing the layout
 	         * of a document.
 	         * @breakpointify
@@ -223,6 +229,23 @@ declare module '@flow-ui/whale/types' {
 	         * @breakpointify
 	         */
 	        display?: Breakpointify<CSS.Properties['display']>;
+	        /**
+	         * Set the font size
+	         * @breakpointify
+	         */
+	        fontSize?: Breakpointify<CSS.Properties['fontSize']>;
+	        /**
+	         * @breakpointify
+	         */
+	        lineHeight?: Breakpointify<CSS.Properties['lineHeight']>;
+	        /**
+	         * @breakpointify
+	         */
+	        letterSpacing?: Breakpointify<CSS.Properties['fontSize']>;
+	        /**
+	         * @breakpointify
+	         */
+	        textAlign?: Breakpointify<CSS.Properties['textAlign']>;
 	    }
 	    /**
 	     * Component padding styles props
@@ -381,6 +404,94 @@ declare module '@flow-ui/whale/types' {
 	         * @breakpointify
 	         */
 	        justifySelf?: Breakpointify<FlexSelf>;
+	    }
+	    interface GridContainerProps {
+	        /**
+	         * @breakpointify
+	         */
+	        gridTemplateColumns?: Breakpointify<CSS.Properties['gridTemplateColumns']>;
+	        /**
+	         * @breakpointify
+	         */
+	        gridTemplateRows?: Breakpointify<CSS.Properties['gridTemplateRows']>;
+	        /**
+	         * @breakpointify
+	         */
+	        gridTemplateAreas?: Breakpointify<CSS.Properties['gridTemplateAreas']>;
+	        /**
+	         * @breakpointify
+	         */
+	        gridColumnGap?: Breakpointify<CSS.Properties['gridColumnGap']>;
+	        /**
+	         * @breakpointify
+	         */
+	        gridRowGap?: Breakpointify<CSS.Properties['gridRowGap']>;
+	        /**
+	         * @breakpointify
+	         */
+	        gridGap?: Breakpointify<CSS.Properties['gridGap']>;
+	        /**
+	         * @breakpointify
+	         */
+	        gridAutoColumns?: Breakpointify<CSS.Properties['gridAutoColumns']>;
+	        /**
+	         * @breakpointify
+	         */
+	        gridAutoRows?: Breakpointify<CSS.Properties['gridAutoRows']>;
+	        /**
+	         * @breakpointify
+	         */
+	        gridAutoFlow?: Breakpointify<CSS.Properties['gridAutoFlow']>;
+	        /**
+	         * @breakpointify
+	         */
+	        alignItems?: Breakpointify<GridSelf>;
+	        /**
+	         * @displayType inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
+	         */
+	        alignContent?: Breakpointify<GridSpace | GridSelf>;
+	        /**
+	         * @displayType inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
+	         */
+	        justifyContent?: Breakpointify<GridSpace | GridSelf>;
+	        /**
+	         * @displayType inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
+	         */
+	        justifyItems?: Breakpointify<GridSpace | GridSelf>;
+	    }
+	    interface FlexboxContainerProps {
+	        /**
+	         * @breakpointify
+	         * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch
+	         */
+	        alignItems?: Breakpointify<FlexSelf>;
+	        /**
+	         * @breakpointify
+	         * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
+	         */
+	        alignContent?: Breakpointify<FlexSelf | FlexSpace>;
+	        /**
+	         * @breakpointify
+	         * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
+	         */
+	        placeContent?: Breakpointify<FlexSelf | FlexSpace>;
+	        /**
+	         * @breakpointify
+	         * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
+	         */
+	        justifyContent?: Breakpointify<FlexSelf | FlexSpace>;
+	        /**
+	         * @breakpointify
+	         * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
+	         */
+	        justifyItems?: Breakpointify<FlexSelf | FlexSpace>;
+	        direction?: Breakpointify<FlexDirection>;
+	        wrap?: Breakpointify<FlexWrap>;
+	        /**
+	         * Short for direction and wrap
+	         * @breakpointify
+	         */
+	        flow?: Breakpointify<CSS.Properties['flexFlow']>;
 	    }
 	    /**
 	     * Component grid children styles props
@@ -1121,6 +1232,10 @@ declare module 'utils/attachProps/style/resolvers/paddingMargin' {
 	export default resolver;
 
 }
+declare module 'utils/mergeObjects' {
+	export default function mergeObjects(target?: Object, src?: Object, modify?: (value: any) => any): Object;
+
+}
 declare module 'utils/attachProps/style' {
 	import WhaleTypes, { EmotionStyles } from '@flow-ui/whale/types'; const createPropStyles: <Props, StyleProps>(props: Props, theme: WhaleTypes.Theme, styleProps: StyleProps) => Record<keyof StyleProps, EmotionStyles>;
 	export default createPropStyles;
@@ -1525,10 +1640,6 @@ declare module 'hooks/useComponent' {
 declare module 'utils/createID' {
 	 const _default: () => string;
 	export default _default;
-
-}
-declare module 'utils/mergeObjects' {
-	export default function mergeObjects(target?: Object, src?: Object, modify?: (value: any) => any): Object;
 
 }
 declare module 'utils/createTheme' {

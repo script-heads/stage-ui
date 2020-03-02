@@ -20,8 +20,8 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
         sort: 'ASC'
     })
 
-    let dc: Types.DataCollection[] = props.data.map(row => {
-        const isCellModify: Types.DataCollection['isCellModify'] = {}
+    let rowCtx: Types.RowContext[] = props.data.map(row => {
+        const isCellModify: Types.RowContext['isCellModify'] = {}
         columns.forEach(column => {
             isCellModify[column.key] = false
         })
@@ -36,7 +36,7 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
 
     const columnSort = (column: Types.TableColumn) => {
         if (column.sort) {
-            dc = dc.sort((a, b) => {
+            rowCtx = rowCtx.sort((a, b) => {
                 if (column.sort === 'ASC') {
                     if (typeof a.row[column.key] === 'string') {
                         return a.row[column.key].localeCompare(b.row[column.key])
@@ -56,19 +56,19 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
 
     const getCellContext: Ref['getCellContext'] = (index, key) => {
 
-        if (!dc[index]?.row) {
+        if (!rowCtx[index]?.row) {
             return null
         }
         
         return {
             key,
             index: index,
-            row: dc[index].row,
+            row: rowCtx[index].row,
             column: columns.find(column => column.key === key) || null,
-            value: dc[index].row[key],
-            isExpand: dc[index].isExpand,
-            isModify: dc[index].isCellModify[key],
-            isVisible: dc[index].isVisible,
+            value: rowCtx[index].row[key],
+            isExpand: rowCtx[index].isExpand,
+            isModify: rowCtx[index].isCellModify[key],
+            isVisible: rowCtx[index].isVisible,
             setExpand: (content) => setExpand(index, content),
             setModify: (modify, kkey = key) => setModify(modify, index, kkey),
             reloadData: () => reload(!reloadData)
@@ -76,23 +76,23 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
     }
 
     const setExpand: Ref['setExpand'] = (index, content) => {
-        if (dc[index]) {
-            dc[index].setExpandComponent?.(content)
+        if (rowCtx[index]) {
+            rowCtx[index].setExpandComponent?.(content)
             return true
         }
         return false
     } 
 
     const setModify: Ref['setModify'] = (modify, index, key) => {
-        if (dc[index]) {
+        if (rowCtx[index]) {
             if (key !== undefined) {
-                if (dc[index].row.hasOwnProperty(key)) {
-                    dc[index].setModifyState[key]?.(modify)
+                if (rowCtx[index].row.hasOwnProperty(key)) {
+                    rowCtx[index].setModifyState[key]?.(modify)
                     return true
                 }
             } else {
-                Object.keys(dc[index].isCellModify).forEach(key => {
-                    dc[index].setModifyState[key]?.(modify)
+                Object.keys(rowCtx[index].isCellModify).forEach(key => {
+                    rowCtx[index].setModifyState[key]?.(modify)
                 })
                 return true
             }
@@ -126,38 +126,37 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
             columnSort(column)
         }
     }
-    /**
-     * EXPERIMENTAL
-     */
+    
     const setNeedDisplay = () => {
         let state = 1
-        for (let dcItem of dc) {
-            //@ts-ignore
-            const didRender = dcItem.experimental.setNeedDisplay(state === 3)
+        for (let rowCtxItem of rowCtx) {
+            const didRender = rowCtxItem.setNeedDisplay?.(state === 3)
             if (didRender) {
                 state = 2
             } else {
-                if (state === 2) {
-                    state = 3
-                }
+                if (state === 2) state = 3
             }
         }
     }
 
+    const enableRenderOptimization = props.rowMountType?.match('Visible') ? true : false
+
     useEffect(() => {
-        if (props.experimental) {
+        /**
+         * Handle optimized method of render
+         */
+        if (enableRenderOptimization) {
             setNeedDisplay()
             document.addEventListener('resize', setNeedDisplay)
             document.addEventListener('scroll', setNeedDisplay)
             document.addEventListener('onflowscroll', setNeedDisplay)
-        }
-        return () => {
-            if (props.experimental) {
+            return () => {
                 document.removeEventListener('resize', setNeedDisplay)
                 document.removeEventListener('scroll', setNeedDisplay)
                 document.removeEventListener('onflowscroll', setNeedDisplay)
             }
         }
+        return
     }, [])
 
     /**
@@ -181,7 +180,7 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
             </thead>
             <tbody
                 children={
-                    dc.map((dcItem, rowIndex) => {
+                    rowCtx.map((rowCtxItem, rowIndex) => {
                         if (pagination) {
                             const { pageSize } = pagination
                             const startIndex = pageSize * (currentPage - 1)
@@ -201,28 +200,33 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
                         Object.keys(props).forEach(key => {
                             if (key.match('onRow')) {
                                 events[key.replace('Row', '')] = (e: MouseEvent) => {
-                                    return props[key](dcItem, e)
+                                    return props[key](rowCtxItem, e)
                                 }
                             }
                         })
 
                         return (
                             <TableRow
-                                dcItem={dcItem}
+                                rowCtxItem={rowCtxItem}
                                 getCellContext={getCellContext}
                                 styles={cs}
                                 key={rowIndex}
                                 columns={columns}
                                 rowIndex={rowIndex}
                                 events={events}
-                                experimental={props.experimental}
+                                rowMountType={props.rowMountType}
+                                enableRenderOptimization={enableRenderOptimization}
+                                delegates={{
+                                    rowHeight: props.rowHeight,
+                                    rowShouldRender: props.rowShouldRender,
+                                }}
                             />
                         )
                     })
                 }
             />
             <TableFoot
-                dc={dc}
+                rowCtx={rowCtx}
                 styles={cs}
                 footerContent={footer}
                 columns={columns}

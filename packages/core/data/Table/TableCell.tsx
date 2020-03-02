@@ -2,9 +2,9 @@ import React, { forwardRef, RefForwardingComponent, useState } from 'react'
 import Types from './types'
 
 const TableCell: RefForwardingComponent<HTMLTableDataCellElement, Types.CellProps> = (props, ref) => {
-    const { column, rowIndex, dcItem, styles, getCellContext } = props
+    const { column, rowIndex, rowCtxItem, styles, getCellContext } = props
 
-    let content = dcItem.row[column.key] || null
+    let content = rowCtxItem.row[column.key] || null
 
     /**
      * Need to force function call column.render 
@@ -12,10 +12,10 @@ const TableCell: RefForwardingComponent<HTMLTableDataCellElement, Types.CellProp
      */
     const [modifyState, setModifyState] = useState<boolean>(false)
     /**
-     * Update DataCollection state
+     * Update RowContextData state
      */
-    dcItem.setModifyState[column.key] = setModifyState
-    dcItem.isCellModify[column.key] = modifyState
+    rowCtxItem.setModifyState[column.key] = setModifyState
+    rowCtxItem.isCellModify[column.key] = modifyState
 
     if (column.render) {
         content = column.render(
