@@ -3,92 +3,94 @@ import TableCell from './TableCell'
 import Types from './types'
 
 const TableRow: RefForwardingComponent<HTMLTableRowElement, Types.RowProps> = (props, ref) => {
-    const { columns, rowIndex, dcItem, styles, getCellContext } = props
+    const { columns, rowIndex, rowCtxItem, delegates, styles, getCellContext } = props
     const style: React.CSSProperties = {}
     /**
      * State with expanded row
-     * if null then DataCollection isExpand will be false
+     * if null then RowContext isExpand will be false
      */
     const [expandComponent, setExpandComponent] = useState<React.ReactNode>(null)
 
     /**
-     * Update DataCollection state
+     * Update RowContext state
      */
-    dcItem.setExpandComponent = setExpandComponent
-    dcItem.isExpand = Boolean(expandComponent)
-    
-    let experimental_rowId: string | undefined
+    rowCtxItem.setExpandComponent = setExpandComponent
+    rowCtxItem.isExpand = Boolean(expandComponent)
 
-    const [
-            experimental_needDisplay, 
-            experimental_setNeedDisplayState
-    ] = useState(props.experimental === undefined)
+    let rowId: string | undefined
 
-    if (props.experimental) {
-        const height = props.experimental.tableRowHeight(dcItem)
-        style.height = height + 'px'
+    const [needDisplay, setNeedDisplay] = useState(!props.enableRenderOptimization)
 
-        const setNeedDisplay = (forceUnmount?: boolean) => {
-            if (forceUnmount) {
-                if (experimental_needDisplay) {
-                    experimental_setNeedDisplayState(false)
+    if (props.enableRenderOptimization) {
+        const height = props.delegates.rowHeight?.(rowCtxItem)
+        if (typeof height === 'number') {
+            style.height = height + 'px'
+            rowId = React.useMemo(() => 'tr' + rowIndex + '_' + (~~(Math.random() * 1e8)).toString(16), [])
+            rowCtxItem.setNeedDisplay = (forceUnmount?: boolean) => {
+                if (forceUnmount) {
+                    if (needDisplay) {
+                        setNeedDisplay(false)
+                    }
+                    return false
                 }
-                return false
-            }
-            let needDisplay = false
-            const element = document.getElementById(experimental_rowId as string)
-            if (element) {
-                const position = element.getBoundingClientRect()
-                if (position.top + height * 2 >= 0 && position.top - height <= window.innerHeight) {
-                    needDisplay = true
-                    experimental_setNeedDisplayState(true)
-                } else if (props.experimental?.renderType === 'mountUnmount') {
-                    experimental_setNeedDisplayState(false)
+                let state = false
+                const element = document.getElementById(rowId as string)
+                if (element) {
+                    const position = element.getBoundingClientRect()
+                    if (position.top + height * 2 >= 0 && position.top - height <= window.innerHeight) {
+                        state = true
+                        setNeedDisplay(true)
+                    } else if (props.rowMountType === 'onlyWhenVisible') {
+                        setNeedDisplay(false)
+                    }
                 }
+                return state
             }
-            return needDisplay
         }
-        
-        experimental_rowId = React.useMemo(() => 'tr' + rowIndex + '_' + (~~(Math.random()*1e8)).toString(16), [])   
-        //@ts-ignore
-        dcItem.experimental = {
-            setNeedDisplay
-        }
+    }
+
+    if (delegates.rowShouldRender?.(rowCtxItem) === false) {
+        return null
     }
 
     return (
         <Fragment>
-            <tr
-                id={experimental_rowId}
-                {...props.events}
-                ref={ref}
-                css={styles.row}
-                key={rowIndex}
-                style={style}
-                children={
-                    experimental_needDisplay
-                        ? columns.map((column, columnIndex) => (
-                            <TableCell
-                                dcItem={dcItem}
-                                getCellContext={getCellContext}
-                                styles={styles}
-                                key={columnIndex}
-                                column={column}
-                                rowIndex={rowIndex}
-                            />
-                        ))
-                        : null
-                }
-            />
-            {expandComponent && (
-                <tr ref={ref}>
-                    <td 
-                        css={styles.expandContainer}
-                        colSpan={columns.length}
-                        children={expandComponent}
-                    />
-                </tr>
-            )}
+            {needDisplay
+                ? (
+                    <Fragment>
+                        <tr
+                            id={rowId}
+                            style={style}
+                            {...props.events}
+                            ref={ref}
+                            css={styles.row}
+                            key={rowIndex}
+                            children={
+                                columns.map((column, columnIndex) => (
+                                    <TableCell
+                                        rowCtxItem={rowCtxItem}
+                                        getCellContext={getCellContext}
+                                        styles={styles}
+                                        key={columnIndex}
+                                        column={column}
+                                        rowIndex={rowIndex}
+                                    />
+                                ))
+                            }
+                        />
+                        {expandComponent && (
+                            <tr ref={ref}>
+                                <td
+                                    css={styles.expandContainer}
+                                    colSpan={columns.length}
+                                    children={expandComponent}
+                                />
+                            </tr>
+                        )}
+                    </Fragment>
+                )
+                : <tr ref={ref} id={rowId} style={style} />
+            }
         </Fragment>
     )
 }
