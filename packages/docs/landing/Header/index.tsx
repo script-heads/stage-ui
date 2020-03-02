@@ -1,47 +1,81 @@
-import { Block, Text, Badge, Button, Display, Flexbox, Paragraph } from '@flow-ui/core'
+import { Text, Button, Display, Flexbox, Paragraph, Block } from '@flow-ui/core'
 import { HomePageProps } from '@flow-ui/documaker/core'
-import MovingBlock from './MovingBlock'
 
 export default (props: HomePageProps) => {
     return (
-        <Flexbox backgroundColor={c => c.surface} justifyContent="center" h='100vh'>
-            <Flexbox w="62rem" px="2rem" justifyContent='space-between' alignItems='center'>
-                <Flexbox column justifyContent="center">
-                    <Display m="0" lineHeight={1} weight={800}>
-                        <span>FlowUI</span>
-                        <Text size="xl" weight={500} css={{
-                            verticalAlign: 'text-top',
-                        }} textColor={c => c.primary}>β</Text>
-                    </Display>
-                    <Paragraph
-                        w="22rem"
+        <Flexbox 
+            justifyContent="center" 
+            alignItems="center" 
+            h="100vh"
+            pb="6rem" 
+            css={t=>({
+                [`@media (max-width: ${t.breakpoints[3]})`]: {
+                    flexDirection: 'column-reverse'
+                }
+            })}>
+            <Flexbox 
+                column 
+                justifyContent="center" 
+                w="22rem"
+                mr={['3rem','3rem','3rem','0']} 
+                css={t=>({
+                    [`@media (max-width: ${t.breakpoints[3]})`]: {
+                        width: 'auto',
+                        textAlign: 'center'
+                    }
+                })}>
+                <Display m="0" lineHeight={1} weight={800}>
+                    <span>FlowUI</span>
+                    <Text size="xl" weight={500} css={{
+                        verticalAlign: 'text-top',
+                    }} textColor={c => c.primary}>β</Text>
+                </Display>
+                <Paragraph
+                    size="l"
+                    color={c => c.light}
+                    children="Flexible UI Framework declared by your own Design System."
+                />
+                <Flexbox 
+                    mt={["6rem","6rem","3rem"]}
+                    css={t=>({
+                        flexWrap: "wrap",
+                        [`@media (max-width: ${t.breakpoints[3]})`]: {
+                            'button': {
+                                width: '100%',
+                                margin: '.5rem 0',
+                            }
+                        }
+                    })}>
+                    <Button
                         size="l"
-                        color={c => c.light}
-                        children="Flexible UI Framework declared by your own Design System."
+                        mb="0.5rem"
+                        mr="0.5rem"
+                        onClick={() => props.history.push(props.pages.docs)}
+                        children="Getting started"
                     />
-                    <Flexbox mt="6rem" wrap="wrap">
-                        <Button
-                            size="l"
-                            mb="0.5rem"
-                            mr="0.5rem"
-                            onClick={() => props.history.push(props.pages.docs)}
-                            children="Documentation"
-                        />
-                        <Button
-                            size="l"
-                            mb="0.5rem"
-                            color={c => c.lightest}
-                            onClick={() => props.history.push('architect')}
-                            children="Graphics editor"
-                        />
-                    </Flexbox>
+                    <Button
+                        size="l"
+                        mb="0.5rem"
+                        color={c => c.lightest}
+                        onClick={() => props.history.push('architect')}
+                        children="Visual editor"
+                    />
                 </Flexbox>
+            </Flexbox>
+            <Flexbox 
+                flex={1} 
+                justifyContent={['flex-end','flex-end','center']}>
                 <svg 
                     viewBox="0 0 294.41 445.41" 
                     xmlns="http://www.w3.org/2000/svg"
                     css={t=>({
-                        height: '40rem',
-                        fill: t.color.onBackground.hex()
+                        maxWidth: '24rem',
+                        width: '100%',
+                        justifySelf: 'flex-end',
+                        fill: t.color.onBackground.hex(),
+                        [`@media (max-width: ${t.breakpoints[3]})`]: {
+                            width: '12rem',
+                        }
                     })}>
                     <path css={t=>({fill: t.color.primary.hex()})} d="m228.93 24.34a112.66 112.66 0 0 0 -29.03-24.14 1.51 1.51 0 0 0 -2 .45 1.5 1.5 0 0 0 .49 2.17c35 20.1 58 61.94 58 100.46 0 29.11-10 55.71-28.2 74.93s-43.5 29.85-71.2 29.85c-45.41 0-85.38-29.66-101.26-70.28a1.49 1.49 0 0 0 -2.05-.81 1.53 1.53 0 0 0 -.77 1.92c16.33 41.74 57.41 72.21 104.08 72.21 28.54 0 54.61-10.94 73.41-30.8s29-47.13 29-77c.04-27.84-11.08-56.63-30.47-78.96z"/>
                     <path d="m131.25 144.43a63 63 0 0 0 -17.14-35.62 1.52 1.52 0 0 0 -2.16 0 1.51 1.51 0 0 0 0 2.12 59.13 59.13 0 0 1 14.55 57.07 54.43 54.43 0 0 1 -36.89 37.57 59 59 0 0 1 -54.91-11.47 1.5 1.5 0 0 0 -2.09.14 1.51 1.51 0 0 0 .14 2.17 62.88 62.88 0 0 0 30.06 13.86c38.7 6.35 73.35-26.93 68.44-65.84z"/>
