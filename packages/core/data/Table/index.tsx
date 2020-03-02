@@ -130,15 +130,15 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
      * EXPERIMENTAL
      */
     const setNeedDisplay = () => {
-        let render = false
+        let state = 1
         for (let dcItem of dc) {
             //@ts-ignore
-            const didRender = dcItem.experimental?.setNeedDisplay()
+            const didRender = dcItem.experimental.setNeedDisplay(state === 3)
             if (didRender) {
-                render = true
+                state = 2
             } else {
-                if (render) {
-                    break
+                if (state === 2) {
+                    state = 3
                 }
             }
         }

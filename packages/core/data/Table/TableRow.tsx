@@ -28,7 +28,13 @@ const TableRow: RefForwardingComponent<HTMLTableRowElement, Types.RowProps> = (p
         const height = props.experimental.tableRowHeight(dcItem)
         style.height = height + 'px'
 
-        const setNeedDisplay = () => {
+        const setNeedDisplay = (forceUnmount?: boolean) => {
+            if (forceUnmount) {
+                if (experimental_needDisplay) {
+                    experimental_setNeedDisplayState(false)
+                }
+                return false
+            }
             let needDisplay = false
             const element = document.getElementById(experimental_rowId as string)
             if (element) {
