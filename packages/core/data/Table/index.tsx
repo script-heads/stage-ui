@@ -1,5 +1,5 @@
 import { useComponent } from '@flow-ui/whale'
-import React, { forwardRef, RefForwardingComponent,useRef, useImperativeHandle, useState } from 'react'
+import React, { forwardRef, RefForwardingComponent,useRef, useImperativeHandle, useState, useEffect } from 'react'
 import styles from './styles'
 import Types from './types'
 import TableRow from './TableRow'
@@ -126,6 +126,39 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
             columnSort(column)
         }
     }
+    /**
+     * EXPERIMENTAL
+     */
+    const setNeedDisplay = () => {
+        let render = false
+        for (let dcItem of dc) {
+            //@ts-ignore
+            const didRender = dcItem.experimental?.setNeedDisplay()
+            if (didRender) {
+                render = true
+            } else {
+                if (render) {
+                    break
+                }
+            }
+        }
+    }
+
+    useEffect(() => {
+        if (props.experimental) {
+            setNeedDisplay()
+            document.addEventListener('resize', setNeedDisplay)
+            document.addEventListener('scroll', setNeedDisplay)
+            document.addEventListener('onflowscroll', setNeedDisplay)
+        }
+        return () => {
+            if (props.experimental) {
+                document.removeEventListener('resize', setNeedDisplay)
+                document.removeEventListener('scroll', setNeedDisplay)
+                document.removeEventListener('onflowscroll', setNeedDisplay)
+            }
+        }
+    }, [])
 
     /**
      * Render Data
@@ -182,7 +215,7 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
                                 columns={columns}
                                 rowIndex={rowIndex}
                                 events={events}
-                                experimental={props.experemental}
+                                experimental={props.experimental}
                             />
                         )
                     })

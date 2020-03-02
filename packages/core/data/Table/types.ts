@@ -114,7 +114,7 @@ declare namespace TableTypes {
         decoration?: LayoutDecoration
         pagination?: TablePaginationOptions
         footer?: React.ReactNode
-        experemental?: {
+        experimental?: {
             renderType: 'mountOnly' | 'mountUnmount'
             tableRowHeight: (dc: DataCollection) => number
         }
@@ -141,7 +141,7 @@ declare namespace TableTypes {
         styles: WhaleTypes.ComponentStyles<Overrides>
         getCellContext: TableRef['getCellContext']
         events: RowEvents
-        experimental?: Props['experemental']
+        experimental?: Props['experimental']
     }
 
     interface FootProps {

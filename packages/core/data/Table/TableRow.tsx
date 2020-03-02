@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, forwardRef, RefForwardingComponent, useState } from 'react'
+import React, { Fragment, useEffect, forwardRef, RefForwardingComponent, useImperativeHandle, useRef, useState } from 'react'
 import TableCell from './TableCell'
 import Types from './types'
 
@@ -25,44 +25,30 @@ const TableRow: RefForwardingComponent<HTMLTableRowElement, Types.RowProps> = (p
     ] = useState(props.experimental === undefined)
 
     if (props.experimental) {
-        experimental_rowId = React.useMemo(() => (+new Date).toString(16), [])   
-        style.height = props.experimental.tableRowHeight(dcItem) + 'px'
-    }
+        const height = props.experimental.tableRowHeight(dcItem)
+        style.height = height + 'px'
 
-    const setNeedDisplay = () => {
-        const element = document.getElementById(experimental_rowId as string)
-        if (element) {
+        const setNeedDisplay = () => {
             let needDisplay = false
-            const position = element.getBoundingClientRect()
-            // checking whether fully visible
-            if (position.top >= 0 && position.bottom <= window.innerHeight) {
-                needDisplay = true
+            const element = document.getElementById(experimental_rowId as string)
+            if (element) {
+                const position = element.getBoundingClientRect()
+                if (position.top + height * 2 >= 0 && position.top - height <= window.innerHeight) {
+                    needDisplay = true
+                    experimental_setNeedDisplayState(true)
+                } else if (props.experimental?.renderType === 'mountUnmount') {
+                    experimental_setNeedDisplayState(false)
+                }
             }
-            // checking for partial visibility
-            if (position.top < window.innerHeight && position.bottom >= 0) {
-                needDisplay = true
-            }
-            if (needDisplay || props.experimental?.renderType === 'mountUnmount') {
-                experimental_setNeedDisplayState(needDisplay)
-            }
+            return needDisplay
+        }
+        
+        experimental_rowId = React.useMemo(() => 'tr' + rowIndex + '_' + (~~(Math.random()*1e8)).toString(16), [])   
+        //@ts-ignore
+        dcItem.experimental = {
+            setNeedDisplay
         }
     }
-
-    useEffect(() => {
-        if (props.experimental) {
-            setNeedDisplay()
-            document.addEventListener('resize', setNeedDisplay)
-            document.addEventListener('scroll', setNeedDisplay)
-            document.addEventListener('onflowscroll', setNeedDisplay)
-        }
-        return () => {
-            if (props.experimental) {
-                document.removeEventListener('resize', setNeedDisplay)
-                document.removeEventListener('scroll', setNeedDisplay)
-                document.removeEventListener('onflowscroll', setNeedDisplay)
-            }
-        }
-    }, [])
 
     return (
         <Fragment>
