@@ -28,7 +28,7 @@ module.exports = [
     [
         'babel-plugin-import', {
             libraryName: '@flow-ui/core/icons',
-            camel2DashComponentName: false,
+            camel2DashComponentName: true,
             customName: (name) => (
                 `@flow-ui/core/icons/svg/${name[0].toLowerCase()}${name.slice(1)}`
             )
