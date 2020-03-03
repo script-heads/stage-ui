@@ -1,15 +1,14 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
-import { Viewport } from '@flow-ui/core'
-import App from './app'
+import { Viewport, Header } from '@flow-ui/core'
 
-const Index = () => (
+const App = () => (
     <Viewport>
-        <App/>
+        <Header>Hello world!</Header>
     </Viewport>
 )
 
 ReactDOM.render(
-	<Index />,
-	document.getElementById('documaker')
+	<App />,
+	document.getElementById('app')
 )
