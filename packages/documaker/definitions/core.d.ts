@@ -80,7 +80,7 @@ declare module 'misc/hocs/Typography/types' {
 	        backgroundColor?: WhaleTypes.ColorProp;
 	        align?: CSS.Properties['textAlign'];
 	        weight?: CSS.Properties['fontWeight'];
-	        size?: WhaleTypes.Size | string;
+	        size?: WhaleTypes.Size;
 	        transform?: CSS.Properties['textTransform'];
 	    }
 	    interface Overrides<T extends {
@@ -8520,10 +8520,10 @@ declare module '@flow-ui/core/data/Table/types' {
 	         */
 	        footer?: React.ReactNode;
 	        /**
-	         * Table will render rows.
+	         * How Table will render rows.
 	         * any type except 'default' requires rowHeight delegate!
 	         *
-	         * default - Render all rows at onec.
+	         * default - Render all rows at once.
 	         * whenBecomeVisible - Render row only when it become visible.
 	         * onlyWhenVisible - Render row when it become visible and unmount when row away from screen.
 	         */
