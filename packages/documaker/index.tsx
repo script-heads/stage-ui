@@ -1,6 +1,6 @@
 import { Global } from '@emotion/core'
 import Architect from '@flow-ui/architect'
-import { Flexbox, ScrollView, Viewport, Block } from '@flow-ui/core'
+import { Flexbox, ScrollView, Viewport } from '@flow-ui/core'
 import * as flowThemes from '@flow-ui/core/misc/themes/index'
 import WhaleTypes from '@flow-ui/whale/types'
 import React, { Fragment, useMemo, useState } from 'react'
@@ -9,6 +9,7 @@ import Page from './components/Page'
 import Page404 from './components/Page404'
 import PageEmpty from './components/PageEmpty'
 import Sidebar from './components/Sidebar'
+import Menu from './components/Menu'
 import core, { PageType } from './core'
 
 declare global {
@@ -116,25 +117,27 @@ const Documaker = () => {
 			}
 			{currentPage && typeof currentPage === 'object' &&
 				<Fragment>
-					<Flexbox css={{ minHeight: '100%' }}>
+					<Menu
+						title={config.name}
+						setIndex={() => historyPush('/')}
+						themes={themes}
+						currentTheme={currentTheme}
+						setTheme={setTheme}
+						git={config.git}
+					/>
+					<Flexbox h="100vh" css={{boxSizing: 'border-box', overflow: 'hidden'}}>
 						<Sidebar
-							title={config.name}
-							themes={themes}
-							currentTheme={currentTheme}
-							setTheme={setTheme}
-							setIndex={() => historyPush('/')}
 							currentPage={currentPage as PageType}
 							pages={pages}
 							onChange={(pageURL) => historyPush(pageURL)}
 						/>
-						<ScrollView h="100vh" w="100%" backgroundColor={c => c.surface}>
+						<ScrollView h="100vh" w="100%" pt="3rem" backgroundColor={c => c.surface}>
 							<Page
 								currentPage={currentPage as PageType}
 								types={config.pages?.types}
 								separatedTypes={config.pages?.separatedTypes}
 							/>
 						</ScrollView>
-
 					</Flexbox>
 				</Fragment>
 			}

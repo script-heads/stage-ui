@@ -1,14 +1,11 @@
-import { Menu, Block, Badge, Flexbox, Text, TextField, ScrollView } from '@flow-ui/core'
-import { Close, Cube } from '@flow-ui/core/icons'
+import { Menu, Block, Flexbox, TextField, ScrollView } from '@flow-ui/core'
+import { Close, Cube, Funnel } from '@flow-ui/core/icons'
 import WhaleTypes from '@flow-ui/whale/types'
 import * as React from 'react'
 import { Fragment, useState } from 'react'
 import { PagesType, PageType } from '../../core'
-import ThemeSwitcher, { ThemeSwitcherProps } from '../ThemeSwitcher'
 
-export interface SidebarProps extends ThemeSwitcherProps {
-	title?: string
-	setIndex: () => void
+export interface SidebarProps {
 	pages: PagesType
 	currentPage: PageType
 	onChange: (pageId: string) => void
@@ -44,7 +41,7 @@ const Sidebar = (props: SidebarProps) => {
 
 	return (
 		<Fragment>
-			<ScrollView mode="hidden" w="15rem" h="100vh" backgroundColor={c => c.surface}
+			<ScrollView mode="hidden" w="15rem" h="100vh" pt="3rem" backgroundColor={c => c.surface}
 				css={(theme: WhaleTypes.Theme) => ({
 					[`@media (max-width: ${theme.breakpoints[2]})`]: [
 						{
@@ -57,31 +54,13 @@ const Sidebar = (props: SidebarProps) => {
 						}
 					]
 				})}>
-				<Block p="1rem">
-					<Flexbox px="0.5rem" justifyContent="space-around">
-						<Block flex={1}>
-							<Text
-								size="xl"
-								weight="bold"
-								css={{ cursor: 'pointer' }}
-								onClick={props.setIndex}
-								children={props.title}
-							/>
-							<Text size="xs" lineHeight="0" css={{
-								verticalAlign: 'text-top',
-							}} textColor={c => c.primary}>β</Text>
-						</Block>
-						<ThemeSwitcher
-							themes={props.themes}
-							currentTheme={props.currentTheme}
-							setTheme={props.setTheme}
-						/>
-					</Flexbox>
+				<Block p="0 1rem 1rem 1rem">
 					<TextField
 						size="s"
-						my="1rem 0.5rem"
+						mb=".5rem"
+						rightChild={<Funnel/>}
 						decoration="none"
-						placeholder="Filter..."
+						placeholder="Filter"
 						value={search}
 						onChange={e => {
 							setSearch(e.target.value)

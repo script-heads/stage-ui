@@ -1,4 +1,4 @@
-import homePage from '.'
+import homePage from './home'
 
 export default {
     name: 'FlowUI',

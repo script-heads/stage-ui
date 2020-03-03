@@ -50,7 +50,7 @@ export default (props: HomePageProps) => {
                         size="l"
                         mb="0.5rem"
                         mr="0.5rem"
-                        onClick={() => props.history.push(props.pages.docs)}
+                        onClick={() => props.history.push('getting-started')}
                         children="Getting started"
                     />
                     <Button

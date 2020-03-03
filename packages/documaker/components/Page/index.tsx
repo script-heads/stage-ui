@@ -19,7 +19,7 @@ const Page = (props: ContentProps) => {
         <Flexbox
             flex={1}
             justifyContent="center" 
-            p={['1rem 4rem','1rem 4rem','0 1rem','0 1rem']}
+            p={['0 4rem','0 4rem','0 1rem','0 1rem']}
             // w={['auto','auto','auto','100vw']}
             >
             <Block 
@@ -30,7 +30,7 @@ const Page = (props: ContentProps) => {
                 }}>
                 <Flexbox column alignItems="center">
                 {page.title && (
-                        <Block mt="1rem" style={{ 
+                        <Block style={{ 
                             width: '100%',
                             maxWidth: page.cases === void 0 ? '45rem' : '100%'
                         }}>
