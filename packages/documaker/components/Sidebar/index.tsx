@@ -41,7 +41,7 @@ const Sidebar = (props: SidebarProps) => {
 
 	return (
 		<Fragment>
-			<ScrollView mode="hidden" w="15rem" h="100vh" pt="3rem" backgroundColor={c => c.surface}
+			<ScrollView mode="hidden" w="15rem" h="100vh" backgroundColor={c => c.surface}
 				css={(theme: WhaleTypes.Theme) => ({
 					[`@media (max-width: ${theme.breakpoints[2]})`]: [
 						{
@@ -54,7 +54,7 @@ const Sidebar = (props: SidebarProps) => {
 						}
 					]
 				})}>
-				<Block p="0 1rem 1rem 1rem">
+				<Block p="3rem 1rem 0 1rem">
 					<TextField
 						size="s"
 						mb=".5rem"
@@ -85,7 +85,7 @@ const Sidebar = (props: SidebarProps) => {
 									return null
 								}
 								return (
-									<Menu.Submenu pb="l" key={index} title={section} defaultOpen={true}>
+									<Menu.Submenu pb="l" key={index} title={section} defaultOpen={true} ьи>
 										{menuItems}
 									</Menu.Submenu>
 								)

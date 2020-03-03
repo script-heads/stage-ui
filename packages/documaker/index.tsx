@@ -131,7 +131,7 @@ const Documaker = () => {
 							pages={pages}
 							onChange={(pageURL) => historyPush(pageURL)}
 						/>
-						<ScrollView h="100vh" w="100%" pt="3rem" backgroundColor={c => c.surface}>
+						<ScrollView h="100vh" w="100%" backgroundColor={c => c.surface}>
 							<Page
 								currentPage={currentPage as PageType}
 								types={config.pages?.types}

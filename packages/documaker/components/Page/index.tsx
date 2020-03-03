@@ -18,8 +18,8 @@ const Page = (props: ContentProps) => {
     return (
         <Flexbox
             flex={1}
+            p={['3rem 4rem 1.5rem 4rem','3rem 4rem 1.5rem 4rem','1rem']}
             justifyContent="center" 
-            p={['0 4rem','0 4rem','0 1rem','0 1rem']}
             // w={['auto','auto','auto','100vw']}
             >
             <Block 
