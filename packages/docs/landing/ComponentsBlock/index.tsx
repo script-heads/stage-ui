@@ -1,4 +1,5 @@
-import { Block, Flexbox, Header, Text, Divider } from '@flow-ui/core'
+import { Block, Flexbox, Header, Text, Divider, useTheme } from '@flow-ui/core'
+import { useEffect } from 'react';
 
 export default (props: {title: string; subtitle: string; components: string[]}) => {
 
@@ -19,13 +20,6 @@ export default (props: {title: string; subtitle: string; components: string[]}) 
                     css={t=>({
                         flexWrap: 'wrap',
                         color: t.color.primary.hex(),
-                        // backgroundImage: `linear-gradient(0deg, ${t.color.primary.darken(.8).hex()} 0%, ${t.color.primary.hex()} 100%)`,
-                        // backgroundSize: '100vw 100vh',
-                        // backgroundRepeat: 'no-repeat',
-                        // backgroundAttachment: 'scroll',
-                        // backgroundPosition: 'top right',
-                        // WebkitBackgroundClip: 'text',
-                        // WebkitTextFillColor: 'transparent',
                         'span': {
                             cursor: 'pointer',
                         }
@@ -33,7 +27,8 @@ export default (props: {title: string; subtitle: string; components: string[]}) 
                     mt="2rem">
                     {components.map((name, index) => (
                         <Text
-                            key={name+index} 
+                            key={name+index}
+                            id="component-label" 
                             size='l' 
                             mr="2rem" 
                             mt="2rem" 

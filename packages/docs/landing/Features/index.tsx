@@ -1,5 +1,4 @@
-import { Block, Flexbox, Grid, Header, Paragraph } from '@flow-ui/core'
-import Container from '../../components/Container'
+import { Block, Grid, Header, Paragraph } from '@flow-ui/core'
 
 const TextBlock = (props: { title: string, text: string }) => {
     return (

@@ -1,4 +1,4 @@
-import { Text, Button, Display, Flexbox, Paragraph, Block } from '@flow-ui/core'
+import { Text, Button, Display, Flexbox, Paragraph } from '@flow-ui/core'
 import { HomePageProps } from '@flow-ui/documaker/core'
 
 export default (props: HomePageProps) => {

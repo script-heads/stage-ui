@@ -1,12 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { HomePageProps } from '@flow-ui/documaker/core'
-import { Flexbox, Block } from '@flow-ui/core'
+import { Flexbox, Block, useTheme } from '@flow-ui/core'
 import Header from './Header'
 import Features from './Features'
 import ComponentsBlock from './ComponentsBlock'
 import Footer from './Footer'
 
 export default (props: HomePageProps) => {
+
+    const {primary} = useTheme().color;
+
+    useEffect(()=>{
+        const labels = document.querySelectorAll('#component-label') as NodeListOf<HTMLDivElement>
+        const scrollHandler = () =>
+            labels.forEach(label => {
+                const labelTop = label.getBoundingClientRect().top
+                if (labelTop < window.innerHeight && labelTop > 0) {
+                    label.style.color = primary.darken(
+                        .8 * (labelTop / window.innerHeight)
+                    ).hex()
+                }
+            })
+
+        window.addEventListener('scroll', scrollHandler)
+        return () => window.removeEventListener('scroll', scrollHandler)
+    },[])
+
     return (
         <Flexbox backgroundColor={c => c.surface} justifyContent="center">
             <Block
