@@ -8,7 +8,15 @@ export default (theme: WhaleTypes.Theme, prop?: WhaleTypes.ColorProp) => {
         ? prop(theme.color)
         : prop
     
-    if (typeof sourceColor === 'string') return Color(sourceColor)
+    if (typeof sourceColor === 'string') {
+        if (theme.color[sourceColor]) {
+            return theme.color[sourceColor]
+        }
+        if (theme.color.palette[sourceColor]) {
+            return theme.color.palette[sourceColor]
+        }
+        return Color(sourceColor)
+    }
 
     return sourceColor
 }

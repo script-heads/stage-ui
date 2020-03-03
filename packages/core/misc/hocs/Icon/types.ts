@@ -10,7 +10,7 @@ declare namespace IconTypes {
 	interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
 		svg: React.ReactElement
 		shape?: IconShapes
-		size?: WhaleTypes.Size | string
+		size?: WhaleTypes.Size | (string & { T?: string})
 		color?: WhaleTypes.ColorProp
 		background?: WhaleTypes.ColorProp
 		rotate?: number
@@ -23,7 +23,7 @@ declare namespace IconTypes {
 	interface Overrides {
 		container: {
 			shape?: IconShapes
-			size: WhaleTypes.Size | string
+			size: WhaleTypes.Size | (string & { T?: string})
 		}
 		icon: void
 	}
