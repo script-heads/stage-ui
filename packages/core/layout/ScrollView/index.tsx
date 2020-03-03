@@ -359,13 +359,15 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                 {...events.all}
                 onScroll={e => updateScroll(e as any)}
                 css={isLegacyScrollSupport ? cs.legacy : cs.container}
-                ref={createRef}>
-                <div
-                    css={cs.content}
-                    ref={ref => memo.content = ref}
-                    children={props.children}
-                />
-            </div>
+                ref={createRef}
+                children={(
+                    <div
+                        css={cs.content}
+                        ref={ref => memo.content = ref}
+                        children={props.children}
+                    />
+                )}
+            />
             <div
                 css={cs.yBar({ active, size, shape, position: yBarPosition })}
                 ref={ref => memo.yBar = ref}

@@ -29,6 +29,9 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
             minWidth: '100%',
             minHeight: '100%',
             willChange: 'left, top',
+            '> :nth-child(n)': {
+                margin: '0 !important'
+            }
         }],
         legacy: [{
             position: 'relative',
