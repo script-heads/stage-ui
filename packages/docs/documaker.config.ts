@@ -1,5 +1,4 @@
 import homePage from '.'
-import themes from './themes'
 
 export default {
     name: 'FlowUI',

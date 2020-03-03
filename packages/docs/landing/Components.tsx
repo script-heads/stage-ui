@@ -1,9 +1,14 @@
-import { Block, Flexbox, Header, Text, Divider, useTheme } from '@flow-ui/core'
-import { useEffect } from 'react';
+import { Block, Flexbox, Header, Text, Divider } from '@flow-ui/core'
 
-export default (props: {title: string; subtitle: string; components: string[]}) => {
+interface ComponentsProps {
+    title: string
+    subtitle: string
+    components: string[]
+}
 
-    const {title, subtitle, components} = props;
+export default (props: ComponentsProps) => {
+
+    const { title, subtitle, components } = props;
 
     return (
         <Block mb='6rem'>
