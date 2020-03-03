@@ -16,7 +16,9 @@ declare module '@flow-ui/whale/types' {
 	    /**
 	     * @displayType Color
 	     */
-	    type ColorProp = ((colors: Theme['color']) => QIXColor | string) | string | QIXColor;
+	    type ColorProp = ((colors: Theme['color']) => QIXColor | string) | keyof Omit<Theme['color'], 'palette'> | keyof Theme['color']['palette'] | QIXColor | (string & {
+	        T?: string;
+	    });
 	    type Styles<StyleDefinitions> = {
 	        [StyleName in keyof StyleDefinitions]: StyleDefinitions[StyleName] extends Object ? ((variant: Variant<StyleDefinitions[StyleName]>) => EmotionStyles) : EmotionStyles;
 	    };
@@ -1126,7 +1128,7 @@ declare module 'utils/attachProps/style/resolvers/event' {
 }
 declare module 'utils/colorProp' {
 	import Color from 'color';
-	import WhaleTypes from 'types'; const _default: (theme: WhaleTypes.Theme, prop?: string | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
+	import WhaleTypes from 'types'; const _default: (theme: WhaleTypes.Theme, prop?: "background" | "backgroundVariant" | "surface" | "surfaceVariant" | "primary" | "secondary" | "onBackground" | "onSurface" | "onPrimary" | "onSecondary" | "lightest" | "light" | "hard" | "hardest" | "error" | "warning" | "success" | "info" | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
 	    [key: string]: any;
 	}> | ArrayLike<number> | {
 	    [key: string]: any;
@@ -1194,31 +1196,9 @@ declare module 'utils/colorProp' {
 	    [key: string]: any;
 	}> | ArrayLike<number> | {
 	    [key: string]: any;
-	}>) | undefined) => Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | undefined;
+	}>) | (string & {
+	    T?: string | undefined;
+	}) | undefined) => any;
 	export default _default;
 
 }
