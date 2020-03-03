@@ -21,7 +21,12 @@ declare namespace WhaleTypes {
     /**
      * @displayType Color
      */
-    type ColorProp = ((colors: Theme['color']) => QIXColor | string) | string | QIXColor
+    type ColorProp = 
+        ((colors: Theme['color']) => QIXColor | string)
+        | keyof Omit<Theme['color'],'palette'>
+        | keyof Theme['color']['palette']
+        | QIXColor
+        | (string & { T?: string})
 
     type Styles<StyleDefinitions> = {
         [StyleName in keyof StyleDefinitions]: StyleDefinitions[StyleName] extends Object

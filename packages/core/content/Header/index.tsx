@@ -16,7 +16,7 @@ const Header: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref
         sizesOf="header"
         specificStyles={{
             fontWeight: 700,
-            display: 'block' 
+            display: 'block'
         }}  
         ref={ref} 
         size="m"
