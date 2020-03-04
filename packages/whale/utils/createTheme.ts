@@ -15,11 +15,10 @@ const createTheme = (theme: Types.SourceTheme): Types.Theme=> {
             theme,
             themeReplace,
         ) as Types.SourceTheme
-        
         newTheme.main.name = newTheme.main.name || main.name + '-' + createID()
 
         newTheme.assets = (main) => mergeObjects(
-            assets,
+            theme.assets(main),
             themeReplace.assets && themeReplace.assets(main),
         ) as Types.ThemeAssets
 
