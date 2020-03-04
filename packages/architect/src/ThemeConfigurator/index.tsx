@@ -4,6 +4,7 @@ import WhaleTypes from '@flow-ui/whale/types'
 import React, { useState, useEffect } from 'react'
 import ColorPick from './ColorPick'
 import NewColorDialog from './NewColorDialog'
+import mergeObjects from '@flow-ui/whale/utils/mergeObjects'
 
 const MAIN_COLORS = [
     ['BACKGROUND', 'background'],
@@ -65,29 +66,24 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
         let patch: WhaleTypes.ReplaceTheme = loadPatch() || {
             main: {}
         }
-        patch = {
-            ...patch,
+        patch = mergeObjects(patch, {
             main: {
-                ...patch.main,
                 color: { 
-                    ...patch.main.color,
                     [key]: color
                  }
             }
-        }
+        }) as WhaleTypes.ReplaceTheme
+
         if (palette) {
-            patch = {
-                ...patch,
+            patch = mergeObjects(patch, {
                 main: {
-                    ...patch.main,
                     color: {
-                        ...patch.main.color,
                         palette: { 
                             [key]: color
                          }
                     }
                 }
-            }
+            }) as WhaleTypes.ReplaceTheme
         }
         savePatch(patch)
         if (testflight) {
