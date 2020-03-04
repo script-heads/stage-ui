@@ -2,22 +2,25 @@ import WhaleTypes from '@flow-ui/whale/types'
 
 declare const WEBPACK_WORKDIR: string
 
-export interface HomePageProps {
-    history: {
-        push: (url: string) => void
-    }
-    pages: {[key: string]: string}
+export interface CustomPageProps {
+    config: Config
+    pages: PagesType
+    path: string
+    setPath: React.Dispatch<React.SetStateAction<string>>
+    theme: WhaleTypes.Theme
+    themes: Record<string,WhaleTypes.Theme>
+    setTheme: React.Dispatch<React.SetStateAction<WhaleTypes.Theme>>
 }
 
 export interface Config {
     name?: string
     git?: string
-    homePage?: (props: HomePageProps) => JSX.Element
     themes?: Record<string,WhaleTypes.Theme>
     pages?: {
         order?: Record<string,string[]>
         types?: string[],
         separatedTypes?: string[]
+        custom?: Record<string,React.ComponentType<CustomPageProps>>
     }
 }
 

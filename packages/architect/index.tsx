@@ -2,13 +2,13 @@ import PrefPanel from '@flow-ui/architect/src/PrefPanel'
 import RenderPanel from '@flow-ui/architect/src/RenderPanel'
 import TreePanel from '@flow-ui/architect/src/TreePanel'
 import AddPanel from '@flow-ui/architect/src/AddPanel'
-import HeaderPanel from '@flow-ui/architect/src/HeaderPanel'
+import {Menu} from '@flow-ui/documaker'
 import { ArchitectItem, ArchitectTools } from '@flow-ui/architect/types'
 import React, { Fragment } from 'react'
 import styles from './styles'
-import { useTheme, Flexbox, Header } from '@flow-ui/core'
+import { Flexbox } from '@flow-ui/core'
 import components from './components'
-import WhaleTypes from '@flow-ui/whale/types'
+import { CustomPageProps } from '@flow-ui/documaker/core'
 
 export function uuid() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -17,22 +17,13 @@ export function uuid() {
     })
 }
 
-interface ArchitectProps {
-    title?: string
-    git?: string
-    themes: Record<string,WhaleTypes.Theme>
-    currentTheme: WhaleTypes.Theme
-    setTheme: (theme: WhaleTypes.Theme) => void
-    setIndex: () => void
-}
-
 export const context = {
     componentLibraryOpen: false,
     tools: {} as ArchitectTools
 }
 
-class Architect extends React.Component<ArchitectProps> {
-    constructor(props: ArchitectProps) {
+class Architect extends React.Component<CustomPageProps> {
+    constructor(props: CustomPageProps) {
         super(props)
         this.init(require('./demoData').default)
         context.tools = this.tools
@@ -242,21 +233,21 @@ class Architect extends React.Component<ArchitectProps> {
 /**
  * That is just for hooks
  */
-const ArchitectView = (props: ArchitectProps) => {
+const ArchitectView = (props: CustomPageProps) => {
     
-    const cs = React.useMemo(() => styles(props.currentTheme), [
-        props.currentTheme
+    const cs = React.useMemo(() => styles(props.theme), [
+        props.theme
     ])
 
     return (
         <Fragment>
-            <HeaderPanel 
-                title={props.title}
-                currentTheme={props.currentTheme}
-                setIndex={props.setIndex}
+            <Menu
+                currentTheme={props.theme}
+                setIndex={() => props.setPath('/')}
                 setTheme={props.setTheme}
                 themes={props.themes}
-                git={props.git}
+                title={props.config.name}
+                git={props.config.git}
             />
             <Flexbox css={cs.container}>
                 <TreePanel/>

@@ -4,6 +4,7 @@ import WhaleTypes from '@flow-ui/whale/types'
 import * as React from 'react'
 import { Fragment, useState } from 'react'
 import { PagesType, PageType } from '../../core'
+import { useMemo } from 'react'
 
 export interface SidebarProps {
 	pages: PagesType
@@ -38,6 +39,20 @@ const Sidebar = (props: SidebarProps) => {
 	const VisibilityIcon = !visibility
 		? Cube
 		: Close
+
+	const MenuItems = useMemo(() =>
+		Object.keys(pages).map((section, index) => {
+			const menuItems = getMenuItems(pages[section])
+			if (menuItems.length === 0) {
+				return null
+			}
+			return (
+				<Menu.Submenu pb="l" key={index} title={section} defaultOpen={true} ьи>
+					{menuItems}
+				</Menu.Submenu>
+			)
+		}),[pages]
+	)
 
 	return (
 		<Fragment>
@@ -78,19 +93,7 @@ const Sidebar = (props: SidebarProps) => {
 								setMobileVisible(false)
 							}
 						}}
-						children={
-							Object.keys(pages).map((section, index) => {
-								const menuItems = getMenuItems(pages[section])
-								if (menuItems.length === 0) {
-									return null
-								}
-								return (
-									<Menu.Submenu pb="l" key={index} title={section} defaultOpen={true} ьи>
-										{menuItems}
-									</Menu.Submenu>
-								)
-							})
-						}
+						children={MenuItems}
 					/>
 				</Block>
 			</ScrollView>
