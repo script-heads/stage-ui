@@ -1,7 +1,8 @@
 import React from 'react'
 import { Text, Button, Display, Flexbox, Paragraph } from '@flow-ui/core'
-import { HomePageProps } from '@flow-ui/documaker/core'
+import { CustomPageProps } from '@flow-ui/documaker/core'
 
+<<<<<<< HEAD
 export default (props: HomePageProps) => {
     React.useEffect(() => {
         // Set up our canvas
@@ -92,6 +93,9 @@ export default (props: HomePageProps) => {
             ctx.fill()
         }
     })
+=======
+export default (props: CustomPageProps) => {
+>>>>>>> cca6ecd9c43047c2cf5ff05301b6dcd144ae2c18
     return (
         <Flexbox
             justifyContent="center"
@@ -140,14 +144,14 @@ export default (props: HomePageProps) => {
                         size="l"
                         mb="0.5rem"
                         mr="0.5rem"
-                        onClick={() => props.history.push('getting-started')}
+                        onClick={() => props.setPath('/getting-started')}
                         children="Getting started"
                     />
                     <Button
                         size="l"
                         mb="0.5rem"
                         color={c => c.lightest}
-                        onClick={() => props.history.push('architect')}
+                        onClick={() => props.setPath('/architect')}
                         children="Visual editor"
                     />
                 </Flexbox>

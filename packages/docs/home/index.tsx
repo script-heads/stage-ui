@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
-import { HomePageProps } from '@flow-ui/documaker/core'
+import { CustomPageProps } from '@flow-ui/documaker/core'
 import { Flexbox, Block, useTheme } from '@flow-ui/core'
 import Header from './Header'
 import Features from './Feauters'
 import Components from './Components'
 import Footer from './Footer'
 
-export default (props: HomePageProps) => {
+export default (props: CustomPageProps) => {
 
     const {primary} = useTheme().color;
 

@@ -1,10 +1,10 @@
-import homePage from './home'
+import HomePage from './home'
+import Architect from '@flow-ui/architect'
+import { Config } from '@flow-ui/documaker/core'
 
-export default {
+const config: Config = {
     name: 'FlowUI',
     git: 'https://github.com/abr-tech/FlowUI',
-    themes: [],
-    homePage,
     pages: {
         order: {
             About: ['Getting started','Theming','Overrides','Props', 'Icons', 'Bundle'],
@@ -31,5 +31,11 @@ export default {
             'Flex',
             'Grid'
         ],
+        custom: {
+            '/': HomePage,
+            '/architect': Architect
+        }
     }
 }
+
+export default config
