@@ -43,11 +43,10 @@ const Interface = (props: InterfaceProps) => {
 
     const renderTypes = (data: ValueDefinition[]) =>
         data.map((type: ValueDefinition, index: number) =>
-            <Value type={type} last={index === data.length} key={'type' + index} />
+            <Value type={type} last={index === data.length - 1} key={'type' + index} />
         )
     
     const extendedTypes = useMemo(()=> {
-        console.log('again', extended.length)
         return extended.map((type, index) => (
             <Fragment key={type.name + index}>
                 <Tree
@@ -58,7 +57,7 @@ const Interface = (props: InterfaceProps) => {
                             children={type.name}
                         />
                     } 
-                    children={<Tree>{renderTypes(type.children)}</Tree>}
+                    children={<Block>{renderTypes(type.children)}</Block>}
                 />
                 <Divider />
             </Fragment>
