@@ -97,8 +97,10 @@ const Modal: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
                 ref={overlayRef}
                 getStyles={getStyles}
                 children={
-                    <div css={cs.wrapper(styleProps)} onClick={() => {
-                        if (overlayClose) close()
+                    <div data-wrapper css={cs.wrapper(styleProps)} onClick={(e) => {
+                        if ((e.target as HTMLDivElement).dataset['wrapper']) {
+                            if (overlayClose) close()
+                        }
                     }}>
                         <ModalWindow
                             getStyles={getStyles}

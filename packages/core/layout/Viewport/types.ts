@@ -45,6 +45,10 @@ declare namespace ViewportTypes {
          */
         size?: ModalTypes.Props['size']
         /**
+         * Overrides
+         */
+        styles?: ModalTypes.Props['styles']
+        /**
          * Dialog decoration
          */
         decoration?: ModalTypes.Props['decoration']

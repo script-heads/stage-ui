@@ -1,10 +1,10 @@
-import { Viewport } from '@flow-ui/core'
-import React from 'react'
+import { Viewport, Tree, Modal, Button, dialog, Block, Flexbox } from '@flow-ui/core'
+import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
-import ThemeConfigurator from '../architect/src/ThemeConfigurator'
-import PreviewCube from '../architect/src/ThemeConfigurator/PreviewCube'
-// import App from './app'
+import App from './app'
 import custom from './themes/custom'
+import ThemeConfigurator from '../themer/src/ThemeConfigurator'
+import PreviewCube from '../themer/src/ThemeConfigurator/PreviewCube'
 
 const Playground = () => {
 	const [theme, updateTheme] = React.useState(custom)
@@ -12,11 +12,23 @@ const Playground = () => {
 	return (
 		<Viewport theme={theme}>
 			{/* <App /> */}
-			<PreviewCube />
-			<ThemeConfigurator 
-				original={custom}
-				updateTheme={updateTheme} 
-			/>
+			<Button m="5rem" onClick={() => {
+				dialog({
+					decoration: 'panel',
+					hideHeader: true,
+					customContent: (close) => (
+						<Fragment>
+							<ThemeConfigurator
+								original={custom}
+								updateTheme={updateTheme}
+							/>
+							<Flexbox justifyContent="flex-end" p="1rem" pt="4rem">
+								<Button onClick={close}>Close</Button>
+							</Flexbox>
+						</Fragment>
+					)
+				})
+			}}>Panel</Button>
 		</Viewport>
 	)
 }

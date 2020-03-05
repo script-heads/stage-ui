@@ -9,11 +9,12 @@ interface ColorPickProps {
     title?: string
     subtitle?: string
     onChange: (color: number[], hex: string) => void
+    onClick?: () => void
     container?: FlexboxTypes.Props
 }
 let timer
 const ColorPick = (props: ColorPickProps) => {
-    const { color, title, subtitle, onChange } = props
+    const { color, title, subtitle, onChange, onClick } = props
     const [customColor, setCustomColor] = useState('')
     const colorRef = useRef<HTMLInputElement>(null)
 
@@ -42,7 +43,11 @@ const ColorPick = (props: ColorPickProps) => {
                     borderRadius="2rem"
                     backgroundColor={customColor || color}
                     onClick={() => {
-                        colorRef.current?.click()
+                        if (props.onClick) {
+                            props.onClick()
+                        } else {
+                            colorRef.current?.click()
+                        }
                     }}
                 />
             </Block>
