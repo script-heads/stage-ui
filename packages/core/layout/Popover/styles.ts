@@ -20,7 +20,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                 borderWidth: theme.assets.border.width,
                 borderStyle: theme.assets.border.style,
                 borderColor: theme.assets.border.color,
-                borderRadius: theme.radius.default,
+                borderRadius: theme.radius.m,
                 filter: `drop-shadow(${theme.assets.shadow.default})`,
                 padding: theme.spacing.s
             }

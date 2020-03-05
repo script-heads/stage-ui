@@ -38,7 +38,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                 borderWidth: theme.assets.border.width,
                 borderStyle: theme.assets.border.style,
                 borderColor: theme.color.surface.rgb().string(),
-                borderRadius: theme.radius.narrow,
+                borderRadius: theme.radius.s,
                 color: theme.color.hardest.rgb().string(),
                 userSelect: 'none',
                 ...theme.assets.typography.text.m,

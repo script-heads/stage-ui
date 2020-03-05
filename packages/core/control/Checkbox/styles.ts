@@ -18,7 +18,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                 backgroundColor: theme.color.surface.rgb().string(),
                 borderWidth: theme.assets.border.width,
                 borderStyle: theme.assets.border.style,
-                borderRadius: theme.radius.narrow,
+                borderRadius: theme.radius.s,
             },
             variant({
                 focus: [{

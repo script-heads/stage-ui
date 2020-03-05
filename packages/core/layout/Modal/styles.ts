@@ -68,7 +68,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                 borderWidth: theme.assets.border.width,
                 borderStyle: theme.assets.border.style,
                 borderColor: theme.assets.border.color,
-                borderRadius: theme.radius.default,
+                borderRadius: theme.radius.m,
                 boxSizing: 'border-box',
                 overflow: 'hidden',
                 transition: 'all 0.25s',

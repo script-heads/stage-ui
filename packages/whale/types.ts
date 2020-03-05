@@ -99,12 +99,8 @@ declare namespace WhaleTypes {
 
             palette: Whale.Palette<Color>
         }
-        radius: {
-            default: string
-            narrow: string
-            wide: string
-        },
         breakpoints: string[],
+        radius: Record<Size, string>
         spacing: Record<Size, string>
     }
 

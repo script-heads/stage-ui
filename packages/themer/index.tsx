@@ -1,9 +1,9 @@
-import { Block, Button, dialog, Flexbox, Viewport } from '@flow-ui/core'
-import { ColorPalette, CodeDownload } from '@flow-ui/core/icons'
-import React, { Fragment } from 'react'
+import { Button, Flexbox, Viewport } from '@flow-ui/core'
+import { ColorPalette } from '@flow-ui/core/icons'
+import React from 'react'
 import ReactDOM from 'react-dom'
 import original from './src/theme'
-import ThemeConfigurator from './src/ThemeConfigurator'
+import { panel } from './src/ThemeConfigurator'
 import PreviewCube from './src/ThemeConfigurator/PreviewCube'
 
 const Themer = () => {
@@ -19,35 +19,7 @@ const Themer = () => {
 					children="Change theme"
 					leftChild={<ColorPalette />}
 					onClick={() => {
-						dialog({
-							decoration: 'panel',
-							hideHeader: true,
-							styles: {
-								window: variant => variant({
-									decoration: {
-										panel: {
-											marginTop: '50vh'
-										}
-									}
-								})
-							},
-							customContent: (close) => (
-								<Fragment>
-									<ThemeConfigurator
-										original={original}
-										updateTheme={updateTheme}
-									/>
-									<Flexbox justifyContent="space-between" pt="4rem">
-										<Block>
-											<Button decoration="text" rightChild={<CodeDownload />}>Export</Button>
-										</Block>
-										<Block>
-											<Button onClick={close}>Dismiss</Button>
-										</Block>
-									</Flexbox>
-								</Fragment>
-							)
-						})
+						panel(original, updateTheme)
 					}}
 				/>
 			</Flexbox>

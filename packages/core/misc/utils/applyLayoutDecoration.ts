@@ -14,14 +14,14 @@ const applyLayoutDecoration = (props: Props, theme: WhaleTypes.Theme) => {
     switch (props.decoration) {
         case 'surface': return {
             background: theme.color.surface.rgb().string(),
-            borderRadius: theme.radius.default,
+            borderRadius: theme.radius.m,
             borderWidth: theme.assets.border.width,
             borderStyle: theme.assets.border.style,
             borderColor: theme.assets.border.color,
         }
         case 'minorShadow': return {
             background: theme.color.surface.rgb().string(),
-            borderRadius: theme.radius.default,
+            borderRadius: theme.radius.m,
             borderWidth: theme.assets.border.width,
             borderStyle: theme.assets.border.style,
             borderColor: theme.assets.border.color,
@@ -29,7 +29,7 @@ const applyLayoutDecoration = (props: Props, theme: WhaleTypes.Theme) => {
         }
         case 'mediumShadow': return {
             background: theme.color.surface.rgb().string(),
-            borderRadius: theme.radius.default,
+            borderRadius: theme.radius.m,
             borderWidth: theme.assets.border.width,
             borderStyle: theme.assets.border.style,
             borderColor: theme.assets.border.color,
@@ -37,7 +37,7 @@ const applyLayoutDecoration = (props: Props, theme: WhaleTypes.Theme) => {
         }
         case 'majorShadow': return {
             background: theme.color.surface.rgb().string(),
-            borderRadius: theme.radius.default,
+            borderRadius: theme.radius.m,
             borderWidth: theme.assets.border.width,
             borderStyle: theme.assets.border.style,
             borderColor: theme.assets.border.color,
@@ -47,7 +47,7 @@ const applyLayoutDecoration = (props: Props, theme: WhaleTypes.Theme) => {
             const isDark = theme.color.background.isDark()
             return {
                 background: theme.color.background.rgb().string(),
-                borderRadius: theme.radius.default,
+                borderRadius: theme.radius.m,
                 boxShadow: `0.5rem 0.5rem 1rem ${theme.color.background.darken(isDark ? 0.8 : 0.4).rgb().string()},
                             -0.5rem -0.5rem 1rem ${theme.color.background.lighten(isDark ? 0.4 : 0.8).rgb().string()}`
             }
