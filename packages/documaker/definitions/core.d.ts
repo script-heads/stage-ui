@@ -8802,28 +8802,29 @@ declare module 'layout/Grid' {
 declare module '@flow-ui/core/layout/Modal/types' {
 	/// <reference types="react" />
 	import WhaleTypes from '@flow-ui/whale/types'; namespace ModalTypes {
+	    type ModalDecoration = 'modal' | 'panel';
 	    type ExtentedProps = WhaleTypes.AttributeProps & WhaleTypes.AllEventProps<HTMLDivElement> & WhaleTypes.CoreProps<Styles> & WhaleTypes.ColorProps & WhaleTypes.BorderProps & WhaleTypes.PaddingProps & WhaleTypes.LayoutProps;
 	    interface Ref {
 	        open: (customContent?: React.ReactElement | null) => void;
 	        close: (didClose?: () => void) => void;
 	        setTitle: (title: string) => void;
 	        setSubtitle: (subtitle: string) => void;
-	        setCenter: (center: boolean) => void;
 	        setCustomContent: (customContent: React.ReactElement | null) => void;
 	        title?: string;
 	        subtitle?: string;
-	        center: boolean;
 	        customContent: React.ReactElement | null;
-	        overlay: any;
-	        window: any;
+	        overlay: React.ReactNode;
+	        window: React.ReactNode;
 	    }
 	    interface Props extends ExtentedProps {
 	        title?: string;
 	        subtitle?: string;
-	        fullSize?: boolean;
-	        children?: any;
+	        children?: React.ReactNode;
 	        opened?: boolean;
+	        decoration?: ModalDecoration;
+	        size?: WhaleTypes.Size;
 	        hideHeader?: boolean;
+	        overlayClose?: boolean;
 	        onClose?: () => void;
 	        didClose?: () => void;
 	        onOpen?: () => void;
@@ -8832,49 +8833,46 @@ declare module '@flow-ui/core/layout/Modal/types' {
 	    interface InnerProps extends Props {
 	        innerRef: any;
 	    }
-	    interface StyleProps {
-	        visible: boolean;
-	        center: boolean;
-	        fullSize?: boolean;
-	    }
 	    interface ModalOverlayProps {
-	        visible: boolean;
-	        center: boolean;
-	        fullSize?: boolean;
-	        children?: any;
-	        styles: WhaleTypes.ComponentStyles<Styles>;
+	        getStyles: () => {
+	            cs: WhaleTypes.ComponentStyles<Styles>;
+	            state: StyleState;
+	        };
+	        children?: React.ReactNode;
 	    }
 	    interface ModalWindowProps {
 	        title?: string;
 	        subtitle?: string;
-	        visible: boolean;
-	        center: boolean;
-	        fullSize?: boolean;
 	        hideHeader?: boolean;
-	        children?: any;
+	        children?: React.ReactNode;
 	        containerAttr?: ExtentedProps;
 	        containerEvents?: any;
 	        onClosePressed: () => void;
-	        styles: WhaleTypes.ComponentStyles<Styles>;
+	        getStyles: () => {
+	            cs: WhaleTypes.ComponentStyles<Styles>;
+	            state: StyleState;
+	        };
 	    }
 	    interface ModalHeaderProps {
 	        title?: string;
 	        subtitle?: string;
 	        hideHeader?: boolean;
 	        onClosePressed: () => void;
-	        styles: WhaleTypes.ComponentStyles<Styles>;
+	        getStyles: () => {
+	            cs: WhaleTypes.ComponentStyles<Styles>;
+	            state: StyleState;
+	        };
 	    }
+	    type StyleState = {
+	        visible?: boolean;
+	        decoration?: Props['decoration'];
+	    };
 	    interface Styles {
-	        overlay: {
-	            visible?: boolean;
-	            center?: boolean;
-	        };
-	        window: {
-	            visible?: boolean;
-	            fullSizeCenter?: boolean;
-	        };
-	        header: void;
-	        cross: void;
+	        overlay: StyleState;
+	        wrapper: StyleState;
+	        window: StyleState;
+	        header: StyleState;
+	        cross: StyleState;
 	    }
 	}
 	export default ModalTypes;
@@ -9290,7 +9288,8 @@ declare module 'layout/Viewport/types' {
 	/// <reference types="react" />
 	import WhaleTypes from '@flow-ui/whale/types';
 	import { Options } from '@emotion/cache';
-	import { SerializedStyles } from '@emotion/core'; namespace ViewportTypes {
+	import { SerializedStyles } from '@emotion/core';
+	import ModalTypes from '@flow-ui/core/layout/Modal/types'; namespace ViewportTypes {
 	    interface Themes {
 	        light: WhaleTypes.Theme;
 	        dark: WhaleTypes.Theme;
@@ -9316,11 +9315,23 @@ declare module 'layout/Viewport/types' {
 	        /**
 	         * Title of modal window header
 	         */
-	        title?: string;
+	        title?: ModalTypes.Props['title'];
 	        /**
 	         * Subtitle of modal window header
 	         */
-	        subtitle?: string;
+	        subtitle?: ModalTypes.Props['subtitle'];
+	        /**
+	         * Dialog size
+	         */
+	        size?: ModalTypes.Props['size'];
+	        /**
+	         * Overrides
+	         */
+	        styles?: ModalTypes.Props['styles'];
+	        /**
+	         * Dialog decoration
+	         */
+	        decoration?: ModalTypes.Props['decoration'];
 	        /**
 	         * Message of dialog
 	         */
