@@ -20,7 +20,7 @@ export default (options: ViewportTypes.DialogOptions) => {
                 subtitle={options.subtitle}
                 hideHeader={options.hideHeader}
                 size={options.size}
-                type={options.type}
+                decoration={options.decoration}
                 didClose={() => {
                     removeElement(key)
                 }}
