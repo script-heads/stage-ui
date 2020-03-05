@@ -2,7 +2,7 @@ import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace ButtonTypes {
 
-    interface Props extends WhaleTypes.AllProps<HTMLButtonElement, Overrides> {
+    interface Props extends WhaleTypes.AllProps<HTMLButtonElement, Styles> {
         //Native button props
         autoFocus?: boolean
         disabled?: boolean
@@ -38,7 +38,7 @@ declare namespace ButtonTypes {
         shape: Props['shape']
         size: Props['size']
     }
-    interface Overrides {
+    interface Styles {
         container: StyleState
         child: StyleState & { 
             align: 'left' | 'right' 

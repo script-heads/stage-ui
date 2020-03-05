@@ -5,7 +5,7 @@ declare namespace RadioTypes {
     interface Props extends CheckTypes.Props {
     }
 
-    interface Overrides extends CheckTypes.Overrides {
+    interface Styles extends CheckTypes.Styles {
         check: {
             size: Props['size']
             animated: Props['animated']

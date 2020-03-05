@@ -6,11 +6,11 @@ type ExtractFunction<T> = {
     [K in keyof T]: Extract<T[K], Function>
 }
 
-const fieldStyles = <T extends Types.Overrides>(
+const fieldStyles = <T extends Types.Styles>(
     props: Omit<Types.Props, 'onChange'>,
     theme: WhaleTypes.Theme,
     stylePatch?: Partial<ExtractFunction<WhaleTypes.Styles<T>>>
-): WhaleTypes.Styles<Types.Overrides> => {
+): WhaleTypes.Styles<Types.Styles> => {
 
     const color = colorProp(theme, props.color)
 

@@ -8,7 +8,7 @@ declare namespace TreeTypes {
         lvl: number
     }
     type RenderChild = (options: RenderChildOptions) => React.ReactNode
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
         label?: React.ReactNode | string | RenderChild
         leftChild?: React.ReactNode | string | RenderChild
         rightChild?: React.ReactNode | string | RenderChild
@@ -58,7 +58,7 @@ declare namespace TreeTypes {
         decoration: Props['decoration']
         size: Props['size']
     }
-    interface Overrides {
+    interface Styles {
         container: StyleState
         row: StyleState
         label: StyleState

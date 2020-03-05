@@ -1,7 +1,7 @@
 import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace RangeTypes {
-    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
+    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
         min?: number
         max?: number
         defaultValue?: number
@@ -15,7 +15,7 @@ declare namespace RangeTypes {
         container: HTMLDivElement
         setValue: (value: number) => void
     }
-    interface Overrides {
+    interface Styles {
         container: void
         rail: void
         track: void

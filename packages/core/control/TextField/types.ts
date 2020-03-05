@@ -55,7 +55,7 @@ declare namespace TextFieldTypes {
         wrap?: string
     }
 
-    interface Overrides extends FieldTypes.Overrides {
+    interface Styles extends FieldTypes.Styles {
         input: {
             multiline: boolean
             size: WhaleTypes.Size

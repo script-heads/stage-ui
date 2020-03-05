@@ -9,7 +9,7 @@ declare namespace ViewportTypes {
         dark: WhaleTypes.Theme
     }
 
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
         wrapper?: boolean
         cache?: Options
         theme?: 'dark' | 'light' | WhaleTypes.Theme
@@ -57,7 +57,7 @@ declare namespace ViewportTypes {
         customContent?: (close: () => void) => React.ReactElement
     }
 
-    interface Overrides {
+    interface Styles {
         container: void
     }
 }

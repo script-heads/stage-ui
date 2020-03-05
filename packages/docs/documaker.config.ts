@@ -15,7 +15,7 @@ const config: Config = {
         },
         types: [
             'Props',
-            'Overrides'
+            'Styles'
         ],
         separatedTypes: [
             'All',

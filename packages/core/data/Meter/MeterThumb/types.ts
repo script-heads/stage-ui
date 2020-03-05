@@ -3,7 +3,7 @@ import MeterTypes from '../types'
 
 declare namespace MeterThumbTypes {
 
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
         value: MeterTypes.Props['value']
         color?: MeterTypes.Props['color']
         /**
@@ -15,8 +15,8 @@ declare namespace MeterThumbTypes {
 
     interface PrivateProps extends MeterTypes.Props {}
 
-    interface Overrides {
-        container: MeterTypes.Overrides['thumb']
+    interface Styles {
+        container: MeterTypes.Styles['thumb']
     }
 }
 

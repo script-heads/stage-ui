@@ -15,7 +15,7 @@ declare namespace MenuTypes {
         onChange?: (value?: MenuValue) => void
     }
     
-    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
+    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 
         defaultValue?: MenuValue
         value?: MenuValue
@@ -33,7 +33,7 @@ declare namespace MenuTypes {
     interface StyleState {
         decoration: Props['decoration']
     }
-    interface Overrides {
+    interface Styles {
         container: StyleState
         item: StyleState
         group: StyleState

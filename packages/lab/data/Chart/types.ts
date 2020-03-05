@@ -3,7 +3,7 @@ import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace ChartTypes {
     type ChartType = 'line' | 'pie' | 'verticalBar' | 'horizontalBar' | 'doughnut' | 'radar' | 'polar' | 'scatter' | 'bubble'
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
         /**
          * @default line
          */
@@ -13,7 +13,7 @@ declare namespace ChartTypes {
         options?: ChartOptions
     }
     
-    interface Overrides {
+    interface Styles {
 
     }
 }

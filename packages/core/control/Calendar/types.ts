@@ -7,7 +7,7 @@ declare namespace CalendarTypes {
     type GridType = 'year' | 'month' | 'day'
     type Locale = 'en' | 'ru' | 'it' | 'fr' | 'de'
 
-    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
+    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
         /**
          * Type for Calendar
          * @default day
@@ -49,7 +49,7 @@ declare namespace CalendarTypes {
         minValue: Moment
         maxValue: Moment
         onChange: (date: Moment) => void
-        styles: WhaleTypes.ComponentStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Styles>
         type: GridType
     }
     
@@ -61,7 +61,7 @@ declare namespace CalendarTypes {
         active: Moment
         onClick?: () => void
         style?: CSSProperties
-        styles: WhaleTypes.ComponentStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Styles>
     }
 
     interface DateGridTitleProps {
@@ -72,10 +72,10 @@ declare namespace CalendarTypes {
         onNext: () => void
         onPrevious: () => void
         onGridTypeChange: (type: GridType) => void
-        styles: WhaleTypes.ComponentStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Styles>
     }
 
-    interface Overrides {
+    interface Styles {
         dateGrind: void
         weekDay: void
         title: void

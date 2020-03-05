@@ -6,7 +6,7 @@ declare namespace BlockTypes {
         
     }
 
-    interface Overrides {
+    interface Styles {
         container: void
     }
 }

@@ -2,7 +2,7 @@ import Types from './types'
 import fieldStyles from '../../misc/hocs/Field/styles'
 import WhaleTypes from '@flow-ui/whale/types'
 
-const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props, Types.StyleParams> = (props, theme, params) => {
+const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props, Types.StyleParams> = (props, theme, params) => {
 
     const minHeight =
         theme.assets.field[props.size || 'm']?.minHeight ||
@@ -10,7 +10,7 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props, Types.StyleP
         '2.5rem'
 
     return {
-        ...fieldStyles<Types.Overrides>(props, theme, {
+        ...fieldStyles<Types.Styles>(props, theme, {
             field: (variant) => [
                 params?.isOpen && {
                     borderColor: theme.color.primary.rgb().string(),

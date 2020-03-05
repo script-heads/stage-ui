@@ -3,7 +3,7 @@ import WhaleTypes from '@flow-ui/whale/types'
 import colorProp from '@flow-ui/whale/utils/colorProp'
 import Types from './types'
 
-const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
+const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
     
     const color = (colorProp(theme, props.color) || theme.color.hardest).rgb().string()
     const duration = props.duration || 1

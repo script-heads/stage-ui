@@ -3,7 +3,7 @@ import colorProp from '@flow-ui/whale/utils/colorProp'
 import WhaleTypes from '@flow-ui/whale/types'
 import Types from './types'
 
-const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.PrivateProps> = (props, theme) => {
+const styles: WhaleTypes.CreateStyles<Types.Styles, Types.PrivateProps> = (props, theme) => {
     const { loading } = props
 
     const color = colorProp(theme, props.color) || theme.color.primary

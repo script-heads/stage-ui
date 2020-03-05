@@ -3,7 +3,7 @@ import WhaleTypes from '@flow-ui/whale/types'
 import CSS from 'csstype'
 
 declare namespace GridTypes {
-    interface Props extends WhaleTypes.GridContainerProps, WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+    interface Props extends WhaleTypes.GridContainerProps, WhaleTypes.AllProps<HTMLDivElement, Styles> {
         inline?: boolean
         children?: React.ReactNode
         decoration?: LayoutDecoration
@@ -54,7 +54,7 @@ declare namespace GridTypes {
          */
         autoFlow?: CSS.Properties['gridAutoFlow']
     }
-    interface Overrides {
+    interface Styles {
         container: {
             decoration?: LayoutDecoration
         }

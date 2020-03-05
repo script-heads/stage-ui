@@ -75,7 +75,7 @@ declare namespace DatePickerTypes {
         formTarget?: string
     }
 
-    interface Overrides extends FieldTypes.Overrides {
+    interface Styles extends FieldTypes.Styles {
         drop: {
             isActive: boolean
         }

@@ -1,7 +1,7 @@
 import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace SubmenuTypes {
-    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
+    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
         title?: React.ReactNode
         disabled?: boolean
         indent?: string
@@ -14,7 +14,7 @@ declare namespace SubmenuTypes {
         rightChild?: React.ReactNode
     }
 
-    interface Overrides {
+    interface Styles {
         container: void
     }
 }

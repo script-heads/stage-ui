@@ -51,7 +51,7 @@ declare namespace SelectTypes {
     interface SearchProps {
         searchValue: string
         onSearch: (searchValue: string) => void
-        styles: WhaleTypes.ComponentStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Styles>
         placeholder?: string
         defaultValue?: string
         disabled?: boolean
@@ -66,7 +66,7 @@ declare namespace SelectTypes {
     interface StyleParams {
         isOpen: boolean
     }
-    interface Overrides extends FieldTypes.Overrides {
+    interface Styles extends FieldTypes.Styles {
         selectedOptionInput: {
             searchMode: boolean
             multiselect: boolean

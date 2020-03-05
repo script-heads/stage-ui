@@ -2,7 +2,7 @@ import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace FieldTypes {
 
-    interface Props extends Omit<WhaleTypes.AllProps<HTMLInputElement, Overrides>, 'onChange'> {
+    interface Props extends Omit<WhaleTypes.AllProps<HTMLInputElement, Styles>, 'onChange'> {
         label?: React.ReactNode
         labelType?: 'none' | 'outside' |'inside'
         hint?: React.ReactNode
@@ -28,7 +28,7 @@ declare namespace FieldTypes {
         labelType: Props['labelType']
     }
 
-    interface Overrides<T extends {[T in keyof Overrides]?: Object} = {}> {
+    interface Styles<T extends {[T in keyof Styles]?: Object} = {}> {
         container: State & T['container']
         field: State & T['field']
         content: State & T['content']
@@ -42,7 +42,7 @@ declare namespace FieldTypes {
 
     interface PrivateProps extends Omit<Props, 'styles'> {
         focus: boolean
-        styles: WhaleTypes.ComponentStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Styles>
         state?: Object
         
         labelName?: string

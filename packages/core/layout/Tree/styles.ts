@@ -1,7 +1,7 @@
 import Types from './types'
 import WhaleTypes from '@flow-ui/whale/types'
 
-const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.PrivateProps> = (props, theme) => {
+const styles: WhaleTypes.CreateStyles<Types.Styles, Types.PrivateProps> = (props, theme) => {
     
     return {
         container: (variant) => [

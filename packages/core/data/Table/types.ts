@@ -158,7 +158,7 @@ declare namespace TableTypes {
          */
         rowShouldRender?: (rowCtxItem: RowContext) => boolean
     }
-    interface Props extends RowEvents, RowDelegates, WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+    interface Props extends RowEvents, RowDelegates, WhaleTypes.AllProps<HTMLDivElement, Styles> {
         /**
          * Array of any data objects can be provided
          */
@@ -192,7 +192,7 @@ declare namespace TableTypes {
 
     interface HeadCellProps {
         column: TableColumn
-        styles: WhaleTypes.ComponentStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Styles>
         setSort: React.Dispatch<React.SetStateAction<TableSortObject>>
     }
 
@@ -200,7 +200,7 @@ declare namespace TableTypes {
         rowCtxItem: RowContext
         column: TableColumn
         rowIndex: number
-        styles: WhaleTypes.ComponentStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Styles>
         getCellContext: TableRef['getCellContext']
     }
 
@@ -208,7 +208,7 @@ declare namespace TableTypes {
         rowCtxItem: RowContext
         columns: TableColumn[]
         rowIndex: number
-        styles: WhaleTypes.ComponentStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Styles>
         getCellContext: TableRef['getCellContext']
         events: RowEvents
         rowMountType?: Props['rowMountType']
@@ -226,10 +226,10 @@ declare namespace TableTypes {
         footerContent?: Props['footer']
         pagination?: TablePaginationOptions
         onPageChange: (pageNumber: number) => void
-        styles: WhaleTypes.ComponentStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Styles>
     }
 
-    interface Overrides {
+    interface Styles {
         container: void
         headCell: {
             sort: boolean

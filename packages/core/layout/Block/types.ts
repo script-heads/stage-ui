@@ -3,14 +3,14 @@ import WhaleTypes from '@flow-ui/whale/types'
 import CSS from 'csstype'
 
 declare namespace BlockTypes {
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
         tag?: 'div' | 'span' | 'header' | 'footer' | 'article' | 'section' | 'aside' | 'main'
         decoration?: LayoutDecoration
         children?: React.ReactNode
         overflow?: CSS.Properties['overflow']
     }
 
-    interface Overrides {
+    interface Styles {
         container: {
             decoration?: LayoutDecoration
         }

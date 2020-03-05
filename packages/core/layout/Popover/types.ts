@@ -2,7 +2,7 @@ import WhaleTypes from '@flow-ui/whale/types'
 import CSS from 'csstype'
 
 declare namespace PopoverTypes {
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
         align?: 'top' | 'bottom' | 'left' | 'right' | 'none'
         borderColor?: WhaleTypes.ColorProp
         backgroundColor?: WhaleTypes.ColorProp
@@ -11,7 +11,7 @@ declare namespace PopoverTypes {
         arrowHeight?: CSS.Properties['height']
     }
 
-    interface Overrides {
+    interface Styles {
         container: void
         arrow: {
             align: Props['align']

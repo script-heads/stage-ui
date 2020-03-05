@@ -2,7 +2,7 @@
 import WhaleTypes from '@flow-ui/whale/types'
 import Types from './types'
 
-const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
+const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
     const { assets, spacing } = theme
     const { text } = assets.typography
     const typography = text[props.size || 'm'] || text['m']

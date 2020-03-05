@@ -15,7 +15,7 @@ declare namespace TypographyTypes {
 		referrerPolicy?: string
 	}
 
-	interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+	interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
 		ellipsis?: boolean
 		decoration?: CSS.Properties['textDecoration']
 
@@ -28,7 +28,7 @@ declare namespace TypographyTypes {
 		transform?: CSS.Properties['textTransform']
 	}
 
-	interface Overrides<T extends {[T in keyof Overrides]?: Object} = {}> {
+	interface Styles<T extends {[T in keyof Styles]?: Object} = {}> {
         container: T['container']
 	}
 	

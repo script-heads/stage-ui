@@ -2,7 +2,7 @@ import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace PageswitchTypes {
 
-    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
+    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
         length: number
         onChange?: (pageNumber: number, startIndex: number) => void
         options?: Options
@@ -12,7 +12,7 @@ declare namespace PageswitchTypes {
     interface Options {
         pageSize?: number
     }
-    interface Overrides {
+    interface Styles {
         container: void
         arrowButton: {
             disabled: boolean

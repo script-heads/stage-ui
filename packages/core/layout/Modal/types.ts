@@ -5,7 +5,7 @@ declare namespace ModalTypes {
     type ExtentedProps = 
         WhaleTypes.AttributeProps &
         WhaleTypes.AllEventProps<HTMLDivElement> &
-        WhaleTypes.CoreProps<Overrides> &
+        WhaleTypes.CoreProps<Styles> &
         WhaleTypes.ColorProps &
         WhaleTypes.BorderProps &
         WhaleTypes.PaddingProps &
@@ -56,7 +56,7 @@ declare namespace ModalTypes {
         center: boolean
         fullSize?: boolean
         children?: any
-        styles: WhaleTypes.ComponentStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Styles>
     }
 
     interface ModalWindowProps {
@@ -70,7 +70,7 @@ declare namespace ModalTypes {
         containerAttr?: ExtentedProps
         containerEvents?: any
         onClosePressed: () => void
-        styles: WhaleTypes.ComponentStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Styles>
     }
 
     interface ModalHeaderProps {
@@ -78,10 +78,10 @@ declare namespace ModalTypes {
         subtitle?: string
         hideHeader?: boolean
         onClosePressed: () => void
-        styles: WhaleTypes.ComponentStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Styles>
     }
 
-    interface Overrides {
+    interface Styles {
         overlay: {
             visible?: boolean
             center?: boolean

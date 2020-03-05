@@ -2,7 +2,7 @@ import React from 'react'
 import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace SplitTypes {
-    export interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onMove' | 'onChange'> {
+    export interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onMove' | 'onChange'> {
         direction?: 'row' | 'column'
         children: React.ReactElement[]
         /**
@@ -23,7 +23,7 @@ declare namespace SplitTypes {
         onChange?: (positions: number[]) => void
     }
 
-    interface Overrides {
+    interface Styles {
         container: {
             vertical: boolean
         }

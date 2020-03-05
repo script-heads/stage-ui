@@ -39,31 +39,31 @@ import ScrollView from './layout/ScrollView/types'
 declare namespace FlowTypes {
     type LayoutDecoration = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' |  'neumorphism'
     
-    interface Overrides {
-        Divider?: DividerTypes.Overrides
-        Spinner?: SpinnerTypes.Overrides
-        Button?: ButtonTypes.Overrides
-        Calendar?: Calendar.Overrides
-        Checkbox?: CheckboxTypes.Overrides
-        DatePicker?: DatePickerTypes.Overrides
-        Menu?: MenuTypes.Overrides
-        Radio?: RadioTypes.Overrides
-        Range?: RangeTypes.Overrides
-        Select?: SelectTypes.Overrides
-        Switch?: SwitchTypes.Overrides
-        TextField?: TextFieldTypes.Overrides
-        Meter?: MeterTypes.Overrides
-        Table?: TableTypes.Overrides
-        Badge?: BadgeTypes.Overrides
-        Block?: BlockTypes.Overrides
-        Drop?: DropTypes.Overrides
-        Flexbox?: FlexboxTypes.Overrides
-        Grid?: GridTypes.Overrides
-        Modal?: ModalTypes.Overrides
-        Notification?: NotificationTypes.Overrides
-        Popover?: PopoverTypes.Overrides
-        Tree?: TreeTypes.Overrides
-        ScrollView?: ScrollView.Overrides
+    interface Styles {
+        Divider?: DividerTypes.Styles
+        Spinner?: SpinnerTypes.Styles
+        Button?: ButtonTypes.Styles
+        Calendar?: Calendar.Styles
+        Checkbox?: CheckboxTypes.Styles
+        DatePicker?: DatePickerTypes.Styles
+        Menu?: MenuTypes.Styles
+        Radio?: RadioTypes.Styles
+        Range?: RangeTypes.Styles
+        Select?: SelectTypes.Styles
+        Switch?: SwitchTypes.Styles
+        TextField?: TextFieldTypes.Styles
+        Meter?: MeterTypes.Styles
+        Table?: TableTypes.Styles
+        Badge?: BadgeTypes.Styles
+        Block?: BlockTypes.Styles
+        Drop?: DropTypes.Styles
+        Flexbox?: FlexboxTypes.Styles
+        Grid?: GridTypes.Styles
+        Modal?: ModalTypes.Styles
+        Notification?: NotificationTypes.Styles
+        Popover?: PopoverTypes.Styles
+        Tree?: TreeTypes.Styles
+        ScrollView?: ScrollView.Styles
     }
 }
 

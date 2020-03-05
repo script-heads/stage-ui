@@ -4,7 +4,7 @@ declare namespace SwitchTypes {
     interface Props extends CheckTypes.Props {
     }
     
-    interface Overrides extends CheckTypes.Overrides {
+    interface Styles extends CheckTypes.Styles {
         check: {
             checked: Props['checked']
             size: Props['size']

@@ -1,7 +1,7 @@
 import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace NotificationTypes {
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
         children?: React.ReactNode
     }
 
@@ -29,7 +29,7 @@ declare namespace NotificationTypes {
         customContent?: React.ReactElement
     }
 
-    interface Overrides {
+    interface Styles {
         container: void
     }
 }

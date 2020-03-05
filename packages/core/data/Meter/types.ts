@@ -6,7 +6,7 @@ declare namespace MeterTypes {
     type MeterDecoration = 'filled' | 'outline'
     type MeterShape = 'square' | 'round'
 
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
         value?: number
 
         size?: WhaleTypes.Size
@@ -23,7 +23,7 @@ declare namespace MeterTypes {
         children?: React.ReactElement<MeterThumbTypes.Props>[]
     }
 
-    interface Overrides {
+    interface Styles {
         container: {
             shape: MeterShape
             size: WhaleTypes.Size

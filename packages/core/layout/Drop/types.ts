@@ -11,7 +11,7 @@ declare namespace DropTypes {
   interface Props extends
     WhaleTypes.AttributeProps,
     WhaleTypes.AllEventProps<HTMLDivElement>,
-    WhaleTypes.CoreProps<Overrides>,
+    WhaleTypes.CoreProps<Styles>,
     WhaleTypes.ColorProps,
     WhaleTypes.BorderProps,
     WhaleTypes.PaddingProps,
@@ -60,7 +60,7 @@ declare namespace DropTypes {
     setVisible: (state: boolean) => void
   }
 
-  interface Overrides {
+  interface Styles {
     container: void
   }
 }

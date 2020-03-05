@@ -2,7 +2,7 @@ import WhaleTypes from '@flow-ui/whale/types'
 import colorProp from '@flow-ui/whale/utils/colorProp'
 import Types from './types'
 
-const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
+const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
     
     let { gap = 0, dash = 0, vertical } = props
     const color = colorProp(theme, props.color)?.rgb().string() || theme.assets.border.color

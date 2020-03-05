@@ -2,7 +2,7 @@ import WhaleTypes from '@flow-ui/whale/types'
 import MenuTypes from '../types'
 
 declare namespace MenuItemTypes {
-    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onChange'> {
+    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
         title?: React.ReactNode
         disabled?: boolean
         
@@ -13,7 +13,7 @@ declare namespace MenuItemTypes {
         rightChild?: React.ReactNode
     }
 
-    interface Overrides {
+    interface Styles {
         container: void
     }
 }

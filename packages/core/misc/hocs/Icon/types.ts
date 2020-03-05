@@ -7,7 +7,7 @@ declare namespace IconTypes {
 	type IconShapes = 'circle' | 'oval' | 'square'
 	type IconType = 'filled' | 'outline'
 
-	interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+	interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
 		svg: React.ReactElement
 		shape?: IconShapes
 		size?: WhaleTypes.Size | (string & { T?: string})
@@ -20,7 +20,7 @@ declare namespace IconTypes {
 		type?: IconType
 	}
 
-	interface Overrides {
+	interface Styles {
 		container: {
 			shape?: IconShapes
 			size: WhaleTypes.Size | (string & { T?: string})

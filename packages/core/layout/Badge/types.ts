@@ -1,7 +1,7 @@
 import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace BadgeTypes {
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Overrides> {
+    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
         content: React.ReactNode
         size?: WhaleTypes.Size
         shape?: 'square' | 'rounded' | 'round'
@@ -9,7 +9,7 @@ declare namespace BadgeTypes {
         children?: React.ReactNode
     }
 
-    interface Overrides {
+    interface Styles {
         container: void
         holder: {
             align: Props['align']

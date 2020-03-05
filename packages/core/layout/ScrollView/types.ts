@@ -16,7 +16,7 @@ declare namespace ScrollViewTypes {
         stopPropagation: () => void
         cursorHandle?: boolean
     }
-    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Overrides>, 'onScroll'> {
+    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onScroll'> {
 
         children?: React.ReactNode
         /**
@@ -61,7 +61,7 @@ declare namespace ScrollViewTypes {
         scrollTop: () => void
     }
 
-    interface Overrides {
+    interface Styles {
         container: void
         content: void
         legacy: void

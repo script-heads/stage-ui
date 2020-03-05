@@ -4,7 +4,7 @@ declare namespace CheckTypes {
 
     type CheckType = 'checkbox' | 'radio' | 'switch'
 
-    interface Props extends WhaleTypes.AllProps<HTMLInputElement, Overrides> {
+    interface Props extends WhaleTypes.AllProps<HTMLInputElement, Styles> {
         label?: string
         labelColor?: WhaleTypes.ColorProp
         checked?: boolean
@@ -17,10 +17,10 @@ declare namespace CheckTypes {
     interface PrivateProps extends Omit<Props, 'styles'> {
         children: (checked: boolean, focus: boolean) => React.ReactElement
         type?: CheckType
-        styles: WhaleTypes.ComponentStyles<Overrides>
+        styles: WhaleTypes.ComponentStyles<Styles>
     }
 
-    interface Overrides {
+    interface Styles {
         container: {
             disabled: Props['disabled']
             animated: Props['animated']

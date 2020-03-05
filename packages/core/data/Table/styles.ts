@@ -5,7 +5,7 @@ import applyLayoutDecoration from '@flow-ui/core/misc/utils/applyLayoutDecoratio
 
 // TODO: borderBottomStyle type incorrect
 //@ts-ignore
-const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
+const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
     return {
         container: [
             applyLayoutDecoration({ decoration: 'surface', ...props }, theme),
