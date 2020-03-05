@@ -45,7 +45,7 @@ declare namespace ModalTypes {
     }
     interface ModalOverlayProps {
         getStyles: () => {
-            cs: WhaleTypes.ComponentStyles<Overrides>,
+            cs: WhaleTypes.ComponentStyles<Styles>,
             state: StyleState
         }
         children?: React.ReactNode
@@ -60,7 +60,7 @@ declare namespace ModalTypes {
         containerEvents?: any
         onClosePressed: () => void
         getStyles: () => {
-            cs: WhaleTypes.ComponentStyles<Overrides>,
+            cs: WhaleTypes.ComponentStyles<Styles>,
             state: StyleState
         }
     }
@@ -71,7 +71,7 @@ declare namespace ModalTypes {
         hideHeader?: boolean
         onClosePressed: () => void
         getStyles: () => {
-            cs: WhaleTypes.ComponentStyles<Overrides>,
+            cs: WhaleTypes.ComponentStyles<Styles>,
             state: StyleState
         }
     }
@@ -81,7 +81,7 @@ declare namespace ModalTypes {
         decoration?: Props['decoration']
     }
 
-    interface Overrides {
+    interface Styles {
         overlay: StyleState
         wrapper: StyleState
         window: StyleState
