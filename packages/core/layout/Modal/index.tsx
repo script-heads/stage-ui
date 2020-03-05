@@ -1,6 +1,5 @@
 import { useComponent } from '@flow-ui/whale'
 import React, { forwardRef, RefForwardingComponent, useEffect, useImperativeHandle, useRef, useState } from 'react'
-import ReactDOM from 'react-dom'
 import ModalOverlay from './ModalOverlay'
 import ModalPortal from './ModalPortal'
 import ModalWindow from './ModalWindow'
@@ -9,9 +8,14 @@ import Types from './types'
 
 const Modal: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
 
-    const { hideHeader, fullSize, opened } = props
+    const { 
+        hideHeader, 
+        overlayClose = true,
+        opened,
+        decoration = 'modal',
+    } = props
 
-    const { cs, attributes, events } = useComponent('Modal', { props, styles, styleProps: {window: ['all']} })
+    const { cs, attributes, events } = useComponent('Modal', { props, styles, styleProps: { window: ['all'] } })
 
     const overlayRef = useRef(null)
     const windowRef = useRef(null)
@@ -19,17 +23,13 @@ const Modal: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
     const [active, setActive] = useState(false)
     const [visible, setVisible] = useState<boolean>(false)
     const [customContent, setCustomContent] = useState<React.ReactElement | null>(null)
-    const [center, setCenter] = useState<boolean>(false)
     const [title, setTitle] = useState(props.title)
     const [subtitle, setSubtitle] = useState(props.subtitle)
 
     useEffect(() => {
         setTitle(props.title)
         setSubtitle(props.subtitle)
-        window.addEventListener('resize', setVetricalCenter)
-        return () => {
-            window.removeEventListener('resize', setVetricalCenter)
-        }
+
     }, [props.title, props.subtitle])
 
     useEffect(() => {
@@ -44,8 +44,6 @@ const Modal: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
         setTitle,
         subtitle,
         setSubtitle,
-        center,
-        setCenter,
         customContent,
         setCustomContent,
         overlay: overlayRef.current,
@@ -53,6 +51,8 @@ const Modal: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
     }))
 
     function open(customContent?: React.ReactElement) {
+        document.body.style.overflow = 'hidden'
+
         if (customContent) {
             setCustomContent(customContent)
         }
@@ -60,16 +60,15 @@ const Modal: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
         props.onOpen && props.onOpen()
 
         setActive(true)
-
         setTimeout(() => {
-            setVetricalCenter()
             setVisible(true)
-
             props.didOpen && props.didOpen()
         })
     }
 
     function close(didClose?: () => void) {
+        document.body.style.overflow = ''
+
         setVisible(false)
 
         setTimeout(() => {
@@ -81,51 +80,46 @@ const Modal: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
         props.onClose && props.onClose()
     }
 
-    function setVetricalCenter() {
-        const overlay = ReactDOM.findDOMNode(overlayRef.current) as any
-        const modal = ReactDOM.findDOMNode(windowRef.current) as any
-
-        if (!overlay || !modal) return
-
-        const modalWidth = modal.offsetWidth
-        const modalHeight = modal.offsetHeight
-        const overlayHeight = overlay.offsetHeight
-
-        if (modalHeight > overlayHeight || modalWidth >= window.innerWidth) {
-            if (center) return
-            setCenter(false)
-        } else {
-            if (center) return
-            setCenter(true)
-        }
-    }
-
     if (!active) {
         return null
     }
 
+    const styleProps = {
+        visible, 
+        decoration,
+    }
+    
+    const getStyles = () => ({ cs, state: styleProps })
+
     return (
         <ModalPortal>
-            <ModalOverlay ref={overlayRef} visible={visible} center={center} fullSize={fullSize} styles={cs}>
-                <ModalWindow
-                    styles={cs}
-                    ref={windowRef}
-                    visible={visible}
-                    center={center}
-                    title={title}
-                    subtitle={subtitle}
-                    fullSize={fullSize}
-                    hideHeader={hideHeader}
-                    onClosePressed={() => close()}
-                    children={
-                        customContent !== null
-                            ? customContent
-                            : props.children
-                    }
-                    containerAttr={attributes}
-                    containerEvents={events}
-                />
-            </ModalOverlay>
+            <ModalOverlay
+                ref={overlayRef}
+                getStyles={getStyles}
+                children={
+                    <div data-wrapper css={cs.wrapper(styleProps)} onClick={(e) => {
+                        if ((e.target as HTMLDivElement).dataset['wrapper']) {
+                            if (overlayClose) close()
+                        }
+                    }}>
+                        <ModalWindow
+                            getStyles={getStyles}
+                            ref={windowRef}
+                            title={title}
+                            subtitle={subtitle}
+                            hideHeader={hideHeader}
+                            onClosePressed={() => close()}
+                            children={
+                                customContent !== null
+                                    ? customContent
+                                    : props.children
+                            }
+                            containerAttr={attributes}
+                            containerEvents={events}
+                        />
+                    </div>
+                }
+            />
         </ModalPortal>
     )
 }

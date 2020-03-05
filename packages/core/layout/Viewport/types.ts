@@ -1,6 +1,7 @@
 import WhaleTypes from '@flow-ui/whale/types'
 import { Options } from '@emotion/cache'
 import { SerializedStyles } from '@emotion/core'
+import ModalTypes from '../Modal/types'
 
 declare namespace ViewportTypes {
 
@@ -34,11 +35,23 @@ declare namespace ViewportTypes {
         /**
          * Title of modal window header
          */
-        title?: string
+        title?: ModalTypes.Props['title']
         /**
          * Subtitle of modal window header
          */
-        subtitle?: string
+        subtitle?: ModalTypes.Props['subtitle']
+        /**
+         * Dialog size
+         */
+        size?: ModalTypes.Props['size']
+        /**
+         * Overrides
+         */
+        styles?: ModalTypes.Props['styles']
+        /**
+         * Dialog decoration
+         */
+        decoration?: ModalTypes.Props['decoration']
         /**
          * Message of dialog
          */

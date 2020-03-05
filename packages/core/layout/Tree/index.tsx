@@ -124,7 +124,7 @@ const Tree: RefForwardingComponent<HTMLDivElement, Types.Props> = (props: Types.
                                     lvl: lvl + 1,
                                     isParentOpen: !isParentOpen ? false : isOpen
                                 })
-                                : isParentOpen ? child.child : null
+                                : isOpen ? child.child : null
                         }
                     </Fragment>
                 ))

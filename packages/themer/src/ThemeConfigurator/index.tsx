@@ -1,10 +1,11 @@
-import { Block, Checkbox, dialog, Divider, Flexbox, Grid, Header, Paragraph, useTheme, Switch } from '@flow-ui/core'
+import { Block, dialog, Divider, Flexbox, Grid, Header, Paragraph, Switch, useTheme } from '@flow-ui/core'
 import { Plus } from '@flow-ui/core/icons'
 import WhaleTypes from '@flow-ui/whale/types'
-import React, { useState, useEffect } from 'react'
+import mergeObjects from '@flow-ui/whale/utils/mergeObjects'
+import React, { useEffect, useState } from 'react'
 import ColorPick from './ColorPick'
 import NewColorDialog from './NewColorDialog'
-import mergeObjects from '@flow-ui/whale/utils/mergeObjects'
+import ThemeStorage from './utils/storage'
 
 const MAIN_COLORS = [
     ['BACKGROUND', 'background'],
@@ -29,25 +30,18 @@ interface ThemeConfiguratorProps {
     original: WhaleTypes.Theme,
     updateTheme: React.Dispatch<React.SetStateAction<WhaleTypes.Theme>>
 }
-const loadPatch = () => {
-    const themeData = localStorage.getItem('theme_editor_data')
-    if (themeData) {
-        return JSON.parse(themeData) as WhaleTypes.ReplaceTheme
-    }
-    return  null
-}
-const savePatch = (patch: WhaleTypes.ReplaceTheme) => {
-    localStorage.setItem('theme_editor_data', JSON.stringify(patch))
-}
 
 const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
+    let [updateIdx, forceUpdate] = useState(1)
     let theme = useTheme()
     const { original, updateTheme } = props
+    
     const [testflight, setTestflight] = useState(
-        localStorage.getItem('theme_editor_testflight') === 'true'
+        ThemeStorage.test()
     )
 
-    const patch = loadPatch()
+    const patch = ThemeStorage.load()
+
     if (patch) {
         theme = theme.replace(patch)
     }
@@ -62,37 +56,55 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
         }
     }, [testflight])
 
-    const colorChange = (key: string, color: number[], palette = false) => {
-        let patch: WhaleTypes.ReplaceTheme = loadPatch() || {
+    const colorChange = (key: string, color: number[], palette = false, deleteKey?: string) => {
+        let patch: WhaleTypes.ReplaceTheme = ThemeStorage.load() || {
             main: {}
         }
-        patch = mergeObjects(patch, {
-            main: {
-                color: { 
-                    [key]: color
-                 }
-            }
-        }) as WhaleTypes.ReplaceTheme
 
-        if (palette) {
+        if (palette === false) {
             patch = mergeObjects(patch, {
                 main: {
-                    color: {
-                        palette: { 
-                            [key]: color
-                         }
+                    color: { 
+                        [key]: color
                     }
                 }
             }) as WhaleTypes.ReplaceTheme
         }
-        savePatch(patch)
+        
+        if (palette === true) {
+
+            if (deleteKey) {
+                if (patch.main.color && patch.main.color.palette?.[deleteKey]) {
+                    delete patch.main.color.palette[deleteKey]
+                }
+                if (theme.color.palette?.[deleteKey]) {
+                    delete theme.color.palette[deleteKey]
+                }
+            }
+
+            if (color.length) {
+                patch = mergeObjects(patch, {
+                    main: {
+                        color: {
+                            palette: { 
+                                [key]: color
+                            }
+                        }
+                    }
+                }) as WhaleTypes.ReplaceTheme    
+            }
+        }
+        
+        ThemeStorage.save(patch)
+
+        forceUpdate(updateIdx * -1)
         if (testflight) {
             updateTheme(theme.replace(patch))
         }
     }
 
     return (
-        <Block m="2rem" p="2rem" decoration="surface">
+        <Block>
             <Flexbox alignItems="center" justifyContent="space-between">
                 <Block css={{ letterSpacing: '0.125rem' }}>
                     <Header m={0}>Light</Header>
@@ -103,8 +115,7 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
                     checked={testflight}
                     onChange={() => {
                         setTestflight(!testflight)
-                        localStorage.setItem('theme_editor_testflight', testflight ? 'false' : 'true')
-
+                        ThemeStorage.test(!testflight)
                     }}
                     styles={{
                         label: () => [{
@@ -168,7 +179,7 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
                     color="surface"
                     onClick={() => {
                         dialog({
-                            title: 'New color',
+                            hideHeader: true,
                             customContent: (close) => (
                                 <NewColorDialog 
                                     palettKeys={Object.keys(theme.color.palette)}
@@ -189,7 +200,30 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
                         title={key.toUpperCase()}
                         subtitle={key}
                         color={theme.color.palette[key]}
-                        onChange={color => colorChange(key, color, true)}
+                        onChange={_ => void 0}
+                        onClick={() => {
+                            dialog({
+                                hideHeader: true,
+                                customContent: (close) => (
+                                    <NewColorDialog 
+                                        edit={{
+                                            name: key,
+                                            color: theme.color.palette?.[key]
+                                        }}
+                                        palettKeys={Object.keys(theme.color.palette)}
+                                        close={close} 
+                                        onColorChosen={(name, color, deleteKey) => {
+                                            /**
+                                             * When equils true causes
+                                             * issue with deleting
+                                             */
+                                            setTestflight(false)
+                                            colorChange(name, color, true, deleteKey)
+                                        }}
+                                    />
+                                )
+                            })
+                        }}
                     />
                 ))}
             </Grid>
