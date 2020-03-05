@@ -2,6 +2,7 @@ import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace ModalTypes {
     
+    type ModalDecoration = 'modal' | 'panel'
     type ExtentedProps = 
         WhaleTypes.AttributeProps &
         WhaleTypes.AllEventProps<HTMLDivElement> &
@@ -16,25 +17,23 @@ declare namespace ModalTypes {
         close: (didClose?: () => void) => void
         setTitle: (title: string) => void
         setSubtitle: (subtitle: string) => void
-        setCenter: (center: boolean) => void
         setCustomContent: (customContent: React.ReactElement | null) => void
         title?: string
         subtitle?: string
-        center: boolean
         customContent: React.ReactElement | null
-        overlay: any
-        window: any
+        overlay: React.ReactNode
+        window: React.ReactNode
     }
 
     interface Props extends ExtentedProps {
         title?: string
         subtitle?: string
-        fullSize?: boolean
-        children?: any
+        children?: React.ReactNode
         opened?: boolean
-
+        decoration?: ModalDecoration
+        size?: WhaleTypes.Size
         hideHeader?: boolean
-
+        overlayClose?: boolean
         onClose?: () => void
         didClose?: () => void
         onOpen?: () => void
@@ -44,33 +43,26 @@ declare namespace ModalTypes {
     interface InnerProps extends Props {
         innerRef: any
     }
-
-    interface StyleProps {
-        visible: boolean
-        center: boolean
-        fullSize?: boolean
-    }
-
     interface ModalOverlayProps {
-        visible: boolean
-        center: boolean
-        fullSize?: boolean
-        children?: any
-        styles: WhaleTypes.ComponentStyles<Overrides>
+        getStyles: () => {
+            cs: WhaleTypes.ComponentStyles<Overrides>,
+            state: StyleState
+        }
+        children?: React.ReactNode
     }
 
     interface ModalWindowProps {
         title?: string
         subtitle?: string
-        visible: boolean
-        center: boolean
-        fullSize?: boolean
         hideHeader?: boolean
-        children?: any
+        children?: React.ReactNode
         containerAttr?: ExtentedProps
         containerEvents?: any
         onClosePressed: () => void
-        styles: WhaleTypes.ComponentStyles<Overrides>
+        getStyles: () => {
+            cs: WhaleTypes.ComponentStyles<Overrides>,
+            state: StyleState
+        }
     }
 
     interface ModalHeaderProps {
@@ -78,20 +70,23 @@ declare namespace ModalTypes {
         subtitle?: string
         hideHeader?: boolean
         onClosePressed: () => void
-        styles: WhaleTypes.ComponentStyles<Overrides>
+        getStyles: () => {
+            cs: WhaleTypes.ComponentStyles<Overrides>,
+            state: StyleState
+        }
+    }
+
+    type StyleState = {
+        visible?: boolean
+        decoration?: Props['decoration']
     }
 
     interface Overrides {
-        overlay: {
-            visible?: boolean
-            center?: boolean
-        }
-        window: {
-            visible?: boolean
-            fullSizeCenter?: boolean
-        }
-        header: void
-        cross: void
+        overlay: StyleState
+        wrapper: StyleState
+        window: StyleState
+        header: StyleState
+        cross: StyleState
     }
 }
 

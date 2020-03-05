@@ -4,15 +4,17 @@ import ModalHeader from './ModalHeader'
 
 const ModalWindow = forwardRef((props: ModalTypes.ModalWindowProps, ref: any) => {
 
+    const styles = props.getStyles()
+
     return (
         <div
             ref={ref}
-            css={props.styles.window({visible: props.visible, fullSizeCenter: props.center && props.fullSize})}
+            css={styles.cs.window(styles.state)}
             {...props.containerAttr}
             {...props.containerEvents.all}
         >
             <ModalHeader
-                styles={props.styles}
+                getStyles={props.getStyles}
                 onClosePressed={props.onClosePressed}
                 title={props.title}
                 subtitle={props.subtitle}

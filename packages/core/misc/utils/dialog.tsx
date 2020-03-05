@@ -19,25 +19,27 @@ export default (options: ViewportTypes.DialogOptions) => {
                 title={options.title}
                 subtitle={options.subtitle}
                 hideHeader={options.hideHeader}
+                size={options.size}
+                type={options.type}
                 didClose={() => {
                     removeElement(key)
                 }}
                 children={(
                     options.customContent ? options.customContent(close) : (
-                            <Flexbox column>
-                                <Block>
-                                    {options.message}
-                                </Block>
-                                <Flexbox flex={1} justifyContent="flex-end" pt={'1rem'}>
-                                    <Button
-                                        children={options.buttonText || 'OK'}
-                                        onClick={() => {
-                                            modal.close()
-                                        }}
-                                    />
-                                </Flexbox>
+                        <Flexbox column>
+                            <Block>
+                                {options.message}
+                            </Block>
+                            <Flexbox flex={1} justifyContent="flex-end" pt={'1rem'}>
+                                <Button
+                                    children={options.buttonText || 'OK'}
+                                    onClick={() => {
+                                        modal.close()
+                                    }}
+                                />
                             </Flexbox>
-                        )
+                        </Flexbox>
+                    )
                 )}
             />
         ),

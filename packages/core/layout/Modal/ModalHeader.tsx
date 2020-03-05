@@ -8,19 +8,27 @@ const ModalHeader = (props: ModalTypes.ModalHeaderProps) => {
     if (props.hideHeader) {
         return null
     }
+    
+    const styles = props.getStyles()
 
     return (
-        <div css={props.styles.header}>
+        <div css={styles.cs.header(styles.state)}>
             <Flexbox>
                 <Flexbox flex={1} column>
-                    <Header css={props.styles.header}>{props.title}</Header>
-                    <Paragraph color={c => c.hard} mt={'0.5rem'}>{props.subtitle}</Paragraph>
+                    <Header 
+                        m={0}
+                        children={props.title}    
+                    />
+                    <Paragraph 
+                        m={0}
+                        color={c => c.hard} 
+                        children={props.subtitle}
+                    />
                 </Flexbox>
                 <Close
-                    css={props.styles.cross}
+                    css={styles.cs.cross(styles.state)}
                     onClick={props.onClosePressed}
                     color={c => c.light}
-                    size="2.5rem"
                 />
             </Flexbox>
         </div>

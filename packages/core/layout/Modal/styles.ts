@@ -3,23 +3,33 @@ import Types from './types'
 
 const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, theme) => {
     
+    const { decoration = 'modal', size = 'm' } = props
+    
+    const isPanel = decoration === 'panel'
+
+    const spacing = theme.spacing[size] || theme.spacing.m
+    const titleSize = theme.assets.typography.header[size] || theme.assets.typography.header.m
+    const subtitleSize = theme.assets.typography.text[size] || theme.assets.typography.text.m
+    
     return {
         overlay: (variant) => [
             {
-                opacity: 0,
+                opacity: 0.2,
                 zIndex: 200,
                 position: 'fixed',
-                width: '100%',
-                height: '100%',
+                width: '100vw',
+                height: '100vh',
                 top: 0,
                 bottom: 0,
                 left: 0,
                 right: 0,
-                backgroundColor: 'rgba(0,0,0,.5)',
-                justifyContent: 'center',
-                alignItems: 'center',
+                backgroundColor: isPanel
+                    ? 'transparent'
+                    : 'rgba(0,0,0,.5)',
                 overflowY: 'auto',
-                backdropFilter: 'blur(4px)',
+                backdropFilter: isPanel
+                    ? 'none'
+                    : 'blur(4px)',
                 transition: 'opacity 0.25s',
                 backfaceVisibility: 'hidden',
             },
@@ -27,50 +37,78 @@ const styles: WhaleTypes.CreateStyles<Types.Overrides, Types.Props> = (props, th
                 visible: {
                     opacity: 1,
                 },
-                center: {
-                    display: 'flex',
+            })
+        ],
+        wrapper: (variant) => [
+            variant({
+                decoration: {
+                    modal: {
+                        minHeight: '100vh',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    },
+                    panel: {
+                        minHeight: '100vh',
+                        display: 'flex',
+                        alignItems: 'flex-end',
+                    }
                 }
             })
         ],
         window: (variant) => [
             {
+                position: 'relative',
                 opacity: 0,
                 zIndex: 200,
-                backgroundColor: theme.color.backgroundVariant.rgb().string(),
-                minHeight: '1rem',
-                minWidth: '15rem',
-                maxWidth: '40rem',
-                padding: '2.25rem',
                 margin: '0 auto',
+                padding: spacing,
+                minHeight: '1rem',
+                backgroundColor: theme.color.surface.hex(),
                 borderWidth: theme.assets.border.width,
                 borderStyle: theme.assets.border.style,
                 borderColor: theme.assets.border.color,
                 borderRadius: theme.radius.default,
-                transition: 'all 0.5s',
-                transform: 'translateY(-20px)',
                 boxSizing: 'border-box',
                 overflow: 'hidden',
-                position: 'relative'
+                transition: 'all 0.25s',
             },
             variant({
-                visible: {
-                    opacity: 1,
-                    transform: 'translateY(0)',
+                decoration: {
+                    modal: {
+                        transform: 'translateY(-2rem)',
+                        minWidth: '15rem',
+                        maxWidth: '80vw',
+                        marginTop: spacing,
+                        marginBottom: spacing,
+                    },
+                    panel: {
+                        minWidth: '15rem',
+                        maxWidth: '80vw',
+                        marginTop: '20vh',
+                        transform: 'translateY(15rem)',
+                        borderBottomLeftRadius: 0,
+                        borderBottomRightRadius: 0,
+                        
+                    }
                 },
-                fullSizeCenter: {
-                    display: 'flex',
-                }
+                visible: [
+                    {
+                        opacity: 1,
+                        transform: 'translateY(0)',
+                    },
+                ],
             })
         ],
 
-        header: [{
-            marginTop: '-0.25rem',
-            lineHeight: '2.375rem'
+        header: (variant) => [{
+            'h3': titleSize,    
+            'p': [subtitleSize, {
+                marginBottom: spacing
+            }],     
         }],
 
-        cross: [{
-            marginTop: '-0.25rem',
-            marginLeft: '2rem',
+        cross: () => [titleSize, {
             cursor: 'pointer',
             transition: 'all 0.25s',
             transform: 'scale(1)',
