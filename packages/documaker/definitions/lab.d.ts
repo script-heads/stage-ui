@@ -3170,14 +3170,14 @@ declare module 'layout/Split' {
 
 }
 declare module 'layout/Toolbar/types' {
-	import FlexboxTypes from '/layout/Flexbox/types'; namespace BlockTypes {
+	import FlexboxTypes from '/layout/Flexbox/types'; namespace ToolbarTypes {
 	    interface Props extends FlexboxTypes.Props {
 	    }
 	    interface Styles {
 	        container: void;
 	    }
 	}
-	export default BlockTypes;
+	export default ToolbarTypes;
 
 }
 declare module 'layout/Toolbar/styles' {

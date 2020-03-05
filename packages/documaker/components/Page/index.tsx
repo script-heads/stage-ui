@@ -1,7 +1,7 @@
 import { Block, Flexbox, Header, Paragraph, ScrollView } from '@flow-ui/core'
 import { PageType, Config, PagesType } from '../../core'
 import Editor from './Editor'
-import API from './API'
+import Types from './Types'
 import React, { Fragment } from 'react'
 import WhaleTypes from '@flow-ui/whale/types'
 import Menu from '../Menu'
@@ -87,16 +87,11 @@ const Page = (props: ContentProps) => {
                             }
                         </Flexbox>
                         {data.ns && (
-                            <Block style={{ 
-                                width: '100%',
-                                maxWidth: data.cases === void 0 ? '45rem' : '100%'
-                            }}>
-                                <API
-                                    name={data.ns}
-                                    types={config.pages?.types}
-                                    separatedTypes={config.pages?.separatedTypes}
-                                />
-                            </Block>
+                            <Types
+                                nameSpace={data.ns}
+                                config={config}
+                                shrink={data.cases === void 0}
+                            />
                         )}
                     </Block>
                 </Flexbox>

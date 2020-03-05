@@ -1,7 +1,6 @@
-import WhaleTypes from '@flow-ui/whale/types'
 import FlexboxTypes from '@flow-ui/core/layout/Flexbox/types'
 
-declare namespace BlockTypes {
+declare namespace ToolbarTypes {
     interface Props extends FlexboxTypes.Props {
         
     }
@@ -11,4 +10,4 @@ declare namespace BlockTypes {
     }
 }
 
-export default BlockTypes
+export default ToolbarTypes
