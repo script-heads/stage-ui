@@ -26,7 +26,7 @@ const Documaker = (props) => {
 	},[theme])
 
 	return (
-		<Viewport theme={props.currentTheme}>
+		<Viewport theme={theme}>
 			<Global
 				styles={{
 					'html,body,#documaker': {

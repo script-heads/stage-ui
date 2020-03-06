@@ -4,7 +4,7 @@ import scrollTop from './scrollTop.raw'
 
 export const title = 'ScrollView'
 export const subtitle = 'all scrollable contens should be wrapper in ScrollView'
-export const ns = 'ScrollTypes'
+export const ns = 'ScrollViewTypes'
 export const cases = [
     {
         label: 'Basic',
