@@ -35,7 +35,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
             variant({
                 shape: {
                     rounded: {
-                        borderRadius: theme.radius.narrow
+                        borderRadius: theme.radius.s
                     },
                     square: {
                         borderRadius: '0'

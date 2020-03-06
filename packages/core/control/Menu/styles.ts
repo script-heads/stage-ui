@@ -10,7 +10,7 @@
         const isRow = !(props.direction?.[0] === 'c' || props.column)
         let borderRadius = '0'
         if (shape === 'rounded') {
-            borderRadius = theme.radius.narrow
+            borderRadius = theme.radius.s
         }
         if (shape === 'round') {
             borderRadius = '100rem'

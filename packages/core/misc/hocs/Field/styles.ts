@@ -35,7 +35,7 @@ const fieldStyles = <T extends Types.Styles>(
                 flexGrow: 1,
                 background: theme.color.surface.rgb().string(),
                 borderColor: theme.color.lightest.rgb().string(),
-                borderRadius: theme.radius.narrow,
+                borderRadius: theme.radius.s,
                 borderWidth: '1px',
                 borderStyle: 'solid',
                 outline: 'none',

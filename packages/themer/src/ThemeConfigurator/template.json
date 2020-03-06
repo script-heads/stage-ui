@@ -1,0 +1,23 @@
+[
+    "import sourceTheme from '@flow-ui/core/misc/themes/light'",
+    "",
+    "declare global {",
+    "    namespace Whale {",
+    "        interface Palette<Color> {",
+    "            /*~PALETTE-INTERFACE~*/",
+    "        }",
+    "    }",
+    "}",
+    "",
+    "export default sourceTheme.replace({",
+    "    main: {",
+    "        /*~NAME~*/",
+    "        color: {",
+    "            /*~COLOR~*/",
+    "            palette: {",
+    "                /*~PALETTE~*/",
+    "            }",
+    "        }",
+    "    }",
+    "})"
+]

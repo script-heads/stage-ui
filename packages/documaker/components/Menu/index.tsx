@@ -1,6 +1,8 @@
 import { Block, Flexbox, Text, Link } from '@flow-ui/core'
 import ThemeSwitcher, { ThemeSwitcherProps } from '../ThemeSwitcher'
-import { Github } from '@flow-ui/core/icons'
+import { Github, Brush } from '@flow-ui/core/icons'
+import { panel } from '@flow-ui/themer/src/ThemeConfigurator'
+import { useTheme } from '@flow-ui/core'
 
 export interface MenuProps extends ThemeSwitcherProps {
 	title?: string
@@ -9,6 +11,7 @@ export interface MenuProps extends ThemeSwitcherProps {
 }
 
 const Menu = (props: MenuProps) => {
+	const theme = useTheme()
 
 	return (
 		<Flexbox 
@@ -48,6 +51,18 @@ const Menu = (props: MenuProps) => {
 					themes={props.themes}
 					currentTheme={props.currentTheme}
 					setTheme={props.setTheme}
+				/>
+				<Brush
+					onClick={() => {
+						panel(theme, props.setTheme, {
+							boxShadow: '0 -2rem 10rem rgba(0,0,0,0.2)',
+							border: 0,
+						})
+					}}
+					style={{ display: 'block' }}
+					size="1.5rem"
+					ml="1rem"
+					color={c => c.primary}
 				/>
 				{props.git && <Link target="_blank" href={props.git} ml="1rem">
 					<Github size="1.5rem" />

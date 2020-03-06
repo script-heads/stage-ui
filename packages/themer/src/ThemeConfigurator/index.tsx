@@ -1,11 +1,12 @@
-import { Block, dialog, Divider, Flexbox, Grid, Header, Paragraph, Switch, useTheme } from '@flow-ui/core'
-import { Plus } from '@flow-ui/core/icons'
+import { Block, dialog, Divider, Flexbox, Grid, Header, Paragraph, Switch, useTheme, Button } from '@flow-ui/core'
+import { Plus, CodeDownload, Refresh } from '@flow-ui/core/icons'
 import WhaleTypes from '@flow-ui/whale/types'
 import mergeObjects from '@flow-ui/whale/utils/mergeObjects'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, CSSProperties } from 'react'
 import ColorPick from './ColorPick'
 import NewColorDialog from './NewColorDialog'
 import ThemeStorage from './utils/storage'
+import themeExport from './utils/themeExport'
 
 const MAIN_COLORS = [
     ['BACKGROUND', 'background'],
@@ -13,7 +14,7 @@ const MAIN_COLORS = [
     ['PRIMARY', 'primary'],
     ['SECONDARY', 'secondary'],
     ['VARIANT', 'backgroundVariant'],
-    ['VARIANT','surfaceVariant'],
+    ['VARIANT', 'surfaceVariant'],
     ['TEXT', 'onPrimary'],
     ['TEXT', 'onSecondary'],
     ['TEXT', 'onBackground'],
@@ -35,7 +36,7 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
     let [updateIdx, forceUpdate] = useState(1)
     let theme = useTheme()
     const { original, updateTheme } = props
-    
+
     const [testflight, setTestflight] = useState(
         ThemeStorage.test()
     )
@@ -64,13 +65,13 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
         if (palette === false) {
             patch = mergeObjects(patch, {
                 main: {
-                    color: { 
+                    color: {
                         [key]: color
                     }
                 }
             }) as WhaleTypes.ReplaceTheme
         }
-        
+
         if (palette === true) {
 
             if (deleteKey) {
@@ -86,15 +87,15 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
                 patch = mergeObjects(patch, {
                     main: {
                         color: {
-                            palette: { 
+                            palette: {
                                 [key]: color
                             }
                         }
                     }
-                }) as WhaleTypes.ReplaceTheme    
+                }) as WhaleTypes.ReplaceTheme
             }
         }
-        
+
         ThemeStorage.save(patch)
 
         forceUpdate(updateIdx * -1)
@@ -110,21 +111,49 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
                     <Header m={0}>Light</Header>
                     <Paragraph size="xs" m={0} textColor="hard">theme</Paragraph>
                 </Block>
-                <Switch
-                    label="Testflight"
-                    checked={testflight}
-                    onChange={() => {
-                        setTestflight(!testflight)
-                        ThemeStorage.test(!testflight)
-                    }}
-                    styles={{
-                        label: () => [{
-                            fontSize: '0.75rem',
-                            letterSpacing: '0.125rem',
-                            color: theme.color.light.hex()
-                        }]
-                    }}
-                />
+                <Flexbox>
+                    <Switch
+                        label="Testflight"
+                        checked={testflight}
+                        onChange={() => {
+                            setTestflight(!testflight)
+                            ThemeStorage.test(!testflight)
+                        }}
+                        styles={{
+                            label: () => [{
+                                fontSize: '0.75rem',
+                                letterSpacing: '0.125rem',
+                                color: theme.color.light.hex()
+                            }]
+                        }}
+                    />
+                    {/* <Divider vertical mx="1rem" />
+                    <Button
+                        size="s"
+                        color="warning"
+                        rightChild={<Refresh />}
+                        decoration="text"
+                        children="Reset"
+                        onClick={() => {
+                            ThemeStorage.save({ main: {} })
+                            forceUpdate(updateIdx * -1)
+                            if (testflight) {
+                                setTestflight(false)
+                                updateTheme(theme.replace({ main: {} }))
+                            }
+                        }}
+                    /> */}
+                    <Divider vertical mx="1rem" />
+                    <Button
+                        size="s"
+                        rightChild={<CodeDownload />}
+                        decoration="text"
+                        children="Export TS"
+                        onClick={() => {
+                            themeExport(theme)
+                        }}
+                    />
+                </Flexbox>
             </Flexbox>
             {/**
              * 
@@ -181,9 +210,9 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
                         dialog({
                             hideHeader: true,
                             customContent: (close) => (
-                                <NewColorDialog 
+                                <NewColorDialog
                                     palettKeys={Object.keys(theme.color.palette)}
-                                    close={close} 
+                                    close={close}
                                     onColorChosen={(name, color) => {
                                         colorChange(name, color, true)
                                     }}
@@ -205,13 +234,13 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
                             dialog({
                                 hideHeader: true,
                                 customContent: (close) => (
-                                    <NewColorDialog 
+                                    <NewColorDialog
                                         edit={{
                                             name: key,
                                             color: theme.color.palette?.[key]
                                         }}
                                         palettKeys={Object.keys(theme.color.palette)}
-                                        close={close} 
+                                        close={close}
                                         onColorChosen={(name, color, deleteKey) => {
                                             /**
                                              * When equils true causes
@@ -232,3 +261,27 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
 }
 
 export default ThemeConfigurator
+export const panel = (
+    original: ThemeConfiguratorProps['original'],
+    updateTheme: ThemeConfiguratorProps['updateTheme'],
+    css?: CSSProperties) =>
+    dialog({
+        decoration: 'panel',
+        hideHeader: true,
+        styles: {
+            window: variant => variant({
+                decoration: {
+                    panel: {
+                        marginTop: '50vh',
+                        ...css,
+                    }
+                }
+            })
+        },
+        customContent: (close) => (
+            <ThemeConfigurator
+                original={original}
+                updateTheme={updateTheme}
+            />
+        )
+    })

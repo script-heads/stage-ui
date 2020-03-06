@@ -29,9 +29,11 @@ const Light: WhaleTypes.SourceTheme = {
             palette: {}
         },
         radius: {
-            default: '0.5rem',
-            narrow: '0.25rem',
-            wide: '1rem',
+            xs: '0.125rem',
+            s: '0.25rem',
+            m: '0.5rem',
+            l: '0.75',
+            xl: '1rem',
         },
         spacing: {
             xs: '.25rem',
