@@ -16,38 +16,36 @@ export interface SidebarProps {
 const Sidebar = (props: SidebarProps) => {
 	const { pages } = props
 	const [visibility, setMobileVisible] = useState<boolean>(false)
-	const [search, setSearch] = useState('')
-
-	const getMenuItems = (section: PageType[]) =>
-		section.filter(page => {
-			if (search) {
-				return !!page.title.toUpperCase().match(search.toUpperCase())
-			}
-			return true
-		}).map(page => (
-			<Menu.Item
-				tabIndex={0}
-				style={{
-					fontWeight: 'bold'
-				}}
-				key={page.url}
-				value={page.url}
-				title={page.title}
-			/>
-		))
+	const [search, setSearch] = useState('')		
 
 	const VisibilityIcon = !visibility
 		? Cube
 		: Close
 
-	const MenuItems = useMemo(() =>
+	const MenuItems = useMemo(() => 
 		Object.keys(pages).map((section, index) => {
-			const menuItems = getMenuItems(pages[section])
+			const menuItems = pages[section].filter(page => {
+				if (search) {
+					return !!page.title.toUpperCase().match(search.toUpperCase())
+				}
+				return true
+			}).map(page => (
+				<Menu.Item
+					tabIndex={0}
+					style={{
+						fontWeight: 'bold'
+					}}
+					key={page.url}
+					value={page.url}
+					title={page.title}
+				/>
+			))
+
 			if (menuItems.length === 0) {
 				return null
 			}
 			return (
-				<Menu.Submenu pb="l" key={index} title={section} defaultOpen={true} ьи>
+				<Menu.Submenu pb="l" key={index} title={section} defaultOpen={true}>
 					{menuItems}
 				</Menu.Submenu>
 			)

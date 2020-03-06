@@ -1,5 +1,5 @@
 import WhaleTypes from '@flow-ui/whale/types'
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import Page from './components/Page'
 import Page404 from './components/Page404'
 import PageEmpty from './components/PageEmpty'
@@ -19,10 +19,11 @@ const Router = (props: RouterProps) => {
     const { defaultThemes, theme, setTheme } = props
     const themes = Object.assign(defaultThemes, config.themes)
 
-    const [path, setPath] = useState<string>('/' + window.location.pathname.split('/').filter(i=>i).join('/'))
-
-    const page = core.getPageByUrl(path)
-    const CustomPage = config.pages?.custom?.[path] || null
+	const [path, setPath] = useState<string>('/' + window.location.pathname.split('/').filter(i=>i).join('/'))
+	
+	const page = core.getPageByUrl(path)
+	const CustomPage = config.pages?.custom?.[path] || null
+	const noPages = Object.keys(pages).length === 0
     
     document.title = page?.title 
         ? config.name 
@@ -37,40 +38,39 @@ const Router = (props: RouterProps) => {
         setPath(path)
     }
 
-	if (page) {
-		return ( 
-			<Page 
-                data={page}
-                pages={pages}
-				config={config}
-				path={path}
-				setPath={historyPush}
-				theme={theme}
-				themes={themes}
-				setTheme={setTheme}
-			/>
-		)
-	}
-
-	if (CustomPage) {
-		return ( 
-            <CustomPage
-                pages={pages} 
-				config={config}
-				path={path}
-				setPath={historyPush}
-				theme={theme}
-				themes={themes}
-				setTheme={setTheme}
-			/>
-		)
-	}
-
-	if (Object.keys(pages).length === 0) {
-		return <PageEmpty />
-	}
-
-	return <Page404 />
+	return (
+		<Fragment>
+			{page &&
+				<Page 
+					data={page}
+					pages={pages}
+					config={config}
+					path={path}
+					setPath={historyPush}
+					theme={theme}
+					themes={themes}
+					setTheme={setTheme}
+				/>
+			}
+			{CustomPage && !page &&
+				<CustomPage
+					pages={pages} 
+					config={config}
+					path={path}
+					setPath={historyPush}
+					theme={theme}
+					themes={themes}
+					setTheme={setTheme}
+				/>
+			}
+			{!CustomPage && !page && noPages &&
+				<PageEmpty />
+			}
+			{!CustomPage && !page && !noPages &&
+				<Page404 />
+			}
+		</Fragment>
+	) 
 }
 
 export default Router
