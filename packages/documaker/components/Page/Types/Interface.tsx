@@ -1,6 +1,7 @@
-import React, { Fragment, useMemo } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Block, Divider, Header, Text, Tree } from '@flow-ui/core'
 import Value, { ValueDefinition } from './Value'
+import { useEffect } from 'react'
 
 interface InterfaceDefinition {
     name: string
@@ -17,13 +18,11 @@ interface InterfaceProps {
 const sortTypes = (data: InterfaceDefinition, separatedTypes?: string[]) => {
     const self: InterfaceDefinition = Object.assign({}, data)
     const extended: InterfaceDefinition[] = []
-    let extendedCode = ''
 
     const getExtendedTypes = (type: InterfaceDefinition, cutted?: boolean) => {
         type.extendedTypes.map(innerType => {
             if (separatedTypes && separatedTypes.includes(innerType.name) || cutted) {
                 innerType.children.length > 0 && extended.push(innerType)
-                extendedCode += innerType.name
                 getExtendedTypes(innerType, true)
             } else {
                 self.children = self.children.concat(innerType.children)
@@ -34,20 +33,20 @@ const sortTypes = (data: InterfaceDefinition, separatedTypes?: string[]) => {
 
     getExtendedTypes(data)
 
-    return { self, extended, extendedCode }
+    return { self, extended }
 }
 
 const Interface = (props: InterfaceProps) => {
 
-    const { self, extended, extendedCode } = sortTypes(props.data, props.separatedTypes)
+    const { self, extended } = sortTypes(props.data, props.separatedTypes)
 
     const renderTypes = (data: ValueDefinition[]) =>
-        data.map((type: ValueDefinition, index: number) =>
+        data.map((type: ValueDefinition, index) =>
             <Value type={type} last={index === data.length - 1} key={'type' + index} />
         )
-    
-    const extendedTypes = useMemo(()=> {
-        return extended.map((type, index) => (
+
+    const renderExtended = (data: InterfaceDefinition[]) => 
+        data.map((type: InterfaceDefinition, index) => (
             <Fragment key={type.name + index}>
                 <Tree
                     py="1rem" 
@@ -61,16 +60,13 @@ const Interface = (props: InterfaceProps) => {
                 />
                 <Divider />
             </Fragment>
-
-
         ))
-    },[extendedCode])
-
+    
     return (
         <Block>
             <Header>{props.data.name}</Header>
             {renderTypes(self.children)}
-            {extendedTypes}
+            {renderExtended(extended)}
         </Block>
     )
 }

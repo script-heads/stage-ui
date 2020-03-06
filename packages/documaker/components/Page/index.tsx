@@ -51,7 +51,7 @@ const Page = (props: ContentProps) => {
                             overflow: 'hidden' 
                         }}>
                         <Flexbox column alignItems="center">
-                        {data.title && (
+                            {data.title && (
                                 <Block style={{ 
                                     width: '100%',
                                     maxWidth: data.cases === void 0 ? '45rem' : '100%'
@@ -70,7 +70,6 @@ const Page = (props: ContentProps) => {
                                     )}
                                 </Block>
                             )}
-                            
                             {data.cases &&
                                 <Editor cases={data.cases} />
                             }
@@ -86,13 +85,13 @@ const Page = (props: ContentProps) => {
                                 />
                             }
                         </Flexbox>
-                        {data.ns && (
+                        {data.ns &&
                             <Types
                                 nameSpace={data.ns}
                                 config={config}
                                 shrink={data.cases === void 0}
                             />
-                        )}
+                        }
                     </Block>
                 </Flexbox>
                 </ScrollView>

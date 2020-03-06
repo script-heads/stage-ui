@@ -17,7 +17,7 @@ declare global {
 
 window.breakpoints = [960, 768]
 
-const Documaker = (props) => {
+const Documaker = () => {
 	
 	const [theme, setTheme] = useState<WhaleTypes.Theme>(defaultThemes.light)
 
