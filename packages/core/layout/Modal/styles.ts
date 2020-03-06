@@ -65,9 +65,9 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                 padding: spacing,
                 minHeight: '1rem',
                 backgroundColor: theme.color.surface.hex(),
-                borderWidth: theme.assets.border.width,
-                borderStyle: theme.assets.border.style,
-                borderColor: theme.assets.border.color,
+                // borderWidth: theme.assets.border.width,
+                // borderStyle: theme.assets.border.style,
+                // borderColor: theme.assets.border.color,
                 borderRadius: theme.radius.m,
                 boxSizing: 'border-box',
                 overflow: 'hidden',
@@ -81,6 +81,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                         maxWidth: '80vw',
                         marginTop: spacing,
                         marginBottom: spacing,
+                        boxShadow: '0 1rem 4rem ' + theme.color.onBackground.alpha(0.2).rgb().string(),
                     },
                     panel: {
                         minWidth: '15rem',
@@ -89,7 +90,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                         transform: 'translateY(15rem)',
                         borderBottomLeftRadius: 0,
                         borderBottomRightRadius: 0,
-                        
+                        boxShadow: '0 0 4rem ' + theme.color.onBackground.alpha(0.2).rgb().string(),
                     }
                 },
                 visible: [
