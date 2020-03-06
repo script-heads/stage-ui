@@ -5,19 +5,15 @@ import React from 'react'
 export default () => {
     const Content = props => (
         <Flexbox column alignItems="center">
-            <AlertTriangle 
-                color="warning"
-                size="4rem"
-            />
             <Header 
                 m={0}
-                color="warning"
-                children="Alert"
+                color="primary"
+                children="Panel"
             />
             <Paragraph
                 m={0}
                 color="hard"
-                children="Warning happened"
+                children="Tab outside to close"
             />
             <Button
                 mt="1rem"
@@ -31,6 +27,7 @@ export default () => {
         <Button
             onClick={() => {
                 dialog({
+                    decoration: 'panel',
                     hideHeader: true,
                     customContent: (close) => (
                         <Content close={close} />

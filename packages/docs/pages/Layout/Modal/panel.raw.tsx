@@ -7,13 +7,14 @@ export default () => {
     return (
         <Fragment>
             <Modal
+                decoration="panel"
                 title="Hello"
-                subtitle="I'm modal window, please do not close me 🙄"
+                subtitle="I'm modal panel, please do not close me 🙄"
                 ref={modal}
             />
             <Button
                 onClick={() => modal.current?.open()}
-                children="Open up window"
+                children="Open up panel"
             />
         </Fragment>
     )
