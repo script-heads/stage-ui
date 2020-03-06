@@ -170,10 +170,10 @@ const resolver = {
     onTransitionEndCapture: 'transition'
 }
 
-const createAttributes = <Styles,Props extends WhaleTypes.AllProps<unknown,Styles>>(
-    props: Props, 
-    setFocus: React.Dispatch<React.SetStateAction<boolean>>, 
-    options: Options<Styles,Props>) => {
+const createAttributes = <Styles, Props extends WhaleTypes.AllProps<unknown, Styles>>(
+    props: Props,
+    setFocus: React.Dispatch<React.SetStateAction<boolean>>,
+    options: Options<Styles, Props>) => {
 
     const allProps = {
         attributes: {} as WhaleTypes.AttributeProps,
@@ -201,7 +201,7 @@ const createAttributes = <Styles,Props extends WhaleTypes.AllProps<unknown,Style
             }
         })
     }
-    
+
     allProps.focus.onFocus = (e) => {
         e.stopPropagation()
         if (options.focusDecoration != false) {
@@ -211,7 +211,7 @@ const createAttributes = <Styles,Props extends WhaleTypes.AllProps<unknown,Style
         }
         props.onFocus && props.onFocus(e)
     }
-    
+
     allProps.focus.onBlur = (e) => {
         e.stopPropagation()
         if (options.focusDecoration != false) {
@@ -230,41 +230,41 @@ const createAttributes = <Styles,Props extends WhaleTypes.AllProps<unknown,Style
         }
         props.onKeyDown && props.onKeyDown(e)
     }
-    
+
     allProps.mouse.onMouseDown = (e) => {
         isMouseDown = true
         props.onMouseDown && props.onMouseDown(e)
     }
-    
+
     allProps.mouse.onMouseUp = (e) => {
         isMouseDown = false
         props.onMouseUp && props.onMouseUp(e)
     }
     
-    let {attributes, ...events } = allProps
-    
-    return { 
-        attributes, 
-        events: {
-            all: {
-                ...events.form,
-                ...events.focus,
-                ...events.image,
-                ...events.media,
-                ...events.mouse,
-                ...events.touch,
-                ...events.wheel,
-                ...events.pointer,
-                ...events.keyboard,
-                ...events.selection,
-                ...events.animation,
-                ...events.clipboard,
-                ...events.transition, 
-                ...events.composition,
-                ...events.scroll
-            },
-            ...events
-        }
+    const allEventsWithSpread = Object.assign({},
+        allProps.form,
+        allProps.focus,
+        allProps.image,
+        allProps.media,
+        allProps.mouse,
+        allProps.touch,
+        allProps.wheel,
+        allProps.pointer,
+        allProps.keyboard,
+        allProps.selection,
+        allProps.animation,
+        allProps.clipboard,
+        allProps.transition,
+        allProps.composition,
+        allProps.scroll,
+    )
+
+    allEventsWithSpread.all = allEventsWithSpread
+    delete allEventsWithSpread.attributes
+
+    return {
+        attributes: allProps.attributes,
+        events: allEventsWithSpread,
     }
 }
 
