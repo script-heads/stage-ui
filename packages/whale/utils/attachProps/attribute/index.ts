@@ -194,9 +194,13 @@ const createAttributes = <Styles,Props extends WhaleTypes.AllProps<unknown,Style
         scroll: {} as Pick<Props, keyof WhaleTypes.ScrollEventProps<unknown>>
     }
 
-    Object.keys(resolver).forEach(propName => {
-        allProps[resolver[propName]][propName] = props[propName]
-    })
+    if (props) {
+        Object.keys(props).forEach(propName => {
+            if (resolver[propName]) {
+                allProps[resolver[propName]][propName] = props[propName]
+            }
+        })
+    }
     
     allProps.focus.onFocus = (e) => {
         e.stopPropagation()
