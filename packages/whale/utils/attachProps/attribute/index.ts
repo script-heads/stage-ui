@@ -260,7 +260,7 @@ const createAttributes = <Styles, Props extends WhaleTypes.AllProps<unknown, Sty
     )
 
     allEventsWithSpread.all = allEventsWithSpread
-    delete allEventsWithSpread.attributes
+    delete allEventsWithSpread.all
 
     return {
         attributes: allProps.attributes,
