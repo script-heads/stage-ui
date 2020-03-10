@@ -12,7 +12,6 @@
     "type-check:watch": "yarn type-check -- --watch"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.22",
     "chart.js": "^2.9.3",
     "react": "^16.12.0",
     "react-chartjs-2": "^2.9.0"
@@ -27,7 +26,6 @@
     "@babel/preset-env": "^7.7.6",
     "@babel/preset-react": "^7.7.4",
     "@babel/preset-typescript": "^7.7.4",
-    "@emotion/babel-preset-css-prop": "^10.0.23",
     "@types/chart.js": "2.9.11",
     "@types/react": "16.9.19",
     "csstype": "^2.6.8",
@@ -36,7 +34,6 @@
   },
   "peerDependencies": {
     "@babel/runtime": "*",
-    "@emotion/css": "*",
     "react-dom": "*"
   }
 }

@@ -17,7 +17,9 @@ const Playground = () => {
 	const [q, setQ] = useState(true)
 	return (
 		<Viewport>
-			<TextField label="TextField"/>
+			<TextField label="TextField" css={c => ({
+				background: c.color.primary.hex()
+			})}/>
 			<Block decoration="surface" p="m">
 			Block
 			</Block>
