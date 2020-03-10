@@ -11,24 +11,18 @@
   "devDependencies": {
     "@types/react": "^16.8.17",
     "@types/react-dom": "^16.8.4",
+    "@types/react-syntax-highlighter": "^11.0.1",
     "dts-generator": "^3.0.0",
     "fakerator": "^0.3.0",
     "randomcolor": "^0.5.4",
-    "react-element-to-jsx-string": "^14.1.0",
-    "tslint": "^5.20.0",
     "typedoc": "^0.15.1"
   },
   "dependencies": {
-    "@babel/runtime": "7.8.4",
-    "@emotion/core": "^10.0.14",
-    "@emotion/css": "10.0.27",
-    "@types/react-syntax-highlighter": "^11.0.1",
+    "@emotion/core": "^10.0.17",
     "backstopjs": "^4.3.2",
     "dts-bundle-generator": "^3.2.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "react": "^16.13.0",
     "react-lottie": "^1.2.3",
-    "react-syntax-highlighter": "^12.2.1",
-    "typescript": "^3.7.4"
+    "react-syntax-highlighter": "^12.2.1"
   }
 }

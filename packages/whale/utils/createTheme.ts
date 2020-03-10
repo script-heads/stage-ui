@@ -3,11 +3,15 @@ import createID from './createID'
 import mergeObjects from './mergeObjects'
 import Color from 'color'
 
+const defaultBreakpoints = ['1199.98px', '991.98px', '767.98px', '575.98px']
+
 const createTheme = (theme: Types.SourceTheme): Types.Theme=> {
 
     const main = convertColors(theme.main)
     const assets = theme.assets(main)
     const overrides = theme.overrides?.(main,assets)
+
+    main.breakpoints = theme.main.breakpoints || defaultBreakpoints
 
     const replace = (themeReplace: Types.ReplaceTheme): Types.Theme  => {
         

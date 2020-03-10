@@ -10,28 +10,23 @@ export interface Options<Styles, Props> {
     styles: WhaleTypes.Styles<Styles> | WhaleTypes.CreateStyles<Styles, Props>,
     styleProps?: Partial<Record<keyof Styles, (keyof WhalePropsTypes.InjectedStyles)[]>>
     styleLabel?: string,
-    focus: {
+    focus?: {
         applyDecoration?: boolean
         ignoreMouse?: boolean
     }
     theme?: WhaleTypes.Theme
 }
 
-const defaultBreakpoints = ['1199.98px', '991.98px', '767.98px', '575.98px']
-
 const useComponent = <Styles, Props, Params>(
     overrideName: string,
     options: Options<Styles, Props>,
-    params: Params) => {
+    params?: Params) => {
 
     const theme = options.theme || useTheme()
 
     const [focus, setfocus] = useState(false)
 
     const { cs, attributes, events } = useMemo(() => {
-        if (!theme.breakpoints || !theme.breakpoints.length) {
-            theme.breakpoints = defaultBreakpoints
-        }
 
         const resolvedStyles = typeof options.styles === 'function'
             ? options.styles(options.props, theme, params)

@@ -27,9 +27,7 @@
     "pm2": "pm2 start --name FlowUI npm -- start"
   },
   "dependencies": {
-    "@yarnpkg/pnpify": "^2.0.0-rc.17",
     "tslint": "^6.0.0",
-    "typescript": "^3.7.5",
-    "yarn": "^1.21.1"
+    "typescript": "^3.8.3"
   }
 }

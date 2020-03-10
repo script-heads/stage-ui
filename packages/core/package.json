@@ -13,12 +13,7 @@
     "icons:generate": "node ./scripts/iconsGenerate"
   },
   "dependencies": {
-    "@emotion/cache": "^10.0.27",
-    "@emotion/core": "^10.0.27",
-    "@types/color": "^3.0.1",
     "color": "^3.1.2",
-    "csstype": "^2.6.8",
-    "emotion-theming": "^10.0.27",
     "imask": "^6.0.1",
     "moment": "^2.24.0",
     "rifm": "^0.11.0"
@@ -34,13 +29,14 @@
     "@babel/preset-react": "^7.7.4",
     "@babel/preset-typescript": "^7.7.4",
     "@emotion/babel-preset-css-prop": "^10.0.23",
+    "@types/color": "^3.0.1",
     "eva-icons": "^1.1.2",
+    "csstype": "^2.6.8",
     "tslint": "^5.20.1",
-    "typescript": "^3.7.4"
+    "typescript": "^3.8.3"
   },
   "peerDependencies": {
-    "@babel/runtime": "*",
-    "@emotion/css": "*",
+    "@emotion/core": "^10.0.0",
     "react": "^16.0.0"
   }
 }

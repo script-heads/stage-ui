@@ -5,12 +5,9 @@
   "license": "MIT",
   "scripts": {},
   "dependencies": {
-    "@emotion/core": "10.0.27",
-    "react": "^16.12.0"
+    "@emotion/core": "10.0.27"
   },
   "peerDependencies": {
-    "@babel/runtime": "*",
-    "@emotion/css": "*",
-    "react-dom": "*"
+    "react": "^16.0.0"
   }
 }
