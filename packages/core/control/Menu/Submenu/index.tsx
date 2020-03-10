@@ -22,7 +22,6 @@ const Submenu: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref
         styleProps: { 
             container: ['all'],
         },
-        focusDecoration: false
     })
     const attr: Record<string, string> = {
         'data-flow': 'sub-menu'

@@ -16,7 +16,6 @@ const MenuGroup: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, r
         styleProps: {
             container: ['all'],
         },
-        focusDecoration: false
     })
 
     return (

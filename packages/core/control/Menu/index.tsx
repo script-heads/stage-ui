@@ -64,8 +64,7 @@ const Menu: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
         styleProps: { 
             container: ['all'],
         },
-        styleLabel: 'Menu',
-        focusDecoration: false
+        styleLabel: 'Menu'
     })
     
     const styleState: Types.StyleState = { 

@@ -1,34 +1,43 @@
-import { Viewport, Tree, Modal, Button, dialog, Block, Flexbox } from '@flow-ui/core'
-import React, { Fragment } from 'react'
+import { Block, Viewport, TextField, Button, Select } from '@flow-ui/core'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
-import App from './app'
-import custom from './themes/custom'
-import ThemeConfigurator from '../themer/src/ThemeConfigurator'
-import PreviewCube from '../themer/src/ThemeConfigurator/PreviewCube'
 
-const Playground = () => {
-	const [theme, updateTheme] = React.useState(custom)
-	
+const BlockLutiy = () => {
 	return (
-		<Viewport theme={theme}>
-			{/* <App /> */}
-			<Button m="5rem" onClick={() => {
-				dialog({
-					decoration: 'panel',
-					hideHeader: true,
-					customContent: (close) => (
-						<Fragment>
-							<ThemeConfigurator
-								original={custom}
-								updateTheme={updateTheme}
-							/>
-							<Flexbox justifyContent="flex-end" p="1rem" pt="4rem">
-								<Button onClick={close}>Close</Button>
-							</Flexbox>
-						</Fragment>
-					)
-				})
-			}}>Panel</Button>
+		<div>
+			{
+				'-'.repeat(0).split('-').map((_, index) => (
+					<Block key={index} >{index}</Block>
+				))
+			}
+		</div>
+	)
+}
+const Playground = () => {
+	const [q, setQ] = useState(true)
+	return (
+		<Viewport>
+			<TextField label="TextField"/>
+			<Block decoration="surface" p="m">
+			Block
+			</Block>
+			<Select
+				label="Select"
+				options={[{
+					text:'text',
+					value: '1'
+				}]}
+			/>
+			<Button>Button</Button>
+			{/* <button
+				children={'test'}
+				onClick={() => {
+					setQ(qq => !qq)
+				}}
+			/>
+			{
+				q && <BlockLutiy />
+			} */}
 		</Viewport>
 	)
 }

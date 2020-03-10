@@ -12,7 +12,10 @@ const Typography: RefForwardingComponent<RefTag, Types.PrivateProps> = (props, r
         props, 
         styles, 
         styleProps: { container: ['all'] },
-        mouseFocus: props.mouseFocus 
+        focus: {
+            applyDecoration: true,
+            ignoreMouse: props.mouseFocus
+        }
     })
  
     return useMemo(() => (

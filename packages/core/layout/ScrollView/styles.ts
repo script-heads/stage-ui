@@ -29,7 +29,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
             minWidth: '100%',
             minHeight: '100%',
             willChange: 'left, top',
-            '> :nth-child(n)': {
+            '> :nth-of-type(n)': {
                 margin: '0 !important'
             }
         }],

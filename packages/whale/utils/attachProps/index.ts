@@ -1,8 +1,7 @@
-import WhaleTypes from '../../types'
 import { Options } from '../../hooks/useComponent'
+import WhaleTypes from '../../types'
 import createAttributes from './attribute'
 import createPropStyles from './style'
-import WhalePropsTypes from './types'
 
 type SetFocus = React.Dispatch<React.SetStateAction<boolean>>
 

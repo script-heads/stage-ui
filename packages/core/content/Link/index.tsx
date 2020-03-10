@@ -19,7 +19,6 @@ const Link: RefForwardingComponent<HTMLAnchorElement, Types.LinkProps> = (props,
                     textDecoration: 'underline'
                 },
             }}
-            mouseFocus={false}
             ref={ref}
             {...props}
         />

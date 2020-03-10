@@ -24,8 +24,10 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
             container: ['flow','layout'], 
             field: ['color','border','padding']
         },
-        mouseFocus: true,
-        focusDecoration: false
+        focus: {
+            applyDecoration: true,
+            ignoreMouse: false
+        }
     })
 
     const fieldRef = useRef<HTMLDivElement>(null)
@@ -38,7 +40,7 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
 
     function onClear() {
         if (inputRef.current) {
-            Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value")
+            Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value')
                 ?.set
                 ?.call(inputRef.current, '')
 

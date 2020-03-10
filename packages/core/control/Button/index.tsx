@@ -18,7 +18,9 @@ const Button: RefForwardingComponent<HTMLButtonElement, Types.Props> = (props, r
         styleProps: { 
             container: ['all']
         }, 
-        mouseFocus: false 
+        focus: {
+            applyDecoration: true
+        }
     })
 
     const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {

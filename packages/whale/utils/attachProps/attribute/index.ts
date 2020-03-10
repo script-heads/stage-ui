@@ -1,7 +1,13 @@
 import WhaleTypes from '../../../types'
 import { Options } from '../../../hooks/useComponent'
 
-let isMouseDown = false
+let IS_MOUSE_DOWN = false
+window.addEventListener('mousedown', () => {
+    IS_MOUSE_DOWN = true
+})
+window.addEventListener('mouseup', () => {
+    IS_MOUSE_DOWN = false
+})
 
 const resolver = {
     id: 'attributes',
@@ -202,69 +208,79 @@ const createAttributes = <Styles, Props extends WhaleTypes.AllProps<unknown, Sty
         })
     }
 
-    allProps.focus.onFocus = (e) => {
-        e.stopPropagation()
-        if (options.focusDecoration != false) {
-            if (options.mouseFocus != false || !isMouseDown) {
+    /**
+     * focus flag handle
+     * focusDecoration - enables focus flag
+     * focusDecorationByMouse - allows focus when moused button down
+     */
+    if (options.focusDecoration) {
+        allProps.focus.onFocus = (e) => {
+            e.stopPropagation()
+            console.log(options, IS_MOUSE_DOWN)
+            if (!(!options.focusDecorationByMouse && IS_MOUSE_DOWN))  {
                 setFocus(true)
             }
+            props.onFocus && props.onFocus(e)
         }
-        props.onFocus && props.onFocus(e)
-    }
-
-    allProps.focus.onBlur = (e) => {
-        e.stopPropagation()
-        if (options.focusDecoration != false) {
+        allProps.focus.onBlur = (e) => {
+            e.stopPropagation()
             setFocus(false)
+            props.onBlur && props.onBlur(e)
         }
-        props.onBlur && props.onBlur(e)
     }
 
-    allProps.keyboard.onKeyDown = (e) => {
-        props.onKeyPress && props.onKeyPress(e)
-        if (e.key === 'Enter' && props.onEnter) {
-            props.onEnter(e)
+    /**
+     * Handle onEnter & onEsc props
+     */
+    if (props.onEnter !== void 0 || props.onEsc !== void 0) {
+        allProps.keyboard.onKeyDown = (e) => {
+            props.onKeyPress && props.onKeyPress(e)
+            if (e.key === 'Enter' && props.onEnter) {
+                props.onEnter(e)
+            }
+            if (e.key === 'Esc' && props.onEsc) {
+                props.onEsc(e)
+            }
+            props.onKeyDown && props.onKeyDown(e)
         }
-        if (e.key === 'Esc' && props.onEsc) {
-            props.onEsc(e)
-        }
-        props.onKeyDown && props.onKeyDown(e)
     }
-
-    allProps.mouse.onMouseDown = (e) => {
-        isMouseDown = true
-        props.onMouseDown && props.onMouseDown(e)
-    }
-
-    allProps.mouse.onMouseUp = (e) => {
-        isMouseDown = false
-        props.onMouseUp && props.onMouseUp(e)
-    }
-    
-    const allEventsWithSpread = Object.assign({},
-        allProps.form,
-        allProps.focus,
-        allProps.image,
-        allProps.media,
-        allProps.mouse,
-        allProps.touch,
-        allProps.wheel,
-        allProps.pointer,
-        allProps.keyboard,
-        allProps.selection,
-        allProps.animation,
-        allProps.clipboard,
-        allProps.transition,
-        allProps.composition,
-        allProps.scroll,
-    )
-
-    allEventsWithSpread.all = allEventsWithSpread
-    delete allEventsWithSpread.all
 
     return {
         attributes: allProps.attributes,
-        events: allEventsWithSpread,
+        events: {
+            all: Object.assign({},
+                allProps.form,
+                allProps.focus,
+                allProps.image,
+                allProps.media,
+                allProps.mouse,
+                allProps.touch,
+                allProps.wheel,
+                allProps.pointer,
+                allProps.keyboard,
+                allProps.selection,
+                allProps.animation,
+                allProps.clipboard,
+                allProps.transition,
+                allProps.composition,
+                allProps.scroll,
+            ),
+            form: allProps.form,
+            focus: allProps.focus,
+            image: allProps.image,
+            media: allProps.media,
+            mouse: allProps.mouse,
+            touch: allProps.touch,
+            wheel: allProps.wheel,
+            pointer: allProps.pointer,
+            keyboard: allProps.keyboard,
+            selection: allProps.selection,
+            animation: allProps.animation,
+            clipboard: allProps.clipboard,
+            transition: allProps.transition,
+            composition: allProps.composition,
+            scroll: allProps.scroll,
+        },
     }
 }
 

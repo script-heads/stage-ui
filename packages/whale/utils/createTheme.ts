@@ -30,7 +30,7 @@ const createTheme = (theme: Types.SourceTheme): Types.Theme=> {
         return createTheme(newTheme)
     }
 
-    return { ...main, assets, overrides, replace }
+    return Object.assign({ assets, overrides, replace }, main)
 }
 
 function convertColors(theme: Types.SourceTheme['main']): Types.Theme {
