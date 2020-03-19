@@ -3,7 +3,7 @@ import React, { forwardRef, RefForwardingComponent } from 'react'
 import styles from './styles'
 import Types from './types'
 
-const Svg: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref) => {
+const Svg: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props) => {
 
     const { size = 'm', shape } = props
     const { cs, attributes, events } = useComponent('Icon', {
@@ -18,8 +18,6 @@ const Svg: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref) =
         <span
             {...attributes}
             {...events.all}
-            
-            ref={ref}
             css={cs.container({ 
                 size, 
                 shape,
@@ -44,13 +42,11 @@ type Icons = {
     outline: React.ReactElement
 }
 
-export const createIcon = (props: Types.IconProps = {}, ref: React.Ref<HTMLSpanElement>, icons: Icons) => {
-    const SvgIcon = forwardRef(Svg)
+export const createIcon = (props: Types.IconProps = {}, icons: Icons) => {
 
     return (
-        <SvgIcon 
+        <Svg 
             {...props} 
-            ref={ref}
             svg={
                 icons[props.type || 'outline']
             }

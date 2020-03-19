@@ -1,4 +1,5 @@
 import { Block, Viewport, TextField, Button, Select } from '@flow-ui/core'
+import Person from '@flow-ui/core/icons/svg/person'
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
@@ -20,7 +21,13 @@ const Test = () => {
 		}
 	},[])
 	return (
-		<div>111</div>
+		<span>
+			<div>
+				<div>
+					<Person />
+				</div>
+			</div>
+		</span>
 	)
 }
 const Playground = () => {
@@ -28,7 +35,7 @@ const Playground = () => {
 	return (
 		<Viewport>
 			<TextField 
-				leftChild={<Test/>}
+				leftChild={<Test />}
 				value={value} 
 				onChange={(e) => setValue(e.target.value)}
 			/>

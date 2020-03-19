@@ -1,5 +1,5 @@
 /**
-version: 1.1.2
+version: 1.1.3
 */
 export { default as Activity } from './svg/activity'
 export { default as AlertCircle } from './svg/alert-circle'
@@ -215,6 +215,7 @@ export { default as SkipBack } from './svg/skip-back'
 export { default as SkipForward } from './svg/skip-forward'
 export { default as Slash } from './svg/slash'
 export { default as Smartphone } from './svg/smartphone'
+export { default as SmilingFace } from './svg/smiling-face'
 export { default as Speaker } from './svg/speaker'
 export { default as Square } from './svg/square'
 export { default as Star } from './svg/star'
