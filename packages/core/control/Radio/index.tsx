@@ -25,7 +25,6 @@ const Radio: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
             {...props}
             ref={ref}
             size={size}
-            tabIndex={props.tabIndex || 0}
             onFocus={(e) => {
                 props.onFocus && props.onFocus(e)
                 e.stopPropagation()

@@ -9,7 +9,6 @@ const Link: RefForwardingComponent<HTMLAnchorElement, Types.LinkProps> = (props,
     return (
         <Typography
             tag="a"
-            tabIndex={props.tabIndex || 0}
             sizesOf="text"
             specificStyles={{
                 outline: 'none',

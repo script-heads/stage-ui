@@ -24,7 +24,6 @@ const Switch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
             {...props}
             size={size}
             styles={cs}
-            tabIndex={props.tabIndex || 0}
             onFocus={(e) => {
                 props.onFocus && props.onFocus(e)
                 e.stopPropagation()
