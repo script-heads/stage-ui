@@ -17,29 +17,19 @@ const Playground = () => {
 	const [q, setQ] = useState(true)
 	return (
 		<Viewport>
-			<TextField label="TextField" css={c => ({
-				background: c.color.primary.hex()
-			})}/>
-			<Block decoration="surface" p="m">
+			{/* <TextField label="TextField" tabIndex={0} />
+			<Block decoration="surface" p="m" tabIndex={0}>
 			Block
 			</Block>
 			<Select
+			tabIndex={0}
 				label="Select"
 				options={[{
 					text:'text',
 					value: '1'
 				}]}
-			/>
-			<Button>Button</Button>
-			{/* <button
-				children={'test'}
-				onClick={() => {
-					setQ(qq => !qq)
-				}}
-			/>
-			{
-				q && <BlockLutiy />
-			} */}
+			/> */}
+			<Button tabIndex={0}>Button</Button>
 		</Viewport>
 	)
 }

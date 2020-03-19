@@ -2,11 +2,16 @@ import WhaleTypes from '../../../types'
 import { Options } from '../../../hooks/useComponent'
 
 let IS_MOUSE_DOWN = false
+let TAB_ACTIVATE = false
+
 window.addEventListener('mousedown', () => {
     IS_MOUSE_DOWN = true
 })
 window.addEventListener('mouseup', () => {
     IS_MOUSE_DOWN = false
+})
+window.addEventListener('focus', () => {
+    TAB_ACTIVATE = true
 })
 
 const resolver = {
@@ -210,16 +215,19 @@ const createAttributes = <Styles, Props extends WhaleTypes.AllProps<unknown, Sty
 
     /**
      * focus flag handle
-     * focusDecoration - enables focus flag
-     * focusDecorationByMouse - allows focus when moused button down
+     * ignoreMouse - disable focus when moused button down
+     * TAB_ACTIVATE - is window just activated
      */
-    if (options.focusDecoration) {
+    if (options.focus) {
         allProps.focus.onFocus = (e) => {
-            e.stopPropagation()
-            console.log(options, IS_MOUSE_DOWN)
-            if (!(!options.focusDecorationByMouse && IS_MOUSE_DOWN))  {
-                setFocus(true)
+            e.stopPropagation()          
+            if (!TAB_ACTIVATE) {
+                if (!options.focus?.ignoreMouse || !IS_MOUSE_DOWN)  {
+                    setFocus(true)
+                }
             }
+            TAB_ACTIVATE = false
+
             props.onFocus && props.onFocus(e)
         }
         allProps.focus.onBlur = (e) => {
