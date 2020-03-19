@@ -50,7 +50,6 @@ const Interface = (props: InterfaceProps) => {
         : extended[activeName].children
 
     const extendedNames = [props.data.name, ...Object.keys(extended)]
-    console.log(types)
     
     return (
         <Block>
