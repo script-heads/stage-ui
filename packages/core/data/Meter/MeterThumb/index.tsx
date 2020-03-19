@@ -16,6 +16,9 @@ const MeterThumb: RefForwardingComponent<HTMLDivElement, Types.PrivateProps> = (
         styles,
         styleProps: {
             container: ['all']
+        },
+        focus: {
+            applyDecoration: true
         }
     })
 

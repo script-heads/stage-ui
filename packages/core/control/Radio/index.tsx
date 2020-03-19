@@ -9,7 +9,14 @@ import Types from './types'
 const Radio: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     const { animated, size = 'm', disabled } = props
 
-    const { cs, attributes, events } = useComponent('Radio', { props, styles, styleProps: { container: ['all']} })
+    const { cs, attributes, events } = useComponent('Radio', { 
+        props, 
+        styles, 
+        styleProps: { container: ['all']},
+        focus: {
+            applyDecoration: true
+        }
+    })
 
     return (
         <Check

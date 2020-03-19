@@ -10,7 +10,14 @@ const Switch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
 
     const { size = 'm', animated, disabled } = props
 
-    const { cs, attributes, events } = useComponent('Switch', { props, styles, styleProps: { container: ['all']} })
+    const { cs, attributes, events } = useComponent('Switch', { 
+        props, 
+        styles, 
+        styleProps: { container: ['all']},
+        focus: {
+            applyDecoration: true
+        }
+    })
 
     return (
         <Check
