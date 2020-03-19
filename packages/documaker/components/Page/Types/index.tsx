@@ -27,24 +27,18 @@ const Types = (props: TypesProps) => {
     }
 
     return (
-        <Block css={[
-            { width: '100%' },
-            props.shrink && { maxWidth:'45rem' }
-        ]}>
-            <Grid 
-                templateColumns="repeat(auto-fit, minmax(18rem, 1fr))" 
-                mt="2rem" 
-                gap="2rem" 
-                css={{overflow: 'hidden'}}>
-                {types.map((data, index) => (
-                    <Interface 
-                        key={'interface-'+index}
-                        data={data} 
-                        separatedTypes={config.pages?.separatedTypes}
-                    />
-                ))}
-            </Grid>
-        </Block>
+        <Grid
+            gridTemplateColumns={props.shrink ? '45rem' : '100%'}
+            gap="2rem"
+        >
+            {types.map((data, index) => (
+                <Interface 
+                    key={'interface-'+index}
+                    data={data} 
+                    separatedTypes={config.pages?.separatedTypes}
+                />
+            ))}
+        </Grid>
     )
 }
 

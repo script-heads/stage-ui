@@ -40,19 +40,18 @@ export interface ValueDefinition {
 
 interface ValueProps { 
     type: ValueDefinition, 
-    last: boolean 
 }
 
-const Value = (props: ValueProps) => {
-    const { type, last } = props
-
-    const LightText = (props: { children: string }) => (
-        <Text
+const LightText = (props: { children: string }) => (
+    <Text
         size="xs"
         color={c => c.hard}
             children={props.children}
-        />
-    )
+    />
+)
+
+const Value = (props: ValueProps) => {
+    const { type } = props
 
     let rightSide: JSX.Element | JSX.Element[] = (
         <LightText>Not documented yet</LightText>
@@ -117,53 +116,9 @@ const Value = (props: ValueProps) => {
         }
     }
 
-    let comment = ''
-
-    if (typeof type.comment === 'string') {
-        comment = type.comment
-    }
-
     return (
         <Block>
-            <Block mt="1rem" mb=".75rem" ml=".5rem">
-                <Flexbox css={{ overflow: 'hidden' }}>
-                    <Text
-                        mr=".5rem"
-                        css={{ whiteSpace: 'nowrap' }}
-                        flex={1}>
-                        {type.deprecated && (
-                            <Text color={c => c.error}>[Deprecated] </Text>
-                        )}
-                        {type.name}
-                        {(type.isOptional ? '?' : '')}
-                    </Text>
-                    <Flexbox wrap="wrap" justifyContent="flex-end">
-                        {rightSide}
-                        {type.breakpointify && (
-                            <Text
-                                h="fit-content"
-                                size="xs"
-                                p=".125rem 0.25rem"
-                                mx=".125rem"
-                                mb=".25rem"
-                                backgroundColor={c => c.success.alpha(0.1)}
-                                css={{ borderRadius: '.25rem' }}
-                                children={`Support breakpoints`}
-                            />
-                        )}
-
-                    </Flexbox>
-                </Flexbox>
-                <Paragraph
-                    ml="1rem"
-                    mb=".25rem"
-                    display="block"
-                    size="xs"
-                    color={c => c.hard}
-                    children={comment}
-                />
-            </Block>
-            {!last && <Divider />}
+            {rightSide}
         </Block>
     )
 }

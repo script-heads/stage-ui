@@ -1,7 +1,7 @@
-import React, { Fragment, useState } from 'react'
-import { Block, Divider, Header, Text, Tree } from '@flow-ui/core'
+import React, { useState, useMemo } from 'react'
+import { Block, Header, Text, Flexbox, Table, ScrollView } from '@flow-ui/core'
 import Value, { ValueDefinition } from './Value'
-import { useEffect } from 'react'
+import Params from './Params'
 
 interface InterfaceDefinition {
     name: string
@@ -17,12 +17,14 @@ interface InterfaceProps {
 
 const sortTypes = (data: InterfaceDefinition, separatedTypes?: string[]) => {
     const self: InterfaceDefinition = Object.assign({}, data)
-    const extended: InterfaceDefinition[] = []
+    const extended: Record<string,InterfaceDefinition> = {}
 
     const getExtendedTypes = (type: InterfaceDefinition, cutted?: boolean) => {
         type.extendedTypes.map(innerType => {
             if (separatedTypes && separatedTypes.includes(innerType.name) || cutted) {
-                innerType.children.length > 0 && extended.push(innerType)
+                if (innerType.children.length > 0) {
+                    extended[innerType.name] = innerType
+                } 
                 getExtendedTypes(innerType, true)
             } else {
                 self.children = self.children.concat(innerType.children)
@@ -38,35 +40,62 @@ const sortTypes = (data: InterfaceDefinition, separatedTypes?: string[]) => {
 
 const Interface = (props: InterfaceProps) => {
 
-    const { self, extended } = sortTypes(props.data, props.separatedTypes)
+    const [ activeName, setActiveName ] = useState(props.data.name) 
+    const { self, extended } = useMemo(() =>
+        sortTypes(props.data, props.separatedTypes)
+    ,[props])
 
-    const renderTypes = (data: ValueDefinition[]) =>
-        data.map((type: ValueDefinition, index) =>
-            <Value type={type} last={index === data.length - 1} key={'type' + index} />
-        )
+    const types = activeName === props.data.name 
+        ? self.children 
+        : extended[activeName].children
 
-    const renderExtended = (data: InterfaceDefinition[]) => 
-        data.map((type: InterfaceDefinition, index) => (
-            <Fragment key={type.name + index}>
-                <Tree
-                    py="1rem" 
-                    label={
-                        <Text
-                            weight="bold"
-                            children={type.name}
-                        />
-                    } 
-                    children={<Block>{renderTypes(type.children)}</Block>}
-                />
-                <Divider />
-            </Fragment>
-        ))
+    const extendedNames = [props.data.name, ...Object.keys(extended)]
+    console.log(types)
     
     return (
         <Block>
-            <Header>{props.data.name}</Header>
-            {renderTypes(self.children)}
-            {renderExtended(extended)}
+            <ScrollView mb="1rem">
+                <Flexbox>
+                    {extendedNames.map(name => (
+                        <Header
+                            key={name}
+                            mr="1.5rem"
+                            children={name}
+                            color={name === activeName ? 'onBackground' : 'light'}
+                            onClick={()=>setActiveName(name)}
+                        />
+                    ))}
+                </Flexbox>
+            </ScrollView>
+            <Table
+                columns={[
+                    {
+                        key: 'name',
+                        title: 'Name'
+                    },
+                    {
+                        key: 'values',
+                        title: 'Type',
+                        render: (c) => <Value type={c.row as ValueDefinition}/>
+                    },
+                    {
+                        key: 'comment',
+                        title: 'Description',
+                        render: (c) => <Text children={(c.row as ValueDefinition).comment?.toString()}/>
+                    },
+                    {
+                        key: 'isOptional',
+                        title: 'Parameters',
+                        render: (c) => <Params type={c.row as ValueDefinition}/>
+                    },
+                    {
+                        key: 'tags',
+                        title: 'Default',
+                        render: (c) => <Text children={(c.row as ValueDefinition).tags?.default} />
+                    },
+                ]}
+                data={types}
+            />
         </Block>
     )
 }
