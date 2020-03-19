@@ -13,7 +13,14 @@ const Meter: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
         value = 0,
     } = props
 
-    const { cs, attributes, events } = useComponent('Meter', { props, styles, styleProps: { container: ['all']} })
+    const { cs, attributes, events } = useComponent('Meter', { 
+        props, 
+        styles, 
+        styleProps: { container: ['all']},
+        focus: {
+            applyDecoration: true
+        }
+    })
     
     let childs = props.children as React.ReactElement[]
     if (childs && !Array.isArray(childs)) {

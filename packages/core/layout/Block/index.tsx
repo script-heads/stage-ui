@@ -9,7 +9,7 @@ const Block: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
     const { cs, attributes, events } = useComponent('Block', { 
         props, 
         styles, 
-        styleProps: { container: ['all'] }
+        styleProps: { container: ['all'] },
     })
     
     return jsx(

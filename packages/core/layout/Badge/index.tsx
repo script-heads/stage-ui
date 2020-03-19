@@ -12,7 +12,7 @@ const Badge: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
         styleProps: {
             container: ['flow'], 
             holder: ['self']
-        } 
+        }
     })
 
     return (

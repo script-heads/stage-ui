@@ -52,8 +52,9 @@ const useComponent = <Styles, Props, Params>(
     }, [options.props, options.styles, theme])
 
     if (options.focus?.applyDecoration) {
+        attributes.style = {}
         attributes.style = focus
-            ? Object.assign({}, theme.assets.focus, attributes.style)
+            ? Object.assign({}, theme.assets.focus, JSON.parse(JSON.stringify(attributes.style)))
             : Object.assign({}, attributes.style)
     }
     return { cs, attributes, events, focus, theme }

@@ -29,6 +29,9 @@ const Tree: RefForwardingComponent<HTMLDivElement, Types.Props> = (props: Types.
         styles,
         styleProps: { 
             row: ['all'] 
+        },
+        focus: {
+            applyDecoration: true
         }
     })
 

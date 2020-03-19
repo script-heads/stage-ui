@@ -10,7 +10,14 @@ import Types from './types'
 const Checkbox: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     const { size = 'm', animated, disabled } = props
 
-    const { cs, attributes, events } = useComponent('Checkbox', { props, styles, styleProps: { container: ['all']} })
+    const { cs, attributes, events } = useComponent('Checkbox', { 
+        props, 
+        styles, 
+        styleProps: { container: ['all']},
+        focus: {
+            applyDecoration: true
+        }
+    })
 
     return (
         <Check
@@ -20,7 +27,6 @@ const Checkbox: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, re
             styles={cs}
             ref={ref}
             size={size}
-            tabIndex={props.tabIndex || 0}
             onFocus={(e) => {
                 props.onFocus && props.onFocus(e)
                 e.stopPropagation()

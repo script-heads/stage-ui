@@ -1,4 +1,5 @@
 import { Block, Viewport, TextField, Button, Select } from '@flow-ui/core'
+import Person from '@flow-ui/core/icons/svg/person'
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
@@ -13,33 +14,31 @@ const BlockLutiy = () => {
 		</div>
 	)
 }
+const Test = () => {
+	React.useEffect(() => {
+		return () => {
+			console.log(1)
+		}
+	},[])
+	return (
+		<span>
+			<div>
+				<div>
+					<Person />
+				</div>
+			</div>
+		</span>
+	)
+}
 const Playground = () => {
-	const [q, setQ] = useState(true)
+	const [value, setValue] = useState('')
 	return (
 		<Viewport>
-			<TextField label="TextField" css={c => ({
-				background: c.color.primary.hex()
-			})}/>
-			<Block decoration="surface" p="m">
-			Block
-			</Block>
-			<Select
-				label="Select"
-				options={[{
-					text:'text',
-					value: '1'
-				}]}
+			<TextField 
+				leftChild={<Test />}
+				value={value} 
+				onChange={(e) => setValue(e.target.value)}
 			/>
-			<Button>Button</Button>
-			{/* <button
-				children={'test'}
-				onClick={() => {
-					setQ(qq => !qq)
-				}}
-			/>
-			{
-				q && <BlockLutiy />
-			} */}
 		</Viewport>
 	)
 }

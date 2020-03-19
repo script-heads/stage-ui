@@ -10,14 +10,20 @@ const Switch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
 
     const { size = 'm', animated, disabled } = props
 
-    const { cs, attributes, events } = useComponent('Switch', { props, styles, styleProps: { container: ['all']} })
+    const { cs, attributes, events } = useComponent('Switch', { 
+        props, 
+        styles, 
+        styleProps: { container: ['all']},
+        focus: {
+            applyDecoration: true
+        }
+    })
 
     return (
         <Check
             {...props}
             size={size}
             styles={cs}
-            tabIndex={props.tabIndex || 0}
             onFocus={(e) => {
                 props.onFocus && props.onFocus(e)
                 e.stopPropagation()

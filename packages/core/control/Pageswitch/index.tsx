@@ -10,7 +10,10 @@ const Pageswitch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
     const { length, options, value } = props
     const { pageSize = 20 } = options || {}
     const lastPage = Math.ceil(length / pageSize)
-    const { cs, attributes, events } = useComponent('Pageswitch', { props, styles })
+    const { cs, attributes, events } = useComponent('Pageswitch', { 
+        props, 
+        styles
+    })
 
     let defaultValue = value || props.defaultValue || 1
     if (defaultValue <= 0) defaultValue = 1

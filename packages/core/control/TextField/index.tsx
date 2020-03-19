@@ -25,7 +25,7 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
             field: ['color','border','padding']
         },
         focus: {
-            applyDecoration: true,
+            applyDecoration: false,
             ignoreMouse: false
         }
     })

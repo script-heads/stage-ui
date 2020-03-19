@@ -19,7 +19,8 @@ const Button: RefForwardingComponent<HTMLButtonElement, Types.Props> = (props, r
             container: ['all']
         }, 
         focus: {
-            applyDecoration: true
+            applyDecoration: true,
+            ignoreMouse: true,
         }
     })
 
