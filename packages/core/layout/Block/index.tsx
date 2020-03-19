@@ -10,9 +10,6 @@ const Block: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
         props, 
         styles, 
         styleProps: { container: ['all'] },
-        focus: {
-            applyDecoration: true
-        }
     })
     
     return jsx(
