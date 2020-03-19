@@ -13,34 +13,25 @@ const BlockLutiy = () => {
 		</div>
 	)
 }
+const Test = () => {
+	React.useEffect(() => {
+		return () => {
+			console.log(1)
+		}
+	},[])
+	return (
+		<div>111</div>
+	)
+}
 const Playground = () => {
-	const [q, setQ] = useState(true)
+	const [value, setValue] = useState('')
 	return (
 		<Viewport>
-						<br/>
-						<br/>
-
-			<Block decoration="surface" p="m">
-			Block
-			</Block>
-			<br/>
-			<br/>
-			<br/>
-			<Select
-			tabIndex={0}
-				label="Select"
-				options={[{
-					text:'text1',
-					value: '1'
-				},{
-					text:'text2',
-					value: '2'
-				}]}
+			<TextField 
+				leftChild={<Test/>}
+				value={value} 
+				onChange={(e) => setValue(e.target.value)}
 			/>
-						<br/>
-						<br/>
-
-			<Button tabIndex={0}>Button</Button>
 		</Viewport>
 	)
 }
