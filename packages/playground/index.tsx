@@ -1,4 +1,4 @@
-import { Block, Viewport, TextField, Button, ScrollView } from '@flow-ui/core'
+import { Grid, Viewport, TextField, Button, ScrollView } from '@flow-ui/core'
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
@@ -6,13 +6,11 @@ const Playground = () => {
 	const [value, setValue] = useState('')
 	return (
 		<Viewport theme="dark">
-			<Block>
-				<form>
-				<TextField type="email" autoComplete="email" />
+			<Grid p="2rem" gap="1rem">
+				<TextField placeholder="E-mail" type="email" autoComplete="email" />
 				<TextField type="password" />
-				<Button type="submit" />
-				</form>
-			</Block>
+				<Button type="submit" children="submit" />
+			</Grid>
 		</Viewport>
 	)
 }

@@ -8,8 +8,8 @@ import WhaleTypes from '../types'
  * autocomplete hack for webkit
  */
 const autocomplete = {
-    'transition': 'all 604800s ease-in-out 0s',
-    'transition-property': 'background-color, color',
+    transition: 'all 604800s ease-in-out 0s',
+    transitionProperty: 'background-color, color',
 }
 const autocompleteSt = {
     'input:-webkit-autofill': autocomplete,
