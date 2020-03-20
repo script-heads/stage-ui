@@ -1,7 +1,6 @@
 import { Flexbox, Text } from '@flow-ui/core'
 import React from 'react'
-import {ValueDefinition} from './Value'
-
+import { ValueDefinition } from '@flow-ui/documaker/components/Page/Types/Interface'
 interface ParamsProps { 
     type: ValueDefinition, 
 }

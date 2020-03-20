@@ -1,6 +1,6 @@
 import { Block, Text } from '@flow-ui/core'
 import React from 'react'
-
+import { ValueDefinition } from '@flow-ui/documaker/components/Page/Types/Interface'
 interface ValueProps { 
     type: ValueDefinition, 
 }
