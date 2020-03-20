@@ -8112,11 +8112,11 @@ declare module 'control/Select/types' {
 	        isOpen: boolean;
 	    }
 	    interface Styles extends FieldTypes.Styles {
-	        selectedOptionInput: {
+	        selectedInput: {
 	            searchMode: boolean;
 	            multiselect: boolean;
 	        };
-	        selectedOptionsContainer: void;
+	        selectedContainer: void;
 	        tag: StyleState;
 	        tagRemove: StyleState;
 	        drop: StyleState;
