@@ -47,7 +47,7 @@ const Interface = (props: InterfaceProps) => {
         setActiveName(props.data.name)
         return sortTypes(props.data, props.separatedTypes)
     }, [props])
-    console.log(separated)
+    
     const types = activeName === props.data.name 
         ? self.children 
         : separated[activeName].children
