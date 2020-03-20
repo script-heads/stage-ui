@@ -67,12 +67,11 @@ declare namespace SelectTypes {
         isOpen: boolean
     }
     interface Styles extends FieldTypes.Styles {
-        selectedOptionInput: {
+        selectedContainer: void
+        selectedInput: {
             searchMode: boolean
             multiselect: boolean
         }
-        
-        selectedOptionsContainer: void
         tag: StyleState
         tagRemove: StyleState
 

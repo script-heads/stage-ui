@@ -16,6 +16,12 @@ const autocompleteSt = {
     'input:-webkit-autofill:hover': autocomplete,
     'input:-webkit-autofill:focus': autocomplete,
     'input:-webkit-autofill:active': autocomplete,
+    'input::-webkit-internal-input-suggested': {
+        /**
+         * Chrome bug
+         * https://bugs.chromium.org/p/chromium/issues/detail?id=953689
+         */
+    }
 }
 
 interface ProviderProps {
