@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 const Playground = () => {
 	const [value, setValue] = useState('')
 	return (
-		<Viewport>
+		<Viewport theme="dark">
 			<Block>
 				<form>
 				<TextField type="email" autoComplete="email" />

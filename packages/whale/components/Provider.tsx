@@ -4,22 +4,18 @@ import { ThemeProvider } from 'emotion-theming'
 import { CacheProvider, Global, SerializedStyles } from '@emotion/core'
 import WhaleTypes from '../types'
 
-const autocompleteHack = {
-    /**
-     * autocomplete hack for webkit
-     */
-    'input:-webkit-autofill': {
-        'transition': 'background-color 604800s ease-in-out 0s',
-    },
-    'input:-webkit-autofill:hover': {
-        'transition': 'background-color 604800s ease-in-out 0s',
-    },
-    'input:-webkit-autofill:focus': {
-        'transition': 'background-color 604800s ease-in-out 0s',
-    },
-    'input:-webkit-autofill:active': {
-        'transition': 'background-color 604800s ease-in-out 0s',
-    },
+/**
+ * autocomplete hack for webkit
+ */
+const autocomplete = {
+    'transition': 'all 604800s ease-in-out 0s',
+    'transition-property': 'background-color, color',
+}
+const autocompleteSt = {
+    'input:-webkit-autofill': autocomplete,
+    'input:-webkit-autofill:hover': autocomplete,
+    'input:-webkit-autofill:focus': autocomplete,
+    'input:-webkit-autofill:active': autocomplete,
 }
 
 interface ProviderProps {
@@ -38,7 +34,7 @@ const Provider = <T extends ProviderProps>(props: T) => {
 
     const Content = (
         <CacheProvider value={cache}>
-            <Global styles={[autocompleteHack, global]} />
+            <Global styles={[autocompleteSt, global]} />
             {children}
         </CacheProvider>
     )
