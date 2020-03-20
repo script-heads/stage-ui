@@ -1,43 +1,6 @@
 import { Block, Text } from '@flow-ui/core'
 import React from 'react'
 
-type Reflection = {
-    type: 'reflection'
-    declaration: {
-        id: number
-        children?: any[]
-        groups?: any[],
-        signatures?: {
-            name: '__call'
-            parameters: {
-                id: number
-                name: string
-            }[]
-            type: {
-                name: string
-                type: 'stringLiteral' | 'intrinsic'
-            }
-        }[]
-    }
-}
-
-type Intersection = {
-    type: 'intersection'
-    types: any[]
-}
-
-export interface ValueDefinition {
-    id: number
-    isOptional: boolean
-    name: string
-    comment?: string
-    tags?: { [key: string]: string }
-    deprecated?: string | true
-    breakpointify?: true
-    type: 'stringLiteral' | 'intrinsic' | 'reference' | Reflection | Intersection
-    values: string[]
-}
-
 interface ValueProps { 
     type: ValueDefinition, 
 }

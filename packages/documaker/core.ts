@@ -1,4 +1,5 @@
 import WhaleTypes from '@flow-ui/whale/types'
+import TableTypes from '@flow-ui/core/data/Table/types'
 
 declare const WEBPACK_WORKDIR: string
 
@@ -18,7 +19,10 @@ export interface Config {
     themes?: Record<string,WhaleTypes.Theme>
     pages?: {
         order?: Record<string,string[]>
-        types?: string[],
+        types?: {
+            interface: string
+            columns: TableTypes.TableColumn[]
+        }[],
         separatedTypes?: string[]
         custom?: Record<string,React.ComponentType<CustomPageProps>>
     }

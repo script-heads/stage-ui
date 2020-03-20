@@ -1,8 +1,44 @@
 import React, { useState, useMemo } from 'react'
 import { Block, Header, Text, Flexbox, Table, ScrollView } from '@flow-ui/core'
-import Value, { ValueDefinition } from './Value'
-import Params from './Params'
+import Params from '../../../../docs/components/Params'
+import TableTypes from '@flow-ui/core/data/Table/types'
 
+type Reflection = {
+    type: 'reflection'
+    declaration: {
+        id: number
+        children?: any[]
+        groups?: any[],
+        signatures?: {
+            name: '__call'
+            parameters: {
+                id: number
+                name: string
+            }[]
+            type: {
+                name: string
+                type: 'stringLiteral' | 'intrinsic'
+            }
+        }[]
+    }
+}
+
+type Intersection = {
+    type: 'intersection'
+    types: any[]
+}
+
+export interface ValueDefinition {
+    id: number
+    isOptional: boolean
+    name: string
+    comment?: string
+    tags?: { [key: string]: string }
+    deprecated?: string | true
+    breakpointify?: true
+    type: 'stringLiteral' | 'intrinsic' | 'reference' | Reflection | Intersection
+    values: string[]
+}
 interface InterfaceDefinition {
     name: string
     comment?: string
@@ -13,6 +49,7 @@ interface InterfaceDefinition {
 interface InterfaceProps {
     data: InterfaceDefinition,
     separatedTypes?: string[]
+    columns: TableTypes.TableColumn[]
 }
 
 const sortTypes = (data: InterfaceDefinition, separatedTypes?: string[]) => {
@@ -47,7 +84,7 @@ const Interface = (props: InterfaceProps) => {
         setActiveName(props.data.name)
         return sortTypes(props.data, props.separatedTypes)
     }, [props])
-    
+
     const types = activeName === props.data.name 
         ? self.children 
         : separated[activeName].children
@@ -72,32 +109,7 @@ const Interface = (props: InterfaceProps) => {
                 </ScrollView>
             </div>
             <Table
-                columns={[
-                    {
-                        key: 'name',
-                        title: 'Name'
-                    },
-                    {
-                        key: 'values',
-                        title: 'Type',
-                        render: (c) => <Value type={c.row as ValueDefinition}/>
-                    },
-                    {
-                        key: 'comment',
-                        title: 'Description',
-                        render: (c) => <Text children={(c.row as ValueDefinition).comment?.toString()}/>
-                    },
-                    {
-                        key: 'isOptional',
-                        title: 'Parameters',
-                        render: (c) => <Params type={c.row as ValueDefinition}/>
-                    },
-                    {
-                        key: 'tags',
-                        title: 'Default',
-                        render: (c) => <Text children={(c.row as ValueDefinition).tags?.default} />
-                    },
-                ]}
+                columns={props.columns}
                 data={types}
             />
         </Block>
