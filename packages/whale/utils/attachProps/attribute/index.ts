@@ -202,13 +202,18 @@ const createAttributes = <Styles, Props extends WhaleTypes.AllProps<unknown, Sty
         clipboard: {} as Pick<Props, keyof WhaleTypes.ClipboardEventProps<unknown>>,
         transition: {} as Pick<Props, keyof WhaleTypes.TransitionEventProps<unknown>>,
         composition: {} as Pick<Props, keyof WhaleTypes.CompositionEventProps<unknown>>,
-        scroll: {} as Pick<Props, keyof WhaleTypes.ScrollEventProps<unknown>>
+        scroll: {} as Pick<Props, keyof WhaleTypes.ScrollEventProps<unknown>>,
+        data: {} as Pick<Props, keyof unknown>
     }
 
     if (props) {
         Object.keys(props).forEach(propName => {
             if (resolver[propName]) {
                 allProps[resolver[propName]][propName] = props[propName]
+            } else {
+                if (propName.match('data-')) {
+                    allProps.data[propName] = props[propName]
+                }
             }
         })
     }
@@ -272,6 +277,7 @@ const createAttributes = <Styles, Props extends WhaleTypes.AllProps<unknown, Sty
                 allProps.transition,
                 allProps.composition,
                 allProps.scroll,
+                allProps.data,
             ),
             form: allProps.form,
             focus: allProps.focus,
@@ -288,6 +294,7 @@ const createAttributes = <Styles, Props extends WhaleTypes.AllProps<unknown, Sty
             transition: allProps.transition,
             composition: allProps.composition,
             scroll: allProps.scroll,
+            data: allProps.data,
         },
     }
 }

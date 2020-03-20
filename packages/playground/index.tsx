@@ -6,7 +6,7 @@ const Playground = () => {
 	const [value, setValue] = useState('')
 	return (
 		<Viewport>
-			<Block m={undefined}>
+			<Block data-d="123" m={undefined}>
 				1
 			</Block>
 		</Viewport>
