@@ -17,15 +17,17 @@ interface InterfaceProps {
 
 const sortTypes = (data: InterfaceDefinition, separatedTypes?: string[]) => {
     const self: InterfaceDefinition = Object.assign({}, data)
-    const extended: Record<string,InterfaceDefinition> = {}
+    const separated: Record<string,InterfaceDefinition> = {}
 
-    const getExtendedTypes = (type: InterfaceDefinition, cutted?: boolean) => {
+    const getExtendedTypes = (type: InterfaceDefinition, parent?: string) => {
         type.extendedTypes.map(innerType => {
-            if (separatedTypes && separatedTypes.includes(innerType.name) || cutted) {
-                if (innerType.children.length > 0) {
-                    extended[innerType.name] = innerType
+            if (separatedTypes && separatedTypes.includes(innerType.name) || parent) {
+                if (parent) {
+                    separated[parent].children = separated[parent].children.concat(innerType.children)
+                } else {
+                    separated[innerType.name] = innerType
                 } 
-                getExtendedTypes(innerType, true)
+                getExtendedTypes(innerType, parent || innerType.name)
             } else {
                 self.children = self.children.concat(innerType.children)
                 getExtendedTypes(innerType)
@@ -35,21 +37,22 @@ const sortTypes = (data: InterfaceDefinition, separatedTypes?: string[]) => {
 
     getExtendedTypes(data)
 
-    return { self, extended }
+    return { self, separated }
 }
 
 const Interface = (props: InterfaceProps) => {
 
     const [ activeName, setActiveName ] = useState(props.data.name) 
-    const { self, extended } = useMemo(() =>
-        sortTypes(props.data, props.separatedTypes)
-    ,[props])
-
+    const { self, separated } = useMemo(() => {
+        setActiveName(props.data.name)
+        return sortTypes(props.data, props.separatedTypes)
+    }, [props])
+    console.log(separated)
     const types = activeName === props.data.name 
         ? self.children 
-        : extended[activeName].children
+        : separated[activeName].children
 
-    const extendedNames = [props.data.name, ...Object.keys(extended)]
+    const extendedNames = [props.data.name, ...Object.keys(separated)]
     
     return (
         <Block>

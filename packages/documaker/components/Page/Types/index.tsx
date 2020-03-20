@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Block } from '@flow-ui/core'
+import { Grid } from '@flow-ui/core'
 import { Config } from '../../../core'
 import generatedTypes from '../../../definitions/types.json'
 import Interface from './Interface'

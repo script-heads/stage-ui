@@ -18,18 +18,15 @@ const config: Config = {
             'Styles'
         ],
         separatedTypes: [
-            'All',
-            'AllEvents',
             'Attributes',
-            'Core',
+            'Layout',
+            'Padding',
+            'Margin',
+            'Flex',
+            'Grid',
             'Colors',
             'Border',
-            'Padding',
-            'Layout',
-            'Self',
-            'Flow',
-            'Flex',
-            'Grid'
+            'Event',
         ],
         custom: {
             '/': HomePage,

@@ -1,4 +1,4 @@
-import { Block, Divider, Flexbox, Paragraph, Text } from '@flow-ui/core'
+import { Block, Text } from '@flow-ui/core'
 import React from 'react'
 
 type Reflection = {

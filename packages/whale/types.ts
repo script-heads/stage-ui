@@ -159,7 +159,7 @@ declare namespace WhaleTypes {
 
     /**
      * DOM events
-     * @name AllEvents
+     * @name Event
      */
     interface AllEventProps<T> extends
         FormEventProps<T>,
@@ -206,7 +206,7 @@ declare namespace WhaleTypes {
 
     /**
      * Component color styles props
-     * @name Colors
+     * @name Color
      */
     interface ColorProps {
         /**
