@@ -1,4 +1,4 @@
-import { Block, Viewport, TextField, Button, Select } from '@flow-ui/core'
+import { Block, Viewport, TextField, Button, ScrollView } from '@flow-ui/core'
 import Person from '@flow-ui/core/icons/svg/person'
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
@@ -34,11 +34,20 @@ const Playground = () => {
 	const [value, setValue] = useState('')
 	return (
 		<Viewport>
-			<TextField 
+			<ScrollView w="400px" h="400px" mode="always">
+				<div
+				css={{
+					background:'red',
+					width: '1000px',
+					height: '1000px'
+				}}
+				/>
+			</ScrollView>
+			{/* <TextField 
 				leftChild={<Test />}
 				value={value} 
 				onChange={(e) => setValue(e.target.value)}
-			/>
+			/> */}
 		</Viewport>
 	)
 }

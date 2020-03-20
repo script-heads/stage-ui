@@ -50,23 +50,24 @@ const Interface = (props: InterfaceProps) => {
         : extended[activeName].children
 
     const extendedNames = [props.data.name, ...Object.keys(extended)]
-    console.log(types)
     
     return (
         <Block>
-            <ScrollView mb="1rem">
-                <Flexbox>
-                    {extendedNames.map(name => (
-                        <Header
-                            key={name}
-                            mr="1.5rem"
-                            children={name}
-                            color={name === activeName ? 'onBackground' : 'light'}
-                            onClick={()=>setActiveName(name)}
-                        />
-                    ))}
-                </Flexbox>
-            </ScrollView>
+            <div style={{ position: 'relative', paddingBottom: '0.5rem', marginBottom: '0.5rem'}}>
+                <ScrollView size="xs">
+                    <Flexbox>
+                        {extendedNames.map(name => (
+                            <Header
+                                key={name}
+                                mr="1.5rem"
+                                children={name}
+                                color={name === activeName ? 'onBackground' : 'light'}
+                                onClick={()=>setActiveName(name)}
+                            />
+                        ))}
+                    </Flexbox>
+                </ScrollView>
+            </div>
             <Table
                 columns={[
                     {

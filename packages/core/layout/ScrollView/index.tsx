@@ -36,7 +36,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         scrollTop: () => {
             if (isLegacyScrollSupport) {
                 if (memo.container) {
-                    memo.container.scrollTo(0,0)
+                    memo.container.scrollTo(0, 0)
                 }
             } else {
                 updateScroll({
@@ -82,14 +82,24 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         mode: mode || 'scroll'
     }), [])
 
-    const updateY = (e: Types.ScrollParams) => {
+    const updateThumb = (e: Types.ScrollParams, axes: 'x' | 'y') => {
         if (!memo.content || !memo.container) return
+        const isX = axes === 'x'
+        const vScrollSize = isX ? 'scrollWidth' : 'scrollHeight'
+        const vScrollDirection = isX ? 'scrollLeft' : 'scrollTop'
+        const vOffsetSize = isX ? 'offsetWidth' : 'offsetHeight'
+        const vOffsetDirection = isX ? 'offsetLeft' : 'offsetTop'
+        const vDelta = isX ? 'deltaX' : 'deltaY'
+        const vSize = isX ? 'width' : 'height'
+        const vDirection = isX ? 'left' : 'top'
 
-        const total = memo.content.scrollHeight
-        const content = memo.container.offsetHeight
+        const total = memo.content[vScrollSize]
+        const content = memo.container[vOffsetSize]
+        const bar = isX ? memo.xBar : memo.yBar
+        const thumb = isX ? memo.xThumb : memo.yThumb
 
-        if (memo.yBar) {
-            memo.yBar.style.visibility = total > content ? 'visible' : 'hidden'
+        if (bar) {
+            bar.style.visibility = total > content ? 'visible' : 'hidden'
         }
 
         if (total <= content) {
@@ -97,28 +107,37 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         }
 
         const ratio = (content / total) * 100
-        const offset = -memo.container.scrollTop | memo.content.offsetTop
+        const offset = -memo.container[vScrollDirection] | memo.content[vOffsetDirection]
 
-        let delta = e.deltaY || 0
+        let delta = e[vDelta] || 0
 
         if (e.cursorHandle) {
             delta = delta * 100 / ratio
         }
 
-        let value = offset - delta
+        const value = offset - delta
 
-        if (memo.yBar && memo.yThumb) {
-            memo.yBar.style.height = content + 'px'
-            memo.yThumb.style.height = content * ratio / 100 + 'px'
-            memo.yThumb.style.transform = `translateY(${-(value * ratio / 100)}px)`
+        // stop as start
+        if (value > 0) {
+            return
+        }
+        
+        // stop at end
+        if (-value > total - content) {
+            return
+        }
+
+        if (bar && thumb) {
+            bar.style[vSize] = content + 'px'
+            thumb.style[vSize] = content * ratio / 100 + 'px'
+            thumb.style.transform = `translate${isX ? 'X' : 'Y'}(${-(value * ratio / 100)}px)`
         }
 
         if (!isLegacyScrollSupport) {
             if (offset !== value || value === 0) {
-                memo.content.style.top = value + 'px'
+                memo.content.style[vDirection] = value + 'px'
                 e.preventDefault()
                 e.stopPropagation()
-    
                 return true
             }
         } else {
@@ -126,54 +145,6 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             e.stopPropagation()
             return true
         }
-        return false
-    }
-
-    const updateX = (e: Types.ScrollParams) => {
-        if (!memo.content || !memo.container) return
-
-        const total = memo.content.scrollWidth
-        const content = memo.container.offsetWidth
-
-        if (memo.xBar) {
-            memo.xBar.style.visibility = total > content ? 'visible' : 'hidden'
-        }
-
-        if (total <= content) {
-            return false
-        }
-
-        const ratio = (content / total) * 100
-        const offset = -memo.container.scrollLeft | memo.content.offsetLeft
-
-        let delta = e.deltaX
-
-        if (e.cursorHandle) {
-            delta = delta * 100 / ratio
-        }
-
-        let value = offset + -delta
-
-        if (memo.xBar && memo.xThumb) {
-            memo.xBar.style.width = content + 'px'
-            memo.xThumb.style.width = content * ratio / 100 + 'px'
-            memo.xThumb.style.transform = `translateX(${-(value * ratio / 100)}px)`
-        }
-
-        if (!isLegacyScrollSupport) {
-            if (offset !== value || value === 0) {
-                memo.content.style.left = value + 'px'
-                e.preventDefault()
-                e.stopPropagation()
-    
-                return true
-            }
-        } else {
-            e.preventDefault()
-            e.stopPropagation()
-            return true
-        }
-
         return false
     }
 
@@ -183,14 +154,18 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         e.preventDefault()
         const rect = memo[memo.x ? 'xThumb' : 'yThumb']?.getBoundingClientRect()
         if (rect && memo.container) {
-            const delta = memo.x ? e.pageX : e.pageY
-                - rect[memo.x ? 'x' : 'y']
-                - rect[memo.x ? 'width' : 'height'] / 2
+            let delta = 0
+            if (memo.x) {
+                delta = e.pageX - rect.x - rect.width / 2
+            }
+            if (memo.y) {
+                delta = e.pageY - rect.y - rect.height / 2
+            }
             if (isLegacyScrollSupport) {
                 const currentScroll = memo.container[memo.x ? 'scrollLeft' : 'scrollTop']
                 memo.container?.scrollTo(
-                    memo.x ? currentScroll + delta : 0, 
-                    memo.y ? currentScroll + delta : 0,
+                    memo.x ? currentScroll + delta : memo.container.scrollLeft,
+                    memo.y ? currentScroll + delta : memo.container.scrollTop,
                 )
             } else {
                 updateScroll({
@@ -202,15 +177,15 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             }
         }
     }, [])
-    
+
     const updateScroll = useMemo(() => (e: Types.ScrollParams) => {
         if (!memo.container || !memo.content) {
             return
         }
         if (isTouchScreenSupport === false) {
-            const y = updateY(e)
-            const x = updateX(e)
-    
+            const y = updateThumb(e, 'y')
+            const x = updateThumb(e, 'x')
+
             if ((y || x) && memo.mode === 'scroll') {
                 setActive(true)
                 if (memo.timeout) {
@@ -222,14 +197,14 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                 }, 500)
             }
         }
-        
+
         const event = {
             scrollTop: memo.container.scrollTop || memo.content.offsetTop,
             scrollLeft: memo.container.scrollLeft || memo.content.offsetLeft,
             scrollWidth: memo.content.offsetWidth,
             scrollHeight: memo.content.offsetHeight,
         }
-        
+
         props.onScroll?.(event)
         /**
          * Was issue with <Drop/> updateLayoyt
@@ -357,7 +332,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
             <div
                 {...attributes}
                 {...events.all}
-                onScroll={e => updateScroll(e as any)}
+                onScroll={updateScroll}
                 css={isLegacyScrollSupport ? cs.legacy : cs.container}
                 ref={createRef}
                 children={(
@@ -368,44 +343,48 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                     />
                 )}
             />
-            <div
-                css={cs.yBar({ active, size, shape, position: yBarPosition })}
-                ref={ref => memo.yBar = ref}
-                children={(
-                    <span
-                        css={cs.yThumb({ active, size, shape })}
-                        ref={ref => memo.yThumb = ref}
+            {mode !== 'hidden' && (
+                <>
+                    <div
+                        css={cs.yBar({ active, size, shape, position: yBarPosition })}
+                        ref={ref => memo.yBar = ref}
+                        children={(
+                            <span
+                                css={cs.yThumb({ active, size, shape })}
+                                ref={ref => memo.yThumb = ref}
+                            />
+                        )}
+                        onMouseEnter={() => {
+                            window.addEventListener('mouseup', mouseUp)
+                        }}
+                        onMouseDown={(e) => {
+                            yMouseDown()
+                            scrollToHandle(e)
+                            window.addEventListener('mousemove', scrollToHandle)
+                        }}
+                        onMouseUp={mouseUp}
                     />
-                )}
-                onMouseEnter={() => {
-                    window.addEventListener('mouseup', mouseUp)
-                }}
-                onMouseDown={(e) => {
-                    yMouseDown()
-                    scrollToHandle(e)
-                    window.addEventListener('mousemove', scrollToHandle)
-                }}
-                onMouseUp={mouseUp}
-            />
-            <div
-                css={cs.xBar({ active, size, shape, position: xBarPosition })}
-                ref={ref => memo.xBar = ref}
-                children={(
-                    <span
-                        css={cs.xThumb({ active, size, shape })}
-                        ref={ref => memo.xThumb = ref}
+                    <div
+                        css={cs.xBar({ active, size, shape, position: xBarPosition })}
+                        ref={ref => memo.xBar = ref}
+                        children={(
+                            <span
+                                css={cs.xThumb({ active, size, shape })}
+                                ref={ref => memo.xThumb = ref}
+                            />
+                        )}
+                        onMouseEnter={() => {
+                            window.addEventListener('mouseup', mouseUp)
+                        }}
+                        onMouseDown={(e) => {
+                            xMouseDown()
+                            scrollToHandle(e)
+                            window.addEventListener('mousemove', scrollToHandle)
+                        }}
+                        onMouseUp={mouseUp}
                     />
-                )}
-                onMouseEnter={() => {
-                    window.addEventListener('mouseup', mouseUp)
-                }}
-                onMouseDown={(e) => {
-                    xMouseDown()
-                    scrollToHandle(e)
-                    window.addEventListener('mousemove', scrollToHandle)
-                }}
-                onMouseUp={mouseUp}
-            />
+                </>
+            )}
         </>
     )
 }
