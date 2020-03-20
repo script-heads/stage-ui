@@ -5,7 +5,7 @@ import WhalePropsTypes from '../../types'
  * into single css string
  */
 const resolver: WhalePropsTypes.StyleResolver = (params) => {
-    if (params.propValue) {
+    if (params.propValue !== void 0) {
         let { propName: n, propValue, ctx, theme } = params,
             k = n[0] == 'p' ? 'padding' : 'margin',
             x = n[1] == 'x', y = n[1] == 'y',
