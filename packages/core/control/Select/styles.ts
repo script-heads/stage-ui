@@ -114,14 +114,15 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePara
             })
         ],
 
-        selectedContainer: [{
+        selected: [{
             display: 'flex',
             flexWrap: 'wrap',
             margin: `calc(${minHeight} / 10) 0`,
             // marginLeft: 0,
             // marginBottom: `calc(${minHeight} / 5)`,
         }],
-        selectedInput: (variant) => [
+        
+        input: (variant) => [
             {
                 flex: 1,
                 outline: 0,

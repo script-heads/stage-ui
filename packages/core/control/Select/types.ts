@@ -1,5 +1,4 @@
 import FieldTypes from '../../misc/hocs/Field/types'
-import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace SelectTypes {
     interface Option {
@@ -8,10 +7,16 @@ declare namespace SelectTypes {
     }
 
     interface Props extends Omit<FieldTypes.Props<Styles>, 'onChange'> {
+        /**
+         * Content to be appear in the form control when the form control is empty
+         */
         placeholder?: string
+        /**
+         * Items contained in Select
+         */
         options: Option[]
         /**
-         * Allow selecting multiple values
+         * Allow selecting multiple options
          */
         multiselect?: boolean
         /**
@@ -19,17 +24,25 @@ declare namespace SelectTypes {
          */
         searchable?: boolean
         /**
-         * Select will not close after
-         * option clicked
+         * Select's drop will not close after select option
          */
         keepOpen?: boolean
+        /**
+         * Selected options
+         */
         values?: Option[]
+        /**
+         * Options selected by default
+         */
         defaultValues?: Option[]
         /**
-         * Max size of scroll area
-         * at select drop view
+         * Max size of scroll area at select's drop
          */
         maxScrollHeight?: string
+        /**
+         * Max size of scroll area at select's drop
+         * @default 16rem
+         */
         onChange?: (values: Option[], changedValue?: Option) => void
     }
 
@@ -39,22 +52,6 @@ declare namespace SelectTypes {
         searchValue: string
         empty: boolean
         cursor: number
-    }
-
-    interface OptionsProps extends SearchProps {
-        selected: SelectTypes.Option[]
-        onClose: (option) => void
-        searchable?: boolean
-        size: WhaleTypes.Size
-    }
-
-    interface SearchProps {
-        searchValue: string
-        onSearch: (searchValue: string) => void
-        styles: WhaleTypes.ComponentStyles<Styles>
-        placeholder?: string
-        defaultValue?: string
-        disabled?: boolean
     }
 
     interface StyleState extends StyleParams{
@@ -69,15 +66,32 @@ declare namespace SelectTypes {
     interface Styles extends FieldTypes.Styles<{
         container: StyleState
     }> {
-        selectedContainer: void
-        selectedInput: {
+        /**
+         * Container for selected items
+         */
+        selected: void
+        /**
+         * Select's input
+         */
+        input: {
             searchMode: boolean
             multiselect: boolean
         }
+        /**
+         * Container of selected option in multiselect
+         */
         tag: StyleState
+        /**
+         * Close button for selected option in multiselect
+         */
         tagRemove: StyleState
-
+        /**
+         * Select's drop container
+         */
         drop: StyleState
+        /**
+         * Container of every item in drop
+         */
         dropItem: StyleState
     }
 }

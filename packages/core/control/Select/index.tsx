@@ -208,7 +208,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                     />
                 )}
                 children={(
-                    <div css={cs.selectedContainer}>
+                    <div css={cs.selected}>
                         {props.multiselect && values.map(option => (
                             <div css={cs.tag(styleState)} key={option.value}>
                                 {option.text}
@@ -226,7 +226,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                         <input
                             size={5}
                             disabled={!props.searchable}
-                            css={cs.selectedInput({
+                            css={cs.input({
                                 searchMode: searchQuery !== '',
                                 multiselect: !!props.multiselect
                             })}
