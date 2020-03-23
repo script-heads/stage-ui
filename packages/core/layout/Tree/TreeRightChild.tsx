@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Types from './types'
 
 const TreeRightChild = (props: Types.TreeRightChildProps) => {
@@ -8,9 +8,9 @@ const TreeRightChild = (props: Types.TreeRightChildProps) => {
         children = children(options)
     }
     return (
-        <>
+        <Fragment>
             {children}
-        </>
+        </Fragment>
     )
 }
 

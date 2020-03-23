@@ -1,6 +1,6 @@
 import { ArchitectTools } from '@flow-ui/architect/types'
 import { ScrollView, Flexbox, Text, Block } from '@flow-ui/core'
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { AddPanelStyles } from './styles'
 import * as IconScope from '@flow-ui/core/icons'
 import components, { Init } from '../../components'
@@ -29,7 +29,7 @@ const ComponentsView = (props: { search: string, styles: AddPanelStyles }) => {
     const [currentComponent, setCurrentComponent] = useState('')
 
     return (
-        <>
+        <Fragment>
             <ScrollView size="xs" css={{ width: '100%' }}>
                 <Block
                     style={{
@@ -78,7 +78,7 @@ const ComponentsView = (props: { search: string, styles: AddPanelStyles }) => {
                     })}
                 </Block>
             </ScrollView>
-        </>
+        </Fragment>
     )
 }
 

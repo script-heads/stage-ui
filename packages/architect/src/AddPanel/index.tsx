@@ -1,6 +1,6 @@
 import { Block, Divider, Flexbox, Menu, TextField, useTheme } from '@flow-ui/core'
 import { Grid, Layers, Search } from '@flow-ui/core/icons'
-import { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import ComponentsView from './ComponentsView'
 import IconsView from './IconsView'
 import styles from './styles'
@@ -18,7 +18,7 @@ const AddPanel = () => {
     const [currentComponent, setCurrentComponent] = useState('')
 
     return (
-        <>
+        <Fragment>
             <div
                 css={cs.backgroundLayer}
                 onClick={() => {
@@ -70,7 +70,7 @@ const AddPanel = () => {
                     )}
                 </Flexbox>
             </div>
-        </>
+        </Fragment>
     )
 }
 export default AddPanel

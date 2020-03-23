@@ -1,5 +1,5 @@
 import { Block, Divider, Header, ScrollView, Text } from '@flow-ui/core'
-import { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import { context } from '../..'
 import { AddPanelStyles } from './styles'
 
@@ -8,7 +8,7 @@ const ComponentsView = (props: { search: string, styles: AddPanelStyles }) => {
     const [currentComponent, setCurrentComponent] = useState('')
 
     return (
-        <>
+        <Fragment>
             <ScrollView size="xs" css={{ width: '15rem' }}>
                 {Object.keys(context.tools.components).map(component => (
                     component.toUpperCase().match(props.search.toUpperCase()) ? (
@@ -37,13 +37,13 @@ const ComponentsView = (props: { search: string, styles: AddPanelStyles }) => {
             <Divider vertical color={c => c.lightest} />
             <Block p="2rem">
                 {currentComponent !== '' ? (
-                    <>
+                    <Fragment>
                         <Header>{currentComponent}</Header>
                         <Text
                             color={c => c.light}
                             children="No description."
                         />
-                    </>
+                    </Fragment>
                 ) : (
                         <Text
                             color={c => c.light}
@@ -52,7 +52,7 @@ const ComponentsView = (props: { search: string, styles: AddPanelStyles }) => {
                     )}
 
             </Block>
-        </>
+        </Fragment>
     )
 }
 export default ComponentsView
