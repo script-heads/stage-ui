@@ -1,10 +1,8 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Link } from '@flow-ui/core'
 
 export default () => {
     return (
-        <Fragment>
-            <Link>Link</Link>
-        </Fragment>
+        <Link>go to</Link>
     )
 }
