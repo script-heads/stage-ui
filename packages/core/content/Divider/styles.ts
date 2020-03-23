@@ -4,17 +4,24 @@ import Types from './types'
 
 const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
     
-    let { gap = 0, dash = 0, vertical } = props
+    let { gap = 0, dash = 1, vertical } = props
     const color = colorProp(theme, props.color)?.rgb().string() || theme.assets.border.color
-    
-    if (gap && !dash) {
-        dash = 1
-    }
 
     if (dash && !gap) {
         gap = dash
     }
-    
+
+    gap = theme.spacing[gap] || gap
+    dash = theme.spacing[dash] || dash
+
+    if (typeof(gap) === 'number') {
+        gap = `${gap}px`
+    }
+
+    if (typeof(dash) === 'number') {
+        dash = `${dash}px`
+    }
+
     return {
         container: [
             vertical
@@ -26,12 +33,12 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                             backgroundImage: `linear-gradient(
                             to bottom,
                             ${color},
-                            ${color} ${dash}px,
-                            transparent ${dash}px, 
-                            transparent ${gap}px 
+                            ${color} ${dash},
+                            transparent ${dash}, 
+                            transparent ${gap} 
                         )`,
                             backgroundPosition: 'right top',
-                            backgroundSize: `${props.w || '1px'} ${gap + dash}px`,
+                            backgroundSize: `${props.w || '1px'} calc(${gap} + ${dash}) calc(${gap} + ${dash})`,
                             backgroundRepeat: 'repeat-y',
                         }
                         : {
@@ -46,12 +53,12 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                             backgroundImage: `linear-gradient(
                             to right,
                             ${color},
-                            ${color} ${dash}px,
-                            transparent ${dash}px, 
-                            transparent ${gap}px 
+                            ${color} ${dash},
+                            transparent ${dash}, 
+                            transparent ${gap} 
                         )`,
                             backgroundPosition: 'left bottom',
-                            backgroundSize: `${gap + dash}px`,
+                            backgroundSize: `calc(${gap} + ${dash}) calc(${gap} + ${dash})`,
                             backgroundRepeat: 'repeat-x',
                         }
                         : {

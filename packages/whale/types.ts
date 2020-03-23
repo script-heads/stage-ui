@@ -309,45 +309,45 @@ declare namespace WhaleTypes {
         /**
          * Padding alias
          * @breakpointify
-         * @displayType string | number
+         * @displayType Size | string | number
          */
-        p?: Breakpointify<string | number>
+        p?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
          * Padding horizontal alias
          * @breakpointify
-         * @displayType string | number
+         * @displayType Size | string | number
          */
-        px?: Breakpointify<string | number>
+        px?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
          * Padding vertical alias
          * @breakpointify
-         * @displayType string | number
+         * @displayType Size | string | number
          */
-        py?: Breakpointify<string | number>
+        py?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
          * PaddingRight alias
          * @breakpointify
-         * @displayType string | number
+         * @displayType Size | string | number
          */
-        pr?: Breakpointify<string | number>
+        pr?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
          * PaddingLeft alias
          * @breakpointify
-         * @displayType string | number
+         * @displayType Size | string | number
          */
-        pl?: Breakpointify<string | number>
+        pl?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
          * PaddingTop alias
          * @breakpointify
-         * @displayType string | number
+         * @displayType Size | string | number
          */
-        pt?: Breakpointify<string | number>
+        pt?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
          * PaddingBottom alias
          * @breakpointify
-         * @displayType string | number
+         * @displayType Size | string | number
          */
-        pb?: Breakpointify<string | number>
+        pb?: Breakpointify<Size | (string & { T?: string}) | number>
     }
 
     /**
@@ -358,45 +358,45 @@ declare namespace WhaleTypes {
         /**
          * Margin alias
          * @breakpointify
-         * @displayType string | number
+         * @displayType Size | string | number
          */
-        m?: Breakpointify<string | number>
+        m?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
          * Margin horizontal alias
          * @breakpointify
-         * @displayType string | number
+         * @displayType Size | string | number
          */
-        mx?: Breakpointify<string | number>
+        mx?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
          * Margin vertical alias
          * @breakpointify
-         * @displayType string | number
+         * @displayType Size | string | number
          */
-        my?: Breakpointify<string | number>
+        my?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
          * MarginRight alias
          * @breakpointify
-         * @displayType string | number
+         * @displayType Size | string | number
          */
-        mr?: Breakpointify<string | number>
+        mr?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
          * MarginLeft alias
          * @breakpointify
-         * @displayType string | number
+         * @displayType Size | string | number
          */
-        ml?: Breakpointify<string | number>
+        ml?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
          * MarginTop alias
          * @breakpointify
-         * @displayType string | number
+         * @displayType Size | string | number
          */
-        mt?: Breakpointify<string | number>
+        mt?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
          * MarginBottom alias
          * @breakpointify
-         * @displayType string | number
+         * @displayType Size | string | number
          */
-        mb?: Breakpointify<string | number>
+        mb?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
          * Sets how an element is positioned in a document. 
          * The top, right, bottom, and left properties determine 
