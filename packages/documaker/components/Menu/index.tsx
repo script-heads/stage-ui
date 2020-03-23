@@ -3,6 +3,7 @@ import ThemeSwitcher, { ThemeSwitcherProps } from '../ThemeSwitcher'
 import { Github, Brush } from '@flow-ui/core/icons'
 import { panel } from '@flow-ui/themer/src/ThemeConfigurator'
 import { useTheme } from '@flow-ui/core'
+import corePackage from '../../../core/package.json'
 
 export interface MenuProps extends ThemeSwitcherProps {
 	title?: string
@@ -44,6 +45,12 @@ const Menu = (props: MenuProps) => {
 						
 					}}
 					children="β"
+				/>
+				<Text 
+					size="xs"
+					ml="0.25rem"
+					textColor="light"
+					children={`v.${corePackage.version}`}
 				/>
 			</Block>
 			<Flexbox>
