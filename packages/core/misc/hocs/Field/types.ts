@@ -3,19 +3,62 @@ import WhaleTypes from '@flow-ui/whale/types'
 declare namespace FieldTypes {
 
     interface Props<S = Styles> extends Omit<WhaleTypes.AllProps<HTMLInputElement, S>, 'onChange'> {
+        /**
+         * Label for field
+         */
         label?: React.ReactNode
+        /**
+         * Define where label be placed
+         */
         labelType?: 'none' | 'outside' |'inside'
+        /**
+         * Place for hint content
+         */
         hint?: React.ReactNode
+        /**
+         * Size of field
+         * @default m
+         */
         size?: WhaleTypes.Size
+        /**
+         * Defines how field look
+         * @default filled
+         */
         decoration?: 'none' | 'filled' | 'underline' | 'outline'
-        color?: WhaleTypes.ColorProp,
+        /**
+         * Color of field
+         * @default surface
+         */
+        color?: WhaleTypes.ColorProp
+        /**
+         * Shape of field
+         * @default rounded
+         */
         shape?: 'round' | 'rounded' | 'square'
+        /**
+         * Prevents the user from interacting
+         */
         disabled?: boolean
+        /**
+         * Place for items to the left of value
+         */
         rightChild?: React.ReactNode
+        /**
+         * Place for items to the left of value
+         */
         leftChild?: React.ReactNode
+        /**
+         * Allow user clear value
+         */
         clearable?: boolean
 
+        /**
+         * Event is fired when user press Enter
+         */
         onEnter?: () => void
+        /**
+         * Event is fired when user clear value
+         */
         onClear?: () => void
     }
 
@@ -29,14 +72,35 @@ declare namespace FieldTypes {
     }
 
     interface Styles<T extends {[T in keyof Styles]?: Object} = {}> {
+        /**
+         * Root element
+         */
         container: State & T['container']
+        /**
+         * Container of field
+         */
         field: State & T['field']
+        /**
+         * Container of field content
+         */
         content: State & T['content']
+        /**
+         * Label element
+         */
         label: State & T['label']
+        /**
+         * Container for left and right childs
+         */
         child: {
             align: 'right' | 'left'
         } & State & T['child']
+        /**
+         * The button that clear value
+         */
         clearButton: State & T['clearButton']
+        /**
+         * Container of hint
+         */
         hint: State & T['hint']
     }
 
