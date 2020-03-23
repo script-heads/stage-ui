@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Text } from '@flow-ui/core'
 import Types from './types'
 
@@ -18,9 +18,9 @@ const TreeLabel = (props: Types.TreeLabelProps) => {
         children = children(options)
     }
     return (
-        <>
+        <Fragment>
             {children}
-        </>
+        </Fragment>
     )
 }
 

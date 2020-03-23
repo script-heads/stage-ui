@@ -37,6 +37,7 @@
   },
   "peerDependencies": {
     "@emotion/core": "^10.0.0",
-    "react": "^16.0.0"
+    "react": "*",
+    "react-dom": "*"
   }
 }

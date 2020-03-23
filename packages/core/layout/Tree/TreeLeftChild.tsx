@@ -1,5 +1,5 @@
 import { ArrowIosForward } from '@flow-ui/core/icons'
-import React from 'react'
+import React, { Fragment } from 'react'
 import Types from './types'
 
 const TreeLeftChild = (props: Types.TreeLeftChildProps) => {
@@ -9,14 +9,14 @@ const TreeLeftChild = (props: Types.TreeLeftChildProps) => {
         children = children(options)
     }
     return (
-        <>
+        <Fragment>
             {children !== undefined ? children : (
                 <ArrowIosForward
                     rotate={options.isOpen ? 90 : 0}
                     className={className}
                 />
             )}
-        </>
+        </Fragment>
     )
 }
 

@@ -13,9 +13,9 @@
     "file-loader": "^5.0.2",
     "monaco-editor": "^0.19.2",
     "monaco-editor-webpack-plugin": "^1.8.2",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.5",
@@ -29,8 +29,8 @@
     "@babel/preset-react": "^7.7.4",
     "@babel/preset-typescript": "^7.7.4",
     "@types/node": "^12.12.18",
-    "@types/react": "^16.9.16",
-    "@types/react-dom": "^16.8.4",
+    "@types/react": "^16.9.23",
+    "@types/react-dom": "^16.9.5",
     "@types/webpack-env": "^1.14.1",
     "babel-loader": "^8.0.6",
     "babel-plugin-emotion": "^10.0.29",
@@ -50,6 +50,8 @@
     "webpack-filter-warnings-plugin": "^1.2.1"
   },
   "peerDependencies": {
-    "@emotion/core": "^10.0.0"
+    "@emotion/core": "*",
+    "react": "*",
+    "react-dom": "*"
   }
 }

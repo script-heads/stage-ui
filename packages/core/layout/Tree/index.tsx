@@ -94,7 +94,7 @@ const Tree: RefForwardingComponent<HTMLDivElement, Types.Props> = (props: Types.
                     onClick={openHandle}
                     alignItems="center"
                     children={(
-                        <>
+                        <Fragment>
                             <TreeLeftChild
                                 css={cs.arrow(variant)}
                                 options={options}
@@ -112,7 +112,7 @@ const Tree: RefForwardingComponent<HTMLDivElement, Types.Props> = (props: Types.
                                 size={size}
                                 children={rightChild}
                             />
-                        </>
+                        </Fragment>
                     )}
                 />
             )}

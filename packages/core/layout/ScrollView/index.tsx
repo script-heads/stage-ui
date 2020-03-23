@@ -1,5 +1,5 @@
 import { useComponent } from '@flow-ui/whale'
-import React, { forwardRef, useEffect, useMemo, useState, useImperativeHandle, RefForwardingComponent } from 'react'
+import React, { Fragment, forwardRef, useEffect, useMemo, useState, useImperativeHandle, RefForwardingComponent } from 'react'
 import styles from './styles'
 import Types from './types'
 import isWebKit from '@flow-ui/core/misc/utils/isWebKit'
@@ -328,7 +328,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
     }, [])
 
     return (
-        <>
+        <Fragment>
             <div
                 {...attributes}
                 {...events.all}
@@ -344,7 +344,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                 )}
             />
             {mode !== 'hidden' && (
-                <>
+                <Fragment>
                     <div
                         css={cs.yBar({ active, size, shape, position: yBarPosition })}
                         ref={ref => memo.yBar = ref}
@@ -383,9 +383,9 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                         }}
                         onMouseUp={mouseUp}
                     />
-                </>
+                </Fragment>
             )}
-        </>
+        </Fragment>
     )
 }
 

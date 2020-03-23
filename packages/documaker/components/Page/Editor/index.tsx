@@ -1,5 +1,5 @@
 import { Block, Flexbox, Text, useTheme } from '@flow-ui/core'
-import { Collapse, Expand, Grid } from '@flow-ui/core/icons'
+import { Collapse, Expand, Grid, Copy } from '@flow-ui/core/icons'
 import { PageType } from '@flow-ui/documaker/core'
 import monaco from '@flow-ui/documaker/monaco'
 import { Split } from '@flow-ui/lab'
@@ -7,6 +7,8 @@ import React, { Fragment, useEffect, useState } from 'react'
 import ErrorBoundary from './ErrorBoundary'
 import Preview from './Preview'
 import Color from 'color'
+import { Divider } from '@flow-ui/core'
+import { notify } from '@flow-ui/core'
 
 interface EditorProps {
     cases: Exclude<PageType['cases'], undefined>
@@ -101,7 +103,7 @@ const Editor = (props: EditorProps) => {
 
     return (
         <Block w="100%">
-            <Flexbox mt="1.5rem" p="1rem" decoration="surface" alignItems="center" css={{
+            <Flexbox mt="1.5rem" p="1rem" decoration="surface" alignItems="stretch" css={{
                 borderBottom: 0,
                 borderBottomLeftRadius: 0,
                 borderBottomRightRadius: 0,
@@ -123,7 +125,6 @@ const Editor = (props: EditorProps) => {
                 <Block flex={1} />
                 <Grid
                     size="1.25rem"
-                    mr="1rem"
                     color={c => grid
                         ? c.primary
                         : c.onSurface
@@ -137,11 +138,27 @@ const Editor = (props: EditorProps) => {
                         )
                         setGrid(!grid)
                     }}
+                    mx="0.5rem"
                 />
                 <Expand
                     size="1.25rem"
+                    mx="0.5rem"
                     color={c => c.onSurface}
                     onClick={() => setFullscreen(true)}
+                />
+                <Divider vertical mx="0.5rem"/>
+                <Copy
+                    ml="0.5rem"
+                    size="1.25rem"
+                    color={c => c.onSurface}
+                    onClick={() => {
+                        monaco.copyToClipboard()
+                        notify({
+                            title: 'UI Editor',
+                            message: 'Code copied to clipboard!',
+                            timeout: 3000
+                        })
+                    }}
                 />
             </Flexbox>
             <Block
