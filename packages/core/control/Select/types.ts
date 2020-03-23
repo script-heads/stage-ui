@@ -7,7 +7,7 @@ declare namespace SelectTypes {
         value: any
     }
 
-    interface Props extends Omit<FieldTypes.Props, 'onChange'> {
+    interface Props extends Omit<FieldTypes.Props<Styles>, 'onChange'> {
         placeholder?: string
         options: Option[]
         /**

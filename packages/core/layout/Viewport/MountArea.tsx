@@ -14,6 +14,7 @@ const MountArea: FC<ViewportTypes.MountArea> = (props) => {
         flexDirection: 'column',
         top: '2rem',
         right: '2rem',
+        zIndex: 1000,
         '>*': {
             marginBottom: '1rem'
         }
