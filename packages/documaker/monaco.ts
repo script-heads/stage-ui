@@ -132,6 +132,15 @@ class Monaco {
         addEventListener('keydown', this.keydown)
     }
 
+    public copyToClipboard() {
+        const el = document.createElement('textarea')
+        el.value = this.code
+        document.body.appendChild(el)
+        el.select()
+        document.execCommand('copy')
+        document.body.removeChild(el)
+    }
+    
     public waitEditor () {
         return new Promise((resolve, reject) => {
             const check = async () => {

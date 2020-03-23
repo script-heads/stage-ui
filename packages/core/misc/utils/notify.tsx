@@ -19,8 +19,8 @@ export default (options: NotificationType.NotifyOptions) => {
                 ) : (
                         <Flexbox p="1rem" w={'20rem'}>
                             <Block flex={1} css={{ overflow: 'hidden' }}>
-                                <Header size="s" ellipsis>{options.title}</Header>
-                                <Paragraph>{options.message}</Paragraph>
+                                <Header m={0} size="s" ellipsis>{options.title}</Header>
+                                <Paragraph m={0}>{options.message}</Paragraph>
                             </Block>
                             <Block pl="0.5rem">
                                 <Close
