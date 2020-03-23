@@ -103,6 +103,7 @@ module.exports = function (workdir = path.resolve(__dirname + '/../docs')) {
      */
     plugins.push(new CopyWebPack([
         { from: ProjectDIR + 'public/index.html' },
+        { from: ProjectDIR + 'server.js' },
         /**
          * definitions for monaco TSLint
          */

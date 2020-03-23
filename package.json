@@ -25,7 +25,7 @@
     "pub:whale": "cd ./packages/whale && yarn pub",
     "gitpush": "git commit . -m 'Update version' && git push",
     "build": "cd ./packages/documaker && yarn build",
-    "form": "cd ./packages/documaker && pm2 start --name FlowUI server.js"
+    "form": "cd ./build/documaker && pm2 start --name FlowUI server.js"
   },
   "dependencies": {
     "tslint": "^6.0.0",

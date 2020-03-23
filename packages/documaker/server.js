@@ -3,13 +3,12 @@ const express = require('express')
 const path = require('path')
 const app = express()
 const port = process.env.port || '3000'
-const static = path.resolve(`${__dirname}/../../build/documaker/`)
 
 app.use(compression())
-app.use(express.static(static))
+app.use(express.static(__dirname))
 
 app.get('*', (req, res) => {
-    res.sendFile(`${static}/index.html`)
+    res.sendFile(`${__dirname}/index.html`)
 })
 
 app.listen(port)
