@@ -1,6 +1,6 @@
 import React, { forwardRef, RefForwardingComponent } from 'react'
 import Typography from '@flow-ui/core/misc/hocs/Typography'
-import Types from '@flow-ui/core/misc/hocs/Typography/types'
+import Types from './types'
 
 const Text: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref) =>
     <Typography 

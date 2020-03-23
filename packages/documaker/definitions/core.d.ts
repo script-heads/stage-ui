@@ -217,33 +217,83 @@ declare module 'misc/hocs/Typography' {
 	export default _default;
 
 }
+declare module 'content/Header/types' {
+	import TypographyTypes from '@flow-ui/core/@flow-ui/core/misc/hocs/Typography/types'; namespace HeaderTypes {
+	    interface Props extends TypographyTypes.Props {
+	    }
+	    interface Styles extends TypographyTypes.Styles {
+	    }
+	}
+	export default HeaderTypes;
+
+}
 declare module 'content/Header' {
 	import React from 'react';
-	import Types from '@flow-ui/core/@flow-ui/core/misc/hocs/Typography/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
+	import Types from 'content/Header/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
+
+}
+declare module 'content/Display/types' {
+	import TypographyTypes from '@flow-ui/core/@flow-ui/core/misc/hocs/Typography/types'; namespace DisplayTypes {
+	    interface Props extends TypographyTypes.Props {
+	    }
+	    interface Styles extends TypographyTypes.Styles {
+	    }
+	}
+	export default DisplayTypes;
 
 }
 declare module 'content/Display' {
 	import React from 'react';
-	import Types from '@flow-ui/core/@flow-ui/core/misc/hocs/Typography/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
+	import Types from 'content/Display/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
+
+}
+declare module 'content/Paragraph/types' {
+	import TypographyTypes from '@flow-ui/core/@flow-ui/core/misc/hocs/Typography/types'; namespace ParagraphTypes {
+	    interface Props extends TypographyTypes.Props {
+	    }
+	    interface Styles extends TypographyTypes.Styles {
+	    }
+	}
+	export default ParagraphTypes;
 
 }
 declare module 'content/Paragraph' {
 	import React from 'react';
-	import Types from '@flow-ui/core/@flow-ui/core/misc/hocs/Typography/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLParagraphElement>>;
+	import Types from 'content/Paragraph/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLParagraphElement>>;
 	export default _default;
+
+}
+declare module 'content/Text/types' {
+	import TypographyTypes from '@flow-ui/core/@flow-ui/core/misc/hocs/Typography/types'; namespace TextTypes {
+	    interface Props extends TypographyTypes.Props {
+	    }
+	    interface Styles extends TypographyTypes.Styles {
+	    }
+	}
+	export default TextTypes;
 
 }
 declare module 'content/Text' {
 	import React from 'react';
-	import Types from '@flow-ui/core/@flow-ui/core/misc/hocs/Typography/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
+	import Types from 'content/Text/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
+
+}
+declare module 'content/Link/types' {
+	import TypographyTypes from '@flow-ui/core/@flow-ui/core/misc/hocs/Typography/types'; namespace LinkTypes {
+	    interface Props extends TypographyTypes.LinkProps {
+	    }
+	    interface Styles extends TypographyTypes.Styles {
+	    }
+	}
+	export default LinkTypes;
 
 }
 declare module 'content/Link' {
 	import React from 'react';
-	import Types from '@flow-ui/core/@flow-ui/core/misc/hocs/Typography/types'; const _default: React.ForwardRefExoticComponent<Types.LinkProps & React.RefAttributes<HTMLAnchorElement>>;
+	import Types from 'content/Link/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLAnchorElement>>;
 	export default _default;
 
 }
