@@ -104,7 +104,6 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
                     min: props.min,
                     minLength: props.minLength,
                     step: props.step,
-                    width: props.width,
                     cols: props.cols,
                     rows: props.rows,
                     wrap: props.wrap,
