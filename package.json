@@ -20,12 +20,14 @@
     "gen:generateTypes": "cd ./packages/documaker && node ./scripts/generateTypes.js",
     "gen:fixTypes": "cd ./packages/documaker && node ./scripts/fixTypes.js",
     "gen:evaicons": "cd ./packages/core && yarn icons:generate",
+    "pub": "yarn pub:whale && yarn pub:core && yarn deploy",
     "pub:core": "cd ./packages/core && yarn pub",
     "pub:lab": "cd ./packages/lab && yarn pub",
     "pub:whale": "cd ./packages/whale && yarn pub",
     "gitpush": "git commit . -m 'Update version' && git push",
     "build": "cd ./packages/documaker && yarn build",
-    "form": "cd ./build/documaker && pm2 start --name FlowUI server.js"
+    "form": "cd ./build/documaker && pm2 start --name FlowUI server.js",
+    "deploy": "curl -s http://google.com > /dev/null"
   },
   "dependencies": {
     "tslint": "^6.0.0",
