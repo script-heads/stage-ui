@@ -349,7 +349,7 @@ declare module 'control/Button/types' {
 	        value?: string | string[] | number;
 	        /**
 	         * Size of button
-	         * @default medium
+	         * @default m
 	         */
 	        size?: WhaleTypes.Size;
 	        /**
@@ -7818,18 +7818,61 @@ declare module '@flow-ui/core/misc/hocs/Field/types' {
 	/// <reference types="react" />
 	import WhaleTypes from '@flow-ui/whale/types'; namespace FieldTypes {
 	    interface Props<S = Styles> extends Omit<WhaleTypes.AllProps<HTMLInputElement, S>, 'onChange'> {
+	        /**
+	         * Label for field
+	         */
 	        label?: React.ReactNode;
+	        /**
+	         * Define where label be placed
+	         */
 	        labelType?: 'none' | 'outside' | 'inside';
+	        /**
+	         * Place for hint content
+	         */
 	        hint?: React.ReactNode;
+	        /**
+	         * Size of field
+	         * @default m
+	         */
 	        size?: WhaleTypes.Size;
+	        /**
+	         * Defines how field look
+	         * @default filled
+	         */
 	        decoration?: 'none' | 'filled' | 'underline' | 'outline';
+	        /**
+	         * Color of field
+	         * @default surface
+	         */
 	        color?: WhaleTypes.ColorProp;
+	        /**
+	         * Shape of field
+	         * @default rounded
+	         */
 	        shape?: 'round' | 'rounded' | 'square';
+	        /**
+	         * Prevents the user from interacting
+	         */
 	        disabled?: boolean;
+	        /**
+	         * Place for items to the left of value
+	         */
 	        rightChild?: React.ReactNode;
+	        /**
+	         * Place for items to the left of value
+	         */
 	        leftChild?: React.ReactNode;
+	        /**
+	         * Allow user clear value
+	         */
 	        clearable?: boolean;
+	        /**
+	         * Event is fired when user press Enter
+	         */
 	        onEnter?: () => void;
+	        /**
+	         * Event is fired when user clear value
+	         */
 	        onClear?: () => void;
 	    }
 	    interface State {
@@ -7843,14 +7886,35 @@ declare module '@flow-ui/core/misc/hocs/Field/types' {
 	    interface Styles<T extends {
 	        [T in keyof Styles]?: Object;
 	    } = {}> {
+	        /**
+	         * Root element
+	         */
 	        container: State & T['container'];
+	        /**
+	         * Container of field
+	         */
 	        field: State & T['field'];
+	        /**
+	         * Container of field content
+	         */
 	        content: State & T['content'];
+	        /**
+	         * Label element
+	         */
 	        label: State & T['label'];
+	        /**
+	         * Container for left and right childs
+	         */
 	        child: {
 	            align: 'right' | 'left';
 	        } & State & T['child'];
+	        /**
+	         * The button that clear value
+	         */
 	        clearButton: State & T['clearButton'];
+	        /**
+	         * Container of hint
+	         */
 	        hint: State & T['hint'];
 	    }
 	    interface PrivateProps extends Omit<Props, 'styles'> {
@@ -8339,11 +8403,11 @@ declare module 'control/Select/types' {
 	        defaultValues?: Option[];
 	        /**
 	         * Max size of scroll area at select's drop
+	         * @default 16rem
 	         */
 	        maxScrollHeight?: string;
 	        /**
-	         * Max size of scroll area at select's drop
-	         * @default 16rem
+	         * Event is fired when user change value
 	         */
 	        onChange?: (values: Option[], changedValue?: Option) => void;
 	    }
