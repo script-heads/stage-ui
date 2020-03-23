@@ -39,7 +39,7 @@ import ScrollView from './layout/ScrollView/types'
 declare namespace FlowTypes {
     type LayoutDecoration = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' |  'neumorphism'
     
-    interface Styles {
+    interface Overrides {
         Divider?: DividerTypes.Styles
         Spinner?: SpinnerTypes.Styles
         Button?: ButtonTypes.Styles

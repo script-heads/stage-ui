@@ -2,8 +2,7 @@ import FlowTypes from '../../types'
 
 declare global {
 	namespace Whale {
-        interface Styles extends FlowTypes.Styles {
-		}
+        interface Overrides extends FlowTypes.Overrides {}
 	}
 }
 
