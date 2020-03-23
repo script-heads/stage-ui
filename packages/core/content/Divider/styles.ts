@@ -4,7 +4,7 @@ import Types from './types'
 
 const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
     
-    let { gap = 0, dash = 1, vertical } = props
+    let { gap = '0px', dash = '1px', vertical } = props
     const color = colorProp(theme, props.color)?.rgb().string() || theme.assets.border.color
 
     if (dash && !gap) {
@@ -38,7 +38,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                             transparent ${gap} 
                         )`,
                             backgroundPosition: 'right top',
-                            backgroundSize: `${props.w || '1px'} calc(${gap} + ${dash}) calc(${gap} + ${dash})`,
+                            backgroundSize: `calc(${gap} + ${dash}) calc(${gap} + ${dash})`,
                             backgroundRepeat: 'repeat-y',
                         }
                         : {
