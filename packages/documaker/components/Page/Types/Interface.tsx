@@ -1,6 +1,5 @@
-import React, { useState, useMemo } from 'react'
-import { Block, Header, Text, Flexbox, Table, ScrollView } from '@flow-ui/core'
-import Params from '../../../../docs/components/Params'
+import React, { useState, useMemo, useLayoutEffect } from 'react'
+import { Block, Header, Flexbox, Table, ScrollView } from '@flow-ui/core'
 import TableTypes from '@flow-ui/core/data/Table/types'
 
 type Reflection = {
@@ -17,7 +16,7 @@ type Reflection = {
             }[]
             type: {
                 name: string
-                type: 'stringLiteral' | 'intrinsic'
+                type: 'stringLiteral' | 'intrinsic'      
             }
         }[]
     }
@@ -87,7 +86,7 @@ const Interface = (props: InterfaceProps) => {
 
     const types = activeName === props.data.name 
         ? self.children 
-        : separated[activeName].children
+        : separated[activeName]?.children
 
     const extendedNames = [props.data.name, ...Object.keys(separated)]
     
