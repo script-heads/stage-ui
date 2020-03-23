@@ -52,7 +52,7 @@ declare namespace ButtonTypes {
 
         /**
          * Size of button
-         * @default medium
+         * @default m
          */
         size?: WhaleTypes.Size
         /**

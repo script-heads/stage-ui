@@ -37,11 +37,11 @@ declare namespace SelectTypes {
         defaultValues?: Option[]
         /**
          * Max size of scroll area at select's drop
+         * @default 16rem
          */
         maxScrollHeight?: string
         /**
-         * Max size of scroll area at select's drop
-         * @default 16rem
+         * Event is fired when user change value
          */
         onChange?: (values: Option[], changedValue?: Option) => void
     }
