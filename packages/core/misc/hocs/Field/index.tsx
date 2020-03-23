@@ -80,7 +80,7 @@ const Field: RefForwardingComponent<HTMLDivElement, Types.PrivateProps> = (props
                             )}
                         />
                     )}
-                     {props.rightChild && (
+                    {props.rightChild && (
                         <div 
                             css={styles.child({align: 'right', ...state})}
                             children={props.rightChild}
