@@ -11,12 +11,18 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePara
 
     return {
         ...fieldStyles<Types.Styles>(props, theme, {
+            container: (variant) => [
+                variant({
+                    isOpen: {
+                        zIndex: 999
+                    }
+                })
+            ],
             field: (variant) => [
                 params?.isOpen && {
                     borderColor: theme.color.primary.rgb().string(),
                     borderBottomColor: theme.color.lightest.rgb().string(),
                     borderBottomLeftRadius: 0,
-                    borderBottomRightRadius: 0,
                 },
                 variant({
                     decoration: {
@@ -48,26 +54,18 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePara
                 borderWidth: '1px',
                 borderStyle: 'solid',
                 boxSizing: 'border-box',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                paddingTop: `calc(${minHeight}/2)`,
+                transform: `translateY(calc(-${minHeight}/2))`,
             },
             variant({
                 shape: {
                     square: {
                         borderRadius: 0
                     },
-                    round: [
-                        {
-                            borderRadius: `calc(${theme.assets.field.m.minHeight}/2)`
-                        },
-                        variant({
-                            size: {
-                                xl: { borderRadius: `calc(${theme.assets.field.xl.minHeight}/2)` },
-                                l:  { borderRadius: `calc(${theme.assets.field.l.minHeight}/2)` },
-                                s:  { borderRadius: `calc(${theme.assets.field.s.minHeight}/2)` },
-                                xs: { borderRadius: `calc(${theme.assets.field.xs.minHeight}/2)` }
-                            },
-                        })
-                    ]
+                    round: {
+                        borderRadius: `calc(${minHeight}/2)`
+                    }
                 },
                 decoration: {
                     filled: [

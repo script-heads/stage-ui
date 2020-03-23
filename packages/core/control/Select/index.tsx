@@ -19,14 +19,6 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
     } = props
 
     /**
-     * Object for variant styles
-     */
-    const styleState: Types.StyleState = { 
-        decoration, 
-        shape, 
-        size 
-    }
-    /**
      * References
      */
     const fieldRef = useRef<HTMLDivElement>(null)
@@ -45,6 +37,15 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
      * Store of selected values
      */
     const [values, setValues] = useState<Types.Option[]>([])
+    /**
+     * Object for variant styles
+     */
+    const styleState: Types.StyleState = { 
+        decoration, 
+        shape, 
+        size,
+        isOpen 
+    }
     /**
      * This options will be shown in drop
      */
@@ -177,6 +178,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                 ref={fieldRef}
 
                 size={size}
+                state={styleState}
                 focus={focus}
                 shape={shape}
                 decoration={decoration}

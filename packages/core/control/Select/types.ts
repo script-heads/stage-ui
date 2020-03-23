@@ -57,7 +57,7 @@ declare namespace SelectTypes {
         disabled?: boolean
     }
 
-    interface StyleState {
+    interface StyleState extends StyleParams{
         shape: Props['shape']
         size: Props['size'] 
         decoration: Props['decoration']
@@ -66,7 +66,9 @@ declare namespace SelectTypes {
     interface StyleParams {
         isOpen: boolean
     }
-    interface Styles extends FieldTypes.Styles {
+    interface Styles extends FieldTypes.Styles<{
+        container: StyleState
+    }> {
         selectedContainer: void
         selectedInput: {
             searchMode: boolean
