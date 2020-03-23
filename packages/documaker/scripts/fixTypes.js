@@ -22,6 +22,10 @@ fixTypes('whale', [
 fixTypes('core', [
     ['data/Table/types', '@flow-ui/core/data/Table/types'],
     ['layout/Modal/types', '@flow-ui/core/layout/Modal/types'],
+    ['misc/hocs/Icon/types', '@flow-ui/core/misc/hocs/Icon/types'],
+    ['misc/hocs/Field/types', '@flow-ui/core/misc/hocs/Field/types'],
+    ['misc/hocs/Check/types', '@flow-ui/core/misc/hocs/Check/types'],
+    ['misc/hocs/Typography/types', '@flow-ui/core/misc/hocs/Typography/types'],
     ["declare module 'icons'", "declare module '@flow-ui/core/icons'"],
 ])
 fixTypes('lab', [
