@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useLayoutEffect } from 'react'
+import React, { useState, useMemo } from 'react'
 import { Block, Header, Flexbox, Table, ScrollView } from '@flow-ui/core'
 import TableTypes from '@flow-ui/core/data/Table/types'
 
