@@ -1,8 +1,44 @@
 import React, { useState, useMemo } from 'react'
 import { Block, Header, Text, Flexbox, Table, ScrollView } from '@flow-ui/core'
-import Value, { ValueDefinition } from './Value'
-import Params from './Params'
+import Params from '../../../../docs/components/Params'
+import TableTypes from '@flow-ui/core/data/Table/types'
 
+type Reflection = {
+    type: 'reflection'
+    declaration: {
+        id: number
+        children?: any[]
+        groups?: any[],
+        signatures?: {
+            name: '__call'
+            parameters: {
+                id: number
+                name: string
+            }[]
+            type: {
+                name: string
+                type: 'stringLiteral' | 'intrinsic'
+            }
+        }[]
+    }
+}
+
+type Intersection = {
+    type: 'intersection'
+    types: any[]
+}
+
+export interface ValueDefinition {
+    id: number
+    isOptional: boolean
+    name: string
+    comment?: string
+    tags?: { [key: string]: string }
+    deprecated?: string | true
+    breakpointify?: true
+    type: 'stringLiteral' | 'intrinsic' | 'reference' | Reflection | Intersection
+    values: string[]
+}
 interface InterfaceDefinition {
     name: string
     comment?: string
@@ -13,19 +49,22 @@ interface InterfaceDefinition {
 interface InterfaceProps {
     data: InterfaceDefinition,
     separatedTypes?: string[]
+    columns: TableTypes.TableColumn[]
 }
 
 const sortTypes = (data: InterfaceDefinition, separatedTypes?: string[]) => {
     const self: InterfaceDefinition = Object.assign({}, data)
-    const extended: Record<string,InterfaceDefinition> = {}
+    const separated: Record<string,InterfaceDefinition> = {}
 
-    const getExtendedTypes = (type: InterfaceDefinition, cutted?: boolean) => {
+    const getExtendedTypes = (type: InterfaceDefinition, parent?: string) => {
         type.extendedTypes.map(innerType => {
-            if (separatedTypes && separatedTypes.includes(innerType.name) || cutted) {
-                if (innerType.children.length > 0) {
-                    extended[innerType.name] = innerType
+            if (separatedTypes && separatedTypes.includes(innerType.name) || parent) {
+                if (parent) {
+                    separated[parent].children = separated[parent].children.concat(innerType.children)
+                } else {
+                    separated[innerType.name] = innerType
                 } 
-                getExtendedTypes(innerType, true)
+                getExtendedTypes(innerType, parent || innerType.name)
             } else {
                 self.children = self.children.concat(innerType.children)
                 getExtendedTypes(innerType)
@@ -35,21 +74,22 @@ const sortTypes = (data: InterfaceDefinition, separatedTypes?: string[]) => {
 
     getExtendedTypes(data)
 
-    return { self, extended }
+    return { self, separated }
 }
 
 const Interface = (props: InterfaceProps) => {
 
     const [ activeName, setActiveName ] = useState(props.data.name) 
-    const { self, extended } = useMemo(() =>
-        sortTypes(props.data, props.separatedTypes)
-    ,[props])
+    const { self, separated } = useMemo(() => {
+        setActiveName(props.data.name)
+        return sortTypes(props.data, props.separatedTypes)
+    }, [props])
 
     const types = activeName === props.data.name 
         ? self.children 
-        : extended[activeName].children
+        : separated[activeName].children
 
-    const extendedNames = [props.data.name, ...Object.keys(extended)]
+    const extendedNames = [props.data.name, ...Object.keys(separated)]
     
     return (
         <Block>
@@ -69,32 +109,7 @@ const Interface = (props: InterfaceProps) => {
                 </ScrollView>
             </div>
             <Table
-                columns={[
-                    {
-                        key: 'name',
-                        title: 'Name'
-                    },
-                    {
-                        key: 'values',
-                        title: 'Type',
-                        render: (c) => <Value type={c.row as ValueDefinition}/>
-                    },
-                    {
-                        key: 'comment',
-                        title: 'Description',
-                        render: (c) => <Text children={(c.row as ValueDefinition).comment?.toString()}/>
-                    },
-                    {
-                        key: 'isOptional',
-                        title: 'Parameters',
-                        render: (c) => <Params type={c.row as ValueDefinition}/>
-                    },
-                    {
-                        key: 'tags',
-                        title: 'Default',
-                        render: (c) => <Text children={(c.row as ValueDefinition).tags?.default} />
-                    },
-                ]}
+                columns={props.columns}
                 data={types}
             />
         </Block>
