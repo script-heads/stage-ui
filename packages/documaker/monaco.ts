@@ -52,7 +52,7 @@ class Monaco {
         const defineLib = async (name: string) => {
             monaco.languages.typescript.typescriptDefaults.addExtraLib((
                 await (
-                    await fetch(location.origin + `/documaker/definitions/${name}.d.ts`)
+                    await fetch(location.origin + `/definitions/${name}.d.ts`)
                 ).text()
             ))
         }

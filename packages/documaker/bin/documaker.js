@@ -10,7 +10,7 @@ const options = {
     host: '0.0.0.0',
     disableHostCheck: true,
     clientLogLevel: 'error',
-    hot: true,
+    hot: process.env.ENV !== 'production',
     historyApiFallback: true,
     contentBase: [__dirname + "/../public",  __dirname + "/../../"],
     stats: 'errors-warnings'
@@ -20,6 +20,4 @@ webpackDevServer.addDevServerEntrypoints(config, options);
 const compiler = webpack(config);
 const server = new webpackDevServer(compiler, options);
 
-server.listen(9050, '0.0.0.0', () => {
-    console.log('Documaker running on port 9050 from ' + process.cwd());
-});
+server.listen(9050, '0.0.0.0');
