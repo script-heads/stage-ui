@@ -1,9 +1,11 @@
 import { useComponent } from '@flow-ui/whale'
-import React, { forwardRef, RefForwardingComponent } from 'react'
+import React, { forwardRef, RefObject, RefForwardingComponent } from 'react'
 import styles from './styles'
 import Types from './types'
 
-const Svg: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props) => {
+type SVG = RefForwardingComponent<HTMLSpanElement, Types.Props & {  reference?: RefObject<HTMLSpanElement> }>
+
+const Svg: SVG = (props) => {
 
     const { size = 'm', shape } = props
     const { cs, attributes, events } = useComponent('Icon', {
@@ -16,6 +18,7 @@ const Svg: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props) => {
 
     return (
         <span
+            ref={props.reference}
             {...attributes}
             {...events.all}
             css={cs.container({ 
@@ -42,10 +45,10 @@ type Icons = {
     outline: React.ReactElement
 }
 
-export const createIcon = (props: Types.IconProps = {}, icons: Icons) => {
-
+export const createIcon = (props: Types.IconProps = {}, ref: RefObject<HTMLSpanElement>, icons: Icons) => {
     return (
         <Svg 
+            reference={ref}
             {...props} 
             svg={
                 icons[props.type || 'outline']
