@@ -2,7 +2,7 @@ import WhaleTypes from '@flow-ui/whale/types'
 
 declare namespace FieldTypes {
 
-    interface Props extends Omit<WhaleTypes.AllProps<HTMLInputElement, Styles>, 'onChange'> {
+    interface Props<S = Styles> extends Omit<WhaleTypes.AllProps<HTMLInputElement, S>, 'onChange'> {
         label?: React.ReactNode
         labelType?: 'none' | 'outside' |'inside'
         hint?: React.ReactNode
