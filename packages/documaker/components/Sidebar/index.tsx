@@ -25,6 +25,7 @@ const Sidebar = (props: SidebarProps) => {
 	const MenuItems = useMemo(() => 
 		Object.keys(pages).map((section, index) => {
 			const menuItems = pages[section].filter(page => {
+				
 				if (search) {
 					return !!page.title.toUpperCase().match(search.toUpperCase())
 				}
@@ -39,7 +40,6 @@ const Sidebar = (props: SidebarProps) => {
 					title={page.title}
 				/>
 			))
-
 			if (menuItems.length === 0) {
 				return null
 			}
@@ -48,7 +48,7 @@ const Sidebar = (props: SidebarProps) => {
 					{menuItems}
 				</Menu.Submenu>
 			)
-		}),[pages]
+		}),[pages, search]
 	)
 
 	return (
