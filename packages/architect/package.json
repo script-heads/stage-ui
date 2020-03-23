@@ -8,6 +8,7 @@
     "@emotion/core": "10.0.27"
   },
   "peerDependencies": {
-    "react": "^16.0.0"
+    "react": "*",
+    "react-dom": "*"
   }
 }
