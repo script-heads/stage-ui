@@ -3,6 +3,6 @@ import { Spinner } from '@flow-ui/core'
 
 export default () => {
     return (
-        <Spinner size='4rem' />
+        <Spinner />
     )
 }
