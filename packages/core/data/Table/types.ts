@@ -169,6 +169,7 @@ declare namespace TableTypes {
         columns: TableColumn[]
         /**
          * Applies decoration on table
+         * @default surface
          */
         decoration?: LayoutDecoration
         /**
@@ -186,6 +187,8 @@ declare namespace TableTypes {
          * default - Render all rows at once. 
          * whenBecomeVisible - Render row only when it become visible. 
          * onlyWhenVisible - Render row when it become visible and unmount when row away from screen. 
+         * 
+         * @default default
          */ 
         rowMountType?: RowMountType
     }
