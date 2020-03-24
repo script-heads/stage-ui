@@ -4,18 +4,42 @@ import { SerializedStyles } from '@emotion/core'
 import ModalTypes from '../Modal/types'
 
 declare namespace ViewportTypes {
+    
+    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
+        /**
+         * Defines whether the viewport renders content inside the container
+         * @default false
+         */
+        wrapper?: boolean
+        /**
+         * Emotion cache options
+         */
+        cache?: Options
+        /**
+         * Defines which theme to put in context.
+         * @default light
+         */
+        theme?: 'dark' | 'light' | WhaleTypes.Theme
+        /**
+         * Set global CSS
+         */
+        global?: SerializedStyles
+        /**
+         * Application content
+         */
+        children?: React.ReactNode
+    }
+    
+    interface Styles {
+        /**
+         * Root element
+         */
+        container: void
+    }
 
     interface Themes {
         light: WhaleTypes.Theme
         dark: WhaleTypes.Theme
-    }
-
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
-        wrapper?: boolean
-        cache?: Options
-        theme?: 'dark' | 'light' | WhaleTypes.Theme
-        global?: SerializedStyles
-        children?: React.ReactNode
     }
 
     interface MountArea {
@@ -70,9 +94,6 @@ declare namespace ViewportTypes {
         customContent?: (close: () => void) => React.ReactElement
     }
 
-    interface Styles {
-        container: void
-    }
 }
 
 export default ViewportTypes
