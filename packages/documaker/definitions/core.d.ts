@@ -154,7 +154,7 @@ declare module '@flow-ui/core/misc/hocs/Typography/types' {
 	         */
 	        ellipsis?: boolean;
 	        /**
-	         * Shorhand for text-decoration
+	         * Shorthand for text-decoration
 	         */
 	        decoration?: CSS.Properties['textDecoration'];
 	        /**
@@ -166,23 +166,23 @@ declare module '@flow-ui/core/misc/hocs/Typography/types' {
 	         */
 	        color?: WhaleTypes.ColorProp;
 	        /**
-	         * Shorhand for background-color
+	         * Shorthand for background-color
 	         */
 	        backgroundColor?: WhaleTypes.ColorProp;
 	        /**
-	         * Shorhand for text-align
+	         * Shorthand for text-align
 	         */
 	        align?: CSS.Properties['textAlign'];
 	        /**
-	         * Shorhand for font-weight
+	         * Shorthand for font-weight
 	         */
 	        weight?: CSS.Properties['fontWeight'];
 	        /**
-	         * Shorhand for font-size
+	         * Shorthand for font-size
 	         */
 	        size?: WhaleTypes.Size;
 	        /**
-	         * Shorhand for text-transform
+	         * Shorthand for text-transform
 	         */
 	        transform?: CSS.Properties['textTransform'];
 	    }
@@ -420,7 +420,13 @@ declare module 'control/Calendar/types' {
 	import WhaleTypes from '@flow-ui/whale/types';
 	import { Moment } from 'moment';
 	import { CSSProperties } from 'react'; namespace CalendarTypes {
+	    /**
+	     * Type of calendar view
+	     */
 	    type GridType = 'year' | 'month' | 'day';
+	    /**
+	     * Calendar locale
+	     */
 	    type Locale = 'en' | 'ru' | 'it' | 'fr' | 'de';
 	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        /**
@@ -429,11 +435,12 @@ declare module 'control/Calendar/types' {
 	         */
 	        type?: GridType;
 	        /**
-	         * Property value could be a string
-	         * if you pass format property aswell
-	         * otherwise value should be instance of Date
+	         * Date or Moment value for controlled component
 	         */
 	        value?: Moment | Date;
+	        /**
+	         * Date or Moment value for uncontrolled component
+	         */
 	        defaultValue?: Moment | Date;
 	        /**
 	         * Min datetime that could be selected
@@ -487,10 +494,22 @@ declare module 'control/Calendar/types' {
 	        styles: WhaleTypes.ComponentStyles<Styles>;
 	    }
 	    interface Styles {
-	        dateGrind: void;
-	        weekDay: void;
+	        /**
+	         * Root container
+	         */
+	        dateGrid: void;
+	        /**
+	         * Main title block
+	         */
 	        title: void;
-	        gridBlock: {
+	        /**
+	         * Days of week block
+	         */
+	        weekDay: void;
+	        /**
+	         * Each square day block
+	         */
+	        day: {
 	            isActive: Boolean;
 	            isCurrent: boolean;
 	            isDisabled: boolean;
@@ -7779,16 +7798,20 @@ declare module 'control/Checkbox/types' {
 	    interface Props extends CheckTypes.Props {
 	    }
 	    interface Styles extends CheckTypes.Styles {
+	        /**
+	         * Checkbox container
+	         */
 	        check: {
 	            size: Props['size'];
-	            animated: Props['animated'];
 	            disabled: Props['disabled'];
 	            focus: boolean;
 	        };
+	        /**
+	         * Icon of checkbox
+	         */
 	        icon: {
 	            checked: Props['checked'];
 	            size: Props['size'];
-	            animated: Props['animated'];
 	            disabled: Props['disabled'];
 	        };
 	    }
@@ -7956,15 +7979,14 @@ declare module 'misc/hocs/Field/styles' {
 }
 declare module 'control/DatePicker/types' {
 	import { Moment } from 'moment';
-	import FieldTypes from '@flow-ui/core/misc/hocs/Field/types'; namespace DatePickerTypes {
-	    type GridType = 'year' | 'month' | 'day';
-	    type Locale = 'en' | 'ru' | 'it' | 'fr' | 'de';
+	import FieldTypes from '@flow-ui/core/misc/hocs/Field/types';
+	import CalendarTypes from '@flow-ui/core/control/Calendar/types'; namespace DatePickerTypes {
 	    interface Props extends Omit<FieldTypes.Props, 'onChange'>, InputProps {
 	        /**
 	         * Type for DatePicker
 	         * @default day
 	         */
-	        type?: GridType;
+	        type?: CalendarTypes.GridType;
 	        /**
 	         * Property value could be a string
 	         * if you pass format property aswell
@@ -8002,7 +8024,7 @@ declare module 'control/DatePicker/types' {
 	        /**
 	         * @default ru
 	         */
-	        locale?: Locale;
+	        locale?: CalendarTypes.Locale;
 	        /**
 	         * Hide today button
 	         */
@@ -8025,9 +8047,15 @@ declare module 'control/DatePicker/types' {
 	        formTarget?: string;
 	    }
 	    interface Styles extends FieldTypes.Styles {
+	        /**
+	         * Drop view
+	         */
 	        drop: {
 	            isActive: boolean;
 	        };
+	        /**
+	         * Input view
+	         */
 	        input: void;
 	    }
 	}
@@ -8061,31 +8089,100 @@ declare module 'control/Menu/types' {
 	        onChange?: (value?: MenuValue) => void;
 	    }
 	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+	        /**
+	         * Value selected by default
+	         */
 	        defaultValue?: MenuValue;
+	        /**
+	         * Current selected value for controlled component
+	         */
 	        value?: MenuValue;
+	        /**
+	         * Simple data items, you can use <Menu.Item/> insted
+	         */
 	        data?: React.ReactNode[];
+	        /**
+	         * Calls on value change
+	         */
 	        onChange?: (value?: MenuValue) => void;
+	        /**
+	         * Display as column
+	         * @default false
+	         */
 	        column?: boolean;
+	        /**
+	         * Defines how button look
+	         * @default filled
+	         */
 	        decoration?: MenuDecoration;
+	        /**
+	         * Flex direction of menu
+	         * @default row
+	         */
 	        direction?: MenuDirection;
+	        /**
+	         * Shape of each item
+	         * @default square
+	         */
 	        shape?: MenuShape;
+	        /**
+	         * Size of each item
+	         * @default m
+	         */
 	        size?: WhaleTypes.Size;
+	        /**
+	         * Flex align
+	         * @default flex-start
+	         */
 	        align?: MenuAlign;
+	        /**
+	         * Menu Items
+	         */
 	        children?: React.ReactNode;
 	    }
 	    interface StyleState {
 	        decoration: Props['decoration'];
 	    }
 	    interface Styles {
+	        /**
+	         * Root container
+	         */
 	        container: StyleState;
+	        /**
+	         * Menu item container
+	         */
 	        item: StyleState;
+	        /**
+	         * Group title container
+	         */
 	        group: StyleState;
+	        /**
+	         * Group title text
+	         */
 	        groupTitle: StyleState;
+	        /**
+	         * Submenu container
+	         */
 	        subMenu: StyleState;
+	        /**
+	         * Submenu content view
+	         */
 	        subMenuContent: StyleState;
+	        /**
+	         * Submenu arrow icon
+	         */
 	        subMenuArrow: StyleState;
+	        /**
+	         * Left child at menu item
+	         */
 	        leftChild: StyleState;
+	        /**
+	         * Middle child at menu item
+	         */
 	        middleChild: StyleState;
+	        /**
+	         * Right child at menu item
+	         */
 	        rightChild: StyleState;
 	    }
 	}
@@ -8097,14 +8194,36 @@ declare module 'control/Menu/MenuItem/types' {
 	import WhaleTypes from '@flow-ui/whale/types';
 	import MenuTypes from 'control/Menu/types'; namespace MenuItemTypes {
 	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+	        /**
+	         * Display title of current item
+	         */
 	        title?: React.ReactNode;
+	        /**
+	         * Disables item
+	         * @default false
+	         */
 	        disabled?: boolean;
+	        /**
+	         * Item value, onChange will not call if empty
+	         */
 	        value?: MenuTypes.MenuValue;
+	        /**
+	         * Item view custom content
+	         */
 	        children?: React.ReactNode;
+	        /**
+	         * Left child at item view
+	         */
 	        leftChild?: React.ReactNode;
+	        /**
+	         * Left child at item view
+	         */
 	        rightChild?: React.ReactNode;
 	    }
 	    interface Styles {
+	        /**
+	         * Item view
+	         */
 	        container: void;
 	    }
 	}
@@ -8133,16 +8252,44 @@ declare module 'control/Menu/Submenu/types' {
 	/// <reference types="react" />
 	import WhaleTypes from '@flow-ui/whale/types'; namespace SubmenuTypes {
 	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+	        /**
+	         * Title for menu item
+	         */
 	        title?: React.ReactNode;
+	        /**
+	         * Turn submenu off
+	         * @default false
+	         */
 	        disabled?: boolean;
+	        /**
+	         * Indent at left size
+	         */
 	        indent?: string;
+	        /**
+	         * Open state, for controlled component
+	         */
 	        open?: boolean;
+	        /**
+	         * Default open state
+	         */
 	        defaultOpen?: boolean;
+	        /**
+	         * Submenu items
+	         */
 	        children?: React.ReactNode;
+	        /**
+	         * Left child at submenu view
+	         */
 	        leftChild?: React.ReactNode;
+	        /**
+	         * Left child at submenu view
+	         */
 	        rightChild?: React.ReactNode;
 	    }
 	    interface Styles {
+	        /**
+	         * Root view
+	         */
 	        container: void;
 	    }
 	}
@@ -8165,12 +8312,24 @@ declare module 'control/Menu/MenuGroup/types' {
 	/// <reference types="react" />
 	import WhaleTypes from '@flow-ui/whale/types'; namespace MenuGroupTypes {
 	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+	        /**
+	         * Title of group
+	         */
 	        title: React.ReactNode;
 	        children?: React.ReactNode;
+	        /**
+	         * Left child at group view
+	         */
 	        leftChild?: React.ReactNode;
+	        /**
+	         * Right child at group view
+	         */
 	        rightChild?: React.ReactNode;
 	    }
 	    interface Styles {
+	        /**
+	         * Group view
+	         */
 	        container: void;
 	    }
 	}
@@ -8209,15 +8368,19 @@ declare module 'control/Radio/types' {
 	    interface Props extends CheckTypes.Props {
 	    }
 	    interface Styles extends CheckTypes.Styles {
+	        /**
+	         * Radio container
+	         */
 	        check: {
 	            size: Props['size'];
-	            animated: Props['animated'];
 	            disabled: Props['disabled'];
 	        };
+	        /**
+	         * Icon of Radio
+	         */
 	        radio: {
 	            checked: Props['checked'];
 	            size: Props['size'];
-	            animated: Props['animated'];
 	            disabled: Props['disabled'];
 	        };
 	    }
@@ -8277,17 +8440,36 @@ declare module 'control/Range' {
 declare module 'control/Pageswitch/types' {
 	import WhaleTypes from '@flow-ui/whale/types'; namespace PageswitchTypes {
 	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+	        /**
+	         * Total count of records
+	         */
 	        length: number;
+	        /**
+	         * Calls on page changed
+	         */
 	        onChange?: (pageNumber: number, startIndex: number) => void;
-	        options?: Options;
+	        /**
+	         * Records on page
+	         * @default 20
+	         */
+	        pageSize?: number;
+	        /**
+	         * Current page number, for controlled component
+	         */
 	        value?: number;
+	        /**
+	         * Default page number
+	         */
 	        defaultValue?: number;
 	    }
-	    interface Options {
-	        pageSize?: number;
-	    }
 	    interface Styles {
+	        /**
+	         * Root container
+	         */
 	        container: void;
+	        /**
+	         * Left/Right buttons
+	         */
 	        arrowButton: {
 	            disabled: boolean;
 	        };
@@ -8319,47 +8501,65 @@ declare module 'layout/Drop/types' {
 	    }
 	    interface Props extends WhaleTypes.AttributeProps, WhaleTypes.AllEventProps<HTMLDivElement>, WhaleTypes.CoreProps<Styles>, WhaleTypes.ColorProps, WhaleTypes.BorderProps, WhaleTypes.PaddingProps, WhaleTypes.LayoutProps {
 	        /**
-	         * Target where to place drop
+	         * Ref of the target element near which the drop will be shown
 	         */
 	        target?: any;
 	        /**
-	         * Will mount or unmount Drop
+	         * Will mount or unmount drop
+	         * @default true
 	         */
 	        visible?: boolean;
+	        /**
+	         * The side of the target element on which the drop will be shown
+	         */
 	        align?: 'top' | 'bottom' | 'left' | 'right';
+	        /**
+	         * Side drop positioning
+	         */
 	        justify?: 'start' | 'center' | 'end' | 'start-outside' | 'end-outside';
+	        /**
+	         * Stretch drop by target width
+	         */
 	        stretchWidth?: boolean;
+	        /**
+	         * Stretch drop by target height
+	         */
 	        stretchHeight?: boolean;
+	        /**
+	         * Place drop under coursor
+	         */
 	        followCursor?: boolean;
 	        /**
-	         * Space around drop
-	         * like margin or so
+	         * Distance between target and drop
 	         */
 	        spacing?: number;
 	        /**
-	         * Event will calls on
-	         * outside mouse clicks
+	         * Fired when mouse clicks outside drop
 	         */
 	        onClickOutside?: (event: MouseEvent, outsideTarget?: boolean) => void;
 	        /**
-	         * Calls whenever esc pressed
+	         * Fired when user press esc
 	         */
 	        onEsc?: () => void;
+	        /**
+	         * Drop's content
+	         */
 	        children?: React.ReactNode;
 	    }
 	    interface Ref extends Partial<HTMLDivElement> {
 	        /**
-	         * Update self position of drop
-	         * useful when target changes origins and sizes
+	         * Update position of drop (useful when target changes origins and sizes)
 	         */
 	        updatePosition: () => void;
 	        /**
-	         * Can be use ONLY on
-	         * uncontrolled compnents
+	         * Change visible state of drop
 	         */
 	        setVisible: (state: boolean) => void;
 	    }
 	    interface Styles {
+	        /**
+	         * Root element
+	         */
 	        container: void;
 	    }
 	}
@@ -8478,16 +8678,20 @@ declare module 'control/Switch/types' {
 	    interface Props extends CheckTypes.Props {
 	    }
 	    interface Styles extends CheckTypes.Styles {
+	        /**
+	         * Switch container
+	         */
 	        check: {
 	            checked: Props['checked'];
 	            size: Props['size'];
-	            animated: Props['animated'];
 	            disabled: Props['disabled'];
 	        };
+	        /**
+	         * Icon of Switch
+	         */
 	        switch: {
 	            checked: Props['checked'];
 	            size: Props['size'];
-	            animated: Props['animated'];
 	            disabled: Props['disabled'];
 	        };
 	    }
@@ -8513,9 +8717,18 @@ declare module 'control/TextField/types' {
 	import WhaleTypes from '@flow-ui/whale/types'; namespace TextFieldTypes {
 	    type InputTypes = 'email' | 'hidden' | 'number' | 'password' | 'reset' | 'search' | 'tel' | 'text' | 'url';
 	    interface Props extends FieldTypes.Props, InputProps, TextAreaProps {
+	        /**
+	         * Default input value
+	         */
 	        defaultValue?: string | number;
-	        align?: 'left' | 'right';
+	        /**
+	         * Enables textarea mode
+	         * @default false
+	         */
 	        multiline?: boolean;
+	        /**
+	         * Calls on input change
+	         */
 	        onChange?: ChangeEventHandler<HTMLInputElement>;
 	    }
 	    interface InputProps {
@@ -8647,10 +8860,16 @@ declare module 'data/Meter/MeterThumb/types' {
 	import WhaleTypes from '@flow-ui/whale/types';
 	import MeterTypes from 'data/Meter/types'; namespace MeterThumbTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
+	        /**
+	         * Value for controlled compoents
+	         */
 	        value: MeterTypes.Props['value'];
+	        /**
+	         * Thumb color
+	         */
 	        color?: MeterTypes.Props['color'];
 	        /**
-	         * Enabled process animation
+	         * Enabled prgoress animation
 	         * @default false
 	         */
 	        loading?: MeterTypes.Props['loading'];
@@ -8658,6 +8877,9 @@ declare module 'data/Meter/MeterThumb/types' {
 	    interface PrivateProps extends MeterTypes.Props {
 	    }
 	    interface Styles {
+	        /**
+	         * Thumb view
+	         */
 	        container: MeterTypes.Styles['thumb'];
 	    }
 	}
@@ -8671,24 +8893,51 @@ declare module 'data/Meter/types' {
 	    type MeterDecoration = 'filled' | 'outline';
 	    type MeterShape = 'square' | 'round';
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
+	        /**
+	         * Current value of meter, for controlled component
+	         */
 	        value?: number;
+	        /**
+	         * Size of meter
+	         * @default m
+	         */
 	        size?: WhaleTypes.Size;
+	        /**
+	         * Defines how meter look
+	         * @default filled
+	         */
 	        decoration?: MeterDecoration;
+	        /**
+	         * Shape of meter
+	         * @default rounded
+	         */
 	        shape?: MeterShape;
+	        /**
+	         * Color of meter
+	         */
 	        color?: WhaleTypes.ColorProp;
 	        /**
-	         * Enabled process animation
+	         * Enabled progress animation
 	         * @default false
 	         */
 	        loading?: boolean;
+	        /**
+	         * Children thumbs
+	         */
 	        children?: React.ReactElement<MeterThumbTypes.Props>[];
 	    }
 	    interface Styles {
+	        /**
+	         * Root view
+	         */
 	        container: {
 	            shape: MeterShape;
 	            size: WhaleTypes.Size;
 	            decoration: MeterDecoration;
 	        };
+	        /**
+	         * Thumb view
+	         */
 	        thumb: {
 	            shape: MeterShape;
 	            size: WhaleTypes.Size;
@@ -8828,16 +9077,40 @@ declare module '@flow-ui/core/data/Table/types' {
 	        reloadData: () => void;
 	    }
 	    type RowContext = {
+	        /**
+	         * Row data
+	         */
 	        row: Object;
+	        /**
+	         * true if element expanded
+	         * @default false
+	         */
 	        isExpand: boolean;
+	        /**
+	         * true if element visible
+	         * @default false
+	         */
 	        isVisible: boolean;
+	        /**
+	         * keys of cells that in modify mode
+	         */
 	        isCellModify: {
 	            [key: string]: boolean;
 	        };
+	        /**
+	         * Settings cells for modify
+	         * void 0 - changes all row
+	         */
 	        setModifyState: {
 	            [key: string]: React.Dispatch<React.SetStateAction<boolean>>;
 	        };
+	        /**
+	         * Setting expand for row
+	         */
 	        setExpandComponent?: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+	        /**
+	         * Forcing render row
+	         */
 	        setNeedDisplay?: (forceUnmount?: boolean) => boolean;
 	    };
 	    interface Ref extends TableRef, HTMLTableElement {
@@ -8975,13 +9248,31 @@ declare module '@flow-ui/core/data/Table/types' {
 	        styles: WhaleTypes.ComponentStyles<Styles>;
 	    }
 	    interface Styles {
+	        /**
+	         * Root view
+	         */
 	        container: void;
+	        /**
+	         * Header cell element view <th>
+	         */
 	        headCell: {
 	            sort: boolean;
 	        };
+	        /**
+	         * Row view <tr>
+	         */
 	        row: void;
+	        /**
+	         * Row cell <td>
+	         */
 	        rowCell: void;
+	        /**
+	         * Expanded row <td span>
+	         */
 	        expandContainer: void;
+	        /**
+	         * Footer view of table
+	         */
 	        footer: void;
 	    }
 	}
@@ -9028,14 +9319,35 @@ declare module 'layout/Badge/types' {
 	/// <reference types="react" />
 	import WhaleTypes from '@flow-ui/whale/types'; namespace BadgeTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
+	        /**
+	         * Show in badge
+	         */
 	        content: React.ReactNode;
+	        /**
+	         * Badge size
+	         */
 	        size?: WhaleTypes.Size;
+	        /**
+	         * Badge shape
+	         */
 	        shape?: 'square' | 'rounded' | 'round';
+	        /**
+	         * Where barge will be placed
+	         */
 	        align?: 'top' | 'bottom' | 'left' | 'right' | 'top-right' | 'bottom-right' | 'top-left' | 'bottom-left';
+	        /**
+	         * The element whose badge will be shown
+	         */
 	        children?: React.ReactNode;
 	    }
 	    interface Styles {
+	        /**
+	         * Root element
+	         */
 	        container: void;
+	        /**
+	         * Badge container
+	         */
 	        holder: {
 	            align: Props['align'];
 	            shape: Props['shape'];
@@ -9063,12 +9375,27 @@ declare module 'layout/Block/types' {
 	import WhaleTypes from '@flow-ui/whale/types';
 	import CSS from 'csstype'; namespace BlockTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
-	        tag?: 'div' | 'span' | 'header' | 'footer' | 'article' | 'section' | 'aside' | 'main';
+	        /**
+	         * HTML element which is used as a container
+	         */
+	        as?: 'div' | 'span' | 'header' | 'footer' | 'article' | 'section' | 'aside' | 'main';
+	        /**
+	         * Defines how block look
+	         */
 	        decoration?: LayoutDecoration;
+	        /**
+	         * Block's content
+	         */
 	        children?: React.ReactNode;
+	        /**
+	         * Shorthand for overflow style
+	         */
 	        overflow?: CSS.Properties['overflow'];
 	    }
 	    interface Styles {
+	        /**
+	         * Root element
+	         */
 	        container: {
 	            decoration?: LayoutDecoration;
 	        };
@@ -9107,12 +9434,19 @@ declare module 'layout/Flexbox/types' {
 	import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration';
 	import WhaleTypes from '@flow-ui/whale/types'; namespace FlexboxTypes {
 	    interface Props extends WhaleTypes.FlexboxContainerProps, WhaleTypes.AllProps<HTMLDivElement, Styles> {
-	        column?: boolean;
-	        inline?: boolean;
+	        /**
+	         * Defines how flexbox look
+	         */
 	        decoration?: LayoutDecoration;
+	        /**
+	         * Flexbox content
+	         */
 	        children?: React.ReactNode;
 	    }
 	    interface Styles {
+	        /**
+	         * Root element
+	         */
 	        container: {
 	            decoration?: LayoutDecoration;
 	        };
@@ -9137,59 +9471,21 @@ declare module 'layout/Flexbox' {
 declare module 'layout/Grid/types' {
 	/// <reference types="react" />
 	import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration';
-	import WhaleTypes from '@flow-ui/whale/types';
-	import CSS from 'csstype'; namespace GridTypes {
+	import WhaleTypes from '@flow-ui/whale/types'; namespace GridTypes {
 	    interface Props extends WhaleTypes.GridContainerProps, WhaleTypes.AllProps<HTMLDivElement, Styles> {
-	        inline?: boolean;
-	        children?: React.ReactNode;
+	        /**
+	         * Defines how grid look
+	         */
 	        decoration?: LayoutDecoration;
 	        /**
-	         * @displayType string
-	         * @deprecated
+	         * Grid content
 	         */
-	        templateColumns?: CSS.Properties['gridTemplateColumns'];
-	        /**
-	         * @displayType string
-	         * @deprecated
-	         */
-	        templateRows?: CSS.Properties['gridTemplateRows'];
-	        /**
-	         * @displayType string
-	         * @deprecated
-	         */
-	        templateAreas?: CSS.Properties['gridTemplateAreas'];
-	        /**
-	         * @displayType string
-	         * @deprecated
-	         */
-	        columnGap?: CSS.Properties['gridColumnGap'];
-	        /**
-	         * @displayType string
-	         * @deprecated
-	         */
-	        rowGap?: CSS.Properties['gridRowGap'];
-	        /**
-	         * @displayType string
-	         * @deprecated
-	         */
-	        gap?: CSS.Properties['gridGap'];
-	        /**
-	         * @displayType string
-	         * @deprecated
-	         */
-	        autoColumns?: CSS.Properties['gridAutoColumns'];
-	        /**
-	         * @displayType string
-	         * @deprecated
-	         */
-	        autoRows?: CSS.Properties['gridAutoRows'];
-	        /**
-	         * @displayType string
-	         * @deprecated
-	         */
-	        autoFlow?: CSS.Properties['gridAutoFlow'];
+	        children?: React.ReactNode;
 	    }
 	    interface Styles {
+	        /**
+	         * Root element
+	         */
 	        container: {
 	            decoration?: LayoutDecoration;
 	        };
@@ -9217,33 +9513,99 @@ declare module '@flow-ui/core/layout/Modal/types' {
 	    type ModalDecoration = 'modal' | 'panel';
 	    type ExtentedProps = WhaleTypes.AttributeProps & WhaleTypes.AllEventProps<HTMLDivElement> & WhaleTypes.CoreProps<Styles> & WhaleTypes.ColorProps & WhaleTypes.BorderProps & WhaleTypes.PaddingProps & WhaleTypes.LayoutProps;
 	    interface Ref {
+	        /**
+	         * Opens modal view with optionaly custom content
+	         */
 	        open: (customContent?: React.ReactElement | null) => void;
+	        /**
+	         * Closes modal, didClose arg called at closing complete
+	         */
 	        close: (didClose?: () => void) => void;
+	        /**
+	         * Fn for changing title
+	         */
 	        setTitle: (title: string) => void;
+	        /**
+	         * Fn for changing subtitle
+	         */
 	        setSubtitle: (subtitle: string) => void;
+	        /**
+	         * Fn for changing content if it custom
+	         */
 	        setCustomContent: (customContent: React.ReactElement | null) => void;
+	        /**
+	         * Current title of modal view
+	         */
 	        title?: string;
+	        /**
+	         * Current subtitle of modal view
+	         */
 	        subtitle?: string;
+	        /**
+	         * Current custom content of modal view
+	         */
 	        customContent: React.ReactElement | null;
-	        overlay: React.ReactNode;
-	        window: React.ReactNode;
+	        /**
+	         * Ref for overlay view <div>
+	         */
+	        overlay: HTMLDivElement;
+	        /**
+	         * Ref for view view <div>
+	         */
+	        window: HTMLDivElement;
 	    }
 	    interface Props extends ExtentedProps {
+	        /**
+	         * Title will be displaed at top
+	         */
 	        title?: string;
+	        /**
+	         * Subtitle will be displaed after title
+	         */
 	        subtitle?: string;
+	        /**
+	         * Content for modal view
+	         */
 	        children?: React.ReactNode;
+	        /**
+	         * Open state, for controlled component
+	         */
 	        opened?: boolean;
+	        /**
+	         * How view will looks like
+	         * @default modal
+	         */
 	        decoration?: ModalDecoration;
+	        /**
+	         * Size of view and its content
+	         * @default m
+	         */
 	        size?: WhaleTypes.Size;
+	        /**
+	         * Disable header and hide it
+	         */
 	        hideHeader?: boolean;
+	        /**
+	         * If true then tap on overlay will close view
+	         * @default false
+	         */
 	        overlayClose?: boolean;
+	        /**
+	         * Fn calls before view close
+	         */
 	        onClose?: () => void;
+	        /**
+	         * Fn calls after view close
+	         */
 	        didClose?: () => void;
+	        /**
+	         * Fn calls before view open
+	         */
 	        onOpen?: () => void;
+	        /**
+	         * Fn calls after view open
+	         */
 	        didOpen?: () => void;
-	    }
-	    interface InnerProps extends Props {
-	        innerRef: any;
 	    }
 	    interface ModalOverlayProps {
 	        getStyles: () => {
@@ -9280,10 +9642,25 @@ declare module '@flow-ui/core/layout/Modal/types' {
 	        decoration?: Props['decoration'];
 	    };
 	    interface Styles {
+	        /**
+	         * Backside view
+	         */
 	        overlay: StyleState;
+	        /**
+	         * Wrapper of modal
+	         */
 	        wrapper: StyleState;
+	        /**
+	         * Window it self
+	         */
 	        window: StyleState;
+	        /**
+	         * Header of window
+	         */
 	        header: StyleState;
+	        /**
+	         * Close button
+	         */
 	        cross: StyleState;
 	    }
 	}
@@ -9292,7 +9669,7 @@ declare module '@flow-ui/core/layout/Modal/types' {
 }
 declare module 'layout/Modal/ModalOverlay' {
 	import React from 'react';
-	import ModalTypes from '@flow-ui/core/layout/Modal/types'; const ModalOverlay: React.ForwardRefExoticComponent<ModalTypes.ModalOverlayProps & React.RefAttributes<unknown>>;
+	import ModalTypes from '@flow-ui/core/layout/Modal/types'; const ModalOverlay: React.ForwardRefExoticComponent<ModalTypes.ModalOverlayProps & React.RefAttributes<HTMLDivElement>>;
 	export default ModalOverlay;
 
 }
@@ -9309,7 +9686,7 @@ declare module 'layout/Modal/ModalHeader' {
 }
 declare module 'layout/Modal/ModalWindow' {
 	import ModalTypes from '@flow-ui/core/layout/Modal/types';
-	import React from 'react'; const ModalWindow: React.ForwardRefExoticComponent<ModalTypes.ModalWindowProps & React.RefAttributes<unknown>>;
+	import React from 'react'; const ModalWindow: React.ForwardRefExoticComponent<ModalTypes.ModalWindowProps & React.RefAttributes<HTMLDivElement>>;
 	export default ModalWindow;
 
 }
@@ -9341,12 +9718,11 @@ declare module 'layout/Notification/types' {
 	         */
 	        message: string;
 	        /**
-	         * Notification will be removed after timeout
-	         * value in milisecods
+	         * Time in milliseconds after which the notification will be removed
 	         */
 	        timeout?: number;
 	        /**
-	         * Will call on notificaion click
+	         * Fired when user click on notification
 	         */
 	        onClick?: (e: any) => void;
 	        /**
@@ -9355,6 +9731,9 @@ declare module 'layout/Notification/types' {
 	        customContent?: React.ReactElement;
 	    }
 	    interface Styles {
+	        /**
+	         * Root element
+	         */
 	        container: void;
 	    }
 	}
@@ -9378,15 +9757,39 @@ declare module 'layout/Popover/types' {
 	import WhaleTypes from '@flow-ui/whale/types';
 	import CSS from 'csstype'; namespace PopoverTypes {
 	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
+	        /**
+	         * Alignment of popover's arrow
+	         */
 	        align?: 'top' | 'bottom' | 'left' | 'right' | 'none';
+	        /**
+	         * Color of popover's border
+	         */
 	        borderColor?: WhaleTypes.ColorProp;
+	        /**
+	         * Color of popover's background
+	         */
 	        backgroundColor?: WhaleTypes.ColorProp;
+	        /**
+	         * Popover's content
+	         */
 	        children?: React.ReactNode;
+	        /**
+	         * Width of popover's arrow
+	         */
 	        arrowWidth?: CSS.Properties['width'];
+	        /**
+	         * Height of popover's arrow
+	         */
 	        arrowHeight?: CSS.Properties['height'];
 	    }
 	    interface Styles {
+	        /**
+	         * Root element
+	         */
 	        container: void;
+	        /**
+	         * Arrow container
+	         */
 	        arrow: {
 	            align: Props['align'];
 	        };
@@ -9522,6 +9925,9 @@ declare module 'layout/ScrollView/types' {
 	        cursorHandle?: boolean;
 	    }
 	    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onScroll'> {
+	        /**
+	         * Any contant of scrollview
+	         */
 	        children?: React.ReactNode;
 	        /**
 	         * Display mode
@@ -9557,33 +9963,63 @@ declare module 'layout/ScrollView/types' {
 	         * onflowscroll will not dispatch
 	         */
 	        sendFlowScollEvent?: boolean;
+	        /**
+	         * Calls when ever user scrolls
+	         */
 	        onScroll?: (event: ScrollViewEvent) => void;
 	    }
 	    interface Ref {
+	        /**
+	         * Forcing update scrollview positions
+	         */
 	        updateScroll: () => void;
+	        /**
+	         * Scroll to top
+	         */
 	        scrollTop: () => void;
 	    }
 	    interface Styles {
+	        /**
+	         * Root view
+	         */
 	        container: void;
+	        /**
+	         * Content view
+	         */
 	        content: void;
+	        /**
+	         * Legacy view for webkit browsers
+	         */
 	        legacy: void;
+	        /**
+	         * Vertical scroll bar view
+	         */
 	        yBar: {
 	            active: boolean;
 	            shape: Props['shape'];
 	            size: Props['size'];
 	            position: Props['yBarPosition'];
 	        };
+	        /**
+	         * Vertical scroll thumb
+	         */
 	        yThumb: {
 	            active: boolean;
 	            shape: Props['shape'];
 	            size: Props['size'];
 	        };
+	        /**
+	         * Horizontal scroll bar view
+	         */
 	        xBar: {
 	            active: boolean;
 	            shape: Props['shape'];
 	            size: Props['size'];
 	            position: Props['xBarPosition'];
 	        };
+	        /**
+	         * Horizontal scroll thumb
+	         */
 	        xThumb: {
 	            active: boolean;
 	            shape: Props['shape'];
@@ -9706,16 +10142,39 @@ declare module 'layout/Viewport/types' {
 	import { Options } from '@emotion/cache';
 	import { SerializedStyles } from '@emotion/core';
 	import ModalTypes from '@flow-ui/core/layout/Modal/types'; namespace ViewportTypes {
+	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
+	        /**
+	         * Defines whether the viewport renders content inside the container
+	         * @default false
+	         */
+	        wrapper?: boolean;
+	        /**
+	         * Emotion cache options
+	         */
+	        cache?: Options;
+	        /**
+	         * Defines which theme to put in context.
+	         * @default light
+	         */
+	        theme?: 'dark' | 'light' | WhaleTypes.Theme;
+	        /**
+	         * Set global CSS
+	         */
+	        global?: SerializedStyles;
+	        /**
+	         * Application content
+	         */
+	        children?: React.ReactNode;
+	    }
+	    interface Styles {
+	        /**
+	         * Root element
+	         */
+	        container: void;
+	    }
 	    interface Themes {
 	        light: WhaleTypes.Theme;
 	        dark: WhaleTypes.Theme;
-	    }
-	    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
-	        wrapper?: boolean;
-	        cache?: Options;
-	        theme?: 'dark' | 'light' | WhaleTypes.Theme;
-	        global?: SerializedStyles;
-	        children?: React.ReactNode;
 	    }
 	    interface MountArea {
 	        className?: string;
@@ -9764,9 +10223,6 @@ declare module 'layout/Viewport/types' {
 	         * if custom content filled then message and buttonText will be ignored
 	         */
 	        customContent?: (close: () => void) => React.ReactElement;
-	    }
-	    interface Styles {
-	        container: void;
 	    }
 	}
 	export default ViewportTypes;
