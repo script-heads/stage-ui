@@ -15,12 +15,11 @@ declare namespace NotificationTypes {
          */
         message: string
         /**
-         * Notification will be removed after timeout
-         * value in milisecods
+         * Time in milliseconds after which the notification will be removed
          */
         timeout?: number
         /**
-         * Will call on notificaion click
+         * Fired when user click on notification
          */
         onClick?: (e: any) => void
         /**
@@ -30,6 +29,9 @@ declare namespace NotificationTypes {
     }
 
     interface Styles {
+        /**
+         * Root element
+         */
         container: void
     }
 }
