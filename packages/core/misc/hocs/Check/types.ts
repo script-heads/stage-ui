@@ -23,13 +23,11 @@ declare namespace CheckTypes {
     interface Styles {
         container: {
             disabled: Props['disabled']
-            animated: Props['animated']
         }
         label: {
             disabled: Props['disabled']
             size: Props['size']
             uppercase: Props['uppercase']
-            animated: Props['animated']
         }
     }
 }

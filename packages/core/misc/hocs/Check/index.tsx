@@ -4,7 +4,7 @@ import CheckTypes from './types'
 const Check: RefForwardingComponent<HTMLDivElement, CheckTypes.PrivateProps> = (props, ref) => {
     const [focus, setFocus] = useState(false)
     const [checked, setChecked] = useState(props.checked || props.defaultValue || false)
-    const { label, styles, animated, disabled,size, uppercase } = props
+    const { label, styles, disabled,size, uppercase } = props
 
     useEffect(() => {
         if (typeof props.checked !== 'undefined') {
@@ -49,7 +49,7 @@ const Check: RefForwardingComponent<HTMLDivElement, CheckTypes.PrivateProps> = (
 
     const containerProps = {
         ref,
-        css: styles.container({animated, disabled}),
+        css: styles.container({disabled}),
         onClick,
         onKeyDown,
         onFocus: (e: React.FocusEvent<HTMLInputElement>) => {
@@ -66,7 +66,7 @@ const Check: RefForwardingComponent<HTMLDivElement, CheckTypes.PrivateProps> = (
         <div {...containerProps}>
             {props.children(checked, focus)}
             {(label && label.length) && (
-                <div css={styles.label({animated,disabled,size,uppercase})} children={label} />
+                <div css={styles.label({disabled,size,uppercase})} children={label} />
             )}
         </div>
     )

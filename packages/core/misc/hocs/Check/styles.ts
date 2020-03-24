@@ -18,9 +18,6 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
             variant({
                 disabled: [{
                     cursor: 'not-allowed',
-                }],
-                animated: [{
-                    transition: 'all .15s'
                 }]
             })
         ],
@@ -38,9 +35,6 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                 }],
                 uppercase: [{
                     textTransform: 'uppercase'
-                }],
-                animated: [{
-                    transition: 'all .15s'
                 }]
             }),
         ],
