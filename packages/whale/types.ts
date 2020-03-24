@@ -183,8 +183,10 @@ declare namespace WhaleTypes {
      * @name Core
      */
     interface CoreProps<S={}> {
+        /**
+         * Override any component style
+         */
         styles?: Partial<Styles<S>>
-        animated?: boolean
     }
 
     /**
@@ -192,15 +194,33 @@ declare namespace WhaleTypes {
      * @name Attributes
      */
     interface AttributeProps extends React.AriaAttributes {
+        /**
+         * Set class atrribute on component's container 
+         */
         className?: string
+        /**
+         * Set id atrribute on component's container 
+         */
         id?: string
         /**
-         * @displayType CSS
+         * Set style atrribute on component's container
          */
         style?: React.CSSProperties
+        /**
+         * Set tab-index atrribute on component's container 
+         */
         tabIndex?: number
+        /**
+         * Set role atrribute on component's container 
+         */
         role?: string
+        /**
+         * Set draggable atrribute on component's container 
+         */
         draggable?: boolean
+        /**
+         * Set any atrributes on component's container 
+         */
         attrs?: Object
     }
 
