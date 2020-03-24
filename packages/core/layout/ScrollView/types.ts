@@ -17,7 +17,9 @@ declare namespace ScrollViewTypes {
         cursorHandle?: boolean
     }
     interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onScroll'> {
-
+        /**
+         * Any contant of scrollview
+         */
         children?: React.ReactNode
         /**
          * Display mode
@@ -53,35 +55,65 @@ declare namespace ScrollViewTypes {
          * onflowscroll will not dispatch
          */
         sendFlowScollEvent?: boolean
+        /**
+         * Calls when ever user scrolls
+         */
         onScroll?: (event: ScrollViewEvent) => void
     }
 
     interface Ref {
+        /**
+         * Forcing update scrollview positions
+         */
         updateScroll: () => void
+        /**
+         * Scroll to top
+         */
         scrollTop: () => void
     }
 
     interface Styles {
+        /**
+         * Root view
+         */
         container: void
+        /**
+         * Content view
+         */
         content: void
+        /**
+         * Legacy view for webkit browsers
+         */
         legacy: void
+        /**
+         * Vertical scroll bar view
+         */
         yBar: {
             active: boolean,
             shape: Props['shape']
             size: Props['size']
             position: Props['yBarPosition']
         }
+        /**
+         * Vertical scroll thumb
+         */
         yThumb: {
             active: boolean,
             shape: Props['shape']
             size: Props['size']
         }
+        /**
+         * Horizontal scroll bar view
+         */
         xBar: {
             active: boolean
             shape: Props['shape']
             size: Props['size']
             position: Props['xBarPosition']
         }
+        /**
+         * Horizontal scroll thumb
+         */
         xThumb: {
             active: boolean
             shape: Props['shape']

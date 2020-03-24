@@ -2,7 +2,7 @@ import ModalTypes from './types'
 import React, { forwardRef } from 'react'
 import ModalHeader from './ModalHeader'
 
-const ModalWindow = forwardRef((props: ModalTypes.ModalWindowProps, ref: any) => {
+const ModalWindow = forwardRef((props: ModalTypes.ModalWindowProps, ref: React.Ref<HTMLDivElement>) => {
 
     const styles = props.getStyles()
 

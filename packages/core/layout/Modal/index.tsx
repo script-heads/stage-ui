@@ -17,8 +17,8 @@ const Modal: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
 
     const { cs, attributes, events } = useComponent('Modal', { props, styles, styleProps: { window: ['all'] } })
 
-    const overlayRef = useRef(null)
-    const windowRef = useRef(null)
+    const overlayRef = useRef<HTMLDivElement>(null)
+    const windowRef = useRef<HTMLDivElement>(null)
 
     const [active, setActive] = useState(false)
     const [visible, setVisible] = useState<boolean>(false)
@@ -46,8 +46,8 @@ const Modal: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
         setSubtitle,
         customContent,
         setCustomContent,
-        overlay: overlayRef.current,
-        window: windowRef.current
+        overlay: overlayRef.current as HTMLDivElement,
+        window: windowRef.current as HTMLDivElement
     }))
 
     function open(customContent?: React.ReactElement) {

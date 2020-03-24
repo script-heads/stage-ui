@@ -435,39 +435,39 @@ declare module '@flow-ui/whale/types' {
 	        /**
 	         * @breakpointify
 	         */
-	        gridTemplateColumns?: Breakpointify<CSS.Properties['gridTemplateColumns']>;
+	        templateColumns?: Breakpointify<CSS.Properties['gridTemplateColumns']>;
 	        /**
 	         * @breakpointify
 	         */
-	        gridTemplateRows?: Breakpointify<CSS.Properties['gridTemplateRows']>;
+	        templateRows?: Breakpointify<CSS.Properties['gridTemplateRows']>;
 	        /**
 	         * @breakpointify
 	         */
-	        gridTemplateAreas?: Breakpointify<CSS.Properties['gridTemplateAreas']>;
+	        templateAreas?: Breakpointify<CSS.Properties['gridTemplateAreas']>;
 	        /**
 	         * @breakpointify
 	         */
-	        gridColumnGap?: Breakpointify<CSS.Properties['gridColumnGap']>;
+	        columnGap?: Breakpointify<CSS.Properties['gridColumnGap']>;
 	        /**
 	         * @breakpointify
 	         */
-	        gridRowGap?: Breakpointify<CSS.Properties['gridRowGap']>;
+	        rowGap?: Breakpointify<CSS.Properties['gridRowGap']>;
 	        /**
 	         * @breakpointify
 	         */
-	        gridGap?: Breakpointify<CSS.Properties['gridGap']>;
+	        gap?: Breakpointify<CSS.Properties['gridGap']>;
 	        /**
 	         * @breakpointify
 	         */
-	        gridAutoColumns?: Breakpointify<CSS.Properties['gridAutoColumns']>;
+	        autoColumns?: Breakpointify<CSS.Properties['gridAutoColumns']>;
 	        /**
 	         * @breakpointify
 	         */
-	        gridAutoRows?: Breakpointify<CSS.Properties['gridAutoRows']>;
+	        autoRows?: Breakpointify<CSS.Properties['gridAutoRows']>;
 	        /**
 	         * @breakpointify
 	         */
-	        gridAutoFlow?: Breakpointify<CSS.Properties['gridAutoFlow']>;
+	        autoFlow?: Breakpointify<CSS.Properties['gridAutoFlow']>;
 	        /**
 	         * @breakpointify
 	         */
@@ -484,6 +484,7 @@ declare module '@flow-ui/whale/types' {
 	         * @displayType inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
 	         */
 	        justifyItems?: Breakpointify<GridSpace | GridSelf>;
+	        inline?: boolean;
 	    }
 	    interface FlexboxContainerProps {
 	        /**
@@ -512,6 +513,8 @@ declare module '@flow-ui/whale/types' {
 	         */
 	        justifyItems?: Breakpointify<FlexSelf | FlexSpace>;
 	        direction?: Breakpointify<FlexDirection>;
+	        column?: boolean;
+	        inline?: boolean;
 	        wrap?: Breakpointify<FlexWrap>;
 	        /**
 	         * Short for direction and wrap

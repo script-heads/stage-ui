@@ -2,7 +2,7 @@ import React from 'react'
 import ModalTypes from './types'
 import { forwardRef } from 'react'
 
-const ModalOverlay = forwardRef((props: ModalTypes.ModalOverlayProps, ref: any) => {
+const ModalOverlay = forwardRef((props: ModalTypes.ModalOverlayProps, ref: React.Ref<HTMLDivElement>) => {
 
     const styles = props.getStyles()
 
