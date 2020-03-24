@@ -8,7 +8,7 @@ import styles from './styles'
 import Types from './types'
 
 const Checkbox: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
-    const { size = 'm', animated, disabled } = props
+    const { size = 'm', disabled } = props
 
     const { cs, attributes, events } = useComponent('Checkbox', { 
         props, 
@@ -40,9 +40,9 @@ const Checkbox: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, re
              */
             type="checkbox"
             children={(checked, focus) =>
-                <Block css={cs.check({ animated, size, disabled, focus })}>
+                <Block css={cs.check({ size, disabled, focus })}>
                     <Checkmark
-                        css={cs.icon({ animated, size, disabled, checked })}
+                        css={cs.icon({ size, disabled, checked })}
                     />
                 </Block>
             }

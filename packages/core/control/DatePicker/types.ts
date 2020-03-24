@@ -1,18 +1,16 @@
 import WhaleTypes from '@flow-ui/whale/types'
 import { Moment } from 'moment'
 import FieldTypes from '../../misc/hocs/Field/types'
+import CalendarTypes from '@flow-ui/core/control/Calendar/types'
 
 declare namespace DatePickerTypes {
-
-    type GridType = 'year' | 'month' | 'day'
-    type Locale = 'en' | 'ru' | 'it' | 'fr' | 'de'
 
     interface Props extends Omit<FieldTypes.Props, 'onChange'>, InputProps {
         /**
          * Type for DatePicker
          * @default day
          */
-        type?: GridType
+        type?: CalendarTypes.GridType
         /**
          * Property value could be a string
          * if you pass format property aswell
@@ -50,7 +48,7 @@ declare namespace DatePickerTypes {
         /**
          * @default ru
          */
-        locale?: Locale
+        locale?: CalendarTypes.Locale
         /**
          * Hide today button
          */
@@ -76,9 +74,15 @@ declare namespace DatePickerTypes {
     }
 
     interface Styles extends FieldTypes.Styles {
+        /**
+         * Drop view
+         */
         drop: {
             isActive: boolean
         }
+        /**
+         * Input view
+         */
         input: void
     }
 }

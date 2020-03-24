@@ -26,8 +26,8 @@ const TableFoot: RefForwardingComponent<HTMLTableCellElement, Types.FootProps> =
                         {paginationNeedDisplay && (
                             <Pageswitch
                                 length={rowCtx.length}
-                                options={{ ...pagination }}
                                 onChange={onPageChange}
+                                {...pagination}
                             />
                         )}
                     </Flexbox>

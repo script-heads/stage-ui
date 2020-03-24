@@ -48,7 +48,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
     useEffect(() => setTmpDate(value), [value])
 
     return (
-        <Flexbox {...props.attributes} column css={props.styles.dateGrind}>
+        <Flexbox {...props.attributes} column css={props.styles.dateGrid}>
             <DateGridTitle
                 styles={props.styles}
                 gridType={gridType}

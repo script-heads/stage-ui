@@ -5,16 +5,20 @@ declare namespace CheckboxTypes {
     }
     
     interface Styles extends CheckTypes.Styles {
+        /**
+         * Checkbox container
+         */
         check: {
             size: Props['size']
-            animated: Props['animated']
             disabled: Props['disabled']
             focus: boolean
         }
+        /**
+         * Icon of checkbox
+         */
         icon: {
             checked: Props['checked']
             size: Props['size']
-            animated: Props['animated']
             disabled: Props['disabled']
         }
     }

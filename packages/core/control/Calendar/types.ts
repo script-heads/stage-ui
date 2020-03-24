@@ -3,8 +3,13 @@ import { Moment } from 'moment'
 import { CSSProperties } from 'react'
 
 declare namespace CalendarTypes {
-
+    /**
+     * Type of calendar view
+     */
     type GridType = 'year' | 'month' | 'day'
+    /**
+     * Calendar locale
+     */
     type Locale = 'en' | 'ru' | 'it' | 'fr' | 'de'
 
     interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
@@ -14,11 +19,12 @@ declare namespace CalendarTypes {
          */
         type?: GridType
         /**
-         * Property value could be a string
-         * if you pass format property aswell
-         * otherwise value should be instance of Date
+         * Date or Moment value for controlled component
          */
         value?: Moment | Date
+        /**
+         * Date or Moment value for uncontrolled component
+         */
         defaultValue?: Moment | Date
         /**
          * Min datetime that could be selected
@@ -76,10 +82,22 @@ declare namespace CalendarTypes {
     }
 
     interface Styles {
-        dateGrind: void
-        weekDay: void
+        /**
+         * Root container
+         */
+        dateGrid: void
+        /**
+         * Main title block
+         */
         title: void
-        gridBlock: {
+        /**
+         * Days of week block
+         */
+        weekDay: void
+        /**
+         * Each square day block
+         */
+        day: {
             isActive: Boolean
             isCurrent: boolean
             isDisabled: boolean
