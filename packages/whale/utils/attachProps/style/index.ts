@@ -64,7 +64,7 @@ const resolvers: WhalePropsTypes.StyleResolverObject = {
     justifyItems: ['flex', 'justifyItems'],
     placeContent: ['flex', 'placeContent'],
 
-    //Grid
+    //Grid children
     gridColumnStart: ['grid', 'gridColumnStart'],
     gridColumnEnd: ['grid', 'gridColumnEnd'],
     gridRowStart: ['grid', 'gridRowStart'],
@@ -72,17 +72,18 @@ const resolvers: WhalePropsTypes.StyleResolverObject = {
     gridColumn: ['grid', 'gridColumn'],
     gridRow: ['grid', 'gridRow'],
     gridArea: ['grid', 'gridArea'],
-    gridTemplateColumns: ['grid', 'gridTemplateColumns'],
-    gridTemplateRows: ['grid', 'gridTemplateRows'],
-    gridTemplateAreas: ['grid', 'gridTemplateAreas'],
-    gridColumnGap: ['grid', 'gridColumnGap'],
-    gridRowGap: ['grid', 'gridRowGap'],
-    gridGap: ['grid', 'gridGap'],
-    gridAutoColumns: ['grid', 'gridAutoColumns'],
-    gridAutoRows: ['grid', 'gridAutoRows'],
-    gridAutoFlow: ['grid', 'gridAutoFlow'],
-
     placeSelf: ['grid', 'placeSelf'],
+
+    //Grid parent
+    templateColumns: ['grid', 'gridTemplateColumns'],
+    templateRows: ['grid', 'gridTemplateRows'],
+    templateAreas: ['grid', 'gridTemplateAreas'],
+    columnGap: ['grid', 'gridColumnGap'],
+    rowGap: ['grid', 'gridRowGap'],
+    gap: ['grid', 'gridGap'],
+    autoColumns: ['grid', 'gridAutoColumns'],
+    autoRows: ['grid', 'gridAutoRows'],
+    autoFlow: ['grid', 'gridAutoFlow'],
 }
 
 const createPropStyles = <Props, StyleProps>(
