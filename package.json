@@ -27,7 +27,7 @@
     "gitpush": "git commit . -m 'Update version' && git push",
     "build": "cd ./packages/documaker && yarn build",
     "form": "cd ./build/documaker && pm2 start --name FlowUI server.js",
-    "deploy": "curl -s http://gitlab.abr-region.ru/api/v4/projects/237/ref/master/trigger/pipeline?token=8e3b477f2ce3ef9e5f4ca44d977a71 > /dev/null"
+    "deploy": "curl -X POST -F token=8e3b477f2ce3ef9e5f4ca44d977a71 -F ref=master  http://gitlab.abr-region.ru/api/v4/projects/237/trigger/pipeline > /dev/null"
   },
   "dependencies": {
     "tslint": "^6.0.0",
