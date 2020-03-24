@@ -11,11 +11,14 @@ const config: Config = {
     git: 'https://github.com/abr-tech/FlowUI',
     pages: {
         order: {
-            About: ['Getting started','Theming','Overrides','Props', 'Icons', 'Bundle'],
-            Content: [],
+            About: ['Getting started','Theming','Overrides','Props', 'Bundle'],
             Layout: [],
+            Content: [],
             Control: [],
-            Util: []
+            Data: [],
+            Icons: [],
+            Util: [],
+            Lab: []
         },
         types: [
             {
@@ -80,7 +83,7 @@ const config: Config = {
             'Margin',
             'Flex',
             'Grid',
-            'Colors',
+            'Color',
             'Border',
             'Event',
         ],

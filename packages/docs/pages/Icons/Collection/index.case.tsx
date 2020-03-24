@@ -3,7 +3,7 @@ import * as AllIcons from '@flow-ui/core/icons'
 import { Minus, Plus } from '@flow-ui/core/icons'
 import React, { Fragment, useEffect, useState } from 'react'
 
-export const title = 'Icon collection'
+export const title = 'Collection'
 export const subtitle = 'icons improves user experience'
 
 const Delay = (props) => {

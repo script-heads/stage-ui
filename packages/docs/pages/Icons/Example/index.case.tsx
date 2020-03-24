@@ -2,7 +2,7 @@ import code from './default.raw'
 import rotate from './rotate.raw'
 import shapes from './shapes.raw'
 
-export const title = 'Icon example'
+export const title = 'Usage'
 export const subtitle = 'icons improves user experience'
 export const ns = 'IconTypes'
 export const cases = [
