@@ -7,8 +7,7 @@ import Types from './types'
 
 const Pageswitch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
-    const { length, options, value } = props
-    const { pageSize = 20 } = options || {}
+    const { length, pageSize = 20, value } = props
     const lastPage = Math.ceil(length / pageSize)
     const { cs, attributes, events } = useComponent('Pageswitch', { 
         props, 

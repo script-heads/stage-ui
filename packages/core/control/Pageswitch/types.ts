@@ -3,17 +3,36 @@ import WhaleTypes from '@flow-ui/whale/types'
 declare namespace PageswitchTypes {
 
     interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+        /**
+         * Total count of records
+         */
         length: number
+        /**
+         * Calls on page changed
+         */
         onChange?: (pageNumber: number, startIndex: number) => void
-        options?: Options
+        /**
+         * Records on page
+         * @default 20
+         */
+        pageSize?: number
+        /**
+         * Current page number, for controlled component
+         */
         value?: number
+        /**
+         * Default page number
+         */
         defaultValue?: number
     }
-    interface Options {
-        pageSize?: number
-    }
     interface Styles {
+        /**
+         * Root container
+         */
         container: void
+        /**
+         * Left/Right buttons
+         */
         arrowButton: {
             disabled: boolean
         }
