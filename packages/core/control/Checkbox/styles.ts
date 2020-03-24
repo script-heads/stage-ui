@@ -19,6 +19,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                 borderWidth: theme.assets.border.width,
                 borderStyle: theme.assets.border.style,
                 borderRadius: theme.radius.s,
+                transition: 'all .15s'
             },
             variant({
                 focus: [{
@@ -48,9 +49,6 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                         height: '2rem'
                     }],
                 },
-                animated: [{
-                    transition: 'all .15s'
-                }],
                 disabled: [{
                     color: theme.color.hardest.rgb().string(),
                     borderColor: theme.color.lightest.rgb().string(),
@@ -60,9 +58,10 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
         ],
         icon: (variant) => [
             {
-                transition: 'all 0.2s',
                 opacity: 0,
                 transform: `scale(0.5)`,
+                transition: 'opacity .15s, transform .15s',
+                willChange: 'opacity, transform'
             },
             variant({
                 size: {
@@ -82,9 +81,6 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                         fontSize: '1.9rem'
                     }],
                 },
-                animated: [{
-                    transition: 'all .15s'
-                }],
                 checked: [{
                     opacity: 1,
                     transform: `scale(1)`,
