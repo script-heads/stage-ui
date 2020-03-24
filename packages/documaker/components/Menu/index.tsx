@@ -42,15 +42,18 @@ const Menu = (props: MenuProps) => {
 					textColor={c => c.primary} 
 					css={{
 						verticalAlign: 'text-top',
-						
 					}}
 					children="β"
 				/>
 				<Text 
-					size="xs"
+                    size="xs"
+                    lineHeight="0"
 					ml="0.25rem"
-					textColor="light"
-					children={`v.${corePackage.version}`}
+                    textColor="light"
+                    css={{
+						verticalAlign: 'text-top',
+					}}
+					children={`${corePackage.version}`}
 				/>
 			</Block>
 			<Flexbox>
