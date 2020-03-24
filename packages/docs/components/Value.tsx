@@ -1,4 +1,4 @@
-import { Block, Text } from '@flow-ui/core'
+import { Block, Text, Flexbox } from '@flow-ui/core'
 import React from 'react'
 import { ValueDefinition } from '@flow-ui/documaker/components/Page/Types/Interface'
 interface ValueProps { 
@@ -80,9 +80,9 @@ const Value = (props: ValueProps) => {
     }
 
     return (
-        <Block>
+        <Flexbox wrap="wrap">
             {rightSide}
-        </Block>
+        </Flexbox>
     )
 }
 

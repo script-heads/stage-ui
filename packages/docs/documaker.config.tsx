@@ -23,11 +23,13 @@ const config: Config = {
                 columns: [
                     {
                         key: 'name',
-                        title: 'Name'
+                        title: 'Name',
+                        width: '10rem'
                     },
                     {
                         key: 'values',
                         title: 'Type',
+                        width: '12rem',
                         render: (c) => <Value type={c.row as ValueDefinition}/>
                     },
                     {
@@ -38,11 +40,13 @@ const config: Config = {
                     {
                         key: 'isOptional',
                         title: 'Parameters',
+                        width: '8rem',
                         render: (c) => <Params type={c.row as ValueDefinition}/>
                     },
                     {
                         key: 'tags',
                         title: 'Default',
+                        width: '4rem',
                         render: (c) => <Text children={(c.row as ValueDefinition).tags?.default} />
                     }
                 ]
@@ -52,7 +56,8 @@ const config: Config = {
                 columns: [
                     {
                         key: 'name',
-                        title: 'Name'
+                        title: 'Name',
+                        width: '10rem'
                     },
                     {
                         key: 'comment',
@@ -62,6 +67,7 @@ const config: Config = {
                     {
                         key: 'values',
                         title: 'States',
+                        width: '15rem',
                         render: (c) => <Value type={c.row as ValueDefinition}/>
                     },
                 ]

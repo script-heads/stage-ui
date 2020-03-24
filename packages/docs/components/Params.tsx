@@ -16,7 +16,7 @@ const Params = (props: ParamsProps) => {
         </Text>
 
     return (
-        <Flexbox css={{ overflow: 'hidden' }}>
+        <Flexbox css={{ overflow: 'hidden' }} wrap="wrap">
             {type.deprecated && 
                 <Label>Deprecated</Label>
             }
