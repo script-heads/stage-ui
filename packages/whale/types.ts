@@ -210,11 +210,13 @@ declare namespace WhaleTypes {
      */
     interface ColorProps {
         /**
+         * Set color style
          * @displayType Color
          * @breakpointify
          */
         textColor?: Breakpointify<ColorProp>
         /**
+         * Set background-color style
          * @displayType Color
          * @breakpointify
          */
@@ -227,22 +229,22 @@ declare namespace WhaleTypes {
      */
     interface BorderProps {
         /**
-         * Border width
+         * Set border-width style
          * @breakpointify
          */
         borderWidth?: Breakpointify<CSS.Properties['borderWidth']>
         /**
-         * Border style
+         * Set border-style style
          * @breakpointify
          */
         borderStyle?: Breakpointify<CSS.Properties['borderStyle']>
         /**
-         * Border color
+         * Set border-color style
          * @breakpointify
          */
         borderColor?: Breakpointify<ColorProp>
         /**
-         * Border radius
+         * Set border-radius style
          * @breakpointify
          */
         borderRadius?: Breakpointify<CSS.Properties['borderRadius']>
@@ -254,12 +256,12 @@ declare namespace WhaleTypes {
      */
     interface LayoutProps {
         /**
-         * Width alias
+         * Set width style
          * @breakpointify
          */
         w?: Breakpointify<CSS.Properties['width']>
         /**
-         * Heigth alias
+         * Set height style
          * @breakpointify
          */
         h?: Breakpointify<CSS.Properties['height']>
@@ -283,19 +285,22 @@ declare namespace WhaleTypes {
          */
         display?: Breakpointify<CSS.Properties['display']>
         /**
-         * Set the font size
+         * Set font-size style
          * @breakpointify
          */
         fontSize?: Breakpointify<CSS.Properties['fontSize']>
         /**
+         * Set line-height style
          * @breakpointify
          */
         lineHeight?: Breakpointify<CSS.Properties['lineHeight']>
         /**
+         * Set letter-spacing style
          * @breakpointify
          */
-        letterSpacing?: Breakpointify<CSS.Properties['fontSize']>
+        letterSpacing?: Breakpointify<CSS.Properties['letterSpacing']>
         /**
+         * Set text-align style
          * @breakpointify
          */
         textAlign?: Breakpointify<CSS.Properties['textAlign']>
@@ -307,43 +312,43 @@ declare namespace WhaleTypes {
      */
     interface PaddingProps {
         /**
-         * Padding alias
+         * Set padding style
          * @breakpointify
          * @displayType Size | string | number
          */
         p?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
-         * Padding horizontal alias
+         * Set horizontal padding style 
          * @breakpointify
          * @displayType Size | string | number
          */
         px?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
-         * Padding vertical alias
+         * Set vertical padding style
          * @breakpointify
          * @displayType Size | string | number
          */
         py?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
-         * PaddingRight alias
+         * Set right padding style
          * @breakpointify
          * @displayType Size | string | number
          */
         pr?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
-         * PaddingLeft alias
+         * Set left padding style
          * @breakpointify
          * @displayType Size | string | number
          */
         pl?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
-         * PaddingTop alias
+         * Set top padding style
          * @breakpointify
          * @displayType Size | string | number
          */
         pt?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
-         * PaddingBottom alias
+         * Set bottom padding style
          * @breakpointify
          * @displayType Size | string | number
          */
@@ -356,52 +361,47 @@ declare namespace WhaleTypes {
      */
     interface MarginProps {
         /**
-         * Margin alias
+         * Set margin style
          * @breakpointify
          * @displayType Size | string | number
          */
         m?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
-         * Margin horizontal alias
+         * Set horizontal margin style
          * @breakpointify
          * @displayType Size | string | number
          */
         mx?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
-         * Margin vertical alias
+         * Set vertical margin style
          * @breakpointify
          * @displayType Size | string | number
          */
         my?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
-         * MarginRight alias
+         * Set right margin style
          * @breakpointify
          * @displayType Size | string | number
          */
         mr?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
-         * MarginLeft alias
+         * Set left margin style
          * @breakpointify
          * @displayType Size | string | number
          */
         ml?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
-         * MarginTop alias
+         * Set top margin style
          * @breakpointify
          * @displayType Size | string | number
          */
         mt?: Breakpointify<Size | (string & { T?: string}) | number>
         /**
-         * MarginBottom alias
+         * Set bottom margin style
          * @breakpointify
          * @displayType Size | string | number
          */
         mb?: Breakpointify<Size | (string & { T?: string}) | number>
-        /**
-         * Sets how an element is positioned in a document. 
-         * The top, right, bottom, and left properties determine 
-         * the final location of positioned elements.
-         */
     }
 
     /**
@@ -526,36 +526,64 @@ declare namespace WhaleTypes {
 
     interface FlexboxContainerProps {
         /**
+         * Sets the align-self value on all direct children as a group. 
+         * In Flexbox, it controls the alignment of items on the Cross Axis
          * @breakpointify
          * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch
          */
         alignItems?: Breakpointify<FlexSelf>
         /**
+         * Sets the distribution of space between and around content 
+         * items along a flexbox's cross-axis or a grid's block axis
          * @breakpointify
          * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
          */
         alignContent?: Breakpointify<FlexSelf | FlexSpace>
         /**
+         * The place-content CSS property is a shorthand for 
+         * align-content and justify-content
          * @breakpointify
          * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
          */
         placeContent?: Breakpointify<FlexSelf | FlexSpace>
         /**
+         * Defines how the browser distributes space between and around 
+         * content items along the main-axis of a flex container, and 
+         * the inline axis of a grid container.
          * @breakpointify
          * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
          */
         justifyContent?: Breakpointify<FlexSelf | FlexSpace>
         /**
+         * Defines the default justify-self for all items of the box, giving them all 
+         * a default way of justifying each box along the appropriate axis
          * @breakpointify
          * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
          */
         justifyItems?: Breakpointify<FlexSelf | FlexSpace>
+        /**
+         * Sets how flex items are placed in the flex container defining the 
+         * main axis and the direction (normal or reversed)
+         * @breakpointify
+         */
         direction?: Breakpointify<FlexDirection>
+        /**
+         * Sets flex-direction style to column
+         * @breakpointify
+         */
         column?: boolean
+        /**
+         * Sets display style to inline-flex
+         * @breakpointify
+         */
         inline?: boolean
+        /**
+         * Sets whether flex items are forced onto one line or can wrap onto multiple lines
+         * @breakpointify
+         */
         wrap?: Breakpointify<FlexWrap>
         /**
-         * Short for direction and wrap
+         * Shorthand property for flex-direction and flex-wrap styles
          * @breakpointify
          */
         flow?: Breakpointify<CSS.Properties['flexFlow']>
