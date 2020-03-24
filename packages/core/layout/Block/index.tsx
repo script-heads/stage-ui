@@ -13,7 +13,7 @@ const Block: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
     })
     
     return jsx(
-        props.tag || 'div',
+        props.as || 'div',
         {
             ...attributes,
             ...events.all,
