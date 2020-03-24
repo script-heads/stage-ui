@@ -21,7 +21,7 @@ declare namespace DropTypes {
          */
         target?: any
         /**
-         * Will mount or unmount Drop
+         * Will mount or unmount drop
          * @default true
          */
         visible?: boolean
