@@ -48,7 +48,7 @@ declare namespace TypographyTypes {
 		 */
 		ellipsis?: boolean
 		/**
-		 * Shorhand for text-decoration
+		 * Shorthand for text-decoration
 		 */
 		decoration?: CSS.Properties['textDecoration']
 
@@ -61,23 +61,23 @@ declare namespace TypographyTypes {
 		 */
 		color?: WhaleTypes.ColorProp
 		/**
-		 * Shorhand for background-color
+		 * Shorthand for background-color
 		 */
 		backgroundColor?: WhaleTypes.ColorProp
 		/**
-		 * Shorhand for text-align
+		 * Shorthand for text-align
 		 */
 		align?: CSS.Properties['textAlign']
 		/**
-		 * Shorhand for font-weight
+		 * Shorthand for font-weight
 		 */
 		weight?: CSS.Properties['fontWeight']
 		/**
-		 * Shorhand for font-size
+		 * Shorthand for font-size
 		 */
 		size?: WhaleTypes.Size
 		/**
-		 * Shorhand for text-transform
+		 * Shorthand for text-transform
 		 */
 		transform?: CSS.Properties['textTransform']
 	}
