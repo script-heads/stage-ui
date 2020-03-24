@@ -76,16 +76,40 @@ declare namespace TableTypes {
     }
 
     type RowContext = {
+        /**
+         * Row data
+         */
         row: Object
+        /**
+         * true if element expanded
+         * @default false
+         */
         isExpand: boolean
+        /**
+         * true if element visible
+         * @default false
+         */
         isVisible: boolean
+        /**
+         * keys of cells that in modify mode
+         */
         isCellModify: { 
             [key: string]: boolean 
         }
+        /**
+         * Settings cells for modify
+         * void 0 - changes all row
+         */
         setModifyState: { 
             [key: string]: React.Dispatch<React.SetStateAction<boolean>> 
         }
+        /**
+         * Setting expand for row
+         */
         setExpandComponent?: React.Dispatch<React.SetStateAction<React.ReactNode>>
+        /**
+         * Forcing render row
+         */
         setNeedDisplay?: (forceUnmount?: boolean) => boolean
     }
 
@@ -233,13 +257,31 @@ declare namespace TableTypes {
     }
 
     interface Styles {
+        /**
+         * Root view
+         */
         container: void
+        /**
+         * Header cell element view <th>
+         */
         headCell: {
             sort: boolean
         }
+        /**
+         * Row view <tr>
+         */
         row: void
+        /**
+         * Row cell <td>
+         */
         rowCell: void
+        /**
+         * Expanded row <td span>
+         */
         expandContainer: void
+        /**
+         * Footer view of table
+         */
         footer: void
     }
 }
