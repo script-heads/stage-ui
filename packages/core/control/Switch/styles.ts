@@ -8,12 +8,13 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
         ...checkStyles(props, theme),
         check: (variant) => [
             {
-                transition: 'all 0.2s',
                 boxSizing: 'border-box',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 backgroundColor: theme.color.lightest.rgb().string(),
+                transition: 'backgroundColor .15s',
+                willChange: 'backgroundColor',
             },
             variant({
                 size:{
@@ -46,9 +47,6 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                 checked: [{
                     backgroundColor: theme.color.primary.rgb().string()
                 }],
-                animated: [{
-                    transition: 'all .15s'
-                }]
             }),
             variant({
                 disabled: [{
@@ -58,7 +56,6 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
         ],
         switch: (variant) => [
             {
-                transition: 'all 0.2s',
                 position: 'relative',
                 boxSizing: 'border-box',
                 borderRadius: '50%',
@@ -66,6 +63,8 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                 borderColor: theme.color.primary.rgb().string(),
                 background: theme.color.surface.rgb().string(),
                 boxShadow: theme.assets.shadow.default,
+                transition: 'left .15s',
+                willChange: 'opacity'
             },
             variant({
                 size:{
@@ -139,9 +138,6 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                 disabled: [{
                     borderColor: theme.color.lightest.rgb().string()
                 }],
-                animated: [{
-                    transition: 'all .15s'
-                }]
             }),
         ]
     }

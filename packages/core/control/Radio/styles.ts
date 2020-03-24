@@ -17,7 +17,9 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                 borderColor: theme.color.primary.rgb().string(),
                 borderWidth: theme.assets.border.width,
                 borderStyle: theme.assets.border.style,
-                borderRadius: '50%'
+                borderRadius: '50%',
+                transition: 'color .15s, borderColor .15s, backgroundColor .15s',
+                willChange: 'color, borderColor, backgroundColor',
             },
             variant({
                 size: {
@@ -42,9 +44,6 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                         height: '2rem'
                     }],
                 },
-                animated: [{
-                    transition: 'all .15s'
-                }],
                 disabled: [{
                     color: theme.color.hardest.rgb().string(),
                     backgroundColor: theme.color.lightest.rgb().string(),
@@ -72,6 +71,8 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                 checked: [{
                     transform: `scale(1)`,
                     opacity: 1,
+                    transition: 'opacity .15s, transform .15s',
+                    willChange: 'opacity, transform'
                 }],
                 size: {
                     xs: [{borderWidth: '0.1rem'}],
@@ -80,9 +81,6 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                     l: [{borderWidth: '0.25rem'}],
                     xl: [{borderWidth: '0.375rem'}],
                 },
-                animated: [{
-                    transition: 'all .15s'
-                }],
                 disabled: [{
                     borderColor: theme.color.lightest.rgb().string(),
                     boxShadow: 'none',

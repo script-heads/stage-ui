@@ -6,15 +6,19 @@ declare namespace RadioTypes {
     }
 
     interface Styles extends CheckTypes.Styles {
+        /**
+         * Radio container
+         */
         check: {
             size: Props['size']
-            animated: Props['animated']
             disabled: Props['disabled']
         }
+        /**
+         * Icon of Radio
+         */
         radio: {
             checked: Props['checked']
             size: Props['size']
-            animated: Props['animated']
             disabled: Props['disabled']
         }
     }

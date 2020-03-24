@@ -5,16 +5,20 @@ declare namespace SwitchTypes {
     }
     
     interface Styles extends CheckTypes.Styles {
+        /**
+         * Switch container
+         */
         check: {
             checked: Props['checked']
             size: Props['size']
-            animated: Props['animated']
             disabled: Props['disabled']
         }
+        /**
+         * Icon of Switch
+         */
         switch: {
             checked: Props['checked']
             size: Props['size']
-            animated: Props['animated']
             disabled: Props['disabled']
         }
     }
