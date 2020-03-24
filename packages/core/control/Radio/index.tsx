@@ -7,7 +7,7 @@ import styles from './styles'
 import Types from './types'
 
 const Radio: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
-    const { animated, size = 'm', disabled } = props
+    const { size = 'm', disabled } = props
 
     const { cs, attributes, events } = useComponent('Radio', { 
         props, 
@@ -39,8 +39,8 @@ const Radio: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) 
             type="checkbox"
             styles={cs}
             children={(checked) =>
-                <Block css={cs.check({ animated, size, disabled })}>
-                    <div css={cs.radio({ animated, size, disabled, checked })} />
+                <Block css={cs.check({ size, disabled })}>
+                    <div css={cs.radio({ size, disabled, checked })} />
                 </Block>
             }
         />

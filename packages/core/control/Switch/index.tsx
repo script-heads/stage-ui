@@ -8,7 +8,7 @@ import Types from './types'
 
 const Switch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
-    const { size = 'm', animated, disabled } = props
+    const { size = 'm', disabled } = props
 
     const { cs, attributes, events } = useComponent('Switch', { 
         props, 
@@ -21,6 +21,8 @@ const Switch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
 
     return (
         <Check
+            {...attributes}
+            {...events.all}
             {...props}
             size={size}
             styles={cs}
@@ -36,9 +38,9 @@ const Switch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
              * Switch use
              */
             type="checkbox"
-            children={(checked, focus) =>
-                <Block css={cs.check({ animated, size, disabled, checked })}>
-                    <div css={cs.switch({ animated, size, disabled, checked })} />
+            children={checked =>
+                <Block css={cs.check({ size, disabled, checked })}>
+                    <div css={cs.switch({ size, disabled, checked })} />
                 </Block>
             }
         />

@@ -16,9 +16,18 @@ declare namespace TextFieldTypes {
         'url'
 
     interface Props extends FieldTypes.Props, InputProps, TextAreaProps {
+        /**
+         * Default input value
+         */
         defaultValue?: string | number
-        align?: 'left' | 'right'
+        /**
+         * Enables textarea mode
+         * @default false
+         */
         multiline?: boolean
+        /**
+         * Calls on input change
+         */
         onChange?: ChangeEventHandler<HTMLInputElement>
     }
 
