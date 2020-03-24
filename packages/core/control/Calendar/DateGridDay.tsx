@@ -19,7 +19,7 @@ const DateGridDay = (props: CalendarTypes.DateGridCalendarProps) => {
     const isActive = (activeValue === dayValue)
     const isCurrent = (dayValue === nowValue)
     const isCurrentMonth = (value.month() === tmp.month())
-    const css = props.styles.gridBlock({isActive, isCurrent, isDisabled, isCurrentMonth})
+    const css = props.styles.day({isActive, isCurrent, isDisabled, isCurrentMonth})
 
     return (
         <Flexbox

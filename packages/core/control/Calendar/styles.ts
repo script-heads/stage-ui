@@ -4,7 +4,7 @@ import Types from './types'
 const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
 
     return {
-        dateGrind: [{
+        dateGrid: [{
             position: 'relative',
             color: theme.color.onSurface.rgb().string(),
         }],
@@ -25,7 +25,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
         /**
          * Styles for day/month/year squire
          */
-        gridBlock: (variant) => [
+        day: (variant) => [
             {
                 transition: 'all 0.2s',
                 fontWeight: 400,
