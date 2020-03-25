@@ -16,6 +16,9 @@ const LightText = (props: { children: string }) => (
 const Value = (props: ValueProps) => {
     const { type } = props
 
+    if (type.name === 'holder') {
+        console.log(type)
+    }
     let rightSide: JSX.Element | JSX.Element[] = (
         <LightText>Not documented yet</LightText>
     )

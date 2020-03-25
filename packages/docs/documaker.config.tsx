@@ -3,6 +3,7 @@ import Architect from '@flow-ui/architect'
 import { Config } from '@flow-ui/documaker/core'
 import Value from './components/Value'
 import Params from './components/Params'
+import StyleType from './components/StyleType'
 import { ValueDefinition } from '@flow-ui/documaker/components/Page/Types/Interface'
 import { Text } from '@flow-ui/core'
 
@@ -71,7 +72,7 @@ const config: Config = {
                         key: 'values',
                         title: 'States',
                         width: '15rem',
-                        render: (c) => <Value type={c.row as ValueDefinition}/>
+                        render: (c) => <StyleType type={c.row as ValueDefinition}/>
                     },
                 ]
             }

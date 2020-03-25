@@ -186,13 +186,11 @@ declare module '@flow-ui/core/misc/hocs/Typography/types' {
 	         */
 	        transform?: CSS.Properties['textTransform'];
 	    }
-	    interface Styles<T extends {
-	        [T in keyof Styles]?: Object;
-	    } = {}> {
+	    interface Styles {
 	        /**
 	         * Root element
 	         */
-	        container: T['container'];
+	        container: void;
 	    }
 	    interface PrivateProps extends LinkProps {
 	        tag: string;
