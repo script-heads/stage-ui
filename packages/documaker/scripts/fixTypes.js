@@ -32,3 +32,8 @@ fixTypes('lab', [
     ['@flow-ui/core', ''],
     ["declare module 'icons'", "declare module '@flow-ui/core/icons'"],
 ])
+
+fixTypes('color', [
+    ["type ColorParam", "declare module 'color' {\n\ntype ColorParam"],
+    ["export = Color;", "export = Color;\n\n}"],
+])

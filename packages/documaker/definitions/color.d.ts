@@ -6,9 +6,10 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // TypeScript Version: 3.7
 
-declare module 'color' {
 import convert = require('color-convert');
 
+declare module 'color' {
+    
 type ColorParam = Color | string | ArrayLike<number> | number | { [key: string]: any };
 
 interface Color<T extends ColorParam = ColorParam> {
