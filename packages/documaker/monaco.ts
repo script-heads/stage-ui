@@ -60,6 +60,7 @@ class Monaco {
         await defineLib('global')
         await defineLib('react')
         await defineLib('csstype')
+        await defineLib('color')
         await defineLib('whale')
         await defineLib('core')
         await defineLib('lab')

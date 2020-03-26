@@ -48,5 +48,6 @@ generateTypes('core')
 generateTypes('lab')
 
 copyTypes('node_modules/@types/react/global.d.ts', 'global')
+copyTypes('node_modules/@types/color/index.d.ts', 'color')
 copyTypes('node_modules/@types/react/index.d.ts', 'react', true)
 copyTypes('node_modules/csstype/index.d.ts', 'csstype', true)
