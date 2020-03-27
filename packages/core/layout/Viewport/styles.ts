@@ -1,7 +1,7 @@
 import WhaleTypes from '@flow-ui/whale/types'
 import Types from './types'
 
-const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
+const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme, params: { wrapper?: boolean }) => {
 
     const attachTheme = {
         background: theme.color.background.rgb().string(),
@@ -15,7 +15,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
         ...theme.assets.typography.text.m 
     }
 
-    const reset = 
+    const reset =  params.wrapper ? '' :  
         `
             html, body, div, span, applet, object, iframe,
             blockquote, pre,

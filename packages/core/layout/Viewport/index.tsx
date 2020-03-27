@@ -22,12 +22,13 @@ const Viewport: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, re
         ...cache
     }
 
-    const {cs, attributes, events} = useComponent('Viewport', {
-        props, 
-        styles, 
-        styleProps: {container: ['all']},
-        theme
-    })
+    const { cs, attributes, events } = useComponent('Viewport', {
+        props,
+        styles,
+        styleProps: {
+            container: ['all']
+        },
+    }, { wrapper })
 
     const Content = (
         <Provider theme={theme} global={!wrapper ? cs.container : undefined} cache={EmotionCache}>
