@@ -1,5 +1,5 @@
 import { Menu, Block, Flexbox, TextField, ScrollView } from '@flow-ui/core'
-import { Close, Cube, Funnel } from '@flow-ui/core/icons'
+import { Close, Cube, Search } from '@flow-ui/core/icons'
 import WhaleTypes from '@flow-ui/whale/types'
 import * as React from 'react'
 import { Fragment, useState } from 'react'
@@ -70,7 +70,7 @@ const Sidebar = (props: SidebarProps) => {
 					<TextField
 						size="s"
 						mb=".5rem"
-						rightChild={<Funnel/>}
+						rightChild={<Search/>}
 						decoration="none"
 						placeholder="Filter"
 						value={search}

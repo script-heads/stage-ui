@@ -15,15 +15,15 @@ export default () => {
             <Grid gap="4rem" templateColumns="repeat(auto-fit,minmax(18rem,1fr))">
                 <TextBlock
                     title="Superpower theme"
-                    text="Get unique design moving top-down. From simple general statements like colours and spacing through shared styles like typography and borders to fine tuning each component. You can specify only a few values or define everything. And then create a new theme from the current."
+                    text="Get a special design moving top-down. From simple general statements, such as colors and spacing, through shared styles, such as typography and borders, to fine-tuning of each component. You can specify only a few values or define everything. And then create a new theme from the current one."
                 />
                 <TextBlock
                     title="Work together"
-                    text="Components designed for combinations. Highly reused layout and content primitives and the ability of complex components to take them gives you room for building what you imagined."
+                    text="Components designed for combinations. Primitives for positioning elements and displaying content can be transferred to more complex components and vice versa. This makes it possible to control the HTML-coding finely to create the interface excactly the way you imagined."
                 />
                 <TextBlock
                     title="Speed up boring stuff"
-                    text="Shorthands for setting styles like padding, margin and flex positioning. Easy color management to get this brighten, darken or different hue. Utilities for show up modal or notification in one function call."
+                    text="Components contain special properties for setting styles quickly, such as padding, margin or flex. Each color in the theme contains functions for controlling brightness, transparency, hue, and other parameters. Modal windows and notifications can be called by one function even outside the React components."
                 />
             </Grid>
         </Block>
