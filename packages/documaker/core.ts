@@ -1,7 +1,9 @@
 import WhaleTypes from '@flow-ui/whale/types'
 import TableTypes from '@flow-ui/core/data/Table/types'
-
+import DocType from './DocType'
 declare const WEBPACK_WORKDIR: string
+
+window.doc = DocType
 
 export interface CustomPageProps {
     config: Config

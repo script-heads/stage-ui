@@ -15,6 +15,7 @@ const find = (id, item = doc) => {
 }
 
 const merger = (item) => {
+    
     if (item.groups) delete item.groups
     if (item.sources) delete item.sources
     if (item.kind) delete item.kind
@@ -34,6 +35,11 @@ const merger = (item) => {
             }
             return !!item.id
         })
+    }
+    if (item.id == 11380) {
+
+        console.log(item.type.declaration)
+
     }
     if (item.children) {
         for (let child of item.children) {
