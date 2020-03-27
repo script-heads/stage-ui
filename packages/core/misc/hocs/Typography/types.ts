@@ -75,7 +75,7 @@ declare namespace TypographyTypes {
 		/**
 		 * Shorthand for font-size
 		 */
-		size?: WhaleTypes.Size
+		size?: WhaleTypes.Size | (string & { T?: string})
 		/**
 		 * Shorthand for text-transform
 		 */
