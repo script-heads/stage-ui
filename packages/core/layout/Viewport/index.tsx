@@ -28,6 +28,7 @@ const Viewport: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, re
         styleProps: {
             container: ['all']
         },
+        theme,
     }, { wrapper })
 
     const Content = (
