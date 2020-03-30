@@ -356,55 +356,55 @@ class Prop extends FabricAbscract {
             }
         }
     }
-    private resolveTypes() {
-        if (this.$data.type.type === 'reflection') {
-            this.$data.type.declaration.children = this.$data.type.declaration.children.map(child => {
-                /**
-                 * Try finding actual value in current Module
-                 */
-                if (child.type.type === 'indexedAccess') {
-                    const prop = this.findIndexedType(child.type.objectType.name, child.type.indexType.value)
-                    if (prop) {
-                        child = prop
-                    }
-                }
-                /**
-                 * Replace reference link to actual object
-                 */
-                if (child.type.type === 'reference') {
-                    const referenceName = child.type.name.split('.')
+    // private resolveTypes() {
+    //     if (this.$data.type.type === 'reflection') {
+    //         this.$data.type.declaration.children = this.$data.type.declaration.children.map(child => {
+    //             /**
+    //              * Try finding actual value in current Module
+    //              */
+    //             if (child.type.type === 'indexedAccess') {
+    //                 const prop = this.findIndexedType(child.type.objectType.name, child.type.indexType.value)
+    //                 if (prop) {
+    //                     child = prop
+    //                 }
+    //             }
+    //             /**
+    //              * Replace reference link to actual object
+    //              */
+    //             if (child.type.type === 'reference') {
+    //                 const referenceName = child.type.name.split('.')
 
-                    if (referenceName.length === 2) {
-                        const refModule = DocType.modules.find(m => m.name === referenceName[0])
-                        if (refModule && refModule.interfaces) {
-                            const refObject = refModule.findReferenceByName(referenceName[1])
-                            if (refObject) {
-                                return refObject
-                            }
-                        } else {
-                            console.warn(`unhandled referenece ${child.type.name}! code 2`)
-                        }
-                    } else {
-                        const refObject = this.interface.module.root.findReferenceByName(
-                            child.type.name,
-                            this.interface.module
-                        )
-                        if (refObject) {
-                            return refObject
-                        }
-                    }
-                }
+    //                 if (referenceName.length === 2) {
+    //                     const refModule = DocType.modules.find(m => m.name === referenceName[0])
+    //                     if (refModule && refModule.interfaces) {
+    //                         const refObject = refModule.findReferenceByName(referenceName[1])
+    //                         if (refObject) {
+    //                             return refObject
+    //                         }
+    //                     } else {
+    //                         console.warn(`unhandled referenece ${child.type.name}! code 2`)
+    //                     }
+    //                 } else {
+    //                     const refObject = this.interface.module.root.findReferenceByName(
+    //                         child.type.name,
+    //                         this.interface.module
+    //                     )
+    //                     if (refObject) {
+    //                         return refObject
+    //                     }
+    //                 }
+    //             }
 
-                if (child.type.type === 'union') {
-                    this.unionVoidRemove(child.type)
-                    this.unionOptionalBooleanConvert(child.type)
+    //             if (child.type.type === 'union') {
+    //                 this.unionVoidRemove(child.type)
+    //                 this.unionOptionalBooleanConvert(child.type)
 
-                    return child.type
-                }
-                return child
-            })
-        }
-    }
+    //                 return child.type
+    //             }
+    //             return child
+    //         })
+    //     }
+    // }
 
     get text() {
         // this.resolveTypes()
