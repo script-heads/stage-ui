@@ -1,5 +1,5 @@
 import { Block, Flexbox } from '@flow-ui/core'
-import { useComponent } from '@flow-ui/whale'
+import { useComponent } from '@flow-ui/system'
 import React, { forwardRef, Fragment, RefForwardingComponent, useState } from 'react'
 import styles from './styles'
 import TreeLabel from './TreeLabel'

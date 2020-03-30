@@ -1,4 +1,4 @@
-import { useComponent } from '@flow-ui/whale'
+import { useComponent } from '@flow-ui/system'
 import moment, { Moment } from 'moment'
 import React, { forwardRef, RefForwardingComponent, useLayoutEffect, useRef, useState } from 'react'
 import DateGrid from './DateGrid'

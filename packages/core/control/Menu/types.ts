@@ -1,21 +1,21 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 import Menu from './'
 declare namespace MenuTypes {
 
     type MenuValue = string | number
     type MenuDirection = 'row' | 'column' | 'row-reverse' | 'column-reverse'
-    type MenuDecoration = 'filled' | 'color' | 'marker' | 'marker-reverse' 
+    type MenuDecoration = 'filled' | 'color' | 'marker' | 'marker-reverse'
     type MenuAlign = 'flex-start' | 'flex-end' | 'stretch' | 'center'
     type MenuShape = 'square' | 'rounded' | 'round'
 
-    interface Context { 
+    interface Context {
         values: Record<string, () => void>
         current?: MenuValue
         controlled?: boolean
         onChange?: (value?: MenuValue) => void
     }
-    
-    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+
+    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
         /**
          * Value selected by default
          */
@@ -56,7 +56,7 @@ declare namespace MenuTypes {
          * Size of each item
          * @default m
          */
-        size?: WhaleTypes.Size
+        size?: SystemTypes.Size
         /**
          * Flex align 
          * @default flex-start

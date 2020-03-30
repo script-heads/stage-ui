@@ -1,17 +1,17 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 import Types from './types'
-import { colorProp } from '@flow-ui/whale'
+import { colorProp } from '@flow-ui/system'
 
-const styles: WhaleTypes.CreateStyles<Types.Styles, Types.PrivateProps> = (props, theme) => {
+const styles: SystemTypes.CreateStyles<Types.Styles, Types.PrivateProps> = (props, theme) => {
     return {
-        container:  [
+        container: [
             props.specificStyles,
             theme.assets.typography[props.sizesOf][props.size || 'm'],
             /**
              * If size is custom
              * like 1rem or 1px
              */
-            props.size && !['xs','s','m','l','xl'].includes(props.size) && {
+            props.size && !['xs', 's', 'm', 'l', 'xl'].includes(props.size) && {
                 fontSize: props.size,
             },
             {

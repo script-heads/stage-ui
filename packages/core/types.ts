@@ -1,4 +1,4 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 /**
  * Content
  */
@@ -37,8 +37,8 @@ import TreeTypes from './layout/Tree/types'
 import ScrollView from './layout/ScrollView/types'
 
 declare namespace FlowTypes {
-    type LayoutDecoration = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' |  'neumorphism'
-    
+    type LayoutDecoration = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' | 'neumorphism'
+
     interface Overrides {
         Divider?: DividerTypes.Styles
         Spinner?: SpinnerTypes.Styles

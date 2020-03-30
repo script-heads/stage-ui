@@ -1,12 +1,12 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 
 declare namespace SpinnerTypes {
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
+    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
         /**
          * Color of spinner
          * @default hardest
          */
-        color?: WhaleTypes.ColorProp
+        color?: SystemTypes.ColorProp
         /**
          * Custom content
          */

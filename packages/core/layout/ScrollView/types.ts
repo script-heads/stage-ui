@@ -1,5 +1,5 @@
 import React from 'react'
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 
 declare namespace ScrollViewTypes {
 
@@ -16,7 +16,7 @@ declare namespace ScrollViewTypes {
         stopPropagation: () => void
         cursorHandle?: boolean
     }
-    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onScroll'> {
+    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onScroll'> {
         /**
          * Any contant of scrollview
          */
@@ -29,12 +29,12 @@ declare namespace ScrollViewTypes {
         /**
          * Custom ScrollBar color
          */
-        color?: WhaleTypes.ColorProp
+        color?: SystemTypes.ColorProp
         /**
          * Bars size
          * @default m
          */
-        size?: WhaleTypes.Size
+        size?: SystemTypes.Size
         /**
          * Bars shape
          * @default round

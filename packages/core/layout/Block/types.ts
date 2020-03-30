@@ -1,9 +1,9 @@
 import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration'
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 import CSS from 'csstype'
 
 declare namespace BlockTypes {
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
+    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
         /**
          * HTML element which is used as a container
          */

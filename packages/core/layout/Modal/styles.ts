@@ -1,16 +1,16 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 import Types from './types'
 
-const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
-    
+const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
+
     const { decoration = 'modal', size = 'm' } = props
-    
+
     const isPanel = decoration === 'panel'
 
     const spacing = theme.spacing[size] || theme.spacing.m
     const titleSize = theme.assets.typography.header[size] || theme.assets.typography.header.m
     const subtitleSize = theme.assets.typography.text[size] || theme.assets.typography.text.m
-    
+
     return {
         overlay: (variant) => [
             {
@@ -103,10 +103,10 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
         ],
 
         header: (variant) => [{
-            'h3': titleSize,    
+            'h3': titleSize,
             'p': [subtitleSize, {
                 marginBottom: spacing
-            }],     
+            }],
         }],
 
         cross: () => [titleSize, {

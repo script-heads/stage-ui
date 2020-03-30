@@ -50,5 +50,5 @@ export { default as notify } from './misc/utils/notify'
 /**
  * Misc
  */
-export { useTheme } from '@flow-ui/whale'
-export { createTheme } from '@flow-ui/whale'
+export { useTheme } from '@flow-ui/system'
+export { createTheme } from '@flow-ui/system'

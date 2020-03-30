@@ -1,4 +1,4 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 import { Moment } from 'moment'
 import FieldTypes from '../../misc/hocs/Field/types'
 import CalendarTypes from '@flow-ui/core/control/Calendar/types'

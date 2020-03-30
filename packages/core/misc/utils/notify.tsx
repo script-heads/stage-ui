@@ -2,7 +2,7 @@ import { Block, Flexbox, Header, Notification, Paragraph } from '@flow-ui/core'
 import { Close } from '@flow-ui/core/icons'
 import NotificationType from '@flow-ui/core/layout/Notification/types'
 import { addElement, removeElement } from '@flow-ui/core/layout/Viewport/MountArea'
-import createID from '@flow-ui/whale/utils/createID'
+import createID from '@flow-ui/system/utils/createID'
 import React from 'react'
 
 export default (options: NotificationType.NotifyOptions) => {

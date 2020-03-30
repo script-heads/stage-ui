@@ -1,8 +1,8 @@
 import Types from './types'
 import fieldStyles from '../../misc/hocs/Field/styles'
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 
-const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props, Types.StyleParams> = (props, theme, params) => {
+const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StyleParams> = (props, theme, params) => {
 
     const minHeight =
         theme.assets.field[props.size || 'm']?.minHeight ||
@@ -121,7 +121,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePara
             // marginLeft: 0,
             // marginBottom: `calc(${minHeight} / 5)`,
         }],
-        
+
         input: (variant) => [
             {
                 flex: 1,

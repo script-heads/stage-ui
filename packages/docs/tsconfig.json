@@ -1,25 +1,26 @@
 {
-  "compilerOptions": {
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "noImplicitReturns": true,
-    "strictNullChecks": true,
-    "allowJs": false,
-    "declaration": true,
-    "lib": [
-      "es7",
-      "es2018",
-      "dom"
-    ],
-    "target": "es5",
-    "module": "commonjs",
-    "types": [
-      "node"
-    ],
-    "jsx": "react",
-  },
-  "include": [
-    "pages/**/*", "components/Syntax.tsx"
-  ]
+    "compilerOptions": {
+        "jsx": "react",
+        "target": "esnext",
+        "module": "commonjs",
+        "outDir": "../../build/docs",
+        "allowJs": false,
+        "declaration": true,
+        "skipLibCheck": true,
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "alwaysStrict": true,
+        "noImplicitThis": false,
+        "noImplicitAny": false,
+        "noImplicitReturns": false,
+        "strictNullChecks": true,
+        "strictBindCallApply": false,
+        "strictFunctionTypes": false,
+        "strictPropertyInitialization": false,
+    },
+    "exclude": [
+        "node_modules"
+    ]
 }

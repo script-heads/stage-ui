@@ -1,11 +1,11 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 import { Options } from '@emotion/cache'
 import { SerializedStyles } from '@emotion/core'
 import ModalTypes from '../Modal/types'
 
 declare namespace ViewportTypes {
-    
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
+
+    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
         /**
          * Defines whether the viewport renders content inside the container
          * @default false
@@ -19,7 +19,7 @@ declare namespace ViewportTypes {
          * Defines which theme to put in context.
          * @default light
          */
-        theme?: 'dark' | 'light' | WhaleTypes.Theme
+        theme?: 'dark' | 'light' | SystemTypes.Theme
         /**
          * Set global CSS
          */
@@ -29,7 +29,7 @@ declare namespace ViewportTypes {
          */
         children?: React.ReactNode
     }
-    
+
     interface Styles {
         /**
          * Root element
@@ -38,8 +38,8 @@ declare namespace ViewportTypes {
     }
 
     interface Themes {
-        light: WhaleTypes.Theme
-        dark: WhaleTypes.Theme
+        light: SystemTypes.Theme
+        dark: SystemTypes.Theme
     }
 
     interface MountArea {
@@ -52,7 +52,7 @@ declare namespace ViewportTypes {
     }
 
     interface Context {
-        theme: WhaleTypes.Theme
+        theme: SystemTypes.Theme
     }
 
     interface DialogOptions {

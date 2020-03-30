@@ -1,7 +1,7 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 
 declare namespace DividerTypes {
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
+    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
         /**
         * Draw divider vertical
         */
@@ -9,16 +9,16 @@ declare namespace DividerTypes {
         /**
         * Size of dash
         */
-        dash?: WhaleTypes.Size | (string & { T?: string})
+        dash?: SystemTypes.Size | (string & { T?: string })
         /**
         * Size of the gap between dashes
         */
-        gap?:WhaleTypes.Size | (string & { T?: string})
+        gap?: SystemTypes.Size | (string & { T?: string })
         /**
         * Color of divider
         * @default lightest
         */
-        color?: WhaleTypes.ColorProp
+        color?: SystemTypes.ColorProp
     }
 
     interface Styles {

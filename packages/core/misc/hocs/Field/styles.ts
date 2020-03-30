@@ -1,5 +1,5 @@
-import WhaleTypes from '@flow-ui/whale/types'
-import colorProp from '@flow-ui/whale/utils/colorProp'
+import SystemTypes from '@flow-ui/system/types'
+import colorProp from '@flow-ui/system/utils/colorProp'
 import Types from './types'
 
 type ExtractFunction<T> = {
@@ -8,9 +8,9 @@ type ExtractFunction<T> = {
 
 const fieldStyles = <T extends Types.Styles>(
     props: Omit<Types.Props, 'onChange'>,
-    theme: WhaleTypes.Theme,
-    stylePatch?: Partial<ExtractFunction<WhaleTypes.Styles<T>>>
-): WhaleTypes.Styles<Types.Styles> => {
+    theme: SystemTypes.Theme,
+    stylePatch?: Partial<ExtractFunction<SystemTypes.Styles<T>>>
+): SystemTypes.Styles<Types.Styles> => {
 
     const color = colorProp(theme, props.color)
 
@@ -169,20 +169,20 @@ const fieldStyles = <T extends Types.Styles>(
                         },
                         variant({
                             size: {
-                                xs: { 
+                                xs: {
                                     fontSize: '0.5rem',
                                     lineHeight: 0.2,
-                                 },
-                                s: { 
+                                },
+                                s: {
                                     fontSize: '0.625rem',
                                     lineHeight: 0.6,
                                     paddingTop: '0.125rem',
                                 },
-                                l: { 
+                                l: {
                                     fontSize: '1rem',
                                     lineHeight: 0.8,
                                 },
-                                xl: { 
+                                xl: {
                                     fontSize: '1.25rem',
                                     lineHeight: 1,
                                 }

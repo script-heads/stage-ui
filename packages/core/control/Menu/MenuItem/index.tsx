@@ -1,4 +1,4 @@
-import { useComponent } from '@flow-ui/whale'
+import { useComponent } from '@flow-ui/system'
 import React, { RefForwardingComponent, forwardRef } from 'react'
 import { useValue } from '..'
 import styles from './styles'

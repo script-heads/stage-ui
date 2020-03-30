@@ -1,7 +1,7 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 
 declare namespace NotificationTypes {
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
+    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
         children?: React.ReactNode
     }
 

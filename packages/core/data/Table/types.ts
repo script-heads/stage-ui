@@ -1,4 +1,4 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration'
 declare namespace TableTypes {
 
@@ -28,7 +28,7 @@ declare namespace TableTypes {
         alwaysVisible?: boolean
     }
 
-    interface TableCellContext { 
+    interface TableCellContext {
         /**
          * Current cell key
          */
@@ -64,11 +64,11 @@ declare namespace TableTypes {
         /**
          * Set expanded ReactNode below current row
          */
-        setExpand: (el: React.ReactNode | null) => boolean 
+        setExpand: (el: React.ReactNode | null) => boolean
         /**
          * Set modify mode for this cell
          */
-        setModify: (modify: boolean, key?: TableCellKey) => boolean 
+        setModify: (modify: boolean, key?: TableCellKey) => boolean
         /**
          * Reload all data in table
          */
@@ -93,15 +93,15 @@ declare namespace TableTypes {
         /**
          * keys of cells that in modify mode
          */
-        isCellModify: { 
-            [key: string]: boolean 
+        isCellModify: {
+            [key: string]: boolean
         }
         /**
          * Settings cells for modify
          * void 0 - changes all row
          */
-        setModifyState: { 
-            [key: string]: React.Dispatch<React.SetStateAction<boolean>> 
+        setModifyState: {
+            [key: string]: React.Dispatch<React.SetStateAction<boolean>>
         }
         /**
          * Setting expand for row
@@ -113,7 +113,7 @@ declare namespace TableTypes {
         setNeedDisplay?: (forceUnmount?: boolean) => boolean
     }
 
-    interface Ref extends TableRef, HTMLTableElement {}
+    interface Ref extends TableRef, HTMLTableElement { }
 
     interface TableRef {
         /**
@@ -124,12 +124,12 @@ declare namespace TableTypes {
          * Set expanded ReactNode below row index
          * @returns true if success
          */
-        setExpand: (index: number, content: React.ReactNode | null) => boolean 
+        setExpand: (index: number, content: React.ReactNode | null) => boolean
         /**
          * Set modify mode for specific row or cell
          * @returns true if success
          */
-        setModify: (modify: boolean, index: number, key?: TableCellKey) => boolean 
+        setModify: (modify: boolean, index: number, key?: TableCellKey) => boolean
     }
 
     interface TableColumn {
@@ -182,7 +182,7 @@ declare namespace TableTypes {
          */
         rowShouldRender?: (rowCtxItem: RowContext) => boolean
     }
-    interface Props extends RowEvents, RowDelegates, WhaleTypes.AllProps<HTMLDivElement, Styles> {
+    interface Props extends RowEvents, RowDelegates, SystemTypes.AllProps<HTMLDivElement, Styles> {
         /**
          * Array of any data objects can be provided
          */
@@ -213,13 +213,13 @@ declare namespace TableTypes {
          * onlyWhenVisible - Render row when it become visible and unmount when row away from screen. 
          * 
          * @default default
-         */ 
+         */
         rowMountType?: RowMountType
     }
 
     interface HeadCellProps {
         column: TableColumn
-        styles: WhaleTypes.ComponentStyles<Styles>
+        styles: SystemTypes.ComponentStyles<Styles>
         setSort: React.Dispatch<React.SetStateAction<TableSortObject>>
     }
 
@@ -227,7 +227,7 @@ declare namespace TableTypes {
         rowCtxItem: RowContext
         column: TableColumn
         rowIndex: number
-        styles: WhaleTypes.ComponentStyles<Styles>
+        styles: SystemTypes.ComponentStyles<Styles>
         getCellContext: TableRef['getCellContext']
     }
 
@@ -235,7 +235,7 @@ declare namespace TableTypes {
         rowCtxItem: RowContext
         columns: TableColumn[]
         rowIndex: number
-        styles: WhaleTypes.ComponentStyles<Styles>
+        styles: SystemTypes.ComponentStyles<Styles>
         getCellContext: TableRef['getCellContext']
         events: RowEvents
         rowMountType?: Props['rowMountType']
@@ -253,7 +253,7 @@ declare namespace TableTypes {
         footerContent?: Props['footer']
         pagination?: TablePaginationOptions
         onPageChange: (pageNumber: number) => void
-        styles: WhaleTypes.ComponentStyles<Styles>
+        styles: SystemTypes.ComponentStyles<Styles>
     }
 
     interface Styles {

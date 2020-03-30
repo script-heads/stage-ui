@@ -14,8 +14,8 @@
   <a href="https://www.npmjs.com/package/@flow-ui/lab">
     <img alt="npm install @flow-ui/lab" src="https://img.shields.io/npm/v/@flow-ui/lab?logo=npm&label=@flow-ui/lab&color=green">
   </a>
-  <a href="https://www.npmjs.com/package/@flow-ui/whale">
-    <img alt="npm install @flow-ui/whale" src="https://img.shields.io/npm/v/@flow-ui/whale?logo=npm&label=@flow-ui/whale&color=green">
+  <a href="https://www.npmjs.com/package/@flow-ui/system">
+    <img alt="npm install @flow-ui/system" src="https://img.shields.io/npm/v/@flow-ui/system?logo=npm&label=@flow-ui/system&color=green">
   </a>
 </p>
 

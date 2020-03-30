@@ -1,8 +1,8 @@
 import Types from './types'
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 import checkStyles from '@flow-ui/core/misc/hocs/Check/styles'
 
-const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
+const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
 
     return {
         ...checkStyles(props, theme),
@@ -17,7 +17,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                 willChange: 'backgroundColor',
             },
             variant({
-                size:{
+                size: {
                     xs: [{
                         width: '1.125rem',
                         height: '0.25rem',
@@ -52,7 +52,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                 disabled: [{
                     backgroundColor: theme.color.lightest.rgb().string()
                 }]
-            }) 
+            })
         ],
         switch: (variant) => [
             {
@@ -67,7 +67,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                 willChange: 'opacity'
             },
             variant({
-                size:{
+                size: {
                     xs: [
                         {
                             borderWidth: '0.1rem',

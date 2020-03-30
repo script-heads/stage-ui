@@ -1,8 +1,8 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 
 declare namespace ButtonTypes {
 
-    interface Props extends WhaleTypes.AllProps<HTMLButtonElement, Styles> {
+    interface Props extends SystemTypes.AllProps<HTMLButtonElement, Styles> {
         /**
          * Specifies that the button should have input focus when the page loads
          */
@@ -54,7 +54,7 @@ declare namespace ButtonTypes {
          * Size of button
          * @default m
          */
-        size?: WhaleTypes.Size
+        size?: SystemTypes.Size
         /**
          * Defines how button look
          * @default filled
@@ -72,7 +72,7 @@ declare namespace ButtonTypes {
         /**
          * Color of button
          */
-        color?: WhaleTypes.ColorProp
+        color?: SystemTypes.ColorProp
         /**
          * Button's content
          */
@@ -101,8 +101,8 @@ declare namespace ButtonTypes {
         /**
          * Content's wrappers
          */
-        child: StyleState & { 
-            align: 'left' | 'right' 
+        child: StyleState & {
+            align: 'left' | 'right'
         }
     }
 }

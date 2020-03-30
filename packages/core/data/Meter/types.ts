@@ -1,4 +1,4 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 import MeterThumbTypes from './MeterThumb/types'
 
 declare namespace MeterTypes {
@@ -6,7 +6,7 @@ declare namespace MeterTypes {
     type MeterDecoration = 'filled' | 'outline'
     type MeterShape = 'square' | 'round'
 
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
+    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
         /**
          * Current value of meter, for controlled component
          */
@@ -15,7 +15,7 @@ declare namespace MeterTypes {
          * Size of meter
          * @default m
          */
-        size?: WhaleTypes.Size
+        size?: SystemTypes.Size
         /**
          * Defines how meter look
          * @default filled
@@ -29,7 +29,7 @@ declare namespace MeterTypes {
         /**
          * Color of meter
          */
-        color?: WhaleTypes.ColorProp
+        color?: SystemTypes.ColorProp
         /**
          * Enabled progress animation
          * @default false
@@ -47,7 +47,7 @@ declare namespace MeterTypes {
          */
         container: {
             shape: MeterShape
-            size: WhaleTypes.Size
+            size: SystemTypes.Size
             decoration: MeterDecoration
         },
         /**
@@ -55,7 +55,7 @@ declare namespace MeterTypes {
          */
         thumb: {
             shape: MeterShape
-            size: WhaleTypes.Size
+            size: SystemTypes.Size
         }
     }
 }

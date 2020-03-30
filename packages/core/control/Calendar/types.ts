@@ -1,4 +1,4 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 import { Moment } from 'moment'
 import { CSSProperties } from 'react'
 
@@ -12,7 +12,7 @@ declare namespace CalendarTypes {
      */
     type Locale = 'en' | 'ru' | 'it' | 'fr' | 'de'
 
-    interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
         /**
          * Type for Calendar
          * @default day
@@ -55,10 +55,10 @@ declare namespace CalendarTypes {
         minValue: Moment
         maxValue: Moment
         onChange: (date: Moment) => void
-        styles: WhaleTypes.ComponentStyles<Styles>
+        styles: SystemTypes.ComponentStyles<Styles>
         type: GridType
     }
-    
+
     interface DateGridCalendarProps {
         value: Moment
         tmp: Moment
@@ -67,7 +67,7 @@ declare namespace CalendarTypes {
         active: Moment
         onClick?: () => void
         style?: CSSProperties
-        styles: WhaleTypes.ComponentStyles<Styles>
+        styles: SystemTypes.ComponentStyles<Styles>
     }
 
     interface DateGridTitleProps {
@@ -78,7 +78,7 @@ declare namespace CalendarTypes {
         onNext: () => void
         onPrevious: () => void
         onGridTypeChange: (type: GridType) => void
-        styles: WhaleTypes.ComponentStyles<Styles>
+        styles: SystemTypes.ComponentStyles<Styles>
     }
 
     interface Styles {

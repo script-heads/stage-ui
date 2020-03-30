@@ -1,8 +1,8 @@
 import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration'
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 
 declare namespace GridTypes {
-    interface Props extends WhaleTypes.GridContainerProps, WhaleTypes.AllProps<HTMLDivElement, Styles> {
+    interface Props extends SystemTypes.GridContainerProps, SystemTypes.AllProps<HTMLDivElement, Styles> {
         /**
          * Defines how grid look
          */

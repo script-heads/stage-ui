@@ -3,7 +3,7 @@ import * as themes from '@flow-ui/core/misc/themes'
 import MountArea from './MountArea'
 import styles from './styles'
 import Types from './types'
-import { Provider, useComponent } from '@flow-ui/whale'
+import { Provider, useComponent } from '@flow-ui/system'
 
 const Viewport: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     

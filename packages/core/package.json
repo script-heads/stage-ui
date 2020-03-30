@@ -1,43 +1,43 @@
 {
-  "name": "@flow-ui/core",
-  "author": "ABR Tech",
-  "version": "0.1.61",
-  "license": "MIT",
-  "scripts": {
-    "pub": "git pull && yarn build && npm version patch && cd ../../build/core && npm version patch && npm publish --access public && cd .. && rm -rf ./core",
-    "build": "yarn build:types && yarn build:js && cp package.json README.md babelImportPlugins.js ../../build/core/ && node ../../scripts/buildConfig core",
-    "build:types": "tsc --emitDeclarationOnly",
-    "build:js": "babel ./ --out-dir ../../build/core --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
-    "type-check": "tsc --noEmit",
-    "type-check:watch": "yarn type-check -- --watch",
-    "icons:generate": "node ./scripts/iconsGenerate"
-  },
-  "dependencies": {
-    "@types/color": "^3.0.1",
-    "color": "^3.1.2",
-    "imask": "^6.0.1",
-    "moment": "^2.24.0",
-    "rifm": "^0.11.0"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.7.5",
-    "@babel/core": "^7.7.5",
-    "@babel/plugin-proposal-class-properties": "^7.7.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.7.4",
-    "@babel/plugin-proposal-optional-chaining": "^7.7.5",
-    "@babel/plugin-transform-runtime": "^7.7.6",
-    "@babel/preset-env": "^7.7.6",
-    "@babel/preset-react": "^7.7.4",
-    "@babel/preset-typescript": "^7.7.4",
-    "@emotion/babel-preset-css-prop": "^10.0.23",
-    "eva-icons": "^1.1.2",
-    "csstype": "^2.6.8",
-    "tslint": "^5.20.1",
-    "typescript": "^3.8.3"
-  },
-  "peerDependencies": {
-    "@emotion/core": "^10.0.0",
-    "react": "*",
-    "react-dom": "*"
-  }
+    "name": "@flow-ui/core",
+    "author": "Dmitry Beltyukov, Ilya Tricoz",
+    "version": "0.1.61",
+    "license": "MIT",
+    "scripts": {
+        "pub": "git pull && yarn build && npm version patch && cd ../../build/core && npm version patch && npm publish --access public && cd .. && rm -rf ./core",
+        "build": "yarn build:types && yarn build:js && cp package.json README.md babelImportPlugins.js ../../build/core/ && node ../../scripts/buildConfig core",
+        "build:types": "tsc --emitDeclarationOnly",
+        "build:js": "babel ./ --out-dir ../../build/core --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
+        "type-check": "tsc --noEmit",
+        "type-check:watch": "yarn type-check -- --watch",
+        "icons:generate": "node ./scripts/iconsGenerate"
+    },
+    "dependencies": {
+        "@types/color": "^3.0.1",
+        "color": "^3.1.2",
+        "imask": "^6.0.1",
+        "moment": "^2.24.0",
+        "rifm": "^0.11.0"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.7.5",
+        "@babel/core": "^7.7.5",
+        "@babel/plugin-proposal-class-properties": "^7.7.4",
+        "@babel/plugin-proposal-object-rest-spread": "^7.7.4",
+        "@babel/plugin-proposal-optional-chaining": "^7.7.5",
+        "@babel/plugin-transform-runtime": "^7.7.6",
+        "@babel/preset-env": "^7.7.6",
+        "@babel/preset-react": "^7.7.4",
+        "@babel/preset-typescript": "^7.7.4",
+        "@emotion/babel-preset-css-prop": "^10.0.23",
+        "eva-icons": "^1.1.2",
+        "csstype": "^2.6.8",
+        "tslint": "^5.20.1",
+        "typescript": "^3.8.3"
+    },
+    "peerDependencies": {
+        "@emotion/core": "^10.0.0",
+        "react": "*",
+        "react-dom": "*"
+    }
 }

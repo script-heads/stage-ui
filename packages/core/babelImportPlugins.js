@@ -4,7 +4,7 @@ const transforms = {
     'core/layout': ['Badge', 'Block', 'Drop', 'Flexbox', 'Grid', 'Modal', 'Notification', 'Popover', 'Tree', 'ScrollView', 'Viewport'],
     'core/data': ['Meter', 'Table'],
     'core/misc/utils': ['dialog', 'notify'],
-    'whale/hooks': ['useTheme'],
+    'system/hooks': ['useTheme'],
 }
 
 module.exports = [

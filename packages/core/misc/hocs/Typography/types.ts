@@ -1,100 +1,100 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 import CSS from 'csstype'
 
 declare namespace TypographyTypes {
 
-	interface LinkProps extends Props {
+    interface LinkProps extends Props {
 		/**
 		 * Prompts the user to save the linked URL instead of navigating to it
 		 */
-		download?: any
+        download?: any
 		/**
 		 * The URL that the hyperlink points to
 		 */
-		href?: string
+        href?: string
 		/**
 		 * Hints at the human language of the linked URL
 		 */
-		hrefLang?: string
+        hrefLang?: string
 		/**
 		 * Specifies what media/device the linked document is optimized for
 		 */
-		media?: string
+        media?: string
 		/**
 		 * A space-separated list of URLs
 		 */
-		ping?: string
+        ping?: string
 		/**
 		 * The relationship of the linked URL as space-separated link types
 		 */
-		rel?: string
+        rel?: string
 		/**
 		 * Where to display the linked URL
 		 */
-		target?: string
+        target?: string
 		/**
 		 * Hints at the linked URL’s format with a MIME type
 		 */
-		type?: string
+        type?: string
 		/**
 		 * How much of the referrer to send when following the link
 		 */
-		referrerPolicy?: string
-	}
+        referrerPolicy?: string
+    }
 
-	interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
+    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 		/**
 		 * Overflow text shortening
 		 */
-		ellipsis?: boolean
+        ellipsis?: boolean
 		/**
 		 * Shorthand for text-decoration
 		 */
-		decoration?: CSS.Properties['textDecoration']
+        decoration?: CSS.Properties['textDecoration']
 
 		/**
 		 * Content
 		 */
-		children?: React.ReactNode
+        children?: React.ReactNode
 		/**
 		 * Text color
 		 */
-		color?: WhaleTypes.ColorProp
+        color?: SystemTypes.ColorProp
 		/**
 		 * Shorthand for background-color
 		 */
-		backgroundColor?: WhaleTypes.ColorProp
+        backgroundColor?: SystemTypes.ColorProp
 		/**
 		 * Shorthand for text-align
 		 */
-		align?: CSS.Properties['textAlign']
+        align?: CSS.Properties['textAlign']
 		/**
 		 * Shorthand for font-weight
 		 */
-		weight?: CSS.Properties['fontWeight']
+        weight?: CSS.Properties['fontWeight']
 		/**
 		 * Shorthand for font-size
 		 */
-		size?: WhaleTypes.Size | (string & { T?: string})
+        size?: SystemTypes.Size | (string & { T?: string })
 		/**
 		 * Shorthand for text-transform
 		 */
-		transform?: CSS.Properties['textTransform']
-	}
+        transform?: CSS.Properties['textTransform']
+    }
 
-	interface Styles {
+    interface Styles {
 		/**
 		 * Root element
 		 */
         container: void
-	}
-	
-	interface PrivateProps extends LinkProps {
-		tag: string
-		sizesOf: keyof WhaleTypes.ThemeAssets['typography']
-		specificStyles?: any
-		mouseFocus?: boolean
-	}
+    }
+
+    interface PrivateProps extends LinkProps {
+        tag: string
+        sizesOf: keyof SystemTypes.ThemeAssets['typography']
+        specificStyles?: any
+        mouseFocus?: boolean
+    }
 }
 
 export default TypographyTypes

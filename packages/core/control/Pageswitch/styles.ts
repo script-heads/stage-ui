@@ -1,7 +1,7 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 import Types from './types'
 
-const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
+const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
 
     return {
         container: [
@@ -16,7 +16,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                 ':hover': {
                     color: theme.color.primary.rgb().string()
                 }
-            }, 
+            },
             variant({
                 disabled: {
                     cursor: 'not-allowed',

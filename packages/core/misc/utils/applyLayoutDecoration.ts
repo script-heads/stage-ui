@@ -1,4 +1,4 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 
 export type LayoutDecoration =
     'surface'
@@ -7,9 +7,9 @@ export type LayoutDecoration =
     | 'majorShadow'
     | 'neumorphism'
 
-type Props = WhaleTypes.AllProps<HTMLDivElement, {}> & { decoration?: LayoutDecoration }
+type Props = SystemTypes.AllProps<HTMLDivElement, {}> & { decoration?: LayoutDecoration }
 
-const applyLayoutDecoration = (props: Props, theme: WhaleTypes.Theme) => {
+const applyLayoutDecoration = (props: Props, theme: SystemTypes.Theme) => {
 
     switch (props.decoration) {
         case 'surface': return {

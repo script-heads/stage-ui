@@ -1,5 +1,5 @@
 
-import { useComponent } from '@flow-ui/whale'
+import { useComponent } from '@flow-ui/system'
 import React, { forwardRef, RefForwardingComponent, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 import styles from './styles'

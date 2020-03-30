@@ -1,9 +1,9 @@
 import { ChartDataSets, ChartOptions } from 'chart.js'
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 
 declare namespace ChartTypes {
     type ChartType = 'line' | 'pie' | 'verticalBar' | 'horizontalBar' | 'doughnut' | 'radar' | 'polar' | 'scatter' | 'bubble'
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
+    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
         /**
          * @default line
          */
@@ -12,7 +12,7 @@ declare namespace ChartTypes {
         data: Array<number[] | ChartDataSets>
         options?: ChartOptions
     }
-    
+
     interface Styles {
 
     }

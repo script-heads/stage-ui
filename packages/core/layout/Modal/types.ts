@@ -1,16 +1,16 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 
 declare namespace ModalTypes {
-    
+
     type ModalDecoration = 'modal' | 'panel'
-    type ExtentedProps = 
-        WhaleTypes.AttributeProps &
-        WhaleTypes.AllEventProps<HTMLDivElement> &
-        WhaleTypes.CoreProps<Styles> &
-        WhaleTypes.ColorProps &
-        WhaleTypes.BorderProps &
-        WhaleTypes.PaddingProps &
-        WhaleTypes.LayoutProps
+    type ExtentedProps =
+        SystemTypes.AttributeProps &
+        SystemTypes.AllEventProps<HTMLDivElement> &
+        SystemTypes.CoreProps<Styles> &
+        SystemTypes.ColorProps &
+        SystemTypes.BorderProps &
+        SystemTypes.PaddingProps &
+        SystemTypes.LayoutProps
 
     export interface Ref {
         /**
@@ -81,7 +81,7 @@ declare namespace ModalTypes {
          * Size of view and its content
          * @default m
          */
-        size?: WhaleTypes.Size
+        size?: SystemTypes.Size
         /**
          * Disable header and hide it
          */
@@ -111,7 +111,7 @@ declare namespace ModalTypes {
 
     interface ModalOverlayProps {
         getStyles: () => {
-            cs: WhaleTypes.ComponentStyles<Styles>,
+            cs: SystemTypes.ComponentStyles<Styles>,
             state: StyleState
         }
         children?: React.ReactNode
@@ -126,7 +126,7 @@ declare namespace ModalTypes {
         containerEvents?: any
         onClosePressed: () => void
         getStyles: () => {
-            cs: WhaleTypes.ComponentStyles<Styles>,
+            cs: SystemTypes.ComponentStyles<Styles>,
             state: StyleState
         }
     }
@@ -137,7 +137,7 @@ declare namespace ModalTypes {
         hideHeader?: boolean
         onClosePressed: () => void
         getStyles: () => {
-            cs: WhaleTypes.ComponentStyles<Styles>,
+            cs: SystemTypes.ComponentStyles<Styles>,
             state: StyleState
         }
     }

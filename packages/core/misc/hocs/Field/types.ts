@@ -1,8 +1,8 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 
 declare namespace FieldTypes {
 
-    interface Props<S = Styles> extends Omit<WhaleTypes.AllProps<HTMLInputElement, S>, 'onChange'> {
+    interface Props<S = Styles> extends Omit<SystemTypes.AllProps<HTMLInputElement, S>, 'onChange'> {
         /**
          * Label for field
          */
@@ -10,7 +10,7 @@ declare namespace FieldTypes {
         /**
          * Define where label be placed
          */
-        labelType?: 'none' | 'outside' |'inside'
+        labelType?: 'none' | 'outside' | 'inside'
         /**
          * Place for hint content
          */
@@ -19,7 +19,7 @@ declare namespace FieldTypes {
          * Size of field
          * @default m
          */
-        size?: WhaleTypes.Size
+        size?: SystemTypes.Size
         /**
          * Defines how field look
          * @default filled
@@ -29,7 +29,7 @@ declare namespace FieldTypes {
          * Color of field
          * @default surface
          */
-        color?: WhaleTypes.ColorProp
+        color?: SystemTypes.ColorProp
         /**
          * Shape of field
          * @default rounded
@@ -64,14 +64,14 @@ declare namespace FieldTypes {
 
     interface State {
         disabled: Props['disabled']
-        focus: boolean 
+        focus: boolean
         shape: Props['shape']
-        size: Props['size'] 
+        size: Props['size']
         decoration: Props['decoration']
         labelType: Props['labelType']
     }
 
-    interface Styles<T extends {[T in keyof Styles]?: Object} = {}> {
+    interface Styles<T extends { [T in keyof Styles]?: Object } = {}> {
         /**
          * Root element
          */
@@ -106,15 +106,15 @@ declare namespace FieldTypes {
 
     interface PrivateProps extends Omit<Props, 'styles'> {
         focus: boolean
-        styles: WhaleTypes.ComponentStyles<Styles>
+        styles: SystemTypes.ComponentStyles<Styles>
         state?: Object
-        
+
         labelName?: string
         attributes?: any
         events?: any
         children?: React.ReactNode
-    }   
-    
+    }
+
 }
 
 export default FieldTypes

@@ -1,8 +1,8 @@
 import React from 'react'
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 
 declare namespace SplitTypes {
-    export interface Props extends Omit<WhaleTypes.AllProps<HTMLDivElement, Styles>, 'onMove' | 'onChange'> {
+    export interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onMove' | 'onChange'> {
         direction?: 'row' | 'column'
         children: React.ReactElement[]
         /**

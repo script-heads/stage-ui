@@ -1,5 +1,5 @@
 import { jsx } from '@emotion/core'
-import { useComponent } from '@flow-ui/whale'
+import { useComponent } from '@flow-ui/system'
 import { forwardRef, RefForwardingComponent } from 'react'
 import styles from './styles'
 import Types from './types'

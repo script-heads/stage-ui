@@ -1,8 +1,8 @@
 import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration'
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 
 declare namespace FlexboxTypes {
-    interface Props extends WhaleTypes.FlexboxContainerProps, WhaleTypes.AllProps<HTMLDivElement, Styles> {
+    interface Props extends SystemTypes.FlexboxContainerProps, SystemTypes.AllProps<HTMLDivElement, Styles> {
         /**
          * Defines how flexbox look
          */

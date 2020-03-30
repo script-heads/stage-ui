@@ -1,12 +1,12 @@
 import Types from './types'
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 import checkStyles from '@flow-ui/core/misc/hocs/Check/styles'
 
-const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
-    
+const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
+
     return {
         ...checkStyles(props, theme),
-        
+
         check: (variant) => [
             {
                 boxSizing: 'border-box',

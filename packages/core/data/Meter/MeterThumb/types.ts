@@ -1,9 +1,9 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 import MeterTypes from '../types'
 
 declare namespace MeterThumbTypes {
 
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
+    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
         /**
          * Value for controlled compoents
          */
@@ -19,7 +19,7 @@ declare namespace MeterThumbTypes {
         loading?: MeterTypes.Props['loading']
     }
 
-    interface PrivateProps extends MeterTypes.Props {}
+    interface PrivateProps extends MeterTypes.Props { }
 
     interface Styles {
         /**

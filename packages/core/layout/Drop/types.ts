@@ -1,4 +1,4 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 
 declare namespace DropTypes {
     interface TargetCoordinates {
@@ -9,13 +9,13 @@ declare namespace DropTypes {
     }
 
     interface Props extends
-        WhaleTypes.AttributeProps,
-        WhaleTypes.AllEventProps<HTMLDivElement>,
-        WhaleTypes.CoreProps<Styles>,
-        WhaleTypes.ColorProps,
-        WhaleTypes.BorderProps,
-        WhaleTypes.PaddingProps,
-        WhaleTypes.LayoutProps {
+        SystemTypes.AttributeProps,
+        SystemTypes.AllEventProps<HTMLDivElement>,
+        SystemTypes.CoreProps<Styles>,
+        SystemTypes.ColorProps,
+        SystemTypes.BorderProps,
+        SystemTypes.PaddingProps,
+        SystemTypes.LayoutProps {
         /**
          * Ref of the target element near which the drop will be shown
          */

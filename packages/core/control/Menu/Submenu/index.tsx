@@ -1,7 +1,7 @@
 import React, { forwardRef, Fragment, RefForwardingComponent, useState } from 'react'
 import styles from './styles'
 import Types from './types'
-import { useComponent } from '@flow-ui/whale'
+import { useComponent } from '@flow-ui/system'
 import MenuItem from '../MenuItem'
 import { ArrowIosDownward } from '../../../icons'
 

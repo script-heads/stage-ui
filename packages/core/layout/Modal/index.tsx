@@ -1,4 +1,4 @@
-import { useComponent } from '@flow-ui/whale'
+import { useComponent } from '@flow-ui/system'
 import React, { forwardRef, RefForwardingComponent, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import ModalOverlay from './ModalOverlay'
 import ModalPortal from './ModalPortal'

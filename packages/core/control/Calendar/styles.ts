@@ -1,7 +1,7 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 import Types from './types'
 
-const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
+const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
 
     return {
         dateGrid: [{
@@ -32,7 +32,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                 minWidth: '2rem',
                 height: '2rem',
                 cursor: 'pointer',
-                margin:'0.125rem',
+                margin: '0.125rem',
                 opacity: 1,
                 background: theme.color.background.rgb().string(),
                 borderWidth: theme.assets.border.width,
@@ -55,7 +55,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                     ':hover': {
                         background: theme.color.background.rgb().string()
                     }
-                }], 
+                }],
                 isCurrentMonth: [{
                     color: theme.color.onSurface.rgb().string(),
                     background: theme.color.surface.rgb().string()
@@ -66,7 +66,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                     ':hover': {
                         background: theme.color.primary.rgb().string()
                     }
-                }], 
+                }],
             })
         ],
     }

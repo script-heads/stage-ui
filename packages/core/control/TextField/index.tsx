@@ -1,6 +1,6 @@
 import { jsx } from '@emotion/core'
 import Field from '@flow-ui/core/misc/hocs/Field'
-import { useComponent } from '@flow-ui/whale'
+import { useComponent } from '@flow-ui/system'
 import React, { forwardRef, RefForwardingComponent, useImperativeHandle, useRef } from 'react'
 import styles from './styles'
 import Types from './types'

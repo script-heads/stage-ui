@@ -1,7 +1,7 @@
-import WhaleTypes from '@flow-ui/whale/types'
-import { createTheme } from '@flow-ui/whale'
+import SystemTypes from '@flow-ui/system/types'
+import { createTheme } from '@flow-ui/system'
 
-const Light: WhaleTypes.SourceTheme = {
+const Light: SystemTypes.SourceTheme = {
     main: {
         name: 'Light',
         color: {

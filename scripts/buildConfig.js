@@ -8,21 +8,21 @@ if (!packageName) {
 const fs = require('fs')
 const buildDir = __dirname + '/../build/'
 const workspacesDir = __dirname + '/../packages/'
-let config, whaleConfig, coreConfig
+let config, systemConfig, coreConfig
 packageName = packageName.toLocaleLowerCase()
 
 config = JSON.parse(fs.readFileSync(buildDir + packageName + '/package.json'))
 
 switch (packageName) {
     case 'core':
-        whaleConfig = JSON.parse(fs.readFileSync(workspacesDir + 'whale/package.json'))
-        config.dependencies[whaleConfig.name] = `^${whaleConfig.version}`
+        systemConfig = JSON.parse(fs.readFileSync(workspacesDir + 'system/package.json'))
+        config.dependencies[systemConfig.name] = `^${systemConfig.version}`
         break;
     case 'lab':
-        whaleConfig = JSON.parse(fs.readFileSync(workspacesDir + 'whale/package.json'))
+        systemConfig = JSON.parse(fs.readFileSync(workspacesDir + 'system/package.json'))
         coreConfig = JSON.parse(fs.readFileSync(workspacesDir + 'core/package.json'))
         config.dependencies[coreConfig.name] = `^${coreConfig.version}`
-        config.dependencies[whaleConfig.name] = `^${whaleConfig.version}`
+        config.dependencies[systemConfig.name] = `^${systemConfig.version}`
         break;
 }
 

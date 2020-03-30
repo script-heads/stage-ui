@@ -1,9 +1,9 @@
-import WhaleTypes from '@flow-ui/whale/types'
-import colorProp from '@flow-ui/whale/utils/colorProp'
+import SystemTypes from '@flow-ui/system/types'
+import colorProp from '@flow-ui/system/utils/colorProp'
 import Types from './types'
 
-const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
-    
+const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
+
     let { gap = '0px', dash = '1px', vertical } = props
     const color = colorProp(theme, props.color)?.rgb().string() || theme.assets.border.color
 
@@ -14,11 +14,11 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
     gap = theme.spacing[gap] || gap
     dash = theme.spacing[dash] || dash
 
-    if (typeof(gap) === 'number') {
+    if (typeof (gap) === 'number') {
         gap = `${gap}px`
     }
 
-    if (typeof(dash) === 'number') {
+    if (typeof (dash) === 'number') {
         dash = `${dash}px`
     }
 

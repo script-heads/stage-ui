@@ -1,13 +1,13 @@
 
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 import Types from './types'
 
-const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
+const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
     const { assets, spacing } = theme
     const { text } = assets.typography
     const typography = text[props.size || 'm'] || text['m']
     const padding = typography.fontSize
-    
+
     return {
         container: [
             {
@@ -42,47 +42,48 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                     }
                 },
                 align: {
-                'top-right': [{
-                    top: 0,
-                    right: 0,
-                    transform: 'translate(50%, -50%)',
-                }],
-                'top-left': [{
-                    top: 0,
-                    left: 0,
-                    transform: 'translate(-50%, -50%)',
-                }],
-                'bottom-right': [{
-                    bottom: 0,
-                    right: 0,
-                    transform: 'translate(50%, 50%)',
-                }],
-                'bottom-left': [{
-                    bottom: 0,
-                    left: 0,
-                    transform: 'translate(-50%, 50%)',
-                }],
-                'top': [{
-                    top: 0,
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                }],
-                'bottom': [{
-                    bottom: 0,
-                    left: '50%',
-                    transform: 'translate(-50%, 50%)',
-                }],
-                'right': [{
-                    top: '50%',
-                    right: 0,
-                    transform: 'translate(50%, -50%)',
-                }],
-                'left': [{
-                    top: '50%',
-                    left: 0,
-                    transform: 'translate(-50%, -50%)',
-                }]
-            }})
+                    'top-right': [{
+                        top: 0,
+                        right: 0,
+                        transform: 'translate(50%, -50%)',
+                    }],
+                    'top-left': [{
+                        top: 0,
+                        left: 0,
+                        transform: 'translate(-50%, -50%)',
+                    }],
+                    'bottom-right': [{
+                        bottom: 0,
+                        right: 0,
+                        transform: 'translate(50%, 50%)',
+                    }],
+                    'bottom-left': [{
+                        bottom: 0,
+                        left: 0,
+                        transform: 'translate(-50%, 50%)',
+                    }],
+                    'top': [{
+                        top: 0,
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                    }],
+                    'bottom': [{
+                        bottom: 0,
+                        left: '50%',
+                        transform: 'translate(-50%, 50%)',
+                    }],
+                    'right': [{
+                        top: '50%',
+                        right: 0,
+                        transform: 'translate(50%, -50%)',
+                    }],
+                    'left': [{
+                        top: '50%',
+                        left: 0,
+                        transform: 'translate(-50%, -50%)',
+                    }]
+                }
+            })
         ],
     }
 }

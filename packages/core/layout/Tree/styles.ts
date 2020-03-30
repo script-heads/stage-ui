@@ -1,8 +1,8 @@
 import Types from './types'
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 
-const styles: WhaleTypes.CreateStyles<Types.Styles, Types.PrivateProps> = (props, theme) => {
-    
+const styles: SystemTypes.CreateStyles<Types.Styles, Types.PrivateProps> = (props, theme) => {
+
     return {
         container: (variant) => [
             variant({
@@ -24,7 +24,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.PrivateProps> = (props
                         },
                         variant({
                             size: {
-                                xs:{
+                                xs: {
                                     padding: `calc(${theme.spacing.xs} / 2)`,
                                 },
                                 s: {
@@ -33,7 +33,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.PrivateProps> = (props
                                 l: {
                                     padding: `calc(${theme.spacing.l} / 2)`,
                                 },
-                                xl:{
+                                xl: {
                                     padding: `calc(${theme.spacing.xl} / 2)`,
                                 }
                             }
@@ -57,7 +57,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.PrivateProps> = (props
                 }
             })
         ],
-        
+
         arrow: (variant) => [
             {
                 opacity: 0,
@@ -73,7 +73,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.PrivateProps> = (props
                     opacity: 1,
                 },
                 size: {
-                    xs:{
+                    xs: {
                         fontSize: theme.assets.typography.text.xs.fontSize,
                         paddingRight: `calc(${theme.spacing.xs} / 2)`,
                         paddingLeft: `calc(${theme.assets.typography.text.xs.fontSize} * ${props.lvl * 1})`,
@@ -90,7 +90,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.PrivateProps> = (props
                         paddingLeft: `calc(${theme.assets.typography.text.l.fontSize} * ${props.lvl * 1})`,
 
                     },
-                    xl:{
+                    xl: {
                         fontSize: theme.assets.typography.text.xl.fontSize,
                         paddingRight: `calc(${theme.spacing.xl} / 2)`,
                         paddingLeft: `calc(${theme.assets.typography.text.xl.fontSize} * ${props.lvl * 1})`,

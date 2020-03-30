@@ -1,8 +1,8 @@
 import fieldStyles from '@flow-ui/core/misc/hocs/Field/styles'
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 import Types from './types'
 
-const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
+const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
 
     return {
         ...fieldStyles(props, theme),
@@ -39,7 +39,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
                 '&::placeholder': {
                     color: theme.color.light.rgb().string()
                 }
-            } 
+            }
         ]
     }
 }

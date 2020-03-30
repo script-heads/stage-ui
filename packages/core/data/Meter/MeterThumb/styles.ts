@@ -1,19 +1,19 @@
 
-import colorProp from '@flow-ui/whale/utils/colorProp'
-import WhaleTypes from '@flow-ui/whale/types'
+import colorProp from '@flow-ui/system/utils/colorProp'
+import SystemTypes from '@flow-ui/system/types'
 import Types from './types'
 
-const styles: WhaleTypes.CreateStyles<Types.Styles, Types.PrivateProps> = (props, theme) => {
+const styles: SystemTypes.CreateStyles<Types.Styles, Types.PrivateProps> = (props, theme) => {
     const { loading } = props
 
     const color = colorProp(theme, props.color) || theme.color.primary
     const field = theme.assets.field[props.size || 'm'] || theme.assets.field.m
-    
+
     return {
         container: (variant) => [
             {
                 position: 'absolute',
-                top:0,
+                top: 0,
                 height: '100%',
                 background: color.rgb().string(),
                 animation: loading ? 'move 2s linear infinite' : 'none',

@@ -1,7 +1,7 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 import Types from './types'
 
-const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme, params: { wrapper?: boolean }) => {
+const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme, params: { wrapper?: boolean }) => {
 
     const attachTheme = {
         background: theme.color.background.rgb().string(),
@@ -12,10 +12,10 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
         'h2': theme.assets.typography.header.m,
         'h3': theme.assets.typography.header.s,
         'h4': theme.assets.typography.header.xs,
-        ...theme.assets.typography.text.m 
+        ...theme.assets.typography.text.m
     }
 
-    const reset =  params.wrapper ? '' :  
+    const reset = params.wrapper ? '' :
         `
             html, body, div, span, applet, object, iframe,
             blockquote, pre,
@@ -47,7 +47,7 @@ const styles: WhaleTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme
     return {
         container: [
             reset,
-            props.wrapper 
+            props.wrapper
                 ? attachTheme
                 : { 'html': attachTheme },
             props.global

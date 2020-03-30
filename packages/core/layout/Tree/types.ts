@@ -1,4 +1,4 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 
 declare namespace TreeTypes {
     type RenderChildOptions = {
@@ -8,13 +8,13 @@ declare namespace TreeTypes {
         lvl: number
     }
     type RenderChild = (options: RenderChildOptions) => React.ReactNode
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
+    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
         label?: React.ReactNode | string | RenderChild
         leftChild?: React.ReactNode | string | RenderChild
         rightChild?: React.ReactNode | string | RenderChild
         children?: React.ReactNode
         decoration?: 'none' | 'finder'
-        size?: WhaleTypes.Size
+        size?: SystemTypes.Size
         open?: boolean
         defaultOpen?: boolean
         indent?: boolean
@@ -24,23 +24,23 @@ declare namespace TreeTypes {
         isParentOpen: boolean
     }
 
-    interface TreeLabelProps { 
+    interface TreeLabelProps {
         children?: Props['label']
-        className?: Props['className'] 
+        className?: Props['className']
         size: Props['size']
         options: RenderChildOptions
     }
 
-    interface TreeLeftChildProps { 
+    interface TreeLeftChildProps {
         children?: Props['leftChild']
-        className?: Props['className'] 
+        className?: Props['className']
         size: Props['size']
         options: RenderChildOptions
     }
 
-    interface TreeRightChildProps { 
+    interface TreeRightChildProps {
         children?: Props['leftChild']
-        className?: Props['className'] 
+        className?: Props['className']
         size: Props['size']
         options: RenderChildOptions
     }
@@ -52,7 +52,7 @@ declare namespace TreeTypes {
             }
         }
     }
-    
+
     interface StyleState {
         hasChilds: boolean
         decoration: Props['decoration']

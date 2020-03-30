@@ -1,6 +1,6 @@
 import { ChangeEventHandler } from 'react'
 import FieldTypes from '../../misc/hocs/Field/types'
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 
 declare namespace TextFieldTypes {
 
@@ -141,7 +141,7 @@ declare namespace TextFieldTypes {
          */
         input: {
             multiline: boolean
-            size: WhaleTypes.Size
+            size: SystemTypes.Size
         }
     }
 }

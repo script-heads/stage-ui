@@ -1,36 +1,35 @@
 {
-  "name": "@flow-ui/monorepo",
-  "author": "ABR Tech",
-  "version": "0.1.0",
-  "license": "MIT",
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
-  "scripts": {
-    "themer": "yarn workspace @flow-ui/themer start",
-    "playground": "yarn workspace @flow-ui/playground start",
-    "playground:a": "yarn workspace @flow-ui/playground analyze",
-    "start": "yarn workspace @flow-ui/docs start",
-    "test": "yarn workspace @flow-ui/docs test",
-    "approve": "yarn workspace @flow-ui/docs approve",
-    "gen": "yarn gen:createTypes && yarn gen:convertTypes && yarn gen:generateTypes && yarn gen:fixTypes",
-    "gen:createTypes": "cd ./packages/documaker && typedoc -mode file --json ./definitions/original.json ../docs/pages",
-    "gen:convertTypes": "cd ./packages/documaker && node ./scripts/convertTypes.js",
-    "gen:generateTypes": "cd ./packages/documaker && node ./scripts/generateTypes.js",
-    "gen:fixTypes": "cd ./packages/documaker && node ./scripts/fixTypes.js",
-    "gen:evaicons": "cd ./packages/core && yarn icons:generate",
-    "pub": "yarn pub:whale && yarn pub:core && yarn deploy",
-    "pub:core": "cd ./packages/core && yarn pub",
-    "pub:lab": "cd ./packages/lab && yarn pub",
-    "pub:whale": "cd ./packages/whale && yarn pub",
-    "gitpush": "git commit . -m 'Update version' && git push",
-    "build": "cd ./packages/documaker && yarn build",
-    "form": "cd ./build/documaker && pm2 start --name FlowUI server.js",
-    "deploy": "curl -X POST -F token=8e3b477f2ce3ef9e5f4ca44d977a71 -F ref=master  http://gitlab.abr-region.ru/api/v4/projects/237/trigger/pipeline > /dev/null"
-  },
-  "dependencies": {
-    "tslint": "^6.0.0",
-    "typescript": "^3.8.3"
-  }
+    "name": "@flow-ui/monorepo",
+    "author": "ABR Tech",
+    "version": "0.1.0",
+    "license": "MIT",
+    "private": true,
+    "workspaces": [
+        "packages/*"
+    ],
+    "scripts": {
+        "sandbox": "yarn workspace @flow-ui/sandbox start",
+        "sandbox:a": "yarn workspace @flow-ui/sandbox analyze",
+        "start": "yarn workspace @flow-ui/docs start",
+        "gen": "yarn gen:createTypes && yarn gen:convertTypes && yarn gen:generateTypes && yarn gen:fixTypes",
+        "gen:createTypes": "cd ./packages/docs && typedoc -mode file --json ./system/definitions/original.json ../docs/pages/docs",
+        "gen:convertTypes": "cd ./packages/docs && node ./scripts/convertTypes.js",
+        "gen:generateTypes": "cd ./packages/docs && node ./scripts/generateTypes.js",
+        "gen:fixTypes": "cd ./packages/docs && node ./scripts/fixTypes.js",
+        "gen:evaicons": "cd ./packages/core && yarn icons:generate",
+        "pub": "yarn pub:system && yarn pub:core && yarn deploy",
+        "pub:core": "cd ./packages/core && yarn pub",
+        "pub:lab": "cd ./packages/lab && yarn pub",
+        "pub:system": "cd ./packages/system && yarn pub",
+        "gitpush": "git commit . -m 'Update version' && git push",
+        "build": "cd ./packages/docs && yarn build",
+        "form": "cd ./build/docs && pm2 start --name FlowUI server.js",
+        "test": "yarn workspace @flow-ui/docs test",
+        "approve": "yarn workspace @flow-ui/docs approve",
+        "deploy": "curl -X POST -F token=8e3b477f2ce3ef9e5f4ca44d977a71 -F ref=master  http://gitlab.abr-region.ru/api/v4/projects/237/trigger/pipeline > /dev/null"
+    },
+    "dependencies": {
+        "tslint": "^6.0.0",
+        "typescript": "^3.8.3"
+    }
 }

@@ -1,23 +1,23 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 
 declare namespace CheckTypes {
 
     type CheckType = 'checkbox' | 'radio' | 'switch'
 
-    interface Props extends WhaleTypes.AllProps<HTMLInputElement, Styles> {
+    interface Props extends SystemTypes.AllProps<HTMLInputElement, Styles> {
         label?: string
-        labelColor?: WhaleTypes.ColorProp
+        labelColor?: SystemTypes.ColorProp
         checked?: boolean
         disabled?: boolean
         defaultValue?: boolean
         uppercase?: boolean
-        size?: WhaleTypes.Size
+        size?: SystemTypes.Size
     }
 
     interface PrivateProps extends Omit<Props, 'styles'> {
         children: (checked: boolean, focus: boolean) => React.ReactElement
         type?: CheckType
-        styles: WhaleTypes.ComponentStyles<Styles>
+        styles: SystemTypes.ComponentStyles<Styles>
     }
 
     interface Styles {

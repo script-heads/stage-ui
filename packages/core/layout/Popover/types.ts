@@ -1,8 +1,8 @@
-import WhaleTypes from '@flow-ui/whale/types'
+import SystemTypes from '@flow-ui/system/types'
 import CSS from 'csstype'
 
 declare namespace PopoverTypes {
-    interface Props extends WhaleTypes.AllProps<HTMLDivElement, Styles> {
+    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
         /**
          * Alignment of popover's arrow
          */
@@ -10,11 +10,11 @@ declare namespace PopoverTypes {
         /**
          * Color of popover's border
          */
-        borderColor?: WhaleTypes.ColorProp
+        borderColor?: SystemTypes.ColorProp
         /**
          * Color of popover's background
          */
-        backgroundColor?: WhaleTypes.ColorProp
+        backgroundColor?: SystemTypes.ColorProp
         /**
          * Popover's content
          */
