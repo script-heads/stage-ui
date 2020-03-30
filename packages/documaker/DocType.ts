@@ -25,7 +25,7 @@ type OTypeUnion = {
 }
 type OTypeIntrinsic = {
     type: 'intrinsic'
-    name: 'undefined' | 'true' | 'false' | 'boolean' | 'number' | 'string'
+    name: 'undefined' | 'true' | 'false' | 'boolean' | 'number' | 'string' | 'any' | 'unknown' | 'void'
 }
 type OTypeStringLiteral = {
     type: 'stringLiteral'
@@ -90,7 +90,7 @@ type OChild = {
  * Abstract class for any Child element
  */
 class FabricAbscract {
-    _data: OChild
+    $data: OChild
     id: OChild['id']
     name: OChild['name']
     flags: OChild['flags']
@@ -98,34 +98,35 @@ class FabricAbscract {
     tags: OChild['tags']
 
     constructor(child: OChild, _module?: any) {
-        this._data = child
+        this.$data = child
         this.id = child.id
         this.name = child.name
         this.flags = child.flags
-        if (this._data.comment) {
-            if (typeof this._data.comment === 'string') {
-                this.comment = this._data.comment
+        if (this.$data.comment) {
+            if (typeof this.$data.comment === 'string') {
+                this.comment = this.$data.comment
             } else {
-                this.comment = this._data.comment.shortText
-                this._data.tags = this._data.comment.tags
+                this.comment = this.$data.comment.shortText
+                this.$data.tags = this.$data.comment.tags
             }
         }
     }
+
     /**
      * Helps caching and finding elements
      */
-    _storageReturnHelper<R extends new (...args: any) => any, S>(
+    protected storageReturnHelper<R extends new (...args: any) => any, S>(
         self: S,
         storageId: string,
         kinds: number[],
         Prototype: R): InstanceType<R>[] {
 
         if (self[storageId].length === 0) {
-            const groupInterfaces = self['_data'].groups?.find(g => kinds.includes(g.kind))
+            const groupInterfaces = self['$data'].groups?.find(g => kinds.includes(g.kind))
             if (groupInterfaces) {
                 self[storageId] = groupInterfaces.children.map(child =>
                     new Prototype(
-                        self['_data'].children.find(c => c.id === child) as OChild,
+                        self['$data'].children.find(c => c.id === child) as OChild,
                         self
                     )
                 )
@@ -152,8 +153,18 @@ class DocTypeFabric extends FabricAbscract {
             require('./definitions/original.json') as OChild
         )
     }
-    static findChildById(id: number) {
-        const child = DocTypeFabric.getInstance()._data.children.find(c => c.id === id) as OChild
+
+    /**
+     * Get module by its name
+     */
+    findModule(name: string) {
+        return this.modules.find(
+            child => child.name === name
+        )|| null
+    }
+
+    static findReferenceById(id: number) {
+        const child = DocTypeFabric.getInstance().$data.children.find(c => c.id === id) as OChild
         if (child) {
             return child
         } else {
@@ -161,11 +172,25 @@ class DocTypeFabric extends FabricAbscract {
         }
     }
     /**
+     * Find reference by its name
+     */
+    findReferenceByName(childName: string, module: Module) {
+        const child = this.$data.children.find(i => i.name === childName)
+        if (child) {
+            switch(child.kind) {
+                case KIND_INTERFACE: return new Interface(child, module)
+                case KIND_TYPE_ALIAS: return new Alias(child, module)
+                case KIND_INTERFACE: return new Module(child, this)
+            }
+        }
+        return null
+    }
+    /**
      * List of all modules
      */
     private moduleStorage: Module[] = []
     get modules() {
-        return this._storageReturnHelper(this, 'moduleStorage', [KIND_MODULE], Module)
+        return this.storageReturnHelper(this, 'moduleStorage', [KIND_MODULE], Module)
     }
 }
 
@@ -173,12 +198,24 @@ class DocTypeFabric extends FabricAbscract {
  * Class for Modules
  */
 class Module extends FabricAbscract {
-    constructor(child: OChild) {
+    root: DocTypeFabric
+
+    constructor(child: OChild, _root: DocTypeFabric) {
         super(child)
         if (child.kind !== KIND_MODULE) {
             console.error(`Doc: child(${child.id}) with kind ${child.kind} is not a Module!`)
             return
         }
+        this.root = _root
+    }
+
+    /**
+     * Get inreface by its name
+     */
+    findInterface(name: string) {
+        return this.interfaces.find(
+            child => child.name === name
+        )|| null
     }
 
     /**
@@ -186,20 +223,20 @@ class Module extends FabricAbscract {
      */
     private interfaceStorage: Interface[] = []
     get interfaces() {
-        return this._storageReturnHelper(this, 'interfaceStorage', [KIND_INTERFACE], Interface)
+        return this.storageReturnHelper(this, 'interfaceStorage', [KIND_INTERFACE], Interface)
     }
     /**
      * List of all type aliaces
      */
     private aliaseStorage: Prop[] = []
     get aliases() {
-        return this._storageReturnHelper(this, 'aliaseStorage', [KIND_TYPE_ALIAS], Alias)
+        return this.storageReturnHelper(this, 'aliaseStorage', [KIND_TYPE_ALIAS], Alias)
     }
     /**
      * Find reference by its name
      */
     findReferenceByName(childName: string) {
-        const child = this._data.children.find(i => i.name === childName)
+        const child = this.$data.children.find(i => i.name === childName)
         if (child) {
             switch(child.kind) {
                 case KIND_INTERFACE: return new Interface(child, this)
@@ -225,11 +262,20 @@ class Interface extends FabricAbscract {
     }
 
     /**
+     * Get property by its name
+     */
+    findProperty(name: string) {
+        return this.props.find(
+            child => child.name === name
+        ) || null
+    }
+
+    /**
      * List of all props
      */
     private propStorage: Prop[] = []
     get props() {
-        return this._storageReturnHelper(this, 'propStorage', [KIND_PROP], Prop)
+        return this.storageReturnHelper(this, 'propStorage', [KIND_PROP], Prop)
     }
 }
 
@@ -263,7 +309,7 @@ class Prop extends FabricAbscract {
         this.interface = _interface
         this.type = child.type.type
         if (child.type.type === 'reference') {
-            const reference = DocTypeFabric.findChildById(child.type.id)
+            const reference = DocTypeFabric.findReferenceById(child.type.id)
             if (reference) {
                 super(reference)
                 this.type = reference.type.type
@@ -274,7 +320,7 @@ class Prop extends FabricAbscract {
         /**
          * Searching object at current Module
          */
-        for (const i of this.interface.module._data.children) {
+        for (const i of this.interface.module.$data.children) {
             if (i.name === objectType) {
                 /**
                  * Seaching prop of Interface
@@ -310,9 +356,9 @@ class Prop extends FabricAbscract {
             }
         }
     }
-    get text() {
-        if (this._data.type.type === 'reflection') {
-            this._data.type.declaration.children.map(child => {
+    private resolveTypes() {
+        if (this.$data.type.type === 'reflection') {
+            this.$data.type.declaration.children = this.$data.type.declaration.children.map(child => {
                 /**
                  * Try finding actual value in current Module
                  */                
@@ -327,7 +373,6 @@ class Prop extends FabricAbscract {
                  */
                 if (child.type.type === 'reference') {
                     const referenceName = child.type.name.split('.')
-                    console.log(referenceName)
 
                     if (referenceName.length === 2) {
                         const refModule = DocType.modules.find(m => m.name === referenceName[0])
@@ -339,20 +384,31 @@ class Prop extends FabricAbscract {
                         } else {
                             console.warn(`unhandled referenece ${child.type.name}! code 2`)
                         }
-                    } else {                        
-                        console.log(child.type)
+                    } else {           
+                        const refObject = this.interface.module.root.findReferenceByName(
+                            child.type.name,
+                            this.interface.module
+                        )
+                        if (refObject) {
+                            return refObject
+                        }
                     }
                 }
+
                 if (child.type.type === 'union') {
                     this.unionVoidRemove(child.type)
                     this.unionOptionalBooleanConvert(child.type)
 
                     return child.type
                 }
+                return child
             })
-        } else {
-            console.log(this._data.type.type)
         }
+    }
+
+    get text() {
+        // this.resolveTypes()
+        window.a = this
         return ''
     }
 
