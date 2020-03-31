@@ -84,6 +84,8 @@ type OChild = {
     type: OType
     groups?: OGroup[]
     children: OChild[]
+    extendedTypes?: OChild[]
+    inheritedFrom?: OChild
 }
 
 /**
@@ -98,6 +100,7 @@ abstract class Abstract {
     tags: OChild['tags']
 
     constructor(child: OChild, _module?: any) {
+        
         this.$data = child
         this.id = child.id
         this.name = child.name
@@ -111,6 +114,17 @@ abstract class Abstract {
             }
         }
     }
+    
+    find(id: number, item = this.$data): OChild | null {
+        if (item.id === id) return item
+        if (item.children) {
+            for (let child of item.children) {
+                let res = this.find(id, child)
+                if (res) return res
+            }
+        }
+        return null
+    }
 
     /**
      * Helps caching and finding elements
@@ -119,7 +133,8 @@ abstract class Abstract {
         self: S,
         storageId: string,
         kinds: number[],
-        Prototype: R): InstanceType<R>[] {
+        Prototype: R,
+        filter?: (item: InstanceType<R>) => boolean): InstanceType<R>[] {
 
         if (self[storageId].length === 0) {
             const groupInterfaces = self['$data'].groups?.find(g => kinds.includes(g.kind))
@@ -130,6 +145,9 @@ abstract class Abstract {
                         self
                     )
                 )
+                if (filter) {
+                    self[storageId] = self[storageId].filter(filter)
+                }
             }
         }
 
@@ -275,7 +293,30 @@ class Interface extends Abstract {
      */
     private propStorage: Prop[] = []
     get props() {
-        return this.storageReturnHelper(this, 'propStorage', [KIND_PROP], Prop)
+        return this.storageReturnHelper(this, 'propStorage', [KIND_PROP], Prop, (item) => {
+            if (item.$data.inheritedFrom) {
+                return false
+            }
+            return true
+        })
+    }
+    private extendedInterfaceStorage: Interface[]
+    get extendedProps() {
+        if (this.extendedInterfaceStorage) {
+            return this.extendedInterfaceStorage
+        }
+        this.extendedInterfaceStorage = []
+        if (this.$data.extendedTypes) {
+            for (const type of this.$data.extendedTypes) {
+                const found = this.module.root.find(type.id)
+                if (found && found.kind === KIND_INTERFACE) {
+                    this.extendedInterfaceStorage.push(
+                        new Interface(found, this.module)
+                    )
+                }
+            }
+        }
+        return this.extendedInterfaceStorage
     }
 }
 
