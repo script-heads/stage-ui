@@ -89,7 +89,7 @@ type OChild = {
 /**
  * Abstract class for any Child element
  */
-class FabricAbscract {
+abstract class Abstract {
     $data: OChild
     id: OChild['id']
     name: OChild['name']
@@ -140,11 +140,11 @@ class FabricAbscract {
 /**
  * Just root
  */
-class DocTypeFabric extends FabricAbscract {
-    static instance: DocTypeFabric
+class DocType extends Abstract {
+    static instance: DocType
     static getInstance() {
         if (!this.instance) {
-            this.instance = new DocTypeFabric()
+            this.instance = new DocType()
         }
         return this.instance
     }
@@ -164,7 +164,7 @@ class DocTypeFabric extends FabricAbscract {
     }
 
     static findReferenceById(id: number) {
-        const child = DocTypeFabric.getInstance().$data.children.find(c => c.id === id) as OChild
+        const child = DocType.getInstance().$data.children.find(c => c.id === id) as OChild
         if (child) {
             return child
         } else {
@@ -197,10 +197,10 @@ class DocTypeFabric extends FabricAbscract {
 /**
  * Class for Modules
  */
-class Module extends FabricAbscract {
-    root: DocTypeFabric
+class Module extends Abstract {
+    root: DocType
 
-    constructor(child: OChild, _root: DocTypeFabric) {
+    constructor(child: OChild, _root: DocType) {
         super(child)
         if (child.kind !== KIND_MODULE) {
             console.error(`Doc: child(${child.id}) with kind ${child.kind} is not a Module!`)
@@ -250,7 +250,7 @@ class Module extends FabricAbscract {
 /**
  * Class for Interfaces
  */
-class Interface extends FabricAbscract {
+class Interface extends Abstract {
     module: Module
     constructor(child: OChild, _module: Module) {
         super(child)
@@ -282,7 +282,7 @@ class Interface extends FabricAbscract {
 /**
  * Class for TypeAliases
  */
-class Alias extends FabricAbscract {
+class Alias extends Abstract {
     module: Module
     constructor(child: OChild, _module: Module) {
         super(child)
@@ -297,7 +297,7 @@ class Alias extends FabricAbscract {
 /**
  * Class for Interfaces
  */
-class Prop extends FabricAbscract {
+class Prop extends Abstract {
     interface: Interface
     type: OType['type']
     constructor(child: OChild, _interface: Interface) {
@@ -308,14 +308,35 @@ class Prop extends FabricAbscract {
         }
         this.interface = _interface
         this.type = child.type.type
-        if (child.type.type === 'reference') {
-            const reference = DocTypeFabric.findReferenceById(child.type.id)
+        
+    }
+    protected get reference() {
+        if (this.$data.type.type === 'reference') {
+            const reference = DocType.findReferenceById(this.$data.type.id)
             if (reference) {
-                super(reference)
-                this.type = reference.type.type
+                return reference.type
             }
         }
     }
+
+    get value () {
+        if (this.$data.type.type === 'reference') {
+            const reference = DocType.findReferenceById(this.$data.type.id)
+            if (reference) {
+                return Object.assign({}, this.$data.type, reference.type)
+            }
+        }
+        if (this.$data.type.type == 'union') {
+            this.unionVoidRemove(this.$data.type)
+            this.unionOptionalBooleanConvert(this.$data.type)
+            return this.$data.type.types
+        }
+        if (this.$data.type.type == 'intrinsic') {
+            return this.$data.type
+        }
+        return this.$data.type
+    }
+
     private findIndexedType(objectType: string, indexType: string) {
         /**
          * Searching object at current Module
@@ -406,15 +427,13 @@ class Prop extends FabricAbscract {
     //     }
     // }
 
-    get text() {
-        // this.resolveTypes()
-        //@ts-ignore
-        window.a = this
-        return ''
-    }
+    // get text() {
+    //     // this.resolveTypes()
+    //     //@ts-ignore
+    //     window.a = this
+    //     return ''
+    // }
 
 }
 
-const DocType = DocTypeFabric.getInstance()
-
-export default DocType
+export default DocType.getInstance()
