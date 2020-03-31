@@ -1,98 +1,56 @@
 import React, { useState, useMemo } from 'react'
 import { Block, Header, Flexbox, Table, ScrollView } from '@flow-ui/core'
 import TableTypes from '@flow-ui/core/data/Table/types'
-
-type Reflection = {
-    type: 'reflection'
-    declaration: {
-        id: number
-        children?: any[]
-        groups?: any[],
-        signatures?: {
-            name: '__call'
-            parameters: {
-                id: number
-                name: string
-            }[]
-            type: {
-                name: string
-                type: 'stringLiteral' | 'intrinsic'      
-            }
-        }[]
-    }
-}
-
-type Intersection = {
-    type: 'intersection'
-    types: any[]
-}
-
-export interface ValueDefinition {
-    id: number
-    isOptional: boolean
-    name: string
-    comment?: string
-    tags?: { [key: string]: string }
-    deprecated?: string | true
-    breakpointify?: true
-    type: 'stringLiteral' | 'intrinsic' | 'reference' | Reflection | Intersection
-    values: string[]
-}
-interface InterfaceDefinition {
-    name: string
-    comment?: string
-    children: ValueDefinition[]
-    extendedTypes: InterfaceDefinition[]
-}
+import { Interface as InterfaceType } from '../../../system/types'
 
 interface InterfaceProps {
-    data: InterfaceDefinition,
+    data: InterfaceType,
     separatedTypes?: string[]
     columns: TableTypes.TableColumn[]
 }
 
-const sortTypes = (data: InterfaceDefinition, separatedTypes?: string[]) => {
-    const self: InterfaceDefinition = Object.assign({}, data)
-    const separated: Record<string,InterfaceDefinition> = {}
+const sortTypes = (data: InterfaceType, separatedTypes?: string[]) => {
+    const self: InterfaceType = Object.assign({}, data)
+    const separated: Record<string, InterfaceType> = {}
 
-    const getExtendedTypes = (type: InterfaceDefinition, parent?: string) => {
-        type.extendedTypes.map(innerType => {
+    const getExtendedTypes = (type: InterfaceType, parent?: string) => {
+        type.extendedProps.map(innerType => {
             if (separatedTypes && separatedTypes.includes(innerType.name) || parent) {
                 if (parent) {
-                    separated[parent].children = separated[parent].children.concat(innerType.children)
+                    separated[parent].props = separated[parent].props.concat(innerType.props)
                 } else {
                     separated[innerType.name] = innerType
-                } 
+                }
                 getExtendedTypes(innerType, parent || innerType.name)
             } else {
-                self.children = self.children.concat(innerType.children)
+                self.props = self.props.concat(innerType.props)
                 getExtendedTypes(innerType)
             }
         })
     }
 
-    getExtendedTypes(data)
+    getExtendedTypes(self)
 
     return { self, separated }
 }
 
 const Interface = (props: InterfaceProps) => {
 
-    const [ activeName, setActiveName ] = useState(props.data.name) 
+    const [activeName, setActiveName] = useState(props.data.name)
     const { self, separated } = useMemo(() => {
         setActiveName(props.data.name)
         return sortTypes(props.data, props.separatedTypes)
     }, [props])
 
-    const types = activeName === props.data.name 
-        ? self.children 
-        : separated[activeName]?.children
+    const types = activeName === props.data.name
+        ? self.props
+        : separated[activeName]?.props
 
     const extendedNames = [props.data.name, ...Object.keys(separated)]
-    
+
     return (
         <Block>
-            <div style={{ position: 'relative', paddingBottom: '0.5rem', marginBottom: '0.5rem'}}>
+            <div style={{ position: 'relative', paddingBottom: '0.5rem', marginBottom: '0.5rem' }}>
                 <ScrollView size="xs">
                     <Flexbox>
                         {extendedNames.map(name => (
@@ -101,7 +59,7 @@ const Interface = (props: InterfaceProps) => {
                                 mr="1.5rem"
                                 children={name}
                                 color={name === activeName ? 'onBackground' : 'light'}
-                                onClick={()=>setActiveName(name)}
+                                onClick={() => setActiveName(name)}
                             />
                         ))}
                     </Flexbox>

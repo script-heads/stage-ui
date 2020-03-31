@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid } from '@flow-ui/core'
 import { Config } from '../../../system/core'
-import generatedTypes from '../../../system/definitions/types.json'
+import TypeDoc from '../../../system/types'
 import Interface from './Interface'
 
 interface TypesProps {
@@ -13,36 +13,30 @@ interface TypesProps {
 const Types = (props: TypesProps) => {
 
     const { nameSpace, config } = props
-    let types = generatedTypes[nameSpace]
+    const types = TypeDoc.findModule(nameSpace)
 
-    if (!config.pages?.types) {
+    if (!config.pages?.types || !types) {
         return null
     }
-
-    if (!Array.isArray(types) || types.length === 0) {
-        console.warn(`Render docs: There is no props for ${nameSpace}`)
-        return null
-    }
-
-    types = config.pages.types.map(configType => ({
-        interface: types.find(type => type.name === configType.interface),
-        columns: configType.columns
-    }))
 
     return (
         <Grid
-            gridTemplateColumns={props.shrink ? '45rem' : '100%'}
+            templateColumns={props.shrink ? '45rem' : '100%'}
             gap="3rem"
             mt="3rem"
         >
-            {types.map((data, index) => (
-                <Interface
-                    key={'interface-' + index}
-                    data={data.interface}
-                    columns={data.columns}
-                    separatedTypes={config.pages?.separatedTypes}
-                />
-            ))}
+            {config.pages.types.map((configType, index) => {
+                const interfaceTypes = types.findInterface(configType.interface)
+                if (!interfaceTypes) return null
+                return (
+                    <Interface
+                        key={'interface-' + index}
+                        data={interfaceTypes}
+                        columns={configType.columns}
+                        separatedTypes={config.pages?.separatedTypes}
+                    />
+                )
+            })}
         </Grid>
     )
 }

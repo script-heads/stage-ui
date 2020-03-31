@@ -6,12 +6,12 @@ const KIND_TYPE_LITERAL = 0x10000
 const KIND_TYPE_PARAMETER = 0x200000
 const KIND_TYPE_ALIAS = 0x400000
 
-type OFlags = {
+export type OFlags = {
     isExported?: boolean
     isExternal?: boolean
     isOptional?: boolean
 }
-type OType = OTypeUnion
+export type OType = OTypeUnion
     | OTypeStringLiteral
     | OTypeIntrinsic
     | OTypeReference
@@ -19,19 +19,19 @@ type OType = OTypeUnion
     | OTypeAlias
     | OTypeIndexedAccess
 
-type OTypeUnion = {
+export type OTypeUnion = {
     type: 'union'
     types: OTypeIntrinsic[]
 }
-type OTypeIntrinsic = {
+export type OTypeIntrinsic = {
     type: 'intrinsic'
     name: 'undefined' | 'true' | 'false' | 'boolean' | 'number' | 'string' | 'any' | 'unknown' | 'void'
 }
-type OTypeStringLiteral = {
+export type OTypeStringLiteral = {
     type: 'stringLiteral'
     value: string
 }
-type OTypeReference = {
+export type OTypeReference = {
     type: 'reference'
     id: number
     name: string
@@ -40,7 +40,7 @@ type OTypeReflection = {
     type: 'reflection'
     declaration: OChild
 }
-type OTypeIndexedAccess = {
+export type OTypeIndexedAccess = {
     type: 'indexedAccess'
     objectType: {
         type: 'reference'
@@ -51,7 +51,7 @@ type OTypeIndexedAccess = {
         value: 'disabled'
     }
 }
-type OTypeAlias = {
+export type OTypeAlias = {
     id: number
     name: string
     type: OType
@@ -60,7 +60,7 @@ type OTypeAlias = {
     flags: OFlags
     typeParameter: OTypeParameter[]
 }
-type OTypeParameter = {
+export type OTypeParameter = {
     id: number
     name: string
     type: OType
@@ -68,12 +68,12 @@ type OTypeParameter = {
     kindString: 'Type parameter'
     flags: OFlags
 }
-type OGroup = {
+export type OGroup = {
     title: string
     kind: number
     children: number[]
 }
-type OChild = {
+export type OChild = {
     id: number
     name: string
     kind: number
@@ -100,7 +100,7 @@ abstract class Abstract {
     tags: OChild['tags']
 
     constructor(child: OChild, _module?: any) {
-        
+
         this.$data = child
         this.id = child.id
         this.name = child.name
@@ -114,7 +114,7 @@ abstract class Abstract {
             }
         }
     }
-    
+
     find(id: number, item = this.$data): OChild | null {
         if (item.id === id) return item
         if (item.children) {
@@ -215,7 +215,7 @@ class DocType extends Abstract {
 /**
  * Class for Modules
  */
-class Module extends Abstract {
+export class Module extends Abstract {
     root: DocType
 
     constructor(child: OChild, _root: DocType) {
@@ -268,7 +268,7 @@ class Module extends Abstract {
 /**
  * Class for Interfaces
  */
-class Interface extends Abstract {
+export class Interface extends Abstract {
     module: Module
     constructor(child: OChild, _module: Module) {
         super(child)
@@ -349,7 +349,7 @@ class Prop extends Abstract {
         }
         this.interface = _interface
         this.type = child.type.type
-        
+
     }
     protected get reference() {
         if (this.$data.type.type === 'reference') {
@@ -360,7 +360,7 @@ class Prop extends Abstract {
         }
     }
 
-    get value () {
+    get value() {
         if (this.$data.type.type === 'reference') {
             const reference = DocType.findReferenceById(this.$data.type.id)
             if (reference) {
