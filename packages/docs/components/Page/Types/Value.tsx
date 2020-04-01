@@ -52,6 +52,11 @@ const Value = (props: { property: Property }) => {
         val = val.elementType
         isArray = true
     }
+    if (val.type === 'reflection') {
+        if (val.declaration.signatures) {
+            ret = <Badge text={'function'} />
+        }
+    }
     if (val.type === 'intrinsic') {
         ret = <Badge text={val.name} />
     }
