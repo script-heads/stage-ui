@@ -10,17 +10,21 @@ export type OFlags = {
     isExternal?: boolean
     isOptional?: boolean
 }
-export type OType = OTypeUnion
+export type OType = OTypeIndexedAccess
+    | OTypeArray
+    | OTypeUnion
+    | OTypeIntersection
     | OTypeStringLiteral
     | OTypeIntrinsic
     | OTypeReference
     | OTypeReflection
-    | OTypeAlias
-    | OTypeIndexedAccess
-    | OTypeArray
 
 export type OTypeUnion = {
     type: 'union'
+    types: OType[]
+}
+export type OTypeIntersection = {
+    type: 'intersection'
     types: OType[]
 }
 export type OTypeIntrinsic = {
@@ -56,23 +60,6 @@ export type OTypeIndexedAccess = {
         value: 'disabled'
     }
 }
-export type OTypeAlias = {
-    id: number
-    name: string
-    type: OType
-    kind: 0x400000
-    kindString: 'Type alias'
-    flags: OFlags
-    typeParameter: OTypeParameter[]
-}
-export type OTypeParameter = {
-    id: number
-    name: string
-    type: OType
-    kind: 0x200000
-    kindString: 'Type parameter'
-    flags: OFlags
-}
 export type OGroup = {
     title: string
     kind: number
@@ -97,6 +84,22 @@ export type OChild = {
     children: OChild[]
     extendedTypes?: OChild[]
     inheritedFrom?: OChild
+    signatures?: {
+        id: number
+        name: '__call'
+        kind: 0x1000
+        kindString: 'Call signature'
+        flags: {}
+        parameters?: {
+            id: number
+            name: string
+            kind: 0x8000
+            kindString: 'Parameter'
+            flags: {}
+            type: OType
+        }
+        type: OType
+    }[] 
 }
 
 export default Root.getInstance()

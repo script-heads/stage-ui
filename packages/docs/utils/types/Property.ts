@@ -43,6 +43,11 @@ export class Property extends Abstract {
                 }
             }
         }
+        // if (this.$data.type.type === 'reflection') {
+        //     if (this.$data.type.declaration) {
+               
+        //     }
+        // }
         /**
          * Fix union types
          */

@@ -16,6 +16,8 @@ abstract class Abstract {
         GROUP: 0x20,
         INTERFACE: 0x100,
         PROP: 0x400,
+        CALL_SIGNATURE: 0x1000,
+        PARAMETER: 0x8000,
         TYPE_LITERAL: 0x10000,
         TYPE_PARAMETER: 0x200000,
         TYPE_ALIAS: 0x400000,
