@@ -190,7 +190,7 @@ declare namespace TableTypes {
         /**
          * Settings of columns
          */
-        columns: TableColumn<Object>[]
+        columns: TableColumn[]
         /**
          * Applies decoration on table
          * @default surface
