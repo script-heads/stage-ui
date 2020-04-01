@@ -1,6 +1,6 @@
 import { Block, Text, Flexbox } from '@flow-ui/core'
 import React from 'react'
-import Types, { Property } from '@flow-ui/docs/utils/types'
+import Types, { Property, OType } from '@flow-ui/docs/utils/types'
 
 // import { ValueDefinition } from '@flow-ui/docs/components/Page/Types/Interface'
 // interface ValueProps {
@@ -18,9 +18,7 @@ const LightText = (props: { children: string }) => (
 const Value = (props: { property: Property }) => {
     const { property } = props
 
-    let rightSide: JSX.Element | JSX.Element[] = (
-        <LightText>Not documented yet</LightText>
-    )
+    let values: JSX.Element[] = []
 
     let Badge = (props: { text: string }) => (
         <Text
@@ -45,99 +43,60 @@ const Value = (props: { property: Property }) => {
 
     const { value } = property
 
-    let isArray = false
-    let ret = <span />
     let val = value
 
-    if (val.type === 'array') {
-        val = val.elementType
-        isArray = true
-    }
-    if (val.type === 'reflection') {
-        if (val.declaration.signatures) {
-            ret = <Badge text={'function'} />
+    const push = (val: OType) => {
+        let isArray = false
+        let ret = <span />
+
+        if (val.type === 'array') {
+            val = val.elementType
+            isArray = true
         }
-    }
-    if (val.type === 'intrinsic') {
-        ret = <Badge text={val.name} />
-    }
-    if (val.type === 'stringLiteral') {
-        ret = <Badge text={val.value} />
-    }
-    if (val.type === 'reference') {
-        if (val.id) {
-            // как найти референс
-            const reference = Types.find(val.id)
+        if (val.type === 'reflection') {
+            if (val.declaration.signatures) {
+                ret = (
+                    <Badge text={'function'} />
+                )
+            }
         }
-        ret = <span children={val.name} />
+        if (val.type === 'intrinsic') {
+            ret = (
+                <Badge text={val.name} />
+            )
+        }
+        if (val.type === 'stringLiteral') {
+            ret = (
+                <Badge text={val.value} />
+            )
+        }
+        if (val.type === 'reference') {
+            ret = (
+                <span children={val.name} />
+            )
+        }
+        
+        values.push(isArray
+            ? <span key={Math.random()}>{`Array<`}{ret}{`>`}</span>
+            : <span key={Math.random()}>{ret}</span>
+        )
     }
 
-    rightSide = isArray
-        ? <span>{`Array<`}{ret}{`>`}</span>
-        : <span >{ret}</span>
-
-    // if (Array.isArray(type.values)) {
-    //     rightSide = type.values.map(value =>
-    //         <Text
-    //             h="fit-content"
-    //             size="xs"
-    //             key={value}
-    //             p=".125rem 0.25rem"
-    //             mx=".125rem"
-    //             mb=".25rem"
-    //             backgroundColor={c => {
-    //                 if (value === 'string') {
-    //                     return c.error.alpha(0.2)
-    //                 }
-    //                 if (value === 'number') {
-    //                     return c.success.alpha(0.2)
-    //                 }
-    //                 if (value === 'Boolean') {
-    //                     return c.primary.alpha(0.2)
-    //                 }
-    //                 return c.onSurface.alpha(0.1)
-    //             }}
-    //             css={{ borderRadius: '.25rem' }}
-    //             children={`${value}`}
-    //         />
-    //     )
-    // } else {
-    //     if (typeof type.type !== 'string') {
-    //         if (type.type.type === 'reflection') {
-    //             if (type.type.declaration.signatures) {
-    //                 const signature = type.type.declaration.signatures[0]
-    //                 if (signature.name === '__call') {
-    //                     rightSide = (
-    //                         <span>
-    //                             <LightText children="(" />
-    //                             {signature.parameters?.map((param, index) =>
-    //                                 <LightText
-    //                                     key={param.id}
-    //                                     children={`${param.name}${signature.parameters.length - 1 > index ? ',' : ''}`}
-    //                                 />
-    //                             )}
-    //                             <LightText children=") => " />
-    //                             <Text
-    //                                 h="fit-content"
-    //                                 size="xs"
-    //                                 p=".125rem 0.25rem"
-    //                                 mx=".125rem"
-    //                                 mb=".25rem"
-    //                                 backgroundColor={c => c.primary.alpha(0.2)}
-    //                                 css={{ borderRadius: '.25rem' }}
-    //                                 children={`${signature.type.name}`}
-    //                             />
-    //                         </span>
-    //                     )
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
+    if (val.type === 'union') {
+        val.types.map(val => push(val))
+    } else {
+        push(val)
+    }
+    
+    if (values.length === 0) {
+        values.push(
+            <LightText key={Math.random()}>Not documented yet</LightText>
+        )
+    }
 
     return (
         <Flexbox wrap="wrap">
-            {rightSide}
+            {values}
         </Flexbox>
     )
 }
