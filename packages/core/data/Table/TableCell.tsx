@@ -1,7 +1,7 @@
 import React, { forwardRef, RefForwardingComponent, useState } from 'react'
 import Types from './types'
 
-const TableCell: RefForwardingComponent<HTMLTableDataCellElement, Types.CellProps<Object>> = (props, ref) => {
+const TableCell: RefForwardingComponent<HTMLTableDataCellElement, Types.CellProps> = (props, ref) => {
     const { column, rowIndex, rowCtxItem, styles, getCellContext } = props
 
     let content = rowCtxItem.row[column.key] || null
@@ -19,7 +19,7 @@ const TableCell: RefForwardingComponent<HTMLTableDataCellElement, Types.CellProp
 
     if (column.render) {
         content = column.render(
-            getCellContext(rowIndex, column.key) as Types.TableCellContext<Object>, 
+            getCellContext(rowIndex, column.key) as Types.TableCellContext, 
             rowIndex, 
         )
     }

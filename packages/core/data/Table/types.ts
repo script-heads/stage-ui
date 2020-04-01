@@ -28,7 +28,7 @@ declare namespace TableTypes {
         alwaysVisible?: boolean
     }
 
-    interface TableCellContext<T> {
+    interface TableCellContext<T = Object> {
         /**
          * Current cell key
          */
@@ -113,9 +113,9 @@ declare namespace TableTypes {
         setNeedDisplay?: (forceUnmount?: boolean) => boolean
     }
 
-    interface Ref<T> extends TableRef<T>, HTMLTableElement { }
+    interface Ref<T = Object> extends TableRef<T>, HTMLTableElement { }
 
-    interface TableRef<T> {
+    interface TableRef<T = Object> {
         /**
          * Get context for specific cell
          */
@@ -132,7 +132,7 @@ declare namespace TableTypes {
         setModify: (modify: boolean, index: number, key?: TableCellKey) => boolean
     }
 
-    interface TableColumn<T> {
+    interface TableColumn<T = Object> {
         /**
          * Unique key of row like id/name or something like that
          */
@@ -190,7 +190,7 @@ declare namespace TableTypes {
         /**
          * Settings of columns
          */
-        columns: TableColumn<Object>[]
+        columns: TableColumn[]
         /**
          * Applies decoration on table
          * @default surface
@@ -217,13 +217,13 @@ declare namespace TableTypes {
         rowMountType?: RowMountType
     }
 
-    interface HeadCellProps<T> {
+    interface HeadCellProps<T = Object> {
         column: TableColumn<T>
         styles: SystemTypes.ComponentStyles<Styles>
         setSort: React.Dispatch<React.SetStateAction<TableSortObject>>
     }
 
-    interface CellProps<T> {
+    interface CellProps<T = Object> {
         rowCtxItem: RowContext
         column: TableColumn<T>
         rowIndex: number
@@ -231,7 +231,7 @@ declare namespace TableTypes {
         getCellContext: TableRef<T>['getCellContext']
     }
 
-    interface RowProps<T> {
+    interface RowProps<T = Object> {
         rowCtxItem: RowContext
         columns: TableColumn<T>[]
         rowIndex: number
@@ -247,7 +247,7 @@ declare namespace TableTypes {
         }
     }
 
-    interface FootProps<T> {
+    interface FootProps<T = Object> {
         rowCtx: RowContext[]
         columns: TableColumn<T>[]
         footerContent?: Props['footer']
