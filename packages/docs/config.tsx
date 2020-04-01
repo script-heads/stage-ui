@@ -8,6 +8,7 @@ import Params from './components/Page/Types/Params'
 import StyleType from './components/Page/Types/StyleType'
 
 const config: Config = {
+    name: 'FlowUI',
     git: 'https://github.com/abr-tech/FlowUI',
     pages: {
         order: {

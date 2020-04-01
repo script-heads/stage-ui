@@ -14,7 +14,7 @@ import StringControls from './controls/string'
 import TextControls from './controls/text'
 import styles from './styles'
 
-const data = require('../../../utils/definitions/types')
+// const data = require('../../../public/definitions/types')
 const hiddenProps = [
     'form',
     'formAction',
@@ -111,7 +111,7 @@ const PrefPanel = () => {
     if (componentsTypography.includes(context.tools.focused?.component || '-')) {
         ComponentTypeName = 'Typography'
     }
-    findProps(data[ComponentTypeName + 'Types'])
+    // findProps(data[ComponentTypeName + 'Types'])
     return (
         <Block
             css={cs.container}

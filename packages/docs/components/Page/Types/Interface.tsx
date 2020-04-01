@@ -16,7 +16,7 @@ const sortTypes = (data: InterfaceType, separatedTypes?: string[]) => {
 
     const getExtendedTypes = (type: InterfaceType, parent?: string) => {
         type.extendedTypes.map(innerType => {
-            const innerName = innerType.tags.name.trim()
+            const innerName = innerType.tags.name?.trim()
             if (separatedTypes && separatedTypes.includes(innerName) || parent) {
                 if (parent) {
                     types[parent] = types[parent].concat(innerType.types)

@@ -104,7 +104,7 @@ plugins.push(new CopyWebPack([
     /**
      * definitions for monaco TSLint
      */
-    { from: ProjectDIR + '/system/definitions', to: BuildDIR + '/definitions' },
+    { from: ProjectDIR + '/public/definitions', to: BuildDIR + '/definitions' },
 ]))
 
 /**
