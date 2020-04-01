@@ -1,4 +1,4 @@
-import { OChild, OType, OTypeIntrinsic, OTypeUnion } from '.'
+import { OChild, OType, OTypeIntrinsic, OTypeUnion, OTypeReference } from '.'
 import Abstract from './Abstract'
 import Interface from './Interface'
 
@@ -30,6 +30,17 @@ export class Property extends Abstract {
             const index = this.findIndexedType(this.$data.type.objectType.name, this.$data.type.indexType.value)
             if (index) {
                 this.$data = index
+            }
+        }
+        if (this.$data.type.type === 'reference') {
+            if (this.$data.type.id) {
+                this.$data.type.getReference = () => {
+                    const type = this.$data.type as OTypeReference
+                    if (type.id) {
+                        return this.interface.module.root.find(type.id)
+                    }
+                    return null
+                }
             }
         }
         /**
