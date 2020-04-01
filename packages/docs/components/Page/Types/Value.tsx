@@ -34,6 +34,7 @@ const Value = (props: { property: Property }) => {
                     case 'string': return c.error.alpha(0.2)
                     case 'number': return c.success.alpha(0.2)
                     case 'boolean': return c.primary.alpha(0.2)
+                    case 'function': return c.primary.alpha(0.3)
                     default: return c.error.alpha(0.1)
                 }
             }}
