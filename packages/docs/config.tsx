@@ -4,7 +4,6 @@ import { Config } from './system/core'
 import Value from './components/old/Value'
 import Params from './components/old/Params'
 import StyleType from './components/old/StyleType'
-// import { ValueDefinition } from './components/Page/Types/Interface'
 
 import React from 'react'
 import { Text } from '@flow-ui/core'
@@ -49,12 +48,12 @@ const config: Config = {
                         width: '8rem',
                         render: (c) => <Params property={c.row} />
                     },
-                    // {
-                    //     key: 'tags',
-                    //     title: 'Default',
-                    //     width: '4rem',
-                    //     render: (c) => <Text children={(c.row as ValueDefinition).tags?.default} />
-                    // }
+                    {
+                        key: 'tags',
+                        title: 'Default',
+                        width: '4rem',
+                        render: (c) => <Text children={c.row.tags?.default} />
+                    }
                 ]
             },
             {
