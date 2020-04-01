@@ -116,6 +116,9 @@ abstract class Abstract {
         }
     }
 
+    /**
+     * Find any child by its id.
+     */
     find(id: number, item = this.$data): OChild | null {
         if (item.id === id) return item
         if (item.children) {
@@ -362,21 +365,22 @@ export class Property extends Abstract {
     }
 
     get value() {
-        if (this.$data.type.type === 'reference') {
-            const reference = DocType.findReferenceById(this.$data.type.id)
-            if (reference) {
-                return Object.assign({}, this.$data.type, reference.type)
-            }
-        }
+        // if (this.$data.type.type === 'reference') {
+        //     const reference = DocType.findReferenceById(this.$data.type.id)
+        //     if (reference) {
+        //         return Object.assign({}, this.$data.type, reference.type)
+        //     }
+        // }
         if (this.$data.type.type == 'union') {
             this.unionVoidRemove(this.$data.type)
             this.unionOptionalBooleanConvert(this.$data.type)
             return this.$data.type.types
         }
         if (this.$data.type.type == 'intrinsic') {
-            return this.$data.type
+            return [this.$data.type]
         }
-        return this.$data.type
+        return null
+        // return this.$data.type
     }
 
     private findIndexedType(objectType: string, indexType: string) {

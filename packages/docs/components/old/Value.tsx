@@ -22,6 +22,35 @@ const Value = (props: { property: Property }) => {
         <LightText>Not documented yet</LightText>
     )
 
+    const { value } = property
+
+    if (value) {
+        rightSide = value.map(val => {
+            if (val.type === 'intrinsic') {
+                return (
+                    <Text
+                        h="fit-content"
+                        size="xs"
+                        key={val.name}
+                        p=".125rem 0.25rem"
+                        mx=".125rem"
+                        mb=".25rem"
+                        backgroundColor={c => {
+                            switch(val.name) {
+                                case 'string': return c.error.alpha(0.2)
+                                case 'number': return c.success.alpha(0.2)
+                                case 'boolean': return c.primary.alpha(0.2)
+                                default : return c.onSurface.alpha(0.1)
+                            }
+                        }}
+                        css={{ borderRadius: '.25rem' }}
+                        children={`${val.name}`}
+                    />
+                )
+            }
+            return <span/>
+        })
+    }
     // if (Array.isArray(type.values)) {
     //     rightSide = type.values.map(value =>
     //         <Text
