@@ -44,37 +44,31 @@ const Value = (props: { property: Property }) => {
 
     const { value } = property
 
-    rightSide = value.map((item, index) => {
-        let isArray = false
-        let ret =  <span />
-        let val = item
+    let isArray = false
+    let ret = <span />
+    let val = value
 
-        if (val.type === 'array') {
-            val = val.elementType
-            isArray = true
+    if (val.type === 'array') {
+        val = val.elementType
+        isArray = true
+    }
+    if (val.type === 'intrinsic') {
+        ret = <Badge text={val.name} />
+    }
+    if (val.type === 'stringLiteral') {
+        ret = <Badge text={val.value} />
+    }
+    if (val.type === 'reference') {
+        if (val.id) {
+            // как найти референс
+            const reference = Types.find(val.id)
         }
-        if (val.type === 'intrinsic') {
-            ret = <Badge text={val.name} />
-        }
-        if (val.type === 'stringLiteral') {
-            ret = <Badge text={val.value} />
-        }
-        if (val.type === 'reference') {
-            if (val.id) {
-                // как найти референс
-                const reference = Types.find(val.id)
-            }
-            ret = <span children={val.name} />
-        }
-        if (isArray) {
-            return (
-            <span key={index}>{`Array<`}{ret}{`>`}</span>
-            )
-        }
-        return (
-            <span key={index}>{ret}</span>
-        )
-    })
+        ret = <span children={val.name} />
+    }
+
+    rightSide = isArray
+        ? <span>{`Array<`}{ret}{`>`}</span>
+        : <span >{ret}</span>
 
     // if (Array.isArray(type.values)) {
     //     rightSide = type.values.map(value =>
