@@ -90,7 +90,7 @@ export type OChild = {
             text: string
         }[]
     }
-    tags?: Record<string, string>
+    tags: Record<string, string>
     flags: OFlags
     type: OType
     groups?: OGroup[]
@@ -107,8 +107,8 @@ abstract class Abstract {
     id: OChild['id']
     name: OChild['name']
     flags: OChild['flags']
-    tags: OChild['tags']
-    comment: string
+    tags: OChild['tags'] = {}
+    comment: string = ''
     
     constructor(child: OChild, _module?: any) {
 
@@ -116,16 +116,12 @@ abstract class Abstract {
         this.id = child.id
         this.name = child.name
         this.flags = child.flags
-        this.comment = ''
         if (this.$data.comment) {
             if (typeof this.$data.comment === 'string') {
                 this.comment = this.$data.comment
             } else {
                 this.comment = this.$data.comment.shortText || ''
                 this.$data.comment.tags?.map(tag => {
-                    if (!this.tags) {
-                        this.tags = {}
-                    }
                     this.tags[tag.tag] = tag.text
                 })
             }
