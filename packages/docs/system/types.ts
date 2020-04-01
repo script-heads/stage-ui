@@ -18,6 +18,7 @@ export type OType = OTypeUnion
     | OTypeReflection
     | OTypeAlias
     | OTypeIndexedAccess
+    | OTypeArray
 
 export type OTypeUnion = {
     type: 'union'
@@ -36,7 +37,11 @@ export type OTypeReference = {
     id?: number
     name: string
 }
-type OTypeReflection = {
+export type OTypeArray = {
+    type: 'array'
+    elementType: OType
+}
+export type OTypeReflection = {
     type: 'reflection'
     declaration: OChild
 }
@@ -355,14 +360,6 @@ export class Property extends Abstract {
         this.type = child.type.type
 
     }
-    protected get reference() {
-        if (this.$data.type.type === 'reference') {
-            const reference = DocType.findReferenceById(this.$data.type.id)
-            if (reference) {
-                return reference.type
-            }
-        }
-    }
 
     get value() {
         /**
@@ -382,19 +379,13 @@ export class Property extends Abstract {
             this.unionOptionalBooleanConvert(this.$data.type)
             return this.$data.type.types
         }
-        if (this.$data.type.type == 'intrinsic') {
+        /**
+         * Always return an array
+         */
+        if (typeof this.$data.type === 'object') {
             return [this.$data.type]
         }
-        if (this.$data.type.type === 'reference') {
-            return [this.$data.type]
-        }
-        if (this.$data.type.type === 'stringLiteral') {
-            return [this.$data.type]
-        }
-        if (this.$data.type.type === 'reflection') {
-            return [this.$data.type]
-        }
-        return null
+        return []
     }
 
     private findIndexedType(objectType: string, indexType: string) {

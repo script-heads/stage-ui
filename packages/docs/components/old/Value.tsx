@@ -44,39 +44,38 @@ const Value = (props: { property: Property }) => {
 
     const { value } = property
 
-    if (value) {
-        rightSide = value.map(val => {
-            if (val.type === 'intrinsic') {
-                return (
-                    <Badge
-                        key={val.name}
-                        text={val.name}
-                    />
-                )
+    rightSide = value.map((item, index) => {
+        let isArray = false
+        let ret =  <span />
+        let val = item
+
+        if (val.type === 'array') {
+            val = val.elementType
+            isArray = true
+        }
+        if (val.type === 'intrinsic') {
+            ret = <Badge text={val.name} />
+        }
+        if (val.type === 'stringLiteral') {
+            ret = <Badge text={val.value} />
+        }
+        if (val.type === 'reference') {
+            if (val.id) {
+                // как найти референс
+                const reference = Types.find(val.id)
             }
-            if (val.type === 'stringLiteral') {
-                return (
-                    <Badge
-                        key={val.value}
-                        text={val.value}
-                    />
-                )
-            }
-            if (val.type === 'reference') {
-                if (val.id) {
-                    // как найти референс
-                    const reference = Types.find(val.id)
-                }
-                return (
-                    <span
-                        key={val.name}
-                        children={val.name}
-                    />
-                )
-            }
-            return <span />
-        })
-    }
+            ret = <span children={val.name} />
+        }
+        if (isArray) {
+            return (
+            <span key={index}>{`Array<`}{ret}{`>`}</span>
+            )
+        }
+        return (
+            <span key={index}>{ret}</span>
+        )
+    })
+
     // if (Array.isArray(type.values)) {
     //     rightSide = type.values.map(value =>
     //         <Text
