@@ -21,7 +21,7 @@ export type OType = OTypeUnion
 
 export type OTypeUnion = {
     type: 'union'
-    types: OTypeIntrinsic[]
+    types: OType[]
 }
 export type OTypeIntrinsic = {
     type: 'intrinsic'
@@ -33,7 +33,7 @@ export type OTypeStringLiteral = {
 }
 export type OTypeReference = {
     type: 'reference'
-    id: number
+    id?: number
     name: string
 }
 type OTypeReflection = {
@@ -365,12 +365,18 @@ export class Property extends Abstract {
     }
 
     get value() {
-        // if (this.$data.type.type === 'reference') {
-        //     const reference = DocType.findReferenceById(this.$data.type.id)
-        //     if (reference) {
-        //         return Object.assign({}, this.$data.type, reference.type)
-        //     }
-        // }
+        /**
+         * Try finding actual value in current Module
+         */
+        if (this.$data.type.type === 'indexedAccess') {
+            const index = this.findIndexedType(this.$data.type.objectType.name, this.$data.type.indexType.value)
+            if (index) {
+                this.$data = index
+            }
+        }
+        /**
+         * Fix union types
+         */
         if (this.$data.type.type == 'union') {
             this.unionVoidRemove(this.$data.type)
             this.unionOptionalBooleanConvert(this.$data.type)
@@ -379,8 +385,16 @@ export class Property extends Abstract {
         if (this.$data.type.type == 'intrinsic') {
             return [this.$data.type]
         }
+        if (this.$data.type.type === 'reference') {
+            return [this.$data.type]
+        }
+        if (this.$data.type.type === 'stringLiteral') {
+            return [this.$data.type]
+        }
+        if (this.$data.type.type === 'reflection') {
+            return [this.$data.type]
+        }
         return null
-        // return this.$data.type
     }
 
     private findIndexedType(objectType: string, indexType: string) {
@@ -405,7 +419,8 @@ export class Property extends Abstract {
      * Removes undefined from union array
      */
     private unionVoidRemove(type: OTypeUnion) {
-        if (type.types && type.types[0].name === 'undefined') {
+        const intrinsic = type.types as OTypeIntrinsic[]
+        if (intrinsic && intrinsic[0].name === 'undefined') {
             type.types = type.types.slice(1)
         }
     }
@@ -414,8 +429,9 @@ export class Property extends Abstract {
      * into single boolean value
      */
     private unionOptionalBooleanConvert(type: OTypeUnion) {
-        if (type.types && type.types.length === 2) {
-            if (type.types[0].name === 'false' && type.types[1].name === 'true') {
+        const intrinsic = type.types as OTypeIntrinsic[]
+        if (intrinsic && intrinsic.length === 2) {
+            if (intrinsic[0].name === 'false' && intrinsic[1].name === 'true') {
                 type.types = [{
                     type: 'intrinsic',
                     name: 'boolean',

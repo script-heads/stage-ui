@@ -1,6 +1,6 @@
 import { Block, Text, Flexbox } from '@flow-ui/core'
 import React from 'react'
-import { Property } from '@flow-ui/docs/system/types'
+import Types, { Property } from '@flow-ui/docs/system/types'
 
 // import { ValueDefinition } from '@flow-ui/docs/components/Page/Types/Interface'
 // interface ValueProps {
@@ -22,33 +22,59 @@ const Value = (props: { property: Property }) => {
         <LightText>Not documented yet</LightText>
     )
 
+    let Badge = (props: { text: string }) => (
+        <Text
+            h="fit-content"
+            size="xs"
+            p=".125rem 0.25rem"
+            mx=".125rem"
+            mb=".25rem"
+            backgroundColor={c => {
+                switch (props.text) {
+                    case 'string': return c.error.alpha(0.2)
+                    case 'number': return c.success.alpha(0.2)
+                    case 'boolean': return c.primary.alpha(0.2)
+                    default: return c.error.alpha(0.1)
+                }
+            }}
+            css={{ borderRadius: '.25rem' }}
+            children={`${props.text}`}
+        />
+    )
+
     const { value } = property
 
     if (value) {
         rightSide = value.map(val => {
             if (val.type === 'intrinsic') {
                 return (
-                    <Text
-                        h="fit-content"
-                        size="xs"
+                    <Badge
                         key={val.name}
-                        p=".125rem 0.25rem"
-                        mx=".125rem"
-                        mb=".25rem"
-                        backgroundColor={c => {
-                            switch(val.name) {
-                                case 'string': return c.error.alpha(0.2)
-                                case 'number': return c.success.alpha(0.2)
-                                case 'boolean': return c.primary.alpha(0.2)
-                                default : return c.onSurface.alpha(0.1)
-                            }
-                        }}
-                        css={{ borderRadius: '.25rem' }}
-                        children={`${val.name}`}
+                        text={val.name}
                     />
                 )
             }
-            return <span/>
+            if (val.type === 'stringLiteral') {
+                return (
+                    <Badge
+                        key={val.value}
+                        text={val.value}
+                    />
+                )
+            }
+            if (val.type === 'reference') {
+                if (val.id) {
+                    // как найти референс
+                    const reference = Types.find(val.id)
+                }
+                return (
+                    <span
+                        key={val.name}
+                        children={val.name}
+                    />
+                )
+            }
+            return <span />
         })
     }
     // if (Array.isArray(type.values)) {
