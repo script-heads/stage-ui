@@ -3,7 +3,7 @@ import { ArrowIosDownward, ArrowIosUpward } from '@flow-ui/core/icons'
 import React, { forwardRef, RefForwardingComponent } from 'react'
 import Types from './types'
 
-const TableHeadCell: RefForwardingComponent<HTMLTableDataCellElement, Types.HeadCellProps> = (props, ref) => {
+const TableHeadCell: RefForwardingComponent<HTMLTableDataCellElement, Types.HeadCellProps<Object>> = (props, ref) => {
     const { column, styles, setSort } = props
 
     const setSorting = () => {

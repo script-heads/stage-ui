@@ -1,14 +1,11 @@
 import { Flexbox, Text } from '@flow-ui/core'
 import React from 'react'
-import { ValueDefinition } from '@flow-ui/docs/components/Page/Types/Interface'
-interface ParamsProps {
-    type: ValueDefinition,
-}
+import { Property } from '@flow-ui/docs/system/types'
 
-const Params = (props: ParamsProps) => {
-    const { type } = props
+const Params = (props: { property: Property }) => {
+    const { property } = props
 
-    const Label = (props) =>
+    const Label = (props: { children: string }) =>
         <Text
             mr=".5rem"
             css={{ whiteSpace: 'nowrap' }}>
@@ -17,14 +14,14 @@ const Params = (props: ParamsProps) => {
 
     return (
         <Flexbox css={{ overflow: 'hidden' }} wrap="wrap">
-            {type.deprecated &&
+            {property.tags?.depricated &&
                 <Label>Deprecated</Label>
             }
-            {type.isOptional
+            {property.flags?.isOptional
                 ? <Label>Optional</Label>
                 : <Label>Required</Label>
             }
-            {type.breakpointify &&
+            {property.tags?.breakpointify &&
                 <Label>Support breakpoints</Label>
             }
         </Flexbox>

@@ -28,7 +28,7 @@ declare namespace TableTypes {
         alwaysVisible?: boolean
     }
 
-    interface TableCellContext {
+    interface TableCellContext<T> {
         /**
          * Current cell key
          */
@@ -40,11 +40,11 @@ declare namespace TableTypes {
         /**
          * Current row data
          */
-        row: Object
+        row: T
         /**
          * Link on column configuration
          */
-        column: TableColumn | null
+        column: TableColumn<T> | null
         /**
          * Raw data of cell
          */
@@ -113,13 +113,13 @@ declare namespace TableTypes {
         setNeedDisplay?: (forceUnmount?: boolean) => boolean
     }
 
-    interface Ref extends TableRef, HTMLTableElement { }
+    interface Ref<T> extends TableRef<T>, HTMLTableElement { }
 
-    interface TableRef {
+    interface TableRef<T> {
         /**
          * Get context for specific cell
          */
-        getCellContext: (index: number, key: TableCellKey) => TableCellContext | null
+        getCellContext: (index: number, key: TableCellKey) => TableCellContext<T> | null
         /**
          * Set expanded ReactNode below row index
          * @returns true if success
@@ -132,7 +132,7 @@ declare namespace TableTypes {
         setModify: (modify: boolean, index: number, key?: TableCellKey) => boolean
     }
 
-    interface TableColumn {
+    interface TableColumn<T> {
         /**
          * Unique key of row like id/name or something like that
          */
@@ -148,7 +148,7 @@ declare namespace TableTypes {
         /**
          * Custom render for a TableCell
          */
-        render?: (cellContext: TableCellContext, index: number) => void
+        render?: (cellContext: TableCellContext<T>, index: number) => void
         /**
          * Enables sorting for a column
          * support ASC | DESC
@@ -190,7 +190,7 @@ declare namespace TableTypes {
         /**
          * Settings of columns
          */
-        columns: TableColumn[]
+        columns: TableColumn<Object>[]
         /**
          * Applies decoration on table
          * @default surface
@@ -217,26 +217,26 @@ declare namespace TableTypes {
         rowMountType?: RowMountType
     }
 
-    interface HeadCellProps {
-        column: TableColumn
+    interface HeadCellProps<T> {
+        column: TableColumn<T>
         styles: SystemTypes.ComponentStyles<Styles>
         setSort: React.Dispatch<React.SetStateAction<TableSortObject>>
     }
 
-    interface CellProps {
+    interface CellProps<T> {
         rowCtxItem: RowContext
-        column: TableColumn
+        column: TableColumn<T>
         rowIndex: number
         styles: SystemTypes.ComponentStyles<Styles>
-        getCellContext: TableRef['getCellContext']
+        getCellContext: TableRef<T>['getCellContext']
     }
 
-    interface RowProps {
+    interface RowProps<T> {
         rowCtxItem: RowContext
-        columns: TableColumn[]
+        columns: TableColumn<T>[]
         rowIndex: number
         styles: SystemTypes.ComponentStyles<Styles>
-        getCellContext: TableRef['getCellContext']
+        getCellContext: TableRef<T>['getCellContext']
         events: RowEvents
         rowMountType?: Props['rowMountType']
         enableRenderOptimization: boolean
@@ -247,9 +247,9 @@ declare namespace TableTypes {
         }
     }
 
-    interface FootProps {
+    interface FootProps<T> {
         rowCtx: RowContext[]
-        columns: TableColumn[]
+        columns: TableColumn<T>[]
         footerContent?: Props['footer']
         pagination?: TablePaginationOptions
         onPageChange: (pageNumber: number) => void

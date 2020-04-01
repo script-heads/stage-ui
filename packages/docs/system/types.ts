@@ -96,20 +96,21 @@ abstract class Abstract {
     id: OChild['id']
     name: OChild['name']
     flags: OChild['flags']
-    comment: OChild['comment']
     tags: OChild['tags']
-
+    comment: string
+    
     constructor(child: OChild, _module?: any) {
 
         this.$data = child
         this.id = child.id
         this.name = child.name
         this.flags = child.flags
+        this.comment = ''
         if (this.$data.comment) {
             if (typeof this.$data.comment === 'string') {
                 this.comment = this.$data.comment
             } else {
-                this.comment = this.$data.comment.shortText
+                this.comment = this.$data.comment.shortText || ''
                 this.$data.tags = this.$data.comment.tags
             }
         }
@@ -246,7 +247,7 @@ export class Module extends Abstract {
     /**
      * List of all type aliaces
      */
-    private aliaseStorage: Prop[] = []
+    private aliaseStorage: Alias[] = []
     get aliases() {
         return this.storageReturnHelper(this, 'aliaseStorage', [KIND_TYPE_ALIAS], Alias)
     }
@@ -283,47 +284,47 @@ export class Interface extends Abstract {
      * Get property by its name
      */
     findProperty(name: string) {
-        return this.props.find(
+        return this.types.find(
             child => child.name === name
         ) || null
     }
 
     /**
-     * List of all props
+     * List of all types
      */
-    private propStorage: Prop[] = []
-    get props() {
-        return this.storageReturnHelper(this, 'propStorage', [KIND_PROP], Prop, (item) => {
+    private typeStorage: Property[] = []
+    get types() {
+        return this.storageReturnHelper(this, 'typeStorage', [KIND_PROP], Property, (item) => {
             if (item.$data.inheritedFrom) {
                 return false
             }
             return true
         })
     }
-    private extendedInterfaceStorage: Interface[]
-    get extendedProps() {
-        if (this.extendedInterfaceStorage) {
-            return this.extendedInterfaceStorage
+    private extendedTypeStorage: Interface[]
+    get extendedTypes() {
+        if (this.extendedTypeStorage) {
+            return this.extendedTypeStorage
         }
-        this.extendedInterfaceStorage = []
+        this.extendedTypeStorage = []
         if (this.$data.extendedTypes) {
             for (const type of this.$data.extendedTypes) {
                 const found = this.module.root.find(type.id)
                 if (found && found.kind === KIND_INTERFACE) {
-                    this.extendedInterfaceStorage.push(
+                    this.extendedTypeStorage.push(
                         new Interface(found, this.module)
                     )
                 }
             }
         }
-        return this.extendedInterfaceStorage
+        return this.extendedTypeStorage
     }
 }
 
 /**
  * Class for TypeAliases
  */
-class Alias extends Abstract {
+export class Alias extends Abstract {
     module: Module
     constructor(child: OChild, _module: Module) {
         super(child)
@@ -338,7 +339,7 @@ class Alias extends Abstract {
 /**
  * Class for Interfaces
  */
-class Prop extends Abstract {
+export class Property extends Abstract {
     interface: Interface
     type: OType['type']
     constructor(child: OChild, _interface: Interface) {

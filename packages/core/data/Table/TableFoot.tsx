@@ -2,7 +2,7 @@ import { Flexbox, Pageswitch } from '@flow-ui/core'
 import React, { forwardRef, RefForwardingComponent } from 'react'
 import Types from './types'
 
-const TableFoot: RefForwardingComponent<HTMLTableCellElement, Types.FootProps> = (props, ref) => {
+const TableFoot: RefForwardingComponent<HTMLTableCellElement, Types.FootProps<Object>> = (props, ref) => {
     const { columns, pagination, rowCtx, styles, footerContent, onPageChange } = props
    
     let needDisplay = false

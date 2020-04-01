@@ -4,7 +4,10 @@ import { Config } from './system/core'
 import Value from './components/old/Value'
 import Params from './components/old/Params'
 import StyleType from './components/old/StyleType'
-import { ValueDefinition } from './components/Page/Types/Interface'
+// import { ValueDefinition } from './components/Page/Types/Interface'
+import { Property } from '@flow-ui/docs/system/types'
+
+import React from 'react'
 import { Text } from '@flow-ui/core'
 
 const config: Config = {
@@ -30,29 +33,29 @@ const config: Config = {
                         title: 'Name',
                         width: '10rem'
                     },
-                    {
-                        key: 'values',
-                        title: 'Type',
-                        width: '12rem',
-                        render: (c) => <Value type={c.row as ValueDefinition} />
-                    },
+                    // {
+                    //     key: 'values',
+                    //     title: 'Type',
+                    //     width: '12rem',
+                    //     render: (c) => <Value type={c.row as ValueDefinition} />
+                    // },
                     {
                         key: 'comment',
                         title: 'Description',
-                        render: (c) => <Text children={(c.row as ValueDefinition).comment?.toString()} />
+                        render: (c) => <Text children={c.row.name} />
                     },
                     {
                         key: 'isOptional',
                         title: 'Parameters',
                         width: '8rem',
-                        render: (c) => <Params type={c.row as ValueDefinition} />
+                        render: (c) => <Params property={c.row} />
                     },
-                    {
-                        key: 'tags',
-                        title: 'Default',
-                        width: '4rem',
-                        render: (c) => <Text children={(c.row as ValueDefinition).tags?.default} />
-                    }
+                    // {
+                    //     key: 'tags',
+                    //     title: 'Default',
+                    //     width: '4rem',
+                    //     render: (c) => <Text children={(c.row as ValueDefinition).tags?.default} />
+                    // }
                 ]
             },
             {
@@ -66,14 +69,13 @@ const config: Config = {
                     {
                         key: 'comment',
                         title: 'Description',
-                        render: (c) => <Text children={(c.row as ValueDefinition).comment?.toString()} />
                     },
-                    {
-                        key: 'values',
-                        title: 'States',
-                        width: '15rem',
-                        render: (c) => <StyleType type={c.row as ValueDefinition} />
-                    },
+                    // {
+                    //     key: 'values',
+                    //     title: 'States',
+                    //     width: '15rem',
+                    //     render: (c) => <StyleType type={c.row as ValueDefinition} />
+                    // },
                 ]
             }
         ],

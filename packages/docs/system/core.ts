@@ -1,5 +1,6 @@
 import SystemTypes from '@flow-ui/system/types'
 import TableTypes from '@flow-ui/core/data/Table/types'
+import { Property } from '@flow-ui/docs/system/types'
 
 export interface CustomPageProps {
     config: Config
@@ -19,7 +20,7 @@ export interface Config {
         order?: Record<string, string[]>
         types?: {
             interface: string
-            columns: TableTypes.TableColumn[]
+            columns: TableTypes.TableColumn<Property>[]
         }[],
         separatedTypes?: string[]
         custom?: Record<string, React.ComponentType<CustomPageProps>>
