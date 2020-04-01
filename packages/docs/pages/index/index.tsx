@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { CustomPageProps } from '@flow-ui/docs/system/core'
+import { CustomPageProps } from '@flow-ui/docs/utils/core'
 import { Flexbox, Block, useTheme } from '@flow-ui/core'
 import Header from './Header'
 import Features from './Feauters'

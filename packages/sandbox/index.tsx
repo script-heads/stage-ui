@@ -2,7 +2,7 @@ import { Grid, Viewport, TextField, Button, Select, ScrollView, Table } from '@f
 import React, { useState, RefForwardingComponent } from 'react'
 import ReactDOM from 'react-dom'
 import Code from '@flow-ui/core/icons/svg/code'
-import dt from '@flow-ui/docs/system/types/index'
+import dt from '@flow-ui/docs/utils/types/index'
 window.dt = dt
 const Playground = () => {
 	const [value, setValue] = useState('')

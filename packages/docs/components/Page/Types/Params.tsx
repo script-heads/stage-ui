@@ -1,7 +1,7 @@
 import { Flexbox, Text } from '@flow-ui/core'
 import TextTypes from '@flow-ui/core/content/Text/types'
 import React from 'react'
-import { Property } from '@flow-ui/docs/system/types'
+import { Property } from '@flow-ui/docs/utils/types'
 
 const Params = (props: { property: Property }) => {
     const { property } = props

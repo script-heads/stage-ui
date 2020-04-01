@@ -1,6 +1,6 @@
 import SystemTypes from '@flow-ui/system/types'
 import TableTypes from '@flow-ui/core/data/Table/types'
-import { Property } from '@flow-ui/docs/system/types'
+import { Property } from '@flow-ui/docs/utils/types'
 
 export interface CustomPageProps {
     config: Config

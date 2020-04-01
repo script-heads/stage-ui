@@ -1,6 +1,6 @@
 import { Block, Text, Flexbox, Paragraph } from '@flow-ui/core'
 import React from 'react'
-import { Property } from '@flow-ui/docs/system/types'
+import { Property } from '@flow-ui/docs/utils/types'
 
 // import { ValueDefinition } from '@flow-ui/docs/components/Page/Types/Interface'
 
