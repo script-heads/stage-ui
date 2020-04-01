@@ -17,7 +17,7 @@ class Root extends Abstract {
     }
     constructor() {
         super(
-            require('./definitions/original.json') as OChild
+            require('../definitions/original.json') as OChild
         )
     }
 
