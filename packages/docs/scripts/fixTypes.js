@@ -3,7 +3,7 @@ const fs = require('fs')
 function fixTypes(package, replaces = []) {
     console.log(`Fixing ${package} types...`)
     try {
-        const dstType = `${__dirname}/../system/definitions/${package}.types`
+        const dstType = `${__dirname}/../utils/definitions/${package}.types`
 
         if (replaces.length > 0) {
             let content = fs.readFileSync(dstType, {

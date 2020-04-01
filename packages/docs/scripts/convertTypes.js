@@ -1,7 +1,7 @@
 const fs = require('fs')
 
 let Types = {}
-const doc = JSON.parse(fs.readFileSync(__dirname + '/../system/definitions/original.json', 'utf-8'));
+const doc = JSON.parse(fs.readFileSync(__dirname + '/../utils/definitions/original.json', 'utf-8'));
 
 const find = (id, item = doc) => {
     if (item.id === id) return item;
@@ -239,6 +239,6 @@ for (const namespace of doc.children) {
     }
 }
 
-fs.writeFileSync(__dirname + "/../system/definitions/types.json", JSON.stringify(Types, null, 4))
+fs.writeFileSync(__dirname + "/../utils/definitions/types.json", JSON.stringify(Types, null, 4))
 
 console.log("Types created successfully!")

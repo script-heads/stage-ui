@@ -14,7 +14,7 @@ import StringControls from './controls/string'
 import TextControls from './controls/text'
 import styles from './styles'
 
-const data = require('../../../system/definitions/types')
+const data = require('../../../utils/definitions/types')
 const hiddenProps = [
     'form',
     'formAction',

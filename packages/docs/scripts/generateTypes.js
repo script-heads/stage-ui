@@ -5,7 +5,7 @@ function copyTypes(path, package, declareModule) {
     try {
         console.log(`Copy ${package} types...`)
         const srcType = `${__dirname}/../../../${path}`
-        const dstType = `${__dirname}/../system/definitions/${package}.types`
+        const dstType = `${__dirname}/../utils/definitions/${package}.types`
         fs.copyFileSync(srcType, dstType)
         if (declareModule) {
             console.log(`Declaring module for ${package} types...`)
@@ -24,7 +24,7 @@ function generateTypes(package) {
     console.log(`Generating ${package} types...`)
     try {
         const srcType = `${__dirname}/../../${package}`
-        const dstType = `${__dirname}/../system/definitions/${package}.types`
+        const dstType = `${__dirname}/../utils/definitions/${package}.types`
 
         generator({
             project: srcType,
