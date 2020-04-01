@@ -1,8 +1,9 @@
-import { ArchitectTools, ArchitectItem } from '@flow-ui/architect/types'
+import { ArchitectTools, ArchitectItem } from '../../../../types'
 import { Button, Flexbox, TextField, Grid, useTheme, Block, Paragraph, Menu } from '@flow-ui/core'
 import createStyle from './styles'
 import { Fragment } from 'react'
 import { context } from '../../../..'
+import React from 'react'
 
 const FlexConrols = () => {
     if (!context.tools.focused) {

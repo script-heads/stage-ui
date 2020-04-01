@@ -1,6 +1,6 @@
 import { Block, Paragraph as P, Header } from '@flow-ui/core'
 import React from 'react'
-import Syntax from '../../../../components/old/Syntax'
+import Syntax from '../../../../components/Page/Content/Syntax'
 import syntaxExample from './syntaxExample.raw'
 import variantExample from './variantExample.raw'
 

@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { context } from '../..'
 import { default as LayersTab, default as PagesTab } from './layers'
 import createStyles, { StyleTypes } from './styles'
+import React from 'react'
 
 export type TabProps = {
     theme: SystemTypes.Theme

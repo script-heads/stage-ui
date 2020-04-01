@@ -1,7 +1,7 @@
 /// <reference path="../../../../global.d.ts" />
 import { Block, Paragraph as P, Link } from '@flow-ui/core'
 import React from 'react'
-import Syntax from '../../../../components/old/Syntax'
+import Syntax from '../../../../components/Page/Content/Syntax'
 import ViewportCode from '../Getting started/viewport.raw'
 
 export const title = 'Getting started'

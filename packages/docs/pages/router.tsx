@@ -1,8 +1,8 @@
 import SystemTypes from '@flow-ui/system/types'
+import { Text } from '@flow-ui/core'
 import React, { useState, Fragment } from 'react'
 import Page from '../components/Page'
-import Page404 from '../components/Page404'
-import PageEmpty from '../components/PageEmpty'
+import Page404 from './404'
 import core from '../system/core'
 
 interface RouterProps {
@@ -63,11 +63,11 @@ const Router = (props: RouterProps) => {
                     setTheme={setTheme}
                 />
             }
-            {!CustomPage && !page && noPages &&
-                <PageEmpty />
-            }
             {!CustomPage && !page && !noPages &&
                 <Page404 />
+            }
+            {!CustomPage && !page && noPages &&
+                <Text>Docs has no pages</Text>
             }
         </Fragment>
     )

@@ -2,7 +2,7 @@ import { Block, Paragraph as P, Header } from '@flow-ui/core'
 import React from 'react'
 import config from './config.raw'
 import icons from './icons.raw'
-import Syntax from '../../../../components/old/Syntax'
+import Syntax from '../../../../components/Page/Content/Syntax'
 
 export const title = 'Bundle'
 export const sticky = true

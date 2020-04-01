@@ -1,7 +1,8 @@
-import { ArchitectTools } from '@flow-ui/architect/types'
+import { ArchitectTools } from '../../../../types'
 import { Block, Button, Paragraph, Select } from '@flow-ui/core'
 import { ButtonGroup } from '@flow-ui/lab'
 import { context } from '../../../..'
+import React from 'react'
 
 type Props = {
     name: string,

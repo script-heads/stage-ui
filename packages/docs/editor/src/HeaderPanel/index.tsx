@@ -1,9 +1,9 @@
-import { ArchitectTools } from '../../types'
-import { Block, Header, Paragraph, Flexbox, Link } from '@flow-ui/core'
+import { Header, Paragraph, Flexbox, Link } from '@flow-ui/core'
 import styles from './styles'
 import SystemTypes from '@flow-ui/system/types'
-import ThemeSwitcher from '../../../components/ThemeSwitcher'
+import ThemeSwitcher from '../../../components/Menu/ThemeSwitcher'
 import { Github } from '@flow-ui/core/icons'
+import React from 'react'
 
 interface HeaderPanelProps {
     title?: string

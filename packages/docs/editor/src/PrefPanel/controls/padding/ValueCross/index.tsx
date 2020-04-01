@@ -4,9 +4,10 @@ import { ButtonGroup } from '@flow-ui/lab'
 import { useEffect, useState } from 'react'
 import { context } from '../../../../..'
 import styles from './styles'
+import React from 'react'
 
 const staticValues = [
-    '-', 'xs','s','m','l','xl'
+    '-', 'xs', 's', 'm', 'l', 'xl'
 ]
 const findMap = {
     'xs': 1,
@@ -50,19 +51,19 @@ const ValueCross = (props: Props) => {
         return null
     }
 
-    const [values, setValues] = useState(['-','-','-','-'])
+    const [values, setValues] = useState(['-', '-', '-', '-'])
 
     useEffect(() => {
         const kt = focused.props[propKeys[0]] || staticValues[0]
         const kl = focused.props[propKeys[1]] || staticValues[0]
         const kr = focused.props[propKeys[2]] || staticValues[0]
         const kb = focused.props[propKeys[3]] || staticValues[0]
-        
+
         setLockX(false)
         setLockX(false)
         setLockX(false)
 
-        setValues([kt,kl,kr,kb])
+        setValues([kt, kl, kr, kb])
         if (kr && kr === kl) {
             setLockX(true)
         }
@@ -107,7 +108,7 @@ const ValueCross = (props: Props) => {
                 newValues[2] = value
             }
         }
-        
+
         newValues.forEach((value, index) => {
             if (!focused) {
                 return
@@ -133,13 +134,13 @@ const ValueCross = (props: Props) => {
             />
             <Grid css={cs.container} templateColumns="5.25rem 5.25rem 5.25rem" templateRows="1fr 4rem 1fr">
                 <div />
-                <ValueControl 
-                    value={values[0]} 
+                <ValueControl
+                    value={values[0]}
                     onChange={(value) => onChange(0, value)}
                 />
                 <div />
-                <ValueControl 
-                    value={values[1]} 
+                <ValueControl
+                    value={values[1]}
                     onChange={(value) => onChange(1, value)}
                 />
                 <div css={cs.lock}>
@@ -171,14 +172,14 @@ const ValueCross = (props: Props) => {
                         )}
                     />
                 </div>
-                <ValueControl 
-                    value={values[2]} 
+                <ValueControl
+                    value={values[2]}
                     onChange={(value) => onChange(2, value)}
                 />
                 <div />
-                <ValueControl 
-                    value={values[3]} 
-                    onChange={(value) => onChange(3, value)} 
+                <ValueControl
+                    value={values[3]}
+                    onChange={(value) => onChange(3, value)}
                 />
                 <div />
             </Grid>

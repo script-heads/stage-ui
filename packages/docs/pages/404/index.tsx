@@ -1,5 +1,6 @@
 import { Header, Text } from '@flow-ui/core'
 import { Fragment } from 'react'
+import React from 'react'
 
 const Page404 = () => {
     return (

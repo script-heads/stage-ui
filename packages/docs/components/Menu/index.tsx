@@ -1,9 +1,10 @@
 import { Block, Flexbox, Text, Link } from '@flow-ui/core'
-import ThemeSwitcher, { ThemeSwitcherProps } from '../ThemeSwitcher'
+import ThemeSwitcher, { ThemeSwitcherProps } from './ThemeSwitcher'
 import { Github, Brush } from '@flow-ui/core/icons'
-import { panel } from '../Themer/src/ThemeConfigurator'
+import { panel } from './Themer/src/ThemeConfigurator'
 import { useTheme } from '@flow-ui/core'
 import corePackage from '../../../core/package.json'
+import React from 'react'
 
 export interface MenuProps extends ThemeSwitcherProps {
     title?: string

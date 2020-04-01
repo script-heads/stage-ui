@@ -1,9 +1,9 @@
-import { ArchitectPage, ArchitectItem } from '@flow-ui/architect/types'
+import { ArchitectPage, ArchitectItem } from './types'
 import { uuid } from '.'
 
 const HelloWorldForm: ArchitectItem[] = [
     {
-        $:{},
+        $: {},
         id: uuid(),
         component: 'Block',
         props: {
@@ -15,7 +15,7 @@ const HelloWorldForm: ArchitectItem[] = [
         },
         children: [
             {
-                $:{},
+                $: {},
                 id: uuid(),
                 component: 'Header',
                 text: 'Hello world',
@@ -25,7 +25,7 @@ const HelloWorldForm: ArchitectItem[] = [
                 },
             },
             {
-                $:{},
+                $: {},
                 id: uuid(),
                 name: 'Form fields',
                 component: 'Block',
@@ -35,7 +35,7 @@ const HelloWorldForm: ArchitectItem[] = [
                 },
                 children: [
                     {
-                        $:{},
+                        $: {},
                         id: uuid(),
                         component: 'TextField',
                         text: '',
@@ -45,7 +45,7 @@ const HelloWorldForm: ArchitectItem[] = [
                         }
                     },
                     {
-                        $:{},
+                        $: {},
                         id: uuid(),
                         component: 'TextField',
                         text: '',
@@ -55,7 +55,7 @@ const HelloWorldForm: ArchitectItem[] = [
                         }
                     },
                     {
-                        $:{},
+                        $: {},
                         id: uuid(),
                         component: 'TextField',
                         text: '',
@@ -68,7 +68,7 @@ const HelloWorldForm: ArchitectItem[] = [
                 ]
             },
             {
-                $:{},
+                $: {},
                 id: uuid(),
                 component: 'Divider',
                 text: '',
@@ -77,7 +77,7 @@ const HelloWorldForm: ArchitectItem[] = [
                 }
             },
             {
-                $:{},
+                $: {},
                 id: uuid(),
                 component: 'Flexbox',
                 name: 'Controls',
@@ -88,7 +88,7 @@ const HelloWorldForm: ArchitectItem[] = [
                 },
                 children: [
                     {
-                        $:{},
+                        $: {},
                         id: uuid(),
                         component: 'Button',
                         text: '',
@@ -97,7 +97,7 @@ const HelloWorldForm: ArchitectItem[] = [
                         },
                         children: [
                             {
-                                $:{},
+                                $: {},
                                 id: uuid(),
                                 component: 'Block',
                                 text: 'Help',
@@ -106,7 +106,7 @@ const HelloWorldForm: ArchitectItem[] = [
                         ]
                     },
                     {
-                        $:{},
+                        $: {},
                         id: uuid(),
                         component: 'Block',
                         name: 'Spacer',
@@ -117,7 +117,7 @@ const HelloWorldForm: ArchitectItem[] = [
                         children: []
                     },
                     {
-                        $:{},
+                        $: {},
                         id: uuid(),
                         component: 'Button',
                         text: 'Cancel',
@@ -127,7 +127,7 @@ const HelloWorldForm: ArchitectItem[] = [
                         children: []
                     },
                     {
-                        $:{},
+                        $: {},
                         id: uuid(),
                         component: 'Button',
                         text: 'Submit',

@@ -1,14 +1,15 @@
 import { Block, Button, Flexbox, Paragraph } from '@flow-ui/core'
 import { ButtonGroup } from '@flow-ui/lab'
 import { context } from '../../../..'
+import React from 'react'
 
 const SizeConrols = () => {
     if (!context.tools.focused) {
         return null
     }
     const valueTypes = [
-        { text:'rem', value:'rem' },
-        { text:'%', value:'%' }
+        { text: 'rem', value: 'rem' },
+        { text: '%', value: '%' }
     ]
     let valueType = valueTypes[0].value
 

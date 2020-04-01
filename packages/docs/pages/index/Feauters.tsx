@@ -1,10 +1,11 @@
 import { Block, Grid, Header, Paragraph } from '@flow-ui/core'
+import React from 'react'
 
 const TextBlock = (props: { title: string, text: string }) => {
     return (
         <Block>
-            <Header children={props.title}/>
-            <Paragraph children={props.text}/>
+            <Header children={props.title} />
+            <Paragraph children={props.text} />
         </Block>
     )
 }

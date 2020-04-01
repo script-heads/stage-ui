@@ -1,4 +1,4 @@
-import { light } from '/@flow-ui/core/misc/themes'
+import { light } from '@flow-ui/core/misc/themes'
 
 declare global {
     namespace System {

@@ -1,9 +1,10 @@
-import { ArchitectItem } from '@flow-ui/architect/types'
+import { ArchitectItem } from '../../../types'
 import { Block, Flexbox, Paragraph, Text, Tree } from '@flow-ui/core'
 import { ArrowIosForward, Copy, Trash2 } from '@flow-ui/core/icons'
 import { Fragment } from 'react'
 import { TabProps } from '..'
 import { context } from '../../..'
+import React from 'react'
 
 type Event = any
 
@@ -48,9 +49,9 @@ const LayersTab = (props: TabProps) => {
                                 children={(
                                     <Block pl={options.lvl * 1 + 'rem'}>
                                         <Flexbox flex={1} alignItems="center">
-                                            <ArrowIosForward 
+                                            <ArrowIosForward
                                                 mr="0.25rem"
-                                                display={ options.hasChilds ? undefined : 'none'}
+                                                display={options.hasChilds ? undefined : 'none'}
                                                 rotate={options.isOpen ? 90 : 0}
                                             />
                                             <span

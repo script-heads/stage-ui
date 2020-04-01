@@ -2,6 +2,7 @@ import { Paragraph } from '@flow-ui/core'
 import { Fragment } from 'react'
 import { TabProps } from '..'
 import { context } from '../../..'
+import React from 'react'
 
 const PagesTab = (props: TabProps) => {
     return (

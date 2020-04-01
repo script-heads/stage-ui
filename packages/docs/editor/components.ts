@@ -1,4 +1,4 @@
-import { ArchitectTools } from '@flow-ui/architect/types'
+import { ArchitectTools } from './types'
 import * as Core from '@flow-ui/core'
 import * as IconScope from '@flow-ui/core/icons'
 import { uuid } from '.'
@@ -48,9 +48,9 @@ const components: ArchitectTools['components'] = {
     Menu: Init('Menu', {
         props: {
             items: [
-                {content: 'Item 1',value:'0'},
-                {content: 'Item 2',value:'2'},
-                {content: 'Item 3',value:'3'},
+                { content: 'Item 1', value: '0' },
+                { content: 'Item 2', value: '2' },
+                { content: 'Item 3', value: '3' },
             ]
         }
     }),

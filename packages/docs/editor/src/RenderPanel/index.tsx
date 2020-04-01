@@ -5,6 +5,7 @@ import { RefObject, useRef, useState } from 'react'
 import { context } from '../..'
 import Mask, { MaskRefs } from './Mask'
 import styles from './styles'
+import React from 'react'
 
 export const componentsInvisibleWhenEmpty = [
     'Block',

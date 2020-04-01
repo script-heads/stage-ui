@@ -9,8 +9,8 @@ import flexGridProps from './flexGridProps.raw'
 import layoutProps from './layoutProps.raw'
 import borderProps from './borderProps.raw'
 
-import Syntax from '../../../../components/old/Syntax'
-import List from '../../../../components/old/List'
+import Syntax from '../../../../components/Page/Content/Syntax'
+import List from '../../../../components/Page/Content/List'
 
 export const title = 'Props'
 export const sticky = true

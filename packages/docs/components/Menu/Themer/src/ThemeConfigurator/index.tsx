@@ -160,7 +160,7 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
              * MAIN COLORS
              * 
              */}
-            <Divider gap={4} my="1rem" />
+            <Divider gap="4px" my="1rem" />
             <Header size="s" fontSize="0.625rem" color="light">MAIN COLOR</Header>
             <Grid templateColumns="1fr 1fr 1fr 1fr" gap="1rem">
                 {MAIN_COLORS.map(mc => (
@@ -178,7 +178,7 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
              * GRAYSCALES
              * 
              */}
-            <Divider gap={4} my="1rem" />
+            <Divider gap="4px" my="1rem" />
             <Header size="s" fontSize="0.625rem" color="light">GRAYSCALES</Header>
             <Grid templateColumns="1fr 1fr 1fr 1fr" gap="1rem">
                 {GRAYSCALES.map(mc => (
@@ -196,7 +196,7 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
              * PALETTE
              * 
              */}
-            <Divider gap={4} my="1rem" />
+            <Divider gap="4px" my="1rem" />
             <Flexbox alignItems="center">
                 <Header size="s" fontSize="0.625rem" color="light">PALETTE</Header>
                 <Plus

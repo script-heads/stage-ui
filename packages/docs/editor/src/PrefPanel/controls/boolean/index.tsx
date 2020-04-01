@@ -1,5 +1,6 @@
 import { Block, Switch } from '@flow-ui/core'
 import { context } from '../../../..'
+import React from 'react'
 
 type Props = {
     name: string

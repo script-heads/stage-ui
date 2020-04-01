@@ -1,15 +1,13 @@
-import HomePage from './pages/index/index'
-import Editor from './editor'
-import { Config } from './system/core'
-import Value from './components/old/Value'
-import Params from './components/old/Params'
-import StyleType from './components/old/StyleType'
-
 import React from 'react'
 import { Text } from '@flow-ui/core'
+import Editor from './editor'
+import HomePage from './pages/index/index'
+import { Config } from './system/core'
+import Value from './components/Page/Types/Value'
+import Params from './components/Page/Types/Params'
+import StyleType from './components/Page/Types/StyleType'
 
 const config: Config = {
-    name: 'FlowUI',
     git: 'https://github.com/abr-tech/FlowUI',
     pages: {
         order: {
