@@ -4,7 +4,7 @@ import { ArrowIosDownward } from '@flow-ui/core/icons'
 import React from 'react'
 
 export default () => {
-    const ExpandCell = (props: { ctx: T.TableCellContext }) => {
+    const ExpandCell = (props: { ctx: T.TableCellContext<Object> }) => {
         
         return (
             <Flexbox alignItems="center" onClick={() => {

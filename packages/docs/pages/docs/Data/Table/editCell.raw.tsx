@@ -5,7 +5,7 @@ import React from 'react'
 
 export default () => {
     
-    const EditName = (props: { ctx: T.TableCellContext }) => {
+    const EditName = (props: { ctx: T.TableCellContext<Object> }) => {
         let tmp = props.ctx.value as string
         const save = () => {
             props.ctx.row[props.ctx.key] = tmp
@@ -30,7 +30,7 @@ export default () => {
         )
     }
 
-    const DisplayName = (props: { ctx: T.TableCellContext }) => (
+    const DisplayName = (props: { ctx: T.TableCellContext<Object> }) => (
         <Flexbox alignItems="center">
             <Edit2
                 size="1rem"
