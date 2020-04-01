@@ -49,15 +49,12 @@ export class Property extends Abstract {
         if (this.$data.type.type == 'union') {
             this.unionVoidRemove(this.$data.type)
             this.unionOptionalBooleanConvert(this.$data.type)
-            return this.$data.type.types
+            return this.$data.type
         }
         /**
          * Always return an array
          */
-        if (typeof this.$data.type === 'object') {
-            return [this.$data.type]
-        }
-        return []
+        return this.$data.type
     }
 
     /**
