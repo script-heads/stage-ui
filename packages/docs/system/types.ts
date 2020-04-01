@@ -83,7 +83,13 @@ export type OChild = {
     name: string
     kind: number
     kindString?: string
-    comment?: string | { shortText?: string, tags?: Record<string, string> }
+    comment?: string | { 
+        shortText?: string
+        tags?: {
+            tag: string
+            text: string
+        }[]
+    }
     tags?: Record<string, string>
     flags: OFlags
     type: OType
@@ -116,7 +122,12 @@ abstract class Abstract {
                 this.comment = this.$data.comment
             } else {
                 this.comment = this.$data.comment.shortText || ''
-                this.$data.tags = this.$data.comment.tags
+                this.$data.comment.tags?.map(tag => {
+                    if (!this.tags) {
+                        this.tags = {}
+                    }
+                    this.tags[tag.tag] = tag.text
+                })
             }
         }
     }
