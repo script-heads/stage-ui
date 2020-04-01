@@ -1,5 +1,5 @@
 import { Block, Flexbox, Header, Paragraph, ScrollView } from '@flow-ui/core'
-import { PageType, Config, PagesType } from '../../system/core'
+import { PageType, Config, PagesType } from '../../utils/core'
 import Editor from './Editor'
 import Types from './Types'
 import React, { Fragment } from 'react'

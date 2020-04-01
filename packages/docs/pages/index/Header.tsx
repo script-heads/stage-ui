@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, Button, Display, Flexbox, Paragraph } from '@flow-ui/core'
-import { CustomPageProps } from '../../system/core'
+import { CustomPageProps } from '../../utils/core'
 
 export default (props: CustomPageProps) => {
     return (

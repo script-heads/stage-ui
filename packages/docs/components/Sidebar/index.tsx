@@ -3,7 +3,7 @@ import { Close, Cube, Search } from '@flow-ui/core/icons'
 import SystemTypes from '@flow-ui/system/types'
 import * as React from 'react'
 import { Fragment, useState } from 'react'
-import { PagesType, PageType } from '../../system/core'
+import { PagesType, PageType } from '../../utils/core'
 import { useMemo } from 'react'
 
 export interface SidebarProps {

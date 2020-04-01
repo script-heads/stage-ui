@@ -8,7 +8,7 @@ import React, { Fragment } from 'react'
 import styles from './styles'
 import { Flexbox } from '@flow-ui/core'
 import components from './components'
-import { CustomPageProps } from '../system/core'
+import { CustomPageProps } from '../utils/core'
 
 export function uuid() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {

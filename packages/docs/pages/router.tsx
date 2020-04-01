@@ -3,7 +3,7 @@ import { Text } from '@flow-ui/core'
 import React, { useState, Fragment } from 'react'
 import Page from '../components/Page'
 import Page404 from './404'
-import core from '../system/core'
+import core from '../utils/core'
 
 interface RouterProps {
     theme: SystemTypes.Theme

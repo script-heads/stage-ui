@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid } from '@flow-ui/core'
-import { Config } from '../../../system/core'
-import TypeDoc from '../../../system/types'
+import { Config } from '../../../utils/core'
+import TypeDoc from '../../../utils/types'
 import Interface from './Interface'
 
 interface TypesProps {
