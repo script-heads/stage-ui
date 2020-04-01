@@ -41,7 +41,7 @@ const config: Config = {
                     {
                         key: 'comment',
                         title: 'Description',
-                        render: (c) => <Text children={c.row.name} />
+                        render: (c) => <Text size="s" children={c.row.comment} />
                     },
                     {
                         key: 'isOptional',
