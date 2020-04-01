@@ -6,9 +6,9 @@ import TableRow from './TableRow'
 import TableHeadCell from './TableHeadCell'
 import TableFoot from './TableFoot'
 
-type Ref<T> = Types.TableRef<T>
+type Ref<T = Object> = Types.TableRef<T>
 
-const Table: RefForwardingComponent<Ref<Object>, Types.Props> = (props, ref) => {
+const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
 
     const tableRef = useRef<HTMLTableElement>(null)
     const { cs, attributes, events } = useComponent('Table', { props, styles, styleProps: { container: ['all']} })
@@ -34,7 +34,7 @@ const Table: RefForwardingComponent<Ref<Object>, Types.Props> = (props, ref) => 
         }
     })
 
-    const columnSort = (column: Types.TableColumn<Object>) => {
+    const columnSort = (column: Types.TableColumn) => {
         if (column.sort) {
             rowCtx = rowCtx.sort((a, b) => {
                 if (column.sort === 'ASC') {
@@ -54,7 +54,7 @@ const Table: RefForwardingComponent<Ref<Object>, Types.Props> = (props, ref) => 
         }
     }
 
-    const getCellContext: Ref<Object>['getCellContext'] = (index, key) => {
+    const getCellContext: Ref['getCellContext'] = (index, key) => {
 
         if (!rowCtx[index]?.row) {
             return null
@@ -75,7 +75,7 @@ const Table: RefForwardingComponent<Ref<Object>, Types.Props> = (props, ref) => 
         }
     }
 
-    const setExpand: Ref<Object>['setExpand'] = (index, content) => {
+    const setExpand: Ref['setExpand'] = (index, content) => {
         if (rowCtx[index]) {
             rowCtx[index].setExpandComponent?.(content)
             return true
@@ -83,7 +83,7 @@ const Table: RefForwardingComponent<Ref<Object>, Types.Props> = (props, ref) => 
         return false
     } 
 
-    const setModify: Ref<Object>['setModify'] = (modify, index, key) => {
+    const setModify: Ref['setModify'] = (modify, index, key) => {
         if (rowCtx[index]) {
             if (key !== undefined) {
                 if (rowCtx[index].row.hasOwnProperty(key)) {

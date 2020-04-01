@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, forwardRef, RefForwardingComponent, useImpe
 import TableCell from './TableCell'
 import Types from './types'
 
-const TableRow: RefForwardingComponent<HTMLTableRowElement, Types.RowProps<Object>> = (props, ref) => {
+const TableRow: RefForwardingComponent<HTMLTableRowElement, Types.RowProps> = (props, ref) => {
     const { columns, rowIndex, rowCtxItem, delegates, styles, getCellContext } = props
     const style: React.CSSProperties = {}
     /**
