@@ -6,6 +6,7 @@ import { Interpolation, SerializedStyles, ObjectInterpolation } from '@emotion/c
 declare global {
     namespace System {
         interface Palette<Color> {
+            [key: string]: Color
         }
         interface Overrides {
         }
@@ -59,7 +60,12 @@ declare namespace SystemTypes {
     }
 
     interface SourceTheme {
-        main: Omit<ThemeVariables<[number, number, number, number?]>, 'breakpoints'> & { breakpoints?: string[] }
+        main: Omit<ThemeVariables<[number, number, number, number?]>, 'breakpoints' | 'color'> & {
+            color: Omit<ThemeVariables<[number, number, number, number?]>['color'], 'palette'> & {
+                palette?: System.Palette<[number, number, number, number?]>
+            }
+            breakpoints?: string[]
+        }
         assets: (main: ThemeVariables) => ThemeAssets
         overrides?: (main: ThemeVariables, assets: ThemeAssets) =>
             Partial<{ [Component in keyof System.Overrides]: Styles<System.Overrides[Component]> }>

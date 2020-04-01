@@ -25,8 +25,7 @@ const Light: SystemTypes.SourceTheme = {
             error: [224, 32, 32],
             success: [109, 212, 0],
             warning: [250, 100, 0],
-            info: [0, 145, 255],
-            palette: {}
+            info: [0, 145, 255]
         },
         radius: {
             xs: '0.125rem',

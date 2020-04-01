@@ -12,6 +12,7 @@ const createTheme = (theme: Types.SourceTheme): Types.Theme => {
     const overrides = theme.overrides?.(main, assets)
 
     main.breakpoints = theme.main.breakpoints || defaultBreakpoints
+    main.color.palette = main.color.palette || {}
 
     const replace = (themeReplace: Types.ReplaceTheme): Types.Theme => {
 
