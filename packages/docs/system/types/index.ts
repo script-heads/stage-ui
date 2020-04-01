@@ -34,6 +34,7 @@ export type OTypeStringLiteral = {
 export type OTypeReference = {
     type: 'reference'
     id?: number
+    getReference?: () => OChild | null
     name: string
 }
 export type OTypeArray = {
