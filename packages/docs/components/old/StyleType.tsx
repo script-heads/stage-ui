@@ -1,77 +1,79 @@
 import { Block, Text, Flexbox, Paragraph } from '@flow-ui/core'
 import React from 'react'
-import { ValueDefinition } from '@flow-ui/docs/components/Page/Types/Interface'
+import { Property } from '@flow-ui/docs/system/types'
 
-interface StyleTypeProps {
-    type: ValueDefinition,
-}
+// import { ValueDefinition } from '@flow-ui/docs/components/Page/Types/Interface'
 
-function getRefelections(type) {
-    return Object.values(type.declaration.children).map(value => {
-        let show = value.name
+// interface StyleTypeProps {
+//     type: ValueDefinition,
+// }
 
-        if (value.type.type === 'indexedAccess') {
-            show += ': ' + value.type.indexType.value + ' from ' + value.type.objectType.name
-        }
+// function getRefelections(type) {
+//     return Object.values(type.declaration.children).map(value => {
+//         let show = value.name
 
-        if (value.type.type === 'reference' || value.type.type === 'intrinsic') {
-            show += ': ' + value.type.name
-        }
+//         if (value.type.type === 'indexedAccess') {
+//             show += ': ' + value.type.indexType.value + ' from ' + value.type.objectType.name
+//         }
 
-        if (value.type.type === 'union') {
-            show += ': ' + value.type.types.map(v => v.value).join(' | ')
-        }
+//         if (value.type.type === 'reference' || value.type.type === 'intrinsic') {
+//             show += ': ' + value.type.name
+//         }
 
-        return show
-    })
-}
+//         if (value.type.type === 'union') {
+//             show += ': ' + value.type.types.map(v => v.value).join(' | ')
+//         }
 
-const StyleType = (props: StyleTypeProps) => {
-    const { type } = props
+//         return show
+//     })
+// }
 
-    if (type.values && type.values.includes('void')) {
-        return 'No states'
-    }
+const StyleType = (props: { property: Property }) => {
+    const { property } = props
 
-    if (type.type.type === 'reflection') {
-        return getRefelections(type.type).map(show => {
-            return (
-                <Paragraph key={show} m="0">{show}</Paragraph>
-            )
-        })
-    }
+    // if (type.values && type.values.includes('void')) {
+    //     return 'No states'
+    // }
 
-    if (type.type === 'reference') {
-        return (
-            <Flexbox>
-                {type.values.map(v => (
-                    <Text mr=".5rem" key={v}>{v}</Text>
-                ))}
-            </Flexbox>
-        )
-    }
+    // if (type.type.type === 'reflection') {
+    //     return getRefelections(type.type).map(show => {
+    //         return (
+    //             <Paragraph key={show} m="0">{show}</Paragraph>
+    //         )
+    //     })
+    // }
 
-    if (type.type.type === 'intersection') {
-        let show = []
+    // if (type.type === 'reference') {
+    //     return (
+    //         <Flexbox>
+    //             {type.values.map(v => (
+    //                 <Text mr=".5rem" key={v}>{v}</Text>
+    //             ))}
+    //         </Flexbox>
+    //     )
+    // }
 
-        type.type.types.forEach(value => {
-            if (value.type === 'indexedAccess') {
-                show.push(value.indexType?.value + ' from ' + value.objectType?.name)
-            }
+    // if (type.type.type === 'intersection') {
+    //     let show = []
 
-            if (value.type === 'reference') {
-                show.push(value.name)
-            }
+    //     type.type.types.forEach(value => {
+    //         if (value.type === 'indexedAccess') {
+    //             show.push(value.indexType?.value + ' from ' + value.objectType?.name)
+    //         }
 
-            if (value.type === 'reflection') {
-                show = show.concat(getRefelections(value))
-            }
-        })
+    //         if (value.type === 'reference') {
+    //             show.push(value.name)
+    //         }
 
-        return (
-            <Text mr=".5rem">{show.join(' & ')}</Text>
-        )
-    }
+    //         if (value.type === 'reflection') {
+    //             show = show.concat(getRefelections(value))
+    //         }
+    //     })
+
+    //     return (
+    //         <Text mr=".5rem">{show.join(' & ')}</Text>
+    //     )
+    // }
 
     return (
         <Flexbox wrap="wrap">

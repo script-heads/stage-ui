@@ -5,7 +5,6 @@ import Value from './components/old/Value'
 import Params from './components/old/Params'
 import StyleType from './components/old/StyleType'
 // import { ValueDefinition } from './components/Page/Types/Interface'
-import { Property } from '@flow-ui/docs/system/types'
 
 import React from 'react'
 import { Text } from '@flow-ui/core'
@@ -33,12 +32,12 @@ const config: Config = {
                         title: 'Name',
                         width: '10rem'
                     },
-                    // {
-                    //     key: 'values',
-                    //     title: 'Type',
-                    //     width: '12rem',
-                    //     render: (c) => <Value type={c.row as ValueDefinition} />
-                    // },
+                    {
+                        key: 'values',
+                        title: 'Type',
+                        width: '12rem',
+                        render: (c) => <Value property={c.row} />
+                    },
                     {
                         key: 'comment',
                         title: 'Description',
@@ -70,12 +69,12 @@ const config: Config = {
                         key: 'comment',
                         title: 'Description',
                     },
-                    // {
-                    //     key: 'values',
-                    //     title: 'States',
-                    //     width: '15rem',
-                    //     render: (c) => <StyleType type={c.row as ValueDefinition} />
-                    // },
+                    {
+                        key: 'values',
+                        title: 'States',
+                        width: '15rem',
+                        render: (c) => <StyleType property={c.row} />
+                    },
                 ]
             }
         ],
