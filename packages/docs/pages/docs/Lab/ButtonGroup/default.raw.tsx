@@ -1,6 +1,6 @@
 import React from 'react';
-import { ButtonGroup } from '@flow-ui/lab';
-import { Button } from '@flow-ui/core';
+import { ButtonGroup } from '@stage-ui/lab';
+import { Button } from '@stage-ui/core';
 
 export default () => {
     return (

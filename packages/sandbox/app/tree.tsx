@@ -1,4 +1,4 @@
-import { Block, Tree } from '@flow-ui/core'
+import { Block, Tree } from '@stage-ui/core'
 import React from 'react'
 
 const PlaygroundTree = () => {

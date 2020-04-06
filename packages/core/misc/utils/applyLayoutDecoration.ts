@@ -1,4 +1,4 @@
-import SystemTypes from '@flow-ui/system/types'
+import SystemTypes from '@stage-ui/system/types'
 
 export type LayoutDecoration =
     'surface'

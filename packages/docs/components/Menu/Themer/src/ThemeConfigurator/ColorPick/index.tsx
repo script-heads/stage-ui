@@ -1,6 +1,6 @@
-import { Block, Flexbox, Header, Paragraph } from '@flow-ui/core'
-import SystemTypes from '@flow-ui/system/types'
-import FlexboxTypes from '@flow-ui/core/layout/Flexbox/types'
+import { Block, Flexbox, Header, Paragraph } from '@stage-ui/core'
+import SystemTypes from '@stage-ui/system/types'
+import FlexboxTypes from '@stage-ui/core/layout/Flexbox/types'
 import React, { useRef, useState, useMemo, useEffect } from 'react'
 import colorUtils from 'color'
 

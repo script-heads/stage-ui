@@ -1,9 +1,9 @@
 import React, { Fragment, RefForwardingComponent, useRef, forwardRef, useImperativeHandle } from 'react'
-import * as themes from '@flow-ui/core/misc/themes'
+import * as themes from '@stage-ui/core/misc/themes'
 import MountArea from './MountArea'
 import styles from './styles'
 import Types from './types'
-import { Provider, useComponent } from '@flow-ui/system'
+import { Provider, useComponent } from '@stage-ui/system'
 
 const Viewport: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     

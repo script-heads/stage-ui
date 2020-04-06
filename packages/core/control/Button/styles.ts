@@ -1,6 +1,6 @@
 
-import SystemTypes from '@flow-ui/system/types'
-import colorProp from '@flow-ui/system/utils/colorProp'
+import SystemTypes from '@stage-ui/system/types'
+import colorProp from '@stage-ui/system/utils/colorProp'
 import Types from './types'
 
 const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {

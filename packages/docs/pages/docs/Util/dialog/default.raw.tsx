@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, dialog } from '@flow-ui/core'
+import { Button, dialog } from '@stage-ui/core'
 
 export default () => {
     return (

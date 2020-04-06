@@ -1,5 +1,5 @@
 import React from 'react'
-import { Block } from '@flow-ui/core'
+import { Block } from '@stage-ui/core'
 
 export default () => {
     return (

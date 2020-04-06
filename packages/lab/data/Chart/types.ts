@@ -1,5 +1,5 @@
 import { ChartDataSets, ChartOptions } from 'chart.js'
-import SystemTypes from '@flow-ui/system/types'
+import SystemTypes from '@stage-ui/system/types'
 
 declare namespace ChartTypes {
     type ChartType = 'line' | 'pie' | 'verticalBar' | 'horizontalBar' | 'doughnut' | 'radar' | 'polar' | 'scatter' | 'bubble'

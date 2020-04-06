@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch } from '@flow-ui/core';
+import { Switch } from '@stage-ui/core';
 
 export default () => {
     return (

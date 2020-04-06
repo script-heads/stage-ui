@@ -1,5 +1,5 @@
-import { Menu } from '@flow-ui/core'
-import { Cube } from '@flow-ui/core/icons'
+import { Menu } from '@stage-ui/core'
+import { Cube } from '@stage-ui/core/icons'
 import React from 'react'
 
 const PlaygroundSidebar = () => {

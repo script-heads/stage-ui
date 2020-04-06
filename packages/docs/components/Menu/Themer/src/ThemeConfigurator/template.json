@@ -1,5 +1,5 @@
 [
-    "import sourceTheme from '@flow-ui/core/misc/themes/light'",
+    "import sourceTheme from '@stage-ui/core/misc/themes/light'",
     "",
     "declare global {",
     "    namespace System {",

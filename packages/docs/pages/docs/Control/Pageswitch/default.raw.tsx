@@ -1,5 +1,5 @@
 import React from 'react'
-import { Pageswitch } from '@flow-ui/core'
+import { Pageswitch } from '@stage-ui/core'
   
 export default () => {
     return (

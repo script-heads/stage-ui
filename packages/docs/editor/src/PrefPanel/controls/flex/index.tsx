@@ -1,5 +1,5 @@
 import { ArchitectTools, ArchitectItem } from '../../../../types'
-import { Button, Flexbox, TextField, Grid, useTheme, Block, Paragraph, Menu } from '@flow-ui/core'
+import { Button, Flexbox, TextField, Grid, useTheme, Block, Paragraph, Menu } from '@stage-ui/core'
 import createStyle from './styles'
 import { Fragment } from 'react'
 import { context } from '../../../..'

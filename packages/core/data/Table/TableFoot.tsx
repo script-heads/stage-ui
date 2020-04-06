@@ -1,4 +1,4 @@
-import { Flexbox, Pageswitch } from '@flow-ui/core'
+import { Flexbox, Pageswitch } from '@stage-ui/core'
 import React, { forwardRef, RefForwardingComponent } from 'react'
 import Types from './types'
 

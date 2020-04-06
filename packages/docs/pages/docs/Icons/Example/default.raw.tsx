@@ -1,4 +1,4 @@
-import { Clock } from '@flow-ui/core/icons'
+import { Clock } from '@stage-ui/core/icons'
 import React from 'react'
 
 export default () => {

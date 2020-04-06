@@ -51,7 +51,7 @@ const config = {
                                     ['@babel/plugin-proposal-optional-chaining', {
                                         loose: true
                                     }],
-                                    ...require('@flow-ui/core/babelImportPlugins')
+                                    ...require('@stage-ui/core/babelImportPlugins')
                                 ]
                             }
                         }

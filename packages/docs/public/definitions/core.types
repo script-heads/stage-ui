@@ -1,5 +1,5 @@
 declare module 'content/Divider/types' {
-	import SystemTypes from '@flow-ui/system/types'; namespace DividerTypes {
+	import SystemTypes from '@stage-ui/system/types'; namespace DividerTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
 	        * Draw divider vertical
@@ -34,7 +34,7 @@ declare module 'content/Divider/types' {
 
 }
 declare module 'content/Divider/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'content/Divider/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
@@ -48,7 +48,7 @@ declare module 'content/Divider' {
 }
 declare module 'content/Spinner/types' {
 	/// <reference types="react" />
-	import SystemTypes from '@flow-ui/system/types'; namespace SpinnerTypes {
+	import SystemTypes from '@stage-ui/system/types'; namespace SpinnerTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
 	         * Color of spinner
@@ -95,7 +95,7 @@ declare module 'content/Spinner/types' {
 
 }
 declare module 'content/Spinner/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'content/Spinner/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
@@ -106,9 +106,9 @@ declare module 'content/Spinner' {
 	export default _default;
 
 }
-declare module '@flow-ui/core/misc/hocs/Typography/types' {
+declare module '@stage-ui/core/misc/hocs/Typography/types' {
 	/// <reference types="react" />
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import CSS from 'csstype'; namespace TypographyTypes {
 	    interface LinkProps extends Props {
 	        /**
@@ -205,20 +205,20 @@ declare module '@flow-ui/core/misc/hocs/Typography/types' {
 
 }
 declare module 'misc/hocs/Typography/styles' {
-	import SystemTypes from '@flow-ui/system/types';
-	import Types from '@flow-ui/core/misc/hocs/Typography/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.PrivateProps>;
+	import SystemTypes from '@stage-ui/system/types';
+	import Types from '@stage-ui/core/misc/hocs/Typography/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.PrivateProps>;
 	export default styles;
 
 }
 declare module 'misc/hocs/Typography' {
 	/// <reference types="react" />
 	/// <reference types="@emotion/core" />
-	import Types from '@flow-ui/core/misc/hocs/Typography/types'; type RefTag = HTMLSpanElement | HTMLAnchorElement | HTMLParagraphElement; const _default: import("react").ForwardRefExoticComponent<Types.PrivateProps & import("react").RefAttributes<RefTag>>;
+	import Types from '@stage-ui/core/misc/hocs/Typography/types'; type RefTag = HTMLSpanElement | HTMLAnchorElement | HTMLParagraphElement; const _default: import("react").ForwardRefExoticComponent<Types.PrivateProps & import("react").RefAttributes<RefTag>>;
 	export default _default;
 
 }
 declare module 'content/Header/types' {
-	import TypographyTypes from '@flow-ui/core/@flow-ui/core/misc/hocs/Typography/types'; namespace HeaderTypes {
+	import TypographyTypes from '@stage-ui/core/@stage-ui/core/misc/hocs/Typography/types'; namespace HeaderTypes {
 	    interface Props extends TypographyTypes.Props {
 	    }
 	    interface Styles extends TypographyTypes.Styles {
@@ -234,7 +234,7 @@ declare module 'content/Header' {
 
 }
 declare module 'content/Display/types' {
-	import TypographyTypes from '@flow-ui/core/@flow-ui/core/misc/hocs/Typography/types'; namespace DisplayTypes {
+	import TypographyTypes from '@stage-ui/core/@stage-ui/core/misc/hocs/Typography/types'; namespace DisplayTypes {
 	    interface Props extends TypographyTypes.Props {
 	    }
 	    interface Styles extends TypographyTypes.Styles {
@@ -250,7 +250,7 @@ declare module 'content/Display' {
 
 }
 declare module 'content/Paragraph/types' {
-	import TypographyTypes from '@flow-ui/core/@flow-ui/core/misc/hocs/Typography/types'; namespace ParagraphTypes {
+	import TypographyTypes from '@stage-ui/core/@stage-ui/core/misc/hocs/Typography/types'; namespace ParagraphTypes {
 	    interface Props extends TypographyTypes.Props {
 	    }
 	    interface Styles extends TypographyTypes.Styles {
@@ -266,7 +266,7 @@ declare module 'content/Paragraph' {
 
 }
 declare module 'content/Text/types' {
-	import TypographyTypes from '@flow-ui/core/@flow-ui/core/misc/hocs/Typography/types'; namespace TextTypes {
+	import TypographyTypes from '@stage-ui/core/@stage-ui/core/misc/hocs/Typography/types'; namespace TextTypes {
 	    interface Props extends TypographyTypes.Props {
 	    }
 	    interface Styles extends TypographyTypes.Styles {
@@ -282,7 +282,7 @@ declare module 'content/Text' {
 
 }
 declare module 'content/Link/types' {
-	import TypographyTypes from '@flow-ui/core/@flow-ui/core/misc/hocs/Typography/types'; namespace LinkTypes {
+	import TypographyTypes from '@stage-ui/core/@stage-ui/core/misc/hocs/Typography/types'; namespace LinkTypes {
 	    interface Props extends TypographyTypes.LinkProps {
 	    }
 	    interface Styles extends TypographyTypes.Styles {
@@ -299,7 +299,7 @@ declare module 'content/Link' {
 }
 declare module 'control/Button/types' {
 	/// <reference types="react" />
-	import SystemTypes from '@flow-ui/system/types'; namespace ButtonTypes {
+	import SystemTypes from '@stage-ui/system/types'; namespace ButtonTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLButtonElement, Styles> {
 	        /**
 	         * Specifies that the button should have input focus when the page loads
@@ -405,7 +405,7 @@ declare module 'control/Button/types' {
 
 }
 declare module 'control/Button/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'control/Button/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
@@ -417,7 +417,7 @@ declare module 'control/Button' {
 
 }
 declare module 'control/Calendar/types' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import { Moment } from 'moment';
 	import { CSSProperties } from 'react'; namespace CalendarTypes {
 	    /**
@@ -532,9 +532,9 @@ declare module 'control/Calendar/DateGridMonth' {
 	export default DateGridMonth;
 
 }
-declare module '@flow-ui/core/misc/hocs/Icon/types' {
+declare module '@stage-ui/core/misc/hocs/Icon/types' {
 	/// <reference types="react" />
-	import SystemTypes from '@flow-ui/system/types'; namespace IconTypes {
+	import SystemTypes from '@stage-ui/system/types'; namespace IconTypes {
 	    /**
 	     * TODO: circle и oval добавляют только padding
 	     */
@@ -567,14 +567,14 @@ declare module '@flow-ui/core/misc/hocs/Icon/types' {
 
 }
 declare module 'misc/hocs/Icon/styles' {
-	import SystemTypes from '@flow-ui/system/types';
-	import Types from '@flow-ui/core/misc/hocs/Icon/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	import SystemTypes from '@stage-ui/system/types';
+	import Types from '@stage-ui/core/misc/hocs/Icon/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
 }
 declare module 'misc/hocs/Icon' {
 	import React from 'react';
-	import Types from '@flow-ui/core/misc/hocs/Icon/types'; type Icons = {
+	import Types from '@stage-ui/core/misc/hocs/Icon/types'; type Icons = {
 	    filled: React.ReactElement;
 	    outline: React.ReactElement;
 	};
@@ -607,7 +607,7 @@ declare module 'icons/svg/activity' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -635,7 +635,7 @@ declare module 'icons/svg/alert-circle' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -663,7 +663,7 @@ declare module 'icons/svg/alert-triangle' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -691,7 +691,7 @@ declare module 'icons/svg/archive' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -719,7 +719,7 @@ declare module 'icons/svg/arrow-back' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -747,7 +747,7 @@ declare module 'icons/svg/arrow-circle-down' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -775,7 +775,7 @@ declare module 'icons/svg/arrow-circle-left' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -803,7 +803,7 @@ declare module 'icons/svg/arrow-circle-right' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -831,7 +831,7 @@ declare module 'icons/svg/arrow-circle-up' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -859,7 +859,7 @@ declare module 'icons/svg/arrow-down' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -887,7 +887,7 @@ declare module 'icons/svg/arrow-downward' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -915,7 +915,7 @@ declare module 'icons/svg/arrow-forward' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -943,7 +943,7 @@ declare module 'icons/svg/arrow-ios-back' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -971,7 +971,7 @@ declare module 'icons/svg/arrow-ios-downward' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -999,7 +999,7 @@ declare module 'icons/svg/arrow-ios-forward' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1027,7 +1027,7 @@ declare module 'icons/svg/arrow-ios-upward' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1055,7 +1055,7 @@ declare module 'icons/svg/arrow-left' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1083,7 +1083,7 @@ declare module 'icons/svg/arrow-right' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1111,7 +1111,7 @@ declare module 'icons/svg/arrow-up' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1139,7 +1139,7 @@ declare module 'icons/svg/arrow-upward' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1167,7 +1167,7 @@ declare module 'icons/svg/arrowhead-down' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1195,7 +1195,7 @@ declare module 'icons/svg/arrowhead-left' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1223,7 +1223,7 @@ declare module 'icons/svg/arrowhead-right' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1251,7 +1251,7 @@ declare module 'icons/svg/arrowhead-up' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1279,7 +1279,7 @@ declare module 'icons/svg/at' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1307,7 +1307,7 @@ declare module 'icons/svg/attach-2' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1335,7 +1335,7 @@ declare module 'icons/svg/attach' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1363,7 +1363,7 @@ declare module 'icons/svg/award' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1391,7 +1391,7 @@ declare module 'icons/svg/backspace' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1419,7 +1419,7 @@ declare module 'icons/svg/bar-chart-2' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1447,7 +1447,7 @@ declare module 'icons/svg/bar-chart' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1475,7 +1475,7 @@ declare module 'icons/svg/battery' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1503,7 +1503,7 @@ declare module 'icons/svg/behance' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1531,7 +1531,7 @@ declare module 'icons/svg/bell-off' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1559,7 +1559,7 @@ declare module 'icons/svg/bell' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1587,7 +1587,7 @@ declare module 'icons/svg/bluetooth' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1615,7 +1615,7 @@ declare module 'icons/svg/book-open' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1643,7 +1643,7 @@ declare module 'icons/svg/book' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1671,7 +1671,7 @@ declare module 'icons/svg/bookmark' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1699,7 +1699,7 @@ declare module 'icons/svg/briefcase' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1727,7 +1727,7 @@ declare module 'icons/svg/browser' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1755,7 +1755,7 @@ declare module 'icons/svg/brush' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1783,7 +1783,7 @@ declare module 'icons/svg/bulb' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1811,7 +1811,7 @@ declare module 'icons/svg/calendar' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1839,7 +1839,7 @@ declare module 'icons/svg/camera' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1867,7 +1867,7 @@ declare module 'icons/svg/car' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1895,7 +1895,7 @@ declare module 'icons/svg/cast' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1923,7 +1923,7 @@ declare module 'icons/svg/charging' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1951,7 +1951,7 @@ declare module 'icons/svg/checkmark-circle-2' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -1979,7 +1979,7 @@ declare module 'icons/svg/checkmark-circle' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2007,7 +2007,7 @@ declare module 'icons/svg/checkmark-square-2' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2035,7 +2035,7 @@ declare module 'icons/svg/checkmark-square' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2063,7 +2063,7 @@ declare module 'icons/svg/checkmark' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2091,7 +2091,7 @@ declare module 'icons/svg/chevron-down' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2119,7 +2119,7 @@ declare module 'icons/svg/chevron-left' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2147,7 +2147,7 @@ declare module 'icons/svg/chevron-right' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2175,7 +2175,7 @@ declare module 'icons/svg/chevron-up' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2203,7 +2203,7 @@ declare module 'icons/svg/clipboard' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2231,7 +2231,7 @@ declare module 'icons/svg/clock' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2259,7 +2259,7 @@ declare module 'icons/svg/close-circle' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2287,7 +2287,7 @@ declare module 'icons/svg/close-square' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2315,7 +2315,7 @@ declare module 'icons/svg/close' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2343,7 +2343,7 @@ declare module 'icons/svg/cloud-download' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2371,7 +2371,7 @@ declare module 'icons/svg/cloud-upload' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2399,7 +2399,7 @@ declare module 'icons/svg/code-download' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2427,7 +2427,7 @@ declare module 'icons/svg/code' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2455,7 +2455,7 @@ declare module 'icons/svg/collapse' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2483,7 +2483,7 @@ declare module 'icons/svg/color-palette' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2511,7 +2511,7 @@ declare module 'icons/svg/color-picker' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2539,7 +2539,7 @@ declare module 'icons/svg/compass' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2567,7 +2567,7 @@ declare module 'icons/svg/copy' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2595,7 +2595,7 @@ declare module 'icons/svg/corner-down-left' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2623,7 +2623,7 @@ declare module 'icons/svg/corner-down-right' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2651,7 +2651,7 @@ declare module 'icons/svg/corner-left-down' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2679,7 +2679,7 @@ declare module 'icons/svg/corner-left-up' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2707,7 +2707,7 @@ declare module 'icons/svg/corner-right-down' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2735,7 +2735,7 @@ declare module 'icons/svg/corner-right-up' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2763,7 +2763,7 @@ declare module 'icons/svg/corner-up-left' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2791,7 +2791,7 @@ declare module 'icons/svg/corner-up-right' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2819,7 +2819,7 @@ declare module 'icons/svg/credit-card' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2847,7 +2847,7 @@ declare module 'icons/svg/crop' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2875,7 +2875,7 @@ declare module 'icons/svg/cube' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2903,7 +2903,7 @@ declare module 'icons/svg/diagonal-arrow-left-down' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2931,7 +2931,7 @@ declare module 'icons/svg/diagonal-arrow-left-up' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2959,7 +2959,7 @@ declare module 'icons/svg/diagonal-arrow-right-down' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -2987,7 +2987,7 @@ declare module 'icons/svg/diagonal-arrow-right-up' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3015,7 +3015,7 @@ declare module 'icons/svg/done-all' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3043,7 +3043,7 @@ declare module 'icons/svg/download' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3071,7 +3071,7 @@ declare module 'icons/svg/droplet-off' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3099,7 +3099,7 @@ declare module 'icons/svg/droplet' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3127,7 +3127,7 @@ declare module 'icons/svg/edit-2' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3155,7 +3155,7 @@ declare module 'icons/svg/edit' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3183,7 +3183,7 @@ declare module 'icons/svg/email' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3211,7 +3211,7 @@ declare module 'icons/svg/expand' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3239,7 +3239,7 @@ declare module 'icons/svg/external-link' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3267,7 +3267,7 @@ declare module 'icons/svg/eye-off-2' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3295,7 +3295,7 @@ declare module 'icons/svg/eye-off' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3323,7 +3323,7 @@ declare module 'icons/svg/eye' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3351,7 +3351,7 @@ declare module 'icons/svg/facebook' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3379,7 +3379,7 @@ declare module 'icons/svg/file-add' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3407,7 +3407,7 @@ declare module 'icons/svg/file-remove' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3435,7 +3435,7 @@ declare module 'icons/svg/file-text' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3463,7 +3463,7 @@ declare module 'icons/svg/file' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3491,7 +3491,7 @@ declare module 'icons/svg/film' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3519,7 +3519,7 @@ declare module 'icons/svg/flag' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3547,7 +3547,7 @@ declare module 'icons/svg/flash-off' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3575,7 +3575,7 @@ declare module 'icons/svg/flash' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3603,7 +3603,7 @@ declare module 'icons/svg/flip-2' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3631,7 +3631,7 @@ declare module 'icons/svg/flip' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3659,7 +3659,7 @@ declare module 'icons/svg/folder-add' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3687,7 +3687,7 @@ declare module 'icons/svg/folder-remove' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3715,7 +3715,7 @@ declare module 'icons/svg/folder' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3743,7 +3743,7 @@ declare module 'icons/svg/funnel' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3771,7 +3771,7 @@ declare module 'icons/svg/gift' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3799,7 +3799,7 @@ declare module 'icons/svg/github' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3827,7 +3827,7 @@ declare module 'icons/svg/globe-2' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3855,7 +3855,7 @@ declare module 'icons/svg/globe-3' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3883,7 +3883,7 @@ declare module 'icons/svg/globe' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3911,7 +3911,7 @@ declare module 'icons/svg/google' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3939,7 +3939,7 @@ declare module 'icons/svg/grid' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3967,7 +3967,7 @@ declare module 'icons/svg/hard-drive' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -3995,7 +3995,7 @@ declare module 'icons/svg/hash' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4023,7 +4023,7 @@ declare module 'icons/svg/headphones' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4051,7 +4051,7 @@ declare module 'icons/svg/heart' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4079,7 +4079,7 @@ declare module 'icons/svg/home' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4107,7 +4107,7 @@ declare module 'icons/svg/image-2' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4135,7 +4135,7 @@ declare module 'icons/svg/image' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4163,7 +4163,7 @@ declare module 'icons/svg/inbox' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4191,7 +4191,7 @@ declare module 'icons/svg/info' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4219,7 +4219,7 @@ declare module 'icons/svg/keypad' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4247,7 +4247,7 @@ declare module 'icons/svg/layers' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4275,7 +4275,7 @@ declare module 'icons/svg/layout' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4303,7 +4303,7 @@ declare module 'icons/svg/link-2' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4331,7 +4331,7 @@ declare module 'icons/svg/link' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4359,7 +4359,7 @@ declare module 'icons/svg/linkedin' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4387,7 +4387,7 @@ declare module 'icons/svg/list' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4415,7 +4415,7 @@ declare module 'icons/svg/lock' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4443,7 +4443,7 @@ declare module 'icons/svg/log-in' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4471,7 +4471,7 @@ declare module 'icons/svg/log-out' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4499,7 +4499,7 @@ declare module 'icons/svg/map' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4527,7 +4527,7 @@ declare module 'icons/svg/maximize' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4555,7 +4555,7 @@ declare module 'icons/svg/menu-2' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4583,7 +4583,7 @@ declare module 'icons/svg/menu-arrow' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4611,7 +4611,7 @@ declare module 'icons/svg/menu' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4639,7 +4639,7 @@ declare module 'icons/svg/message-circle' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4667,7 +4667,7 @@ declare module 'icons/svg/message-square' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4695,7 +4695,7 @@ declare module 'icons/svg/mic-off' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4723,7 +4723,7 @@ declare module 'icons/svg/mic' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4751,7 +4751,7 @@ declare module 'icons/svg/minimize' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4779,7 +4779,7 @@ declare module 'icons/svg/minus-circle' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4807,7 +4807,7 @@ declare module 'icons/svg/minus-square' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4835,7 +4835,7 @@ declare module 'icons/svg/minus' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4863,7 +4863,7 @@ declare module 'icons/svg/monitor' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4891,7 +4891,7 @@ declare module 'icons/svg/moon' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4919,7 +4919,7 @@ declare module 'icons/svg/more-horizontal' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4947,7 +4947,7 @@ declare module 'icons/svg/more-vertical' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -4975,7 +4975,7 @@ declare module 'icons/svg/move' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5003,7 +5003,7 @@ declare module 'icons/svg/music' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5031,7 +5031,7 @@ declare module 'icons/svg/navigation-2' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5059,7 +5059,7 @@ declare module 'icons/svg/navigation' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5087,7 +5087,7 @@ declare module 'icons/svg/npm' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5115,7 +5115,7 @@ declare module 'icons/svg/options-2' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5143,7 +5143,7 @@ declare module 'icons/svg/options' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5171,7 +5171,7 @@ declare module 'icons/svg/pantone' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5199,7 +5199,7 @@ declare module 'icons/svg/paper-plane' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5227,7 +5227,7 @@ declare module 'icons/svg/pause-circle' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5255,7 +5255,7 @@ declare module 'icons/svg/people' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5283,7 +5283,7 @@ declare module 'icons/svg/percent' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5311,7 +5311,7 @@ declare module 'icons/svg/person-add' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5339,7 +5339,7 @@ declare module 'icons/svg/person-delete' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5367,7 +5367,7 @@ declare module 'icons/svg/person-done' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5395,7 +5395,7 @@ declare module 'icons/svg/person-remove' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5423,7 +5423,7 @@ declare module 'icons/svg/person' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5451,7 +5451,7 @@ declare module 'icons/svg/phone-call' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5479,7 +5479,7 @@ declare module 'icons/svg/phone-missed' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5507,7 +5507,7 @@ declare module 'icons/svg/phone-off' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5535,7 +5535,7 @@ declare module 'icons/svg/phone' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5563,7 +5563,7 @@ declare module 'icons/svg/pie-chart-2' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5591,7 +5591,7 @@ declare module 'icons/svg/pie-chart' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5619,7 +5619,7 @@ declare module 'icons/svg/pin' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5647,7 +5647,7 @@ declare module 'icons/svg/play-circle' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5675,7 +5675,7 @@ declare module 'icons/svg/plus-circle' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5703,7 +5703,7 @@ declare module 'icons/svg/plus-square' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5731,7 +5731,7 @@ declare module 'icons/svg/plus' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5759,7 +5759,7 @@ declare module 'icons/svg/power' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5787,7 +5787,7 @@ declare module 'icons/svg/pricetags' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5815,7 +5815,7 @@ declare module 'icons/svg/printer' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5843,7 +5843,7 @@ declare module 'icons/svg/question-mark-circle' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5871,7 +5871,7 @@ declare module 'icons/svg/question-mark' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5899,7 +5899,7 @@ declare module 'icons/svg/radio-button-off' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5927,7 +5927,7 @@ declare module 'icons/svg/radio-button-on' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5955,7 +5955,7 @@ declare module 'icons/svg/radio' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -5983,7 +5983,7 @@ declare module 'icons/svg/recording' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6011,7 +6011,7 @@ declare module 'icons/svg/refresh' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6039,7 +6039,7 @@ declare module 'icons/svg/repeat' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6067,7 +6067,7 @@ declare module 'icons/svg/rewind-left' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6095,7 +6095,7 @@ declare module 'icons/svg/rewind-right' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6123,7 +6123,7 @@ declare module 'icons/svg/save' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6151,7 +6151,7 @@ declare module 'icons/svg/scissors' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6179,7 +6179,7 @@ declare module 'icons/svg/search' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6207,7 +6207,7 @@ declare module 'icons/svg/settings-2' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6235,7 +6235,7 @@ declare module 'icons/svg/settings' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6263,7 +6263,7 @@ declare module 'icons/svg/shake' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6291,7 +6291,7 @@ declare module 'icons/svg/share' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6319,7 +6319,7 @@ declare module 'icons/svg/shield-off' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6347,7 +6347,7 @@ declare module 'icons/svg/shield' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6375,7 +6375,7 @@ declare module 'icons/svg/shopping-bag' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6403,7 +6403,7 @@ declare module 'icons/svg/shopping-cart' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6431,7 +6431,7 @@ declare module 'icons/svg/shuffle-2' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6459,7 +6459,7 @@ declare module 'icons/svg/shuffle' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6487,7 +6487,7 @@ declare module 'icons/svg/skip-back' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6515,7 +6515,7 @@ declare module 'icons/svg/skip-forward' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6543,7 +6543,7 @@ declare module 'icons/svg/slash' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6571,7 +6571,7 @@ declare module 'icons/svg/smartphone' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6599,7 +6599,7 @@ declare module 'icons/svg/smiling-face' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6627,7 +6627,7 @@ declare module 'icons/svg/speaker' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6655,7 +6655,7 @@ declare module 'icons/svg/square' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6683,7 +6683,7 @@ declare module 'icons/svg/star' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6711,7 +6711,7 @@ declare module 'icons/svg/stop-circle' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6739,7 +6739,7 @@ declare module 'icons/svg/sun' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6767,7 +6767,7 @@ declare module 'icons/svg/swap' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6795,7 +6795,7 @@ declare module 'icons/svg/sync' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6823,7 +6823,7 @@ declare module 'icons/svg/text' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6851,7 +6851,7 @@ declare module 'icons/svg/thermometer-minus' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6879,7 +6879,7 @@ declare module 'icons/svg/thermometer-plus' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6907,7 +6907,7 @@ declare module 'icons/svg/thermometer' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6935,7 +6935,7 @@ declare module 'icons/svg/toggle-left' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6963,7 +6963,7 @@ declare module 'icons/svg/toggle-right' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -6991,7 +6991,7 @@ declare module 'icons/svg/trash-2' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -7019,7 +7019,7 @@ declare module 'icons/svg/trash' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -7047,7 +7047,7 @@ declare module 'icons/svg/trending-down' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -7075,7 +7075,7 @@ declare module 'icons/svg/trending-up' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -7103,7 +7103,7 @@ declare module 'icons/svg/tv' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -7131,7 +7131,7 @@ declare module 'icons/svg/twitter' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -7159,7 +7159,7 @@ declare module 'icons/svg/umbrella' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -7187,7 +7187,7 @@ declare module 'icons/svg/undo' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -7215,7 +7215,7 @@ declare module 'icons/svg/unlock' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -7243,7 +7243,7 @@ declare module 'icons/svg/upload' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -7271,7 +7271,7 @@ declare module 'icons/svg/video-off' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -7299,7 +7299,7 @@ declare module 'icons/svg/video' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -7327,7 +7327,7 @@ declare module 'icons/svg/volume-down' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -7355,7 +7355,7 @@ declare module 'icons/svg/volume-mute' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -7383,7 +7383,7 @@ declare module 'icons/svg/volume-off' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -7411,7 +7411,7 @@ declare module 'icons/svg/volume-up' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -7439,7 +7439,7 @@ declare module 'icons/svg/wifi-off' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
@@ -7467,11 +7467,11 @@ declare module 'icons/svg/wifi' {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@flow-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../../@stage-ui/core/misc/hocs/Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
-declare module '@flow-ui/core/icons' {
+declare module '@stage-ui/core/icons' {
 	/**
 	version: 1.1.3
 	*/
@@ -7742,7 +7742,7 @@ declare module 'control/Calendar/DateGrid' {
 
 }
 declare module 'control/Calendar/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'control/Calendar/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
@@ -7753,9 +7753,9 @@ declare module 'control/Calendar' {
 	export default _default;
 
 }
-declare module '@flow-ui/core/misc/hocs/Check/types' {
+declare module '@stage-ui/core/misc/hocs/Check/types' {
 	/// <reference types="react" />
-	import SystemTypes from '@flow-ui/system/types'; namespace CheckTypes {
+	import SystemTypes from '@stage-ui/system/types'; namespace CheckTypes {
 	    type CheckType = 'checkbox' | 'radio' | 'switch';
 	    interface Props extends SystemTypes.AllProps<HTMLInputElement, Styles> {
 	        label?: string;
@@ -7787,12 +7787,12 @@ declare module '@flow-ui/core/misc/hocs/Check/types' {
 }
 declare module 'misc/hocs/Check' {
 	import React from 'react';
-	import CheckTypes from '@flow-ui/core/misc/hocs/Check/types'; const _default: React.ForwardRefExoticComponent<CheckTypes.PrivateProps & React.RefAttributes<HTMLDivElement>>;
+	import CheckTypes from '@stage-ui/core/misc/hocs/Check/types'; const _default: React.ForwardRefExoticComponent<CheckTypes.PrivateProps & React.RefAttributes<HTMLDivElement>>;
 	export default _default;
 
 }
 declare module 'control/Checkbox/types' {
-	import CheckTypes from '@flow-ui/core/@flow-ui/core/misc/hocs/Check/types'; namespace CheckboxTypes {
+	import CheckTypes from '@stage-ui/core/@stage-ui/core/misc/hocs/Check/types'; namespace CheckboxTypes {
 	    interface Props extends CheckTypes.Props {
 	    }
 	    interface Styles extends CheckTypes.Styles {
@@ -7818,14 +7818,14 @@ declare module 'control/Checkbox/types' {
 
 }
 declare module 'misc/hocs/Check/styles' {
-	import SystemTypes from '@flow-ui/system/types';
-	import Types from '@flow-ui/core/misc/hocs/Check/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	import SystemTypes from '@stage-ui/system/types';
+	import Types from '@stage-ui/core/misc/hocs/Check/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
 }
 declare module 'control/Checkbox/styles' {
 	import Types from 'control/Checkbox/types';
-	import SystemTypes from '@flow-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
 }
@@ -7835,9 +7835,9 @@ declare module 'control/Checkbox' {
 	export default _default;
 
 }
-declare module '@flow-ui/core/misc/hocs/Field/types' {
+declare module '@stage-ui/core/misc/hocs/Field/types' {
 	/// <reference types="react" />
-	import SystemTypes from '@flow-ui/system/types'; namespace FieldTypes {
+	import SystemTypes from '@stage-ui/system/types'; namespace FieldTypes {
 	    interface Props<S = Styles> extends Omit<SystemTypes.AllProps<HTMLInputElement, S>, 'onChange'> {
 	        /**
 	         * Label for field
@@ -7953,7 +7953,7 @@ declare module '@flow-ui/core/misc/hocs/Field/types' {
 }
 declare module 'misc/hocs/Field' {
 	import React from 'react';
-	import Types from '@flow-ui/core/misc/hocs/Field/types'; const _default: React.ForwardRefExoticComponent<Types.PrivateProps & React.RefAttributes<HTMLDivElement>>;
+	import Types from '@stage-ui/core/misc/hocs/Field/types'; const _default: React.ForwardRefExoticComponent<Types.PrivateProps & React.RefAttributes<HTMLDivElement>>;
 	export default _default;
 
 }
@@ -7968,8 +7968,8 @@ declare module 'control/DatePicker/mask' {
 
 }
 declare module 'misc/hocs/Field/styles' {
-	import SystemTypes from '@flow-ui/system/types';
-	import Types from '@flow-ui/core/misc/hocs/Field/types'; type ExtractFunction<T> = {
+	import SystemTypes from '@stage-ui/system/types';
+	import Types from '@stage-ui/core/misc/hocs/Field/types'; type ExtractFunction<T> = {
 	    [K in keyof T]: Extract<T[K], Function>;
 	}; const fieldStyles: <T extends Types.Styles<{}>>(props: Pick<Types.Props<Types.Styles<{}>>, "m" | "color" | "alignSelf" | "backgroundColor" | "display" | "flexBasis" | "flexGrow" | "flexShrink" | "fontSize" | "gridColumnEnd" | "gridColumnStart" | "gridRowEnd" | "gridRowStart" | "justifySelf" | "letterSpacing" | "lineHeight" | "position" | "textAlign" | "visibility" | "borderColor" | "borderRadius" | "borderStyle" | "borderWidth" | "flex" | "gridArea" | "gridColumn" | "gridRow" | "placeSelf" | "size" | "style" | "disabled" | "label" | "p" | "onChangeCapture" | "onBeforeInput" | "onBeforeInputCapture" | "onInput" | "onInputCapture" | "onReset" | "onResetCapture" | "onSubmit" | "onSubmitCapture" | "onInvalid" | "onInvalidCapture" | "className" | "id" | "tabIndex" | "role" | "draggable" | "attrs" | "aria-activedescendant" | "aria-atomic" | "aria-autocomplete" | "aria-busy" | "aria-checked" | "aria-colcount" | "aria-colindex" | "aria-colspan" | "aria-controls" | "aria-current" | "aria-describedby" | "aria-details" | "aria-disabled" | "aria-dropeffect" | "aria-errormessage" | "aria-expanded" | "aria-flowto" | "aria-grabbed" | "aria-haspopup" | "aria-hidden" | "aria-invalid" | "aria-keyshortcuts" | "aria-label" | "aria-labelledby" | "aria-level" | "aria-live" | "aria-modal" | "aria-multiline" | "aria-multiselectable" | "aria-orientation" | "aria-owns" | "aria-placeholder" | "aria-posinset" | "aria-pressed" | "aria-readonly" | "aria-relevant" | "aria-required" | "aria-roledescription" | "aria-rowcount" | "aria-rowindex" | "aria-rowspan" | "aria-selected" | "aria-setsize" | "aria-sort" | "aria-valuemax" | "aria-valuemin" | "aria-valuenow" | "aria-valuetext" | "onFocus" | "onFocusCapture" | "onBlur" | "onBlurCapture" | "onLoad" | "onLoadCapture" | "onError" | "onErrorCapture" | "onAbort" | "onAbortCapture" | "onCanPlay" | "onCanPlayCapture" | "onCanPlayThrough" | "onCanPlayThroughCapture" | "onDurationChange" | "onDurationChangeCapture" | "onEmptied" | "onEmptiedCapture" | "onEncrypted" | "onEncryptedCapture" | "onEnded" | "onEndedCapture" | "onLoadedData" | "onLoadedDataCapture" | "onLoadedMetadata" | "onLoadedMetadataCapture" | "onLoadStart" | "onLoadStartCapture" | "onPause" | "onPauseCapture" | "onPlay" | "onPlayCapture" | "onPlaying" | "onPlayingCapture" | "onProgress" | "onProgressCapture" | "onRateChange" | "onRateChangeCapture" | "onSeeked" | "onSeekedCapture" | "onSeeking" | "onSeekingCapture" | "onStalled" | "onStalledCapture" | "onSuspend" | "onSuspendCapture" | "onTimeUpdate" | "onTimeUpdateCapture" | "onVolumeChange" | "onVolumeChangeCapture" | "onWaiting" | "onWaitingCapture" | "onAuxClick" | "onAuxClickCapture" | "onClick" | "onClickCapture" | "onContextMenu" | "onContextMenuCapture" | "onDoubleClick" | "onDoubleClickCapture" | "onDrag" | "onDragCapture" | "onDragEnd" | "onDragEndCapture" | "onDragEnter" | "onDragEnterCapture" | "onDragExit" | "onDragExitCapture" | "onDragLeave" | "onDragLeaveCapture" | "onDragOver" | "onDragOverCapture" | "onDragStart" | "onDragStartCapture" | "onDrop" | "onDropCapture" | "onMouseDown" | "onMouseDownCapture" | "onMouseEnter" | "onMouseLeave" | "onMouseMove" | "onMouseMoveCapture" | "onMouseOut" | "onMouseOutCapture" | "onMouseOver" | "onMouseOverCapture" | "onMouseUp" | "onMouseUpCapture" | "onTouchCancel" | "onTouchCancelCapture" | "onTouchEnd" | "onTouchEndCapture" | "onTouchMove" | "onTouchMoveCapture" | "onTouchStart" | "onTouchStartCapture" | "onWheel" | "onWheelCapture" | "onPointerDown" | "onPointerDownCapture" | "onPointerMove" | "onPointerMoveCapture" | "onPointerUp" | "onPointerUpCapture" | "onPointerCancel" | "onPointerCancelCapture" | "onPointerEnter" | "onPointerLeave" | "onPointerOver" | "onPointerOverCapture" | "onPointerOut" | "onPointerOutCapture" | "onGotPointerCapture" | "onGotPointerCaptureCapture" | "onLostPointerCapture" | "onLostPointerCaptureCapture" | "onKeyDown" | "onKeyDownCapture" | "onKeyPress" | "onKeyPressCapture" | "onKeyUp" | "onKeyUpCapture" | "onEnter" | "onEsc" | "onSelect" | "onSelectCapture" | "onAnimationStart" | "onAnimationStartCapture" | "onAnimationEnd" | "onAnimationEndCapture" | "onAnimationIteration" | "onAnimationIterationCapture" | "onCopy" | "onCopyCapture" | "onCut" | "onCutCapture" | "onPaste" | "onPasteCapture" | "onTransitionEnd" | "onTransitionEndCapture" | "onCompositionEnd" | "onCompositionEndCapture" | "onCompositionStart" | "onCompositionStartCapture" | "onCompositionUpdate" | "onCompositionUpdateCapture" | "onScroll" | "onScrollCapture" | "styles" | "textColor" | "px" | "py" | "pr" | "pl" | "pt" | "pb" | "w" | "h" | "mx" | "my" | "mr" | "ml" | "mt" | "mb" | "shape" | "decoration" | "rightChild" | "leftChild" | "labelType" | "hint" | "clearable" | "onClear">, theme: SystemTypes.Theme, stylePatch?: Partial<ExtractFunction<SystemTypes.Styles<T>>> | undefined) => SystemTypes.Styles<Types.Styles<{}>>;
 	export default fieldStyles;
@@ -7977,8 +7977,8 @@ declare module 'misc/hocs/Field/styles' {
 }
 declare module 'control/DatePicker/types' {
 	import { Moment } from 'moment';
-	import FieldTypes from '@flow-ui/core/misc/hocs/Field/types';
-	import CalendarTypes from '@flow-ui/core/control/Calendar/types'; namespace DatePickerTypes {
+	import FieldTypes from '@stage-ui/core/misc/hocs/Field/types';
+	import CalendarTypes from '@stage-ui/core/control/Calendar/types'; namespace DatePickerTypes {
 	    interface Props extends Omit<FieldTypes.Props, 'onChange'>, InputProps {
 	        /**
 	         * Type for DatePicker
@@ -8061,7 +8061,7 @@ declare module 'control/DatePicker/types' {
 
 }
 declare module 'control/DatePicker/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'control/DatePicker/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
@@ -8074,7 +8074,7 @@ declare module 'control/DatePicker' {
 }
 declare module 'control/Menu/types' {
 	/// <reference types="react" />
-	import SystemTypes from '@flow-ui/system/types'; namespace MenuTypes {
+	import SystemTypes from '@stage-ui/system/types'; namespace MenuTypes {
 	    type MenuValue = string | number;
 	    type MenuDirection = 'row' | 'column' | 'row-reverse' | 'column-reverse';
 	    type MenuDecoration = 'filled' | 'color' | 'marker' | 'marker-reverse';
@@ -8189,7 +8189,7 @@ declare module 'control/Menu/types' {
 }
 declare module 'control/Menu/MenuItem/types' {
 	/// <reference types="react" />
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import MenuTypes from 'control/Menu/types'; namespace MenuItemTypes {
 	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        /**
@@ -8229,7 +8229,7 @@ declare module 'control/Menu/MenuItem/types' {
 
 }
 declare module 'control/Menu/MenuItem/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'control/Menu/MenuItem/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
@@ -8241,14 +8241,14 @@ declare module 'control/Menu/MenuItem' {
 
 }
 declare module 'control/Menu/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'control/Menu/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
 }
 declare module 'control/Menu/Submenu/types' {
 	/// <reference types="react" />
-	import SystemTypes from '@flow-ui/system/types'; namespace SubmenuTypes {
+	import SystemTypes from '@stage-ui/system/types'; namespace SubmenuTypes {
 	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        /**
 	         * Title for menu item
@@ -8295,7 +8295,7 @@ declare module 'control/Menu/Submenu/types' {
 
 }
 declare module 'control/Menu/Submenu/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'control/Menu/Submenu/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
@@ -8308,7 +8308,7 @@ declare module 'control/Menu/Submenu' {
 }
 declare module 'control/Menu/MenuGroup/types' {
 	/// <reference types="react" />
-	import SystemTypes from '@flow-ui/system/types'; namespace MenuGroupTypes {
+	import SystemTypes from '@stage-ui/system/types'; namespace MenuGroupTypes {
 	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        /**
 	         * Title of group
@@ -8335,7 +8335,7 @@ declare module 'control/Menu/MenuGroup/types' {
 
 }
 declare module 'control/Menu/MenuGroup/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'control/Menu/MenuGroup/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
@@ -8362,7 +8362,7 @@ declare module 'control/Menu' {
 
 }
 declare module 'control/Radio/types' {
-	import CheckTypes from '@flow-ui/core/misc/hocs/Check/types'; namespace RadioTypes {
+	import CheckTypes from '@stage-ui/core/misc/hocs/Check/types'; namespace RadioTypes {
 	    interface Props extends CheckTypes.Props {
 	    }
 	    interface Styles extends CheckTypes.Styles {
@@ -8388,7 +8388,7 @@ declare module 'control/Radio/types' {
 }
 declare module 'control/Radio/styles' {
 	import Types from 'control/Radio/types';
-	import SystemTypes from '@flow-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
 }
@@ -8399,7 +8399,7 @@ declare module 'control/Radio' {
 
 }
 declare module 'control/Range/types' {
-	import SystemTypes from '@flow-ui/system/types'; namespace RangeTypes {
+	import SystemTypes from '@stage-ui/system/types'; namespace RangeTypes {
 	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        min?: number;
 	        max?: number;
@@ -8425,7 +8425,7 @@ declare module 'control/Range/types' {
 }
 declare module 'control/Range/styles' {
 	import Types from 'control/Range/types';
-	import SystemTypes from '@flow-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
 }
@@ -8436,7 +8436,7 @@ declare module 'control/Range' {
 
 }
 declare module 'control/Pageswitch/types' {
-	import SystemTypes from '@flow-ui/system/types'; namespace PageswitchTypes {
+	import SystemTypes from '@stage-ui/system/types'; namespace PageswitchTypes {
 	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        /**
 	         * Total count of records
@@ -8477,7 +8477,7 @@ declare module 'control/Pageswitch/types' {
 
 }
 declare module 'control/Pageswitch/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'control/Pageswitch/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
@@ -8490,7 +8490,7 @@ declare module 'control/Pageswitch' {
 }
 declare module 'layout/Drop/types' {
 	/// <reference types="react" />
-	import SystemTypes from '@flow-ui/system/types'; namespace DropTypes {
+	import SystemTypes from '@stage-ui/system/types'; namespace DropTypes {
 	    interface TargetCoordinates {
 	        top: number;
 	        bottom: number;
@@ -8565,7 +8565,7 @@ declare module 'layout/Drop/types' {
 
 }
 declare module 'control/Select/types' {
-	import FieldTypes from '@flow-ui/core/misc/hocs/Field/types'; namespace SelectTypes {
+	import FieldTypes from '@stage-ui/core/misc/hocs/Field/types'; namespace SelectTypes {
 	    interface Option {
 	        text: string;
 	        value: any;
@@ -8661,7 +8661,7 @@ declare module 'control/Select/types' {
 }
 declare module 'control/Select/styles' {
 	import Types from 'control/Select/types';
-	import SystemTypes from '@flow-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StyleParams>;
+	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StyleParams>;
 	export default styles;
 
 }
@@ -8672,7 +8672,7 @@ declare module 'control/Select' {
 
 }
 declare module 'control/Switch/types' {
-	import CheckTypes from '@flow-ui/core/misc/hocs/Check/types'; namespace SwitchTypes {
+	import CheckTypes from '@stage-ui/core/misc/hocs/Check/types'; namespace SwitchTypes {
 	    interface Props extends CheckTypes.Props {
 	    }
 	    interface Styles extends CheckTypes.Styles {
@@ -8699,7 +8699,7 @@ declare module 'control/Switch/types' {
 }
 declare module 'control/Switch/styles' {
 	import Types from 'control/Switch/types';
-	import SystemTypes from '@flow-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
 }
@@ -8711,8 +8711,8 @@ declare module 'control/Switch' {
 }
 declare module 'control/TextField/types' {
 	import { ChangeEventHandler } from 'react';
-	import FieldTypes from '@flow-ui/core/misc/hocs/Field/types';
-	import SystemTypes from '@flow-ui/system/types'; namespace TextFieldTypes {
+	import FieldTypes from '@stage-ui/core/misc/hocs/Field/types';
+	import SystemTypes from '@stage-ui/system/types'; namespace TextFieldTypes {
 	    type InputTypes = 'email' | 'hidden' | 'number' | 'password' | 'reset' | 'search' | 'tel' | 'text' | 'url';
 	    interface Props extends FieldTypes.Props, InputProps, TextAreaProps {
 	        /**
@@ -8836,6 +8836,7 @@ declare module 'control/TextField/types' {
 	        input: {
 	            multiline: boolean;
 	            size: SystemTypes.Size;
+	            disabled: boolean;
 	        };
 	    }
 	}
@@ -8844,18 +8845,18 @@ declare module 'control/TextField/types' {
 }
 declare module 'control/TextField/styles' {
 	import Types from 'control/TextField/types';
-	import SystemTypes from '@flow-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
 }
 declare module 'control/TextField' {
 	import React from 'react';
-	import Types from 'control/TextField/types'; type RefTypes = ((HTMLInputElement | HTMLTextAreaElement) & HTMLDivElement) | null | {}; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<RefTypes>>;
+	import Types from 'control/TextField/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<{} | (HTMLInputElement & HTMLDivElement) | (HTMLTextAreaElement & HTMLDivElement)>>;
 	export default _default;
 
 }
 declare module 'data/Meter/MeterThumb/types' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import MeterTypes from 'data/Meter/types'; namespace MeterThumbTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
@@ -8886,7 +8887,7 @@ declare module 'data/Meter/MeterThumb/types' {
 }
 declare module 'data/Meter/types' {
 	/// <reference types="react" />
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import MeterThumbTypes from 'data/Meter/MeterThumb/types'; namespace MeterTypes {
 	    type MeterDecoration = 'filled' | 'outline';
 	    type MeterShape = 'square' | 'round';
@@ -8946,13 +8947,13 @@ declare module 'data/Meter/types' {
 
 }
 declare module 'data/Meter/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'data/Meter/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
 }
 declare module 'data/Meter/MeterThumb/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'data/Meter/MeterThumb/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.PrivateProps>;
 	export default styles;
 
@@ -8972,7 +8973,7 @@ declare module 'data/Meter' {
 
 }
 declare module 'misc/utils/applyLayoutDecoration' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	export type LayoutDecoration = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' | 'neumorphism'; type Props = SystemTypes.AllProps<HTMLDivElement, {}> & {
 	    decoration?: LayoutDecoration;
 	}; const applyLayoutDecoration: (props: Props, theme: SystemTypes.Theme) => {
@@ -9000,10 +9001,10 @@ declare module 'misc/utils/applyLayoutDecoration' {
 	export default applyLayoutDecoration;
 
 }
-declare module '@flow-ui/core/data/Table/types' {
+declare module '@stage-ui/core/data/Table/types' {
 	/// <reference types="react" />
-	import SystemTypes from '@flow-ui/system/types';
-	import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration'; namespace TableTypes {
+	import SystemTypes from '@stage-ui/system/types';
+	import { LayoutDecoration } from '@stage-ui/core/misc/utils/applyLayoutDecoration'; namespace TableTypes {
 	    type RowMountType = 
 	    /**
 	     * Render all rows at onec
@@ -9278,44 +9279,44 @@ declare module '@flow-ui/core/data/Table/types' {
 
 }
 declare module 'data/Table/styles' {
-	import Types from '@flow-ui/core/data/Table/types';
-	import SystemTypes from '@flow-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	import Types from '@stage-ui/core/data/Table/types';
+	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
 }
 declare module 'data/Table/TableCell' {
 	import React from 'react';
-	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.CellProps<Object> & React.RefAttributes<HTMLTableDataCellElement>>;
+	import Types from '@stage-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.CellProps<Object> & React.RefAttributes<HTMLTableDataCellElement>>;
 	export default _default;
 
 }
 declare module 'data/Table/TableRow' {
 	import React from 'react';
-	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.RowProps<Object> & React.RefAttributes<HTMLTableRowElement>>;
+	import Types from '@stage-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.RowProps<Object> & React.RefAttributes<HTMLTableRowElement>>;
 	export default _default;
 
 }
 declare module 'data/Table/TableHeadCell' {
 	import React from 'react';
-	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.HeadCellProps<Object> & React.RefAttributes<HTMLTableDataCellElement>>;
+	import Types from '@stage-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.HeadCellProps<Object> & React.RefAttributes<HTMLTableDataCellElement>>;
 	export default _default;
 
 }
 declare module 'data/Table/TableFoot' {
 	import React from 'react';
-	import Types from '@flow-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.FootProps<Object> & React.RefAttributes<HTMLTableCellElement>>;
+	import Types from '@stage-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.FootProps<Object> & React.RefAttributes<HTMLTableCellElement>>;
 	export default _default;
 
 }
 declare module 'data/Table' {
 	import React from 'react';
-	import Types from '@flow-ui/core/data/Table/types'; type Ref<T = Object> = Types.TableRef<T>; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Ref<Object>>>;
+	import Types from '@stage-ui/core/data/Table/types'; type Ref<T = Object> = Types.TableRef<T>; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Ref<Object>>>;
 	export default _default;
 
 }
 declare module 'layout/Badge/types' {
 	/// <reference types="react" />
-	import SystemTypes from '@flow-ui/system/types'; namespace BadgeTypes {
+	import SystemTypes from '@stage-ui/system/types'; namespace BadgeTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
 	         * Show in badge
@@ -9356,7 +9357,7 @@ declare module 'layout/Badge/types' {
 
 }
 declare module 'layout/Badge/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'layout/Badge/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
@@ -9369,8 +9370,8 @@ declare module 'layout/Badge' {
 }
 declare module 'layout/Block/types' {
 	/// <reference types="react" />
-	import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration';
-	import SystemTypes from '@flow-ui/system/types';
+	import { LayoutDecoration } from '@stage-ui/core/misc/utils/applyLayoutDecoration';
+	import SystemTypes from '@stage-ui/system/types';
 	import CSS from 'csstype'; namespace BlockTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
@@ -9403,7 +9404,7 @@ declare module 'layout/Block/types' {
 
 }
 declare module 'layout/Block/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'layout/Block/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
@@ -9416,7 +9417,7 @@ declare module 'layout/Block' {
 
 }
 declare module 'layout/Drop/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'layout/Drop/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
@@ -9429,8 +9430,8 @@ declare module 'layout/Drop' {
 }
 declare module 'layout/Flexbox/types' {
 	/// <reference types="react" />
-	import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration';
-	import SystemTypes from '@flow-ui/system/types'; namespace FlexboxTypes {
+	import { LayoutDecoration } from '@stage-ui/core/misc/utils/applyLayoutDecoration';
+	import SystemTypes from '@stage-ui/system/types'; namespace FlexboxTypes {
 	    interface Props extends SystemTypes.FlexboxContainerProps, SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
 	         * Defines how flexbox look
@@ -9454,7 +9455,7 @@ declare module 'layout/Flexbox/types' {
 
 }
 declare module 'layout/Flexbox/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'layout/Flexbox/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
@@ -9468,8 +9469,8 @@ declare module 'layout/Flexbox' {
 }
 declare module 'layout/Grid/types' {
 	/// <reference types="react" />
-	import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration';
-	import SystemTypes from '@flow-ui/system/types'; namespace GridTypes {
+	import { LayoutDecoration } from '@stage-ui/core/misc/utils/applyLayoutDecoration';
+	import SystemTypes from '@stage-ui/system/types'; namespace GridTypes {
 	    interface Props extends SystemTypes.GridContainerProps, SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
 	         * Defines how grid look
@@ -9493,7 +9494,7 @@ declare module 'layout/Grid/types' {
 
 }
 declare module 'layout/Grid/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'layout/Grid/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
@@ -9505,9 +9506,9 @@ declare module 'layout/Grid' {
 	export default _default;
 
 }
-declare module '@flow-ui/core/layout/Modal/types' {
+declare module '@stage-ui/core/layout/Modal/types' {
 	/// <reference types="react" />
-	import SystemTypes from '@flow-ui/system/types'; namespace ModalTypes {
+	import SystemTypes from '@stage-ui/system/types'; namespace ModalTypes {
 	    type ModalDecoration = 'modal' | 'panel';
 	    type ExtentedProps = SystemTypes.AttributeProps & SystemTypes.AllEventProps<HTMLDivElement> & SystemTypes.CoreProps<Styles> & SystemTypes.ColorProps & SystemTypes.BorderProps & SystemTypes.PaddingProps & SystemTypes.LayoutProps;
 	    interface Ref {
@@ -9667,7 +9668,7 @@ declare module '@flow-ui/core/layout/Modal/types' {
 }
 declare module 'layout/Modal/ModalOverlay' {
 	import React from 'react';
-	import ModalTypes from '@flow-ui/core/layout/Modal/types'; const ModalOverlay: React.ForwardRefExoticComponent<ModalTypes.ModalOverlayProps & React.RefAttributes<HTMLDivElement>>;
+	import ModalTypes from '@stage-ui/core/layout/Modal/types'; const ModalOverlay: React.ForwardRefExoticComponent<ModalTypes.ModalOverlayProps & React.RefAttributes<HTMLDivElement>>;
 	export default ModalOverlay;
 
 }
@@ -9678,31 +9679,31 @@ declare module 'layout/Modal/ModalPortal' {
 }
 declare module 'layout/Modal/ModalHeader' {
 	/// <reference types="react" />
-	import ModalTypes from '@flow-ui/core/layout/Modal/types'; const ModalHeader: (props: ModalTypes.ModalHeaderProps) => JSX.Element | null;
+	import ModalTypes from '@stage-ui/core/layout/Modal/types'; const ModalHeader: (props: ModalTypes.ModalHeaderProps) => JSX.Element | null;
 	export default ModalHeader;
 
 }
 declare module 'layout/Modal/ModalWindow' {
-	import ModalTypes from '@flow-ui/core/layout/Modal/types';
+	import ModalTypes from '@stage-ui/core/layout/Modal/types';
 	import React from 'react'; const ModalWindow: React.ForwardRefExoticComponent<ModalTypes.ModalWindowProps & React.RefAttributes<HTMLDivElement>>;
 	export default ModalWindow;
 
 }
 declare module 'layout/Modal/styles' {
-	import SystemTypes from '@flow-ui/system/types';
-	import Types from '@flow-ui/core/layout/Modal/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	import SystemTypes from '@stage-ui/system/types';
+	import Types from '@stage-ui/core/layout/Modal/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
 }
 declare module 'layout/Modal' {
 	import React from 'react';
-	import Types from '@flow-ui/core/layout/Modal/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
+	import Types from '@stage-ui/core/layout/Modal/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
 	export default _default;
 
 }
 declare module 'layout/Notification/types' {
 	/// <reference types="react" />
-	import SystemTypes from '@flow-ui/system/types'; namespace NotificationTypes {
+	import SystemTypes from '@stage-ui/system/types'; namespace NotificationTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        children?: React.ReactNode;
 	    }
@@ -9739,7 +9740,7 @@ declare module 'layout/Notification/types' {
 
 }
 declare module 'layout/Notification/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'layout/Notification/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
@@ -9752,7 +9753,7 @@ declare module 'layout/Notification' {
 }
 declare module 'layout/Popover/types' {
 	/// <reference types="react" />
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import CSS from 'csstype'; namespace PopoverTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
@@ -9798,7 +9799,7 @@ declare module 'layout/Popover/types' {
 }
 declare module 'layout/Popover/styles' {
 	import Types from 'layout/Popover/types';
-	import SystemTypes from '@flow-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
 }
@@ -9810,7 +9811,7 @@ declare module 'layout/Popover' {
 }
 declare module 'layout/Tree/types' {
 	/// <reference types="react" />
-	import SystemTypes from '@flow-ui/system/types'; namespace TreeTypes {
+	import SystemTypes from '@stage-ui/system/types'; namespace TreeTypes {
 	    type RenderChildOptions = {
 	        isOpen: boolean;
 	        isParentOpen: boolean;
@@ -9878,7 +9879,7 @@ declare module 'layout/Tree/types' {
 }
 declare module 'layout/Tree/styles' {
 	import Types from 'layout/Tree/types';
-	import SystemTypes from '@flow-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.PrivateProps>;
+	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.PrivateProps>;
 	export default styles;
 
 }
@@ -9908,7 +9909,7 @@ declare module 'layout/Tree' {
 }
 declare module 'layout/ScrollView/types' {
 	import React from 'react';
-	import SystemTypes from '@flow-ui/system/types'; namespace ScrollViewTypes {
+	import SystemTypes from '@stage-ui/system/types'; namespace ScrollViewTypes {
 	    interface ScrollViewEvent {
 	        scrollTop: number;
 	        scrollLeft: number;
@@ -10029,7 +10030,7 @@ declare module 'layout/ScrollView/types' {
 
 }
 declare module 'layout/ScrollView/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'layout/ScrollView/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
@@ -10068,7 +10069,7 @@ declare module 'types' {
 	 * Data
 	 */
 	import MeterTypes from 'data/Meter/types';
-	import TableTypes from '@flow-ui/core/data/Table/types';
+	import TableTypes from '@stage-ui/core/data/Table/types';
 	/**
 	 * Layout
 	 */
@@ -10077,7 +10078,7 @@ declare module 'types' {
 	import DropTypes from 'layout/Drop/types';
 	import FlexboxTypes from 'layout/Flexbox/types';
 	import GridTypes from 'layout/Grid/types';
-	import ModalTypes from '@flow-ui/core/layout/Modal/types';
+	import ModalTypes from '@stage-ui/core/layout/Modal/types';
 	import NotificationTypes from 'layout/Notification/types';
 	import PopoverTypes from 'layout/Popover/types';
 	import TreeTypes from 'layout/Tree/types';
@@ -10114,12 +10115,12 @@ declare module 'types' {
 
 }
 declare module 'misc/themes/light' {
-	import SystemTypes from '@flow-ui/system/types'; const _default: SystemTypes.Theme;
+	import SystemTypes from '@stage-ui/system/types'; const _default: SystemTypes.Theme;
 	export default _default;
 
 }
 declare module 'misc/themes/dark' {
-	 const dark: import("@flow-ui/system/types").default.Theme;
+	 const dark: import("@stage-ui/system/types").default.Theme;
 	export default dark;
 
 }
@@ -10136,10 +10137,10 @@ declare module 'misc/themes' {
 }
 declare module 'layout/Viewport/types' {
 	/// <reference types="react" />
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import { Options } from '@emotion/cache';
 	import { SerializedStyles } from '@emotion/core';
-	import ModalTypes from '@flow-ui/core/layout/Modal/types'; namespace ViewportTypes {
+	import ModalTypes from '@stage-ui/core/layout/Modal/types'; namespace ViewportTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
 	         * Defines whether the viewport renders content inside the container
@@ -10235,7 +10236,7 @@ declare module 'layout/Viewport/MountArea' {
 
 }
 declare module 'layout/Viewport/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'layout/Viewport/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
@@ -10247,16 +10248,16 @@ declare module 'layout/Viewport' {
 
 }
 declare module 'misc/utils/dialog' {
-	import ViewportTypes from '@flow-ui/core/layout/Viewport/types'; const _default: (options: ViewportTypes.DialogOptions) => void;
+	import ViewportTypes from '@stage-ui/core/layout/Viewport/types'; const _default: (options: ViewportTypes.DialogOptions) => void;
 	export default _default;
 
 }
 declare module 'misc/utils/notify' {
-	import NotificationType from '@flow-ui/core/layout/Notification/types'; const _default: (options: NotificationType.NotifyOptions) => void;
+	import NotificationType from '@stage-ui/core/layout/Notification/types'; const _default: (options: NotificationType.NotifyOptions) => void;
 	export default _default;
 
 }
-declare module '@flow-ui/core' {
+declare module '@stage-ui/core' {
 	/**
 	 * Content
 	 */
@@ -10308,8 +10309,8 @@ declare module '@flow-ui/core' {
 	/**
 	 * Misc
 	 */
-	export { useTheme } from '@flow-ui/system';
-	export { createTheme } from '@flow-ui/system';
+	export { useTheme } from '@stage-ui/system';
+	export { createTheme } from '@stage-ui/system';
 
 }
 declare module 'misc/utils/validate' {

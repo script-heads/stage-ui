@@ -1,4 +1,4 @@
-import { Block, Switch } from '@flow-ui/core'
+import { Block, Switch } from '@stage-ui/core'
 import { context } from '../../../..'
 import React from 'react'
 

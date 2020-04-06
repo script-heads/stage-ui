@@ -1,4 +1,4 @@
-import TypographyTypes from '@flow-ui/core/misc/hocs/Typography/types'
+import TypographyTypes from '@stage-ui/core/misc/hocs/Typography/types'
 
 declare namespace LinkTypes {
     interface Props extends TypographyTypes.LinkProps {}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Button, Display, Flexbox, Paragraph } from '@flow-ui/core'
+import { Text, Button, Display, Flexbox, Paragraph } from '@stage-ui/core'
 import { CustomPageProps } from '../../utils/core'
 
 export default (props: CustomPageProps) => {
@@ -26,7 +26,7 @@ export default (props: CustomPageProps) => {
                     }
                 })}>
                 <Display m="0" lineHeight={1} weight={800}>
-                    <span>FlowUI</span>
+                    <span>StageUI</span>
                     <Text size="xl" weight={500} css={{
                         verticalAlign: 'text-top',
                     }} textColor={c => c.primary}>β</Text>

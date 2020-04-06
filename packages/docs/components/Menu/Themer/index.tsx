@@ -1,5 +1,5 @@
-import { Button, Flexbox, Viewport } from '@flow-ui/core'
-import { ColorPalette } from '@flow-ui/core/icons'
+import { Button, Flexbox, Viewport } from '@stage-ui/core'
+import { ColorPalette } from '@stage-ui/core/icons'
 import React from 'react'
 import original from './src/theme'
 import { panel } from './src/ThemeConfigurator'

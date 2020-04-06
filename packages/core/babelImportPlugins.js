@@ -10,13 +10,13 @@ const transforms = {
 module.exports = [
     [
         'babel-plugin-import', {
-            libraryName: '@flow-ui/core',
+            libraryName: '@stage-ui/core',
             camel2DashComponentName: false,
             customName: (name) => {
                 for (let dir of Object.keys(transforms)) {
                     for (let component of transforms[dir]) {
                         if (component === name) {
-                            return `@flow-ui/${dir}/${component}`
+                            return `@stage-ui/${dir}/${component}`
                         }
                     }
                 }
@@ -27,10 +27,10 @@ module.exports = [
     ],
     [
         'babel-plugin-import', {
-            libraryName: '@flow-ui/core/icons',
+            libraryName: '@stage-ui/core/icons',
             camel2DashComponentName: true,
             customName: (name) => (
-                `@flow-ui/core/icons/svg/${name[0].toLowerCase()}${name.slice(1)}`
+                `@stage-ui/core/icons/svg/${name[0].toLowerCase()}${name.slice(1)}`
             )
         },
         'icons'

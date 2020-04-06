@@ -1,4 +1,4 @@
-import { Table } from '@flow-ui/core'
+import { Table } from '@stage-ui/core'
 import React from 'react'
 
 export default () => {

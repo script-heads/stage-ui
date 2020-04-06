@@ -1,7 +1,7 @@
 
-import { Block } from '@flow-ui/core'
-import Check from '@flow-ui/core/misc/hocs/Check'
-import { useComponent } from '@flow-ui/system'
+import { Block } from '@stage-ui/core'
+import Check from '@stage-ui/core/misc/hocs/Check'
+import { useComponent } from '@stage-ui/system'
 import React, { forwardRef, RefForwardingComponent } from 'react'
 import styles from './styles'
 import Types from './types'
@@ -9,10 +9,10 @@ import Types from './types'
 const Radio: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
     const { size = 'm', disabled } = props
 
-    const { cs, attributes, events } = useComponent('Radio', { 
-        props, 
-        styles, 
-        styleProps: { container: ['all']},
+    const { cs, attributes, events } = useComponent('Radio', {
+        props,
+        styles,
+        styleProps: { container: ['all'] },
         focus: {
             applyDecoration: true
         }

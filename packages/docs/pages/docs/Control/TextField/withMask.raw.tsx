@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextField } from '@flow-ui/core'
+import { TextField } from '@stage-ui/core'
 
 // TODO: add rifm
 export default () => {

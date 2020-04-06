@@ -1,4 +1,4 @@
-import { createTheme } from '@flow-ui/core'
+import { createTheme } from '@stage-ui/core'
 
 const light = createTheme({
     main,

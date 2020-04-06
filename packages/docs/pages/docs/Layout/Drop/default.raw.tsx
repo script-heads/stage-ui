@@ -1,5 +1,5 @@
-import React, {useRef} from 'react'
-import { Drop, Button, Popover, Block } from '@flow-ui/core'
+import React, { useRef } from 'react'
+import { Drop, Button, Popover, Block } from '@stage-ui/core'
 
 export default () => {
     const ref = useRef(null)
@@ -9,6 +9,6 @@ export default () => {
             <Drop target={ref} spacing={8}>
                 <Popover>Hello world!</Popover>
             </Drop>
-        </Block>   
+        </Block>
     )
 }

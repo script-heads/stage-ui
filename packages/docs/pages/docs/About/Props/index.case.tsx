@@ -1,6 +1,6 @@
 
 /// <reference path="../../../../global.d.ts" />
-import { Block, Header, Link, Paragraph as P } from '@flow-ui/core'
+import { Block, Header, Link, Paragraph as P } from '@stage-ui/core'
 import React from 'react'
 import styleProp from './styleProp.raw'
 import colorProps from './colorProps.raw'
@@ -17,7 +17,7 @@ export const sticky = true
 
 export default () => (
     <Block>
-        <P>FlowUI comonents have special props to customize thier styles</P>
+        <P>StageUI comonents have special props to customize thier styles</P>
         <Header>Styles</Header>
         <P>Like style tag in HTML or CSS prop in emotion with
             styles prop you can provide custom styles to any component.</P>
@@ -29,7 +29,7 @@ export default () => (
             More about it written in <Link href="/overrides">Overrides</Link> section.</P>
         <Syntax code={styleProp} />
         <Header>Color</Header>
-        <P>All colors described in Theme FlowUI turn into Objects with useful
+        <P>All colors described in Theme StageUI turn into Objects with useful
         methods that give you the opportunity to to adjust the color depending on the situation.
         To access theme colors provide function in these props.
         They recive theme colors and return one to component.

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header } from '@flow-ui/core'
+import { Header } from '@stage-ui/core'
 
 export default () => {
     return (

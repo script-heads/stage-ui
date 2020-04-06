@@ -1,4 +1,4 @@
-import SystemTypes from '@flow-ui/system/types'
+import SystemTypes from '@stage-ui/system/types'
 import MenuTypes from '../types'
 
 declare namespace MenuItemTypes {

@@ -1,5 +1,5 @@
-import { Block, Flexbox } from '@flow-ui/core'
-import { useComponent } from '@flow-ui/system'
+import { Block, Flexbox } from '@stage-ui/core'
+import { useComponent } from '@stage-ui/system'
 import React, { forwardRef, Fragment, RefForwardingComponent, useState } from 'react'
 import styles from './styles'
 import TreeLabel from './TreeLabel'
@@ -27,8 +27,8 @@ const Tree: RefForwardingComponent<HTMLDivElement, Types.Props> = (props: Types.
     const { cs, attributes, events } = useComponent('Tree', {
         props,
         styles,
-        styleProps: { 
-            row: ['all'] 
+        styleProps: {
+            row: ['all']
         },
         focus: {
             applyDecoration: true

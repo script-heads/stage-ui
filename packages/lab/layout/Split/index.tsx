@@ -1,4 +1,4 @@
-import { useComponent } from '@flow-ui/system'
+import { useComponent } from '@stage-ui/system'
 import React, { forwardRef, Fragment, RefForwardingComponent, useEffect, useMemo } from 'react'
 import Separator from './Separator'
 import Types from './types'

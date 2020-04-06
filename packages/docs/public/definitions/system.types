@@ -1,4 +1,4 @@
-declare module '@flow-ui/system/types' {
+declare module '@stage-ui/system/types' {
 	import React from 'react';
 	import QIXColor from 'color';
 	import CSS from 'csstype';
@@ -1141,7 +1141,7 @@ declare module 'utils/mergeObjects' {
 
 }
 declare module 'utils/attachProps/style' {
-	import SystemTypes, { EmotionStyles } from '@flow-ui/system/types'; const createPropStyles: <Props, StyleProps>(props: Props, theme: SystemTypes.Theme, styleProps: StyleProps) => Record<keyof StyleProps, EmotionStyles>;
+	import SystemTypes, { EmotionStyles } from '@stage-ui/system/types'; const createPropStyles: <Props, StyleProps>(props: Props, theme: SystemTypes.Theme, styleProps: StyleProps) => Record<keyof StyleProps, EmotionStyles>;
 	export default createPropStyles;
 
 }
@@ -1233,7 +1233,7 @@ declare module 'utils/createTheme' {
 	export default createTheme;
 
 }
-declare module '@flow-ui/system' {
+declare module '@stage-ui/system' {
 	export { default as Provider } from 'components/Provider';
 	export { default as useTheme } from 'hooks/useTheme';
 	export { default as useComponent } from 'hooks/useComponent';

@@ -1,5 +1,5 @@
-import { Flexbox, Text } from '@flow-ui/core'
-import { ChevronLeft, ChevronRight } from '@flow-ui/core/icons'
+import { Flexbox, Text } from '@stage-ui/core'
+import { ChevronLeft, ChevronRight } from '@stage-ui/core/icons'
 import React, { Fragment } from 'react'
 import CalendarTypes from './types'
 

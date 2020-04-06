@@ -1,8 +1,8 @@
-import { Header, Paragraph, Flexbox, Link } from '@flow-ui/core'
+import { Header, Paragraph, Flexbox, Link } from '@stage-ui/core'
 import styles from './styles'
-import SystemTypes from '@flow-ui/system/types'
+import SystemTypes from '@stage-ui/system/types'
 import ThemeSwitcher from '../../../components/Menu/ThemeSwitcher'
-import { Github } from '@flow-ui/core/icons'
+import { Github } from '@stage-ui/core/icons'
 import React from 'react'
 
 interface HeaderPanelProps {

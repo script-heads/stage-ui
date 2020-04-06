@@ -1,5 +1,5 @@
-import { Block, Divider, Flexbox, Menu, Paragraph, ScrollView, useTheme } from '@flow-ui/core'
-import { Copy, Cube, Link, Trash2 } from '@flow-ui/core/icons'
+import { Block, Divider, Flexbox, Menu, Paragraph, ScrollView, useTheme } from '@stage-ui/core'
+import { Copy, Cube, Link, Trash2 } from '@stage-ui/core/icons'
 import React, { Fragment } from 'react'
 import { context } from '../..'
 import { componentsTypography } from '../RenderPanel'

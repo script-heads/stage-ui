@@ -1,5 +1,5 @@
-import { useTheme } from '@flow-ui/core'
-import mergeObjects from '@flow-ui/system/utils/mergeObjects'
+import { useTheme } from '@stage-ui/core'
+import mergeObjects from '@stage-ui/system/utils/mergeObjects'
 import { ChartDataSets, ChartOptions } from 'chart.js'
 import React, { forwardRef, RefForwardingComponent } from 'react'
 import { Bar, Bubble, Doughnut, HorizontalBar, Line, Pie, Polar, Radar, Scatter } from 'react-chartjs-2'

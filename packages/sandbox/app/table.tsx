@@ -1,6 +1,6 @@
-import { Flexbox, Meter, Range, Table, Text, TextField } from '@flow-ui/core'
-import T from '@flow-ui/core/data/Table/types'
-import { ArrowIosDownward, Checkmark, Edit2 } from '@flow-ui/core/icons'
+import { Flexbox, Meter, Range, Table, Text, TextField } from '@stage-ui/core'
+import T from '@stage-ui/core/data/Table/types'
+import { ArrowIosDownward, Checkmark, Edit2 } from '@stage-ui/core/icons'
 import React from 'react'
 
 const EditAge = (props: { ctx: T.TableCellContext }) => {
@@ -24,7 +24,7 @@ const EditAge = (props: { ctx: T.TableCellContext }) => {
                 autoFocus
                 name={props.ctx.column?.title}
                 value={value}
-                onChange={e =>setValue(parseInt(e.target.value))}
+                onChange={e => setValue(parseInt(e.target.value))}
                 onEnter={save}
             />
             <Range
@@ -47,10 +47,10 @@ const DisplayAge = (props: { ctx: T.TableCellContext }) => (
             }}
         />
         <Text mr={'0.5rem'}>{props.ctx.value}</Text>
-        <Meter 
+        <Meter
             loading={parseInt(props.ctx.value as string) < 18}
             flex={1}
-            value={parseInt(props.ctx.value as string)} 
+            value={parseInt(props.ctx.value as string)}
         />
     </Flexbox>
 )
@@ -81,15 +81,15 @@ const PlaygroundTable = () => {
     return (
         <Table
             columns={[
-                { 
-                    title: 'Name', 
-                    key: 'name', 
-                    sort: 'ASC', 
-                    render: ctx => <ExpandCell ctx={ctx} /> 
+                {
+                    title: 'Name',
+                    key: 'name',
+                    sort: 'ASC',
+                    render: ctx => <ExpandCell ctx={ctx} />
                 },
-                { 
-                    title: 'age', 
-                    key: 'age', 
+                {
+                    title: 'age',
+                    key: 'age',
                     sort: 'ASC',
                     width: '50%',
                     render: ctx => {

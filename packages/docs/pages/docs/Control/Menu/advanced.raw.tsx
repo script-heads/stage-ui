@@ -1,5 +1,5 @@
-import { Menu } from '@flow-ui/core'
-import { Video, Music, DoneAll, Settings, Person, AlertCircle } from '@flow-ui/core/icons'
+import { Menu } from '@stage-ui/core'
+import { Video, Music, DoneAll, Settings, Person, AlertCircle } from '@stage-ui/core/icons'
 import React from 'react'
 
 export default () => {

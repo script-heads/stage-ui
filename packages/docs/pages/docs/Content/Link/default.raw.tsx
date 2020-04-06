@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from '@flow-ui/core'
+import { Link } from '@stage-ui/core'
 
 export default () => {
     return (

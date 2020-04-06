@@ -1,4 +1,4 @@
-import { Table, ScrollView } from '@flow-ui/core'
+import { Table, ScrollView } from '@stage-ui/core'
 import React from 'react'
 
 export default () => {

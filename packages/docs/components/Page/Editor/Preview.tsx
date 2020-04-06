@@ -1,9 +1,9 @@
 
-import * as CoreScope from '@flow-ui/core'
-import { Block } from '@flow-ui/core'
-import * as IconScope from '@flow-ui/core/icons'
-import * as LabScope from '@flow-ui/lab'
-import SystemTypes from '@flow-ui/system/types'
+import * as CoreScope from '@stage-ui/core'
+import { Block } from '@stage-ui/core'
+import * as IconScope from '@stage-ui/core/icons'
+import * as LabScope from '@stage-ui/lab'
+import SystemTypes from '@stage-ui/system/types'
 import React from 'react'
 
 //@ts-ignore

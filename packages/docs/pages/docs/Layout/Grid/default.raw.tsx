@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Block } from '@flow-ui/core';
+import { Grid, Block } from '@stage-ui/core';
 
 export default () => {
     return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Block, Tree } from '@flow-ui/core'
+import { Block, Tree } from '@stage-ui/core'
 
 export default () => {
     return (

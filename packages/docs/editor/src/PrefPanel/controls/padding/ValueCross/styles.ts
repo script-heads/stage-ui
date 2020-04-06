@@ -1,5 +1,5 @@
 import { css } from '@emotion/core'
-import SystemTypes from '@flow-ui/system/types'
+import SystemTypes from '@stage-ui/system/types'
 
 type State = {
     lockX: boolean

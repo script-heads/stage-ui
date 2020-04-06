@@ -1,4 +1,4 @@
-import { useTheme } from '@flow-ui/core'
+import { useTheme } from '@stage-ui/core'
 import React from 'react'
 import { Prism } from 'react-syntax-highlighter'
 import light from 'react-syntax-highlighter/dist/esm/styles/prism/prism'

@@ -1,7 +1,7 @@
-import { Block, Text, useTheme } from '@flow-ui/core'
+import { Block, Text, useTheme } from '@stage-ui/core'
 import React, { forwardRef, RefForwardingComponent, useImperativeHandle, useRef, useState, useEffect } from 'react'
 import styles from './styles'
-import SystemTypes from '@flow-ui/system/types'
+import SystemTypes from '@stage-ui/system/types'
 import { ArchitectItem } from '../../types'
 
 type MaskProps = {

@@ -1,5 +1,5 @@
-import { Block, Button, Flexbox, Paragraph } from '@flow-ui/core'
-import { ButtonGroup } from '@flow-ui/lab'
+import { Block, Button, Flexbox, Paragraph } from '@stage-ui/core'
+import { ButtonGroup } from '@stage-ui/lab'
 import { context } from '../../../..'
 import React from 'react'
 

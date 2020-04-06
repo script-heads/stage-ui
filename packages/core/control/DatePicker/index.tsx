@@ -1,9 +1,9 @@
 import { jsx } from '@emotion/core'
-import { Calendar, Drop, Popover } from '@flow-ui/core'
-import { Calendar as CalendarIcon } from '@flow-ui/core/icons'
-import Field from '@flow-ui/core/misc/hocs/Field'
-import useMask from '@flow-ui/core/misc/hooks/useMask'
-import { useComponent } from '@flow-ui/system'
+import { Calendar, Drop, Popover } from '@stage-ui/core'
+import { Calendar as CalendarIcon } from '@stage-ui/core/icons'
+import Field from '@stage-ui/core/misc/hocs/Field'
+import useMask from '@stage-ui/core/misc/hooks/useMask'
+import { useComponent } from '@stage-ui/system'
 import moment, { Moment } from 'moment'
 import React, { forwardRef, Fragment, RefForwardingComponent, useLayoutEffect, useRef, useState } from 'react'
 import maskConf from './mask'
@@ -16,11 +16,11 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
         locale = 'ru',
         format = 'YYYY-MM-DD',
         defaultValue,
-        decoration = 'outline', 
-        size = 'm', 
-        shape='rounded', 
+        decoration = 'outline',
+        size = 'm',
+        shape = 'rounded',
         tabIndex = 0,
-        label 
+        label
     } = props
 
     moment.locale(locale)
@@ -33,13 +33,13 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
         defaultValue === '' ||
         defaultValue === 'undefined'
     )
-    
-    const { cs, attributes, events, focus } = useComponent('DatePicker', { 
-        props, 
+
+    const { cs, attributes, events, focus } = useComponent('DatePicker', {
+        props,
         styles,
         styleProps: {
-            container: ['flow','layout'], 
-            field:['color','border','padding']
+            container: ['flow', 'layout'],
+            field: ['color', 'border', 'padding']
         },
         focus: {
             applyDecoration: false
@@ -72,9 +72,9 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
         } else if (inputRef.current) {
             inputRef.current.value = value.format(format)
         }
-        
+
         setValue(value)
-        
+
         if (props.onChange) {
             props.onChange(value, value.format(format))
         }
@@ -102,7 +102,7 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
                             setActive(true)
                         }
                     },
-                    onClick:(e) => {
+                    onClick: (e) => {
                         events.all.onClick?.(e)
                         if (!props.disabled) {
                             setActive(true)
@@ -127,7 +127,7 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
                             }
                         },
                         css: cs.input,
-                        
+
                         defaultValue: defaultValue
                             ? moment(defaultValue, format)
                             : moment().format(format),
@@ -168,7 +168,7 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
                 }}
                 target={inputRef}
             >
-                <Popover css={cs.drop({isActive})}>
+                <Popover css={cs.drop({ isActive })}>
                     <Calendar
                         value={value}
                         minValue={minValue}
@@ -180,7 +180,7 @@ const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, 
                 </Popover>
             </Drop>
         </Fragment>
-        
+
     )
 }
 

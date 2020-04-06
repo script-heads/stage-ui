@@ -1,5 +1,5 @@
-import { Flexbox } from '@flow-ui/core'
-import { ArrowIosDownward, ArrowIosUpward } from '@flow-ui/core/icons'
+import { Flexbox } from '@stage-ui/core'
+import { ArrowIosDownward, ArrowIosUpward } from '@stage-ui/core/icons'
 import React, { forwardRef, RefForwardingComponent } from 'react'
 import Types from './types'
 

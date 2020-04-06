@@ -1,6 +1,6 @@
-import { Block, Flexbox, Header, Text } from '@flow-ui/core'
-import * as AllIcons from '@flow-ui/core/icons'
-import { Minus, Plus } from '@flow-ui/core/icons'
+import { Block, Flexbox, Header, Text } from '@stage-ui/core'
+import * as AllIcons from '@stage-ui/core/icons'
+import { Minus, Plus } from '@stage-ui/core/icons'
 import React, { Fragment, useEffect, useState } from 'react'
 
 export const title = 'Collection'

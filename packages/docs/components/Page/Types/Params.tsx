@@ -1,7 +1,7 @@
-import { Flexbox, Text } from '@flow-ui/core'
-import TextTypes from '@flow-ui/core/content/Text/types'
+import { Flexbox, Text } from '@stage-ui/core'
+import TextTypes from '@stage-ui/core/content/Text/types'
 import React from 'react'
-import { Property } from '@flow-ui/docs/utils/types'
+import { Property } from '@stage-ui/docs/utils/types'
 
 const Params = (props: { property: Property }) => {
     const { property } = props

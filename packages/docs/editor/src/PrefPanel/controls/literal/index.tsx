@@ -1,6 +1,6 @@
 import { ArchitectTools } from '../../../../types'
-import { Block, Button, Paragraph, Select } from '@flow-ui/core'
-import { ButtonGroup } from '@flow-ui/lab'
+import { Block, Button, Paragraph, Select } from '@stage-ui/core'
+import { ButtonGroup } from '@stage-ui/lab'
 import { context } from '../../../..'
 import React from 'react'
 

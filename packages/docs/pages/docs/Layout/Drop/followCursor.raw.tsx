@@ -1,4 +1,4 @@
-import { Block, Drop } from '@flow-ui/core'
+import { Block, Drop } from '@stage-ui/core'
 import React from 'react'
 
 export default () => {

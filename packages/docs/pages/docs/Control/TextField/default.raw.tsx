@@ -1,6 +1,6 @@
 import React from 'react'
-import { TextField } from '@flow-ui/core'
-import { Person } from '@flow-ui/core/icons'
+import { TextField } from '@stage-ui/core'
+import { Person } from '@stage-ui/core/icons'
 
 export default () => {
     return (

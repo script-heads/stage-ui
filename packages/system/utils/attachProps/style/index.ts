@@ -1,4 +1,4 @@
-import SystemTypes, { EmotionStyles } from '@flow-ui/system/types'
+import SystemTypes, { EmotionStyles } from '@stage-ui/system/types'
 import resolveEvent from './resolvers/event'
 import resolveColor from './resolvers/color'
 import resolvePaddingMargin from './resolvers/paddingMargin'

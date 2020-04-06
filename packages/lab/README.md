@@ -1,4 +1,4 @@
-# [Flow UI](http://flowui.abr.tech)
+# [Flow UI](http://stageui.abr.tech)
 Consistent React UI Framework declared by your own Design System. 
 
 🧪External and developing components for Flow UI
@@ -6,8 +6,8 @@ Consistent React UI Framework declared by your own Design System.
 ## How to install?
 
 ```
-yarn add @flow-ui/lab
+yarn add @stage-ui/lab
 ```
 
 ***
-[MIT License](https://github.com/abr-tech/FlowUI/blob/master/LICENSE)
+[MIT License](https://github.com/abr-tech/StageUI/blob/master/LICENSE)

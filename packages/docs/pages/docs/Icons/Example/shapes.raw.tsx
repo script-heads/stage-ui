@@ -1,4 +1,4 @@
-import { Cube, Archive } from '@flow-ui/core/icons'
+import { Cube, Archive } from '@stage-ui/core/icons'
 import React from 'react'
 
 export default () => {

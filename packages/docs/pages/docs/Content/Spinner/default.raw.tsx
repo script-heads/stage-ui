@@ -1,5 +1,5 @@
 import React from 'react'
-import { Spinner } from '@flow-ui/core'
+import { Spinner } from '@stage-ui/core'
 
 export default () => {
     return (

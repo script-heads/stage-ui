@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button } from '@flow-ui/core'
-  
+import { Button } from '@stage-ui/core'
+
 export default () => {
     return (
         <Button

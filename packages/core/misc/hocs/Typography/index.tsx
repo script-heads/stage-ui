@@ -1,5 +1,5 @@
 import { jsx } from '@emotion/core'
-import { useComponent } from '@flow-ui/system'
+import { useComponent } from '@stage-ui/system'
 import { forwardRef, RefForwardingComponent, useMemo } from 'react'
 import styles from './styles'
 import Types from './types'

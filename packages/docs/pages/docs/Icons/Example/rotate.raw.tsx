@@ -1,4 +1,4 @@
-import { ArrowIosForward } from '@flow-ui/core/icons'
+import { ArrowIosForward } from '@stage-ui/core/icons'
 import React, { useState } from 'react'
 
 export default () => {
@@ -8,8 +8,8 @@ export default () => {
             <ArrowIosForward
                 shape="oval"
                 color={c => c.onPrimary}
-                background={c => c.primary} 
-                size="2rem" 
+                background={c => c.primary}
+                size="2rem"
                 rotate={deg}
                 onClick={() => {
                     setDegree(deg ? 0 : 90)

@@ -1,6 +1,6 @@
 import { ArchitectItem } from '../../../types'
-import { Block, Flexbox, Paragraph, Text, Tree } from '@flow-ui/core'
-import { ArrowIosForward, Copy, Trash2 } from '@flow-ui/core/icons'
+import { Block, Flexbox, Paragraph, Text, Tree } from '@stage-ui/core'
+import { ArrowIosForward, Copy, Trash2 } from '@stage-ui/core/icons'
 import { Fragment } from 'react'
 import { TabProps } from '..'
 import { context } from '../../..'

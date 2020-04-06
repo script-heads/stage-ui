@@ -1,5 +1,5 @@
 {
-    "name": "@flow-ui/monorepo",
+    "name": "stage-ui",
     "author": "ABR Tech",
     "version": "0.1.0",
     "license": "MIT",
@@ -8,11 +8,11 @@
         "packages/*"
     ],
     "scripts": {
-        "sandbox": "yarn workspace @flow-ui/sandbox start",
-        "sandbox:a": "yarn workspace @flow-ui/sandbox analyze",
-        "start": "yarn workspace @flow-ui/docs start",
+        "sandbox": "yarn workspace @stage-ui/sandbox start",
+        "sandbox:a": "yarn workspace @stage-ui/sandbox analyze",
+        "start": "yarn workspace @stage-ui/docs start",
         "gen": "yarn gen:createTypes && yarn gen:generateTypes && yarn gen:fixTypes",
-        "gen:createTypes": "cd ./packages/docs && typedoc -mode file --json ./utils/definitions/original.json ../docs/pages/docs",
+        "gen:createTypes": "cd ./packages/docs && typedoc -mode file --json ./public/definitions/original.json ../docs/pages/docs",
         "gen:generateTypes": "cd ./packages/docs && node ./scripts/generateTypes.js",
         "gen:fixTypes": "cd ./packages/docs && node ./scripts/fixTypes.js",
         "gen:evaicons": "cd ./packages/core && yarn icons:generate",
@@ -22,9 +22,9 @@
         "pub:system": "cd ./packages/system && yarn pub",
         "gitpush": "git commit . -m 'Update version' && git push",
         "build": "cd ./packages/docs && yarn build",
-        "form": "cd ./build/docs && pm2 start --name FlowUI server.js",
-        "test": "yarn workspace @flow-ui/docs test",
-        "approve": "yarn workspace @flow-ui/docs approve",
+        "form": "cd ./build/docs && pm2 start --name StageUI server.js",
+        "test": "yarn workspace @stage-ui/docs test",
+        "approve": "yarn workspace @stage-ui/docs approve",
         "deploy": "curl -X POST -F token=8e3b477f2ce3ef9e5f4ca44d977a71 -F ref=master  http://gitlab.abr-region.ru/api/v4/projects/237/trigger/pipeline > /dev/null"
     },
     "dependencies": {

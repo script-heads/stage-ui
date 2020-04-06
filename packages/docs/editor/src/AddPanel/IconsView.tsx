@@ -1,7 +1,7 @@
-import { ScrollView, Flexbox, Text, Block } from '@flow-ui/core'
+import { ScrollView, Flexbox, Text, Block } from '@stage-ui/core'
 import React, { Fragment, useEffect, useState } from 'react'
 import { AddPanelStyles } from './styles'
-import * as IconScope from '@flow-ui/core/icons'
+import * as IconScope from '@stage-ui/core/icons'
 import { context } from '../..'
 
 let Delay = (props) => {

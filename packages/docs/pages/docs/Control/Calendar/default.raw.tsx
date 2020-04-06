@@ -1,5 +1,5 @@
 import React from 'react'
-import { Calendar } from '@flow-ui/core'
+import { Calendar } from '@stage-ui/core'
 
 export default () => {
     return (

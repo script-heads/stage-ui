@@ -33,7 +33,7 @@ function generateTypes(package) {
             resolveModuleId: (params) => {
 
                 if (params.currentModuleId === 'index') {
-                    return `@flow-ui/${package}`
+                    return `@stage-ui/${package}`
                 }
                 if (params.currentModuleId.match('/index')) {
                     return params.currentModuleId.replace('/index', '')

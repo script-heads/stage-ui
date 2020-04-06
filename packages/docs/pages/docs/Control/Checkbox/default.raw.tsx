@@ -1,5 +1,5 @@
 import React from 'react'
-import { Checkbox } from '@flow-ui/core'
+import { Checkbox } from '@stage-ui/core'
 
 export default () => {
     return (

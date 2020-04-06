@@ -1,4 +1,4 @@
-import colorProp from '@flow-ui/system/utils/colorProp'
+import colorProp from '@stage-ui/system/utils/colorProp'
 import SystemPropsTypes from '../../types'
 
 const resolver: SystemPropsTypes.StyleResolver = (params) => {

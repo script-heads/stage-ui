@@ -1,6 +1,6 @@
 declare module 'data/Chart/types' {
 	import { ChartDataSets, ChartOptions } from 'chart.js';
-	import SystemTypes from '@flow-ui/system/types'; namespace ChartTypes {
+	import SystemTypes from '@stage-ui/system/types'; namespace ChartTypes {
 	    type ChartType = 'line' | 'pie' | 'verticalBar' | 'horizontalBar' | 'doughnut' | 'radar' | 'polar' | 'scatter' | 'bubble';
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
@@ -39,7 +39,7 @@ declare module 'layout/Split/Separator' {
 }
 declare module 'layout/Split/types' {
 	import React from 'react';
-	import SystemTypes from '@flow-ui/system/types'; namespace SplitTypes {
+	import SystemTypes from '@stage-ui/system/types'; namespace SplitTypes {
 	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onMove' | 'onChange'> {
 	        direction?: 'row' | 'column';
 	        children: React.ReactElement[];
@@ -71,7 +71,7 @@ declare module 'layout/Split/types' {
 
 }
 declare module 'layout/Split/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'layout/Split/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
@@ -99,7 +99,7 @@ declare module 'layout/Toolbar/types' {
 
 }
 declare module 'layout/Toolbar/styles' {
-	import SystemTypes from '@flow-ui/system/types';
+	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'layout/Toolbar/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
 	export default styles;
 
@@ -125,7 +125,7 @@ declare module 'control/ButtonGroup' {
 	export default _default;
 
 }
-declare module '@flow-ui/lab' {
+declare module '@stage-ui/lab' {
 	/**
 	 * Data
 	 */
@@ -182,7 +182,7 @@ declare module 'misc/logos' {
 
 }
 declare module 'misc/themes/whiteCurrant' {
-	 const whiteCurrant: import("@flow-ui/system/types").default.Theme;
+	 const whiteCurrant: import("@stage-ui/system/types").default.Theme;
 	export default whiteCurrant;
 
 }

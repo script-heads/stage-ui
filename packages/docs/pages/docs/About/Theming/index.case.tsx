@@ -1,4 +1,4 @@
-import { Block, Paragraph as P, Header, Link } from '@flow-ui/core'
+import { Block, Paragraph as P, Header, Link } from '@stage-ui/core'
 import React from 'react'
 import Syntax from '../../../../components/Page/Content/Syntax'
 import theme from './theme.raw'
@@ -12,7 +12,7 @@ export const sticky = true
 export default () => (
     <Block>
         <P>
-            FlowUI contains two themes itself: Light and Dark.
+            StageUI contains two themes itself: Light and Dark.
             Light setup by default. Any others theme icludes
             user created pass on the theme prop of Viewport
             component. There's three section to describe

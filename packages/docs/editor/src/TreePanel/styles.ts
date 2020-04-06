@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from '@emotion/core'
-import SystemTypes from '@flow-ui/system/types'
+import SystemTypes from '@stage-ui/system/types'
 
 export type StyleTypes = {
     container: SerializedStyles

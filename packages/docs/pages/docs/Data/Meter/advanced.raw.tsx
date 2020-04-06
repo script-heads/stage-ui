@@ -1,5 +1,5 @@
 import React from 'react'
-import { Block, Meter, Text } from '@flow-ui/core'
+import { Block, Meter, Text } from '@stage-ui/core'
 
 export default () => {
     return (

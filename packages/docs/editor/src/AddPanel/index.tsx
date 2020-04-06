@@ -1,5 +1,5 @@
-import { Block, Divider, Flexbox, Menu, TextField, useTheme } from '@flow-ui/core'
-import { Grid, Layers, Search } from '@flow-ui/core/icons'
+import { Block, Divider, Flexbox, Menu, TextField, useTheme } from '@stage-ui/core'
+import { Grid, Layers, Search } from '@stage-ui/core/icons'
 import React, { Fragment, useState } from 'react'
 import ComponentsView from './ComponentsView'
 import IconsView from './IconsView'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid } from '@flow-ui/core'
+import { Grid } from '@stage-ui/core'
 import { Config } from '../../../utils/core'
 import TypeDoc from '../../../utils/types'
 import Interface from './Interface'

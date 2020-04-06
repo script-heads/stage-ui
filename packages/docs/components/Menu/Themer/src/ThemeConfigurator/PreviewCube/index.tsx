@@ -1,4 +1,4 @@
-import { Flexbox, useTheme } from '@flow-ui/core'
+import { Flexbox, useTheme } from '@stage-ui/core'
 import React from 'react'
 
 const PreviewCube = () => {

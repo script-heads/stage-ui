@@ -1,8 +1,8 @@
 
-import { Block } from '@flow-ui/core'
-import { Checkmark } from '@flow-ui/core/icons'
-import Check from '@flow-ui/core/misc/hocs/Check'
-import { useComponent } from '@flow-ui/system'
+import { Block } from '@stage-ui/core'
+import { Checkmark } from '@stage-ui/core/icons'
+import Check from '@stage-ui/core/misc/hocs/Check'
+import { useComponent } from '@stage-ui/system'
 import React, { forwardRef, RefForwardingComponent } from 'react'
 import styles from './styles'
 import Types from './types'

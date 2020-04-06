@@ -1,6 +1,6 @@
 import { ChangeEventHandler } from 'react'
 import FieldTypes from '../../misc/hocs/Field/types'
-import SystemTypes from '@flow-ui/system/types'
+import SystemTypes from '@stage-ui/system/types'
 
 declare namespace TextFieldTypes {
 

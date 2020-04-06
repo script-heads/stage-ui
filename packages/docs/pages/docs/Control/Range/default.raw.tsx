@@ -1,5 +1,5 @@
 import React from 'react';
-import { Range } from '@flow-ui/core';
+import { Range } from '@stage-ui/core';
 
 export default () => {
     return (

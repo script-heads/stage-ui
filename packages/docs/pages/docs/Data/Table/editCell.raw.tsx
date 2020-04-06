@@ -1,6 +1,6 @@
-import { Flexbox, Table, Text, TextField } from '@flow-ui/core'
-import T from '@flow-ui/core/data/Table/types'
-import { Checkmark, Edit2 } from '@flow-ui/core/icons'
+import { Flexbox, Table, Text, TextField } from '@stage-ui/core'
+import T from '@stage-ui/core/data/Table/types'
+import { Checkmark, Edit2 } from '@stage-ui/core/icons'
 import React from 'react'
 
 export default () => {

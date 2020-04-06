@@ -1,5 +1,5 @@
-import { Button, dialog, Divider, Flexbox, notify, Text } from '@flow-ui/core'
-import { QuestionMarkCircle, Save } from '@flow-ui/core/icons'
+import { Button, dialog, Divider, Flexbox, notify, Text } from '@stage-ui/core'
+import { QuestionMarkCircle, Save } from '@stage-ui/core/icons'
 import React from 'react'
 
 const PlaygroundControl = () => {
@@ -23,7 +23,7 @@ const PlaygroundControl = () => {
             }}>
                 <Text>Notification</Text>
             </Button>
-            <Button color={c => c.error} mr="0.5rem"onClick={() => {
+            <Button color={c => c.error} mr="0.5rem" onClick={() => {
                 dialog({
                     title: 'Hello',
                     message: 'Ops, something went wrong',

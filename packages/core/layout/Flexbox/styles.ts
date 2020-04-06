@@ -1,6 +1,6 @@
-import SystemTypes from '@flow-ui/system/types'
+import SystemTypes from '@stage-ui/system/types'
 import Types from './types'
-import applyLayoutDecoration from '@flow-ui/core/misc/utils/applyLayoutDecoration'
+import applyLayoutDecoration from '@stage-ui/core/misc/utils/applyLayoutDecoration'
 
 const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
     return {

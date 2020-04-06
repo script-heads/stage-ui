@@ -1,4 +1,4 @@
-import { useComponent } from '@flow-ui/system'
+import { useComponent } from '@stage-ui/system'
 import React, { forwardRef, RefForwardingComponent } from 'react'
 import styles from './styles'
 import Types from './types'

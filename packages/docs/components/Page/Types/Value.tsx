@@ -1,8 +1,8 @@
-import { Block, Text, Flexbox } from '@flow-ui/core'
+import { Block, Text, Flexbox } from '@stage-ui/core'
 import React from 'react'
-import Types, { Property, OType } from '@flow-ui/docs/utils/types'
+import Types, { Property, OType } from '@stage-ui/docs/utils/types'
 
-// import { ValueDefinition } from '@flow-ui/docs/components/Page/Types/Interface'
+// import { ValueDefinition } from '@stage-ui/docs/components/Page/Types/Interface'
 // interface ValueProps {
 //     type: ValueDefinition,
 // }
@@ -75,7 +75,7 @@ const Value = (props: { property: Property }) => {
                 <span children={val.name} />
             )
         }
-        
+
         values.push(isArray
             ? <span key={Math.random()}>{`Array<`}{ret}{`>`}</span>
             : <span key={Math.random()}>{ret}</span>
@@ -87,7 +87,7 @@ const Value = (props: { property: Property }) => {
     } else {
         push(val)
     }
-    
+
     if (values.length === 0) {
         values.push(
             <LightText key={Math.random()}>Not documented yet</LightText>

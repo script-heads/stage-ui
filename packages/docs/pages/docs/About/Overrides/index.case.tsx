@@ -1,4 +1,4 @@
-import { Block, Paragraph as P, Header } from '@flow-ui/core'
+import { Block, Paragraph as P, Header } from '@stage-ui/core'
 import React from 'react'
 import Syntax from '../../../../components/Page/Content/Syntax'
 import syntaxExample from './syntaxExample.raw'

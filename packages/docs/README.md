@@ -1,3 +1,3 @@
 # Docs
 
-FlowUI Documentation
+StageUI Documentation

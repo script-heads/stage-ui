@@ -1,5 +1,5 @@
-import SystemTypes from '@flow-ui/system/types'
-import { Text } from '@flow-ui/core'
+import SystemTypes from '@stage-ui/system/types'
+import { Text } from '@stage-ui/core'
 import React, { useState, Fragment } from 'react'
 import Page from '../components/Page'
 import Page404 from './404'

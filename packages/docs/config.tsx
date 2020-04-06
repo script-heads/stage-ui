@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from '@flow-ui/core'
+import { Text } from '@stage-ui/core'
 import Editor from './editor'
 import HomePage from './pages/index/index'
 import { Config } from './utils/core'
@@ -8,8 +8,8 @@ import Params from './components/Page/Types/Params'
 import StyleType from './components/Page/Types/StyleType'
 
 const config: Config = {
-    name: 'FlowUI',
-    git: 'https://github.com/abr-tech/FlowUI',
+    name: 'StageUI',
+    git: 'https://github.com/abr-tech/StageUI',
     pages: {
         order: {
             About: ['Getting started', 'Theming', 'Overrides', 'Props', 'Bundle'],

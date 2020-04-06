@@ -1,19 +1,19 @@
 import React from 'react'
-import {useTheme} from '@flow-ui/system/'
+import { useTheme } from '@stage-ui/system/'
 
-export default (props: {data: string[], higlightBefore?: string}) => {
+export default (props: { data: string[], higlightBefore?: string }) => {
     const theme = useTheme()
-    
+
     return (
-        <ul 
-            css={{ 
+        <ul
+            css={{
                 listStyle: 'none',
                 lineHeight: 1.5,
                 'li::before': {
                     content: `'\\2022'`,
                     color: theme.color.primary.rgb().string(),
                     fontWeight: 'bold',
-                    display: 'inline-block', 
+                    display: 'inline-block',
                     width: '1em',
                     marginLeft: '-1em',
                 }
@@ -22,7 +22,7 @@ export default (props: {data: string[], higlightBefore?: string}) => {
                 ? props.data.map((child, index) => {
                     const split = child.split(props.higlightBefore as string)[0]
                     const other = child.substring(split.length)
-                    
+
                     return (
                         <li key={child + index}>
                             <span

@@ -1,5 +1,5 @@
 // DON'T DO THAT
-import * as Icons from '@flow-ui/core/icons'
+import * as Icons from '@stage-ui/core/icons'
 
 export default () => {
     return (

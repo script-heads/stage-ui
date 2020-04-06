@@ -1,4 +1,4 @@
-import { Spinner, Button } from '@flow-ui/core'
+import { Spinner, Button } from '@stage-ui/core'
 import React from 'react'
 
 export default () => {

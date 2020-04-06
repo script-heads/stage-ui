@@ -1,5 +1,5 @@
-import { Button, dialog, Flexbox, Header, Paragraph } from '@flow-ui/core'
-import { AlertTriangle } from '@flow-ui/core/icons'
+import { Button, dialog, Flexbox, Header, Paragraph } from '@stage-ui/core'
+import { AlertTriangle } from '@stage-ui/core/icons'
 import React from 'react'
 
 export default () => {

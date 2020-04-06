@@ -1,5 +1,5 @@
-import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration'
-import SystemTypes from '@flow-ui/system/types'
+import { LayoutDecoration } from '@stage-ui/core/misc/utils/applyLayoutDecoration'
+import SystemTypes from '@stage-ui/system/types'
 import CSS from 'csstype'
 
 declare namespace BlockTypes {

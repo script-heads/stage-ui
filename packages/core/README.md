@@ -1,28 +1,25 @@
-# [Flow UI](http://flowui.abr.tech)
-Consistent React UI Framework declared by your own Design System. 
+# [Stage UI](http://stageui.abr.tech)
+Flexible UI Framework declared by your own Design System.
 
-Core components of Flow UI
-
-## How to install?
+## Install
 
 ```
-yarn add @flow-ui/core
+yarn add @stage-ui/core
 ```
 
 ## Getting started
 
 ```
 import React from 'react'
-import { Viewport, Block, Header, Paragraph } from '@flow-ui/core'
+import { Viewport, Block, Header } from '@stage-ui/core'
 
 const Hello props =>
 	<Viewport>
 	  <Block>
-	    <Header>Hello</Header>
-	    <Paragraph>Rebass</Paragraph>
+	    <Header>Hello world!</Header>
 	  </Block>
 	</Viewport>
 ```
 
 ***
-[MIT License](https://github.com/abr-tech/FlowUI/blob/master/LICENSE)
+[MIT License](https://github.com/stage-org/StageUI/blob/master/LICENSE)

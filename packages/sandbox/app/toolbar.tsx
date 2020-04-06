@@ -1,5 +1,5 @@
-import { Button, DatePicker, Divider, Flexbox, Select, TextField } from '@flow-ui/core'
-import { Funnel, Refresh, Search } from '@flow-ui/core/icons'
+import { Button, DatePicker, Divider, Flexbox, Select, TextField } from '@stage-ui/core'
+import { Funnel, Refresh, Search } from '@stage-ui/core/icons'
 import React from 'react'
 
 const PlaygroundToolbar = () => {
@@ -9,7 +9,7 @@ const PlaygroundToolbar = () => {
                 flex={3}
                 leftChild={<Search />}
                 rightChild={
-                    <Button size="xs"><Funnel/> Filter</Button>
+                    <Button size="xs"><Funnel /> Filter</Button>
                 }
                 placeholder="Search"
             />
@@ -34,7 +34,7 @@ const PlaygroundToolbar = () => {
                 ml="0.5rem"
             />
             <Divider vertical mx="0.5rem" h="2.5rem" />
-            <Button decoration="text"><Refresh/> Reload</Button>
+            <Button decoration="text"><Refresh /> Reload</Button>
         </Flexbox>
     )
 }

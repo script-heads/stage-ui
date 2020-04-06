@@ -1,4 +1,4 @@
-import { useComponent } from '@flow-ui/system'
+import { useComponent } from '@stage-ui/system'
 import React, { forwardRef, RefForwardingComponent, useState, useLayoutEffect } from 'react'
 import MenuItem from './MenuItem'
 import styles from './styles'

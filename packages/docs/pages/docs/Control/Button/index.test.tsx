@@ -1,5 +1,5 @@
 import React from 'react'
-import * as Core from '@flow-ui/core'
+import * as Core from '@stage-ui/core'
 
 const sizes = ['xl', 'l', 'm', 's', 'xs'] as any
 const buttonDecoration = ['filled', 'outline', 'plain', 'text'] as any

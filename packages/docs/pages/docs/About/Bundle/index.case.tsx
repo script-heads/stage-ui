@@ -1,4 +1,4 @@
-import { Block, Paragraph as P, Header } from '@flow-ui/core'
+import { Block, Paragraph as P, Header } from '@stage-ui/core'
 import React from 'react'
 import config from './config.raw'
 import icons from './icons.raw'
@@ -12,12 +12,12 @@ export default () => (
     <Block>
         <P>
             It is convenient to import components from
-            the FlowUI index file, however, this design
+            the StageUI index file, however, this design
             leads to the fact that all components get
             into the bundle at once. This may lead to
             its undesirable increase.
         </P>
-        <Syntax code={`import {Button} from '@flow-ui/core'`} />
+        <Syntax code={`import {Button} from '@stage-ui/core'`} />
         <P>
             To avoid this please use our babel plugin.
         </P>

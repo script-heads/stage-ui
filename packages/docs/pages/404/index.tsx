@@ -1,4 +1,4 @@
-import { Header, Text } from '@flow-ui/core'
+import { Header, Text } from '@stage-ui/core'
 import { Fragment } from 'react'
 import React from 'react'
 

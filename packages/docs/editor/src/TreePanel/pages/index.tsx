@@ -1,4 +1,4 @@
-import { Paragraph } from '@flow-ui/core'
+import { Paragraph } from '@stage-ui/core'
 import { Fragment } from 'react'
 import { TabProps } from '..'
 import { context } from '../../..'

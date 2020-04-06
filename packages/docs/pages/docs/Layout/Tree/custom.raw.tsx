@@ -1,4 +1,4 @@
-import { Tree } from '@flow-ui/core'
+import { Tree } from '@stage-ui/core'
 import React from 'react'
 
 type TreeItem = {

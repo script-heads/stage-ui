@@ -1,4 +1,4 @@
-import { Block, Flexbox, Header, Text, Divider } from '@flow-ui/core'
+import { Block, Flexbox, Header, Text, Divider } from '@stage-ui/core'
 import React from 'react'
 
 interface ComponentsProps {

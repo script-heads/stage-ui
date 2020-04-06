@@ -1,4 +1,4 @@
-import light from '@flow-ui/core/misc/themes/light'
+import light from '@stage-ui/core/misc/themes/light'
 
 const whiteCurrant = light.replace({
 	main: {

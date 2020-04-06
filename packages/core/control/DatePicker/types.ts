@@ -1,7 +1,7 @@
-import SystemTypes from '@flow-ui/system/types'
+import SystemTypes from '@stage-ui/system/types'
 import { Moment } from 'moment'
 import FieldTypes from '../../misc/hocs/Field/types'
-import CalendarTypes from '@flow-ui/core/control/Calendar/types'
+import CalendarTypes from '@stage-ui/core/control/Calendar/types'
 
 declare namespace DatePickerTypes {
 

@@ -1,5 +1,5 @@
-import { Button, Flexbox } from '@flow-ui/core'
-import { Compass, ArrowRight } from '@flow-ui/core/icons'
+import { Button, Flexbox } from '@stage-ui/core'
+import { Compass, ArrowRight } from '@stage-ui/core/icons'
 import React from 'react'
 
 export default () => {

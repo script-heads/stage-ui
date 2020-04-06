@@ -1,9 +1,9 @@
-import { Block, Flexbox, Header, Paragraph, ScrollView } from '@flow-ui/core'
+import { Block, Flexbox, Header, Paragraph, ScrollView } from '@stage-ui/core'
 import { PageType, Config, PagesType } from '../../utils/core'
 import Editor from './Editor'
 import Types from './Types'
 import React, { Fragment } from 'react'
-import SystemTypes from '@flow-ui/system/types'
+import SystemTypes from '@stage-ui/system/types'
 import Menu from '../Menu'
 import Sidebar from '../Sidebar'
 

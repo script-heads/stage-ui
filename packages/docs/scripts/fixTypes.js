@@ -19,20 +19,20 @@ function fixTypes(package, replaces = []) {
     }
 }
 fixTypes('system', [
-    ["declare module 'types'", "declare module '@flow-ui/system/types'"],
+    ["declare module 'types'", "declare module '@stage-ui/system/types'"],
 ])
 fixTypes('core', [
-    ['data/Table/types', '@flow-ui/core/data/Table/types'],
-    ['layout/Modal/types', '@flow-ui/core/layout/Modal/types'],
-    ['misc/hocs/Icon/types', '@flow-ui/core/misc/hocs/Icon/types'],
-    ['misc/hocs/Field/types', '@flow-ui/core/misc/hocs/Field/types'],
-    ['misc/hocs/Check/types', '@flow-ui/core/misc/hocs/Check/types'],
-    ['misc/hocs/Typography/types', '@flow-ui/core/misc/hocs/Typography/types'],
-    ["declare module 'icons'", "declare module '@flow-ui/core/icons'"],
+    ['data/Table/types', '@stage-ui/core/data/Table/types'],
+    ['layout/Modal/types', '@stage-ui/core/layout/Modal/types'],
+    ['misc/hocs/Icon/types', '@stage-ui/core/misc/hocs/Icon/types'],
+    ['misc/hocs/Field/types', '@stage-ui/core/misc/hocs/Field/types'],
+    ['misc/hocs/Check/types', '@stage-ui/core/misc/hocs/Check/types'],
+    ['misc/hocs/Typography/types', '@stage-ui/core/misc/hocs/Typography/types'],
+    ["declare module 'icons'", "declare module '@stage-ui/core/icons'"],
 ])
 fixTypes('lab', [
-    ['@flow-ui/core', ''],
-    ["declare module 'icons'", "declare module '@flow-ui/core/icons'"],
+    ['@stage-ui/core', ''],
+    ["declare module 'icons'", "declare module '@stage-ui/core/icons'"],
 ])
 
 fixTypes('color', [

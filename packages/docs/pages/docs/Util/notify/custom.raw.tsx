@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, notify, Block, Meter, Header } from '@flow-ui/core'
+import { Button, notify, Block, Meter, Header } from '@stage-ui/core'
 
 export default () => {
     return (

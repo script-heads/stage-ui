@@ -1,7 +1,7 @@
 import React, { Fragment, useRef, useState } from 'react'
-import { Block, Flexbox, Drop, Popover, Grid } from '@flow-ui/core'
-import SystemTypes from '@flow-ui/system/types'
-import { ColorPalette } from '@flow-ui/core/icons'
+import { Block, Flexbox, Drop, Popover, Grid } from '@stage-ui/core'
+import SystemTypes from '@stage-ui/system/types'
+import { ColorPalette } from '@stage-ui/core/icons'
 
 export interface ThemeSwitcherProps {
     themes: Record<string, SystemTypes.Theme>

@@ -1,5 +1,5 @@
-import { Flexbox, Header, Paragraph } from '@flow-ui/core'
-import { Close } from '@flow-ui/core/icons'
+import { Flexbox, Header, Paragraph } from '@stage-ui/core'
+import { Close } from '@stage-ui/core/icons'
 import React from 'react'
 import ModalTypes from './types'
 

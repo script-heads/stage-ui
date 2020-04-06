@@ -1,5 +1,5 @@
 import React from 'react'
-import { Viewport } from '@flow-ui/core'
+import { Viewport } from '@stage-ui/core'
 
 export default () => {
     return (

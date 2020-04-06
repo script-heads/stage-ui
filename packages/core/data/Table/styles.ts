@@ -1,7 +1,7 @@
 
 import Types from './types'
-import SystemTypes from '@flow-ui/system/types'
-import applyLayoutDecoration from '@flow-ui/core/misc/utils/applyLayoutDecoration'
+import SystemTypes from '@stage-ui/system/types'
+import applyLayoutDecoration from '@stage-ui/core/misc/utils/applyLayoutDecoration'
 
 // TODO: borderBottomStyle type incorrect
 //@ts-ignore

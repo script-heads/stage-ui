@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flexbox, Block } from '@flow-ui/core'
+import { Flexbox, Block } from '@stage-ui/core'
 
 export default () => {
     return (

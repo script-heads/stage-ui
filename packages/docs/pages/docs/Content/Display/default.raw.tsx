@@ -1,5 +1,5 @@
 import React from 'react'
-import { Display } from '@flow-ui/core'
+import { Display } from '@stage-ui/core'
 
 export default () => {
     return (

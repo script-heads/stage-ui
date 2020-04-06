@@ -1,6 +1,6 @@
 import Types from './types'
-import SystemTypes from '@flow-ui/system/types'
-import checkStyles from '@flow-ui/core/misc/hocs/Check/styles'
+import SystemTypes from '@stage-ui/system/types'
+import checkStyles from '@stage-ui/core/misc/hocs/Check/styles'
 
 const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
 

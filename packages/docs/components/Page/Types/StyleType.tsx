@@ -1,6 +1,6 @@
-import { Text, Flexbox, Paragraph } from '@flow-ui/core'
+import { Text, Flexbox, Paragraph } from '@stage-ui/core'
 import React from 'react'
-import { Property, OTypeIntrinsic, OTypeReflection } from '@flow-ui/docs/utils/types'
+import { Property, OTypeIntrinsic, OTypeReflection } from '@stage-ui/docs/utils/types'
 
 function getRefelections(value: OTypeReflection) {
     return Object.values(value.declaration.children).map(child => {

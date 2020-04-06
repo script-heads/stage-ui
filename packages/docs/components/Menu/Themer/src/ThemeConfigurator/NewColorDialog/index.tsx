@@ -1,8 +1,8 @@
-import { Block, Button, Flexbox, Paragraph, TextField } from '@flow-ui/core'
+import { Block, Button, Flexbox, Paragraph, TextField } from '@stage-ui/core'
 import React, { Fragment, useState, useLayoutEffect } from 'react'
 import ColorPick from '../ColorPick'
 import Color from 'color'
-import { Trash, Save } from '@flow-ui/core/icons'
+import { Trash, Save } from '@stage-ui/core/icons'
 
 interface NewColorDialogProps {
     edit?: {

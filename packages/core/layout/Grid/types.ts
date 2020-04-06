@@ -1,5 +1,5 @@
-import { LayoutDecoration } from '@flow-ui/core/misc/utils/applyLayoutDecoration'
-import SystemTypes from '@flow-ui/system/types'
+import { LayoutDecoration } from '@stage-ui/core/misc/utils/applyLayoutDecoration'
+import SystemTypes from '@stage-ui/system/types'
 
 declare namespace GridTypes {
     interface Props extends SystemTypes.GridContainerProps, SystemTypes.AllProps<HTMLDivElement, Styles> {

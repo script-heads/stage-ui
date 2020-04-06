@@ -1,4 +1,4 @@
-import { Flexbox } from '@flow-ui/core'
+import { Flexbox } from '@stage-ui/core'
 import moment from 'moment'
 import React from 'react'
 import CalendarTypes from './types'

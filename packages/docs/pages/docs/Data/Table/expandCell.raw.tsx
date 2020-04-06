@@ -1,11 +1,11 @@
-import { Flexbox, Table, Text } from '@flow-ui/core'
-import T from '@flow-ui/core/data/Table/types'
-import { ArrowIosDownward } from '@flow-ui/core/icons'
+import { Flexbox, Table, Text } from '@stage-ui/core'
+import T from '@stage-ui/core/data/Table/types'
+import { ArrowIosDownward } from '@stage-ui/core/icons'
 import React from 'react'
 
 export default () => {
     const ExpandCell = (props: { ctx: T.TableCellContext }) => {
-        
+
         return (
             <Flexbox alignItems="center" onClick={() => {
                 if (props.ctx.isExpand) {

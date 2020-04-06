@@ -1,4 +1,4 @@
-import { Button, Flexbox } from '@flow-ui/core'
+import { Button, Flexbox } from '@stage-ui/core'
 import React, { forwardRef, RefObject } from 'react'
 import Types from './types'
 

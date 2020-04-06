@@ -1,27 +1,27 @@
-import { useComponent } from '@flow-ui/system'
+import { useComponent } from '@stage-ui/system'
 import React, { RefForwardingComponent, forwardRef } from 'react'
 import { useValue } from '..'
 import styles from './styles'
 import Types from './types'
 
 const MenuItem: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
-    
-    const { 
+
+    const {
         rightChild,
         leftChild,
         disabled,
-     } = props
+    } = props
 
-    const { cs, attributes, events } = useComponent('MenuItem', { 
-        props, 
-        styles, 
-        styleProps: { 
+    const { cs, attributes, events } = useComponent('MenuItem', {
+        props,
+        styles,
+        styleProps: {
             container: ['all'],
         },
     })
 
     const [active, setActive, ctx] = useValue(props.value)
-    
+
     const containerRef = React.useRef<HTMLDivElement>(null)
     /**
      * After item active change we're searching upward
@@ -63,11 +63,11 @@ const MenuItem: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, re
     if (disabled) attr['data-flow-disabled'] = ''
 
     return (
-        <div 
+        <div
             {...attr}
-            {...attributes} 
-            {...events.all} 
-            onChange={undefined} 
+            {...attributes}
+            {...events.all}
+            onChange={undefined}
             onClick={(e) => {
                 if (!disabled) {
                     setActive()
@@ -79,7 +79,7 @@ const MenuItem: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, re
                 /**
                  * Handle Space/Enter at focus
                  */
-                if (!disabled && [13,32].includes(e.charCode)) {
+                if (!disabled && [13, 32].includes(e.charCode)) {
                     setActive()
                     ctx.onChange?.(props.value)
                     e.preventDefault()

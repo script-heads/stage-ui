@@ -6,7 +6,7 @@ import Menu from '../components/Menu'
 import { ArchitectItem, ArchitectTools } from './types'
 import React, { Fragment } from 'react'
 import styles from './styles'
-import { Flexbox } from '@flow-ui/core'
+import { Flexbox } from '@stage-ui/core'
 import components from './components'
 import { CustomPageProps } from '../utils/core'
 

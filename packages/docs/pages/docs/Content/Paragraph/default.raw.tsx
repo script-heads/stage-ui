@@ -1,5 +1,5 @@
 import React from 'react'
-import { Paragraph } from '@flow-ui/core'
+import { Paragraph } from '@stage-ui/core'
 
 export default () => {
     return (

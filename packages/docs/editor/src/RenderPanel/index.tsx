@@ -1,6 +1,6 @@
 import { ArchitectItem } from '../../types'
-import { Block, Flexbox, Paragraph, Text, useTheme } from '@flow-ui/core'
-import SystemTypes from '@flow-ui/system/types'
+import { Block, Flexbox, Paragraph, Text, useTheme } from '@stage-ui/core'
+import SystemTypes from '@stage-ui/system/types'
 import { RefObject, useRef, useState } from 'react'
 import { context } from '../..'
 import Mask, { MaskRefs } from './Mask'

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Popover } from '@flow-ui/core';
+import { Popover } from '@stage-ui/core';
 
 export default () => {
     return (

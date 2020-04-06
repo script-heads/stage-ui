@@ -1,4 +1,4 @@
-import SystemTypes from '@flow-ui/system/types'
+import SystemTypes from '@stage-ui/system/types'
 
 const KEY_TEST = '* theme-test'
 const KEY_PATCH = '* theme-patch'

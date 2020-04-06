@@ -1,5 +1,5 @@
 import React from 'react'
-import { Select } from '@flow-ui/core'
+import { Select } from '@stage-ui/core'
 
 export default () => {
     return (

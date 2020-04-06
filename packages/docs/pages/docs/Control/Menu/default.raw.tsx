@@ -1,4 +1,4 @@
-import { Menu } from '@flow-ui/core'
+import { Menu } from '@stage-ui/core'
 import React from 'react'
 
 export default () => {

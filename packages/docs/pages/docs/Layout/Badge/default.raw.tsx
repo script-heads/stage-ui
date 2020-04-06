@@ -1,5 +1,5 @@
 import React from 'react'
-import { Badge, Block } from '@flow-ui/core'
+import { Badge, Block } from '@stage-ui/core'
 
 export default () => {
     return (

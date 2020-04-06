@@ -1,5 +1,5 @@
 import React from 'react'
-import { Divider, Flexbox, Text } from '@flow-ui/core'
+import { Divider, Flexbox, Text } from '@stage-ui/core'
 
 export default () => {
     return (

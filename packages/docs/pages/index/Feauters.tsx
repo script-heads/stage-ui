@@ -1,4 +1,4 @@
-import { Block, Grid, Header, Paragraph } from '@flow-ui/core'
+import { Block, Grid, Header, Paragraph } from '@stage-ui/core'
 import React from 'react'
 
 const TextBlock = (props: { title: string, text: string }) => {

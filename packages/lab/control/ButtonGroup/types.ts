@@ -1,4 +1,4 @@
-import ButtonTypes from '@flow-ui/core/control/Button/types'
+import ButtonTypes from '@stage-ui/core/control/Button/types'
 
 declare namespace ButtonGroupTypes {
     export interface Props extends ButtonTypes.Props {

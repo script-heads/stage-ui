@@ -1,4 +1,4 @@
-# [Flow UI](http://flowui.abr.tech)
+# [Flow UI](http://stageui.abr.tech)
 Consistent React UI Framework declared by your own Design System. 
 
 Theme utils for Flow UI
@@ -6,8 +6,8 @@ Theme utils for Flow UI
 ## How to install?
 
 ```
-yarn add @flow-ui/system
+yarn add @stage-ui/system
 ```
 
 ***
-[MIT License](https://github.com/abr-tech/FlowUI/blob/master/LICENSE)
+[MIT License](https://github.com/abr-tech/StageUI/blob/master/LICENSE)

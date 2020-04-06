@@ -1,6 +1,6 @@
 import Types from './types'
 import fieldStyles from '../../misc/hocs/Field/styles'
-import SystemTypes from '@flow-ui/system/types'
+import SystemTypes from '@stage-ui/system/types'
 
 const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StyleParams> = (props, theme, params) => {
 

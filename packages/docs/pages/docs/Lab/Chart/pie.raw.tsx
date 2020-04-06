@@ -1,5 +1,5 @@
 import React from 'react';
-import { Chart } from '@flow-ui/lab';
+import { Chart } from '@stage-ui/lab';
 
 export default () => {
     return (

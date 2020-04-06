@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, notify } from '@flow-ui/core'
+import { Button, notify } from '@stage-ui/core'
 
 export default () => {
     return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import { DatePicker } from '@flow-ui/core'
+import { DatePicker } from '@stage-ui/core'
 
 export default () => {
     return (

@@ -4,7 +4,7 @@
         loader: 'babel-loader',
         options: {
             plugins: [
-                ...require('@flow-ui/core/babelImportPlugins'),
+                ...require('@stage-ui/core/babelImportPlugins'),
             ]
         }
     }
