@@ -9,7 +9,7 @@ import StyleType from './components/Page/Types/StyleType'
 
 const config: Config = {
     name: 'StageUI',
-    git: 'https://github.com/abr-tech/StageUI',
+    git: 'https://github.com/stage-org/StageUI',
     pages: {
         order: {
             About: ['Getting started', 'Theming', 'Overrides', 'Props', 'Bundle'],

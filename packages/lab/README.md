@@ -10,4 +10,4 @@ yarn add @stage-ui/lab
 ```
 
 ***
-[MIT License](https://github.com/abr-tech/StageUI/blob/master/LICENSE)
+[MIT License](https://github.com/stage-org/StageUI/blob/master/LICENSE)
