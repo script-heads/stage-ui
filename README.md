@@ -44,7 +44,7 @@ export default () => {
 More components available from [lab](https://github.com/stage-org/StageUI/tree/master/packages/lab) package.
 
 ```
-npm i @stage-ui/lab
+yarn add @stage-ui/lab
 ```
 
 ***
