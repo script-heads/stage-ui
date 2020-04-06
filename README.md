@@ -29,14 +29,15 @@ yarn add @stage-ui/core
 
 ```
 import React from 'react'
-import { Viewport, Block, Header } from '@stage-ui/core'
+import { Viewport, Header } from '@stage-ui/core'
 
-const Hello props =>
-	<Viewport>
-	  <Block>
-	    <Header>Hello world!</Header>
-	  </Block>
-	</Viewport>
+export default () => {
+    return (
+        <Viewport>
+            <Header>Hello world!</Header>
+        </Viewport>
+    )
+}
 ```
 
 ## Experimental
