@@ -63,9 +63,9 @@ export default (props: CustomPageProps) => {
                     />
                 </Flexbox>
             </Flexbox>
-            <canvas id="canvas" />
             <Flexbox
                 flex={1}
+                css={{ height: '100%' }}
                 justifyContent={['flex-end', 'flex-end', 'center']}>
                 <svg
                     viewBox="0 0 294.41 445.41"
