@@ -141,7 +141,8 @@ declare namespace TextFieldTypes {
          */
         input: {
             multiline: boolean
-            size: SystemTypes.Size
+            size: SystemTypes.Size,
+            disabled: boolean
         }
     }
 }

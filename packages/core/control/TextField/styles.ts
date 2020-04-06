@@ -34,6 +34,9 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                     margin: `calc(${minHeight} / 4.5) 0`,
                     minHeight: `calc(${minHeight} * 2)`
                 },
+                disabled: {
+                    color: theme.color.hardest.rgb().string()
+                }
             })
         ],
     }

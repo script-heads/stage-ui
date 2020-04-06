@@ -9,20 +9,21 @@ type RefTypes = ((HTMLInputElement | HTMLTextAreaElement) & HTMLDivElement) | nu
 
 const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) => {
 
-    const { 
-        decoration = 'outline', 
-        size = 'm', 
-        shape = 'rounded', 
-        tabIndex = 0, 
-        multiline = false
+    const {
+        decoration = 'outline',
+        size = 'm',
+        shape = 'rounded',
+        tabIndex = 0,
+        multiline = false,
+        disabled = false
     } = props
-    
-    const { cs, attributes, events, focus } = useComponent('TextField', { 
-        props, 
+
+    const { cs, attributes, events, focus } = useComponent('TextField', {
+        props,
         styles,
         styleProps: {
-            container: ['flow','layout'], 
-            field: ['color','border','padding']
+            container: ['flow', 'layout'],
+            field: ['color', 'border', 'padding']
         },
         focus: {
             applyDecoration: false,
@@ -45,7 +46,7 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
                 ?.call(inputRef.current, '')
 
             inputRef.current.dispatchEvent(
-                new Event('input', { bubbles: true})
+                new Event('input', { bubbles: true })
             )
         }
     }
@@ -76,7 +77,7 @@ const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) =>
                 props.multiline ? 'textarea' : 'input',
                 {
                     ref: inputRef,
-                    css: cs.input({ size, multiline }),
+                    css: cs.input({ size, multiline, disabled }),
 
                     onChange: props.onChange,
                     defaultValue: props.defaultValue,
