@@ -1,7 +1,7 @@
-# [Flow UI](http://stageui.abr.tech)
-Consistent React UI Framework declared by your own Design System. 
+# [Stage UI](http://stageui.abr.tech)
+Flexible UI Framework declared by your own Design System.
 
-Theme utils for Flow UI
+Make styles for Stage UI Components
 
 ## How to install?
 
