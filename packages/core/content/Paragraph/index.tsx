@@ -5,6 +5,7 @@ import Types from './types'
 const Parapraph: RefForwardingComponent<HTMLParagraphElement, Types.Props> = (props, ref) =>
     <Typography
         tag="p"
+        overrides="Paragraph"
         sizesOf="paragraph"
         ref={ref}
         size="m"

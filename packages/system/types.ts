@@ -136,10 +136,6 @@ declare namespace SystemTypes {
                 fontSize: string
                 lineHeight: string | number
             } & EmotionStyles>
-            display: Record<Size, {
-                fontSize: string
-                lineHeight: string | number
-            } & EmotionStyles>
             paragraph: Record<Size, {
                 fontSize: string
                 lineHeight: string | number

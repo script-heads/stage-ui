@@ -13,13 +13,12 @@
         boxShadow: '0 0 0 3px ' + main.color.primary.alpha(.3).rgb().string()
     },
     typography: {
-        display: {
+        header: {
             xl: {
                 fontSize: '7.5rem',
                 lineHeight: 1.5,
             }, l: {}, m: {}, s: {}, xs: {}
         },
-        header: {},
         paragraph: {},
         text: {},
     },

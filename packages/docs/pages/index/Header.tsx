@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Button, Display, Flexbox, Paragraph } from '@stage-ui/core'
+import { Text, Button, Flexbox, Paragraph, Header } from '@stage-ui/core'
 import { CustomPageProps } from '../../utils/core'
 
 export default (props: CustomPageProps) => {
@@ -25,12 +25,12 @@ export default (props: CustomPageProps) => {
                         textAlign: 'center'
                     }
                 })}>
-                <Display m="0" lineHeight={1} weight={800}>
+                <Header m="0" size="5.5rem" lineHeight={1} weight={800}>
                     <span>StageUI</span>
                     <Text size="xl" weight={500} css={{
                         verticalAlign: 'text-top',
                     }} textColor={c => c.primary}>β</Text>
-                </Display>
+                </Header>
                 <Paragraph
                     size="l"
                     color={c => c.light}
