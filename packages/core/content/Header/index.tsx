@@ -11,7 +11,7 @@ const Header: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref
                 'm': 'h3',
                 's': 'h4',
                 'xs': 'h5',
-            }[props.size || 'm']
+            }[props.size || 'm'] || 'h1'
         }
         sizesOf="header"
         overrides="Header"
