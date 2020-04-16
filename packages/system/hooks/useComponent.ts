@@ -1,63 +1,84 @@
-import SystemTypes from '../types'
-import SystemPropsTypes from '../utils/attachProps/types'
+import SystemTypes, { EmotionStyles } from '../types'
 import useTheme from './useTheme'
-import attachProps from '../utils/attachProps'
-import createStyles from '../utils/createStyles'
-import { useState, useMemo, CSSProperties } from 'react'
 
-export interface Options<Styles, Props> {
-    props: Props,
-    styles: SystemTypes.Styles<Styles> | SystemTypes.CreateStyles<Styles, Props>,
-    styleProps?: Partial<Record<keyof Styles, (keyof SystemPropsTypes.InjectedStyles)[]>>
-    styleLabel?: string,
-    focus?: {
-        applyDecoration?: boolean
-        ignoreMouse?: boolean
-    }
+export interface Options<Styles> {
+    focus?: 'always' | 'tab' | 'mouse' | 'never'
+    label?: string
     theme?: SystemTypes.Theme
+    combineStyles?: Partial<Record<
+        keyof Styles,
+        (keyof InjectedStyles | 'focus' | 'styles')[]
+    >>,
 }
 
-const useComponent = <Styles, Props, Params>(
-    overrideName: string,
-    options: Options<Styles, Props>,
-    params?: Params) => {
+const isFunction = (a) => typeof a === 'function'
 
-    const theme = options.theme || useTheme()
+const useComponent = <Props, Styles>(
+    name: string,
+    props: Props,
+    styles: SystemTypes.CreateStyles<Styles, Props>,
+    options: Options<Styles> = {}) => {
 
-    const [focus, setfocus] = useState(false)
+    const {
+        focus = 'always',
+        label,
+        theme = useTheme(),
+        combineStyles = { container: ['all'] }
+    } = options
 
-    const { cs, attributes, events } = useMemo(() => {
+    const initialStyles = styles(props, theme)
 
-        const resolvedStyles = typeof options.styles === 'function'
-            ? options.styles(options.props, theme, params)
-            : options.styles
+    const overrideStyles = isFunction(theme.overrides[name])
+        ? theme.overrides[name](props)
+        : theme.overrides[name]
 
-        const {
-            attributes,
-            events,
-            propStyles
-        } = attachProps<Styles, Props>(options.props, theme, setfocus, options)
+    const propStyles = isFunction(props['styles'])
+        ? props['styles'](props, theme)
+        : props['styles']
 
-        const cs = createStyles(
-            resolvedStyles,
-            propStyles,
-            options.styleLabel || '',
-            options.props,
-            overrideName,
-            theme.overrides
-        )
-
-        return { cs, attributes, events }
-
-    }, [options.props, options.styles, theme])
-
-    if (options.focus?.applyDecoration) {
-        attributes.style = {}
-        attributes.style = focus
-            ? Object.assign({}, theme.assets.focus, JSON.parse(JSON.stringify(attributes.style)))
-            : Object.assign({}, attributes.style)
+    const componentStyles = {}, systemProps = {
+        focus: focused && theme.assets.focus
     }
-    return { cs, attributes, events, focus, theme }
+
+    for (let key in props) {
+        if (sharedPropsResolver.hasOwnProperty(key)) {
+            const resolver = sharedPropsResolver[key]
+            systemProps[resolver[0]] = resolver[1](props[key], theme, focus)
+        }
+    }
+
+    for (let key in styles) {
+        const emotionLabel = {
+            label: `${label || name}-${key}`
+        }
+
+        const sorthandStyles = systemProps.styles['something']
+        const propStylesLocal = propsStyles || propsStyles[key]
+
+        componentStyles[key] = isFunction(styles[key])
+            ? (state) => {
+                return [
+                    emotionLabel,
+                    initialStyles[key](state),
+                    overrideStyles[key]?.(state),
+                    propStylesLocal(state),
+                    sorthandStyles
+                ] as EmotionStyles
+            }
+            : [
+                emotionLabel,
+                initialStyles[key],
+                overrideStyles[key],
+                propStylesLocal,
+                sorthandStyles
+            ] as EmotionStyles
+    }
+
+    return {
+        cs: componentStyles,
+        attributes: systemProps.attributes,
+        events: systemProps.events
+    }
 }
 
 export default useComponent
