@@ -3,10 +3,11 @@ import Typography from '@stage-ui/core/misc/hocs/Typography'
 import Types from './types'
 
 const Text: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref) =>
-    <Typography 
-        tag="span" 
+    <Typography
+        tag="span"
+        overrides="Text"
         sizesOf="text"
-        ref={ref} 
+        ref={ref}
         size="m"
         {...props}
     />

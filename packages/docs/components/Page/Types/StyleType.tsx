@@ -15,6 +15,7 @@ function getRefelections(value: OTypeReflection) {
         }
 
         if (child.type.type === 'union') {
+            //@ts-ignore
             show += ': ' + child.type.types.map(v => v.value).join(' | ')
         }
 
@@ -26,15 +27,19 @@ const StyleType = (props: { property: Property }) => {
     const { property } = props
 
     if ((property.value as OTypeIntrinsic)?.name === 'void') {
-        return 'No states'
+        return <Text>No states</Text>
     }
 
     if (property.value.type === 'reflection') {
-        return getRefelections(property.value).map(show => {
-            return (
-                <Paragraph key={show} m="0">{show}</Paragraph>
-            )
-        })
+        return (
+            <div>
+                {getRefelections(property.value).map(show => {
+                    return (
+                        <Paragraph key={show} m="0">{show}</Paragraph>
+                    )
+                })}
+            </div>
+        )
     }
 
     if (property.value.type === 'reference') {

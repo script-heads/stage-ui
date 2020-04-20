@@ -1,9 +1,12 @@
-import SystemTypes from '@stage-ui/system/types'
 /**
  * Content
  */
 import DividerTypes from './content/Divider/types'
 import SpinnerTypes from './content/Spinner/types'
+import HeaderTypes from './content/Header/types'
+import ParagraphTypes from './content/Paragraph/types'
+import TextTypes from './content/Text/types'
+import LinkTypes from './content/Link/types'
 /**
  * Control
  */
@@ -42,6 +45,10 @@ declare namespace FlowTypes {
     interface Overrides {
         Divider?: DividerTypes.Styles
         Spinner?: SpinnerTypes.Styles
+        Header?: HeaderTypes.Styles
+        Paragraph?: ParagraphTypes.Styles
+        Text?: TextTypes.Styles
+        Link?: LinkTypes.Styles
         Button?: ButtonTypes.Styles
         Calendar?: Calendar.Styles
         Checkbox?: CheckboxTypes.Styles

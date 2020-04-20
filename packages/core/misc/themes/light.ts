@@ -58,28 +58,6 @@ const Light: SystemTypes.SourceTheme = {
             boxShadow: '0 0 0 3px ' + theme.color.primary.alpha(.3).rgb().string(),
         },
         typography: {
-            display: {
-                xl: {
-                    fontSize: '7.5rem',
-                    lineHeight: 1.5,
-                },
-                l: {
-                    fontSize: '6.5rem',
-                    lineHeight: 1.5,
-                },
-                m: {
-                    fontSize: '5.5rem',
-                    lineHeight: 1.5,
-                },
-                s: {
-                    fontSize: '4.5rem',
-                    lineHeight: 1.5,
-                },
-                xs: {
-                    fontSize: '3.5rem',
-                    lineHeight: 1.5,
-                }
-            },
             header: {
                 xl: {
                     fontSize: '2.5rem',

@@ -94,6 +94,7 @@ declare namespace TypographyTypes {
         sizesOf: keyof SystemTypes.ThemeAssets['typography']
         specificStyles?: any
         mouseFocus?: boolean
+        overrides: string
     }
 }
 

@@ -5,11 +5,12 @@ import Types from './types'
 
 const Link: RefForwardingComponent<HTMLAnchorElement, Types.Props> = (props, ref) => {
     const theme = useTheme()
-    
+
     return (
         <Typography
             tag="a"
             sizesOf="text"
+            overrides="Link"
             specificStyles={{
                 outline: 'none',
                 color: theme.color.primary.hex(),

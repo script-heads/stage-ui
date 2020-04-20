@@ -43,7 +43,7 @@ export default (props: CustomPageProps) => {
                 <Components
                     title="Content"
                     subtitle="Everything to fill the page with."
-                    components={['Divider', 'Spinner', 'Display', 'Header', 'Text', 'Paragraph', 'Link']}
+                    components={['Divider', 'Spinner', 'Header', 'Text', 'Paragraph', 'Link']}
                 />
                 <Components
                     title="Control"

@@ -7,17 +7,17 @@ import Types from './types'
 type RefTag = HTMLSpanElement | HTMLAnchorElement | HTMLParagraphElement
 
 const Typography: RefForwardingComponent<RefTag, Types.PrivateProps> = (props, ref) => {
-    
-    const { cs, attributes, events } = useComponent('Typography', { 
-        props, 
-        styles, 
+
+    const { cs, attributes, events } = useComponent(props.overrides, {
+        props,
+        styles,
         styleProps: { container: ['all'] },
         focus: {
             applyDecoration: true,
             ignoreMouse: props.mouseFocus
         }
     })
- 
+
     return useMemo(() => (
         jsx(
             props.tag,

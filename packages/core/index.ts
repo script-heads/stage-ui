@@ -3,11 +3,10 @@
  */
 export { default as Divider } from './content/Divider'
 export { default as Spinner } from './content/Spinner'
-export { default as Header  } from './content/Header'
-export { default as Display  } from './content/Display'
-export { default as Paragraph  } from './content/Paragraph'
-export { default as Text  } from './content/Text'
-export { default as Link  } from './content/Link'
+export { default as Header } from './content/Header'
+export { default as Paragraph } from './content/Paragraph'
+export { default as Text } from './content/Text'
+export { default as Link } from './content/Link'
 /**
  * Control
  */
