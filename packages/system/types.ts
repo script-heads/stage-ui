@@ -262,6 +262,7 @@ declare namespace SystemTypes {
         /**
          * Set border-style style
          * @breakpointify
+         * @display dashed | dotted | double | groove | hidden | inset | none | outset | ridge | solid
          */
         borderStyle?: Breakpointify<CSS.Properties['borderStyle']>
         /**

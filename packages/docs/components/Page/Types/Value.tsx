@@ -122,7 +122,7 @@ const Value = (props: { property: Property }) => {
             values.push(
                 <Badge
                     key={Math.random()}
-                    text={val}
+                    text={val.trim()}
                     backgroundColor={c => vals.length > 1 ? c.error.alpha(0.2) : c.primary}
                     textColor={c => vals.length > 1 ? c.onSurface : c.onPrimary}    
                 />

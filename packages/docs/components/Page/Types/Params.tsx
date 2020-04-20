@@ -12,12 +12,13 @@ const Params = (props: { property: Property }) => {
             css={{ whiteSpace: 'nowrap' }}
             {...props}
         />
+
     return (
         <Flexbox css={{ overflow: 'hidden' }} wrap="wrap">
-            {property.tags?.depricated &&
+            {property.tags?.hasOwnProperty('depricated') &&
                 <Label>Deprecated</Label>
             }
-            {!property.flags?.isOptional && (
+            {!property.flags?.hasOwnProperty('isOptional') && (
                 <Text 
                     size="s"
                     backgroundColor={c => c.warning.alpha(0.2)}
@@ -26,7 +27,7 @@ const Params = (props: { property: Property }) => {
                     children="Required"
                 />
             )}
-            {property.tags?.breakpointify &&
+            {property.tags?.hasOwnProperty('breakpointify') &&
                 <Label>Support breakpoints</Label>
             }
         </Flexbox>
