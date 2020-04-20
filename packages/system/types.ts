@@ -20,7 +20,8 @@ declare namespace SystemTypes {
 
     type Size = 'xs' | 's' | 'm' | 'l' | 'xl'
     /**
-     * @displayType Color
+     * @display Color
+     * @link /props#color
      */
     type ColorProp =
         ((colors: Theme['color']) => QIXColor | string)
@@ -187,6 +188,8 @@ declare namespace SystemTypes {
     interface CoreProps<S = {}> {
         /**
          * Override any component style
+         * @display Styles
+         * @link /props#styles
          */
         styles?: Partial<Styles<S>>
     }
@@ -225,7 +228,6 @@ declare namespace SystemTypes {
          */
         attrs?: Object
     }
-
     /**
      * Component color styles props
      * @name Color
@@ -233,13 +235,15 @@ declare namespace SystemTypes {
     interface ColorProps {
         /**
          * Set color style
-         * @displayType Color
+         * @display Color
+         * @link /props#color
          * @breakpointify
          */
         textColor?: Breakpointify<ColorProp>
         /**
          * Set background-color style
-         * @displayType Color
+         * @display Color
+         * @link /props#color
          * @breakpointify
          */
         backgroundColor?: Breakpointify<ColorProp>
@@ -262,6 +266,8 @@ declare namespace SystemTypes {
         borderStyle?: Breakpointify<CSS.Properties['borderStyle']>
         /**
          * Set border-color style
+         * @display Color
+         * @link /props#color
          * @breakpointify
          */
         borderColor?: Breakpointify<ColorProp>
@@ -336,43 +342,50 @@ declare namespace SystemTypes {
         /**
          * Set padding style
          * @breakpointify
-         * @displayType Size | string | number
+         * @display Size
+         * @link /props#margin-padding
          */
         p?: Breakpointify<Size | (string & { T?: string }) | number>
         /**
          * Set horizontal padding style 
          * @breakpointify
-         * @displayType Size | string | number
+         * @display Size
+         * @link /props#margin-padding
          */
         px?: Breakpointify<Size | (string & { T?: string }) | number>
         /**
          * Set vertical padding style
          * @breakpointify
-         * @displayType Size | string | number
+         * @display Size
+         * @link /props#margin-padding
          */
         py?: Breakpointify<Size | (string & { T?: string }) | number>
         /**
          * Set right padding style
          * @breakpointify
-         * @displayType Size | string | number
+         * @display Size
+         * @link /props#margin-padding
          */
         pr?: Breakpointify<Size | (string & { T?: string }) | number>
         /**
          * Set left padding style
          * @breakpointify
-         * @displayType Size | string | number
+         * @display Size
+         * @link /props#margin-padding
          */
         pl?: Breakpointify<Size | (string & { T?: string }) | number>
         /**
          * Set top padding style
          * @breakpointify
-         * @displayType Size | string | number
+         * @display Size
+         * @link /props#margin-padding
          */
         pt?: Breakpointify<Size | (string & { T?: string }) | number>
         /**
          * Set bottom padding style
          * @breakpointify
-         * @displayType Size | string | number
+         * @display Size
+         * @link /props#margin-padding
          */
         pb?: Breakpointify<Size | (string & { T?: string }) | number>
     }
@@ -385,43 +398,50 @@ declare namespace SystemTypes {
         /**
          * Set margin style
          * @breakpointify
-         * @displayType Size | string | number
+         * @display Size
+         * @link /props#margin-padding
          */
         m?: Breakpointify<Size | (string & { T?: string }) | number>
         /**
          * Set horizontal margin style
          * @breakpointify
-         * @displayType Size | string | number
+         * @display Size
+         * @link /props#margin-padding
          */
         mx?: Breakpointify<Size | (string & { T?: string }) | number>
         /**
          * Set vertical margin style
          * @breakpointify
-         * @displayType Size | string | number
+         * @display Size
+         * @link /props#margin-padding
          */
         my?: Breakpointify<Size | (string & { T?: string }) | number>
         /**
          * Set right margin style
          * @breakpointify
-         * @displayType Size | string | number
+         * @display Size
+         * @link /props#margin-padding
          */
         mr?: Breakpointify<Size | (string & { T?: string }) | number>
         /**
          * Set left margin style
          * @breakpointify
-         * @displayType Size | string | number
+         * @display Size
+         * @link /props#margin-padding
          */
         ml?: Breakpointify<Size | (string & { T?: string }) | number>
         /**
          * Set top margin style
          * @breakpointify
-         * @displayType Size | string | number
+         * @display Size
+         * @link /props#margin-padding
          */
         mt?: Breakpointify<Size | (string & { T?: string }) | number>
         /**
          * Set bottom margin style
          * @breakpointify
-         * @displayType Size | string | number
+         * @display Size
+         * @link /props#margin-padding
          */
         mb?: Breakpointify<Size | (string & { T?: string }) | number>
     }
@@ -532,15 +552,15 @@ declare namespace SystemTypes {
          */
         alignItems?: Breakpointify<GridSelf>
         /**
-         * @displayType inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
+         * @display inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
          */
         alignContent?: Breakpointify<GridSpace | GridSelf>
         /**
-         * @displayType inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
+         * @display inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
          */
         justifyContent?: Breakpointify<GridSpace | GridSelf>
         /**
-         * @displayType inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
+         * @display inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
          */
         justifyItems?: Breakpointify<GridSpace | GridSelf>
         inline?: boolean
@@ -551,21 +571,21 @@ declare namespace SystemTypes {
          * Sets the align-self value on all direct children as a group. 
          * In Flexbox, it controls the alignment of items on the Cross Axis
          * @breakpointify
-         * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch
+         * @display inherit|auto|baseline|center|flex-start|flex-end|stretch
          */
         alignItems?: Breakpointify<FlexSelf>
         /**
          * Sets the distribution of space between and around content 
          * items along a flexbox's cross-axis or a grid's block axis
          * @breakpointify
-         * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
+         * @display inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
          */
         alignContent?: Breakpointify<FlexSelf | FlexSpace>
         /**
          * The place-content CSS property is a shorthand for 
          * align-content and justify-content
          * @breakpointify
-         * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
+         * @display inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
          */
         placeContent?: Breakpointify<FlexSelf | FlexSpace>
         /**
@@ -573,14 +593,14 @@ declare namespace SystemTypes {
          * content items along the main-axis of a flex container, and 
          * the inline axis of a grid container.
          * @breakpointify
-         * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
+         * @display inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
          */
         justifyContent?: Breakpointify<FlexSelf | FlexSpace>
         /**
          * Defines the default justify-self for all items of the box, giving them all 
          * a default way of justifying each box along the appropriate axis
          * @breakpointify
-         * @displayType inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
+         * @display inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
          */
         justifyItems?: Breakpointify<FlexSelf | FlexSpace>
         /**
