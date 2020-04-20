@@ -18,7 +18,7 @@ export const sticky = true
 export default () => (
     <Block>
         <P>StageUI comonents have special props to customize thier styles</P>
-        <Header>Styles</Header>
+        <Header pt="4rem" id="styles">Styles</Header>
         <P>Like style tag in HTML or CSS prop in emotion with
             styles prop you can provide custom styles to any component.</P>
         <P>Component may render in DOM many different HTML elements which have unique classNames.
@@ -28,7 +28,7 @@ export default () => (
         Also here you access component internal state for attach some styles in these cases.
             More about it written in <Link href="/overrides">Overrides</Link> section.</P>
         <Syntax code={styleProp} />
-        <Header>Color</Header>
+        <Header pt="4rem" id="color">Color</Header>
         <P>All colors described in Theme StageUI turn into Objects with useful
         methods that give you the opportunity to to adjust the color depending on the situation.
         To access theme colors provide function in these props.
@@ -36,7 +36,7 @@ export default () => (
         Also you may put here ordinary color string or variable directly from Theme.
         </P>
         <Syntax code={colorProps} />
-        <Header>Margin and Padding</Header>
+        <Header pt="4rem" id="margin-padding">Margin and Padding</Header>
         <P>Shorthand for margin and padding styles with size alias from theme spacing</P>
         <Syntax code={spacingProps} />
         <List
@@ -58,7 +58,7 @@ export default () => (
             ]}
             higlightBefore=":"
         />
-        <Header>Flexbox and grid</Header>
+        <Header pt="4rem" id="flex-grid">Flexbox and grid</Header>
         <P>Shorthand for flexbox and grid children styles</P>
         <Syntax code={flexGridProps} />
         <List
@@ -80,7 +80,7 @@ export default () => (
             ]}
             higlightBefore=":"
         />
-        <Header>Layout</Header>
+        <Header pt="4rem" id="layout">Layout</Header>
         <P>Shorthand for layout styles</P>
         <Syntax code={layoutProps} />
         <List
@@ -92,7 +92,7 @@ export default () => (
             ]}
             higlightBefore=":"
         />
-        <Header>Border</Header>
+        <Header pt="4rem" id="border">Border</Header>
         <P>Shorthand for border styles</P>
         <Syntax code={borderProps} />
         <List
