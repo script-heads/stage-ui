@@ -1,7 +1,7 @@
 import { Block, Flexbox, Text, Link } from '@stage-ui/core'
 import ThemeSwitcher, { ThemeSwitcherProps } from './ThemeSwitcher'
 import { Github, Brush } from '@stage-ui/core/icons'
-import { panel } from './Themer/src/ThemeConfigurator'
+import { panel } from '@stage-ui/docs/components/Themer/src/ThemeConfigurator'
 import { useTheme } from '@stage-ui/core'
 import corePackage from '../../../core/package.json'
 import React from 'react'
