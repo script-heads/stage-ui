@@ -7,12 +7,16 @@ declare module 'content/Divider/types' {
 	        vertical?: boolean;
 	        /**
 	        * Size of dash
+	        * @display SystemTypes.Size
+	        * @link /props/#size
 	        */
 	        dash?: SystemTypes.Size | (string & {
 	            T?: string;
 	        });
 	        /**
 	        * Size of the gap between dashes
+	        * @display SystemTypes.Size
+	        * @link /props/#size
 	        */
 	        gap?: SystemTypes.Size | (string & {
 	            T?: string;
@@ -334,6 +338,8 @@ declare module 'control/Button/types' {
 	        value?: string | string[] | number;
 	        /**
 	         * Size of button
+	         * @display SystemTypes.Size
+	         * @link /props/#size
 	         * @default m
 	         */
 	        size?: SystemTypes.Size;
@@ -7839,6 +7845,8 @@ declare module '@stage-ui/core/misc/hocs/Field/types' {
 	        /**
 	         * Size of field
 	         * @default m
+	         * @display SystemTypes.Size
+	         * @link /props/#size
 	         */
 	        size?: SystemTypes.Size;
 	        /**
@@ -8883,6 +8891,8 @@ declare module 'data/Meter/types' {
 	        value?: number;
 	        /**
 	         * Size of meter
+	         * @display SystemTypes.Size
+	         * @link /props/#size
 	         * @default m
 	         */
 	        size?: SystemTypes.Size;
@@ -9309,6 +9319,9 @@ declare module 'layout/Badge/types' {
 	        content: React.ReactNode;
 	        /**
 	         * Badge size
+	         * @default m
+	         * @display SystemTypes.Size
+	         * @link /props/#size
 	         */
 	        size?: SystemTypes.Size;
 	        /**
@@ -9563,6 +9576,8 @@ declare module '@stage-ui/core/layout/Modal/types' {
 	        /**
 	         * Size of view and its content
 	         * @default m
+	         * @display SystemTypes.Size
+	         * @link /props/#size
 	         */
 	        size?: SystemTypes.Size;
 	        /**
@@ -9925,6 +9940,8 @@ declare module 'layout/ScrollView/types' {
 	        /**
 	         * Bars size
 	         * @default m
+	         * @display SystemTypes.Size
+	         * @link /props/#size
 	         */
 	        size?: SystemTypes.Size;
 	        /**

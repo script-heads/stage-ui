@@ -52,6 +52,8 @@ declare namespace ButtonTypes {
 
         /**
          * Size of button
+         * @display SystemTypes.Size
+         * @link /props/#size
          * @default m
          */
         size?: SystemTypes.Size

@@ -74,6 +74,9 @@ declare namespace TypographyTypes {
         weight?: CSS.Properties['fontWeight']
 		/**
 		 * Shorthand for font-size
+		 * @default m
+         * @display SystemTypes.Size
+         * @link /props/#size
 		 */
         size?: SystemTypes.Size | (string & { T?: string })
 		/**

@@ -80,6 +80,8 @@ declare namespace ModalTypes {
         /**
          * Size of view and its content
          * @default m
+         * @display SystemTypes.Size
+         * @link /props/#size
          */
         size?: SystemTypes.Size
         /**

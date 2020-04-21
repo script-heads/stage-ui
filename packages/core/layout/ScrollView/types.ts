@@ -33,6 +33,8 @@ declare namespace ScrollViewTypes {
         /**
          * Bars size
          * @default m
+         * @display SystemTypes.Size
+         * @link /props/#size
          */
         size?: SystemTypes.Size
         /**

@@ -55,6 +55,8 @@ declare namespace MenuTypes {
         /**
          * Size of each item
          * @default m
+         * @display SystemTypes.Size
+         * @link /props/#size
          */
         size?: SystemTypes.Size
         /**
