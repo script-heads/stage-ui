@@ -1,84 +1,101 @@
 import SystemTypes, { EmotionStyles } from '../types'
 import useTheme from './useTheme'
+import resolver from '../utils/resolver'
 
-export interface Options<Styles> {
+export interface Options {
     focus?: 'always' | 'tab' | 'mouse' | 'never'
     label?: string
     theme?: SystemTypes.Theme
-    combineStyles?: Partial<Record<
-        keyof Styles,
-        (keyof InjectedStyles | 'focus' | 'styles')[]
-    >>,
 }
 
 const isFunction = (a) => typeof a === 'function'
 
-const useComponent = <Props, Styles>(
+function useComponent<Props, Styles>(
     name: string,
     props: Props,
-    styles: SystemTypes.CreateStyles<Styles, Props>,
-    options: Options<Styles> = {}) => {
+    createClasses: SystemTypes.CreateStyles<Styles, Props>,
+    options: Options = {}) {
 
     const {
         focus = 'always',
-        label,
+        label = name,
         theme = useTheme(),
-        combineStyles = { container: ['all'] }
     } = options
 
-    const initialStyles = styles(props, theme)
+    const initialClasses = createClasses(props, theme)
 
-    const overrideStyles = isFunction(theme.overrides[name])
+    const decorationClasses = theme.decorations[name] && props.decoration
+        && isFunction(theme.decorations[name][props.decoration])
+        ? theme.decorations[name][props.decoration](props)
+        : theme.decorations[name][props.decoration]
+
+    const overrideClasses = isFunction(theme.overrides[name])
         ? theme.overrides[name](props)
         : theme.overrides[name]
 
-    const propStyles = isFunction(props['styles'])
-        ? props['styles'](props, theme)
-        : props['styles']
-
-    const componentStyles = {}, systemProps = {
-        focus: focused && theme.assets.focus
+    const data = {
+        classes: {},
+        attributes: {},
+        events: {
+            all: {},
+            form: {},
+            focus: {},
+            image: {},
+            media: {},
+            mouse: {},
+            touch: {},
+            wheel: {},
+            pointer: {},
+            keyboard: {},
+            selection: {},
+            animation: {},
+            clipboard: {},
+            transition: {},
+            composition: {},
+            scroll: {}
+        },
+        styles: {
+            all: [],
+            flow: [],
+            self: [],
+            qs: {},
+            color: {},
+            border: {},
+            padding: {},
+            layout: {},
+            margin: {},
+            flex: {},
+            grid: {}
+        }
     }
 
     for (let key in props) {
-        if (sharedPropsResolver.hasOwnProperty(key)) {
-            const resolver = sharedPropsResolver[key]
-            systemProps[resolver[0]] = resolver[1](props[key], theme, focus)
+        if (resolver.hasOwnProperty(key)) {
+            resolver[key](data, props[key], theme, focus)
         }
     }
 
-    for (let key in styles) {
-        const emotionLabel = {
-            label: `${label || name}-${key}`
-        }
+    for (let key in initialClasses) {
+        const classLabel = { label: `${label}-${key}` }
 
-        const sorthandStyles = systemProps.styles['something']
-        const propStylesLocal = propsStyles || propsStyles[key]
-
-        componentStyles[key] = isFunction(styles[key])
+        data.classes[key] = isFunction(initialClasses[key])
             ? (state) => {
                 return [
-                    emotionLabel,
-                    initialStyles[key](state),
-                    overrideStyles[key]?.(state),
-                    propStylesLocal(state),
-                    sorthandStyles
+                    classLabel,
+                    initialClasses[key]?.(state),
+                    overrideClasses[key]?.(state),
+                    decorationClasses[key]?.(state)
                 ] as EmotionStyles
             }
             : [
-                emotionLabel,
-                initialStyles[key],
-                overrideStyles[key],
-                propStylesLocal,
-                sorthandStyles
+                classLabel,
+                initialClasses[key],
+                overrideClasses[key],
+                decorationClasses[key]
             ] as EmotionStyles
     }
 
-    return {
-        cs: componentStyles,
-        attributes: systemProps.attributes,
-        events: systemProps.events
-    }
+    return data
 }
 
 export default useComponent
