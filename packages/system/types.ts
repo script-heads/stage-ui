@@ -256,6 +256,7 @@ declare namespace SystemTypes {
     interface BorderProps {
         /**
          * Set border-width style
+         * @display number | string
          * @breakpointify
          */
         borderWidth?: Breakpointify<CSS.Properties['borderWidth']>
@@ -273,7 +274,8 @@ declare namespace SystemTypes {
          */
         borderColor?: Breakpointify<ColorProp>
         /**
-         * Set border-radius style
+         * Set border-radius style  
+         * @display number | string
          * @breakpointify
          */
         borderRadius?: Breakpointify<CSS.Properties['borderRadius']>
@@ -286,23 +288,27 @@ declare namespace SystemTypes {
     interface LayoutProps {
         /**
          * Set width style
+         * @display number | string
          * @breakpointify
          */
         w?: Breakpointify<CSS.Properties['width']>
         /**
          * Set height style
+         * @display number | string
          * @breakpointify
          */
         h?: Breakpointify<CSS.Properties['height']>
         /**
          * Specifies the type of positioning method used for an element 
          * (static, relative, fixed, absolute or sticky).
+         * @display static | relative | fixed | absolute | sticky
          * @breakpointify
          */
         position?: Breakpointify<CSS.Properties['position']>
         /**
          * Shows or hides an element without changing the layout 
          * of a document.
+         * @display visible | hidden | collapse
          * @breakpointify
          */
         visibility?: Breakpointify<CSS.Properties['visibility']>
@@ -310,26 +316,31 @@ declare namespace SystemTypes {
          * Sets whether an element is treated as a block or 
          * inline element and the layout used for its children, 
          * such as flow layout, grid or flex.
+         * @display block | inline | inline-block | inline-table | list-item | none | run-in | table | table-caption | table-cell | table-column-group | table-column | table-footer-group | table-header-group | table-row | table-row-group | flex | grid
          * @breakpointify
          */
         display?: Breakpointify<CSS.Properties['display']>
         /**
          * Set font-size style
+         * @display number | string
          * @breakpointify
          */
         fontSize?: Breakpointify<CSS.Properties['fontSize']>
         /**
          * Set line-height style
+         * @display number | string
          * @breakpointify
          */
         lineHeight?: Breakpointify<CSS.Properties['lineHeight']>
         /**
          * Set letter-spacing style
+         * @display number | string
          * @breakpointify
          */
         letterSpacing?: Breakpointify<CSS.Properties['letterSpacing']>
         /**
          * Set text-align style
+         * @display number | string
          * @breakpointify
          */
         textAlign?: Breakpointify<CSS.Properties['textAlign']>
@@ -470,12 +481,14 @@ declare namespace SystemTypes {
         /**
          * Sets how a flex item will grow or shrink to fit the 
          * space available in its flex container.
+         * @display number
          * @breakpointify
          */
         flex?: Breakpointify<CSS.Properties['flex']>
         /**
          * Sets the initial main size of a flex item. It sets the 
          * size of the content box unless otherwise set with box-sizing.
+         * @display number | string
          * @breakpointify
          */
         flexBasis?: Breakpointify<CSS.Properties['flexBasis']>
@@ -484,6 +497,7 @@ declare namespace SystemTypes {
          * It specifies how much of the remaining space in the 
          * flex container should be assigned to the item 
          * (the flex grow factor).
+         * @display number
          * @breakpointify
          */
         flexGrow?: Breakpointify<CSS.Properties['flexGrow']>
@@ -492,6 +506,7 @@ declare namespace SystemTypes {
          * If the size of all flex items is lr than 
          * the flex container, items shrink to fit 
          * according to flex-shrink.
+         * @display number
          * @breakpointify
          */
         flexShrink?: Breakpointify<CSS.Properties['flexShrink']>
@@ -500,12 +515,14 @@ declare namespace SystemTypes {
          * align-items value. In Grid, it aligns the 
          * item inside the grid area. In Flexbox, 
          * it aligns the item on the cross axis.
+         * @display inherit | auto | baseline | center | flex-start | flex-end | stretch
          * @breakpointify
          */
         alignSelf?: Breakpointify<FlexSelf>
         /**
          * Sets the way a box is justified inside its 
          * alignment container along the appropriate axis.
+         * @display inherit | auto | baseline | center | flex-start | flex-end | stretch
          * @breakpointify
          */
         justifySelf?: Breakpointify<FlexSelf>
@@ -513,58 +530,71 @@ declare namespace SystemTypes {
 
     interface GridContainerProps {
         /**
+         * @display string
          * @breakpointify
          */
         templateColumns?: Breakpointify<CSS.Properties['gridTemplateColumns']>
         /**
+         * @display string
          * @breakpointify
          */
         templateRows?: Breakpointify<CSS.Properties['gridTemplateRows']>
         /**
+         * @display string
          * @breakpointify
          */
         templateAreas?: Breakpointify<CSS.Properties['gridTemplateAreas']>
         /**
+         * @display string
          * @breakpointify
          */
         columnGap?: Breakpointify<CSS.Properties['gridColumnGap']>
         /**
+         * @display string
          * @breakpointify
          */
         rowGap?: Breakpointify<CSS.Properties['gridRowGap']>
         /**
+         * @display string
          * @breakpointify
          */
         gap?: Breakpointify<CSS.Properties['gridGap']>
         /**
+         * @display string
          * @breakpointify
          */
         autoColumns?: Breakpointify<CSS.Properties['gridAutoColumns']>
         /**
+         * @display string
          * @breakpointify
          */
         autoRows?: Breakpointify<CSS.Properties['gridAutoRows']>
         /**
+         * @display string
          * @breakpointify
          */
         autoFlow?: Breakpointify<CSS.Properties['gridAutoFlow']>
         /**
+         * @display string
          * @breakpointify
          */
         alignItems?: Breakpointify<GridSelf>
         /**
          * @display inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
+         * @breakpointify
          */
         alignContent?: Breakpointify<GridSpace | GridSelf>
         /**
          * @display inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
+         * @breakpointify
          */
         justifyContent?: Breakpointify<GridSpace | GridSelf>
         /**
          * @display inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
+         * @breakpointify
          */
         justifyItems?: Breakpointify<GridSpace | GridSelf>
-        inline?: boolean
+        inline?: Breakpointify<boolean>
     }
 
     interface FlexboxContainerProps {
@@ -608,25 +638,30 @@ declare namespace SystemTypes {
          * Sets how flex items are placed in the flex container defining the 
          * main axis and the direction (normal or reversed)
          * @breakpointify
+         * @display inherit | initial | revert | unset | column | column-reverse | row | row-reverse
          */
         direction?: Breakpointify<FlexDirection>
         /**
          * Sets flex-direction style to column
+         * @display boolean
          * @breakpointify
          */
-        column?: boolean
+        column?: Breakpointify<boolean>
         /**
          * Sets display style to inline-flex
+         * @display boolean
          * @breakpointify
          */
-        inline?: boolean
+        inline?: Breakpointify<boolean>
         /**
          * Sets whether flex items are forced onto one line or can wrap onto multiple lines
+         * @display inherit | initial | revert | unset | nowrap | wrap | wrap-reverse
          * @breakpointify
          */
         wrap?: Breakpointify<FlexWrap>
         /**
          * Shorthand property for flex-direction and flex-wrap styles
+         * @display column | column-reverse | nowrap | row | row-reverse | wrap | wrap-reverse
          * @breakpointify
          */
         flow?: Breakpointify<CSS.Properties['flexFlow']>
@@ -643,6 +678,7 @@ declare namespace SystemTypes {
          * or nothing (automatic) to its grid placement. 
          * This start position defines the block-start edge 
          * of the grid area.
+         * @display string
          * @breakpointify
          */
         gridColumnStart?: Breakpointify<CSS.Properties['gridColumnStart']>
@@ -651,6 +687,7 @@ declare namespace SystemTypes {
          * grid column by contributing a line, a span, or 
          * nothing (automatic) to its grid placement, thereby 
          * specifying the block-end edge of its grid area.
+         * @display string
          * @breakpointify
          */
         gridColumnEnd?: Breakpointify<CSS.Properties['gridColumnEnd']>
@@ -659,6 +696,7 @@ declare namespace SystemTypes {
          * grid row by contributing a line, a span, or nothing 
          * (automatic) to its grid placement, thereby specifying 
          * the inline-start edge of its grid area.
+         * @display string
          * @breakpointify
          */
         gridRowStart?: Breakpointify<CSS.Properties['gridRowStart']>
@@ -667,6 +705,7 @@ declare namespace SystemTypes {
          * row by contributing a line, a span, or nothing 
          * (automatic) to its grid placement, thereby 
          * specifying the inline-end edge of its grid area.
+         * @display string
          * @breakpointify
          */
         gridRowEnd?: Breakpointify<CSS.Properties['gridRowEnd']>
@@ -677,6 +716,7 @@ declare namespace SystemTypes {
          * a line, a span, or nothing (automatic) to its grid 
          * placement, thereby specifying the inline-start and 
          * inline-end edge of its grid area.
+         * @display string
          * @breakpointify
          */
         gridColumn?: Breakpointify<CSS.Properties['gridColumn']>
@@ -686,6 +726,7 @@ declare namespace SystemTypes {
          * grid row by contributing a line, a span, or nothing 
          * (automatic) to its grid placement, thereby specifying 
          * the inline-start and inline-end edge of its grid area.
+         * @display string
          * @breakpointify
          */
         gridRow?: Breakpointify<CSS.Properties['gridRow']>
@@ -695,6 +736,7 @@ declare namespace SystemTypes {
          * size and location within the grid by contributing a line, a 
          * span, or nothing (automatic) to its grid placement, thereby 
          * specifying the edges of its grid area.
+         * @display string
          * @breakpointify
          */
         gridArea?: Breakpointify<CSS.Properties['gridArea']>
@@ -703,6 +745,7 @@ declare namespace SystemTypes {
          * properties. The first value is the align-self property value, 
          * the second the justify-self one. If the second value is not 
          * present, the first value is also used for it.
+         * @display string
          * @breakpointify
          */
         placeSelf?: Breakpointify<FlexSelf>

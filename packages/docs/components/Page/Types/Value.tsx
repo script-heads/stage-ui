@@ -34,7 +34,15 @@ const Value = (props: { property: Property }) => {
             mx=".125rem"
             mb=".25rem"
             textColor={props.textColor}
-            backgroundColor={props.backgroundColor}
+            backgroundColor={props.backgroundColor ||(c => {
+                switch(props.text) {
+                    case 'number': return c.success.alpha(0.2)
+                    case 'boolean': return c.primary.alpha(0.2)
+                    case 'string': return c.error.alpha(0.2)
+                    case 'function': return c.primary.alpha(0.3)
+                    default: return c.onSurface.alpha(0.1)
+                }
+            })}
             css={{ borderRadius: '.25rem' }}
             children={`${props.text}`}
         />
@@ -55,36 +63,20 @@ const Value = (props: { property: Property }) => {
         if (val.type === 'reflection') {
             if (val.declaration.signatures) {
                 ret = (
-                    <Badge 
-                        text={'function'} 
-                        backgroundColor={c=> c.primary.alpha(0.3)}
-                    />
+                    <Badge text={'function'}/>
                 )
             }
         }
         if (val.type === 'intrinsic') {
             const text = val.name
             ret = (
-                <Badge 
-                    text={text} 
-                    backgroundColor={c => {
-                        switch(text) {
-                            case 'number': return c.success.alpha(0.2)
-                            case 'boolean': return c.primary.alpha(0.2)
-                            case 'string': return c.error.alpha(0.2)
-                            default: return c.onSurface.alpha(0.1)
-                        }
-                    }}
-                />
+                <Badge text={text} />
             )
         }
         if (val.type === 'stringLiteral') {
             const text = val.value
             ret = (
-                <Badge 
-                    text={text} 
-                    backgroundColor={c => c.error.alpha(0.2)}
-                />
+                <Badge text={text} />
             )
         }
         if (val.type === 'reference') {
@@ -98,7 +90,7 @@ const Value = (props: { property: Property }) => {
         }
 
         values.push(isArray
-            ? <span key={Math.random()}>{`Array<`}{ret}{`>`}</span>
+            ? <span key={Math.random()}>{`[`}{ret}{`]`}</span>
             : <span key={Math.random()}>{ret}</span>
         )
     }
@@ -122,9 +114,7 @@ const Value = (props: { property: Property }) => {
             values.push(
                 <Badge
                     key={Math.random()}
-                    text={val.trim()}
-                    backgroundColor={c => vals.length > 1 ? c.error.alpha(0.2) : c.primary}
-                    textColor={c => vals.length > 1 ? c.onSurface : c.onPrimary}    
+                    text={val.trim()}  
                 />
             )
         }

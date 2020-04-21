@@ -1,5 +1,5 @@
-import React from 'react'
-import { Text } from '@stage-ui/core'
+import React, { Fragment } from 'react'
+import { Text, Paragraph } from '@stage-ui/core'
 import Editor from './editor'
 import HomePage from './pages/index/index'
 import { Config } from './utils/core'
@@ -28,7 +28,13 @@ const config: Config = {
                     {
                         key: 'name',
                         title: 'Name',
-                        width: '10rem'
+                        width: '10rem',
+                        render: (c) => (
+                            <Fragment>
+                                <Paragraph m={0} pb={'0.5rem'}>{c.value}</Paragraph>
+                                <Params property={c.row} />
+                            </Fragment>
+                        )
                     },
                     {
                         key: 'values',
@@ -40,12 +46,6 @@ const config: Config = {
                         key: 'comment',
                         title: 'Description',
                         render: (c) => <Text size="s" children={c.row.comment} />
-                    },
-                    {
-                        key: 'isOptional',
-                        title: 'Parameters',
-                        width: '8rem',
-                        render: (c) => <Params property={c.row} />
                     },
                     {
                         key: 'tags',

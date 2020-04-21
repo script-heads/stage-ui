@@ -2,6 +2,7 @@ import { Flexbox, Text } from '@stage-ui/core'
 import TextTypes from '@stage-ui/core/content/Text/types'
 import React from 'react'
 import { Property } from '@stage-ui/docs/utils/types'
+import BreakpointifyFeature from './Features/Breakpointify'
 
 const Params = (props: { property: Property }) => {
     const { property } = props
@@ -28,7 +29,7 @@ const Params = (props: { property: Property }) => {
                 />
             )}
             {property.tags?.hasOwnProperty('breakpointify') &&
-                <Label>Support breakpoints</Label>
+                <BreakpointifyFeature />
             }
         </Flexbox>
     )
