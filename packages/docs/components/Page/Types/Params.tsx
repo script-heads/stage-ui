@@ -19,18 +19,7 @@ const Params = (props: { property: Property }) => {
             {property.tags?.hasOwnProperty('depricated') &&
                 <Label>Deprecated</Label>
             }
-            {!property.flags?.hasOwnProperty('isOptional') && (
-                <Text 
-                    size="s"
-                    backgroundColor={c => c.warning.alpha(0.2)}
-                    borderRadius={'0.125rem'}
-                    p="0.125rem 0.25rem"
-                    children="Required"
-                />
-            )}
-            {property.tags?.hasOwnProperty('breakpointify') &&
-                <BreakpointifyFeature />
-            }
+         
         </Flexbox>
     )
 }

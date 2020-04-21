@@ -1,23 +1,19 @@
+import { Block, Divider, Drop, Link, Paragraph, Popover, Text } from '@stage-ui/core'
+import { ExternalLink } from '@stage-ui/core/icons'
 import React from 'react'
-import { Block, Drop, Popover, Link, Paragraph, Divider } from '@stage-ui/core'
-import { Grid, ExternalLink } from '@stage-ui/core/icons'
 
-const BreakpointifyFeature = () => {
+const BreakpointifyFeature = (props: { children: React.ReactNode }) => {
     const [active, setActive] = React.useState(false)
-    const ref = React.createRef<HTMLSpanElement>()
+    const ref = React.createRef<HTMLDivElement>()
     return (
-        <Block>
-            <Grid 
-                ref={ref} 
-                fontSize={'1.25rem'}
-                color="primary"
-                onMouseEnter={() => {
-                    setActive(true)
-                }}
-                onTouchStart={() => {
-                    setActive(true)
-                }}
-            />
+        <Block 
+            ref={ref}
+            css={{ display:'inline' }}
+            onMouseEnter={() => setActive(true)}
+            onTouchStart={() => setActive(true)}>
+            <Text weight="bold" textColor="primary">[</Text>
+            {props.children}
+            <Text weight="bold" textColor="primary">]</Text>
             <Drop
                 spacing={10}
                 css={{

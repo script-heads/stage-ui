@@ -3,6 +3,7 @@ import { Text, Paragraph } from '@stage-ui/core'
 import Editor from './editor'
 import HomePage from './pages/index/index'
 import { Config } from './utils/core'
+import PropName from './components/Page/Types/PropName'
 import Value from './components/Page/Types/Value'
 import Params from './components/Page/Types/Params'
 import StyleType from './components/Page/Types/StyleType'
@@ -29,12 +30,7 @@ const config: Config = {
                         key: 'name',
                         title: 'Name',
                         width: '10rem',
-                        render: (c) => (
-                            <Fragment>
-                                <Paragraph m={0} pb={'0.5rem'}>{c.value}</Paragraph>
-                                <Params property={c.row} />
-                            </Fragment>
-                        )
+                        render: (c) => <PropName property={c.row} />
                     },
                     {
                         key: 'values',
