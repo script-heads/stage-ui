@@ -20,7 +20,7 @@ declare namespace SystemTypes {
 
     type Size = 'xs' | 's' | 'm' | 'l' | 'xl'
     /**
-     * @display Color
+     * @display SystemTypes.Color
      * @link /props#color
      */
     type ColorProp =
@@ -188,7 +188,7 @@ declare namespace SystemTypes {
     interface CoreProps<S = {}> {
         /**
          * Override any component style
-         * @display Styles
+         * @display SystemTypes.Styles
          * @link /props#styles
          */
         styles?: Partial<Styles<S>>
@@ -235,16 +235,18 @@ declare namespace SystemTypes {
     interface ColorProps {
         /**
          * Set color style
-         * @display Color
+         * @display SystemTypes.Color
          * @link /props#color
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/color
          */
         textColor?: Breakpointify<ColorProp>
         /**
          * Set background-color style
-         * @display Color
+         * @display SystemTypes.Color
          * @link /props#color
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/background-color
          */
         backgroundColor?: Breakpointify<ColorProp>
     }
@@ -258,25 +260,29 @@ declare namespace SystemTypes {
          * Set border-width style
          * @display number | string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/border-width
          */
         borderWidth?: Breakpointify<CSS.Properties['borderWidth']>
         /**
          * Set border-style style
          * @breakpointify
          * @display dashed | dotted | double | groove | hidden | inset | none | outset | ridge | solid
+         * @see https://developer.mozilla.org/docs/Web/CSS/border-style
          */
         borderStyle?: Breakpointify<CSS.Properties['borderStyle']>
         /**
          * Set border-color style
-         * @display Color
+         * @display SystemTypes.Color
          * @link /props#color
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/border-color
          */
         borderColor?: Breakpointify<ColorProp>
         /**
          * Set border-radius style  
          * @display number | string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/border-radius
          */
         borderRadius?: Breakpointify<CSS.Properties['borderRadius']>
     }
@@ -290,12 +296,14 @@ declare namespace SystemTypes {
          * Set width style
          * @display number | string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/width
          */
         w?: Breakpointify<CSS.Properties['width']>
         /**
          * Set height style
          * @display number | string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/visibility
          */
         h?: Breakpointify<CSS.Properties['height']>
         /**
@@ -303,6 +311,7 @@ declare namespace SystemTypes {
          * (static, relative, fixed, absolute or sticky).
          * @display static | relative | fixed | absolute | sticky
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/position
          */
         position?: Breakpointify<CSS.Properties['position']>
         /**
@@ -310,6 +319,7 @@ declare namespace SystemTypes {
          * of a document.
          * @display visible | hidden | collapse
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/visibility
          */
         visibility?: Breakpointify<CSS.Properties['visibility']>
         /**
@@ -318,30 +328,35 @@ declare namespace SystemTypes {
          * such as flow layout, grid or flex.
          * @display block | inline | inline-block | inline-table | list-item | none | run-in | table | table-caption | table-cell | table-column-group | table-column | table-footer-group | table-header-group | table-row | table-row-group | flex | grid
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/display
          */
         display?: Breakpointify<CSS.Properties['display']>
         /**
          * Set font-size style
          * @display number | string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/font-size
          */
         fontSize?: Breakpointify<CSS.Properties['fontSize']>
         /**
          * Set line-height style
          * @display number | string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/line-height
          */
         lineHeight?: Breakpointify<CSS.Properties['lineHeight']>
         /**
          * Set letter-spacing style
          * @display number | string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/letter-spacing
          */
         letterSpacing?: Breakpointify<CSS.Properties['letterSpacing']>
         /**
          * Set text-align style
          * @display number | string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/text-align
          */
         textAlign?: Breakpointify<CSS.Properties['textAlign']>
     }
@@ -483,6 +498,7 @@ declare namespace SystemTypes {
          * space available in its flex container.
          * @display number
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/flex
          */
         flex?: Breakpointify<CSS.Properties['flex']>
         /**
@@ -490,6 +506,7 @@ declare namespace SystemTypes {
          * size of the content box unless otherwise set with box-sizing.
          * @display number | string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/flex-basis
          */
         flexBasis?: Breakpointify<CSS.Properties['flexBasis']>
         /**
@@ -499,6 +516,7 @@ declare namespace SystemTypes {
          * (the flex grow factor).
          * @display number
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/flex-grow
          */
         flexGrow?: Breakpointify<CSS.Properties['flexGrow']>
         /**
@@ -508,6 +526,7 @@ declare namespace SystemTypes {
          * according to flex-shrink.
          * @display number
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/flex-shrink
          */
         flexShrink?: Breakpointify<CSS.Properties['flexShrink']>
         /**
@@ -517,6 +536,7 @@ declare namespace SystemTypes {
          * it aligns the item on the cross axis.
          * @display inherit | auto | baseline | center | flex-start | flex-end | stretch
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/align-self
          */
         alignSelf?: Breakpointify<FlexSelf>
         /**
@@ -524,6 +544,7 @@ declare namespace SystemTypes {
          * alignment container along the appropriate axis.
          * @display inherit | auto | baseline | center | flex-start | flex-end | stretch
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/justify-self
          */
         justifySelf?: Breakpointify<FlexSelf>
     }
@@ -532,66 +553,79 @@ declare namespace SystemTypes {
         /**
          * @display string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/grid-template-columns
          */
         templateColumns?: Breakpointify<CSS.Properties['gridTemplateColumns']>
         /**
          * @display string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/grid-template-rows
          */
         templateRows?: Breakpointify<CSS.Properties['gridTemplateRows']>
         /**
          * @display string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/grid-template-areas
          */
         templateAreas?: Breakpointify<CSS.Properties['gridTemplateAreas']>
         /**
          * @display string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/grid-column-gap
          */
         columnGap?: Breakpointify<CSS.Properties['gridColumnGap']>
         /**
          * @display string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/grid-row-gap
          */
         rowGap?: Breakpointify<CSS.Properties['gridRowGap']>
         /**
          * @display string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/grid-gap
          */
         gap?: Breakpointify<CSS.Properties['gridGap']>
         /**
          * @display string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/grid-auto-columns
          */
         autoColumns?: Breakpointify<CSS.Properties['gridAutoColumns']>
         /**
          * @display string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/grid-auto-rows
          */
         autoRows?: Breakpointify<CSS.Properties['gridAutoRows']>
         /**
          * @display string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/grid-auto-flow
          */
         autoFlow?: Breakpointify<CSS.Properties['gridAutoFlow']>
         /**
          * @display string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/align-items
          */
         alignItems?: Breakpointify<GridSelf>
         /**
          * @display inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/align-content
          */
         alignContent?: Breakpointify<GridSpace | GridSelf>
         /**
          * @display inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/justify-content
          */
         justifyContent?: Breakpointify<GridSpace | GridSelf>
         /**
          * @display inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/justify-items
          */
         justifyItems?: Breakpointify<GridSpace | GridSelf>
         inline?: Breakpointify<boolean>
@@ -603,6 +637,7 @@ declare namespace SystemTypes {
          * In Flexbox, it controls the alignment of items on the Cross Axis
          * @breakpointify
          * @display inherit|auto|baseline|center|flex-start|flex-end|stretch
+         * @see https://developer.mozilla.org/docs/Web/CSS/align-items
          */
         alignItems?: Breakpointify<FlexSelf>
         /**
@@ -610,6 +645,7 @@ declare namespace SystemTypes {
          * items along a flexbox's cross-axis or a grid's block axis
          * @breakpointify
          * @display inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
+         * @see https://developer.mozilla.org/docs/Web/CSS/align-content
          */
         alignContent?: Breakpointify<FlexSelf | FlexSpace>
         /**
@@ -617,6 +653,7 @@ declare namespace SystemTypes {
          * align-content and justify-content
          * @breakpointify
          * @display inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
+         * @see https://developer.mozilla.org/docs/Web/CSS/place-content
          */
         placeContent?: Breakpointify<FlexSelf | FlexSpace>
         /**
@@ -625,6 +662,7 @@ declare namespace SystemTypes {
          * the inline axis of a grid container.
          * @breakpointify
          * @display inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
+         * @see https://developer.mozilla.org/docs/Web/CSS/justify-content
          */
         justifyContent?: Breakpointify<FlexSelf | FlexSpace>
         /**
@@ -632,6 +670,7 @@ declare namespace SystemTypes {
          * a default way of justifying each box along the appropriate axis
          * @breakpointify
          * @display inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
+         * @see https://developer.mozilla.org/docs/Web/CSS/justify-items
          */
         justifyItems?: Breakpointify<FlexSelf | FlexSpace>
         /**
@@ -639,6 +678,7 @@ declare namespace SystemTypes {
          * main axis and the direction (normal or reversed)
          * @breakpointify
          * @display inherit | initial | revert | unset | column | column-reverse | row | row-reverse
+         * @see https://developer.mozilla.org/docs/Web/CSS/flex-direction
          */
         direction?: Breakpointify<FlexDirection>
         /**
@@ -657,12 +697,14 @@ declare namespace SystemTypes {
          * Sets whether flex items are forced onto one line or can wrap onto multiple lines
          * @display inherit | initial | revert | unset | nowrap | wrap | wrap-reverse
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/flex-wrap
          */
         wrap?: Breakpointify<FlexWrap>
         /**
          * Shorthand property for flex-direction and flex-wrap styles
          * @display column | column-reverse | nowrap | row | row-reverse | wrap | wrap-reverse
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/flex-flow
          */
         flow?: Breakpointify<CSS.Properties['flexFlow']>
     }
@@ -680,6 +722,7 @@ declare namespace SystemTypes {
          * of the grid area.
          * @display string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/grid-column-start
          */
         gridColumnStart?: Breakpointify<CSS.Properties['gridColumnStart']>
         /**
@@ -689,6 +732,7 @@ declare namespace SystemTypes {
          * specifying the block-end edge of its grid area.
          * @display string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/grid-column-end
          */
         gridColumnEnd?: Breakpointify<CSS.Properties['gridColumnEnd']>
         /**
@@ -698,6 +742,7 @@ declare namespace SystemTypes {
          * the inline-start edge of its grid area.
          * @display string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/grid-row-start
          */
         gridRowStart?: Breakpointify<CSS.Properties['gridRowStart']>
         /**
@@ -707,6 +752,7 @@ declare namespace SystemTypes {
          * specifying the inline-end edge of its grid area.
          * @display string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/grid-row-end
          */
         gridRowEnd?: Breakpointify<CSS.Properties['gridRowEnd']>
         /**
@@ -718,6 +764,7 @@ declare namespace SystemTypes {
          * inline-end edge of its grid area.
          * @display string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/grid-column
          */
         gridColumn?: Breakpointify<CSS.Properties['gridColumn']>
         /**
@@ -728,6 +775,7 @@ declare namespace SystemTypes {
          * the inline-start and inline-end edge of its grid area.
          * @display string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/grid-row
          */
         gridRow?: Breakpointify<CSS.Properties['gridRow']>
         /**
@@ -738,6 +786,7 @@ declare namespace SystemTypes {
          * specifying the edges of its grid area.
          * @display string
          * @breakpointify
+         * @see https://developer.mozilla.org/docs/Web/CSS/grid-area
          */
         gridArea?: Breakpointify<CSS.Properties['gridArea']>
         /**
@@ -745,7 +794,7 @@ declare namespace SystemTypes {
          * properties. The first value is the align-self property value, 
          * the second the justify-self one. If the second value is not 
          * present, the first value is also used for it.
-         * @display string
+         * @display inherit | stretch | center | flex-end | flex-start | baseline | auto
          * @breakpointify
          */
         placeSelf?: Breakpointify<FlexSelf>
@@ -756,11 +805,29 @@ declare namespace SystemTypes {
      * @name ClipboardEvents
      */
     interface ClipboardEventProps<T> {
+        /**
+         * @display function
+         */
         onCopy?: React.ClipboardEventHandler<T>
+        /**
+         * @display function
+         */
         onCopyCapture?: React.ClipboardEventHandler<T>
+        /**
+         * @display function
+         */
         onCut?: React.ClipboardEventHandler<T>
+        /**
+         * @display function
+         */
         onCutCapture?: React.ClipboardEventHandler<T>
+        /**
+         * @display function
+         */
         onPaste?: React.ClipboardEventHandler<T>
+        /**
+         * @display function
+         */
         onPasteCapture?: React.ClipboardEventHandler<T>
     }
 
@@ -769,11 +836,29 @@ declare namespace SystemTypes {
      * @name CompositionEvents
      */
     interface CompositionEventProps<T> {
+        /**
+         * @display function
+         */
         onCompositionEnd?: React.CompositionEventHandler<T>
+        /**
+         * @display function
+         */
         onCompositionEndCapture?: React.CompositionEventHandler<T>
+        /**
+         * @display function
+         */
         onCompositionStart?: React.CompositionEventHandler<T>
+        /**
+         * @display function
+         */
         onCompositionStartCapture?: React.CompositionEventHandler<T>
+        /**
+         * @display function
+         */
         onCompositionUpdate?: React.CompositionEventHandler<T>
+        /**
+         * @display function
+         */
         onCompositionUpdateCapture?: React.CompositionEventHandler<T>
     }
 
@@ -782,9 +867,21 @@ declare namespace SystemTypes {
      * @name FocusEvents
      */
     interface FocusEventProps<T> {
+        /**
+         * @display function
+         */
         onFocus?: React.FocusEventHandler<T>
+        /**
+         * @display function
+         */
         onFocusCapture?: React.FocusEventHandler<T>
+        /**
+         * @display function
+         */
         onBlur?: React.FocusEventHandler<T>
+        /**
+         * @display function
+         */
         onBlurCapture?: React.FocusEventHandler<T>
     }
 
@@ -793,17 +890,53 @@ declare namespace SystemTypes {
      * @name FormEvents
      */
     interface FormEventProps<T> {
+        /**
+         * @display function
+         */
         onChange?: React.FormEventHandler<T>
+        /**
+         * @display function
+         */
         onChangeCapture?: React.FormEventHandler<T>
+        /**
+         * @display function
+         */
         onBeforeInput?: React.FormEventHandler<T>
+        /**
+         * @display function
+         */
         onBeforeInputCapture?: React.FormEventHandler<T>
+        /**
+         * @display function
+         */
         onInput?: React.FormEventHandler<T>
+        /**
+         * @display function
+         */
         onInputCapture?: React.FormEventHandler<T>
+        /**
+         * @display function
+         */
         onReset?: React.FormEventHandler<T>
+        /**
+         * @display function
+         */
         onResetCapture?: React.FormEventHandler<T>
+        /**
+         * @display function
+         */
         onSubmit?: React.FormEventHandler<T>
+        /**
+         * @display function
+         */
         onSubmitCapture?: React.FormEventHandler<T>
+        /**
+         * @display function
+         */
         onInvalid?: React.FormEventHandler<T>
+        /**
+         * @display function
+         */
         onInvalidCapture?: React.FormEventHandler<T>
     }
 
@@ -812,10 +945,22 @@ declare namespace SystemTypes {
      * @name ImageEvents
      */
     interface ImageEventProps<T> {
+        /**
+         * @display function
+         */
         onLoad?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
         onLoadCapture?: React.ReactEventHandler<T>
-        onError?: React.ReactEventHandler<T> // also a Media Event
-        onErrorCapture?: React.ReactEventHandler<T> // also a Media Event
+        /**
+         * @display function
+         */
+        onError?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+        onErrorCapture?: React.ReactEventHandler<T>
     }
 
     /**
@@ -823,13 +968,37 @@ declare namespace SystemTypes {
      * @name KeyboardEvents
      */
     interface KeyboardEventProps<T> {
+        /**
+         * @display function
+         */
         onKeyDown?: React.KeyboardEventHandler<T>
+        /**
+         * @display function
+         */
         onKeyDownCapture?: React.KeyboardEventHandler<T>
+        /**
+         * @display function
+         */
         onKeyPress?: React.KeyboardEventHandler<T>
+        /**
+         * @display function
+         */
         onKeyPressCapture?: React.KeyboardEventHandler<T>
+        /**
+         * @display function
+         */
         onKeyUp?: React.KeyboardEventHandler<T>
+        /**
+         * @display function
+         */
         onKeyUpCapture?: React.KeyboardEventHandler<T>
+        /**
+         * @display function
+         */
         onEnter?: React.KeyboardEventHandler<T>
+        /**
+         * @display function
+         */
         onEsc?: React.KeyboardEventHandler<T>
     }
 
@@ -838,50 +1007,182 @@ declare namespace SystemTypes {
      * @name MediaEvents
      */
     interface MediaEventProps<T> {
+        /**
+         * @display function
+         */
         onAbort?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
         onAbortCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
         onCanPlay?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
         onCanPlayCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
         onCanPlayThrough?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
         onCanPlayThroughCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
         onDurationChange?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
         onDurationChangeCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
         onEmptied?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
         onEmptiedCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
         onEncrypted?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
         onEncryptedCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
         onEnded?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
         onEndedCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
         onLoadedData?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
         onLoadedDataCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
         onLoadedMetadata?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
         onLoadedMetadataCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
         onLoadStart?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
         onLoadStartCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
         onPause?: React.ReactEventHandler<T>
-        onPauseCapture?: React.ReactEventHandler<T>
-        onPlay?: React.ReactEventHandler<T>
-        onPlayCapture?: React.ReactEventHandler<T>
-        onPlaying?: React.ReactEventHandler<T>
-        onPlayingCapture?: React.ReactEventHandler<T>
-        onProgress?: React.ReactEventHandler<T>
-        onProgressCapture?: React.ReactEventHandler<T>
-        onRateChange?: React.ReactEventHandler<T>
-        onRateChangeCapture?: React.ReactEventHandler<T>
-        onSeeked?: React.ReactEventHandler<T>
-        onSeekedCapture?: React.ReactEventHandler<T>
-        onSeeking?: React.ReactEventHandler<T>
-        onSeekingCapture?: React.ReactEventHandler<T>
-        onStalled?: React.ReactEventHandler<T>
-        onStalledCapture?: React.ReactEventHandler<T>
-        onSuspend?: React.ReactEventHandler<T>
-        onSuspendCapture?: React.ReactEventHandler<T>
-        onTimeUpdate?: React.ReactEventHandler<T>
-        onTimeUpdateCapture?: React.ReactEventHandler<T>
-        onVolumeChange?: React.ReactEventHandler<T>
-        onVolumeChangeCapture?: React.ReactEventHandler<T>
-        onWaiting?: React.ReactEventHandler<T>
-        onWaitingCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onPauseCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onPlay?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onPlayCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onPlaying?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onPlayingCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onProgress?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onProgressCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onRateChange?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onRateChangeCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onSeeked?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onSeekedCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onSeeking?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onSeekingCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onStalled?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onStalledCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onSuspend?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onSuspendCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onTimeUpdate?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onTimeUpdateCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onVolumeChange?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onVolumeChangeCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onWaiting?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onWaitingCapture?: React.ReactEventHandler<T>
     }
 
     /**
@@ -889,42 +1190,150 @@ declare namespace SystemTypes {
      * @name MouseEvents
      */
     interface MouseEventProps<T> {
+        /**
+         * @display function
+         */
         onAuxClick?: React.MouseEventHandler<T>
-        onAuxClickCapture?: React.MouseEventHandler<T>
-        onClick?: React.MouseEventHandler<T>
-        onClickCapture?: React.MouseEventHandler<T>
-        onContextMenu?: React.MouseEventHandler<T>
-        onContextMenuCapture?: React.MouseEventHandler<T>
-        onDoubleClick?: React.MouseEventHandler<T>
-        onDoubleClickCapture?: React.MouseEventHandler<T>
-        onDrag?: React.DragEventHandler<T>
-        onDragCapture?: React.DragEventHandler<T>
-        onDragEnd?: React.DragEventHandler<T>
-        onDragEndCapture?: React.DragEventHandler<T>
-        onDragEnter?: React.DragEventHandler<T>
-        onDragEnterCapture?: React.DragEventHandler<T>
-        onDragExit?: React.DragEventHandler<T>
-        onDragExitCapture?: React.DragEventHandler<T>
-        onDragLeave?: React.DragEventHandler<T>
-        onDragLeaveCapture?: React.DragEventHandler<T>
-        onDragOver?: React.DragEventHandler<T>
-        onDragOverCapture?: React.DragEventHandler<T>
-        onDragStart?: React.DragEventHandler<T>
-        onDragStartCapture?: React.DragEventHandler<T>
-        onDrop?: React.DragEventHandler<T>
-        onDropCapture?: React.DragEventHandler<T>
-        onMouseDown?: React.MouseEventHandler<T>
-        onMouseDownCapture?: React.MouseEventHandler<T>
-        onMouseEnter?: React.MouseEventHandler<T>
-        onMouseLeave?: React.MouseEventHandler<T>
-        onMouseMove?: React.MouseEventHandler<T>
-        onMouseMoveCapture?: React.MouseEventHandler<T>
-        onMouseOut?: React.MouseEventHandler<T>
-        onMouseOutCapture?: React.MouseEventHandler<T>
-        onMouseOver?: React.MouseEventHandler<T>
-        onMouseOverCapture?: React.MouseEventHandler<T>
-        onMouseUp?: React.MouseEventHandler<T>
-        onMouseUpCapture?: React.MouseEventHandler<T>
+        /**
+         * @display function
+         */
+         onAuxClickCapture?: React.MouseEventHandler<T>
+        /**
+         * @display function
+         */
+         onClick?: React.MouseEventHandler<T>
+        /**
+         * @display function
+         */
+         onClickCapture?: React.MouseEventHandler<T>
+        /**
+         * @display function
+         */
+         onContextMenu?: React.MouseEventHandler<T>
+        /**
+         * @display function
+         */
+         onContextMenuCapture?: React.MouseEventHandler<T>
+        /**
+         * @display function
+         */
+         onDoubleClick?: React.MouseEventHandler<T>
+        /**
+         * @display function
+         */
+         onDoubleClickCapture?: React.MouseEventHandler<T>
+        /**
+         * @display function
+         */
+         onDrag?: React.DragEventHandler<T>
+        /**
+         * @display function
+         */
+         onDragCapture?: React.DragEventHandler<T>
+        /**
+         * @display function
+         */
+         onDragEnd?: React.DragEventHandler<T>
+        /**
+         * @display function
+         */
+         onDragEndCapture?: React.DragEventHandler<T>
+        /**
+         * @display function
+         */
+         onDragEnter?: React.DragEventHandler<T>
+        /**
+         * @display function
+         */
+         onDragEnterCapture?: React.DragEventHandler<T>
+        /**
+         * @display function
+         */
+         onDragExit?: React.DragEventHandler<T>
+        /**
+         * @display function
+         */
+         onDragExitCapture?: React.DragEventHandler<T>
+        /**
+         * @display function
+         */
+         onDragLeave?: React.DragEventHandler<T>
+        /**
+         * @display function
+         */
+         onDragLeaveCapture?: React.DragEventHandler<T>
+        /**
+         * @display function
+         */
+         onDragOver?: React.DragEventHandler<T>
+        /**
+         * @display function
+         */
+         onDragOverCapture?: React.DragEventHandler<T>
+        /**
+         * @display function
+         */
+         onDragStart?: React.DragEventHandler<T>
+        /**
+         * @display function
+         */
+         onDragStartCapture?: React.DragEventHandler<T>
+        /**
+         * @display function
+         */
+         onDrop?: React.DragEventHandler<T>
+        /**
+         * @display function
+         */
+         onDropCapture?: React.DragEventHandler<T>
+        /**
+         * @display function
+         */
+         onMouseDown?: React.MouseEventHandler<T>
+        /**
+         * @display function
+         */
+         onMouseDownCapture?: React.MouseEventHandler<T>
+        /**
+         * @display function
+         */
+         onMouseEnter?: React.MouseEventHandler<T>
+        /**
+         * @display function
+         */
+         onMouseLeave?: React.MouseEventHandler<T>
+        /**
+         * @display function
+         */
+         onMouseMove?: React.MouseEventHandler<T>
+        /**
+         * @display function
+         */
+         onMouseMoveCapture?: React.MouseEventHandler<T>
+        /**
+         * @display function
+         */
+         onMouseOut?: React.MouseEventHandler<T>
+        /**
+         * @display function
+         */
+         onMouseOutCapture?: React.MouseEventHandler<T>
+        /**
+         * @display function
+         */
+         onMouseOver?: React.MouseEventHandler<T>
+        /**
+         * @display function
+         */
+         onMouseOverCapture?: React.MouseEventHandler<T>
+        /**
+         * @display function
+         */
+         onMouseUp?: React.MouseEventHandler<T>
+        /**
+         * @display function
+         */
+         onMouseUpCapture?: React.MouseEventHandler<T>
     }
 
     /**
@@ -932,8 +1341,14 @@ declare namespace SystemTypes {
      * @name SelectionEvents
      */
     interface SelectionEventProps<T> {
+        /**
+         * @display function
+         */
         onSelect?: React.ReactEventHandler<T>
-        onSelectCapture?: React.ReactEventHandler<T>
+        /**
+         * @display function
+         */
+         onSelectCapture?: React.ReactEventHandler<T>
     }
 
     /**
@@ -941,14 +1356,38 @@ declare namespace SystemTypes {
      * @name TouchEvents
      */
     interface TouchEventProps<T> {
+        /**
+         * @display function
+         */
         onTouchCancel?: React.TouchEventHandler<T>
-        onTouchCancelCapture?: React.TouchEventHandler<T>
-        onTouchEnd?: React.TouchEventHandler<T>
-        onTouchEndCapture?: React.TouchEventHandler<T>
-        onTouchMove?: React.TouchEventHandler<T>
-        onTouchMoveCapture?: React.TouchEventHandler<T>
-        onTouchStart?: React.TouchEventHandler<T>
-        onTouchStartCapture?: React.TouchEventHandler<T>
+        /**
+         * @display function
+         */
+         onTouchCancelCapture?: React.TouchEventHandler<T>
+        /**
+         * @display function
+         */
+         onTouchEnd?: React.TouchEventHandler<T>
+        /**
+         * @display function
+         */
+         onTouchEndCapture?: React.TouchEventHandler<T>
+        /**
+         * @display function
+         */
+         onTouchMove?: React.TouchEventHandler<T>
+        /**
+         * @display function
+         */
+         onTouchMoveCapture?: React.TouchEventHandler<T>
+        /**
+         * @display function
+         */
+         onTouchStart?: React.TouchEventHandler<T>
+        /**
+         * @display function
+         */
+         onTouchStartCapture?: React.TouchEventHandler<T>
     }
 
     /**
@@ -956,26 +1395,80 @@ declare namespace SystemTypes {
      * @name PointerEvents
      */
     interface PointerEventProps<T> {
+        /**
+         * @display function
+         */
         onPointerDown?: React.PointerEventHandler<T>
-        onPointerDownCapture?: React.PointerEventHandler<T>
-        onPointerMove?: React.PointerEventHandler<T>
-        onPointerMoveCapture?: React.PointerEventHandler<T>
-        onPointerUp?: React.PointerEventHandler<T>
-        onPointerUpCapture?: React.PointerEventHandler<T>
-        onPointerCancel?: React.PointerEventHandler<T>
-        onPointerCancelCapture?: React.PointerEventHandler<T>
-        onPointerEnter?: React.PointerEventHandler<T>
+        /**
+         * @display function
+         */
+         onPointerDownCapture?: React.PointerEventHandler<T>
+        /**
+         * @display function
+         */
+         onPointerMove?: React.PointerEventHandler<T>
+        /**
+         * @display function
+         */
+         onPointerMoveCapture?: React.PointerEventHandler<T>
+        /**
+         * @display function
+         */
+         onPointerUp?: React.PointerEventHandler<T>
+        /**
+         * @display function
+         */
+         onPointerUpCapture?: React.PointerEventHandler<T>
+        /**
+         * @display function
+         */
+         onPointerCancel?: React.PointerEventHandler<T>
+        /**
+         * @display function
+         */
+         onPointerCancelCapture?: React.PointerEventHandler<T>
+        /**
+         * @display function
+         */
+         onPointerEnter?: React.PointerEventHandler<T>
         // onPointerEnterCapture?: React.PointerEventHandler<T>
-        onPointerLeave?: React.PointerEventHandler<T>
+        /**
+         * @display function
+         */
+         onPointerLeave?: React.PointerEventHandler<T>
         // onPointerLeaveCapture?: React.PointerEventHandler<T>
-        onPointerOver?: React.PointerEventHandler<T>
-        onPointerOverCapture?: React.PointerEventHandler<T>
-        onPointerOut?: React.PointerEventHandler<T>
-        onPointerOutCapture?: React.PointerEventHandler<T>
-        onGotPointerCapture?: React.PointerEventHandler<T>
-        onGotPointerCaptureCapture?: React.PointerEventHandler<T>
-        onLostPointerCapture?: React.PointerEventHandler<T>
-        onLostPointerCaptureCapture?: React.PointerEventHandler<T>
+        /**
+         * @display function
+         */
+         onPointerOver?: React.PointerEventHandler<T>
+        /**
+         * @display function
+         */
+         onPointerOverCapture?: React.PointerEventHandler<T>
+        /**
+         * @display function
+         */
+         onPointerOut?: React.PointerEventHandler<T>
+        /**
+         * @display function
+         */
+         onPointerOutCapture?: React.PointerEventHandler<T>
+        /**
+         * @display function
+         */
+         onGotPointerCapture?: React.PointerEventHandler<T>
+        /**
+         * @display function
+         */
+         onGotPointerCaptureCapture?: React.PointerEventHandler<T>
+        /**
+         * @display function
+         */
+         onLostPointerCapture?: React.PointerEventHandler<T>
+        /**
+         * @display function
+         */
+         onLostPointerCaptureCapture?: React.PointerEventHandler<T>
     }
 
     /**
@@ -983,8 +1476,14 @@ declare namespace SystemTypes {
      * @name ScrollEvents
      */
     interface ScrollEventProps<T> {
+        /**
+         * @display function
+         */
         onScroll?: React.UIEventHandler<T>
-        onScrollCapture?: React.UIEventHandler<T>
+        /**
+         * @display function
+         */
+         onScrollCapture?: React.UIEventHandler<T>
     }
 
     /**
@@ -992,8 +1491,14 @@ declare namespace SystemTypes {
      * @name WheelEvents
      */
     interface WheelEventProps<T> {
+        /**
+         * @display function
+         */
         onWheel?: React.WheelEventHandler<T>
-        onWheelCapture?: React.WheelEventHandler<T>
+        /**
+         * @display function
+         */
+         onWheelCapture?: React.WheelEventHandler<T>
     }
 
     /**
@@ -1001,12 +1506,30 @@ declare namespace SystemTypes {
      * @name AnimationEvents
      */
     interface AnimationEventProps<T> {
+        /**
+         * @display function
+         */
         onAnimationStart?: React.AnimationEventHandler<T>
-        onAnimationStartCapture?: React.AnimationEventHandler<T>
-        onAnimationEnd?: React.AnimationEventHandler<T>
-        onAnimationEndCapture?: React.AnimationEventHandler<T>
-        onAnimationIteration?: React.AnimationEventHandler<T>
-        onAnimationIterationCapture?: React.AnimationEventHandler<T>
+        /**
+         * @display function
+         */
+         onAnimationStartCapture?: React.AnimationEventHandler<T>
+        /**
+         * @display function
+         */
+         onAnimationEnd?: React.AnimationEventHandler<T>
+        /**
+         * @display function
+         */
+         onAnimationEndCapture?: React.AnimationEventHandler<T>
+        /**
+         * @display function
+         */
+         onAnimationIteration?: React.AnimationEventHandler<T>
+        /**
+         * @display function
+         */
+         onAnimationIterationCapture?: React.AnimationEventHandler<T>
     }
 
     /**
@@ -1014,8 +1537,14 @@ declare namespace SystemTypes {
      * @name TransitionEvents
      */
     interface TransitionEventProps<T> {
+        /**
+         * @display function
+         */
         onTransitionEnd?: React.TransitionEventHandler<T>
-        onTransitionEndCapture?: React.TransitionEventHandler<T>
+        /**
+         * @display function
+         */
+         onTransitionEndCapture?: React.TransitionEventHandler<T>
     }
 }
 

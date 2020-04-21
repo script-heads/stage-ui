@@ -3,10 +3,9 @@ import { Text, Paragraph } from '@stage-ui/core'
 import Editor from './editor'
 import HomePage from './pages/index/index'
 import { Config } from './utils/core'
-import PropName from './components/Page/Types/PropName'
+import Name from './components/Page/Types/Name'
 import Value from './components/Page/Types/Value'
-import Params from './components/Page/Types/Params'
-import StyleType from './components/Page/Types/StyleType'
+import Description from './components/Page/Types/Description'
 
 const config: Config = {
     name: 'StageUI',
@@ -30,7 +29,7 @@ const config: Config = {
                         key: 'name',
                         title: 'Name',
                         width: '10rem',
-                        render: (c) => <PropName property={c.row} />
+                        render: (c) => <Name property={c.row} />
                     },
                     {
                         key: 'values',
@@ -41,7 +40,7 @@ const config: Config = {
                     {
                         key: 'comment',
                         title: 'Description',
-                        render: (c) => <Text size="s" children={c.row.comment} />
+                        render: (c) => <Description property={c.row} />
                     },
                     {
                         key: 'tags',
@@ -59,15 +58,18 @@ const config: Config = {
                         title: 'Name',
                         width: '10rem'
                     },
-                    {
-                        key: 'comment',
-                        title: 'Description',
-                    },
+
                     {
                         key: 'values',
                         title: 'States',
-                        width: '15rem',
-                        render: (c) => <StyleType property={c.row} />
+                        width: '12rem',
+                        render: (c) => <Value property={c.row} />
+                    },
+                    {
+                        key: 'comment',
+                        title: 'Description',
+                        render: (c) => <Description property={c.row} />
+
                     },
                 ]
             }

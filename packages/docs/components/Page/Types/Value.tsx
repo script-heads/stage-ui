@@ -115,21 +115,23 @@ const Value = (props: { property: Property }) => {
                 <Badge
                     key={Math.random()}
                     text={val.trim()}  
+                    textColor={tags.display ? c => c.primary : void 0}
+                    backgroundColor={tags.display ? c => c.primary.alpha(0.1) : void 0}
                 />
             )
         }
+    }
+    if (tags.link) {
+        return (
+            <Link target="_blank" css={{ textDecoration: 'underline' }} color="primary" href={tags.link}>
+                {values}
+            </Link>
+        )
     }
 
     return (
         <Flexbox wrap="wrap">
             {values}
-            {
-                tags.link && (
-                    <Link href={tags.link}>
-                        <ExternalLink />
-                    </Link>
-                )
-            }
         </Flexbox>
     )
 }
