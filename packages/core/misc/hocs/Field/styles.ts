@@ -22,7 +22,6 @@ const fieldStyles = <T extends Types.Styles>(
                 minWidth: '1rem',
                 flex: 1,
                 flexDirection: 'column',
-                overflow: 'hidden',
                 outline: 'none'
             },
             stylePatch?.container?.(variant)
@@ -31,6 +30,7 @@ const fieldStyles = <T extends Types.Styles>(
         field: (variant) => [
             {
                 position: 'relative',
+                overflow: 'hidden',
                 flexShrink: 0,
                 flexGrow: 1,
                 background: theme.color.surface.rgb().string(),
