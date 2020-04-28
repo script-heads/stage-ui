@@ -22,54 +22,42 @@ function useComponent<Props, Styles>(
         theme = useTheme(),
     } = options
 
+    const overrides = theme.overrides[name]
+    const decorations = theme.decorations[name] && theme.decorations[name][props.decoration]
+
     const initialClasses = createClasses(props, theme)
 
-    const decorationClasses = theme.decorations[name] && props.decoration
-        && isFunction(theme.decorations[name][props.decoration])
-        ? theme.decorations[name][props.decoration](props)
-        : theme.decorations[name][props.decoration]
+    const decorationClasses = isFunction(decorations)
+        ? decorations(props)
+        : decorations
 
-    const overrideClasses = isFunction(theme.overrides[name])
-        ? theme.overrides[name](props)
-        : theme.overrides[name]
+    const overrideClasses = isFunction(overrides)
+        ? overrides(props)
+        : overrides
 
     const data = {
         classes: {},
         attributes: {},
-        events: {
-            all: {},
-            form: {},
-            focus: {},
-            image: {},
-            media: {},
-            mouse: {},
-            touch: {},
-            wheel: {},
-            pointer: {},
-            keyboard: {},
-            selection: {},
-            animation: {},
-            clipboard: {},
-            transition: {},
-            composition: {},
-            scroll: {}
-        },
+        events: {},
         styles: {
             all: [],
             flow: [],
             self: [],
-            qs: {},
-            color: {},
-            border: {},
-            padding: {},
-            layout: {},
-            margin: {},
-            flex: {},
-            grid: {}
+            qs: [],
+            color: [],
+            border: [],
+            padding: [],
+            layout: [],
+            margin: [],
+            flex: [],
+            grid: []
         }
     }
 
     for (let key in props) {
+        if (key[0] === 'o' && key[1] === 'n') {
+            data.events[key] = props[key]
+        }
         if (resolver.hasOwnProperty(key)) {
             resolver[key](data, props[key], theme, focus)
         }
@@ -82,7 +70,7 @@ function useComponent<Props, Styles>(
             ? (state) => {
                 return [
                     classLabel,
-                    initialClasses[key]?.(state),
+                    initialClasses[key](state),
                     overrideClasses[key]?.(state),
                     decorationClasses[key]?.(state)
                 ] as EmotionStyles

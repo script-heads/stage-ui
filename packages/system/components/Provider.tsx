@@ -40,7 +40,7 @@ const Provider = <T extends ProviderProps>(props: T) => {
 
     const Content = (
         <CacheProvider value={cache}>
-            <Global styles={[autocompleteSt, global]} />
+            <Global styles={[autocompleteSt, global, { '.focused': theme?.assets.focus }]} />
             {children}
         </CacheProvider>
     )
