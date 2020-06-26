@@ -46,6 +46,20 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                     stopPropagation: () => null
                 })
             }
+        },
+        scrollBottom: () => {
+            if (isLegacyScrollSupport) {
+                if (memo.container) {
+                    memo.container.scrollTo(1e+10, 1e+10)
+                }
+            } else {
+                updateScroll({
+                    deltaX: 1e+10,
+                    deltaY: 1e+10,
+                    preventDefault: () => null,
+                    stopPropagation: () => null
+                })
+            }
         }
     }))
 

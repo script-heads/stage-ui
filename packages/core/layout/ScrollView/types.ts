@@ -72,6 +72,10 @@ declare namespace ScrollViewTypes {
          * Scroll to top
          */
         scrollTop: () => void
+        /**
+         * Scroll to bottom
+         */
+        scrollBottom: () => void
     }
 
     interface Styles {
