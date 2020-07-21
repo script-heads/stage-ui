@@ -1,7 +1,7 @@
 {
     "name": "@stage-ui/system",
     "author": "Dmitry Beltyukov, Ilya Tricoz",
-    "version": "0.1.29",
+    "version": "0.1.32",
     "license": "MIT",
     "scripts": {
         "pub": "git pull && yarn build && npm version patch && cd ../../build/system && npm version patch && yarn publish --access public && cd .. && rm -rf ./system",
