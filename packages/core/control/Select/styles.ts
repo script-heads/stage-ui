@@ -33,6 +33,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                             }
                         ],
                         none: [
+                            { padding: 0 },
                             params?.isOpen && {
                                 borderColor: 'transparent',
                             }
@@ -55,9 +56,15 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                 borderWidth: '1px',
                 borderStyle: 'solid',
                 boxSizing: 'border-box',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                borderTopLeftRadius: 0,
+                borderTopRightRadius: 0,
+                borderTopWidth: 0,
             },
             variant({
+                focus: {
+                    borderColor: theme.color.primary.rgb().string(),
+                },
                 shape: {
                     square: {
                         borderRadius: 0
@@ -82,19 +89,12 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                         borderRadius: 0,
                     },
                     none: {
-                        background: 'transparent',
-                        borderColor: 'transparent',
+                        borderTopLeftRadius: theme.radius.s,
+                        borderTopRightRadius: theme.radius.s,
+                        borderTopWidth: '1px',
                     }
-                },
-                focus: {
-                    borderColor: theme.color.primary.rgb().string(),
                 }
-            }),
-            {
-                borderTopLeftRadius: 0,
-                borderTopRightRadius: 0,
-                borderTop: 'none',
-            }
+            })
         ],
         dropItem: (variant) => [
             theme.assets.typography.text.m,
