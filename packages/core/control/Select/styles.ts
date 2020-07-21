@@ -23,6 +23,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                     borderColor: theme.color.primary.rgb().string(),
                     borderBottomColor: theme.color.lightest.rgb().string(),
                     borderBottomLeftRadius: 0,
+                    borderBottomRightRadius: 0,
                 },
                 variant({
                     decoration: {
@@ -49,14 +50,12 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
             {
                 position: 'relative',
                 background: theme.color.surface.rgb().string(),
-                borderColor: theme.color.primary.rgb().string(),
+                borderColor: theme.color.lightest.rgb().string(),
                 borderRadius: theme.radius.s,
                 borderWidth: '1px',
                 borderStyle: 'solid',
                 boxSizing: 'border-box',
-                overflow: 'hidden',
-                paddingTop: `calc(${minHeight}/2)`,
-                transform: `translateY(calc(-${minHeight}/2))`,
+                overflow: 'hidden'
             },
             variant({
                 shape: {
@@ -87,6 +86,9 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                         borderColor: 'transparent',
                     }
                 },
+                focus: {
+                    borderColor: theme.color.primary.rgb().string(),
+                }
             }),
             {
                 borderTopLeftRadius: 0,
