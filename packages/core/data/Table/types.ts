@@ -169,10 +169,6 @@ declare namespace TableTypes {
          * Calls when mouse leaves row
          */
         onRowMouseLeave?: (rowCtxItem: RowContext, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
-        
-        rowDidMount?: (rowCtxItem: RowContext) => void
-        
-        rowDidUnMount?: (rowCtxItem: RowContext) => void
     }
 
     interface RowDelegates {
@@ -219,6 +215,8 @@ declare namespace TableTypes {
          * @default default
          */
         rowMountType?: RowMountType
+        rowDidMount?: (rowCtxItem: RowContext) => void
+        rowDidUnmount?: (rowCtxItem: RowContext) => void
     }
 
     interface HeadCellProps<T = Object> {
@@ -242,6 +240,8 @@ declare namespace TableTypes {
         styles: SystemTypes.ComponentStyles<Styles>
         getCellContext: TableRef<T>['getCellContext']
         events: RowEvents
+        rowDidMount?: (rowCtxItem: RowContext) => void
+        rowDidUnmount?: (rowCtxItem: RowContext) => void
         rowMountType?: Props['rowMountType']
         enableRenderOptimization: boolean
         delegates: {

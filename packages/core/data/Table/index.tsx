@@ -193,8 +193,6 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
                          * Row events map
                          */
                         const events: Types.RowEvents = {
-                            rowDidMount: props.rowDidMount,
-                            rowDidUnMount: props.rowDidUnMount
                         }
                         /**
                          * We'll call onRow*Event* at on*Event*
@@ -212,6 +210,8 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
                             <TableRow
                                 rowCtxItem={rowCtxItem}
                                 getCellContext={getCellContext}
+                                rowDidMount={props.rowDidMount}
+                                rowDidUnmount={props.rowDidUnmount}
                                 styles={cs}
                                 key={rowIndex}
                                 columns={columns}
