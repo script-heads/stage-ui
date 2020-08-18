@@ -23,6 +23,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                     borderColor: theme.color.primary.rgb().string(),
                     borderBottomColor: theme.color.lightest.rgb().string(),
                     borderBottomLeftRadius: 0,
+                    borderBottomRightRadius: 0,
                 },
                 variant({
                     decoration: {
@@ -32,6 +33,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                             }
                         ],
                         none: [
+                            { padding: 0 },
                             params?.isOpen && {
                                 borderColor: 'transparent',
                             }
@@ -49,16 +51,20 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
             {
                 position: 'relative',
                 background: theme.color.surface.rgb().string(),
-                borderColor: theme.color.primary.rgb().string(),
+                borderColor: theme.color.lightest.rgb().string(),
                 borderRadius: theme.radius.s,
                 borderWidth: '1px',
                 borderStyle: 'solid',
                 boxSizing: 'border-box',
                 overflow: 'hidden',
-                paddingTop: `calc(${minHeight}/2)`,
-                transform: `translateY(calc(-${minHeight}/2))`,
+                borderTopLeftRadius: 0,
+                borderTopRightRadius: 0,
+                borderTopWidth: 0,
             },
             variant({
+                focus: {
+                    borderColor: theme.color.primary.rgb().string(),
+                },
                 shape: {
                     square: {
                         borderRadius: 0
@@ -83,16 +89,12 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                         borderRadius: 0,
                     },
                     none: {
-                        background: 'transparent',
-                        borderColor: 'transparent',
+                        borderTopLeftRadius: theme.radius.s,
+                        borderTopRightRadius: theme.radius.s,
+                        borderTopWidth: '1px',
                     }
-                },
-            }),
-            {
-                borderTopLeftRadius: 0,
-                borderTopRightRadius: 0,
-                borderTop: 'none',
-            }
+                }
+            })
         ],
         dropItem: (variant) => [
             theme.assets.typography.text.m,

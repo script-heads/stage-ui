@@ -26,30 +26,24 @@ const useComponent = <Styles, Props, Params>(
 
     const [focus, setfocus] = useState(false)
 
-    const { cs, attributes, events } = useMemo(() => {
+    const resolvedStyles = typeof options.styles === 'function'
+        ? options.styles(options.props, theme, params)
+        : options.styles
 
-        const resolvedStyles = typeof options.styles === 'function'
-            ? options.styles(options.props, theme, params)
-            : options.styles
+    const {
+        attributes,
+        events,
+        propStyles
+    } = attachProps<Styles, Props>(options.props, theme, setfocus, options)
 
-        const {
-            attributes,
-            events,
-            propStyles
-        } = attachProps<Styles, Props>(options.props, theme, setfocus, options)
-
-        const cs = createStyles(
-            resolvedStyles,
-            propStyles,
-            options.styleLabel || '',
-            options.props,
-            overrideName,
-            theme.overrides
-        )
-
-        return { cs, attributes, events }
-
-    }, [options.props, options.styles, theme])
+    const cs = createStyles(
+        resolvedStyles,
+        propStyles,
+        options.styleLabel || '',
+        options.props,
+        overrideName,
+        theme.overrides
+    )
 
     if (options.focus?.applyDecoration) {
         attributes.style = {}

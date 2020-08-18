@@ -10,9 +10,9 @@ import Types from './types'
 const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const {
-        decoration = 'outline', 
-        size = 'm', 
-        shape='rounded', 
+        decoration = 'outline',
+        size = 'm',
+        shape = 'rounded',
         tabIndex = 0,
         maxScrollHeight = '16rem',
         keepOpen = false,
@@ -38,35 +38,26 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
      */
     const [values, setValues] = useState<Types.Option[]>([])
     /**
-     * Object for variant styles
-     */
-    const styleState: Types.StyleState = { 
-        decoration, 
-        shape, 
-        size,
-        isOpen 
-    }
-    /**
      * This options will be shown in drop
      */
     const options = props.options.filter(option => {
-            // Filter only unselected values
-            if (values.find(o => o.value === option.value)) {
-                return false
-            }
-            // Filter only matching search
-            if (searchQuery && !option.text.toUpperCase().match(searchQuery.toUpperCase())) {
-                return false
-            }
-            return true
-        })
+        // Filter only unselected values
+        if (values.find(o => o.value === option.value)) {
+            return false
+        }
+        // Filter only matching search
+        if (searchQuery && !option.text.toUpperCase().match(searchQuery.toUpperCase())) {
+            return false
+        }
+        return true
+    })
 
-    const { cs, attributes, events, focus } = useComponent('Select', { 
-        props, 
+    const { cs, attributes, events, focus } = useComponent('Select', {
+        props,
         styles,
         styleProps: {
-            container: ['flow','layout'], 
-            field:['color','border','padding']
+            container: ['flow', 'layout'],
+            field: ['color', 'border', 'padding']
         },
         focus: {
             applyDecoration: false,
@@ -74,7 +65,16 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
     }, {
         isOpen: isOpen && options.length > 0
     })
-
+    /**
+     * Object for variant styles
+     */
+    const styleState: Types.StyleState = {
+        decoration,
+        shape,
+        size,
+        isOpen,
+        focus
+    }
     /**
      * Component did mount
      */
@@ -257,12 +257,11 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                     }
                 }}
                 stretchWidth
-                justify="start"
                 target={fieldRef}
                 children={(
                     <div css={cs.drop(styleState)}>
                         <ScrollView
-                            size="xs" 
+                            size="xs"
                             style={{ maxHeight: maxScrollHeight }}
                             sendFlowScollEvent={false}
                             children={options.map(option => (

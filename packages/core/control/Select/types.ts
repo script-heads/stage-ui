@@ -47,17 +47,18 @@ declare namespace SelectTypes {
     }
 
     type State = {
-        selectedOptions: Option[] 
+        selectedOptions: Option[]
         open: boolean
         searchValue: string
         empty: boolean
         cursor: number
     }
 
-    interface StyleState extends StyleParams{
+    interface StyleState extends StyleParams {
         shape: Props['shape']
-        size: Props['size'] 
+        size: Props['size']
         decoration: Props['decoration']
+        focus: boolean
     }
 
     interface StyleParams {
