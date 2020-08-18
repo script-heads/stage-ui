@@ -30,6 +30,7 @@ const TableRow: RefForwardingComponent<HTMLTableRowElement, Types.RowProps> = (p
                 if (forceUnmount) {
                     if (needDisplay) {
                         setNeedDisplay(false)
+                        props.events.onRowDidUnMount?.(rowCtxItem)
                     }
                     return false
                 }
@@ -40,8 +41,10 @@ const TableRow: RefForwardingComponent<HTMLTableRowElement, Types.RowProps> = (p
                     if (position.top + height * 2 >= 0 && position.top - height <= window.innerHeight) {
                         state = true
                         setNeedDisplay(true)
+                        props.events.onRowDidMount?.(rowCtxItem)
                     } else if (props.rowMountType === 'onlyWhenVisible') {
                         setNeedDisplay(false)
+                        props.events.onRowDidUnMount?.(rowCtxItem)
                     }
                 }
                 return state
