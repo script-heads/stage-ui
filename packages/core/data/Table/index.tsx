@@ -1,5 +1,5 @@
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, RefForwardingComponent,useRef, useImperativeHandle, useState, useEffect } from 'react'
+import React, { forwardRef, RefForwardingComponent, useRef, useImperativeHandle, useState, useEffect } from 'react'
 import styles from './styles'
 import Types from './types'
 import TableRow from './TableRow'
@@ -11,7 +11,7 @@ type Ref<T = Object> = Types.TableRef<T>
 const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
 
     const tableRef = useRef<HTMLTableElement>(null)
-    const { cs, attributes, events } = useComponent('Table', { props, styles, styleProps: { container: ['all']} })
+    const { cs, attributes, events } = useComponent('Table', { props, styles, styleProps: { container: ['all'] } })
     const { columns, pagination, footer } = props
     const [currentPage, setCurrentPage] = useState(1)
     const [reloadData, reload] = useState(false)
@@ -59,7 +59,7 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
         if (!rowCtx[index]?.row) {
             return null
         }
-        
+
         return {
             key,
             index: index,
@@ -81,7 +81,7 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
             return true
         }
         return false
-    } 
+    }
 
     const setModify: Ref['setModify'] = (modify, index, key) => {
         if (rowCtx[index]) {
@@ -126,7 +126,7 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
             columnSort(column)
         }
     }
-    
+
     const setNeedDisplay = () => {
         let state = 1
         for (let rowCtxItem of rowCtx) {
@@ -187,12 +187,15 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
                             if (startIndex > rowIndex || rowIndex >= currentPage * pageSize) {
                                 return null
                             }
-                            
+
                         }
                         /**
                          * Row events map
                          */
-                        const events: Types.RowEvents = {}
+                        const events: Types.RowEvents = {
+                            rowDidMount: props.rowDidMount,
+                            rowDidUnMount: props.rowDidUnMount
+                        }
                         /**
                          * We'll call onRow*Event* at on*Event*
                          * with injected rowIndex.
