@@ -169,8 +169,10 @@ declare namespace TableTypes {
          * Calls when mouse leaves row
          */
         onRowMouseLeave?: (rowCtxItem: RowContext, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
-        onRowDidMount?: (rowCtxItem: RowContext) => void
-        onRowDidUnMount?: (rowCtxItem: RowContext) => void
+        
+        rowDidMount?: (rowCtxItem: RowContext) => void
+        
+        rowDidUnMount?: (rowCtxItem: RowContext) => void
     }
 
     interface RowDelegates {
