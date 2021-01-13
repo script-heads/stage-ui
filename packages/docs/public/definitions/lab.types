@@ -151,36 +151,6 @@ declare module 'misc/hooks/useProgress' {
 	export default useProgress;
 
 }
-declare module 'misc/logos/abr' {
-	import React from 'react'; const _default: (props: {
-	    color?: string | undefined;
-	    style?: React.CSSProperties | undefined;
-	}) => JSX.Element;
-	export default _default;
-
-}
-declare module 'misc/logos/mrg' {
-	import React from 'react'; const _default: (props: {
-	    color?: string | undefined;
-	    style?: React.CSSProperties | undefined;
-	}) => JSX.Element;
-	export default _default;
-
-}
-declare module 'misc/logos/smorodina' {
-	import React from 'react'; const _default: (props: {
-	    color?: string | undefined;
-	    style?: React.CSSProperties | undefined;
-	}) => JSX.Element;
-	export default _default;
-
-}
-declare module 'misc/logos' {
-	export { default as MRG } from 'misc/logos/mrg';
-	export { default as ABR } from 'misc/logos/abr';
-	export { default as Smorodina } from 'misc/logos/smorodina';
-
-}
 declare module 'misc/themes/whiteCurrant' {
 	 const whiteCurrant: import("@stage-ui/system/types").default.Theme;
 	export default whiteCurrant;

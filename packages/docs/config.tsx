@@ -9,7 +9,7 @@ import Description from './components/Page/Types/Description'
 
 const config: Config = {
     name: 'StageUI',
-    git: 'https://github.com/stage-org/StageUI',
+    git: 'https://github.com/pt-one/StageUI',
     pages: {
         order: {
             About: ['Getting started', 'Theming', 'Overrides', 'Props', 'Bundle'],
