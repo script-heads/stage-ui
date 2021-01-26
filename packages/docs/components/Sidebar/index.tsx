@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
-import { Block, Flexbox, Menu, ScrollView, TextField, useTheme } from '@stage-ui/core'
+import { Block, Flexbox, Menu, ScrollView, Text, TextField, useTheme } from '@stage-ui/core'
 import { Close, Cube, Search } from '@stage-ui/core/icons'
 import { Fragment, useMemo, useState } from 'react'
 import { PagesType, PageType } from '../../utils/core'
@@ -43,9 +43,15 @@ const Sidebar = (props: SidebarProps) => {
                 return null
             }
             return (
-                <Menu.Submenu pb="l" key={index} title={section} defaultOpen={true}>
-                    {menuItems}
-                </Menu.Submenu>
+                <Menu.Submenu
+                    title={(
+                        <Text size="xs" weight="bold" color="light">{section}</Text>
+                    )}
+                    pb="l"
+                    key={index}
+                    defaultOpen={true}
+                    children={menuItems}
+                />
             )
         }), [pages, search]
     )
@@ -73,7 +79,8 @@ const Sidebar = (props: SidebarProps) => {
                         mb=".5rem"
                         rightChild={<Search />}
                         decoration="none"
-                        placeholder="Filter"
+                        backgroundColor={c => c.onSurface.alpha(0.05).rgb()}
+                        placeholder="Find"
                         value={search}
                         onChange={e => {
                             setSearch(e.target.value)
