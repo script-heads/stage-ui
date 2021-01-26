@@ -1,6 +1,8 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Block, Divider, Flexbox, Menu, Paragraph, ScrollView, useTheme } from '@stage-ui/core'
-import { Copy, Cube, Link, Trash2 } from '@stage-ui/core/icons'
-import React, { Fragment } from 'react'
+import { Copy, Cube, Trash2 } from '@stage-ui/core/icons'
+import { Fragment } from 'react'
 import { context } from '../..'
 import { componentsTypography } from '../RenderPanel'
 import BooleanControls from './controls/boolean'

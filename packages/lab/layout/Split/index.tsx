@@ -1,8 +1,10 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, Fragment, RefForwardingComponent, useEffect, useMemo } from 'react'
+import { forwardRef, ForwardRefRenderFunction, Fragment, useEffect, useMemo } from 'react'
 import Separator from './Separator'
-import Types from './types'
 import styles from './styles'
+import Types from './types'
 export type SplitElRef = (HTMLDivElement & {
     _vertical?: true
     _onMove?: () => void
@@ -13,7 +15,7 @@ interface SplitElRefs {
     [key: number]: SplitElRef
 }
 
-const Split: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+const Split: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const { cs, attributes, events } = useComponent('Split', { 
         props, 

@@ -2,7 +2,7 @@ declare module '@stage-ui/system/types' {
 	import React from 'react';
 	import QIXColor from 'color';
 	import CSS from 'csstype';
-	import { Interpolation, SerializedStyles, ObjectInterpolation } from '@emotion/react'; global {
+	import { Interpolation, SerializedStyles } from '@emotion/react'; global {
 	    namespace System {
 	        interface Palette<Color> {
 	            [key: string]: Color;
@@ -11,7 +11,7 @@ declare module '@stage-ui/system/types' {
 	        }
 	    }
 	}
-	export type EmotionStyles = Array<Interpolation> | ObjectInterpolation<undefined>;
+	export type EmotionStyles = Interpolation<any> | Array<Interpolation<any>>;
 	export type Breakpointify<T> = T[] | T; namespace SystemTypes {
 	    type Size = 'xs' | 's' | 'm' | 'l' | 'xl';
 	    /**
@@ -1607,10 +1607,8 @@ declare module 'utils/attachProps/types' {
 
 }
 declare module 'utils/attachProps/attribute' {
-	/// <reference types="react" />
-	/// <reference types="@emotion/react" />
 	import SystemTypes from 'types';
-	import { Options } from 'hooks/useComponent'; const createAttributes: <Styles, Props extends SystemTypes.AllProps<unknown, Styles>>(props: Props, setFocus: import("react").Dispatch<import("react").SetStateAction<boolean>>, options: Options<Styles, Props>) => {
+	import { Options } from 'hooks/useComponent'; const createAttributes: <Styles, Props extends SystemTypes.AllProps<unknown, Styles>>(props: Props, setFocus: React.Dispatch<React.SetStateAction<boolean>>, options: Options<Styles, Props>) => {
 	    attributes: SystemTypes.AttributeProps;
 	    events: {
 	        all: any;
@@ -1666,7 +1664,9 @@ declare module 'utils/colorProp' {
 	    [key: string]: any;
 	}> | ArrayLike<number> | {
 	    [key: string]: any;
-	}> | ((colors: {
+	}> | (string & {
+	    T?: string | undefined;
+	}) | ((colors: {
 	    background: Color<[number, number, number, (number | undefined)?]>;
 	    backgroundVariant: Color<[number, number, number, (number | undefined)?]>;
 	    surface: Color<[number, number, number, (number | undefined)?]>;
@@ -1710,9 +1710,7 @@ declare module 'utils/colorProp' {
 	    [key: string]: any;
 	}> | ArrayLike<number> | {
 	    [key: string]: any;
-	}>) | (string & {
-	    T?: string | undefined;
-	}) | undefined) => any;
+	}>) | undefined) => any;
 	export default _default;
 
 }
@@ -1736,10 +1734,8 @@ declare module 'utils/attachProps/style' {
 
 }
 declare module 'utils/attachProps' {
-	/// <reference types="react" />
-	/// <reference types="@emotion/react" />
 	import { Options } from 'hooks/useComponent';
-	import SystemTypes from 'types'; const attachProps: <Styles, Props>(props: Props, theme: SystemTypes.Theme, setFocus: import("react").Dispatch<import("react").SetStateAction<boolean>>, options: Options<Styles, Props>) => {
+	import SystemTypes from 'types'; type SetFocus = React.Dispatch<React.SetStateAction<boolean>>; const attachProps: <Styles, Props>(props: Props, theme: SystemTypes.Theme, setFocus: SetFocus, options: Options<Styles, Props>) => {
 	    attributes: SystemTypes.AttributeProps;
 	    events: {
 	        all: any;
@@ -1768,7 +1764,7 @@ declare module 'utils/attachProps' {
 declare module 'utils/createStyles' {
 	import SystemTypes, { EmotionStyles } from 'types'; const createComponentStyles: <Styles, Props extends {
 	    styles?: Partial<SystemTypes.Styles<Styles>> | undefined;
-	}>(styles: SystemTypes.Styles<Styles>, propStyles: Partial<Record<keyof Styles, EmotionStyles>>, styleLabel: string, props: Props, overrideName: string, overrides: Partial<{}> | undefined) => SystemTypes.ComponentStyles<Styles>;
+	}>(styles: SystemTypes.Styles<Styles>, propStyles: Partial<Record<keyof Styles, EmotionStyles>>, styleLabel: string, props: Props, overrideName: string, overrides: SystemTypes.Theme['overrides']) => SystemTypes.ComponentStyles<Styles>;
 	export default createComponentStyles;
 
 }

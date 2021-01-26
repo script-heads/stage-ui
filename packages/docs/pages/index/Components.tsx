@@ -1,5 +1,6 @@
-import { Block, Flexbox, Header, Text, Divider } from '@stage-ui/core'
-import React from 'react'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
+import { Block, Divider, Flexbox, Header, Text } from '@stage-ui/core'
 
 interface ComponentsProps {
     title: string

@@ -25,7 +25,6 @@ declare module 'data/Chart' {
 
 }
 declare module 'layout/Split/Separator' {
-	/// <reference types="react" />
 	import { SplitElRef } from 'layout/Split';
 	interface SeparatorProps {
 	    areaSize: number;
@@ -77,13 +76,12 @@ declare module 'layout/Split/styles' {
 
 }
 declare module 'layout/Split' {
-	import React from 'react';
 	import Types from 'layout/Split/types';
 	export type SplitElRef = (HTMLDivElement & {
 	    _vertical?: true;
 	    _onMove?: () => void;
 	    _onChange?: () => void;
-	}) | null; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	}) | null; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
 	export default _default;
 
 }
@@ -105,13 +103,11 @@ declare module 'layout/Toolbar/styles' {
 
 }
 declare module 'layout/Toolbar' {
-	import React from 'react';
-	import Types from 'layout/Toolbar/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	import Types from 'layout/Toolbar/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
 	export default _default;
 
 }
 declare module 'control/ButtonGroup/types' {
-	/// <reference types="react" />
 	import ButtonTypes from '/control/Button/types'; namespace ButtonGroupTypes {
 	    interface Props extends ButtonTypes.Props {
 	        children: (React.ReactElement<ButtonTypes.Props> | React.ReactElement<ButtonTypes.Props>[]);

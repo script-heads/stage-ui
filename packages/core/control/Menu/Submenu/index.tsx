@@ -1,11 +1,13 @@
-import React, { forwardRef, Fragment, RefForwardingComponent, useState } from 'react'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
+import { useComponent } from '@stage-ui/system'
+import { forwardRef, ForwardRefRenderFunction, useState } from 'react'
+import { ArrowIosDownward } from '../../../icons'
+import MenuItem from '../MenuItem'
 import styles from './styles'
 import Types from './types'
-import { useComponent } from '@stage-ui/system'
-import MenuItem from '../MenuItem'
-import { ArrowIosDownward } from '../../../icons'
 
-const Submenu: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+const Submenu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
     
     const { 
         rightChild,

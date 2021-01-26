@@ -1,10 +1,11 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Block, Button, Grid, Paragraph, useTheme } from '@stage-ui/core'
 import { Lock } from '@stage-ui/core/icons'
 import { ButtonGroup } from '@stage-ui/lab'
 import { useEffect, useState } from 'react'
 import { context } from '../../../../..'
 import styles from './styles'
-import React from 'react'
 
 const staticValues = [
     '-', 'xs', 's', 'm', 'l', 'xl'

@@ -1,9 +1,10 @@
-import { ArchitectTools, ArchitectItem } from '../../../../types'
-import { Button, Flexbox, TextField, Grid, useTheme, Block, Paragraph, Menu } from '@stage-ui/core'
-import createStyle from './styles'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
+import { Block, Button, Grid, Paragraph, useTheme } from '@stage-ui/core'
 import { Fragment } from 'react'
 import { context } from '../../../..'
-import React from 'react'
+import { ArchitectItem } from '../../../../types'
+import createStyle from './styles'
 
 const FlexConrols = () => {
     if (!context.tools.focused) {

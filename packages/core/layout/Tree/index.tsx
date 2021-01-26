@@ -1,13 +1,15 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Block, Flexbox } from '@stage-ui/core'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, Fragment, RefForwardingComponent, useState } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, Fragment, useState } from 'react'
 import styles from './styles'
 import TreeLabel from './TreeLabel'
 import TreeLeftChild from './TreeLeftChild'
 import TreeRightChild from './TreeRightChild'
 import Types from './types'
 
-const Tree: RefForwardingComponent<HTMLDivElement, Types.Props> = (props: Types.PrivateProps, ref) => {
+const Tree: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props: Types.PrivateProps, ref) => {
     let {
         children,
         leftChild,

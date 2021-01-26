@@ -1,8 +1,8 @@
-import { Block, Text, Flexbox, Link } from '@stage-ui/core'
-import React from 'react'
-import Types, { Property, OType } from '@stage-ui/docs/utils/types'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
+import { Flexbox, Link, Text } from '@stage-ui/core'
 import TextTypes from '@stage-ui/core/content/Text/types'
-import { ExternalLink } from '@stage-ui/core/icons'
+import { OType, Property } from '@stage-ui/docs/utils/types'
 
 // import { ValueDefinition } from '@stage-ui/docs/components/Page/Types/Interface'
 // interface ValueProps {

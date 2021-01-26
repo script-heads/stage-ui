@@ -1,3 +1,4 @@
+/** @jsx jsx */
 import { jsx } from '@emotion/react'
 import { Calendar, Drop, Popover } from '@stage-ui/core'
 import { Calendar as CalendarIcon } from '@stage-ui/core/icons'
@@ -5,12 +6,12 @@ import Field from '@stage-ui/core/misc/hocs/Field'
 import useMask from '@stage-ui/core/misc/hooks/useMask'
 import { useComponent } from '@stage-ui/system'
 import moment, { Moment } from 'moment'
-import React, { forwardRef, Fragment, RefForwardingComponent, useLayoutEffect, useRef, useState } from 'react'
+import { forwardRef, ForwardRefRenderFunction, Fragment, useLayoutEffect, useRef, useState } from 'react'
 import maskConf from './mask'
 import styles from './styles'
 import Types from './types'
 
-const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const {
         locale = 'ru',

@@ -11,7 +11,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
 
         weekDay: [{
             userSelect: 'none',
-            ...theme.assets.typography.text.m,
+            ...theme.assets.typography.text.m as {},
             marginTop: '0.25rem',
             marginBottom: '0.5rem',
             fontWeight: 500,

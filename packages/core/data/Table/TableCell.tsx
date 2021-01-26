@@ -1,7 +1,9 @@
-import React, { forwardRef, RefForwardingComponent, useState } from 'react'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
+import { forwardRef, ForwardRefRenderFunction, useState } from 'react'
 import Types from './types'
 
-const TableCell: RefForwardingComponent<HTMLTableDataCellElement, Types.CellProps> = (props, ref) => {
+const TableCell: ForwardRefRenderFunction<HTMLTableDataCellElement, Types.CellProps> = (props, ref) => {
     const { column, rowIndex, rowCtxItem, styles, getCellContext } = props
 
     let content = rowCtxItem.row[column.key] || null

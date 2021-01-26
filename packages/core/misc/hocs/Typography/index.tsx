@@ -1,12 +1,12 @@
 import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
-import { forwardRef, RefForwardingComponent, useMemo } from 'react'
+import { forwardRef, ForwardRefRenderFunction, useMemo } from 'react'
 import styles from './styles'
 import Types from './types'
 
 type RefTag = HTMLSpanElement | HTMLAnchorElement | HTMLParagraphElement
 
-const Typography: RefForwardingComponent<RefTag, Types.PrivateProps> = (props, ref) => {
+const Typography: ForwardRefRenderFunction<RefTag, Types.PrivateProps> = (props, ref) => {
 
     const { cs, attributes, events } = useComponent(props.overrides, {
         props,

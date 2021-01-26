@@ -1,13 +1,13 @@
 import { useTheme } from '@stage-ui/core'
 import mergeObjects from '@stage-ui/system/utils/mergeObjects'
 import { ChartDataSets, ChartOptions } from 'chart.js'
-import React, { forwardRef, RefForwardingComponent } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import { Bar, Bubble, Doughnut, HorizontalBar, Line, Pie, Polar, Radar, Scatter } from 'react-chartjs-2'
 import Types from './types'
 
 type ChartRef = Bar | Bubble | Doughnut | HorizontalBar | Line | Pie | Polar | Radar | Scatter
 
-const Chart: RefForwardingComponent<ChartRef, Types.Props> = (props, ref) => {
+const Chart: ForwardRefRenderFunction<ChartRef, Types.Props> = (props, ref) => {
 
     const { type = 'line', labels, data, options } = props
 

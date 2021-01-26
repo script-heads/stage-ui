@@ -1,7 +1,8 @@
-import { css } from '@emotion/react'
-import React, { FC, useState, Fragment } from 'react'
-import ViewportTypes from './types'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react'
 import createID from '@stage-ui/system/utils/createID'
+import React, { FC, Fragment, useState } from 'react'
+import ViewportTypes from './types'
 
 export let addElement: (children: React.ReactElement, key?: string) => string
 export let removeElement: (key: string) => void

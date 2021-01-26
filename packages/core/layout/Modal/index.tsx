@@ -1,12 +1,14 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, RefForwardingComponent, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import ModalOverlay from './ModalOverlay'
 import ModalPortal from './ModalPortal'
 import ModalWindow from './ModalWindow'
 import styles from './styles'
 import Types from './types'
 
-const Modal: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
+const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
 
     const { 
         hideHeader, 

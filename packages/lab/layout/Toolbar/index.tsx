@@ -1,10 +1,12 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
+import { Divider, Flexbox } from '@stage-ui/core'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, RefForwardingComponent, Fragment } from 'react'
+import { forwardRef, ForwardRefRenderFunction, Fragment } from 'react'
 import styles from './styles'
 import Types from './types'
-import { Flexbox, Divider } from '@stage-ui/core'
 
-const Toolbar: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+const Toolbar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
     let children = Array.isArray(props.children)
         ? props.children
         : [props.children]

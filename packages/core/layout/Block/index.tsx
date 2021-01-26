@@ -1,10 +1,10 @@
 import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
-import { forwardRef, RefForwardingComponent } from 'react'
+import { forwardRef, ForwardRefRenderFunction } from 'react'
 import styles from './styles'
 import Types from './types'
 
-const Block: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+const Block: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const { cs, attributes, events } = useComponent('Block', {
         props,

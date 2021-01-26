@@ -1,8 +1,8 @@
-import React, { forwardRef, RefForwardingComponent } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import Typography from '@stage-ui/core/misc/hocs/Typography'
 import Types from './types'
 
-const Parapraph: RefForwardingComponent<HTMLParagraphElement, Types.Props> = (props, ref) =>
+const Parapraph: ForwardRefRenderFunction<HTMLParagraphElement, Types.Props> = (props, ref) =>
     <Typography
         tag="p"
         overrides="Paragraph"

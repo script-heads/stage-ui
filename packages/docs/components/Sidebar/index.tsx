@@ -1,10 +1,9 @@
-import { Menu, Block, Flexbox, TextField, ScrollView } from '@stage-ui/core'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
+import { Block, Flexbox, Menu, ScrollView, TextField, useTheme } from '@stage-ui/core'
 import { Close, Cube, Search } from '@stage-ui/core/icons'
-import SystemTypes from '@stage-ui/system/types'
-import * as React from 'react'
-import { Fragment, useState } from 'react'
+import { Fragment, useMemo, useState } from 'react'
 import { PagesType, PageType } from '../../utils/core'
-import { useMemo } from 'react'
 
 export interface SidebarProps {
     pages: PagesType
@@ -51,10 +50,12 @@ const Sidebar = (props: SidebarProps) => {
         }), [pages, search]
     )
 
+    const theme = useTheme()
+
     return (
         <Fragment>
             <ScrollView mode="hidden" w="15rem" h="100vh" backgroundColor={c => c.surface}
-                css={(theme: SystemTypes.Theme) => ({
+                css={{
                     [`@media (max-width: ${theme.breakpoints[2]})`]: [
                         {
                             position: 'absolute',
@@ -65,7 +66,7 @@ const Sidebar = (props: SidebarProps) => {
                             display: 'none'
                         }
                     ]
-                })}>
+                }}>
                 <Block p="3rem 1rem 0 1rem">
                     <TextField
                         size="s"
@@ -99,21 +100,19 @@ const Sidebar = (props: SidebarProps) => {
                 justifyContent={'center'}
                 onClick={() => setMobileVisible(v => !v)}
                 backgroundColor={c => c.primary}
-                css={(theme) => [
-                    {
-                        position: 'fixed',
-                        width: '3.5rem',
-                        height: '3.5rem',
-                        cursor: 'pointer',
-                        borderRadius: '100%',
-                        right: '1rem',
-                        bottom: '1rem',
-                        zIndex: 210,
-                        [`@media (min-width: ${theme.breakpoints[2]})`]: {
-                            display: 'none'
-                        }
+                css={{
+                    position: 'fixed',
+                    width: '3.5rem',
+                    height: '3.5rem',
+                    cursor: 'pointer',
+                    borderRadius: '100%',
+                    right: '1rem',
+                    bottom: '1rem',
+                    zIndex: 210,
+                    [`@media (min-width: ${theme.breakpoints[2]})`]: {
+                        display: 'none'
                     }
-                ]}>
+                }}>
                 <VisibilityIcon
                     color={c => c.onPrimary}
                     size={'2rem'}

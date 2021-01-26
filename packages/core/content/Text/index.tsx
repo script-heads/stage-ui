@@ -1,8 +1,8 @@
-import React, { forwardRef, RefForwardingComponent } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import Typography from '@stage-ui/core/misc/hocs/Typography'
 import Types from './types'
 
-const Text: RefForwardingComponent<HTMLSpanElement, Types.Props> = (props, ref) =>
+const Text: ForwardRefRenderFunction<HTMLSpanElement, Types.Props> = (props, ref) =>
     <Typography
         tag="span"
         overrides="Text"

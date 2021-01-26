@@ -145,7 +145,7 @@ class Monaco {
     public waitEditor() {
         return new Promise((resolve, reject) => {
             const check = async () => {
-                if (this.editor) return resolve()
+                if (this.editor) return resolve(true)
                 setTimeout(check, 50)
             }
             check()

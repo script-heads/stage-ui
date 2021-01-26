@@ -1,8 +1,10 @@
-import React, { forwardRef, RefForwardingComponent } from 'react'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Close } from '@stage-ui/core/icons'
+import { forwardRef, ForwardRefRenderFunction } from 'react'
 import Types from './types'
 
-const Field: RefForwardingComponent<HTMLDivElement, Types.PrivateProps> = (props, ref) => {
+const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (props, ref) => {
 
     const {
         labelName,

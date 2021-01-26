@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Block, Divider, Flexbox, Menu, ScrollView, useTheme } from '@stage-ui/core'
 import { Browser, Layers, Plus } from '@stage-ui/core/icons'
 import SystemTypes from '@stage-ui/system/types'
@@ -5,7 +7,6 @@ import { useState } from 'react'
 import { context } from '../..'
 import { default as LayersTab, default as PagesTab } from './layers'
 import createStyles, { StyleTypes } from './styles'
-import React from 'react'
 
 export type TabProps = {
     theme: SystemTypes.Theme

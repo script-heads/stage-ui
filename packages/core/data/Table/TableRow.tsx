@@ -1,8 +1,10 @@
-import React, { Fragment, useEffect, forwardRef, RefForwardingComponent, useImperativeHandle, useRef, useState } from 'react'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
+import React, { forwardRef, ForwardRefRenderFunction, Fragment, useState } from 'react'
 import TableCell from './TableCell'
 import Types from './types'
 
-const TableRow: RefForwardingComponent<HTMLTableRowElement, Types.RowProps> = (props, ref) => {
+const TableRow: ForwardRefRenderFunction<HTMLTableRowElement, Types.RowProps> = (props, ref) => {
     const { columns, rowIndex, rowCtxItem, delegates, styles, getCellContext } = props
     const style: React.CSSProperties = {}
     /**

@@ -1,8 +1,10 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Block, Flexbox, Header, Paragraph } from '@stage-ui/core'
-import SystemTypes from '@stage-ui/system/types'
 import FlexboxTypes from '@stage-ui/core/layout/Flexbox/types'
-import React, { useRef, useState, useMemo, useEffect } from 'react'
+import SystemTypes from '@stage-ui/system/types'
 import colorUtils from 'color'
+import { useEffect, useRef, useState } from 'react'
 
 interface ColorPickProps {
     color: SystemTypes.ColorProp

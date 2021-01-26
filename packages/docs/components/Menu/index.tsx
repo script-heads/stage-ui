@@ -1,10 +1,10 @@
-import { Block, Flexbox, Text, Link } from '@stage-ui/core'
-import ThemeSwitcher, { ThemeSwitcherProps } from './ThemeSwitcher'
-import { Github, Brush } from '@stage-ui/core/icons'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
+import { Block, Flexbox, Link, Text, useTheme } from '@stage-ui/core'
+import { Brush, Github } from '@stage-ui/core/icons'
 import { panel } from '@stage-ui/docs/components/Themer/src/ThemeConfigurator'
-import { useTheme } from '@stage-ui/core'
 import corePackage from '../../../core/package.json'
-import React from 'react'
+import ThemeSwitcher, { ThemeSwitcherProps } from './ThemeSwitcher'
 
 export interface MenuProps extends ThemeSwitcherProps {
     title?: string

@@ -1,9 +1,11 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, RefForwardingComponent } from 'react'
+import { forwardRef, ForwardRefRenderFunction } from 'react'
 import styles from './styles'
 import Types from './types'
 
-const MenuGroup: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+const MenuGroup: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const { 
         rightChild,

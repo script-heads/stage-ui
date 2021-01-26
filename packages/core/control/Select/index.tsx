@@ -1,13 +1,15 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Drop, ScrollView } from '@stage-ui/core'
 import { ArrowIosDownward, Close } from '@stage-ui/core/icons'
 import DropTypes from '@stage-ui/core/layout/Drop/types'
 import Field from '@stage-ui/core/misc/hocs/Field'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, Fragment, RefForwardingComponent, useEffect, useRef, useState } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, Fragment, useEffect, useRef, useState } from 'react'
 import styles from './styles'
 import Types from './types'
 
-const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const {
         decoration = 'outline',

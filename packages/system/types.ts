@@ -1,7 +1,7 @@
 import React from 'react'
 import QIXColor from 'color'
 import CSS from 'csstype'
-import { Interpolation, SerializedStyles, ArrayInterpolation } from '@emotion/react'
+import { Interpolation, FunctionInterpolation, CSSObject } from '@emotion/react'
 
 declare global {
     namespace System {
@@ -12,8 +12,8 @@ declare global {
         }
     }
 }
-//TODO: check if its correct
-export type EmotionStyles = Array<Interpolation<any>> | ArrayInterpolation<undefined>
+
+export type EmotionStyles = Interpolation<CSSObject>
 export type Breakpointify<T> = T[] | T
 
 declare namespace SystemTypes {
@@ -132,15 +132,15 @@ declare namespace SystemTypes {
             header: Record<Size, {
                 fontSize: string
                 lineHeight: string | number
-            } & EmotionStyles>
+            }>
             text: Record<Size, {
                 fontSize: string
                 lineHeight: string | number
-            } & EmotionStyles>
+            }>
             paragraph: Record<Size, {
                 fontSize: string
                 lineHeight: string | number
-            } & EmotionStyles>
+            }>
         }
     }
 

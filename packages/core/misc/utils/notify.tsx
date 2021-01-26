@@ -1,9 +1,10 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Block, Flexbox, Header, Notification, Paragraph } from '@stage-ui/core'
 import { Close } from '@stage-ui/core/icons'
 import NotificationType from '@stage-ui/core/layout/Notification/types'
 import { addElement, removeElement } from '@stage-ui/core/layout/Viewport/MountArea'
 import createID from '@stage-ui/system/utils/createID'
-import React from 'react'
 
 export default (options: NotificationType.NotifyOptions) => {
     let timer

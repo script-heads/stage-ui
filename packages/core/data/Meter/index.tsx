@@ -1,10 +1,12 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, RefForwardingComponent } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction } from 'react'
+import Thumb from './MeterThumb'
 import styles from './styles'
 import Types from './types'
-import Thumb from './MeterThumb'
 
-const Meter: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+const Meter: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const {
         decoration = 'filled',

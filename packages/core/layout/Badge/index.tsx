@@ -1,10 +1,11 @@
-
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, RefForwardingComponent } from 'react'
+import { forwardRef, ForwardRefRenderFunction } from 'react'
 import styles from './styles'
 import Types from './types'
 
-const Badge: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+const Badge: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const { cs, attributes, events } = useComponent('Badge', { 
         props, 

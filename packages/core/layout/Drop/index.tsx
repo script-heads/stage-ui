@@ -1,6 +1,7 @@
-
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, RefForwardingComponent, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 import styles from './styles'
 import Types from './types'
@@ -9,7 +10,7 @@ type GetCoord = (tr: ClientRect, td: ClientRect) => string
 
 let sharedZIndex = 300
 
-const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
+const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
 
     const { children, target: targetRef, onClickOutside, spacing = 0, align,
         justify, stretchHeight, stretchWidth, visible, followCursor } = props

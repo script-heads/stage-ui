@@ -1,6 +1,8 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Link, Paragraph, Text } from '@stage-ui/core'
 import { Property } from '@stage-ui/docs/utils/types'
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
 
 const Description = (props: { property: Property }) => {
     const { property } = props

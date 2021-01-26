@@ -109,23 +109,23 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 size: {
                     xs: [{
                         ...theme.assets.field.xs,
-                        ...theme.assets.typography.text.xs
+                        ...theme.assets.typography.text.xs as {}
                     }],
                     s: [{
                         ...theme.assets.field.s,
-                        ...theme.assets.typography.text.s
+                        ...theme.assets.typography.text.s as {}
                     }],
                     m: [{
                         ...theme.assets.field.m,
-                        ...theme.assets.typography.text.m
+                        ...theme.assets.typography.text.m as {}
                     }],
                     l: [{
                         ...theme.assets.field.l,
-                        ...theme.assets.typography.text.l
+                        ...theme.assets.typography.text.l as {}
                     }],
                     xl: [{
                         ...theme.assets.field.xl,
-                        ...theme.assets.typography.header.xs,
+                        ...theme.assets.typography.header.xs as {}
                     }]
                 }
             }),

@@ -1,8 +1,10 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Block, Text, useTheme } from '@stage-ui/core'
-import React, { forwardRef, RefForwardingComponent, useImperativeHandle, useRef, useState, useEffect } from 'react'
-import styles from './styles'
 import SystemTypes from '@stage-ui/system/types'
+import { forwardRef, ForwardRefRenderFunction, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { ArchitectItem } from '../../types'
+import styles from './styles'
 
 type MaskProps = {
     color: (color: SystemTypes.Theme['color']) => string,
@@ -13,7 +15,7 @@ export type MaskRefs = {
     hide: () => void,
 }
 
-const Mask: RefForwardingComponent<MaskRefs, MaskProps> = (props, ref) => {
+const Mask: ForwardRefRenderFunction<MaskRefs, MaskProps> = (props, ref) => {
     const theme = useTheme()
     const cs = styles(theme)
     const selectMask = useRef<HTMLDivElement>(null)

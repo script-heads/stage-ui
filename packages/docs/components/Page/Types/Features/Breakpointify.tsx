@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Block, Divider, Drop, Link, Paragraph, Popover, Text } from '@stage-ui/core'
 import { ExternalLink } from '@stage-ui/core/icons'
 import React from 'react'

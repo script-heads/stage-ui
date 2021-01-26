@@ -1,14 +1,16 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, RefForwardingComponent, useRef, useImperativeHandle, useState, useEffect } from 'react'
+import { forwardRef, ForwardRefRenderFunction, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import styles from './styles'
-import Types from './types'
-import TableRow from './TableRow'
-import TableHeadCell from './TableHeadCell'
 import TableFoot from './TableFoot'
+import TableHeadCell from './TableHeadCell'
+import TableRow from './TableRow'
+import Types from './types'
 
 type Ref<T = Object> = Types.TableRef<T>
 
-const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
+const Table: ForwardRefRenderFunction<Ref, Types.Props> = (props, ref) => {
 
     const tableRef = useRef<HTMLTableElement>(null)
     const { cs, attributes, events } = useComponent('Table', { props, styles, styleProps: { container: ['all'] } })

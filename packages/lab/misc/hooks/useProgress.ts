@@ -8,7 +8,6 @@ let useProgress = (animate: boolean, time: number, pause, currentProgress) => {
     let rafId: number | null = null;
     let start = null;
 
-    //@ts-ignore
     useEffect(() => {
         if (animate) {
             let step = timestamp => {
@@ -27,6 +26,7 @@ let useProgress = (animate: boolean, time: number, pause, currentProgress) => {
             rafId = requestAnimationFrame(step);
             return () => cancelAnimationFrame(rafId!);
         }
+        return () => void 0;
     }, [animate, time]);
 
     return (progress / time);

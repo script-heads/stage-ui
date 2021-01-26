@@ -1,8 +1,10 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Flexbox, Pageswitch } from '@stage-ui/core'
-import React, { forwardRef, RefForwardingComponent } from 'react'
+import { forwardRef, ForwardRefRenderFunction } from 'react'
 import Types from './types'
 
-const TableFoot: RefForwardingComponent<HTMLTableCellElement, Types.FootProps> = (props, ref) => {
+const TableFoot: ForwardRefRenderFunction<HTMLTableCellElement, Types.FootProps> = (props, ref) => {
     const { columns, pagination, rowCtx, styles, footerContent, onPageChange } = props
    
     let needDisplay = false

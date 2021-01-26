@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Block, Flexbox, Header, Paragraph, ScrollView } from '@stage-ui/core'
 import { PageType, Config, PagesType } from '../../utils/core'
 import Editor from './Editor'

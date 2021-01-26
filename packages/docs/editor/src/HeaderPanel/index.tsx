@@ -1,9 +1,10 @@
-import { Header, Paragraph, Flexbox, Link } from '@stage-ui/core'
-import styles from './styles'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
+import { Flexbox, Header, Link, Paragraph } from '@stage-ui/core'
+import { Github } from '@stage-ui/core/icons'
 import SystemTypes from '@stage-ui/system/types'
 import ThemeSwitcher from '../../../components/Menu/ThemeSwitcher'
-import { Github } from '@stage-ui/core/icons'
-import React from 'react'
+import styles from './styles'
 
 interface HeaderPanelProps {
     title?: string

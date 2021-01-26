@@ -1,11 +1,13 @@
-import React, { Fragment, RefForwardingComponent, useRef, forwardRef, useImperativeHandle } from 'react'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import * as themes from '@stage-ui/core/misc/themes'
+import { Provider, useComponent } from '@stage-ui/system'
+import { forwardRef, ForwardRefRenderFunction, Fragment, useImperativeHandle, useRef } from 'react'
 import MountArea from './MountArea'
 import styles from './styles'
 import Types from './types'
-import { Provider, useComponent } from '@stage-ui/system'
 
-const Viewport: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+const Viewport: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
     
     const { wrapper, cache } = props
     const theme = (typeof props.theme === 'string' 

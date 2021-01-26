@@ -19,6 +19,7 @@
         "strictBindCallApply": false,
         "strictFunctionTypes": false,
         "strictPropertyInitialization": false,
+        "types": ["@emotion/react"]
     },
     "exclude": [
         "node_modules"

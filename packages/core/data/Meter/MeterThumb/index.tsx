@@ -1,9 +1,9 @@
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, RefForwardingComponent } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import styles from './styles'
 import Types from './types'
 
-const MeterThumb: RefForwardingComponent<HTMLDivElement, Types.PrivateProps> = (props, ref) => {
+const MeterThumb: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (props, ref) => {
 
     const {
         shape = 'round',

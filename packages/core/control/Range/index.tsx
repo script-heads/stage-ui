@@ -1,9 +1,11 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
-import React, { useState, forwardRef, RefForwardingComponent, useEffect, useImperativeHandle, useRef } from 'react'
+import { forwardRef, ForwardRefRenderFunction, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import styles from './styles'
 import Types from './types'
 
-const Range: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
+const Range: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
     const { min = 0, max = 100, value, defaultValue } = props
 
     const { cs, attributes, events } = useComponent('Range', { 

@@ -1,9 +1,9 @@
-import React, { forwardRef, RefForwardingComponent } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import { useTheme } from '@stage-ui/core'
 import Typography from '@stage-ui/core/misc/hocs/Typography'
 import Types from './types'
 
-const Link: RefForwardingComponent<HTMLAnchorElement, Types.Props> = (props, ref) => {
+const Link: ForwardRefRenderFunction<HTMLAnchorElement, Types.Props> = (props, ref) => {
     const theme = useTheme()
 
     return (

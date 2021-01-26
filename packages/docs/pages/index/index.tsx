@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
+import { Block, Flexbox, useTheme } from '@stage-ui/core'
 import { CustomPageProps } from '@stage-ui/docs/utils/core'
-import { Flexbox, Block, useTheme } from '@stage-ui/core'
-import Header from './Header'
-import Features from './Feauters'
+import { useEffect } from 'react'
 import Components from './Components'
+import Features from './Feauters'
 import Footer from './Footer'
+import Header from './Header'
 
 export default (props: CustomPageProps) => {
 

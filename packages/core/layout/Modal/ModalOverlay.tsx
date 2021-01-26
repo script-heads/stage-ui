@@ -1,6 +1,7 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
+import React, { forwardRef } from 'react'
 import ModalTypes from './types'
-import { forwardRef } from 'react'
 
 const ModalOverlay = forwardRef((props: ModalTypes.ModalOverlayProps, ref: React.Ref<HTMLDivElement>) => {
 
