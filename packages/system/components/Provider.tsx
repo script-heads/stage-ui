@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import createCache, { Options } from '@emotion/cache'
-import { ThemeProvider } from 'emotion-theming'
-import { CacheProvider, Global, SerializedStyles } from '@emotion/core'
+import { ThemeProvider } from '@emotion/react'
+import { CacheProvider, Global, SerializedStyles } from '@emotion/react'
 import SystemTypes from '../types'
 
 /**
@@ -36,7 +36,8 @@ export const SystemContext = React.createContext({} as SystemTypes.Theme)
 const Provider = <T extends ProviderProps>(props: T) => {
 
     const { theme, global, children } = props
-    const cache = useMemo(() => createCache(props.cache), [])
+ 
+    const cache = useMemo(() => createCache(props.cache!), [])
 
     const Content = (
         <CacheProvider value={cache}>

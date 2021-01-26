@@ -1,4 +1,4 @@
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
 import { forwardRef, RefForwardingComponent } from 'react'
 import styles from './styles'

@@ -1,4 +1,4 @@
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 import { Calendar, Drop, Popover } from '@stage-ui/core'
 import { Calendar as CalendarIcon } from '@stage-ui/core/icons'
 import Field from '@stage-ui/core/misc/hocs/Field'

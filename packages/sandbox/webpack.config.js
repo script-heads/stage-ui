@@ -84,10 +84,11 @@ const plugins = [
 /**
  * Копируем файлы
  */
-plugins.push(new CopyWebPack([
-    // { from: ProjectDIR + 'public/assets', to: BuildDIR + '/assets' },
-    { from: ProjectDIR + 'public/index.html' },
-]))
+plugins.push(new CopyWebPack({
+    patterns: [
+        { from: ProjectDIR + 'public/index.html' },
+    ]
+}))
 
 /**
  * Настройки для дебага
@@ -101,11 +102,16 @@ if (process.env.DEBUG === 'true') {
         inline: true,
         historyApiFallback: true,
     }
-    plugins.push(new webpack.NamedModulesPlugin())
     plugins.push(new webpack.HotModuleReplacementPlugin())
 } else {
     config.devtool = false
 }
+
+if (!config.optimization) {
+    config.optimization = {}
+}
+
+config.optimization.moduleIds = 'named'
 
 /**
  * Настройки для аналитики

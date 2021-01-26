@@ -1,4 +1,4 @@
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 import React, { FC, useState, Fragment } from 'react'
 import ViewportTypes from './types'
 import createID from '@stage-ui/system/utils/createID'

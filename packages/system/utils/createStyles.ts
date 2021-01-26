@@ -1,5 +1,5 @@
 import SystemTypes, { EmotionStyles } from '../types'
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 
 const createComponentStyles = <Styles, Props extends { styles?: Partial<SystemTypes.Styles<Styles>> }>(
     styles: SystemTypes.Styles<Styles>,

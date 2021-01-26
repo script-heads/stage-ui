@@ -89,7 +89,6 @@ const plugins = [
     //moment optimizations
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /ru/),
     new MonacoWebpackPlugin(),
-    new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
         'ENV_MODE': JSON.stringify(MODE),
     }),
@@ -98,14 +97,16 @@ const plugins = [
 /**
  * Копируем файлы
  */
-plugins.push(new CopyWebPack([
-    { from: ProjectDIR + 'public/index.html' },
-    { from: ProjectDIR + 'server.js' },
-    /**
-     * definitions for monaco TSLint
-     */
-    { from: ProjectDIR + '/public/definitions', to: BuildDIR + '/definitions' },
-]))
+plugins.push(new CopyWebPack({
+    patterns: [
+        { from: ProjectDIR + 'public/index.html' },
+        { from: ProjectDIR + 'server.js' },
+        /**
+         * definitions for monaco TSLint
+         */
+        { from: ProjectDIR + '/public/definitions', to: BuildDIR + '/definitions' },
+    ]
+}))
 
 /**
  * Настройки для дебага
@@ -130,13 +131,17 @@ if (process.env.ENV === 'development') {
     config['devtool'] = false
 }
 
+if (!config['optimization']) {
+    config['optimization'] = {}
+}
+
+config['optimization'].moduleIds = 'named'
+
 /**
  * Настройки для аналитики
  */
 if (process.env.ANALYZE === 'true') {
-    config['optimization'] = {
-        concatenateModules: false
-    }
+    config['optimization'].concatenateModules = false
     plugins.push(new BundleAnalyzerPlugin())
 }
 

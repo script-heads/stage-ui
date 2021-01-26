@@ -2,7 +2,7 @@ declare module '@stage-ui/system/types' {
 	import React from 'react';
 	import QIXColor from 'color';
 	import CSS from 'csstype';
-	import { Interpolation, SerializedStyles, ObjectInterpolation } from '@emotion/core'; global {
+	import { Interpolation, SerializedStyles, ObjectInterpolation } from '@emotion/react'; global {
 	    namespace System {
 	        interface Palette<Color> {
 	            [key: string]: Color;
@@ -1509,7 +1509,7 @@ declare module '@stage-ui/system/types' {
 declare module 'components/Provider' {
 	import React from 'react';
 	import { Options } from '@emotion/cache';
-	import { SerializedStyles } from '@emotion/core';
+	import { SerializedStyles } from '@emotion/react';
 	import SystemTypes from 'types';
 	interface ProviderProps {
 	    theme?: SystemTypes.Theme;
@@ -1608,7 +1608,7 @@ declare module 'utils/attachProps/types' {
 }
 declare module 'utils/attachProps/attribute' {
 	/// <reference types="react" />
-	/// <reference types="@emotion/core" />
+	/// <reference types="@emotion/react" />
 	import SystemTypes from 'types';
 	import { Options } from 'hooks/useComponent'; const createAttributes: <Styles, Props extends SystemTypes.AllProps<unknown, Styles>>(props: Props, setFocus: import("react").Dispatch<import("react").SetStateAction<boolean>>, options: Options<Styles, Props>) => {
 	    attributes: SystemTypes.AttributeProps;
@@ -1737,7 +1737,7 @@ declare module 'utils/attachProps/style' {
 }
 declare module 'utils/attachProps' {
 	/// <reference types="react" />
-	/// <reference types="@emotion/core" />
+	/// <reference types="@emotion/react" />
 	import { Options } from 'hooks/useComponent';
 	import SystemTypes from 'types'; const attachProps: <Styles, Props>(props: Props, theme: SystemTypes.Theme, setFocus: import("react").Dispatch<import("react").SetStateAction<boolean>>, options: Options<Styles, Props>) => {
 	    attributes: SystemTypes.AttributeProps;

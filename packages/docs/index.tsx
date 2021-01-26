@@ -1,4 +1,4 @@
-import { Global } from '@emotion/core'
+import { Global } from '@emotion/react'
 import { Viewport } from '@stage-ui/core'
 import * as defaultThemes from '@stage-ui/core/misc/themes/index'
 import SystemTypes from '@stage-ui/system/types'

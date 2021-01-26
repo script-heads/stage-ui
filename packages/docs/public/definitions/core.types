@@ -45,7 +45,7 @@ declare module 'content/Divider/styles' {
 }
 declare module 'content/Divider' {
 	/// <reference types="react" />
-	/// <reference types="@emotion/core" />
+	/// <reference types="@emotion/react" />
 	import Types from 'content/Divider/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
 	export default _default;
 
@@ -217,7 +217,7 @@ declare module 'misc/hocs/Typography/styles' {
 }
 declare module 'misc/hocs/Typography' {
 	/// <reference types="react" />
-	/// <reference types="@emotion/core" />
+	/// <reference types="@emotion/react" />
 	import Types from '@stage-ui/core/misc/hocs/Typography/types'; type RefTag = HTMLSpanElement | HTMLAnchorElement | HTMLParagraphElement; const _default: import("react").ForwardRefExoticComponent<Types.PrivateProps & import("react").RefAttributes<RefTag>>;
 	export default _default;
 
@@ -9409,7 +9409,7 @@ declare module 'layout/Block/styles' {
 }
 declare module 'layout/Block' {
 	/// <reference types="react" />
-	/// <reference types="@emotion/core" />
+	/// <reference types="@emotion/react" />
 	import Types from 'layout/Block/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
 	export default _default;
 
@@ -9460,7 +9460,7 @@ declare module 'layout/Flexbox/styles' {
 }
 declare module 'layout/Flexbox' {
 	/// <reference types="react" />
-	/// <reference types="@emotion/core" />
+	/// <reference types="@emotion/react" />
 	import Types from 'layout/Flexbox/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
 	export default _default;
 
@@ -9499,7 +9499,7 @@ declare module 'layout/Grid/styles' {
 }
 declare module 'layout/Grid' {
 	/// <reference types="react" />
-	/// <reference types="@emotion/core" />
+	/// <reference types="@emotion/react" />
 	import Types from 'layout/Grid/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
 	export default _default;
 
@@ -10149,7 +10149,7 @@ declare module 'layout/Viewport/types' {
 	/// <reference types="react" />
 	import SystemTypes from '@stage-ui/system/types';
 	import { Options } from '@emotion/cache';
-	import { SerializedStyles } from '@emotion/core';
+	import { SerializedStyles } from '@emotion/react';
 	import ModalTypes from '@stage-ui/core/layout/Modal/types'; namespace ViewportTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**

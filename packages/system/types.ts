@@ -1,7 +1,7 @@
 import React from 'react'
 import QIXColor from 'color'
 import CSS from 'csstype'
-import { Interpolation, SerializedStyles, ObjectInterpolation } from '@emotion/core'
+import { Interpolation, SerializedStyles, ArrayInterpolation } from '@emotion/react'
 
 declare global {
     namespace System {
@@ -12,8 +12,8 @@ declare global {
         }
     }
 }
-
-export type EmotionStyles = Array<Interpolation> | ObjectInterpolation<undefined>
+//TODO: check if its correct
+export type EmotionStyles = Array<Interpolation<any>> | ArrayInterpolation<undefined>
 export type Breakpointify<T> = T[] | T
 
 declare namespace SystemTypes {

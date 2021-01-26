@@ -1,4 +1,4 @@
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 import Field from '@stage-ui/core/misc/hocs/Field'
 import { useComponent } from '@stage-ui/system'
 import React, { forwardRef, RefForwardingComponent, useImperativeHandle, useRef } from 'react'
