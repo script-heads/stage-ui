@@ -19,7 +19,7 @@ window.breakpoints = [960, 768]
 
 const Docs = () => {
 
-    const [theme, setTheme] = useState<SystemTypes.Theme>(defaultThemes.light)
+    const [theme, setTheme] = useState<SystemTypes.Theme>(defaultThemes.dark)
 
     useEffect(() => {
         localStorage.setItem('current_theme', theme.name.toLowerCase())

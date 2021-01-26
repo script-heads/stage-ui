@@ -24,6 +24,8 @@ const fieldStyles = <T extends Types.Styles>(
                 flexDirection: 'column',
                 outline: 'none'
             },
+            //FIXME: types
+            //@ts-ignore
             stylePatch?.container?.(variant)
         ],
 
@@ -122,6 +124,8 @@ const fieldStyles = <T extends Types.Styles>(
                     }
                 },
             }),
+            //FIXME: types
+            //@ts-ignore
             stylePatch?.field?.(variant)
         ],
 
@@ -134,6 +138,8 @@ const fieldStyles = <T extends Types.Styles>(
                 justifyContent: 'center',
                 overflow: 'hidden'
             },
+            //FIXME: types
+            //@ts-ignore
             stylePatch?.content?.(variant),
         ],
 
@@ -191,6 +197,8 @@ const fieldStyles = <T extends Types.Styles>(
                     ]
                 }
             }),
+            //FIXME: types
+            //@ts-ignore
             stylePatch?.label?.(variant)
         ],
 
@@ -232,6 +240,8 @@ const fieldStyles = <T extends Types.Styles>(
                     ],
                 },
             }),
+            //FIXME: types
+            //@ts-ignore
             stylePatch?.child?.(variant)
         ],
 
@@ -242,6 +252,8 @@ const fieldStyles = <T extends Types.Styles>(
                     color: theme.color.primary.rgb().string(),
                 }
             },
+            //FIXME: types
+            //@ts-ignore
             stylePatch?.clearButton?.(variant)
         ],
 
@@ -258,6 +270,8 @@ const fieldStyles = <T extends Types.Styles>(
                     xs: [theme.assets.typography.text.xs]
                 }
             }),
+            //FIXME: types
+            //@ts-ignore
             stylePatch?.hint?.(variant)
         ]
     }
