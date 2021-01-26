@@ -18,19 +18,16 @@ const Menu = (props: MenuProps) => {
     return (
         <Flexbox
             px="1.5rem"
-            h="3rem"
+            h="4rem"
             justifyContent="space-around"
             alignItems="center"
-            backgroundColor={[
-                'transparent',
-                theme.color.surface.alpha(.95).rgb().string()
-            ]}
             css={t => ({
                 position: 'fixed',
                 zIndex: 1,
                 top: 0,
                 right: 0,
                 left: 0,
+                background: `linear-gradient(180deg, ${theme.color.surface.rgb()}, transparent)`
             })}>
             <Block flex={1}>
                 <Text

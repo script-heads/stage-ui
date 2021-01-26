@@ -73,7 +73,7 @@ const Sidebar = (props: SidebarProps) => {
                         }
                     ]
                 }}>
-                <Block p="3rem 1rem 0 1rem">
+                <Block p="4rem 1rem 0 1rem">
                     <TextField
                         size="s"
                         mb=".5rem"
