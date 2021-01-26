@@ -21,13 +21,16 @@ const Menu = (props: MenuProps) => {
             h="3rem"
             justifyContent="space-around"
             alignItems="center"
+            backgroundColor={[
+                'transparent',
+                theme.color.surface.alpha(.95).rgb().string()
+            ]}
             css={t => ({
                 position: 'fixed',
                 zIndex: 1,
                 top: 0,
                 right: 0,
                 left: 0,
-                background: t.color.surface.alpha(.95).rgb().string()
             })}>
             <Block flex={1}>
                 <Text
