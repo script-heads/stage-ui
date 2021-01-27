@@ -10023,6 +10023,67 @@ declare module 'layout/ScrollView' {
 	export default _default;
 
 }
+declare module 'layout/Split/Separator' {
+	import { SplitElRef } from 'layout/Split';
+	interface SeparatorProps {
+	    areaSize: number;
+	    defaultVertical: boolean;
+	    container: () => SplitElRef;
+	    prev: () => HTMLDivElement;
+	    next: () => HTMLDivElement;
+	} const Separator: (props: SeparatorProps) => JSX.Element;
+	export default Separator;
+
+}
+declare module 'layout/Split/types' {
+	import React from 'react';
+	import SystemTypes from '@stage-ui/system/types'; namespace SplitTypes {
+	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onMove' | 'onChange'> {
+	        direction?: 'row' | 'column';
+	        children: React.ReactElement[];
+	        /**
+	         * Split area size, value in pixels
+	         */
+	        areaSize?: number;
+	        /**
+	         * You can give it array of numbers (in percent)
+	         */
+	        positions?: number[];
+	        /**
+	         * Calls when split area moves
+	         */
+	        onMove?: (positions: number[]) => void;
+	        /**
+	         * Calls when mouseUp if position did change
+	         */
+	        onChange?: (positions: number[]) => void;
+	    }
+	    interface Styles {
+	        container: {
+	            vertical: boolean;
+	        };
+	        test: void;
+	    }
+	}
+	export default SplitTypes;
+
+}
+declare module 'layout/Split/styles' {
+	import SystemTypes from '@stage-ui/system/types';
+	import Types from 'layout/Split/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	export default styles;
+
+}
+declare module 'layout/Split' {
+	import Types from 'layout/Split/types';
+	export type SplitElRef = (HTMLDivElement & {
+	    _vertical?: true;
+	    _onMove?: () => void;
+	    _onChange?: () => void;
+	}) | null; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
 declare module 'types' {
 	/**
 	 * Content
@@ -10282,6 +10343,7 @@ declare module '@stage-ui/core' {
 	export { default as Popover } from 'layout/Popover';
 	export { default as Tree } from 'layout/Tree';
 	export { default as ScrollView } from 'layout/ScrollView';
+	export { default as Split } from 'layout/Split';
 	export { default as Viewport } from 'layout/Viewport';
 	/**
 	 * Utils

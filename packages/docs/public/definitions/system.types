@@ -1,8 +1,8 @@
 declare module '@stage-ui/system/types' {
-	import React from 'react';
+	import { Interpolation, SerializedStyles } from '@emotion/react';
 	import QIXColor from 'color';
 	import CSS from 'csstype';
-	import { Interpolation, SerializedStyles } from '@emotion/react'; global {
+	import React from 'react'; global {
 	    namespace System {
 	        interface Palette<Color> {
 	            [key: string]: Color;
@@ -11,7 +11,7 @@ declare module '@stage-ui/system/types' {
 	        }
 	    }
 	}
-	export type EmotionStyles = Interpolation<any> | Array<Interpolation<any>>;
+	export type EmotionStyles = Interpolation<SerializedStyles>;
 	export type Breakpointify<T> = T[] | T; namespace SystemTypes {
 	    type Size = 'xs' | 's' | 'm' | 'l' | 'xl';
 	    /**
@@ -105,15 +105,15 @@ declare module '@stage-ui/system/types' {
 	            header: Record<Size, {
 	                fontSize: string;
 	                lineHeight: string | number;
-	            } & EmotionStyles>;
+	            }>;
 	            text: Record<Size, {
 	                fontSize: string;
 	                lineHeight: string | number;
-	            } & EmotionStyles>;
+	            }>;
 	            paragraph: Record<Size, {
 	                fontSize: string;
 	                lineHeight: string | number;
-	            } & EmotionStyles>;
+	            }>;
 	        };
 	    }
 	    /**
@@ -1729,7 +1729,7 @@ declare module 'utils/mergeObjects' {
 
 }
 declare module 'utils/attachProps/style' {
-	import SystemTypes, { EmotionStyles } from '@stage-ui/system/types'; const createPropStyles: <Props, StyleProps>(props: Props, theme: SystemTypes.Theme, styleProps: StyleProps) => Record<keyof StyleProps, EmotionStyles>;
+	import SystemTypes from '@stage-ui/system/types'; const createPropStyles: <Props, StyleProps>(props: Props, theme: SystemTypes.Theme, styleProps: StyleProps) => Record<keyof StyleProps, import("@emotion/serialize").Interpolation<import("@emotion/utils").SerializedStyles>>;
 	export default createPropStyles;
 
 }
@@ -1764,7 +1764,7 @@ declare module 'utils/attachProps' {
 declare module 'utils/createStyles' {
 	import SystemTypes, { EmotionStyles } from 'types'; const createComponentStyles: <Styles, Props extends {
 	    styles?: Partial<SystemTypes.Styles<Styles>> | undefined;
-	}>(styles: SystemTypes.Styles<Styles>, propStyles: Partial<Record<keyof Styles, EmotionStyles>>, styleLabel: string, props: Props, overrideName: string, overrides: SystemTypes.Theme['overrides']) => SystemTypes.ComponentStyles<Styles>;
+	}>(styles: SystemTypes.Styles<Styles>, propStyles: Partial<Record<keyof Styles, import("@emotion/serialize").Interpolation<import("@emotion/utils").SerializedStyles>>>, styleLabel: string, props: Props, overrideName: string, overrides: SystemTypes.Theme['overrides']) => SystemTypes.ComponentStyles<Styles>;
 	export default createComponentStyles;
 
 }
