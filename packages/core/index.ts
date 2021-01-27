@@ -39,8 +39,8 @@ export { default as Notification } from './layout/Notification'
 export { default as Popover } from './layout/Popover'
 export { default as Tree } from './layout/Tree'
 export { default as ScrollView } from './layout/ScrollView'
+export { default as Split } from './layout/Split'
 export { default as Viewport } from './layout/Viewport'
-
 /**
  * Utils
  */
