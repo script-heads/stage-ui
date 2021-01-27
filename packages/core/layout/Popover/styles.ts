@@ -15,6 +15,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
     return {
         container: [
             {
+                position: 'relative',
                 width: 'fit-content',
                 background,
                 borderWidth: theme.assets.border.width,
