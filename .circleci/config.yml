@@ -1,0 +1,33 @@
+orbs:
+  node: circleci/node@4.0.0
+
+version: 2.1
+
+jobs:
+  deploy:
+    docker:
+      - image: 'cimg/node:12.20.1'
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run:
+          yarn build
+      - run:
+          scp -o "StrictHostKeyChecking no" -r build itrcz@project1.io:~/StageUI 
+      - run:
+          ssh -o "StrictHostKeyChecking no" itrcz@project1.io 'pm2 restart StageUI'
+workflows:
+  deploy:
+    jobs:
+      - deploy

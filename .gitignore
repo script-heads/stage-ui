@@ -6,7 +6,6 @@ node_modules
 packages/mobile/**/build
 
 # Logs & Locks
-yarn.lock
 logs
 *.log
 npm-debug.log*
