@@ -27,7 +27,7 @@ const Menu = (props: MenuProps) => {
                 top: 0,
                 right: 0,
                 left: 0,
-                background: `linear-gradient(180deg, ${theme.color.surface.rgb()}, transparent)`
+                background: `linear-gradient(180deg, ${theme.color.surface.rgb()}, ${theme.color.surface.alpha(0).rgb()})`
             })}>
             <Block flex={1}>
                 <Text
