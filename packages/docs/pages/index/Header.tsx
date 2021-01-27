@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
-import { Button, Flexbox, Header, Paragraph, Text, useTheme } from '@stage-ui/core'
+import { Badge, Button, Grid, Flexbox, Header, Paragraph, Text, useTheme } from '@stage-ui/core'
 import { CustomPageProps } from '../../utils/core'
 
 export default (props: CustomPageProps) => {
@@ -16,10 +16,14 @@ export default (props: CustomPageProps) => {
                     flexDirection: 'column-reverse'
                 }
             }}>
+            <div className="background_light"></div>
+            <div className="background_light background_light_1"></div>
+            <div className="background_light background_light_2"></div>
+            
             <Flexbox
                 column
                 justifyContent="center"
-                w="22rem"
+                w="25rem"
                 mr={['3rem', '3rem', '3rem', '0']}
                 css={{
                     [`@media (max-width: ${theme.breakpoints[3]})`]: {
@@ -27,7 +31,7 @@ export default (props: CustomPageProps) => {
                         textAlign: 'center'
                     }
                 }}>
-                <Header m="0" size="5.5rem" lineHeight={1} weight={800}>
+                <Header m="0" size="6.5rem" lineHeight={1} weight={800}>
                     <span>StageUI</span>
                     <Text size="xl" weight={500} css={{
                         verticalAlign: 'text-top',
@@ -38,34 +42,25 @@ export default (props: CustomPageProps) => {
                     color={c => c.light}
                     children="Flexible UI Framework declared by your own Design System."
                 />
-                <Flexbox
-                    mt={['6rem', '6rem', '3rem']}
-                    css={{
-                        flexWrap: 'wrap',
-                        [`@media (max-width: ${theme.breakpoints[3]})`]: {
-                            'button': {
-                                width: '100%',
-                                margin: '.5rem 0',
-                            }
-                        }
-                    }}>
+                <Grid mt="xl" templateColumns={['1fr 1fr', '1fr 1fr', '1fr']} rowGap="2rem" columnGap="1rem" justifyItems="center">
                     <Button
+                        w="12rem"
                         size="l"
-                        mb="0.5rem"
-                        mr="0.5rem"
                         onClick={() => props.setPath('/getting-started')}
                         children="Getting started"
                     />
-                    <Button
+                    <Badge content="preview" size="xs">
+                        <Button
+                        w="12rem"
                         size="l"
-                        mb="0.5rem"
-                        color={c => c.lightest}
-                        onClick={() => props.setPath('/editor')}
-                        children="Visual editor"
-                    />
-                </Flexbox>
+                            color={c => c.lightest}
+                            onClick={() => props.setPath('/editor')}
+                            children="Visual editor"
+                        />
+                    </Badge>
+                </Grid>
             </Flexbox>
-            <Flexbox
+            {/* <Flexbox
                 flex={1}
                 css={{ height: '100%' }}
                 justifyContent={['flex-end', 'flex-end', 'center']}>
@@ -90,7 +85,7 @@ export default (props: CustomPageProps) => {
                     <path css={{ fill: theme.color.primary.hex() }} d="m98.14 190.14a112.06 112.06 0 0 1 -42.4-52.31 1.49 1.49 0 0 0 -2.05-.81 1.53 1.53 0 0 0 -.77 1.92 115.18 115.18 0 0 0 43.42 53.63z" />
                     <path d="m114.11 108.81a1.51 1.51 0 0 0 -2.17 2.11 59.1 59.1 0 0 1 14.63 56.81h2.91a58 58 0 0 0 1.77-23.3 63 63 0 0 0 -17.14-35.62z" />
                 </svg>
-            </Flexbox>
+            </Flexbox> */}
         </Flexbox>
     )
 }
