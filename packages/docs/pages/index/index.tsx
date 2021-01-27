@@ -51,7 +51,7 @@ export default (props: CustomPageProps) => {
                         </Flexbox>
                     )}
                     subtitle="Simplifies markup with special containers and their shorthands."
-                    components={['Badge', 'Block', 'Drop', 'Flexbox', 'Grid', 'Modal', 'Popover', 'ScrollView', 'Tree', 'Viewport']}
+                    components={['Badge', 'Block', 'Drop', 'Flexbox', 'Grid', 'Modal', 'Popover', 'Split', 'ScrollView', 'Tree']}
                 />
                 <Components
                     title="Content"
