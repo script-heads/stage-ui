@@ -2,7 +2,8 @@
 import { jsx } from '@emotion/react'
 import { Badge, Button, Grid, Flexbox, Header, Paragraph, Text, useTheme } from '@stage-ui/core'
 import { CustomPageProps } from '../../utils/core'
-
+import { Moon } from '@stage-ui/core/icons'
+import ThemeSwitcher from '../../components/Menu/ThemeSwitcher'
 export default (props: CustomPageProps) => {
     const theme = useTheme()
     return (
@@ -59,6 +60,17 @@ export default (props: CustomPageProps) => {
                         />
                     </Badge>
                 </Grid>
+
+                <Flexbox alignItems="center" justifyContent="center" mt="4rem">
+                    <Moon
+                        size="3rem"
+                        onClick={() => {
+                            props.setTheme(props.themes[props.theme.name === 'Dark' ? 'light' : 'dark'])
+                        }}
+                        color={props.theme.name === 'Dark' ? 'primary' : 'lightest'}
+                    />
+                </Flexbox>
+
             </Flexbox>
             {/* <Flexbox
                 flex={1}
