@@ -73,7 +73,11 @@ const Table: ForwardRefRenderFunction<Ref, Types.Props> = (props, ref) => {
             isVisible: rowCtx[index].isVisible,
             setExpand: (content) => setExpand(index, content),
             setModify: (modify, kkey = key) => setModify(modify, index, kkey),
-            reloadData: () => reload(!reloadData)
+            reloadData: () => reload(!reloadData),
+            setRow: (row) => {
+                rowCtx[index].row = row
+                reload(!reloadData)
+            }
         }
     }
 
