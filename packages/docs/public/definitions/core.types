@@ -9017,34 +9017,42 @@ declare module '@stage-ui/core/data/Table/types' {
 	    interface TableCellContext<T = Object> {
 	        /**
 	         * Current cell key
+	         * @readonly
 	         */
 	        key: TableCellKey;
 	        /**
 	         * Current row index
+	         * @readonly
 	         */
 	        index: number;
 	        /**
 	         * Current row data
+	         * @readonly
 	         */
 	        row: T;
 	        /**
 	         * Link on column configuration
+	         * @readonly
 	         */
 	        column: TableColumn<T> | null;
 	        /**
 	         * Raw data of cell
+	         * @readonly
 	         */
 	        value?: React.ReactNode | string | number | null;
 	        /**
 	         * Is current cell in modify mode
+	         * @readonly
 	         */
 	        isModify: boolean;
 	        /**
 	         * Is current row expanded
+	         * @readonly
 	         */
 	        isExpand: boolean;
 	        /**
 	         * If row visible on screen
+	         * @readonly
 	         */
 	        isVisible: boolean;
 	        /**
@@ -9059,6 +9067,10 @@ declare module '@stage-ui/core/data/Table/types' {
 	         * Reload all data in table
 	         */
 	        reloadData: () => void;
+	        /**
+	         * Set row data and reload all data in table
+	         */
+	        setRow: (row: T) => void;
 	    }
 	    type RowContext = {
 	        /**

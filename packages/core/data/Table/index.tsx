@@ -75,7 +75,9 @@ const Table: ForwardRefRenderFunction<Ref, Types.Props> = (props, ref) => {
             setModify: (modify, kkey = key) => setModify(modify, index, kkey),
             reloadData: () => reload(!reloadData),
             setRow: (row) => {
-                rowCtx[index].row = row
+                Object.keys(rowCtx[index]).map(key => {
+                    rowCtx[index][key] = row[key]
+                })
                 reload(!reloadData)
             }
         }
