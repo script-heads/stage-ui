@@ -5,7 +5,7 @@ import { ArrowIosDownward, ArrowIosUpward } from '@stage-ui/core/icons'
 import { forwardRef, ForwardRefRenderFunction } from 'react'
 import Types from './types'
 
-const TableHeadCell: ForwardRefRenderFunction<HTMLTableDataCellElement, Types.HeadCellProps> = (props, ref) => {
+const TableHeadCell: ForwardRefRenderFunction<HTMLTableDataCellElement, Types.HeadCellProps<any>> = (props, ref) => {
     const { column, styles, setSort } = props
 
     const setSorting = () => {

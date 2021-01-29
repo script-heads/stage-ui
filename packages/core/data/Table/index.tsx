@@ -8,9 +8,9 @@ import TableHeadCell from './TableHeadCell'
 import TableRow from './TableRow'
 import Types from './types'
 
-type Ref<T = Object> = Types.TableRef<T>
+function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
 
-const Table: ForwardRefRenderFunction<Ref, Types.Props> = (props, ref) => {
+// const Table: ForwardRefRenderFunction<Types.TableRef, Types.Props> = (props, ref) => {
 
     const tableRef = useRef<HTMLTableElement>(null)
     const { cs, attributes, events } = useComponent('Table', { props, styles, styleProps: { container: ['all'] } })
@@ -22,21 +22,22 @@ const Table: ForwardRefRenderFunction<Ref, Types.Props> = (props, ref) => {
         sort: 'ASC'
     })
 
-    let rowCtx: Types.RowContext[] = props.data.map(row => {
-        const isCellModify: Types.RowContext['isCellModify'] = {}
+    //@ts-ignore
+    let rowCtx: Types.RowContext<ROW>[] = props.data.map(row => {
+        const isModify: Types.RowContext<ROW>['isModify'] = {}
         columns.forEach(column => {
-            isCellModify[column.key] = false
+            isModify[column.key] = false
         })
         return {
             row,
             isExpand: false,
             isVisible: true,
-            isCellModify,
+            isModify,
             setModifyState: {}
         }
     })
 
-    const columnSort = (column: Types.TableColumn) => {
+    const columnSort = (column: Types.TableColumn<ROW>) => {
         if (column.sort) {
             rowCtx = rowCtx.sort((a, b) => {
                 if (column.sort === 'ASC') {
@@ -56,7 +57,8 @@ const Table: ForwardRefRenderFunction<Ref, Types.Props> = (props, ref) => {
         }
     }
 
-    const getCellContext: Ref['getCellContext'] = (index, key) => {
+    //@ts-ignore
+    const getCellContext: Types.TableRef<ROW>['getCellContext'] = (index, key) => {
 
         if (!rowCtx[index]?.row) {
             return null
@@ -69,7 +71,7 @@ const Table: ForwardRefRenderFunction<Ref, Types.Props> = (props, ref) => {
             column: columns.find(column => column.key === key) || null,
             value: rowCtx[index].row[key],
             isExpand: rowCtx[index].isExpand,
-            isModify: rowCtx[index].isCellModify[key],
+            isModify: rowCtx[index].isModify[key],
             isVisible: rowCtx[index].isVisible,
             setExpand: (content) => setExpand(index, content),
             setModify: (modify, kkey = key) => setModify(modify, index, kkey),
@@ -83,7 +85,7 @@ const Table: ForwardRefRenderFunction<Ref, Types.Props> = (props, ref) => {
         }
     }
 
-    const setExpand: Ref['setExpand'] = (index, content) => {
+    const setExpand: Types.TableRef<ROW>['setExpand'] = (index, content) => {
         if (rowCtx[index]) {
             rowCtx[index].setExpandComponent?.(content)
             return true
@@ -91,15 +93,16 @@ const Table: ForwardRefRenderFunction<Ref, Types.Props> = (props, ref) => {
         return false
     }
 
-    const setModify: Ref['setModify'] = (modify, index, key) => {
+    const setModify: Types.TableRef<ROW>['setModify'] = (modify, index, key) => {
         if (rowCtx[index]) {
             if (key !== undefined) {
+                //@ts-ignore
                 if (rowCtx[index].row.hasOwnProperty(key)) {
                     rowCtx[index].setModifyState[key]?.(modify)
                     return true
                 }
             } else {
-                Object.keys(rowCtx[index].isCellModify).forEach(key => {
+                Object.keys(rowCtx[index].isModify).forEach(key => {
                     rowCtx[index].setModifyState[key]?.(modify)
                 })
                 return true
@@ -111,6 +114,7 @@ const Table: ForwardRefRenderFunction<Ref, Types.Props> = (props, ref) => {
     /**
      * Handle refs
      */
+    //@ts-ignore
     useImperativeHandle(ref, () => ({
         getCellContext,
         setExpand,
@@ -124,6 +128,7 @@ const Table: ForwardRefRenderFunction<Ref, Types.Props> = (props, ref) => {
     if (sort.key) {
         const sortColumn = columns.find(column => column.key === sort.key)
         if (sortColumn) {
+            //@ts-ignore
             columnSort({
                 ...sortColumn,
                 ...sort
@@ -131,6 +136,7 @@ const Table: ForwardRefRenderFunction<Ref, Types.Props> = (props, ref) => {
         }
     } else {
         for (const column of columns) {
+            //@ts-ignore
             columnSort(column)
         }
     }
@@ -200,7 +206,7 @@ const Table: ForwardRefRenderFunction<Ref, Types.Props> = (props, ref) => {
                         /**
                          * Row events map
                          */
-                        const events: Types.RowEvents = {
+                        const events: Types.RowEvents<ROW> = {
                         }
                         /**
                          * We'll call onRow*Event* at on*Event*
@@ -248,4 +254,4 @@ const Table: ForwardRefRenderFunction<Ref, Types.Props> = (props, ref) => {
     )
 }
 
-export default forwardRef(Table)
+export default forwardRef(Table as any) as <ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) => React.ReactElement

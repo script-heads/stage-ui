@@ -4,7 +4,7 @@ import React, { forwardRef, ForwardRefRenderFunction, Fragment, useState } from 
 import TableCell from './TableCell'
 import Types from './types'
 
-const TableRow: ForwardRefRenderFunction<HTMLTableRowElement, Types.RowProps> = (props, ref) => {
+const TableRow: ForwardRefRenderFunction<HTMLTableRowElement, Types.RowProps<any>> = (props, ref) => {
     const { columns, rowIndex, rowCtxItem, delegates, styles, getCellContext } = props
     const style: React.CSSProperties = {}
     /**

@@ -4,7 +4,7 @@ import { Flexbox, Pageswitch } from '@stage-ui/core'
 import { forwardRef, ForwardRefRenderFunction } from 'react'
 import Types from './types'
 
-const TableFoot: ForwardRefRenderFunction<HTMLTableCellElement, Types.FootProps> = (props, ref) => {
+const TableFoot: ForwardRefRenderFunction<HTMLTableCellElement, Types.FootProps<any>> = (props, ref) => {
     const { columns, pagination, rowCtx, styles, footerContent, onPageChange } = props
    
     let needDisplay = false
