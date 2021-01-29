@@ -51,7 +51,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
             {
                 position: 'relative',
                 background: theme.color.surface.rgb().string(),
-                borderColor: theme.color.lightest.rgb().string(),
+                borderColor: theme.color.primary.rgb().string(),
                 borderRadius: theme.radius.s,
                 borderWidth: '1px',
                 borderStyle: 'solid',
@@ -62,15 +62,14 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                 borderTopWidth: 0,
             },
             variant({
-                focus: {
-                    borderColor: theme.color.primary.rgb().string(),
-                },
                 shape: {
                     square: {
                         borderRadius: 0
                     },
                     round: {
-                        borderRadius: `calc(${minHeight}/2)`
+                        borderRadius: `calc(${minHeight}/2)`,
+                        borderTopLeftRadius: 0,
+                        borderTopRightRadius: 0,
                     }
                 },
                 decoration: {
