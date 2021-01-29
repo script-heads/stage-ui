@@ -61,6 +61,11 @@ declare namespace TableTypes {
          */
         isModify: boolean
         /**
+         * Is current cell in modify mode
+         * @readonly
+         */
+        isCellModify: boolean
+        /**
          * Is current row expanded
          * @readonly
          */
@@ -88,7 +93,7 @@ declare namespace TableTypes {
         setRow: (row: ROW) => void
     }
 
-    type RowContext<ROW> = {
+    type TableRowContext<ROW> = {
         /**
          * Row data
          */
@@ -106,7 +111,7 @@ declare namespace TableTypes {
         /**
          * keys of cells that in modify mode
          */
-        isModify: {
+        isCellModify: {
             [key: string]: boolean
         }
         /**
@@ -133,6 +138,10 @@ declare namespace TableTypes {
          * Get context for specific cell
          */
         getCellContext: (index: number, key: TableCellKey) => TableCellContext<ROW> | null
+        /**
+         * Get context for specific row
+         */
+        getTableRowContext: (index: number) => TableCellContext<ROW> | null
         /**
          * Set expanded ReactNode below row index
          * @returns true if success
@@ -161,7 +170,7 @@ declare namespace TableTypes {
         /**
          * Custom render for a TableCell
          */
-        render?: (cellContext: RowContext<ROW>, index: number) => void
+        render?: (cellContext: TableCellContext<ROW>, index: number) => React.ReactNode
         /**
          * Enables sorting for a column
          * support ASC | DESC
@@ -173,15 +182,15 @@ declare namespace TableTypes {
         /**
          * Calls when ever row clicked
          */
-        onRowClick?: (rowCtxItem: RowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+        onRowClick?: (rowCtxItem: TableRowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
         /**
          * Calls when mouse enters row
          */
-        onRowMouseEnter?: (rowCtxItem: RowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+        onRowMouseEnter?: (rowCtxItem: TableRowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
         /**
          * Calls when mouse leaves row
          */
-        onRowMouseLeave?: (rowCtxItem: RowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+        onRowMouseLeave?: (rowCtxItem: TableRowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
     }
 
     interface RowDelegates<ROW> {
@@ -189,11 +198,11 @@ declare namespace TableTypes {
          * Delegate tells to TableRow what size it is.
          * Required when rowMountType not default
          */
-        rowHeight?: (rowCtxItem: RowContext<ROW>) => number
+        rowHeight?: (rowCtxItem: TableRowContext<ROW>) => number
         /**
          * Delegate tells TableRow render or not
          */
-        rowShouldRender?: (rowCtxItem: RowContext<ROW>) => boolean
+        rowShouldRender?: (rowCtxItem: TableRowContext<ROW>) => boolean
     }
 
     //@ts-ignore - Type '0' cannot be used to index type 'DATA'
@@ -231,8 +240,8 @@ declare namespace TableTypes {
          * @default default
          */
         rowMountType?: RowMountType
-        rowDidMount?: (rowCtxItem: RowContext<ROW>) => void
-        rowDidUnmount?: (rowCtxItem: RowContext<ROW>) => void
+        rowDidMount?: (rowCtxItem: TableRowContext<ROW>) => void
+        rowDidUnmount?: (rowCtxItem: TableRowContext<ROW>) => void
     }
 
     interface HeadCellProps<ROW> {
@@ -242,7 +251,7 @@ declare namespace TableTypes {
     }
 
     interface CellProps<ROW> {
-        rowCtxItem: RowContext<ROW>
+        rowCtxItem: TableRowContext<ROW>
         column: TableColumn<ROW>
         rowIndex: number
         styles: SystemTypes.ComponentStyles<Styles>
@@ -250,14 +259,14 @@ declare namespace TableTypes {
     }
 
     interface RowProps<ROW> {
-        rowCtxItem: RowContext<ROW>
+        rowCtxItem: TableRowContext<ROW>
         columns: TableColumn<ROW>[]
         rowIndex: number
         styles: SystemTypes.ComponentStyles<Styles>
         getCellContext: TableRef<ROW>['getCellContext']
         events: RowEvents<ROW>
-        rowDidMount?: (rowCtxItem: RowContext<ROW>) => void
-        rowDidUnmount?: (rowCtxItem: RowContext<ROW>) => void
+        rowDidMount?: (rowCtxItem: TableRowContext<ROW>) => void
+        rowDidUnmount?: (rowCtxItem: TableRowContext<ROW>) => void
         rowMountType?: Props<ROW>['rowMountType']
         enableRenderOptimization: boolean
         delegates: {
@@ -268,7 +277,7 @@ declare namespace TableTypes {
     }
 
     interface FootProps<ROW> {
-        rowCtx: RowContext<ROW>[]
+        rowCtx: TableRowContext<ROW>[]
         columns: TableColumn<ROW>[]
         footerContent?: Props<ROW>['footer']
         pagination?: TablePaginationOptions

@@ -23,16 +23,16 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
     })
 
     //@ts-ignore
-    let rowCtx: Types.RowContext<ROW>[] = props.data.map(row => {
-        const isModify: Types.RowContext<ROW>['isModify'] = {}
+    let rowCtx: Types.TableRowContext<ROW>[] = props.data.map(row => {
+        const isCellModify: Types.TableRowContext<ROW>['isCellModify'] = {}
         columns.forEach(column => {
-            isModify[column.key] = false
+            isCellModify[column.key] = false
         })
         return {
             row,
             isExpand: false,
             isVisible: true,
-            isModify,
+            isCellModify,
             setModifyState: {}
         }
     })
@@ -71,7 +71,7 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
             column: columns.find(column => column.key === key) || null,
             value: rowCtx[index].row[key],
             isExpand: rowCtx[index].isExpand,
-            isModify: rowCtx[index].isModify[key],
+            isModify: rowCtx[index].isCellModify[key],
             isVisible: rowCtx[index].isVisible,
             setExpand: (content) => setExpand(index, content),
             setModify: (modify, kkey = key) => setModify(modify, index, kkey),
@@ -101,12 +101,11 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
                     rowCtx[index].setModifyState[key]?.(modify)
                     return true
                 }
-            } else {
-                Object.keys(rowCtx[index].isModify).forEach(key => {
-                    rowCtx[index].setModifyState[key]?.(modify)
-                })
-                return true
             }
+            Object.keys(rowCtx[index].isCellModify).forEach(key => {
+                rowCtx[index].setModifyState[key]?.(modify)
+            })
+            return true
         }
         return false
     }

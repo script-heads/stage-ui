@@ -16,12 +16,12 @@ const TableCell: ForwardRefRenderFunction<HTMLTableDataCellElement, Types.CellPr
     /**
      * Update RowContextData state
      */
-    rowCtxItem.setModifyState[column.key] = setModifyState
-    rowCtxItem.isModify[column.key] = modifyState
+    rowCtxItem['setModifyState'][column.key] = setModifyState
+    rowCtxItem['isCellModify'][column.key] = modifyState
 
     if (column.render) {
         content = column.render(
-            getCellContext(rowIndex, column.key) as any, 
+            getCellContext(rowIndex, column.key) as Types.TableCellContext<any>, 
             rowIndex, 
         )
     }
