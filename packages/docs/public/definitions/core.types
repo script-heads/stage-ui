@@ -8574,7 +8574,8 @@ declare module 'layout/Drop/types' {
 
 }
 declare module 'control/Select/types' {
-	import FieldTypes from '@stage-ui/core/misc/hocs/Field/types'; namespace SelectTypes {
+	import FieldTypes from '@stage-ui/core/misc/hocs/Field/types';
+	import DropTypes from 'layout/Drop/types'; namespace SelectTypes {
 	    interface Option {
 	        text: string;
 	        value: any;
@@ -8613,6 +8614,11 @@ declare module 'control/Select/types' {
 	         * @default 16rem
 	         */
 	        maxScrollHeight?: string;
+	        /**
+	         * Animation of drop
+	         * @default { type: 'collapse' }
+	         */
+	        animation?: DropTypes.Props['animation'];
 	        /**
 	         * Event is fired when user change value
 	         */
