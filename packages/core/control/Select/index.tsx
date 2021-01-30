@@ -6,6 +6,7 @@ import DropTypes from '@stage-ui/core/layout/Drop/types'
 import Field from '@stage-ui/core/misc/hocs/Field'
 import { useComponent } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction, Fragment, useEffect, useRef, useState } from 'react'
+import { transform } from 'typescript'
 import styles from './styles'
 import Types from './types'
 
@@ -171,6 +172,8 @@ const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
         onChange([], undefined, search)
     }
 
+    const isDown = (isOpen && options.length > 0)
+
     return (
         <Fragment>
             <Field
@@ -201,8 +204,12 @@ const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
                     props.rightChild || <ArrowIosDownward
                         alignSelf="center"
                         size={size}
+                        style={{
+                            transition:'transform 0.25s',
+                            transform: `scale(1.5) scaleY(${isDown ? -1 : 1})`
+                        }}
                         color={c => isOpen ? c.primary : c.light}
-                        rotate={(isOpen && options.length > 0) ? 180 : 0}
+                        // rotate={(isOpen && options.length > 0) ? 180 : 0}
                         onClick={(e) => {
                             e.preventDefault()
                             toggleOpen(e)

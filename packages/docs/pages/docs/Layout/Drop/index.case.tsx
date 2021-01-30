@@ -1,5 +1,6 @@
 import code from './default.raw'
-import followCursor from './followCursor.raw'
+import animation from './animation.raw'
+import stickCursor from './stickCursor.raw'
 
 export const title = 'Drop'
 export const subtitle = 'displays absolute positioned data near target'
@@ -10,7 +11,11 @@ export const cases = [
         code
     },
     {
-        label: 'Follow cursor',
-        code: followCursor
+        label: 'Animation',
+        code: animation
+    },
+    {
+        label: 'Stick cursor',
+        code: stickCursor
     }
 ]

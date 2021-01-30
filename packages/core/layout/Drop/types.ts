@@ -34,6 +34,27 @@ declare namespace DropTypes {
          */
         justify?: 'start' | 'center' | 'end' | 'start-outside' | 'end-outside'
         /**
+         * Open/Close animation type
+         * @default slide
+         */
+        animation?: {
+            /**
+             * type of animation
+             * @default none
+             */
+            type: 'fade' | 'slide' | 'collapse' | 'none'
+            /**
+             * duration in ms
+             * @default 100
+             */
+            duration?: number 
+            /**
+             * reverse animation for 'slide' & 'collapse'
+             * @default false
+             */
+            reverse?: boolean 
+        }
+        /**
          * Stretch drop by target width
          */
         stretchWidth?: boolean
@@ -44,7 +65,7 @@ declare namespace DropTypes {
         /**
          * Place drop under coursor
          */
-        followCursor?: boolean
+        stickCursor?: boolean
         /**
          * Distance between target and drop
          */

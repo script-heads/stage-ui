@@ -248,8 +248,10 @@ const fieldStyles = <T extends Types.Styles>(
         clearButton: (variant) => [
             {
                 cursor: 'pointer',
+                backgroundColor: theme.color.onSurface.alpha(0.05).rgb().string(),
+                borderRadius: '100rem',
                 ':hover': {
-                    color: theme.color.primary.rgb().string(),
+                    color: theme.color.warning.rgb().string(),
                 }
             },
             //FIXME: types
