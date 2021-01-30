@@ -60,7 +60,7 @@ const Button: ForwardRefRenderFunction<HTMLButtonElement, Types.Props> = (props,
                             children={props.leftChild}
                         />
                     )}
-                    {props.children}
+                    {props.children || props.label}
                     {props.rightChild && (
                         <div 
                             css={cs.child({ align: 'right', ...styleState })}

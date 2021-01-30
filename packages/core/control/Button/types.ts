@@ -76,7 +76,11 @@ declare namespace ButtonTypes {
          */
         color?: SystemTypes.ColorProp
         /**
-         * Button's content
+         * Button's label
+         */
+        label?: React.ReactNode
+        /**
+         * same as label
          */
         children?: React.ReactNode
         /**
