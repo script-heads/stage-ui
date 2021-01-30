@@ -260,6 +260,10 @@ const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
             <Drop
                 visible={(isOpen && options.length > 0)}
                 ref={dropRef}
+                animation={props.animation || {
+                    type: 'collapse',
+                    duration: 100,
+                }}
                 onClickOutside={(e, outTarget) => {
                     if (outTarget) {
                         toggleOpen(e)

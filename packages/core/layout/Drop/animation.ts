@@ -48,6 +48,18 @@ export default class DropAnimation {
             }
             if (this.type === 'collapse') {
                 this.style.transition = `transform ${this.duration}ms, opacity ${this.duration}ms`
+                if (this.align === 'top') {
+                    this.style.transformOrigin = 'bottom'
+                }
+                if (this.align === 'bottom') {
+                    this.style.transformOrigin = 'top'
+                }
+                if (this.align === 'left') {
+                    this.style.transformOrigin = 'right'
+                }
+                if (this.align === 'right') {
+                    this.style.transformOrigin = 'left'
+                }
                 const scale = this.isHorizontal ? 'scaleX' : 'scaleY'
                 this.style.transform = `${scale}(1)`
                 this.style.opacity = '1'

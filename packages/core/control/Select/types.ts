@@ -1,4 +1,5 @@
 import FieldTypes from '../../misc/hocs/Field/types'
+import DropTypes from '../../layout/Drop/types'
 
 declare namespace SelectTypes {
     interface Option {
@@ -40,6 +41,11 @@ declare namespace SelectTypes {
          * @default 16rem
          */
         maxScrollHeight?: string
+        /**
+         * Animation of drop
+         * @default { type: 'collapse' }
+         */
+        animation?: DropTypes.Props['animation']
         /**
          * Event is fired when user change value
          */
