@@ -85,7 +85,9 @@ const fieldStyles = <T extends Types.Styles>(
                     ]
                 },
                 focus: {
-                    borderColor: theme.color.primary.rgb().string()
+                    borderColor: props.disabled
+                        ? theme.color.lightest.rgb().string()
+                        : theme.color.primary.rgb().string()
                 },
                 disabled: {
                     color: theme.color.light.rgb().string(),

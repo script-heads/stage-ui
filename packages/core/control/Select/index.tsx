@@ -19,6 +19,7 @@ const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
         tabIndex = 0,
         maxScrollHeight = '16rem',
         keepOpen = false,
+        disabled = false,
     } = props
 
     /**
@@ -127,6 +128,9 @@ const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
      */
     function toggleOpen(e) {
         e.stopPropagation()
+        if (!isOpen && disabled) {
+            return
+        }
         setOpen(!isOpen)
     }
 
@@ -185,9 +189,10 @@ const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
                 size={size}
                 state={styleState}
                 focus={focus}
+                disabled={disabled}
                 shape={shape}
                 decoration={decoration}
-                clearable={props.clearable && values.length > 0}
+                clearable={disabled ? false : (props.clearable && values.length > 0)}
                 onClear={() => clearValues()}
 
                 attributes={{ ...attributes, tabIndex }}
@@ -221,20 +226,22 @@ const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
                         {props.multiselect && values.map(option => (
                             <div css={cs.tag(styleState)} key={option.value}>
                                 {option.text}
-                                <Close
-                                    size={size}
-                                    css={cs.tagRemove(styleState)}
-                                    onClick={(e) => {
-                                        e.preventDefault()
-                                        e.stopPropagation()
-                                        unsetOption(option)
-                                    }}
-                                />
+                                {!disabled && (
+                                    <Close
+                                        size={size}
+                                        css={cs.tagRemove(styleState)}
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            e.stopPropagation()
+                                            unsetOption(option)
+                                        }}
+                                    />
+                                )}
                             </div>
                         ))}
                         <input
                             size={5}
-                            disabled={!props.searchable}
+                            disabled={disabled || !props.searchable}
                             css={cs.input({
                                 searchMode: searchQuery !== '',
                                 multiselect: !!props.multiselect
@@ -251,7 +258,7 @@ const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
                             onClick={(e) => {
                                 e.preventDefault()
                                 e.stopPropagation()
-                                setOpen(true)
+                                toggleOpen(e)
                             }}
                         />
                     </div>
