@@ -22,7 +22,14 @@ const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
         },
     })
 
-    const [active, setActive, ctx] = useValue(props.value)
+    let [active, setActive, ctx] = useValue(props.value)
+
+    /**
+     * Support controlled
+     */
+    if (props.active != undefined) {
+        active = props.active
+    }
 
     const containerRef = React.useRef<HTMLDivElement>(null)
     /**
