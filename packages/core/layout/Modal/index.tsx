@@ -24,7 +24,7 @@ const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
 
     const [active, setActive] = useState(false)
     const [visible, setVisible] = useState<boolean>(false)
-    const [customContent, setCustomContent] = useState<React.ReactElement | null>(null)
+    const [customRender, setCustomRender] = useState<React.ReactElement | null>(null)
     const [title, setTitle] = useState(props.title)
     const [subtitle, setSubtitle] = useState(props.subtitle)
 
@@ -46,17 +46,17 @@ const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
         setTitle,
         subtitle,
         setSubtitle,
-        customContent,
-        setCustomContent,
+        render: customRender,
+        setRender: setCustomRender,
         overlay: overlayRef.current as HTMLDivElement,
         window: windowRef.current as HTMLDivElement
     }))
 
-    function open(customContent?: React.ReactElement) {
+    function open(customRender?: React.ReactElement) {
         document.body.style.overflow = 'hidden'
 
-        if (customContent) {
-            setCustomContent(customContent)
+        if (customRender) {
+            setCustomRender(customRender)
         }
 
         props.onOpen && props.onOpen()
@@ -112,8 +112,8 @@ const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
                             hideHeader={hideHeader}
                             onClosePressed={() => close()}
                             children={
-                                customContent !== null
-                                    ? customContent
+                                customRender !== null
+                                    ? customRender
                                     : props.children
                             }
                             containerAttr={attributes}

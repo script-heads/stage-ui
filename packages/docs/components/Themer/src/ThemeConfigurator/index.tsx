@@ -224,7 +224,7 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
                     onClick={() => {
                         dialog({
                             hideHeader: true,
-                            customContent: (close) => (
+                            render: (close) => (
                                 <NewColorDialog
                                     palettKeys={Object.keys(theme.color.palette)}
                                     close={close}
@@ -248,7 +248,7 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
                         onClick={() => {
                             dialog({
                                 hideHeader: true,
-                                customContent: (close) => (
+                                render: (close) => (
                                     <NewColorDialog
                                         edit={{
                                             name: key,
@@ -348,7 +348,7 @@ export const panel = (
                 }
             })
         },
-        customContent: (close) => (
+        render: (close) => (
             <ThemeConfigurator
                 original={original}
                 updateTheme={updateTheme}

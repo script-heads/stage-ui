@@ -29,7 +29,7 @@ export default () => {
                 dialog({
                     decoration: 'panel',
                     hideHeader: true,
-                    customContent: (close) => (
+                    render: (close) => (
                         <Content close={close} />
                     )
                 })

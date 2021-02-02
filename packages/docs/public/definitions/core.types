@@ -8224,6 +8224,10 @@ declare module 'control/Menu/MenuItem/types' {
 	import MenuTypes from 'control/Menu/types'; namespace MenuItemTypes {
 	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        /**
+	         * Controlled item state
+	         */
+	        active?: boolean;
+	        /**
 	         * Display title of current item
 	         */
 	        title?: React.ReactNode;
@@ -9562,7 +9566,7 @@ declare module '@stage-ui/core/layout/Modal/types' {
 	        /**
 	         * Opens modal view with optionaly custom content
 	         */
-	        open: (customContent?: React.ReactElement | null) => void;
+	        open: (render?: React.ReactElement | null) => void;
 	        /**
 	         * Closes modal, didClose arg called at closing complete
 	         */
@@ -9578,7 +9582,11 @@ declare module '@stage-ui/core/layout/Modal/types' {
 	        /**
 	         * Fn for changing content if it custom
 	         */
-	        setCustomContent: (customContent: React.ReactElement | null) => void;
+	        setRender: (render: React.ReactElement | null) => void;
+	        /**
+	         * Current custom content of modal view
+	         */
+	        render: React.ReactElement | null;
 	        /**
 	         * Current title of modal view
 	         */
@@ -9587,10 +9595,6 @@ declare module '@stage-ui/core/layout/Modal/types' {
 	         * Current subtitle of modal view
 	         */
 	        subtitle?: string;
-	        /**
-	         * Current custom content of modal view
-	         */
-	        customContent: React.ReactElement | null;
 	        /**
 	         * Ref for overlay view <div>
 	         */
@@ -9711,6 +9715,20 @@ declare module '@stage-ui/core/layout/Modal/types' {
 	         */
 	        cross: StyleState;
 	    }
+	    interface DialogOptions extends Props {
+	        /**
+	         * Message of dialog
+	         */
+	        message?: string;
+	        /**
+	         * Button text
+	         */
+	        buttonText?: string;
+	        /**
+	         * if custom content filled then message and buttonText will be ignored
+	         */
+	        render?: (close: () => void) => React.ReactElement;
+	    }
 	}
 	export default ModalTypes;
 
@@ -9752,11 +9770,12 @@ declare module 'layout/Modal' {
 
 }
 declare module 'layout/Notification/types' {
+	import BlockTypes from '@stage-ui/core/layout/Block/types';
 	import SystemTypes from '@stage-ui/system/types'; namespace NotificationTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        children?: React.ReactNode;
 	    }
-	    interface NotifyOptions {
+	    interface NotifyOptions extends BlockTypes.Props {
 	        /**
 	         * Title of notification
 	         */
@@ -9774,9 +9793,9 @@ declare module 'layout/Notification/types' {
 	         */
 	        onClick?: (e: any) => void;
 	        /**
-	         * if custom content filled then title and message will be ignored
+	         * if custom content filled then message and message will be ignored
 	         */
-	        customContent?: React.ReactElement;
+	        render?: (close: () => void) => React.ReactElement;
 	    }
 	    interface Styles {
 	        /**
@@ -10255,8 +10274,7 @@ declare module 'misc/themes' {
 declare module 'layout/Viewport/types' {
 	import SystemTypes from '@stage-ui/system/types';
 	import { Options } from '@emotion/cache';
-	import { SerializedStyles } from '@emotion/react';
-	import ModalTypes from '@stage-ui/core/layout/Modal/types'; namespace ViewportTypes {
+	import { SerializedStyles } from '@emotion/react'; namespace ViewportTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
 	         * Defines whether the viewport renders content inside the container
@@ -10301,44 +10319,6 @@ declare module 'layout/Viewport/types' {
 	    interface Context {
 	        theme: SystemTypes.Theme;
 	    }
-	    interface DialogOptions {
-	        /**
-	         * Title of modal window header
-	         */
-	        title?: ModalTypes.Props['title'];
-	        /**
-	         * Subtitle of modal window header
-	         */
-	        subtitle?: ModalTypes.Props['subtitle'];
-	        /**
-	         * Dialog size
-	         */
-	        size?: ModalTypes.Props['size'];
-	        /**
-	         * Overrides
-	         */
-	        styles?: ModalTypes.Props['styles'];
-	        /**
-	         * Dialog decoration
-	         */
-	        decoration?: ModalTypes.Props['decoration'];
-	        /**
-	         * Message of dialog
-	         */
-	        message?: string;
-	        /**
-	         * Button text
-	         */
-	        buttonText?: string;
-	        /**
-	         * Hides modal window header
-	         */
-	        hideHeader?: boolean;
-	        /**
-	         * if custom content filled then message and buttonText will be ignored
-	         */
-	        customContent?: (close: () => void) => React.ReactElement;
-	    }
 	}
 	export default ViewportTypes;
 
@@ -10363,7 +10343,7 @@ declare module 'layout/Viewport' {
 
 }
 declare module 'misc/utils/dialog' {
-	import ViewportTypes from '@stage-ui/core/layout/Viewport/types'; const _default: (options: ViewportTypes.DialogOptions) => void;
+	import ModalTypes from '@stage-ui/core/@stage-ui/core/layout/Modal/types'; const _default: (options: ModalTypes.DialogOptions) => void;
 	export default _default;
 
 }

@@ -1,3 +1,4 @@
+import BlockTypes from '@stage-ui/core/layout/Block/types'
 import SystemTypes from '@stage-ui/system/types'
 
 declare namespace NotificationTypes {
@@ -5,7 +6,7 @@ declare namespace NotificationTypes {
         children?: React.ReactNode
     }
 
-    interface NotifyOptions {
+    interface NotifyOptions extends BlockTypes.Props {
         /**
          * Title of notification
          */
@@ -23,9 +24,9 @@ declare namespace NotificationTypes {
          */
         onClick?: (e: any) => void
         /**
-         * if custom content filled then title and message will be ignored
+         * if custom content filled then message and message will be ignored
          */
-        customContent?: React.ReactElement
+        render?: (close: () => void) => React.ReactElement
     }
 
     interface Styles {

@@ -16,7 +16,7 @@ declare namespace ModalTypes {
         /**
          * Opens modal view with optionaly custom content
          */
-        open: (customContent?: React.ReactElement | null) => void
+        open: (render?: React.ReactElement | null) => void
         /**
          * Closes modal, didClose arg called at closing complete
          */
@@ -32,7 +32,11 @@ declare namespace ModalTypes {
         /**
          * Fn for changing content if it custom
          */
-        setCustomContent: (customContent: React.ReactElement | null) => void
+        setRender: (render: React.ReactElement | null) => void
+        /**
+         * Current custom content of modal view
+         */
+        render: React.ReactElement | null
         /**
          * Current title of modal view
          */
@@ -41,10 +45,6 @@ declare namespace ModalTypes {
          * Current subtitle of modal view
          */
         subtitle?: string
-        /**
-         * Current custom content of modal view
-         */
-        customContent: React.ReactElement | null
         /**
          * Ref for overlay view <div>
          */
@@ -170,6 +170,21 @@ declare namespace ModalTypes {
          * Close button
          */
         cross: StyleState
+    }
+
+    interface DialogOptions extends Props {
+        /**
+         * Message of dialog
+         */
+        message?: string
+        /**
+         * Button text
+         */
+        buttonText?: string
+        /**
+         * if custom content filled then message and buttonText will be ignored
+         */
+        render?: (close: () => void) => React.ReactElement
     }
 }
 

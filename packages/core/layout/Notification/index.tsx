@@ -16,14 +16,14 @@ const Notifications: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (pr
 
     return (
         <Block 
-            {...attributes}
-            {...events.all}
-            onChange={undefined}
-            ref={ref} 
             decoration="surface" 
-            onClick={(e) => props.onClick && props.onClick(e)} 
             css={cs.container}
             children={props.children}
+            {...attributes}
+            {...events.all}
+            ref={ref}
+            onChange={undefined}
+            onClick={(e) => props.onClick && props.onClick(e)} 
         />
     )
 }
