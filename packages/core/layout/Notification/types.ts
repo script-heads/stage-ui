@@ -1,12 +1,12 @@
-import BlockTypes from '@stage-ui/core/layout/Block/types'
 import SystemTypes from '@stage-ui/system/types'
+import BlockTypes from '../Block/types'
 
 declare namespace NotificationTypes {
-    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
+    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles>, Omit<BlockTypes.Props, 'styles'> {
         children?: React.ReactNode
     }
 
-    interface NotifyOptions extends BlockTypes.Props {
+    interface NotifyOptions extends Props {
         /**
          * Title of notification
          */
@@ -19,10 +19,6 @@ declare namespace NotificationTypes {
          * Time in milliseconds after which the notification will be removed
          */
         timeout?: number
-        /**
-         * Fired when user click on notification
-         */
-        onClick?: (e: any) => void
         /**
          * if custom content filled then message and message will be ignored
          */

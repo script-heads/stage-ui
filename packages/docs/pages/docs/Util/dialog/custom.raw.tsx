@@ -37,7 +37,7 @@ export default () => {
                     )
                 })
             }}
-            children="Show custom dialog"
+            children="Push"
         />
     )
 }

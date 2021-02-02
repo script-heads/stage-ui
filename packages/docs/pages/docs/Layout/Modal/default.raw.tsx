@@ -13,7 +13,7 @@ export default () => {
             />
             <Button
                 onClick={() => modal.current?.open()}
-                children="Open up window"
+                children="Push"
             />
         </Fragment>
     )

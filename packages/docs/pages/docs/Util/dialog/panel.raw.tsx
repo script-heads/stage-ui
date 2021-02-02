@@ -1,5 +1,4 @@
 import { Button, dialog, Flexbox, Header, Paragraph } from '@stage-ui/core'
-import { AlertTriangle } from '@stage-ui/core/icons'
 import React from 'react'
 
 export default () => {
@@ -34,7 +33,7 @@ export default () => {
                     )
                 })
             }}
-            children="Show custom dialog"
+            children="Push"
         />
     )
 }

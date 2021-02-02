@@ -1,5 +1,6 @@
+import { Button, Flexbox, notify, Text } from '@stage-ui/core'
+import { Person } from '@stage-ui/core/icons'
 import React from 'react'
-import { Button, notify, Block, Meter, Header } from '@stage-ui/core'
 
 export default () => {
     return (
@@ -8,17 +9,18 @@ export default () => {
                 notify({
                     title: '',
                     message: '',
+                    decoration: 'majorShadow',
                     render: (close) => (
-                        <Block p="1rem" w="20rem">
-                            <Header>In progress</Header>
-                            <Meter pb="0.5rem" loading value={100} />
-                            <Button label="Close" onClick={close} />
-                        </Block>
+                        <Flexbox column p="1rem" w="10rem" alignItems="center">
+                            <Person size="4rem" mb="m" />
+                            <Text color="primary">Hello :)</Text>
+                            <Button mt="m" label="Close" onClick={close} />
+                        </Flexbox>
                     ),
                     timeout: 10000
                 })
             }}
-            children="Show custom notify"
+            children="Push"
         />
     )
 }

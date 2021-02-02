@@ -20,7 +20,7 @@ export default (options: NotificationType.NotifyOptions) => {
 
     addElement(
         (
-            <Notification onClick={options.onClick}>
+            <Notification {...options}>
                 {options.render ? (
                     options.render(close)
                 ) : (

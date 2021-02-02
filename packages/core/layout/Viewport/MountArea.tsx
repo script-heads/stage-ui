@@ -13,8 +13,10 @@ const MountArea: FC<ViewportTypes.MountArea> = (props) => {
         position: 'fixed',
         display: 'flex',
         flexDirection: 'column',
+        alignItems: "flex-end",
         top: '2rem',
         right: '2rem',
+
         zIndex: 1000,
         '>*': {
             marginBottom: '1rem'

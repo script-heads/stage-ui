@@ -1,5 +1,5 @@
-import React from 'react'
 import { Button, notify } from '@stage-ui/core'
+import React from 'react'
 
 export default () => {
     return (
@@ -11,7 +11,7 @@ export default () => {
                     timeout: 3000
                 })
             }}
-            children="Show notify"
+            children="Push"
         />
     )
 }

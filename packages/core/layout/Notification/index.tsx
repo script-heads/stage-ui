@@ -18,7 +18,7 @@ const Notifications: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (pr
         <Block 
             decoration="surface" 
             css={cs.container}
-            children={props.children}
+            {...props}
             {...attributes}
             {...events.all}
             ref={ref}
