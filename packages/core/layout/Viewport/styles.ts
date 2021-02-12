@@ -35,9 +35,6 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 font-size: 100%;
                 vertical-align: baseline;
             },
-            ::-webkit-scrollbar {
-                display: none
-            }
         `
 
     return {
