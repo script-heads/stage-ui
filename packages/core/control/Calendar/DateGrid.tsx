@@ -88,7 +88,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
             {gridType === 'day' && (
                 <Fragment>
                     <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr 1fr">
-                        {moment.weekdaysMin().map(day => (
+                        {moment.weekdaysMin(true).map(day => (
                             <Flexbox
                                 key={day}
                                 flex={1}
