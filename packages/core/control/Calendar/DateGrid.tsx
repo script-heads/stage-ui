@@ -30,8 +30,8 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
 
     const monthOffset = gridType === 'day' ? 1 : 9
     const grid: Moment[][] = []
-    const start = tmpDate.clone().startOf('month').startOf('week').startOf('day')
-    const end = tmpDate.clone().endOf('month').endOf('week').startOf('day')
+    const start = tmpDate.clone().startOf('month').startOf('isoWeek').startOf('day').add(-1, 'day')
+    const end = tmpDate.clone().endOf('month').endOf('isoWeek').startOf('day').add(-1, 'day')
 
     useEffect(() => {
         setGridType(props.type)
