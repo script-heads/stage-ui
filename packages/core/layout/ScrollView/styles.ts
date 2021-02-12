@@ -12,11 +12,9 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 position: 'relative',
                 overflow: 'hidden',
                 height: '100%',
-            },
-            {
                 padding: '0 !important',
                 margin: '0 !important',
-            }
+            },
         ],
         content: [{
             position: 'relative',
@@ -33,10 +31,13 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 margin: '0 !important'
             }
         }],
-        legacy: [{
+        webkit: [{
             position: 'relative',
             overflow: 'auto',
             height: '100%',
+            '::-webkit-scrollbar': {
+                display: 'none'
+            },
         }],
         yBar: (variant) => [
             {

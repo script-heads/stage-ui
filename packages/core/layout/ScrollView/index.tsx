@@ -70,7 +70,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
         styles,
         styleProps: {
             container: ['all'],
-            legacy: ['all']
+            webkit: ['all']
         }
     })
 
@@ -349,7 +349,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
                 {...attributes}
                 {...events.all}
                 onScroll={updateScroll}
-                css={isLegacyScrollSupport ? cs.legacy : cs.container}
+                css={isLegacyScrollSupport ? cs.webkit : cs.container}
                 ref={createRef}
                 children={(
                     <div
