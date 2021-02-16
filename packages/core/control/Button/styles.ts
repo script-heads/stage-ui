@@ -1,12 +1,12 @@
 
 import SystemTypes from '@stage-ui/system/types'
-import colorProp from '@stage-ui/system/utils/colorProp'
+import colorResolver from '@stage-ui/system/resolvers/color'
 import Types from './types'
 
 const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
 
     const { size, shape } = props
-    const color = colorProp(theme, props.color) || theme.color.primary
+    const color = colorResolver(theme, props.color || theme.color.primary)
     const typography = theme.assets.typography.text[size || 'm'] || theme.assets.typography.text['m']
 
     return {

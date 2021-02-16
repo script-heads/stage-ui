@@ -1,10 +1,10 @@
 import SystemTypes from '@stage-ui/system/types'
-import colorProp from '@stage-ui/system/utils/colorProp'
+import colorResolver from '@stage-ui/system/resolvers/color'
 import Types from './types'
 
 const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
 
-    let color = colorProp(theme, props.color) || theme.color.onBackground
+    let color = colorResolver(theme, props.color || theme.color.onBackground)
 
     return {
         container: [

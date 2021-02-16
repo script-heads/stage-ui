@@ -1,5 +1,5 @@
 import SystemTypes from '@stage-ui/system/types'
-import colorProp from '@stage-ui/system/utils/colorProp'
+import colorResolver from '@stage-ui/system/resolvers/color'
 import Types from './types'
 
 type ExtractFunction<T> = {
@@ -12,7 +12,7 @@ const fieldStyles = <T extends Types.Styles>(
     stylePatch?: Partial<ExtractFunction<SystemTypes.Styles<T>>>
 ): SystemTypes.Styles<Types.Styles> => {
 
-    const color = colorProp(theme, props.color)
+    const color = colorResolver(theme, props.color || theme.color.light)
 
     return {
         container: (variant) => [
@@ -206,7 +206,7 @@ const fieldStyles = <T extends Types.Styles>(
 
         child: (variant) => [
             {
-                color: color?.rgb().string() || theme.color.light.rgb().string(),
+                color: color.rgb().string(),
                 flexGrow: 0,
                 flexShrink: 1,
                 display: 'flex',
@@ -265,7 +265,7 @@ const fieldStyles = <T extends Types.Styles>(
             {
                 paddingTop: '.25rem',
                 paddingLeft: props.decoration != 'underline' ? '.25rem' : '',
-                color: color?.rgb().string() || theme.color.hard.rgb().string(),
+                color: color.rgb().string(),
                 ...theme.assets.typography.text.m,
             },
             variant({

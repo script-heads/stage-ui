@@ -1,19 +1,19 @@
 
-import colorProp from '@stage-ui/system/utils/colorProp'
+import colorResolver from '@stage-ui/system/resolvers/color'
 import SystemTypes from '@stage-ui/system/types'
 import Types from './types'
 
 const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
 
-    const background = colorProp(theme, props.background)
-    const color = colorProp(theme, props.color)
+    const background = props.background && colorResolver(theme, props.background)
+    const color = colorResolver(theme, props.color || theme.color.onSurface)
 
     return {
         container: (variant) => [
             {
                 width: 'min-content',
                 display: 'inline-flex',
-                color: color?.rgb().string(),
+                color: color.rgb().string(),
                 background: background?.rgb().string(),
                 height: theme.assets.typography.text.m.fontSize,
                 fontSize: theme.assets.typography.text.m.fontSize,
@@ -44,7 +44,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 shape: {
                     circle: {
                         borderRadius: '50%',
-                        border: '1px solid ' + color?.rgb().string(),
+                        border: '1px solid ' + color.rgb().string(),
                         padding: '0.4em',
                     },
                     oval: {

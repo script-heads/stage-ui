@@ -1,7 +1,7 @@
 import Color from 'color'
 import SystemTypes from '../types'
 
-export default (value: SystemTypes.ColorProp, theme: SystemTypes.Theme) => {
+export default (theme: SystemTypes.Theme, value: SystemTypes.ColorProp) => {
     if (!value) return undefined
 
     const color = typeof value === 'function'

@@ -1,6 +1,6 @@
 import SystemTypes from '@stage-ui/system/types'
 import Types from './types'
-import { colorProp } from '@stage-ui/system'
+import colorResolver from '@stage-ui/system/resolvers/color'
 
 const styles: SystemTypes.CreateStyles<Types.Styles, Types.PrivateProps> = (props, theme) => {
     return {
@@ -20,8 +20,8 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.PrivateProps> = (prop
                 textDecoration: props.decoration,
                 textTransform: props.transform,
                 textAlign: props.align,
-                color: colorProp(theme, props.color)?.rgb().string(),
-                background: colorProp(theme, props.backgroundColor)?.rgb().string(),
+                color: props.color && colorResolver(theme, props.color).rgb().string(),
+                background: props.backgroundColor && colorResolver(theme, props.backgroundColor).rgb().string(),
             },
             props.ellipsis && {
                 whiteSpace: 'nowrap',

@@ -1,10 +1,10 @@
 import SystemTypes from '@stage-ui/system/types'
-import colorProp from '@stage-ui/system/utils/colorProp'
+import colorResolver from '@stage-ui/system/resolvers/color'
 import Types from './types'
 
 const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
 
-    const labelColor = colorProp(theme, props.labelColor)
+    const labelColor = props.labelColor && colorResolver(theme, props.labelColor)
 
     return {
         container: (variant) => [
@@ -26,12 +26,12 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
             {
                 marginLeft: '0.5rem',
                 userSelect: 'none',
-                color: labelColor?.rgb().string()
+                color: labelColor && labelColor.rgb().string()
             },
             variant({
                 size: theme.assets.typography.text,
                 disabled: [{
-                    color: colorProp(theme, theme.color.light)?.rgb().string()
+                    color: theme.color.light.rgb().string()
                 }],
                 uppercase: [{
                     textTransform: 'uppercase'

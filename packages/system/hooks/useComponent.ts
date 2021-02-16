@@ -8,7 +8,7 @@ export interface Options {
     theme?: SystemTypes.Theme
 }
 
-const isFunction = (a) => typeof a === 'function'
+const isFunction = (a: unknown) => typeof a === 'function'
 
 function useComponent<Props, Styles>(
     name: string,

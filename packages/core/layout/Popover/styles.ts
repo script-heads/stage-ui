@@ -1,12 +1,12 @@
 
 import Types from './types'
 import SystemTypes from '@stage-ui/system/types'
-import { colorProp } from '@stage-ui/system'
+import colorResolver from '@stage-ui/system/resolvers/color'
 
 const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
 
-    const background = colorProp(theme, props.backgroundColor)?.rgb().string() || theme.color.surface.rgb().string()
-    const borderColor = colorProp(theme, props.borderColor)?.rgb().string() || theme.assets.border.color
+    const background = colorResolver(theme, props.backgroundColor || theme.color.surface).rgb().string()
+    const borderColor = colorResolver(theme, props.borderColor || theme.assets.border.color).rgb().string()
     const borderWidth = theme.assets.border.width
     const width = props.arrowWidth || '.75rem'
     const height = props.arrowHeight || '.5rem'
