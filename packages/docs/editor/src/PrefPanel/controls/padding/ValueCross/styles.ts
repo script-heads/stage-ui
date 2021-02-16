@@ -1,4 +1,4 @@
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 import SystemTypes from '@stage-ui/system/types'
 
 type State = {

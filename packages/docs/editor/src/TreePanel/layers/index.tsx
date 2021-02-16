@@ -1,10 +1,11 @@
-import { ArchitectItem } from '../../../types'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Block, Flexbox, Paragraph, Text, Tree } from '@stage-ui/core'
 import { ArrowIosForward, Copy, Trash2 } from '@stage-ui/core/icons'
 import { Fragment } from 'react'
 import { TabProps } from '..'
 import { context } from '../../..'
-import React from 'react'
+import { ArchitectItem } from '../../../types'
 
 type Event = any
 

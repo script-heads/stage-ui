@@ -1,8 +1,10 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
+import isWebKit from '@stage-ui/core/misc/utils/isWebKit'
 import { useComponent } from '@stage-ui/system'
-import React, { Fragment, forwardRef, useEffect, useMemo, useState, useImperativeHandle, RefForwardingComponent } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, Fragment, useEffect, useImperativeHandle, useMemo, useState } from 'react'
 import styles from './styles'
 import Types from './types'
-import isWebKit from '@stage-ui/core/misc/utils/isWebKit'
 
 const isLegacyScrollSupport = isWebKit
 const isTouchScreenSupport = Boolean('ontouchstart' in window)
@@ -18,11 +20,11 @@ interface MemoParams {
     xThumb: null | HTMLSpanElement
     container: null | HTMLDivElement
     content: null | HTMLDivElement
-    timeout?: NodeJS.Timeout | null
+    timeout?: any
     mode: Types.Props['mode']
 }
 
-const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
+const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
 
     useImperativeHandle(ref, () => ({
         updateScroll: () => {
@@ -46,6 +48,20 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                     stopPropagation: () => null
                 })
             }
+        },
+        scrollBottom: () => {
+            if (isLegacyScrollSupport) {
+                if (memo.container) {
+                    memo.container.scrollTo(1e+10, 1e+10)
+                }
+            } else {
+                updateScroll({
+                    deltaX: 1e+10,
+                    deltaY: 1e+10,
+                    preventDefault: () => null,
+                    stopPropagation: () => null
+                })
+            }
         }
     }))
 
@@ -54,7 +70,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
         styles,
         styleProps: {
             container: ['all'],
-            legacy: ['all']
+            webkit: ['all']
         }
     })
 
@@ -333,7 +349,7 @@ const ScrollView: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) 
                 {...attributes}
                 {...events.all}
                 onScroll={updateScroll}
-                css={isLegacyScrollSupport ? cs.legacy : cs.container}
+                css={isLegacyScrollSupport ? cs.webkit : cs.container}
                 ref={createRef}
                 children={(
                     <div

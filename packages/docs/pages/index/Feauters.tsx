@@ -5,7 +5,7 @@ const TextBlock = (props: { title: string, text: string }) => {
     return (
         <Block>
             <Header children={props.title} />
-            <Paragraph children={props.text} />
+            <Paragraph align="justify" children={props.text} color="hard" />
         </Block>
     )
 }

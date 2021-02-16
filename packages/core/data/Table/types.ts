@@ -1,5 +1,6 @@
 import SystemTypes from '@stage-ui/system/types'
 import { LayoutDecoration } from '@stage-ui/core/misc/utils/applyLayoutDecoration'
+import { MutableRefObject } from 'react'
 declare namespace TableTypes {
 
     type RowMountType =
@@ -28,37 +29,50 @@ declare namespace TableTypes {
         alwaysVisible?: boolean
     }
 
-    interface TableCellContext<T = Object> {
+    interface TableCellContext<ROW> {
         /**
          * Current cell key
+         * @readonly
          */
         key: TableCellKey
         /**
          * Current row index
+         * @readonly
          */
         index: number
         /**
          * Current row data
+         * @readonly
          */
-        row: T
+        row: ROW
         /**
          * Link on column configuration
+         * @readonly
          */
-        column: TableColumn<T> | null
+        column: TableColumn<ROW> | null
         /**
          * Raw data of cell
+         * @readonly
          */
         value?: React.ReactNode | string | number | null
         /**
          * Is current cell in modify mode
+         * @readonly
          */
         isModify: boolean
         /**
+         * Is current cell in modify mode
+         * @readonly
+         */
+        isCellModify: boolean
+        /**
          * Is current row expanded
+         * @readonly
          */
         isExpand: boolean
         /**
          * If row visible on screen
+         * @readonly
          */
         isVisible: boolean
         /**
@@ -73,13 +87,17 @@ declare namespace TableTypes {
          * Reload all data in table
          */
         reloadData: () => void
+        /**
+         * Set row data and reload all data in table
+         */
+        setRow: (row: ROW) => void
     }
 
-    type RowContext = {
+    type TableRowContext<ROW> = {
         /**
          * Row data
          */
-        row: Object
+        row: ROW
         /**
          * true if element expanded
          * @default false
@@ -113,13 +131,17 @@ declare namespace TableTypes {
         setNeedDisplay?: (forceUnmount?: boolean) => boolean
     }
 
-    interface Ref<T = Object> extends TableRef<T>, HTMLTableElement { }
+    interface Ref<ROW> extends TableRef<ROW>, HTMLTableElement { }
 
-    interface TableRef<T = Object> {
+    interface TableRef<ROW> {
         /**
          * Get context for specific cell
          */
-        getCellContext: (index: number, key: TableCellKey) => TableCellContext<T> | null
+        getCellContext: (index: number, key: TableCellKey) => TableCellContext<ROW> | null
+        /**
+         * Get context for specific row
+         */
+        getTableRowContext: (index: number) => TableCellContext<ROW> | null
         /**
          * Set expanded ReactNode below row index
          * @returns true if success
@@ -132,7 +154,7 @@ declare namespace TableTypes {
         setModify: (modify: boolean, index: number, key?: TableCellKey) => boolean
     }
 
-    interface TableColumn<T = Object> {
+    interface TableColumn<ROW> {
         /**
          * Unique key of row like id/name or something like that
          */
@@ -148,7 +170,7 @@ declare namespace TableTypes {
         /**
          * Custom render for a TableCell
          */
-        render?: (cellContext: TableCellContext<T>, index: number) => void
+        render?: (cellContext: TableCellContext<ROW>, index: number) => React.ReactNode
         /**
          * Enables sorting for a column
          * support ASC | DESC
@@ -156,41 +178,44 @@ declare namespace TableTypes {
         sort?: TableSortType
     }
 
-    interface RowEvents {
+    interface RowEvents<ROW> {
         /**
          * Calls when ever row clicked
          */
-        onRowClick?: (rowCtxItem: RowContext, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+        onRowClick?: (rowCtxItem: TableRowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
         /**
          * Calls when mouse enters row
          */
-        onRowMouseEnter?: (rowCtxItem: RowContext, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+        onRowMouseEnter?: (rowCtxItem: TableRowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
         /**
          * Calls when mouse leaves row
          */
-        onRowMouseLeave?: (rowCtxItem: RowContext, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+        onRowMouseLeave?: (rowCtxItem: TableRowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
     }
 
-    interface RowDelegates {
+    interface RowDelegates<ROW> {
         /**
          * Delegate tells to TableRow what size it is.
          * Required when rowMountType not default
          */
-        rowHeight?: (rowCtxItem: RowContext) => number
+        rowHeight?: (rowCtxItem: TableRowContext<ROW>) => number
         /**
          * Delegate tells TableRow render or not
          */
-        rowShouldRender?: (rowCtxItem: RowContext) => boolean
+        rowShouldRender?: (rowCtxItem: TableRowContext<ROW>) => boolean
     }
-    interface Props extends RowEvents, RowDelegates, SystemTypes.AllProps<HTMLDivElement, Styles> {
+
+    //@ts-ignore - Type '0' cannot be used to index type 'DATA'
+    interface Props<DATA, ROW = DATA[0]> extends RowEvents<ROW>, RowDelegates<ROW>, SystemTypes.AllProps<HTMLDivElement, Styles> {
+        ref?: any
         /**
          * Array of any data objects can be provided
          */
-        data: Object[]
+        data: DATA
         /**
          * Settings of columns
          */
-        columns: TableColumn[]
+        columns: TableColumn<ROW>[]
         /**
          * Applies decoration on table
          * @default surface
@@ -215,42 +240,46 @@ declare namespace TableTypes {
          * @default default
          */
         rowMountType?: RowMountType
+        rowDidMount?: (rowCtxItem: TableRowContext<ROW>) => void
+        rowDidUnmount?: (rowCtxItem: TableRowContext<ROW>) => void
     }
 
-    interface HeadCellProps<T = Object> {
-        column: TableColumn<T>
+    interface HeadCellProps<ROW> {
+        column: TableColumn<ROW>
         styles: SystemTypes.ComponentStyles<Styles>
         setSort: React.Dispatch<React.SetStateAction<TableSortObject>>
     }
 
-    interface CellProps<T = Object> {
-        rowCtxItem: RowContext
-        column: TableColumn<T>
+    interface CellProps<ROW> {
+        rowCtxItem: TableRowContext<ROW>
+        column: TableColumn<ROW>
         rowIndex: number
         styles: SystemTypes.ComponentStyles<Styles>
-        getCellContext: TableRef<T>['getCellContext']
+        getCellContext: TableRef<ROW>['getCellContext']
     }
 
-    interface RowProps<T = Object> {
-        rowCtxItem: RowContext
-        columns: TableColumn<T>[]
+    interface RowProps<ROW> {
+        rowCtxItem: TableRowContext<ROW>
+        columns: TableColumn<ROW>[]
         rowIndex: number
         styles: SystemTypes.ComponentStyles<Styles>
-        getCellContext: TableRef<T>['getCellContext']
-        events: RowEvents
-        rowMountType?: Props['rowMountType']
+        getCellContext: TableRef<ROW>['getCellContext']
+        events: RowEvents<ROW>
+        rowDidMount?: (rowCtxItem: TableRowContext<ROW>) => void
+        rowDidUnmount?: (rowCtxItem: TableRowContext<ROW>) => void
+        rowMountType?: Props<ROW>['rowMountType']
         enableRenderOptimization: boolean
         delegates: {
-            rowHeight?: Props['rowHeight']
-            rowShouldRender?: Props['rowShouldRender']
+            rowHeight?: Props<ROW>['rowHeight']
+            rowShouldRender?: Props<ROW>['rowShouldRender']
 
         }
     }
 
-    interface FootProps<T = Object> {
-        rowCtx: RowContext[]
-        columns: TableColumn<T>[]
-        footerContent?: Props['footer']
+    interface FootProps<ROW> {
+        rowCtx: TableRowContext<ROW>[]
+        columns: TableColumn<ROW>[]
+        footerContent?: Props<ROW>['footer']
         pagination?: TablePaginationOptions
         onPageChange: (pageNumber: number) => void
         styles: SystemTypes.ComponentStyles<Styles>

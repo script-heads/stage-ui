@@ -23,6 +23,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                     borderColor: theme.color.primary.rgb().string(),
                     borderBottomColor: theme.color.lightest.rgb().string(),
                     borderBottomLeftRadius: 0,
+                    borderBottomRightRadius: 0,
                 },
                 variant({
                     decoration: {
@@ -32,6 +33,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                             }
                         ],
                         none: [
+                            { padding: 0 },
                             params?.isOpen && {
                                 borderColor: 'transparent',
                             }
@@ -55,8 +57,9 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                 borderStyle: 'solid',
                 boxSizing: 'border-box',
                 overflow: 'hidden',
-                paddingTop: `calc(${minHeight}/2)`,
-                transform: `translateY(calc(-${minHeight}/2))`,
+                borderTopLeftRadius: 0,
+                borderTopRightRadius: 0,
+                borderTopWidth: 0,
             },
             variant({
                 shape: {
@@ -64,7 +67,9 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                         borderRadius: 0
                     },
                     round: {
-                        borderRadius: `calc(${minHeight}/2)`
+                        borderRadius: `calc(${minHeight}/2)`,
+                        borderTopLeftRadius: 0,
+                        borderTopRightRadius: 0,
                     }
                 },
                 decoration: {
@@ -83,16 +88,12 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                         borderRadius: 0,
                     },
                     none: {
-                        background: 'transparent',
-                        borderColor: 'transparent',
+                        borderTopLeftRadius: theme.radius.s,
+                        borderTopRightRadius: theme.radius.s,
+                        borderTopWidth: '1px',
                     }
-                },
-            }),
-            {
-                borderTopLeftRadius: 0,
-                borderTopRightRadius: 0,
-                borderTop: 'none',
-            }
+                }
+            })
         ],
         dropItem: (variant) => [
             theme.assets.typography.text.m,
@@ -154,13 +155,19 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
         tag: (variant) => [
             {
                 display: 'inline-flex',
-                background: theme.color.primary.alpha(0.2).rgb().string(),
+                background: props.disabled
+                    ? theme.color.lightest.rgb().string()
+                    : theme.color.primary.alpha(0.2).rgb().string(),
                 borderWidth: '1px',
                 borderStyle: 'solid',
-                borderColor: theme.color.primary.rgb().string(),
+                borderColor: props.disabled
+                    ? theme.color.light.rgb().string()
+                    : theme.color.primary.rgb().string(),
                 borderRadius: `calc(${theme.radius.s} / 2)`,
                 boxSizing: 'border-box',
-                color: theme.color.primary.rgb().string(),
+                color: props.disabled
+                    ? theme.color.light.rgb().string()
+                    : theme.color.primary.rgb().string(),
                 padding: `0 calc(${minHeight} / 5)`,
                 margin: `calc(${minHeight} / 20)`,
                 marginRight: 'calc(${minHeight} / 10)',
@@ -201,11 +208,14 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                 marginLeft: `calc(${minHeight} / 10)`,
                 marginRight: `calc(-${minHeight} / 10)`,
                 borderLeft: '1px solid',
-                borderColor: theme.color.primary.alpha(0.2).rgb().string(),
-                color: theme.color.primary.alpha(0.8).rgb().string(),
+                color: props.disabled
+                    ? theme.color.light.rgb().string()
+                    : theme.color.primary.alpha(0.8).rgb().string(),
                 cursor: 'pointer',
                 ':hover': {
-                    color: theme.color.primary.rgb().string()
+                    color: props.disabled
+                        ? theme.color.light.rgb().string()
+                        : theme.color.primary.rgb().string()
                 },
             },
         ],

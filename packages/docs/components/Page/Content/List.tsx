@@ -1,4 +1,5 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { useTheme } from '@stage-ui/system/'
 
 export default (props: { data: string[], higlightBefore?: string }) => {

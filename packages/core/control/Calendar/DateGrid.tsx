@@ -1,6 +1,8 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Button, Divider, Flexbox, Grid } from '@stage-ui/core'
 import moment, { Moment } from 'moment'
-import React, { Fragment, useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import DateGridDay from './DateGridDay'
 import DateGridMonth from './DateGridMonth'
 import DateGridTitle from './DateGridTitle'
@@ -28,8 +30,8 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
 
     const monthOffset = gridType === 'day' ? 1 : 9
     const grid: Moment[][] = []
-    const start = tmpDate.clone().startOf('month').startOf('week').startOf('day')
-    const end = tmpDate.clone().endOf('month').endOf('week').startOf('day')
+    const start = tmpDate.clone().startOf('month').startOf('isoWeek').startOf('day').add(-1, 'day')
+    const end = tmpDate.clone().endOf('month').endOf('isoWeek').startOf('day').add(-1, 'day')
 
     useEffect(() => {
         setGridType(props.type)
@@ -86,7 +88,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
             {gridType === 'day' && (
                 <Fragment>
                     <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr 1fr">
-                        {moment.weekdaysMin().map(day => (
+                        {moment.weekdaysMin(true).map(day => (
                             <Flexbox
                                 key={day}
                                 flex={1}

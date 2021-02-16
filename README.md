@@ -1,21 +1,19 @@
 <div>
-  <a href="http://stageui.abr.tech">
-    <h2>
+  <h2>
 		<b>StageUI</b>
 	</h2>
-  </a>
   <p>Flexible UI Framework declared by your own Design System.</p>
-  <a href="https://stageui.abr.tech">
-    <img alt="Documentation" src="https://img.shields.io/static/v1?label=&message=Documentation&color=blue">
-  </a>
-  <a href="https://www.npmjs.com/package/@stage-ui/core">
-    <img alt="npm install @stage-ui/core" src="https://img.shields.io/npm/v/@stage-ui/core?logo=npm&label=@stage-ui/core&color=green">
+  <a href="https://stageui.project1.io">
+    <img alt="npm install @stage-ui/core" src="https://img.shields.io/npm/v/@stage-ui/core?style=flat-square&logo=visual-studio-code&label=Documentation&color=blue">
   </a>
   <a href="https://www.npmjs.com/package/@stage-ui/lab">
-    <img alt="npm install @stage-ui/lab" src="https://img.shields.io/npm/v/@stage-ui/lab?logo=npm&label=@stage-ui/lab&color=green">
+    <img alt="npm install @stage-ui/lab" src="https://img.shields.io/npm/v/@stage-ui/lab?style=flat-square&logo=npm&label=@stage-ui/lab&color=green">
   </a>
   <a href="https://www.npmjs.com/package/@stage-ui/system">
-    <img alt="npm install @stage-ui/system" src="https://img.shields.io/npm/v/@stage-ui/system?logo=npm&label=@stage-ui/system&color=green">
+    <img alt="npm install @stage-ui/system" src="https://img.shields.io/npm/v/@stage-ui/system?style=flat-square&logo=npm&label=@stage-ui/system&color=green">
+  </a>
+  <a href="https://www.npmjs.com/package/@stage-ui/system">
+    <img alt="npm install @stage-ui/system" src="https://img.shields.io/npm/v/@stage-ui/system?style=flat-square&logo=npm&label=@stage-ui/system&color=green">
   </a>
 </div>
 
@@ -41,11 +39,11 @@ export default () => {
 ```
 
 ## Experimental
-More components available from [lab](https://github.com/stage-org/StageUI/tree/master/packages/lab) package.
+More components available from [lab](https://github.com/pt-one/StageUI/tree/master/packages/lab) package.
 
 ```
 yarn add @stage-ui/lab
 ```
 
 ***
-[MIT License](https://github.com/stage-org/StageUI/blob/master/LICENSE)
+[MIT License](https://github.com/pt-one/StageUI/blob/master/LICENSE)

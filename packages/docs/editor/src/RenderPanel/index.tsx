@@ -1,11 +1,12 @@
-import { ArchitectItem } from '../../types'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Block, Flexbox, Paragraph, Text, useTheme } from '@stage-ui/core'
 import SystemTypes from '@stage-ui/system/types'
 import { RefObject, useRef, useState } from 'react'
 import { context } from '../..'
+import { ArchitectItem } from '../../types'
 import Mask, { MaskRefs } from './Mask'
 import styles from './styles'
-import React from 'react'
 
 export const componentsInvisibleWhenEmpty = [
     'Block',

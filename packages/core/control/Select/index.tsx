@@ -1,21 +1,25 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Drop, ScrollView } from '@stage-ui/core'
 import { ArrowIosDownward, Close } from '@stage-ui/core/icons'
 import DropTypes from '@stage-ui/core/layout/Drop/types'
 import Field from '@stage-ui/core/misc/hocs/Field'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, Fragment, RefForwardingComponent, useEffect, useRef, useState } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, Fragment, useEffect, useRef, useState } from 'react'
+import { transform } from 'typescript'
 import styles from './styles'
 import Types from './types'
 
-const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const {
-        decoration = 'outline', 
-        size = 'm', 
-        shape='rounded', 
+        decoration = 'outline',
+        size = 'm',
+        shape = 'rounded',
         tabIndex = 0,
         maxScrollHeight = '16rem',
         keepOpen = false,
+        disabled = false,
     } = props
 
     /**
@@ -38,35 +42,26 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
      */
     const [values, setValues] = useState<Types.Option[]>([])
     /**
-     * Object for variant styles
-     */
-    const styleState: Types.StyleState = { 
-        decoration, 
-        shape, 
-        size,
-        isOpen 
-    }
-    /**
      * This options will be shown in drop
      */
     const options = props.options.filter(option => {
-            // Filter only unselected values
-            if (values.find(o => o.value === option.value)) {
-                return false
-            }
-            // Filter only matching search
-            if (searchQuery && !option.text.toUpperCase().match(searchQuery.toUpperCase())) {
-                return false
-            }
-            return true
-        })
+        // Filter only unselected values
+        if (values.find(o => o.value === option.value)) {
+            return false
+        }
+        // Filter only matching search
+        if (searchQuery && !option.text.toUpperCase().match(searchQuery.toUpperCase())) {
+            return false
+        }
+        return true
+    })
 
-    const { cs, attributes, events, focus } = useComponent('Select', { 
-        props, 
+    const { cs, attributes, events, focus } = useComponent('Select', {
+        props,
         styles,
         styleProps: {
-            container: ['flow','layout'], 
-            field:['color','border','padding']
+            container: ['flow', 'layout'],
+            field: ['color', 'border', 'padding']
         },
         focus: {
             applyDecoration: false,
@@ -74,7 +69,16 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
     }, {
         isOpen: isOpen && options.length > 0
     })
-
+    /**
+     * Object for variant styles
+     */
+    const styleState: Types.StyleState = {
+        decoration,
+        shape,
+        size,
+        isOpen,
+        focus
+    }
     /**
      * Component did mount
      */
@@ -124,6 +128,9 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
      */
     function toggleOpen(e) {
         e.stopPropagation()
+        if (!isOpen && disabled) {
+            return
+        }
         setOpen(!isOpen)
     }
 
@@ -169,6 +176,8 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
         onChange([], undefined, search)
     }
 
+    const isDown = (isOpen && options.length > 0)
+
     return (
         <Fragment>
             <Field
@@ -180,9 +189,10 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                 size={size}
                 state={styleState}
                 focus={focus}
+                disabled={disabled}
                 shape={shape}
                 decoration={decoration}
-                clearable={props.clearable && values.length > 0}
+                clearable={disabled ? false : (props.clearable && values.length > 0)}
                 onClear={() => clearValues()}
 
                 attributes={{ ...attributes, tabIndex }}
@@ -199,8 +209,12 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                     props.rightChild || <ArrowIosDownward
                         alignSelf="center"
                         size={size}
+                        style={{
+                            transition:'transform 0.25s',
+                            transform: `scale(1.5) scaleY(${isDown ? -1 : 1})`
+                        }}
                         color={c => isOpen ? c.primary : c.light}
-                        rotate={(isOpen && options.length > 0) ? 180 : 0}
+                        // rotate={(isOpen && options.length > 0) ? 180 : 0}
                         onClick={(e) => {
                             e.preventDefault()
                             toggleOpen(e)
@@ -212,20 +226,22 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                         {props.multiselect && values.map(option => (
                             <div css={cs.tag(styleState)} key={option.value}>
                                 {option.text}
-                                <Close
-                                    size={size}
-                                    css={cs.tagRemove(styleState)}
-                                    onClick={(e) => {
-                                        e.preventDefault()
-                                        e.stopPropagation()
-                                        unsetOption(option)
-                                    }}
-                                />
+                                {!disabled && (
+                                    <Close
+                                        size={size}
+                                        css={cs.tagRemove(styleState)}
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            e.stopPropagation()
+                                            unsetOption(option)
+                                        }}
+                                    />
+                                )}
                             </div>
                         ))}
                         <input
                             size={5}
-                            disabled={!props.searchable}
+                            disabled={disabled || !props.searchable}
                             css={cs.input({
                                 searchMode: searchQuery !== '',
                                 multiselect: !!props.multiselect
@@ -242,7 +258,7 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
                             onClick={(e) => {
                                 e.preventDefault()
                                 e.stopPropagation()
-                                setOpen(true)
+                                toggleOpen(e)
                             }}
                         />
                     </div>
@@ -251,18 +267,21 @@ const Select: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref)
             <Drop
                 visible={(isOpen && options.length > 0)}
                 ref={dropRef}
+                animation={props.animation || {
+                    type: 'collapse',
+                    duration: 100,
+                }}
                 onClickOutside={(e, outTarget) => {
                     if (outTarget) {
                         toggleOpen(e)
                     }
                 }}
                 stretchWidth
-                justify="start"
                 target={fieldRef}
                 children={(
                     <div css={cs.drop(styleState)}>
                         <ScrollView
-                            size="xs" 
+                            size="xs"
                             style={{ maxHeight: maxScrollHeight }}
                             sendFlowScollEvent={false}
                             children={options.map(option => (

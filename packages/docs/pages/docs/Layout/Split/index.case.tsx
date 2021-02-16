@@ -1,4 +1,3 @@
-import React from 'react'
 import code from './default.raw'
 
 export const title = 'Split'

@@ -1,9 +1,11 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, RefObject, RefForwardingComponent } from 'react'
+import React, { ForwardRefRenderFunction, RefObject } from 'react'
 import styles from './styles'
 import Types from './types'
 
-type SVG = RefForwardingComponent<HTMLSpanElement, Types.Props & {  reference?: RefObject<HTMLSpanElement> }>
+type SVG = ForwardRefRenderFunction<HTMLSpanElement, Types.Props & {  reference?: RefObject<HTMLSpanElement> }>
 
 const Svg: SVG = (props) => {
 

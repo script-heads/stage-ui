@@ -1,6 +1,8 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Flexbox, Text } from '@stage-ui/core'
 import { ChevronLeft, ChevronRight } from '@stage-ui/core/icons'
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
 import CalendarTypes from './types'
 
 const Arrow = (props: { onClick: () => void, icon: 'chevronLeft' | 'chevronRight', disabled: boolean }) => (

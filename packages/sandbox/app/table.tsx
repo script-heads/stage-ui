@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Flexbox, Meter, Range, Table, Text, TextField } from '@stage-ui/core'
 import T from '@stage-ui/core/data/Table/types'
 import { ArrowIosDownward, Checkmark, Edit2 } from '@stage-ui/core/icons'

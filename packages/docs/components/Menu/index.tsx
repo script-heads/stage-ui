@@ -1,10 +1,10 @@
-import { Block, Flexbox, Text, Link } from '@stage-ui/core'
-import ThemeSwitcher, { ThemeSwitcherProps } from './ThemeSwitcher'
-import { Github, Brush } from '@stage-ui/core/icons'
-import { panel } from './Themer/src/ThemeConfigurator'
-import { useTheme } from '@stage-ui/core'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
+import { Block, Flexbox, Link, Text, useTheme } from '@stage-ui/core'
+import { Brush, Github } from '@stage-ui/core/icons'
+import { panel } from '@stage-ui/docs/components/Themer/src/ThemeConfigurator'
 import corePackage from '../../../core/package.json'
-import React from 'react'
+import ThemeSwitcher, { ThemeSwitcherProps } from './ThemeSwitcher'
 
 export interface MenuProps extends ThemeSwitcherProps {
     title?: string
@@ -18,7 +18,7 @@ const Menu = (props: MenuProps) => {
     return (
         <Flexbox
             px="1.5rem"
-            h="3rem"
+            h="4rem"
             justifyContent="space-around"
             alignItems="center"
             css={t => ({
@@ -27,7 +27,7 @@ const Menu = (props: MenuProps) => {
                 top: 0,
                 right: 0,
                 left: 0,
-                background: t.color.surface.alpha(.95).rgb().string()
+                background: `linear-gradient(180deg, ${theme.color.surface.rgb()}, ${theme.color.surface.alpha(0).rgb()})`
             })}>
             <Block flex={1}>
                 <Text

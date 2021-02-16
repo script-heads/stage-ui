@@ -26,6 +26,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 cursor: 'inherit',
                 textOverflow: 'ellipsis',
                 '&::placeholder': {
+                    userSelect: 'none',
                     color: theme.color.light.rgb().string()
                 },
             },

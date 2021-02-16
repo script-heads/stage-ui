@@ -22,15 +22,17 @@ const fieldStyles = <T extends Types.Styles>(
                 minWidth: '1rem',
                 flex: 1,
                 flexDirection: 'column',
-                overflow: 'hidden',
                 outline: 'none'
             },
+            //FIXME: types
+            //@ts-ignore
             stylePatch?.container?.(variant)
         ],
 
         field: (variant) => [
             {
                 position: 'relative',
+                overflow: 'hidden',
                 flexShrink: 0,
                 flexGrow: 1,
                 background: theme.color.surface.rgb().string(),
@@ -83,7 +85,9 @@ const fieldStyles = <T extends Types.Styles>(
                     ]
                 },
                 focus: {
-                    borderColor: theme.color.primary.rgb().string()
+                    borderColor: props.disabled
+                        ? theme.color.lightest.rgb().string()
+                        : theme.color.primary.rgb().string()
                 },
                 disabled: {
                     color: theme.color.light.rgb().string(),
@@ -122,6 +126,8 @@ const fieldStyles = <T extends Types.Styles>(
                     }
                 },
             }),
+            //FIXME: types
+            //@ts-ignore
             stylePatch?.field?.(variant)
         ],
 
@@ -134,6 +140,8 @@ const fieldStyles = <T extends Types.Styles>(
                 justifyContent: 'center',
                 overflow: 'hidden'
             },
+            //FIXME: types
+            //@ts-ignore
             stylePatch?.content?.(variant),
         ],
 
@@ -191,6 +199,8 @@ const fieldStyles = <T extends Types.Styles>(
                     ]
                 }
             }),
+            //FIXME: types
+            //@ts-ignore
             stylePatch?.label?.(variant)
         ],
 
@@ -232,16 +242,22 @@ const fieldStyles = <T extends Types.Styles>(
                     ],
                 },
             }),
+            //FIXME: types
+            //@ts-ignore
             stylePatch?.child?.(variant)
         ],
 
         clearButton: (variant) => [
             {
                 cursor: 'pointer',
+                backgroundColor: theme.color.onSurface.alpha(0.05).rgb().string(),
+                borderRadius: '100rem',
                 ':hover': {
-                    color: theme.color.primary.rgb().string(),
+                    color: theme.color.warning.rgb().string(),
                 }
             },
+            //FIXME: types
+            //@ts-ignore
             stylePatch?.clearButton?.(variant)
         ],
 
@@ -258,6 +274,8 @@ const fieldStyles = <T extends Types.Styles>(
                     xs: [theme.assets.typography.text.xs]
                 }
             }),
+            //FIXME: types
+            //@ts-ignore
             stylePatch?.hint?.(variant)
         ]
     }

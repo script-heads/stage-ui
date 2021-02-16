@@ -1,10 +1,12 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
-import React, { RefForwardingComponent, forwardRef } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import { useValue } from '..'
 import styles from './styles'
 import Types from './types'
 
-const MenuItem: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const {
         rightChild,
@@ -20,7 +22,14 @@ const MenuItem: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, re
         },
     })
 
-    const [active, setActive, ctx] = useValue(props.value)
+    let [active, setActive, ctx] = useValue(props.value)
+
+    /**
+     * Support controlled
+     */
+    if (props.active != undefined) {
+        active = props.active
+    }
 
     const containerRef = React.useRef<HTMLDivElement>(null)
     /**

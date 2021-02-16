@@ -1,8 +1,10 @@
-import React, { Fragment, useEffect, forwardRef, RefForwardingComponent, useImperativeHandle, useRef, useState } from 'react'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
+import React, { forwardRef, ForwardRefRenderFunction, Fragment, useState } from 'react'
 import TableCell from './TableCell'
 import Types from './types'
 
-const TableRow: RefForwardingComponent<HTMLTableRowElement, Types.RowProps> = (props, ref) => {
+const TableRow: ForwardRefRenderFunction<HTMLTableRowElement, Types.RowProps<any>> = (props, ref) => {
     const { columns, rowIndex, rowCtxItem, delegates, styles, getCellContext } = props
     const style: React.CSSProperties = {}
     /**
@@ -29,6 +31,7 @@ const TableRow: RefForwardingComponent<HTMLTableRowElement, Types.RowProps> = (p
             rowCtxItem.setNeedDisplay = (forceUnmount?: boolean) => {
                 if (forceUnmount) {
                     if (needDisplay) {
+                        props.rowDidUnmount?.(rowCtxItem)
                         setNeedDisplay(false)
                     }
                     return false
@@ -39,8 +42,10 @@ const TableRow: RefForwardingComponent<HTMLTableRowElement, Types.RowProps> = (p
                     const position = element.getBoundingClientRect()
                     if (position.top + height * 2 >= 0 && position.top - height <= window.innerHeight) {
                         state = true
+                        props.rowDidMount?.(rowCtxItem)
                         setNeedDisplay(true)
                     } else if (props.rowMountType === 'onlyWhenVisible') {
+                        props.rowDidUnmount?.(rowCtxItem)
                         setNeedDisplay(false)
                     }
                 }

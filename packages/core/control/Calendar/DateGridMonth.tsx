@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Flexbox } from '@stage-ui/core'
 import moment from 'moment'
 import React from 'react'

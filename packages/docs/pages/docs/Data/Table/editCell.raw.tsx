@@ -1,11 +1,10 @@
 import { Flexbox, Table, Text, TextField } from '@stage-ui/core'
-import T from '@stage-ui/core/data/Table/types'
 import { Checkmark, Edit2 } from '@stage-ui/core/icons'
 import React from 'react'
 
 export default () => {
     
-    const EditName = (props: { ctx: T.TableCellContext }) => {
+    const EditName = (props: { ctx }) => {
         let tmp = props.ctx.value as string
         const save = () => {
             props.ctx.row[props.ctx.key] = tmp
@@ -30,7 +29,7 @@ export default () => {
         )
     }
 
-    const DisplayName = (props: { ctx: T.TableCellContext }) => (
+    const DisplayName = (props: { ctx }) => (
         <Flexbox alignItems="center">
             <Edit2
                 size="1rem"

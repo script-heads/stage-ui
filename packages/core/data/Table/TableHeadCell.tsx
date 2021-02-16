@@ -1,9 +1,11 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Flexbox } from '@stage-ui/core'
 import { ArrowIosDownward, ArrowIosUpward } from '@stage-ui/core/icons'
-import React, { forwardRef, RefForwardingComponent } from 'react'
+import { forwardRef, ForwardRefRenderFunction } from 'react'
 import Types from './types'
 
-const TableHeadCell: RefForwardingComponent<HTMLTableDataCellElement, Types.HeadCellProps> = (props, ref) => {
+const TableHeadCell: ForwardRefRenderFunction<HTMLTableDataCellElement, Types.HeadCellProps<any>> = (props, ref) => {
     const { column, styles, setSort } = props
 
     const setSorting = () => {

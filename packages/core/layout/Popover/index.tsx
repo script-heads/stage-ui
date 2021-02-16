@@ -1,9 +1,11 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, RefForwardingComponent } from 'react'
+import { forwardRef, ForwardRefRenderFunction } from 'react'
 import styles from './styles'
 import Types from './types'
 
-const Popover: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+const Popover: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
     const { align = 'top' } = props
 
     const { cs, attributes, events } = useComponent('Popover', { props, styles, styleProps: { container: ['all']} })

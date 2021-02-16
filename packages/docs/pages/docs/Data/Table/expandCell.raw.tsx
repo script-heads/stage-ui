@@ -1,10 +1,9 @@
 import { Flexbox, Table, Text } from '@stage-ui/core'
-import T from '@stage-ui/core/data/Table/types'
 import { ArrowIosDownward } from '@stage-ui/core/icons'
 import React from 'react'
 
 export default () => {
-    const ExpandCell = (props: { ctx: T.TableCellContext }) => {
+    const ExpandCell = (props: { ctx }) => {
 
         return (
             <Flexbox alignItems="center" onClick={() => {

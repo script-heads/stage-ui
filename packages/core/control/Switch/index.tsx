@@ -1,12 +1,13 @@
-
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Block } from '@stage-ui/core'
 import Check from '@stage-ui/core/misc/hocs/Check'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, RefForwardingComponent } from 'react'
+import { forwardRef, ForwardRefRenderFunction } from 'react'
 import styles from './styles'
 import Types from './types'
 
-const Switch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+const Switch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const { size = 'm', disabled } = props
 

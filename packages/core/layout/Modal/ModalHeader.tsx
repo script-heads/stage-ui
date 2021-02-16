@@ -1,6 +1,7 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Flexbox, Header, Paragraph } from '@stage-ui/core'
 import { Close } from '@stage-ui/core/icons'
-import React from 'react'
 import ModalTypes from './types'
 
 const ModalHeader = (props: ModalTypes.ModalHeaderProps) => {

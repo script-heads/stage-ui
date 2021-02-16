@@ -33,6 +33,8 @@ declare namespace ScrollViewTypes {
         /**
          * Bars size
          * @default m
+         * @display SystemTypes.Size
+         * @link /props/#size
          */
         size?: SystemTypes.Size
         /**
@@ -70,6 +72,10 @@ declare namespace ScrollViewTypes {
          * Scroll to top
          */
         scrollTop: () => void
+        /**
+         * Scroll to bottom
+         */
+        scrollBottom: () => void
     }
 
     interface Styles {
@@ -82,9 +88,9 @@ declare namespace ScrollViewTypes {
          */
         content: void
         /**
-         * Legacy view for webkit browsers
+         * Webkit container for webkit browsers
          */
-        legacy: void
+        webkit: void
         /**
          * Vertical scroll bar view
          */

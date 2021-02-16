@@ -1,5 +1,5 @@
-import React from 'react'
 import { Button, dialog } from '@stage-ui/core'
+import React from 'react'
 
 export default () => {
     return (
@@ -11,7 +11,7 @@ export default () => {
                     buttonText: 'Close'
                 })
             }}
-            children="Show dialog"
+            children="Push"
         />
     )
 }

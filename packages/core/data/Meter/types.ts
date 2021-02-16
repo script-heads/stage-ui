@@ -13,6 +13,8 @@ declare namespace MeterTypes {
         value?: number
         /**
          * Size of meter
+         * @display SystemTypes.Size
+         * @link /props/#size
          * @default m
          */
         size?: SystemTypes.Size

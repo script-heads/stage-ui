@@ -8,10 +8,14 @@ declare namespace DividerTypes {
         vertical?: boolean
         /**
         * Size of dash
+        * @display SystemTypes.Size
+        * @link /props/#size
         */
         dash?: SystemTypes.Size | (string & { T?: string })
         /**
         * Size of the gap between dashes
+        * @display SystemTypes.Size
+        * @link /props/#size
         */
         gap?: SystemTypes.Size | (string & { T?: string })
         /**

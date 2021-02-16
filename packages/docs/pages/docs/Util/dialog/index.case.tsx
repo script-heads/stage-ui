@@ -1,6 +1,6 @@
+import custom from './custom.raw'
 import code from './default.raw'
 import panel from './panel.raw'
-import custom from './custom.raw'
 
 export const title = 'Dialog'
 export const subtitle = `creates Modal dialog with user message or custom content. Could be used without JSX in scope.`

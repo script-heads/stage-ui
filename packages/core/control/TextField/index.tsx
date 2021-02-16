@@ -1,13 +1,13 @@
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 import Field from '@stage-ui/core/misc/hocs/Field'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, RefForwardingComponent, useImperativeHandle, useRef } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, useImperativeHandle, useRef } from 'react'
 import styles from './styles'
 import Types from './types'
 
 type RefTypes = ((HTMLInputElement | HTMLTextAreaElement) & HTMLDivElement) | null | {}
 
-const TextField: RefForwardingComponent<RefTypes, Types.Props> = (props, ref) => {
+const TextField: ForwardRefRenderFunction<RefTypes, Types.Props> = (props, ref) => {
 
     const {
         decoration = 'outline',

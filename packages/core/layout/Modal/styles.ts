@@ -81,7 +81,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                         maxWidth: '80vw',
                         marginTop: spacing,
                         marginBottom: spacing,
-                        boxShadow: '0 1rem 4rem ' + theme.color.onBackground.alpha(0.2).rgb().string(),
+                        boxShadow: '0 1rem 4rem ' + theme.color.onSurface.alpha(0.2).rgb().string(),
                     },
                     panel: {
                         minWidth: '15rem',
@@ -90,7 +90,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                         transform: 'translateY(15rem)',
                         borderBottomLeftRadius: 0,
                         borderBottomRightRadius: 0,
-                        boxShadow: '0 0 4rem ' + theme.color.onBackground.alpha(0.2).rgb().string(),
+                        boxShadow: '0 0 4rem ' + theme.color.onSurface.alpha(0.2).rgb().string(),
                     }
                 },
                 visible: [

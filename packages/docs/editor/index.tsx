@@ -1,14 +1,16 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
+import { Flexbox } from '@stage-ui/core'
+import React, { Fragment } from 'react'
+import Menu from '../components/Menu'
+import { CustomPageProps } from '../utils/core'
+import components from './components'
+import AddPanel from './src/AddPanel'
 import PrefPanel from './src/PrefPanel'
 import RenderPanel from './src/RenderPanel'
 import TreePanel from './src/TreePanel'
-import AddPanel from './src/AddPanel'
-import Menu from '../components/Menu'
-import { ArchitectItem, ArchitectTools } from './types'
-import React, { Fragment } from 'react'
 import styles from './styles'
-import { Flexbox } from '@stage-ui/core'
-import components from './components'
-import { CustomPageProps } from '../utils/core'
+import { ArchitectItem, ArchitectTools } from './types'
 
 export function uuid() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {

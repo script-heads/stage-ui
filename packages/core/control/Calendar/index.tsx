@@ -1,11 +1,11 @@
 import { useComponent } from '@stage-ui/system'
 import moment, { Moment } from 'moment'
-import React, { forwardRef, RefForwardingComponent, useLayoutEffect, useRef, useState } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, useLayoutEffect, useRef, useState } from 'react'
 import DateGrid from './DateGrid'
 import styles from './styles'
 import Types from './types'
 
-const DatePicker: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const {
         locale = 'ru',

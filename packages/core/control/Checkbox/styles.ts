@@ -14,8 +14,8 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 alignItems: 'center',
                 justifyContent: 'center',
                 color: theme.color.primary.rgb().string(),
-                borderColor: theme.color.lightest.rgb().string(),
                 backgroundColor: theme.color.surface.rgb().string(),
+                borderColor: theme.color.primary.rgb().string(),
                 borderWidth: theme.assets.border.width,
                 borderStyle: theme.assets.border.style,
                 borderRadius: theme.radius.s,
@@ -42,8 +42,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                         height: '1.25rem'
                     }],
                     l: [{
-                        width: '1.5rem',
-                        height: '1.5rem'
+                        width: '1.5rem'
                     }],
                     xl: [{
                         width: '2rem',
@@ -60,9 +59,14 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
         icon: (variant) => [
             {
                 opacity: 0,
+                height: 'auto',
                 transform: `scale(0.5)`,
                 transition: 'opacity .15s, transform .15s',
-                willChange: 'opacity, transform'
+                willChange: 'opacity, transform',
+                stroke: theme.color.primary.rgb().string(),
+                strokeWidth: "2px",
+                strokeLinejoin: "round",
+                boxShadow: theme.assets.shadow.default,
             },
             variant({
                 size: {

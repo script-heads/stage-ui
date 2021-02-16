@@ -4,6 +4,10 @@ import MenuTypes from '../types'
 declare namespace MenuItemTypes {
     interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
         /**
+         * Controlled item state
+         */
+        active?: boolean
+        /**
          * Display title of current item
          */
         title?: React.ReactNode

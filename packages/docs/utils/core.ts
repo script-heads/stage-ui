@@ -53,12 +53,14 @@ class Core {
         return this.instance
     }
 
-    protected rawContent: __WebpackModuleApi.RequireContext
+    protected rawContent: any
     protected rawConfig: Config = {}
     protected content: PagesType = {}
 
     constructor() {
+        //@ts-ignore
         this.rawContent = require.context('../pages/docs', true, /\.case$/)
+        //@ts-ignore
         this.rawConfig = require('../config')?.default || {}
     }
 

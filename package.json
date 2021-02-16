@@ -1,6 +1,6 @@
 {
     "name": "stage-ui",
-    "author": "ABR Tech",
+    "author": "Research technology",
     "version": "0.1.0",
     "license": "MIT",
     "private": true,
@@ -24,11 +24,10 @@
         "build": "cd ./packages/docs && yarn build",
         "form": "cd ./build/docs && pm2 start --name StageUI server.js",
         "test": "yarn workspace @stage-ui/docs test",
-        "approve": "yarn workspace @stage-ui/docs approve",
-        "deploy": "curl -X POST -F token=8e3b477f2ce3ef9e5f4ca44d977a71 -F ref=master  http://gitlab.abr-region.ru/api/v4/projects/237/trigger/pipeline > /dev/null"
+        "approve": "yarn workspace @stage-ui/docs approve"
     },
     "dependencies": {
         "tslint": "^6.0.0",
-        "typescript": "^3.8.3"
+        "typescript": "^4.1.3"
     }
 }

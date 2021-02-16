@@ -1,24 +1,38 @@
-
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, RefForwardingComponent, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
+import { Type } from 'typescript'
 import styles from './styles'
 import Types from './types'
+import Animation from './animation'
 
 type GetCoord = (tr: ClientRect, td: ClientRect) => string
 
 let sharedZIndex = 300
 
-const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
+function toStyle(value: number) {
+    return value.toString() + 'px'
+}
 
-    const { children, target: targetRef, onClickOutside, spacing = 0, align,
-        justify, stretchHeight, stretchWidth, visible, followCursor } = props
-        
-    const { cs, attributes, events } = useComponent('Drop', { props, styles, styleProps: { container: ['self']} })
+const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
+
+    const { children, target: targetRef, onClickOutside, spacing = 0, align = 'bottom',
+        justify, stretchHeight, stretchWidth, visible, stickCursor } = props
+
+    const { cs, attributes, events } = useComponent('Drop', { props, styles, styleProps: { container: ['self'] } })
 
     const dropRef = useRef<HTMLDivElement>(null)
-    const [visibleState, setVisibleState] = useState(visible || true)
 
+    const [mountState, setMountState] = useState(visible || false)
+
+    /**
+     * zIndex magic stuff
+     */
+    const [clicks, click] = useState(0)
+    const zIndex = useMemo(() => sharedZIndex, [mountState, clicks])
+    
     let getTopCoord: GetCoord = (tr) => toStyle(tr.bottom + spacing)
     let getLeftCoord: GetCoord = (tr, dr) => toStyle((tr.left + tr.width / 2) - dr.width / 2)
 
@@ -77,68 +91,21 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
             setVerticalPosition()
             break
     }
-    /**
-     * Support controlled component
-     */
-    useEffect(() => {
-        if (visible !== undefined) {
-            setVisibleState(visible)
-        }
-    }, [visible])
-
-    useEffect(() => {
-        if (visibleState) {
-            const rect = (stretchHeight || stretchWidth) ? targetRef?.current?.getBoundingClientRect() : null
-            const style = rect && dropRef.current?.style
-
-            if (style) {
-                style.visibility = 'hidden'
-                if (stretchHeight) style.height = toStyle(rect.height)
-                if (stretchWidth) style.width = toStyle(rect.width)
-            }
-            sharedZIndex++
-            
-            if (followCursor) {
-                window.addEventListener('mousemove', updateFollowCursor)
-
-            } else {
-                updatePosition()
-                document.addEventListener('scroll', updatePosition, true)
-                document.addEventListener('onflowscroll', updatePosition, true)
-                document.addEventListener('mouseup', handleClickOutside)
-                window.addEventListener('resize', updatePosition)
-            }
-        }
-        return () => {
-            if (followCursor) {
-                window.removeEventListener('mousemove', updateFollowCursor)
-            } else {
-                document.removeEventListener('scroll', updatePosition, true)
-                document.removeEventListener('onflowscroll', updatePosition, true)
-                document.removeEventListener('mouseup', handleClickOutside)
-                window.removeEventListener('resize', updatePosition)
-            }
-        }
-    }, [visibleState, followCursor])
-
-    function handleClickOutside(event: MouseEvent) {
-        if (onClickOutside && !dropRef?.current?.contains(event.target as Node)) {
-            onClickOutside(event, !targetRef?.current?.contains(event.target))
-        }
-    }
 
     function updatePosition() {
-        if (targetRef?.current && dropRef?.current) {
+        if (dropRef?.current) {
             const tr: ClientRect = targetRef.current.getBoundingClientRect()
             const dr: ClientRect = dropRef.current.getBoundingClientRect()
             const style = dropRef.current.style
 
-            style.visibility = ''
-            style.top = getTopCoord(tr, dr)
-            style.left = getLeftCoord(tr, dr)
+            if (targetRef?.current) {
+                style.top = getTopCoord(tr, dr)
+                style.left = getLeftCoord(tr, dr)
+            }
         }
     }
-    function updateFollowCursor(e: MouseEvent) {
+
+    function updateStickCursor(e: MouseEvent) {
         if (dropRef?.current) {
             const style = dropRef.current.style
 
@@ -146,15 +113,96 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
             style.top = e.clientY + 'px'
             style.left = e.clientX + 'px'
         }
+        if (!mountState) {
+            setMountState(true)
+        }
     }
-    
+
+    function handleClickOutside(event: MouseEvent) {
+        if (onClickOutside && !dropRef?.current?.contains(event.target as Node)) {
+            onClickOutside(event, !targetRef?.current?.contains(event.target))
+        }
+    }
+
+    function toggleVisible(state: boolean) {
+        if (state) {
+            setMountState(true)
+        } else {
+            if (dropRef?.current) {
+                
+                const animation = new Animation(props, dropRef.current.style)
+                animation.animateOut()
+
+                if (animation.enabled) {
+                    setTimeout(() => setMountState(false), animation.duration)
+                } else {
+                    setMountState(false)
+                }
+            }
+        }
+    }
+
+    function afterMount() {
+        if (dropRef?.current) {
+            dropRef.current.style.visibility = ''
+            
+            const animation = new Animation(props, dropRef.current.style)
+            animation.animateIn()
+        }
+    }
+
     function setVisible(state: boolean) {
         if (visible !== undefined) {
             console.warn('Do not use setVisibe on controlled <Drop/> component')
             return
         }
-        setVisibleState(state)
+        toggleVisible(state)
     }
+
+    /**
+     * Support controlled component
+     */
+    useEffect(() => {
+        if (visible !== undefined) {
+            toggleVisible(visible)
+        }
+    }, [visible])
+
+    useEffect(() => {
+        if (stickCursor) {
+            window.addEventListener('mousemove', updateStickCursor)
+        } else {
+            if (mountState) {
+                const rect = (stretchHeight || stretchWidth) ? targetRef?.current?.getBoundingClientRect() : null
+                const style = rect && dropRef.current?.style
+
+                if (style) {
+                    if (stretchHeight) style.height = toStyle(rect.height)
+                    if (stretchWidth) style.width = toStyle(rect.width)
+                }
+                sharedZIndex++
+
+                updatePosition()
+                document.addEventListener('scroll', updatePosition, true)
+                document.addEventListener('onflowscroll', updatePosition, true)
+                document.addEventListener('mouseup', handleClickOutside)
+                window.addEventListener('resize', updatePosition)
+
+                afterMount()
+            }
+        }
+
+        return () => {
+            if (stickCursor) {
+                window.removeEventListener('mousemove', updateStickCursor)
+            } else {
+                document.removeEventListener('scroll', updatePosition, true)
+                document.removeEventListener('onflowscroll', updatePosition, true)
+                document.removeEventListener('mouseup', handleClickOutside)
+                window.removeEventListener('resize', updatePosition)
+            }
+        }
+    }, [mountState, stickCursor, align, justify])
 
     useImperativeHandle(ref, () => ({
         ...dropRef.current,
@@ -162,22 +210,16 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
         setVisible
     }))
 
-    /**
-     * zIndex magic stuff
-     */
-    const [clicks, click] = useState(0)
-    const zIndex = useMemo(() => sharedZIndex, [visibleState, clicks])
-
-    if (visibleState === false) {
+    if (mountState === false) {
         return null
     }
-    
+
     return ReactDOM.createPortal(
         <div
             {...attributes}
             {...events.all}
             onClick={(e) => {
-                click(clicks+1)
+                click(clicks + 1)
                 props.onClick?.(e)
             }}
             ref={dropRef}
@@ -187,17 +229,13 @@ const Drop: RefForwardingComponent<Types.Ref, Types.Props> = (props, ref) => {
                 left: 0,
                 zIndex,
                 visibility: 'hidden',
-                pointerEvents: followCursor && 'none',
+                pointerEvents: stickCursor && 'none',
                 ...attributes.style
-            }as React.CSSProperties}
+            } as React.CSSProperties}
             children={children}
         />,
         document.body
     )
-}
-
-function toStyle(value: number) {
-    return value.toString() + 'px'
 }
 
 export default forwardRef(Drop)

@@ -17,6 +17,7 @@ class Root extends Abstract {
     }
     constructor() {
         super(
+            //@ts-ignore
             require('../../public/definitions/original.json') as OChild
         )
     }

@@ -1,7 +1,8 @@
-import { css } from '@emotion/core'
-import React, { FC, useState, Fragment } from 'react'
-import ViewportTypes from './types'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react'
 import createID from '@stage-ui/system/utils/createID'
+import React, { FC, Fragment, useState } from 'react'
+import ViewportTypes from './types'
 
 export let addElement: (children: React.ReactElement, key?: string) => string
 export let removeElement: (key: string) => void
@@ -12,8 +13,10 @@ const MountArea: FC<ViewportTypes.MountArea> = (props) => {
         position: 'fixed',
         display: 'flex',
         flexDirection: 'column',
+        alignItems: "flex-end",
         top: '2rem',
         right: '2rem',
+
         zIndex: 1000,
         '>*': {
             marginBottom: '1rem'

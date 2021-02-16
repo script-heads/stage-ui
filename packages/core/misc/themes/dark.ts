@@ -6,9 +6,9 @@ const dark = light.replace({
         name: 'Dark',
 
         color: {
-            background: [44, 44, 52],
+            background: [22, 22, 24],
             backgroundVariant: [50, 50, 60],
-            surface: [55, 55, 64],
+            surface: [28, 28, 30],
             surfaceVariant: [75, 75, 85],
 
             onBackground: [255, 255, 255],
@@ -16,8 +16,8 @@ const dark = light.replace({
             onPrimary: [255, 255, 255],
             onSecondary: [255, 255, 255],
 
-            lightest: [110, 110, 120],
-            light: [150, 150, 160],
+            lightest: [57, 57, 67],
+            light: [110, 110, 120],
             hard: [180, 180, 200],
             hardest: [230, 230, 250],
 

@@ -1,6 +1,5 @@
 import React from 'react'
-import { Block } from '@stage-ui/core'
-import { Split } from '@stage-ui/lab'
+import { Block, Split } from '@stage-ui/core'
 
 export default () => {
     return (

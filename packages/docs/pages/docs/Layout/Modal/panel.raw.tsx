@@ -14,7 +14,7 @@ export default () => {
             />
             <Button
                 onClick={() => modal.current?.open()}
-                children="Open up panel"
+                children="Push"
             />
         </Fragment>
     )

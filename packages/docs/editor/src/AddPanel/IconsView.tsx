@@ -1,8 +1,10 @@
-import { ScrollView, Flexbox, Text, Block } from '@stage-ui/core'
-import React, { Fragment, useEffect, useState } from 'react'
-import { AddPanelStyles } from './styles'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
+import { Block, Flexbox, ScrollView, Text } from '@stage-ui/core'
 import * as IconScope from '@stage-ui/core/icons'
+import React, { Fragment, useEffect, useState } from 'react'
 import { context } from '../..'
+import { AddPanelStyles } from './styles'
 
 let Delay = (props) => {
     const [display, setDisplay] = useState(false)

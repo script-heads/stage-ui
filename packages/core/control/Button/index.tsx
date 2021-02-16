@@ -1,9 +1,11 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
-import React, { Fragment, forwardRef, RefForwardingComponent } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, Fragment } from 'react'
 import styles from './styles'
 import Types from './types'
 
-const Button: RefForwardingComponent<HTMLButtonElement, Types.Props> = (props, ref) => {
+const Button: ForwardRefRenderFunction<HTMLButtonElement, Types.Props> = (props, ref) => {
     
     const {
         disabled,
@@ -58,7 +60,7 @@ const Button: RefForwardingComponent<HTMLButtonElement, Types.Props> = (props, r
                             children={props.leftChild}
                         />
                     )}
-                    {props.children}
+                    {props.children || props.label}
                     {props.rightChild && (
                         <div 
                             css={cs.child({ align: 'right', ...styleState })}

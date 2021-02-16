@@ -1,8 +1,10 @@
-import { Block, dialog, Divider, Flexbox, Grid, Header, Paragraph, Switch, useTheme, Button } from '@stage-ui/core'
-import { Plus, CodeDownload, Refresh } from '@stage-ui/core/icons'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
+import { Block, Button, dialog, Divider, Flexbox, Grid, Header, Paragraph, Switch, Tree, useTheme } from '@stage-ui/core'
+import { CodeDownload, Plus } from '@stage-ui/core/icons'
 import SystemTypes from '@stage-ui/system/types'
 import mergeObjects from '@stage-ui/system/utils/mergeObjects'
-import React, { useEffect, useState, CSSProperties } from 'react'
+import React, { CSSProperties, useEffect, useState } from 'react'
 import ColorPick from './ColorPick'
 import NewColorDialog from './NewColorDialog'
 import ThemeStorage from './utils/storage'
@@ -15,10 +17,10 @@ const MAIN_COLORS = [
     ['SECONDARY', 'secondary'],
     ['VARIANT', 'backgroundVariant'],
     ['VARIANT', 'surfaceVariant'],
-    ['TEXT', 'onPrimary'],
-    ['TEXT', 'onSecondary'],
-    ['TEXT', 'onBackground'],
-    ['TEXT', 'onSurface'],
+    ['PRIMARY TEXT', 'onPrimary'],
+    ['SECONDARY TEXT', 'onSecondary'],
+    ['BACKGROUND TEXT', 'onBackground'],
+    ['SURFACE TEXT', 'onSurface'],
 ]
 const GRAYSCALES = [
     ['LIGHTEST', 'lightest'],
@@ -26,6 +28,11 @@ const GRAYSCALES = [
     ['HARD', 'hard'],
     ['HARDEST', 'hardest'],
 ]
+
+type AssetItem = {
+    label: any
+    children?: AssetItem[]
+}
 
 interface ThemeConfiguratorProps {
     original: SystemTypes.Theme,
@@ -103,6 +110,14 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
             updateTheme(theme.replace(patch))
         }
     }
+
+    const AssetsRender = (items?: AssetItem[]) => (
+        items && items.map((i, index) => (
+            <Tree key={index} label={i.label}>
+                {AssetsRender(i.children)}
+            </Tree>
+        ))
+    )
 
     return (
         <Block>
@@ -209,7 +224,7 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
                     onClick={() => {
                         dialog({
                             hideHeader: true,
-                            customContent: (close) => (
+                            render: (close) => (
                                 <NewColorDialog
                                     palettKeys={Object.keys(theme.color.palette)}
                                     close={close}
@@ -233,7 +248,7 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
                         onClick={() => {
                             dialog({
                                 hideHeader: true,
-                                customContent: (close) => (
+                                render: (close) => (
                                     <NewColorDialog
                                         edit={{
                                             name: key,
@@ -256,6 +271,61 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
                     />
                 ))}
             </Grid>
+            <Divider gap="4px" my="1rem" />
+            <Flexbox alignItems="flex-start">
+                <Header size="s" fontSize="0.625rem" color="light">ASSETS</Header>
+                {AssetsRender([{
+                    label: '',
+                    children: [{
+                        label: 'Border',
+                        children: [
+                            { 
+                                label: <Button>Edit CSS</Button>
+                            },
+                        ]
+                    },
+                    {
+                        label: 'Typography',
+                        children: [
+                            {
+                                label: 'Header',
+                                children: [
+                                    {
+                                        label: 'Extra Small',
+                                        children: [
+                                            { label: <Button>Edit CSS</Button> },
+                                        ]
+                                    },
+                                    {
+                                        label: 'Small',
+                                        children: [
+                                            { label: <Button>Edit CSS</Button> },
+                                        ]
+                                    },
+                                    {
+                                        label: 'Medium Small',
+                                        children: [
+                                            { label: <Button>Edit CSS</Button> },
+                                        ]
+                                    },
+                                    {
+                                        label: 'Large',
+                                        children: [
+                                            { label: <Button>Edit CSS</Button> },
+                                        ]
+                                    },
+                                    {
+                                        label: 'Extra Large',
+                                        children: [
+                                            { label: <Button>Edit CSS</Button> },
+                                        ]
+                                    },
+                                ]
+                            },
+                        ]
+                    }]
+                }])}
+            </Flexbox>
         </Block>
     )
 }
@@ -278,7 +348,7 @@ export const panel = (
                 }
             })
         },
-        customContent: (close) => (
+        render: (close) => (
             <ThemeConfigurator
                 original={original}
                 updateTheme={updateTheme}

@@ -1,10 +1,12 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Block, Divider, Flexbox, Menu, TextField, useTheme } from '@stage-ui/core'
 import { Grid, Layers, Search } from '@stage-ui/core/icons'
-import React, { Fragment, useState } from 'react'
+import { Fragment, useState } from 'react'
+import { context } from '../..'
 import ComponentsView from './ComponentsView'
 import IconsView from './IconsView'
 import styles from './styles'
-import { context } from '../..'
 
 const AddPanel = () => {
     if (!context.componentLibraryOpen) {

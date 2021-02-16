@@ -1,15 +1,15 @@
-import React from 'react'
-import { Text } from '@stage-ui/core'
+import React, { Fragment } from 'react'
+import { Text, Paragraph } from '@stage-ui/core'
 import Editor from './editor'
 import HomePage from './pages/index/index'
 import { Config } from './utils/core'
+import Name from './components/Page/Types/Name'
 import Value from './components/Page/Types/Value'
-import Params from './components/Page/Types/Params'
-import StyleType from './components/Page/Types/StyleType'
+import Description from './components/Page/Types/Description'
 
 const config: Config = {
     name: 'StageUI',
-    git: 'https://github.com/stage-org/StageUI',
+    git: 'https://github.com/pt-one/StageUI',
     pages: {
         order: {
             About: ['Getting started', 'Theming', 'Overrides', 'Props', 'Bundle'],
@@ -28,7 +28,8 @@ const config: Config = {
                     {
                         key: 'name',
                         title: 'Name',
-                        width: '10rem'
+                        width: '10rem',
+                        render: (c) => <Name property={c.row} />
                     },
                     {
                         key: 'values',
@@ -39,13 +40,7 @@ const config: Config = {
                     {
                         key: 'comment',
                         title: 'Description',
-                        render: (c) => <Text size="s" children={c.row.comment} />
-                    },
-                    {
-                        key: 'isOptional',
-                        title: 'Parameters',
-                        width: '8rem',
-                        render: (c) => <Params property={c.row} />
+                        render: (c) => <Description property={c.row} />
                     },
                     {
                         key: 'tags',
@@ -63,15 +58,18 @@ const config: Config = {
                         title: 'Name',
                         width: '10rem'
                     },
-                    {
-                        key: 'comment',
-                        title: 'Description',
-                    },
+
                     {
                         key: 'values',
                         title: 'States',
-                        width: '15rem',
-                        render: (c) => <StyleType property={c.row} />
+                        width: '12rem',
+                        render: (c) => <Value property={c.row} />
+                    },
+                    {
+                        key: 'comment',
+                        title: 'Description',
+                        render: (c) => <Description property={c.row} />
+
                     },
                 ]
             }

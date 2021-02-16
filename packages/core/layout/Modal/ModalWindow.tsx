@@ -1,6 +1,8 @@
-import ModalTypes from './types'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import React, { forwardRef } from 'react'
 import ModalHeader from './ModalHeader'
+import ModalTypes from './types'
 
 const ModalWindow = forwardRef((props: ModalTypes.ModalWindowProps, ref: React.Ref<HTMLDivElement>) => {
 

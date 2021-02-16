@@ -1,10 +1,12 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Block } from '@stage-ui/core'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, RefForwardingComponent } from 'react'
+import { forwardRef, ForwardRefRenderFunction } from 'react'
 import styles from './styles'
 import Types from './types'
 
-const Notifications: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+const Notifications: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const { cs, attributes, events } = useComponent('Notification', { 
         props, 
@@ -14,14 +16,14 @@ const Notifications: RefForwardingComponent<HTMLDivElement, Types.Props> = (prop
 
     return (
         <Block 
+            decoration="surface" 
+            css={cs.container}
+            {...props}
             {...attributes}
             {...events.all}
+            ref={ref}
             onChange={undefined}
-            ref={ref} 
-            decoration="surface" 
             onClick={(e) => props.onClick && props.onClick(e)} 
-            css={cs.container}
-            children={props.children}
         />
     )
 }

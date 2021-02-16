@@ -32,12 +32,12 @@ export default () => {
             onClick={() => {
                 dialog({
                     hideHeader: true,
-                    customContent: (close) => (
+                    render: (close) => (
                         <Content close={close} />
                     )
                 })
             }}
-            children="Show custom dialog"
+            children="Push"
         />
     )
 }

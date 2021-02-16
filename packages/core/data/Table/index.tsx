@@ -1,17 +1,19 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, RefForwardingComponent,useRef, useImperativeHandle, useState, useEffect } from 'react'
+import { forwardRef, ForwardRefRenderFunction, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import styles from './styles'
-import Types from './types'
-import TableRow from './TableRow'
-import TableHeadCell from './TableHeadCell'
 import TableFoot from './TableFoot'
+import TableHeadCell from './TableHeadCell'
+import TableRow from './TableRow'
+import Types from './types'
 
-type Ref<T = Object> = Types.TableRef<T>
+function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
 
-const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
+// const Table: ForwardRefRenderFunction<Types.TableRef, Types.Props> = (props, ref) => {
 
     const tableRef = useRef<HTMLTableElement>(null)
-    const { cs, attributes, events } = useComponent('Table', { props, styles, styleProps: { container: ['all']} })
+    const { cs, attributes, events } = useComponent('Table', { props, styles, styleProps: { container: ['all'] } })
     const { columns, pagination, footer } = props
     const [currentPage, setCurrentPage] = useState(1)
     const [reloadData, reload] = useState(false)
@@ -20,8 +22,9 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
         sort: 'ASC'
     })
 
-    let rowCtx: Types.RowContext[] = props.data.map(row => {
-        const isCellModify: Types.RowContext['isCellModify'] = {}
+    //@ts-ignore
+    let rowCtx: Types.TableRowContext<ROW>[] = props.data.map(row => {
+        const isCellModify: Types.TableRowContext<ROW>['isCellModify'] = {}
         columns.forEach(column => {
             isCellModify[column.key] = false
         })
@@ -34,7 +37,7 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
         }
     })
 
-    const columnSort = (column: Types.TableColumn) => {
+    const columnSort = (column: Types.TableColumn<ROW>) => {
         if (column.sort) {
             rowCtx = rowCtx.sort((a, b) => {
                 if (column.sort === 'ASC') {
@@ -54,12 +57,13 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
         }
     }
 
-    const getCellContext: Ref['getCellContext'] = (index, key) => {
+    //@ts-ignore
+    const getCellContext: Types.TableRef<ROW>['getCellContext'] = (index, key) => {
 
         if (!rowCtx[index]?.row) {
             return null
         }
-        
+
         return {
             key,
             index: index,
@@ -71,31 +75,37 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
             isVisible: rowCtx[index].isVisible,
             setExpand: (content) => setExpand(index, content),
             setModify: (modify, kkey = key) => setModify(modify, index, kkey),
-            reloadData: () => reload(!reloadData)
+            reloadData: () => reload(!reloadData),
+            setRow: (row) => {               
+                for (key in rowCtx[index].row) {
+                    rowCtx[index].row[key] = row[key]
+                }
+                reload(!reloadData)
+            }
         }
     }
 
-    const setExpand: Ref['setExpand'] = (index, content) => {
+    const setExpand: Types.TableRef<ROW>['setExpand'] = (index, content) => {
         if (rowCtx[index]) {
             rowCtx[index].setExpandComponent?.(content)
             return true
         }
         return false
-    } 
+    }
 
-    const setModify: Ref['setModify'] = (modify, index, key) => {
+    const setModify: Types.TableRef<ROW>['setModify'] = (modify, index, key) => {
         if (rowCtx[index]) {
             if (key !== undefined) {
+                //@ts-ignore
                 if (rowCtx[index].row.hasOwnProperty(key)) {
                     rowCtx[index].setModifyState[key]?.(modify)
                     return true
                 }
-            } else {
-                Object.keys(rowCtx[index].isCellModify).forEach(key => {
-                    rowCtx[index].setModifyState[key]?.(modify)
-                })
-                return true
             }
+            Object.keys(rowCtx[index].isCellModify).forEach(key => {
+                rowCtx[index].setModifyState[key]?.(modify)
+            })
+            return true
         }
         return false
     }
@@ -103,6 +113,7 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
     /**
      * Handle refs
      */
+    //@ts-ignore
     useImperativeHandle(ref, () => ({
         getCellContext,
         setExpand,
@@ -116,6 +127,7 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
     if (sort.key) {
         const sortColumn = columns.find(column => column.key === sort.key)
         if (sortColumn) {
+            //@ts-ignore
             columnSort({
                 ...sortColumn,
                 ...sort
@@ -123,10 +135,11 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
         }
     } else {
         for (const column of columns) {
+            //@ts-ignore
             columnSort(column)
         }
     }
-    
+
     const setNeedDisplay = () => {
         let state = 1
         for (let rowCtxItem of rowCtx) {
@@ -187,12 +200,13 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
                             if (startIndex > rowIndex || rowIndex >= currentPage * pageSize) {
                                 return null
                             }
-                            
+
                         }
                         /**
                          * Row events map
                          */
-                        const events: Types.RowEvents = {}
+                        const events: Types.RowEvents<ROW> = {
+                        }
                         /**
                          * We'll call onRow*Event* at on*Event*
                          * with injected rowIndex.
@@ -209,6 +223,8 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
                             <TableRow
                                 rowCtxItem={rowCtxItem}
                                 getCellContext={getCellContext}
+                                rowDidMount={props.rowDidMount}
+                                rowDidUnmount={props.rowDidUnmount}
                                 styles={cs}
                                 key={rowIndex}
                                 columns={columns}
@@ -237,4 +253,4 @@ const Table: RefForwardingComponent<Ref, Types.Props> = (props, ref) => {
     )
 }
 
-export default forwardRef(Table)
+export default forwardRef(Table as any) as <ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) => React.ReactElement

@@ -1,5 +1,7 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Block, Divider, Header, ScrollView, Text } from '@stage-ui/core'
-import React, { Fragment, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { context } from '../..'
 import { AddPanelStyles } from './styles'
 

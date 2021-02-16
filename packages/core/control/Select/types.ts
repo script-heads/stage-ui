@@ -1,4 +1,5 @@
 import FieldTypes from '../../misc/hocs/Field/types'
+import DropTypes from '../../layout/Drop/types'
 
 declare namespace SelectTypes {
     interface Option {
@@ -41,23 +42,29 @@ declare namespace SelectTypes {
          */
         maxScrollHeight?: string
         /**
+         * Animation of drop
+         * @default { type: 'collapse' }
+         */
+        animation?: DropTypes.Props['animation']
+        /**
          * Event is fired when user change value
          */
         onChange?: (values: Option[], changedValue?: Option) => void
     }
 
     type State = {
-        selectedOptions: Option[] 
+        selectedOptions: Option[]
         open: boolean
         searchValue: string
         empty: boolean
         cursor: number
     }
 
-    interface StyleState extends StyleParams{
+    interface StyleState extends StyleParams {
         shape: Props['shape']
-        size: Props['size'] 
+        size: Props['size']
         decoration: Props['decoration']
+        focus: boolean
     }
 
     interface StyleParams {

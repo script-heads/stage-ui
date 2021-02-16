@@ -1,11 +1,13 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Flexbox, Text } from '@stage-ui/core'
 import { ArrowIosBack, ArrowIosForward } from '@stage-ui/core/icons'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, RefForwardingComponent, useEffect, useState } from 'react'
+import { forwardRef, ForwardRefRenderFunction, useEffect, useState } from 'react'
 import styles from './styles'
 import Types from './types'
 
-const Pageswitch: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const { length, pageSize = 20, value } = props
     const lastPage = Math.ceil(length / pageSize)

@@ -3,7 +3,7 @@ import React from 'react'
 
 export default () => {
     return (
-        <Drop followCursor>
+        <Drop stickCursor>
             <Block
                 decoration="minorShadow"
                 children="Let me go!"

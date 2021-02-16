@@ -1,14 +1,14 @@
-import { Block, Flexbox, Text, useTheme } from '@stage-ui/core'
-import { Collapse, Expand, Grid, Copy } from '@stage-ui/core/icons'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
+import { Block, Divider, Flexbox, notify, Text, useTheme } from '@stage-ui/core'
+import { Collapse, Copy, Expand, Grid } from '@stage-ui/core/icons'
 import { PageType } from '@stage-ui/docs/utils/core'
 import monaco from '@stage-ui/docs/utils/monaco'
-import { Split } from '@stage-ui/lab'
-import React, { Fragment, useEffect, useState } from 'react'
+import { Split } from '@stage-ui/core'
+import Color from 'color'
+import React, { useEffect, useState } from 'react'
 import ErrorBoundary from './ErrorBoundary'
 import Preview from './Preview'
-import Color from 'color'
-import { Divider } from '@stage-ui/core'
-import { notify } from '@stage-ui/core'
 
 interface EditorProps {
     cases: Exclude<PageType['cases'], undefined>

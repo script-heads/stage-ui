@@ -18,6 +18,8 @@ declare namespace FieldTypes {
         /**
          * Size of field
          * @default m
+         * @display SystemTypes.Size
+         * @link /props/#size
          */
         size?: SystemTypes.Size
         /**

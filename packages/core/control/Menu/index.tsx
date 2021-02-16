@@ -1,9 +1,11 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, RefForwardingComponent, useState, useLayoutEffect } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, useLayoutEffect, useState } from 'react'
+import MenuGroup from './MenuGroup'
 import MenuItem from './MenuItem'
 import styles from './styles'
 import Submenu from './Submenu'
-import MenuGroup from './MenuGroup'
 import Types from './types'
 
 const Context = React.createContext<Types.Context>({ values: {} })
@@ -36,7 +38,7 @@ export const useValue = (value?: Types.MenuValue): [boolean, () => void, Types.C
     }, ctx]
 }
 
-const Menu: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) => {
+const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
     
     const {
         decoration = 'filled',
@@ -50,13 +52,22 @@ const Menu: RefForwardingComponent<HTMLDivElement, Types.Props> = (props, ref) =
     })
     
     useLayoutEffect(() => {
-        if (ctx.current === void 0 && props.defaultValue !== void 0) {
+        if (props.defaultValue !== void 0 && ctx.current === void 0) {
             setCtx({
                 ...ctx,
                 current: props.defaultValue
             })
         }
     }, [])
+    
+    useLayoutEffect(() => {
+        if (props.value !== void 0) {
+            setCtx({
+                ...ctx,
+                current: props.value
+            })
+        }
+    }, [props.value])
 
     const { cs, attributes, events } = useComponent('Menu', { 
         props, 

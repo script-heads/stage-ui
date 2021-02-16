@@ -1,4 +1,4 @@
-import { keyframes } from '@emotion/core'
+import { keyframes } from '@emotion/react'
 import SystemTypes from '@stage-ui/system/types'
 import colorProp from '@stage-ui/system/utils/colorProp'
 import Types from './types'

@@ -1,4 +1,4 @@
-import { Global } from '@emotion/core'
+import { Global } from '@emotion/react'
 import { Viewport } from '@stage-ui/core'
 import * as defaultThemes from '@stage-ui/core/misc/themes/index'
 import SystemTypes from '@stage-ui/system/types'
@@ -19,7 +19,7 @@ window.breakpoints = [960, 768]
 
 const Docs = () => {
 
-    const [theme, setTheme] = useState<SystemTypes.Theme>(defaultThemes.light)
+    const [theme, setTheme] = useState<SystemTypes.Theme>(defaultThemes.dark)
 
     useEffect(() => {
         localStorage.setItem('current_theme', theme.name.toLowerCase())

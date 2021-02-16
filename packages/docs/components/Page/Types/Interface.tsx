@@ -47,6 +47,10 @@ const Interface = (props: InterfaceProps) => {
 
     const names = Object.keys(types)
 
+    const data = types[active]?.sort((a,b) => {
+        return a.flags.isOptional ? 1 : -1
+    })
+    
     return (
         <Block>
             <div style={{ position: 'relative', paddingBottom: '0.5rem', marginBottom: '0.5rem' }}>
@@ -66,7 +70,7 @@ const Interface = (props: InterfaceProps) => {
             </div>
             <Table
                 columns={props.columns}
-                data={types[active] || []}
+                data={data || []}
             />
         </Block>
     )

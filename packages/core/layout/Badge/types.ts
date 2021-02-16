@@ -8,6 +8,9 @@ declare namespace BadgeTypes {
         content: React.ReactNode
         /**
          * Badge size
+         * @default m
+         * @display SystemTypes.Size
+         * @link /props/#size
          */
         size?: SystemTypes.Size
         /**

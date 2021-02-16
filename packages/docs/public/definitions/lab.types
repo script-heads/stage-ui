@@ -24,69 +24,6 @@ declare module 'data/Chart' {
 	export default _default;
 
 }
-declare module 'layout/Split/Separator' {
-	/// <reference types="react" />
-	import { SplitElRef } from 'layout/Split';
-	interface SeparatorProps {
-	    areaSize: number;
-	    defaultVertical: boolean;
-	    container: () => SplitElRef;
-	    prev: () => HTMLDivElement;
-	    next: () => HTMLDivElement;
-	} const Separator: (props: SeparatorProps) => JSX.Element;
-	export default Separator;
-
-}
-declare module 'layout/Split/types' {
-	import React from 'react';
-	import SystemTypes from '@stage-ui/system/types'; namespace SplitTypes {
-	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onMove' | 'onChange'> {
-	        direction?: 'row' | 'column';
-	        children: React.ReactElement[];
-	        /**
-	         * Split area size, value in pixels
-	         */
-	        areaSize?: number;
-	        /**
-	         * You can give it array of numbers (in percent)
-	         */
-	        positions?: number[];
-	        /**
-	         * Calls when split area moves
-	         */
-	        onMove?: (positions: number[]) => void;
-	        /**
-	         * Calls when mouseUp if position did change
-	         */
-	        onChange?: (positions: number[]) => void;
-	    }
-	    interface Styles {
-	        container: {
-	            vertical: boolean;
-	        };
-	        test: void;
-	    }
-	}
-	export default SplitTypes;
-
-}
-declare module 'layout/Split/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'layout/Split/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
-	export default styles;
-
-}
-declare module 'layout/Split' {
-	import React from 'react';
-	import Types from 'layout/Split/types';
-	export type SplitElRef = (HTMLDivElement & {
-	    _vertical?: true;
-	    _onMove?: () => void;
-	    _onChange?: () => void;
-	}) | null; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
-
-}
 declare module 'layout/Toolbar/types' {
 	import FlexboxTypes from '/layout/Flexbox/types'; namespace ToolbarTypes {
 	    interface Props extends FlexboxTypes.Props {
@@ -105,13 +42,11 @@ declare module 'layout/Toolbar/styles' {
 
 }
 declare module 'layout/Toolbar' {
-	import React from 'react';
-	import Types from 'layout/Toolbar/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	import Types from 'layout/Toolbar/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
 	export default _default;
 
 }
 declare module 'control/ButtonGroup/types' {
-	/// <reference types="react" />
 	import ButtonTypes from '/control/Button/types'; namespace ButtonGroupTypes {
 	    interface Props extends ButtonTypes.Props {
 	        children: (React.ReactElement<ButtonTypes.Props> | React.ReactElement<ButtonTypes.Props>[]);
@@ -133,7 +68,6 @@ declare module '@stage-ui/lab' {
 	/**
 	 * Layout
 	 */
-	export { default as Split } from 'layout/Split';
 	export { default as Toolbar } from 'layout/Toolbar';
 	/**
 	 * Control
@@ -149,36 +83,6 @@ declare module 'data/Chart/styles' {
 declare module 'misc/hooks/useProgress' {
 	 let useProgress: (animate: boolean, time: number, pause: any, currentProgress: any) => number;
 	export default useProgress;
-
-}
-declare module 'misc/logos/abr' {
-	import React from 'react'; const _default: (props: {
-	    color?: string | undefined;
-	    style?: React.CSSProperties | undefined;
-	}) => JSX.Element;
-	export default _default;
-
-}
-declare module 'misc/logos/mrg' {
-	import React from 'react'; const _default: (props: {
-	    color?: string | undefined;
-	    style?: React.CSSProperties | undefined;
-	}) => JSX.Element;
-	export default _default;
-
-}
-declare module 'misc/logos/smorodina' {
-	import React from 'react'; const _default: (props: {
-	    color?: string | undefined;
-	    style?: React.CSSProperties | undefined;
-	}) => JSX.Element;
-	export default _default;
-
-}
-declare module 'misc/logos' {
-	export { default as MRG } from 'misc/logos/mrg';
-	export { default as ABR } from 'misc/logos/abr';
-	export { default as Smorodina } from 'misc/logos/smorodina';
 
 }
 declare module 'misc/themes/whiteCurrant' {

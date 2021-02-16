@@ -1,5 +1,5 @@
 import SystemTypes from '@stage-ui/system/types'
-import { createTheme } from '@stage-ui/system'
+import createTheme from '@stage-ui/system/utils/createTheme'
 
 const Light: SystemTypes.SourceTheme = {
     main: {

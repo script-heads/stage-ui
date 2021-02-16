@@ -1,7 +1,9 @@
-import React, { forwardRef, RefForwardingComponent, useEffect, useState } from 'react'
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
+import React, { forwardRef, ForwardRefRenderFunction, useEffect, useState } from 'react'
 import CheckTypes from './types'
 
-const Check: RefForwardingComponent<HTMLDivElement, CheckTypes.PrivateProps> = (props, ref) => {
+const Check: ForwardRefRenderFunction<HTMLDivElement, CheckTypes.PrivateProps> = (props, ref) => {
     const [focus, setFocus] = useState(false)
     const [checked, setChecked] = useState(props.checked || props.defaultValue || false)
     const { label, styles, disabled,size, uppercase } = props
