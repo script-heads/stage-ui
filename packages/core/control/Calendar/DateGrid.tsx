@@ -85,6 +85,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                     setTmpDate(clone)
                 }}
             />
+            {props.header}
             {gridType === 'day' && (
                 <Fragment>
                     <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr 1fr">
@@ -113,6 +114,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                             props.onChange(day)
                                         }
                                     }}
+                                    onDayRender={props.onDayRender}
                                 />
                             )
                         )}
@@ -159,6 +161,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                             setGridType('day')
                                         }
                                     }}
+                                    onMonthRender={props.onMonthRender}
                                 />
                             )
                         })
@@ -189,12 +192,14 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                             setGridType('month')
                                         }
                                     }}
+                                    onYearRender={props.onYearRender}
                                 />
                             )
                         })
                     }
                 </Grid>
             )}
+            {props.footer}
         </Flexbox>
     )
 }

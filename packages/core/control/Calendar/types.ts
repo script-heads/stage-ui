@@ -12,6 +12,33 @@ declare namespace CalendarTypes {
      */
     type Locale = 'en' | 'ru' | 'it' | 'fr' | 'de'
 
+    /**
+     * Custom render options
+     */
+    type RenderOptions = {
+        now: Moment
+        self: Moment
+        active: Moment
+        isActive: boolean
+        isCurrent: boolean
+        isDisabled: boolean
+        onClick: () => void
+    }
+    /**
+     * Options for prop onMonthRender
+     */
+    type YearRenderOptions = RenderOptions
+    /**
+     * Options for prop onMonthRender
+     */
+    type MonthRenderOptions = RenderOptions
+    /**
+     * Options for prop onDayRender
+     */
+    type DayRenderOptions = RenderOptions & {
+        isCurrentMonth: boolean
+    }
+
     interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
         /**
          * Type for Calendar
@@ -46,6 +73,26 @@ declare namespace CalendarTypes {
          * Hide today button
          */
         hideToday?: boolean
+        /**
+         * Custom render Year
+         */
+        onYearRender?: (options: YearRenderOptions) => React.ReactNode
+        /**
+         * Custom render Month
+         */
+        onMonthRender?: (options: MonthRenderOptions) => React.ReactNode
+        /**
+         * Custom render Day
+         */
+        onDayRender?: (options: DayRenderOptions) => React.ReactNode
+        /**
+         * Header element
+         */
+        header?: React.ReactNode
+        /**
+         * Footer element
+         */
+        footer?: React.ReactNode
     }
 
     interface DateGridProps {
@@ -57,6 +104,11 @@ declare namespace CalendarTypes {
         onChange: (date: Moment) => void
         styles: SystemTypes.ComponentStyles<Styles>
         type: GridType
+        onYearRender?: (options: YearRenderOptions) => React.ReactNode
+        onMonthRender?: (options: MonthRenderOptions) => React.ReactNode
+        onDayRender?: (options: DayRenderOptions) => React.ReactNode
+        header?: React.ReactNode
+        footer?: React.ReactNode
     }
 
     interface DateGridCalendarProps {
@@ -65,9 +117,12 @@ declare namespace CalendarTypes {
         minValue: Moment
         maxValue: Moment
         active: Moment
-        onClick?: () => void
+        onClick: () => void
         style?: CSSProperties
         styles: SystemTypes.ComponentStyles<Styles>
+        onYearRender?: (options: YearRenderOptions) => React.ReactNode
+        onMonthRender?: (options: MonthRenderOptions) => React.ReactNode
+        onDayRender?: (options: DayRenderOptions) => React.ReactNode
     }
 
     interface DateGridTitleProps {
