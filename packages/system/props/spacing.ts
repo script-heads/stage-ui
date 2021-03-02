@@ -1,3 +1,5 @@
+export type SpaceProp = Stage.Sizes | (string & { T?: string }) | number
+
 export default (value, name, theme) => {
     const styles = {}
     const

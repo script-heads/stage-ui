@@ -1,7 +1,17 @@
 import Color from 'color'
-import SystemTypes from '../types'
 
-export default (theme: SystemTypes.Theme, value: SystemTypes.ColorProp) => {
+/**
+ * @display SystemTypes.Color
+ * @link /props#color
+ */
+export type ColorProp =
+    ((colors: Stage.Theme['color']) => Color | string)
+    | keyof Omit<Stage.Theme['color'], 'palette'>
+    | keyof Stage.Theme['color']['palette']
+    | Color
+    | (string & { T?: string })
+
+export default (theme: Stage.Theme, value: ColorProp) => {
     if (!value) return undefined
 
     const color = typeof value === 'function'

@@ -1,19 +1,53 @@
-import SystemTypes, { EmotionStyles } from '../types'
 import useTheme from './useTheme'
-import resolver from '../utils/resolver'
+import propsResolers from '../props'
+import createVariant, { Variant } from '../utils/createVariant'
+import isFunction from '../utils/isFunction'
+import { AllEventProps, AttributeProps, CoreProps } from '../props/types'
 
 export interface Options {
-    focus?: 'always' | 'tab' | 'mouse' | 'never'
+    focus?: 'always' | 'tabOnly' | 'never'
     label?: string
-    theme?: SystemTypes.Theme
+    theme?: Stage.Theme
 }
 
-const isFunction = (a: unknown) => typeof a === 'function'
+export interface StyleProps {
+    all: Stage.JSS[]
+    container: Stage.JSS[]
+    content: Stage.JSS[]
 
-function useComponent<Props, Styles>(
+    style: Stage.JSS[]
+    margin: Stage.JSS[]
+    flex: Stage.JSS[]
+    grid: Stage.JSS[]
+
+    padding: Stage.JSS[]
+    color: Stage.JSS[]
+    border: Stage.JSS[]
+    layout: Stage.JSS[]
+}
+
+export type ClassesDefinition<ClassesSchema> = {
+    [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends Object
+    ? ((variant: Variant<ClassesSchema[ClassName]>) => Stage.JSS)
+    : Stage.JSS
+}
+
+export type Classes<ClassesSchema> = {
+    [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends Object
+    ? (state: ClassesSchema[ClassName]) => Stage.JSS
+    : Stage.JSS
+}
+
+export type CreateClasses<ClassesSchema, Props> = (
+    theme: Stage.Theme,
+    props: Props,
+    styleProps: StyleProps
+) => ClassesDefinition<ClassesSchema>
+
+function useComponent<Props extends CoreProps, ClassesSchema>(
     name: string,
     props: Props,
-    createClasses: SystemTypes.CreateStyles<Styles, Props>,
+    createClasses: CreateClasses<ClassesSchema, Props>,
     options: Options = {}) {
 
     const {
@@ -22,65 +56,77 @@ function useComponent<Props, Styles>(
         theme = useTheme(),
     } = options
 
-    const overrides = theme.overrides[name]
-    const decorations = theme.decorations[name] && theme.decorations[name][props.decoration]
-
-    const initialClasses = createClasses(props, theme)
-
-    const decorationClasses = isFunction(decorations)
-        ? decorations(props)
-        : decorations
-
-    const overrideClasses = isFunction(overrides)
-        ? overrides(props)
-        : overrides
-
-    const data = {
+    const data: {
+        classes: Classes<ClassesSchema>
+        attributes: Pick<Props, keyof AttributeProps>
+        events: Pick<Props, keyof AllEventProps<any>>
+    } = {
         classes: {},
         attributes: {},
         events: {},
-        styles: {
-            all: [],
-            flow: [],
-            self: [],
-            qs: [],
-            color: [],
-            border: [],
-            padding: [],
-            layout: [],
-            margin: [],
-            flex: [],
-            grid: []
-        }
+    }
+
+    const styleProps: StyleProps = {
+        all: [],
+        container: [],
+        content: [],
+
+        style: [],
+        margin: [],
+        flex: [],
+        grid: [],
+
+        padding: [],
+        color: [],
+        border: [],
+        layout: [],
     }
 
     for (let key in props) {
         if (key[0] === 'o' && key[1] === 'n') {
             data.events[key] = props[key]
         }
-        if (resolver.hasOwnProperty(key)) {
-            resolver[key](data, props[key], theme, focus)
+        if (propsResolers.hasOwnProperty(key)) {
+            propsResolers[key](props, data, styleProps, theme, focus)
         }
     }
 
-    for (let key in initialClasses) {
+    styleProps.container.concat(styleProps.margin, styleProps.flex, styleProps.grid, styleProps.style)
+    styleProps.content.concat(styleProps.padding, styleProps.color, styleProps.border, styleProps.layout)
+    styleProps.all.concat(styleProps.container, styleProps.content)
+
+    const themeOverrides = theme.overrides[name]
+    const propsOverrides = props['overrides']
+
+    const componentClasses = createClasses(theme, props, styleProps)
+
+    const themeOverrideClasses = isFunction(themeOverrides)
+        ? themeOverrides(props, styleProps)
+        : themeOverrides
+
+    const propsOverrideClasses = isFunction(propsOverrides)
+        ? propsOverrides(theme, props, styleProps)
+        : propsOverrides
+
+    for (let key in componentClasses) {
         const classLabel = { label: `${label}-${key}` }
 
-        data.classes[key] = isFunction(initialClasses[key])
+        data.classes[key] = isFunction(componentClasses[key])
             ? (state) => {
-                return [
+                const variant = createVariant(state)
+                return [    
                     classLabel,
-                    initialClasses[key](state),
-                    overrideClasses[key]?.(state),
-                    decorationClasses[key]?.(state)
-                ] as EmotionStyles
+                    componentClasses[key](variant, state),
+                    themeOverrideClasses[key]?.(variant, state),
+                    propsOverrideClasses[key]?.(variant, state),
+                ] as Stage.JSS
             }
             : [
                 classLabel,
-                initialClasses[key],
-                overrideClasses[key],
-                decorationClasses[key]
-            ] as EmotionStyles
+                componentClasses[key],
+                themeOverrideClasses[key],
+                propsOverrideClasses[key],
+            ] as Stage.JSS
     }
 
     return data
