@@ -14,7 +14,7 @@
     },
     "dependencies": {
         "imask": "^6.0.1",
-        "moment": "^2.24.0",
+        "moment": "2.29.1",
         "rifm": "^0.12.0"
     },
     "devDependencies": {
