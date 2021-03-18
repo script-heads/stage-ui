@@ -14,6 +14,7 @@ export default (options: ModalTypes.DialogOptions) => {
     addElement(
         (
             <Modal
+                {...options}
                 ref={(ref: ModalTypes.Ref) => modal = ref}
                 title={options.title}
                 subtitle={options.subtitle}
@@ -21,8 +22,10 @@ export default (options: ModalTypes.DialogOptions) => {
                 styles={options.styles}
                 size={options.size}
                 decoration={options.decoration}
+                onOpen={options.onOpen}
                 didClose={() => {
                     removeElement(key)
+                    options.didClose?.()
                 }}
                 children={(
                     options.render ? options.render(close) : (
