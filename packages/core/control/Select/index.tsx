@@ -5,12 +5,13 @@ import { ArrowIosDownward, Close } from '@stage-ui/core/icons'
 import DropTypes from '@stage-ui/core/layout/Drop/types'
 import Field from '@stage-ui/core/misc/hocs/Field'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, ForwardRefRenderFunction, Fragment, useEffect, useRef, useState } from 'react'
-import { transform } from 'typescript'
+import React, { forwardRef, ForwardRefRenderFunction, Fragment, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import TextFieldTypes from '../TextField/types'
 import styles from './styles'
 import Types from './types'
 
-const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
+
+const Select: ForwardRefRenderFunction<(Types.Ref & TextFieldTypes.Ref), Types.Props> = (props, ref) => {
 
     const {
         decoration = 'outline',
@@ -126,8 +127,8 @@ const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
     /**
      * Open and close select drop
      */
-    function toggleOpen(e) {
-        e.stopPropagation()
+    function toggleOpen(e?: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+        e?.stopPropagation()
         if (!isOpen && disabled) {
             return
         }
@@ -178,6 +179,14 @@ const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
 
     const isDown = (isOpen && options.length > 0)
 
+    useImperativeHandle(ref, () => ({
+        ...fieldRef,
+        isOpen,
+        options :options,
+        values: values,
+        toggleOpen,
+    }))
+
     return (
         <Fragment>
             <Field
@@ -223,7 +232,9 @@ const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
                 )}
                 children={(
                     <div css={cs.selected}>
-                        {props.multiselect && values.map(option => (
+                        {
+                        //@ts-expect-error
+                        props.multiselect && values.map(option => (
                             <div css={cs.tag(styleState)} key={option.value}>
                                 {option.text}
                                 {!disabled && (
@@ -273,6 +284,7 @@ const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
                 }}
                 onClickOutside={(e, outTarget) => {
                     if (outTarget) {
+                        //@ts-expect-error
                         toggleOpen(e)
                     }
                 }}

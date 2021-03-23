@@ -7,6 +7,13 @@ declare namespace SelectTypes {
         value: any
     }
 
+    interface Ref {
+        isOpen: boolean
+        options: Option[]
+        values: Option[]
+        toggleOpen: () => void
+    }
+
     interface Props extends Omit<FieldTypes.Props<Styles>, 'onChange'> {
         /**
          * Content to be appear in the form control when the form control is empty

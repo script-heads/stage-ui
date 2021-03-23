@@ -5,9 +5,7 @@ import React, { forwardRef, ForwardRefRenderFunction, useImperativeHandle, useRe
 import styles from './styles'
 import Types from './types'
 
-type RefTypes = ((HTMLInputElement | HTMLTextAreaElement) & HTMLDivElement) | null | {}
-
-const TextField: ForwardRefRenderFunction<RefTypes, Types.Props> = (props, ref) => {
+const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
 
     const {
         decoration = 'outline',
