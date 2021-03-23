@@ -232,9 +232,7 @@ const Select: ForwardRefRenderFunction<(Types.Ref & TextFieldTypes.Ref), Types.P
                 )}
                 children={(
                     <div css={cs.selected}>
-                        {
-                        //@ts-expect-error
-                        props.multiselect && values.map(option => (
+                        {props.multiselect && values.map(option => (
                             <div css={cs.tag(styleState)} key={option.value}>
                                 {option.text}
                                 {!disabled && (
