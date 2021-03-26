@@ -2,7 +2,7 @@ import SystemTypes from '@stage-ui/system/types'
 
 declare namespace ModalTypes {
 
-    type ModalDecoration = 'modal' | 'panel'
+    type ModalDecoration = 'modal' | 'panel' | 'fullscreen'
     type ExtentedProps =
         SystemTypes.AttributeProps &
         SystemTypes.AllEventProps<HTMLDivElement> &
