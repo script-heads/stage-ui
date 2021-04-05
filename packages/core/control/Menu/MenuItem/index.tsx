@@ -7,12 +7,13 @@ import styles from './styles'
 import Types from './types'
 
 const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
+    let [active, setActive, ctx] = useValue(props.value)
 
     const {
         rightChild,
         leftChild,
         disabled,
-        as,
+        as = ctx.itemContainer || 'div',
         href
     } = props
 
@@ -22,9 +23,7 @@ const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
         styleProps: {
             container: ['all'],
         },
-    })
-
-    let [active, setActive, ctx] = useValue(props.value)
+    })   
 
     /**
      * Support controlled

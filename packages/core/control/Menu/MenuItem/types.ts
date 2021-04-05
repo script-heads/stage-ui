@@ -33,7 +33,7 @@ declare namespace MenuItemTypes {
          */
         rightChild?: React.ReactNode
 
-        as: keyof HTMLElementTagNameMap
+        as?: keyof HTMLElementTagNameMap
 
         href?: string
     }

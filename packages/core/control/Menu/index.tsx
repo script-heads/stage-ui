@@ -17,12 +17,15 @@ const Context = React.createContext<Types.Context>({ values: {} })
 export const useValue = (value?: Types.MenuValue): [boolean, () => void, Types.Context] => {
     const [_, update] = React.useState(false)
     const ctx = React.useContext(Context)
+
     if (ctx === void 0) {
         throw Error('Hook useValue could be used only within Menu component!')
     }
+
     if (value !== void 0) {
         ctx.values[value] = () => update(!_)
     }
+    
     return [value !== void 0 ? ctx.current === value : false, () => {
         if (value === void 0 || ctx.controlled) {
             return
@@ -48,7 +51,8 @@ const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref)
         values: {},
         controlled: props.value !== void 0,
         current: props.value,
-        onChange: props.onChange
+        onChange: props.onChange,
+        itemContainer: props.itemContainer
     })
     
     useLayoutEffect(() => {
@@ -81,6 +85,7 @@ const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref)
     const styleState: Types.StyleState = { 
         decoration
     }
+
     const css = [
         cs.container(styleState), 
         `
@@ -97,6 +102,7 @@ const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref)
     ]
 
     let children = props.children
+
     if (props.data) {
         children = props.data.map((item, index) => (
             <MenuItem
