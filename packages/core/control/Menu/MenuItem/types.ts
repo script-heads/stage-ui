@@ -32,6 +32,10 @@ declare namespace MenuItemTypes {
          * Left child at item view
          */
         rightChild?: React.ReactNode
+
+        as: keyof HTMLElementTagNameMap
+
+        href?: string
     }
 
     interface Styles {

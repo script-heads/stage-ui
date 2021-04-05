@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, ForwardRefRenderFunction } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, createElement } from 'react'
 import { useValue } from '..'
 import styles from './styles'
 import Types from './types'
@@ -12,6 +12,8 @@ const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
         rightChild,
         leftChild,
         disabled,
+        as,
+        href
     } = props
 
     const { cs, attributes, events } = useComponent('MenuItem', {
@@ -71,37 +73,48 @@ const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
     if (active) attr['data-flow-active'] = ''
     if (disabled) attr['data-flow-disabled'] = ''
 
-    return (
-        <div
-            {...attr}
-            {...attributes}
-            {...events.all}
-            onChange={undefined}
-            onClick={(e) => {
-                if (!disabled) {
-                    setActive()
-                    ctx.onChange?.(props.value)
-                    events.all.onClick?.(e)
-                }
-            }}
-            onKeyPress={(e) => {
-                /**
-                 * Handle Space/Enter at focus
-                 */
-                if (!disabled && [13, 32].includes(e.charCode)) {
-                    setActive()
-                    ctx.onChange?.(props.value)
-                    e.preventDefault()
-                }
-                events.all.onKeyPress?.(e)
-            }}
-            ref={containerRef} css={cs.container}>
-            <span data-flow-indent="" />
-            {leftChild && <span data-flow="left">{leftChild}</span>}
-            <span data-flow="middle">{props.children || props.title}</span>
-            {rightChild && <span data-flow="right">{rightChild}</span>}
-        </div>
+
+    const itemProps = {
+        ...attr,
+        ...attributes,
+        ...events.all,
+        onChange: undefined, 
+        onClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+            if (!disabled) {
+                setActive()
+                ctx.onChange?.(props.value)
+                events.all.onClick?.(e)
+            }
+        },
+        onKeyPress: (e: React.KeyboardEvent<HTMLDivElement>) => {
+            /**
+             * Handle Space/Enter at focus
+             */
+            if (!disabled && [13, 32].includes(e.charCode)) {
+                setActive()
+                ctx.onChange?.(props.value)
+                e.preventDefault()
+            }
+            events.all.onKeyPress?.(e)
+        },
+        ref: containerRef,
+        css: cs.container,
+    }
+
+
+    if(as === "a"){
+        itemProps.href = href
+    }
+
+    return createElement(
+        `${as}`,
+        itemProps,
+        createElement("span", {"data-flow-indent": ""}),
+        leftChild && createElement("span", {"data-flow": "left"}, leftChild),
+        createElement('span', {"data-flow": "middle"}, props.children || props.title),
+        rightChild && createElement('span', {"data-flow": "right"}, rightChild)
     )
+
 }
 
 export default forwardRef(MenuItem)
