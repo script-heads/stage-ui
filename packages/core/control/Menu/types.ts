@@ -70,7 +70,7 @@ declare namespace MenuTypes {
          */
         children?: React.ReactNode
 
-        itemContainer: keyof HTMLElementTagNameMap
+        itemContainer?: keyof HTMLElementTagNameMap
     }
     interface StyleState {
         decoration: Props['decoration']
