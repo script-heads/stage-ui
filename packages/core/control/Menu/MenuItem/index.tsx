@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, ForwardRefRenderFunction, createElement } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, createElement, Fragment } from 'react'
 import { useValue } from '..'
 import styles from './styles'
 import Types from './types'
@@ -105,13 +105,17 @@ const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
         itemProps.href = href
     }
 
-    return createElement(
+    return jsx(
         `${as}`,
         itemProps,
-        createElement("span", {"data-flow-indent": ""}),
-        leftChild && createElement("span", {"data-flow": "left"}, leftChild),
-        createElement('span', {"data-flow": "middle"}, props.children || props.title),
-        rightChild && createElement('span', {"data-flow": "right"}, rightChild)
+        (
+           <Fragment>
+                <span data-flow-indent="" />
+                {leftChild && <span data-flow="left">{leftChild}</span>}
+                 <span data-flow="middle">{props.children || props.title}</span>
+                {rightChild && <span data-flow="right">{rightChild}</span>}
+           </Fragment>
+        )
     )
 
 }

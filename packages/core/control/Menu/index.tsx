@@ -73,6 +73,15 @@ const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref)
         }
     }, [props.value])
 
+    useLayoutEffect(() => {
+        if (props.itemContainer !== void 0) {
+            setCtx({
+                ...ctx,
+                itemContainer: props.itemContainer
+            })
+        }
+    }, [props.itemContainer])
+
     const { cs, attributes, events } = useComponent('Menu', { 
         props, 
         styles, 
