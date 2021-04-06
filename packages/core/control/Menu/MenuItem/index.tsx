@@ -13,7 +13,8 @@ const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
         rightChild,
         leftChild,
         disabled,
-        as = ctx.itemAs || 'div',
+        itemAs = ctx.itemAs || 'div',
+        // @ts-expect-error
         href
     } = props
 
@@ -101,12 +102,12 @@ const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
     }
 
 
-    if(as === "a"){
+    if(itemAs === "a"){
         itemProps.href = href
     }
 
     return jsx(
-        `${as}`,
+        `${itemAs}`,
         itemProps,
         (
            <Fragment>
