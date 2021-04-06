@@ -13,8 +13,7 @@ const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
         rightChild,
         leftChild,
         disabled,
-        itemAs = ctx.itemAs || 'div',
-        // @ts-expect-error
+        as = ctx.itemAs || 'a',
         href
     } = props
 
@@ -79,6 +78,7 @@ const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
         ...attributes,
         ...events.all,
         onChange: undefined, 
+        href: as === 'a' ? href : undefined,
         onClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
             if (!disabled) {
                 setActive()
@@ -101,13 +101,8 @@ const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
         css: cs.container,
     }
 
-
-    if(itemAs === "a"){
-        itemProps.href = href
-    }
-
     return jsx(
-        `${itemAs}`,
+        `${as}`,
         itemProps,
         (
            <Fragment>

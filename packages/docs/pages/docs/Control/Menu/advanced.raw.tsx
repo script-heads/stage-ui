@@ -13,6 +13,8 @@ export default () => {
                     value="Video"
                     title="Video"
                     leftChild={<Video />}
+                    itemAs="a"
+                    href="/test.html"
                 />
                 <Menu.Item
                     value="Music"

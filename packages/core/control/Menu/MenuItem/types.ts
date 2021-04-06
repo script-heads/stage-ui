@@ -3,18 +3,7 @@ import MenuTypes from '../types'
 
 declare namespace MenuItemTypes {
 
-    type Props = PropsCommon & (PropsAsAnchor | PropsAsOther)
-    
-    interface PropsAsAnchor {
-        itemAs: 'a'
-        href: string
-    }
-    
-    interface PropsAsOther {
-        itemAs?: keyof Omit<HTMLElementTagNameMap, 'a'>
-    }
-
-    interface PropsCommon extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
         /**
          * Controlled item state
          */
@@ -44,6 +33,14 @@ declare namespace MenuItemTypes {
          * Left child at item view
          */
         rightChild?: React.ReactNode
+        /**
+         * HTML element which is used as a container
+         */
+        as?: keyof HTMLElementTagNameMap
+        /**
+         * Only for Anchors
+         */
+        href?: string
     }
 
     interface Styles {

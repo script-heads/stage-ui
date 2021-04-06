@@ -118,6 +118,7 @@ const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref)
                 value={index}
                 key={index}
                 title={item}
+                as={ctx.itemAs}
             />
         ))
     }
