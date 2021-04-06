@@ -80,6 +80,7 @@ const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
         onChange: undefined, 
         href: as === 'a' ? href : undefined,
         onClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+            e.preventDefault()
             if (!disabled) {
                 setActive()
                 ctx.onChange?.(props.value)
