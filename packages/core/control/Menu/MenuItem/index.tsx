@@ -13,7 +13,7 @@ const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
         rightChild,
         leftChild,
         disabled,
-        as = ctx.itemContainer || 'div',
+        as = ctx.itemAs || 'div',
         href
     } = props
 

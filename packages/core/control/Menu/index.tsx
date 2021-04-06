@@ -52,7 +52,7 @@ const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref)
         controlled: props.value !== void 0,
         current: props.value,
         onChange: props.onChange,
-        itemContainer: props.itemContainer
+        itemAs: props.itemAs
     })
     
     useLayoutEffect(() => {
@@ -74,13 +74,13 @@ const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref)
     }, [props.value])
 
     useLayoutEffect(() => {
-        if (props.itemContainer !== void 0) {
+        if (props.itemAs !== void 0) {
             setCtx({
                 ...ctx,
-                itemContainer: props.itemContainer
+                itemAs: props.itemAs
             })
         }
-    }, [props.itemContainer])
+    }, [props.itemAs])
 
     const { cs, attributes, events } = useComponent('Menu', { 
         props, 

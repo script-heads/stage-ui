@@ -13,10 +13,21 @@ declare namespace MenuTypes {
         current?: MenuValue
         controlled?: boolean
         onChange?: (value?: MenuValue) => void
-        itemContainer?: keyof HTMLElementTagNameMap
+        itemAs?: keyof HTMLElementTagNameMap
+    }
+    
+    type Props = PropsCommon & (PropsAsAnchor | PropsAsOther)
+    
+    interface PropsAsAnchor {
+        itemAs: 'a'
+        href: string
+    }
+    
+    interface PropsAsOther {
+        itemAs?: keyof Omit<HTMLElementTagNameMap, 'a'>
     }
 
-    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+    interface PropsCommon extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
         /**
          * Value selected by default
          */
@@ -69,8 +80,6 @@ declare namespace MenuTypes {
          * Menu Items
          */
         children?: React.ReactNode
-
-        itemContainer?: keyof HTMLElementTagNameMap
     }
     interface StyleState {
         decoration: Props['decoration']
