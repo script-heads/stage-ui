@@ -66,7 +66,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 stroke: theme.color.primary.rgb().string(),
                 strokeWidth: "2px",
                 strokeLinejoin: "round",
-                boxShadow: theme.assets.shadow.default,
+                boxShadow: theme.assets.shadow.m,
             },
             variant({
                 size: {

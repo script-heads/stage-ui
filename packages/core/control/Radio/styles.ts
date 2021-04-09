@@ -65,7 +65,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 borderStyle: 'solid',
                 borderColor: theme.color.surface.rgb().string(),
                 backgroundColor: theme.color.primary.rgb().string(),
-                boxShadow: theme.assets.shadow.default,
+                boxShadow: theme.assets.shadow.m,
             },
             variant({
                 checked: [{

@@ -38,7 +38,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
             borderColor: theme.assets.border.color,
             borderStyle: theme.assets.border.style,
             borderWidth: theme.assets.border.width,
-            boxShadow: theme.assets.shadow.short,
+            boxShadow: theme.assets.shadow.s,
             border: '2px solid ' + theme.color.primary.rgb().string(),
             zIndex: 3,
             transition: 'transform 0.25s',
