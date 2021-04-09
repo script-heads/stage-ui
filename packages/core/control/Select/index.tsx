@@ -282,7 +282,7 @@ const Select: ForwardRefRenderFunction<(Types.Ref & TextFieldTypes.Ref), Types.P
                 }}
                 onClickOutside={(e, outTarget) => {
                     if (outTarget) {
-                        //@ts-expect-error
+                        //@ts-ignore
                         toggleOpen(e)
                     }
                 }}
