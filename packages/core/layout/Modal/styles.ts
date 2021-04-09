@@ -6,7 +6,6 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
     const { decoration = 'modal', size = 'm' } = props
 
     const isPanel = decoration === 'panel'
-    const isFullscreen = decoration === 'fullscreen'
 
     const spacing = theme.spacing[size] || theme.spacing.m
     const titleSize = theme.assets.typography.header[size] || theme.assets.typography.header.m
