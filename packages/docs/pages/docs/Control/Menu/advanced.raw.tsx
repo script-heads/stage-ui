@@ -13,7 +13,7 @@ export default () => {
                     value="Video"
                     title="Video"
                     leftChild={<Video />}
-                    itemAs="a"
+                    as="a"
                     href="/test.html"
                 />
                 <Menu.Item
