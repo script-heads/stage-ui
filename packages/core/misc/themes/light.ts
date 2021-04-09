@@ -31,7 +31,7 @@ const Light: SystemTypes.SourceTheme = {
             xs: '0.125rem',
             s: '0.25rem',
             m: '0.5rem',
-            l: '0.75',
+            l: '0.75rem',
             xl: '1rem',
         },
         spacing: {
