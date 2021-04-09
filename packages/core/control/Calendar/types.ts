@@ -62,9 +62,16 @@ declare namespace CalendarTypes {
          */
         maxValue?: Moment | Date
         /**
-         * Callback function will with Date object
+         * Callback will fire on user click day
+         * moment date will be current date that
+         * used just did set
          */
         onChange?: (moment: Moment) => void
+        /**
+         * Callback will fire when user change any view at calendary
+         * moment date will be temp date
+         */
+        onViewChange?: (moment: Moment) => void
         /**
          * @default ru
          */
@@ -102,6 +109,7 @@ declare namespace CalendarTypes {
         minValue: Moment
         maxValue: Moment
         onChange: (date: Moment) => void
+        onViewChange?: (date: Moment) => void
         styles: SystemTypes.ComponentStyles<Styles>
         type: GridType
         onYearRender?: (options: YearRenderOptions) => React.ReactNode

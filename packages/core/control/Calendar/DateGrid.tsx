@@ -70,6 +70,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                         clone.add(-monthOffset, 'year')
                     }
                     setTmpDate(clone)
+                    props.onViewChange?.(clone)
                 }}
                 onNext={() => {
                     const clone = tmpDate.clone()
@@ -83,6 +84,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                         clone.add(monthOffset, 'year')
                     }
                     setTmpDate(clone)
+                    props.onViewChange?.(clone)
                 }}
             />
             {props.header}
@@ -158,6 +160,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                             props.onChange(clone)
                                         } else {
                                             setTmpDate(clone)
+                                            props.onViewChange?.(clone)
                                             setGridType('day')
                                         }
                                     }}
@@ -189,6 +192,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                             props.onChange(clone)
                                         } else {
                                             setTmpDate(clone)
+                                            props.onViewChange?.(clone)
                                             setGridType('month')
                                         }
                                     }}
