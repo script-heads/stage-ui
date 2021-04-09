@@ -15,7 +15,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
     return {
         overlay: (variant) => [
             {
-                opacity: 0.2,
+                opacity: 0,
                 zIndex: 200,
                 position: 'fixed',
                 width: '100vw',
