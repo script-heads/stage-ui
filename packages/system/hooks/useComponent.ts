@@ -2,7 +2,7 @@ import useTheme from './useTheme'
 import propsResolers from '../props'
 import createVariant, { Variant } from '../utils/createVariant'
 import isFunction from '../utils/isFunction'
-import { AllEventProps, AttributeProps, CoreProps } from '../props/types'
+import { AllEventProps, AttributeProps } from '../props/types'
 
 export interface Options {
     focus?: 'always' | 'tabOnly' | 'never'
@@ -26,15 +26,19 @@ export interface StyleProps {
     layout: Stage.JSS[]
 }
 
+export type FunctionClassDefinition<ClassSchema> = ((variant: Variant<ClassSchema>, state: ClassSchema) => Stage.JSS)
+
 export type ClassesDefinition<ClassesSchema> = {
     [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends Object
-    ? ((variant: Variant<ClassesSchema[ClassName]>) => Stage.JSS)
+    ? FunctionClassDefinition<ClassesSchema[ClassName]>
     : Stage.JSS
 }
 
+export type FunctionClass<ClassSchema> = (state: ClassSchema) => Stage.JSS
+
 export type Classes<ClassesSchema> = {
     [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends Object
-    ? (state: ClassesSchema[ClassName]) => Stage.JSS
+    ? FunctionClass<ClassesSchema[ClassName]>
     : Stage.JSS
 }
 
@@ -44,7 +48,13 @@ export type CreateClasses<ClassesSchema, Props> = (
     styleProps: StyleProps
 ) => ClassesDefinition<ClassesSchema>
 
-function useComponent<Props extends CoreProps, ClassesSchema>(
+export type ComponentData<Props extends Record<string, any>, ClassesSchema> = {
+    classes: Classes<ClassesSchema>
+    attributes: Pick<Props, keyof AttributeProps>
+    events: Pick<Props, keyof AllEventProps<any>>
+}
+
+function useComponent<Props extends Record<string, any>, ClassesSchema>(
     name: string,
     props: Props,
     createClasses: CreateClasses<ClassesSchema, Props>,
@@ -56,15 +66,11 @@ function useComponent<Props extends CoreProps, ClassesSchema>(
         theme = useTheme(),
     } = options
 
-    const data: {
-        classes: Classes<ClassesSchema>
-        attributes: Pick<Props, keyof AttributeProps>
-        events: Pick<Props, keyof AllEventProps<any>>
-    } = {
+    const data = {
         classes: {},
         attributes: {},
         events: {},
-    }
+    } as ComponentData<Props, ClassesSchema>
 
     const styleProps: StyleProps = {
         all: [],
@@ -84,7 +90,7 @@ function useComponent<Props extends CoreProps, ClassesSchema>(
 
     for (let key in props) {
         if (key[0] === 'o' && key[1] === 'n') {
-            data.events[key] = props[key]
+            data.events[key as keyof AllEventProps<any>] = props[key]
         }
         if (propsResolers.hasOwnProperty(key)) {
             propsResolers[key](props, data, styleProps, theme, focus)
@@ -98,35 +104,35 @@ function useComponent<Props extends CoreProps, ClassesSchema>(
     const themeOverrides = theme.overrides[name]
     const propsOverrides = props['overrides']
 
-    const componentClasses = createClasses(theme, props, styleProps)
+    const componentClasses: ClassesDefinition<ClassesSchema> = createClasses(theme, props, styleProps)
 
-    const themeOverrideClasses = isFunction(themeOverrides)
+    const themeOverrideClasses: ClassesDefinition<ClassesSchema> = isFunction(themeOverrides)
         ? themeOverrides(props, styleProps)
-        : themeOverrides
+        : themeOverrides || {}
 
-    const propsOverrideClasses = isFunction(propsOverrides)
-        ? propsOverrides(theme, props, styleProps)
-        : propsOverrides
+    const propsOverrideClasses: ClassesDefinition<ClassesSchema> = isFunction(propsOverrides)
+        ? propsOverrides(theme, styleProps)
+        : propsOverrides || {}
 
     for (let key in componentClasses) {
         const classLabel = { label: `${label}-${key}` }
 
-        data.classes[key] = isFunction(componentClasses[key])
-            ? (state) => {
+        data.classes[key] = (isFunction(componentClasses[key])
+            ? ((state) => {
                 const variant = createVariant(state)
-                return [    
+                return [
                     classLabel,
-                    componentClasses[key](variant, state),
-                    themeOverrideClasses[key]?.(variant, state),
-                    propsOverrideClasses[key]?.(variant, state),
-                ] as Stage.JSS
-            }
+                    (componentClasses[key] as FunctionClassDefinition<ClassesSchema[typeof key]>)(variant, state),
+                    (themeOverrideClasses[key] as FunctionClassDefinition<ClassesSchema[typeof key]>)?.(variant, state),
+                    (propsOverrideClasses[key] as FunctionClassDefinition<ClassesSchema[typeof key]>)?.(variant, state),
+                ]
+            })
             : [
                 classLabel,
                 componentClasses[key],
                 themeOverrideClasses[key],
                 propsOverrideClasses[key],
-            ] as Stage.JSS
+            ]) as Classes<ClassesSchema>[typeof key]
     }
 
     return data

@@ -1,6 +1,6 @@
 import CSS from 'csstype'
 import React from 'react'
-import { ClassesDefinition } from '../hooks/useComponent'
+import { ClassesDefinition, StyleProps } from '../hooks/useComponent'
 import { BreakpointProp } from './breakpoint'
 import { ColorProp } from './color'
 import { SpaceProp } from './spacing'
@@ -9,10 +9,10 @@ import { SpaceProp } from './spacing'
  * All typical component props
  * @name All
  */
-export interface AllProps<Container, Styles> extends
+export interface AllProps<Container, ClassSchema> extends
     AttributeProps,
     AllEventProps<Container>,
-    CoreProps<Styles>,
+    CoreProps<ClassSchema>,
     ColorProps,
     BorderProps,
     PaddingProps,
@@ -46,13 +46,13 @@ export interface AllEventProps<T> extends
  * Component core props
  * @name Core
  */
-export interface CoreProps<S = {}> {
+export interface CoreProps<ClassSchema> {
     /**
      * Override any component style
      * @display SystemTypes.Styles
      * @link /props#styles
      */
-    overrides?: Partial<ClassesDefinition<S>>
+    overrides?: (theme: Stage.Theme, styleProps: StyleProps) => Partial<ClassesDefinition<ClassSchema>> | Partial<ClassesDefinition<ClassSchema>>
     /**
      * Shortcut for fast styles
      * @display SystemTypes.Styles

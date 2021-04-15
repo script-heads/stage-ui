@@ -2,8 +2,9 @@ import breakpointify from './breakpoint'
 import resolveColor from './color'
 import resolveSpacing from './spacing'
 import isFunction from '../utils/isFunction'
+import { ComponentData, Options, StyleProps } from '../hooks/useComponent'
 
-export type Resolver = (p: any, d: {}, sp: {}, t: Stage.Theme, f: string) => void
+export type Resolver = <ClassesSchema, Props = Record<string, any>>(p: Props, d: ComponentData<Props, ClassesSchema>, sp: StyleProps, t: Stage.Theme, f: Options['focus']) => void
 
 let IS_MOUSE_DOWN = false
 let PAGE_FOCUS = false
