@@ -5,7 +5,7 @@ import React, { forwardRef, ForwardRefRenderFunction, useImperativeHandle, useRe
 import styles from './styles'
 import Types from './types'
 
-const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
+const TextField: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const {
         decoration = 'outline',
@@ -29,13 +29,8 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
         }
     })
 
-    const fieldRef = useRef<HTMLDivElement>(null)
     const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
 
-    useImperativeHandle(ref, () => fieldRef && inputRef && {
-        ...inputRef.current,
-        ...fieldRef.current,
-    })
 
     function onClear() {
         if (inputRef.current) {
@@ -52,7 +47,7 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
     return (
         <Field
             {...props}
-            ref={fieldRef}
+            ref={ref}
             decoration={decoration}
             size={size}
             shape={shape}

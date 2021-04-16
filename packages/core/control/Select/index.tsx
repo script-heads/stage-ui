@@ -6,12 +6,11 @@ import DropTypes from '@stage-ui/core/layout/Drop/types'
 import Field from '@stage-ui/core/misc/hocs/Field'
 import { useComponent } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction, Fragment, useEffect, useImperativeHandle, useRef, useState } from 'react'
-import TextFieldTypes from '../TextField/types'
 import styles from './styles'
 import Types from './types'
 
 
-const Select: ForwardRefRenderFunction<(Types.Ref & TextFieldTypes.Ref), Types.Props> = (props, ref) => {
+const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
 
     const {
         decoration = 'outline',
