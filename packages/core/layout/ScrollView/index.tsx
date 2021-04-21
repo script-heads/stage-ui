@@ -35,7 +35,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
                 stopPropagation: () => null
             })
         },
-        scrollTop: () => {
+        onScrollTop: () => {
             if (isLegacyScrollSupport) {
                 if (memo.container) {
                     memo.container.scrollTo(0, 0)
