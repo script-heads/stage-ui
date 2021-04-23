@@ -63,7 +63,7 @@ declare namespace ScrollViewTypes {
         onScroll?: (event: ScrollViewEvent) => void
     }
 
-    interface Ref extends Partial<HTMLDivElement> {
+    interface Ref {
         /**
          * Forcing update scrollview positions
          */
