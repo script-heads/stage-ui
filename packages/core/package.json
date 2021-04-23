@@ -27,7 +27,6 @@
         "@babel/preset-env": "^7.7.6",
         "@babel/preset-react": "^7.7.4",
         "@babel/preset-typescript": "^7.7.4",
-        "@emotion/babel-preset-css-prop": "^11.0.0",
         "csstype": "^3.0.6",
         "eva-icons": "^1.1.2",
         "tslint": "^6.1.3",
