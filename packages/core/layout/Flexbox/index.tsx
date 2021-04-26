@@ -20,7 +20,8 @@ const Flexbox: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
             ref: ref,
             css: cs.container({
                 decoration: props.decoration
-            })
+            }),
+            className: props.className
         },
         props.children
     )

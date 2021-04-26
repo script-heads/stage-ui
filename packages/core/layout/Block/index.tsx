@@ -18,10 +18,10 @@ const Block: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
             ...attributes,
             ...events.all,
             ref: ref,
-            className: props.className,
             css: cs.container({
                 decoration: props.decoration
             }),
+            className: props.className,
         },
         props.children
     )
