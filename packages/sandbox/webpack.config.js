@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin')
 const CopyWebPack = require('copy-webpack-plugin')
 const ProjectDIR = path.resolve(__dirname) + '/'
 const SourceDIR = ProjectDIR
@@ -89,6 +90,31 @@ plugins.push(new CopyWebPack({
         { from: ProjectDIR + 'public/index.html' },
     ]
 }))
+
+
+/**
+ * Настройки для девелопмент
+ */
+ if (process.env.ENV === 'development') {
+    config['devtool'] = 'source-map'
+    config['devServer'] = {
+        port: 9055,
+        host: '0.0.0.0',
+        disableHostCheck: true,
+        clientLogLevel: 'error',
+        hot: true,
+        historyApiFallback: true,
+        contentBase: [BuildDIR + '/public', __dirname + '/../'],
+        stats: 'errors-warnings'
+    }
+    plugins.push(new webpack.HotModuleReplacementPlugin())
+    plugins.push(new FilterWarningsPlugin({
+        exclude: /source-map-loader|Critical dependency: the request of a dependency is an expression/
+    }))
+} else {
+    config['devtool'] = false
+}
+
 
 /**
  * Настройки для дебага

@@ -68,8 +68,10 @@ const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
         }, 50)
     }
 
+
+
     function close(didClose?: () => void) {
-        document.body.style.overflow = ''
+        document.body.style.overflow = ''        
 
         setVisible(false)
 
