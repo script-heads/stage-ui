@@ -21,9 +21,6 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
             field: (variant) => [
                 params?.isOpen && {
                     borderColor: theme.color.primary.rgb().string(),
-                    borderBottomColor: theme.color.lightest.rgb().string(),
-                    borderBottomLeftRadius: 0,
-                    borderBottomRightRadius: 0,
                 },
                 variant({
                     decoration: {
@@ -51,15 +48,11 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
             {
                 position: 'relative',
                 background: theme.color.surface.rgb().string(),
-                borderColor: theme.color.primary.rgb().string(),
                 borderRadius: theme.radius.s,
-                borderWidth: '1px',
-                borderStyle: 'solid',
+                boxShadow: theme.assets.shadow.l,
                 boxSizing: 'border-box',
                 overflow: 'hidden',
-                borderTopLeftRadius: 0,
-                borderTopRightRadius: 0,
-                borderTopWidth: 0,
+                top: '0.25rem'
             },
             variant({
                 shape: {
@@ -68,13 +61,13 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                     },
                     round: {
                         borderRadius: `calc(${minHeight}/2)`,
-                        borderTopLeftRadius: 0,
-                        borderTopRightRadius: 0,
                     }
                 },
                 decoration: {
                     filled: [
                         {
+                            boxShadow: 'none',
+                            top: 0,
                             borderColor: 'transparent'
                         },
                     ],
@@ -86,6 +79,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                         paddingLeft: 0,
                         paddingRight: 0,
                         borderRadius: 0,
+                        backgroundColor: theme.color.surface.hex(),
                     },
                     none: {
                         borderTopLeftRadius: theme.radius.s,
@@ -102,6 +96,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                 display: 'flex',
                 alignItems: 'center',
                 cursor: 'pointer',
+                userSelect: 'none',
                 ':hover': {
                     color: theme.color.primary.rgb().string(),
                     backgroundColor: theme.color.primary.alpha(0.1).rgb().string()
@@ -112,7 +107,17 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
             }),
             variant({
                 size: theme.assets.field
-            })
+            }),
+            variant({
+                selected: {
+                    color: theme.color.onPrimary.rgb().string(),
+                    backgroundColor: theme.color.primary.rgb().string(),
+                    ':hover': {
+                        color: theme.color.onPrimary.rgb().string(),
+                        backgroundColor: theme.color.primary.rgb().string(),
+                    }
+                }
+            }),
         ],
 
         selected: [{
@@ -219,6 +224,23 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                 },
             },
         ],
+        emptyConteiner: (variant) => [
+            {
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: `calc(${minHeight} / 5)`
+            },
+        ],
+        emptyText: (variant) => [
+            {
+                color: theme.color.light.hex(),
+                userSelect: 'none',
+            },
+            variant({
+                size: theme.assets.typography.text
+            }),
+        ]
     }
 }
 
