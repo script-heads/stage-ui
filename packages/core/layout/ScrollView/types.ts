@@ -70,15 +70,34 @@ declare namespace ScrollViewTypes {
         updateScroll: () => void
         /**
          * Scroll to top
+         * @deprecated use scrollTop()
          */
         onScrollTop: () => void
+        /**
+         * Scroll to top
+         */
+        scrollTo: (x: number, y: number) => void
+        /**
+         * Scroll to top
+         */
+        scrollTop: () => void
         /**
          * Scroll to bottom
          */
         scrollBottom: () => void
+        /**
+         * Scroll to specific item by its data-id attribute
+         * data-id attribute should be unique at document
+         * if item not found function returns false
+         */
+        scrollToElement: (dataId: string) => boolean
     }
 
     interface Styles {
+        /**
+         * Root wrapper
+         */
+        wrapper: void
         /**
          * Root view
          */

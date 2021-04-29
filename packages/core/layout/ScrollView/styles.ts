@@ -7,6 +7,11 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
     let color = colorProp(theme, props.color) || theme.color.onBackground
 
     return {
+        wrapper: [{
+            position: 'relative',
+            height: '100%',
+            width: '100%',
+        }],
         container: [
             {
                 position: 'relative',
@@ -35,6 +40,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
             position: 'relative',
             overflow: 'auto',
             height: '100%',
+            marginBottom: '-999999rem',
             '::-webkit-scrollbar': {
                 display: 'none'
             },

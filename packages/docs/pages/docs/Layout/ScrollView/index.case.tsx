@@ -1,5 +1,6 @@
 import React from 'react'
 import code from './default.raw'
+import scrollTo from './scrollTo.raw'
 import scrollTop from './scrollTop.raw'
 
 export const title = 'ScrollView'
@@ -13,5 +14,9 @@ export const cases = [
     {
         label: 'Scroll top',
         code: scrollTop
+    },
+    {
+        label: 'Scroll to',
+        code: scrollTo
     }
 ]

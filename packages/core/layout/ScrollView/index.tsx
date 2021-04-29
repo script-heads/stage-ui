@@ -26,6 +26,21 @@ interface MemoParams {
 
 const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
 
+    const scrollTo = (x: number, y: number) => {
+        if (isLegacyScrollSupport) {
+            if (memo.container) {
+                memo.container.scrollTo(x, y)
+            }
+        } else {
+            updateScroll({
+                deltaX: x,
+                deltaY: y,
+                preventDefault: () => null,
+                stopPropagation: () => null
+            })
+        }
+    }
+
     useImperativeHandle(ref, () => ({
         updateScroll: () => {
             updateScroll({
@@ -35,6 +50,9 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
                 stopPropagation: () => null
             })
         },
+        /**
+         * @deprecated use scrollTop()
+         */
         onScrollTop: () => {
             if (isLegacyScrollSupport) {
                 if (memo.container) {
@@ -48,20 +66,30 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
                     stopPropagation: () => null
                 })
             }
+            scrollTo(1e+10, 1e+10)
+        },
+        scrollTo,
+        scrollTop: () => {
+            if (isLegacyScrollSupport) {
+                scrollTo(0,0)
+            } else {
+                scrollTo(-1e+10,-1e+10)
+            }
         },
         scrollBottom: () => {
             if (isLegacyScrollSupport) {
-                if (memo.container) {
-                    memo.container.scrollTo(1e+10, 1e+10)
-                }
+                scrollTo(0,0)
             } else {
-                updateScroll({
-                    deltaX: 1e+10,
-                    deltaY: 1e+10,
-                    preventDefault: () => null,
-                    stopPropagation: () => null
-                })
+                scrollTo(-1e+10,-1e+10)
             }
+        },
+        scrollToElement: (itemId: string) => {
+            const item = document.querySelector<HTMLDivElement>(`[data-id=${itemId}]`)
+            if (item) {
+                scrollTo(item.offsetLeft, item.offsetTop)
+                return true
+            }
+            return false
         }
     }))
 
@@ -69,7 +97,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
         props,
         styles,
         styleProps: {
-            container: ['all'],
+            wrapper: ['all'],
             webkit: ['all']
         }
     })
@@ -344,9 +372,8 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
     }, [])
 
     return (
-        <Fragment>
+        <div {...attributes} css={cs.wrapper}>
             <div
-                {...attributes}
                 {...events.all}
                 onScroll={updateScroll}
                 css={isLegacyScrollSupport ? cs.webkit : cs.container}
@@ -401,7 +428,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
                     />
                 </Fragment>
             )}
-        </Fragment>
+        </div>
     )
 }
 
