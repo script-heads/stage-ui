@@ -8652,12 +8652,184 @@ declare module 'layout/Drop/types' {
 	export default DropTypes;
 
 }
+declare module 'control/Select/types' {
+	import FieldTypes from '@stage-ui/core/misc/hocs/Field/types';
+	import DropTypes from 'layout/Drop/types'; namespace SelectTypes {
+	    interface Option {
+	        text: string;
+	        value: any;
+	    }
+	    interface Ref {
+	        isOpen: boolean;
+	        options: Option[];
+	        values: Option[];
+	        toggleOpen: () => void;
+	    }
+	    interface Props extends Omit<FieldTypes.Props<Styles>, 'onChange'> {
+	        /**
+	         * Content to be appear in the form control when the form control is empty
+	         */
+	        placeholder?: string;
+	        /**
+	         * Items contained in Select
+	         */
+	        options: Option[];
+	        /**
+	         * Allow selecting multiple options
+	         */
+	        multiselect?: boolean;
+	        /**
+	         * Allow search values
+	         */
+	        searchable?: boolean;
+	        /**
+	         * Select's drop will not close after select option
+	         */
+	        keepOpen?: boolean;
+	        /**
+	         * Selected options
+	         */
+	        values?: Option[];
+	        /**
+	         * Options selected by default
+	         */
+	        defaultValues?: Option[];
+	        /**
+	         * Max size of scroll area at select's drop
+	         * @default 16rem
+	         */
+	        maxScrollHeight?: string;
+	        /**
+	         * Animation of drop
+	         * @default { type: 'collapse' }
+	         */
+	        animation?: DropTypes.Props['animation'];
+	        /**
+	         * Event is fired when user change value
+	         */
+	        onChange?: (values: Option[], changedValue?: Option) => void;
+	        /**
+	         * Display when empty
+	         */
+	        emptyText?: string;
+	    }
+	    type State = {
+	        selectedOptions: Option[];
+	        open: boolean;
+	        searchValue: string;
+	        empty: boolean;
+	        cursor: number;
+	    };
+	    interface StyleState extends StyleParams {
+	        shape: Props['shape'];
+	        size: Props['size'];
+	        decoration: Props['decoration'];
+	        focus: boolean;
+	    }
+	    interface StyleStateItem extends StyleState {
+	        selected: boolean;
+	    }
+	    interface StyleParams {
+	        isOpen: boolean;
+	    }
+	    interface Styles extends FieldTypes.Styles<{
+	        container: StyleState;
+	    }> {
+	        /**
+	         * Container for selected items
+	         */
+	        selected: void;
+	        /**
+	         * Select's input
+	         */
+	        input: {
+	            searchMode: boolean;
+	            multiselect: boolean;
+	        };
+	        /**
+	         * Container of selected option in multiselect
+	         */
+	        tag: StyleState;
+	        /**
+	         * Close button for selected option in multiselect
+	         */
+	        tagRemove: StyleState;
+	        /**
+	         * Select's drop container
+	         */
+	        drop: StyleState;
+	        /**
+	         * Container of every item in drop
+	         */
+	        dropItem: StyleStateItem;
+	        /**
+	         * Container view when list is empty
+	         */
+	        emptyConteiner: StyleState;
+	        /**
+	         * Container text when list is empty
+	         */
+	        emptyText: StyleState;
+	    }
+	}
+	export default SelectTypes;
+
+}
+declare module 'control/Select/styles' {
+	import Types from 'control/Select/types';
+	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StyleParams>;
+	export default styles;
+
+}
+declare module 'control/Select' {
+	import React from 'react';
+	import Types from 'control/Select/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
+	export default _default;
+
+}
+declare module 'control/Switch/types' {
+	import CheckTypes from '@stage-ui/core/misc/hocs/Check/types'; namespace SwitchTypes {
+	    interface Props extends CheckTypes.Props {
+	    }
+	    interface Styles extends CheckTypes.Styles {
+	        /**
+	         * Switch container
+	         */
+	        check: {
+	            checked: Props['checked'];
+	            size: Props['size'];
+	            disabled: Props['disabled'];
+	        };
+	        /**
+	         * Icon of Switch
+	         */
+	        switch: {
+	            checked: Props['checked'];
+	            size: Props['size'];
+	            disabled: Props['disabled'];
+	        };
+	    }
+	}
+	export default SwitchTypes;
+
+}
+declare module 'control/Switch/styles' {
+	import Types from 'control/Switch/types';
+	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	export default styles;
+
+}
+declare module 'control/Switch' {
+	import Types from 'control/Switch/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
 declare module 'control/TextField/types' {
 	import { ChangeEventHandler } from 'react';
 	import FieldTypes from '@stage-ui/core/misc/hocs/Field/types';
 	import SystemTypes from '@stage-ui/system/types'; namespace TextFieldTypes {
 	    type InputTypes = 'email' | 'hidden' | 'number' | 'password' | 'reset' | 'search' | 'tel' | 'text' | 'url';
-	    type Ref = ((HTMLInputElement | HTMLTextAreaElement) & HTMLDivElement) | null | {};
+	    type Ref = HTMLDivElement;
 	    interface Props extends FieldTypes.Props, InputProps, TextAreaProps {
 	        /**
 	         * Default input value
@@ -8787,163 +8959,6 @@ declare module 'control/TextField/types' {
 	export default TextFieldTypes;
 
 }
-declare module 'control/Select/types' {
-	import FieldTypes from '@stage-ui/core/misc/hocs/Field/types';
-	import DropTypes from 'layout/Drop/types'; namespace SelectTypes {
-	    interface Option {
-	        text: string;
-	        value: any;
-	    }
-	    interface Ref {
-	        isOpen: boolean;
-	        options: Option[];
-	        values: Option[];
-	        toggleOpen: () => void;
-	    }
-	    interface Props extends Omit<FieldTypes.Props<Styles>, 'onChange'> {
-	        /**
-	         * Content to be appear in the form control when the form control is empty
-	         */
-	        placeholder?: string;
-	        /**
-	         * Items contained in Select
-	         */
-	        options: Option[];
-	        /**
-	         * Allow selecting multiple options
-	         */
-	        multiselect?: boolean;
-	        /**
-	         * Allow search values
-	         */
-	        searchable?: boolean;
-	        /**
-	         * Select's drop will not close after select option
-	         */
-	        keepOpen?: boolean;
-	        /**
-	         * Selected options
-	         */
-	        values?: Option[];
-	        /**
-	         * Options selected by default
-	         */
-	        defaultValues?: Option[];
-	        /**
-	         * Max size of scroll area at select's drop
-	         * @default 16rem
-	         */
-	        maxScrollHeight?: string;
-	        /**
-	         * Animation of drop
-	         * @default { type: 'collapse' }
-	         */
-	        animation?: DropTypes.Props['animation'];
-	        /**
-	         * Event is fired when user change value
-	         */
-	        onChange?: (values: Option[], changedValue?: Option) => void;
-	    }
-	    type State = {
-	        selectedOptions: Option[];
-	        open: boolean;
-	        searchValue: string;
-	        empty: boolean;
-	        cursor: number;
-	    };
-	    interface StyleState extends StyleParams {
-	        shape: Props['shape'];
-	        size: Props['size'];
-	        decoration: Props['decoration'];
-	        focus: boolean;
-	    }
-	    interface StyleParams {
-	        isOpen: boolean;
-	    }
-	    interface Styles extends FieldTypes.Styles<{
-	        container: StyleState;
-	    }> {
-	        /**
-	         * Container for selected items
-	         */
-	        selected: void;
-	        /**
-	         * Select's input
-	         */
-	        input: {
-	            searchMode: boolean;
-	            multiselect: boolean;
-	        };
-	        /**
-	         * Container of selected option in multiselect
-	         */
-	        tag: StyleState;
-	        /**
-	         * Close button for selected option in multiselect
-	         */
-	        tagRemove: StyleState;
-	        /**
-	         * Select's drop container
-	         */
-	        drop: StyleState;
-	        /**
-	         * Container of every item in drop
-	         */
-	        dropItem: StyleState;
-	    }
-	}
-	export default SelectTypes;
-
-}
-declare module 'control/Select/styles' {
-	import Types from 'control/Select/types';
-	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StyleParams>;
-	export default styles;
-
-}
-declare module 'control/Select' {
-	import React from 'react';
-	import Types from 'control/Select/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref | (Types.Ref & HTMLInputElement & HTMLDivElement) | (Types.Ref & HTMLTextAreaElement & HTMLDivElement)>>;
-	export default _default;
-
-}
-declare module 'control/Switch/types' {
-	import CheckTypes from '@stage-ui/core/misc/hocs/Check/types'; namespace SwitchTypes {
-	    interface Props extends CheckTypes.Props {
-	    }
-	    interface Styles extends CheckTypes.Styles {
-	        /**
-	         * Switch container
-	         */
-	        check: {
-	            checked: Props['checked'];
-	            size: Props['size'];
-	            disabled: Props['disabled'];
-	        };
-	        /**
-	         * Icon of Switch
-	         */
-	        switch: {
-	            checked: Props['checked'];
-	            size: Props['size'];
-	            disabled: Props['disabled'];
-	        };
-	    }
-	}
-	export default SwitchTypes;
-
-}
-declare module 'control/Switch/styles' {
-	import Types from 'control/Switch/types';
-	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
-	export default styles;
-
-}
-declare module 'control/Switch' {
-	import Types from 'control/Switch/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
-	export default _default;
-
-}
 declare module 'control/TextField/styles' {
 	import Types from 'control/TextField/types';
 	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
@@ -8952,7 +8967,7 @@ declare module 'control/TextField/styles' {
 }
 declare module 'control/TextField' {
 	import React from 'react';
-	import Types from 'control/TextField/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
+	import Types from 'control/TextField/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
 	export default _default;
 
 }
@@ -10121,7 +10136,7 @@ declare module 'layout/ScrollView/types' {
 	        /**
 	         * Scroll to top
 	         */
-	        scrollTop: () => void;
+	        onScrollTop: () => void;
 	        /**
 	         * Scroll to bottom
 	         */
