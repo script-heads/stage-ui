@@ -27,7 +27,6 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
              * causing issue with
              * crop content
              */
-            // width: 'fit-content',
             height: 'fit-content',
             minWidth: '100%',
             minHeight: '100%',
@@ -40,7 +39,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
             position: 'relative',
             overflow: 'auto',
             height: '100%',
-            marginBottom: '-999999rem',
+            maxHeight: 'inherit',
             '::-webkit-scrollbar': {
                 display: 'none'
             },

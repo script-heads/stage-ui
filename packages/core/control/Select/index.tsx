@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
-import { Drop, ScrollView, Flexbox, Text } from '@stage-ui/core'
+import { Drop, ScrollView } from '@stage-ui/core'
 import { ArrowIosDownward, Close } from '@stage-ui/core/icons'
 import DropTypes from '@stage-ui/core/layout/Drop/types'
 import Field from '@stage-ui/core/misc/hocs/Field'
@@ -20,7 +20,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
         maxScrollHeight = '16rem',
         keepOpen = false,
         disabled = false,
-        emptyText = 'Empty'
+        emptyText = '-'
     } = props
 
     /**
@@ -291,7 +291,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                     <div css={cs.drop(styleState)}>
                         <ScrollView
                             size="xs"
-                            style={{ maxHeight: maxScrollHeight }}
+                            css={{ maxHeight: maxScrollHeight }}
                             sendFlowScollEvent={false}
                             children={
                                 <Fragment>
