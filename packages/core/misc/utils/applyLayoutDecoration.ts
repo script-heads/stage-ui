@@ -22,35 +22,18 @@ const applyLayoutDecoration = (props: Props, theme: SystemTypes.Theme) => {
         case 'minorShadow': return {
             background: theme.color.surface.rgb().string(),
             borderRadius: theme.radius.m,
-            borderWidth: theme.assets.border.width,
-            borderStyle: theme.assets.border.style,
-            borderColor: theme.assets.border.color,
             boxShadow: theme.assets.shadow.s
         }
         case 'mediumShadow': return {
             background: theme.color.surface.rgb().string(),
             borderRadius: theme.radius.m,
-            borderWidth: theme.assets.border.width,
-            borderStyle: theme.assets.border.style,
-            borderColor: theme.assets.border.color,
             boxShadow: theme.assets.shadow.m
         }
         case 'majorShadow': return {
             background: theme.color.surface.rgb().string(),
             borderRadius: theme.radius.m,
-            borderWidth: theme.assets.border.width,
-            borderStyle: theme.assets.border.style,
-            borderColor: theme.assets.border.color,
             boxShadow: theme.assets.shadow.l
         }
-        case 'neumorphism':
-            const isDark = theme.color.background.isDark()
-            return {
-                background: theme.color.background.rgb().string(),
-                borderRadius: theme.radius.m,
-                boxShadow: `0.5rem 0.5rem 1rem ${theme.color.background.darken(isDark ? 0.8 : 0.4).rgb().string()},
-                            -0.5rem -0.5rem 1rem ${theme.color.background.lighten(isDark ? 0.4 : 0.8).rgb().string()}`
-            }
     }
 
     return void 0
