@@ -41,7 +41,7 @@ const Editor = (props: EditorProps) => {
 
     const { cases } = props
     const [currentCase, setCurrentCase] = useState<number>(0)
-    const [code, setCode] = useState<string>(cases[0].code)
+    const [code, _setCode] = useState<string>(cases[0].code)
     const [grid, setGrid] = useState(
         !(localStorage.getItem('case_grid') === 'false')
     )
@@ -52,6 +52,11 @@ const Editor = (props: EditorProps) => {
     const [fullscreen, setFullscreen] = useState(false)
     const theme = useTheme()
     const [direction, setDirection] = useState(directionVar)
+
+    const setCode = (code: string) => {
+        _setCode('')
+        setTimeout(() => _setCode(code))
+    }
 
     useEffect(() => {
         /**
@@ -188,13 +193,15 @@ const Editor = (props: EditorProps) => {
                 <Split direction={direction}>
                     <Block h="100%" flex={1} overflow="hidden">
                         <ErrorBoundary>
-                            <Preview
-                                theme={theme}
-                                code={code}
-                                grid={grid}
-                                fullscreen={fullscreen}
-                                setFullscreen={setFullscreen}
-                            />
+                            {code && (
+                                <Preview
+                                    theme={theme}
+                                    code={code}
+                                    grid={grid}
+                                    fullscreen={fullscreen}
+                                    setFullscreen={setFullscreen}
+                                />
+                            )}
                         </ErrorBoundary>
                         {fullscreen && (
                             <Collapse
