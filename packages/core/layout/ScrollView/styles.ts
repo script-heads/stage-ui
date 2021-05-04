@@ -83,9 +83,12 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                     }]
                 },
                 position: {
+                    none: {
+                        display: 'none'
+                    },
                     left: [{
                         right: 'auto',
-                        left: 0
+                        left: 0,
                     }]
                 }
             })
@@ -166,6 +169,9 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                     }]
                 },
                 position: {
+                    none: {
+                        display: 'none'
+                    },
                     top: [{
                         bottom: 'auto',
                         top: 0

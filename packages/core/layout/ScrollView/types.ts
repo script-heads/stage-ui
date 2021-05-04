@@ -46,12 +46,12 @@ declare namespace ScrollViewTypes {
          * Position of X bar
          * @default bottom
          */
-        xBarPosition?: 'top' | 'bottom'
+        xBarPosition?: 'top' | 'bottom' | 'none'
         /**
          * Position of Y bar
          * @default right
          */
-        yBarPosition?: 'left' | 'right'
+        yBarPosition?: 'left' | 'right' | 'none'
         /**
          * If false
          * onflowscroll will not dispatch
