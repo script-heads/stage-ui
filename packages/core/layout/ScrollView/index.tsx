@@ -79,14 +79,10 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
             }
         },
         scrollBottom: () => {
-            if (isLegacyScrollSupport) {
-                scrollTo(0,0)
-            } else {
-                scrollTo(-1e+10,-1e+10)
-            }
+            scrollTo(1e+10,1e+10)
         },
         scrollToElement: (itemId: string) => {
-            const item = document.querySelector<HTMLDivElement>(`[data-id=${itemId}]`)
+            const item = document.querySelector<HTMLDivElement>(`[data-id="${itemId}"]`)
             if (item) {
                 scrollTo(item.offsetLeft, item.offsetTop)
                 return true
