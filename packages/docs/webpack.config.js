@@ -4,6 +4,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 const FilterWarningsPlugin = require('webpack-filter-warnings-plugin')
 const CopyWebPack = require('copy-webpack-plugin')
+const { ESBuildMinifyPlugin } = require('esbuild-loader')
 const ProjectDIR = path.resolve(__dirname) + '/'
 const SourceDIR = ProjectDIR
 const BuildDIR = ProjectDIR + '../../build/docs/'
@@ -33,38 +34,39 @@ const config = {
         rules: [
             {
                 test: /\.raw?$/,
-                use: 'raw-loader',
+                use: {
+                    loader: 'esbuild-loader',
+                    options: {
+                        loader: 'text',
+                    }
+                }
             },
             {
                 test: /\.tsx?$/,
                 oneOf: [
                     {
                         test: /\.raw\.tsx?$/,
-                        use: 'raw-loader',
-                    },
-                    {
-                        test: /\.tsx?$/,
                         use: {
-                            loader: 'babel-loader',
+                            loader: 'esbuild-loader',
                             options: {
-                                presets: [
-                                    '@babel/preset-env',
-                                    '@babel/preset-typescript',
-                                    '@babel/preset-react',
-                                    '@emotion/babel-preset-css-prop'
-                                ],
-                                plugins: [
-                                    '@babel/plugin-proposal-class-properties',
-                                    '@babel/plugin-proposal-object-rest-spread',
-                                    '@babel/plugin-transform-runtime',
-                                    ['@babel/plugin-transform-typescript', { allowNamespaces: true }],
-                                    ['@babel/plugin-proposal-optional-chaining', {
-                                        loose: true
-                                    }],
-                                ]
+                                loader: 'text',
                             }
                         }
-                    }
+                    },
+                    {
+                        test: /\.(ts|tsx)$/,
+                        use: {
+                            loader: 'esbuild-loader',
+                            options: {
+                                loader: 'tsx',
+                                jsxFactory: 'jsx',
+                                target: 'es2015',
+                            }
+                        },
+                        exclude: (modulePath) =>
+                            /node_modules/.test(modulePath) &&
+                            !/node_modules[\\/](ismart-(templates|api))[\\/].+/.test(modulePath),
+                    },
                 ]
             },
             {
@@ -74,7 +76,10 @@ const config = {
             {
                 test: /\.(ttf|eot|svg|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 use: [{
-                    loader: 'file-loader'
+                    loader: 'esbuild-loader',
+                    options: {
+                        loader: 'dataurl',
+                    }
                 }]
             }
         ]
@@ -135,7 +140,15 @@ if (!config['optimization']) {
     config['optimization'] = {}
 }
 
-config['optimization'].moduleIds = 'named'
+if (MODE === 'production') {
+    config['optimization'] = {
+        minimizer: [
+            new ESBuildMinifyPlugin({
+                target: 'es2015',
+            })
+        ],
+    }
+}
 
 /**
  * Настройки для аналитики

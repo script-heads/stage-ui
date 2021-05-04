@@ -2580,6 +2580,23 @@ es-module-lexer@^0.4.0:
   resolved "https://registry.yarnpkg.com/es-module-lexer/-/es-module-lexer-0.4.1.tgz#dda8c6a14d8f340a24e34331e0fab0cb50438e0e"
   integrity sha512-ooYciCUtfw6/d2w56UVeqHPcoCFAiJdz5XOkYpv/Txl1HMUozpXjz/2RIQgqwKdXNDPSF1W7mJCFse3G+HDyAA==
 
+esbuild-loader@^2.12.0:
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/esbuild-loader/-/esbuild-loader-2.12.0.tgz#ebdfd0e1131ba0d2166d3cb6f0592cabbb02a602"
+  integrity sha512-wQJ8tryOYC5CsG62scwX92HIlY0kgH+28xPz+3pxGZlexkQJYZF0kN97iVR6pyzGzfGhTPD7pabdqVnYF7HMVw==
+  dependencies:
+    esbuild "^0.10.2"
+    joycon "^3.0.1"
+    json5 "^2.2.0"
+    loader-utils "^2.0.0"
+    type-fest "^1.0.1"
+    webpack-sources "^2.2.0"
+
+esbuild@^0.10.2:
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.10.2.tgz#caa65a8f3096d547d89159918039df6c5c6c90be"
+  integrity sha512-/5vsZD7wTJJHC3yNXLUjXNvUDwqwNoIMvFvLd9tcDQ9el5l13pspYm3yufavjIeYvNtAbo+6N/6uoWx9dGA6ug==
+
 escalade@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/escalade/-/escalade-3.1.1.tgz#d8cfdc7000965c5a0174b4a82eaa5c0552742e40"
@@ -3735,6 +3752,11 @@ jest-worker@^26.6.2:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
+joycon@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/joycon/-/joycon-3.0.1.tgz#9074c9b08ccf37a6726ff74a18485f85efcaddaf"
+  integrity sha512-SJcJNBg32dGgxhPtM0wQqxqV0ax9k/9TaUskGDSJkSFSQOEWWvQ3zzWdGQRIUry2j1zA5+ReH13t0Mf3StuVZA==
+
 jpeg-js@0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/jpeg-js/-/jpeg-js-0.2.0.tgz#53e448ec9d263e683266467e9442d2c5a2ef5482"
@@ -3795,7 +3817,7 @@ json5@^1.0.1:
   dependencies:
     minimist "^1.2.0"
 
-json5@^2.1.2:
+json5@^2.1.2, json5@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.0.tgz#2dfefe720c6ba525d9ebd909950f0515316c89a3"
   integrity sha512-f+8cldu7X/y7RAJurMEJmdoKXGB/X550w2Nr3tTbezL6RwEE/iMcm+tZnXeoZtKuOq6ft8+CqzEkrIgx1fPoQA==
@@ -5787,6 +5809,11 @@ typanion@^3.3.1:
   resolved "https://registry.yarnpkg.com/typanion/-/typanion-3.3.1.tgz#d1ab4930d7b0d165d4356405891693b5648e3bf1"
   integrity sha512-VogBiMj3ZQuWaHkbhXwSgd9jXE4s7EMaaV7VSEiKTNYnKJs/bPjvcOGbD7rTM9aPqTABvgLVEZ+iFP6ab12HtQ==
 
+type-fest@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-1.0.2.tgz#3f9c39982859f385c77c38b7e5f1432b8a3661c6"
+  integrity sha512-a720oz3Kjbp3ll0zkeN9qjRhO7I34MKMhPGQiQJAmaZQZQ1lo+NWThK322f7sXV+kTg9B1Ybt16KgBXWgteT8w==
+
 type-is@~1.6.17, type-is@~1.6.18:
   version "1.6.18"
   resolved "https://registry.yarnpkg.com/type-is/-/type-is-1.6.18.tgz#4e552cd05df09467dcbc4ef739de89f2cf37c131"
@@ -6092,7 +6119,7 @@ webpack-merge@^5.7.3:
     clone-deep "^4.0.1"
     wildcard "^2.0.0"
 
-webpack-sources@^2.1.1:
+webpack-sources@^2.1.1, webpack-sources@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-2.2.0.tgz#058926f39e3d443193b6c31547229806ffd02bac"
   integrity sha512-bQsA24JLwcnWGArOKUxYKhX3Mz/nK1Xf6hxullKERyktjNMC4x8koOeaDNTA2fEJ09BdWLbM/iTW0ithREUP0w==
