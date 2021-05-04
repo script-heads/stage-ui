@@ -1,12 +1,12 @@
 import code from './default.raw'
-import shadowSurface from './shadowSurface.raw'
-import neumorphismSurface from './neumorphismSurface.raw'
+import shadow from './shadow.raw'
+import skeleton from './skeleton.raw'
 
 export const title = 'Block'
 export const subtitle = 'minimal layout component. renders as <div/>'
 export const ns = 'BlockTypes'
 export const cases = [
     { label: 'Basic', code },
-    { label: 'Shadows', code: shadowSurface },
-    { label: 'Neumorphism', code: neumorphismSurface },
+    { label: 'Shadows', code: shadow },
+    { label: 'Skeleton', code: skeleton },
 ]

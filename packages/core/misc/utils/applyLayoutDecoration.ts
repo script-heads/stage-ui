@@ -1,11 +1,23 @@
 import SystemTypes from '@stage-ui/system/types'
+import { keyframes } from '@emotion/react'
 
+const skeleton = keyframes`
+  0% {
+    opacity: .6;
+  }
+  50%{
+    opacity: .3;
+  }
+  100% {
+    opacity: .6;
+  }
+`
 export type LayoutDecoration =
     'surface'
     | 'minorShadow'
     | 'mediumShadow'
     | 'majorShadow'
-    | 'neumorphism'
+    | 'skeleton'
 
 type Props = SystemTypes.AllProps<HTMLDivElement, {}> & { decoration?: LayoutDecoration }
 
@@ -33,6 +45,10 @@ const applyLayoutDecoration = (props: Props, theme: SystemTypes.Theme) => {
             background: theme.color.surface.rgb().string(),
             borderRadius: theme.radius.m,
             boxShadow: theme.assets.shadow.l
+        }
+        case 'skeleton': return {
+            background: theme.color.lightest.hex(),
+            animation: `${skeleton} 2s ease-in-out infinite`
         }
     }
 

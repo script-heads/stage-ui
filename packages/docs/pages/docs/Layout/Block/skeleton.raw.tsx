@@ -5,9 +5,9 @@ export default () => {
     return (
         <React.Fragment>
             <Block
-                p="1rem"
-                decoration="neumorphism"
-                children="Neumorphism style surface"
+                h="4rem"
+                borderRadius="l"
+                decoration="skeleton"
             />
         </React.Fragment>
     )
