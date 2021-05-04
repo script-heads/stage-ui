@@ -3,13 +3,13 @@ import { keyframes } from '@emotion/react'
 
 const skeleton = keyframes`
   0% {
-    opacity: .6;
+    opacity: .8;
   }
   50%{
-    opacity: .3;
+    opacity: .4;
   }
   100% {
-    opacity: .6;
+    opacity: .8;
   }
 `
 export type LayoutDecoration =
