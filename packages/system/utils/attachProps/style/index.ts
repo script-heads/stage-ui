@@ -1,6 +1,7 @@
 import SystemTypes, { EmotionStyles } from '@stage-ui/system/types'
 import resolveEvent from './resolvers/event'
 import resolveColor from './resolvers/color'
+import resolveBorderRadius from './resolvers/borderRadius'
 import resolvePaddingMargin from './resolvers/paddingMargin'
 import SystemPropsTypes from '../types'
 import mergeObjects from '../../mergeObjects'
@@ -17,7 +18,7 @@ const resolvers: SystemPropsTypes.StyleResolverObject = {
     borderWidth: ['border', 'borderWidth'],
     borderStyle: ['border', 'borderStyle'],
     borderColor: ['border', 'borderColor', resolveColor],
-    borderRadius: ['border', 'borderRadius'],
+    borderRadius: ['border', 'borderRadius', resolveBorderRadius],
 
     //Padding
     p: ['padding', 'padding', resolvePaddingMargin],
