@@ -60,7 +60,12 @@ declare namespace ScrollViewTypes {
         /**
          * Calls when ever user scrolls
          */
-        onScroll?: (event: ScrollViewEvent) => void
+         onScroll?: (event: ScrollViewEvent) => void
+         /**
+         * Calls when elements with data-id attribut got visible
+         * and stays at the top of visible area of ScrollView
+         */
+        watchElement?: <T extends HTMLDivElement>(dataId: string, element: T) => void
     }
 
     interface Ref {

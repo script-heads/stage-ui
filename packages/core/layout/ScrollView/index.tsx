@@ -10,6 +10,7 @@ const isLegacyScrollSupport = isWebKit
 const isTouchScreenSupport = Boolean('ontouchstart' in window)
 
 interface MemoParams {
+    id: string
     mounted: boolean
     y: boolean
     x: boolean
@@ -22,6 +23,7 @@ interface MemoParams {
     content: null | HTMLDivElement
     timeout?: any
     mode: Types.Props['mode']
+    watchElementId?: string
 }
 
 const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
@@ -113,6 +115,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
     const [active, setActive] = useState(mode === 'always')
 
     const memo: MemoParams = useMemo(() => ({
+        id: (~~(Math.random() * 1e8)).toString(16),
         mounted: false,
         y: false,
         x: false,
@@ -123,7 +126,8 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
         xThumb: null,
         container: null,
         content: null,
-        mode: mode || 'scroll'
+        mode: mode || 'scroll',
+        watchElementId: '',
     }), [])
 
     const updateThumb = (e: Types.ScrollParams, axes: 'x' | 'y') => {
@@ -261,6 +265,26 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
                 })
             )
         }
+        /**
+         * find elements with data-id
+         */
+        if (props.watchElement) {
+            const elements: HTMLDivElement[] = []
+            document.querySelectorAll(`[data-scroll-id="${memo.id}"] [data-id]`).forEach((queryElement) => {
+                elements.push(queryElement as HTMLDivElement)
+            })
+            for (const el of elements.reverse()) {
+                const scrollTop = memo.container.scrollTop || memo.content.offsetTop
+                if (scrollTop - (el.offsetTop - el.offsetHeight) > 0) {
+                    const id = el.attributes["data-id"].value
+                    if (memo.watchElementId !== id) {
+                        memo.watchElementId = id
+                        props.watchElement(id, el)
+                    }
+                    break
+                }
+            }
+        }
     }, [])
 
     const yMouseDown = useMemo(() => () => {
@@ -372,7 +396,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
     }, [])
 
     return (
-        <div {...attributes} css={cs.wrapper}>
+        <div {...attributes} css={cs.wrapper} data-scroll-id={memo.id}>
             <div
                 {...events.all}
                 onScroll={updateScroll}

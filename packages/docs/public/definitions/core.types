@@ -9104,13 +9104,6 @@ declare module 'misc/utils/applyLayoutDecoration' {
 	} | {
 	    background: string;
 	    borderRadius: string;
-	    borderWidth: string;
-	    borderStyle: string;
-	    borderColor: string;
-	    boxShadow: string;
-	} | {
-	    background: string;
-	    borderRadius: string;
 	    boxShadow: string;
 	    borderWidth?: undefined;
 	    borderStyle?: undefined;
@@ -10127,6 +10120,11 @@ declare module 'layout/ScrollView/types' {
 	         * Calls when ever user scrolls
 	         */
 	        onScroll?: (event: ScrollViewEvent) => void;
+	        /**
+	        * Calls when elements with data-id attribut got visible
+	        * and stays at the top of visible area of ScrollView
+	        */
+	        watchElement?: <T extends HTMLDivElement>(dataId: string, element: T) => void;
 	    }
 	    interface Ref {
 	        /**

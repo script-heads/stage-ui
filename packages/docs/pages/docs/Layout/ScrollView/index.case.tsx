@@ -1,7 +1,8 @@
 import React from 'react'
 import code from './default.raw'
-import scrollTo from './scrollTo.raw'
+import scrollToElement from './scrollToElement.raw'
 import scrollTop from './scrollTop.raw'
+import watchElement from './watchElement.raw'
 
 export const title = 'ScrollView'
 export const subtitle = 'all scrollable contens should be wrapper in ScrollView'
@@ -16,7 +17,11 @@ export const cases = [
         code: scrollTop
     },
     {
-        label: 'Scroll to',
-        code: scrollTo
+        label: 'Scroll to element',
+        code: scrollToElement
+    },
+    {
+        label: 'Watch element',
+        code: watchElement
     }
 ]
