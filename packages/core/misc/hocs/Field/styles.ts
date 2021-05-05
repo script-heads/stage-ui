@@ -22,7 +22,7 @@ const fieldStyles = <T extends Types.Styles>(
                 minWidth: '1rem',
                 flex: 1,
                 flexDirection: 'column',
-                outline: 'none'
+                outline: 'none',
             },
             //FIXME: types
             //@ts-ignore
@@ -38,6 +38,7 @@ const fieldStyles = <T extends Types.Styles>(
                 background: theme.color.surface.rgb().string(),
                 borderColor: theme.color.lightest.rgb().string(),
                 borderRadius: theme.radius.s,
+                boxShadow: theme.assets.innerShadow.xs,
                 borderWidth: '1px',
                 borderStyle: 'solid',
                 outline: 'none',
@@ -85,9 +86,9 @@ const fieldStyles = <T extends Types.Styles>(
                     ]
                 },
                 focus: {
-                    borderColor: props.disabled
-                        ? theme.color.lightest.rgb().string()
-                        : theme.color.primary.rgb().string()
+                    boxShadow: props.disabled 
+                        ? 'none' 
+                        : `0px 1px 2px rgba(0, 0, 0, 0.05), 0px 0px 0px 2px ${theme.color.surface.hex()}, 0px 0px 0px 4px ${theme.color.onSurface.alpha(0.05).rgb().string()}`
                 },
                 disabled: {
                     color: theme.color.light.rgb().string(),
@@ -150,22 +151,22 @@ const fieldStyles = <T extends Types.Styles>(
                 color: theme.color.hard.rgb().string(),
                 display: 'flex',
                 userSelect: 'none',
-                paddingBottom: '0.125rem'
+                paddingBottom: '0.25rem'
             },
-            theme.assets.typography.text.m,
+            theme.assets.typography.text.s,
             variant({
                 size: {
                     xs: [
                         theme.assets.typography.text.xs,
                     ],
                     s: [
-                        theme.assets.typography.text.s,
+                        theme.assets.typography.text.xs,
                     ],
                     l: [
-                        theme.assets.typography.text.l,
+                        theme.assets.typography.text.m,
                     ],
                     xl: [
-                        theme.assets.typography.text.xl,
+                        theme.assets.typography.text.l,
                     ]
                 },
                 labelType: {
@@ -252,8 +253,14 @@ const fieldStyles = <T extends Types.Styles>(
                 cursor: 'pointer',
                 backgroundColor: theme.color.onSurface.alpha(0.05).rgb().string(),
                 borderRadius: '100rem',
+                transition: 'transform 0.25s',
                 ':hover': {
                     color: theme.color.warning.rgb().string(),
+                    transform: 'scale(1.2)'
+                },
+                ':active': {
+                    transform: 'scale(1.1)',
+                    opacity:0.8,
                 }
             },
             //FIXME: types

@@ -53,7 +53,11 @@ const TextField: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props,
             shape={shape}
             focus={focus}
             styles={cs}
-
+            clearable={(
+                props.value !== undefined && !props.value
+                    ? false
+                    : props.clearable
+            )}
             onClear={onClear}
             events={{
                 ...events.all,
