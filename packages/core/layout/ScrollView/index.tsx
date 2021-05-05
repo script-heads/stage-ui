@@ -28,7 +28,7 @@ interface MemoParams {
 
 const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
 
-    const scrollTo = (x: number, y: number) => {
+    const scrollTo = (x: number, y: number, options?: Types.ScrollToOptions) => {
         if (isLegacyScrollSupport) {
             if (memo.container) {
                 memo.container.scrollTo(x, y)
@@ -38,7 +38,8 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
                 deltaX: x,
                 deltaY: y,
                 preventDefault: () => null,
-                stopPropagation: () => null
+                stopPropagation: () => null,
+                ...options,
             })
         }
     }
@@ -56,35 +57,22 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
          * @deprecated use scrollTop()
          */
         onScrollTop: () => {
-            if (isLegacyScrollSupport) {
-                if (memo.container) {
-                    memo.container.scrollTo(0, 0)
-                }
-            } else {
-                updateScroll({
-                    deltaX: -1e+10,
-                    deltaY: -1e+10,
-                    preventDefault: () => null,
-                    stopPropagation: () => null
-                })
-            }
-            scrollTo(1e+10, 1e+10)
+            const xy = isLegacyScrollSupport ? 0 : -1e+10
+            scrollTo(xy, xy)
         },
         scrollTo,
-        scrollTop: () => {
-            if (isLegacyScrollSupport) {
-                scrollTo(0,0)
-            } else {
-                scrollTo(-1e+10,-1e+10)
-            }
+        scrollTop: (options?: Types.ScrollToOptions) => {
+            const xy = isLegacyScrollSupport ? 0 : -1e+10
+            scrollTo(xy, xy, options)
+
         },
-        scrollBottom: () => {
-            scrollTo(1e+10,1e+10)
+        scrollBottom: (options?: Types.ScrollToOptions) => {
+            scrollTo(1e+10, 1e+10, options)
         },
-        scrollToElement: (itemId: string) => {
+        scrollToElement: (itemId: string, options?: Types.ScrollToElementOptions) => {
             const item = document.querySelector<HTMLDivElement>(`[data-id="${itemId}"]`)
             if (item) {
-                scrollTo(item.offsetLeft, item.offsetTop)
+                scrollTo(item.offsetLeft, item.offsetTop + (options?.offsetTop || 0), options)
                 return true
             }
             return false
@@ -264,7 +252,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
         /**
          * find elements with data-id
          */
-        if (props.watchElement) {
+        if (props.watchElement && e.preventWatchElement !== true) {
             const elements: HTMLDivElement[] = []
             document.querySelectorAll(`[data-scroll-id="${memo.id}"] [data-id]`).forEach((queryElement) => {
                 elements.push(queryElement as HTMLDivElement)

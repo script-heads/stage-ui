@@ -2,20 +2,38 @@ import React from 'react'
 import SystemTypes from '@stage-ui/system/types'
 
 declare namespace ScrollViewTypes {
-
+        
     interface ScrollViewEvent {
         scrollTop: number
         scrollLeft: number
         scrollWidth: number
         scrollHeight: number
     }
-    interface ScrollParams {
+
+    interface ScrollToOptions {
+        /**
+         * if true watchElement will not 
+         * call at this scrollUpdate
+         */
+        preventWatchElement?: boolean
+    }
+
+    interface ScrollToElementOptions extends ScrollToOptions {
+        /**
+         * Offset px at top edge of element
+         */
+        offsetTop?: number
+    }
+
+    interface ScrollParams extends ScrollToOptions {
         deltaX: number
         deltaY: number
         preventDefault: () => void
         stopPropagation: () => void
         cursorHandle?: boolean
     }
+
+
     interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onScroll'> {
         /**
          * Any contant of scrollview
@@ -81,21 +99,21 @@ declare namespace ScrollViewTypes {
         /**
          * Scroll to top
          */
-        scrollTo: (x: number, y: number) => void
+        scrollTo: (x: number, y: number, options?: ScrollToOptions) => void
         /**
          * Scroll to top
          */
-        scrollTop: () => void
+        scrollTop: (options?: ScrollToOptions) => void
         /**
          * Scroll to bottom
          */
-        scrollBottom: () => void
+        scrollBottom: (options?: ScrollToOptions) => void
         /**
          * Scroll to specific item by its data-id attribute
          * data-id attribute should be unique at document
          * if item not found function returns false
          */
-        scrollToElement: (dataId: string) => boolean
+        scrollToElement: (dataId: string, options?: ScrollToElementOptions) => boolean
     }
 
     interface Styles {
