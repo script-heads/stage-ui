@@ -1,0 +1,13 @@
+/**
+The MIT License (MIT)
+*/
+
+import { Props, createIcon } from '../Icon'
+import React from 'react'
+
+export default React.forwardRef((props: Props, ref: React.RefObject<HTMLSpanElement>) => (
+    createIcon(props, ref, {
+        filled: <g><g id="Icon/Fill/diagonal-arrow-right-down"><path id="Mask" fill-rule="evenodd" clip-rule="evenodd" d="M17 8.00001C16.447 8.00001 16 8.44801 16 9.00001V14.586L7.70701 6.29301C7.31601 5.90201 6.68401 5.90201 6.29301 6.29301C5.90201 6.68401 5.90201 7.31601 6.29301 7.70701L14.586 16H9.00001C8.44701 16 8.00001 16.448 8.00001 17C8.00001 17.552 8.44701 18 9.00001 18H17C17.553 18 18 17.552 18 17V9.00001C18 8.44801 17.553 8.00001 17 8.00001Z"/><mask id="mask7825" mask-type="alpha" maskUnits="userSpaceOnUse" x="5" y="5" width="13" height="13"><path id="Mask_2" fill-rule="evenodd" clip-rule="evenodd" d="M17 8.00001C16.447 8.00001 16 8.44801 16 9.00001V14.586L7.70701 6.29301C7.31601 5.90201 6.68401 5.90201 6.29301 6.29301C5.90201 6.68401 5.90201 7.31601 6.29301 7.70701L14.586 16H9.00001C8.44701 16 8.00001 16.448 8.00001 17C8.00001 17.552 8.44701 18 9.00001 18H17C17.553 18 18 17.552 18 17V9.00001C18 8.44801 17.553 8.00001 17 8.00001Z"/></mask><g mask="url(#mask7825)"><g id="&#240;&#159;&#142;&#168; Color"><rect id="Base" width="24" height="24"/></g></g></g></g>,
+        outline: <g><g id="Icon/Outline/diagonal-arrow-right-down"><path id="Mask" fill-rule="evenodd" clip-rule="evenodd" d="M17 8.00001C16.447 8.00001 16 8.44801 16 9.00001V14.586L7.70701 6.29301C7.31601 5.90201 6.68401 5.90201 6.29301 6.29301C5.90201 6.68401 5.90201 7.31601 6.29301 7.70701L14.586 16H9.00001C8.44701 16 8.00001 16.448 8.00001 17C8.00001 17.552 8.44701 18 9.00001 18H17C17.553 18 18 17.552 18 17V9.00001C18 8.44801 17.553 8.00001 17 8.00001Z"/><mask id="mask5228" mask-type="alpha" maskUnits="userSpaceOnUse" x="5" y="5" width="13" height="13"><path id="Mask_2" fill-rule="evenodd" clip-rule="evenodd" d="M17 8.00001C16.447 8.00001 16 8.44801 16 9.00001V14.586L7.70701 6.29301C7.31601 5.90201 6.68401 5.90201 6.29301 6.29301C5.90201 6.68401 5.90201 7.31601 6.29301 7.70701L14.586 16H9.00001C8.44701 16 8.00001 16.448 8.00001 17C8.00001 17.552 8.44701 18 9.00001 18H17C17.553 18 18 17.552 18 17V9.00001C18 8.44801 17.553 8.00001 17 8.00001Z"/></mask><g mask="url(#mask5228)"><g id="&#240;&#159;&#142;&#168; Color"><rect id="Base" width="24" height="24"/></g></g></g></g>,
+    })
+))

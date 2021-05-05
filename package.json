@@ -18,6 +18,7 @@
         "gen:evaicons": "cd ./packages/core && yarn icons:generate",
         "pub": "yarn pub:system && yarn pub:core && yarn deploy",
         "pub:core": "cd ./packages/core && yarn pub",
+        "pub:icons": "cd ./packages/icons && yarn pub",
         "pub:lab": "cd ./packages/lab && yarn pub",
         "pub:system": "cd ./packages/system && yarn pub",
         "gitpush": "git commit . -m 'Update version' && git push",

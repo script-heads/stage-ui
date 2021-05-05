@@ -1,7 +1,7 @@
-import { Block, Flexbox, Header, Text } from '@stage-ui/core'
-import * as AllIcons from '@stage-ui/core/icons'
-import { Minus, Plus } from '@stage-ui/core/icons'
-import React, { Fragment, useEffect, useState } from 'react'
+import { Block, Flexbox, Text } from '@stage-ui/core'
+import * as AllIcons from '@stage-ui/icons'
+
+import React, { useEffect, useState } from 'react'
 
 export const title = 'Collection'
 export const subtitle = 'icons improves user experience'
