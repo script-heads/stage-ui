@@ -1,11 +1,11 @@
 {
     "name": "@stage-ui/icons",
     "author": "Research technology",
-    "version": "0.1.6",
+    "version": "0.1.2",
     "license": "MIT",
     "scripts": {
-        "pub": "git pull && yarn build && npm version patch && cd ../../build/icons && npm version patch && yarn publish --access public && cd .. && rm -rf ./icons",
-        "build": "yarn tsc",
+        "pub": "git pull && npm version patch && yarn build && cd ../../build/icons && yarn publish --access public && cd .. && rm -rf ./icons",
+        "build": "tsc && cp package.json README.md ../../build/icons/ && node ../../scripts/buildConfig icons",
         "gen": "node ./scripts/generate"
     },
     "dependencies": {},

@@ -4,7 +4,7 @@
     "version": "0.1.23",
     "license": "MIT",
     "scripts": {
-        "pub": "git pull && yarn build && npm version patch && cd ../../build/lab && npm version patch && yarn publish --access public && cd .. && rm -rf ./lab",
+        "pub": "git pull && npm version patch && yarn build && cd ../../build/lab && yarn publish --access public && cd .. && rm -rf ./lab",
         "build": "yarn build:types && yarn build:js && cp package.json README.md ../../build/lab/ && node ../../scripts/buildConfig lab",
         "build:types": "tsc --emitDeclarationOnly",
         "build:js": "babel ./ --out-dir ../../build/lab --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
