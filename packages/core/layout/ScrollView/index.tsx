@@ -72,7 +72,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
         scrollToElement: (itemId: string, options?: Types.ScrollToElementOptions) => {
             const item = document.querySelector<HTMLDivElement>(`[data-id="${itemId}"]`)
             if (item) {
-                scrollTo(item.offsetLeft, item.offsetTop + (options?.offsetTop || 0), options)
+                scrollTo(item.offsetLeft, item.offsetTop - (options?.offsetTop || 0), options)
                 return true
             }
             return false
