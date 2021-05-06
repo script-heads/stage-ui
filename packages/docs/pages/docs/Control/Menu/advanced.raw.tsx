@@ -1,5 +1,5 @@
 import { Menu } from '@stage-ui/core'
-import { Video, Music, DoneAll, Settings, Person, AlertCircle } from '@stage-ui/core/icons'
+import { Video, Music, AllDone, Settings, Person, AlertCircle } from '@stage-ui/icons'
 import React from 'react'
 
 export default () => {
@@ -24,7 +24,7 @@ export default () => {
                 <Menu.Item
                     value="News"
                     title="News"
-                    leftChild={<DoneAll />}
+                    leftChild={<AllDone />}
                 />
                 <Menu.Submenu
                     defaultOpen

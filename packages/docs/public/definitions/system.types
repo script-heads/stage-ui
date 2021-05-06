@@ -1609,21 +1609,21 @@ declare module 'utils/attachProps/attribute' {
 	    attributes: SystemTypes.AttributeProps;
 	    events: {
 	        all: any;
-	        form: Pick<Props, "onChange" | "onChangeCapture" | "onBeforeInput" | "onBeforeInputCapture" | "onInput" | "onInputCapture" | "onReset" | "onResetCapture" | "onSubmit" | "onSubmitCapture" | "onInvalid" | "onInvalidCapture">;
-	        focus: Pick<Props, "onFocus" | "onFocusCapture" | "onBlur" | "onBlurCapture">;
-	        image: Pick<Props, "onLoad" | "onLoadCapture" | "onError" | "onErrorCapture">;
-	        media: Pick<Props, "onAbort" | "onAbortCapture" | "onCanPlay" | "onCanPlayCapture" | "onCanPlayThrough" | "onCanPlayThroughCapture" | "onDurationChange" | "onDurationChangeCapture" | "onEmptied" | "onEmptiedCapture" | "onEncrypted" | "onEncryptedCapture" | "onEnded" | "onEndedCapture" | "onLoadedData" | "onLoadedDataCapture" | "onLoadedMetadata" | "onLoadedMetadataCapture" | "onLoadStart" | "onLoadStartCapture" | "onPause" | "onPauseCapture" | "onPlay" | "onPlayCapture" | "onPlaying" | "onPlayingCapture" | "onProgress" | "onProgressCapture" | "onRateChange" | "onRateChangeCapture" | "onSeeked" | "onSeekedCapture" | "onSeeking" | "onSeekingCapture" | "onStalled" | "onStalledCapture" | "onSuspend" | "onSuspendCapture" | "onTimeUpdate" | "onTimeUpdateCapture" | "onVolumeChange" | "onVolumeChangeCapture" | "onWaiting" | "onWaitingCapture">;
-	        mouse: Pick<Props, "onAuxClick" | "onAuxClickCapture" | "onClick" | "onClickCapture" | "onContextMenu" | "onContextMenuCapture" | "onDoubleClick" | "onDoubleClickCapture" | "onDrag" | "onDragCapture" | "onDragEnd" | "onDragEndCapture" | "onDragEnter" | "onDragEnterCapture" | "onDragExit" | "onDragExitCapture" | "onDragLeave" | "onDragLeaveCapture" | "onDragOver" | "onDragOverCapture" | "onDragStart" | "onDragStartCapture" | "onDrop" | "onDropCapture" | "onMouseDown" | "onMouseDownCapture" | "onMouseEnter" | "onMouseLeave" | "onMouseMove" | "onMouseMoveCapture" | "onMouseOut" | "onMouseOutCapture" | "onMouseOver" | "onMouseOverCapture" | "onMouseUp" | "onMouseUpCapture">;
-	        touch: Pick<Props, "onTouchCancel" | "onTouchCancelCapture" | "onTouchEnd" | "onTouchEndCapture" | "onTouchMove" | "onTouchMoveCapture" | "onTouchStart" | "onTouchStartCapture">;
-	        wheel: Pick<Props, "onWheel" | "onWheelCapture">;
-	        pointer: Pick<Props, "onPointerDown" | "onPointerDownCapture" | "onPointerMove" | "onPointerMoveCapture" | "onPointerUp" | "onPointerUpCapture" | "onPointerCancel" | "onPointerCancelCapture" | "onPointerEnter" | "onPointerLeave" | "onPointerOver" | "onPointerOverCapture" | "onPointerOut" | "onPointerOutCapture" | "onGotPointerCapture" | "onGotPointerCaptureCapture" | "onLostPointerCapture" | "onLostPointerCaptureCapture">;
-	        keyboard: Pick<Props, "onKeyDown" | "onKeyDownCapture" | "onKeyPress" | "onKeyPressCapture" | "onKeyUp" | "onKeyUpCapture" | "onEnter" | "onEsc">;
-	        selection: Pick<Props, "onSelect" | "onSelectCapture">;
-	        animation: Pick<Props, "onAnimationStart" | "onAnimationStartCapture" | "onAnimationEnd" | "onAnimationEndCapture" | "onAnimationIteration" | "onAnimationIterationCapture">;
-	        clipboard: Pick<Props, "onCopy" | "onCopyCapture" | "onCut" | "onCutCapture" | "onPaste" | "onPasteCapture">;
-	        transition: Pick<Props, "onTransitionEnd" | "onTransitionEndCapture">;
-	        composition: Pick<Props, "onCompositionEnd" | "onCompositionEndCapture" | "onCompositionStart" | "onCompositionStartCapture" | "onCompositionUpdate" | "onCompositionUpdateCapture">;
-	        scroll: Pick<Props, "onScroll" | "onScrollCapture">;
+	        form: Pick<Props, keyof SystemTypes.FormEventProps<unknown>>;
+	        focus: Pick<Props, keyof SystemTypes.FocusEventProps<unknown>>;
+	        image: Pick<Props, keyof SystemTypes.ImageEventProps<unknown>>;
+	        media: Pick<Props, keyof SystemTypes.MediaEventProps<unknown>>;
+	        mouse: Pick<Props, keyof SystemTypes.MouseEventProps<unknown>>;
+	        touch: Pick<Props, keyof SystemTypes.TouchEventProps<unknown>>;
+	        wheel: Pick<Props, keyof SystemTypes.WheelEventProps<unknown>>;
+	        pointer: Pick<Props, keyof SystemTypes.PointerEventProps<unknown>>;
+	        keyboard: Pick<Props, keyof SystemTypes.KeyboardEventProps<unknown>>;
+	        selection: Pick<Props, keyof SystemTypes.SelectionEventProps<unknown>>;
+	        animation: Pick<Props, keyof SystemTypes.AnimationEventProps<unknown>>;
+	        clipboard: Pick<Props, keyof SystemTypes.ClipboardEventProps<unknown>>;
+	        transition: Pick<Props, keyof SystemTypes.TransitionEventProps<unknown>>;
+	        composition: Pick<Props, keyof SystemTypes.CompositionEventProps<unknown>>;
+	        scroll: Pick<Props, keyof SystemTypes.ScrollEventProps<unknown>>;
 	        data: Pick<Props, never>;
 	    };
 	};
@@ -1636,82 +1636,16 @@ declare module 'utils/attachProps/style/resolvers/event' {
 
 }
 declare module 'utils/colorProp' {
-	import Color from 'color';
-	import SystemTypes from 'types'; const _default: (theme: SystemTypes.Theme, prop?: string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | (string & {
-	    T?: string | undefined;
-	}) | ((colors: {
-	    background: Color<[number, number, number, (number | undefined)?]>;
-	    backgroundVariant: Color<[number, number, number, (number | undefined)?]>;
-	    surface: Color<[number, number, number, (number | undefined)?]>;
-	    surfaceVariant: Color<[number, number, number, (number | undefined)?]>;
-	    primary: Color<[number, number, number, (number | undefined)?]>;
-	    secondary: Color<[number, number, number, (number | undefined)?]>;
-	    onBackground: Color<[number, number, number, (number | undefined)?]>;
-	    onSurface: Color<[number, number, number, (number | undefined)?]>;
-	    onPrimary: Color<[number, number, number, (number | undefined)?]>;
-	    onSecondary: Color<[number, number, number, (number | undefined)?]>;
-	    lightest: Color<[number, number, number, (number | undefined)?]>;
-	    light: Color<[number, number, number, (number | undefined)?]>;
-	    hard: Color<[number, number, number, (number | undefined)?]>;
-	    hardest: Color<[number, number, number, (number | undefined)?]>;
-	    error: Color<[number, number, number, (number | undefined)?]>;
-	    warning: Color<[number, number, number, (number | undefined)?]>;
-	    success: Color<[number, number, number, (number | undefined)?]>;
-	    info: Color<[number, number, number, (number | undefined)?]>;
-	    palette: System.Palette<Color<[number, number, number, (number | undefined)?]>>;
-	}) => string | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | Color<string | number | any | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}> | ArrayLike<number> | {
-	    [key: string]: any;
-	}>) | undefined) => any;
+	import SystemTypes from 'types'; const _default: (theme: SystemTypes.Theme, prop?: SystemTypes.ColorProp | undefined) => any;
 	export default _default;
 
 }
 declare module 'utils/attachProps/style/resolvers/color' {
+	import SystemPropsTypes from 'utils/attachProps/types'; const resolver: SystemPropsTypes.StyleResolver;
+	export default resolver;
+
+}
+declare module 'utils/attachProps/style/resolvers/borderRadius' {
 	import SystemPropsTypes from 'utils/attachProps/types'; const resolver: SystemPropsTypes.StyleResolver;
 	export default resolver;
 
@@ -1726,7 +1660,7 @@ declare module 'utils/mergeObjects' {
 
 }
 declare module 'utils/attachProps/style' {
-	import SystemTypes from '@stage-ui/system/types'; const createPropStyles: <Props, StyleProps>(props: Props, theme: SystemTypes.Theme, styleProps: StyleProps) => Record<keyof StyleProps, import("@emotion/serialize").Interpolation<import("@emotion/utils").SerializedStyles>>;
+	import SystemTypes, { EmotionStyles } from '@stage-ui/system/types'; const createPropStyles: <Props, StyleProps>(props: Props, theme: SystemTypes.Theme, styleProps: StyleProps) => Record<keyof StyleProps, EmotionStyles>;
 	export default createPropStyles;
 
 }
@@ -1736,21 +1670,21 @@ declare module 'utils/attachProps' {
 	    attributes: SystemTypes.AttributeProps;
 	    events: {
 	        all: any;
-	        form: Pick<Props, "onChange" | "onChangeCapture" | "onBeforeInput" | "onBeforeInputCapture" | "onInput" | "onInputCapture" | "onReset" | "onResetCapture" | "onSubmit" | "onSubmitCapture" | "onInvalid" | "onInvalidCapture">;
-	        focus: Pick<Props, "onFocus" | "onFocusCapture" | "onBlur" | "onBlurCapture">;
-	        image: Pick<Props, "onLoad" | "onLoadCapture" | "onError" | "onErrorCapture">;
-	        media: Pick<Props, "onAbort" | "onAbortCapture" | "onCanPlay" | "onCanPlayCapture" | "onCanPlayThrough" | "onCanPlayThroughCapture" | "onDurationChange" | "onDurationChangeCapture" | "onEmptied" | "onEmptiedCapture" | "onEncrypted" | "onEncryptedCapture" | "onEnded" | "onEndedCapture" | "onLoadedData" | "onLoadedDataCapture" | "onLoadedMetadata" | "onLoadedMetadataCapture" | "onLoadStart" | "onLoadStartCapture" | "onPause" | "onPauseCapture" | "onPlay" | "onPlayCapture" | "onPlaying" | "onPlayingCapture" | "onProgress" | "onProgressCapture" | "onRateChange" | "onRateChangeCapture" | "onSeeked" | "onSeekedCapture" | "onSeeking" | "onSeekingCapture" | "onStalled" | "onStalledCapture" | "onSuspend" | "onSuspendCapture" | "onTimeUpdate" | "onTimeUpdateCapture" | "onVolumeChange" | "onVolumeChangeCapture" | "onWaiting" | "onWaitingCapture">;
-	        mouse: Pick<Props, "onAuxClick" | "onAuxClickCapture" | "onClick" | "onClickCapture" | "onContextMenu" | "onContextMenuCapture" | "onDoubleClick" | "onDoubleClickCapture" | "onDrag" | "onDragCapture" | "onDragEnd" | "onDragEndCapture" | "onDragEnter" | "onDragEnterCapture" | "onDragExit" | "onDragExitCapture" | "onDragLeave" | "onDragLeaveCapture" | "onDragOver" | "onDragOverCapture" | "onDragStart" | "onDragStartCapture" | "onDrop" | "onDropCapture" | "onMouseDown" | "onMouseDownCapture" | "onMouseEnter" | "onMouseLeave" | "onMouseMove" | "onMouseMoveCapture" | "onMouseOut" | "onMouseOutCapture" | "onMouseOver" | "onMouseOverCapture" | "onMouseUp" | "onMouseUpCapture">;
-	        touch: Pick<Props, "onTouchCancel" | "onTouchCancelCapture" | "onTouchEnd" | "onTouchEndCapture" | "onTouchMove" | "onTouchMoveCapture" | "onTouchStart" | "onTouchStartCapture">;
-	        wheel: Pick<Props, "onWheel" | "onWheelCapture">;
-	        pointer: Pick<Props, "onPointerDown" | "onPointerDownCapture" | "onPointerMove" | "onPointerMoveCapture" | "onPointerUp" | "onPointerUpCapture" | "onPointerCancel" | "onPointerCancelCapture" | "onPointerEnter" | "onPointerLeave" | "onPointerOver" | "onPointerOverCapture" | "onPointerOut" | "onPointerOutCapture" | "onGotPointerCapture" | "onGotPointerCaptureCapture" | "onLostPointerCapture" | "onLostPointerCaptureCapture">;
-	        keyboard: Pick<Props, "onKeyDown" | "onKeyDownCapture" | "onKeyPress" | "onKeyPressCapture" | "onKeyUp" | "onKeyUpCapture" | "onEnter" | "onEsc">;
-	        selection: Pick<Props, "onSelect" | "onSelectCapture">;
-	        animation: Pick<Props, "onAnimationStart" | "onAnimationStartCapture" | "onAnimationEnd" | "onAnimationEndCapture" | "onAnimationIteration" | "onAnimationIterationCapture">;
-	        clipboard: Pick<Props, "onCopy" | "onCopyCapture" | "onCut" | "onCutCapture" | "onPaste" | "onPasteCapture">;
-	        transition: Pick<Props, "onTransitionEnd" | "onTransitionEndCapture">;
-	        composition: Pick<Props, "onCompositionEnd" | "onCompositionEndCapture" | "onCompositionStart" | "onCompositionStartCapture" | "onCompositionUpdate" | "onCompositionUpdateCapture">;
-	        scroll: Pick<Props, "onScroll" | "onScrollCapture">;
+	        form: Pick<Props, keyof SystemTypes.FormEventProps<unknown>>;
+	        focus: Pick<Props, keyof SystemTypes.FocusEventProps<unknown>>;
+	        image: Pick<Props, keyof SystemTypes.ImageEventProps<unknown>>;
+	        media: Pick<Props, keyof SystemTypes.MediaEventProps<unknown>>;
+	        mouse: Pick<Props, keyof SystemTypes.MouseEventProps<unknown>>;
+	        touch: Pick<Props, keyof SystemTypes.TouchEventProps<unknown>>;
+	        wheel: Pick<Props, keyof SystemTypes.WheelEventProps<unknown>>;
+	        pointer: Pick<Props, keyof SystemTypes.PointerEventProps<unknown>>;
+	        keyboard: Pick<Props, keyof SystemTypes.KeyboardEventProps<unknown>>;
+	        selection: Pick<Props, keyof SystemTypes.SelectionEventProps<unknown>>;
+	        animation: Pick<Props, keyof SystemTypes.AnimationEventProps<unknown>>;
+	        clipboard: Pick<Props, keyof SystemTypes.ClipboardEventProps<unknown>>;
+	        transition: Pick<Props, keyof SystemTypes.TransitionEventProps<unknown>>;
+	        composition: Pick<Props, keyof SystemTypes.CompositionEventProps<unknown>>;
+	        scroll: Pick<Props, keyof SystemTypes.ScrollEventProps<unknown>>;
 	        data: Pick<Props, never>;
 	    };
 	    propStyles: {};
@@ -1761,7 +1695,7 @@ declare module 'utils/attachProps' {
 declare module 'utils/createStyles' {
 	import SystemTypes, { EmotionStyles } from 'types'; const createComponentStyles: <Styles, Props extends {
 	    styles?: Partial<SystemTypes.Styles<Styles>> | undefined;
-	}>(styles: SystemTypes.Styles<Styles>, propStyles: Partial<Record<keyof Styles, import("@emotion/serialize").Interpolation<import("@emotion/utils").SerializedStyles>>>, styleLabel: string, props: Props, overrideName: string, overrides: SystemTypes.Theme['overrides']) => SystemTypes.ComponentStyles<Styles>;
+	}>(styles: SystemTypes.Styles<Styles>, propStyles: Partial<Record<keyof Styles, EmotionStyles>>, styleLabel: string, props: Props, overrideName: string, overrides: SystemTypes.Theme['overrides']) => SystemTypes.ComponentStyles<Styles>;
 	export default createComponentStyles;
 
 }
@@ -1783,21 +1717,21 @@ declare module 'hooks/useComponent' {
 	    attributes: SystemTypes.AttributeProps;
 	    events: {
 	        all: any;
-	        form: Pick<Props, "onChange" | "onChangeCapture" | "onBeforeInput" | "onBeforeInputCapture" | "onInput" | "onInputCapture" | "onReset" | "onResetCapture" | "onSubmit" | "onSubmitCapture" | "onInvalid" | "onInvalidCapture">;
-	        focus: Pick<Props, "onFocus" | "onFocusCapture" | "onBlur" | "onBlurCapture">;
-	        image: Pick<Props, "onLoad" | "onLoadCapture" | "onError" | "onErrorCapture">;
-	        media: Pick<Props, "onAbort" | "onAbortCapture" | "onCanPlay" | "onCanPlayCapture" | "onCanPlayThrough" | "onCanPlayThroughCapture" | "onDurationChange" | "onDurationChangeCapture" | "onEmptied" | "onEmptiedCapture" | "onEncrypted" | "onEncryptedCapture" | "onEnded" | "onEndedCapture" | "onLoadedData" | "onLoadedDataCapture" | "onLoadedMetadata" | "onLoadedMetadataCapture" | "onLoadStart" | "onLoadStartCapture" | "onPause" | "onPauseCapture" | "onPlay" | "onPlayCapture" | "onPlaying" | "onPlayingCapture" | "onProgress" | "onProgressCapture" | "onRateChange" | "onRateChangeCapture" | "onSeeked" | "onSeekedCapture" | "onSeeking" | "onSeekingCapture" | "onStalled" | "onStalledCapture" | "onSuspend" | "onSuspendCapture" | "onTimeUpdate" | "onTimeUpdateCapture" | "onVolumeChange" | "onVolumeChangeCapture" | "onWaiting" | "onWaitingCapture">;
-	        mouse: Pick<Props, "onAuxClick" | "onAuxClickCapture" | "onClick" | "onClickCapture" | "onContextMenu" | "onContextMenuCapture" | "onDoubleClick" | "onDoubleClickCapture" | "onDrag" | "onDragCapture" | "onDragEnd" | "onDragEndCapture" | "onDragEnter" | "onDragEnterCapture" | "onDragExit" | "onDragExitCapture" | "onDragLeave" | "onDragLeaveCapture" | "onDragOver" | "onDragOverCapture" | "onDragStart" | "onDragStartCapture" | "onDrop" | "onDropCapture" | "onMouseDown" | "onMouseDownCapture" | "onMouseEnter" | "onMouseLeave" | "onMouseMove" | "onMouseMoveCapture" | "onMouseOut" | "onMouseOutCapture" | "onMouseOver" | "onMouseOverCapture" | "onMouseUp" | "onMouseUpCapture">;
-	        touch: Pick<Props, "onTouchCancel" | "onTouchCancelCapture" | "onTouchEnd" | "onTouchEndCapture" | "onTouchMove" | "onTouchMoveCapture" | "onTouchStart" | "onTouchStartCapture">;
-	        wheel: Pick<Props, "onWheel" | "onWheelCapture">;
-	        pointer: Pick<Props, "onPointerDown" | "onPointerDownCapture" | "onPointerMove" | "onPointerMoveCapture" | "onPointerUp" | "onPointerUpCapture" | "onPointerCancel" | "onPointerCancelCapture" | "onPointerEnter" | "onPointerLeave" | "onPointerOver" | "onPointerOverCapture" | "onPointerOut" | "onPointerOutCapture" | "onGotPointerCapture" | "onGotPointerCaptureCapture" | "onLostPointerCapture" | "onLostPointerCaptureCapture">;
-	        keyboard: Pick<Props, "onKeyDown" | "onKeyDownCapture" | "onKeyPress" | "onKeyPressCapture" | "onKeyUp" | "onKeyUpCapture" | "onEnter" | "onEsc">;
-	        selection: Pick<Props, "onSelect" | "onSelectCapture">;
-	        animation: Pick<Props, "onAnimationStart" | "onAnimationStartCapture" | "onAnimationEnd" | "onAnimationEndCapture" | "onAnimationIteration" | "onAnimationIterationCapture">;
-	        clipboard: Pick<Props, "onCopy" | "onCopyCapture" | "onCut" | "onCutCapture" | "onPaste" | "onPasteCapture">;
-	        transition: Pick<Props, "onTransitionEnd" | "onTransitionEndCapture">;
-	        composition: Pick<Props, "onCompositionEnd" | "onCompositionEndCapture" | "onCompositionStart" | "onCompositionStartCapture" | "onCompositionUpdate" | "onCompositionUpdateCapture">;
-	        scroll: Pick<Props, "onScroll" | "onScrollCapture">;
+	        form: Pick<Props, keyof SystemTypes.FormEventProps<unknown>>;
+	        focus: Pick<Props, keyof SystemTypes.FocusEventProps<unknown>>;
+	        image: Pick<Props, keyof SystemTypes.ImageEventProps<unknown>>;
+	        media: Pick<Props, keyof SystemTypes.MediaEventProps<unknown>>;
+	        mouse: Pick<Props, keyof SystemTypes.MouseEventProps<unknown>>;
+	        touch: Pick<Props, keyof SystemTypes.TouchEventProps<unknown>>;
+	        wheel: Pick<Props, keyof SystemTypes.WheelEventProps<unknown>>;
+	        pointer: Pick<Props, keyof SystemTypes.PointerEventProps<unknown>>;
+	        keyboard: Pick<Props, keyof SystemTypes.KeyboardEventProps<unknown>>;
+	        selection: Pick<Props, keyof SystemTypes.SelectionEventProps<unknown>>;
+	        animation: Pick<Props, keyof SystemTypes.AnimationEventProps<unknown>>;
+	        clipboard: Pick<Props, keyof SystemTypes.ClipboardEventProps<unknown>>;
+	        transition: Pick<Props, keyof SystemTypes.TransitionEventProps<unknown>>;
+	        composition: Pick<Props, keyof SystemTypes.CompositionEventProps<unknown>>;
+	        scroll: Pick<Props, keyof SystemTypes.ScrollEventProps<unknown>>;
 	        data: Pick<Props, never>;
 	    };
 	    focus: boolean;
@@ -1827,5 +1761,10 @@ declare module '@stage-ui/system' {
 declare module 'utils/variant' {
 	 const _default: <T>(prop: any, variant: { [K in T]?: any; }) => any;
 	export default _default;
+
+}
+declare module 'utils/attachProps/style/resolvers/boxShadow' {
+	import SystemPropsTypes from 'utils/attachProps/types'; const resolver: SystemPropsTypes.StyleResolver;
+	export default resolver;
 
 }

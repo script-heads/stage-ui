@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/react'
 import * as CoreScope from '@stage-ui/core'
 import { Block } from '@stage-ui/core'
-import * as IconScope from '@stage-ui/core/icons'
+import * as IconScope from '@stage-ui/icons'
 import * as LabScope from '@stage-ui/lab'
 import SystemTypes from '@stage-ui/system/types'
 import React from 'react'

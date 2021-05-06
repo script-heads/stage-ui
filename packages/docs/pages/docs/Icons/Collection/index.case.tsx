@@ -1,6 +1,7 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import { Block, Flexbox, Text, Link, notify } from '@stage-ui/core'
 import * as AllIcons from '@stage-ui/icons'
-
 import React, { useEffect, useState } from 'react'
 
 export const title = 'Collection'

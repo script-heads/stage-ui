@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import { Block, Divider, Flexbox, notify, Text, useTheme } from '@stage-ui/core'
-import { Collapse, Copy, Expand, Grid } from '@stage-ui/core/icons'
+import { Collapse, Copy, Expand, Grid } from '@stage-ui/icons'
 import { PageType } from '@stage-ui/docs/utils/core'
 import monaco from '@stage-ui/docs/utils/monaco'
 import { Split } from '@stage-ui/core'

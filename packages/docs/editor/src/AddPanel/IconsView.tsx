@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import { Block, Flexbox, ScrollView, Text } from '@stage-ui/core'
-import * as IconScope from '@stage-ui/core/icons'
+import * as IconScope from '@stage-ui/icons'
 import React, { Fragment, useEffect, useState } from 'react'
 import { context } from '../..'
 import { AddPanelStyles } from './styles'

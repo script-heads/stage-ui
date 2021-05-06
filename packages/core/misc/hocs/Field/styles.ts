@@ -32,11 +32,11 @@ const fieldStyles = <T extends Types.Styles>(
         field: (variant) => [
             {
                 position: 'relative',
-                overflow: 'hidden',
+                // overflow: 'hidden',
                 flexShrink: 0,
                 flexGrow: 1,
-                background: theme.color.surface.rgb().string(),
-                borderColor: theme.color.lightest.rgb().string(),
+                background: theme.color.surface.string(),
+                borderColor: theme.color.lightest.string(),
                 borderRadius: theme.radius.s,
                 boxShadow: theme.assets.innerShadow.xs,
                 borderWidth: '1px',
@@ -45,6 +45,7 @@ const fieldStyles = <T extends Types.Styles>(
                 display: 'flex',
                 alignItems: 'stretch',
                 boxSizing: 'border-box',
+                transition: 'border 0.125s',
             },
             theme.assets.field.m,
             theme.assets.typography.text.m,
@@ -86,9 +87,9 @@ const fieldStyles = <T extends Types.Styles>(
                     ]
                 },
                 focus: {
-                    boxShadow: props.disabled 
-                        ? 'none' 
-                        : `0px 1px 2px rgba(0, 0, 0, 0.05), 0px 0px 0px 2px ${theme.color.surface.hex()}, 0px 0px 0px 4px ${theme.color.onSurface.alpha(0.05).rgb().string()}`
+                    borderColor: props.disabled 
+                    ? theme.color.lightest.string() 
+                    : theme.color.primary.alpha(0.5).string(),
                 },
                 disabled: {
                     color: theme.color.light.rgb().string(),

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import { Block, Button, dialog, Divider, Flexbox, Grid, Header, Paragraph, Switch, Tree, useTheme } from '@stage-ui/core'
-import { CodeDownload, Plus } from '@stage-ui/core/icons'
+import { CodeDownload, Plus } from '@stage-ui/icons'
 import SystemTypes from '@stage-ui/system/types'
 import mergeObjects from '@stage-ui/system/utils/mergeObjects'
 import React, { CSSProperties, useEffect, useState } from 'react'

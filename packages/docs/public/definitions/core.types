@@ -7526,7 +7526,7 @@ declare module 'icons/svg/wifi' {
 	export default _default;
 
 }
-declare module '@stage-ui/core/icons' {
+declare module '@stage-ui/icons' {
 	/**
 	version: 1.1.3
 	*/
@@ -8424,7 +8424,7 @@ declare module 'control/Menu' {
 	 * Hook used in every Menu.Item
 	 * most optimized method to change item value
 	 */
-	export const useValue: (value?: string | number | undefined) => [boolean, () => void, Types.Context]; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>> & {
+	export const useValue: (value?: Types.MenuValue | undefined) => [boolean, () => void, Types.Context]; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>> & {
 	    Item: typeof MenuItem;
 	    Group: typeof MenuGroup;
 	    Submenu: typeof Submenu;
@@ -9092,7 +9092,7 @@ declare module 'data/Meter' {
 }
 declare module 'misc/utils/applyLayoutDecoration' {
 	import SystemTypes from '@stage-ui/system/types';
-	export type LayoutDecoration = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' | 'neumorphism'; type Props = SystemTypes.AllProps<HTMLDivElement, {}> & {
+	export type LayoutDecoration = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' | 'skeleton'; type Props = SystemTypes.AllProps<HTMLDivElement, {}> & {
 	    decoration?: LayoutDecoration;
 	}; const applyLayoutDecoration: (props: Props, theme: SystemTypes.Theme) => {
 	    background: string;
@@ -9101,6 +9101,7 @@ declare module 'misc/utils/applyLayoutDecoration' {
 	    borderStyle: string;
 	    borderColor: string;
 	    boxShadow?: undefined;
+	    animation?: undefined;
 	} | {
 	    background: string;
 	    borderRadius: string;
@@ -9108,6 +9109,15 @@ declare module 'misc/utils/applyLayoutDecoration' {
 	    borderWidth?: undefined;
 	    borderStyle?: undefined;
 	    borderColor?: undefined;
+	    animation?: undefined;
+	} | {
+	    background: string;
+	    animation: string;
+	    borderRadius?: undefined;
+	    borderWidth?: undefined;
+	    borderStyle?: undefined;
+	    borderColor?: undefined;
+	    boxShadow?: undefined;
 	} | undefined;
 	export default applyLayoutDecoration;
 
@@ -10068,7 +10078,20 @@ declare module 'layout/ScrollView/types' {
 	        scrollWidth: number;
 	        scrollHeight: number;
 	    }
-	    interface ScrollParams {
+	    interface ScrollToOptions {
+	        /**
+	         * if true watchElement will not
+	         * call at this scrollUpdate
+	         */
+	        preventWatchElement?: boolean;
+	    }
+	    interface ScrollToElementOptions extends ScrollToOptions {
+	        /**
+	         * Offset px at top edge of element
+	         */
+	        offsetTop?: number;
+	    }
+	    interface ScrollParams extends ScrollToOptions {
 	        deltaX: number;
 	        deltaY: number;
 	        preventDefault: () => void;
@@ -10105,12 +10128,12 @@ declare module 'layout/ScrollView/types' {
 	         * Position of X bar
 	         * @default bottom
 	         */
-	        xBarPosition?: 'top' | 'bottom';
+	        xBarPosition?: 'top' | 'bottom' | 'none';
 	        /**
 	         * Position of Y bar
 	         * @default right
 	         */
-	        yBarPosition?: 'left' | 'right';
+	        yBarPosition?: 'left' | 'right' | 'none';
 	        /**
 	         * If false
 	         * onflowscroll will not dispatch
@@ -10139,21 +10162,21 @@ declare module 'layout/ScrollView/types' {
 	        /**
 	         * Scroll to top
 	         */
-	        scrollTo: (x: number, y: number) => void;
+	        scrollTo: (x: number, y: number, options?: ScrollToOptions) => void;
 	        /**
 	         * Scroll to top
 	         */
-	        scrollTop: () => void;
+	        scrollTop: (options?: ScrollToOptions) => void;
 	        /**
 	         * Scroll to bottom
 	         */
-	        scrollBottom: () => void;
+	        scrollBottom: (options?: ScrollToOptions) => void;
 	        /**
 	         * Scroll to specific item by its data-id attribute
 	         * data-id attribute should be unique at document
 	         * if item not found function returns false
 	         */
-	        scrollToElement: (dataId: string) => boolean;
+	        scrollToElement: (dataId: string, options?: ScrollToElementOptions) => boolean;
 	    }
 	    interface Styles {
 	        /**

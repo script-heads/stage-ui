@@ -1,5 +1,5 @@
 import { Button, dialog, Flexbox, Header, Paragraph } from '@stage-ui/core'
-import { AlertTriangle } from '@stage-ui/core/icons'
+import { AlertTriangle } from '@stage-ui/icons'
 import React from 'react'
 
 export default () => {

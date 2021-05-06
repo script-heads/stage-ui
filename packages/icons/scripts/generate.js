@@ -42,23 +42,22 @@ for (const file of svgFiles) {
     fs.unlinkSync(path.join(svgDstPath, file))
 }
 
-const groupSvgContent = (svgString) => {
-    const rnd = parseInt(Math.random() * 10000).toString()
+const groupSvgContent = (fileName, svgString) => {
     return `<g>${svgString.toString()
         .replace(/<svg[^>]*>/, '')
         .replace(/<\/svg[^>]*>/, '')
         .replace(/ fill="[^"]*"/g, '')
         .replace(/ stroke="[^"]*"/g, '')
-        .replace(/id="/g, `id="icon${rnd}`)
-        .replace(/#/g, `#icon${rnd}`)}</g>`
+        .replace(/id="/g, `id="${fileName}`)
+        .replace(/#/g, `#${fileName}`)}</g>`
 }
 
 for (let icon of svgFill) {
     let fileName = toCamelCase(icon.replace('.svg',''))
-    let filled = groupSvgContent(fs.readFileSync(svgSourcePath + '/Fill/' + icon))
+    let filled = groupSvgContent(fileName, fs.readFileSync(svgSourcePath + '/Fill/' + icon))
     let outline = filled
     if (svgOutline.includes(icon)) {
-        outline = groupSvgContent(fs.readFileSync(svgSourcePath + '/Outline/' + icon))
+        outline = groupSvgContent(fileName + '-o', fs.readFileSync(svgSourcePath + '/Outline/' + icon))
     }
 
     /**

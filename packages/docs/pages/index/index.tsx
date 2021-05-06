@@ -7,7 +7,7 @@ import Components from './Components'
 import Features from './Feauters'
 import Footer from './Footer'
 import Header from './Header'
-import { Cube } from '@stage-ui/core/icons'
+import { Cube } from '@stage-ui/icons'
 
 export default (props: CustomPageProps) => {
 

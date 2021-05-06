@@ -27,6 +27,7 @@ export const context = {
 class Architect extends React.Component<CustomPageProps> {
     constructor(props: CustomPageProps) {
         super(props)
+        //@ts-expect-error
         this.init(require('./demoData').default)
         context.tools = this.tools
     }
@@ -35,6 +36,7 @@ class Architect extends React.Component<CustomPageProps> {
      * but not rerender em.
      */
     private init(items: Architect) {
+        //@ts-expect-error
         this.items = require('./demoData').default
         // Add parent links
         const recursive = (items: ArchitectItem[]) => {

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import { Block, Divider, Flexbox, Menu, Paragraph, ScrollView, useTheme } from '@stage-ui/core'
-import { Copy, Cube, Trash2 } from '@stage-ui/core/icons'
+import { Copy, Cube, Trash2 } from '@stage-ui/icons'
 import { Fragment } from 'react'
 import { context } from '../..'
 import { componentsTypography } from '../RenderPanel'

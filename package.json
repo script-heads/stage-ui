@@ -16,6 +16,7 @@
         "gen:generateTypes": "cd ./packages/docs && node ./scripts/generateTypes.js",
         "gen:fixTypes": "cd ./packages/docs && node ./scripts/fixTypes.js",
         "gen:evaicons": "cd ./packages/core && yarn icons:generate",
+        "gen:icons": "cd ./packages/icons && yarn gen",
         "pub": "yarn pub:system && yarn pub:core && yarn deploy",
         "pub:core": "cd ./packages/core && yarn pub",
         "pub:icons": "cd ./packages/icons && yarn pub",
