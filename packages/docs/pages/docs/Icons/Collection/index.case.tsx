@@ -32,6 +32,7 @@ export default () => {
                 style={{
                     display: 'grid',
                     width: '100%',
+                    overflow: 'hidden',
                     gridTemplateColumns: 'repeat(auto-fill, 8rem)'
                 }}
             >
@@ -91,6 +92,13 @@ export default () => {
                                     color={c => c.light}
                                     mt=".5rem"
                                     children={key}
+                                    size="xs"
+                                    align="center"
+                                    css={{
+                                        overflow: 'hidden',
+                                        textOverflow: 'ellipsis',
+                                        width: '100%',
+                                    }}
                                 />
                             </Flexbox>
                         </Delay>
