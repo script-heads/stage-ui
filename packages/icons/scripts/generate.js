@@ -43,12 +43,14 @@ for (const file of svgFiles) {
 }
 
 const groupSvgContent = (svgString) => {
+    const rnd = parseInt(Math.random() * 10000).toString()
     return `<g>${svgString.toString()
         .replace(/<svg[^>]*>/, '')
         .replace(/<\/svg[^>]*>/, '')
         .replace(/ fill="[^"]*"/g, '')
         .replace(/ stroke="[^"]*"/g, '')
-        .replace(/mask0/g, `mask${parseInt(Math.random() * 10000)}`)}</g>`
+        .replace(/id="/g, `id="icon${rnd}`)
+        .replace(/#/g, `#icon${rnd}`)}</g>`
 }
 
 for (let icon of svgFill) {

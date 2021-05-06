@@ -1,10 +1,10 @@
-import { Block, Flexbox, Text } from '@stage-ui/core'
+import { Block, Flexbox, Text, Link, notify } from '@stage-ui/core'
 import * as AllIcons from '@stage-ui/icons'
 
 import React, { useEffect, useState } from 'react'
 
 export const title = 'Collection'
-export const subtitle = 'icons improves user experience'
+export const subtitle = 'Click icons below if you want to copy import'
 
 const Delay = (props) => {
     const [display, setDisplay] = useState(false)
@@ -24,7 +24,10 @@ const Delay = (props) => {
 
 export default () => {
     return (
-        <Flexbox pt="1rem">
+        <Flexbox column alignItems="flex-start">
+            <Block decoration="surface" p="s m" mb="l">
+                <Text size="s">To use icons add <Link size="s" weight="bold" href="https://www.npmjs.com/package/@stage-ui/icons" target="_blank">@stage-ui/icons</Link></Text>
+            </Block>
             <Block
                 style={{
                     display: 'grid',
@@ -43,12 +46,47 @@ export default () => {
                                 alignItems="center"
                                 alignContent="center"
                             >
-                                <PreviewIcon
-                                    type="filled"
-                                    shape="oval"
-                                    size="2rem"
-                                    background={c => c.lightest}
-                                />
+                                <Flexbox
+                                    css={{
+                                        transition: 'all 0.25s',
+                                        ':hover': {
+                                            transform: 'scale(1.1)'
+                                        },
+                                        ':active': {
+                                            transform: 'scale(0.9)'
+                                        }
+                                    }}
+                                    onClick={() => {
+                                        navigator.clipboard.writeText(`import ${key} from '@stage-ui/icons/lib/${key}'`).then(() => {
+                                            notify({
+                                                title: 'Icons',
+                                                message: `${key} copyed to clipboard`,
+                                                timeout: 3000,
+                                            })
+                                        }, (err) => {
+                                            notify({
+                                                title: 'Icons',
+                                                message: `Could not copy import cause of error ${err}`
+                                            })
+                                        })
+                                    }}
+                                >
+                                    <PreviewIcon
+                                        type="filled"
+                                        shape="oval"
+                                        size="2rem"
+                                        borderRadius="10rem 0 0 10rem"
+                                        background={c => c.lightest}
+                                    />
+                                    <PreviewIcon
+                                        type="outline"
+                                        shape="oval"
+                                        size="2rem"
+                                        borderRadius="0 10rem 10rem 0"
+                                        color={c => c.lightest}
+                                        background={c => c.onSurface}
+                                    />
+                                </Flexbox>
                                 <Text
                                     color={c => c.light}
                                     mt=".5rem"
