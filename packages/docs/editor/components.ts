@@ -111,7 +111,6 @@ const components: ArchitectTools['components'] = {
     ...(() => {
         let iconsCompoenetsTemp = {}
         for (const IconCompoenent in IconScope) {
-            console.log(IconCompoenent)
             iconsCompoenetsTemp[IconCompoenent] = Init(IconCompoenent, {
                 label: IconCompoenent
             }, true)

@@ -19,6 +19,12 @@ const svgFiles = fs.readdirSync(svgDstPath)
 const svgFill = fs.readdirSync(svgSourcePath + '/Fill')
 const svgOutline = fs.readdirSync(svgSourcePath + '/Outline')
 
+function attributeToCamelCase(attribute) {
+    return attribute.replace(/^(data-)?(.*)/, '$2').replace(/-([a-z])/g, (match) => {
+        return match[1].toUpperCase();
+    });
+}
+
 const toCamelCase = (name) => {
     const match = name.match('-')
     if (match && match.index >= 0) {
@@ -46,6 +52,8 @@ const groupSvgContent = (fileName, svgString) => {
     return `<g>${svgString.toString()
         .replace(/<svg[^>]*>/, '')
         .replace(/<\/svg[^>]*>/, '')
+        .replace(/clip-rule/g, 'clipRule')
+        .replace(/fill-rule/g, 'fillRule')
         .replace(/ fill="[^"]*"/g, '')
         .replace(/ stroke="[^"]*"/g, '')
         .replace(/id="/g, `id="${fileName}`)
