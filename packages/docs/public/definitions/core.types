@@ -7852,23 +7852,21 @@ declare module 'control/Checkbox/types' {
 	import CheckTypes from '@stage-ui/core/@stage-ui/core/misc/hocs/Check/types'; namespace CheckboxTypes {
 	    interface Props extends CheckTypes.Props {
 	    }
+	    interface StyleState {
+	        focus: boolean;
+	        size: Props['size'];
+	        checked: Props['checked'];
+	        disabled: Props['disabled'];
+	    }
 	    interface Styles extends CheckTypes.Styles {
 	        /**
 	         * Checkbox container
 	         */
-	        check: {
-	            size: Props['size'];
-	            disabled: Props['disabled'];
-	            focus: boolean;
-	        };
+	        check: StyleState;
 	        /**
 	         * Icon of checkbox
 	         */
-	        icon: {
-	            checked: Props['checked'];
-	            size: Props['size'];
-	            disabled: Props['disabled'];
-	        };
+	        icon: StyleState;
 	    }
 	}
 	export default CheckboxTypes;
@@ -7887,12 +7885,14 @@ declare module 'control/Checkbox/styles' {
 
 }
 declare module 'control/Checkbox' {
-	import Types from 'control/Checkbox/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
+	import React from 'react';
+	import Types from 'control/Checkbox/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
 	export default _default;
 
 }
 declare module '@stage-ui/core/misc/hocs/Field/types' {
-	import SystemTypes from '@stage-ui/system/types'; namespace FieldTypes {
+	import SystemTypes from '@stage-ui/system/types';
+	import React from 'react'; namespace FieldTypes {
 	    interface Props<S = Styles> extends Omit<SystemTypes.AllProps<HTMLInputElement, S>, 'onChange'> {
 	        /**
 	         * Label for field
@@ -7906,6 +7906,10 @@ declare module '@stage-ui/core/misc/hocs/Field/types' {
 	         * Place for hint content
 	         */
 	        hint?: React.ReactNode;
+	        /**
+	         * Place for error content
+	         */
+	        error?: React.ReactNode;
 	        /**
 	         * Size of field
 	         * @default m
@@ -7994,6 +7998,10 @@ declare module '@stage-ui/core/misc/hocs/Field/types' {
 	         * Container of hint
 	         */
 	        hint: State & T['hint'];
+	        /**
+	         * Container of error
+	         */
+	        error: State & T['error'];
 	    }
 	    interface PrivateProps extends Omit<Props, 'styles'> {
 	        focus: boolean;
@@ -8009,7 +8017,8 @@ declare module '@stage-ui/core/misc/hocs/Field/types' {
 
 }
 declare module 'misc/hocs/Field' {
-	import Types from '@stage-ui/core/misc/hocs/Field/types'; const _default: import("react").ForwardRefExoticComponent<Types.PrivateProps & import("react").RefAttributes<HTMLDivElement>>;
+	import React from 'react';
+	import Types from '@stage-ui/core/misc/hocs/Field/types'; const _default: React.ForwardRefExoticComponent<Types.PrivateProps & React.RefAttributes<HTMLDivElement>>;
 	export default _default;
 
 }
@@ -8436,22 +8445,21 @@ declare module 'control/Radio/types' {
 	import CheckTypes from '@stage-ui/core/misc/hocs/Check/types'; namespace RadioTypes {
 	    interface Props extends CheckTypes.Props {
 	    }
+	    interface StyleState {
+	        checked: Props['checked'];
+	        size: Props['size'];
+	        disabled: Props['disabled'];
+	        focus: boolean;
+	    }
 	    interface Styles extends CheckTypes.Styles {
 	        /**
 	         * Radio container
 	         */
-	        check: {
-	            size: Props['size'];
-	            disabled: Props['disabled'];
-	        };
+	        check: StyleState;
 	        /**
 	         * Icon of Radio
 	         */
-	        radio: {
-	            checked: Props['checked'];
-	            size: Props['size'];
-	            disabled: Props['disabled'];
-	        };
+	        radio: StyleState;
 	    }
 	}
 	export default RadioTypes;
@@ -8971,6 +8979,158 @@ declare module 'control/TextField' {
 	export default _default;
 
 }
+declare module 'misc/utils/applyLayoutDecoration' {
+	import SystemTypes from '@stage-ui/system/types';
+	export type LayoutDecoration = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' | 'skeleton'; type Props = SystemTypes.AllProps<HTMLDivElement, {}> & {
+	    decoration?: LayoutDecoration;
+	}; const applyLayoutDecoration: (props: Props, theme: SystemTypes.Theme) => {
+	    background: string;
+	    borderRadius: string;
+	    borderWidth: string;
+	    borderStyle: string;
+	    borderColor: string;
+	    boxShadow?: undefined;
+	    animation?: undefined;
+	} | {
+	    background: string;
+	    borderRadius: string;
+	    boxShadow: string;
+	    borderWidth?: undefined;
+	    borderStyle?: undefined;
+	    borderColor?: undefined;
+	    animation?: undefined;
+	} | {
+	    background: string;
+	    animation: string;
+	    borderRadius?: undefined;
+	    borderWidth?: undefined;
+	    borderStyle?: undefined;
+	    borderColor?: undefined;
+	    boxShadow?: undefined;
+	} | undefined;
+	export default applyLayoutDecoration;
+
+}
+declare module 'layout/Block/types' {
+	import { LayoutDecoration } from '@stage-ui/core/misc/utils/applyLayoutDecoration';
+	import SystemTypes from '@stage-ui/system/types';
+	import CSS from 'csstype'; namespace BlockTypes {
+	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
+	        /**
+	         * HTML element which is used as a container
+	         */
+	        as?: 'div' | 'span' | 'header' | 'footer' | 'article' | 'section' | 'aside' | 'main';
+	        /**
+	         * Defines how block look
+	         */
+	        decoration?: LayoutDecoration;
+	        /**
+	         * Block's content
+	         */
+	        children?: React.ReactNode;
+	        /**
+	         * Shorthand for overflow style
+	         */
+	        overflow?: CSS.Properties['overflow'];
+	    }
+	    interface Styles {
+	        /**
+	         * Root element
+	         */
+	        container: {
+	            decoration?: LayoutDecoration;
+	        };
+	    }
+	}
+	export default BlockTypes;
+
+}
+declare module 'layout/Block/styles' {
+	import SystemTypes from '@stage-ui/system/types';
+	import Types from 'layout/Block/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	export default styles;
+
+}
+declare module 'layout/Block' {
+	import Types from 'layout/Block/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'layout/Flexbox/types' {
+	import { LayoutDecoration } from '@stage-ui/core/misc/utils/applyLayoutDecoration';
+	import SystemTypes from '@stage-ui/system/types'; namespace FlexboxTypes {
+	    interface Props extends SystemTypes.FlexboxContainerProps, SystemTypes.AllProps<HTMLDivElement, Styles> {
+	        /**
+	         * Defines how flexbox look
+	         */
+	        decoration?: LayoutDecoration;
+	        /**
+	         * Flexbox content
+	         */
+	        children?: React.ReactNode;
+	    }
+	    interface Styles {
+	        /**
+	         * Root element
+	         */
+	        container: {
+	            decoration?: LayoutDecoration;
+	        };
+	    }
+	}
+	export default FlexboxTypes;
+
+}
+declare module 'layout/Flexbox/styles' {
+	import SystemTypes from '@stage-ui/system/types';
+	import Types from 'layout/Flexbox/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	export default styles;
+
+}
+declare module 'layout/Flexbox' {
+	import Types from 'layout/Flexbox/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
+declare module 'control/Stepper/types' {
+	import SystemTypes from '@stage-ui/system/types'; namespace StepperTypes {
+	    interface StepperData {
+	        label?: React.ReactNode;
+	    }
+	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+	        data: StepperData[];
+	        current?: number;
+	        onChange?: (step: StepperData, stepIndex: number) => void;
+	    }
+	    interface StyleState {
+	        active: boolean;
+	        complete: boolean;
+	        pointer: boolean;
+	    }
+	    interface Styles {
+	        /**
+	         * Root element
+	         */
+	        container: void;
+	        step: StyleState;
+	        separator: StyleState;
+	    }
+	}
+	export default StepperTypes;
+
+}
+declare module 'control/Stepper/styles' {
+	import SystemTypes from '@stage-ui/system/types';
+	import Types from 'control/Stepper/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	export default styles;
+
+}
+declare module 'control/Stepper' {
+	import React from 'react';
+	import Types from 'control/Stepper/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
 declare module 'data/Meter/types' {
 	import SystemTypes from '@stage-ui/system/types';
 	import MeterThumbTypes from 'data/Meter/MeterThumb/types'; namespace MeterTypes {
@@ -9088,38 +9248,6 @@ declare module 'data/Meter' {
 	    Thumb: typeof Thumb;
 	};
 	export default _default;
-
-}
-declare module 'misc/utils/applyLayoutDecoration' {
-	import SystemTypes from '@stage-ui/system/types';
-	export type LayoutDecoration = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' | 'skeleton'; type Props = SystemTypes.AllProps<HTMLDivElement, {}> & {
-	    decoration?: LayoutDecoration;
-	}; const applyLayoutDecoration: (props: Props, theme: SystemTypes.Theme) => {
-	    background: string;
-	    borderRadius: string;
-	    borderWidth: string;
-	    borderStyle: string;
-	    borderColor: string;
-	    boxShadow?: undefined;
-	    animation?: undefined;
-	} | {
-	    background: string;
-	    borderRadius: string;
-	    boxShadow: string;
-	    borderWidth?: undefined;
-	    borderStyle?: undefined;
-	    borderColor?: undefined;
-	    animation?: undefined;
-	} | {
-	    background: string;
-	    animation: string;
-	    borderRadius?: undefined;
-	    borderWidth?: undefined;
-	    borderStyle?: undefined;
-	    borderColor?: undefined;
-	    boxShadow?: undefined;
-	} | undefined;
-	export default applyLayoutDecoration;
 
 }
 declare module '@stage-ui/core/data/Table/types' {
@@ -9511,51 +9639,6 @@ declare module 'layout/Badge' {
 	export default _default;
 
 }
-declare module 'layout/Block/types' {
-	import { LayoutDecoration } from '@stage-ui/core/misc/utils/applyLayoutDecoration';
-	import SystemTypes from '@stage-ui/system/types';
-	import CSS from 'csstype'; namespace BlockTypes {
-	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
-	        /**
-	         * HTML element which is used as a container
-	         */
-	        as?: 'div' | 'span' | 'header' | 'footer' | 'article' | 'section' | 'aside' | 'main';
-	        /**
-	         * Defines how block look
-	         */
-	        decoration?: LayoutDecoration;
-	        /**
-	         * Block's content
-	         */
-	        children?: React.ReactNode;
-	        /**
-	         * Shorthand for overflow style
-	         */
-	        overflow?: CSS.Properties['overflow'];
-	    }
-	    interface Styles {
-	        /**
-	         * Root element
-	         */
-	        container: {
-	            decoration?: LayoutDecoration;
-	        };
-	    }
-	}
-	export default BlockTypes;
-
-}
-declare module 'layout/Block/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'layout/Block/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
-	export default styles;
-
-}
-declare module 'layout/Block' {
-	import Types from 'layout/Block/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
-	export default _default;
-
-}
 declare module 'layout/Drop/styles' {
 	import SystemTypes from '@stage-ui/system/types';
 	import Types from 'layout/Drop/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
@@ -9583,42 +9666,6 @@ declare module 'layout/Drop/animation' {
 declare module 'layout/Drop' {
 	import React from 'react';
 	import Types from 'layout/Drop/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
-	export default _default;
-
-}
-declare module 'layout/Flexbox/types' {
-	import { LayoutDecoration } from '@stage-ui/core/misc/utils/applyLayoutDecoration';
-	import SystemTypes from '@stage-ui/system/types'; namespace FlexboxTypes {
-	    interface Props extends SystemTypes.FlexboxContainerProps, SystemTypes.AllProps<HTMLDivElement, Styles> {
-	        /**
-	         * Defines how flexbox look
-	         */
-	        decoration?: LayoutDecoration;
-	        /**
-	         * Flexbox content
-	         */
-	        children?: React.ReactNode;
-	    }
-	    interface Styles {
-	        /**
-	         * Root element
-	         */
-	        container: {
-	            decoration?: LayoutDecoration;
-	        };
-	    }
-	}
-	export default FlexboxTypes;
-
-}
-declare module 'layout/Flexbox/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'layout/Flexbox/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
-	export default styles;
-
-}
-declare module 'layout/Flexbox' {
-	import Types from 'layout/Flexbox/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
 	export default _default;
 
 }
@@ -10509,6 +10556,7 @@ declare module '@stage-ui/core' {
 	export { default as Select } from 'control/Select';
 	export { default as Switch } from 'control/Switch';
 	export { default as TextField } from 'control/TextField';
+	export { default as Stepper } from 'control/Stepper';
 	/**
 	 * Data
 	 */

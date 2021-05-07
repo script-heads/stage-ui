@@ -87,9 +87,9 @@ const fieldStyles = <T extends Types.Styles>(
                     ]
                 },
                 focus: {
-                    borderColor: props.disabled 
-                    ? theme.color.lightest.string() 
-                    : theme.color.primary.alpha(0.5).string(),
+                    borderColor: props.disabled
+                        ? theme.color.lightest.string()
+                        : theme.color.primary.alpha(0.5).string(),
                 },
                 disabled: {
                     color: theme.color.light.rgb().string(),
@@ -261,7 +261,7 @@ const fieldStyles = <T extends Types.Styles>(
                 },
                 ':active': {
                     transform: 'scale(1.1)',
-                    opacity:0.8,
+                    opacity: 0.8,
                 }
             },
             //FIXME: types
@@ -285,6 +285,42 @@ const fieldStyles = <T extends Types.Styles>(
             //FIXME: types
             //@ts-ignore
             stylePatch?.hint?.(variant)
+        ],
+        error: (variant) => [
+            {
+                paddingTop: '.25rem',
+                paddingLeft: props.decoration != 'underline' ? '.25rem' : '',
+                color: color?.rgb().string() || theme.color.error.rgb().string(),
+                ...theme.assets.typography.text.m,
+                ' svg': {
+                    color: theme.color.error.string(),
+                    marginTop: '-0.125rem',
+                    marginRight: '0.25rem',
+                    ...theme.assets.typography.text.m,
+                }
+            },
+            variant({
+                size: {
+                    s: [{
+                        ...theme.assets.typography.text.s,
+                        ' svg': {
+                            marginTop: '-0.125rem',
+                            marginRight: '0.125rem',
+                            ...theme.assets.typography.text.s,
+                        }
+                    }],
+                    xs: [{
+                        ...theme.assets.typography.text.xs,
+                        ' svg': {
+                            marginRight: '0.125rem',
+                            ...theme.assets.typography.text.xs,
+                        }
+                    }]
+                }
+            }),
+            //FIXME: types
+            //@ts-ignore
+            stylePatch?.error?.(variant)
         ]
     }
 }

@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
-import { Close } from '@stage-ui/core/icons'
+import { Close, AlertCircle } from '@stage-ui/core/icons'
+import React from 'react'
 import { forwardRef, ForwardRefRenderFunction } from 'react'
 import Types from './types'
 
@@ -90,11 +91,34 @@ const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (pro
                     )}
                 </div>
             }
-            {props.hint &&
+            {!!props.hint && !props.error &&
                 <div css={styles.hint(state)}>
                     {props.hint}
                 </div>
             }
+            {!!props.error && (
+                <div css={styles.error(state)}>
+                    {typeof props.error == 'string'
+                        ? (
+                            <React.Fragment>
+                                <AlertCircle display="inline-block" />
+                                {props.error}
+                            </React.Fragment>
+                        ) :
+                        props.error}
+                </div>
+                // <Flexbox
+                //     css={{
+                //         opacity: error ? 1 : 0,
+                //         transition: error ? 'opacity 0.25s' : 'none',
+                //     }}
+                // >
+                //     <AlertCircle color="error" display="inline-block" pr="xs" />
+                //     <Text color="error" weight={100}>
+                //         {error || '\u200B'}
+                //     </Text>
+                // </Flexbox>
+            )}
         </div>
     )
 }
