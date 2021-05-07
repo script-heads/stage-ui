@@ -40,9 +40,9 @@ const Radio: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
              */
             type="checkbox"
             styles={cs}
-            children={(checked) =>
-                <Block css={cs.check({ size, disabled })}>
-                    <div css={cs.radio({ size, disabled, checked })} />
+            children={(checked, focus) =>
+                <Block css={cs.check({ size, disabled, focus, checked })}>
+                    <div css={cs.radio({ size, disabled, focus, checked })} />
                 </Block>
             }
         />

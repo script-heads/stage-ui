@@ -15,19 +15,32 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 justifyContent: 'center',
                 color: theme.color.primary.rgb().string(),
                 backgroundColor: theme.color.surface.rgb().string(),
-                borderColor: theme.color.primary.rgb().string(),
+                borderColor: theme.color.light.rgb().string(),
+                boxShadow: theme.assets.innerShadow.m,
                 borderWidth: theme.assets.border.width,
                 borderStyle: theme.assets.border.style,
                 borderRadius: theme.radius.s,
-                transition: 'color .15s, borderColor .15s, backgroundColor .15s',
-                willChange: 'color, borderColor, backgroundColor',
+                transition: 'color .15s, border-color .15s, background-color .15s',
+                willChange: 'color, border-color, background-color',
             },
             variant({
                 focus: [{
                     borderColor: theme.color.primary.alpha(0.5).rgb().string()
-                }]
-            }),
-            variant({
+                }],
+                checked: [{
+                    backgroundColor: theme.color.primary.rgb().string(),
+                    borderColor: 'transparent'
+                }],
+                disabled: [{
+                    color: theme.color.hardest.rgb().string(),
+                    borderColor: theme.color.lightest.rgb().string(),
+                    backgroundColor: theme.color.lightest.rgb().string(),
+                }, variant({
+                    checked: [{
+                        backgroundColor: theme.color.primary.alpha(0.5).rgb().string(),
+                        borderColor: 'transparent'
+                    }]
+                })],
                 size: {
                     xs: [{
                         width: '0.75rem',
@@ -49,24 +62,18 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                         height: '2rem'
                     }],
                 },
-                disabled: [{
-                    color: theme.color.hardest.rgb().string(),
-                    borderColor: theme.color.lightest.rgb().string(),
-                    backgroundColor: theme.color.lightest.rgb().string(),
-                }],
             }),
         ],
         icon: (variant) => [
             {
-                opacity: 0,
                 height: 'auto',
-                transform: `scale(0.5)`,
                 transition: 'opacity .15s, transform .15s',
                 willChange: 'opacity, transform',
-                stroke: theme.color.primary.rgb().string(),
+                stroke: theme.color.onPrimary.rgb().string(),
                 strokeWidth: "2px",
                 strokeLinejoin: "round",
-                boxShadow: theme.assets.shadow.m,
+                opacity: 0,
+                transform: `scale(0.5)`,
             },
             variant({
                 size: {
@@ -89,6 +96,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 checked: [{
                     opacity: 1,
                     transform: `scale(1)`,
+
                 }]
             }),
         ]
