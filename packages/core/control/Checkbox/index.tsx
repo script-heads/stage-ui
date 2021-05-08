@@ -4,7 +4,7 @@ import { Block } from '@stage-ui/core'
 import { Checkmark } from '@stage-ui/core/icons'
 import Check from '@stage-ui/core/misc/hocs/Check'
 import { useComponent } from '@stage-ui/system'
-import { forwardRef, ForwardRefRenderFunction } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import styles from './styles'
 import Types from './types'
 
@@ -41,9 +41,9 @@ const Checkbox: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
              */
             type="checkbox"
             children={(checked, focus) =>
-                <Block css={cs.check({ size, disabled, focus })}>
+                <Block css={cs.check({ size, disabled, focus, checked })}>
                     <Checkmark
-                        css={cs.icon({ size, disabled, checked })}
+                        css={cs.icon({ size, disabled, focus, checked })}
                     />
                 </Block>
             }

@@ -1,6 +1,6 @@
 import { ArchitectTools } from './types'
 import * as Core from '@stage-ui/core'
-import * as IconScope from '@stage-ui/core/icons'
+import * as IconScope from '@stage-ui/icons'
 import { uuid } from '.'
 
 export const Init = (component: string, params: any = {}, hidden = false) => ({
@@ -106,7 +106,7 @@ const components: ArchitectTools['components'] = {
         children: []
     }),
     /**
-     * Generate iconst
+     * Generate icons
      */
     ...(() => {
         let iconsCompoenetsTemp = {}

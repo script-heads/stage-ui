@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import { Block, Flexbox, Menu, ScrollView, Text, TextField, useTheme } from '@stage-ui/core'
-import { Close, Cube, Search } from '@stage-ui/core/icons'
+import { Close, Cube, Search } from '@stage-ui/icons'
 import { Fragment, useMemo, useState } from 'react'
 import { PagesType, PageType } from '../../utils/core'
 

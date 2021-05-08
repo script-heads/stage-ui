@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/react'
 import { Badge, Button, Grid, Flexbox, Header, Paragraph, Text, useTheme } from '@stage-ui/core'
 import { CustomPageProps } from '../../utils/core'
-import { Moon } from '@stage-ui/core/icons'
+import { Moon } from '@stage-ui/icons'
 import ThemeSwitcher from '../../components/Menu/ThemeSwitcher'
 export default (props: CustomPageProps) => {
     const theme = useTheme()

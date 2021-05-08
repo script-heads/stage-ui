@@ -5,12 +5,12 @@ import { ArrowIosDownward, Close } from '@stage-ui/core/icons'
 import DropTypes from '@stage-ui/core/layout/Drop/types'
 import Field from '@stage-ui/core/misc/hocs/Field'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, ForwardRefRenderFunction, Fragment, useEffect, useRef, useState } from 'react'
-import { transform } from 'typescript'
+import React, { forwardRef, ForwardRefRenderFunction, Fragment, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import styles from './styles'
 import Types from './types'
 
-const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
+
+const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
 
     const {
         decoration = 'outline',
@@ -20,6 +20,7 @@ const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
         maxScrollHeight = '16rem',
         keepOpen = false,
         disabled = false,
+        emptyText = '-'
     } = props
 
     /**
@@ -46,7 +47,7 @@ const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
      */
     const options = props.options.filter(option => {
         // Filter only unselected values
-        if (values.find(o => o.value === option.value)) {
+        if (values.find(o => o.value === option.value) && props.multiselect) {
             return false
         }
         // Filter only matching search
@@ -69,6 +70,7 @@ const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
     }, {
         isOpen: isOpen && options.length > 0
     })
+    
     /**
      * Object for variant styles
      */
@@ -126,8 +128,8 @@ const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
     /**
      * Open and close select drop
      */
-    function toggleOpen(e) {
-        e.stopPropagation()
+    function toggleOpen(e?: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+        e?.stopPropagation()
         if (!isOpen && disabled) {
             return
         }
@@ -176,7 +178,13 @@ const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
         onChange([], undefined, search)
     }
 
-    const isDown = (isOpen && options.length > 0)
+    useImperativeHandle(ref, () => ({
+        ...fieldRef,
+        isOpen,
+        options :options,
+        values: values,
+        toggleOpen,
+    }))
 
     return (
         <Fragment>
@@ -211,10 +219,9 @@ const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
                         size={size}
                         style={{
                             transition:'transform 0.25s',
-                            transform: `scale(1.5) scaleY(${isDown ? -1 : 1})`
+                            transform: `scale(1.5) rotate(${isOpen ? '90deg' : 0})`
                         }}
                         color={c => isOpen ? c.primary : c.light}
-                        // rotate={(isOpen && options.length > 0) ? 180 : 0}
                         onClick={(e) => {
                             e.preventDefault()
                             toggleOpen(e)
@@ -265,14 +272,16 @@ const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
                 )}
             />
             <Drop
-                visible={(isOpen && options.length > 0)}
+                visible={(isOpen)}
                 ref={dropRef}
                 animation={props.animation || {
-                    type: 'collapse',
+                    type: 'slide',
                     duration: 100,
+                    reverse: true,
                 }}
                 onClickOutside={(e, outTarget) => {
                     if (outTarget) {
+                        //@ts-ignore
                         toggleOpen(e)
                     }
                 }}
@@ -282,19 +291,28 @@ const Select: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
                     <div css={cs.drop(styleState)}>
                         <ScrollView
                             size="xs"
-                            style={{ maxHeight: maxScrollHeight }}
+                            css={{ maxHeight: maxScrollHeight }}
                             sendFlowScollEvent={false}
-                            children={options.map(option => (
-                                <div
-                                    css={cs.dropItem(styleState)}
-                                    key={option.value}
-                                    children={option.text}
-                                    onClick={(e) => {
-                                        e.preventDefault()
-                                        setOption(option)
-                                    }}
-                                />
-                            ))}
+                            children={
+                                <Fragment>
+                                    {options.map(option => (
+                                        <div
+                                            css={cs.dropItem({ ...styleState, selected: values.includes(option) })}
+                                            key={option.value}
+                                            children={option.text}
+                                            onClick={(e) => {
+                                                e.preventDefault()
+                                                setOption(option)
+                                            }}
+                                        />
+                                    ))}
+                                    {options.length === 0 && (
+                                        <div css={cs.emptyConteiner}>
+                                            <div css={cs.emptyText}>{emptyText}</div>
+                                        </div>
+                                    )}
+                                </Fragment>
+                            }
                         />
                     </div>
                 )}

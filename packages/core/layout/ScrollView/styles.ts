@@ -7,6 +7,11 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
     let color = colorResolver(theme, props.color || theme.color.onBackground)
 
     return {
+        wrapper: [{
+            position: 'relative',
+            height: '100%',
+            width: '100%',
+        }],
         container: [
             {
                 position: 'relative',
@@ -22,7 +27,6 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
              * causing issue with
              * crop content
              */
-            // width: 'fit-content',
             height: 'fit-content',
             minWidth: '100%',
             minHeight: '100%',
@@ -35,6 +39,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
             position: 'relative',
             overflow: 'auto',
             height: '100%',
+            maxHeight: 'inherit',
             '::-webkit-scrollbar': {
                 display: 'none'
             },
@@ -78,9 +83,12 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                     }]
                 },
                 position: {
+                    none: {
+                        display: 'none'
+                    },
                     left: [{
                         right: 'auto',
-                        left: 0
+                        left: 0,
                     }]
                 }
             })
@@ -161,6 +169,9 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                     }]
                 },
                 position: {
+                    none: {
+                        display: 'none'
+                    },
                     top: [{
                         bottom: 'auto',
                         top: 0

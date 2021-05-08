@@ -5,15 +5,17 @@ import SystemTypes from '@stage-ui/system/types'
 declare namespace TextFieldTypes {
 
     type InputTypes =
-        'email' |
-        'hidden' |
-        'number' |
-        'password' |
-        'reset' |
-        'search' |
-        'tel' |
-        'text' |
-        'url'
+    'email' |
+    'hidden' |
+    'number' |
+    'password' |
+    'reset' |
+    'search' |
+    'tel' |
+    'text' |
+    'url'
+    
+    type Ref = HTMLDivElement
 
     interface Props extends FieldTypes.Props, InputProps, TextAreaProps {
         /**

@@ -7,6 +7,13 @@ declare namespace SelectTypes {
         value: any
     }
 
+    interface Ref {
+        isOpen: boolean
+        options: Option[]
+        values: Option[]
+        toggleOpen: () => void
+    }
+
     interface Props extends Omit<FieldTypes.Props<Styles>, 'onChange'> {
         /**
          * Content to be appear in the form control when the form control is empty
@@ -50,6 +57,10 @@ declare namespace SelectTypes {
          * Event is fired when user change value
          */
         onChange?: (values: Option[], changedValue?: Option) => void
+        /**
+         * Display when empty
+         */
+        emptyText?: string
     }
 
     type State = {
@@ -67,9 +78,14 @@ declare namespace SelectTypes {
         focus: boolean
     }
 
+    interface StyleStateItem extends StyleState {
+        selected: boolean
+    }
+
     interface StyleParams {
         isOpen: boolean
     }
+
     interface Styles extends FieldTypes.Styles<{
         container: StyleState
     }> {
@@ -99,7 +115,16 @@ declare namespace SelectTypes {
         /**
          * Container of every item in drop
          */
-        dropItem: StyleState
+        dropItem: StyleStateItem
+        /**
+         * Container view when list is empty
+         */
+        emptyConteiner: StyleState
+
+        /**
+         * Container text when list is empty
+         */
+        emptyText: StyleState
     }
 }
 

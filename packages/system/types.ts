@@ -118,11 +118,8 @@ declare namespace SystemTypes {
             style: string
             color: string
         }
-        shadow: {
-            default: string
-            short: string
-            long: string
-        }
+        shadow: Record<Size, string>
+        innerShadow: Record<Size, string>
         focus: EmotionStyles
         field: Record<Size, {
             minHeight: string

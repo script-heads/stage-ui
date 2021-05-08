@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import { Flexbox, Header, Link, Paragraph } from '@stage-ui/core'
-import { Github } from '@stage-ui/core/icons'
+import { Github } from '@stage-ui/icons'
 import SystemTypes from '@stage-ui/system/types'
 import ThemeSwitcher from '../../../components/Menu/ThemeSwitcher'
 import styles from './styles'

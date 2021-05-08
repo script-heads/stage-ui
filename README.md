@@ -29,13 +29,11 @@ yarn add @stage-ui/core
 import React from 'react'
 import { Viewport, Header } from '@stage-ui/core'
 
-export default () => {
-    return (
-        <Viewport>
-            <Header>Hello world!</Header>
-        </Viewport>
-    )
-}
+export default () => (
+  <Viewport>
+    <Header>Hello world!</Header>
+  </Viewport>
+)
 ```
 
 ## Experimental

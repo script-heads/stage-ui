@@ -18,6 +18,10 @@ switch (packageName) {
         systemConfig = JSON.parse(fs.readFileSync(workspacesDir + 'system/package.json'))
         config.dependencies[systemConfig.name] = `^${systemConfig.version}`
         break;
+    case 'icons':
+        systemConfig = JSON.parse(fs.readFileSync(workspacesDir + 'system/package.json'))
+        config.dependencies[systemConfig.name] = `^${systemConfig.version}`
+        break;
     case 'lab':
         systemConfig = JSON.parse(fs.readFileSync(workspacesDir + 'system/package.json'))
         coreConfig = JSON.parse(fs.readFileSync(workspacesDir + 'core/package.json'))

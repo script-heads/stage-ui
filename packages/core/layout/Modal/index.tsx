@@ -65,11 +65,13 @@ const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
         setTimeout(() => {
             setVisible(true)
             props.didOpen && props.didOpen()
-        })
+        }, 50)
     }
 
+
+
     function close(didClose?: () => void) {
-        document.body.style.overflow = ''
+        document.body.style.overflow = ''        
 
         setVisible(false)
 
@@ -77,7 +79,7 @@ const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
             setActive(false)
             props.didClose && props.didClose()
             didClose && didClose()
-        }, 500)
+        }, 300)
 
         props.onClose && props.onClose()
     }

@@ -1,10 +1,10 @@
 import React from 'react'
-import { Calendar } from '@stage-ui/core'
+import { Block, Calendar } from '@stage-ui/core'
 
 export default () => {
     return (
-        <Calendar
-            type="day"
-        />
+        <Block pb="s" decoration="surface" w="18rem">
+            <Calendar type="day" />
+        </Block>
     )
 }

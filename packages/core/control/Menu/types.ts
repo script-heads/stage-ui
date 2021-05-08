@@ -13,6 +13,7 @@ declare namespace MenuTypes {
         current?: MenuValue
         controlled?: boolean
         onChange?: (value?: MenuValue) => void
+        itemAs?: keyof HTMLElementTagNameMap
     }
 
     interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
@@ -68,6 +69,10 @@ declare namespace MenuTypes {
          * Menu Items
          */
         children?: React.ReactNode
+        /**
+         * HTML element which will be used for an MenuItems
+         */
+        itemAs?: keyof HTMLElementTagNameMap
     }
     interface StyleState {
         decoration: Props['decoration']

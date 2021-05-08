@@ -28,6 +28,10 @@ jobs:
       - run:
           ssh -o "StrictHostKeyChecking no" itrcz@project1.io 'pm2 restart StageUI'
 workflows:
-  deploy:
-    jobs:
-      - deploy
+    deploy:
+      jobs:
+        - deploy:
+            filters:
+              branches:
+                only:
+                  - master

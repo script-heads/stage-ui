@@ -1,4 +1,5 @@
 import SystemTypes from '@stage-ui/system/types'
+import React from 'react'
 
 declare namespace FieldTypes {
 
@@ -15,6 +16,10 @@ declare namespace FieldTypes {
          * Place for hint content
          */
         hint?: React.ReactNode
+        /**
+         * Place for error content
+         */
+        error?: React.ReactNode
         /**
          * Size of field
          * @default m
@@ -103,7 +108,11 @@ declare namespace FieldTypes {
         /**
          * Container of hint
          */
-        hint: State & T['hint']
+         hint: State & T['hint']
+        /**
+         * Container of error
+         */
+        error: State & T['error']
     }
 
     interface PrivateProps extends Omit<Props, 'styles'> {

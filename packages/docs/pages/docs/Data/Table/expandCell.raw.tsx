@@ -1,5 +1,5 @@
 import { Flexbox, Table, Text } from '@stage-ui/core'
-import { ArrowIosDownward } from '@stage-ui/core/icons'
+import { ArrowIosDown } from '@stage-ui/icons'
 import React from 'react'
 
 export default () => {
@@ -15,7 +15,7 @@ export default () => {
                     )
                 }
             }}>
-                <ArrowIosDownward
+                <ArrowIosDown
                     mr="0.5rem"
                     color={c => c.primary}
                     rotate={props.ctx.isExpand ? 180 : 0}

@@ -2,6 +2,7 @@ import SystemTypes from '@stage-ui/system/types'
 import MenuTypes from '../types'
 
 declare namespace MenuItemTypes {
+
     interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
         /**
          * Controlled item state
@@ -32,6 +33,14 @@ declare namespace MenuItemTypes {
          * Left child at item view
          */
         rightChild?: React.ReactNode
+        /**
+         * HTML element which is used as a container
+         */
+        as?: keyof HTMLElementTagNameMap
+        /**
+         * Only for Anchors
+         */
+        href?: string
     }
 
     interface Styles {

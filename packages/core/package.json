@@ -1,10 +1,10 @@
 {
     "name": "@stage-ui/core",
     "author": "Research technology",
-    "version": "0.1.101",
+    "version": "0.1.137",
     "license": "MIT",
     "scripts": {
-        "pub": "git pull && yarn build && npm version patch && cd ../../build/core && npm version patch && yarn publish --access public && cd .. && rm -rf ./core",
+        "pub": "git pull && npm version patch && yarn build && cd ../../build/core && yarn publish --access public && cd .. && rm -rf ./core",
         "build": "yarn build:types && yarn build:js && cp package.json README.md babelImportPlugins.js ../../build/core/ && node ../../scripts/buildConfig core",
         "build:types": "tsc --emitDeclarationOnly",
         "build:js": "babel ./ --out-dir ../../build/core --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
@@ -14,7 +14,7 @@
     },
     "dependencies": {
         "imask": "^6.0.1",
-        "moment": "^2.24.0",
+        "moment": "2.29.1",
         "rifm": "^0.12.0"
     },
     "devDependencies": {
@@ -27,11 +27,8 @@
         "@babel/preset-env": "^7.7.6",
         "@babel/preset-react": "^7.7.4",
         "@babel/preset-typescript": "^7.7.4",
-        "@emotion/babel-preset-css-prop": "^11.0.0",
         "csstype": "^3.0.6",
-        "eva-icons": "^1.1.2",
-        "tslint": "^6.1.3",
-        "typescript": "^4.1.3"
+        "eva-icons": "^1.1.2"
     },
     "peerDependencies": {
         "@babel/runtime": "*",
