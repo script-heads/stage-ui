@@ -1,8 +1,8 @@
 import FlowTypes from '../../types'
 
 declare global {
-    namespace System {
-        interface Overrides extends FlowTypes.Overrides { }
+    namespace Stage {
+        interface ThemeOverrides extends FlowTypes.Overrides { }
     }
 }
 

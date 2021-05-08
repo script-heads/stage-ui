@@ -1,7 +1,6 @@
-import SystemTypes from '@stage-ui/system/types'
 import createTheme from '@stage-ui/system/utils/createTheme'
 
-const Light: SystemTypes.SourceTheme = {
+export default createTheme({
     main: {
         name: 'Light',
         color: {
@@ -157,6 +156,4 @@ const Light: SystemTypes.SourceTheme = {
             },
         }
     })
-}
-
-export default createTheme(Light)
+})

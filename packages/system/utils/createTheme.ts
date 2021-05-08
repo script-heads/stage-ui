@@ -1,51 +1,98 @@
-import Types from '../types'
 import createID from './createID'
 import mergeObjects from './mergeObjects'
 import Color from 'color'
+import isFunction from './isFunction'
+
+export interface ThemeDefiniton {
+    main: Omit<Stage.ThemeMain, 'color' | 'breakpoints'> & {
+        color: Omit<Stage.ThemeMain<Stage.ColorDefinition>['color'], 'palette'> & {
+            palette?: Record<string, Stage.ColorDefinition> 
+        },
+        breakpoints?: string[]
+    }
+    assets: ((main: Stage.ThemeMain) => Stage.ThemeAssets) | Stage.ThemeAssets
+    overrides?: ((main: Stage.ThemeMain, assets: Stage.ThemeAssets) => Stage.ThemeOverrides) | Stage.ThemeOverrides
+}
+
+export interface ReplaceTheme {
+    main?: DeepPartial<ThemeDefiniton['main']>
+    assets?: ((main: Stage.ThemeMain) => DeepPartial<Stage.ThemeAssets>) | DeepPartial<Stage.ThemeAssets>
+    overrides?: ((main: Stage.ThemeMain, assets: Stage.ThemeAssets) => DeepPartial<Stage.ThemeOverrides>) | DeepPartial<Stage.ThemeOverrides>
+}
+
+export type DeepPartial<T> = {
+    [P in keyof T]?: T[P] extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T[P] extends ReadonlyArray<infer U>
+    ? ReadonlyArray<DeepPartial<U>>
+    : DeepPartial<T[P]>
+}
+
+/**
+ * autocomplete hack for webkit
+ */
+const autocomplete = {
+    transition: 'all 604800s ease-in-out 0s',
+    transitionProperty: 'background-color, color',
+}
+const defaultGlobal = {
+    'input:-webkit-autofill': autocomplete,
+    'input:-webkit-autofill:hover': autocomplete,
+    'input:-webkit-autofill:focus': autocomplete,
+    'input:-webkit-autofill:active': autocomplete,
+    'input::-webkit-internal-input-suggested': {
+        /**
+         * Chrome bug
+         * https://bugs.chromium.org/p/chromium/issues/detail?id=953689
+         */
+    }
+}
 
 const defaultBreakpoints = ['1199.98px', '991.98px', '767.98px', '575.98px']
 
-const createTheme = (theme: Types.SourceTheme): Types.Theme => {
+const createTheme = (themeDefinition: ThemeDefiniton): Stage.Theme => {
 
-    const main = convertColors(theme.main)
-    const assets = theme.assets(main)
-    const overrides = theme.overrides?.(main, assets)
+    const main = convertColors(themeDefinition.main)
+    const assets = isFunction(themeDefinition.assets) ? themeDefinition.assets(main) : themeDefinition.assets
+    const overrides = isFunction(themeDefinition.overrides) ? themeDefinition.overrides(main, assets) : themeDefinition.overrides || {}
 
-    main.breakpoints = theme.main.breakpoints || defaultBreakpoints
+    main.breakpoints = themeDefinition.main.breakpoints || defaultBreakpoints
     main.color.palette = main.color.palette || {}
+    assets.global = [defaultGlobal, assets.global]
 
-    const replace = (themeReplace: Types.ReplaceTheme): Types.Theme => {
+    const replace = (themeReplaceDefinition: ReplaceTheme): Stage.Theme => {
 
-        const newTheme = mergeObjects(
-            theme,
-            themeReplace,
-        ) as Types.SourceTheme
-        newTheme.main.name = newTheme.main.name || main.name + '-' + createID()
+        const combinedMain = mergeObjects(
+            themeDefinition.main || {},
+            themeReplaceDefinition.main || {},
+        ) as ThemeDefiniton['main']
 
-        newTheme.assets = (main) => mergeObjects(
-            theme.assets(main),
-            themeReplace.assets && themeReplace.assets(main),
-        ) as Types.ThemeAssets
+        const combinedAssets = ((main) => mergeObjects(
+            isFunction(themeDefinition.assets) ? themeDefinition.assets(main) : themeDefinition.assets || {},
+            isFunction(themeReplaceDefinition.assets) ? themeReplaceDefinition.assets(main) : themeReplaceDefinition.assets || {},
+        )) as ThemeDefiniton['assets']
 
-        newTheme.overrides = (main, assets) => mergeObjects(
-            overrides,
-            themeReplace.overrides && themeReplace.overrides(main, assets),
-        ) as Partial<{ [Component in keyof System.Overrides]: Types.Styles<System.Overrides[Component]> }>
+        const combinedOverrides = ((main, assets) => mergeObjects(
+            isFunction(themeDefinition.overrides) ? themeDefinition.overrides(main, assets) : themeDefinition.overrides || {},
+            isFunction(themeReplaceDefinition.overrides) ? themeReplaceDefinition.overrides(main, assets) : themeReplaceDefinition.overrides || {},
+        )) as ThemeDefiniton['overrides']
 
-        return createTheme(newTheme)
+        combinedMain.name = combinedMain.name || main.name + '-' + createID()
+
+        return createTheme({main: combinedMain, assets: combinedAssets, overrides: combinedOverrides})
     }
 
     return Object.assign({ assets, overrides, replace }, main)
 }
 
-function convertColors(theme: Types.SourceTheme['main']): Types.Theme {
+function convertColors(themeMain: ThemeDefiniton['main']): Stage.ThemeMain {
     return mergeObjects(
         {},
-        theme,
+        themeMain,
         (value) => value instanceof Array
             ? Color(value)
             : value
-    ) as Types.Theme
+    ) as Stage.Theme
 }
 
 export default createTheme
