@@ -6,7 +6,7 @@ import * as IconScope from '@stage-ui/icons'
 import * as LabScope from '@stage-ui/lab'
 import SystemTypes from '@stage-ui/system/types'
 import React from 'react'
-import { transpile } from './typescriptServices'
+import ts, { JsxEmit, ModuleKind } from 'typescript'
 
 Object.assign(window, {
     React,
@@ -30,9 +30,9 @@ interface PreviewProps {
 
 const Preview = (props: PreviewProps) => {
     const { theme, code, grid, fullscreen, setFullscreen } = props
-    let traspiledCode = code && transpile(code, {
-        jsx: 'react',
-        module: 'es6',
+    let traspiledCode = code && ts.transpile(code, {
+        jsx: JsxEmit.React,
+        module: ModuleKind.ES2015
     })
     /**
      * Butch of crutchs before execute :)
