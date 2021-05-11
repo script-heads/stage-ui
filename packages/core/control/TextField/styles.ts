@@ -10,7 +10,16 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
         '2.5rem'
 
     return {
-        ...fieldStyles(props, theme, {}),
+        ...fieldStyles(props, theme, props.leftChildNumber ? {
+            child: (variant) => variant({
+                align: {
+                    left: {
+                        overflow: 'hidden',
+                        position: 'relative',
+                    }
+                }
+            }) 
+        } : {}),
         input: (variant) => [
             {
                 outline: 0,
@@ -40,6 +49,13 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 }
             })
         ],
+        lineNumbers: [{
+            position: 'absolute',
+            margin: `calc(${minHeight} / 4.5) 0`,
+            '> div': {
+                height: props.lineHeight || theme.assets.typography.text[props.size || 'm'].lineHeight
+            }
+        }]
     }
 }
 

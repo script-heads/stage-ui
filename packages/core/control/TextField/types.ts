@@ -31,6 +31,12 @@ declare namespace TextFieldTypes {
          * Calls on input change
          */
         onChange?: ChangeEventHandler<HTMLInputElement>
+        /**
+         * Enables textarea line numbers
+         * @only if multiline true
+         * @default false
+         */
+         leftChildNumber?: ((index: number) => React.ReactNode) | boolean
     }
 
     interface InputProps {
@@ -145,7 +151,8 @@ declare namespace TextFieldTypes {
             multiline: boolean
             size: SystemTypes.Size,
             disabled: boolean
-        }
+        },
+        lineNumbers: void
     }
 }
 

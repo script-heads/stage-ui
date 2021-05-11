@@ -107,17 +107,6 @@ const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (pro
                         ) :
                         props.error}
                 </div>
-                // <Flexbox
-                //     css={{
-                //         opacity: error ? 1 : 0,
-                //         transition: error ? 'opacity 0.25s' : 'none',
-                //     }}
-                // >
-                //     <AlertCircle color="error" display="inline-block" pr="xs" />
-                //     <Text color="error" weight={100}>
-                //         {error || '\u200B'}
-                //     </Text>
-                // </Flexbox>
             )}
         </div>
     )
