@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Block, Button, Flexbox, notify, Stepper } from '@stage-ui/core'
 import { ArrowIosLeft, ArrowIosRight } from '@stage-ui/icons'
 

@@ -24,6 +24,7 @@ const Stepper: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
                     active: current == i,
                     complete: current > i,
                     pointer: !!onChange,
+                    size: props.size || 'm'
                 }
                 const hasMore = i < data.length - 1
                 const label = state.complete
@@ -32,7 +33,7 @@ const Stepper: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
 
                 return (
                     <React.Fragment key={i}>
-                        <div css={cs.step(state)} onClick={() => onChange?.(step, i)}>{label}</div>
+                        <div css={cs.step(state)} onClick={() => onChange?.(step, i)}>{props.size !== 'xs' && label}</div>
                         {hasMore && <div css={cs.separator(state)} />}
                     </React.Fragment>
                 )

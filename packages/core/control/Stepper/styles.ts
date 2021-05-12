@@ -10,7 +10,8 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 flexDirection: 'row',
                 alignItems: 'center',    
                 flex: 1,
-                transition: 'all 0.25s'
+                transition: 'all 0.25s',
+                ...theme.assets.typography.text[props.size || 'm']
             },
         ],
         step: (variant) => [
@@ -19,8 +20,6 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                width: '2.5rem',
-                height: '2.5rem',
                 border: '1px solid',
                 color: theme.color.light.string(),
                 borderColor: theme.color.lightest.string(),
@@ -29,18 +28,54 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 userSelect: 'none',
             },
             variant({
-                active: {
-                    color: theme.color.primary.string(),
-                    borderColor: theme.color.primary.alpha(0.5).string(),    
+                size: {
+                    xl: {
+                        width: '3.5rem',
+                        height: '3.5rem',
+                        borderWidth: '3px',
+
+                    },
+                    l: {
+                        width: '3rem',
+                        height: '3rem',
+                        borderWidth: '2px',
+                    },
+                    m: {
+                        width: '2.5rem',
+                        height: '2.5rem',
+                    },
+                    s: {
+                        width: '2rem',
+                        height: '2rem',
+                    },
+                    xs: {
+                        width: '4.5rem',
+                        height: '0.25rem',
+                        border: 'none',
+                        backgroundColor: theme.color.lightest.string(),
+                    }
                 },
+                active: [
+                    {
+                        color: theme.color.primary.string(),
+                        borderColor: theme.color.primary.alpha(0.5).string(),
+                    },
+                    variant({
+                        size: {
+                            xs: {
+                                backgroundColor: theme.color.light.string(),
+                            }
+                        }
+                    })
+                ],
                 complete: {
                     color: theme.color.onPrimary.string(),
-                    backgroundColor: theme.color.primary.string(), 
-                    borderColor: theme.color.primary.string(), 
+                    backgroundColor: theme.color.primary.string(),
+                    borderColor: theme.color.primary.string(),
                 },
                 pointer: {
-                    cursor: 'pointer',
-                },
+                cursor: 'pointer',
+            },
             })
         ],
         separator: (variant) => [
@@ -57,6 +92,19 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 complete: {
                     background: theme.color.primary.alpha(0.5).string(),    
                 },
+                size: {
+                    xl: {
+                        height: '0.375rem',
+                    },
+                    l: {
+                        height: '0.25rem',
+                    },
+                    xs: {
+                        background: 'none',
+                        flexBasis: '0.375rem',
+                        flexGrow: 0,
+                    }
+                }
             })
         ]
     }
