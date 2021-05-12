@@ -41,6 +41,8 @@ const Preview = (props: PreviewProps) => {
     traspiledCode = traspiledCode.replace(/createElement\(/g, 'createElement(FlowScope.')
     traspiledCode = traspiledCode.replace(/dialog\(/g, 'FlowScope.dialog(')
     traspiledCode = traspiledCode.replace(/notify\(/g, 'FlowScope.notify(')
+    traspiledCode = traspiledCode.replace(/useTheme\(/g, 'FlowScope.useTheme(')
+    traspiledCode = traspiledCode.replace(/useBreakpoints\(/g, 'FlowScope.useBreakpoints(')
 
     traspiledCode.match(/var \S+/g)?.map(varible => {
         const varName = varible.split('var ')[1]
