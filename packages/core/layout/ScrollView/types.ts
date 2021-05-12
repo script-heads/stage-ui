@@ -114,6 +114,10 @@ declare namespace ScrollViewTypes {
          * if item not found function returns false
          */
         scrollToElement: (dataId: string, options?: ScrollToElementOptions) => boolean
+        /**
+         * Ref to container element
+         */
+        container: HTMLDivElement | null
     }
 
     interface Styles {

@@ -76,7 +76,8 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
                 return true
             }
             return false
-        }
+        },
+        container: memo.container
     }))
 
     const { cs, attributes, events } = useComponent('ScrollView', {
