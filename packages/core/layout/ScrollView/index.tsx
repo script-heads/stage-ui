@@ -23,12 +23,15 @@ interface MemoParams {
     content: null | HTMLDivElement
     timeout?: any
     mode: Types.Props['mode']
-    watchElementId?: string
+    watchElementId: string
+    preventWatchElement: boolean
 }
+
 
 const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
 
     const scrollTo = (x: number, y: number, options?: Types.ScrollToOptions) => {
+        memo.preventWatchElement = options?.preventWatchElement || false
         if (isLegacyScrollSupport) {
             if (memo.container) {
                 memo.container.scrollTo(x, y)
@@ -113,6 +116,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
         content: null,
         mode: mode || 'scroll',
         watchElementId: '',
+        preventWatchElement: false,
     }), [])
 
     const updateThumb = (e: Types.ScrollParams, axes: 'x' | 'y') => {
@@ -253,7 +257,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
         /**
          * find elements with data-id
          */
-        if (props.watchElement && e.preventWatchElement !== true) {
+        if (props.watchElement && memo.preventWatchElement !== true) {
             const elements: HTMLDivElement[] = []
             document.querySelectorAll(`[data-scroll-id="${memo.id}"] [data-id]`).forEach((queryElement) => {
                 elements.push(queryElement as HTMLDivElement)
@@ -270,6 +274,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
                 }
             }
         }
+        memo.preventWatchElement = false
     }, [])
 
     const yMouseDown = useMemo(() => () => {
