@@ -25,6 +25,7 @@ interface MemoParams {
     mode: Types.Props['mode']
     watchElementId: string
     preventWatchElement: boolean
+    preventWatchElementTimer: any
 }
 
 
@@ -117,6 +118,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
         mode: mode || 'scroll',
         watchElementId: '',
         preventWatchElement: false,
+        preventWatchElementTimer: null,
     }), [])
 
     const updateThumb = (e: Types.ScrollParams, axes: 'x' | 'y') => {
@@ -274,7 +276,10 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
                 }
             }
         }
-        memo.preventWatchElement = false
+        clearTimeout(memo.preventWatchElementTimer)
+        memo.preventWatchElementTimer = setTimeout(() => {
+            memo.preventWatchElement = false
+        }, 100)
     }, [])
 
     const yMouseDown = useMemo(() => () => {
