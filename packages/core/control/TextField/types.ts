@@ -15,7 +15,11 @@ declare namespace TextFieldTypes {
     'text' |
     'url'
     
-    type Ref = HTMLDivElement
+    type Ref = {
+        clear: () => void, 
+        container: HTMLDivElement | null
+        input: HTMLInputElement | HTMLTextAreaElement | null
+    }
 
     interface Props extends FieldTypes.Props, InputProps, TextAreaProps {
         /**
