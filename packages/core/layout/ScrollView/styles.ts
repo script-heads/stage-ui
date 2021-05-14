@@ -43,7 +43,6 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
             '::-webkit-scrollbar': {
                 display: 'none'
             },
-            scrollBehavior: 'smooth',
         }],
         yBar: (variant) => [
             {

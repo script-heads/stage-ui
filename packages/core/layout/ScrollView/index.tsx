@@ -35,6 +35,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
         memo.preventWatchElement = options?.preventWatchElement || false
         if (isLegacyScrollSupport) {
             if (memo.container) {
+                memo.container.style['scroll-behavior'] = 'smooth'
                 memo.container.scrollTo(x, y)
             }
         } else {
@@ -279,6 +280,9 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
         clearTimeout(memo.preventWatchElementTimer)
         memo.preventWatchElementTimer = setTimeout(() => {
             memo.preventWatchElement = false
+            if (memo.container) {
+                memo.container.style['scroll-behavior'] = 'smooth'
+            }
         }, 100)
     }, [])
 
