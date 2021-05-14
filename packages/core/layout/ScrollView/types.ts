@@ -16,6 +16,11 @@ declare namespace ScrollViewTypes {
          * call at this scrollUpdate
          */
         preventWatchElement?: boolean
+        /**
+         * Smooth scroll
+         * @only webkit
+         */
+        smooth?: boolean
     }
 
     interface ScrollToElementOptions extends ScrollToOptions {
