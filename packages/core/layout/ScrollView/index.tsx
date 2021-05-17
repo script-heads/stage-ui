@@ -9,17 +9,6 @@ import Types from './types'
 const isLegacyScrollSupport = isWebKit
 const isTouchScreenSupport = Boolean('ontouchstart' in window)
 
-const getOffsetTop = (elem: HTMLDivElement) => {
-    
-    let offsetTop = 0
-    do {
-        if (!isNaN(elem?.offsetTop)) {
-            offsetTop += elem?.offsetTop
-        }
-    } while (elem = elem.offsetParent as HTMLDivElement)
-    return offsetTop
-}
-
 interface MemoParams {
     id: string
     mounted: boolean
@@ -41,6 +30,49 @@ interface MemoParams {
 
 
 const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
+   
+    const { cs, attributes, events } = useComponent('ScrollView', {
+        props,
+        styles,
+        styleProps: {
+            wrapper: ['all'],
+            webkit: ['all']
+        }
+    })
+
+    const {
+        shape = 'round',
+        size = 'm',
+        mode = 'scroll',
+        xBarPosition = 'bottom',
+        yBarPosition = 'right',
+    } = props
+
+    const memo: MemoParams = useMemo(() => ({
+        id: (~~(Math.random() * 1e8)).toString(16),
+        mounted: false,
+        y: false,
+        x: false,
+        events: false,
+        yBar: null,
+        yThumb: null,
+        xBar: null,
+        xThumb: null,
+        container: null,
+        content: null,
+        mode: mode || 'scroll',
+        watchElementId: '',
+        preventWatchElement: false,
+        preventWatchElementTimer: null,
+    }), [])
+
+    const getOffsetTop = (elem: HTMLDivElement, offsetTop = 0) => {
+        if (!elem || elem.attributes['data-scroll-id']?.value === memo.id) {
+            return offsetTop
+        }
+        offsetTop += elem?.offsetTop
+        return getOffsetTop(elem.offsetParent as HTMLDivElement, offsetTop)
+    }
 
     const scrollTo = (x: number, y: number, options?: Types.ScrollToOptions) => {
         memo.preventWatchElement = options?.preventWatchElement || false
@@ -98,42 +130,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
         container: memo.container
     }))
 
-    const { cs, attributes, events } = useComponent('ScrollView', {
-        props,
-        styles,
-        styleProps: {
-            wrapper: ['all'],
-            webkit: ['all']
-        }
-    })
-
-    const {
-        shape = 'round',
-        size = 'm',
-        mode = 'scroll',
-        xBarPosition = 'bottom',
-        yBarPosition = 'right',
-    } = props
-
     const [active, setActive] = useState(mode === 'always')
-
-    const memo: MemoParams = useMemo(() => ({
-        id: (~~(Math.random() * 1e8)).toString(16),
-        mounted: false,
-        y: false,
-        x: false,
-        events: false,
-        yBar: null,
-        yThumb: null,
-        xBar: null,
-        xThumb: null,
-        container: null,
-        content: null,
-        mode: mode || 'scroll',
-        watchElementId: '',
-        preventWatchElement: false,
-        preventWatchElementTimer: null,
-    }), [])
 
     const updateThumb = (e: Types.ScrollParams, axes: 'x' | 'y') => {
         if (!memo.content || !memo.container) return
