@@ -10,12 +10,13 @@ const isLegacyScrollSupport = isWebKit
 const isTouchScreenSupport = Boolean('ontouchstart' in window)
 
 const getOffsetTop = (elem: HTMLDivElement) => {
+    
     let offsetTop = 0
     do {
         if (!isNaN(elem?.offsetTop)) {
             offsetTop += elem?.offsetTop
         }
-    } while (elem = elem.offsetParent)
+    } while (elem = elem.offsetParent as HTMLDivElement)
     return offsetTop
 }
 
