@@ -4,6 +4,10 @@ import { forwardRef, ForwardRefRenderFunction, useMemo } from 'react'
 import styles from './styles'
 import Types from './types'
 
+const capitalizeFirstLetter = (s: string) => {
+    return s.charAt(0).toUpperCase() + s.slice(1)
+}
+
 type RefTag = HTMLSpanElement | HTMLAnchorElement | HTMLParagraphElement
 
 const Typography: ForwardRefRenderFunction<RefTag, Types.PrivateProps> = (props, ref) => {
@@ -17,6 +21,10 @@ const Typography: ForwardRefRenderFunction<RefTag, Types.PrivateProps> = (props,
             ignoreMouse: props.mouseFocus
         }
     })
+
+    const children = typeof props.children === 'string' && props.capitalize  
+        ? capitalizeFirstLetter(props.children) 
+        : props.children
 
     return useMemo(() => (
         jsx(
@@ -36,7 +44,7 @@ const Typography: ForwardRefRenderFunction<RefTag, Types.PrivateProps> = (props,
                 type: props.type,
                 referrerPolicy: props.referrerPolicy,
             },
-            props.children
+            children
         )
     ), [props, attributes])
 }

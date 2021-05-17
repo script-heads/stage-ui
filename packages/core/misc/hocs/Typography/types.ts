@@ -44,6 +44,10 @@ declare namespace TypographyTypes {
 
     interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 		/**
+		 * Capitalize first letter
+		 */
+				capitalize?: boolean
+		/**
 		 * Overflow text shortening
 		 */
         ellipsis?: boolean
