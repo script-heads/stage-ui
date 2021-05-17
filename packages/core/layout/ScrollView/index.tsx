@@ -9,6 +9,17 @@ import Types from './types'
 const isLegacyScrollSupport = isWebKit
 const isTouchScreenSupport = Boolean('ontouchstart' in window)
 
+const getOffsetTop = (elem: HTMLDivElement) => {
+    
+    let offsetTop = 0
+    do {
+        if (!isNaN(elem?.offsetTop)) {
+            offsetTop += elem?.offsetTop
+        }
+    } while (elem = elem.offsetParent as HTMLDivElement)
+    return offsetTop
+}
+
 interface MemoParams {
     id: string
     mounted: boolean
@@ -79,7 +90,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
         scrollToElement: (itemId: string, options?: Types.ScrollToElementOptions) => {
             const item = document.querySelector<HTMLDivElement>(`[data-id="${itemId}"]`)
             if (item) {
-                scrollTo(item.offsetLeft, item.offsetTop - (options?.offsetTop || 0), options)
+                scrollTo(item.offsetLeft, getOffsetTop(item) - (options?.offsetTop || 0), options)
                 return true
             }
             return false
@@ -206,8 +217,8 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
             if (isLegacyScrollSupport) {
                 const currentScroll = memo.container[memo.x ? 'scrollLeft' : 'scrollTop']
                 memo.container?.scrollTo(
-                    memo.x ? currentScroll + delta : memo.container.scrollLeft,
-                    memo.y ? currentScroll + delta : memo.container.scrollTop,
+                  memo.x ? currentScroll + delta : memo.container.scrollLeft,
+                  memo.y ? currentScroll + delta : memo.container.scrollTop,
                 )
             } else {
                 updateScroll({
@@ -254,9 +265,9 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
          */
         if (props.sendFlowScollEvent !== false) {
             document.dispatchEvent(
-                new CustomEvent('onflowscroll', {
-                    detail: event
-                })
+              new CustomEvent('onflowscroll', {
+                  detail: event
+              })
             )
         }
         /**
@@ -397,63 +408,63 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
     }, [])
 
     return (
-        <div {...attributes} css={cs.wrapper} data-scroll-id={memo.id}>
-            <div
-                {...events.all}
-                onScroll={updateScroll}
-                css={isLegacyScrollSupport ? cs.webkit : cs.container}
-                ref={createRef}
-                children={(
-                    <div
-                        css={cs.content}
-                        ref={ref => memo.content = ref}
-                        children={props.children}
-                    />
-                )}
-            />
-            {mode !== 'hidden' && (
-                <Fragment>
-                    <div
-                        css={cs.yBar({ active, size, shape, position: yBarPosition })}
-                        ref={ref => memo.yBar = ref}
-                        children={(
-                            <span
-                                css={cs.yThumb({ active, size, shape })}
-                                ref={ref => memo.yThumb = ref}
-                            />
-                        )}
-                        onMouseEnter={() => {
-                            window.addEventListener('mouseup', mouseUp)
-                        }}
-                        onMouseDown={(e) => {
-                            yMouseDown()
-                            scrollToHandle(e)
-                            window.addEventListener('mousemove', scrollToHandle)
-                        }}
-                        onMouseUp={mouseUp}
-                    />
-                    <div
-                        css={cs.xBar({ active, size, shape, position: xBarPosition })}
-                        ref={ref => memo.xBar = ref}
-                        children={(
-                            <span
-                                css={cs.xThumb({ active, size, shape })}
-                                ref={ref => memo.xThumb = ref}
-                            />
-                        )}
-                        onMouseEnter={() => {
-                            window.addEventListener('mouseup', mouseUp)
-                        }}
-                        onMouseDown={(e) => {
-                            xMouseDown()
-                            scrollToHandle(e)
-                            window.addEventListener('mousemove', scrollToHandle)
-                        }}
-                        onMouseUp={mouseUp}
-                    />
-                </Fragment>
+      <div {...attributes} css={cs.wrapper} data-scroll-id={memo.id}>
+          <div
+            {...events.all}
+            onScroll={updateScroll}
+            css={isLegacyScrollSupport ? cs.webkit : cs.container}
+            ref={createRef}
+            children={(
+              <div
+                css={cs.content}
+                ref={ref => memo.content = ref}
+                children={props.children}
+              />
             )}
-        </div>
+          />
+          {mode !== 'hidden' && (
+            <Fragment>
+                <div
+                  css={cs.yBar({ active, size, shape, position: yBarPosition })}
+                  ref={ref => memo.yBar = ref}
+                  children={(
+                    <span
+                      css={cs.yThumb({ active, size, shape })}
+                      ref={ref => memo.yThumb = ref}
+                    />
+                  )}
+                  onMouseEnter={() => {
+                      window.addEventListener('mouseup', mouseUp)
+                  }}
+                  onMouseDown={(e) => {
+                      yMouseDown()
+                      scrollToHandle(e)
+                      window.addEventListener('mousemove', scrollToHandle)
+                  }}
+                  onMouseUp={mouseUp}
+                />
+                <div
+                  css={cs.xBar({ active, size, shape, position: xBarPosition })}
+                  ref={ref => memo.xBar = ref}
+                  children={(
+                    <span
+                      css={cs.xThumb({ active, size, shape })}
+                      ref={ref => memo.xThumb = ref}
+                    />
+                  )}
+                  onMouseEnter={() => {
+                      window.addEventListener('mouseup', mouseUp)
+                  }}
+                  onMouseDown={(e) => {
+                      xMouseDown()
+                      scrollToHandle(e)
+                      window.addEventListener('mousemove', scrollToHandle)
+                  }}
+                  onMouseUp={mouseUp}
+                />
+            </Fragment>
+          )}
+      </div>
     )
 }
 

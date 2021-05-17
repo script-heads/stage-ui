@@ -8,7 +8,7 @@ import { useState } from 'react'
 import styles from './styles'
 import Types from './types'
 
-const TextField: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
+const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
 
     const {
         decoration = 'outline',
@@ -55,7 +55,7 @@ const TextField: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props,
     })
 
     useEffect(() => {
-        if (props.leftChildNumber) {
+        if (leftChildNumber) {
             const value = (props.defaultValue || props.value || '').toString()
             setleftCountLineState({
                 count: value.split(`\n`).length,
@@ -64,13 +64,24 @@ const TextField: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props,
         }
     }, [])
 
+    const fieldRef = useRef<HTMLDivElement>(null)
+
+    /**
+     * Handle refs
+     */
+    useImperativeHandle(ref, () => ({
+        clear: () => onClear(),
+        container: fieldRef.current,
+        input: inputRef.current
+    }))
+
     const LeftCountLine = () => {
-        if (!props.leftChildNumber) {
+        if (!leftChildNumber) {
             return null
         }
         const arr = new Array(leftCountLineState.count).fill('')
-        const render = typeof props.leftChildNumber === 'function'
-            ? props.leftChildNumber
+        const render = typeof leftChildNumber === 'function'
+            ? leftChildNumber
             : (index: number) => index+1
 
         return (
@@ -88,7 +99,7 @@ const TextField: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props,
     return (
         <Field
             {...props}
-            ref={ref}
+            ref={fieldRef}
             decoration={decoration}
             size={size}
             shape={shape}
@@ -99,8 +110,14 @@ const TextField: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props,
                     ? false
                     : props.clearable
             )}
-            leftChild={(props.leftChildNumber && multiline) ? <LeftCountLine /> : props.leftChild}
+            leftChild={(leftChildNumber && multiline) ? <LeftCountLine /> : props.leftChild}
             onClear={onClear}
+            onEsc={(e) => {
+                if (props.clearable) {
+                    onClear()
+                }
+                props.onEsc?.(e)
+            }}
             events={{
                 ...events.all,
                 onFocus: (e) => {
