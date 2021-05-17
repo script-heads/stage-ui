@@ -16,9 +16,9 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
     const now = moment()
     const [value, setValue] = useState(now)
 
-    const { cs, attributes, events } = useComponent('Calendar', { 
-        props, 
-        styles,  
+    const { cs, attributes, events } = useComponent('Calendar', {
+        props,
+        styles,
     })
 
     const minValue = props.minValue ? moment(props.minValue).startOf('day') : now.clone().add(-500, 'year')
@@ -36,7 +36,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
         }
 
         setValue(value)
-        
+
         if (props.onChange) {
             props.onChange(value)
         }
@@ -58,7 +58,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
             onDayRender={props.onDayRender}
             header={props.header}
             footer={props.footer}
-        />        
+        />
     )
 }
 

@@ -1,12 +1,12 @@
 import SystemTypes from '@stage-ui/system/types'
-import { Moment } from 'moment'
+import moment, { Moment } from 'moment'
 import { CSSProperties } from 'react'
 
 declare namespace CalendarTypes {
     /**
      * Type of calendar view
      */
-    type GridType = 'year' | 'month' | 'day'
+    type GridType = 'year' | 'month' | 'day' | 'week'
     /**
      * Calendar locale
      */
@@ -120,17 +120,38 @@ declare namespace CalendarTypes {
     }
 
     interface DateGridCalendarProps {
-        value: Moment
-        tmp: Moment
+        type: GridType
         minValue: Moment
         maxValue: Moment
-        active: Moment
         onClick: () => void
         style?: CSSProperties
         styles: SystemTypes.ComponentStyles<Styles>
-        onYearRender?: (options: YearRenderOptions) => React.ReactNode
-        onMonthRender?: (options: MonthRenderOptions) => React.ReactNode
+    }
+
+    interface DateGridDayProps extends DateGridCalendarProps {
+        value: Moment
+        tmp: Moment
+        active: Moment
         onDayRender?: (options: DayRenderOptions) => React.ReactNode
+    }
+
+    interface DateGridWeekProps extends Omit<DateGridDayProps, 'value' | 'onClick'> {
+        week: Moment[]
+        onClick: (day: Moment) => void
+    }
+
+    interface DateGridMonthProps extends DateGridCalendarProps {
+        value: Moment
+        tmp: Moment
+        active: Moment
+        onMonthRender?: (options: MonthRenderOptions) => React.ReactNode
+    }
+
+    interface DateGridYearProps extends DateGridCalendarProps {
+        value: Moment
+        tmp: Moment
+        active: Moment
+        onYearRender?: (options: YearRenderOptions) => React.ReactNode
     }
 
     interface DateGridTitleProps {
@@ -150,21 +171,36 @@ declare namespace CalendarTypes {
          */
         dateGrid: void
         /**
-         * Main title block
-         */
-        title: void
-        /**
          * Days of week block
          */
         weekDay: void
         /**
+        * Each square month or year block
+        */
+        monthOrYear: {
+            isActive: boolean
+            isCurrent: boolean
+            isDisabled: boolean
+        }
+        /**
+        * Each square week block
+        */
+        week: {
+            isCurrent: boolean
+            isActive: boolean
+            isWeekType: boolean
+        }
+        /**
          * Each square day block
+         * for day/week view
          */
         day: {
-            isActive: Boolean
+            isActive: boolean
             isCurrent: boolean
             isDisabled: boolean
             isCurrentMonth: boolean
+            isWeekend?: boolean
+            isWeekType?: boolean
         }
     }
 }

@@ -1,19 +1,20 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
-import { Flexbox } from '@stage-ui/core'
+import { Flexbox, Text } from '@stage-ui/core'
 import moment from 'moment'
 import { Fragment } from 'react'
-import CalendarTypes from './types'
+import T from './types'
 
-const DateGridDay = (props: CalendarTypes.DateGridCalendarProps) => {
-    const { value: self, tmp, active, onClick, minValue, maxValue } = props
+const DateGridDay = (props: T.DateGridDayProps) => {
+    const { value: self, tmp, active, onClick, minValue, maxValue, type } = props
+
+    const now = moment()
 
     const isDisabled =
         minValue.valueOf() > self.valueOf() ||
         maxValue.valueOf() < self.valueOf() ||
         false
 
-    const now = moment()
     const dayValue = self.startOf('day').valueOf()
     const nowValue = now.startOf('day').valueOf()
     const activeValue = active.startOf('day').valueOf()
@@ -21,7 +22,11 @@ const DateGridDay = (props: CalendarTypes.DateGridCalendarProps) => {
     const isActive = (activeValue === dayValue)
     const isCurrent = (dayValue === nowValue)
     const isCurrentMonth = (self.month() === tmp.month())
-    const css = props.styles.day({isActive, isCurrent, isDisabled, isCurrentMonth})
+    const isWeekend = [5, 6].indexOf(self.weekday()) != -1
+
+    const css = props.styles.day({
+        isActive, isCurrent, isDisabled, isCurrentMonth, isWeekend, isWeekType: type === 'week'
+    })
 
     /**
      * Custom render
@@ -40,15 +45,22 @@ const DateGridDay = (props: CalendarTypes.DateGridCalendarProps) => {
         <Flexbox
             justifyContent="center"
             alignItems="center"
+            flex={1}
             onClick={() => {
-                if (!isDisabled && onClick) {
-                    onClick()
-                }
+                if (!isDisabled) onClick?.()
             }}
-            css={css}
-            style={props.style}
-            children={self.date()}
-        />
+        >
+            <Flexbox
+                css={css}
+                style={props.style}
+                justifyContent="center"
+                alignItems="center"
+            >
+                <Text capitalize size="s">
+                    {self.date()}
+                </Text>
+            </Flexbox>
+        </Flexbox>
     )
 }
 

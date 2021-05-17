@@ -7,20 +7,68 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
         dateGrid: [{
             position: 'relative',
             color: theme.color.onSurface.rgb().string(),
+            padding: theme.spacing.m,
         }],
 
         weekDay: [{
+            ...theme.assets.typography.text.m,
             userSelect: 'none',
-            ...theme.assets.typography.text.m as {},
             marginTop: '0.25rem',
             marginBottom: '0.5rem',
             fontWeight: 500,
+            textAlign: 'center',
         }],
 
-        title: [{
-            color: theme.color.onSurface.rgb().string(),
-            padding: '0.25rem'
-        }],
+        monthOrYear: (variant) => [
+            {
+                transition: 'all 0.2s',
+                fontWeight: 500,
+                minWidth: '1.5rem',
+                height: '1.5rem',
+                cursor: 'pointer',
+                padding: '0.125rem',
+                opacity: 1,
+                borderRadius: theme.radius.l,
+                color: theme.color.onSurface.rgb().string(),
+                userSelect: 'none',
+            },
+            variant({
+                isCurrent: [{
+                    ':after': {
+                        content: `''`,
+                        padding: '0.25rem',
+                        position: 'absolute',
+                        top: 0,
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        borderColor: theme.color.primary.rgb().string(),
+                        borderWidth: '2px',
+                        borderStyle: theme.assets.border.style,
+                        borderRadius: theme.radius.l,
+                    },
+                }],
+
+                // selected day
+                isActive: [{
+                    background: theme.color.primary.rgb().string(),
+                    color: theme.color.onPrimary.rgb().string(),
+                    ':after': {
+                        content: 'none'
+                    },
+                    ':hover': {
+                        background: theme.color.primary.rgb().string()
+                    },
+                }],
+
+                isDisabled: [{
+                    opacity: 0.3,
+                    ':hover': {
+                        background: theme.color.background.rgb().string()
+                    }
+                }],
+            })
+        ],
 
         /**
          * Styles for day/month/year squire
@@ -28,45 +76,143 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
         day: (variant) => [
             {
                 transition: 'all 0.2s',
-                fontWeight: 400,
-                minWidth: '2rem',
-                height: '2rem',
+                fontWeight: 500,
+                minWidth: '1.5rem',
+                height: '1.5rem',
                 cursor: 'pointer',
-                margin: '0.125rem',
-                opacity: 1,
-                background: theme.color.background.rgb().string(),
-                borderWidth: theme.assets.border.width,
-                borderStyle: theme.assets.border.style,
-                borderColor: theme.color.surface.rgb().string(),
-                borderRadius: theme.radius.s,
+                padding: '0.125rem',
+                opacity: 0.5,
+                borderRadius: '50%',
                 color: theme.color.hardest.rgb().string(),
                 userSelect: 'none',
-                ...theme.assets.typography.text.m,
                 ':hover': {
-                    background: theme.color.lightest.rgb().string()
+                    background: theme.color.primary.alpha(0.25).string()
                 }
             },
             variant({
-                isCurrent: [{
-                    borderColor: theme.color.primary.rgb().string()
+                // General styles for day type view
+                isCurrentMonth: [{
+                    opacity: 1,
+                    color: theme.color.onSurface.rgb().string(),
                 }],
+
+                isWeekend: [{
+                    color: theme.color.error.alpha(0.75).string(),
+                    ':hover': {
+                        background: theme.color.error.alpha(0.25).string()
+                    }
+                }],
+
+                // Today (borders to show current date when switched)
+                isCurrent: [{
+                    ':after': {
+                        content: `''`,
+                        padding: '0.25rem',
+                        position: 'absolute',
+                        top: 0,
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        borderColor: theme.color.primary.rgb().string(),
+                        borderWidth: '2px',
+                        borderStyle: theme.assets.border.style,
+                        borderRadius: '50%',
+                    },
+                }, variant({
+                    isWeekend: [{
+                        ':after': {
+                            borderColor: theme.color.error.rgb().string(),
+                        }
+                    }],
+                })],
+
+                // Selected one
+                isActive: [{
+                    background: theme.color.primary.rgb().string(),
+                    color: theme.color.onPrimary.rgb().string(),
+                    ':hover': {
+                        background: theme.color.primary.rgb().string()
+                    },
+                    ':after': {
+                        content: 'none'
+                    },
+                }, variant({
+                    isWeekend: [{
+                        background: theme.color.error.rgb().string(),
+                        ':hover': {
+                            background: theme.color.error.rgb().string()
+                        }
+                    }]
+                })],
+
+                // Override day styles for week type view
+                isWeekType: [{
+                    ':hover': {
+                        background: 'unset',
+                    },
+                }, variant({
+                    isActive: [{
+                        background: 'unset',
+                        color: 'unset',
+                    }, variant({
+                        isWeekend: {
+                            color: theme.color.error.alpha(0.75).string(),
+                        }
+                    })],
+                    isCurrent: [{
+                        background: theme.color.primary.rgb().string(),
+                        color: theme.color.onPrimary.rgb().string(),
+                        ':after': {
+                            content: 'none'
+                        },
+                        ':hover': {
+                            background: theme.color.primary.rgb().string(),
+                        },
+                    }, variant({
+                        isWeekend: [{
+                            background: theme.color.error.rgb().string(),
+                        }]
+                    })],
+                })],
+
+                // disabled day
                 isDisabled: [{
                     opacity: 0.3,
                     ':hover': {
                         background: theme.color.background.rgb().string()
                     }
                 }],
-                isCurrentMonth: [{
-                    color: theme.color.onSurface.rgb().string(),
-                    background: theme.color.surface.rgb().string()
-                }],
-                isActive: [{
-                    background: theme.color.primary.rgb().string(),
-                    color: theme.color.onPrimary.rgb().string(),
+            })
+        ],
+
+        /**
+         * Styles for week
+         */
+        week: (variant) => [
+            {
+                userSelect: 'none',
+                gridColumn: 'span 7',
+            },
+            variant({
+                isWeekType: [{
+                    overflow: 'hidden',
+                    borderRadius: theme.radius.xl,
+                    transition: 'all 0.2s',
+                    cursor: 'pointer',
                     ':hover': {
-                        background: theme.color.primary.rgb().string()
-                    }
-                }],
+                        background: theme.color.lightest.alpha(0.5).rgb().string(),
+                    },
+                }, variant({
+                    isActive: [{
+                        background: theme.color.lightest.rgb().string(),
+                    }],
+                    isCurrent: [{
+                        background: theme.color.lightest.alpha(0.5).rgb().string(),
+                        ':hover': {
+                            background: theme.color.lightest.alpha(0.5).rgb().string(),
+                        },
+                    }],
+                })]
             })
         ],
     }
