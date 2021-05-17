@@ -5,7 +5,7 @@ import DateGrid from './DateGrid'
 import styles from './styles'
 import Types from './types'
 
-const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
+const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const {
         locale = 'ru',
@@ -62,4 +62,4 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
     )
 }
 
-export default forwardRef(DatePicker)
+export default forwardRef(Calendar)

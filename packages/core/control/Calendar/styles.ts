@@ -7,7 +7,6 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
         dateGrid: [{
             position: 'relative',
             color: theme.color.onSurface.rgb().string(),
-            padding: theme.spacing.m,
         }],
 
         weekDay: [{
@@ -86,7 +85,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 color: theme.color.hardest.rgb().string(),
                 userSelect: 'none',
                 ':hover': {
-                    background: theme.color.primary.alpha(0.25).string()
+                    background: theme.color.light.alpha(0.15).string()
                 }
             },
             variant({
@@ -94,12 +93,15 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 isCurrentMonth: [{
                     opacity: 1,
                     color: theme.color.onSurface.rgb().string(),
+                    ':hover': {
+                        background: theme.color.primary.alpha(0.15).string(),
+                    }
                 }],
 
                 isWeekend: [{
                     color: theme.color.error.alpha(0.75).string(),
                     ':hover': {
-                        background: theme.color.error.alpha(0.25).string()
+                        background: theme.color.error.alpha(0.15).string()
                     }
                 }],
 
