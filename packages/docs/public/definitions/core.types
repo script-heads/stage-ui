@@ -282,6 +282,58 @@ declare module 'content/Link' {
 	export default _default;
 
 }
+declare module 'content/Toast/types' {
+	import SystemTypes from '@stage-ui/system/types'; namespace DividerTypes {
+	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
+	        /**
+	        * Color of divider
+	        * @default primary
+	        */
+	        color?: SystemTypes.ColorProp;
+	        /**
+	         * Place for items to the right of children
+	         */
+	        rightChild?: React.ReactNode;
+	        /**
+	         * Place for items to the left of children
+	         */
+	        leftChild?: React.ReactNode;
+	        /**
+	         * Default content
+	         */
+	        children?: React.ReactNode;
+	        /**
+	         * Children alias
+	         */
+	        label?: React.ReactNode;
+	    }
+	    interface Styles {
+	        /**
+	         * Root element
+	         */
+	        container: void;
+	        /**
+	         * Children of container
+	         */
+	        content: void;
+	        leftChild: void;
+	        rightChild: void;
+	    }
+	}
+	export default DividerTypes;
+
+}
+declare module 'content/Toast/styles' {
+	import SystemTypes from '@stage-ui/system/types';
+	import Types from 'content/Toast/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	export default styles;
+
+}
+declare module 'content/Toast' {
+	import Types from 'content/Toast/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
+	export default _default;
+
+}
 declare module 'control/Button/types' {
 	import SystemTypes from '@stage-ui/system/types'; namespace ButtonTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLButtonElement, Styles> {
@@ -8837,7 +8889,11 @@ declare module 'control/TextField/types' {
 	import FieldTypes from '@stage-ui/core/misc/hocs/Field/types';
 	import SystemTypes from '@stage-ui/system/types'; namespace TextFieldTypes {
 	    type InputTypes = 'email' | 'hidden' | 'number' | 'password' | 'reset' | 'search' | 'tel' | 'text' | 'url';
-	    type Ref = HTMLDivElement;
+	    type Ref = {
+	        clear: () => void;
+	        container: HTMLDivElement | null;
+	        input: HTMLInputElement | HTMLTextAreaElement | null;
+	    };
 	    interface Props extends FieldTypes.Props, InputProps, TextAreaProps {
 	        /**
 	         * Default input value
@@ -8982,7 +9038,7 @@ declare module 'control/TextField/styles' {
 }
 declare module 'control/TextField' {
 	import React from 'react';
-	import Types from 'control/TextField/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	import Types from 'control/TextField/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
 	export default _default;
 
 }
@@ -10140,6 +10196,11 @@ declare module 'layout/ScrollView/types' {
 	         * call at this scrollUpdate
 	         */
 	        preventWatchElement?: boolean;
+	        /**
+	         * Smooth scroll
+	         * @only webkit
+	         */
+	        smooth?: boolean;
 	    }
 	    interface ScrollToElementOptions extends ScrollToOptions {
 	        /**
@@ -10233,6 +10294,10 @@ declare module 'layout/ScrollView/types' {
 	         * if item not found function returns false
 	         */
 	        scrollToElement: (dataId: string, options?: ScrollToElementOptions) => boolean;
+	        /**
+	         * Ref to container element
+	         */
+	        container: HTMLDivElement | null;
 	    }
 	    interface Styles {
 	        /**
@@ -10551,6 +10616,7 @@ declare module '@stage-ui/core' {
 	export { default as Paragraph } from 'content/Paragraph';
 	export { default as Text } from 'content/Text';
 	export { default as Link } from 'content/Link';
+	export { default as Toast } from 'content/Toast';
 	/**
 	 * Control
 	 */
