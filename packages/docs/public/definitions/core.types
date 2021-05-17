@@ -149,6 +149,10 @@ declare module '@stage-ui/core/misc/hocs/Typography/types' {
 	    }
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
+	         * Capitalize first letter
+	         */
+	        capitalize?: boolean;
+	        /**
 	         * Overflow text shortening
 	         */
 	        ellipsis?: boolean;
@@ -465,7 +469,7 @@ declare module 'control/Calendar/types' {
 	    /**
 	     * Type of calendar view
 	     */
-	    type GridType = 'year' | 'month' | 'day';
+	    type GridType = 'year' | 'month' | 'day' | 'week';
 	    /**
 	     * Calendar locale
 	     */
@@ -575,17 +579,34 @@ declare module 'control/Calendar/types' {
 	        footer?: React.ReactNode;
 	    }
 	    interface DateGridCalendarProps {
-	        value: Moment;
-	        tmp: Moment;
+	        type: GridType;
 	        minValue: Moment;
 	        maxValue: Moment;
-	        active: Moment;
 	        onClick: () => void;
 	        style?: CSSProperties;
 	        styles: SystemTypes.ComponentStyles<Styles>;
-	        onYearRender?: (options: YearRenderOptions) => React.ReactNode;
-	        onMonthRender?: (options: MonthRenderOptions) => React.ReactNode;
+	    }
+	    interface DateGridDayProps extends DateGridCalendarProps {
+	        value: Moment;
+	        tmp: Moment;
+	        active: Moment;
 	        onDayRender?: (options: DayRenderOptions) => React.ReactNode;
+	    }
+	    interface DateGridWeekProps extends Omit<DateGridDayProps, 'value' | 'onClick'> {
+	        week: Moment[];
+	        onClick: (day: Moment) => void;
+	    }
+	    interface DateGridMonthProps extends DateGridCalendarProps {
+	        value: Moment;
+	        tmp: Moment;
+	        active: Moment;
+	        onMonthRender?: (options: MonthRenderOptions) => React.ReactNode;
+	    }
+	    interface DateGridYearProps extends DateGridCalendarProps {
+	        value: Moment;
+	        tmp: Moment;
+	        active: Moment;
+	        onYearRender?: (options: YearRenderOptions) => React.ReactNode;
 	    }
 	    interface DateGridTitleProps {
 	        value: Moment;
@@ -603,39 +624,94 @@ declare module 'control/Calendar/types' {
 	         */
 	        dateGrid: void;
 	        /**
-	         * Main title block
-	         */
-	        title: void;
-	        /**
 	         * Days of week block
 	         */
 	        weekDay: void;
 	        /**
+	        * Each square month or year block
+	        */
+	        monthOrYear: {
+	            isActive: boolean;
+	            isCurrent: boolean;
+	            isDisabled: boolean;
+	        };
+	        /**
+	        * Each square week block
+	        */
+	        week: {
+	            isCurrent: boolean;
+	            isActive: boolean;
+	            isWeekType: boolean;
+	        };
+	        /**
 	         * Each square day block
+	         * for day/week view
 	         */
 	        day: {
-	            isActive: Boolean;
+	            isActive: boolean;
 	            isCurrent: boolean;
 	            isDisabled: boolean;
 	            isCurrentMonth: boolean;
+	            isWeekend?: boolean;
+	            isWeekType?: boolean;
 	        };
 	    }
 	}
 	export default CalendarTypes;
 
 }
-declare module 'control/Calendar/DateGridDay' {
-	/** @jsx jsx */
-	import { jsx } from '@emotion/react';
-	import CalendarTypes from 'control/Calendar/types'; const DateGridDay: (props: CalendarTypes.DateGridCalendarProps) => jsx.JSX.Element;
-	export default DateGridDay;
-
-}
 declare module 'control/Calendar/DateGridMonth' {
 	/** @jsx jsx */
 	import { jsx } from '@emotion/react';
-	import CalendarTypes from 'control/Calendar/types'; const DateGridMonth: (props: CalendarTypes.DateGridCalendarProps) => jsx.JSX.Element;
+	import CalendarTypes from 'control/Calendar/types'; const DateGridMonth: (props: CalendarTypes.DateGridMonthProps) => jsx.JSX.Element;
 	export default DateGridMonth;
+
+}
+declare module 'control/Calendar/DateGridTitle' {
+	/** @jsx jsx */
+	import { jsx } from '@emotion/react';
+	import CalendarTypes from 'control/Calendar/types'; const DateGridTitle: (props: CalendarTypes.DateGridTitleProps) => jsx.JSX.Element;
+	export default DateGridTitle;
+
+}
+declare module 'control/Calendar/DateGridDay' {
+	/** @jsx jsx */
+	import { jsx } from '@emotion/react';
+	import T from 'control/Calendar/types'; const DateGridDay: (props: T.DateGridDayProps) => jsx.JSX.Element;
+	export default DateGridDay;
+
+}
+declare module 'control/Calendar/DateGridWeek' {
+	/** @jsx jsx */
+	import { jsx } from '@emotion/react';
+	import T from 'control/Calendar/types'; const DateGridWeek: (props: T.DateGridWeekProps) => jsx.JSX.Element;
+	export default DateGridWeek;
+
+}
+declare module 'control/Calendar/DateGridYear' {
+	/** @jsx jsx */
+	import { jsx } from '@emotion/react';
+	import CalendarTypes from 'control/Calendar/types'; const DateGridYear: (props: CalendarTypes.DateGridYearProps) => jsx.JSX.Element;
+	export default DateGridYear;
+
+}
+declare module 'control/Calendar/DateGrid' {
+	/** @jsx jsx */
+	import { jsx } from '@emotion/react';
+	import T from 'control/Calendar/types'; const DateGrid: (props: T.DateGridProps) => jsx.JSX.Element;
+	export default DateGrid;
+
+}
+declare module 'control/Calendar/styles' {
+	import SystemTypes from '@stage-ui/system/types';
+	import Types from 'control/Calendar/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	export default styles;
+
+}
+declare module 'control/Calendar' {
+	import React from 'react';
+	import Types from 'control/Calendar/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
 
 }
 declare module '@stage-ui/core/misc/hocs/Icon/types' {
@@ -7828,39 +7904,6 @@ declare module '@stage-ui/icons' {
 	export { default as VolumeUp } from 'icons/svg/volume-up';
 	export { default as WifiOff } from 'icons/svg/wifi-off';
 	export { default as Wifi } from 'icons/svg/wifi';
-
-}
-declare module 'control/Calendar/DateGridTitle' {
-	/** @jsx jsx */
-	import { jsx } from '@emotion/react';
-	import CalendarTypes from 'control/Calendar/types'; const DateGridTitle: (props: CalendarTypes.DateGridTitleProps) => jsx.JSX.Element;
-	export default DateGridTitle;
-
-}
-declare module 'control/Calendar/DateGridYear' {
-	/** @jsx jsx */
-	import { jsx } from '@emotion/react';
-	import CalendarTypes from 'control/Calendar/types'; const DateGridYear: (props: CalendarTypes.DateGridCalendarProps) => jsx.JSX.Element;
-	export default DateGridYear;
-
-}
-declare module 'control/Calendar/DateGrid' {
-	/** @jsx jsx */
-	import { jsx } from '@emotion/react';
-	import DatePickerTypes from 'control/Calendar/types'; const DateGrid: (props: DatePickerTypes.DateGridProps) => jsx.JSX.Element;
-	export default DateGrid;
-
-}
-declare module 'control/Calendar/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'control/Calendar/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
-	export default styles;
-
-}
-declare module 'control/Calendar' {
-	import React from 'react';
-	import Types from 'control/Calendar/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
 
 }
 declare module '@stage-ui/core/misc/hocs/Check/types' {
