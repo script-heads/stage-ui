@@ -5,7 +5,7 @@ export default () => {
     return (
         <Grid gap="1rem" templateRows="1fr 1fr" templateColumns="1fr 1fr" alignItems="start">
             <Block p="m" decoration="mediumShadow" w="16rem">
-                <Calendar type="day" />
+                <Calendar hideNeighborMonths type="day" />
             </Block>
             <Block p="m" decoration="mediumShadow" w="16rem">
                 <Calendar type="week" />

@@ -9,6 +9,8 @@ const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
 
     const {
         locale = 'ru',
+        hideToday = false,
+        hideNeighborMonths = false,
     } = props
 
     moment.locale(locale)
@@ -51,7 +53,8 @@ const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
             maxValue={maxValue}
             onChange={onChange}
             onViewChange={props.onViewChange}
-            hideToday={props.hideToday || false}
+            hideToday={hideToday}
+            hideNeighborMonths={hideNeighborMonths}
             type={props.type || 'day'}
             onYearRender={props.onYearRender}
             onMonthRender={props.onMonthRender}

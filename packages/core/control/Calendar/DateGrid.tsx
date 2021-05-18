@@ -113,6 +113,7 @@ const DateGrid = (props: T.DateGridProps) => {
                         {grid.map((week: Moment[], i) =>
                             <DateGridWeek
                                 key={week[i].valueOf()}
+                                hideNeighborMonths={props.hideNeighborMonths}
                                 styles={props.styles}
                                 week={week}
                                 tmp={tmpDate}

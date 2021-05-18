@@ -542,6 +542,10 @@ declare module 'control/Calendar/types' {
 	         */
 	        hideToday?: boolean;
 	        /**
+	         * Hide neighbor months days
+	         */
+	        hideNeighborMonths?: boolean;
+	        /**
 	         * Custom render Year
 	         */
 	        onYearRender?: (options: YearRenderOptions) => React.ReactNode;
@@ -565,6 +569,7 @@ declare module 'control/Calendar/types' {
 	    interface DateGridProps {
 	        attributes: any;
 	        hideToday: boolean;
+	        hideNeighborMonths: boolean;
 	        value: Moment;
 	        minValue: Moment;
 	        maxValue: Moment;
@@ -586,15 +591,16 @@ declare module 'control/Calendar/types' {
 	        style?: CSSProperties;
 	        styles: SystemTypes.ComponentStyles<Styles>;
 	    }
-	    interface DateGridDayProps extends DateGridCalendarProps {
-	        value: Moment;
+	    interface DateGridDayProps extends Omit<DateGridCalendarProps, 'onClick'> {
+	        hideNeighborMonths: boolean;
+	        day: Moment;
 	        tmp: Moment;
 	        active: Moment;
 	        onDayRender?: (options: DayRenderOptions) => React.ReactNode;
-	    }
-	    interface DateGridWeekProps extends Omit<DateGridDayProps, 'value' | 'onClick'> {
-	        week: Moment[];
 	        onClick: (day: Moment) => void;
+	    }
+	    interface DateGridWeekProps extends Omit<DateGridDayProps, 'day'> {
+	        week: Moment[];
 	    }
 	    interface DateGridMonthProps extends DateGridCalendarProps {
 	        value: Moment;
@@ -651,6 +657,7 @@ declare module 'control/Calendar/types' {
 	            isActive: boolean;
 	            isCurrent: boolean;
 	            isDisabled: boolean;
+	            isHidden: boolean;
 	            isCurrentMonth: boolean;
 	            isWeekend?: boolean;
 	            isWeekType?: boolean;

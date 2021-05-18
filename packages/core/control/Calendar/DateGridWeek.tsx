@@ -6,36 +6,33 @@ import DateGridDay from './DateGridDay'
 import T from './types'
 
 const DateGridWeek = (props: T.DateGridWeekProps) => {
-    const { week, active, type } = props
+    const { week, ...rest } = props
 
     const now = moment().startOf('day').valueOf()
-    const activeDay = active.clone().startOf('day').valueOf()
+    const activeDay = props.active.clone().startOf('day').valueOf()
 
     const isCurrent = !!week.find(day => day.clone().startOf('day').valueOf() === now)
     const isActive = !!week.find(day => day.clone().startOf('day').valueOf() === activeDay)
+    const isWeekType = props.type === 'week'
 
-    const weekStyles = props.styles.week({
-        isWeekType: type === 'week',
-        isCurrent,
-        isActive,
-    })
+    const weekStyles = props.styles.week({ isWeekType, isCurrent, isActive })
+
+    const onWeekClick = () => {
+        if (isWeekType) {
+            props.onClick(week[0])
+        }
+    }
 
     return (
-        <Flexbox css={weekStyles}>
+        <Flexbox
+            css={weekStyles}
+            onClick={onWeekClick}
+        >
             {week.map(day => (
                 <DateGridDay
                     key={day.valueOf()}
-                    styles={props.styles}
-                    value={day}
-                    tmp={props.tmp}
-                    active={props.active}
-                    minValue={props.minValue}
-                    maxValue={props.maxValue}
-                    onClick={() => {
-                        props.onClick(props.type === 'week' ? week[0] : day)
-                    }}
-                    type={props.type}
-                    onDayRender={props.onDayRender}
+                    day={day}
+                    {...rest}
                 />
             ))}
         </Flexbox>
