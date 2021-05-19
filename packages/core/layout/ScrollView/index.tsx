@@ -107,14 +107,15 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
          * @deprecated use scrollTop()
          */
         onScrollTop: () => {
-            const xy = isLegacyScrollSupport ? 0 : -1e+10
-            scrollTo(xy, xy)
+            const x = isLegacyScrollSupport ? 0 : (memo.content?.offsetLeft || -1e+10)
+            const y = isLegacyScrollSupport ? 0 : (memo.content?.offsetTop || -1e+10)
+            scrollTo(x, y)
         },
         scrollTo,
         scrollTop: (options?: Types.ScrollToOptions) => {
-            const xy = isLegacyScrollSupport ? 0 : -1e+10
-            scrollTo(xy, xy, options)
-
+            const x = isLegacyScrollSupport ? 0 : (memo.content?.offsetLeft || -1e+10)
+            const y = isLegacyScrollSupport ? 0 : (memo.content?.offsetTop || -1e+10)
+            scrollTo(x, y, options)
         },
         scrollBottom: (options?: Types.ScrollToOptions) => {
             scrollTo(1e+10, 1e+10, options)
@@ -275,9 +276,11 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
             document.querySelectorAll(`[data-scroll-id="${memo.id}"] [data-id]`).forEach((queryElement) => {
                 elements.push(queryElement as HTMLDivElement)
             })
+            
+            const scrollTop = Math.abs(memo.container.scrollTop || memo.content.offsetTop)
+
             for (const el of elements.reverse()) {
-                const scrollTop = memo.container.scrollTop || memo.content.offsetTop
-                if (scrollTop - (el.offsetTop - el.offsetHeight) > 0) {
+                if (scrollTop - (getOffsetTop(el) - el.offsetHeight) > 0) {
                     const id = el.attributes["data-id"].value
                     if (memo.watchElementId !== id) {
                         memo.watchElementId = id
