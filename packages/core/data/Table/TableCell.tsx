@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import { forwardRef, ForwardRefRenderFunction, useState } from 'react'
+import { getTR } from './TableRow'
 import Types from './types'
 
 const TableCell: ForwardRefRenderFunction<HTMLTableDataCellElement, Types.CellProps<any>> = (props, ref) => {
@@ -19,6 +20,13 @@ const TableCell: ForwardRefRenderFunction<HTMLTableDataCellElement, Types.CellPr
     rowCtxItem['setModifyState'][column.key] = setModifyState
     rowCtxItem['isCellModify'][column.key] = modifyState
 
+    /**
+     * Draggble anchor
+     */
+     if (column.dnd) {
+        content = <div css={styles.rowCellAnchor} children={content} />
+    }
+
     if (column.render) {
         content = column.render(
             getCellContext(rowIndex, column.key) as Types.TableCellContext<any>, 
@@ -31,9 +39,17 @@ const TableCell: ForwardRefRenderFunction<HTMLTableDataCellElement, Types.CellPr
             ref={ref}
             css={styles.rowCell}
             style={{
-                width: column.width || 'auto'
+                width: column.width || (column.dnd ? '1rem' : 'auto')
             }}
             children={content}
+            onMouseDown={(e) => {
+                if (column.dnd) {
+                    const tr = getTR(e.target as HTMLElement)
+                    if (tr) {
+                        tr.draggable = true
+                    }
+                }
+            }}
         />
     )
 }

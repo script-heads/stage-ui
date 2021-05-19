@@ -12,9 +12,11 @@ export { default as Sidebar } from './components/Sidebar'
 declare global {
     interface Window {
         breakpoints: number[]
+        jsx: any
     }
 }
-// @ts-ignore esbuild hack
+
+// esbuild hack
 window.jsx = jsx
 
 window.breakpoints = [960, 768]

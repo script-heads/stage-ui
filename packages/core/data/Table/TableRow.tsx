@@ -1,8 +1,16 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React, { forwardRef, ForwardRefRenderFunction, Fragment, useState } from 'react'
+import { dndContext } from '.'
 import TableCell from './TableCell'
 import Types from './types'
+
+export const getTR = (target: HTMLElement | null): HTMLTableRowElement | null => {
+    if (!target || target.tagName === 'TR') {
+        return target as HTMLTableRowElement
+    }
+    return getTR(target.parentElement)
+}
 
 const TableRow: ForwardRefRenderFunction<HTMLTableRowElement, Types.RowProps<any>> = (props, ref) => {
     const { columns, rowIndex, rowCtxItem, delegates, styles, getCellContext } = props
@@ -12,7 +20,7 @@ const TableRow: ForwardRefRenderFunction<HTMLTableRowElement, Types.RowProps<any
      * if null then RowContext isExpand will be false
      */
     const [expandComponent, setExpandComponent] = useState<React.ReactNode>(null)
-
+    
     /**
      * Update RowContext state
      */
@@ -22,6 +30,7 @@ const TableRow: ForwardRefRenderFunction<HTMLTableRowElement, Types.RowProps<any
     let rowId: string | undefined
 
     const [needDisplay, setNeedDisplay] = useState(!props.enableRenderOptimization)
+    const [dragOver, setDragOver] = useState(false)
 
     if (props.enableRenderOptimization) {
         const height = props.delegates.rowHeight?.(rowCtxItem)
@@ -68,8 +77,34 @@ const TableRow: ForwardRefRenderFunction<HTMLTableRowElement, Types.RowProps<any
                             style={style}
                             {...props.events}
                             ref={ref}
-                            css={styles.row}
+                            css={[styles.row({ dragOver })]}
                             key={rowIndex}
+                            onDragStart={(e) => {
+                                e.stopPropagation()
+                                //@ts-ignore incorrect event type
+                                e.target.draggable = false
+                                e.dataTransfer.dropEffect='move'
+                                dndContext.source = rowIndex
+                            }}
+                            onDrop={(e) => {
+                                e.stopPropagation()
+                                setDragOver(false)
+                                props.dndRender()
+                            }}
+                            onDragOver={(e) => {
+                                e.stopPropagation()
+                                e.preventDefault()
+                                dndContext.target = rowIndex
+                                setDragOver(true)
+                            }}
+                            onDragLeave={(e) => {
+                                e.stopPropagation()
+                                setDragOver(false)
+                            }}
+                            onDragEnd={(e: any) => {
+                                dndContext.source = -1
+                                dndContext.target = -1
+                            }}
                             children={
                                 columns.map((column, columnIndex) => (
                                     <TableCell

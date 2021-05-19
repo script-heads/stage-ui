@@ -9377,6 +9377,7 @@ declare module '@stage-ui/core/data/Table/types' {
 	    'onlyWhenVisible';
 	    type TableCellKey = number | string;
 	    type TableSortType = 'ASC' | 'DESC';
+	    type TableSortAsync = (sortType: TableSortType) => Promise<void>;
 	    type TableSortObject = {
 	        key: TableCellKey;
 	        sort: TableSortType;
@@ -9489,6 +9490,10 @@ declare module '@stage-ui/core/data/Table/types' {
 	    }
 	    interface TableRef<ROW> {
 	        /**
+	         * Get table current data
+	         */
+	        getData: () => ROW[];
+	        /**
 	         * Get context for specific cell
 	         */
 	        getCellContext: (index: number, key: TableCellKey) => TableCellContext<ROW> | null;
@@ -9528,7 +9533,11 @@ declare module '@stage-ui/core/data/Table/types' {
 	         * Enables sorting for a column
 	         * support ASC | DESC
 	         */
-	        sort?: TableSortType;
+	        sort?: TableSortType | TableSortAsync;
+	        /**
+	         * Draggable support
+	         */
+	        dnd?: (source: number, target: number, data: ROW[]) => void;
 	    }
 	    interface RowEvents<ROW> {
 	        /**
@@ -9543,6 +9552,10 @@ declare module '@stage-ui/core/data/Table/types' {
 	         * Calls when mouse leaves row
 	         */
 	        onRowMouseLeave?: (rowCtxItem: TableRowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
+	        onRowDrag?: (rowCtxItem: TableRowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
+	        onRowDragStart?: (rowCtxItem: TableRowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
+	        onRowDragEnter?: (rowCtxItem: TableRowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
+	        onRowDragLeave?: (rowCtxItem: TableRowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
 	    }
 	    interface RowDelegates<ROW> {
 	        /**
@@ -9555,12 +9568,12 @@ declare module '@stage-ui/core/data/Table/types' {
 	         */
 	        rowShouldRender?: (rowCtxItem: TableRowContext<ROW>) => boolean;
 	    }
-	    interface Props<DATA, ROW = DATA[0]> extends RowEvents<ROW>, RowDelegates<ROW>, SystemTypes.AllProps<HTMLDivElement, Styles> {
+	    interface Props<ROW> extends RowEvents<ROW>, RowDelegates<ROW>, Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        ref?: any;
 	        /**
 	         * Array of any data objects can be provided
 	         */
-	        data: DATA;
+	        data: Array<ROW>;
 	        /**
 	         * Settings of columns
 	         */
@@ -9591,11 +9604,15 @@ declare module '@stage-ui/core/data/Table/types' {
 	        rowMountType?: RowMountType;
 	        rowDidMount?: (rowCtxItem: TableRowContext<ROW>) => void;
 	        rowDidUnmount?: (rowCtxItem: TableRowContext<ROW>) => void;
+	        /**
+	         * calls data changed by table
+	         */
+	        onChange?: (data: ROW[]) => void;
 	    }
 	    interface HeadCellProps<ROW> {
 	        column: TableColumn<ROW>;
 	        styles: SystemTypes.ComponentStyles<Styles>;
-	        setSort: React.Dispatch<React.SetStateAction<TableSortObject>>;
+	        toggleSort: (sort: TableSortObject) => Promise<void>;
 	    }
 	    interface CellProps<ROW> {
 	        rowCtxItem: TableRowContext<ROW>;
@@ -9619,6 +9636,11 @@ declare module '@stage-ui/core/data/Table/types' {
 	            rowHeight?: Props<ROW>['rowHeight'];
 	            rowShouldRender?: Props<ROW>['rowShouldRender'];
 	        };
+	        /**
+	         * Enable row draggable
+	         */
+	        draggable?: boolean;
+	        dndRender: () => void;
 	    }
 	    interface FootProps<ROW> {
 	        rowCtx: TableRowContext<ROW>[];
@@ -9642,11 +9664,17 @@ declare module '@stage-ui/core/data/Table/types' {
 	        /**
 	         * Row view <tr>
 	         */
-	        row: void;
+	        row: {
+	            dragOver: boolean;
+	        };
 	        /**
 	         * Row cell <td>
 	         */
 	        rowCell: void;
+	        /**
+	         * Row cell drag anchor <div>
+	         */
+	        rowCellAnchor: void;
 	        /**
 	         * Expanded row <td span>
 	         */
@@ -9683,12 +9711,18 @@ declare module 'data/Table/TableCell' {
 }
 declare module 'data/Table/TableRow' {
 	import React from 'react';
-	import Types from '@stage-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.RowProps<any> & React.RefAttributes<HTMLTableRowElement>>;
+	import Types from '@stage-ui/core/data/Table/types';
+	export const getTR: (target: HTMLElement | null) => HTMLTableRowElement | null; const _default: React.ForwardRefExoticComponent<Types.RowProps<any> & React.RefAttributes<HTMLTableRowElement>>;
 	export default _default;
 
 }
 declare module 'data/Table' {
-	import Types from '@stage-ui/core/data/Table/types'; const _default: <ROW>(props: Types.Props<ROW, ROW[0]>, ref: Types.TableRef<ROW>) => React.ReactElement;
+	import Types from '@stage-ui/core/data/Table/types';
+	export const dndContext: {
+	    willRender: boolean;
+	    source: number;
+	    target: number;
+	}; const _default: <ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) => React.ReactElement;
 	export default _default;
 
 }
