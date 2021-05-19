@@ -80,15 +80,16 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
         }
     }
 
-    const toggleSort = async (value: Types.TableSortObject) => {
+    const toggleSort = (value: Types.TableSortObject) => {
         const column = columns.find(column => column.key === value.key)
         if (column) {
             if (typeof column.sort === 'function') {
-                await column.sort(value.sort)
+                return column.sort(value.sort)
             } else {
                 setSort(value)
             }
         }
+        return
     }
 
     /**
