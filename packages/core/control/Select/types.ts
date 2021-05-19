@@ -99,6 +99,7 @@ declare namespace SelectTypes {
         input: {
             searchMode: boolean
             multiselect: boolean
+            disableEvents: boolean
         }
         /**
          * Container of selected option in multiselect

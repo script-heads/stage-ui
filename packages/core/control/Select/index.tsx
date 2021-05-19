@@ -250,8 +250,9 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                             size={5}
                             disabled={disabled || !props.searchable}
                             css={cs.input({
+                                disableEvents: !props.searchable,
                                 searchMode: searchQuery !== '',
-                                multiselect: !!props.multiselect
+                                multiselect: !!props.multiselect,
                             })}
                             placeholder={(!props.multiselect || values.length === 0) ? props.placeholder : ''}
                             value={(!props.multiselect && values[0]?.text) || searchQuery}

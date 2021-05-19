@@ -151,10 +151,9 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                 searchMode: {
                     color: theme.color.hard.rgb().string()
                 },
-                // multiselect: {
-                //     width: 'auto',
-                //     minWidth: '1rem'
-                // }
+                disableEvents: {
+                    pointerEvents: 'none'
+                },
             })
         ],
         tag: (variant) => [
