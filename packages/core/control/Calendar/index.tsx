@@ -5,10 +5,12 @@ import DateGrid from './DateGrid'
 import styles from './styles'
 import Types from './types'
 
-const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
+const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const {
         locale = 'ru',
+        hideToday = false,
+        hideNeighborMonths = false,
     } = props
 
     moment.locale(locale)
@@ -51,7 +53,8 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
             maxValue={maxValue}
             onChange={onChange}
             onViewChange={props.onViewChange}
-            hideToday={props.hideToday || false}
+            hideToday={hideToday}
+            hideNeighborMonths={hideNeighborMonths}
             type={props.type || 'day'}
             onYearRender={props.onYearRender}
             onMonthRender={props.onMonthRender}
@@ -62,4 +65,4 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
     )
 }
 
-export default forwardRef(DatePicker)
+export default forwardRef(Calendar)

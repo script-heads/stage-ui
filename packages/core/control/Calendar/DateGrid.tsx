@@ -113,6 +113,7 @@ const DateGrid = (props: T.DateGridProps) => {
                         {grid.map((week: Moment[], i) =>
                             <DateGridWeek
                                 key={week[i].valueOf()}
+                                hideNeighborMonths={props.hideNeighborMonths}
                                 styles={props.styles}
                                 week={week}
                                 tmp={tmpDate}
@@ -130,13 +131,13 @@ const DateGrid = (props: T.DateGridProps) => {
                         <Fragment>
                             <Divider color="lightest" m="1rem 0" />
                             <Button
-                                w="100%"
                                 size="s"
-                                decoration="outline"
+                                decoration="plain"
                                 onClick={() => {
                                     props.onChange(now)
                                 }}
                                 children={toDayWord}
+                                alignSelf="center"
                             />
                         </Fragment>
                     )}

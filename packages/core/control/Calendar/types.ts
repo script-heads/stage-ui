@@ -81,6 +81,10 @@ declare namespace CalendarTypes {
          */
         hideToday?: boolean
         /**
+         * Hide neighbor months days
+         */
+        hideNeighborMonths?: boolean
+        /**
          * Custom render Year
          */
         onYearRender?: (options: YearRenderOptions) => React.ReactNode
@@ -105,6 +109,7 @@ declare namespace CalendarTypes {
     interface DateGridProps {
         attributes: any
         hideToday: boolean
+        hideNeighborMonths: boolean
         value: Moment
         minValue: Moment
         maxValue: Moment
@@ -128,16 +133,17 @@ declare namespace CalendarTypes {
         styles: SystemTypes.ComponentStyles<Styles>
     }
 
-    interface DateGridDayProps extends DateGridCalendarProps {
-        value: Moment
+    interface DateGridDayProps extends Omit<DateGridCalendarProps, 'onClick'> {
+        hideNeighborMonths: boolean
+        day: Moment
         tmp: Moment
         active: Moment
         onDayRender?: (options: DayRenderOptions) => React.ReactNode
+        onClick: (day: Moment) => void
     }
 
-    interface DateGridWeekProps extends Omit<DateGridDayProps, 'value' | 'onClick'> {
+    interface DateGridWeekProps extends Omit<DateGridDayProps, 'day'> {
         week: Moment[]
-        onClick: (day: Moment) => void
     }
 
     interface DateGridMonthProps extends DateGridCalendarProps {
@@ -198,6 +204,7 @@ declare namespace CalendarTypes {
             isActive: boolean
             isCurrent: boolean
             isDisabled: boolean
+            isHidden: boolean
             isCurrentMonth: boolean
             isWeekend?: boolean
             isWeekType?: boolean

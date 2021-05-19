@@ -7,6 +7,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
 
     const background = colorProp(theme, props.background)
     const color = colorProp(theme, props.color)
+    const hoverColor = colorProp(theme, props.hoverColor)
 
     return {
         container: (variant) => [
@@ -21,6 +22,12 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
             props.size && !['xs', 's', 'm', 'l', 'xl'].includes(props.size) && {
                 height: props.size,
                 fontSize: props.size,
+            },
+            hoverColor && {
+                transition: 'color .15s',
+                ':hover': {
+                    color: hoverColor.rgb().string(),
+                }
             },
             variant({
                 size: {
