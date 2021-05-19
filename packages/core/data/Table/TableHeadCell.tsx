@@ -11,14 +11,15 @@ const TableHeadCell: ForwardRefRenderFunction<HTMLTableDataCellElement, Types.He
     const [busy, setBusy] = useState(false)
     const [up, setUp] = useState(column.sort === 'DESC')
 
-    const toggleSort = async () => {
+    const toggleSort = () => {
         setUp(!up)
         typeof column.sort === 'function' && setBusy(true)
-        await props.toggleSort({
+        props.toggleSort({
             key: column.key,
             sort: up ? 'ASC' : 'DESC'
+        }).then(() => {
+            typeof column.sort === 'function' && setBusy(false)
         })
-        typeof column.sort === 'function' && setBusy(false)
     }
 
     if (column.sort) {
