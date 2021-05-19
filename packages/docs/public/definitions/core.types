@@ -9643,10 +9643,6 @@ declare module '@stage-ui/core/data/Table/types' {
 	            rowHeight?: Props<ROW>['rowHeight'];
 	            rowShouldRender?: Props<ROW>['rowShouldRender'];
 	        };
-	        /**
-	         * Enable row draggable
-	         */
-	        draggable?: boolean;
 	        dndRender: () => void;
 	    }
 	    interface FootProps<ROW> {
