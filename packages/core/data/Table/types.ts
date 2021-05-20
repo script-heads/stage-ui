@@ -264,7 +264,7 @@ declare namespace TableTypes {
     interface HeadCellProps<ROW> {
         column: TableColumn<ROW>
         styles: SystemTypes.ComponentStyles<Styles>
-        toggleSort: (sort: TableSortObject) => Promise<void>
+        toggleSort: (sort: TableSortObject) => Promise<unknown>
     }
 
     interface CellProps<ROW> {

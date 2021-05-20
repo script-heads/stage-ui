@@ -89,7 +89,7 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
                 setSort(value)
             }
         }
-        return
+        return new Promise((resolve) => resolve(void 0))
     }
 
     /**
