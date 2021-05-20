@@ -167,7 +167,7 @@ declare namespace TableTypes {
         /**
          * Title that will be placed at TableHead
          */
-        title?: string
+        title?: React.ReactNode
         /**
          * Specific width of column
          */
