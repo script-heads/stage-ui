@@ -3,10 +3,9 @@ import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
-import { Type } from 'typescript'
+import Animation from './animation'
 import styles from './styles'
 import Types from './types'
-import Animation from './animation'
 
 type GetCoord = (tr: ClientRect, td: ClientRect) => string
 
@@ -18,7 +17,8 @@ function toStyle(value: number) {
 
 const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
 
-    const { children, target: targetRef, onClickOutside, spacing = 0, align = 'bottom',
+    let align = props.align || 'bottom'
+    const { children, target: targetRef, onClickOutside, spacing = 0,
         justify, stretchHeight, stretchWidth, visible, stickCursor } = props
 
     const { cs, attributes, events } = useComponent('Drop', { props, styles, styleProps: { container: ['self'] } })
@@ -73,25 +73,6 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
         }
     }
 
-    switch (align) {
-        case 'top':
-            getTopCoord = (tr, dr) => toStyle(tr.top - dr.height - spacing)
-            setHorizontalPosition()
-            break
-        case 'bottom':
-            getTopCoord = (tr) => toStyle(tr.bottom + spacing)
-            setHorizontalPosition()
-            break
-        case 'left':
-            getLeftCoord = (tr, dr) => toStyle(tr.left - dr.width - spacing)
-            setVerticalPosition()
-            break
-        case 'right':
-            getLeftCoord = (tr) => toStyle(tr.right + spacing)
-            setVerticalPosition()
-            break
-    }
-
     function updatePosition() {
         if (dropRef?.current) {
             const tr: ClientRect = targetRef.current.getBoundingClientRect()
@@ -99,6 +80,33 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
             const style = dropRef.current.style
 
             if (targetRef?.current) {
+                if (!props.align || props.align === 'auto-vertical') {
+                    const lockedSpace = tr.top + tr.height + spacing
+                    if (dr.height > window.innerHeight - lockedSpace) {
+                        align = 'top'
+                    } else {
+                        align = 'bottom'
+                    }
+                }
+                switch (align) {
+                    case 'top':
+                        getTopCoord = (tr, dr) => toStyle(tr.top - dr.height - spacing)
+                        setHorizontalPosition()
+                        break
+                    case 'bottom':
+                        getTopCoord = (tr) => toStyle(tr.bottom + spacing)
+                        setHorizontalPosition()
+                        break
+                    case 'left':
+                        getLeftCoord = (tr, dr) => toStyle(tr.left - dr.width - spacing)
+                        setVerticalPosition()
+                        break
+                    case 'right':
+                        getLeftCoord = (tr) => toStyle(tr.right + spacing)
+                        setVerticalPosition()
+                        break
+                }
+
                 style.top = getTopCoord(tr, dr)
                 style.left = getLeftCoord(tr, dr)
             }

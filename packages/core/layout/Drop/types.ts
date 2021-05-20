@@ -28,7 +28,7 @@ declare namespace DropTypes {
         /**
          * The side of the target element on which the drop will be shown
          */
-        align?: 'top' | 'bottom' | 'left' | 'right'
+        align?: 'top' | 'bottom' | 'left' | 'right' | 'auto-vertical'
         /**
          * Side drop positioning
          */
