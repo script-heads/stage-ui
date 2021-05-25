@@ -54,7 +54,7 @@ export type ComponentData<Props extends Record<string, any>, ClassesSchema> = {
     events: Pick<Props, keyof AllEventProps<any>>
 }
 
-function useComponent<Props extends Record<string, any>, ClassesSchema>(
+function useSystem<Props extends Record<string, any>, ClassesSchema>(
     name: string,
     props: Props,
     createClasses: CreateClasses<ClassesSchema, Props>,
@@ -138,4 +138,4 @@ function useComponent<Props extends Record<string, any>, ClassesSchema>(
     return data
 }
 
-export default useComponent
+export default useSystem

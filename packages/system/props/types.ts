@@ -1,6 +1,6 @@
 import CSS from 'csstype'
 import React from 'react'
-import { ClassesDefinition, StyleProps } from '../hooks/useComponent'
+import { ClassesDefinition, StyleProps } from '../hooks/useSystem'
 import { BreakpointProp } from './breakpoint'
 import { ColorProp } from './color'
 import { SpaceProp } from './spacing'
