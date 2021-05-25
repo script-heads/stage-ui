@@ -2,19 +2,19 @@
 import { jsx } from '@emotion/react'
 import { Flexbox } from '@stage-ui/core'
 import moment from 'moment'
-import React from 'react'
+import React, { Fragment } from 'react'
 import CalendarTypes from './types'
 
 const DateGridMonth = (props: CalendarTypes.DateGridCalendarProps) => {
-    const { value, active, onClick, minValue, maxValue } = props
+    const { value: self, active, onClick, minValue, maxValue } = props
 
     const isDisabled =
-        minValue.valueOf() > value.valueOf() ||
-        maxValue.valueOf() < value.valueOf() ||
+        minValue.valueOf() > self.valueOf() ||
+        maxValue.valueOf() < self.valueOf() ||
         false
 
     const now = moment()
-    const monthValue = value.clone().startOf('month').valueOf()
+    const monthValue = self.clone().startOf('month').valueOf()
     const nowValue = now.clone().startOf('month').valueOf()
     const activeValue = active.clone().startOf('month').valueOf()
 
@@ -23,6 +23,19 @@ const DateGridMonth = (props: CalendarTypes.DateGridCalendarProps) => {
 
     const css = props.styles.day({isActive, isCurrent, isDisabled, isCurrentMonth: true})
 
+    /**
+     * Custom render
+     */
+    if (props.onMonthRender) {
+        return (
+            <Fragment
+                children={
+                    props.onMonthRender({ now, self, active, isActive, isCurrent, isDisabled, onClick })
+                }
+            />
+        )
+    }
+    
     return (
         <Flexbox
             justifyContent="center"
@@ -34,7 +47,7 @@ const DateGridMonth = (props: CalendarTypes.DateGridCalendarProps) => {
             }}
             css={css}
             style={props.style}
-            children={value.format('MMMM')}
+            children={self.format('MMMM')}
         />
 
     )

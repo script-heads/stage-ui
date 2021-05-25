@@ -30,7 +30,7 @@ export default createTheme({
             xs: '0.125rem',
             s: '0.25rem',
             m: '0.5rem',
-            l: '0.75',
+            l: '0.75rem',
             xl: '1rem',
         },
         spacing: {
@@ -48,9 +48,18 @@ export default createTheme({
             color: theme.color.lightest.rgb().string()
         },
         shadow: {
-            default: `0px 4px 8px rgba(0,0,0,0.15)`,
-            short: `0px 2px 4px rgba(0,0,0,0.15)`,
-            long: `0 16px 16px rgba(0,0,0,0.15)`,
+            xs: '0px 1px 2px rgba(0,0,0,0.15)',
+            s: '0px 2px 4px rgba(0,0,0,0.15)',
+            m: '0px 4px 8px rgba(0,0,0,0.15)',
+            l: '0 16px 18px rgba(0,0,0,0.15)',
+            xl: '0 24px 26px rgba(0,0,0,0.15)',
+        },
+        innerShadow: {
+            xs: 'inset 0px 1px 1px rgba(0,0,0,0.1)',
+            s: 'inset 0px 2px 4px rgba(0,0,0,0.1)',
+            m: 'inset 0px 4px 8px rgba(0,0,0,0.1)',
+            l: 'inset 0 16px 18px rgba(0,0,0,0.1)',
+            xl: 'inset 0 24px 26px rgba(0,0,0,0.1)',
         },
         focus: {
             outline: 'none',

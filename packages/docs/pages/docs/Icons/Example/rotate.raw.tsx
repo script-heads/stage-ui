@@ -1,11 +1,11 @@
-import { ArrowIosForward } from '@stage-ui/core/icons'
+import { ArrowIosUp } from '@stage-ui/icons'
 import React, { useState } from 'react'
 
 export default () => {
     const [deg, setDegree] = useState(0)
     return (
         <React.Fragment>
-            <ArrowIosForward
+            <ArrowIosUp
                 shape="oval"
                 color={c => c.onPrimary}
                 background={c => c.primary}

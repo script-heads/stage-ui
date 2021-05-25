@@ -1,4 +1,4 @@
-import { Global } from '@emotion/react'
+import { Global, jsx } from '@emotion/react'
 import { Viewport } from '@stage-ui/core'
 import * as defaultThemes from '@stage-ui/core/misc/themes/index'
 import SystemTypes from '@stage-ui/system/types'
@@ -14,12 +14,14 @@ declare global {
         breakpoints: number[]
     }
 }
+// @ts-ignore esbuild hack
+window.jsx = jsx
 
 window.breakpoints = [960, 768]
 
 const Docs = () => {
 
-    const [theme, setTheme] = useState<SystemTypes.Theme>(defaultThemes.dark)
+    const [theme, setTheme] = useState<SystemTypes.Theme>(defaultThemes.light)
 
     useEffect(() => {
         localStorage.setItem('current_theme', theme.name.toLowerCase())

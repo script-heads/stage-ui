@@ -28,11 +28,15 @@ fixTypes('core', [
     ['misc/hocs/Field/types', '@stage-ui/core/misc/hocs/Field/types'],
     ['misc/hocs/Check/types', '@stage-ui/core/misc/hocs/Check/types'],
     ['misc/hocs/Typography/types', '@stage-ui/core/misc/hocs/Typography/types'],
-    ["declare module 'icons'", "declare module '@stage-ui/core/icons'"],
+    ["declare module 'icons'", "declare module '@stage-ui/icons'"],
 ])
 fixTypes('lab', [
     ['@stage-ui/core', ''],
-    ["declare module 'icons'", "declare module '@stage-ui/core/icons'"],
+    ["declare module 'icons'", "declare module '@stage-ui/icons'"],
+])
+fixTypes('icons', [
+    ['@stage-ui/core', ''],
+    ["declare module 'icons'", "declare module '@stage-ui/icons'"],
 ])
 
 fixTypes('color', [

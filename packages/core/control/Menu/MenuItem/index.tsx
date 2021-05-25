@@ -1,17 +1,20 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, ForwardRefRenderFunction } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, createElement, Fragment } from 'react'
 import { useValue } from '..'
 import styles from './styles'
 import Types from './types'
 
 const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
+    let [active, setActive, ctx] = useValue(props.value)
 
     const {
         rightChild,
         leftChild,
         disabled,
+        as = ctx.itemAs || 'a',
+        href
     } = props
 
     const { cs, attributes, events } = useComponent('MenuItem', {
@@ -20,9 +23,7 @@ const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
         styleProps: {
             container: ['all'],
         },
-    })
-
-    let [active, setActive, ctx] = useValue(props.value)
+    })   
 
     /**
      * Support controlled
@@ -71,37 +72,50 @@ const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
     if (active) attr['data-flow-active'] = ''
     if (disabled) attr['data-flow-disabled'] = ''
 
-    return (
-        <div
-            {...attr}
-            {...attributes}
-            {...events.all}
-            onChange={undefined}
-            onClick={(e) => {
-                if (!disabled) {
-                    setActive()
-                    ctx.onChange?.(props.value)
-                    events.all.onClick?.(e)
-                }
-            }}
-            onKeyPress={(e) => {
-                /**
-                 * Handle Space/Enter at focus
-                 */
-                if (!disabled && [13, 32].includes(e.charCode)) {
-                    setActive()
-                    ctx.onChange?.(props.value)
-                    e.preventDefault()
-                }
-                events.all.onKeyPress?.(e)
-            }}
-            ref={containerRef} css={cs.container}>
-            <span data-flow-indent="" />
-            {leftChild && <span data-flow="left">{leftChild}</span>}
-            <span data-flow="middle">{props.children || props.title}</span>
-            {rightChild && <span data-flow="right">{rightChild}</span>}
-        </div>
+
+    const itemProps = {
+        ...attr,
+        ...attributes,
+        ...events.all,
+        onChange: undefined, 
+        href: as === 'a' ? href : undefined,
+        onClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+            !(e.ctrlKey || e.metaKey) && e.preventDefault()
+          
+            if (!disabled) {
+                setActive()
+                ctx.onChange?.(props.value)
+                events.all.onClick?.(e)
+            }
+        },
+        onKeyPress: (e: React.KeyboardEvent<HTMLDivElement>) => {
+            /**
+             * Handle Space/Enter at focus
+             */
+            if (!disabled && [13, 32].includes(e.charCode)) {
+                setActive()
+                ctx.onChange?.(props.value)
+                e.preventDefault()
+            }
+            events.all.onKeyPress?.(e)
+        },
+        ref: containerRef,
+        css: cs.container,
+    }
+
+    return jsx(
+        `${as}`,
+        itemProps,
+        (
+           <Fragment>
+                <span data-flow-indent="" />
+                {leftChild && <span data-flow="left">{leftChild}</span>}
+                 <span data-flow="middle">{props.children || props.title}</span>
+                {rightChild && <span data-flow="right">{rightChild}</span>}
+           </Fragment>
+        )
     )
+
 }
 
 export default forwardRef(MenuItem)

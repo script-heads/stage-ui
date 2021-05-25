@@ -50,8 +50,14 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
             minValue={minValue}
             maxValue={maxValue}
             onChange={onChange}
+            onViewChange={props.onViewChange}
             hideToday={props.hideToday || false}
             type={props.type || 'day'}
+            onYearRender={props.onYearRender}
+            onMonthRender={props.onMonthRender}
+            onDayRender={props.onDayRender}
+            header={props.header}
+            footer={props.footer}
         />        
     )
 }

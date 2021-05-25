@@ -70,6 +70,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                         clone.add(-monthOffset, 'year')
                     }
                     setTmpDate(clone)
+                    props.onViewChange?.(clone)
                 }}
                 onNext={() => {
                     const clone = tmpDate.clone()
@@ -83,8 +84,10 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                         clone.add(monthOffset, 'year')
                     }
                     setTmpDate(clone)
+                    props.onViewChange?.(clone)
                 }}
             />
+            {props.header}
             {gridType === 'day' && (
                 <Fragment>
                     <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr 1fr">
@@ -113,6 +116,7 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                             props.onChange(day)
                                         }
                                     }}
+                                    onDayRender={props.onDayRender}
                                 />
                             )
                         )}
@@ -156,9 +160,11 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                             props.onChange(clone)
                                         } else {
                                             setTmpDate(clone)
+                                            props.onViewChange?.(clone)
                                             setGridType('day')
                                         }
                                     }}
+                                    onMonthRender={props.onMonthRender}
                                 />
                             )
                         })
@@ -186,15 +192,18 @@ const DateGrid = (props: DatePickerTypes.DateGridProps) => {
                                             props.onChange(clone)
                                         } else {
                                             setTmpDate(clone)
+                                            props.onViewChange?.(clone)
                                             setGridType('month')
                                         }
                                     }}
+                                    onYearRender={props.onYearRender}
                                 />
                             )
                         })
                     }
                 </Grid>
             )}
+            {props.footer}
         </Flexbox>
     )
 }

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import { Block, Flexbox, Paragraph, Text, Tree } from '@stage-ui/core'
-import { ArrowIosForward, Copy, Trash2 } from '@stage-ui/core/icons'
+import { ArrowIosUp, Copy, Trash2 } from '@stage-ui/icons'
 import { Fragment } from 'react'
 import { TabProps } from '..'
 import { context } from '../../..'
@@ -50,7 +50,7 @@ const LayersTab = (props: TabProps) => {
                                 children={(
                                     <Block pl={options.lvl * 1 + 'rem'}>
                                         <Flexbox flex={1} alignItems="center">
-                                            <ArrowIosForward
+                                            <ArrowIosUp
                                                 mr="0.25rem"
                                                 display={options.hasChilds ? undefined : 'none'}
                                                 rotate={options.isOpen ? 90 : 0}

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import { Block, Flexbox, Link, Text, useTheme } from '@stage-ui/core'
-import { Brush, Github } from '@stage-ui/core/icons'
+import { Brush, Github } from '@stage-ui/icons'
 import { panel } from '@stage-ui/docs/components/Themer/src/ThemeConfigurator'
 import corePackage from '../../../core/package.json'
 import ThemeSwitcher, { ThemeSwitcherProps } from './ThemeSwitcher'

@@ -27,6 +27,7 @@ const ModalHeader = (props: ModalTypes.ModalHeaderProps) => {
                     />
                 </Flexbox>
                 <Close
+                    ml="m"
                     css={styles.cs.cross(styles.state)}
                     onClick={props.onClosePressed}
                     color={c => c.light}

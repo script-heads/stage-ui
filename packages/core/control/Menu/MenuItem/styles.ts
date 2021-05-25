@@ -3,7 +3,10 @@ import Types from './types'
 
 const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
     return {
-        container: {}
+        container: {
+            textDecoration: 'inherit',
+            color: 'inherit',
+        }
     }
 }
 

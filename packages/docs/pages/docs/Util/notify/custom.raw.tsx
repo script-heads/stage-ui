@@ -1,5 +1,5 @@
 import { Button, Flexbox, notify, Text } from '@stage-ui/core'
-import { Person } from '@stage-ui/core/icons'
+import { Person } from '@stage-ui/icons'
 import React from 'react'
 
 export default () => {

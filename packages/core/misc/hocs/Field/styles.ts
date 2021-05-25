@@ -22,7 +22,7 @@ const fieldStyles = <T extends Types.Styles>(
                 minWidth: '1rem',
                 flex: 1,
                 flexDirection: 'column',
-                outline: 'none'
+                outline: 'none',
             },
             //FIXME: types
             //@ts-ignore
@@ -32,18 +32,20 @@ const fieldStyles = <T extends Types.Styles>(
         field: (variant) => [
             {
                 position: 'relative',
-                overflow: 'hidden',
+                // overflow: 'hidden',
                 flexShrink: 0,
                 flexGrow: 1,
-                background: theme.color.surface.rgb().string(),
-                borderColor: theme.color.lightest.rgb().string(),
+                background: theme.color.surface.string(),
+                borderColor: theme.color.lightest.string(),
                 borderRadius: theme.radius.s,
+                boxShadow: theme.assets.innerShadow.xs,
                 borderWidth: '1px',
                 borderStyle: 'solid',
                 outline: 'none',
                 display: 'flex',
                 alignItems: 'stretch',
                 boxSizing: 'border-box',
+                transition: 'border 0.125s',
             },
             theme.assets.field.m,
             theme.assets.typography.text.m,
@@ -86,8 +88,8 @@ const fieldStyles = <T extends Types.Styles>(
                 },
                 focus: {
                     borderColor: props.disabled
-                        ? theme.color.lightest.rgb().string()
-                        : theme.color.primary.rgb().string()
+                        ? theme.color.lightest.string()
+                        : theme.color.primary.alpha(0.5).string(),
                 },
                 disabled: {
                     color: theme.color.light.rgb().string(),
@@ -150,22 +152,22 @@ const fieldStyles = <T extends Types.Styles>(
                 color: theme.color.hard.rgb().string(),
                 display: 'flex',
                 userSelect: 'none',
-                paddingBottom: '0.125rem'
+                paddingBottom: '0.25rem'
             },
-            theme.assets.typography.text.m,
+            theme.assets.typography.text.s,
             variant({
                 size: {
                     xs: [
                         theme.assets.typography.text.xs,
                     ],
                     s: [
-                        theme.assets.typography.text.s,
+                        theme.assets.typography.text.xs,
                     ],
                     l: [
-                        theme.assets.typography.text.l,
+                        theme.assets.typography.text.m,
                     ],
                     xl: [
-                        theme.assets.typography.text.xl,
+                        theme.assets.typography.text.l,
                     ]
                 },
                 labelType: {
@@ -252,8 +254,14 @@ const fieldStyles = <T extends Types.Styles>(
                 cursor: 'pointer',
                 backgroundColor: theme.color.onSurface.alpha(0.05).rgb().string(),
                 borderRadius: '100rem',
+                transition: 'transform 0.25s',
                 ':hover': {
                     color: theme.color.warning.rgb().string(),
+                    transform: 'scale(1.2)'
+                },
+                ':active': {
+                    transform: 'scale(1.1)',
+                    opacity: 0.8,
                 }
             },
             //FIXME: types
@@ -277,6 +285,42 @@ const fieldStyles = <T extends Types.Styles>(
             //FIXME: types
             //@ts-ignore
             stylePatch?.hint?.(variant)
+        ],
+        error: (variant) => [
+            {
+                paddingTop: '.25rem',
+                paddingLeft: props.decoration != 'underline' ? '.25rem' : '',
+                color: color?.rgb().string() || theme.color.error.rgb().string(),
+                ...theme.assets.typography.text.m,
+                ' svg': {
+                    color: theme.color.error.string(),
+                    marginTop: '-0.125rem',
+                    marginRight: '0.25rem',
+                    ...theme.assets.typography.text.m,
+                }
+            },
+            variant({
+                size: {
+                    s: [{
+                        ...theme.assets.typography.text.s,
+                        ' svg': {
+                            marginTop: '-0.125rem',
+                            marginRight: '0.125rem',
+                            ...theme.assets.typography.text.s,
+                        }
+                    }],
+                    xs: [{
+                        ...theme.assets.typography.text.xs,
+                        ' svg': {
+                            marginRight: '0.125rem',
+                            ...theme.assets.typography.text.xs,
+                        }
+                    }]
+                }
+            }),
+            //FIXME: types
+            //@ts-ignore
+            stylePatch?.error?.(variant)
         ]
     }
 }

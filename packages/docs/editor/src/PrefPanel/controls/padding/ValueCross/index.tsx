@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import { Block, Button, Grid, Paragraph, useTheme } from '@stage-ui/core'
-import { Lock } from '@stage-ui/core/icons'
+import { Lock } from '@stage-ui/icons'
 import { ButtonGroup } from '@stage-ui/lab'
 import { useEffect, useState } from 'react'
 import { context } from '../../../../..'

@@ -2,18 +2,19 @@
 import { jsx } from '@emotion/react'
 import { Flexbox } from '@stage-ui/core'
 import moment from 'moment'
+import { Fragment } from 'react'
 import CalendarTypes from './types'
 
 const DateGridYear = (props: CalendarTypes.DateGridCalendarProps) => {
-    const { value, active, onClick, minValue, maxValue } = props
+    const { value: self, active, onClick, minValue, maxValue } = props
 
     const isDisabled =
-        minValue.valueOf() > value.valueOf() ||
-        maxValue.valueOf() < value.valueOf() ||
+        minValue.valueOf() > self.valueOf() ||
+        maxValue.valueOf() < self.valueOf() ||
         false
 
     const now = moment()
-    const yearValue = value.clone().startOf('year').valueOf()
+    const yearValue = self.clone().startOf('year').valueOf()
     const nowValue = now.clone().startOf('year').valueOf()
     const activeValue = active.clone().startOf('year').valueOf()
 
@@ -21,6 +22,19 @@ const DateGridYear = (props: CalendarTypes.DateGridCalendarProps) => {
     const isCurrent = (yearValue === nowValue)
 
     const css = props.styles.day({ isActive, isCurrent, isDisabled, isCurrentMonth: true })
+
+    /**
+     * Custom render
+     */
+    if (props.onYearRender) {
+        return (
+            <Fragment
+                children={
+                    props.onYearRender({ now, self, active, isActive, isCurrent, isDisabled, onClick })
+                }
+            />
+        )
+    }
 
     return (
         <Flexbox
@@ -33,7 +47,7 @@ const DateGridYear = (props: CalendarTypes.DateGridCalendarProps) => {
             }}
             css={css}
             style={props.style}
-            children={value.format('YYYY')}
+            children={self.format('YYYY')}
         />
 
     )

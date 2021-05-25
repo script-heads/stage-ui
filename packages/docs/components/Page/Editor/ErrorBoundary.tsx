@@ -1,6 +1,6 @@
 import React from 'react'
 import { Flexbox, Text, Block, Divider } from '@stage-ui/core'
-import { Code } from '@stage-ui/core/icons'
+import { Code } from '@stage-ui/icons'
 
 interface ErrorBoundaryProps {
     error?: string | null

@@ -1,5 +1,5 @@
 import { Flexbox, Table, Text, TextField } from '@stage-ui/core'
-import { Checkmark, Edit2 } from '@stage-ui/core/icons'
+import { Checkmark, Edit2 } from '@stage-ui/icons'
 import React from 'react'
 
 export default () => {

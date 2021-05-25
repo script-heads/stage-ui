@@ -1,7 +1,7 @@
 import React from 'react'
 import { Toolbar } from '@stage-ui/lab'
 import { Button } from '@stage-ui/core'
-import { Archive } from '@stage-ui/core/icons'
+import { Archive } from '@stage-ui/icons'
 
 export default () => {
     return (

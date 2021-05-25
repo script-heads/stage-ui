@@ -2,7 +2,7 @@ import { Block, Button, Flexbox, Paragraph, TextField } from '@stage-ui/core'
 import React, { Fragment, useState, useLayoutEffect } from 'react'
 import ColorPick from '../ColorPick'
 import Color from 'color'
-import { Trash, Save } from '@stage-ui/core/icons'
+import { Trash, Save } from '@stage-ui/icons'
 
 interface NewColorDialogProps {
     edit?: {

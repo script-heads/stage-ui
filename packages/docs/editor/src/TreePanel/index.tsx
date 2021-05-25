@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import { Block, Divider, Flexbox, Menu, ScrollView, useTheme } from '@stage-ui/core'
-import { Browser, Layers, Plus } from '@stage-ui/core/icons'
+import { Browser, Layers, Plus } from '@stage-ui/icons'
 import SystemTypes from '@stage-ui/system/types'
 import { useState } from 'react'
 import { context } from '../..'

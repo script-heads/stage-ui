@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import { Flexbox, Text } from '@stage-ui/core'
-import { ArrowIosBack, ArrowIosForward } from '@stage-ui/core/icons'
+import { ArrowIosBack, ArrowIosForward, ArrowheadLeft, ArrowheadRight } from '@stage-ui/core/icons'
 import { useComponent } from '@stage-ui/system'
 import { forwardRef, ForwardRefRenderFunction, useEffect, useState } from 'react'
 import styles from './styles'
@@ -64,6 +64,14 @@ const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
             css={cs.container}
             alignItems="center"
         >
+            <ArrowheadLeft
+                mr="0.5rem"
+                size="1rem"
+                css={cs.arrowButton({
+                    disabled: currentPage <= 1
+                })}
+                onClick={() => setPage(1)}
+            />
             <ArrowIosBack
                 mr="0.5rem"
                 size="1rem"
@@ -80,6 +88,14 @@ const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
                     disabled: currentPage >= lastPage
                 })}
                 onClick={() => nextPage()}
+            />
+            <ArrowheadRight
+                mr="0.5rem"
+                size="1rem"
+                css={cs.arrowButton({
+                    disabled: currentPage >= lastPage
+                })}
+                onClick={() => setPage(lastPage)}
             />
         </Flexbox>
     )

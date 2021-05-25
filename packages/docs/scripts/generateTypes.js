@@ -48,6 +48,7 @@ function generateTypes(package) {
 generateTypes('system')
 generateTypes('core')
 generateTypes('lab')
+generateTypes('icons')
 
 copyTypes('node_modules/@types/react/global.d.ts', 'global')
 copyTypes('node_modules/@types/color/index.d.ts', 'color')

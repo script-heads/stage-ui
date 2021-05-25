@@ -1,8 +1,9 @@
-import { Button, ScrollView, Paragraph } from '@stage-ui/core'
 import React, { useRef } from 'react'
+import { Button, ScrollView, Paragraph } from '@stage-ui/core'
+import ScrollViewTypes from '@stage-ui/core/layout/ScrollView/types'
 
 export default () => {
-    const ref = useRef<any>(null)
+    const ref = useRef<ScrollViewTypes.Ref>(null)
 
     return (
         <ScrollView shape="round" ref={ref}>
@@ -32,7 +33,7 @@ export default () => {
                 et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
                 Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
             </Paragraph>
-            <Button onClick={() => ref.current.scrollTop()}>Scroll top</Button>
+            <Button onClick={() => ref.current?.onScrollTop()}>Scroll top</Button>
         </ScrollView>
     )
 }

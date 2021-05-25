@@ -14,7 +14,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
     return {
         overlay: (variant) => [
             {
-                opacity: 0.2,
+                opacity: 0,
                 zIndex: 200,
                 position: 'fixed',
                 width: '100vw',
@@ -52,7 +52,13 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                         minHeight: '100vh',
                         display: 'flex',
                         alignItems: 'flex-end',
-                    }
+                    },
+                    fullscreen: {
+                        minHeight: '100vh',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    },
                 }
             })
         ],
@@ -91,6 +97,12 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                         borderBottomLeftRadius: 0,
                         borderBottomRightRadius: 0,
                         boxShadow: '0 0 4rem ' + theme.color.onSurface.alpha(0.2).rgb().string(),
+                    },
+                    fullscreen: {
+                        width: '100%',
+                        minWidth: '100%',
+                        height: '100vh',
+                        minHeight: '100vh',
                     }
                 },
                 visible: [

@@ -22,7 +22,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 borderStyle: theme.assets.border.style,
                 borderColor: theme.assets.border.color,
                 borderRadius: theme.radius.m,
-                filter: `drop-shadow(${theme.assets.shadow.default})`,
+                filter: `drop-shadow(${theme.assets.shadow.m})`,
                 padding: theme.spacing.s
             }
         ],
