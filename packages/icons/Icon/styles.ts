@@ -6,16 +6,16 @@ import Types from './types'
 const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
 
     const background = colorProp(theme, props.background)
-    const color = colorProp(theme, props.color)
-    const hoverColor = colorProp(theme, props.hoverColor)
+    const color = colorProp(theme, props.color) || theme.color.onSurface
+    const hoverColor = colorProp(theme, props.hoverColor) || theme.color.primary
 
     return {
         container: (variant) => [
             {
                 width: 'min-content',
                 display: 'inline-flex',
-                color: color?.rgb().string(),
-                background: background?.rgb().string(),
+                color: color.rgb().string(),
+                background: background ? background.rgb().string() : 'transparent',
                 height: theme.assets.typography.text.m.fontSize,
                 fontSize: theme.assets.typography.text.m.fontSize,
             },
