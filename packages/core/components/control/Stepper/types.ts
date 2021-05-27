@@ -9,6 +9,8 @@ declare namespace StepperTypes {
     interface Props extends Omit<AllProps<HTMLDivElement, Styles>, 'onChange'> {
         
         data: StepperData[]
+        
+        size?: SystemTypes.Size
 
         current?: number
 
@@ -16,6 +18,7 @@ declare namespace StepperTypes {
     }
 
     interface StyleState {
+        size: SystemTypes.Size
         active: boolean
         complete: boolean
         pointer: boolean

@@ -20,6 +20,7 @@ declare namespace TableTypes {
 
     type TableCellKey = number | string
     type TableSortType = 'ASC' | 'DESC'
+    type TableSortAsync = (sortType: TableSortType) => Promise<void>
     type TableSortObject = {
         key: TableCellKey
         sort: TableSortType
@@ -135,6 +136,10 @@ declare namespace TableTypes {
 
     interface TableRef<ROW> {
         /**
+         * Get table current data
+         */
+        getData: () => ROW[]
+        /**
          * Get context for specific cell
          */
         getCellContext: (index: number, key: TableCellKey) => TableCellContext<ROW> | null
@@ -162,7 +167,7 @@ declare namespace TableTypes {
         /**
          * Title that will be placed at TableHead
          */
-        title?: string
+        title?: React.ReactNode
         /**
          * Specific width of column
          */
@@ -175,7 +180,11 @@ declare namespace TableTypes {
          * Enables sorting for a column
          * support ASC | DESC
          */
-        sort?: TableSortType
+        sort?: TableSortType | TableSortAsync
+        /**
+         * Draggable support
+         */
+        dnd?: (source: number, target: number, data: ROW[]) => void
     }
 
     interface RowEvents<ROW> {
@@ -191,6 +200,11 @@ declare namespace TableTypes {
          * Calls when mouse leaves row
          */
         onRowMouseLeave?: (rowCtxItem: TableRowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+
+        onRowDrag?: (rowCtxItem: TableRowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+        onRowDragStart?: (rowCtxItem: TableRowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+        onRowDragEnter?: (rowCtxItem: TableRowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+        onRowDragLeave?: (rowCtxItem: TableRowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
     }
 
     interface RowDelegates<ROW> {
@@ -205,13 +219,12 @@ declare namespace TableTypes {
         rowShouldRender?: (rowCtxItem: TableRowContext<ROW>) => boolean
     }
 
-    //@ts-ignore - Type '0' cannot be used to index type 'DATA'
-    interface Props<DATA, ROW = DATA[0]> extends RowEvents<ROW>, RowDelegates<ROW>, AllProps<HTMLDivElement, Styles> {
+    interface Props<ROW> extends RowEvents<ROW>, RowDelegates<ROW>, Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
         ref?: any
         /**
          * Array of any data objects can be provided
          */
-        data: DATA
+        data: Array<ROW>
         /**
          * Settings of columns
          */
@@ -242,19 +255,23 @@ declare namespace TableTypes {
         rowMountType?: RowMountType
         rowDidMount?: (rowCtxItem: TableRowContext<ROW>) => void
         rowDidUnmount?: (rowCtxItem: TableRowContext<ROW>) => void
+        /**
+         * calls data changed by table
+         */
+        onChange?: (data: ROW[]) => void
     }
 
     interface HeadCellProps<ROW> {
         column: TableColumn<ROW>
-        styles: ComponentStyles<Styles>
-        setSort: React.Dispatch<React.SetStateAction<TableSortObject>>
+        styles: SystemTypes.ComponentStyles<Styles>
+        toggleSort: (sort: TableSortObject) => Promise<unknown>
     }
 
     interface CellProps<ROW> {
         rowCtxItem: TableRowContext<ROW>
         column: TableColumn<ROW>
         rowIndex: number
-        styles: ComponentStyles<Styles>
+        styles: SystemTypes.ComponentStyles<Styles>
         getCellContext: TableRef<ROW>['getCellContext']
     }
 
@@ -262,7 +279,7 @@ declare namespace TableTypes {
         rowCtxItem: TableRowContext<ROW>
         columns: TableColumn<ROW>[]
         rowIndex: number
-        styles: ComponentStyles<Styles>
+        styles: SystemTypes.ComponentStyles<Styles>
         getCellContext: TableRef<ROW>['getCellContext']
         events: RowEvents<ROW>
         rowDidMount?: (rowCtxItem: TableRowContext<ROW>) => void
@@ -272,8 +289,8 @@ declare namespace TableTypes {
         delegates: {
             rowHeight?: Props<ROW>['rowHeight']
             rowShouldRender?: Props<ROW>['rowShouldRender']
-
         }
+        dndRender: () => void
     }
 
     interface FootProps<ROW> {
@@ -282,7 +299,7 @@ declare namespace TableTypes {
         footerContent?: Props<ROW>['footer']
         pagination?: TablePaginationOptions
         onPageChange: (pageNumber: number) => void
-        styles: ComponentStyles<Styles>
+        styles: SystemTypes.ComponentStyles<Styles>
     }
 
     interface Styles {
@@ -299,11 +316,17 @@ declare namespace TableTypes {
         /**
          * Row view <tr>
          */
-        row: void
+        row: {
+            dragOver: boolean
+        }
         /**
          * Row cell <td>
          */
         rowCell: void
+        /**
+         * Row cell drag anchor <div>
+         */
+        rowCellAnchor: void
         /**
          * Expanded row <td span>
          */

@@ -16,6 +16,11 @@ declare namespace ScrollViewTypes {
          * call at this scrollUpdate
          */
         preventWatchElement?: boolean
+        /**
+         * Smooth scroll
+         * @only webkit
+         */
+        smooth?: boolean
     }
 
     interface ScrollToElementOptions extends ScrollToOptions {
@@ -114,6 +119,10 @@ declare namespace ScrollViewTypes {
          * if item not found function returns false
          */
         scrollToElement: (dataId: string, options?: ScrollToElementOptions) => boolean
+        /**
+         * Ref to container element
+         */
+        container: HTMLDivElement | null
     }
 
     interface Styles {

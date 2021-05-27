@@ -4,7 +4,7 @@ import { Drop, ScrollView } from '@stage-ui/core'
 import { ArrowIosDownward, Close } from '@stage-ui/core/icons'
 import DropTypes from '@stage-ui/core/layout/Drop/types'
 import Field from '@stage-ui/core/misc/hocs/Field'
-import { useSystem } from '@stage-ui/system'
+import { useComponent } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction, Fragment, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import styles from './styles'
 import Types from './types'
@@ -20,6 +20,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
         maxScrollHeight = '16rem',
         keepOpen = false,
         disabled = false,
+        openOnFocus = true,
         emptyText = '-'
     } = props
 
@@ -57,7 +58,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
         return true
     })
 
-    const { classes, attributes, events, focus } = useSystem('Select', {
+    const { cs, attributes, events, focus } = useComponent('Select', {
         props,
         styles,
         styleProps: {
@@ -143,6 +144,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
      */
     function onChange(values: Types.Option[], value?: Types.Option, search = '') {
         setSearchQuery(search)
+        props.onSearch?.(value?.text ?? search)
         if (props.values === undefined) {
             setValues(values)
         }
@@ -191,7 +193,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
             <Field
                 {...props}
 
-                styles={classes}
+                styles={cs}
                 ref={fieldRef}
 
                 size={size}
@@ -205,20 +207,22 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
 
                 attributes={{ ...attributes, tabIndex }}
                 events={{
-                    ...events,
+                    ...events.all,
                     onClick: (e) => {
                         e.preventDefault()
-                        toggleOpen(e)
+                        if (openOnFocus) {
+                            setOpen(true)
+                        }
                         events.all.onClick?.(e)
                     },
                     onKeyDown: (e) => handleKeyDown(e)
                 }}
                 rightChild={(
-                    props.rightChild || <ArrowIosDownward
+                    props.rightChild !== undefined ? props.rightChild : <ArrowIosDownward
                         alignSelf="center"
                         size={size}
                         style={{
-                            transition:'transform 0.25s',
+                            transition: 'transform 0.25s',
                             transform: `scale(1.5) rotate(${isOpen ? '90deg' : 0})`
                         }}
                         color={c => isOpen ? c.primary : c.light}
@@ -229,14 +233,14 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                     />
                 )}
                 children={(
-                    <div css={classes.selected}>
+                    <div css={cs.selected}>
                         {props.multiselect && values.map(option => (
-                            <div css={classes.tag(styleState)} key={option.value}>
+                            <div css={cs.tag(styleState)} key={option.value}>
                                 {option.text}
                                 {!disabled && (
                                     <Close
                                         size={size}
-                                        css={classes.tagRemove(styleState)}
+                                        css={cs.tagRemove(styleState)}
                                         onClick={(e) => {
                                             e.preventDefault()
                                             e.stopPropagation()
@@ -249,14 +253,19 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                         <input
                             size={5}
                             disabled={disabled || !props.searchable}
-                            css={classes.input({
+                            css={cs.input({
+                                disableEvents: !props.searchable,
                                 searchMode: searchQuery !== '',
-                                multiselect: !!props.multiselect
+                                multiselect: !!props.multiselect,
                             })}
                             placeholder={(!props.multiselect || values.length === 0) ? props.placeholder : ''}
                             value={(!props.multiselect && values[0]?.text) || searchQuery}
                             onChange={(e) => {
+                                if (!isOpen) {
+                                    setOpen(true)
+                                }
                                 if (props.multiselect) {
+                                    props.onSearch?.(e.target.value)
                                     setSearchQuery(e.target.value)
                                 } else {
                                     clearValues(e.target.value)
@@ -265,7 +274,9 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                             onClick={(e) => {
                                 e.preventDefault()
                                 e.stopPropagation()
-                                toggleOpen(e)
+                                if (openOnFocus) {
+                                    setOpen(true)
+                                }
                             }}
                         />
                     </div>
@@ -282,13 +293,13 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                 onClickOutside={(e, outTarget) => {
                     if (outTarget) {
                         //@ts-ignore
-                        toggleOpen(e)
+                        setOpen(false)
                     }
                 }}
                 stretchWidth
                 target={fieldRef}
                 children={(
-                    <div css={classes.drop(styleState)}>
+                    <div css={cs.drop(styleState)}>
                         <ScrollView
                             size="xs"
                             css={{ maxHeight: maxScrollHeight }}
@@ -297,7 +308,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                                 <Fragment>
                                     {options.map(option => (
                                         <div
-                                            css={classes.dropItem({ ...styleState, selected: values.includes(option) })}
+                                            css={cs.dropItem({ ...styleState, selected: values.includes(option) })}
                                             key={option.value}
                                             children={option.text}
                                             onClick={(e) => {
@@ -307,8 +318,8 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                                         />
                                     ))}
                                     {options.length === 0 && (
-                                        <div css={classes.emptyConteiner}>
-                                            <div css={classes.emptyText}>{emptyText}</div>
+                                        <div css={cs.emptyConteiner}>
+                                            <div css={cs.emptyText}>{emptyText}</div>
                                         </div>
                                     )}
                                 </Fragment>

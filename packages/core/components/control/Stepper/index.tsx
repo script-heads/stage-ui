@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
-import { useSystem } from '@stage-ui/system'
+import { useComponent } from '@stage-ui/system'
 import { Checkmark } from '@stage-ui/core/icons'
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import Block from '../../layout/Block'
@@ -11,19 +11,20 @@ import Types from './types'
 const Stepper: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const { data, current = -1, onChange } = props
-    const { classes, attributes, events } = useSystem('Stepper', {
+    const { cs, attributes, events } = useComponent('Stepper', {
         props,
         styles,
         styleProps: { container: ['all'] },
     })
 
     return (
-        <div {...attributes} {...events} css={classes.container}>
+        <div {...attributes} {...events.all} css={cs.container}>
             {data.map((step, i) => {
                 const state: Types.StyleState = {
                     active: current == i,
                     complete: current > i,
                     pointer: !!onChange,
+                    size: props.size || 'm'
                 }
                 const hasMore = i < data.length - 1
                 const label = state.complete
@@ -32,8 +33,8 @@ const Stepper: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
 
                 return (
                     <React.Fragment key={i}>
-                        <div css={classes.step(state)} onClick={() => onChange?.(step, i)}>{label}</div>
-                        {hasMore && <div css={classes.separator(state)} />}
+                        <div css={cs.step(state)} onClick={() => onChange?.(step, i)}>{props.size !== 'xs' && label}</div>
+                        {hasMore && <div css={cs.separator(state)} />}
                     </React.Fragment>
                 )
             })}

@@ -6,21 +6,28 @@ import Types from './types'
 const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
 
     const background = colorProp(theme, props.background)
-    const color = colorProp(theme, props.color)
+    const color = colorProp(theme, props.color) || theme.color.onSurface
+    const hoverColor = colorProp(theme, props.hoverColor) || theme.color.primary
 
     return {
         container: (variant) => [
             {
                 width: 'min-content',
                 display: 'inline-flex',
-                color: color?.rgb().string(),
-                background: background?.rgb().string(),
+                color: color.rgb().string(),
+                background: background ? background.rgb().string() : 'transparent',
                 height: theme.assets.typography.text.m.fontSize,
                 fontSize: theme.assets.typography.text.m.fontSize,
             },
             props.size && !['xs', 's', 'm', 'l', 'xl'].includes(props.size) && {
                 height: props.size,
                 fontSize: props.size,
+            },
+            hoverColor && {
+                transition: 'color .15s',
+                ':hover': {
+                    color: hoverColor.rgb().string(),
+                }
             },
             variant({
                 size: {
@@ -44,7 +51,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 shape: {
                     circle: {
                         borderRadius: '50%',
-                        border: '1px solid ' + color?.rgb().string(),
+                        border: '1px solid ' + color.rgb().string(),
                         padding: '0.4em',
                     },
                     oval: {

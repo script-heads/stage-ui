@@ -12,6 +12,7 @@ declare module 'Icon/types' {
 	            T?: string;
 	        });
 	        color?: SystemTypes.ColorProp;
+	        hoverColor?: SystemTypes.ColorProp;
 	        background?: SystemTypes.ColorProp;
 	        rotate?: number;
 	    }
@@ -130,14 +131,6 @@ declare module 'lib/ArrowCircleUp' {
 	export default _default;
 
 }
-declare module 'lib/ArrowDown1' {
-	/**
-	The MIT License (MIT)
-	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
-	export default _default;
-
-}
 declare module 'lib/ArrowDown' {
 	/**
 	The MIT License (MIT)
@@ -178,6 +171,22 @@ declare module 'lib/ArrowIosUp' {
 	export default _default;
 
 }
+declare module 'lib/ArrowLeftDown' {
+	/**
+	The MIT License (MIT)
+	*/
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'lib/ArrowLeftUp' {
+	/**
+	The MIT License (MIT)
+	*/
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
 declare module 'lib/ArrowLeft' {
 	/**
 	The MIT License (MIT)
@@ -186,7 +195,7 @@ declare module 'lib/ArrowLeft' {
 	export default _default;
 
 }
-declare module 'lib/ArrowRight' {
+declare module 'lib/ArrowRightDown' {
 	/**
 	The MIT License (MIT)
 	*/
@@ -194,7 +203,15 @@ declare module 'lib/ArrowRight' {
 	export default _default;
 
 }
-declare module 'lib/ArrowUp1' {
+declare module 'lib/ArrowRightUp' {
+	/**
+	The MIT License (MIT)
+	*/
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'lib/ArrowRight' {
 	/**
 	The MIT License (MIT)
 	*/
@@ -235,14 +252,6 @@ declare module 'lib/ArrowheadRight' {
 
 }
 declare module 'lib/ArrowheadUp' {
-	/**
-	The MIT License (MIT)
-	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
-	export default _default;
-
-}
-declare module 'lib/ArrrowLeft' {
 	/**
 	The MIT License (MIT)
 	*/
@@ -466,6 +475,14 @@ declare module 'lib/CheckmarkSquare2' {
 	export default _default;
 
 }
+declare module 'lib/CheckmarkSquare' {
+	/**
+	The MIT License (MIT)
+	*/
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
 declare module 'lib/Checkmark' {
 	/**
 	The MIT License (MIT)
@@ -483,14 +500,6 @@ declare module 'lib/ChevronDown' {
 
 }
 declare module 'lib/ChevronLeft' {
-	/**
-	The MIT License (MIT)
-	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
-	export default _default;
-
-}
-declare module 'lib/ChevronRight1' {
 	/**
 	The MIT License (MIT)
 	*/
@@ -707,38 +716,6 @@ declare module 'lib/Crop' {
 
 }
 declare module 'lib/Cube' {
-	/**
-	The MIT License (MIT)
-	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
-	export default _default;
-
-}
-declare module 'lib/DiagonalArrowLeftDown' {
-	/**
-	The MIT License (MIT)
-	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
-	export default _default;
-
-}
-declare module 'lib/DiagonalArrowLeftUp' {
-	/**
-	The MIT License (MIT)
-	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
-	export default _default;
-
-}
-declare module 'lib/DiagonalArrowRightDown' {
-	/**
-	The MIT License (MIT)
-	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
-	export default _default;
-
-}
-declare module 'lib/DiagonalArrowRightUp' {
 	/**
 	The MIT License (MIT)
 	*/
@@ -978,14 +955,6 @@ declare module 'lib/Github' {
 	export default _default;
 
 }
-declare module 'lib/Globe21' {
-	/**
-	The MIT License (MIT)
-	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
-	export default _default;
-
-}
 declare module 'lib/Globe2' {
 	/**
 	The MIT License (MIT)
@@ -1059,14 +1028,6 @@ declare module 'lib/Height' {
 
 }
 declare module 'lib/Home' {
-	/**
-	The MIT License (MIT)
-	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
-	export default _default;
-
-}
-declare module 'lib/Image1' {
 	/**
 	The MIT License (MIT)
 	*/
@@ -1483,14 +1444,6 @@ declare module 'lib/PhoneOff' {
 
 }
 declare module 'lib/Phone' {
-	/**
-	The MIT License (MIT)
-	*/
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
-	export default _default;
-
-}
-declare module 'lib/PieChart1' {
 	/**
 	The MIT License (MIT)
 	*/
@@ -1922,6 +1875,38 @@ declare module 'lib/TrendingUp' {
 	export default _default;
 
 }
+declare module 'lib/TriangleDown' {
+	/**
+	The MIT License (MIT)
+	*/
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'lib/TriangleLeft' {
+	/**
+	The MIT License (MIT)
+	*/
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'lib/TriangleRight' {
+	/**
+	The MIT License (MIT)
+	*/
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
+declare module 'lib/TriangleUp' {
+	/**
+	The MIT License (MIT)
+	*/
+	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+	export default _default;
+
+}
 declare module 'lib/Tv' {
 	/**
 	The MIT License (MIT)
@@ -2044,7 +2029,7 @@ declare module 'lib/Wifi' {
 }
 declare module '@stage-ui/icons' {
 	/**
-	version: 0.1.5
+	version: 0.1.7
 	*/
 	export { default as Sync } from 'lib/Sync';
 	export { default as Activity } from 'lib/Activity';
@@ -2056,21 +2041,22 @@ declare module '@stage-ui/icons' {
 	export { default as ArrowCircleLeft } from 'lib/ArrowCircleLeft';
 	export { default as ArrowCircleRight } from 'lib/ArrowCircleRight';
 	export { default as ArrowCircleUp } from 'lib/ArrowCircleUp';
-	export { default as ArrowDown1 } from 'lib/ArrowDown1';
 	export { default as ArrowDown } from 'lib/ArrowDown';
 	export { default as ArrowIosDown } from 'lib/ArrowIosDown';
 	export { default as ArrowIosLeft } from 'lib/ArrowIosLeft';
 	export { default as ArrowIosRight } from 'lib/ArrowIosRight';
 	export { default as ArrowIosUp } from 'lib/ArrowIosUp';
+	export { default as ArrowLeftDown } from 'lib/ArrowLeftDown';
+	export { default as ArrowLeftUp } from 'lib/ArrowLeftUp';
 	export { default as ArrowLeft } from 'lib/ArrowLeft';
+	export { default as ArrowRightDown } from 'lib/ArrowRightDown';
+	export { default as ArrowRightUp } from 'lib/ArrowRightUp';
 	export { default as ArrowRight } from 'lib/ArrowRight';
-	export { default as ArrowUp1 } from 'lib/ArrowUp1';
 	export { default as ArrowUp } from 'lib/ArrowUp';
 	export { default as ArrowheadDown } from 'lib/ArrowheadDown';
 	export { default as ArrowheadLeft } from 'lib/ArrowheadLeft';
 	export { default as ArrowheadRight } from 'lib/ArrowheadRight';
 	export { default as ArrowheadUp } from 'lib/ArrowheadUp';
-	export { default as ArrrowLeft } from 'lib/ArrrowLeft';
 	export { default as At } from 'lib/At';
 	export { default as Attach2 } from 'lib/Attach2';
 	export { default as Attach } from 'lib/Attach';
@@ -2098,10 +2084,10 @@ declare module '@stage-ui/icons' {
 	export { default as CheckmarkCircle2 } from 'lib/CheckmarkCircle2';
 	export { default as CheckmarkCircle } from 'lib/CheckmarkCircle';
 	export { default as CheckmarkSquare2 } from 'lib/CheckmarkSquare2';
+	export { default as CheckmarkSquare } from 'lib/CheckmarkSquare';
 	export { default as Checkmark } from 'lib/Checkmark';
 	export { default as ChevronDown } from 'lib/ChevronDown';
 	export { default as ChevronLeft } from 'lib/ChevronLeft';
-	export { default as ChevronRight1 } from 'lib/ChevronRight1';
 	export { default as ChevronRight } from 'lib/ChevronRight';
 	export { default as ChevronUp } from 'lib/ChevronUp';
 	export { default as Clipboard } from 'lib/Clipboard';
@@ -2129,10 +2115,6 @@ declare module '@stage-ui/icons' {
 	export { default as CreditCard } from 'lib/CreditCard';
 	export { default as Crop } from 'lib/Crop';
 	export { default as Cube } from 'lib/Cube';
-	export { default as DiagonalArrowLeftDown } from 'lib/DiagonalArrowLeftDown';
-	export { default as DiagonalArrowLeftUp } from 'lib/DiagonalArrowLeftUp';
-	export { default as DiagonalArrowRightDown } from 'lib/DiagonalArrowRightDown';
-	export { default as DiagonalArrowRightUp } from 'lib/DiagonalArrowRightUp';
 	export { default as Download } from 'lib/Download';
 	export { default as DropletOff } from 'lib/DropletOff';
 	export { default as Droplet } from 'lib/Droplet';
@@ -2162,7 +2144,6 @@ declare module '@stage-ui/icons' {
 	export { default as Funnel } from 'lib/Funnel';
 	export { default as Gift } from 'lib/Gift';
 	export { default as Github } from 'lib/Github';
-	export { default as Globe21 } from 'lib/Globe21';
 	export { default as Globe2 } from 'lib/Globe2';
 	export { default as Globe } from 'lib/Globe';
 	export { default as Google } from 'lib/Google';
@@ -2173,7 +2154,6 @@ declare module '@stage-ui/icons' {
 	export { default as Heart } from 'lib/Heart';
 	export { default as Height } from 'lib/Height';
 	export { default as Home } from 'lib/Home';
-	export { default as Image1 } from 'lib/Image1';
 	export { default as Image } from 'lib/Image';
 	export { default as Inbox } from 'lib/Inbox';
 	export { default as Info } from 'lib/Info';
@@ -2226,7 +2206,6 @@ declare module '@stage-ui/icons' {
 	export { default as PhoneMissed } from 'lib/PhoneMissed';
 	export { default as PhoneOff } from 'lib/PhoneOff';
 	export { default as Phone } from 'lib/Phone';
-	export { default as PieChart1 } from 'lib/PieChart1';
 	export { default as PieChart } from 'lib/PieChart';
 	export { default as Pin } from 'lib/Pin';
 	export { default as PlayCircle } from 'lib/PlayCircle';
@@ -2280,6 +2259,10 @@ declare module '@stage-ui/icons' {
 	export { default as Trash } from 'lib/Trash';
 	export { default as TrendingDown } from 'lib/TrendingDown';
 	export { default as TrendingUp } from 'lib/TrendingUp';
+	export { default as TriangleDown } from 'lib/TriangleDown';
+	export { default as TriangleLeft } from 'lib/TriangleLeft';
+	export { default as TriangleRight } from 'lib/TriangleRight';
+	export { default as TriangleUp } from 'lib/TriangleUp';
 	export { default as Tv } from 'lib/Tv';
 	export { default as Twitter } from 'lib/Twitter';
 	export { default as Umbrella } from 'lib/Umbrella';

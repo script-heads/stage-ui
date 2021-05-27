@@ -1,36 +1,52 @@
 import { jsx } from '@emotion/react'
-import { useSystem } from '@stage-ui/system'
+import { useComponent } from '@stage-ui/system'
 import { forwardRef, ForwardRefRenderFunction, useMemo } from 'react'
-import createClasses from './styles'
+import styles from './styles'
 import Types from './types'
 
-const Typography: ForwardRefRenderFunction<Types.Ref, Types.PrivateProps> = (props, ref) => {
-  const { name, focus, download, href, hrefLang, media, ping, rel, target, type, referrerPolicy } = props
-  const { classes, attributes, events } = useSystem(name, props, createClasses, { focus })
+const capitalizeFirstLetter = (s: string) => {
+    return s.charAt(0).toUpperCase() + s.slice(1)
+}
 
-  return useMemo(
-    () =>
-      jsx(
-        props.tag,
-        {
-          ...attributes,
-          ...events,
-          ref,
-          css: classes.container,
-          download,
-          href,
-          hrefLang,
-          media,
-          ping,
-          rel,
-          target,
-          type,
-          referrerPolicy,
-        },
-        props.children,
-      ),
-    [props, attributes],
-  )
+type RefTag = HTMLSpanElement | HTMLAnchorElement | HTMLParagraphElement
+
+const Typography: ForwardRefRenderFunction<RefTag, Types.PrivateProps> = (props, ref) => {
+
+    const { cs, attributes, events } = useComponent(props.overrides, {
+        props,
+        styles,
+        styleProps: { container: ['all'] },
+        focus: {
+            applyDecoration: true,
+            ignoreMouse: props.mouseFocus
+        }
+    })
+
+    const children = typeof props.children === 'string' && props.capitalize  
+        ? capitalizeFirstLetter(props.children) 
+        : props.children
+
+    return useMemo(() => (
+        jsx(
+            props.tag,
+            {
+                ...attributes,
+                ...events.all,
+                ref: ref,
+                css: cs.container,
+                download: props.download,
+                href: props.href,
+                hrefLang: props.hrefLang,
+                media: props.media,
+                ping: props.ping,
+                rel: props.rel,
+                target: props.target,
+                type: props.type,
+                referrerPolicy: props.referrerPolicy,
+            },
+            children
+        )
+    ), [props, attributes])
 }
 
 export default forwardRef(Typography)

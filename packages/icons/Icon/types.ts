@@ -1,9 +1,9 @@
 import SystemTypes from '@stage-ui/system/types'
 
 declare namespace IconTypes {
-	/**
-	 * TODO: circle и oval добавляют только padding
-	 */
+    /**
+     * TODO: circle и oval добавляют только padding
+     */
     type IconShapes = 'circle' | 'oval' | 'square'
     type IconType = 'filled' | 'outline'
 
@@ -12,6 +12,7 @@ declare namespace IconTypes {
         shape?: IconShapes
         size?: SystemTypes.Size | (string & { T?: string })
         color?: SystemTypes.ColorProp
+        hoverColor?: SystemTypes.ColorProp
         background?: SystemTypes.ColorProp
         rotate?: number
     }

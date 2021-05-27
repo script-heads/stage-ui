@@ -1740,6 +1740,11 @@ declare module 'hooks/useComponent' {
 	export default useComponent;
 
 }
+declare module 'hooks/useBreakpoints' {
+	 const useBreakpoints: <T>(values: T[]) => T | null;
+	export default useBreakpoints;
+
+}
 declare module 'utils/createID' {
 	 const _default: () => string;
 	export default _default;
@@ -1754,6 +1759,7 @@ declare module '@stage-ui/system' {
 	export { default as Provider } from 'components/Provider';
 	export { default as useTheme } from 'hooks/useTheme';
 	export { default as useComponent } from 'hooks/useComponent';
+	export { default as useBreakpoints } from 'hooks/useBreakpoints';
 	export { default as colorProp } from 'utils/colorProp';
 	export { default as createTheme } from 'utils/createTheme';
 

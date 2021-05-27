@@ -32,37 +32,37 @@ const config = {
                 test: /\.tsx?$/,
                 oneOf: [
                     {
-                        test: /\.tsx?$/,
+                        test: /\.raw\.tsx?$/,
                         use: {
-                            loader: 'babel-loader',
+                            loader: 'esbuild-loader',
                             options: {
-                                presets: [
-                                    '@babel/preset-env',
-                                    '@babel/preset-typescript',
-                                    '@babel/preset-react',
-                                    '@emotion/babel-preset-css-prop',
-                                ],
-                                plugins: [
-                                    '@babel/plugin-proposal-class-properties',
-                                    '@babel/plugin-proposal-object-rest-spread',
-                                    '@babel/plugin-transform-runtime',
-                                    ['@babel/plugin-transform-typescript',
-                                        { allowNamespaces: true }
-                                    ],
-                                    ['@babel/plugin-proposal-optional-chaining', {
-                                        loose: true
-                                    }],
-                                    ...require('@stage-ui/core/babelImportPlugins')
-                                ]
+                                loader: 'text',
                             }
                         }
-                    }
+                    },
+                    {
+                        test: /\.(ts|tsx)$/,
+                        use: {
+                            loader: 'esbuild-loader',
+                            options: {
+                                loader: 'tsx',
+                                jsxFactory: 'jsx',
+                                target: 'es2015',
+                            }
+                        },
+                        exclude: (modulePath) =>
+                            /node_modules/.test(modulePath) &&
+                            !/node_modules[\\/](ismart-(templates|api))[\\/].+/.test(modulePath),
+                    },
                 ]
             },
             {
                 test: /\.(ttf|eot|svg|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 use: [{
-                    loader: 'file-loader'
+                    loader: 'esbuild-loader',
+                    options: {
+                        loader: 'dataurl',
+                    }
                 }]
             }
         ]

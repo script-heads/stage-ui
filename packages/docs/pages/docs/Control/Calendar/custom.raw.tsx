@@ -2,13 +2,13 @@ import React from 'react'
 import { Block, Flexbox, Calendar } from '@stage-ui/core'
 
 export default () => {
-    
+
     return (
-        <Block pb="s" decoration="surface" w="18rem">
+        <Block p="m" decoration="surface" w="18rem">
             <Calendar
                 type="day"
                 onDayRender={(options) => {
-                    const range = [5,6,7,8,9,10]
+                    const range = [5, 6, 7, 8, 9, 10]
                     const day = options.self.date()
                     return (
                         <Flexbox

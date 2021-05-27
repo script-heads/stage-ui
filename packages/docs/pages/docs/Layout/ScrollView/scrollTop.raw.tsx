@@ -33,7 +33,7 @@ export default () => {
                 et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
                 Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
             </Paragraph>
-            <Button onClick={() => ref.current?.onScrollTop()}>Scroll top</Button>
+            <Button onClick={() => ref.current?.scrollTop()}>Scroll top</Button>
         </ScrollView>
     )
 }

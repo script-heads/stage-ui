@@ -1,12 +1,12 @@
 import SystemTypes from '@stage-ui/system/types'
-import { Moment } from 'moment'
+import moment, { Moment } from 'moment'
 import { CSSProperties } from 'react'
 
 declare namespace CalendarTypes {
     /**
      * Type of calendar view
      */
-    type GridType = 'year' | 'month' | 'day'
+    type GridType = 'year' | 'month' | 'day' | 'week'
     /**
      * Calendar locale
      */
@@ -39,7 +39,7 @@ declare namespace CalendarTypes {
         isCurrentMonth: boolean
     }
 
-    interface Props extends Omit<AllProps<HTMLDivElement, Styles>, 'onChange'> {
+    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
         /**
          * Type for Calendar
          * @default day
@@ -81,6 +81,10 @@ declare namespace CalendarTypes {
          */
         hideToday?: boolean
         /**
+         * Hide neighbor months days
+         */
+        hideNeighborMonths?: boolean
+        /**
          * Custom render Year
          */
         onYearRender?: (options: YearRenderOptions) => React.ReactNode
@@ -105,12 +109,13 @@ declare namespace CalendarTypes {
     interface DateGridProps {
         attributes: any
         hideToday: boolean
+        hideNeighborMonths: boolean
         value: Moment
         minValue: Moment
         maxValue: Moment
         onChange: (date: Moment) => void
         onViewChange?: (date: Moment) => void
-        styles: ComponentStyles<Styles>
+        styles: SystemTypes.ComponentStyles<Styles>
         type: GridType
         onYearRender?: (options: YearRenderOptions) => React.ReactNode
         onMonthRender?: (options: MonthRenderOptions) => React.ReactNode
@@ -120,17 +125,39 @@ declare namespace CalendarTypes {
     }
 
     interface DateGridCalendarProps {
-        value: Moment
-        tmp: Moment
+        type: GridType
         minValue: Moment
         maxValue: Moment
-        active: Moment
         onClick: () => void
         style?: CSSProperties
-        styles: ComponentStyles<Styles>
-        onYearRender?: (options: YearRenderOptions) => React.ReactNode
-        onMonthRender?: (options: MonthRenderOptions) => React.ReactNode
+        styles: SystemTypes.ComponentStyles<Styles>
+    }
+
+    interface DateGridDayProps extends Omit<DateGridCalendarProps, 'onClick'> {
+        hideNeighborMonths: boolean
+        day: Moment
+        tmp: Moment
+        active: Moment
         onDayRender?: (options: DayRenderOptions) => React.ReactNode
+        onClick: (day: Moment) => void
+    }
+
+    interface DateGridWeekProps extends Omit<DateGridDayProps, 'day'> {
+        week: Moment[]
+    }
+
+    interface DateGridMonthProps extends DateGridCalendarProps {
+        value: Moment
+        tmp: Moment
+        active: Moment
+        onMonthRender?: (options: MonthRenderOptions) => React.ReactNode
+    }
+
+    interface DateGridYearProps extends DateGridCalendarProps {
+        value: Moment
+        tmp: Moment
+        active: Moment
+        onYearRender?: (options: YearRenderOptions) => React.ReactNode
     }
 
     interface DateGridTitleProps {
@@ -141,7 +168,7 @@ declare namespace CalendarTypes {
         onNext: () => void
         onPrevious: () => void
         onGridTypeChange: (type: GridType) => void
-        styles: ComponentStyles<Styles>
+        styles: SystemTypes.ComponentStyles<Styles>
     }
 
     interface Styles {
@@ -150,21 +177,37 @@ declare namespace CalendarTypes {
          */
         dateGrid: void
         /**
-         * Main title block
-         */
-        title: void
-        /**
          * Days of week block
          */
         weekDay: void
         /**
-         * Each square day block
-         */
-        day: {
-            isActive: Boolean
+        * Each square month or year block
+        */
+        monthOrYear: {
+            isActive: boolean
             isCurrent: boolean
             isDisabled: boolean
+        }
+        /**
+        * Each square week block
+        */
+        week: {
+            isCurrent: boolean
+            isActive: boolean
+            isWeekType: boolean
+        }
+        /**
+         * Each square day block
+         * for day/week view
+         */
+        day: {
+            isActive: boolean
+            isCurrent: boolean
+            isDisabled: boolean
+            isHidden: boolean
             isCurrentMonth: boolean
+            isWeekend?: boolean
+            isWeekType?: boolean
         }
     }
 }

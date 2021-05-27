@@ -1,19 +1,25 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
-import { useSystem } from '@stage-ui/system'
-import { forwardRef, ForwardRefRenderFunction, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import { useComponent } from '@stage-ui/system'
+import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import styles from './styles'
 import TableFoot from './TableFoot'
 import TableHeadCell from './TableHeadCell'
 import TableRow from './TableRow'
 import Types from './types'
 
+export const dndContext = {
+    willRender: false,
+    source: -1,
+    target: -1,
+}
+
 function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
 
 // const Table: ForwardRefRenderFunction<Types.TableRef, Types.Props> = (props, ref) => {
 
     const tableRef = useRef<HTMLTableElement>(null)
-    const { classes, attributes, events } = useSystem('Table', { props, styles, styleProps: { container: ['all'] } })
+    const { cs, attributes, events } = useComponent('Table', { props, styles, styleProps: { container: ['all'] } })
     const { columns, pagination, footer } = props
     const [currentPage, setCurrentPage] = useState(1)
     const [reloadData, reload] = useState(false)
@@ -21,9 +27,10 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
         key: '',
         sort: 'ASC'
     })
+    
+    const isDraggableSupport = !!columns.find(column => column.dnd)
 
-    //@ts-ignore
-    let rowCtx: Types.TableRowContext<ROW>[] = props.data.map(row => {
+    const mapRowContext = (row: any) => {
         const isCellModify: Types.TableRowContext<ROW>['isCellModify'] = {}
         columns.forEach(column => {
             isCellModify[column.key] = false
@@ -35,26 +42,71 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
             isCellModify,
             setModifyState: {}
         }
-    })
+    }
+    /**
+     * TODO: issue with dragbale
+     * if dnd enabled then controlled data
+     * will not work and vice versa
+     */
+    let rowCtx = isDraggableSupport
+        ? useMemo(() => (props.data as any).map(mapRowContext), [])
+        : (props.data.slice() as any).map(mapRowContext)
 
-    const columnSort = (column: Types.TableColumn<ROW>) => {
-        if (column.sort) {
+        /**
+     * Getting current data state
+     */
+    const getData = () => rowCtx.map((rowCtx: any) => rowCtx.row)
+
+    /**
+     * Soring column by its settings
+     */
+    const columnSort = (value: Types.TableSortObject) => {
+        if (value.sort) {
             rowCtx = rowCtx.sort((a, b) => {
-                if (column.sort === 'ASC') {
-                    if (typeof a.row[column.key] === 'string') {
-                        return a.row[column.key].localeCompare(b.row[column.key])
+                if (value.sort === 'ASC') {
+                    if (typeof a.row[value.key] === 'string') {
+                        return a.row[value.key].localeCompare(b.row[value.key])
                     } else {
-                        return a.row[column.key] - b.row[column.key]
+                        return a.row[value.key] - b.row[value.key]
                     }
                 } else {
-                    if (typeof b.row[column.key] === 'string') {
-                        return b.row[column.key].localeCompare(a.row[column.key])
+                    if (typeof b.row[value.key] === 'string') {
+                        return b.row[value.key].localeCompare(a.row[value.key])
                     } else {
-                        return b.row[column.key] - a.row[column.key]
+                        return b.row[value.key] - a.row[value.key]
                     }
                 }
             })
         }
+    }
+
+    const toggleSort = (value: Types.TableSortObject) => {
+        const column = columns.find(column => column.key === value.key)
+        if (column) {
+            if (typeof column.sort === 'function') {
+                return column.sort(value.sort)
+            } else {
+                setSort(value)
+            }
+        }
+        return new Promise((resolve) => resolve(void 0))
+    }
+
+    /**
+     * Render data after DnD
+     */
+    const dndRender = () => {
+        dndContext.willRender = true
+        rowCtx.splice(dndContext.target, 0, rowCtx.splice(dndContext.source, 1)[0])
+        const data = getData()
+        columns.forEach((column) => {
+            column.dnd?.(dndContext.source, dndContext.target, data)
+        })
+        /** keepit */
+        setTimeout(() => {
+            props.onChange?.(data)
+        }, 0)
+        reload(!reloadData)
     }
 
     //@ts-ignore
@@ -118,27 +170,23 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
         getCellContext,
         setExpand,
         setModify,
+        getData,
         ...tableRef.current
     }))
 
     /**
      * Sorting data
      */
-    if (sort.key) {
-        const sortColumn = columns.find(column => column.key === sort.key)
-        if (sortColumn) {
-            //@ts-ignore
-            columnSort({
-                ...sortColumn,
-                ...sort
-            })
-        }
-    } else {
-        for (const column of columns) {
-            //@ts-ignore
-            columnSort(column)
+    if (!dndContext.willRender) {
+        if (sort.key) {
+            columnSort(sort)
+        } else {
+            for (const column of columns) {
+                columnSort(column as Types.TableSortObject)
+            }
         }
     }
+    dndContext.willRender = false
 
     const setNeedDisplay = () => {
         let state = 1
@@ -172,20 +220,26 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
         return
     }, [])
 
+    useEffect(() => {
+        if (sort.key) {
+            props.onChange?.(getData())
+        }
+    }, [sort.key, sort.sort])
+
     /**
      * Render Data
      */
     return (
-        <table {...attributes} {...events} ref={tableRef} css={classes.container}>
+        <table {...attributes} {...events.all} ref={tableRef} css={cs.container}>
             <thead>
                 <tr
                     children={
                         columns.map((column, colIndex) => (
                             <TableHeadCell
                                 key={colIndex}
-                                styles={classes}
+                                styles={cs}
                                 column={column}
-                                setSort={setSort}
+                                toggleSort={toggleSort}
                             />
                         ))
                     }
@@ -225,7 +279,7 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
                                 getCellContext={getCellContext}
                                 rowDidMount={props.rowDidMount}
                                 rowDidUnmount={props.rowDidUnmount}
-                                styles={classes}
+                                styles={cs}
                                 key={rowIndex}
                                 columns={columns}
                                 rowIndex={rowIndex}
@@ -236,6 +290,7 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
                                     rowHeight: props.rowHeight,
                                     rowShouldRender: props.rowShouldRender,
                                 }}
+                                dndRender={dndRender}
                             />
                         )
                     })
@@ -243,7 +298,7 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
             />
             <TableFoot
                 rowCtx={rowCtx}
-                styles={classes}
+                styles={cs}
                 footerContent={footer}
                 columns={columns}
                 pagination={pagination}

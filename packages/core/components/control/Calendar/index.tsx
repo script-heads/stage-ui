@@ -1,14 +1,16 @@
-import { useSystem } from '@stage-ui/system'
+import { useComponent } from '@stage-ui/system'
 import moment, { Moment } from 'moment'
 import React, { forwardRef, ForwardRefRenderFunction, useLayoutEffect, useRef, useState } from 'react'
 import DateGrid from './DateGrid'
 import styles from './styles'
 import Types from './types'
 
-const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
+const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
 
     const {
         locale = 'ru',
+        hideToday = false,
+        hideNeighborMonths = false,
     } = props
 
     moment.locale(locale)
@@ -16,9 +18,9 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
     const now = moment()
     const [value, setValue] = useState(now)
 
-    const { classes, attributes, events } = useSystem('Calendar', { 
-        props, 
-        styles,  
+    const { cs, attributes, events } = useComponent('Calendar', {
+        props,
+        styles,
     })
 
     const minValue = props.minValue ? moment(props.minValue).startOf('day') : now.clone().add(-500, 'year')
@@ -36,7 +38,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
         }
 
         setValue(value)
-        
+
         if (props.onChange) {
             props.onChange(value)
         }
@@ -45,21 +47,22 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
     return (
         <DateGrid
             attributes={attributes}
-            styles={classes}
+            styles={cs}
             value={value}
             minValue={minValue}
             maxValue={maxValue}
             onChange={onChange}
             onViewChange={props.onViewChange}
-            hideToday={props.hideToday || false}
+            hideToday={hideToday}
+            hideNeighborMonths={hideNeighborMonths}
             type={props.type || 'day'}
             onYearRender={props.onYearRender}
             onMonthRender={props.onMonthRender}
             onDayRender={props.onDayRender}
             header={props.header}
             footer={props.footer}
-        />        
+        />
     )
 }
 
-export default forwardRef(DatePicker)
+export default forwardRef(Calendar)

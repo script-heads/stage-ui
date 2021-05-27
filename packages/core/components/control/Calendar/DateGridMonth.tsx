@@ -1,12 +1,12 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
-import { Flexbox } from '@stage-ui/core'
+import { Flexbox, Text } from '@stage-ui/core'
 import moment from 'moment'
 import React, { Fragment } from 'react'
 import CalendarTypes from './types'
 
-const DateGridMonth = (props: CalendarTypes.DateGridCalendarProps) => {
-    const { value: self, active, onClick, minValue, maxValue } = props
+const DateGridMonth = (props: CalendarTypes.DateGridMonthProps) => {
+    const { value: self, active, onClick, minValue, maxValue, type } = props
 
     const isDisabled =
         minValue.valueOf() > self.valueOf() ||
@@ -21,7 +21,7 @@ const DateGridMonth = (props: CalendarTypes.DateGridCalendarProps) => {
     const isActive = (activeValue === monthValue)
     const isCurrent = (monthValue === nowValue)
 
-    const css = props.styles.day({isActive, isCurrent, isDisabled, isCurrentMonth: true})
+    const css = props.styles.monthOrYear({ isActive, isCurrent, isDisabled })
 
     /**
      * Custom render
@@ -35,20 +35,23 @@ const DateGridMonth = (props: CalendarTypes.DateGridCalendarProps) => {
             />
         )
     }
-    
+
     return (
         <Flexbox
             justifyContent="center"
             alignItems="center"
             onClick={() => {
                 if (!isDisabled && onClick) {
-                    onClick()
+                    onClick?.()
                 }
             }}
             css={css}
             style={props.style}
-            children={self.format('MMMM')}
-        />
+        >
+            <Text capitalize size="s">
+                {self.format('MMMM')}
+            </Text>
+        </Flexbox>
 
     )
 }

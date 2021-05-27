@@ -149,6 +149,10 @@ declare module '@stage-ui/core/misc/hocs/Typography/types' {
 	    }
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
+	         * Capitalize first letter
+	         */
+	        capitalize?: boolean;
+	        /**
 	         * Overflow text shortening
 	         */
 	        ellipsis?: boolean;
@@ -279,6 +283,58 @@ declare module 'content/Link/types' {
 declare module 'content/Link' {
 	import React from 'react';
 	import Types from 'content/Link/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLAnchorElement>>;
+	export default _default;
+
+}
+declare module 'content/Toast/types' {
+	import SystemTypes from '@stage-ui/system/types'; namespace DividerTypes {
+	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
+	        /**
+	        * Color of divider
+	        * @default primary
+	        */
+	        color?: SystemTypes.ColorProp;
+	        /**
+	         * Place for items to the right of children
+	         */
+	        rightChild?: React.ReactNode;
+	        /**
+	         * Place for items to the left of children
+	         */
+	        leftChild?: React.ReactNode;
+	        /**
+	         * Default content
+	         */
+	        children?: React.ReactNode;
+	        /**
+	         * Children alias
+	         */
+	        label?: React.ReactNode;
+	    }
+	    interface Styles {
+	        /**
+	         * Root element
+	         */
+	        container: void;
+	        /**
+	         * Children of container
+	         */
+	        content: void;
+	        leftChild: void;
+	        rightChild: void;
+	    }
+	}
+	export default DividerTypes;
+
+}
+declare module 'content/Toast/styles' {
+	import SystemTypes from '@stage-ui/system/types';
+	import Types from 'content/Toast/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	export default styles;
+
+}
+declare module 'content/Toast' {
+	import Types from 'content/Toast/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
 	export default _default;
 
 }
@@ -413,7 +469,7 @@ declare module 'control/Calendar/types' {
 	    /**
 	     * Type of calendar view
 	     */
-	    type GridType = 'year' | 'month' | 'day';
+	    type GridType = 'year' | 'month' | 'day' | 'week';
 	    /**
 	     * Calendar locale
 	     */
@@ -486,6 +542,10 @@ declare module 'control/Calendar/types' {
 	         */
 	        hideToday?: boolean;
 	        /**
+	         * Hide neighbor months days
+	         */
+	        hideNeighborMonths?: boolean;
+	        /**
 	         * Custom render Year
 	         */
 	        onYearRender?: (options: YearRenderOptions) => React.ReactNode;
@@ -509,6 +569,7 @@ declare module 'control/Calendar/types' {
 	    interface DateGridProps {
 	        attributes: any;
 	        hideToday: boolean;
+	        hideNeighborMonths: boolean;
 	        value: Moment;
 	        minValue: Moment;
 	        maxValue: Moment;
@@ -523,17 +584,35 @@ declare module 'control/Calendar/types' {
 	        footer?: React.ReactNode;
 	    }
 	    interface DateGridCalendarProps {
-	        value: Moment;
-	        tmp: Moment;
+	        type: GridType;
 	        minValue: Moment;
 	        maxValue: Moment;
-	        active: Moment;
 	        onClick: () => void;
 	        style?: CSSProperties;
 	        styles: SystemTypes.ComponentStyles<Styles>;
-	        onYearRender?: (options: YearRenderOptions) => React.ReactNode;
-	        onMonthRender?: (options: MonthRenderOptions) => React.ReactNode;
+	    }
+	    interface DateGridDayProps extends Omit<DateGridCalendarProps, 'onClick'> {
+	        hideNeighborMonths: boolean;
+	        day: Moment;
+	        tmp: Moment;
+	        active: Moment;
 	        onDayRender?: (options: DayRenderOptions) => React.ReactNode;
+	        onClick: (day: Moment) => void;
+	    }
+	    interface DateGridWeekProps extends Omit<DateGridDayProps, 'day'> {
+	        week: Moment[];
+	    }
+	    interface DateGridMonthProps extends DateGridCalendarProps {
+	        value: Moment;
+	        tmp: Moment;
+	        active: Moment;
+	        onMonthRender?: (options: MonthRenderOptions) => React.ReactNode;
+	    }
+	    interface DateGridYearProps extends DateGridCalendarProps {
+	        value: Moment;
+	        tmp: Moment;
+	        active: Moment;
+	        onYearRender?: (options: YearRenderOptions) => React.ReactNode;
 	    }
 	    interface DateGridTitleProps {
 	        value: Moment;
@@ -551,39 +630,95 @@ declare module 'control/Calendar/types' {
 	         */
 	        dateGrid: void;
 	        /**
-	         * Main title block
-	         */
-	        title: void;
-	        /**
 	         * Days of week block
 	         */
 	        weekDay: void;
 	        /**
-	         * Each square day block
-	         */
-	        day: {
-	            isActive: Boolean;
+	        * Each square month or year block
+	        */
+	        monthOrYear: {
+	            isActive: boolean;
 	            isCurrent: boolean;
 	            isDisabled: boolean;
+	        };
+	        /**
+	        * Each square week block
+	        */
+	        week: {
+	            isCurrent: boolean;
+	            isActive: boolean;
+	            isWeekType: boolean;
+	        };
+	        /**
+	         * Each square day block
+	         * for day/week view
+	         */
+	        day: {
+	            isActive: boolean;
+	            isCurrent: boolean;
+	            isDisabled: boolean;
+	            isHidden: boolean;
 	            isCurrentMonth: boolean;
+	            isWeekend?: boolean;
+	            isWeekType?: boolean;
 	        };
 	    }
 	}
 	export default CalendarTypes;
 
 }
-declare module 'control/Calendar/DateGridDay' {
-	/** @jsx jsx */
-	import { jsx } from '@emotion/react';
-	import CalendarTypes from 'control/Calendar/types'; const DateGridDay: (props: CalendarTypes.DateGridCalendarProps) => jsx.JSX.Element;
-	export default DateGridDay;
-
-}
 declare module 'control/Calendar/DateGridMonth' {
 	/** @jsx jsx */
 	import { jsx } from '@emotion/react';
-	import CalendarTypes from 'control/Calendar/types'; const DateGridMonth: (props: CalendarTypes.DateGridCalendarProps) => jsx.JSX.Element;
+	import CalendarTypes from 'control/Calendar/types'; const DateGridMonth: (props: CalendarTypes.DateGridMonthProps) => jsx.JSX.Element;
 	export default DateGridMonth;
+
+}
+declare module 'control/Calendar/DateGridTitle' {
+	/** @jsx jsx */
+	import { jsx } from '@emotion/react';
+	import CalendarTypes from 'control/Calendar/types'; const DateGridTitle: (props: CalendarTypes.DateGridTitleProps) => jsx.JSX.Element;
+	export default DateGridTitle;
+
+}
+declare module 'control/Calendar/DateGridDay' {
+	/** @jsx jsx */
+	import { jsx } from '@emotion/react';
+	import T from 'control/Calendar/types'; const DateGridDay: (props: T.DateGridDayProps) => jsx.JSX.Element;
+	export default DateGridDay;
+
+}
+declare module 'control/Calendar/DateGridWeek' {
+	/** @jsx jsx */
+	import { jsx } from '@emotion/react';
+	import T from 'control/Calendar/types'; const DateGridWeek: (props: T.DateGridWeekProps) => jsx.JSX.Element;
+	export default DateGridWeek;
+
+}
+declare module 'control/Calendar/DateGridYear' {
+	/** @jsx jsx */
+	import { jsx } from '@emotion/react';
+	import CalendarTypes from 'control/Calendar/types'; const DateGridYear: (props: CalendarTypes.DateGridYearProps) => jsx.JSX.Element;
+	export default DateGridYear;
+
+}
+declare module 'control/Calendar/DateGrid' {
+	/** @jsx jsx */
+	import { jsx } from '@emotion/react';
+	import T from 'control/Calendar/types'; const DateGrid: (props: T.DateGridProps) => jsx.JSX.Element;
+	export default DateGrid;
+
+}
+declare module 'control/Calendar/styles' {
+	import SystemTypes from '@stage-ui/system/types';
+	import Types from 'control/Calendar/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	export default styles;
+
+}
+declare module 'control/Calendar' {
+	import React from 'react';
+	import Types from 'control/Calendar/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	export default _default;
 
 }
 declare module '@stage-ui/core/misc/hocs/Icon/types' {
@@ -7778,39 +7913,6 @@ declare module '@stage-ui/icons' {
 	export { default as Wifi } from 'icons/svg/wifi';
 
 }
-declare module 'control/Calendar/DateGridTitle' {
-	/** @jsx jsx */
-	import { jsx } from '@emotion/react';
-	import CalendarTypes from 'control/Calendar/types'; const DateGridTitle: (props: CalendarTypes.DateGridTitleProps) => jsx.JSX.Element;
-	export default DateGridTitle;
-
-}
-declare module 'control/Calendar/DateGridYear' {
-	/** @jsx jsx */
-	import { jsx } from '@emotion/react';
-	import CalendarTypes from 'control/Calendar/types'; const DateGridYear: (props: CalendarTypes.DateGridCalendarProps) => jsx.JSX.Element;
-	export default DateGridYear;
-
-}
-declare module 'control/Calendar/DateGrid' {
-	/** @jsx jsx */
-	import { jsx } from '@emotion/react';
-	import DatePickerTypes from 'control/Calendar/types'; const DateGrid: (props: DatePickerTypes.DateGridProps) => jsx.JSX.Element;
-	export default DateGrid;
-
-}
-declare module 'control/Calendar/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'control/Calendar/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
-	export default styles;
-
-}
-declare module 'control/Calendar' {
-	import React from 'react';
-	import Types from 'control/Calendar/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
-
-}
 declare module '@stage-ui/core/misc/hocs/Check/types' {
 	import SystemTypes from '@stage-ui/system/types'; namespace CheckTypes {
 	    type CheckType = 'checkbox' | 'radio' | 'switch';
@@ -8585,7 +8687,7 @@ declare module 'layout/Drop/types' {
 	        /**
 	         * The side of the target element on which the drop will be shown
 	         */
-	        align?: 'top' | 'bottom' | 'left' | 'right';
+	        align?: 'top' | 'bottom' | 'left' | 'right' | 'auto-vertical';
 	        /**
 	         * Side drop positioning
 	         */
@@ -8662,7 +8764,8 @@ declare module 'layout/Drop/types' {
 }
 declare module 'control/Select/types' {
 	import FieldTypes from '@stage-ui/core/misc/hocs/Field/types';
-	import DropTypes from 'layout/Drop/types'; namespace SelectTypes {
+	import DropTypes from 'layout/Drop/types';
+	import React from 'react'; namespace SelectTypes {
 	    interface Option {
 	        text: string;
 	        value: any;
@@ -8695,6 +8798,10 @@ declare module 'control/Select/types' {
 	         */
 	        keepOpen?: boolean;
 	        /**
+	         * Select's drop will appear only when start typing
+	         */
+	        openOnFocus?: boolean;
+	        /**
 	         * Selected options
 	         */
 	        values?: Option[];
@@ -8717,9 +8824,13 @@ declare module 'control/Select/types' {
 	         */
 	        onChange?: (values: Option[], changedValue?: Option) => void;
 	        /**
+	         * Event is fired when user types in input
+	         */
+	        onSearch?: (value: string) => void;
+	        /**
 	         * Display when empty
 	         */
-	        emptyText?: string;
+	        emptyText?: React.ReactNode;
 	    }
 	    type State = {
 	        selectedOptions: Option[];
@@ -8753,6 +8864,7 @@ declare module 'control/Select/types' {
 	        input: {
 	            searchMode: boolean;
 	            multiselect: boolean;
+	            disableEvents: boolean;
 	        };
 	        /**
 	         * Container of selected option in multiselect
@@ -8837,7 +8949,11 @@ declare module 'control/TextField/types' {
 	import FieldTypes from '@stage-ui/core/misc/hocs/Field/types';
 	import SystemTypes from '@stage-ui/system/types'; namespace TextFieldTypes {
 	    type InputTypes = 'email' | 'hidden' | 'number' | 'password' | 'reset' | 'search' | 'tel' | 'text' | 'url';
-	    type Ref = HTMLDivElement;
+	    type Ref = {
+	        clear: () => void;
+	        container: HTMLDivElement | null;
+	        input: HTMLInputElement | HTMLTextAreaElement | null;
+	    };
 	    interface Props extends FieldTypes.Props, InputProps, TextAreaProps {
 	        /**
 	         * Default input value
@@ -8852,6 +8968,12 @@ declare module 'control/TextField/types' {
 	         * Calls on input change
 	         */
 	        onChange?: ChangeEventHandler<HTMLInputElement>;
+	        /**
+	         * Enables textarea line numbers
+	         * @only if multiline true
+	         * @default false
+	         */
+	        leftChildNumber?: ((index: number) => React.ReactNode) | boolean;
 	    }
 	    interface InputProps {
 	        /**
@@ -8962,6 +9084,7 @@ declare module 'control/TextField/types' {
 	            size: SystemTypes.Size;
 	            disabled: boolean;
 	        };
+	        lineNumbers: void;
 	    }
 	}
 	export default TextFieldTypes;
@@ -8975,7 +9098,7 @@ declare module 'control/TextField/styles' {
 }
 declare module 'control/TextField' {
 	import React from 'react';
-	import Types from 'control/TextField/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+	import Types from 'control/TextField/types'; const _default: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
 	export default _default;
 
 }
@@ -9099,10 +9222,12 @@ declare module 'control/Stepper/types' {
 	    }
 	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        data: StepperData[];
+	        size?: SystemTypes.Size;
 	        current?: number;
 	        onChange?: (step: StepperData, stepIndex: number) => void;
 	    }
 	    interface StyleState {
+	        size: SystemTypes.Size;
 	        active: boolean;
 	        complete: boolean;
 	        pointer: boolean;
@@ -9269,6 +9394,7 @@ declare module '@stage-ui/core/data/Table/types' {
 	    'onlyWhenVisible';
 	    type TableCellKey = number | string;
 	    type TableSortType = 'ASC' | 'DESC';
+	    type TableSortAsync = (sortType: TableSortType) => Promise<void>;
 	    type TableSortObject = {
 	        key: TableCellKey;
 	        sort: TableSortType;
@@ -9381,6 +9507,10 @@ declare module '@stage-ui/core/data/Table/types' {
 	    }
 	    interface TableRef<ROW> {
 	        /**
+	         * Get table current data
+	         */
+	        getData: () => ROW[];
+	        /**
 	         * Get context for specific cell
 	         */
 	        getCellContext: (index: number, key: TableCellKey) => TableCellContext<ROW> | null;
@@ -9407,7 +9537,7 @@ declare module '@stage-ui/core/data/Table/types' {
 	        /**
 	         * Title that will be placed at TableHead
 	         */
-	        title?: string;
+	        title?: React.ReactNode;
 	        /**
 	         * Specific width of column
 	         */
@@ -9420,7 +9550,11 @@ declare module '@stage-ui/core/data/Table/types' {
 	         * Enables sorting for a column
 	         * support ASC | DESC
 	         */
-	        sort?: TableSortType;
+	        sort?: TableSortType | TableSortAsync;
+	        /**
+	         * Draggable support
+	         */
+	        dnd?: (source: number, target: number, data: ROW[]) => void;
 	    }
 	    interface RowEvents<ROW> {
 	        /**
@@ -9435,6 +9569,10 @@ declare module '@stage-ui/core/data/Table/types' {
 	         * Calls when mouse leaves row
 	         */
 	        onRowMouseLeave?: (rowCtxItem: TableRowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
+	        onRowDrag?: (rowCtxItem: TableRowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
+	        onRowDragStart?: (rowCtxItem: TableRowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
+	        onRowDragEnter?: (rowCtxItem: TableRowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
+	        onRowDragLeave?: (rowCtxItem: TableRowContext<ROW>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
 	    }
 	    interface RowDelegates<ROW> {
 	        /**
@@ -9447,12 +9585,12 @@ declare module '@stage-ui/core/data/Table/types' {
 	         */
 	        rowShouldRender?: (rowCtxItem: TableRowContext<ROW>) => boolean;
 	    }
-	    interface Props<DATA, ROW = DATA[0]> extends RowEvents<ROW>, RowDelegates<ROW>, SystemTypes.AllProps<HTMLDivElement, Styles> {
+	    interface Props<ROW> extends RowEvents<ROW>, RowDelegates<ROW>, Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        ref?: any;
 	        /**
 	         * Array of any data objects can be provided
 	         */
-	        data: DATA;
+	        data: Array<ROW>;
 	        /**
 	         * Settings of columns
 	         */
@@ -9483,11 +9621,15 @@ declare module '@stage-ui/core/data/Table/types' {
 	        rowMountType?: RowMountType;
 	        rowDidMount?: (rowCtxItem: TableRowContext<ROW>) => void;
 	        rowDidUnmount?: (rowCtxItem: TableRowContext<ROW>) => void;
+	        /**
+	         * calls data changed by table
+	         */
+	        onChange?: (data: ROW[]) => void;
 	    }
 	    interface HeadCellProps<ROW> {
 	        column: TableColumn<ROW>;
 	        styles: SystemTypes.ComponentStyles<Styles>;
-	        setSort: React.Dispatch<React.SetStateAction<TableSortObject>>;
+	        toggleSort: (sort: TableSortObject) => Promise<unknown>;
 	    }
 	    interface CellProps<ROW> {
 	        rowCtxItem: TableRowContext<ROW>;
@@ -9511,6 +9653,7 @@ declare module '@stage-ui/core/data/Table/types' {
 	            rowHeight?: Props<ROW>['rowHeight'];
 	            rowShouldRender?: Props<ROW>['rowShouldRender'];
 	        };
+	        dndRender: () => void;
 	    }
 	    interface FootProps<ROW> {
 	        rowCtx: TableRowContext<ROW>[];
@@ -9534,11 +9677,17 @@ declare module '@stage-ui/core/data/Table/types' {
 	        /**
 	         * Row view <tr>
 	         */
-	        row: void;
+	        row: {
+	            dragOver: boolean;
+	        };
 	        /**
 	         * Row cell <td>
 	         */
 	        rowCell: void;
+	        /**
+	         * Row cell drag anchor <div>
+	         */
+	        rowCellAnchor: void;
 	        /**
 	         * Expanded row <td span>
 	         */
@@ -9575,12 +9724,18 @@ declare module 'data/Table/TableCell' {
 }
 declare module 'data/Table/TableRow' {
 	import React from 'react';
-	import Types from '@stage-ui/core/data/Table/types'; const _default: React.ForwardRefExoticComponent<Types.RowProps<any> & React.RefAttributes<HTMLTableRowElement>>;
+	import Types from '@stage-ui/core/data/Table/types';
+	export const getTR: (target: HTMLElement | null) => HTMLTableRowElement | null; const _default: React.ForwardRefExoticComponent<Types.RowProps<any> & React.RefAttributes<HTMLTableRowElement>>;
 	export default _default;
 
 }
 declare module 'data/Table' {
-	import Types from '@stage-ui/core/data/Table/types'; const _default: <ROW>(props: Types.Props<ROW, ROW[0]>, ref: Types.TableRef<ROW>) => React.ReactElement;
+	import Types from '@stage-ui/core/data/Table/types';
+	export const dndContext: {
+	    willRender: boolean;
+	    source: number;
+	    target: number;
+	}; const _default: <ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) => React.ReactElement;
 	export default _default;
 
 }
@@ -9639,12 +9794,6 @@ declare module 'layout/Badge' {
 	export default _default;
 
 }
-declare module 'layout/Drop/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'layout/Drop/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
-	export default styles;
-
-}
 declare module 'layout/Drop/animation' {
 	/** @jsx jsx */
 	import Types from 'layout/Drop/types'; type AnimationProp = Exclude<Types.Props['animation'], undefined>; type AlignProp = Types.Props['align'];
@@ -9661,6 +9810,12 @@ declare module 'layout/Drop/animation' {
 	    animateOut(): void;
 	}
 	export {};
+
+}
+declare module 'layout/Drop/styles' {
+	import SystemTypes from '@stage-ui/system/types';
+	import Types from 'layout/Drop/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	export default styles;
 
 }
 declare module 'layout/Drop' {
@@ -10131,6 +10286,11 @@ declare module 'layout/ScrollView/types' {
 	         * call at this scrollUpdate
 	         */
 	        preventWatchElement?: boolean;
+	        /**
+	         * Smooth scroll
+	         * @only webkit
+	         */
+	        smooth?: boolean;
 	    }
 	    interface ScrollToElementOptions extends ScrollToOptions {
 	        /**
@@ -10224,6 +10384,10 @@ declare module 'layout/ScrollView/types' {
 	         * if item not found function returns false
 	         */
 	        scrollToElement: (dataId: string, options?: ScrollToElementOptions) => boolean;
+	        /**
+	         * Ref to container element
+	         */
+	        container: HTMLDivElement | null;
 	    }
 	    interface Styles {
 	        /**
@@ -10542,6 +10706,7 @@ declare module '@stage-ui/core' {
 	export { default as Paragraph } from 'content/Paragraph';
 	export { default as Text } from 'content/Text';
 	export { default as Link } from 'content/Link';
+	export { default as Toast } from 'content/Toast';
 	/**
 	 * Control
 	 */
@@ -10587,6 +10752,7 @@ declare module '@stage-ui/core' {
 	 */
 	export { useTheme } from '@stage-ui/system';
 	export { createTheme } from '@stage-ui/system';
+	export { useBreakpoints } from '@stage-ui/system';
 
 }
 declare module 'misc/utils/validate' {

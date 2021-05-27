@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import isWebKit from '@stage-ui/core/misc/utils/isWebKit'
-import { useSystem } from '@stage-ui/system'
+import { useComponent } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction, Fragment, useEffect, useImperativeHandle, useMemo, useState } from 'react'
 import styles from './styles'
 import Types from './types'
@@ -23,14 +23,64 @@ interface MemoParams {
     content: null | HTMLDivElement
     timeout?: any
     mode: Types.Props['mode']
-    watchElementId?: string
+    watchElementId: string
+    preventWatchElement: boolean
+    preventWatchElementTimer: any
 }
 
+
 const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
+   
+    const { cs, attributes, events } = useComponent('ScrollView', {
+        props,
+        styles,
+        styleProps: {
+            wrapper: ['all'],
+            webkit: ['all']
+        }
+    })
+
+    const {
+        shape = 'round',
+        size = 'm',
+        mode = 'scroll',
+        xBarPosition = 'bottom',
+        yBarPosition = 'right',
+    } = props
+
+    const memo: MemoParams = useMemo(() => ({
+        id: (~~(Math.random() * 1e8)).toString(16),
+        mounted: false,
+        y: false,
+        x: false,
+        events: false,
+        yBar: null,
+        yThumb: null,
+        xBar: null,
+        xThumb: null,
+        container: null,
+        content: null,
+        mode: mode || 'scroll',
+        watchElementId: '',
+        preventWatchElement: false,
+        preventWatchElementTimer: null,
+    }), [])
+
+    const getOffsetTop = (elem: HTMLDivElement, offsetTop = 0) => {
+        if (!elem || elem.attributes['data-scroll-id']?.value === memo.id) {
+            return offsetTop
+        }
+        offsetTop += elem?.offsetTop
+        return getOffsetTop(elem.offsetParent as HTMLDivElement, offsetTop)
+    }
 
     const scrollTo = (x: number, y: number, options?: Types.ScrollToOptions) => {
+        memo.preventWatchElement = options?.preventWatchElement || false
         if (isLegacyScrollSupport) {
             if (memo.container) {
+                if (options?.smooth) {
+                    memo.container.style['scroll-behavior'] = 'smooth'
+                }
                 memo.container.scrollTo(x, y)
             }
         } else {
@@ -57,14 +107,15 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
          * @deprecated use scrollTop()
          */
         onScrollTop: () => {
-            const xy = isLegacyScrollSupport ? 0 : -1e+10
-            scrollTo(xy, xy)
+            const x = isLegacyScrollSupport ? 0 : (memo.content?.offsetLeft || -1e+10)
+            const y = isLegacyScrollSupport ? 0 : (memo.content?.offsetTop || -1e+10)
+            scrollTo(x, y)
         },
         scrollTo,
         scrollTop: (options?: Types.ScrollToOptions) => {
-            const xy = isLegacyScrollSupport ? 0 : -1e+10
-            scrollTo(xy, xy, options)
-
+            const x = isLegacyScrollSupport ? 0 : (memo.content?.offsetLeft || -1e+10)
+            const y = isLegacyScrollSupport ? 0 : (memo.content?.offsetTop || -1e+10)
+            scrollTo(x, y, options)
         },
         scrollBottom: (options?: Types.ScrollToOptions) => {
             scrollTo(1e+10, 1e+10, options)
@@ -72,47 +123,15 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
         scrollToElement: (itemId: string, options?: Types.ScrollToElementOptions) => {
             const item = document.querySelector<HTMLDivElement>(`[data-id="${itemId}"]`)
             if (item) {
-                scrollTo(item.offsetLeft, item.offsetTop - (options?.offsetTop || 0), options)
+                scrollTo(item.offsetLeft, getOffsetTop(item) - (options?.offsetTop || 0), options)
                 return true
             }
             return false
-        }
+        },
+        container: memo.container
     }))
 
-    const { classes, attributes, events } = useSystem('ScrollView', {
-        props,
-        styles,
-        styleProps: {
-            wrapper: ['all'],
-            webkit: ['all']
-        }
-    })
-
-    const {
-        shape = 'round',
-        size = 'm',
-        mode = 'scroll',
-        xBarPosition = 'bottom',
-        yBarPosition = 'right',
-    } = props
-
     const [active, setActive] = useState(mode === 'always')
-
-    const memo: MemoParams = useMemo(() => ({
-        id: (~~(Math.random() * 1e8)).toString(16),
-        mounted: false,
-        y: false,
-        x: false,
-        events: false,
-        yBar: null,
-        yThumb: null,
-        xBar: null,
-        xThumb: null,
-        container: null,
-        content: null,
-        mode: mode || 'scroll',
-        watchElementId: '',
-    }), [])
 
     const updateThumb = (e: Types.ScrollParams, axes: 'x' | 'y') => {
         if (!memo.content || !memo.container) return
@@ -196,8 +215,8 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
             if (isLegacyScrollSupport) {
                 const currentScroll = memo.container[memo.x ? 'scrollLeft' : 'scrollTop']
                 memo.container?.scrollTo(
-                    memo.x ? currentScroll + delta : memo.container.scrollLeft,
-                    memo.y ? currentScroll + delta : memo.container.scrollTop,
+                  memo.x ? currentScroll + delta : memo.container.scrollLeft,
+                  memo.y ? currentScroll + delta : memo.container.scrollTop,
                 )
             } else {
                 updateScroll({
@@ -244,22 +263,24 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
          */
         if (props.sendFlowScollEvent !== false) {
             document.dispatchEvent(
-                new CustomEvent('onflowscroll', {
-                    detail: event
-                })
+              new CustomEvent('onflowscroll', {
+                  detail: event
+              })
             )
         }
         /**
          * find elements with data-id
          */
-        if (props.watchElement && e.preventWatchElement !== true) {
+        if (props.watchElement && memo.preventWatchElement !== true) {
             const elements: HTMLDivElement[] = []
             document.querySelectorAll(`[data-scroll-id="${memo.id}"] [data-id]`).forEach((queryElement) => {
                 elements.push(queryElement as HTMLDivElement)
             })
+            
+            const scrollTop = Math.abs(memo.container.scrollTop || memo.content.offsetTop)
+
             for (const el of elements.reverse()) {
-                const scrollTop = memo.container.scrollTop || memo.content.offsetTop
-                if (scrollTop - (el.offsetTop - el.offsetHeight) > 0) {
+                if (scrollTop - (getOffsetTop(el) - el.offsetHeight) > 0) {
                     const id = el.attributes["data-id"].value
                     if (memo.watchElementId !== id) {
                         memo.watchElementId = id
@@ -269,6 +290,13 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
                 }
             }
         }
+        clearTimeout(memo.preventWatchElementTimer)
+        memo.preventWatchElementTimer = setTimeout(() => {
+            memo.preventWatchElement = false
+            if (memo.container) {
+                memo.container.style['scroll-behavior'] = ''
+            }
+        }, 100)
     }, [])
 
     const yMouseDown = useMemo(() => () => {
@@ -380,63 +408,63 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
     }, [])
 
     return (
-        <div {...attributes} css={classes.wrapper} data-scroll-id={memo.id}>
-            <div
-                {...events}
-                onScroll={updateScroll}
-                css={isLegacyScrollSupport ? classes.webkit : classes.container}
-                ref={createRef}
-                children={(
-                    <div
-                        css={classes.content}
-                        ref={ref => memo.content = ref}
-                        children={props.children}
-                    />
-                )}
-            />
-            {mode !== 'hidden' && (
-                <Fragment>
-                    <div
-                        css={classes.yBar({ active, size, shape, position: yBarPosition })}
-                        ref={ref => memo.yBar = ref}
-                        children={(
-                            <span
-                                css={classes.yThumb({ active, size, shape })}
-                                ref={ref => memo.yThumb = ref}
-                            />
-                        )}
-                        onMouseEnter={() => {
-                            window.addEventListener('mouseup', mouseUp)
-                        }}
-                        onMouseDown={(e) => {
-                            yMouseDown()
-                            scrollToHandle(e)
-                            window.addEventListener('mousemove', scrollToHandle)
-                        }}
-                        onMouseUp={mouseUp}
-                    />
-                    <div
-                        css={classes.xBar({ active, size, shape, position: xBarPosition })}
-                        ref={ref => memo.xBar = ref}
-                        children={(
-                            <span
-                                css={classes.xThumb({ active, size, shape })}
-                                ref={ref => memo.xThumb = ref}
-                            />
-                        )}
-                        onMouseEnter={() => {
-                            window.addEventListener('mouseup', mouseUp)
-                        }}
-                        onMouseDown={(e) => {
-                            xMouseDown()
-                            scrollToHandle(e)
-                            window.addEventListener('mousemove', scrollToHandle)
-                        }}
-                        onMouseUp={mouseUp}
-                    />
-                </Fragment>
+      <div {...attributes} css={cs.wrapper} data-scroll-id={memo.id}>
+          <div
+            {...events.all}
+            onScroll={updateScroll}
+            css={isLegacyScrollSupport ? cs.webkit : cs.container}
+            ref={createRef}
+            children={(
+              <div
+                css={cs.content}
+                ref={ref => memo.content = ref}
+                children={props.children}
+              />
             )}
-        </div>
+          />
+          {mode !== 'hidden' && (
+            <Fragment>
+                <div
+                  css={cs.yBar({ active, size, shape, position: yBarPosition })}
+                  ref={ref => memo.yBar = ref}
+                  children={(
+                    <span
+                      css={cs.yThumb({ active, size, shape })}
+                      ref={ref => memo.yThumb = ref}
+                    />
+                  )}
+                  onMouseEnter={() => {
+                      window.addEventListener('mouseup', mouseUp)
+                  }}
+                  onMouseDown={(e) => {
+                      yMouseDown()
+                      scrollToHandle(e)
+                      window.addEventListener('mousemove', scrollToHandle)
+                  }}
+                  onMouseUp={mouseUp}
+                />
+                <div
+                  css={cs.xBar({ active, size, shape, position: xBarPosition })}
+                  ref={ref => memo.xBar = ref}
+                  children={(
+                    <span
+                      css={cs.xThumb({ active, size, shape })}
+                      ref={ref => memo.xThumb = ref}
+                    />
+                  )}
+                  onMouseEnter={() => {
+                      window.addEventListener('mouseup', mouseUp)
+                  }}
+                  onMouseDown={(e) => {
+                      xMouseDown()
+                      scrollToHandle(e)
+                      window.addEventListener('mousemove', scrollToHandle)
+                  }}
+                  onMouseUp={mouseUp}
+                />
+            </Fragment>
+          )}
+      </div>
     )
 }
 
