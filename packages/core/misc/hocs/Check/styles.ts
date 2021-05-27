@@ -1,44 +1,49 @@
-import SystemTypes from '@stage-ui/system/types'
-import colorResolver from '@stage-ui/system/resolvers/color'
+import colorResolver from '@stage-ui/system/props/color'
+import { CreateClasses } from '@stage-ui/system/hooks/useSystem'
 import Types from './types'
 
-const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
+const createClasses: CreateClasses<Types.Styles, Types.Props> = (theme, props) => {
+  const labelColor = props.labelColor ? colorResolver(theme, props.labelColor) : undefined
 
-    const labelColor = props.labelColor && colorResolver(theme, props.labelColor)
-
-    return {
-        container: (variant) => [
-            {
-                display: 'flex',
-                alignItems: 'center',
-                cursor: 'pointer',
-                color: theme.color.onSurface.rgb().string(),
-                outline: 'none'
-            },
-            variant({
-                disabled: [{
-                    cursor: 'not-allowed',
-                }]
-            })
+  return {
+    container: (variant) => [
+      {
+        display: 'flex',
+        alignItems: 'center',
+        cursor: 'pointer',
+        color: theme.color.onSurface.hex(),
+        outline: 'none',
+      },
+      variant({
+        disabled: [
+          {
+            cursor: 'not-allowed',
+          },
         ],
+      }),
+    ],
 
-        label: (variant) => [
-            {
-                marginLeft: '0.5rem',
-                userSelect: 'none',
-                color: labelColor && labelColor.rgb().string()
-            },
-            variant({
-                size: theme.assets.typography.text,
-                disabled: [{
-                    color: theme.color.light.rgb().string()
-                }],
-                uppercase: [{
-                    textTransform: 'uppercase'
-                }]
-            }),
+    label: (variant) => [
+      {
+        marginLeft: '0.5rem',
+        userSelect: 'none',
+        color: labelColor?.hex(),
+      },
+      variant({
+        size: theme.assets.typography.text,
+        disabled: [
+          {
+            color: theme.color.light.hex(),
+          },
         ],
-    }
+        uppercase: [
+          {
+            textTransform: 'uppercase',
+          },
+        ],
+      }),
+    ],
+  }
 }
 
-export default styles
+export default createClasses

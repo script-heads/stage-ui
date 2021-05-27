@@ -8,9 +8,9 @@ type ExtractFunction<T> = {
 
 const fieldStyles = <T extends Types.Styles>(
     props: Omit<Types.Props, 'onChange'>,
-    theme: SystemTypes.Theme,
-    stylePatch?: Partial<ExtractFunction<SystemTypes.Styles<T>>>
-): SystemTypes.Styles<Types.Styles> => {
+    theme: Theme,
+    stylePatch?: Partial<ExtractFunction<Styles<T>>>
+): Styles<Types.Styles> => {
 
     const color = colorResolver(theme, props.color || theme.color.light)
 
@@ -92,14 +92,14 @@ const fieldStyles = <T extends Types.Styles>(
                         : theme.color.primary.alpha(0.5).string(),
                 },
                 disabled: {
-                    color: theme.color.light.rgb().string(),
+                    color: theme.color.light.hex(),
                     cursor: 'not-allowed'
                 },
                 decoration: {
                     outline: [
                         variant({
                             disabled: [{
-                                background: theme.color.lightest.rgb().string(),
+                                background: theme.color.lightest.hex(),
                             }]
                         })
                     ],
@@ -109,7 +109,7 @@ const fieldStyles = <T extends Types.Styles>(
                         },
                         variant({
                             disabled: [{
-                                background: theme.color.lightest.rgb().string(),
+                                background: theme.color.lightest.hex(),
                             }]
                         })
                     ],
@@ -149,7 +149,7 @@ const fieldStyles = <T extends Types.Styles>(
 
         label: (variant) => [
             {
-                color: theme.color.hard.rgb().string(),
+                color: theme.color.hard.hex(),
                 display: 'flex',
                 userSelect: 'none',
                 paddingBottom: '0.25rem'
@@ -208,7 +208,7 @@ const fieldStyles = <T extends Types.Styles>(
 
         child: (variant) => [
             {
-                color: color.rgb().string(),
+                color: color.hex(),
                 flexGrow: 0,
                 flexShrink: 1,
                 display: 'flex',
@@ -252,11 +252,11 @@ const fieldStyles = <T extends Types.Styles>(
         clearButton: (variant) => [
             {
                 cursor: 'pointer',
-                backgroundColor: theme.color.onSurface.alpha(0.05).rgb().string(),
+                backgroundColor: theme.color.onSurface.alpha(0.05.rgb().string(),
                 borderRadius: '100rem',
                 transition: 'transform 0.25s',
                 ':hover': {
-                    color: theme.color.warning.rgb().string(),
+                    color: theme.color.warning.hex(),
                     transform: 'scale(1.2)'
                 },
                 ':active': {
@@ -273,7 +273,7 @@ const fieldStyles = <T extends Types.Styles>(
             {
                 paddingTop: '.25rem',
                 paddingLeft: props.decoration != 'underline' ? '.25rem' : '',
-                color: color.rgb().string(),
+                color: color.hex(),
                 ...theme.assets.typography.text.m,
             },
             variant({
@@ -290,7 +290,7 @@ const fieldStyles = <T extends Types.Styles>(
             {
                 paddingTop: '.25rem',
                 paddingLeft: props.decoration != 'underline' ? '.25rem' : '',
-                color: color?.rgb().string() || theme.color.error.rgb().string(),
+                color: color?.hex() || theme.color.error.hex(),
                 ...theme.assets.typography.text.m,
                 ' svg': {
                     color: theme.color.error.string(),

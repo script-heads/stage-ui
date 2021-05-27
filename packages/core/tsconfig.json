@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "jsx": "react",
+    "jsxImportSource": "@emotion/react",
     "target": "esnext",
     "module": "commonjs",
     "outDir": "../../build/core",
@@ -18,7 +19,6 @@
     "strictBindCallApply": false,
     "strictFunctionTypes": false,
     "strictPropertyInitialization": true,
-    "types": ["@emotion/react"]
   },
   "exclude": [
     "node_modules"

@@ -1,15 +1,10 @@
 export type BreakpointProp<T> = T[] | T
 
-export default (style, value, resolver, theme) => {
-    if (Array.isArray(value)) {
-        const queries = theme.breakpoints.map(bp => `@media (max-width: ${bp})`)
-        return value.map((currentValue, index) => ({
-            [queries[index]]: {
-                [style]: resolver(theme, currentValue)
-            }
-        }))
-    }
-    return {
-        [style]: resolver(theme, value)
-    }
+export default (value: any, theme: Stage.Theme, resolver: (currentValue: any, theme: Stage.Theme) => Stage.JSS) => {
+  if (Array.isArray(value)) {
+    return value.map((currentValue: any, index: number) => ({
+      [`@media (max-width: ${theme.breakpoints[index]})`]: resolver(currentValue, theme),
+    })) as Stage.JSS
+  }
+  return resolver(value, theme)
 }

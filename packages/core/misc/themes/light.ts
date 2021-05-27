@@ -45,7 +45,7 @@ export default createTheme({
         border: {
             width: '1px',
             style: 'solid',
-            color: theme.color.lightest.rgb().string()
+            color: theme.color.lightest.hex()
         },
         shadow: {
             xs: '0px 1px 2px rgba(0,0,0,0.15)',
@@ -63,7 +63,7 @@ export default createTheme({
         },
         focus: {
             outline: 'none',
-            boxShadow: '0 0 0 3px ' + theme.color.primary.alpha(.3).rgb().string(),
+            boxShadow: '0 0 0 3px ' + theme.color.primary.alpha(.3.rgb().string(),
         },
         typography: {
             header: {

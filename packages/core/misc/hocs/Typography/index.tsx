@@ -1,44 +1,36 @@
 import { jsx } from '@emotion/react'
-import { useComponent } from '@stage-ui/system'
+import { useSystem } from '@stage-ui/system'
 import { forwardRef, ForwardRefRenderFunction, useMemo } from 'react'
-import styles from './styles'
+import createClasses from './styles'
 import Types from './types'
 
-type RefTag = HTMLSpanElement | HTMLAnchorElement | HTMLParagraphElement
+const Typography: ForwardRefRenderFunction<Types.Ref, Types.PrivateProps> = (props, ref) => {
+  const { name, focus, download, href, hrefLang, media, ping, rel, target, type, referrerPolicy } = props
+  const { classes, attributes, events } = useSystem(name, props, createClasses, { focus })
 
-const Typography: ForwardRefRenderFunction<RefTag, Types.PrivateProps> = (props, ref) => {
-
-    const { cs, attributes, events } = useComponent(props.overrides, {
-        props,
-        styles,
-        styleProps: { container: ['all'] },
-        focus: {
-            applyDecoration: true,
-            ignoreMouse: props.mouseFocus
-        }
-    })
-
-    return useMemo(() => (
-        jsx(
-            props.tag,
-            {
-                ...attributes,
-                ...events.all,
-                ref: ref,
-                css: cs.container,
-                download: props.download,
-                href: props.href,
-                hrefLang: props.hrefLang,
-                media: props.media,
-                ping: props.ping,
-                rel: props.rel,
-                target: props.target,
-                type: props.type,
-                referrerPolicy: props.referrerPolicy,
-            },
-            props.children
-        )
-    ), [props, attributes])
+  return useMemo(
+    () =>
+      jsx(
+        props.tag,
+        {
+          ...attributes,
+          ...events,
+          ref,
+          css: classes.container,
+          download,
+          href,
+          hrefLang,
+          media,
+          ping,
+          rel,
+          target,
+          type,
+          referrerPolicy,
+        },
+        props.children,
+      ),
+    [props, attributes],
+  )
 }
 
 export default forwardRef(Typography)

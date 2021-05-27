@@ -1,142 +1,181 @@
-import breakpointify from './breakpoint'
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable no-param-reassign */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import resolveBreakpoints from './breakpoint'
 import resolveColor from './color'
-import resolveSpacing from './spacing'
+import resolveSpace from './space'
 import isFunction from '../utils/isFunction'
 import { ComponentData, Options, StyleProps } from '../hooks/useSystem'
 
 export type Resolver = <ClassesSchema>(
-    props: Record<string, any>, 
-    componentData: Record<keyof ComponentData<any, ClassesSchema>, any>, 
-    styleProps: StyleProps, 
-    theme: Stage.Theme, 
-    focus: Options['focus']) => void
+  props: Record<string, any>,
+  componentData: Record<keyof ComponentData<any, ClassesSchema>, any>,
+  styleProps: StyleProps,
+  t: Stage.Theme,
+  focus: Options['focus'],
+) => void
 
 let IS_MOUSE_DOWN = false
 let PAGE_FOCUS = false
 
 window.addEventListener('mousedown', () => {
-    IS_MOUSE_DOWN = true
+  IS_MOUSE_DOWN = true
 })
 window.addEventListener('mouseup', () => {
-    IS_MOUSE_DOWN = false
+  IS_MOUSE_DOWN = false
 })
 window.addEventListener('focus', () => {
-    PAGE_FOCUS= true
+  PAGE_FOCUS = true
 })
 
 const resolvers: Record<string, Resolver> = {
+  attributes: (p, cd) => {
+    cd.attributes = Object.assign(cd.attributes, p.attributes)
+  },
+  id: (p, cd) => {
+    cd.attributes.id = p.id
+  },
+  className: (p, cd) => {
+    cd.attributes.className = p.className
+  },
+  draggable: (p, cd) => {
+    cd.attributes.draggable = p.draggable
+  },
+  inlineStyle: (p, cd) => {
+    cd.attributes.style = p.inlineStyle
+  },
+  tabIndex: (p, cd) => {
+    cd.attributes.tabIndex = p.tabIndex
+  },
+  role: (p, cd) => {
+    cd.attributes.role = p.role
+  },
 
-    attributes: (props, componentData) => componentData.attributes = Object.assign(componentData.attributes, props['attributes']),
-    id: (props, componentData) => componentData.attributes['id'] = props['id'],
-    className: (props, componentData) => componentData.attributes['className'] = props['className'],
-    draggable: (props, componentData) => componentData.attributes['draggable'] = props['draggable'],
-    inlineStyle: (props, componentData) => componentData.attributes['style'] = props['inlineStyle'],
-    tabIndex: (props, componentData) => componentData.attributes['tabIndex'] = props['tabIndex'],
-    role: (props, componentData) => componentData.attributes['role'] = props['role'],
+  // Style
+  style: (p, cd, sp, t) => sp.style.push(isFunction(p.style) ? p.style(t) : p.style),
 
-    // Style
-    style: (props, componentData, styleProps, theme) => styleProps.style.push(isFunction(props['style']) ? props['style'](theme) : props['style']),
+  // Color
+  backgroundColor: (p, cd, sp, t) =>
+    sp.color.push(
+      resolveBreakpoints(p.backgroundColor, t, (v) => ({
+        backgroundColor: resolveColor(v, t)?.hex(),
+      })),
+    ),
+  textColor: (p, cd, sp, t) =>
+    sp.color.push(
+      resolveBreakpoints(p.textColor, t, (v) => ({
+        color: resolveColor(v, t)?.hex(),
+      })),
+    ),
 
-    //Color
-    backgroundColor: (props, componentData, styleProps, theme) => styleProps.color.push(breakpointify('backgroundColor', props['backgroundColor'], resolveColor, theme)),
-    textColor: (props, componentData, styleProps, theme) => styleProps.color.push(breakpointify('color', props['textColor'], resolveColor, theme)),
+  // Border
+  borderWidth: (p, cd, sp, t) => sp.border.push(resolveBreakpoints(p.borderWidth, t, (v) => ({ borderWidth: v }))),
+  borderStyle: (p, cd, sp, t) => sp.border.push(resolveBreakpoints(p.borderStyle, t, (v) => ({ borderStyle: v }))),
+  borderColor: (p, cd, sp, t) =>
+    sp.border.push(resolveBreakpoints(p.borderColor, t, (v) => ({ borderColor: resolveColor(v, t)?.hex() }))),
+  borderRadius: (p, cd, sp, t) => sp.border.push(resolveBreakpoints(p.borderRadius, t, (v) => ({ borderRadius: v }))),
 
-    //Border
-    borderWidth: (props, componentData, styleProps, theme) => styleProps.border.push(breakpointify('borderWidth', props['borderWidth'], v => v, theme)),
-    borderStyle: (props, componentData, styleProps, theme) => styleProps.border.push(breakpointify('borderStyle', props['borderStyle'], v => v, theme)),
-    borderColor: (props, componentData, styleProps, theme) => styleProps.border.push(breakpointify('borderColor', props['borderColor'], resolveColor, theme)),
-    borderRadius: (props, componentData, styleProps, theme) => styleProps.border.push(breakpointify('borderRadius', props['borderRadius'], v => v, theme)),
+  p: (p, cd, sp, t) => sp.padding.push(resolveBreakpoints(p.p, t, (v) => ({ padding: resolveSpace(v, t) }))),
+  px: (p, cd, sp, t) => sp.padding.push(resolveBreakpoints(p.px, t, (v) => ({ padding: resolveSpace(v, t) }))),
+  py: (p, cd, sp, t) => sp.padding.push(resolveBreakpoints(p.py, t, (v) => ({ padding: resolveSpace(v, t) }))),
+  pt: (p, cd, sp, t) => sp.padding.push(resolveBreakpoints(p.pt, t, (v) => ({ paddingTop: resolveSpace(v, t) }))),
+  pr: (p, cd, sp, t) => sp.padding.push(resolveBreakpoints(p.pr, t, (v) => ({ paddingRight: resolveSpace(v, t) }))),
+  pb: (p, cd, sp, t) => sp.padding.push(resolveBreakpoints(p.pb, t, (v) => ({ paddingBottom: resolveSpace(v, t) }))),
+  pl: (p, cd, sp, t) => sp.padding.push(resolveBreakpoints(p.pl, t, (v) => ({ paddingLeft: resolveSpace(v, t) }))),
 
-    //Padding
-    p: (props, componentData, styleProps, theme) => styleProps.padding.push(breakpointify('padding', props['p'], resolveSpacing(props['p'], 'p', theme), theme)),
-    px: (props, componentData, styleProps, theme) => styleProps.padding.push(breakpointify('padding', props['px'], resolveSpacing(props['px'], 'px', theme), theme)),
-    py: (props, componentData, styleProps, theme) => styleProps.padding.push(breakpointify('padding', props['py'], resolveSpacing(props['py'], 'py', theme), theme)),
-    pt: (props, componentData, styleProps, theme) => styleProps.padding.push(breakpointify('padding', props['pt'], resolveSpacing(props['pt'], 'pt', theme), theme)),
-    pr: (props, componentData, styleProps, theme) => styleProps.padding.push(breakpointify('padding', props['pr'], resolveSpacing(props['pr'], 'pr', theme), theme)),
-    pb: (props, componentData, styleProps, theme) => styleProps.padding.push(breakpointify('padding', props['pb'], resolveSpacing(props['pb'], 'pb', theme), theme)),
-    pl: (props, componentData, styleProps, theme) => styleProps.padding.push(breakpointify('padding', props['pl'], resolveSpacing(props['pl'], 'pl', theme), theme)),
-    
-    //Margin
-    m: (props, componentData, styleProps, theme) => styleProps.margin.push(breakpointify('margin', props['m'], resolveSpacing(props['m'], 'm', theme), theme)),
-    mx: (props, componentData, styleProps, theme) => styleProps.margin.push(breakpointify('margin', props['mx'], resolveSpacing(props['mx'], 'mx', theme), theme)),
-    my: (props, componentData, styleProps, theme) => styleProps.margin.push(breakpointify('margin', props['my'], resolveSpacing(props['my'], 'my', theme), theme)),
-    mt: (props, componentData, styleProps, theme) => styleProps.margin.push(breakpointify('margin', props['mt'], resolveSpacing(props['mt'], 'mt', theme), theme)),
-    mr: (props, componentData, styleProps, theme) => styleProps.margin.push(breakpointify('margin', props['mr'], resolveSpacing(props['mr'], 'mr', theme), theme)),
-    mb: (props, componentData, styleProps, theme) => styleProps.margin.push(breakpointify('margin', props['mb'], resolveSpacing(props['mb'], 'mb', theme), theme)),
-    ml: (props, componentData, styleProps, theme) => styleProps.margin.push(breakpointify('margin', props['ml'], resolveSpacing(props['ml'], 'ml', theme), theme)),
+  // Margin
+  m: (p, cd, sp, t) => sp.margin.push(resolveBreakpoints(p.m, t, (v) => ({ margin: resolveSpace(v, t) }))),
+  mx: (p, cd, sp, t) => sp.margin.push(resolveBreakpoints(p.mx, t, (v) => ({ margin: resolveSpace(v, t) }))),
+  my: (p, cd, sp, t) => sp.margin.push(resolveBreakpoints(p.my, t, (v) => ({ margin: resolveSpace(v, t) }))),
+  mt: (p, cd, sp, t) => sp.margin.push(resolveBreakpoints(p.mt, t, (v) => ({ marginTop: resolveSpace(v, t) }))),
+  mr: (p, cd, sp, t) => sp.margin.push(resolveBreakpoints(p.mr, t, (v) => ({ marginRight: resolveSpace(v, t) }))),
+  mb: (p, cd, sp, t) => sp.margin.push(resolveBreakpoints(p.mb, t, (v) => ({ marginBottom: resolveSpace(v, t) }))),
+  ml: (p, cd, sp, t) => sp.margin.push(resolveBreakpoints(p.ml, t, (v) => ({ marginLeft: resolveSpace(v, t) }))),
 
-    //Layout    
-    display: (props, componentData, styleProps, theme) => styleProps.layout.push(breakpointify('display', props['display'], v => v, theme)),
-    position: (props, componentData, styleProps, theme) => styleProps.layout.push(breakpointify('position', props['position'], v => v, theme)),
-    fontSize: (props, componentData, styleProps, theme) => styleProps.layout.push(breakpointify('fontSize', props['fontSize'], v => v, theme)),
-    lineHeight: (props, componentData, styleProps, theme) => styleProps.layout.push(breakpointify('lineHeight', props['lineHeight'], v => v, theme)),
-    letterSpacing: (props, componentData, styleProps, theme) => styleProps.layout.push(breakpointify('letterSpacing', props['letterSpacing'], v => v, theme)),
-    textAlign: (props, componentData, styleProps, theme) => styleProps.layout.push(breakpointify('textAlign', props['textAlign'], v => v, theme)),
-    visibility: (props, componentData, styleProps, theme) => styleProps.layout.push(breakpointify('visibility', props['visibility'], v => v, theme)),
-    w: (props, componentData, styleProps, theme) => styleProps.layout.push(breakpointify('width', props['w'], v => v, theme)),
-    h: (props, componentData, styleProps, theme) => styleProps.layout.push(breakpointify('height', props['h'], v => v, theme)),
+  // Layout
+  display: (p, cd, sp, t) => sp.layout.push(resolveBreakpoints(p.display, t, (v) => ({ display: v }))),
+  position: (p, cd, sp, t) => sp.layout.push(resolveBreakpoints(p.position, t, (v) => ({ position: v }))),
+  fontSize: (p, cd, sp, t) => sp.layout.push(resolveBreakpoints(p.fontSize, t, (v) => ({ fontSize: v }))),
+  lineHeight: (p, cd, sp, t) => sp.layout.push(resolveBreakpoints(p.lineHeight, t, (v) => ({ lineHeight: v }))),
+  letterSpacing: (p, cd, sp, t) =>
+    sp.layout.push(resolveBreakpoints(p.letterSpacing, t, (v) => ({ letterSpacing: v }))),
+  textAlign: (p, cd, sp, t) => sp.layout.push(resolveBreakpoints(p.textAlign, t, (v) => ({ textAlign: v }))),
+  visibility: (p, cd, sp, t) => sp.layout.push(resolveBreakpoints(p.visibility, t, (v) => ({ visibility: v }))),
+  w: (p, cd, sp, t) => sp.layout.push(resolveBreakpoints(p.w, t, (v) => ({ width: v }))),
+  h: (p, cd, sp, t) => sp.layout.push(resolveBreakpoints(p.h, t, (v) => ({ height: v }))),
 
-    //Flex
-    flex: (props, componentData, styleProps, theme) => styleProps.flex.push(breakpointify('flex', props['flex'], v => v, theme)),
-    wrap: (props, componentData, styleProps, theme) => styleProps.flex.push(breakpointify('flexWrap', props['wrap'], v => v, theme)),
-    flow: (props, componentData, styleProps, theme) => styleProps.flex.push(breakpointify('flowflow', props['flow'], v => v, theme)),
-    direction: (props, componentData, styleProps, theme) => styleProps.flex.push(breakpointify('flexDirection', props['direction'], v => v, theme)),
-    flexBasis: (props, componentData, styleProps, theme) => styleProps.flex.push(breakpointify('flexBasis', props['flexBasis'], v => v, theme)),
-    flexGrow: (props, componentData, styleProps, theme) => styleProps.flex.push(breakpointify('flexGrow', props['flexGrow'], v => v, theme)),
-    flexShrink: (props, componentData, styleProps, theme) => styleProps.flex.push(breakpointify('flexShrink', props['flexShrink'], v => v, theme)),
-    alignSelf: (props, componentData, styleProps, theme) => styleProps.flex.push(breakpointify('alignSelf', props['alignSelf'], v => v, theme)),
-    justifySelf: (props, componentData, styleProps, theme) => styleProps.flex.push(breakpointify('justifySelf', props['justifySelf'], v => v, theme)),
-    alignItems: (props, componentData, styleProps, theme) => styleProps.flex.push(breakpointify('alignItems', props['alignItems'], v => v, theme)),
-    alignContent: (props, componentData, styleProps, theme) => styleProps.flex.push(breakpointify('alignContent', props['alignContent'], v => v, theme)),
-    justifyContent: (props, componentData, styleProps, theme) => styleProps.flex.push(breakpointify('justifyContent', props['justifyContent'], v => v, theme)),
-    justifyItems: (props, componentData, styleProps, theme) => styleProps.flex.push(breakpointify('justifyItems', props['justifyItems'], v => v, theme)),
-    placeContent: (props, componentData, styleProps, theme) => styleProps.flex.push(breakpointify('placeContent', props['placeContent'], v => v, theme)),
+  // Flex
+  flex: (p, cd, sp, t) => sp.flex.push(resolveBreakpoints(p.flex, t, (v) => ({ flex: v }))),
+  wrap: (p, cd, sp, t) => sp.flex.push(resolveBreakpoints(p.wrap, t, (v) => ({ flexWrap: v }))),
+  flow: (p, cd, sp, t) => sp.flex.push(resolveBreakpoints(p.flow, t, (v) => ({ flowflow: v }))),
+  direction: (p, cd, sp, t) => sp.flex.push(resolveBreakpoints(p.direction, t, (v) => ({ flexDirection: v }))),
+  flexBasis: (p, cd, sp, t) => sp.flex.push(resolveBreakpoints(p.flexBasis, t, (v) => ({ flexBasis: v }))),
+  flexGrow: (p, cd, sp, t) => sp.flex.push(resolveBreakpoints(p.flexGrow, t, (v) => ({ flexGrow: v }))),
+  flexShrink: (p, cd, sp, t) => sp.flex.push(resolveBreakpoints(p.flexShrink, t, (v) => ({ flexShrink: v }))),
+  alignSelf: (p, cd, sp, t) => sp.flex.push(resolveBreakpoints(p.alignSelf, t, (v) => ({ alignSelf: v }))),
+  justifySelf: (p, cd, sp, t) => sp.flex.push(resolveBreakpoints(p.justifySelf, t, (v) => ({ justifySelf: v }))),
+  alignItems: (p, cd, sp, t) => sp.flex.push(resolveBreakpoints(p.alignItems, t, (v) => ({ alignItems: v }))),
+  alignContent: (p, cd, sp, t) => sp.flex.push(resolveBreakpoints(p.alignContent, t, (v) => ({ alignContent: v }))),
+  justifyContent: (p, cd, sp, t) =>
+    sp.flex.push(resolveBreakpoints(p.justifyContent, t, (v) => ({ justifyContent: v }))),
+  justifyItems: (p, cd, sp, t) => sp.flex.push(resolveBreakpoints(p.justifyItems, t, (v) => ({ justifyItems: v }))),
+  placeContent: (p, cd, sp, t) => sp.flex.push(resolveBreakpoints(p.placeContent, t, (v) => ({ placeContent: v }))),
 
-    //Grid children
-    gridColumnStart: (props, componentData, styleProps, theme) => styleProps.grid.push(breakpointify('gridColumnStart', props['gridColumnStart'], v => v, theme)),
-    gridColumnEnd: (props, componentData, styleProps, theme) => styleProps.grid.push(breakpointify('gridColumnEnd', props['gridColumnEnd'], v => v, theme)),
-    gridRowStart: (props, componentData, styleProps, theme) => styleProps.grid.push(breakpointify('gridRowStart', props['gridRowStart'], v => v, theme)),
-    gridRowEnd: (props, componentData, styleProps, theme) => styleProps.grid.push(breakpointify('gridRowEnd', props['gridRowEnd'], v => v, theme)),
-    gridColumn: (props, componentData, styleProps, theme) => styleProps.grid.push(breakpointify('gridColumn', props['gridColumn'], v => v, theme)),
-    gridRow: (props, componentData, styleProps, theme) => styleProps.grid.push(breakpointify('gridRow', props['gridRow'], v => v, theme)),
-    gridArea: (props, componentData, styleProps, theme) => styleProps.grid.push(breakpointify('gridArea', props['gridArea'], v => v, theme)),
-    placeSelf: (props, componentData, styleProps, theme) => styleProps.grid.push(breakpointify('placeSelf', props['placeSelf'], v => v, theme)),
+  // Grid children
+  gridColumnStart: (p, cd, sp, t) =>
+    sp.grid.push(resolveBreakpoints(p.gridColumnStart, t, (v) => ({ gridColumnStart: v }))),
+  gridColumnEnd: (p, cd, sp, t) => sp.grid.push(resolveBreakpoints(p.gridColumnEnd, t, (v) => ({ gridColumnEnd: v }))),
+  gridRowStart: (p, cd, sp, t) => sp.grid.push(resolveBreakpoints(p.gridRowStart, t, (v) => ({ gridRowStart: v }))),
+  gridRowEnd: (p, cd, sp, t) => sp.grid.push(resolveBreakpoints(p.gridRowEnd, t, (v) => ({ gridRowEnd: v }))),
+  gridColumn: (p, cd, sp, t) => sp.grid.push(resolveBreakpoints(p.gridColumn, t, (v) => ({ gridColumn: v }))),
+  gridRow: (p, cd, sp, t) => sp.grid.push(resolveBreakpoints(p.gridRow, t, (v) => ({ gridRow: v }))),
+  gridArea: (p, cd, sp, t) => sp.grid.push(resolveBreakpoints(p.gridArea, t, (v) => ({ gridArea: v }))),
+  placeSelf: (p, cd, sp, t) => sp.grid.push(resolveBreakpoints(p.placeSelf, t, (v) => ({ placeSelf: v }))),
 
-    //Override default focus styles
-    onFocus: (props, componentData, styleProps, theme, f) => componentData.events.onFocus = (e: React.FocusEvent) => {
-        e.stopPropagation()
-            if (!PAGE_FOCUS) {
-                if (!(f === 'tabOnly' && !IS_MOUSE_DOWN)) {
-                    e.target.className += ' focused'
-                }
-            }
-            PAGE_FOCUS = false
-
-            props.onFocus && props.onFocus(e)
-    },
-    onBlur: (props, componentData) => componentData.events.onBlur = (e: React.FocusEvent) => {
-        e.stopPropagation()
-        e.target.className = e.target.className.replace(' focused', '')
-        props.onBlur && props.onBlur(e)
-    },
-
-    //Add action styles
-    onClick: (props, componentData, styleProps) => styleProps.container.push({
-        cursor: 'pointer',
-        userSelect: 'none'
-    }),
-
-    //Additinal key handlers
-    onKeyDown: (props, componentData) => componentData.events.onKeyDown = (e: React.KeyboardEvent) => {
-        props.onKeyPress && props.onKeyPress(e)
-        if (e.key === 'Enter' && props.onEnter) {
-            props.onEnter(e)
+  // Override default focus styles
+  onFocus: (p, cd, sp, t, f) => {
+    cd.events.onFocus = (e: React.FocusEvent) => {
+      e.stopPropagation()
+      if (!PAGE_FOCUS) {
+        if (!(f === 'tabOnly' && !IS_MOUSE_DOWN)) {
+          e.target.className += ' focused'
         }
-        if (e.key === 'Esc' && props.onEsc) {
-            props.onEsc(e)
-        }
-        props.onKeyDown && props.onKeyDown(e)
+      }
+      PAGE_FOCUS = false
+
+      p.onFocus?.(e)
     }
+  },
+  onBlur: (p, cd) => {
+    cd.events.onBlur = (e: React.FocusEvent) => {
+      e.stopPropagation()
+      e.target.className = e.target.className.replace(' focused', '')
+      p.onBlur?.(e)
+    }
+  },
+
+  // Add action styles
+  onClick: (p, cd, sp) => {
+    sp.container.push({
+      cursor: 'pointer',
+      userSelect: 'none',
+    })
+  },
+
+  // Additinal key handlers
+  onKeyDown: (p, cd) => {
+    cd.events.onKeyDown = (e: React.KeyboardEvent) => {
+      p.onKeyPress?.(e)
+      if (e.key === 'Enter' && p.onEnter) {
+        p.onEnter(e)
+      }
+      if (e.key === 'Esc' && p.onEsc) {
+        p.onEsc(e)
+      }
+      p.onKeyDown?.(e)
+    }
+  },
 }
 
 export default resolvers

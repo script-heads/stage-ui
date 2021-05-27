@@ -1,9 +1,9 @@
 import FlowTypes from '../../types'
 
 declare global {
-    namespace Stage {
-        interface ThemeOverrides extends FlowTypes.Overrides { }
-    }
+  namespace Stage {
+    interface ThemeOverrides extends FlowTypes.Overrides {}
+  }
 }
 
 export { default as light } from './light'

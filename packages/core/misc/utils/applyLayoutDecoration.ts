@@ -19,30 +19,30 @@ export type LayoutDecoration =
     | 'majorShadow'
     | 'skeleton'
 
-type Props = SystemTypes.AllProps<HTMLDivElement, {}> & { decoration?: LayoutDecoration }
+type Props = AllProps<HTMLDivElement, {}> & { decoration?: LayoutDecoration }
 
-const applyLayoutDecoration = (props: Props, theme: SystemTypes.Theme) => {
+const applyLayoutDecoration = (props: Props, theme: Theme) => {
 
     switch (props.decoration) {
         case 'surface': return {
-            background: theme.color.surface.rgb().string(),
+            background: theme.color.surface.hex(),
             borderRadius: theme.radius.m,
             borderWidth: theme.assets.border.width,
             borderStyle: theme.assets.border.style,
             borderColor: theme.assets.border.color,
         }
         case 'minorShadow': return {
-            background: theme.color.surface.rgb().string(),
+            background: theme.color.surface.hex(),
             borderRadius: theme.radius.m,
             boxShadow: theme.assets.shadow.s
         }
         case 'mediumShadow': return {
-            background: theme.color.surface.rgb().string(),
+            background: theme.color.surface.hex(),
             borderRadius: theme.radius.m,
             boxShadow: theme.assets.shadow.m
         }
         case 'majorShadow': return {
-            background: theme.color.surface.rgb().string(),
+            background: theme.color.surface.hex(),
             borderRadius: theme.radius.m,
             boxShadow: theme.assets.shadow.l
         }

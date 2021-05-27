@@ -1,77 +1,88 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import React, { forwardRef, ForwardRefRenderFunction, useEffect, useState } from 'react'
 import CheckTypes from './types'
 
 const Check: ForwardRefRenderFunction<HTMLDivElement, CheckTypes.PrivateProps> = (props, ref) => {
-    const [focus, setFocus] = useState(false)
-    const [checked, setChecked] = useState(props.checked || props.defaultValue || false)
-    const { label, styles, disabled,size, uppercase } = props
+  const {
+    label,
+    disabled,
+    size,
+    uppercase,
+    defaultValue,
+    classes,
+    onChange,
+    onFocus,
+    onBlur,
+    onClick,
+    onKeyDown,
+    children,
+    checked: checkedProp,
+  } = props
 
-    useEffect(() => {
-        if (typeof props.checked !== 'undefined') {
-            setChecked(props.checked)
-        }
-    }, [props.checked])
+  const [focus, setFocus] = useState(false)
+  const [checked, setChecked] = useState(checkedProp || defaultValue || false)
 
+  useEffect(() => {
+    if (typeof checked !== 'undefined') {
+      setChecked(checked)
+    }
+  }, [checked])
+
+  /**
+   * Change handler
+   */
+  function handleChange(event: React.FormEvent<HTMLInputElement>) {
+    onChange?.(event)
+    if (typeof checked === 'undefined') {
+      setChecked(!checked)
+    }
+  }
+  /*
+   * Keyboard control
+   */
+  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     /**
-     * Change handler
+     * Enter or Space
      */
-    function onChange(event: React.FormEvent<HTMLInputElement>) {
-        props.onChange && props.onChange(event)
-        if (typeof props.checked === 'undefined') {
-            setChecked(!checked)
-        }
+    if (event.keyCode === 0x0d || event.keyCode === 0x20) {
+      handleChange(event)
+      /**
+       * Prevent page scrolling
+       */
+      if (event.keyCode === 0x20) {
+        event.preventDefault()
+      }
     }
-    /*
-    * Keyboard control
-    */
-    function onKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-        /**
-         * Enter or Space
-         */
-        if (event.keyCode === 0x0D || event.keyCode === 0x20) {
-            onChange(event)
-            /**
-             * Prevent page scrolling
-             */
-            if (event.keyCode === 0x20) {
-                event.preventDefault()
-            }
-        }
-        props.onKeyDown && props.onKeyDown(event)
-    }
+    onKeyDown?.(event)
+  }
 
-    function onClick(e: React.MouseEvent<HTMLInputElement>) {
-        if (!props.disabled) {
-            onChange(e)
-        }
-        props.onClick && props.onClick(e)
+  function handleClick(e: React.MouseEvent<HTMLInputElement>) {
+    if (!disabled) {
+      handleChange(e)
     }
+    onClick?.(e)
+  }
 
-    const containerProps = {
-        ref,
-        css: styles.container({disabled}),
-        onClick,
-        onKeyDown,
-        onFocus: (e: React.FocusEvent<HTMLInputElement>) => {
-            setFocus(true)
-            props.onFocus && props.onFocus(e)
-        },
-        onBlur: (e: React.FocusEvent<HTMLInputElement>) => {
-            setFocus(false)
-            props.onBlur && props.onBlur(e)
-        }
-    }
-    
-    return (
-        <div {...containerProps}>
-            {props.children(checked, focus)}
-            {(label && label.length) && (
-                <div css={styles.label({disabled,size,uppercase})} children={label} />
-            )}
-        </div>
-    )
+  const containerProps = {
+    ref,
+    css: classes.container({ disabled }),
+    onClick: handleClick,
+    onKeyDown: handleKeyDown,
+    onFocus: (e: React.FocusEvent<HTMLInputElement>) => {
+      setFocus(true)
+      onFocus?.(e)
+    },
+    onBlur: (e: React.FocusEvent<HTMLInputElement>) => {
+      setFocus(false)
+      onBlur?.(e)
+    },
+  }
+
+  return (
+    <div {...containerProps}>
+      {children(checked, focus)}
+      {label && label.length && <div css={classes.label({ disabled, size, uppercase })}>{label}</div>}
+    </div>
+  )
 }
 
 export default forwardRef(Check)

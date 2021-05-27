@@ -2,9 +2,7 @@ import light from './light'
 
 const dark = light.replace({
     main: {
-
         name: 'Dark',
-
         color: {
             background: [22, 22, 24],
             backgroundVariant: [50, 50, 60],
@@ -25,12 +23,7 @@ const dark = light.replace({
             success: [0, 120, 0],
             warning: [255, 149, 0]
         },
-    },
-    assets: (theme) => ({
-        border: {
-            color: theme.color.lightest.rgb().string()
-        },
-    })
+    }
 })
 
 export default dark

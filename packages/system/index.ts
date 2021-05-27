@@ -4,6 +4,7 @@ import ColorType from 'color'
 import { ReplaceTheme } from './utils/createTheme'
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   namespace Stage {
     type Sizes = 'xs' | 's' | 'm' | 'l' | 'xl'
     type JSS = Interpolation<Theme>
@@ -11,88 +12,115 @@ declare global {
     type Color = ColorType<ColorDefinition>
 
     interface ThemeMain<C = Color> {
-        name: string
-        color: {
-            background: C
-            backgroundVariant: C
-            surface: C
-            surfaceVariant: C
-            primary: C
-            secondary: C
+      name: string
+      color: {
+        background: C
+        backgroundVariant: C
+        surface: C
+        surfaceVariant: C
+        primary: C
+        secondary: C
 
-            onBackground: C
-            onSurface: C
-            onPrimary: C
-            onSecondary: C
+        onBackground: C
+        onSurface: C
+        onPrimary: C
+        onSecondary: C
 
-            lightest: C
-            light: C
-            hard: C
-            hardest: C
+        lightest: C
+        light: C
+        hard: C
+        hardest: C
 
-            error: C
-            warning: C
-            success: C
-            info: C
+        error: C
+        warning: C
+        success: C
+        info: C
 
-            palette: Record<string, Color>
-        }
-        breakpoints: string[]
-        radius: Record<Sizes, string>
-        spacing: Record<Sizes, string>
+        palette: Record<string, Color>
+      }
+      breakpoints: string[]
+      radius: Record<Sizes, string>
+      spacing: Record<Sizes, string>
     }
 
     interface ThemeAssets {
-        global?: Stage.JSS
-        border: {
-            width: string
-            style: string
-            color: string
+      global?: Stage.JSS
+      border: {
+        width: string
+        style: string
+        color: string
+      }
+      shadow: Record<Sizes, Sizes>
+      focus: CSSInterpolation
+      field: Record<
+        Sizes,
+        {
+          minHeight: string
+          padding: string
         }
-        shadow: {
-            default: string
-            short: string
-            long: string
-        }
-        focus: CSSInterpolation
-        field: Record<Sizes, {
-            minHeight: string
-            padding: string
-        }>
-        typography: {
-            header: Record<Sizes, {
-                fontSize: string
-                lineHeight: string | number
-            }>
-            text: Record<Sizes, {
-                fontSize: string
-                lineHeight: string | number
-            }>
-            paragraph: Record<Sizes, {
-                fontSize: string
-                lineHeight: string | number
-            }>
-        }
+      >
+      typography: {
+        header: Record<
+          Sizes,
+          {
+            fontSize: string
+            lineHeight: string | number
+          }
+        >
+        text: Record<
+          Sizes,
+          {
+            fontSize: string
+            lineHeight: string | number
+          }
+        >
+        paragraph: Record<
+          Sizes,
+          {
+            fontSize: string
+            lineHeight: string | number
+          }
+        >
+      }
     }
 
     interface ThemeOverrides {}
 
     interface Theme extends ThemeMain {
-        assets: ThemeAssets
-        overrides: ThemeOverrides
-        replace: (theme: ReplaceTheme) => Theme
+      assets: ThemeAssets
+      overrides: ThemeOverrides
+      replace: (theme: ReplaceTheme) => Theme
     }
   }
 }
 
 declare module 'csstype' {
   interface Properties {
-      display?: 'block' | 'inline' | 'inline-block' | 'inline-table' | 'list-item' | 'none' | 'run-in' | 'table' | 'table-caption' | 'table-cell' | 'table-column-group' | 'table-column' | 'table-footer-group' | 'table-header-group' | 'table-row' | 'table-row-group' | 'flex' | 'grid'
-      overflow?: 'auto' | 'hidden' | 'scroll' | 'visible' | 'inherit',
+    display?:
+      | 'block'
+      | 'inline'
+      | 'inline-block'
+      | 'inline-table'
+      | 'list-item'
+      | 'none'
+      | 'run-in'
+      | 'table'
+      | 'table-caption'
+      | 'table-cell'
+      | 'table-column-group'
+      | 'table-column'
+      | 'table-footer-group'
+      | 'table-header-group'
+      | 'table-row'
+      | 'table-row-group'
+      | 'flex'
+      | 'grid'
+    overflow?: 'auto' | 'hidden' | 'scroll' | 'visible' | 'inherit'
   }
 }
 
 declare module '@emotion/react' {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   export interface Theme extends Stage.Theme {}
 }
 
