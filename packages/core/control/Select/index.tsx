@@ -20,6 +20,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
         maxScrollHeight = '16rem',
         keepOpen = false,
         disabled = false,
+        openOnSearch = false,
         emptyText = '-'
     } = props
 
@@ -130,7 +131,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
      */
     function toggleOpen(e?: React.MouseEvent<HTMLDivElement, MouseEvent>) {
         e?.stopPropagation()
-        if (!isOpen && disabled) {
+        if (!isOpen && disabled || openOnSearch) {
             return
         }
         setOpen(!isOpen)
@@ -143,6 +144,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
      */
     function onChange(values: Types.Option[], value?: Types.Option, search = '') {
         setSearchQuery(search)
+        props.onSearch?.(value?.text ?? search)
         if (props.values === undefined) {
             setValues(values)
         }
@@ -214,7 +216,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                     onKeyDown: (e) => handleKeyDown(e)
                 }}
                 rightChild={(
-                    props.rightChild || <ArrowIosDownward
+                    !openOnSearch && (props.rightChild || <ArrowIosDownward
                         alignSelf="center"
                         size={size}
                         style={{
@@ -226,7 +228,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                             e.preventDefault()
                             toggleOpen(e)
                         }}
-                    />
+                    />)
                 )}
                 children={(
                     <div css={cs.selected}>
@@ -257,7 +259,11 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                             placeholder={(!props.multiselect || values.length === 0) ? props.placeholder : ''}
                             value={(!props.multiselect && values[0]?.text) || searchQuery}
                             onChange={(e) => {
+                                if (openOnSearch) {
+                                    setOpen(true)
+                                }
                                 if (props.multiselect) {
+                                    props.onSearch?.(e.target.value)
                                     setSearchQuery(e.target.value)
                                 } else {
                                     clearValues(e.target.value)
@@ -283,7 +289,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                 onClickOutside={(e, outTarget) => {
                     if (outTarget) {
                         //@ts-ignore
-                        toggleOpen(e)
+                        setOpen(false)
                     }
                 }}
                 stretchWidth
