@@ -51,7 +51,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 shape: {
                     circle: {
                         borderRadius: '50%',
-                        border: '1px solid ' + color?.rgb().string(),
+                        border: '1px solid ' + color.rgb().string(),
                         padding: '0.4em',
                     },
                     oval: {
