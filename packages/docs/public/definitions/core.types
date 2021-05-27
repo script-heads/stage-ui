@@ -8687,7 +8687,7 @@ declare module 'layout/Drop/types' {
 	        /**
 	         * The side of the target element on which the drop will be shown
 	         */
-	        align?: 'top' | 'bottom' | 'left' | 'right';
+	        align?: 'top' | 'bottom' | 'left' | 'right' | 'auto-vertical';
 	        /**
 	         * Side drop positioning
 	         */
@@ -8764,7 +8764,8 @@ declare module 'layout/Drop/types' {
 }
 declare module 'control/Select/types' {
 	import FieldTypes from '@stage-ui/core/misc/hocs/Field/types';
-	import DropTypes from 'layout/Drop/types'; namespace SelectTypes {
+	import DropTypes from 'layout/Drop/types';
+	import React from 'react'; namespace SelectTypes {
 	    interface Option {
 	        text: string;
 	        value: any;
@@ -8797,6 +8798,10 @@ declare module 'control/Select/types' {
 	         */
 	        keepOpen?: boolean;
 	        /**
+	         * Select's drop will appear only when start typing
+	         */
+	        openOnFocus?: boolean;
+	        /**
 	         * Selected options
 	         */
 	        values?: Option[];
@@ -8819,9 +8824,13 @@ declare module 'control/Select/types' {
 	         */
 	        onChange?: (values: Option[], changedValue?: Option) => void;
 	        /**
+	         * Event is fired when user types in input
+	         */
+	        onSearch?: (value: string) => void;
+	        /**
 	         * Display when empty
 	         */
-	        emptyText?: string;
+	        emptyText?: React.ReactNode;
 	    }
 	    type State = {
 	        selectedOptions: Option[];
@@ -8855,6 +8864,7 @@ declare module 'control/Select/types' {
 	        input: {
 	            searchMode: boolean;
 	            multiselect: boolean;
+	            disableEvents: boolean;
 	        };
 	        /**
 	         * Container of selected option in multiselect
@@ -9527,7 +9537,7 @@ declare module '@stage-ui/core/data/Table/types' {
 	        /**
 	         * Title that will be placed at TableHead
 	         */
-	        title?: string;
+	        title?: React.ReactNode;
 	        /**
 	         * Specific width of column
 	         */
@@ -9619,7 +9629,7 @@ declare module '@stage-ui/core/data/Table/types' {
 	    interface HeadCellProps<ROW> {
 	        column: TableColumn<ROW>;
 	        styles: SystemTypes.ComponentStyles<Styles>;
-	        toggleSort: (sort: TableSortObject) => Promise<void>;
+	        toggleSort: (sort: TableSortObject) => Promise<unknown>;
 	    }
 	    interface CellProps<ROW> {
 	        rowCtxItem: TableRowContext<ROW>;
@@ -9784,12 +9794,6 @@ declare module 'layout/Badge' {
 	export default _default;
 
 }
-declare module 'layout/Drop/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'layout/Drop/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
-	export default styles;
-
-}
 declare module 'layout/Drop/animation' {
 	/** @jsx jsx */
 	import Types from 'layout/Drop/types'; type AnimationProp = Exclude<Types.Props['animation'], undefined>; type AlignProp = Types.Props['align'];
@@ -9806,6 +9810,12 @@ declare module 'layout/Drop/animation' {
 	    animateOut(): void;
 	}
 	export {};
+
+}
+declare module 'layout/Drop/styles' {
+	import SystemTypes from '@stage-ui/system/types';
+	import Types from 'layout/Drop/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	export default styles;
 
 }
 declare module 'layout/Drop' {

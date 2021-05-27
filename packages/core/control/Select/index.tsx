@@ -20,7 +20,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
         maxScrollHeight = '16rem',
         keepOpen = false,
         disabled = false,
-        openOnSearch = false,
+        openOnFocus = true,
         emptyText = '-'
     } = props
 
@@ -131,7 +131,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
      */
     function toggleOpen(e?: React.MouseEvent<HTMLDivElement, MouseEvent>) {
         e?.stopPropagation()
-        if (!isOpen && disabled || openOnSearch) {
+        if (!isOpen && disabled) {
             return
         }
         setOpen(!isOpen)
@@ -210,17 +210,19 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                     ...events.all,
                     onClick: (e) => {
                         e.preventDefault()
-                        toggleOpen(e)
+                        if (openOnFocus) {
+                            setOpen(true)
+                        }
                         events.all.onClick?.(e)
                     },
                     onKeyDown: (e) => handleKeyDown(e)
                 }}
                 rightChild={(
-                    !openOnSearch && (props.rightChild || <ArrowIosDownward
+                    props.rightChild !== undefined ? props.rightChild : <ArrowIosDownward
                         alignSelf="center"
                         size={size}
                         style={{
-                            transition:'transform 0.25s',
+                            transition: 'transform 0.25s',
                             transform: `scale(1.5) rotate(${isOpen ? '90deg' : 0})`
                         }}
                         color={c => isOpen ? c.primary : c.light}
@@ -228,7 +230,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                             e.preventDefault()
                             toggleOpen(e)
                         }}
-                    />)
+                    />
                 )}
                 children={(
                     <div css={cs.selected}>
@@ -259,7 +261,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                             placeholder={(!props.multiselect || values.length === 0) ? props.placeholder : ''}
                             value={(!props.multiselect && values[0]?.text) || searchQuery}
                             onChange={(e) => {
-                                if (openOnSearch) {
+                                if (!isOpen) {
                                     setOpen(true)
                                 }
                                 if (props.multiselect) {
@@ -272,7 +274,9 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                             onClick={(e) => {
                                 e.preventDefault()
                                 e.stopPropagation()
-                                toggleOpen(e)
+                                if (openOnFocus) {
+                                    setOpen(true)
+                                }
                             }}
                         />
                     </div>

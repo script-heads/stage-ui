@@ -39,7 +39,7 @@ declare namespace SelectTypes {
         /**
          * Select's drop will appear only when start typing
          */
-         openOnSearch?: boolean
+        openOnFocus?: boolean
         /**
          * Selected options
          */
