@@ -13,7 +13,7 @@ const Flexbox: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
     })
 
     return jsx(
-        'div',
+        props.as || 'div',
         {
             ...attributes,
             ...events,
