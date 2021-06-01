@@ -134,7 +134,6 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
                 {
                     ref: inputRef,
                     css: cs.input({ size, multiline, disabled }),
-
                     onChange: (e) => {
                         if (leftCountLineRef.current) {
                             setleftCountLineState({
@@ -142,7 +141,6 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
                                 top: leftCountLineState.top,
                             })
                         }
-                        props.onChange?.(e)
                     },
                     defaultValue: props.defaultValue,
                     value: props.value,
@@ -182,7 +180,6 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
                                 top: -e.target.scrollTop + 'px'
                             })
                         }
-                        events.all.onScroll?.(e)
                     },
                 }
             )}
