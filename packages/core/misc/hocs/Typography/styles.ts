@@ -5,12 +5,14 @@ import breakpointResolver from '@stage-ui/system/props/breakpoint'
 import Types from './types'
 
 const createClasses: CreateClasses<Types.Styles, Types.PrivateProps> = (theme, props, styleProps) => {
-  const color = colorResolver(props.color, theme)
-  const backgroundColor = colorResolver(props.backgroundColor, theme)
-
   return {
     container: [
-      props.specificStyles,
+      props.ellipsis && {
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        minWidth: 0,
+      },
       breakpointResolver(props.size, theme, (currentValue) =>
         sizeResolver(
           theme.assets.typography[props.sizesOf],
@@ -20,21 +22,14 @@ const createClasses: CreateClasses<Types.Styles, Types.PrivateProps> = (theme, p
           currentValue,
         ),
       ),
-      {
-        fontWeight: props.weight,
-        lineHeight: props.lineHeight,
-        textDecoration: props.decoration,
-        textTransform: props.transform,
-        textAlign: props.align,
-        color: color?.hex(),
-        background: backgroundColor,
-      },
-      props.ellipsis && {
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        minWidth: 0,
-      },
+      breakpointResolver(props.lineHeight, theme, (currentValue) => ({ lineHeight: currentValue })),
+      breakpointResolver(props.weight, theme, (currentValue) => ({ fontWeight: currentValue })),
+      breakpointResolver(props.transform, theme, (currentValue) => ({ textTransform: currentValue })),
+      breakpointResolver(props.align, theme, (currentValue) => ({ textAlign: currentValue })),
+      breakpointResolver(props.color, theme, (currentValue) => ({ color: colorResolver(currentValue, theme)?.hex() })),
+      breakpointResolver(props.backgroundColor, theme, (currentValue) => ({
+        background: colorResolver(currentValue, theme)?.hex(),
+      })),
       styleProps.all,
     ],
   }

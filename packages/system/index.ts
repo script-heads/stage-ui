@@ -50,7 +50,8 @@ declare global {
         style: string
         color: string
       }
-      shadow: Record<Sizes, Sizes>
+      shadow: Record<Sizes, string>
+      innerShadow: Record<Sizes, string>
       focus: CSSInterpolation
       field: Record<
         Sizes,

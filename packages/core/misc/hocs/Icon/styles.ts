@@ -3,8 +3,8 @@ import colorResolver from '@stage-ui/system/props/color'
 import Types from './types'
 
 const createClasses: CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
-  const background = props.background ? colorResolver(theme, props.background) : undefined
-  const color = colorResolver(theme, props.color) || theme.color.onSurface
+  const background = props.background ? colorResolver(props.background, theme) : undefined
+  const color = colorResolver(props.color, theme) || theme.color.onSurface
 
   return {
     container: (variant) => [

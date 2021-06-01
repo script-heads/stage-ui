@@ -13,7 +13,7 @@ export type Resolver = <ClassesSchema>(
   componentData: Record<keyof ComponentData<any, ClassesSchema>, any>,
   styleProps: StyleProps,
   t: Stage.Theme,
-  focus: Options['focus'],
+  focus: Options<ClassesSchema, Record<string, any>>['focus'],
 ) => void
 
 let IS_MOUSE_DOWN = false

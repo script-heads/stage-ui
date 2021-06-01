@@ -3,7 +3,7 @@ import { CreateClasses } from '@stage-ui/system/hooks/useSystem'
 import Types from './types'
 
 const createClasses: CreateClasses<Types.Styles, Types.Props> = (theme, props) => {
-  const labelColor = props.labelColor ? colorResolver(theme, props.labelColor) : undefined
+  const labelColor = props.labelColor ? colorResolver(props.labelColor, theme) : undefined
 
   return {
     container: (variant) => [

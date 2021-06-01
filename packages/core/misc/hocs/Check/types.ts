@@ -1,4 +1,3 @@
-import { Sizes } from '@stage-ui/system'
 import { Classes } from '@stage-ui/system/hooks/useSystem'
 import { ColorProp } from '@stage-ui/system/props/color'
 import { AllProps } from '@stage-ui/system/props/types'

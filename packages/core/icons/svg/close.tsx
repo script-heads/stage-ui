@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import { Props, createIcon } from '@stage-ui/core/basic/Icon'
+import { Props, createIcon } from '@stage-ui/core/misc/hocs/Icon'
 import React from 'react'
 
 export default React.forwardRef((props: Props, ref: React.RefObject<HTMLSpanElement>) =>

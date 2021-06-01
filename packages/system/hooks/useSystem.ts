@@ -1,13 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import useTheme from './useTheme'
 import propsResolvers from '../props'
 import createVariant, { Variant } from '../utils/createVariant'
 import isFunction from '../utils/isFunction'
 import { AllEventProps, AttributeProps } from '../props/types'
 
-export interface Options {
+export interface Options<ClassesSchema, Props> {
   focus?: 'always' | 'tabOnly' | 'never'
   label?: string
   theme?: Stage.Theme
+  additionalClasses?: CreateClasses<ClassesSchema, Props>
 }
 
 export interface StyleProps {
@@ -58,10 +60,10 @@ function useSystem<Props extends Record<string, any>, ClassesSchema>(
   name: string,
   props: Props,
   createClasses: CreateClasses<ClassesSchema, Props>,
-  options: Options = {},
+  options: Options<ClassesSchema, Props> = {},
 ) {
   const currentTheme = useTheme()
-  const { focus = 'always', label = name, theme = currentTheme } = options
+  const { focus = 'always', label = name, theme = currentTheme, additionalClasses } = options
 
   const data = {
     classes: {},
@@ -89,7 +91,7 @@ function useSystem<Props extends Record<string, any>, ClassesSchema>(
     if (key[0] === 'o' && key[1] === 'n') {
       data.events[key as keyof AllEventProps<any>] = props[key]
     }
-    if (Object.prototype.hasOwnProperty.call(propsResolers, key)) {
+    if (Object.prototype.hasOwnProperty.call(propsResolvers, key)) {
       propsResolvers[key](props, data, styleProps, theme, focus)
     }
   })
@@ -102,6 +104,8 @@ function useSystem<Props extends Record<string, any>, ClassesSchema>(
   const propsOverrides = props.overrides
 
   const componentClasses: ClassesDefinition<ClassesSchema> = createClasses(theme, props, styleProps)
+  const additionalComponentClasses: ClassesDefinition<ClassesSchema> =
+    additionalClasses?.(theme, props, styleProps) || ({} as ClassesDefinition<ClassesSchema>)
 
   const themeOverrideClasses: ClassesDefinition<ClassesSchema> = isFunction(themeOverrides)
     ? themeOverrides(props, styleProps)
@@ -111,23 +115,34 @@ function useSystem<Props extends Record<string, any>, ClassesSchema>(
     ? propsOverrides(theme, styleProps)
     : propsOverrides || {}
 
-  for (const key in componentClasses) {
-    const classLabel = { label: `${label}-${key}` }
+  Object.keys(componentClasses)
+    .concat(
+      Object.keys(additionalComponentClasses).filter((className) =>
+        Object.prototype.hasOwnProperty.call(componentClasses, className),
+      ),
+    )
+    .forEach((key) => {
+      const classLabel = { label: `${label}-${key}` }
 
-    data.classes[key] = (isFunction(componentClasses[key])
-      ? (state) => {
-          const variant = createVariant(state)
-          return [
+      data.classes[key] = (isFunction(componentClasses[key])
+        ? (state) => {
+            const variant = createVariant(state)
+            return [
+              classLabel,
+              (additionalComponentClasses[key] as FunctionClassDefinition<any>)?.(variant, state),
+              (componentClasses[key] as FunctionClassDefinition<any>)?.(variant, state),
+              (themeOverrideClasses[key] as FunctionClassDefinition<any>)?.(variant, state),
+              (propsOverrideClasses[key] as FunctionClassDefinition<any>)?.(variant, state),
+            ] as Stage.JSS
+          }
+        : [
+            additionalComponentClasses,
             classLabel,
-            (componentClasses[key] as FunctionClassDefinition<ClassesSchema[typeof key]>)(variant, state),
-            (themeOverrideClasses[key] as FunctionClassDefinition<ClassesSchema[typeof key]>)?.(variant, state),
-            (propsOverrideClasses[key] as FunctionClassDefinition<ClassesSchema[typeof key]>)?.(variant, state),
-          ]
-        }
-      : [classLabel, componentClasses[key], themeOverrideClasses[key], propsOverrideClasses[key]]) as Classes<
-      ClassesSchema
-    >[typeof key]
-  }
+            componentClasses[key],
+            themeOverrideClasses[key],
+            propsOverrideClasses[key],
+          ]) as Stage.JSS
+    })
 
   return data
 }

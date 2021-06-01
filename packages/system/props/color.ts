@@ -11,18 +11,21 @@ export type ColorProp =
   | Color
   | (string & { T?: string })
 
-export default (value: ColorProp | undefined, theme: Stage.Theme): Stage.Color | undefined => {
-  const color = typeof value === 'function' ? value(theme.color) : value
+export default function color<V extends ColorProp | undefined>(
+  value: V,
+  theme: Stage.Theme,
+): V extends undefined ? undefined : Stage.Color {
+  const resolvedColor = typeof value === 'function' ? value(theme.color) : value
 
-  if (typeof color === 'string') {
-    if (theme.color[color] && color !== 'palette') {
-      return theme.color[color] as Stage.Color
+  if (typeof resolvedColor === 'string') {
+    if (theme.color[resolvedColor] && resolvedColor !== 'palette') {
+      return theme.color[resolvedColor]
     }
-    if (theme.color.palette[color]) {
-      return theme.color.palette[color]
+    if (theme.color.palette[resolvedColor]) {
+      return theme.color.palette[resolvedColor]
     }
-    return Color(color)
+    return Color(resolvedColor)
   }
 
-  return color
+  return resolvedColor
 }
