@@ -1,35 +1,33 @@
 import { useEffect, useState, useMemo } from 'react'
 import useTheme from './useTheme'
 
-let memoValue: any = null
+let index = 0
 
-const useBreakpoints = <T>(values: T[]): T | null => {
+const useBreakpoints = <T>(values: T[]): T => {
 
     const theme = useTheme()
-    const breakpoints = useMemo(() => {
-        return theme.breakpoints
-            .map((s) => parseFloat(s.replace(/[^0-9\\.]/g, '')))
-    }, [])
-    const calc = () => {
-        let val = values[0]
+    const breakpoints = useMemo(() => theme.breakpoints.map((s) => parseFloat(s.replace(/[^0-9\\.]/g, ''))), [])
+
+    const calcIndex = () => {
+        let idx = 0
         const w = document.body.clientWidth || document.body.offsetWidth
-        breakpoints.map((breakpoint, index) => {
+        breakpoints.map((breakpoint, i) => {
             if (w <= breakpoint) {
-                val = values[index] || val
+                idx = i
             }
         })
-        return val
+        return idx
     }
     
-    memoValue = calc()
+    index = calcIndex()
 
-    const [value, setValue] = useState<T>(memoValue)
+    const [_, reload] = useState<number>(index)
 
     const calcState = () => {
-        const val = calc()
-        if (val !== memoValue) {
-            memoValue = val
-            setValue(calc())
+        const idx = calcIndex()
+        if (idx !== index) {
+            reload(idx)
+            index = idx
         }
     }
 
@@ -41,7 +39,7 @@ const useBreakpoints = <T>(values: T[]): T | null => {
             window.removeEventListener('orientationchange', calcState)
         }
     }, [])
-
-    return value || null
+    
+    return values[index] || values[values.length - 1]
 }
 export default useBreakpoints
