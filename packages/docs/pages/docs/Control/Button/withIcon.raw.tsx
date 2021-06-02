@@ -1,18 +1,21 @@
-import { Button, Flexbox } from '@stage-ui/core'
-import { Compass, ArrowRight } from '@stage-ui/icons'
+import { Button, Grid } from '@stage-ui/core'
+import { ArrowRight, ArrowLeft, Cube } from '@stage-ui/icons'
 import React from 'react'
 
 export default () => {
     return (
-        <Flexbox>
-            <Button color={c => c.primary}>
-                <Compass size="1rem" pr="0.5rem" />
-                Compas
+        <Grid gap="0.5rem">
+            <Button
+                leftChild={<ArrowLeft />}
+                label="Go left"
+            />
+            <Button
+                rightChild={<ArrowRight />}
+                label="Go right"
+            />
+            <Button>
+                <Cube />
             </Button>
-            <Button ml={'0.5rem'} color={c => c.primary}>
-                Next
-                <ArrowRight size="1rem" pl="0.5rem" />
-            </Button>
-        </Flexbox>
+        </Grid>
     )
 }
