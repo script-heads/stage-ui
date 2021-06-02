@@ -8,11 +8,11 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
     const { size, shape } = props
     const color = colorProp(theme, props.color) || theme.color.primary
     const typography = theme.assets.typography.text[size || 'm'] || theme.assets.typography.text['m']
-
+    const isBlack = color.contrast(theme.color.onPrimary) > 3
     return {
         container: (variant) => [
             {
-                fontWeight: 600,
+                fontWeight: 500,
                 whiteSpace: 'nowrap',
                 outline: 'none',
                 boxShadow: 'unset',
@@ -79,18 +79,18 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                     }],
                     'filled': [{
                         background: color.rgb().string(),
-                        color: color.contrast(theme.color.onPrimary) > 3
+                        color: isBlack
                             ? theme.color.onPrimary.rgb().string()
                             : theme.color.onSurface.rgb().string(),
                         '&:hover:not([disabled])': {
-                            background: color.hsl().array()[2] > .2
-                                ? color.darken(.3).rgb().string()
-                                : color.lighten(1.5).rgb().string(),
+                            background: isBlack
+                                ? color.lighten(.05).rgb().string()
+                                : color.darken(0.05).rgb().string(),
                         },
                         '&:active:not([disabled])': {
-                            background: color.hsl().array()[2] > .2
-                                ? color.darken(.2).rgb().string()
-                                : color.lighten(.75).rgb().string(),
+                            background: isBlack
+                                ? color.lighten(.1).rgb().string()
+                                : color.darken(.1).rgb().string(),
                         },
                         '&:disabled': {
                             background: theme.color.lightest.rgb().string(),
@@ -147,8 +147,8 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 ' > span': {
                     height: 'auto',
                     '> svg': {
-                        height: typography.fontSize,
-                        width: typography.fontSize
+                        height: typography.lineHeight,
+                        width: typography.lineHeight
                     }
                 },
             },
