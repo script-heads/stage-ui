@@ -1,6 +1,6 @@
 import { Block, Button, Flexbox, Modal } from '@stage-ui/core'
 import ModalTypes from '@stage-ui/core/layout/Modal/types'
-import { addElement, removeElement } from '@stage-ui/core/layout/Viewport/MountArea'
+import { addElement, removeElement } from '@stage-ui/core/components/layout/Viewport/MountArea'
 import createID from '@stage-ui/system/utils/createID'
 import React from 'react'
 

@@ -79,7 +79,7 @@ const styles: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, st
 
     /**
      * Styles for day/month/year squire
-     * /
+     * */
     day: (variant) => [
       {
         transition: 'all 0.2s',
@@ -211,7 +211,7 @@ const styles: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, st
 
     /**
      * Styles for week
-     * /
+     * */
     week: (variant) => [
       {
         userSelect: 'none',

@@ -13,7 +13,6 @@ export const dndContext = {
 }
 
 function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
-
   const tableRef = useRef<HTMLTableElement>(null)
   const { classes, attributes, events } = useSystem('Table', props, styles)
   const { columns, pagination, footer } = props
@@ -222,7 +221,7 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
       <thead>
         <tr
           children={columns.map((column, colIndex) => (
-            <TableHeadCell key={colIndex} styles={cs} column={column} toggleSort={toggleSort} />
+            <TableHeadCell key={colIndex} styles={classes} column={column} toggleSort={toggleSort} />
           ))}
         />
       </thead>
@@ -257,7 +256,7 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
               getCellContext={getCellContext}
               rowDidMount={props.rowDidMount}
               rowDidUnmount={props.rowDidUnmount}
-              styles={cs}
+              styles={classes}
               key={rowIndex}
               columns={columns}
               rowIndex={rowIndex}
@@ -275,7 +274,7 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
       />
       <TableFoot
         rowCtx={rowCtx}
-        styles={cs}
+        styles={classes}
         footerContent={footer}
         columns={columns}
         pagination={pagination}

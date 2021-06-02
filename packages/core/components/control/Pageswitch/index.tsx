@@ -1,7 +1,7 @@
 import { Flexbox, Text } from '@stage-ui/core'
-import { ArrowIosBack, ArrowIosForward, ArrowheadLeft, ArrowheadRight } from '@stage-ui/icons'
+import { ArrowLeft, ArrowRight, ArrowheadLeft, ArrowheadRight } from '@stage-ui/icons'
 import { useSystem } from '@stage-ui/system'
-import { forwardRef, ForwardRefRenderFunction, useEffect, useState } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, useEffect, useState } from 'react'
 import styles from './styles'
 import Types from './types'
 
@@ -51,7 +51,7 @@ const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
 
   return (
     <Flexbox {...attributes} {...events} onChange={undefined} ref={ref} css={classes.container} alignItems="center">
-      <ArrowheadLeft
+      <ArrowLeft
         mr="0.5rem"
         size="1rem"
         css={classes.arrowButton({
@@ -59,7 +59,7 @@ const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
         })}
         onClick={() => setPage(1)}
       />
-      <ArrowIosBack
+      <ArrowRight
         mr="0.5rem"
         size="1rem"
         css={classes.arrowButton({
@@ -70,7 +70,7 @@ const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
       <Text size="s">
         {currentPage}/{lastPage}
       </Text>
-      <ArrowIosForward
+      <ArrowheadLeft
         ml="0.5rem"
         size="1rem"
         css={classes.arrowButton({

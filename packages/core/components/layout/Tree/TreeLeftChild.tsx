@@ -1,4 +1,4 @@
-import { ArrowIosForward } from '@stage-ui/icons'
+import { ArrowRight } from '@stage-ui/icons'
 import React, { Fragment } from 'react'
 import Types from './types'
 
@@ -10,7 +10,7 @@ const TreeLeftChild = (props: Types.TreeLeftChildProps) => {
   }
   return (
     <>
-      {children !== undefined ? children : <ArrowIosForward rotate={options.isOpen ? 90 : 0} className={className} />}
+      {children !== undefined ? children : <ArrowRight rotate={options.isOpen ? 90 : 0} className={className} />}
     </>
   )
 }

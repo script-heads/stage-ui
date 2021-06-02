@@ -1,9 +1,9 @@
-import colorProp from '@stage-ui/system/utils/colorProp'
+import colorProp from '@stage-ui/system/props/color'
 import Types from './types'
 
 const styles: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
   const { size, shape } = props
-  const color = colorProp(theme, props.color) || theme.color.primary
+  const color = colorProp(props.color, theme) || theme.color.primary
   const typography = theme.assets.typography.text[size || 'm'] || theme.assets.typography.text.m
   const isBlack = color.contrast(theme.color.onPrimary) > 3
   return {

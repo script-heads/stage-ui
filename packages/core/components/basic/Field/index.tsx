@@ -24,7 +24,7 @@ const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (pro
       )}
       <div css={classes.field(classesState)}>
         {props.leftChild && <div css={classes.child({ align: 'left', ...classesState })}>{props.leftChild}</div>}
-        <div css={classes.content(classesState)}>
+        <div css={classes.content1(classesState)}>
           {label !== undefined && labelType === 'inside' && (
             <label css={classes.label(classesState)} htmlFor={labelName}>
               {label}

@@ -103,16 +103,14 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
       }),
     ],
 
-    content: (variant) => [
-      {
-        display: 'flex',
-        flexGrow: 1,
-        flexShrink: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        overflow: 'hidden',
-      },
-    ],
+    content1: (variant) => ({
+      display: 'flex',
+      flexGrow: 1,
+      flexShrink: 1,
+      flexDirection: 'column',
+      justifyContent: 'center',
+      overflow: 'hidden',
+    }),
 
     label: (variant) => [
       {

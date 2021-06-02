@@ -1,6 +1,6 @@
 import * as themes from '@stage-ui/core/themes'
 import { Provider, useSystem } from '@stage-ui/system'
-import { forwardRef, ForwardRefRenderFunction, Fragment, useImperativeHandle, useRef } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, Fragment, useImperativeHandle, useRef } from 'react'
 import MountArea from './MountArea'
 import styles from './styles'
 import Types from './types'

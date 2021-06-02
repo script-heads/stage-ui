@@ -8,6 +8,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
           marginLeft: props.indent,
         },
       },
+      styleProps.all,
     ],
   }
 }

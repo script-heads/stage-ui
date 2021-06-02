@@ -123,15 +123,15 @@ function useSystem<Props extends Record<string, any>, ClassesSchema, AdditionalC
 
   Object.keys(componentClasses)
     .concat(
-      Object.keys(additionalComponentClasses).filter((className) =>
-        Object.prototype.hasOwnProperty.call(componentClasses, className),
+      Object.keys(additionalComponentClasses).filter(
+        (className) => !Object.prototype.hasOwnProperty.call(componentClasses, className),
       ),
     )
     .forEach((key) => {
       const classLabel = { label: `${label}-${key}` }
 
       data.classes[key] = (
-        isFunction(componentClasses[key])
+        isFunction(componentClasses[key]) || isFunction(additionalComponentClasses[key])
           ? (state) => {
               const variant = createVariant(state)
               return [
@@ -143,8 +143,8 @@ function useSystem<Props extends Record<string, any>, ClassesSchema, AdditionalC
               ] as Stage.JSS
             }
           : [
-              additionalComponentClasses,
               classLabel,
+              additionalComponentClasses,
               componentClasses[key],
               themeOverrideClasses[key],
               propsOverrideClasses[key],
