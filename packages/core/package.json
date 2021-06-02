@@ -13,6 +13,7 @@
         "icons:generate": "node ./scripts/iconsGenerate"
     },
     "dependencies": {
+        "@emotion/react": "11.4.0",
         "@stage-ui/system": "0.1.46",
         "imask": "6.0.1",
         "moment": "2.29.1",
@@ -33,9 +34,6 @@
     },
     "peerDependencies": {
         "@babel/runtime": "*",
-        "@emotion/cache": "*",
-        "@emotion/react": "*",
-        "@emotion/css": "*",
         "react": "*",
         "react-dom": "*"
     }

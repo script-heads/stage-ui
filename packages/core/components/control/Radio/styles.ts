@@ -24,7 +24,7 @@ const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme) =
             },
             variant({
                 focus: [{
-                    borderColor: theme.color.primary.alpha(0.5.rgb().string()
+                    borderColor: theme.color.primary.alpha(0.5).rgb().string()
                 }],
                 checked: [{
                     backgroundColor: theme.color.primary.hex(),
@@ -35,7 +35,7 @@ const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme) =
                     borderColor: theme.color.light.hex(),
                 }, variant({
                     checked: [{
-                        backgroundColor: theme.color.primary.alpha(0.5.rgb().string(),
+                        backgroundColor: theme.color.primary.alpha(0.5).rgb().string(),
                         borderColor: 'transparent'
                     }]
                 })],

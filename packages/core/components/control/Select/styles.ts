@@ -95,7 +95,7 @@ const createClasses: CreateClasses<Types.Styles, Types.Props, Types.StyleParams>
         userSelect: 'none',
         ':hover': {
           color: theme.color.primary.hex(),
-          backgroundColor: theme.color.primary.alpha(0.1.rgb().string(),
+          backgroundColor: theme.color.primary.alpha(0.1).rgb().string(),
         },
       },
       variant({
@@ -158,7 +158,7 @@ const createClasses: CreateClasses<Types.Styles, Types.Props, Types.StyleParams>
     tag: (variant) => [
       {
         display: 'inline-flex',
-        background: props.disabled ? theme.color.lightest.hex() : theme.color.primary.alpha(0.2.rgb().string(),
+        background: props.disabled ? theme.color.lightest.hex() : theme.color.primary.alpha(0.2).rgb().string(),
         borderWidth: '1px',
         borderStyle: 'solid',
         borderColor: props.disabled ? theme.color.light.hex() : theme.color.primary.hex(),
@@ -205,7 +205,7 @@ const createClasses: CreateClasses<Types.Styles, Types.Props, Types.StyleParams>
         marginLeft: `calc(${minHeight} / 10)`,
         marginRight: `calc(-${minHeight} / 10)`,
         borderLeft: '1px solid',
-        color: props.disabled ? theme.color.light.hex() : theme.color.primary.alpha(0.8.rgb().string(),
+        color: props.disabled ? theme.color.light.hex() : theme.color.primary.alpha(0.8).rgb().string(),
         cursor: 'pointer',
         ':hover': {
           color: props.disabled ? theme.color.light.hex() : theme.color.primary.hex(),

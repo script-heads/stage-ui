@@ -11,7 +11,7 @@ export type ColorProp =
   | Color
   | (string & { T?: string })
 
-export default function color<V extends ColorProp | undefined>(
+export default function color<V extends ColorProp | string | undefined>(
   value: V,
   theme: Stage.Theme,
 ): V extends undefined ? undefined : Stage.Color {

@@ -1,11 +1,11 @@
-import SystemTypes from '@stage-ui/system/types'
-import colorResolver from '@stage-ui/system/resolvers/color'
+import { CreateClasses } from '@stage-ui/system/hooks/useSystem'
+import colorResolver from '@stage-ui/system/props/color'
 import Types from './types'
 
-const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme) => {
-  const { size, shape } = props
-  const color = colorResolver(theme, props.color || theme.color.primary)
-  const typography = theme.assets.typography.text[size || 'm'] || theme.assets.typography.text.m
+const createClasses: CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
+  const { size } = props
+  const color = colorResolver(props.color || theme.color.primary, theme)
+  const typography = theme.assets.typography.text[size || 'm']
 
   return {
     container: (variant) => [
@@ -36,13 +36,13 @@ const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme) =
         decoration: {
           outline: [
             {
-              borderColor: color.alpha(0.7.rgb().string(),
+              borderColor: color.alpha(0.7).rgb().string(),
               color: color.hex(),
               '&:hover:not([disabled])': {
-                background: color.alpha(0.05.rgb().string(),
+                background: color.alpha(0.05).rgb().string(),
               },
               '&:active:not([disabled])': {
-                background: color.alpha(0.02.rgb().string(),
+                background: color.alpha(0.02).rgb().string(),
               },
               '&:disabled': {
                 borderColor: theme.color.lightest.hex(),
@@ -54,10 +54,10 @@ const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme) =
             {
               color: color.hex(),
               '&:hover:not([disabled])': {
-                background: color.alpha(0.05.rgb().string(),
+                background: color.alpha(0.05).rgb().string(),
               },
               '&:active:not([disabled])': {
-                background: color.alpha(0.02.rgb().string(),
+                background: color.alpha(0.02).rgb().string(),
               },
               '&:disabled': {
                 color: theme.color.light.hex(),
@@ -70,10 +70,10 @@ const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme) =
               background: theme.color.surface.hex(),
               color: theme.color.onSurface.hex(),
               '&:hover:not([disabled])': {
-                background: color.alpha(0.05.rgb().string(),
+                background: color.alpha(0.05).rgb().string(),
               },
               '&:active:not([disabled])': {
-                background: color.alpha(0.02.rgb().string(),
+                background: color.alpha(0.02).rgb().string(),
               },
               '&:disabled': {
                 background: theme.color.lightest.hex(),
@@ -87,10 +87,12 @@ const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme) =
               color:
                 color.contrast(theme.color.onPrimary) > 3 ? theme.color.onPrimary.hex() : theme.color.onSurface.hex(),
               '&:hover:not([disabled])': {
-                background: color.hsl().array()[2] > 0.2 ? color.darken(0.3.rgb().string() : color.lighten(1.5.rgb().string(),
+                background:
+                  color.hsl().array()[2] > 0.2 ? color.darken(0.3).rgb().string() : color.lighten(1.5).rgb().string(),
               },
               '&:active:not([disabled])': {
-                background: color.hsl().array()[2] > 0.2 ? color.darken(0.2.rgb().string() : color.lighten(0.75.rgb().string(),
+                background:
+                  color.hsl().array()[2] > 0.2 ? color.darken(0.2).rgb().string() : color.lighten(0.75).rgb().string(),
               },
               '&:disabled': {
                 background: theme.color.lightest.hex(),
@@ -152,6 +154,8 @@ const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme) =
       props.uppercase && {
         textTransform: 'uppercase',
       },
+
+      styleProps.all,
     ],
     child: (variant) => [
       {

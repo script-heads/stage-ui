@@ -1,7 +1,7 @@
-import SystemTypes from '@stage-ui/system/types'
+import { CreateClasses } from '@stage-ui/system/hooks/useSystem'
 import Types from './types'
 
-const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme) => {
+const createClasses: CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
   return {
     dateGrid: [
       {

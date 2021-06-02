@@ -100,7 +100,6 @@ declare namespace TypographyTypes {
   interface PrivateProps extends LinkProps {
     tag: string
     sizesOf: keyof Stage.ThemeAssets['typography']
-    specificStyles?: any
     focus?: Options<Styles, Props>['focus']
     name: string
   }

@@ -1,10 +1,8 @@
-import { CSSInterpolation } from '@emotion/css'
 import { Interpolation } from '@emotion/react'
 import ColorType from 'color'
 import { ReplaceTheme } from './utils/createTheme'
 
 declare global {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   namespace Stage {
     type Sizes = 'xs' | 's' | 'm' | 'l' | 'xl'
     type JSS = Interpolation<Theme>
@@ -52,7 +50,7 @@ declare global {
       }
       shadow: Record<Sizes, string>
       innerShadow: Record<Sizes, string>
-      focus: CSSInterpolation
+      focus: Stage.JSS
       field: Record<
         Sizes,
         {
@@ -118,11 +116,6 @@ declare module 'csstype' {
       | 'grid'
     overflow?: 'auto' | 'hidden' | 'scroll' | 'visible' | 'inherit'
   }
-}
-
-declare module '@emotion/react' {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-  export interface Theme extends Stage.Theme {}
 }
 
 export { default as Provider } from './components/Provider'

@@ -12,8 +12,6 @@ module.exports = {
     'airbnb/hooks',
     'airbnb-typescript',
     'prettier',
-    'prettier/react',
-    'prettier/@typescript-eslint',
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
   ],
@@ -56,6 +54,7 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
     'consistent-return': 'off',
-    'react/no-array-index-key': 'off'
+    'react/no-array-index-key': 'off',
+    'react/button-has-type': 'off'
   },
 }

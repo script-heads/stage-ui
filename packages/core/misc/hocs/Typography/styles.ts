@@ -14,13 +14,10 @@ const createClasses: CreateClasses<Types.Styles, Types.PrivateProps> = (theme, p
         minWidth: 0,
       },
       breakpointResolver(props.size, theme, (currentValue) =>
-        sizeResolver(
-          theme.assets.typography[props.sizesOf],
-          (value) => ({
-            fontSize: value,
-          }),
-          currentValue,
-        ),
+        sizeResolver(currentValue || 'm', theme.assets.typography[props.sizesOf], (value) => ({
+          fontSize: value,
+          lineHeight: 1.5,
+        })),
       ),
       breakpointResolver(props.lineHeight, theme, (currentValue) => ({ lineHeight: currentValue })),
       breakpointResolver(props.weight, theme, (currentValue) => ({ fontWeight: currentValue })),
