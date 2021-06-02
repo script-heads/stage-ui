@@ -1,8 +1,8 @@
 import SystemTypes from '@stage-ui/system/types'
 import Types from './types'
-import fieldStyles from '../../../misc/hocs/Field/styles'
+import fieldStyles from '../../basic/Field/styles'
 
-const createClasses: CreateClasses<Types.Styles, Types.Props, Types.StyleParams> = (props, theme, params) => {
+const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StyleParams> = (props, theme, params) => {
   const minHeight = theme.assets.field[props.size || 'm']?.minHeight || theme.assets.field.m.minHeight || '2.5rem'
 
   return {
@@ -16,7 +16,7 @@ const createClasses: CreateClasses<Types.Styles, Types.Props, Types.StyleParams>
       ],
       field: (variant) => [
         params?.isOpen && {
-          borderColor: theme.color.primary.hex(),
+          borderColor: theme.color.primary.rgb().string(),
         },
         variant({
           decoration: {
@@ -43,7 +43,7 @@ const createClasses: CreateClasses<Types.Styles, Types.Props, Types.StyleParams>
     drop: (variant) => [
       {
         position: 'relative',
-        background: theme.color.surface.hex(),
+        background: theme.color.surface.rgb().string(),
         borderRadius: theme.radius.s,
         boxShadow: theme.assets.shadow.l,
         boxSizing: 'border-box',
@@ -94,7 +94,7 @@ const createClasses: CreateClasses<Types.Styles, Types.Props, Types.StyleParams>
         cursor: 'pointer',
         userSelect: 'none',
         ':hover': {
-          color: theme.color.primary.hex(),
+          color: theme.color.primary.rgb().string(),
           backgroundColor: theme.color.primary.alpha(0.1).rgb().string(),
         },
       },
@@ -106,11 +106,11 @@ const createClasses: CreateClasses<Types.Styles, Types.Props, Types.StyleParams>
       }),
       variant({
         selected: {
-          color: theme.color.onPrimary.hex(),
-          backgroundColor: theme.color.primary.hex(),
+          color: theme.color.onPrimary.rgb().string(),
+          backgroundColor: theme.color.primary.rgb().string(),
           ':hover': {
-            color: theme.color.onPrimary.hex(),
-            backgroundColor: theme.color.primary.hex(),
+            color: theme.color.onPrimary.rgb().string(),
+            backgroundColor: theme.color.primary.rgb().string(),
           },
         },
       }),
@@ -142,29 +142,30 @@ const createClasses: CreateClasses<Types.Styles, Types.Props, Types.StyleParams>
         cursor: 'inherit',
         textOverflow: 'ellipsis',
         '&::placeholder': {
-          color: theme.color.light.hex(),
+          color: theme.color.light.rgb().string(),
         },
       },
       variant({
         searchMode: {
-          color: theme.color.hard.hex(),
+          color: theme.color.hard.rgb().string(),
         },
-        // multiselect: {
-        //     width: 'auto',
-        //     minWidth: '1rem'
-        // }
+        disableEvents: {
+          pointerEvents: 'none',
+        },
       }),
     ],
     tag: (variant) => [
       {
         display: 'inline-flex',
-        background: props.disabled ? theme.color.lightest.hex() : theme.color.primary.alpha(0.2).rgb().string(),
+        background: props.disabled
+          ? theme.color.lightest.rgb().string()
+          : theme.color.primary.alpha(0.2).rgb().string(),
         borderWidth: '1px',
         borderStyle: 'solid',
-        borderColor: props.disabled ? theme.color.light.hex() : theme.color.primary.hex(),
+        borderColor: props.disabled ? theme.color.light.rgb().string() : theme.color.primary.rgb().string(),
         borderRadius: `calc(${theme.radius.s} / 2)`,
         boxSizing: 'border-box',
-        color: props.disabled ? theme.color.light.hex() : theme.color.primary.hex(),
+        color: props.disabled ? theme.color.light.rgb().string() : theme.color.primary.rgb().string(),
         padding: `0 calc(${minHeight} / 5)`,
         margin: `calc(${minHeight} / 20)`,
         marginRight: 'calc(${minHeight} / 10)',
@@ -205,10 +206,10 @@ const createClasses: CreateClasses<Types.Styles, Types.Props, Types.StyleParams>
         marginLeft: `calc(${minHeight} / 10)`,
         marginRight: `calc(-${minHeight} / 10)`,
         borderLeft: '1px solid',
-        color: props.disabled ? theme.color.light.hex() : theme.color.primary.alpha(0.8).rgb().string(),
+        color: props.disabled ? theme.color.light.rgb().string() : theme.color.primary.alpha(0.8).rgb().string(),
         cursor: 'pointer',
         ':hover': {
-          color: props.disabled ? theme.color.light.hex() : theme.color.primary.hex(),
+          color: props.disabled ? theme.color.light.rgb().string() : theme.color.primary.rgb().string(),
         },
       },
     ],
@@ -232,4 +233,4 @@ const createClasses: CreateClasses<Types.Styles, Types.Props, Types.StyleParams>
   }
 }
 
-export default createClasses
+export default styles

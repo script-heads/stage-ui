@@ -1,7 +1,7 @@
 import SystemTypes from '@stage-ui/system/types'
 import { Moment } from 'moment'
 import CalendarTypes from '@stage-ui/core/control/Calendar/types'
-import FieldTypes from '../../../misc/hocs/Field/types'
+import FieldTypes from '../../basic/Field/types'
 
 declare namespace DatePickerTypes {
   interface Props extends Omit<FieldTypes.Props, 'onChange'>, InputProps {

@@ -2,11 +2,27 @@ import SystemTypes from '@stage-ui/system/types'
 import fieldStyles from '@stage-ui/core/misc/hocs/Field/styles'
 import Types from './types'
 
-const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme) => {
+const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
   const minHeight = theme.assets.field[props.size || 'm']?.minHeight || theme.assets.field.m.minHeight || '2.5rem'
 
   return {
-    ...fieldStyles(props, theme, {}),
+    ...fieldStyles(
+      props,
+      theme,
+      props.leftChildNumber
+        ? {
+            child: (variant) =>
+              variant({
+                align: {
+                  left: {
+                    overflow: 'hidden',
+                    position: 'relative',
+                  },
+                },
+              }),
+          }
+        : {},
+    ),
     input: (variant) => [
       {
         outline: 0,
@@ -23,7 +39,7 @@ const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme) =
         textOverflow: 'ellipsis',
         '&::placeholder': {
           userSelect: 'none',
-          color: theme.color.light.hex(),
+          color: theme.color.light.rgb().string(),
         },
       },
       variant({
@@ -32,11 +48,20 @@ const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme) =
           minHeight: `calc(${minHeight} * 2)`,
         },
         disabled: {
-          color: theme.color.hardest.hex(),
+          color: theme.color.hardest.rgb().string(),
         },
       }),
+    ],
+    lineNumbers: [
+      {
+        position: 'absolute',
+        margin: `calc(${minHeight} / 4.5) 0`,
+        '> div': {
+          height: props.lineHeight || theme.assets.typography.text[props.size || 'm'].lineHeight,
+        },
+      },
     ],
   }
 }
 
-export default createClasses
+export default styles

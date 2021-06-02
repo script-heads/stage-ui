@@ -1,11 +1,15 @@
 import { ChangeEventHandler } from 'react'
 import SystemTypes from '@stage-ui/system/types'
-import FieldTypes from '../../../misc/hocs/Field/types'
+import FieldTypes from '../../basic/Field/types'
 
 declare namespace TextFieldTypes {
   type InputTypes = 'email' | 'hidden' | 'number' | 'password' | 'reset' | 'search' | 'tel' | 'text' | 'url'
 
-  type Ref = HTMLDivElement
+  type Ref = {
+    clear: () => void
+    container: HTMLDivElement | null
+    input: HTMLInputElement | HTMLTextAreaElement | null
+  }
 
   interface Props extends FieldTypes.Props, InputProps, TextAreaProps {
     /**
@@ -21,6 +25,12 @@ declare namespace TextFieldTypes {
      * Calls on input change
      */
     onChange?: ChangeEventHandler<HTMLInputElement>
+    /**
+     * Enables textarea line numbers
+     * @only if multiline true
+     * @default false
+     */
+    leftChildNumber?: ((index: number) => React.ReactNode) | boolean
   }
 
   interface InputProps {
@@ -133,9 +143,10 @@ declare namespace TextFieldTypes {
      */
     input: {
       multiline: boolean
-      size: Stage.Sizes
+      size: SystemTypes.Size
       disabled: boolean
     }
+    lineNumbers: void
   }
 }
 

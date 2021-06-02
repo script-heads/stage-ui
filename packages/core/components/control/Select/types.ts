@@ -1,4 +1,5 @@
-import FieldTypes from '../../../misc/hocs/Field/types'
+import React from 'react'
+import FieldTypes from '../../basic/Field/types'
 import DropTypes from '../../layout/Drop/types'
 
 declare namespace SelectTypes {
@@ -36,6 +37,10 @@ declare namespace SelectTypes {
      */
     keepOpen?: boolean
     /**
+     * Select's drop will appear only when start typing
+     */
+    openOnFocus?: boolean
+    /**
      * Selected options
      */
     values?: Option[]
@@ -58,9 +63,13 @@ declare namespace SelectTypes {
      */
     onChange?: (values: Option[], changedValue?: Option) => void
     /**
+     * Event is fired when user types in input
+     */
+    onSearch?: (value: string) => void
+    /**
      * Display when empty
      */
-    emptyText?: string
+    emptyText?: React.ReactNode
   }
 
   type State = {
@@ -100,6 +109,7 @@ declare namespace SelectTypes {
     input: {
       searchMode: boolean
       multiselect: boolean
+      disableEvents: boolean
     }
     /**
      * Container of selected option in multiselect
