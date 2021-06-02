@@ -15,7 +15,7 @@ declare namespace MenuTypes {
     itemAs?: keyof HTMLElementTagNameMap
   }
 
-  interface Props extends Omit<AllProps<HTMLDivElement, Styles>, 'onChange'> {
+  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onChange'> {
     /**
      * Value selected by default
      */

@@ -1,12 +1,11 @@
 
 import Types from './types'
-
-import colorResolver from '@stage-ui/system/resolvers/color'
+import colorResolver from '@stage-ui/system/props/color'
 
 const createClasses: Stage.CreateClasses<Types.Styles, Types.Props>  = (theme, props, styleProps) => {
 
-    const background = colorResolver(theme, props.backgroundColor || theme.color.surface.rgb().string()
-    const borderColor = colorResolver(theme, props.borderColor || theme.assets.border.color.rgb().string()
+    const background = colorResolver(props.backgroundColor || theme.color.surface.rgb().string(), theme)
+    const borderColor = colorResolver(props.borderColor || theme.assets.border.color, theme)
     const borderWidth = theme.assets.border.width
     const width = props.arrowWidth || '.75rem'
     const height = props.arrowHeight || '.5rem'
@@ -24,7 +23,8 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props>  = (theme, p
                 borderRadius: theme.radius.m,
                 filter: `drop-shadow(${theme.assets.shadow.m})`,
                 padding: theme.spacing.s
-            }
+            },
+            styleProps.all
         ],
         arrow: (variant) => [
             {

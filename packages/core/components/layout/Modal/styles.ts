@@ -106,6 +106,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
           },
         ],
       }),
+      styleProps.all,
     ],
 
     header: (variant) => [

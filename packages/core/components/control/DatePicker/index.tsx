@@ -1,8 +1,7 @@
-/** @jsx jsx */
 import { jsx } from '@emotion/react'
 import { Calendar, Drop, Popover } from '@stage-ui/core'
-import { Calendar as CalendarIcon } from '@stage-ui/core/icons'
-import Field from '@stage-ui/core/misc/hocs/Field'
+import { Calendar as CalendarIcon } from '@stage-ui/icons'
+import Field from '@stage-ui/core/components/basic/Field'
 import useMask from '@stage-ui/core/misc/hooks/useMask'
 import { useSystem } from '@stage-ui/system'
 import moment, { Moment } from 'moment'
@@ -35,7 +34,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
     props,
     styles,
     styleProps: {
-      container: ['flow', 'layout'],
+      container: ['margin','flex','grid', 'layout'],
       field: ['color', 'border', 'padding'],
     },
     focus: {

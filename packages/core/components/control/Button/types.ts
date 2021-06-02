@@ -73,7 +73,7 @@ declare namespace ButtonTypes {
     /**
      * Color of button
      */
-    color?: ColorProp
+    color?: Stage.ColorProp
     /**
      * Button's label
      */

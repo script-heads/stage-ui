@@ -1,6 +1,5 @@
 import colorResolver from '@stage-ui/system/props/color'
 import sizeResolver from '@stage-ui/system/props/size'
-
 import breakpointResolver from '@stage-ui/system/props/breakpoint'
 import Types from './types'
 

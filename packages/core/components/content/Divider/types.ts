@@ -22,7 +22,7 @@ declare namespace DividerTypes {
      * Color of divider
      * @default lightest
      */
-    color?: ColorProp
+    color?: Stage.ColorProp
   }
 
   interface Styles {

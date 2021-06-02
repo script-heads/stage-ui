@@ -55,6 +55,7 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 'off',
     'consistent-return': 'off',
     'react/no-array-index-key': 'off',
-    'react/button-has-type': 'off'
+    'react/button-has-type': 'off',
+    'default-case': 'off'
   },
 }

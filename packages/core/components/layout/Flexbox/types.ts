@@ -1,7 +1,8 @@
 import { LayoutDecoration } from '@stage-ui/core/utils/applyLayoutDecoration'
+import { FlexboxContainerProps } from '@stage-ui/system/props/types'
 
 declare namespace FlexboxTypes {
-  interface Props extends FlexboxContainerProps, AllProps<HTMLDivElement, Styles> {
+  interface Props extends FlexboxContainerProps, Stage.AllProps<HTMLDivElement, Styles> {
     /**
      * HTML element which is used as a container
      */

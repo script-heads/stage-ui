@@ -9,11 +9,11 @@ declare namespace PopoverTypes {
     /**
      * Color of popover's border
      */
-    borderColor?: ColorProp
+    borderColor?: Stage.ColorProp
     /**
      * Color of popover's background
      */
-    backgroundColor?: ColorProp
+    backgroundColor?: Stage.ColorProp
     /**
      * Popover's content
      */

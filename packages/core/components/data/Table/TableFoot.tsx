@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import { Flexbox, Pageswitch } from '@stage-ui/core'
 import { forwardRef, ForwardRefRenderFunction } from 'react'
 import Types from './types'

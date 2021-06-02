@@ -1,7 +1,7 @@
 import MenuTypes from '../types'
 
 declare namespace MenuItemTypes {
-  interface Props extends Omit<AllProps<HTMLDivElement, Styles>, 'onChange'> {
+  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onChange'> {
     /**
      * Controlled item state
      */

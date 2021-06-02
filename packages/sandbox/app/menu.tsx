@@ -1,5 +1,5 @@
 import { Menu } from '@stage-ui/core'
-import { Cube } from '@stage-ui/core/icons'
+import { Cube } from '@stage-ui/icons'
 import React from 'react'
 
 const PlaygroundMenu = () => {

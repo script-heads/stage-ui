@@ -1,5 +1,4 @@
 import colorResolver from '@stage-ui/system/props/color'
-
 import sizeProp from '@stage-ui/system/props/size'
 import Types from './types'
 

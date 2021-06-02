@@ -1,6 +1,6 @@
 import Types from './types'
 
-const createClasses: Stage.CreateClasses<Types.Styles, Types.PrivateProps> = (props, theme) => {
+const createClasses: Stage.CreateClasses<Types.Styles, Types.PrivateProps> = (theme, props, styleProps) => {
   return {
     container: (variant) => [
       variant({
@@ -39,6 +39,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.PrivateProps> = (pr
           ],
         },
       }),
+      styleProps.all,
     ],
 
     label: (variant) => [

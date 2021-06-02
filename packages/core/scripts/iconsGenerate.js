@@ -1,6 +1,6 @@
 /**
  * This script will generate
- * tsx files in @stage-ui/core/icons/svg
+ * tsx files in @stage-ui/icons/svg
  */
 
 const fs = require('fs')

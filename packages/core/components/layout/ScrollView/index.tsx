@@ -1,7 +1,5 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
-import isWebKit from '@stage-ui/core/misc/utils/isWebKit'
-import { useComponent } from '@stage-ui/system'
+import isWebKit from '@stage-ui/core/utils/isWebKit'
+import { useSystem } from '@stage-ui/system'
 import React, {
   forwardRef,
   ForwardRefRenderFunction,
@@ -37,14 +35,7 @@ interface MemoParams {
 }
 
 const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
-  const { cs, attributes, events } = useComponent('ScrollView', {
-    props,
-    styles,
-    styleProps: {
-      wrapper: ['all'],
-      webkit: ['all'],
-    },
-  })
+  const { classes, attributes, events } = useSystem('ScrollView', props, styles)
 
   const { shape = 'round', size = 'm', mode = 'scroll', xBarPosition = 'bottom', yBarPosition = 'right' } = props
 
@@ -69,7 +60,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
     [],
   )
 
-  const getOffsetTop = (elem: HTMLDivElement, offsetTop = 0) => {
+  const getOffsetTop = (elem: HTMLDivElement, offsetTop = 0): number => {
     if (!elem || elem.attributes['data-scroll-id']?.value === memo.id) {
       return offsetTop
     }
@@ -429,20 +420,20 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
   )
 
   return (
-    <div {...attributes} css={cs.wrapper} data-scroll-id={memo.id}>
+    <div {...attributes} css={classes.wrapper} data-scroll-id={memo.id}>
       <div
-        {...events.all}
-        onScroll={updateScroll}
-        css={isLegacyScrollSupport ? cs.webkit : cs.container}
+        {...events}
+        onScroll={updateScroll as any}
+        css={isLegacyScrollSupport ? classes.webkit : classes.container}
         ref={createRef}
-        children={<div css={cs.content} ref={(ref) => (memo.content = ref)} children={props.children} />}
+        children={<div css={classes.content} ref={(ref) => (memo.content = ref)} children={props.children} />}
       />
       {mode !== 'hidden' && (
         <>
           <div
-            css={cs.yBar({ active, size, shape, position: yBarPosition })}
+            css={classes.yBar({ active, size, shape, position: yBarPosition })}
             ref={(ref) => (memo.yBar = ref)}
-            children={<span css={cs.yThumb({ active, size, shape })} ref={(ref) => (memo.yThumb = ref)} />}
+            children={<span css={classes.yThumb({ active, size, shape })} ref={(ref) => (memo.yThumb = ref)} />}
             onMouseEnter={() => {
               window.addEventListener('mouseup', mouseUp)
             }}
@@ -454,9 +445,9 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
             onMouseUp={mouseUp}
           />
           <div
-            css={cs.xBar({ active, size, shape, position: xBarPosition })}
+            css={classes.xBar({ active, size, shape, position: xBarPosition })}
             ref={(ref) => (memo.xBar = ref)}
-            children={<span css={cs.xThumb({ active, size, shape })} ref={(ref) => (memo.xThumb = ref)} />}
+            children={<span css={classes.xThumb({ active, size, shape })} ref={(ref) => (memo.xThumb = ref)} />}
             onMouseEnter={() => {
               window.addEventListener('mouseup', mouseUp)
             }}

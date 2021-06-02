@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import { useSystem } from '@stage-ui/system'
 import { forwardRef, ForwardRefRenderFunction, useState } from 'react'
 import { ArrowIosDownward } from '../../../../icons'

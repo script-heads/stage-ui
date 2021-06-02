@@ -1,9 +1,8 @@
-/** @jsx jsx */
 import { jsx } from '@emotion/react'
-import Field from '@stage-ui/core/misc/hocs/Field'
-import { useComponent, useTheme } from '@stage-ui/system'
+import Field from '@stage-ui/core/components/basic/Field'
+import additionalClasses from '@stage-ui/core/components/basic/Field/styles'
+import { useSystem } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction, useImperativeHandle, useRef, useEffect, useState } from 'react'
-
 import styles from './styles'
 import Types from './types'
 
@@ -18,17 +17,8 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
     leftChildNumber,
   } = props
 
-  const { cs, attributes, events, focus } = useComponent('TextField', {
-    props,
-    styles,
-    styleProps: {
-      container: ['flow', 'layout'],
-      field: ['color', 'border', 'padding'],
-    },
-    focus: {
-      applyDecoration: false,
-      ignoreMouse: false,
-    },
+  const { classes, attributes, events } = useSystem('TextField', props, styles, {
+    additionalClasses: additionalClasses as Stage.CreateAdditionalClasses<Types.Styles, Types.Props>,
   })
 
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
@@ -76,14 +66,14 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
     const render = typeof leftChildNumber === 'function' ? leftChildNumber : (index: number) => index + 1
 
     return (
-      <React.Fragment>
-        <div ref={leftCountLineRef} style={{ top: leftCountLineState.top }} css={cs.lineNumbers}>
+      <>
+        <div ref={leftCountLineRef} style={{ top: leftCountLineState.top }} css={classes.lineNumbers}>
           {arr.map((_, index) => (
             <div key={index}>{render(index)}</div>
           ))}
         </div>
         <div style={{ visibility: 'hidden' }}>{render(arr.length - 1)}</div>
-      </React.Fragment>
+      </>
     )
   }
 
@@ -94,8 +84,7 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
       decoration={decoration}
       size={size}
       shape={shape}
-      focus={focus}
-      styles={cs}
+      classes={classes}
       clearable={props.value !== undefined && !props.value ? false : props.clearable}
       leftChild={leftChildNumber && multiline ? <LeftCountLine /> : props.leftChild}
       onClear={onClear}
@@ -106,20 +95,21 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
         props.onEsc?.(e)
       }}
       events={{
-        ...events.all,
-        onFocus: (e) => {
+        ...events,
+        onFocus: (e: React.FocusEvent<HTMLInputElement>) => {
           inputRef.current?.focus()
-          events.all.onFocus?.(e)
+          events.onFocus?.(e)
         },
       }}
       attributes={{
         ...attributes,
         tabIndex,
       }}
-      children={jsx(props.multiline ? 'textarea' : 'input', {
+    >
+      {jsx(props.multiline ? 'textarea' : 'input', {
         ref: inputRef,
-        css: cs.input({ size, multiline, disabled }),
-        onChange: (e) => {
+        css: classes.input({ size, multiline, disabled }),
+        onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
           if (leftCountLineRef.current) {
             setleftCountLineState({
               count: e.target.value.split(`\n`).length,
@@ -156,9 +146,9 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
         rows: props.rows,
         wrap: props.wrap,
         tabIndex: props.tabIndex,
-        onFocus: (e) => events.all.onFocus?.(e),
-        onBlur: (e) => events.all.onBlur?.(e),
-        onScroll: (e) => {
+        onFocus: (e: React.FocusEvent<HTMLInputElement>) => events.onFocus?.(e),
+        onBlur: (e: React.FocusEvent<HTMLInputElement>) => events.onBlur?.(e),
+        onScroll: (e: React.ChangeEvent<HTMLInputElement>) => {
           if (leftCountLineRef.current) {
             setleftCountLineState({
               count: e.target.value.split(`\n`).length,
@@ -167,7 +157,7 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
           }
         },
       })}
-    />
+    </Field>
   )
 }
 

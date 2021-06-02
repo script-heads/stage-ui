@@ -24,10 +24,10 @@ fixTypes('system', [
 fixTypes('core', [
     ['data/Table/types', '@stage-ui/core/data/Table/types'],
     ['layout/Modal/types', '@stage-ui/core/layout/Modal/types'],
-    ['misc/hocs/Icon/types', '@stage-ui/core/misc/hocs/Icon/types'],
-    ['misc/hocs/Field/types', '@stage-ui/core/misc/hocs/Field/types'],
-    ['misc/hocs/Check/types', '@stage-ui/core/misc/hocs/Check/types'],
-    ['misc/hocs/Typography/types', '@stage-ui/core/misc/hocs/Typography/types'],
+    ['misc/hocs/Icon/types', '@stage-ui/core/components/basic/Icon/types'],
+    ['misc/hocs/Field/types', '@stage-ui/core/components/basic/Field/types'],
+    ['misc/hocs/Check/types', '@stage-ui/core/components/basic/Check/types'],
+    ['misc/hocs/Typography/types', '@stage-ui/core/components/basic/Typography/types'],
     ["declare module 'icons'", "declare module '@stage-ui/icons'"],
 ])
 fixTypes('lab', [

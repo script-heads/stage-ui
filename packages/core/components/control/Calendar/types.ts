@@ -1,5 +1,4 @@
 import { Classes } from '@stage-ui/system/hooks/useSystem'
-
 import { Moment } from 'moment'
 import { CSSProperties } from 'react'
 
@@ -40,7 +39,7 @@ declare namespace CalendarTypes {
     isCurrentMonth: boolean
   }
 
-  interface Props extends Omit<AllProps<HTMLDivElement, Styles>, 'onChange'> {
+  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onChange'> {
     /**
      * Type for Calendar
      * @default day

@@ -52,10 +52,9 @@ export interface CoreProps<ClassSchema> {
    * @display SystemTypes.Styles
    * @link /props#styles
    */
-  overrides?: (
-    theme: Stage.Theme,
-    styleProps: StyleProps,
-  ) => Partial<ClassesDefinition<ClassSchema>> | Partial<ClassesDefinition<ClassSchema>>
+  overrides?:
+    | ((theme: Stage.Theme, styleProps: StyleProps) => Partial<ClassesDefinition<ClassSchema>>)
+    | Partial<ClassesDefinition<ClassSchema>>
   /**
    * Shortcut for fast styles
    * @display SystemTypes.Styles

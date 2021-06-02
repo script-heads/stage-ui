@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import { useSystem } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import Thumb from './MeterThumb'
@@ -9,14 +7,7 @@ import Types from './types'
 const Meter: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
   const { decoration = 'filled', shape = 'round', size = 'm', value = 0 } = props
 
-  const { classes, attributes, events } = useSystem('Meter', {
-    props,
-    styles,
-    styleProps: { container: ['all'] },
-    focus: {
-      applyDecoration: true,
-    },
-  })
+  const { classes, attributes, events } = useSystem('Meter', props, styles)
 
   let childs = props.children as React.ReactElement[]
   if (childs && !Array.isArray(childs)) {
@@ -30,20 +21,11 @@ const Meter: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
           React.cloneElement(child, {
             key: index,
             ...props,
-            styles: {
-              container: props.styles?.thumb,
-            },
             ...child.props,
           }),
         )
       ) : (
-        <Thumb
-          {...props}
-          styles={{
-            container: props.styles?.thumb,
-          }}
-          value={value}
-        />
+        <Thumb {...props} value={value} />
       )}
     </div>
   )

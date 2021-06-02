@@ -9,6 +9,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
+    "suppressImplicitAnyIndexErrors": true,
     "strict": true
   },
   "exclude": [

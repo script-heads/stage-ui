@@ -29,7 +29,7 @@ declare namespace MeterTypes {
     /**
      * Color of meter
      */
-    color?: ColorProp
+    color?: Stage.ColorProp
     /**
      * Enabled progress animation
      * @default false

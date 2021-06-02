@@ -1,5 +1,5 @@
 import { LayoutDecoration } from '@stage-ui/core/utils/applyLayoutDecoration'
-import { MutableRefObject } from 'react'
+import { Classes } from '@stage-ui/system/hooks/useSystem'
 
 declare namespace TableTypes {
   type RowMountType =
@@ -280,7 +280,7 @@ declare namespace TableTypes {
 
   interface HeadCellProps<ROW> {
     column: TableColumn<ROW>
-    styles: SystemTypes.ComponentStyles<Styles>
+    styles: Classes<Styles>
     toggleSort: (sort: TableSortObject) => Promise<unknown>
   }
 
@@ -288,7 +288,7 @@ declare namespace TableTypes {
     rowCtxItem: TableRowContext<ROW>
     column: TableColumn<ROW>
     rowIndex: number
-    styles: SystemTypes.ComponentStyles<Styles>
+    styles: Classes<Styles>
     getCellContext: TableRef<ROW>['getCellContext']
   }
 
@@ -296,7 +296,7 @@ declare namespace TableTypes {
     rowCtxItem: TableRowContext<ROW>
     columns: TableColumn<ROW>[]
     rowIndex: number
-    styles: SystemTypes.ComponentStyles<Styles>
+    styles: Classes<Styles>
     getCellContext: TableRef<ROW>['getCellContext']
     events: RowEvents<ROW>
     rowDidMount?: (rowCtxItem: TableRowContext<ROW>) => void
@@ -316,7 +316,7 @@ declare namespace TableTypes {
     footerContent?: Props<ROW>['footer']
     pagination?: TablePaginationOptions
     onPageChange: (pageNumber: number) => void
-    styles: SystemTypes.ComponentStyles<Styles>
+    styles: Classes<Styles>
   }
 
   interface Styles {

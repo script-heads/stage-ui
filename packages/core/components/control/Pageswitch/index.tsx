@@ -1,7 +1,5 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import { Flexbox, Text } from '@stage-ui/core'
-import { ArrowIosBack, ArrowIosForward, ArrowheadLeft, ArrowheadRight } from '@stage-ui/core/icons'
+import { ArrowIosBack, ArrowIosForward, ArrowheadLeft, ArrowheadRight } from '@stage-ui/icons'
 import { useSystem } from '@stage-ui/system'
 import { forwardRef, ForwardRefRenderFunction, useEffect, useState } from 'react'
 import styles from './styles'
@@ -10,10 +8,7 @@ import Types from './types'
 const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
   const { length, pageSize = 20, value } = props
   const lastPage = Math.ceil(length / pageSize)
-  const { classes, attributes, events } = useSystem('Pageswitch', {
-    props,
-    styles,
-  })
+  const { classes, attributes, events } = useSystem('Pageswitch', props, styles)
 
   let defaultValue = value || props.defaultValue || 1
   if (defaultValue <= 0) defaultValue = 1

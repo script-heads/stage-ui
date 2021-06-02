@@ -11,6 +11,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
         height: '100%',
         width: '100%',
       },
+      styleProps.all,
     ],
     container: [
       {
@@ -47,6 +48,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
           display: 'none',
         },
       },
+      styleProps.all,
     ],
     yBar: (variant) => [
       {

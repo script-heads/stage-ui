@@ -1,3 +1,13 @@
+import {
+  AllEventProps,
+  AttributeProps,
+  BorderProps,
+  ColorProps,
+  CoreProps,
+  LayoutProps,
+  PaddingProps,
+} from '@stage-ui/system/props/types'
+
 declare namespace DropTypes {
   interface TargetCoordinates {
     top: number
@@ -17,7 +27,7 @@ declare namespace DropTypes {
     /**
      * Ref of the target element near which the drop will be shown
      */
-    target?: any
+    target?: React.RefObject<HTMLElement>
     /**
      * Will mount or unmount drop
      * @default true

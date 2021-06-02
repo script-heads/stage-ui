@@ -6,7 +6,7 @@ declare namespace SpinnerTypes {
      * Color of spinner
      * @default hardest
      */
-    color?: ColorProp
+    color?: Stage.ColorProp
     /**
      * Custom content
      */

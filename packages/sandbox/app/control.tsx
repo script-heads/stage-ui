@@ -1,5 +1,5 @@
 import { Button, dialog, Divider, Flexbox, notify, Text } from '@stage-ui/core'
-import { QuestionMarkCircle, Save } from '@stage-ui/core/icons'
+import { QuestionMarkCircle, Save } from '@stage-ui/icons'
 import React from 'react'
 
 const PlaygroundControl = () => {

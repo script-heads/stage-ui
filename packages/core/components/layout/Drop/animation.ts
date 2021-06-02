@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import Types from './types'
 
 type AnimationProp = Exclude<Types.Props['animation'], undefined>
@@ -13,7 +12,7 @@ export default class DropAnimation {
 
   type: AnimationProp['type']
 
-  duration: AnimationProp['duration']
+  duration: Exclude<AnimationProp['duration'], undefined>
 
   reverse: AnimationProp['reverse']
 
@@ -25,7 +24,7 @@ export default class DropAnimation {
     this.duration = props.animation?.duration || 100
     this.reverse = props.animation?.reverse || false
     this.align = props.align || 'bottom'
-    if (this.align == 'right' || this.align == 'left') {
+    if (this.align === 'right' || this.align === 'left') {
       this.isHorizontal = true
     }
     if (this.type === 'none') {
@@ -87,12 +86,14 @@ export default class DropAnimation {
       if (this.reverse) {
         value = -value
       }
-      ;(this.style.transform = `${translate}(${value}rem)`), (this.style.opacity = '0')
+      this.style.transform = `${translate}(${value}rem)`
+      this.style.opacity = '0'
     }
     if (this.type === 'collapse') {
       const scale = this.isHorizontal ? 'scaleX' : 'scaleY'
       const value = this.reverse ? 1.2 : 0.8
-      ;(this.style.transform = `${scale}(${value})`), (this.style.opacity = '0')
+      this.style.transform = `${scale}(${value})`
+      this.style.opacity = '0'
     }
   }
 }

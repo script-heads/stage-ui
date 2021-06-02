@@ -1,6 +1,5 @@
 import { Options } from '@stage-ui/system/hooks/useSystem'
 import { ColorProp } from '@stage-ui/system/props/color'
-
 import CSS from 'csstype'
 
 declare namespace TypographyTypes {
@@ -64,11 +63,11 @@ declare namespace TypographyTypes {
     /**
      * Text color
      */
-    color?: ColorProp
+    color?: Stage.ColorProp
     /**
      * Shorthand for background-color
      */
-    backgroundColor?: ColorProp
+    backgroundColor?: Stage.ColorProp
     /**
      * Shorthand for text-align
      */
@@ -80,7 +79,7 @@ declare namespace TypographyTypes {
     /**
      * Shorthand for font-size
      * @default m
-     * @display SystemTypes.Size
+     * @display Stage.Sizes
      * @link /props/#size
      */
     size?: Stage.Sizes | (string & { T?: string })

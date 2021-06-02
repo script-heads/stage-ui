@@ -1,5 +1,5 @@
 declare namespace MenuGroupTypes {
-  interface Props extends Omit<AllProps<HTMLDivElement, Styles>, 'onChange'> {
+  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onChange'> {
     /**
      * Title of group
      */

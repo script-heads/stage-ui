@@ -1,44 +1,54 @@
 import Types from './types'
-import fieldStyles from '../../basic/Field/styles'
 
-const styles: Stage.CreateClasses<Types.Styles, Types.Props, Types.StyleParams> = (props, theme, params) => {
+const styles: Stage.CreateAdditionalClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
   const minHeight = theme.assets.field[props.size || 'm']?.minHeight || theme.assets.field.m.minHeight || '2.5rem'
 
   return {
-    ...fieldStyles<Types.Styles>(props, theme, {
-      container: (variant) => [
-        variant({
-          isOpen: {
-            zIndex: 999,
-          },
-        }),
-      ],
-      field: (variant) => [
-        params?.isOpen && {
+    container: (variant) => [
+      variant({
+        isOpen: {
+          zIndex: 999,
+        },
+      }),
+      styleProps.margin,
+      styleProps.flex,
+      styleProps.grid,
+      styleProps.layout,
+    ],
+    field: (variant) => [
+      variant({
+        isOpen: {
           borderColor: theme.color.primary.rgb().string(),
         },
-        variant({
-          decoration: {
-            filled: [
-              params?.isOpen && {
+        decoration: {
+          filled: [
+            variant({
+              isOpen: {
                 borderColor: 'transparent',
               },
-            ],
-            none: [
-              { padding: 0 },
-              params?.isOpen && {
+            }),
+          ],
+          none: [
+            { padding: 0 },
+            variant({
+              isOpen: {
                 borderColor: 'transparent',
               },
-            ],
-            underline: [
-              params?.isOpen && {
+            }),
+          ],
+          underline: [
+            variant({
+              isOpen: {
                 borderColor: 'transparent',
               },
-            ],
-          },
-        }),
-      ],
-    }),
+            }),
+          ],
+        },
+      }),
+      styleProps.color,
+      styleProps.border,
+      styleProps.padding,
+    ],
     drop: (variant) => [
       {
         position: 'relative',
@@ -167,7 +177,7 @@ const styles: Stage.CreateClasses<Types.Styles, Types.Props, Types.StyleParams> 
         color: props.disabled ? theme.color.light.rgb().string() : theme.color.primary.rgb().string(),
         padding: `0 calc(${minHeight} / 5)`,
         margin: `calc(${minHeight} / 20)`,
-        marginRight: 'calc(${minHeight} / 10)',
+        marginRight: `calc(${minHeight} / 10)`,
         marginLeft: 0,
         alignItems: 'center',
       },
@@ -232,4 +242,4 @@ const styles: Stage.CreateClasses<Types.Styles, Types.Props, Types.StyleParams> 
   }
 }
 
-export default styles
+export default styles as Stage.CreateClasses<Types.Styles, Types.Props>

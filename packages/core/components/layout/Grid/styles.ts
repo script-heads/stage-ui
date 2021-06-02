@@ -9,6 +9,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
         position: 'relative',
         display: props.inline ? 'inline-grid' : 'grid',
       },
+      styleProps.all,
     ],
   }
 }

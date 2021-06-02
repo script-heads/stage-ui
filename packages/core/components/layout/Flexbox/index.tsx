@@ -5,11 +5,7 @@ import styles from './styles'
 import Types from './types'
 
 const Flexbox: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-  const { classes, attributes, events } = useSystem('Flexbox', {
-    props,
-    styles,
-    styleProps: { container: ['all'] },
-  })
+  const { classes, attributes, events } = useSystem('Flexbox', props, styles)
 
   return jsx(
     props.as || 'div',

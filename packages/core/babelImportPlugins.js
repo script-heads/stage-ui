@@ -53,9 +53,9 @@ module.exports = [
   [
     'babel-plugin-import',
     {
-      libraryName: '@stage-ui/core/icons',
+      libraryName: '@stage-ui/icons',
       camel2DashComponentName: true,
-      customName: (name) => `@stage-ui/core/icons/svg/${name[0].toLowerCase()}${name.slice(1)}`,
+      customName: (name) => `@stage-ui/icons/svg/${name[0].toLowerCase()}${name.slice(1)}`,
     },
     'icons',
   ],

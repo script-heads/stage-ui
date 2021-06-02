@@ -1,7 +1,5 @@
 import colorResolver from '@stage-ui/system/props/color'
-
 import Types from './types'
-
 const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props) => {
   const labelColor = props.labelColor ? colorResolver(props.labelColor, theme) : undefined
 

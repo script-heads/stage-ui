@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import { useSystem } from '@stage-ui/system'
 import React, {
   forwardRef,
@@ -37,7 +35,7 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
     stickCursor,
   } = props
 
-  const { classes, attributes, events } = useSystem('Drop', { props, styles, styleProps: { container: ['self'] } })
+  const { classes, attributes, events } = useSystem('Drop', props, styles)
 
   const dropRef = useRef<HTMLDivElement>(null)
 
@@ -90,7 +88,7 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
   }
 
   function updatePosition() {
-    if (dropRef?.current) {
+    if (dropRef?.current && targetRef?.current) {
       const tr: ClientRect = targetRef.current.getBoundingClientRect()
       const dr: ClientRect = dropRef.current.getBoundingClientRect()
       const { style } = dropRef.current
@@ -106,19 +104,19 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
         }
         switch (align) {
           case 'top':
-            getTopCoord = (tr, dr) => toStyle(tr.top - dr.height - spacing)
+            getTopCoord = (ctr, cdr) => toStyle(ctr.top - cdr.height - spacing)
             setHorizontalPosition()
             break
           case 'bottom':
-            getTopCoord = (tr) => toStyle(tr.bottom + spacing)
+            getTopCoord = (ctr) => toStyle(ctr.bottom + spacing)
             setHorizontalPosition()
             break
           case 'left':
-            getLeftCoord = (tr, dr) => toStyle(tr.left - dr.width - spacing)
+            getLeftCoord = (ctr, cdr) => toStyle(ctr.left - cdr.width - spacing)
             setVerticalPosition()
             break
           case 'right':
-            getLeftCoord = (tr) => toStyle(tr.right + spacing)
+            getLeftCoord = (ctr) => toStyle(ctr.right + spacing)
             setVerticalPosition()
             break
         }
@@ -144,7 +142,7 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
 
   function handleClickOutside(event: MouseEvent) {
     if (onClickOutside && !dropRef?.current?.contains(event.target as Node)) {
-      onClickOutside(event, !targetRef?.current?.contains(event.target))
+      onClickOutside(event, !targetRef?.current?.contains(event.target as Node))
     }
   }
 
@@ -197,8 +195,8 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
       const style = rect && dropRef.current?.style
 
       if (style) {
-        if (stretchHeight) style.height = toStyle(rect.height)
-        if (stretchWidth) style.width = toStyle(rect.width)
+        if (stretchHeight) style.height = toStyle(rect?.height || 0)
+        if (stretchWidth) style.width = toStyle(rect?.width || 0)
       }
       sharedZIndex++
 
@@ -250,11 +248,11 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
           zIndex,
           visibility: 'hidden',
           pointerEvents: stickCursor && 'none',
-          ...attributes.style,
         } as React.CSSProperties
       }
-      children={children}
-    />,
+    >
+      {children}
+    </div>,
     document.body,
   )
 }

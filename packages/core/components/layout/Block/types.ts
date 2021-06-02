@@ -1,5 +1,4 @@
 import { LayoutDecoration } from '@stage-ui/core/utils/applyLayoutDecoration'
-
 import CSS from 'csstype'
 
 declare namespace BlockTypes {

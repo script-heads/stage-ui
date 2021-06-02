@@ -6,7 +6,7 @@ declare namespace ToastTypes {
      * Color of divider
      * @default primary
      */
-    color?: ColorProp
+    color?: Stage.ColorProp
     /**
      * Place for items to the right of children
      */

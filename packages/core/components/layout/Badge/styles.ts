@@ -12,7 +12,9 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
         position: 'relative',
         width: 'fit-content',
       },
-      styleProps.flow,
+      styleProps.margin,
+      styleProps.flex,
+      styleProps.grid,
     ],
     holder: (variant) => [
       {
@@ -99,6 +101,10 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
           ],
         },
       }),
+      styleProps.layout,
+      styleProps.padding,
+      styleProps.color,
+      styleProps.border,
     ],
   }
 }

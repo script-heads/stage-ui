@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import { forwardRef, ForwardRefRenderFunction, useState } from 'react'
 import { getTR } from './TableRow'
 import Types from './types'

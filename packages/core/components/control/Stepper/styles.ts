@@ -12,6 +12,7 @@ const styles: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, st
         transition: 'all 0.25s',
         ...theme.assets.typography.text[props.size || 'm'],
       },
+      styleProps.all,
     ],
     step: (variant) => [
       {

@@ -80,25 +80,25 @@ declare namespace SelectTypes {
     cursor: number
   }
 
-  interface StyleState extends StyleParams {
+  interface StyleState {
     shape: Props['shape']
     size: Props['size']
     decoration: Props['decoration']
-    focus: boolean
+    isOpen: boolean
   }
 
   interface StyleStateItem extends StyleState {
     selected: boolean
   }
 
-  interface StyleParams {
-    isOpen: boolean
-  }
-
   interface Styles
-    extends FieldTypes.Styles<{
-      container: StyleState
-    }> {
+    extends FieldTypes.Styles<
+      {
+        container: StyleState
+        field: StyleState
+      },
+      StyleState
+    > {
     /**
      * Container for selected items
      */

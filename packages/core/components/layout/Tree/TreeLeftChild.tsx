@@ -1,4 +1,4 @@
-import { ArrowIosForward } from '@stage-ui/core/icons'
+import { ArrowIosForward } from '@stage-ui/icons'
 import React, { Fragment } from 'react'
 import Types from './types'
 

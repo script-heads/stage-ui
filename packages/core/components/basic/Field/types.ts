@@ -1,10 +1,8 @@
 import { Classes, ComponentData } from '@stage-ui/system/hooks/useSystem'
-import { ColorProp } from '@stage-ui/system/props/color'
-
 import React from 'react'
 
 declare namespace FieldTypes {
-  interface Props<S = Styles> extends Stage.AllProps<HTMLInputElement, S> {
+  interface Props<S = Styles> extends Omit<Stage.AllProps<HTMLInputElement, S>, 'onChange'> {
     /**
      * Label for field
      */
@@ -37,7 +35,7 @@ declare namespace FieldTypes {
      * Color of field
      * @default surface
      */
-    color?: ColorProp
+    color?: Stage.ColorProp
     /**
      * Shape of field
      * @default rounded
@@ -70,61 +68,59 @@ declare namespace FieldTypes {
     onClear?: () => void
   }
 
-  interface State {
+  type State<AdditionalState = {}> = {
     disabled: Props['disabled']
-    focus: boolean
     shape: Props['shape']
     size: Props['size']
     decoration: Props['decoration']
     labelType: Props['labelType']
-  }
+  } & AdditionalState
 
-  interface Styles<AdditionalStyles extends { [S in keyof Styles]?: Object } = {}> {
+  interface Styles<AdditionalStyles extends Record<string, any> = {}, AdditionalState = {}> {
     /**
      * Root element
      */
-    container: State & AdditionalStyles['container']
+    container: State<AdditionalState> & AdditionalStyles['container']
     /**
      * Container of field
      */
-    field: State & AdditionalStyles['field']
+    field: State<AdditionalState> & AdditionalStyles['field']
     /**
      * Container of field content
      */
-    content: State & AdditionalStyles['content']
+    content: State<AdditionalState> & AdditionalStyles['content']
     /**
      * Label element
      */
-    label: State & AdditionalStyles['label']
+    label: State<AdditionalState> & AdditionalStyles['label']
     /**
      * Container for left and right childs
      */
     child: {
       align: 'right' | 'left'
-    } & State &
+    } & State<AdditionalState> &
       AdditionalStyles['child']
     /**
      * The button that clear value
      */
-    clearButton: State & AdditionalStyles['clearButton']
+    clearButton: State<AdditionalState> & AdditionalStyles['clearButton']
     /**
      * Container of hint
      */
-    hint: State & AdditionalStyles['hint']
+    hint: State<AdditionalState> & AdditionalStyles['hint']
     /**
      * Container of error
      */
-    error: State & AdditionalStyles['error']
+    error: State<AdditionalState> & AdditionalStyles['error']
   }
 
   interface PrivateProps extends Props {
-    focus: boolean
-    classes: Classes<Styles>
-    classesState?: State
+    classes: Record<keyof Styles, (...args: any) => Stage.JSS>
+    classesState?: Partial<State>
 
     labelName?: string
-    attributes?: ComponentData<Props, Styles>['attributes']
-    events?: ComponentData<Props, Styles>['events']
+    attributes?: Omit<ComponentData<Props, Styles>['attributes'], 'onChange'>
+    events?: Record<string, Function>
     children?: React.ReactNode
   }
 }

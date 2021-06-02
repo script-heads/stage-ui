@@ -1,9 +1,6 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import { Flexbox, Spinner } from '@stage-ui/core'
-import { ArrowIosDownward } from '@stage-ui/core/icons'
+import { ArrowIosDownward } from '@stage-ui/icons'
 import { useState, forwardRef, ForwardRefRenderFunction } from 'react'
-
 import Types from './types'
 
 const TableHeadCell: ForwardRefRenderFunction<HTMLTableDataCellElement, Types.HeadCellProps<any>> = (props, ref) => {

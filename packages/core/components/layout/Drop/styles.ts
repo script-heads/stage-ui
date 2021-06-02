@@ -8,6 +8,10 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
         position: 'fixed',
         zIndex: 300,
       },
+      styleProps.layout,
+      styleProps.padding,
+      styleProps.color,
+      styleProps.border,
     ],
   }
 }

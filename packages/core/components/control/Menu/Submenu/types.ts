@@ -1,5 +1,5 @@
 declare namespace SubmenuTypes {
-  interface Props extends Omit<AllProps<HTMLDivElement, Styles>, 'onChange'> {
+  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onChange'> {
     /**
      * Title for menu item
      */

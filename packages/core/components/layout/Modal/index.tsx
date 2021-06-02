@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import { useSystem } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import ModalOverlay from './ModalOverlay'
@@ -11,7 +9,7 @@ import Types from './types'
 const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
   const { hideHeader, overlayClose = true, opened, decoration = 'modal' } = props
 
-  const { classes, attributes, events } = useSystem('Modal', { props, styles, styleProps: { window: ['all'] } })
+  const { classes, attributes, events } = useSystem('Modal', props, styles)
 
   const overlayRef = useRef<HTMLDivElement>(null)
   const windowRef = useRef<HTMLDivElement>(null)
@@ -32,20 +30,8 @@ const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
     if (opened === false) close()
   }, [opened])
 
-  useImperativeHandle(ref, () => ({
-    open,
-    close,
-    title,
-    setTitle,
-    subtitle,
-    setSubtitle,
-    render: customRender,
-    setRender: setCustomRender,
-    overlay: overlayRef.current as HTMLDivElement,
-    window: windowRef.current as HTMLDivElement,
-  }))
 
-  function open(customRender?: React.ReactElement) {
+  function open(customRender?: React.ReactElement | null) {
     document.body.style.overflow = 'hidden'
 
     if (customRender) {
@@ -74,6 +60,19 @@ const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
 
     props.onClose && props.onClose()
   }
+
+  useImperativeHandle(ref, () => ({
+    open,
+    close,
+    title,
+    setTitle,
+    subtitle,
+    setSubtitle,
+    render: customRender,
+    setRender: setCustomRender,
+    overlay: overlayRef.current as HTMLDivElement,
+    window: windowRef.current as HTMLDivElement,
+  }))
 
   if (!active) {
     return null

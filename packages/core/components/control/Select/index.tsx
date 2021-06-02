@@ -1,19 +1,11 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Drop, ScrollView } from '@stage-ui/core'
-import { ArrowIosDownward, Close } from '@stage-ui/core/icons'
-import DropTypes from '@stage-ui/core/layout/Drop/types'
-import Field from '@stage-ui/core/misc/hocs/Field'
-import { useComponent } from '@stage-ui/system'
-import React, {
-  forwardRef,
-  ForwardRefRenderFunction,
-  Fragment,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from 'react'
+import { ChevronDown, Close } from '@stage-ui/icons'
+import DropTypes from '@stage-ui/core/components/layout/Drop/types'
+import Field from '@stage-ui/core/components/basic/Field'
+import { useSystem } from '@stage-ui/system'
+import React, { forwardRef, ForwardRefRenderFunction, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import additionalClasses from '@stage-ui/core/components/basic/Field/styles'
 import styles from './styles'
 import Types from './types'
 
@@ -64,23 +56,13 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     return true
   })
 
-  const { cs, attributes, events, focus } = useComponent(
-    'Select',
-    {
-      props,
-      styles,
-      styleProps: {
-        container: ['flow', 'layout'],
-        field: ['color', 'border', 'padding'],
-      },
-      focus: {
-        applyDecoration: false,
-      },
-    },
-    {
-      isOpen: isOpen && options.length > 0,
-    },
-  )
+  const {
+    classes,
+    attributes,
+    events: { onChange: onChangeProp, ...events },
+  } = useSystem('Select', props, styles, {
+    additionalClasses: additionalClasses as Stage.CreateAdditionalClasses<Types.Styles, Types.Props>,
+  })
 
   /**
    * Object for variant styles
@@ -90,7 +72,6 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     shape,
     size,
     isOpen,
-    focus,
   }
   /**
    * Component did mount
@@ -115,7 +96,9 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
    * field changing his height
    */
   useEffect(() => {
-    isOpen && dropRef.current?.updatePosition()
+    if (isOpen) {
+      dropRef.current?.updatePosition()
+    }
   }, [values])
 
   /*
@@ -123,17 +106,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
    * TODO: handle keyboard control
    */
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-    switch (event.key) {
-      case 'Enter':
-        break
-      case 'ArrowUp':
-        break
-      case 'ArrowDown':
-        break
-      case 'Backspace':
-        break
-    }
-    props.onKeyDown && props.onKeyDown(event)
+    props.onKeyDown?.(event)
   }
 
   /**
@@ -152,13 +125,13 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
    * support controlled and uncontrolled
    * second arg need if you need filter values by search
    */
-  function onChange(values: Types.Option[], value?: Types.Option, search = '') {
+  function onChange(allValues: Types.Option[], value?: Types.Option, search = '') {
     setSearchQuery(search)
     props.onSearch?.(value?.text ?? search)
     if (props.values === undefined) {
-      setValues(values)
+      setValues(allValues)
     }
-    props.onChange?.(values, value)
+    onChangeProp?.(allValues, value)
   }
 
   /**
@@ -204,12 +177,10 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
   return (
     <>
       <Field
-        {...props}
-        styles={cs}
+        classes={classes}
         ref={fieldRef}
         size={size}
-        state={styleState}
-        focus={focus}
+        classesState={styleState}
         disabled={disabled}
         shape={shape}
         decoration={decoration}
@@ -217,21 +188,21 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
         onClear={() => clearValues()}
         attributes={{ ...attributes, tabIndex }}
         events={{
-          ...events.all,
-          onClick: (e) => {
+          ...events,
+          onClick: (e: React.MouseEvent<HTMLInputElement>) => {
             e.preventDefault()
             if (openOnFocus) {
               setOpen(true)
             }
-            events.all.onClick?.(e)
+            events.onClick?.(e)
           },
-          onKeyDown: (e) => handleKeyDown(e),
+          onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => handleKeyDown(e),
         }}
         rightChild={
           props.rightChild !== undefined ? (
             props.rightChild
           ) : (
-            <ArrowIosDownward
+            <ChevronDown
               alignSelf="center"
               size={size}
               style={{
@@ -246,57 +217,56 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
             />
           )
         }
-        children={
-          <div css={cs.selected}>
-            {props.multiselect &&
-              values.map((option) => (
-                <div css={cs.tag(styleState)} key={option.value}>
-                  {option.text}
-                  {!disabled && (
-                    <Close
-                      size={size}
-                      css={cs.tagRemove(styleState)}
-                      onClick={(e) => {
-                        e.preventDefault()
-                        e.stopPropagation()
-                        unsetOption(option)
-                      }}
-                    />
-                  )}
-                </div>
-              ))}
-            <input
-              size={5}
-              disabled={disabled || !props.searchable}
-              css={cs.input({
-                disableEvents: !props.searchable,
-                searchMode: searchQuery !== '',
-                multiselect: !!props.multiselect,
-              })}
-              placeholder={!props.multiselect || values.length === 0 ? props.placeholder : ''}
-              value={(!props.multiselect && values[0]?.text) || searchQuery}
-              onChange={(e) => {
-                if (!isOpen) {
-                  setOpen(true)
-                }
-                if (props.multiselect) {
-                  props.onSearch?.(e.target.value)
-                  setSearchQuery(e.target.value)
-                } else {
-                  clearValues(e.target.value)
-                }
-              }}
-              onClick={(e) => {
-                e.preventDefault()
-                e.stopPropagation()
-                if (openOnFocus) {
-                  setOpen(true)
-                }
-              }}
-            />
-          </div>
-        }
-      />
+      >
+        <div css={classes.selected}>
+          {props.multiselect &&
+            values.map((option) => (
+              <div css={classes.tag(styleState)} key={option.value}>
+                {option.text}
+                {!disabled && (
+                  <Close
+                    size={size}
+                    css={classes.tagRemove(styleState)}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      unsetOption(option)
+                    }}
+                  />
+                )}
+              </div>
+            ))}
+          <input
+            size={5}
+            disabled={disabled || !props.searchable}
+            css={classes.input({
+              disableEvents: !props.searchable,
+              searchMode: searchQuery !== '',
+              multiselect: !!props.multiselect,
+            })}
+            placeholder={!props.multiselect || values.length === 0 ? props.placeholder : ''}
+            value={(!props.multiselect && values[0]?.text) || searchQuery}
+            onChange={(e) => {
+              if (!isOpen) {
+                setOpen(true)
+              }
+              if (props.multiselect) {
+                props.onSearch?.(e.target.value)
+                setSearchQuery(e.target.value)
+              } else {
+                clearValues(e.target.value)
+              }
+            }}
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              if (openOnFocus) {
+                setOpen(true)
+              }
+            }}
+          />
+        </div>
+      </Field>
       <Drop
         visible={isOpen}
         ref={dropRef}
@@ -315,36 +285,29 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
         }}
         stretchWidth
         target={fieldRef}
-        children={
-          <div css={cs.drop(styleState)}>
-            <ScrollView
-              size="xs"
-              css={{ maxHeight: maxScrollHeight }}
-              sendFlowScollEvent={false}
-              children={
-                <>
-                  {options.map((option) => (
-                    <div
-                      css={cs.dropItem({ ...styleState, selected: values.includes(option) })}
-                      key={option.value}
-                      children={option.text}
-                      onClick={(e) => {
-                        e.preventDefault()
-                        setOption(option)
-                      }}
-                    />
-                  ))}
-                  {options.length === 0 && (
-                    <div css={cs.emptyConteiner}>
-                      <div css={cs.emptyText}>{emptyText}</div>
-                    </div>
-                  )}
-                </>
-              }
-            />
-          </div>
-        }
-      />
+      >
+        <div css={classes.drop(styleState)}>
+          <ScrollView size="xs" css={{ maxHeight: maxScrollHeight }} sendFlowScollEvent={false}>
+            {options.map((option) => (
+              <div
+                css={classes.dropItem({ ...styleState, selected: values.includes(option) })}
+                key={option.value}
+                onClick={(e) => {
+                  e.preventDefault()
+                  setOption(option)
+                }}
+              >
+                {option.text}
+              </div>
+            ))}
+            {options.length === 0 && (
+              <div css={classes.emptyConteiner(styleState)}>
+                <div css={classes.emptyText(styleState)}>{emptyText}</div>
+              </div>
+            )}
+          </ScrollView>
+        </div>
+      </Drop>
     </>
   )
 }

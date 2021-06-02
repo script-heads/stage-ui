@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import React, { forwardRef } from 'react'
 import ModalHeader from './ModalHeader'
 import ModalTypes from './types'

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Close, AlertCircle } from '@stage-ui/icons'
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import Types from './types'
@@ -6,7 +7,6 @@ const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (pro
   const { labelName, labelType = 'outside', label, clearable, onClear, attributes, events, classes } = props
 
   const classesState = {
-    focus: props.focus,
     size: props.size,
     decoration: props.decoration,
     labelType: props.labelType,

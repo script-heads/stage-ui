@@ -1,6 +1,4 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
-import * as themes from '@stage-ui/core/misc/themes'
+import * as themes from '@stage-ui/core/themes'
 import { Provider, useSystem } from '@stage-ui/system'
 import { forwardRef, ForwardRefRenderFunction, Fragment, useImperativeHandle, useRef } from 'react'
 import MountArea from './MountArea'
@@ -15,23 +13,12 @@ const Viewport: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
   useImperativeHandle(ref, () => viewportRef.current as HTMLDivElement)
 
   const EmotionCache = {
-    key: 'flow',
+    key: 'stage',
     container: (viewportRef && viewportRef.current) || undefined,
     ...cache,
   }
 
-  const { classes, attributes, events } = useSystem(
-    'Viewport',
-    {
-      props,
-      styles,
-      styleProps: {
-        container: ['all'],
-      },
-      theme,
-    },
-    { wrapper },
-  )
+  const { classes, attributes, events } = useSystem('Viewport', props, styles, { theme })
 
   const Content = (
     <Provider theme={theme} global={!wrapper ? classes.container : undefined} cache={EmotionCache}>

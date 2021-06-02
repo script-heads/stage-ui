@@ -1,3 +1,6 @@
+import { Classes } from "@stage-ui/system/hooks/useSystem"
+import { AllEventProps, AttributeProps, BorderProps, ColorProps, CoreProps, LayoutProps, PaddingProps } from "@stage-ui/system/props/types"
+
 declare namespace ModalTypes {
   type ModalDecoration = 'modal' | 'panel' | 'fullscreen'
   type ExtentedProps = AttributeProps &
@@ -109,7 +112,7 @@ declare namespace ModalTypes {
 
   interface ModalOverlayProps {
     getStyles: () => {
-      classes: ComponentStyles<Styles>
+      classes: Classes<Styles>
       state: StyleState
     }
     children?: React.ReactNode
@@ -124,7 +127,7 @@ declare namespace ModalTypes {
     containerEvents?: any
     onClosePressed: () => void
     getStyles: () => {
-      classes: ComponentStyles<Styles>
+      classes: Classes<Styles>
       state: StyleState
     }
   }
@@ -135,7 +138,7 @@ declare namespace ModalTypes {
     hideHeader?: boolean
     onClosePressed: () => void
     getStyles: () => {
-      classes: ComponentStyles<Styles>
+      classes: Classes<Styles>
       state: StyleState
     }
   }

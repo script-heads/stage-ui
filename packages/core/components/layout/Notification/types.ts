@@ -1,7 +1,7 @@
 import BlockTypes from '../Block/types'
 
 declare namespace NotificationTypes {
-  interface Props extends Stage.AllProps<HTMLDivElement, Styles>, Omit<BlockTypes.Props, 'styles'> {
+  interface Props extends Stage.AllProps<HTMLDivElement, Styles>, Omit<BlockTypes.Props, 'overrides'> {
     children?: React.ReactNode
   }
 

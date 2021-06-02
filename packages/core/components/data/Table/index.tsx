@@ -1,6 +1,4 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
-import { useComponent } from '@stage-ui/system'
+import { useSystem } from '@stage-ui/system'
 import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import styles from './styles'
 import TableFoot from './TableFoot'
@@ -15,10 +13,9 @@ export const dndContext = {
 }
 
 function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
-  // const Table: ForwardRefRenderFunction<Types.TableRef, Types.Props> = (props, ref) => {
 
   const tableRef = useRef<HTMLTableElement>(null)
-  const { cs, attributes, events } = useComponent('Table', { props, styles, styleProps: { container: ['all'] } })
+  const { classes, attributes, events } = useSystem('Table', props, styles)
   const { columns, pagination, footer } = props
   const [currentPage, setCurrentPage] = useState(1)
   const [reloadData, reload] = useState(false)
@@ -221,7 +218,7 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
    * Render Data
    */
   return (
-    <table {...attributes} {...events.all} ref={tableRef} css={cs.container}>
+    <table {...attributes} {...events} ref={tableRef} css={classes.container}>
       <thead>
         <tr
           children={columns.map((column, colIndex) => (

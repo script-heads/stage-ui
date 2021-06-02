@@ -1,5 +1,4 @@
 import { ChangeEventHandler } from 'react'
-
 import FieldTypes from '../../basic/Field/types'
 
 declare namespace TextFieldTypes {
@@ -143,7 +142,7 @@ declare namespace TextFieldTypes {
      */
     input: {
       multiline: boolean
-      size: SystemTypes.Size
+      size: Stage.Sizes
       disabled: boolean
     }
     lineNumbers: void

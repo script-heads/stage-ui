@@ -1,9 +1,8 @@
-import colorResolver from '@stage-ui/system/resolvers/color'
-
+import colorResolver from '@stage-ui/system/props/color'
 import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
-  const color = colorResolver(theme, props.color || theme.color.primary)
+  const color = colorResolver(props.color || theme.color.primary, theme)
   const field = theme.assets.field[props.size || 'm'] || theme.assets.field.m
 
   return {
@@ -34,11 +33,12 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
           outline: [
             {
               background: 'transparent',
-              borderColor: color.hex(),
+              borderColor: color.rgb().string(),
             },
           ],
         },
       }),
+      styleProps.all,
     ],
     thumb: (variant) => [],
   }

@@ -9,6 +9,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
         height: 'calc(1rem + 4px)',
         cursor: 'pointer',
       },
+      styleProps.all,
     ],
     rail: [
       {

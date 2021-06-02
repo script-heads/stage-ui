@@ -3,6 +3,8 @@ import ColorType from 'color'
 import { ReplaceTheme } from './utils/createTheme'
 import { AllProps as AllPropsType } from './props/types'
 import { CreateClasses as CreateClassesType } from './hooks/useSystem'
+import { ColorProp as ColorPropType } from '@stage-ui/system/props/color'
+import { CreateAdditionalClasses as CreateAdditionalClassesType } from './hooks/useSystem'
 
 declare global {
   namespace Stage {
@@ -95,6 +97,8 @@ declare global {
 
     type AllProps<Containter, ClassSchema> = AllPropsType<Containter, ClassSchema>
     type CreateClasses<ClassesSchema, Props> = CreateClassesType<ClassesSchema, Props>
+    type CreateAdditionalClasses<ClassesSchema, Props> = CreateAdditionalClassesType<ClassesSchema, Props>
+    type ColorProp = ColorPropType
   }
 }
 

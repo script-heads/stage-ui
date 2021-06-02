@@ -9,7 +9,7 @@ export interface Options<ClassesSchema, Props> {
   focus?: 'always' | 'tabOnly' | 'never'
   label?: string
   theme?: Stage.Theme
-  additionalClasses?: CreateClasses<ClassesSchema, Props>
+  additionalClasses?: CreateAdditionalClasses<ClassesSchema, Props>
 }
 
 export interface StyleProps {
@@ -50,17 +50,23 @@ export type CreateClasses<ClassesSchema, Props> = (
   styleProps: StyleProps,
 ) => ClassesDefinition<ClassesSchema>
 
+export type CreateAdditionalClasses<ClassesSchema, Props> = (
+  theme: Stage.Theme,
+  props: Props,
+  styleProps: StyleProps,
+) => Partial<ClassesDefinition<ClassesSchema>>
+
 export type ComponentData<Props extends Record<string, any>, ClassesSchema> = {
   classes: Classes<ClassesSchema>
   attributes: Pick<Props, keyof AttributeProps>
   events: Pick<Props, keyof AllEventProps<any>>
 }
 
-function useSystem<Props extends Record<string, any>, ClassesSchema>(
+function useSystem<Props extends Record<string, any>, ClassesSchema, AdditionalClassesSchema>(
   name: string,
   props: Props,
   createClasses: Stage.CreateClasses<ClassesSchema, Props>,
-  options: Options<ClassesSchema, Props> = {},
+  options: Options<AdditionalClassesSchema, Props> = {},
 ) {
   const currentTheme = useTheme()
   const { focus = 'always', label = name, theme = currentTheme, additionalClasses } = options
@@ -69,7 +75,7 @@ function useSystem<Props extends Record<string, any>, ClassesSchema>(
     classes: {},
     attributes: {},
     events: {},
-  } as ComponentData<Props, ClassesSchema>
+  } as ComponentData<Props, ClassesSchema & AdditionalClassesSchema>
 
   const styleProps: StyleProps = {
     all: [],
@@ -104,8 +110,8 @@ function useSystem<Props extends Record<string, any>, ClassesSchema>(
   const propsOverrides = props.overrides
 
   const componentClasses: ClassesDefinition<ClassesSchema> = createClasses(theme, props, styleProps)
-  const additionalComponentClasses: ClassesDefinition<ClassesSchema> =
-    additionalClasses?.(theme, props, styleProps) || ({} as ClassesDefinition<ClassesSchema>)
+  const additionalComponentClasses: Partial<ClassesDefinition<AdditionalClassesSchema>> =
+    additionalClasses?.(theme, props, styleProps) || ({} as ClassesDefinition<AdditionalClassesSchema>)
 
   const themeOverrideClasses: ClassesDefinition<ClassesSchema> = isFunction(themeOverrides)
     ? themeOverrides(props, styleProps)

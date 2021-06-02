@@ -1605,7 +1605,7 @@ declare module 'utils/attachProps/types' {
 }
 declare module 'utils/attachProps/attribute' {
 	import SystemTypes from 'types';
-	import { Options } from 'hooks/useComponent'; const createAttributes: <Styles, Props extends SystemTypes.AllProps<unknown, Styles>>(props: Props, setFocus: React.Dispatch<React.SetStateAction<boolean>>, options: Options<Styles, Props>) => {
+	import { Options } from 'hooks/useSystem'; const createAttributes: <Styles, Props extends SystemTypes.AllProps<unknown, Styles>>(props: Props, setFocus: React.Dispatch<React.SetStateAction<boolean>>, options: Options<Styles, Props>) => {
 	    attributes: SystemTypes.AttributeProps;
 	    events: {
 	        all: any;
@@ -1665,7 +1665,7 @@ declare module 'utils/attachProps/style' {
 
 }
 declare module 'utils/attachProps' {
-	import { Options } from 'hooks/useComponent';
+	import { Options } from 'hooks/useSystem';
 	import SystemTypes from 'types'; type SetFocus = React.Dispatch<React.SetStateAction<boolean>>; const attachProps: <Styles, Props>(props: Props, theme: SystemTypes.Theme, setFocus: SetFocus, options: Options<Styles, Props>) => {
 	    attributes: SystemTypes.AttributeProps;
 	    events: {
@@ -1699,7 +1699,7 @@ declare module 'utils/createStyles' {
 	export default createComponentStyles;
 
 }
-declare module 'hooks/useComponent' {
+declare module 'hooks/useSystem' {
 	import SystemTypes from 'types';
 	import SystemPropsTypes from 'utils/attachProps/types';
 	export interface Options<Styles, Props> {
@@ -1712,7 +1712,7 @@ declare module 'hooks/useComponent' {
 	        ignoreMouse?: boolean;
 	    };
 	    theme?: SystemTypes.Theme;
-	} const useComponent: <Styles, Props, Params>(overrideName: string, options: Options<Styles, Props>, params?: Params | undefined) => {
+	} const useSystem: <Styles, Props, Params>(overrideName: string, options: Options<Styles, Props>, params?: Params | undefined) => {
 	    cs: SystemTypes.ComponentStyles<Styles>;
 	    attributes: SystemTypes.AttributeProps;
 	    events: {
@@ -1737,7 +1737,7 @@ declare module 'hooks/useComponent' {
 	    focus: boolean;
 	    theme: SystemTypes.Theme;
 	};
-	export default useComponent;
+	export default useSystem;
 
 }
 declare module 'hooks/useBreakpoints' {
@@ -1758,7 +1758,7 @@ declare module 'utils/createTheme' {
 declare module '@stage-ui/system' {
 	export { default as Provider } from 'components/Provider';
 	export { default as useTheme } from 'hooks/useTheme';
-	export { default as useComponent } from 'hooks/useComponent';
+	export { default as useSystem } from 'hooks/useSystem';
 	export { default as useBreakpoints } from 'hooks/useBreakpoints';
 	export { default as colorProp } from 'utils/colorProp';
 	export { default as createTheme } from 'utils/createTheme';

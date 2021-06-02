@@ -5,11 +5,7 @@ import styles from './styles'
 import Types from './types'
 
 const Grid: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-  const { classes, attributes, events } = useSystem('Grid', {
-    props,
-    styles,
-    styleProps: { container: ['all'] },
-  })
+  const { classes, attributes, events } = useSystem('Grid', props, styles)
 
   return jsx(
     'div',

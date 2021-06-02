@@ -1,5 +1,4 @@
 import React from 'react'
-import { ColorProp } from '@stage-ui/system/props/color'
 
 declare namespace ScrollViewTypes {
   interface ScrollViewEvent {
@@ -37,7 +36,7 @@ declare namespace ScrollViewTypes {
     cursorHandle?: boolean
   }
 
-  interface Props extends Omit<AllProps<HTMLDivElement, Styles>, 'onScroll'> {
+  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onScroll'> {
     /**
      * Any contant of scrollview
      */
@@ -50,7 +49,7 @@ declare namespace ScrollViewTypes {
     /**
      * Custom ScrollBar color
      */
-    color?: ColorProp
+    color?: Stage.ColorProp
     /**
      * Bars size
      * @default m

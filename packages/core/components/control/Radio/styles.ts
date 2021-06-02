@@ -1,9 +1,8 @@
-import checkStyles from '@stage-ui/core/misc/hocs/Check/styles'
 import Types from './types'
 
-const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
+const createClasses: Stage.CreateAdditionalClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
   return {
-    ...checkStyles(props, theme),
+    container: (variant) => styleProps.all,
     check: (variant) => [
       {
         boxSizing: 'border-box',
@@ -112,4 +111,4 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
   }
 }
 
-export default createClasses
+export default createClasses as Stage.CreateClasses<Types.Styles, Types.Props>

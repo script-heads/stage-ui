@@ -1,4 +1,4 @@
-import CheckTypes from '@stage-ui/core/misc/hocs/Check/types'
+import CheckTypes from '@stage-ui/core/components/basic/Check/types'
 
 declare namespace CheckboxTypes {
   interface Props extends CheckTypes.Props {}
@@ -9,6 +9,7 @@ declare namespace CheckboxTypes {
     checked: Props['checked']
     disabled: Props['disabled']
   }
+
   interface Styles extends CheckTypes.Styles {
     /**
      * Checkbox container

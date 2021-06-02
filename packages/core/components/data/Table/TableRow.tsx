@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import React, { forwardRef, ForwardRefRenderFunction, Fragment, useState } from 'react'
 import { dndContext } from '.'
 import TableCell from './TableCell'

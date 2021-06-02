@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import { Block, Flexbox } from '@stage-ui/core'
 import { useSystem } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction, Fragment, useState } from 'react'
@@ -26,16 +24,7 @@ const Tree: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props: Type
 
   const [isOpen, setOpen] = useState(!!(props.open || props.defaultOpen))
 
-  const { classes, attributes, events } = useSystem('Tree', {
-    props,
-    styles,
-    styleProps: {
-      row: ['all'],
-    },
-    focus: {
-      applyDecoration: true,
-    },
-  })
+  const { classes, attributes, events } = useSystem('Tree', props, styles)
 
   const childs: {
     child?: React.ReactNode

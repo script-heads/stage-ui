@@ -12,6 +12,7 @@ const styles: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, st
         borderCollapse: 'inherit',
         borderSpacing: 0,
       },
+      styleProps.all,
     ],
     row: (variant) => [
       {

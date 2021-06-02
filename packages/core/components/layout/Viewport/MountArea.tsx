@@ -1,4 +1,4 @@
-/** @jsx jsx */
+
 import { css, jsx } from '@emotion/react'
 import createID from '@stage-ui/system/utils/createID'
 import React, { FC, Fragment, useState } from 'react'

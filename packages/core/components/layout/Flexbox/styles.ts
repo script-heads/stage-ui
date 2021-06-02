@@ -10,6 +10,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
         display: props.inline ? 'inline-flex' : 'flex',
         flexDirection: props.column ? 'column' : undefined,
       },
+      styleProps.all,
     ],
   }
 }

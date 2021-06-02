@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import { Divider, Flexbox } from '@stage-ui/core'
-import { useComponent } from '@stage-ui/system'
+import { useSystem } from '@stage-ui/system'
 import { forwardRef, ForwardRefRenderFunction, Fragment } from 'react'
 import styles from './styles'
 import Types from './types'
@@ -18,7 +18,7 @@ const Toolbar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
         inline = true
     } = props
 
-    const { cs, attributes, events } = useComponent('Toolbar', {
+    const { cs, attributes, events } = useSystem('Toolbar', {
         props,
         styles,
     })

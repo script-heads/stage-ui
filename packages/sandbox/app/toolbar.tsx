@@ -1,5 +1,5 @@
 import { Button, DatePicker, Divider, Flexbox, Select, TextField } from '@stage-ui/core'
-import { Funnel, Refresh, Search } from '@stage-ui/core/icons'
+import { Funnel, Refresh, Search } from '@stage-ui/icons'
 import React from 'react'
 
 const PlaygroundToolbar = () => {

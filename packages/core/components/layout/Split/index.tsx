@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import { useSystem } from '@stage-ui/system'
 import { forwardRef, ForwardRefRenderFunction, Fragment, useEffect, useMemo } from 'react'
 import Separator from './Separator'
@@ -19,10 +17,7 @@ interface SplitElRefs {
 }
 
 const Split: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-  const { classes, attributes, events } = useSystem('Split', {
-    props,
-    styles,
-  })
+  const { classes, attributes, events } = useSystem('Split', props, styles)
 
   const vertical = props.direction === 'column'
 

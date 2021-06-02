@@ -60,9 +60,6 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
           l: [theme.assets.field.l, theme.assets.typography.text.l],
           xl: [theme.assets.field.xl, theme.assets.typography.text.xl],
         },
-        focus: {
-          borderColor: props.disabled ? theme.color.lightest.string() : theme.color.primary.alpha(0.5).string(),
-        },
         disabled: {
           color: theme.color.light.hex(),
           cursor: 'not-allowed',

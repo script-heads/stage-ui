@@ -1,5 +1,4 @@
-import fieldStyles from '@stage-ui/core/misc/hocs/Field/styles'
-
+import fieldStyles from '@stage-ui/core/components/basic/Field/styles'
 import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
