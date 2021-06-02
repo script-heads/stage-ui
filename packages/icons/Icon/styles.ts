@@ -6,8 +6,18 @@ import Types from './types'
 const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
 
     const background = colorProp(theme, props.background)
-    const color = colorProp(theme, props.color)?.rgb().string() || 'inherit'
-    const hoverColor = colorProp(theme, props.hoverColor)?.rgb().string()
+    let color = colorProp(theme, props.color)
+    let hoverColor = colorProp(theme, props.hoverColor)
+
+    if (color) {
+        color = color.rgb().string()
+    } else {
+        color = 'inherit'
+    }
+
+    if (hoverColor) {
+        hoverColor = hoverColor.rgb().string()
+    }
 
     return {
         container: (variant) => [
