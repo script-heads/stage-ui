@@ -1,5 +1,5 @@
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
-import Typography from '@stage-ui/core/misc/hocs/Typography'
+import Typography from '@stage-ui/core/components/basic/Typography'
 import sizeProp from '@stage-ui/system/props/size'
 import Types from './types'
 

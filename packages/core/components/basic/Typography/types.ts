@@ -1,6 +1,6 @@
 import { Options } from '@stage-ui/system/hooks/useSystem'
 import { ColorProp } from '@stage-ui/system/props/color'
-import { AllProps } from '@stage-ui/system/props/types'
+
 import CSS from 'csstype'
 
 declare namespace TypographyTypes {
@@ -43,7 +43,7 @@ declare namespace TypographyTypes {
     referrerPolicy?: string
   }
 
-  interface Props extends AllProps<HTMLDivElement, Styles> {
+  interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
     /**
      * Capitalize first letter
      */

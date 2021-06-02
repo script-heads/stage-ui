@@ -1,9 +1,9 @@
 
 import Types from './types'
-import SystemTypes from '@stage-ui/system/types'
+
 import colorResolver from '@stage-ui/system/resolvers/color'
 
-const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme) => {
+const createClasses: Stage.CreateClasses<Types.Styles, Types.Props>  = (theme, props, styleProps) => {
 
     const background = colorResolver(theme, props.backgroundColor || theme.color.surface.rgb().string()
     const borderColor = colorResolver(theme, props.borderColor || theme.assets.border.color.rgb().string()

@@ -1,8 +1,7 @@
-import SystemTypes from '@stage-ui/system/types'
 import checkStyles from '@stage-ui/core/misc/hocs/Check/styles'
 import Types from './types'
 
-const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme) => {
+const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
   return {
     ...checkStyles(props, theme),
     check: (variant) => [

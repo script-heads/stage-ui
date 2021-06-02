@@ -5,36 +5,23 @@ import { Close } from '@stage-ui/core/icons'
 import ModalTypes from './types'
 
 const ModalHeader = (props: ModalTypes.ModalHeaderProps) => {
+  if (props.hideHeader) {
+    return null
+  }
 
-    if (props.hideHeader) {
-        return null
-    }
-    
-    const styles = props.getStyles()
+  const styles = props.getStyles()
 
-    return (
-        <div css={styles.classes.header(styles.state)}>
-            <Flexbox>
-                <Flexbox flex={1} column>
-                    <Header 
-                        m={0}
-                        children={props.title}    
-                    />
-                    <Paragraph 
-                        m={0}
-                        color={c => c.hard} 
-                        children={props.subtitle}
-                    />
-                </Flexbox>
-                <Close
-                    ml="m"
-                    css={styles.classes.cross(styles.state)}
-                    onClick={props.onClosePressed}
-                    color={c => c.light}
-                />
-            </Flexbox>
-        </div>
-    )
+  return (
+    <div css={styles.classes.header(styles.state)}>
+      <Flexbox>
+        <Flexbox flex={1} column>
+          <Header m={0} children={props.title} />
+          <Paragraph m={0} color={(c) => c.hard} children={props.subtitle} />
+        </Flexbox>
+        <Close ml="m" css={styles.classes.cross(styles.state)} onClick={props.onClosePressed} color={(c) => c.light} />
+      </Flexbox>
+    </div>
+  )
 }
 
 export default ModalHeader

@@ -1,8 +1,8 @@
 import colorResolver from '@stage-ui/system/resolvers/color'
-import SystemTypes from '@stage-ui/system/types'
+
 import Types from './types'
 
-const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme) => {
+const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
   const color = colorResolver(theme, props.color || theme.color.primary)
   const field = theme.assets.field[props.size || 'm'] || theme.assets.field.m
 

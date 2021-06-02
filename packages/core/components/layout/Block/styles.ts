@@ -1,8 +1,8 @@
-import SystemTypes from '@stage-ui/system/types'
-import applyLayoutDecoration from '@stage-ui/core/misc/utils/applyLayoutDecoration'
+import applyLayoutDecoration from '@stage-ui/core/utils/applyLayoutDecoration'
+
 import Types from './types'
 
-const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme) => {
+const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
   return {
     container: (variant) => [
       applyLayoutDecoration(props, theme),
@@ -10,6 +10,7 @@ const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme) =
         position: 'relative',
         overflow: props.overflow,
       },
+      styleProps.all,
     ],
   }
 }

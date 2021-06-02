@@ -1,6 +1,5 @@
 import React from 'react'
 import { ColorProp } from '@stage-ui/system/props/color'
-import { AllProps } from '@stage-ui/system/props/types'
 
 declare namespace ScrollViewTypes {
   interface ScrollViewEvent {

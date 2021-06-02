@@ -1,45 +1,43 @@
-import SystemTypes from '@stage-ui/system/types'
-
 declare namespace BadgeTypes {
-    interface Props extends AllProps<HTMLDivElement, Styles> {
-        /**
-         * Show in badge
-         */
-        content: React.ReactNode
-        /**
-         * Badge size
-         * @default m
-         * @display Sizes
-         * @link /props/#size
-         */
-        size?: Stage.Sizes
-        /**
-         * Badge shape
-         */
-        shape?: 'square' | 'rounded' | 'round'
-        /**
-         * Where barge will be placed
-         */
-        align?: 'top' | 'bottom' | 'left' | 'right' | 'top-right' | 'bottom-right' | 'top-left' | 'bottom-left'
-        /**
-         * The element whose badge will be shown
-         */
-        children?: React.ReactNode
-    }
+  interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
+    /**
+     * Show in badge
+     */
+    content: React.ReactNode
+    /**
+     * Badge size
+     * @default m
+     * @display Sizes
+     * @link /props/#size
+     */
+    size?: Stage.Sizes
+    /**
+     * Badge shape
+     */
+    shape?: 'square' | 'rounded' | 'round'
+    /**
+     * Where barge will be placed
+     */
+    align?: 'top' | 'bottom' | 'left' | 'right' | 'top-right' | 'bottom-right' | 'top-left' | 'bottom-left'
+    /**
+     * The element whose badge will be shown
+     */
+    children?: React.ReactNode
+  }
 
-    interface Styles {
-        /**
-         * Root element
-         */
-        container: void
-        /**
-         * Badge container
-         */
-        holder: {
-            align: Props['align']
-            shape: Props['shape']
-        }
+  interface Styles {
+    /**
+     * Root element
+     */
+    container: void
+    /**
+     * Badge container
+     */
+    holder: {
+      align: Props['align']
+      shape: Props['shape']
     }
+  }
 }
 
 export default BadgeTypes

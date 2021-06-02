@@ -1,11 +1,10 @@
 import { Classes } from '@stage-ui/system/hooks/useSystem'
 import { ColorProp } from '@stage-ui/system/props/color'
-import { AllProps } from '@stage-ui/system/props/types'
 
 declare namespace CheckTypes {
   type CheckType = 'checkbox' | 'radio' | 'switch'
 
-  interface Props extends AllProps<HTMLInputElement, Styles> {
+  interface Props extends Stage.AllProps<HTMLInputElement, Styles> {
     label?: string
     labelColor?: ColorProp
     checked?: boolean

@@ -1704,7 +1704,7 @@ declare module 'hooks/useComponent' {
 	import SystemPropsTypes from 'utils/attachProps/types';
 	export interface Options<Styles, Props> {
 	    props: Props;
-	    styles: SystemTypes.Styles<Styles> | SystemTypes.CreateStyles<Styles, Props>;
+	    styles: SystemTypes.Styles<Styles> | Stage.CreateClasses<Styles, Props>;
 	    styleProps?: Partial<Record<keyof Styles, (keyof SystemPropsTypes.InjectedStyles)[]>>;
 	    styleLabel?: string;
 	    focus?: {

@@ -1,8 +1,8 @@
 import fieldStyles from '@stage-ui/core/misc/hocs/Field/styles'
-import SystemTypes from '@stage-ui/system/types'
+
 import Types from './types'
 
-const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme) => {
+const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
   return {
     ...fieldStyles(props, theme),
 

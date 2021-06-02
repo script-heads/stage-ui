@@ -1,8 +1,7 @@
-import SystemTypes from '@stage-ui/system/types'
 import Types from './types'
 import fieldStyles from '../../basic/Field/styles'
 
-const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StyleParams> = (props, theme, params) => {
+const styles: Stage.CreateClasses<Types.Styles, Types.Props, Types.StyleParams> = (props, theme, params) => {
   const minHeight = theme.assets.field[props.size || 'm']?.minHeight || theme.assets.field.m.minHeight || '2.5rem'
 
   return {

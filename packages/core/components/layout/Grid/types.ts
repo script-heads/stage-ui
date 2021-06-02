@@ -1,25 +1,24 @@
-import { LayoutDecoration } from '@stage-ui/core/misc/utils/applyLayoutDecoration'
-import SystemTypes from '@stage-ui/system/types'
+import { LayoutDecoration } from '@stage-ui/core/utils/applyLayoutDecoration'
 
 declare namespace GridTypes {
-    interface Props extends GridContainerProps, AllProps<HTMLDivElement, Styles> {
-        /**
-         * Defines how grid look
-         */
-        decoration?: LayoutDecoration
-        /**
-         * Grid content
-         */
-        children?: React.ReactNode
+  interface Props extends GridContainerProps, AllProps<HTMLDivElement, Styles> {
+    /**
+     * Defines how grid look
+     */
+    decoration?: LayoutDecoration
+    /**
+     * Grid content
+     */
+    children?: React.ReactNode
+  }
+  interface Styles {
+    /**
+     * Root element
+     */
+    container: {
+      decoration?: LayoutDecoration
     }
-    interface Styles {
-        /**
-         * Root element
-         */
-        container: {
-            decoration?: LayoutDecoration
-        }
-    }
+  }
 }
 
 export default GridTypes

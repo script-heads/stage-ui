@@ -11,9 +11,9 @@ import Types from './types'
 const Checkbox: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
     const { size = 'm', disabled } = props
 
-    const { classes, attributes, events } = useSystem('Checkbox', { 
-        props, 
-        styles, 
+    const { classes, attributes, events } = useSystem('Checkbox', props, 
+    styles{ 
+        , 
         styleProps: { container: ['all']},
         focus: {
             applyDecoration: true

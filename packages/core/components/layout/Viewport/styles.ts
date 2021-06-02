@@ -1,22 +1,21 @@
-import SystemTypes from '@stage-ui/system/types'
 import Types from './types'
 
-const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme, params: { wrapper?: boolean }) => {
+const createClasses: Stage.CreateClasses<Types.Styles, Types.Props>  (props, theme, params: { wrapper?: boolean }) => {
+  const attachTheme = {
+    background: theme.color.background.hex(),
+    color: theme.color.onBackground.hex(),
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    p: theme.assets.typography.paragraph,
+    h1: theme.assets.typography.header.l,
+    h2: theme.assets.typography.header.m,
+    h3: theme.assets.typography.header.s,
+    h4: theme.assets.typography.header.xs,
+    ...theme.assets.typography.text.m,
+  }
 
-    const attachTheme = {
-        background: theme.color.background.hex(),
-        color: theme.color.onBackground.hex(),
-        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-        'p': theme.assets.typography.paragraph,
-        'h1': theme.assets.typography.header.l,
-        'h2': theme.assets.typography.header.m,
-        'h3': theme.assets.typography.header.s,
-        'h4': theme.assets.typography.header.xs,
-        ...theme.assets.typography.text.m
-    }
-
-    const reset = params.wrapper ? '' :
-        `
+  const reset = params.wrapper
+    ? ''
+    : `
             html, body, div, span, applet, object, iframe,
             blockquote, pre,
             a, abbr, acronym, address, big, cite, code,
@@ -37,15 +36,9 @@ const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme, p
             },
         `
 
-    return {
-        container: [
-            reset,
-            props.wrapper
-                ? attachTheme
-                : { 'html': attachTheme },
-            props.global
-        ]
-    }
+  return {
+    container: [reset, props.wrapper ? attachTheme : { html: attachTheme }, props.global],
+  }
 }
 
 export default createClasses

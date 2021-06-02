@@ -1,5 +1,5 @@
 import { Classes } from '@stage-ui/system/hooks/useSystem'
-import { AllProps } from '@stage-ui/system/props/types'
+
 import { Moment } from 'moment'
 import { CSSProperties } from 'react'
 

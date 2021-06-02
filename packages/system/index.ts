@@ -1,6 +1,8 @@
 import { Interpolation } from '@emotion/react'
 import ColorType from 'color'
 import { ReplaceTheme } from './utils/createTheme'
+import { AllProps as AllPropsType } from './props/types'
+import { CreateClasses as CreateClassesType } from './hooks/useSystem'
 
 declare global {
   namespace Stage {
@@ -90,6 +92,9 @@ declare global {
       overrides: ThemeOverrides
       replace: (theme: ReplaceTheme) => Theme
     }
+
+    type AllProps<Containter, ClassSchema> = AllPropsType<Containter, ClassSchema>
+    type CreateClasses<ClassesSchema, Props> = CreateClassesType<ClassesSchema, Props>
   }
 }
 

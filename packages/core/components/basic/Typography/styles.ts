@@ -1,10 +1,10 @@
 import colorResolver from '@stage-ui/system/props/color'
 import sizeResolver from '@stage-ui/system/props/size'
-import { CreateClasses } from '@stage-ui/system/hooks/useSystem'
+
 import breakpointResolver from '@stage-ui/system/props/breakpoint'
 import Types from './types'
 
-const createClasses: CreateClasses<Types.Styles, Types.PrivateProps> = (theme, props, styleProps) => {
+const createClasses: Stage.CreateClasses<Types.Styles, Types.PrivateProps> = (theme, props, styleProps) => {
   return {
     container: [
       props.ellipsis && {

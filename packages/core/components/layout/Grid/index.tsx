@@ -5,25 +5,24 @@ import styles from './styles'
 import Types from './types'
 
 const Grid: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
+  const { classes, attributes, events } = useSystem('Grid', {
+    props,
+    styles,
+    styleProps: { container: ['all'] },
+  })
 
-    const { classes, attributes, events } = useSystem('Grid', {
-        props,
-        styles,
-        styleProps: { container: ['all'] },
-    })
-
-    return jsx(
-        'div',
-        {
-            ...attributes,
-            ...events,
-            ref: ref,
-            css: classes.container({
-                decoration: props.decoration
-            })
-        },
-        props.children
-    )
+  return jsx(
+    'div',
+    {
+      ...attributes,
+      ...events,
+      ref,
+      css: classes.container({
+        decoration: props.decoration,
+      }),
+    },
+    props.children,
+  )
 }
 
 export default forwardRef(Grid)

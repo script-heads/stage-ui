@@ -1,4 +1,4 @@
-import TypographyTypes from '@stage-ui/core/misc/hocs/Typography/types'
+import TypographyTypes from '@stage-ui/core/components/basic/Typography/types'
 
 declare namespace TextTypes {
   interface Props extends TypographyTypes.Props {}

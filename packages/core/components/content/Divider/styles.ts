@@ -1,14 +1,14 @@
 import colorResolver from '@stage-ui/system/props/color'
-import { CreateClasses } from '@stage-ui/system/hooks/useSystem'
+
 import sizeProp from '@stage-ui/system/props/size'
 import Types from './types'
 
-const createClasses: CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
+const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
   const { gap, dash, vertical } = props
   const color = colorResolver(props.color || theme.assets.border.color, theme)?.hex()
 
-  const resolvedGap = sizeProp(theme.spacing, (v) => v, gap || dash)
-  const resolvedDash = sizeProp(theme.spacing, (v) => v, dash)
+  const resolvedGap = sizeProp(gap || dash, theme.spacing, (v) => v)
+  const resolvedDash = sizeProp(dash, theme.spacing, (v) => v)
 
   return {
     container: [

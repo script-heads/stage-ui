@@ -1,6 +1,6 @@
 declare module 'data/Chart/types' {
 	import { ChartDataSets, ChartOptions } from 'chart.js';
-	import SystemTypes from '@stage-ui/system/types'; namespace ChartTypes {
+	; namespace ChartTypes {
 	    type ChartType = 'line' | 'pie' | 'verticalBar' | 'horizontalBar' | 'doughnut' | 'radar' | 'polar' | 'scatter' | 'bubble';
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
@@ -36,8 +36,8 @@ declare module 'layout/Toolbar/types' {
 
 }
 declare module 'layout/Toolbar/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'layout/Toolbar/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'layout/Toolbar/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }

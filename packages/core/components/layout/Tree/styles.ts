@@ -1,7 +1,6 @@
-import SystemTypes from '@stage-ui/system/types'
 import Types from './types'
 
-const createClasses: CreateClasses<Types.Styles, Types.PrivateProps> = (props, theme) => {
+const createClasses: Stage.CreateClasses<Types.Styles, Types.PrivateProps> = (props, theme) => {
   return {
     container: (variant) => [
       variant({

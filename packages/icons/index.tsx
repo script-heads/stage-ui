@@ -1,6 +1,8 @@
 /**
 version: 0.1.7
 */
+import IconTypes from './Icon/types'
+
 export { default as Sync } from './lib/Sync'
 export { default as Activity } from './lib/Activity'
 export { default as AlertCircle } from './lib/AlertCircle'
@@ -248,3 +250,15 @@ export { default as Volume } from './lib/Volume'
 export { default as Weight } from './lib/Weight'
 export { default as WifiOff } from './lib/WifiOff'
 export { default as Wifi } from './lib/Wifi'
+
+declare global {
+  namespace Stage {
+    interface ThemeOverrides {
+      Icon?: IconTypes.Styles
+    }
+  }
+}
+
+declare module '@emotion/react' {
+  export interface Theme extends Stage.Theme {}
+}

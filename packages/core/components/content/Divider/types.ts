@@ -1,8 +1,7 @@
 import { ColorProp } from '@stage-ui/system/props/color'
-import { AllProps } from '@stage-ui/system/props/types'
 
 declare namespace DividerTypes {
-  interface Props extends AllProps<HTMLDivElement, Styles> {
+  interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
     /**
      * Draw divider vertical
      */

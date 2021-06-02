@@ -1,11 +1,10 @@
 import { Classes, ComponentData } from '@stage-ui/system/hooks/useSystem'
 import { ColorProp } from '@stage-ui/system/props/color'
-import { AllProps } from '@stage-ui/system/props/types'
 
 import React from 'react'
 
 declare namespace FieldTypes {
-  interface Props<S = Styles> extends AllProps<HTMLInputElement, S> {
+  interface Props<S = Styles> extends Stage.AllProps<HTMLInputElement, S> {
     /**
      * Label for field
      */

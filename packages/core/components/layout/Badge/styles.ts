@@ -1,7 +1,6 @@
-import SystemTypes from '@stage-ui/system/types'
 import Types from './types'
 
-const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme) => {
+const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
   const { assets, spacing } = theme
   const { text } = assets.typography
   const typography = text[props.size || 'm'] || text.m
@@ -13,6 +12,7 @@ const createClasses: CreateClasses<Types.Styles, Types.Props> = (props, theme) =
         position: 'relative',
         width: 'fit-content',
       },
+      styleProps.flow,
     ],
     holder: (variant) => [
       {

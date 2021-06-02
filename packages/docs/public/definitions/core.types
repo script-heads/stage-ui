@@ -1,5 +1,5 @@
 declare module 'content/Divider/types' {
-	import SystemTypes from '@stage-ui/system/types'; namespace DividerTypes {
+	; namespace DividerTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
 	        * Draw divider vertical
@@ -38,8 +38,8 @@ declare module 'content/Divider/types' {
 
 }
 declare module 'content/Divider/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'content/Divider/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'content/Divider/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -49,7 +49,7 @@ declare module 'content/Divider' {
 
 }
 declare module 'content/Spinner/types' {
-	import SystemTypes from '@stage-ui/system/types'; namespace SpinnerTypes {
+	; namespace SpinnerTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
 	         * Color of spinner
@@ -96,8 +96,8 @@ declare module 'content/Spinner/types' {
 
 }
 declare module 'content/Spinner/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'content/Spinner/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'content/Spinner/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -107,7 +107,7 @@ declare module 'content/Spinner' {
 
 }
 declare module '@stage-ui/core/misc/hocs/Typography/types' {
-	import SystemTypes from '@stage-ui/system/types';
+	;
 	import CSS from 'csstype'; namespace TypographyTypes {
 	    interface LinkProps extends Props {
 	        /**
@@ -212,8 +212,8 @@ declare module '@stage-ui/core/misc/hocs/Typography/types' {
 
 }
 declare module 'misc/hocs/Typography/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from '@stage-ui/core/misc/hocs/Typography/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.PrivateProps>;
+	;
+	import Types from '@stage-ui/core/misc/hocs/Typography/types'; const styles: Stage.CreateClasses<Types.Styles, Types.PrivateProps>;
 	export default styles;
 
 }
@@ -287,7 +287,7 @@ declare module 'content/Link' {
 
 }
 declare module 'content/Toast/types' {
-	import SystemTypes from '@stage-ui/system/types'; namespace DividerTypes {
+	; namespace DividerTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
 	        * Color of divider
@@ -328,8 +328,8 @@ declare module 'content/Toast/types' {
 
 }
 declare module 'content/Toast/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'content/Toast/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'content/Toast/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -339,7 +339,7 @@ declare module 'content/Toast' {
 
 }
 declare module 'control/Button/types' {
-	import SystemTypes from '@stage-ui/system/types'; namespace ButtonTypes {
+	; namespace ButtonTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLButtonElement, Styles> {
 	        /**
 	         * Specifies that the button should have input focus when the page loads
@@ -451,8 +451,8 @@ declare module 'control/Button/types' {
 
 }
 declare module 'control/Button/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'control/Button/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'control/Button/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -463,7 +463,7 @@ declare module 'control/Button' {
 
 }
 declare module 'control/Calendar/types' {
-	import SystemTypes from '@stage-ui/system/types';
+	;
 	import { Moment } from 'moment';
 	import { CSSProperties } from 'react'; namespace CalendarTypes {
 	    /**
@@ -710,8 +710,8 @@ declare module 'control/Calendar/DateGrid' {
 
 }
 declare module 'control/Calendar/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'control/Calendar/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'control/Calendar/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -722,7 +722,7 @@ declare module 'control/Calendar' {
 
 }
 declare module '@stage-ui/core/misc/hocs/Icon/types' {
-	import SystemTypes from '@stage-ui/system/types'; namespace IconTypes {
+	; namespace IconTypes {
 	    /**
 	     * TODO: circle и oval добавляют только padding
 	     */
@@ -755,8 +755,8 @@ declare module '@stage-ui/core/misc/hocs/Icon/types' {
 
 }
 declare module 'misc/hocs/Icon/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from '@stage-ui/core/misc/hocs/Icon/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from '@stage-ui/core/misc/hocs/Icon/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -7914,7 +7914,7 @@ declare module '@stage-ui/icons' {
 
 }
 declare module '@stage-ui/core/misc/hocs/Check/types' {
-	import SystemTypes from '@stage-ui/system/types'; namespace CheckTypes {
+	; namespace CheckTypes {
 	    type CheckType = 'checkbox' | 'radio' | 'switch';
 	    interface Props extends SystemTypes.AllProps<HTMLInputElement, Styles> {
 	        label?: string;
@@ -7975,14 +7975,14 @@ declare module 'control/Checkbox/types' {
 
 }
 declare module 'misc/hocs/Check/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from '@stage-ui/core/misc/hocs/Check/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from '@stage-ui/core/misc/hocs/Check/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
 declare module 'control/Checkbox/styles' {
 	import Types from 'control/Checkbox/types';
-	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -7993,7 +7993,7 @@ declare module 'control/Checkbox' {
 
 }
 declare module '@stage-ui/core/misc/hocs/Field/types' {
-	import SystemTypes from '@stage-ui/system/types';
+	;
 	import React from 'react'; namespace FieldTypes {
 	    interface Props<S = Styles> extends Omit<SystemTypes.AllProps<HTMLInputElement, S>, 'onChange'> {
 	        /**
@@ -8135,7 +8135,7 @@ declare module 'control/DatePicker/mask' {
 
 }
 declare module 'misc/hocs/Field/styles' {
-	import SystemTypes from '@stage-ui/system/types';
+	;
 	import Types from '@stage-ui/core/misc/hocs/Field/types'; type ExtractFunction<T> = {
 	    [K in keyof T]: Extract<T[K], Function>;
 	}; const fieldStyles: <T extends Types.Styles<{}>>(props: Omit<Types.Props, 'onChange'>, theme: SystemTypes.Theme, stylePatch?: Partial<ExtractFunction<SystemTypes.Styles<T>>> | undefined) => SystemTypes.Styles<Types.Styles>;
@@ -8228,8 +8228,8 @@ declare module 'control/DatePicker/types' {
 
 }
 declare module 'control/DatePicker/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'control/DatePicker/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'control/DatePicker/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -8239,7 +8239,7 @@ declare module 'control/DatePicker' {
 
 }
 declare module 'control/Menu/MenuGroup/types' {
-	import SystemTypes from '@stage-ui/system/types'; namespace MenuGroupTypes {
+	; namespace MenuGroupTypes {
 	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        /**
 	         * Title of group
@@ -8266,8 +8266,8 @@ declare module 'control/Menu/MenuGroup/types' {
 
 }
 declare module 'control/Menu/MenuGroup/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'control/Menu/MenuGroup/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'control/Menu/MenuGroup/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -8277,7 +8277,7 @@ declare module 'control/Menu/MenuGroup' {
 
 }
 declare module 'control/Menu/types' {
-	import SystemTypes from '@stage-ui/system/types'; namespace MenuTypes {
+	; namespace MenuTypes {
 	    type MenuValue = string | number;
 	    type MenuDirection = 'row' | 'column' | 'row-reverse' | 'column-reverse';
 	    type MenuDecoration = 'filled' | 'color' | 'marker' | 'marker-reverse';
@@ -8398,7 +8398,7 @@ declare module 'control/Menu/types' {
 
 }
 declare module 'control/Menu/MenuItem/types' {
-	import SystemTypes from '@stage-ui/system/types';
+	;
 	import MenuTypes from 'control/Menu/types'; namespace MenuItemTypes {
 	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        /**
@@ -8450,8 +8450,8 @@ declare module 'control/Menu/MenuItem/types' {
 
 }
 declare module 'control/Menu/MenuItem/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'control/Menu/MenuItem/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'control/Menu/MenuItem/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -8462,13 +8462,13 @@ declare module 'control/Menu/MenuItem' {
 
 }
 declare module 'control/Menu/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'control/Menu/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'control/Menu/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
 declare module 'control/Menu/Submenu/types' {
-	import SystemTypes from '@stage-ui/system/types'; namespace SubmenuTypes {
+	; namespace SubmenuTypes {
 	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        /**
 	         * Title for menu item
@@ -8515,8 +8515,8 @@ declare module 'control/Menu/Submenu/types' {
 
 }
 declare module 'control/Menu/Submenu/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'control/Menu/Submenu/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'control/Menu/Submenu/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -8569,7 +8569,7 @@ declare module 'control/Radio/types' {
 }
 declare module 'control/Radio/styles' {
 	import Types from 'control/Radio/types';
-	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -8579,7 +8579,7 @@ declare module 'control/Radio' {
 
 }
 declare module 'control/Range/types' {
-	import SystemTypes from '@stage-ui/system/types'; namespace RangeTypes {
+	; namespace RangeTypes {
 	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        min?: number;
 	        max?: number;
@@ -8605,7 +8605,7 @@ declare module 'control/Range/types' {
 }
 declare module 'control/Range/styles' {
 	import Types from 'control/Range/types';
-	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -8615,7 +8615,7 @@ declare module 'control/Range' {
 
 }
 declare module 'control/Pageswitch/types' {
-	import SystemTypes from '@stage-ui/system/types'; namespace PageswitchTypes {
+	; namespace PageswitchTypes {
 	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        /**
 	         * Total count of records
@@ -8656,8 +8656,8 @@ declare module 'control/Pageswitch/types' {
 
 }
 declare module 'control/Pageswitch/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'control/Pageswitch/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'control/Pageswitch/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -8667,7 +8667,7 @@ declare module 'control/Pageswitch' {
 
 }
 declare module 'layout/Drop/types' {
-	import SystemTypes from '@stage-ui/system/types'; namespace DropTypes {
+	; namespace DropTypes {
 	    interface TargetCoordinates {
 	        top: number;
 	        bottom: number;
@@ -8897,7 +8897,7 @@ declare module 'control/Select/types' {
 }
 declare module 'control/Select/styles' {
 	import Types from 'control/Select/types';
-	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StyleParams>;
+	; const styles: Stage.CreateClasses<Types.Styles, Types.Props, Types.StyleParams>;
 	export default styles;
 
 }
@@ -8935,7 +8935,7 @@ declare module 'control/Switch/types' {
 }
 declare module 'control/Switch/styles' {
 	import Types from 'control/Switch/types';
-	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -8947,7 +8947,7 @@ declare module 'control/Switch' {
 declare module 'control/TextField/types' {
 	import { ChangeEventHandler } from 'react';
 	import FieldTypes from '@stage-ui/core/misc/hocs/Field/types';
-	import SystemTypes from '@stage-ui/system/types'; namespace TextFieldTypes {
+	; namespace TextFieldTypes {
 	    type InputTypes = 'email' | 'hidden' | 'number' | 'password' | 'reset' | 'search' | 'tel' | 'text' | 'url';
 	    type Ref = {
 	        clear: () => void;
@@ -9092,7 +9092,7 @@ declare module 'control/TextField/types' {
 }
 declare module 'control/TextField/styles' {
 	import Types from 'control/TextField/types';
-	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -9103,7 +9103,7 @@ declare module 'control/TextField' {
 
 }
 declare module 'misc/utils/applyLayoutDecoration' {
-	import SystemTypes from '@stage-ui/system/types';
+	;
 	export type LayoutDecoration = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' | 'skeleton'; type Props = SystemTypes.AllProps<HTMLDivElement, {}> & {
 	    decoration?: LayoutDecoration;
 	}; const applyLayoutDecoration: (props: Props, theme: SystemTypes.Theme) => {
@@ -9135,8 +9135,8 @@ declare module 'misc/utils/applyLayoutDecoration' {
 
 }
 declare module 'layout/Block/types' {
-	import { LayoutDecoration } from '@stage-ui/core/misc/utils/applyLayoutDecoration';
-	import SystemTypes from '@stage-ui/system/types';
+	import { LayoutDecoration } from '@stage-ui/core/utils/applyLayoutDecoration';
+	;
 	import CSS from 'csstype'; namespace BlockTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
@@ -9169,8 +9169,8 @@ declare module 'layout/Block/types' {
 
 }
 declare module 'layout/Block/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'layout/Block/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'layout/Block/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -9180,8 +9180,8 @@ declare module 'layout/Block' {
 
 }
 declare module 'layout/Flexbox/types' {
-	import { LayoutDecoration } from '@stage-ui/core/misc/utils/applyLayoutDecoration';
-	import SystemTypes from '@stage-ui/system/types'; namespace FlexboxTypes {
+	import { LayoutDecoration } from '@stage-ui/core/utils/applyLayoutDecoration';
+	; namespace FlexboxTypes {
 	    interface Props extends SystemTypes.FlexboxContainerProps, SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
 	         * Defines how flexbox look
@@ -9205,8 +9205,8 @@ declare module 'layout/Flexbox/types' {
 
 }
 declare module 'layout/Flexbox/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'layout/Flexbox/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'layout/Flexbox/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -9216,7 +9216,7 @@ declare module 'layout/Flexbox' {
 
 }
 declare module 'control/Stepper/types' {
-	import SystemTypes from '@stage-ui/system/types'; namespace StepperTypes {
+	; namespace StepperTypes {
 	    interface StepperData {
 	        label?: React.ReactNode;
 	    }
@@ -9245,8 +9245,8 @@ declare module 'control/Stepper/types' {
 
 }
 declare module 'control/Stepper/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'control/Stepper/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'control/Stepper/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -9257,7 +9257,7 @@ declare module 'control/Stepper' {
 
 }
 declare module 'data/Meter/types' {
-	import SystemTypes from '@stage-ui/system/types';
+	;
 	import MeterThumbTypes from 'data/Meter/MeterThumb/types'; namespace MeterTypes {
 	    type MeterDecoration = 'filled' | 'outline';
 	    type MeterShape = 'square' | 'round';
@@ -9319,7 +9319,7 @@ declare module 'data/Meter/types' {
 
 }
 declare module 'data/Meter/MeterThumb/types' {
-	import SystemTypes from '@stage-ui/system/types';
+	;
 	import MeterTypes from 'data/Meter/types'; namespace MeterThumbTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
@@ -9349,8 +9349,8 @@ declare module 'data/Meter/MeterThumb/types' {
 
 }
 declare module 'data/Meter/MeterThumb/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'data/Meter/MeterThumb/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.PrivateProps>;
+	;
+	import Types from 'data/Meter/MeterThumb/types'; const styles: Stage.CreateClasses<Types.Styles, Types.PrivateProps>;
 	export default styles;
 
 }
@@ -9361,8 +9361,8 @@ declare module 'data/Meter/MeterThumb' {
 
 }
 declare module 'data/Meter/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'data/Meter/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'data/Meter/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -9376,8 +9376,8 @@ declare module 'data/Meter' {
 
 }
 declare module '@stage-ui/core/data/Table/types' {
-	import SystemTypes from '@stage-ui/system/types';
-	import { LayoutDecoration } from '@stage-ui/core/misc/utils/applyLayoutDecoration'; namespace TableTypes {
+	;
+	import { LayoutDecoration } from '@stage-ui/core/utils/applyLayoutDecoration'; namespace TableTypes {
 	    type RowMountType = 
 	    /**
 	     * Render all rows at onec
@@ -9703,7 +9703,7 @@ declare module '@stage-ui/core/data/Table/types' {
 }
 declare module 'data/Table/styles' {
 	import Types from '@stage-ui/core/data/Table/types';
-	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -9740,7 +9740,7 @@ declare module 'data/Table' {
 
 }
 declare module 'layout/Badge/types' {
-	import SystemTypes from '@stage-ui/system/types'; namespace BadgeTypes {
+	; namespace BadgeTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
 	         * Show in badge
@@ -9784,8 +9784,8 @@ declare module 'layout/Badge/types' {
 
 }
 declare module 'layout/Badge/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'layout/Badge/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'layout/Badge/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -9813,8 +9813,8 @@ declare module 'layout/Drop/animation' {
 
 }
 declare module 'layout/Drop/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'layout/Drop/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'layout/Drop/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -9825,8 +9825,8 @@ declare module 'layout/Drop' {
 
 }
 declare module 'layout/Grid/types' {
-	import { LayoutDecoration } from '@stage-ui/core/misc/utils/applyLayoutDecoration';
-	import SystemTypes from '@stage-ui/system/types'; namespace GridTypes {
+	import { LayoutDecoration } from '@stage-ui/core/utils/applyLayoutDecoration';
+	; namespace GridTypes {
 	    interface Props extends SystemTypes.GridContainerProps, SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
 	         * Defines how grid look
@@ -9850,8 +9850,8 @@ declare module 'layout/Grid/types' {
 
 }
 declare module 'layout/Grid/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'layout/Grid/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'layout/Grid/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -9861,7 +9861,7 @@ declare module 'layout/Grid' {
 
 }
 declare module '@stage-ui/core/layout/Modal/types' {
-	import SystemTypes from '@stage-ui/system/types'; namespace ModalTypes {
+	; namespace ModalTypes {
 	    type ModalDecoration = 'modal' | 'panel' | 'fullscreen';
 	    type ExtentedProps = SystemTypes.AttributeProps & SystemTypes.AllEventProps<HTMLDivElement> & SystemTypes.CoreProps<Styles> & SystemTypes.ColorProps & SystemTypes.BorderProps & SystemTypes.PaddingProps & SystemTypes.LayoutProps;
 	    interface Ref {
@@ -10060,8 +10060,8 @@ declare module 'layout/Modal/ModalWindow' {
 
 }
 declare module 'layout/Modal/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from '@stage-ui/core/layout/Modal/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from '@stage-ui/core/layout/Modal/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -10072,7 +10072,7 @@ declare module 'layout/Modal' {
 
 }
 declare module 'layout/Notification/types' {
-	import SystemTypes from '@stage-ui/system/types';
+	;
 	import BlockTypes from 'layout/Block/types'; namespace NotificationTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles>, Omit<BlockTypes.Props, 'styles'> {
 	        children?: React.ReactNode;
@@ -10106,8 +10106,8 @@ declare module 'layout/Notification/types' {
 
 }
 declare module 'layout/Notification/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'layout/Notification/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'layout/Notification/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -10117,7 +10117,7 @@ declare module 'layout/Notification' {
 
 }
 declare module 'layout/Popover/types' {
-	import SystemTypes from '@stage-ui/system/types';
+	;
 	import CSS from 'csstype'; namespace PopoverTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
 	        /**
@@ -10163,7 +10163,7 @@ declare module 'layout/Popover/types' {
 }
 declare module 'layout/Popover/styles' {
 	import Types from 'layout/Popover/types';
-	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -10173,7 +10173,7 @@ declare module 'layout/Popover' {
 
 }
 declare module 'layout/Tree/types' {
-	import SystemTypes from '@stage-ui/system/types'; namespace TreeTypes {
+	; namespace TreeTypes {
 	    type RenderChildOptions = {
 	        isOpen: boolean;
 	        isParentOpen: boolean;
@@ -10241,7 +10241,7 @@ declare module 'layout/Tree/types' {
 }
 declare module 'layout/Tree/styles' {
 	import Types from 'layout/Tree/types';
-	import SystemTypes from '@stage-ui/system/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.PrivateProps>;
+	; const styles: Stage.CreateClasses<Types.Styles, Types.PrivateProps>;
 	export default styles;
 
 }
@@ -10273,7 +10273,7 @@ declare module 'misc/utils/isWebKit' {
 }
 declare module 'layout/ScrollView/types' {
 	import React from 'react';
-	import SystemTypes from '@stage-ui/system/types'; namespace ScrollViewTypes {
+	; namespace ScrollViewTypes {
 	    interface ScrollViewEvent {
 	        scrollTop: number;
 	        scrollLeft: number;
@@ -10446,8 +10446,8 @@ declare module 'layout/ScrollView/types' {
 
 }
 declare module 'layout/ScrollView/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'layout/ScrollView/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'layout/ScrollView/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -10471,7 +10471,7 @@ declare module 'layout/Split/Separator' {
 }
 declare module 'layout/Split/types' {
 	import React from 'react';
-	import SystemTypes from '@stage-ui/system/types'; namespace SplitTypes {
+	; namespace SplitTypes {
 	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onMove' | 'onChange'> {
 	        direction?: 'row' | 'column';
 	        children: React.ReactElement[];
@@ -10503,8 +10503,8 @@ declare module 'layout/Split/types' {
 
 }
 declare module 'layout/Split/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'layout/Split/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'layout/Split/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }
@@ -10595,7 +10595,7 @@ declare module 'types' {
 
 }
 declare module 'misc/themes/light' {
-	import SystemTypes from '@stage-ui/system/types'; const _default: SystemTypes.Theme;
+	; const _default: SystemTypes.Theme;
 	export default _default;
 
 }
@@ -10616,7 +10616,7 @@ declare module 'misc/themes' {
 
 }
 declare module 'layout/Viewport/types' {
-	import SystemTypes from '@stage-ui/system/types';
+	;
 	import { Options } from '@emotion/cache';
 	import { SerializedStyles } from '@emotion/react'; namespace ViewportTypes {
 	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
@@ -10676,8 +10676,8 @@ declare module 'layout/Viewport/MountArea' {
 
 }
 declare module 'layout/Viewport/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'layout/Viewport/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
+	;
+	import Types from 'layout/Viewport/types'; const styles: Stage.CreateClasses<Types.Styles, Types.Props> ;
 	export default styles;
 
 }

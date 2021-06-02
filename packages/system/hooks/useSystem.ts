@@ -59,7 +59,7 @@ export type ComponentData<Props extends Record<string, any>, ClassesSchema> = {
 function useSystem<Props extends Record<string, any>, ClassesSchema>(
   name: string,
   props: Props,
-  createClasses: CreateClasses<ClassesSchema, Props>,
+  createClasses: Stage.CreateClasses<ClassesSchema, Props>,
   options: Options<ClassesSchema, Props> = {},
 ) {
   const currentTheme = useTheme()
@@ -124,24 +124,26 @@ function useSystem<Props extends Record<string, any>, ClassesSchema>(
     .forEach((key) => {
       const classLabel = { label: `${label}-${key}` }
 
-      data.classes[key] = (isFunction(componentClasses[key])
-        ? (state) => {
-            const variant = createVariant(state)
-            return [
+      data.classes[key] = (
+        isFunction(componentClasses[key])
+          ? (state) => {
+              const variant = createVariant(state)
+              return [
+                classLabel,
+                (additionalComponentClasses[key] as FunctionClassDefinition<any>)?.(variant, state),
+                (componentClasses[key] as FunctionClassDefinition<any>)?.(variant, state),
+                (themeOverrideClasses[key] as FunctionClassDefinition<any>)?.(variant, state),
+                (propsOverrideClasses[key] as FunctionClassDefinition<any>)?.(variant, state),
+              ] as Stage.JSS
+            }
+          : [
+              additionalComponentClasses,
               classLabel,
-              (additionalComponentClasses[key] as FunctionClassDefinition<any>)?.(variant, state),
-              (componentClasses[key] as FunctionClassDefinition<any>)?.(variant, state),
-              (themeOverrideClasses[key] as FunctionClassDefinition<any>)?.(variant, state),
-              (propsOverrideClasses[key] as FunctionClassDefinition<any>)?.(variant, state),
-            ] as Stage.JSS
-          }
-        : [
-            additionalComponentClasses,
-            classLabel,
-            componentClasses[key],
-            themeOverrideClasses[key],
-            propsOverrideClasses[key],
-          ]) as Stage.JSS
+              componentClasses[key],
+              themeOverrideClasses[key],
+              propsOverrideClasses[key],
+            ]
+      ) as Stage.JSS
     })
 
   return data

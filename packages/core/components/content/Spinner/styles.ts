@@ -1,10 +1,10 @@
 import { keyframes } from '@emotion/react'
-import { CreateClasses } from '@stage-ui/system/hooks/useSystem'
+
 import colorResolver from '@stage-ui/system/props/color'
 
 import Types from './types'
 
-const createClasses: CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
+const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
   const spinAnimation = keyframes({
     from: {
       transform: 'rotate(0deg)',

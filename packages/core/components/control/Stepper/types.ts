@@ -1,38 +1,33 @@
-import SystemTypes from '@stage-ui/system/types'
-
 declare namespace StepperTypes {
+  interface StepperData {
+    label?: React.ReactNode
+  }
 
-    interface StepperData {
-        label?: React.ReactNode
-    }
+  interface Props extends Omit<AllProps<HTMLDivElement, Styles>, 'onChange'> {
+    data: StepperData[]
 
-    interface Props extends Omit<AllProps<HTMLDivElement, Styles>, 'onChange'> {
-        
-        data: StepperData[]
-        
-        size?: SystemTypes.Size
+    size?: SystemTypes.Size
 
-        current?: number
+    current?: number
 
-        onChange?: (step: StepperData, stepIndex: number) => void
-    }
+    onChange?: (step: StepperData, stepIndex: number) => void
+  }
 
-    interface StyleState {
-        size: SystemTypes.Size
-        active: boolean
-        complete: boolean
-        pointer: boolean
-    }
+  interface StyleState {
+    size: SystemTypes.Size
+    active: boolean
+    complete: boolean
+    pointer: boolean
+  }
 
-
-    interface Styles {
-        /**
-         * Root element
-         */
-        container: void
-        step: StyleState
-        separator: StyleState
-    }
+  interface Styles {
+    /**
+     * Root element
+     */
+    container: void
+    step: StyleState
+    separator: StyleState
+  }
 }
 
 export default StepperTypes

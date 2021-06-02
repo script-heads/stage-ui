@@ -1,4 +1,4 @@
-import { Close, AlertCircle } from '@stage-ui/core/icons'
+import { Close, AlertCircle } from '@stage-ui/icons'
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import Types from './types'
 

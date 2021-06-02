@@ -1,9 +1,9 @@
 import colorResolver from '@stage-ui/system/resolvers/color'
-import SystemTypes from '@stage-ui/system/types'
+
 import Types from './types'
 
 // @ts-ignore
-const createClasses: CreateClasses<Types.Styles, Types.PrivateProps> = (props, theme) => {
+const createClasses: Stage.CreateClasses<Types.Styles, Types.PrivateProps> = (props, theme) => {
   const { loading } = props
 
   const color = colorResolver(theme, props.color || theme.color.primary)
