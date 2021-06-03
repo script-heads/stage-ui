@@ -1,12 +1,12 @@
 import { useSystem } from '@stage-ui/system'
 import { forwardRef, ForwardRefRenderFunction, useEffect, useImperativeHandle, useRef, useState } from 'react'
-import styles from './styles'
+import createClasses from './styles'
 import Types from './types'
 
 const Range: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
   const { min = 0, max = 100, value, defaultValue } = props
 
-  const { classes, attributes, events } = useSystem('Range', props, styles)
+  const { classes, attributes, events } = useSystem('Range', props, createClasses)
 
   const thumbRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
@@ -64,7 +64,6 @@ const Range: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
     <div
       {...attributes}
       {...events}
-      onChange={undefined}
       css={classes.container}
       ref={containerRef}
       onMouseDown={(e) => onMove(e, true)}

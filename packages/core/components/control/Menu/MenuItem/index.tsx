@@ -2,7 +2,7 @@ import { jsx } from '@emotion/react'
 import { useSystem } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction, createElement, Fragment } from 'react'
 import { useValue } from '..'
-import styles from './styles'
+import createClasses from './styles'
 import Types from './types'
 
 const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
@@ -10,13 +10,7 @@ const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
 
   const { rightChild, leftChild, disabled, as = ctx.itemAs || 'a', href } = props
 
-  const { classes, attributes, events } = useSystem('MenuItem', {
-    props,
-    styles,
-    styleProps: {
-      container: ['all'],
-    },
-  })
+  const { classes, attributes, events } = useSystem('MenuItem', props, createClasses)
 
   /**
    * Support controlled
@@ -75,7 +69,7 @@ const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
       if (!disabled) {
         setActive()
         ctx.onChange?.(props.value)
-        events.all.onClick?.(e)
+        events.onClick?.(e)
       }
     },
     onKeyPress: (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -87,7 +81,7 @@ const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
         ctx.onChange?.(props.value)
         e.preventDefault()
       }
-      events.all.onKeyPress?.(e)
+      events.onKeyPress?.(e)
     },
     ref: containerRef,
     css: classes.container,

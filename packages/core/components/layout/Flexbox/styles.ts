@@ -8,7 +8,9 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
       {
         position: 'relative',
         display: props.inline ? 'inline-flex' : 'flex',
-        flexDirection: props.column ? 'column' : undefined,
+      },
+      props.column && {
+        flexDirection: 'column',
       },
       styleProps.all,
     ],

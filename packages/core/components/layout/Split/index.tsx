@@ -53,7 +53,6 @@ const Split: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
     <div
       {...attributes}
       {...events}
-      onChange={undefined}
       ref={(r) => {
         refs[-1] = r
         ref = { current: r }

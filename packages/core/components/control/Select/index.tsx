@@ -56,11 +56,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     return true
   })
 
-  const {
-    classes,
-    attributes,
-    events: { onChange: onChangeProp, ...events },
-  } = useSystem('Select', props, styles, {
+  const { classes, attributes, events } = useSystem('Select', props, styles, {
     additionalClasses: additionalClasses as Stage.CreateAdditionalClasses<Types.Styles, Types.Props>,
   })
 
@@ -131,7 +127,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     if (props.values === undefined) {
       setValues(allValues)
     }
-    onChangeProp?.(allValues, value)
+    props.onChange?.(allValues, value)
   }
 
   /**

@@ -26,7 +26,7 @@ export interface AllProps<Container, ClassSchema>
  * @name Event
  */
 export interface AllEventProps<T>
-  extends FormEventProps<T>,
+  extends Omit<FormEventProps<T>, 'onChange'>,
     FocusEventProps<T>,
     ImageEventProps<T>,
     MediaEventProps<T>,

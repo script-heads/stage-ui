@@ -6,7 +6,7 @@ import Types from './types'
 
 const Stepper: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
   const { data, current = -1 } = props
-  const { classes, attributes, events: { onChange, ...events } } = useSystem('Stepper', props, styles)
+  const { classes, attributes, events } = useSystem('Stepper', props, styles)
   return (
     <div {...attributes} {...events} css={classes.container}>
       {data.map((step, i) => {

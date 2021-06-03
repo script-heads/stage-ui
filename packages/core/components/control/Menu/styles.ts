@@ -30,6 +30,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
               alignItems: props.align || 'stretch',
             }),
       },
+      styleProps.all,
     ],
     item: (variant) => [
       {

@@ -3,14 +3,14 @@ import Check from '@stage-ui/core/components/basic/Check'
 import { useSystem } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import additionalClasses from '@stage-ui/core/components/basic/Check/styles'
-import styles from './styles'
+import createClasses from './styles'
 import Types from './types'
 
 const Radio: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
   const { size = 'm', disabled } = props
 
-  const { classes, attributes, events } = useSystem('Radio', props, styles, {
-    additionalClasses,
+  const { classes, attributes, events } = useSystem('Radio', props, createClasses, {
+    additionalClasses
   })
 
   return (

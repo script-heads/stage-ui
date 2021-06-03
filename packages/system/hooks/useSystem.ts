@@ -94,6 +94,7 @@ function useSystem<Props extends Record<string, any>, ClassesSchema, AdditionalC
   }
 
   Object.keys(props).forEach((key) => {
+    // Check *on* events
     if (key[0] === 'o' && key[1] === 'n') {
       data.events[key as keyof AllEventProps<any>] = props[key]
     }

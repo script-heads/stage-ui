@@ -1,13 +1,11 @@
-import { jsx } from '@emotion/react'
-import { Calendar, Drop, Popover } from '@stage-ui/core'
-import { Calendar as CalendarIcon } from '@stage-ui/icons'
-import Field from '@stage-ui/core/components/basic/Field'
+import additionalClasses from '@stage-ui/core/components/basic/Field/styles'
 import useMask from '@stage-ui/core/hooks/useMask'
 import { useSystem } from '@stage-ui/system'
 import moment, { Moment } from 'moment'
-import { forwardRef, ForwardRefRenderFunction, Fragment, useLayoutEffect, useRef, useState } from 'react'
+import { forwardRef, ForwardRefRenderFunction, useLayoutEffect, useRef, useState } from 'react'
+import Field from '../../basic/Field'
 import maskConf from './mask'
-import styles from './styles'
+import createClasses from './styles'
 import Types from './types'
 
 const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
@@ -27,20 +25,16 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
   const now = moment()
   const [value, setValue] = useState(now)
   const [isActive, setActive] = useState(false)
-  // TODO: setEmpty
-  const [isEmpty, setEmpty] = useState<boolean>(defaultValue === '' || defaultValue === 'undefined')
-
-  const { classes, attributes, events, focus } = useSystem('DatePicker', {
-    props,
-    styles,
-    styleProps: {
-      container: ['margin','flex','grid', 'layout'],
-      field: ['color', 'border', 'padding'],
-    },
-    focus: {
-      applyDecoration: false,
-    },
+  const { classes, attributes, events, focus } = useSystem('DatePicker', props, createClasses, {
+    additionalClasses: additionalClasses as Stage.CreateAdditionalClasses<Types.Styles, Types.Props>,
   })
+
+  // TODO: container check
+  // styleProps: {
+  //   container: ['margin','flex','grid', 'layout'],
+  //   field: ['color', 'border', 'padding'],
+  // },
+  
 
   const minValue = props.minValue ? moment(props.minValue).startOf('day') : now.clone().add(-500, 'year')
   const maxValue = props.maxValue ? moment(props.maxValue).startOf('day') : now.clone().add(500, 'year')

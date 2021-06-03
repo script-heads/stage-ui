@@ -2,13 +2,13 @@ import { Flexbox, Text } from '@stage-ui/core'
 import { ArrowLeft, ArrowRight, ArrowheadLeft, ArrowheadRight } from '@stage-ui/icons'
 import { useSystem } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction, useEffect, useState } from 'react'
-import styles from './styles'
+import createClasses from './styles'
 import Types from './types'
 
 const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
   const { length, pageSize = 20, value } = props
   const lastPage = Math.ceil(length / pageSize)
-  const { classes, attributes, events } = useSystem('Pageswitch', props, styles)
+  const { classes, attributes, events } = useSystem('Pageswitch', props, createClasses)
 
   let defaultValue = value || props.defaultValue || 1
   if (defaultValue <= 0) defaultValue = 1
@@ -50,7 +50,7 @@ const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
   }
 
   return (
-    <Flexbox {...attributes} {...events} onChange={undefined} ref={ref} css={classes.container} alignItems="center">
+    <Flexbox {...attributes} {...events} ref={ref} css={classes.container} alignItems="center">
       <ArrowLeft
         mr="0.5rem"
         size="1rem"

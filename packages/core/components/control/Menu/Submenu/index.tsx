@@ -1,16 +1,16 @@
+import { ArrowDown } from '@stage-ui/icons'
 import { useSystem } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction, useState } from 'react'
-import { ArrowDown } from '@stage-ui/icons'
 import MenuItem from '../MenuItem'
-import styles from './styles'
+import createClasses from './styles'
 import Types from './types'
 
 const Submenu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-  const { rightChild, leftChild, disabled, indent } = props
+  const { rightChild, leftChild, disabled } = props
 
   const [open, setOpen] = useState(props.open || props.defaultOpen || false)
 
-  const { classes, attributes, events } = useSystem('Submenu', props, styles)
+  const { classes, attributes, events } = useSystem('Submenu', props, createClasses)
   const attr: Record<string, string> = {
     'data-flow': 'sub-menu',
   }
@@ -20,7 +20,7 @@ const Submenu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
   return (
     <div {...attr}>
       <MenuItem
-        disabled={disabled}
+        disabled={disabled || false}
         title={props.title}
         leftChild={leftChild}
         rightChild={
@@ -40,7 +40,6 @@ const Submenu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
         data-flow="sub-menu-content"
         {...attributes}
         {...events}
-        onChange={undefined}
         ref={ref}
         css={classes.container}
       >

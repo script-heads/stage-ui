@@ -3,7 +3,7 @@ import Field from '@stage-ui/core/components/basic/Field'
 import additionalClasses from '@stage-ui/core/components/basic/Field/styles'
 import { useSystem } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction, useImperativeHandle, useRef, useEffect, useState } from 'react'
-import styles from './styles'
+import createClasses from './styles'
 import Types from './types'
 
 const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
@@ -17,7 +17,7 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
     leftChildNumber,
   } = props
 
-  const { classes, attributes, events } = useSystem('TextField', props, styles, {
+  const { classes, attributes, events } = useSystem('TextField', props, createClasses, {
     additionalClasses: additionalClasses as Stage.CreateAdditionalClasses<Types.Styles, Types.Props>,
   })
 

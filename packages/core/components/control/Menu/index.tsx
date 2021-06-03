@@ -2,7 +2,7 @@ import { useSystem } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction, useLayoutEffect, useState } from 'react'
 import MenuGroup from './MenuGroup'
 import MenuItem from './MenuItem'
-import styles from './styles'
+import createClasses from './styles'
 import Submenu from './Submenu'
 import Types from './types'
 
@@ -81,19 +81,15 @@ const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref)
     }
   }, [props.itemAs])
 
-  const { classes, attributes, events } = useSystem('Menu', {
-    props,
-    styles,
-    styleProps: {
-      container: ['all'],
-    },
-    styleLabel: 'Menu',
+  const { classes, attributes, events } = useSystem('Menu', props, createClasses, {
+    label: 'Menu'
   })
 
   const styleState: Types.StyleState = {
     decoration,
   }
 
+  // TODO: styles
   const css = [
     classes.container(styleState),
     `
@@ -121,7 +117,6 @@ const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref)
       {...attributes}
       {...events}
       ref={ref}
-      onChange={undefined}
       css={css}
       children={<Context.Provider value={ctx} children={children} />}
     />
