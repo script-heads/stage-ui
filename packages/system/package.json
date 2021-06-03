@@ -1,7 +1,7 @@
 {
     "name": "@stage-ui/system",
     "author": "Research technology",
-    "version": "0.1.46",
+    "version": "0.1.47",
     "license": "MIT",
     "scripts": {
         "pub": "git pull && npm version patch && yarn build && cd ../../build/system && yarn publish --access public && cd .. && rm -rf ./system",
