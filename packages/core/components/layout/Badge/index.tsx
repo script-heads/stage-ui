@@ -16,6 +16,7 @@ const Badge: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
           align: props.align,
           shape: props.shape,
         })}
+        children={props.content}
       />
       {props.children}
     </div>
