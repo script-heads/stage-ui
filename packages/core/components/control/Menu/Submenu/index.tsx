@@ -1,4 +1,4 @@
-import { ArrowDown } from '@stage-ui/icons'
+import { ChevronDown } from '@stage-ui/icons'
 import { useSystem } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction, useState } from 'react'
 import MenuItem from '../MenuItem'
@@ -26,7 +26,7 @@ const Submenu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
         rightChild={
           rightChild || (
             <div data-flow="sub-menu-arrow">
-              <ArrowDown />
+              <ChevronDown color="light" size="1.25rem" rotate={!open ? 90 : 0} />
             </div>
           )
         }
@@ -36,13 +36,7 @@ const Submenu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
           }
         }}
       />
-      <div
-        data-flow="sub-menu-content"
-        {...attributes}
-        {...events}
-        ref={ref}
-        css={classes.container}
-      >
+      <div data-flow="sub-menu-content" {...attributes} {...events} ref={ref} css={classes.container}>
         {props.children || props.title}
       </div>
     </div>

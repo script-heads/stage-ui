@@ -25,20 +25,11 @@ const Page = (props: ContentProps) => {
 
   return (
     <>
-      <Menu
-        title={config.name}
-        setIndex={() => setPath('/')}
-        themes={themes}
-        currentTheme={theme}
-        setTheme={setTheme}
-        git={config.git}
-      />
       <Flexbox h="100vh" css={{ boxSizing: 'border-box', overflow: 'hidden' }}>
-        <Sidebar currentPage={data} pages={pages} onChange={(pageURL) => setPath(pageURL)} />
         <ScrollView h="100vh" w="100%" backgroundColor={(c) => c.surface}>
           <Flexbox
             flex={1}
-            p={['3rem 4rem 1.5rem 4rem', '3rem 4rem 1.5rem 4rem', '1rem']}
+            p={['2rem 2rem 1.5rem 2rem', '2rem 2rem 1.5rem 2rem', '1rem']}
             justifyContent="center"
             // w={['auto','auto','auto','100vw']}
           >
@@ -49,6 +40,7 @@ const Page = (props: ContentProps) => {
                 overflow: 'hidden',
               }}
             >
+              <Sidebar currentPage={data} pages={pages} onChange={(pageURL) => setPath(pageURL)} />
               <Flexbox column alignItems="center">
                 {data.title && (
                   <Block

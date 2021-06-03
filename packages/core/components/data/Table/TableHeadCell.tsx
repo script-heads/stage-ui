@@ -1,5 +1,5 @@
 import { Flexbox, Spinner } from '@stage-ui/core'
-import { ArrowDown } from '@stage-ui/icons'
+import { ChevronDown } from '@stage-ui/icons'
 import { useState, forwardRef, ForwardRefRenderFunction } from 'react'
 import Types from './types'
 
@@ -33,7 +33,7 @@ const TableHeadCell: ForwardRefRenderFunction<HTMLTableDataCellElement, Types.He
         <Flexbox alignItems="center">
           {column.title}
           {busy && <Spinner size="1rem" pl="xs" />}
-          {!busy && column.sort && <ArrowDown ml="0.25rem" rotate={up ? 180 : 0} />}
+          {!busy && column.sort && <ChevronDown ml="0.25rem" rotate={up ? 180 : 0} />}
         </Flexbox>
       </th>
     )
