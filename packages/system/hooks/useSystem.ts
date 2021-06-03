@@ -102,9 +102,19 @@ function useSystem<Props extends Record<string, any>, ClassesSchema, AdditionalC
     }
   })
 
-  styleProps.container.concat(styleProps.margin, styleProps.flex, styleProps.grid, styleProps.style)
-  styleProps.content.concat(styleProps.padding, styleProps.color, styleProps.border, styleProps.layout)
-  styleProps.all.concat(styleProps.container, styleProps.content)
+  styleProps.container = styleProps.container.concat(
+    styleProps.margin,
+    styleProps.flex,
+    styleProps.grid,
+    styleProps.style,
+  )
+  styleProps.content = styleProps.content.concat(
+    styleProps.padding,
+    styleProps.color,
+    styleProps.border,
+    styleProps.layout,
+  )
+  styleProps.all = styleProps.all.concat(styleProps.container, styleProps.content)
 
   const themeOverrides = theme.overrides[name]
   const propsOverrides = props.overrides

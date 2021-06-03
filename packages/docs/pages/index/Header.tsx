@@ -1,78 +1,80 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import { Badge, Button, Grid, Flexbox, Header, Paragraph, Text, useTheme } from '@stage-ui/core'
-import { CustomPageProps } from '../../utils/core'
 import { Moon } from '@stage-ui/icons'
+import { CustomPageProps } from '../../utils/core'
 import ThemeSwitcher from '../../components/Menu/ThemeSwitcher'
+
 export default (props: CustomPageProps) => {
-    const theme = useTheme()
-    return (
-        <Flexbox
-            justifyContent="center"
-            alignItems="center"
-            h="100vh"
-            pb="6rem"
+  const theme = useTheme()
+  return (
+    <Flexbox
+      justifyContent="center"
+      alignItems="center"
+      h="100vh"
+      pb="6rem"
+      css={{
+        [`@media (max-width: ${theme.breakpoints[3]})`]: {
+          flexDirection: 'column-reverse',
+        },
+      }}
+    >
+      <div className="background_light" />
+      <div className="background_light background_light_1" />
+      <div className="background_light background_light_2" />
+
+      <Flexbox
+        column
+        justifyContent="center"
+        w="25rem"
+        mr={['3rem', '3rem', '3rem', '0']}
+        css={{
+          [`@media (max-width: ${theme.breakpoints[3]})`]: {
+            width: 'auto',
+            textAlign: 'center',
+          },
+        }}
+      >
+        <Header m="0" size="6.5rem" lineHeight={1} weight={800}>
+          <span>StageUI</span>
+          <Text
+            size="xl"
+            weight={500}
             css={{
-                [`@media (max-width: ${theme.breakpoints[3]})`]: {
-                    flexDirection: 'column-reverse'
-                }
-            }}>
-            <div className="background_light"></div>
-            <div className="background_light background_light_1"></div>
-            <div className="background_light background_light_2"></div>
-            
-            <Flexbox
-                column
-                justifyContent="center"
-                w="25rem"
-                mr={['3rem', '3rem', '3rem', '0']}
-                css={{
-                    [`@media (max-width: ${theme.breakpoints[3]})`]: {
-                        width: 'auto',
-                        textAlign: 'center'
-                    }
-                }}>
-                <Header m="0" size="6.5rem" lineHeight={1} weight={800}>
-                    <span>StageUI</span>
-                    <Text size="xl" weight={500} css={{
-                        verticalAlign: 'text-top',
-                    }} textColor={c => c.primary}>β</Text>
-                </Header>
-                <Paragraph
-                    size="l"
-                    color={c => c.light}
-                    children="Flexible UI Framework declared by your own Design System."
-                />
-                <Grid mt="xl" templateColumns={['1fr 1fr', '1fr 1fr', '1fr']} rowGap="2rem" columnGap="1rem" justifyItems="center">
-                    <Button
-                        w="12rem"
-                        size="l"
-                        onClick={() => props.setPath('/getting-started')}
-                        children="Getting started"
-                    />
-                    <Badge content="preview" size="xs">
-                        <Button
-                        w="12rem"
-                        size="l"
-                            color={c => c.lightest}
-                            onClick={() => props.setPath('/editor')}
-                            children="Visual editor"
-                        />
-                    </Badge>
-                </Grid>
+              verticalAlign: 'text-top',
+            }}
+            textColor={(c) => c.primary}
+          >
+            β
+          </Text>
+        </Header>
+        <Paragraph size="l" color={(c) => c.light}>
+          Flexible UI Framework declared by your own Design System.
+        </Paragraph>
+        <Grid
+          mt="xl"
+          templateColumns={['1fr 1fr', '1fr 1fr', '1fr']}
+          rowGap="2rem"
+          columnGap="1rem"
+          justifyItems="center"
+        >
+          <Button w="12rem" size="l" onClick={() => props.setPath('/getting-started')} children="Getting started" />
+          <Badge content="preview" size="xs">
+            <Button w="12rem" size="l" color={(c) => c.lightest} onClick={() => props.setPath('/editor')}>
+              Visual editor
+            </Button>
+          </Badge>
+        </Grid>
 
-                <Flexbox alignItems="center" justifyContent="center" mt="4rem">
-                    <Moon
-                        size="3rem"
-                        onClick={() => {
-                            props.setTheme(props.themes[props.theme.name === 'Dark' ? 'light' : 'dark'])
-                        }}
-                        color={props.theme.name === 'Dark' ? 'primary' : 'lightest'}
-                    />
-                </Flexbox>
-
-            </Flexbox>
-            {/* <Flexbox
+        <Flexbox alignItems="center" justifyContent="center" mt="4rem">
+          <Moon
+            size="3rem"
+            onClick={() => {
+              props.setTheme(props.themes[props.theme.name === 'Dark' ? 'light' : 'dark'])
+            }}
+            color={props.theme.name === 'Dark' ? 'primary' : 'lightest'}
+          />
+        </Flexbox>
+      </Flexbox>
+      {/* <Flexbox
                 flex={1}
                 css={{ height: '100%' }}
                 justifyContent={['flex-end', 'flex-end', 'center']}>
@@ -98,6 +100,6 @@ export default (props: CustomPageProps) => {
                     <path d="m114.11 108.81a1.51 1.51 0 0 0 -2.17 2.11 59.1 59.1 0 0 1 14.63 56.81h2.91a58 58 0 0 0 1.77-23.3 63 63 0 0 0 -17.14-35.62z" />
                 </svg>
             </Flexbox> */}
-        </Flexbox>
-    )
+    </Flexbox>
+  )
 }
