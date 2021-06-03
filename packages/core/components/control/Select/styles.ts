@@ -84,7 +84,7 @@ const styles: Stage.CreateAdditionalClasses<Types.Styles, Types.Props> = (theme,
             paddingLeft: 0,
             paddingRight: 0,
             borderRadius: 0,
-            backgroundColor: theme.color.surface.hex(),
+            backgroundColor: theme.color.surface.rgb().string(),
           },
           none: {
             borderTopLeftRadius: theme.radius.s,
@@ -232,7 +232,7 @@ const styles: Stage.CreateAdditionalClasses<Types.Styles, Types.Props> = (theme,
     ],
     emptyText: (variant) => [
       {
-        color: theme.color.light.hex(),
+        color: theme.color.light.rgb().string(),
         userSelect: 'none',
       },
       variant({

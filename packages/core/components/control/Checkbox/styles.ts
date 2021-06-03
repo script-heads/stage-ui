@@ -9,9 +9,9 @@ const createClasses: Stage.CreateAdditionalClasses<Types.Styles, Types.Props> = 
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        color: theme.color.primary.hex(),
-        backgroundColor: theme.color.surface.hex(),
-        borderColor: theme.color.light.hex(),
+        color: theme.color.primary.rgb().string(),
+        backgroundColor: theme.color.surface.rgb().string(),
+        borderColor: theme.color.light.rgb().string(),
         boxShadow: theme.assets.innerShadow.m,
         borderWidth: theme.assets.border.width,
         borderStyle: theme.assets.border.style,
@@ -27,15 +27,15 @@ const createClasses: Stage.CreateAdditionalClasses<Types.Styles, Types.Props> = 
         ],
         checked: [
           {
-            backgroundColor: theme.color.primary.hex(),
+            backgroundColor: theme.color.primary.rgb().string(),
             borderColor: 'transparent',
           },
         ],
         disabled: [
           {
-            color: theme.color.hardest.hex(),
-            borderColor: theme.color.lightest.hex(),
-            backgroundColor: theme.color.lightest.hex(),
+            color: theme.color.hardest.rgb().string(),
+            borderColor: theme.color.lightest.rgb().string(),
+            backgroundColor: theme.color.lightest.rgb().string(),
           },
           variant({
             checked: [
@@ -84,7 +84,7 @@ const createClasses: Stage.CreateAdditionalClasses<Types.Styles, Types.Props> = 
         height: 'auto',
         transition: 'opacity .15s, transform .15s',
         willChange: 'opacity, transform',
-        stroke: theme.color.onPrimary.hex(),
+        stroke: theme.color.onPrimary.rgb().string(),
         strokeWidth: '2px',
         strokeLinejoin: 'round',
         opacity: 0,

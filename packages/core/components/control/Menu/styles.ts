@@ -39,7 +39,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
         userSelect: 'none',
         outline: 'none',
         padding: `calc(${spacing} / 2) ${spacing}`,
-        color: theme.color.onBackground.hex(),
+        color: theme.color.onBackground.rgb().string(),
         ':before': {
           content: `''`,
           transition: 'all 0.15s',
@@ -50,16 +50,16 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
           variant({
             decoration: {
               filled: {
-                color: theme.color.onSurface.hex(),
+                color: theme.color.onSurface.rgb().string(),
               },
               marker: {
-                color: theme.color.onSurface.hex(),
+                color: theme.color.onSurface.rgb().string(),
               },
               'marker-reverse': {
-                color: theme.color.onSurface.hex(),
+                color: theme.color.onSurface.rgb().string(),
               },
               color: {
-                color: theme.color.primary.hex(),
+                color: theme.color.primary.rgb().string(),
               },
             },
           }),
@@ -71,18 +71,18 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
           variant({
             decoration: {
               filled: {
-                background: theme.color.primary.hex(),
-                color: theme.color.onPrimary.hex(),
+                background: theme.color.primary.rgb().string(),
+                color: theme.color.onPrimary.rgb().string(),
                 borderRadius,
               },
               marker: {
                 position: 'relative',
                 paddingLeft: spacing,
-                color: theme.color.primary.hex(),
+                color: theme.color.primary.rgb().string(),
                 ':before': {
                   width: isRow ? `100%` : `calc(${spacing} / 4)`,
                   height: isRow ? `calc(${spacing} / 4)` : `100%`,
-                  background: theme.color.primary.hex(),
+                  background: theme.color.primary.rgb().string(),
                   left: 0,
                   bottom: 0,
                 },
@@ -90,17 +90,17 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
               'marker-reverse': {
                 position: 'relative',
                 paddingLeft: spacing,
-                color: theme.color.primary.hex(),
+                color: theme.color.primary.rgb().string(),
                 ':before': {
                   width: isRow ? `100%` : `calc(${spacing} / 4)`,
                   height: isRow ? `calc(${spacing} / 4)` : `100%`,
-                  background: theme.color.primary.hex(),
+                  background: theme.color.primary.rgb().string(),
                   right: 0,
                   top: 0,
                 },
               },
               color: {
-                color: theme.color.primary.hex(),
+                color: theme.color.primary.rgb().string(),
               },
             },
           }),
@@ -121,9 +121,9 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
           {
             '> [data-flow=menu-item]': [
               {
-                color: theme.color.primary.hex(),
+                color: theme.color.primary.rgb().string(),
                 ':hover': {
-                  color: theme.color.primary.hex(),
+                  color: theme.color.primary.rgb().string(),
                 },
               },
             ],
@@ -141,7 +141,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
         },
         ...(isRow && {
           '[data-flow=sub-menu-content]': {
-            backgroundColor: theme.color.surface.hex(),
+            backgroundColor: theme.color.surface.rgb().string(),
             '[data-flow=sub-menu-content]': {
               top: 0,
               transform: 'translateX(100%)',
@@ -186,7 +186,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
         alignItems: 'center',
         padding: `calc(${spacing} / 4) ${spacing}`,
         fontSize: `calc(${typography.fontSize} / 1.25)`,
-        color: theme.color.hard.hex(),
+        color: theme.color.hard.rgb().string(),
       },
     ],
 

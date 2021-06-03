@@ -17,7 +17,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
         borderWidth: '1px',
         borderStyle: 'solid',
         borderColor: 'transparent',
-        background: theme.color.background.hex(),
+        background: theme.color.background.rgb().string(),
         minHeight: `calc(${field.minHeight} / 4)`,
         zIndex: 1,
       },

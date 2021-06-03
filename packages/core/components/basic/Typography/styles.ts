@@ -22,9 +22,11 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.PrivateProps> = (th
       breakpointResolver(props.weight, theme, (currentValue) => ({ fontWeight: currentValue })),
       breakpointResolver(props.transform, theme, (currentValue) => ({ textTransform: currentValue })),
       breakpointResolver(props.align, theme, (currentValue) => ({ textAlign: currentValue })),
-      breakpointResolver(props.color, theme, (currentValue) => ({ color: colorResolver(currentValue, theme)?.hex() })),
+      breakpointResolver(props.color, theme, (currentValue) => ({
+        color: colorResolver(currentValue, theme)?.rgb().string(),
+      })),
       breakpointResolver(props.backgroundColor, theme, (currentValue) => ({
-        background: colorResolver(currentValue, theme)?.hex(),
+        background: colorResolver(currentValue, theme)?.rgb().string(),
       })),
       styleProps.all,
     ],

@@ -13,7 +13,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.PrivateProps> = (th
         position: 'absolute',
         top: 0,
         height: '100%',
-        background: color.hex(),
+        background: color.rgb().string(),
         animation: loading ? 'move 2s linear infinite' : 'none',
         overflow: 'hidden',
         borderRadius: '4rem',

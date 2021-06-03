@@ -1,5 +1,6 @@
 import colorResolver from '@stage-ui/system/props/color'
 import Types from './types'
+
 const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props) => {
   const labelColor = props.labelColor ? colorResolver(props.labelColor, theme) : undefined
 
@@ -9,7 +10,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
         display: 'flex',
         alignItems: 'center',
         cursor: 'pointer',
-        color: theme.color.onSurface.hex(),
+        color: theme.color.onSurface.rgb().string(),
         outline: 'none',
       },
       variant({
@@ -25,13 +26,13 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
       {
         marginLeft: '0.5rem',
         userSelect: 'none',
-        color: labelColor?.hex(),
+        color: labelColor?.rgb().string(),
       },
       variant({
         size: theme.assets.typography.text,
         disabled: [
           {
-            color: theme.color.light.hex(),
+            color: theme.color.light.rgb().string(),
           },
         ],
         uppercase: [

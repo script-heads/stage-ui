@@ -59,13 +59,13 @@ const resolvers: Record<string, Resolver> = {
   backgroundColor: (p, cd, sp, t) =>
     sp.color.push(
       resolveBreakpoints(p.backgroundColor, t, (v) => ({
-        backgroundColor: resolveColor(v, t)?.hex(),
+        backgroundColor: resolveColor(v, t)?.rgb().string(),
       })),
     ),
   textColor: (p, cd, sp, t) =>
     sp.color.push(
       resolveBreakpoints(p.textColor, t, (v) => ({
-        color: resolveColor(v, t)?.hex(),
+        color: resolveColor(v, t)?.rgb().string(),
       })),
     ),
 
@@ -73,7 +73,7 @@ const resolvers: Record<string, Resolver> = {
   borderWidth: (p, cd, sp, t) => sp.border.push(resolveBreakpoints(p.borderWidth, t, (v) => ({ borderWidth: v }))),
   borderStyle: (p, cd, sp, t) => sp.border.push(resolveBreakpoints(p.borderStyle, t, (v) => ({ borderStyle: v }))),
   borderColor: (p, cd, sp, t) =>
-    sp.border.push(resolveBreakpoints(p.borderColor, t, (v) => ({ borderColor: resolveColor(v, t)?.hex() }))),
+    sp.border.push(resolveBreakpoints(p.borderColor, t, (v) => ({ borderColor: resolveColor(v, t)?.rgb().string() }))),
   borderRadius: (p, cd, sp, t) => sp.border.push(resolveBreakpoints(p.borderRadius, t, (v) => ({ borderRadius: v }))),
 
   p: (p, cd, sp, t) => sp.padding.push(resolveBreakpoints(p.p, t, (v) => ({ padding: resolveSpace(v, t) }))),
