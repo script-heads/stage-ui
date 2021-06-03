@@ -23,8 +23,8 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
                             to bottom,
                             ${color},
                             ${color} ${resolvedDash},
-                            transparent ${resolvedDash}, 
-                            transparent ${resolvedGap} 
+                            transparent ${resolvedDash},
+                            transparent ${resolvedGap}
                         )`,
                   backgroundPosition: 'right top',
                   backgroundSize: `calc(${resolvedGap} + ${resolvedDash}) calc(${resolvedGap} + ${resolvedDash})`,
@@ -45,8 +45,8 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
                             to right,
                             ${color},
                             ${color} ${resolvedDash},
-                            transparent ${resolvedDash}, 
-                            transparent ${resolvedGap} 
+                            transparent ${resolvedDash},
+                            transparent ${resolvedGap}
                         )`,
                   backgroundPosition: 'left bottom',
                   backgroundSize: `calc(${resolvedGap} + ${resolvedDash}) calc(${resolvedGap} + ${resolvedDash})`,

@@ -1,6 +1,7 @@
 import { keyframes } from '@emotion/react'
 import colorResolver from '@stage-ui/system/props/color'
 import Types from './types'
+
 const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
   const spinAnimation = keyframes({
     from: {
