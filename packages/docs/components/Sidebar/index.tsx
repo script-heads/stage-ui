@@ -33,16 +33,16 @@ const TopBar = (props: SidebarProps) => {
                   color="onSurface"
                   decoration="text"
                   css={{
-                    maxWidth: '10rem',
                     whiteSpace: 'wrap',
                     textAlign: 'inherit',
                   }}
                   key={item.title}
                   onClick={() => {
                     props.onChange(item.url)
+                    setItems(null)
                   }}
                 >
-                  <Flexbox column alignItems="flex-start" py="m">
+                  <Flexbox column py="m">
                     <Text weight="600">{item.title}</Text>
                     <Text size="xs" color="light">
                       {item.subtitle}
@@ -57,24 +57,16 @@ const TopBar = (props: SidebarProps) => {
     )
   })
 
-  // if (menuItems.length === 0) {
-  //     return null
-  // }
-  // return (
-  //     <Menu.Submenu
-  //         title={(
-  //             <Text size="xs" weight="bold" color="light">{section}</Text>
-  //         )}
-  //         pb="l"
-  //         key={index}
-  //         defaultOpen={true}
-  //         children={menuItems}
-  //     />
-  // )
-
   return (
     <Flexbox ref={targetRef}>
-      <Drop target={targetRef} visible={!!items} justify="start">
+      <Drop
+        target={targetRef}
+        visible={!!items}
+        justify="start"
+        onClickOutside={() => {
+          setItems(null)
+        }}
+      >
         <Grid templateColumns="repeat(3, 1fr)" decoration="mediumShadow" p="m">
           {items}
         </Grid>
