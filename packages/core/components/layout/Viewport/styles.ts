@@ -3,8 +3,8 @@ import resets from './resets'
 
 const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
   const attachTheme = {
-    background: theme.color.background.hex(),
-    color: theme.color.onBackground.hex(),
+    background: theme.color.background.rgb().string(),
+    color: theme.color.onBackground.rgb().string(),
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
     p: theme.assets.typography.paragraph,
     h1: theme.assets.typography.header.l,
@@ -16,10 +16,10 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
 
   return {
     container: [
-      !props.wrapper && resets, 
-      props.wrapper ? attachTheme : { html: attachTheme }, 
+      !props.wrapper && resets,
+      props.wrapper ? attachTheme : { html: attachTheme },
       props.global,
-      styleProps.all
+      styleProps.all,
     ],
   }
 }

@@ -11,7 +11,7 @@ const createClsses: CreateClasses<Types.Styles, Types.Props> = (theme, props, st
       {
         width: 'min-content',
         display: 'inline-flex',
-        color: color?.hex(),
+        color: color?.rgb().string(),
         background: background ? background.rgb().string() : 'transparent',
         height: theme.assets.typography.text.m.fontSize,
         fontSize: theme.assets.typography.text.m.fontSize,
@@ -24,7 +24,7 @@ const createClsses: CreateClasses<Types.Styles, Types.Props> = (theme, props, st
       hoverColor && {
         transition: 'color .15s',
         ':hover': {
-          color: hoverColor.hex(),
+          color: hoverColor.rgb().string(),
         },
       },
       variant({
@@ -49,7 +49,7 @@ const createClsses: CreateClasses<Types.Styles, Types.Props> = (theme, props, st
         shape: {
           circle: {
             borderRadius: '50%',
-            border: `1px solid ${color?.hex() || 'inherit'}`,
+            border: `1px solid ${color?.rgb().string() || 'inherit'}`,
             padding: '0.4em',
           },
           oval: {

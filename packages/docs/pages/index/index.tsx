@@ -30,7 +30,10 @@ export default (props: CustomPageProps) => {
       labels.forEach((label) => {
         const labelTop = label.getBoundingClientRect().top
         if (labelTop < window.innerHeight && labelTop > 0) {
-          label.style.color = primary.darken(0.8 * (labelTop / window.innerHeight)).hex()
+          label.style.color = primary
+            .darken(0.8 * (labelTop / window.innerHeight))
+            .rgb()
+            .string()
         }
       })
 

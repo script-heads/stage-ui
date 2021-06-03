@@ -61,7 +61,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
           xl: [theme.assets.field.xl, theme.assets.typography.text.xl],
         },
         disabled: {
-          color: theme.color.light.hex(),
+          color: theme.color.light.rgb().string(),
           cursor: 'not-allowed',
         },
         decoration: {
@@ -69,7 +69,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
             variant({
               disabled: [
                 {
-                  background: theme.color.lightest.hex(),
+                  background: theme.color.lightest.rgb().string(),
                 },
               ],
             }),
@@ -81,7 +81,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
             variant({
               disabled: [
                 {
-                  background: theme.color.lightest.hex(),
+                  background: theme.color.lightest.rgb().string(),
                 },
               ],
             }),
@@ -114,7 +114,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
 
     label: (variant) => [
       {
-        color: theme.color.hard.hex(),
+        color: theme.color.hard.rgb().string(),
         display: 'flex',
         userSelect: 'none',
         paddingBottom: '0.25rem',
@@ -162,7 +162,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
 
     child: (variant) => [
       {
-        color: color.hex(),
+        color: color.rgb().string(),
         flexGrow: 0,
         flexShrink: 1,
         display: 'flex',
@@ -207,7 +207,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
         borderRadius: '100rem',
         transition: 'transform 0.25s',
         ':hover': {
-          color: theme.color.warning.hex(),
+          color: theme.color.warning.rgb().string(),
           transform: 'scale(1.2)',
         },
         ':active': {
@@ -221,7 +221,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
       {
         paddingTop: '.25rem',
         paddingLeft: props.decoration !== 'underline' ? '.25rem' : '',
-        color: color.hex(),
+        color: color.rgb().string(),
         ...theme.assets.typography.text.m,
       },
       variant({
@@ -235,7 +235,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
       {
         paddingTop: '.25rem',
         paddingLeft: props.decoration !== 'underline' ? '.25rem' : '',
-        color: color?.hex() || theme.color.error.hex(),
+        color: color?.rgb().string() || theme.color.error.rgb().string(),
         ...theme.assets.typography.text.m,
         ' svg': {
           color: theme.color.error.string(),

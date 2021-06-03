@@ -150,7 +150,7 @@ const ThemeConfigurator = (props: ThemeConfiguratorProps) => {
                 {
                   fontSize: '0.75rem',
                   letterSpacing: '0.125rem',
-                  color: theme.color.light.hex(),
+                  color: theme.color.light.rgb().string(),
                 },
               ],
             }}

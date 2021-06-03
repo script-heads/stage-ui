@@ -19,7 +19,7 @@ const applyLayoutDecoration = (props: Props, theme: Theme) => {
   switch (props.decoration) {
     case 'surface':
       return {
-        background: theme.color.surface.hex(),
+        background: theme.color.surface.rgb().string(),
         borderRadius: theme.radius.m,
         borderWidth: theme.assets.border.width,
         borderStyle: theme.assets.border.style,
@@ -27,25 +27,25 @@ const applyLayoutDecoration = (props: Props, theme: Theme) => {
       }
     case 'minorShadow':
       return {
-        background: theme.color.surface.hex(),
+        background: theme.color.surface.rgb().string(),
         borderRadius: theme.radius.m,
         boxShadow: theme.assets.shadow.s,
       }
     case 'mediumShadow':
       return {
-        background: theme.color.surface.hex(),
+        background: theme.color.surface.rgb().string(),
         borderRadius: theme.radius.m,
         boxShadow: theme.assets.shadow.m,
       }
     case 'majorShadow':
       return {
-        background: theme.color.surface.hex(),
+        background: theme.color.surface.rgb().string(),
         borderRadius: theme.radius.m,
         boxShadow: theme.assets.shadow.l,
       }
     case 'skeleton':
       return {
-        background: theme.color.lightest.hex(),
+        background: theme.color.lightest.rgb().string(),
         animation: `${skeleton} 2s ease-in-out infinite`,
       }
   }

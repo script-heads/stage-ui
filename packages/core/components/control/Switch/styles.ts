@@ -9,7 +9,7 @@ const createClasses: Stage.CreateAdditionalClasses<Types.Styles, Types.Props> = 
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: theme.color.lightest.hex(),
+        backgroundColor: theme.color.lightest.rgb().string(),
         transition: 'backgroundColor .15s',
         willChange: 'backgroundColor',
       },
@@ -53,14 +53,14 @@ const createClasses: Stage.CreateAdditionalClasses<Types.Styles, Types.Props> = 
         },
         checked: [
           {
-            backgroundColor: theme.color.primary.hex(),
+            backgroundColor: theme.color.primary.rgb().string(),
           },
         ],
       }),
       variant({
         disabled: [
           {
-            backgroundColor: theme.color.lightest.hex(),
+            backgroundColor: theme.color.lightest.rgb().string(),
           },
         ],
       }),
@@ -71,8 +71,8 @@ const createClasses: Stage.CreateAdditionalClasses<Types.Styles, Types.Props> = 
         boxSizing: 'border-box',
         borderRadius: '50%',
         borderStyle: 'solid',
-        borderColor: theme.color.primary.hex(),
-        background: theme.color.surface.hex(),
+        borderColor: theme.color.primary.rgb().string(),
+        background: theme.color.surface.rgb().string(),
         boxShadow: theme.assets.shadow.m,
         transition: 'left .15s',
         willChange: 'opacity',
@@ -157,7 +157,7 @@ const createClasses: Stage.CreateAdditionalClasses<Types.Styles, Types.Props> = 
         },
         disabled: [
           {
-            borderColor: theme.color.lightest.hex(),
+            borderColor: theme.color.lightest.rgb().string(),
           },
         ],
       }),

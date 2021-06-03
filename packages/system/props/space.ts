@@ -8,5 +8,5 @@ export default (value: string | number, theme: Stage.Theme): string => {
   return value
     .split(' ')
     .map((currentValue: string) => theme.spacing[currentValue as Stage.Sizes] || currentValue)
-    .join('')
+    .join(' ')
 }

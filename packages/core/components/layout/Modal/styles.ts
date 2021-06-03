@@ -64,7 +64,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
         margin: '0 auto',
         padding: spacing,
         minHeight: '1rem',
-        backgroundColor: theme.color.surface.hex(),
+        backgroundColor: theme.color.surface.rgb().string(),
         // borderWidth: theme.assets.border.width,
         // borderStyle: theme.assets.border.style,
         // borderColor: theme.assets.border.color,

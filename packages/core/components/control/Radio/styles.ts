@@ -9,9 +9,9 @@ const createClasses: Stage.CreateAdditionalClasses<Types.Styles, Types.Props> = 
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        color: theme.color.surface.hex(),
-        backgroundColor: theme.color.surface.hex(),
-        borderColor: theme.color.light.hex(),
+        color: theme.color.surface.rgb().string(),
+        backgroundColor: theme.color.surface.rgb().string(),
+        borderColor: theme.color.light.rgb().string(),
         borderWidth: theme.assets.border.width,
         borderStyle: theme.assets.border.style,
         boxShadow: theme.assets.innerShadow.m,
@@ -27,14 +27,14 @@ const createClasses: Stage.CreateAdditionalClasses<Types.Styles, Types.Props> = 
         ],
         checked: [
           {
-            backgroundColor: theme.color.primary.hex(),
+            backgroundColor: theme.color.primary.rgb().string(),
             borderColor: 'transparent',
           },
         ],
         disabled: [
           {
-            backgroundColor: theme.color.lightest.hex(),
-            borderColor: theme.color.light.hex(),
+            backgroundColor: theme.color.lightest.rgb().string(),
+            borderColor: theme.color.light.rgb().string(),
           },
           variant({
             checked: [
@@ -88,7 +88,7 @@ const createClasses: Stage.CreateAdditionalClasses<Types.Styles, Types.Props> = 
         height: '100%',
         width: '100%',
         borderRadius: '50%',
-        backgroundColor: theme.color.onPrimary.hex(),
+        backgroundColor: theme.color.onPrimary.rgb().string(),
       },
       variant({
         checked: [

@@ -54,8 +54,8 @@ const styles: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, st
         width: '1.25rem',
         height: '0.375rem',
         margin: '0.125rem',
-        borderTop: `0.125rem solid ${theme.color.light.hex()}`,
-        borderBottom: `0.125rem solid ${theme.color.light.hex()}`,
+        borderTop: `0.125rem solid ${theme.color.light.rgb().string()}`,
+        borderBottom: `0.125rem solid ${theme.color.light.rgb().string()}`,
       },
     ],
     expandContainer: [

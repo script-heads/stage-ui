@@ -35,7 +35,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
         cursor: 'inherit',
         textOverflow: 'ellipsis',
         '&::placeholder': {
-          color: theme.color.light.hex(),
+          color: theme.color.light.rgb().string(),
         },
       },
     ],

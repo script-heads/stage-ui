@@ -22,7 +22,9 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
         overflow: 'hidden',
         position: 'relative',
         boxSizing: 'border-box',
-        color: colorResolver(props.color || theme.color.hardest, theme)?.hex(),
+        color: colorResolver(props.color || theme.color.hardest, theme)
+          ?.rgb()
+          .string(),
         fontSize: props.size || '1.125em',
       },
       styleProps.all,

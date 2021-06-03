@@ -4,7 +4,9 @@ import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
   const { gap, dash, vertical } = props
-  const color = colorResolver(props.color || theme.assets.border.color, theme)?.hex()
+  const color = colorResolver(props.color || theme.assets.border.color, theme)
+    ?.rgb()
+    .string()
 
   const resolvedGap = sizeProp(gap || dash, theme.spacing, (v) => v)
   const resolvedDash = sizeProp(dash, theme.spacing, (v) => v)

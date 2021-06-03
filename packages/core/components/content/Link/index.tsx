@@ -13,7 +13,7 @@ const Link: ForwardRefRenderFunction<HTMLAnchorElement, Types.Props> = (props, r
       name="Link"
       css={{
         outline: 'none',
-        color: theme.color.primary.hex(),
+        color: theme.color.primary.rgb().string(),
         textDecoration: 'unset',
         '&:hover': {
           textDecoration: 'underline',

@@ -7,7 +7,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.PrivateProps> = (th
         decoration: {
           finder: {
             '>div:nth-of-type(even)': {
-              background: theme.color.background.hex(),
+              background: theme.color.background.rgb().string(),
             },
           },
         },
@@ -62,7 +62,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.PrivateProps> = (th
         opacity: 0,
         cursor: 'pointer',
         height: 'auto',
-        color: theme.color.light.hex(),
+        color: theme.color.light.rgb().string(),
         fontSize: theme.assets.typography.text.m.fontSize,
         paddingRight: `calc(${theme.spacing.m} / 2)`,
         paddingLeft: `calc(${theme.assets.typography.text.m.fontSize} * ${props.lvl * 1})`,

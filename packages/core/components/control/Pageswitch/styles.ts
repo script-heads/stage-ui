@@ -4,23 +4,23 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
   return {
     container: [
       {
-        color: theme.color.hard.hex(),
+        color: theme.color.hard.rgb().string(),
         userSelect: 'none',
       },
     ],
     arrowButton: (variant) => [
       {
-        color: theme.color.hardest.hex(),
+        color: theme.color.hardest.rgb().string(),
         ':hover': {
-          color: theme.color.primary.hex(),
+          color: theme.color.primary.rgb().string(),
         },
       },
       variant({
         disabled: {
           cursor: 'not-allowed',
-          color: theme.color.lightest.hex(),
+          color: theme.color.lightest.rgb().string(),
           ':hover': {
-            color: theme.color.lightest.hex(),
+            color: theme.color.lightest.rgb().string(),
           },
         },
       }),
