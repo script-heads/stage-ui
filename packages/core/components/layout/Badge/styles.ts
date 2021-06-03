@@ -1,7 +1,7 @@
 import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
-  const { assets, spacing } = theme
+  const { assets } = theme
   const { text } = assets.typography
   const typography = text[props.size || 'm'] || text.m
   const padding = typography.fontSize
@@ -12,9 +12,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
         position: 'relative',
         width: 'fit-content',
       },
-      styleProps.margin,
-      styleProps.flex,
-      styleProps.grid,
+      styleProps.container,
     ],
     holder: (variant) => [
       {
@@ -101,10 +99,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
           ],
         },
       }),
-      styleProps.layout,
-      styleProps.padding,
-      styleProps.color,
-      styleProps.border,
+      styleProps.content,
     ],
   }
 }

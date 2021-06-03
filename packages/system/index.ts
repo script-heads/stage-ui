@@ -1,10 +1,12 @@
 import { Interpolation } from '@emotion/react'
 import ColorType from 'color'
+import { ColorProp as ColorPropType } from '@stage-ui/system/props/color'
 import { ReplaceTheme } from './utils/createTheme'
 import { AllProps as AllPropsType } from './props/types'
-import { CreateClasses as CreateClassesType } from './hooks/useSystem'
-import { ColorProp as ColorPropType } from '@stage-ui/system/props/color'
-import { CreateAdditionalClasses as CreateAdditionalClassesType } from './hooks/useSystem'
+import {
+  CreateClasses as CreateClassesType,
+  CreateAdditionalClasses as CreateAdditionalClassesType,
+} from './hooks/useSystem'
 
 declare global {
   namespace Stage {

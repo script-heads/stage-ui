@@ -77,8 +77,14 @@ const resolvers: Record<string, Resolver> = {
   borderRadius: (p, cd, sp, t) => sp.border.push(resolveBreakpoints(p.borderRadius, t, (v) => ({ borderRadius: v }))),
 
   p: (p, cd, sp, t) => sp.padding.push(resolveBreakpoints(p.p, t, (v) => ({ padding: resolveSpace(v, t) }))),
-  px: (p, cd, sp, t) => sp.padding.push(resolveBreakpoints(p.px, t, (v) => ({ padding: resolveSpace(v, t) }))),
-  py: (p, cd, sp, t) => sp.padding.push(resolveBreakpoints(p.py, t, (v) => ({ padding: resolveSpace(v, t) }))),
+  px: (p, cd, sp, t) =>
+    sp.padding.push(
+      resolveBreakpoints(p.px, t, (v) => ({ paddingRight: resolveSpace(v, t), paddingLeft: resolveSpace(v, t) })),
+    ),
+  py: (p, cd, sp, t) =>
+    sp.padding.push(
+      resolveBreakpoints(p.py, t, (v) => ({ paddingTop: resolveSpace(v, t), paddingBottom: resolveSpace(v, t) })),
+    ),
   pt: (p, cd, sp, t) => sp.padding.push(resolveBreakpoints(p.pt, t, (v) => ({ paddingTop: resolveSpace(v, t) }))),
   pr: (p, cd, sp, t) => sp.padding.push(resolveBreakpoints(p.pr, t, (v) => ({ paddingRight: resolveSpace(v, t) }))),
   pb: (p, cd, sp, t) => sp.padding.push(resolveBreakpoints(p.pb, t, (v) => ({ paddingBottom: resolveSpace(v, t) }))),
@@ -86,8 +92,14 @@ const resolvers: Record<string, Resolver> = {
 
   // Margin
   m: (p, cd, sp, t) => sp.margin.push(resolveBreakpoints(p.m, t, (v) => ({ margin: resolveSpace(v, t) }))),
-  mx: (p, cd, sp, t) => sp.margin.push(resolveBreakpoints(p.mx, t, (v) => ({ margin: resolveSpace(v, t) }))),
-  my: (p, cd, sp, t) => sp.margin.push(resolveBreakpoints(p.my, t, (v) => ({ margin: resolveSpace(v, t) }))),
+  mx: (p, cd, sp, t) =>
+    sp.margin.push(
+      resolveBreakpoints(p.mx, t, (v) => ({ marginRight: resolveSpace(v, t), marginLeft: resolveSpace(v, t) })),
+    ),
+  my: (p, cd, sp, t) =>
+    sp.margin.push(
+      resolveBreakpoints(p.my, t, (v) => ({ marginTop: resolveSpace(v, t), marginBottom: resolveSpace(v, t) })),
+    ),
   mt: (p, cd, sp, t) => sp.margin.push(resolveBreakpoints(p.mt, t, (v) => ({ marginTop: resolveSpace(v, t) }))),
   mr: (p, cd, sp, t) => sp.margin.push(resolveBreakpoints(p.mr, t, (v) => ({ marginRight: resolveSpace(v, t) }))),
   mb: (p, cd, sp, t) => sp.margin.push(resolveBreakpoints(p.mb, t, (v) => ({ marginBottom: resolveSpace(v, t) }))),

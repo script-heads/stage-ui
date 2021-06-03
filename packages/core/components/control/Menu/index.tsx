@@ -16,26 +16,26 @@ export const useValue = (value?: Types.MenuValue): [boolean, () => void, Types.C
   const [_, update] = React.useState(false)
   const ctx = React.useContext(Context)
 
-  if (ctx === void 0) {
+  if (ctx === undefined) {
     throw Error('Hook useValue could be used only within Menu component!')
   }
 
-  if (value !== void 0) {
+  if (value !== undefined) {
     ctx.values[value] = () => update(!_)
   }
 
   return [
-    value !== void 0 ? ctx.current === value : false,
+    value !== undefined ? ctx.current === value : false,
     () => {
-      if (value === void 0 || ctx.controlled) {
+      if (value === undefined || ctx.controlled) {
         return
       }
       const valuePrevious = ctx.current
       ctx.current = value
-      if (valuePrevious !== void 0 && ctx.values[valuePrevious]) {
+      if (valuePrevious !== undefined && ctx.values[valuePrevious]) {
         ctx.values[valuePrevious]()
       }
-      if (ctx.current !== void 0 && ctx.values[ctx.current]) {
+      if (ctx.current !== undefined && ctx.values[ctx.current]) {
         ctx.values[ctx.current]()
       }
     },
@@ -48,14 +48,14 @@ const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref)
 
   const [ctx, setCtx] = useState({
     values: {},
-    controlled: props.value !== void 0,
+    controlled: props.value !== undefined,
     current: props.value,
     onChange: props.onChange,
     itemAs: props.itemAs,
   })
 
   useLayoutEffect(() => {
-    if (props.defaultValue !== void 0 && ctx.current === void 0) {
+    if (props.defaultValue !== undefined && ctx.current === undefined) {
       setCtx({
         ...ctx,
         current: props.defaultValue,
@@ -64,7 +64,7 @@ const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref)
   }, [])
 
   useLayoutEffect(() => {
-    if (props.value !== void 0) {
+    if (props.value !== undefined) {
       setCtx({
         ...ctx,
         current: props.value,
@@ -73,7 +73,7 @@ const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref)
   }, [props.value])
 
   useLayoutEffect(() => {
-    if (props.itemAs !== void 0) {
+    if (props.itemAs !== undefined) {
       setCtx({
         ...ctx,
         itemAs: props.itemAs,
@@ -82,29 +82,27 @@ const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref)
   }, [props.itemAs])
 
   const { classes, attributes, events } = useSystem('Menu', props, createClasses, {
-    label: 'Menu'
+    label: 'Menu',
   })
 
   const styleState: Types.StyleState = {
     decoration,
   }
 
-  // TODO: styles
   const css = [
     classes.container(styleState),
-    `
-            [data-flow=menu-item] { ${classes.item(styleState).styles} };
-            [data-flow=menu-group] { ${classes.group(styleState).styles} };
-            [data-flow=menu-group-title] { ${classes.groupTitle(styleState).styles} };
-            [data-flow=sub-menu] { ${classes.subMenu(styleState).styles} };
-            [data-flow=sub-menu-arrow] { ${classes.subMenuArrow(styleState).styles} };
-            [data-flow=sub-menu-content] { ${classes.subMenuContent(styleState).styles} };
-            [data-flow=left] { ${classes.leftChild(styleState).styles} };
-            [data-flow=middle] { ${classes.middleChild(styleState).styles} };
-            [data-flow=right] { ${classes.rightChild(styleState).styles} };
-        `,
+    {
+      '[data-flow=menu-item]': classes.item(styleState),
+      '[data-flow=menu-group]': classes.group(styleState),
+      '[data-flow=menu-group-title]': classes.groupTitle(styleState),
+      '[data-flow=sub-menu]': classes.subMenu(styleState),
+      '[data-flow=sub-menu-arrow]': classes.subMenuArrow(styleState),
+      '[data-flow=sub-menu-content]': classes.subMenuContent(styleState),
+      '[data-flow=left]': classes.leftChild(styleState),
+      '[data-flow=middle]': classes.middleChild(styleState),
+      '[data-flow=right]': classes.rightChild(styleState),
+    },
   ]
-
   let { children } = props
 
   if (props.data) {
@@ -112,14 +110,9 @@ const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref)
   }
 
   return (
-    <div
-      data-flow="menu"
-      {...attributes}
-      {...events}
-      ref={ref}
-      css={css}
-      children={<Context.Provider value={ctx} children={children} />}
-    />
+    <div data-flow="menu" {...attributes} {...events} ref={ref} css={css}>
+      <Context.Provider value={ctx}>{children}</Context.Provider>
+    </div>
   )
 }
 
@@ -130,8 +123,4 @@ export default {
   Item: MenuItem,
   Group: MenuGroup,
   Submenu,
-} as typeof Default & {
-  Item: typeof MenuItem
-  Group: typeof MenuGroup
-  Submenu: typeof Submenu
 }
