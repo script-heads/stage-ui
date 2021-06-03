@@ -1,35 +1,35 @@
-let packageName = process.argv[2]
+const fs = require('fs')
+
+const buildDir = __dirname + '/../build/'
+const workspacesDir = __dirname + '/../packages/'
+const packageName = (process.argv[2] || '').toLocaleLowerCase()
 
 if (!packageName) {
     console.error("What's package, dude? Give me it into options")
     process.exit(-1)
 }
 
-const fs = require('fs')
-const buildDir = __dirname + '/../build/'
-const workspacesDir = __dirname + '/../packages/'
-let config, systemConfig, coreConfig
-packageName = packageName.toLocaleLowerCase()
+let current = JSON.parse(fs.readFileSync(buildDir + packageName + '/package.json'))
 
-config = JSON.parse(fs.readFileSync(buildDir + packageName + '/package.json'))
+const pkg = {
+    system: JSON.parse(fs.readFileSync(workspacesDir + 'system/package.json')),
+    icons: JSON.parse(fs.readFileSync(workspacesDir + 'icons/package.json')),
+    core: JSON.parse(fs.readFileSync(workspacesDir + 'core/package.json')),
+    lab: JSON.parse(fs.readFileSync(workspacesDir + 'lab/package.json')),
+}
 
 switch (packageName) {
-    case 'core':
-        systemConfig = JSON.parse(fs.readFileSync(workspacesDir + 'system/package.json'))
-        config.dependencies[systemConfig.name] = `^${systemConfig.version}`
+    case 'lab':
+        current.dependencies[pkg.system.name] = `${pkg.system.version}`
         break;
     case 'icons':
-        systemConfig = JSON.parse(fs.readFileSync(workspacesDir + 'system/package.json'))
-        config.dependencies[systemConfig.name] = `^${systemConfig.version}`
+        current.dependencies[pkg.system.name] = `${pkg.system.version}`
         break;
-    case 'lab':
-        systemConfig = JSON.parse(fs.readFileSync(workspacesDir + 'system/package.json'))
-        coreConfig = JSON.parse(fs.readFileSync(workspacesDir + 'core/package.json'))
-        config.dependencies[coreConfig.name] = `^${coreConfig.version}`
-        config.dependencies[systemConfig.name] = `^${systemConfig.version}`
+    case 'core':
+        current.dependencies[pkg.system.name] = `${pkg.system.version}`
         break;
 }
 
-delete config.scripts
+delete current.scripts
 
-fs.writeFileSync(buildDir + packageName + '/package.json', JSON.stringify(config, null, 2))
+fs.writeFileSync(buildDir + packageName + '/package.json', JSON.stringify(current, null, 2))

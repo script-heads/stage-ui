@@ -1,7 +1,7 @@
 {
     "name": "@stage-ui/core",
     "author": "Research technology",
-    "version": "0.1.165",
+    "version": "0.1.179",
     "license": "MIT",
     "scripts": {
         "pub": "git pull && npm version patch && yarn build && cd ../../build/core && yarn publish --access public && cd .. && rm -rf ./core",
@@ -13,7 +13,6 @@
         "icons:generate": "node ./scripts/iconsGenerate"
     },
     "dependencies": {
-        "@stage-ui/system": "0.1.47",
         "imask": "6.0.1",
         "moment": "2.29.1",
         "rifm": "0.12.0"
@@ -30,13 +29,5 @@
         "@babel/preset-typescript": "^7.7.4",
         "csstype": "^3.0.6",
         "eva-icons": "^1.1.2"
-    },
-    "peerDependencies": {
-        "@babel/runtime": "*",
-        "@emotion/cache": "*",
-        "@emotion/react": "*",
-        "@emotion/css": "*",
-        "react": "*",
-        "react-dom": "*"
     }
 }

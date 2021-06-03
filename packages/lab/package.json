@@ -1,7 +1,7 @@
 {
     "name": "@stage-ui/lab",
     "author": "Research technology",
-    "version": "0.1.23",
+    "version": "0.1.25",
     "license": "MIT",
     "scripts": {
         "pub": "git pull && npm version patch && yarn build && cd ../../build/lab && yarn publish --access public && cd .. && rm -rf ./lab",
@@ -30,8 +30,5 @@
         "@types/react": "^17.0.0",
         "csstype": "^3.0.6"
     },
-    "peerDependencies": {
-        "react": "*",
-        "react-dom": "*"
-    }
+    "peerDependencies": {}
 }

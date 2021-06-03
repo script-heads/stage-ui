@@ -1,12 +1,7 @@
 import { useEffect, useState, useMemo } from 'react'
-import useTheme from './useTheme'
+import useTheme from '@stage-ui/system/hooks/useTheme'
 
-let index = 0
-
-const useBreakpoints = <T>(values: T[]): T => {
-
-    const theme = useTheme()
-    const breakpoints = useMemo(() => theme.breakpoints.map((s) => parseFloat(s.replace(/[^0-9\\.]/g, ''))), [])
+export const useBreakpoints = <T>(values: T[]): T => {
 
     const calcIndex = () => {
         let idx = 0
@@ -19,7 +14,10 @@ const useBreakpoints = <T>(values: T[]): T => {
         return idx
     }
     
-    index = calcIndex()
+    const theme = useTheme()
+    const breakpoints = useMemo(() => theme.breakpoints.map((s) => parseFloat(s.replace(/[^0-9\\.]/g, ''))), [])
+    
+    let index = calcIndex()
 
     const [_, reload] = useState<number>(index)
 
@@ -42,4 +40,3 @@ const useBreakpoints = <T>(values: T[]): T => {
     
     return values[index] || values[values.length - 1]
 }
-export default useBreakpoints
