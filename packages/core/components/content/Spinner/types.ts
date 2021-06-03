@@ -1,5 +1,3 @@
-import { ColorProp } from '@stage-ui/system/props/color'
-
 declare namespace SpinnerTypes {
   interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
     /**
