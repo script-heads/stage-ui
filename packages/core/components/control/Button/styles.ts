@@ -6,6 +6,7 @@ const styles: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, st
   const color = colorProp(props.color, theme) || theme.color.primary
   const typography = theme.assets.typography.text[size || 'm'] || theme.assets.typography.text.m
   const isBlack = color.contrast(theme.color.onPrimary) > 3
+
   return {
     container: (variant) => [
       {
@@ -150,6 +151,7 @@ const styles: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, st
       props.uppercase && {
         textTransform: 'uppercase',
       },
+      styleProps.all,
     ],
     child: (variant) => [
       {
