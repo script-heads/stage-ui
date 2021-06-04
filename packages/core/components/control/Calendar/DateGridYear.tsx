@@ -1,6 +1,6 @@
 import { Flexbox, Text } from '@stage-ui/core'
 import moment from 'moment'
-import { Fragment } from 'react'
+import React from 'react'
 import CalendarTypes from './types'
 
 const DateGridYear = (props: CalendarTypes.DateGridYearProps) => {
@@ -16,13 +16,13 @@ const DateGridYear = (props: CalendarTypes.DateGridYearProps) => {
   const isActive = activeValue === yearValue
   const isCurrent = yearValue === nowValue
 
-  const css = props.styles.monthOrYear({ isActive, isCurrent, isDisabled })
+  const css = props.classes.monthOrYear({ isActive, isCurrent, isDisabled })
 
   /**
    * Custom render
    */
   if (props.onYearRender) {
-    return <Fragment children={props.onYearRender({ now, self, active, isActive, isCurrent, isDisabled, onClick })} />
+    return <>{props.onYearRender({ now, self, active, isActive, isCurrent, isDisabled, onClick })}</>
   }
 
   return (
@@ -35,7 +35,7 @@ const DateGridYear = (props: CalendarTypes.DateGridYearProps) => {
         }
       }}
       css={css}
-      style={props.style}
+      inlineStyle={props.style}
     >
       <Text capitalize size="s">
         {self.format('YYYY')}

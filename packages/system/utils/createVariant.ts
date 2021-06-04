@@ -10,7 +10,7 @@ export default function createVariant<ClassState extends Record<string, any>>(st
   const variant: Variant<ClassState> = (variants) => {
     const styles: Stage.JSS = []
 
-    Object.keys(state).forEach((key) => {
+    Object.keys(variants).forEach((key) => {
       if (Object.prototype.hasOwnProperty.call(variants, key)) {
         if (typeof state[key] === 'boolean' && state[key] === true) {
           styles.push(variants[key])

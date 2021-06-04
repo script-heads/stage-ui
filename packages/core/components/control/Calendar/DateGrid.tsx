@@ -1,6 +1,6 @@
 import { Button, Divider, Flexbox, Grid, Text } from '@stage-ui/core'
 import moment, { Moment } from 'moment'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DateGridMonth from './DateGridMonth'
 import DateGridTitle from './DateGridTitle'
 import DateGridWeek from './DateGridWeek'
@@ -76,10 +76,10 @@ const DateGrid = (props: T.DateGridProps) => {
   }
 
   return (
-    <Flexbox column css={props.styles.dateGrid} {...props.attributes}>
+    <Flexbox column css={props.classes.dateGrid} {...props.attributes}>
       <Flexbox column mb="l">
         <DateGridTitle
-          styles={props.styles}
+          classes={props.classes}
           gridType={gridType}
           onGridTypeChange={setGridType}
           value={tmpDate}
@@ -94,22 +94,23 @@ const DateGrid = (props: T.DateGridProps) => {
         <>
           <Grid gap="1px" templateColumns="repeat(7, 1fr)">
             {moment.weekdaysShort(true).map((day, i) => {
-              const isWeekend = [5, 6].indexOf(i) != -1
+              const isWeekend = [5, 6].indexOf(i) !== -1
               return (
                 <Text
                   key={day}
-                  css={props.styles.weekDay}
+                  css={props.classes.weekDay}
                   color={(c) => (isWeekend ? c.error.alpha(0.75) : c.hardest)}
                   capitalize
-                  children={day}
-                />
+                >
+                  {day}
+                </Text>
               )
             })}
             {grid.map((week: Moment[], i) => (
               <DateGridWeek
                 key={week[i].valueOf()}
                 hideNeighborMonths={props.hideNeighborMonths}
-                styles={props.styles}
+                classes={props.classes}
                 week={week}
                 tmp={tmpDate}
                 active={value}
@@ -130,8 +131,8 @@ const DateGrid = (props: T.DateGridProps) => {
                 onClick={() => {
                   props.onChange(now)
                 }}
-                children={toDayWord}
                 alignSelf="center"
+                label={toDayWord}
               />
             </>
           )}
@@ -145,7 +146,7 @@ const DateGrid = (props: T.DateGridProps) => {
               const clone = tmpDate.clone().month(index)
               return (
                 <DateGridMonth
-                  styles={props.styles}
+                  classes={props.classes}
                   key={index}
                   value={clone}
                   tmp={tmpDate}
@@ -177,7 +178,7 @@ const DateGrid = (props: T.DateGridProps) => {
               const clone = tmpDate.clone().add(index - 4, 'year')
               return (
                 <DateGridYear
-                  styles={props.styles}
+                  classes={props.classes}
                   key={index}
                   value={clone}
                   tmp={tmpDate}

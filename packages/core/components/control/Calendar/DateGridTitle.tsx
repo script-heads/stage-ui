@@ -1,5 +1,6 @@
 import { Flexbox, Text } from '@stage-ui/core'
 import { ChevronLeft, ChevronRight } from '@stage-ui/icons'
+import React from 'react'
 import CalendarTypes from './types'
 
 const Arrow = (props: { onClick: () => void; icon: 'chevronLeft' | 'chevronRight'; disabled: boolean }) => (
@@ -10,14 +11,13 @@ const Arrow = (props: { onClick: () => void; icon: 'chevronLeft' | 'chevronRight
     css={{
       cursor: props.disabled ? 'not-allowed' : 'pointer',
     }}
-    children={
-      props.icon === 'chevronLeft' ? (
-        <ChevronLeft size="1.5rem" color={(c) => (props.disabled ? c.light : c.hard)} />
-      ) : (
-        <ChevronRight size="1.5rem" color={(c) => (props.disabled ? c.light : c.hard)} />
-      )
-    }
-  />
+  >
+    {props.icon === 'chevronLeft' ? (
+      <ChevronLeft size="1.5rem" color={(c) => (props.disabled ? c.light : c.hard)} />
+    ) : (
+      <ChevronRight size="1.5rem" color={(c) => (props.disabled ? c.light : c.hard)} />
+    )}
+  </Flexbox>
 )
 
 const Title = (props: { value: string; onClick?: () => void }) => (
@@ -29,8 +29,9 @@ const Title = (props: { value: string; onClick?: () => void }) => (
     }}
     onClick={props.onClick}
     capitalize
-    children={props.value}
-  />
+  >
+    {props.value}
+  </Text>
 )
 
 const DateGridTitle = (props: CalendarTypes.DateGridTitleProps) => {
