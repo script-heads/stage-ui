@@ -1,7 +1,7 @@
-import Color from 'color'
 import createID from './createID'
 import mergeObjects from './mergeObjects'
 import isFunction from './isFunction'
+import convertColors from './convertColors'
 
 export interface ThemeDefiniton {
   main: Omit<Stage.ThemeMain, 'color' | 'breakpoints'> & {
@@ -37,66 +37,69 @@ const autocomplete = {
   transition: 'all 604800s ease-in-out 0s',
   transitionProperty: 'background-color, color',
 }
+/**
+ * Chrome bug
+ * https://bugs.chromium.org/p/chromium/issues/detail?id=953689
+ */
 const defaultGlobal = {
   'input:-webkit-autofill': autocomplete,
   'input:-webkit-autofill:hover': autocomplete,
   'input:-webkit-autofill:focus': autocomplete,
   'input:-webkit-autofill:active': autocomplete,
-  'input::-webkit-internal-input-suggested': {
-    /**
-     * Chrome bug
-     * https://bugs.chromium.org/p/chromium/issues/detail?id=953689
-     */
-  },
+  'input::-webkit-internal-input-suggested': {},
 }
 
 const createTheme = (themeDefinition: ThemeDefiniton): Stage.Theme => {
-  const main = convertColors(themeDefinition.main)
+  const {
+    color: { palette: paletteDefinitions = {}, ...colorDefinitions },
+    breakpoints = ['1199.98px', '991.98px', '767.98px', '575.98px'],
+  } = themeDefinition.main
+
+  const main = {
+    ...themeDefinition.main,
+    color: convertColors(colorDefinitions) as Stage.Theme['color'],
+    breakpoints,
+  }
+
+  main.color.palette = convertColors(paletteDefinitions)
+
   const assets = isFunction(themeDefinition.assets) ? themeDefinition.assets(main) : themeDefinition.assets
   const overrides = isFunction(themeDefinition.overrides)
     ? themeDefinition.overrides(main, assets)
     : themeDefinition.overrides || {}
 
-  main.breakpoints = themeDefinition.main.breakpoints || ['1199.98px', '991.98px', '767.98px', '575.98px']
-  main.color.palette = main.color.palette || {}
   assets.global = [defaultGlobal, assets.global]
 
   const replace = (themeReplaceDefinition: ReplaceTheme): Stage.Theme => {
-    const combinedMain = mergeObjects(
+    const nextMain = mergeObjects(
       themeDefinition.main || {},
       themeReplaceDefinition.main || {},
     ) as ThemeDefiniton['main']
 
-    const combinedAssets = ((main) =>
+    const nextAssets = ((replacedMain) =>
       mergeObjects(
-        isFunction(themeDefinition.assets) ? themeDefinition.assets(main) : themeDefinition.assets || {},
+        isFunction(themeDefinition.assets) ? themeDefinition.assets(replacedMain) : themeDefinition.assets || {},
         isFunction(themeReplaceDefinition.assets)
-          ? themeReplaceDefinition.assets(main)
+          ? themeReplaceDefinition.assets(replacedMain)
           : themeReplaceDefinition.assets || {},
       )) as ThemeDefiniton['assets']
 
-    const combinedOverrides = ((main, assets) =>
+    const nextOverrides = ((replacedMain, replacedAssets) =>
       mergeObjects(
         isFunction(themeDefinition.overrides)
-          ? themeDefinition.overrides(main, assets)
+          ? themeDefinition.overrides(replacedMain, replacedAssets)
           : themeDefinition.overrides || {},
         isFunction(themeReplaceDefinition.overrides)
-          ? themeReplaceDefinition.overrides(main, assets)
+          ? themeReplaceDefinition.overrides(replacedMain, replacedAssets)
           : themeReplaceDefinition.overrides || {},
       )) as ThemeDefiniton['overrides']
 
-    combinedMain.name = combinedMain.name || `${main.name}-${createID()}`
+    nextMain.name = nextMain.name || `${nextMain.name}-${createID()}`
 
-    return createTheme({ main: combinedMain, assets: combinedAssets, overrides: combinedOverrides })
+    return createTheme({ main: nextMain, assets: nextAssets, overrides: nextOverrides })
   }
 
-  return { assets, overrides, replace, ...main }
-}
-
-function convertColors(themeMain: ThemeDefiniton['main']): Stage.ThemeMain {
-  return mergeObjects({}, themeMain, (value: Stage.ColorDefinition | string) =>
-    value instanceof Array ? Color(value) : value,
-  ) as Stage.Theme
+  return { ...main, assets, overrides, replace }
 }
 
 export default createTheme

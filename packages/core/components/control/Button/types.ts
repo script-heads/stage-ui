@@ -1,5 +1,3 @@
-import { ColorProp } from '@stage-ui/system/props/color'
-
 declare namespace ButtonTypes {
   interface Props extends Stage.AllProps<HTMLButtonElement, Styles> {
     /**
