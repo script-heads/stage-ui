@@ -1,24 +1,28 @@
-export type Variant<ClassStates> = (variants: Partial<{
-  [State in keyof ClassStates]: Partial<
-      Record<Extract<ClassStates[State], string>, Stage.JSS>
-  >
-}>) => Stage.JSS
+export type Variant<ClassState> = (
+  variants: Partial<
+    {
+      [State in keyof ClassState]: Partial<Record<Extract<ClassState[State], string>, Stage.JSS>>
+    }
+  >,
+) => Stage.JSS
 
-export default (state) => {
-  return (variants) => {
-    const styles = []
+export default function createVariant<ClassState extends Record<string, any>>(state: ClassState) {
+  const variant: Variant<ClassState> = (variants) => {
+    const styles: Stage.JSS = []
 
-    for (let key in state) {
-      if (variants.hasOwnProperty(key)) {
+    Object.keys(variants).forEach((key) => {
+      if (Object.prototype.hasOwnProperty.call(variants, key)) {
         if (typeof state[key] === 'boolean' && state[key] === true) {
-          styles.push(variants[key]) 
+          styles.push(variants[key])
         }
-        if (typeof state[key] === 'string' && variants[key].hasOwnProperty(state[key])) {
-          styles.push(variants[key][state[key]]) 
+        if (typeof state[key] === 'string' && Object.prototype.hasOwnProperty.call(variants[key], state[key])) {
+          styles.push(variants[key][state[key]])
         }
       }
-    }
-    
+    })
+
     return styles
   }
-} 
+
+  return variant
+}

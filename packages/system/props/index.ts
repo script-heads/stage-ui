@@ -6,28 +6,14 @@ import resolveBreakpoints from './breakpoint'
 import resolveColor from './color'
 import resolveSpace from './space'
 import isFunction from '../utils/isFunction'
-import { ComponentData, Options, StyleProps } from '../hooks/useSystem'
+import { ComponentData, StyleProps } from '../hooks/useSystem'
 
 export type Resolver = <ClassesSchema>(
   props: Record<string, any>,
   componentData: Record<keyof ComponentData<any, ClassesSchema>, any>,
   styleProps: StyleProps,
   t: Stage.Theme,
-  focus: Options<ClassesSchema, Record<string, any>>['focus'],
 ) => void
-
-let IS_MOUSE_DOWN = false
-let PAGE_FOCUS = false
-
-window.addEventListener('mousedown', () => {
-  IS_MOUSE_DOWN = true
-})
-window.addEventListener('mouseup', () => {
-  IS_MOUSE_DOWN = false
-})
-window.addEventListener('focus', () => {
-  PAGE_FOCUS = true
-})
 
 const resolvers: Record<string, Resolver> = {
   attributes: (p, cd) => {
@@ -144,50 +130,6 @@ const resolvers: Record<string, Resolver> = {
   gridRow: (p, cd, sp, t) => sp.grid.push(resolveBreakpoints(p.gridRow, t, (v) => ({ gridRow: v }))),
   gridArea: (p, cd, sp, t) => sp.grid.push(resolveBreakpoints(p.gridArea, t, (v) => ({ gridArea: v }))),
   placeSelf: (p, cd, sp, t) => sp.grid.push(resolveBreakpoints(p.placeSelf, t, (v) => ({ placeSelf: v }))),
-
-  // Override default focus styles
-  onFocus: (p, cd, sp, t, f) => {
-    cd.events.onFocus = (e: React.FocusEvent) => {
-      e.stopPropagation()
-      if (!PAGE_FOCUS) {
-        if (!(f === 'tabOnly' && !IS_MOUSE_DOWN)) {
-          e.target.className += ' focused'
-        }
-      }
-      PAGE_FOCUS = false
-
-      p.onFocus?.(e)
-    }
-  },
-  onBlur: (p, cd) => {
-    cd.events.onBlur = (e: React.FocusEvent) => {
-      e.stopPropagation()
-      e.target.className = e.target.className.replace(' focused', '')
-      p.onBlur?.(e)
-    }
-  },
-
-  // Add action styles
-  onClick: (p, cd, sp) => {
-    sp.container.push({
-      cursor: 'pointer',
-      userSelect: 'none',
-    })
-  },
-
-  // Additinal key handlers
-  onKeyDown: (p, cd) => {
-    cd.events.onKeyDown = (e: React.KeyboardEvent) => {
-      p.onKeyPress?.(e)
-      if (e.key === 'Enter' && p.onEnter) {
-        p.onEnter(e)
-      }
-      if (e.key === 'Esc' && p.onEsc) {
-        p.onEsc(e)
-      }
-      p.onKeyDown?.(e)
-    }
-  },
 }
 
 export default resolvers

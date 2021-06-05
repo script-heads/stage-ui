@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import React from 'react'
 import useTheme from './useTheme'
 import propsResolvers from '../props'
 import createVariant, { Variant } from '../utils/createVariant'
 import isFunction from '../utils/isFunction'
-import { AllEventProps, AttributeProps } from '../props/types'
+import { AllEventProps, AllProps, AttributeProps } from '../props/types'
 
 export interface Options<ClassesSchema, Props> {
   focus?: 'always' | 'tabOnly' | 'never'
@@ -62,7 +63,20 @@ export type ComponentData<Props extends Record<string, any>, ClassesSchema> = {
   events: Pick<Props, keyof AllEventProps<any>>
 }
 
-function useSystem<Props extends Record<string, any>, ClassesSchema, AdditionalClassesSchema>(
+let IS_MOUSE_DOWN = false
+let PAGE_FOCUS = false
+
+window.addEventListener('mousedown', () => {
+  IS_MOUSE_DOWN = true
+})
+window.addEventListener('mouseup', () => {
+  IS_MOUSE_DOWN = false
+})
+window.addEventListener('focus', () => {
+  PAGE_FOCUS = true
+})
+
+function useSystem<Props extends AllProps<HTMLElement, ClassesSchema>, ClassesSchema, AdditionalClassesSchema>(
   name: string,
   props: Props,
   createClasses: Stage.CreateClasses<ClassesSchema, Props>,
@@ -99,9 +113,51 @@ function useSystem<Props extends Record<string, any>, ClassesSchema, AdditionalC
       data.events[key as keyof AllEventProps<any>] = props[key]
     }
     if (Object.prototype.hasOwnProperty.call(propsResolvers, key)) {
-      propsResolvers[key](props, data, styleProps, theme, focus)
+      propsResolvers[key](props, data, styleProps, theme)
     }
   })
+
+  // Override default focus styles
+  data.events.onFocus = (event: React.FocusEvent<HTMLElement>) => {
+    event.stopPropagation()
+    if (!PAGE_FOCUS) {
+      if ((focus === 'tabOnly' && !IS_MOUSE_DOWN) || focus === 'always') {
+        // eslint-disable-next-line no-param-reassign
+        event.target.className += ' focused'
+      }
+    }
+    PAGE_FOCUS = false
+
+    props.onFocus?.(event)
+  }
+
+  // Override default focus styles
+  data.events.onBlur = (event: React.FocusEvent<HTMLElement>) => {
+    event.stopPropagation()
+    // eslint-disable-next-line no-param-reassign
+    event.target.className = event.target.className.replace(' focused', '')
+    props.onBlur?.(event)
+  }
+
+  // Additional key handlers
+  data.events.onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+    props.onKeyPress?.(event)
+    if (event.key === 'Enter' && props.onEnter) {
+      props.onEnter(event)
+    }
+    if (event.key === 'Esc' && props.onEsc) {
+      props.onEsc(event)
+    }
+    props.onKeyDown?.(event)
+  }
+
+  // Cursor must be pointer if interactive
+  if (props.onClick) {
+    styleProps.container.push({
+      cursor: 'pointer',
+      userSelect: 'none',
+    })
+  }
 
   styleProps.container = styleProps.container.concat(
     styleProps.margin,
@@ -128,7 +184,7 @@ function useSystem<Props extends Record<string, any>, ClassesSchema, AdditionalC
     ? themeOverrides(props, styleProps)
     : themeOverrides || {}
 
-  const propsOverrideClasses: ClassesDefinition<ClassesSchema> = isFunction(propsOverrides)
+  const propsOverrideClasses: Partial<ClassesDefinition<ClassesSchema>> = isFunction(propsOverrides)
     ? propsOverrides(theme, styleProps)
     : propsOverrides || {}
 

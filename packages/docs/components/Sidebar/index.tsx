@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
-import { Block, Text, Grid, Button, Drop, Flexbox, Menu, ScrollView, Text, TextField, useTheme } from '@stage-ui/core'
+import { Block, Flexbox, Menu, ScrollView, Text, TextField, useTheme } from '@stage-ui/core'
 import { Close, Cube, Search } from '@stage-ui/icons'
-import { Fragment, useMemo, useRef, useState } from 'react'
+import { Fragment, useMemo, useState } from 'react'
 import { PagesType, PageType } from '../../utils/core'
 
 export interface SidebarProps {
@@ -12,68 +12,127 @@ export interface SidebarProps {
   className?: string
 }
 
-const TopBar = (props: SidebarProps) => {
+const Sidebar = (props: SidebarProps) => {
   const { pages } = props
-  const targetRef = useRef(null)
-  const [items, setItems] = useState(null)
+  const [visibility, setMobileVisible] = useState<boolean>(false)
+  const [search, setSearch] = useState('')
 
-  const menuItems = Object.keys(pages).map((label) => {
-    return (
-      <Button
-        size="s"
-        color={(c) => c.hard}
-        decoration="text"
-        key={label}
-        label={label}
-        onClick={() => {
-          setItems(
-            pages[label].map((item) => {
-              return (
-                <Button
-                  color="onSurface"
-                  decoration="text"
-                  css={{
-                    whiteSpace: 'wrap',
-                    textAlign: 'inherit',
-                  }}
-                  key={item.title}
-                  onClick={() => {
-                    props.onChange(item.url)
-                    setItems(null)
-                  }}
-                >
-                  <Flexbox column py="m">
-                    <Text weight="600">{item.title}</Text>
-                    <Text size="xs" color="light">
-                      {item.subtitle}
-                    </Text>
-                  </Flexbox>
-                </Button>
-              )
-            }),
-          )
-        }}
-      />
-    )
-  })
+  const VisibilityIcon = !visibility ? Cube : Close
+
+  const MenuItems = useMemo(
+    () =>
+      Object.keys(pages).map((section, index) => {
+        const menuItems = pages[section]
+          .filter((page) => {
+            if (search) {
+              return !!RegExp(search.toUpperCase()).exec(page.title.toUpperCase())
+            }
+            return true
+          })
+          .map((page) => (
+            <Menu.Item
+              style={{
+                fontWeight: 'bold',
+              }}
+              key={page.url}
+              value={page.url}
+              title={page.title}
+            />
+          ))
+        if (menuItems.length === 0) {
+          return null
+        }
+        return (
+          <Menu.Submenu
+            title={
+              <Text size="xs" weight="bold" color="light">
+                {section}
+              </Text>
+            }
+            pb="l"
+            key={index}
+            defaultOpen
+            children={menuItems}
+          />
+        )
+      }),
+    [pages, search],
+  )
+
+  const theme = useTheme()
 
   return (
-    <Flexbox ref={targetRef}>
-      <Drop
-        target={targetRef}
-        visible={!!items}
-        justify="start"
-        onClickOutside={() => {
-          setItems(null)
+    <>
+      <ScrollView
+        mode="hidden"
+        w="15rem"
+        h="100vh"
+        backgroundColor={(c) => c.surface}
+        css={{
+          [`@media (max-width: ${theme.breakpoints[2]})`]: [
+            {
+              position: 'absolute',
+              width: '100%',
+              zIndex: 200,
+            },
+            !visibility && {
+              display: 'none',
+            },
+          ],
         }}
       >
-        <Grid templateColumns="repeat(3, 1fr)" decoration="mediumShadow" p="m">
-          {items}
-        </Grid>
-      </Drop>
-      {menuItems}
-    </Flexbox>
+        <Block p="4rem 1rem 0 1rem">
+          <TextField
+            size="s"
+            mb=".5rem"
+            rightChild={<Search />}
+            decoration="none"
+            backgroundColor={(c) => c.onSurface.alpha(0.05).rgb()}
+            placeholder="Find"
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value)
+            }}
+          />
+          <Menu
+            column
+            mx="-0.5rem"
+            decoration="marker"
+            shape="round"
+            defaultValue={props.currentPage.url}
+            onChange={(value) => {
+              if (typeof value === 'string') {
+                props.onChange(value)
+                setMobileVisible(false)
+              }
+            }}
+            children={MenuItems}
+          />
+        </Block>
+      </ScrollView>
+      <Flexbox
+        alignItems="center"
+        justifyContent="center"
+        onClick={() => setMobileVisible((v) => !v)}
+        backgroundColor={(c) => c.primary}
+        css={{
+          position: 'fixed',
+          width: '3.5rem',
+          height: '3.5rem',
+          cursor: 'pointer',
+          borderRadius: '100%',
+          right: '1rem',
+          bottom: '1rem',
+          zIndex: 210,
+          [`@media (min-width: ${theme.breakpoints[2]})`]: {
+            display: 'none',
+          },
+        }}
+      >
+        <VisibilityIcon color={(c) => c.onPrimary} size="2rem" />
+      </Flexbox>
+    </>
   )
 }
 
-export default TopBar
+export default Sidebar

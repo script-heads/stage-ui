@@ -62,8 +62,8 @@ export default createTheme({
       xl: 'inset 0 24px 26px rgba(0,0,0,0.1)',
     },
     focus: {
-      outline: 'none',
-      boxShadow: `0 0 0 3px ${theme.color.primary.alpha(0.3).rgb().string()}`,
+      outline: 'none !important',
+      boxShadow: `0 0 0 3px ${theme.color.primary.alpha(0.3).rgb().string()} !important`,
     },
     typography: {
       header: {
