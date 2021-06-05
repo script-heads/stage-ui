@@ -24,15 +24,15 @@ const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
     }
   }, [props.value])
 
-  function onChange(value: Moment) {
-    if (!value.isValid) {
+  function onChange(newValue: Moment) {
+    if (!newValue.isValid) {
       return
     }
 
-    setValue(value)
+    setValue(newValue)
 
     if (props.onChange) {
-      props.onChange(value)
+      props.onChange(newValue)
     }
   }
 

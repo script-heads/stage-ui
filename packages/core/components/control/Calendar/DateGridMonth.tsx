@@ -16,13 +16,13 @@ const DateGridMonth = (props: CalendarTypes.DateGridMonthProps) => {
   const isActive = activeValue === monthValue
   const isCurrent = monthValue === nowValue
 
-  const css = props.styles.monthOrYear({ isActive, isCurrent, isDisabled })
+  const css = props.classes.monthOrYear({ isActive, isCurrent, isDisabled })
 
   /**
    * Custom render
    */
   if (props.onMonthRender) {
-    return <Fragment children={props.onMonthRender({ now, self, active, isActive, isCurrent, isDisabled, onClick })} />
+    return <>{props.onMonthRender({ now, self, active, isActive, isCurrent, isDisabled, onClick })}</>
   }
 
   return (
@@ -35,7 +35,7 @@ const DateGridMonth = (props: CalendarTypes.DateGridMonthProps) => {
         }
       }}
       css={css}
-      style={props.style}
+      inlineStyle={props.style}
     >
       <Text capitalize size="s">
         {self.format('MMMM')}
