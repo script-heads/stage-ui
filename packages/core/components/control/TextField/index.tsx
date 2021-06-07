@@ -16,7 +16,7 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
     leftChildNumber,
   } = props
 
-  const { classes, events } = useSystem('TextField', props, createClasses)
+  const { classes, events, styleProps } = useSystem('TextField', props, createClasses)
 
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
 
