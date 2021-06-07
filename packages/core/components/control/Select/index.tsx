@@ -56,14 +56,12 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     return true
   })
 
-  const { classes, attributes, events } = useSystem('Select', props, styles, {
-    additionalClasses: additionalClasses as Stage.CreateAdditionalClasses<Types.Styles, Types.Props>,
-  })
+  const { classes, attributes, events } = useSystem('Select', props, styles)
 
   /**
    * Object for variant styles
    */
-  const styleState: Types.StyleState = {
+  const classState: Types.ClassState = {
     decoration,
     shape,
     size,
@@ -173,27 +171,64 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
   return (
     <>
       <Field
-        classes={classes}
+        {...attributes}
+        overrides={{
+          container: (variant) => [
+            variant({
+              isOpen: {
+                zIndex: 999,
+              },
+            }),
+            styleProps.container,
+          ],
+          field: (variant) => [
+            variant({
+              isOpen: {
+                borderColor: theme.color.primary.rgb().string(),
+              },
+              decoration: {
+                filled: [
+                  variant({
+                    isOpen: {
+                      borderColor: 'transparent',
+                    },
+                  }),
+                ],
+                none: [
+                  { padding: 0 },
+                  variant({
+                    isOpen: {
+                      borderColor: 'transparent',
+                    },
+                  }),
+                ],
+                underline: [
+                  variant({
+                    isOpen: {
+                      borderColor: 'transparent',
+                    },
+                  }),
+                ],
+              },
+            }),
+            styleProps.content,
+          ],
+        }}
         ref={fieldRef}
         size={size}
-        classesState={styleState}
         disabled={disabled}
         shape={shape}
         decoration={decoration}
         clearable={disabled ? false : props.clearable && values.length > 0}
         onClear={() => clearValues()}
-        attributes={{ ...attributes, tabIndex }}
-        events={{
-          ...events,
-          onClick: (e: React.MouseEvent<HTMLInputElement>) => {
-            e.preventDefault()
-            if (openOnFocus) {
-              setOpen(true)
-            }
-            events.onClick?.(e)
-          },
-          onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => handleKeyDown(e),
+        onClick={(e: React.MouseEvent<HTMLInputElement>) => {
+          e.preventDefault()
+          if (openOnFocus) {
+            setOpen(true)
+          }
+          events.onClick?.(e)
         }}
+        onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => handleKeyDown(e)}
         rightChild={
           props.rightChild !== undefined ? (
             props.rightChild
@@ -217,12 +252,12 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
         <div css={classes.selected}>
           {props.multiselect &&
             values.map((option) => (
-              <div css={classes.tag(styleState)} key={option.value}>
+              <div css={classes.tag(classState)} key={option.value}>
                 {option.text}
                 {!disabled && (
                   <Close
                     size={size}
-                    css={classes.tagRemove(styleState)}
+                    css={classes.tagRemove(classState)}
                     onClick={(e) => {
                       e.preventDefault()
                       e.stopPropagation()
@@ -282,11 +317,11 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
         stretchWidth
         target={fieldRef}
       >
-        <div css={classes.drop(styleState)}>
+        <div css={classes.drop(classState)}>
           <ScrollView size="xs" css={{ maxHeight: maxScrollHeight }} sendFlowScollEvent={false}>
             {options.map((option) => (
               <div
-                css={classes.dropItem({ ...styleState, selected: values.includes(option) })}
+                css={classes.dropItem({ ...classState, selected: values.includes(option) })}
                 key={option.value}
                 onClick={(e) => {
                   e.preventDefault()
@@ -297,8 +332,8 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
               </div>
             ))}
             {options.length === 0 && (
-              <div css={classes.emptyConteiner(styleState)}>
-                <div css={classes.emptyText(styleState)}>{emptyText}</div>
+              <div css={classes.emptyConteiner(classState)}>
+                <div css={classes.emptyText(classState)}>{emptyText}</div>
               </div>
             )}
           </ScrollView>

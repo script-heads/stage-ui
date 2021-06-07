@@ -1,6 +1,6 @@
 import Types from './types'
 
-const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, styleProps) => {
   const { decoration = 'modal', size = 'm' } = props
 
   const isPanel = decoration === 'panel'

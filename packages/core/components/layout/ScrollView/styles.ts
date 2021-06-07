@@ -1,7 +1,7 @@
 import colorResolver from '@stage-ui/system/props/color'
 import Types from './types'
 
-const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, styleProps) => {
   const color = colorResolver(props.color || theme.color.onBackground, theme)
 
   return {

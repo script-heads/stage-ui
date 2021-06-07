@@ -36,7 +36,7 @@ declare namespace ScrollViewTypes {
     cursorHandle?: boolean
   }
 
-  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onScroll'> {
+  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Classes>, 'onScroll'> {
     /**
      * Any contant of scrollview
      */
@@ -122,7 +122,7 @@ declare namespace ScrollViewTypes {
     container: HTMLDivElement | null
   }
 
-  interface Styles {
+  type Classes = {
     /**
      * Root wrapper
      */

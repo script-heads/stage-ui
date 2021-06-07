@@ -1,5 +1,5 @@
 declare namespace PageswitchTypes {
-  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Classes>, 'onChange'> {
     /**
      * Total count of records
      */
@@ -22,7 +22,7 @@ declare namespace PageswitchTypes {
      */
     defaultValue?: number
   }
-  interface Styles {
+  type Classes = {
     /**
      * Root container
      */

@@ -3,7 +3,7 @@ import Types from './types'
 
 // TODO: borderBottomStyle type incorrect
 // @ts-ignore
-const styles: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
+const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, styleProps) => {
   return {
     container: [
       applyLayoutDecoration({ decoration: 'surface', ...props }, theme),

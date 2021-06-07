@@ -1,10 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Close, AlertCircle } from '@stage-ui/icons'
+import { useSystem } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import Types from './types'
+import createClasses from './styles'
 
 const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (props, ref) => {
-  const { labelName, labelType = 'outside', label, clearable, onClear, attributes, events, classes } = props
+  const { name, labelName, labelType = 'outside', label, clearable } = props
+
+  const {
+    classes,
+    attributes,
+    events: { onClear, ...events },
+  } = useSystem(name || 'Field', props, createClasses)
 
   const classesState = {
     size: props.size,
@@ -12,7 +20,6 @@ const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (pro
     labelType: props.labelType,
     shape: props.shape,
     disabled: props.disabled,
-    ...props.classesState,
   }
 
   return (
@@ -24,7 +31,7 @@ const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (pro
       )}
       <div css={classes.field(classesState)}>
         {props.leftChild && <div css={classes.child({ align: 'left', ...classesState })}>{props.leftChild}</div>}
-        <div css={classes.content1(classesState)}>
+        <div css={classes.content(classesState)}>
           {label !== undefined && labelType === 'inside' && (
             <label css={classes.label(classesState)} htmlFor={labelName}>
               {label}

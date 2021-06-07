@@ -1,5 +1,4 @@
 import { Options } from '@stage-ui/system/hooks/useSystem'
-import { ColorProp } from '@stage-ui/system/props/color'
 import CSS from 'csstype'
 
 declare namespace TypographyTypes {
@@ -42,7 +41,7 @@ declare namespace TypographyTypes {
     referrerPolicy?: string
   }
 
-  interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
+  interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
     /**
      * Capitalize first letter
      */
@@ -89,7 +88,7 @@ declare namespace TypographyTypes {
     transform?: CSS.Properties['textTransform']
   }
 
-  interface Styles {
+  type Classes = {
     /**
      * Root element
      */
@@ -99,7 +98,7 @@ declare namespace TypographyTypes {
   interface PrivateProps extends LinkProps {
     tag: string
     sizesOf: keyof Stage.ThemeAssets['typography']
-    focus?: Options<Styles, Props>['focus']
+    focus?: Options['focus']
     name: string
   }
 

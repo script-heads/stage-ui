@@ -4,7 +4,7 @@ declare namespace MeterTypes {
   type MeterDecoration = 'filled' | 'outline'
   type MeterShape = 'square' | 'round'
 
-  interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
+  interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
     /**
      * Current value of meter, for controlled component
      */
@@ -41,7 +41,7 @@ declare namespace MeterTypes {
     children?: React.ReactElement<MeterThumbTypes.Props>[]
   }
 
-  interface Styles {
+  type Classes = {
     /**
      * Root view
      */

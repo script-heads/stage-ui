@@ -39,7 +39,7 @@ declare namespace CalendarTypes {
     isCurrentMonth: boolean
   }
 
-  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Classes>, 'onChange'> {
     /**
      * Type for Calendar
      * @default day
@@ -115,7 +115,7 @@ declare namespace CalendarTypes {
     maxValue: Moment
     onChange: (date: Moment) => void
     onViewChange?: (date: Moment) => void
-    classes: Classes<Styles>
+    classes: Classes<Classes>
     type: GridType
     onYearRender?: (options: YearRenderOptions) => React.ReactNode
     onMonthRender?: (options: MonthRenderOptions) => React.ReactNode
@@ -130,7 +130,7 @@ declare namespace CalendarTypes {
     maxValue: Moment
     onClick: () => void
     style?: CSSProperties
-    classes: Classes<Styles>
+    classes: Classes<Classes>
   }
 
   interface DateGridDayProps extends Omit<DateGridCalendarProps, 'onClick'> {
@@ -168,10 +168,10 @@ declare namespace CalendarTypes {
     onNext: () => void
     onPrevious: () => void
     onGridTypeChange: (type: GridType) => void
-    classes: Classes<Styles>
+    classes: Classes<Classes>
   }
 
-  interface Styles {
+  type Classes = {
     /**
      * Root container
      */

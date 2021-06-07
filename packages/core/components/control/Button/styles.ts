@@ -1,7 +1,7 @@
 import colorProp from '@stage-ui/system/props/color'
 import Types from './types'
 
-const styles: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
+const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, styleProps) => {
   const { size, shape } = props
   const color = colorProp(props.color, theme) || theme.color.primary
   const typography = theme.assets.typography.text[size || 'm'] || theme.assets.typography.text.m

@@ -15,7 +15,7 @@ declare namespace SelectTypes {
     toggleOpen: () => void
   }
 
-  interface Props extends Omit<FieldTypes.Props<Styles>, 'onChange'> {
+  interface Props extends FieldTypes.Props<HTMLDivElement, Classes> {
     /**
      * Content to be appear in the form control when the form control is empty
      */
@@ -80,25 +80,18 @@ declare namespace SelectTypes {
     cursor: number
   }
 
-  interface StyleState {
+  type ClassState = {
     shape: Props['shape']
     size: Props['size']
     decoration: Props['decoration']
     isOpen: boolean
   }
 
-  interface StyleStateItem extends StyleState {
+  type StyleStateItem = ClassState & {
     selected: boolean
   }
 
-  interface Styles
-    extends FieldTypes.Styles<
-      {
-        container: StyleState
-        field: StyleState
-      },
-      StyleState
-    > {
+  type Classes = {
     /**
      * Container for selected items
      */
@@ -114,15 +107,15 @@ declare namespace SelectTypes {
     /**
      * Container of selected option in multiselect
      */
-    tag: StyleState
+    tag: ClassState
     /**
      * Close button for selected option in multiselect
      */
-    tagRemove: StyleState
+    tagRemove: ClassState
     /**
      * Select's drop container
      */
-    drop: StyleState
+    drop: ClassState
     /**
      * Container of every item in drop
      */
@@ -130,12 +123,12 @@ declare namespace SelectTypes {
     /**
      * Container view when list is empty
      */
-    emptyConteiner: StyleState
+    emptyConteiner: ClassState
 
     /**
      * Container text when list is empty
      */
-    emptyText: StyleState
+    emptyText: ClassState
   }
 }
 

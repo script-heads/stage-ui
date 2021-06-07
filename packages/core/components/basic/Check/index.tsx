@@ -1,23 +1,15 @@
 import React, { forwardRef, ForwardRefRenderFunction, useEffect, useState } from 'react'
+import { useSystem } from '@stage-ui/system'
 import CheckTypes from './types'
+import createClasses from './styles'
 
 const Check: ForwardRefRenderFunction<HTMLDivElement, CheckTypes.PrivateProps> = (props, ref) => {
+  const { label, disabled, size, uppercase, defaultValue, children, checked: checkedProp, name } = props
   const {
-    label,
-    disabled,
-    size,
-    uppercase,
-    defaultValue,
     classes,
-    onChange,
-    onFocus,
-    onBlur,
-    onClick,
-    onKeyDown,
-    children,
-    checked: checkedProp,
-  } = props
-
+    attributes,
+    events: { onChange, onKeyDown, onClick, ...events },
+  } = useSystem('Check' || name, props, createClasses)
   const [focus, setFocus] = useState(false)
   const [checked, setChecked] = useState(checkedProp || defaultValue || false)
 
@@ -30,8 +22,8 @@ const Check: ForwardRefRenderFunction<HTMLDivElement, CheckTypes.PrivateProps> =
   /**
    * Change handler
    */
-  function handleChange(event: React.FormEvent<HTMLInputElement>) {
-    onChange?.(event)
+  function handleChange() {
+    onChange?.(checked)
     if (typeof checked === 'undefined') {
       setChecked(!checked)
     }
@@ -44,7 +36,7 @@ const Check: ForwardRefRenderFunction<HTMLDivElement, CheckTypes.PrivateProps> =
      * Enter or Space
      */
     if (event.keyCode === 0x0d || event.keyCode === 0x20) {
-      handleChange(event)
+      handleChange()
       /**
        * Prevent page scrolling
        */
@@ -57,28 +49,28 @@ const Check: ForwardRefRenderFunction<HTMLDivElement, CheckTypes.PrivateProps> =
 
   function handleClick(e: React.MouseEvent<HTMLInputElement>) {
     if (!disabled) {
-      handleChange(e)
+      handleChange()
     }
     onClick?.(e)
   }
 
-  const containerProps = {
-    ref,
-    css: classes.container({ disabled }),
-    onClick: handleClick,
-    onKeyDown: handleKeyDown,
-    onFocus: (e: React.FocusEvent<HTMLInputElement>) => {
-      setFocus(true)
-      onFocus?.(e)
-    },
-    onBlur: (e: React.FocusEvent<HTMLInputElement>) => {
-      setFocus(false)
-      onBlur?.(e)
-    },
-  }
-
   return (
-    <div {...containerProps}>
+    <div
+      ref={ref}
+      {...attributes}
+      {...events}
+      css={classes.container({ disabled })}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      onFocus={(e: React.FocusEvent<HTMLInputElement>) => {
+        setFocus(true)
+        events.onFocus?.(e)
+      }}
+      onBlur={(e: React.FocusEvent<HTMLInputElement>) => {
+        setFocus(false)
+        events.onBlur?.(e)
+      }}
+    >
       {children(checked, focus)}
       {label && label.length && <div css={classes.label({ disabled, size, uppercase })}>{label}</div>}
     </div>

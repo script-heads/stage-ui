@@ -85,22 +85,22 @@ const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref)
     label: 'Menu',
   })
 
-  const styleState: Types.StyleState = {
+  const classState: Types.ClassState = {
     decoration,
   }
 
   const css = [
-    classes.container(styleState),
+    classes.container(classState),
     {
-      '[data-flow=menu-item]': classes.item(styleState),
-      '[data-flow=menu-group]': classes.group(styleState),
-      '[data-flow=menu-group-title]': classes.groupTitle(styleState),
-      '[data-flow=sub-menu]': classes.subMenu(styleState),
-      '[data-flow=sub-menu-arrow]': classes.subMenuArrow(styleState),
-      '[data-flow=sub-menu-content]': classes.subMenuContent(styleState),
-      '[data-flow=left]': classes.leftChild(styleState),
-      '[data-flow=middle]': classes.middleChild(styleState),
-      '[data-flow=right]': classes.rightChild(styleState),
+      '[data-flow=menu-item]': classes.item(classState),
+      '[data-flow=menu-group]': classes.group(classState),
+      '[data-flow=menu-group-title]': classes.groupTitle(classState),
+      '[data-flow=sub-menu]': classes.subMenu(classState),
+      '[data-flow=sub-menu-arrow]': classes.subMenuArrow(classState),
+      '[data-flow=sub-menu-content]': classes.subMenuContent(classState),
+      '[data-flow=left]': classes.leftChild(classState),
+      '[data-flow=middle]': classes.middleChild(classState),
+      '[data-flow=right]': classes.rightChild(classState),
     },
   ]
   let { children } = props

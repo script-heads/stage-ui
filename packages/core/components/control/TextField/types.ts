@@ -10,7 +10,7 @@ declare namespace TextFieldTypes {
     input: HTMLInputElement | HTMLTextAreaElement | null
   }
 
-  interface Props extends FieldTypes.Props, InputProps, TextAreaProps {
+  interface Props extends FieldTypes.Props<HTMLInputElement, Classes>, InputProps, TextAreaProps {
     /**
      * Default input value
      */
@@ -136,7 +136,7 @@ declare namespace TextFieldTypes {
     wrap?: string
   }
 
-  interface Styles extends FieldTypes.Styles {
+  type Classes = {
     /**
      * TextField's input
      */

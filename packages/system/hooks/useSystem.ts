@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react'
 import useTheme from './useTheme'
@@ -6,14 +7,15 @@ import createVariant, { Variant } from '../utils/createVariant'
 import isFunction from '../utils/isFunction'
 import { AllEventProps, AllProps, AttributeProps } from '../props/types'
 
-export interface Options<ClassesSchema, Props> {
+export type FilterStartingWith<Set, Needle extends string> = Set extends `${Needle}${infer X}` ? Set : never
+
+export interface Options {
   focus?: 'always' | 'tabOnly' | 'never'
   label?: string
   theme?: Stage.Theme
-  additionalClasses?: CreateAdditionalClasses<ClassesSchema, Props>
 }
 
-export interface StyleProps {
+export type StyleProps = {
   all: Stage.JSS[]
   container: Stage.JSS[]
   content: Stage.JSS[]
@@ -29,38 +31,43 @@ export interface StyleProps {
   layout: Stage.JSS[]
 }
 
-export type FunctionClassDefinition<ClassSchema> = (variant: Variant<ClassSchema>, state: ClassSchema) => Stage.JSS
+export type ClassStateDefinition = Record<string, string | boolean | undefined> | void
+export type ClassesSchemaDefinition = Record<string, ClassStateDefinition>
 
-export type ClassesDefinition<ClassesSchema> = {
-  [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends Object
-    ? FunctionClassDefinition<ClassesSchema[ClassName]>
-    : Stage.JSS
+export type FunctionClassDefinition<ClassState extends Exclude<ClassStateDefinition, void>> = (
+  variant: Variant<ClassState>,
+  state: ClassState,
+) => Stage.JSS
+
+export type OverridesClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = {
+  [ClassName in keyof ClassesSchema]?: FunctionClassDefinition<Exclude<ClassesSchema[ClassName], void>> | Stage.JSS
 }
 
-export type FunctionClass<ClassSchema> = (state: ClassSchema) => Stage.JSS
-
-export type Classes<ClassesSchema> = {
-  [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends Object
-    ? FunctionClass<ClassesSchema[ClassName]>
-    : Stage.JSS
+export type ClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = {
+  [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends void
+    ? Stage.JSS
+    : FunctionClassDefinition<Exclude<ClassesSchema[ClassName], void>>
 }
 
-export type CreateClasses<ClassesSchema, Props> = (
+export type FunctionClass<ClassSchema extends ClassStateDefinition> = (state: ClassSchema) => Stage.JSS
+
+export type Classes<ClassesSchema extends ClassesSchemaDefinition> = {
+  [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends void
+    ? Stage.JSS
+    : FunctionClass<ClassesSchema[ClassName]>
+}
+
+export type CreateClasses<ClassesSchema extends ClassesSchemaDefinition, Props> = (
   theme: Stage.Theme,
   props: Props,
   styleProps: StyleProps,
 ) => ClassesDefinition<ClassesSchema>
 
-export type CreateAdditionalClasses<ClassesSchema, Props> = (
-  theme: Stage.Theme,
-  props: Props,
-  styleProps: StyleProps,
-) => Partial<ClassesDefinition<ClassesSchema>>
-
-export type ComponentData<Props extends Record<string, any>, ClassesSchema> = {
+export type ComponentData<Props extends Record<string, any>, ClassesSchema extends ClassesSchemaDefinition> = {
   classes: Classes<ClassesSchema>
   attributes: Pick<Props, keyof AttributeProps>
-  events: Pick<Props, keyof AllEventProps<any>>
+  events: Pick<Props, FilterStartingWith<keyof Props, 'on'>>
+  styleProps: StyleProps
 }
 
 let IS_MOUSE_DOWN = false
@@ -76,36 +83,34 @@ window.addEventListener('focus', () => {
   PAGE_FOCUS = true
 })
 
-function useSystem<Props extends AllProps<HTMLElement, ClassesSchema>, ClassesSchema, AdditionalClassesSchema>(
-  name: string,
-  props: Props,
-  createClasses: Stage.CreateClasses<ClassesSchema, Props>,
-  options: Options<AdditionalClassesSchema, Props> = {},
-) {
+function useSystem<
+  Props extends AllProps<Element, ClassesSchema>,
+  ClassesSchema extends ClassesSchemaDefinition,
+  Element extends HTMLElement,
+>(name: string, props: Props, createClasses: Stage.CreateClasses<ClassesSchema, Props>, options: Options = {}) {
   const currentTheme = useTheme()
-  const { focus = 'always', label = name, theme = currentTheme, additionalClasses } = options
+  const { focus = 'always', label = name, theme = currentTheme } = options
 
   const data = {
     classes: {},
     attributes: {},
     events: {},
-  } as ComponentData<Props, ClassesSchema & AdditionalClassesSchema>
+    styleProps: {
+      all: [],
+      container: [],
+      content: [],
 
-  const styleProps: StyleProps = {
-    all: [],
-    container: [],
-    content: [],
+      style: [],
+      margin: [],
+      flex: [],
+      grid: [],
 
-    style: [],
-    margin: [],
-    flex: [],
-    grid: [],
-
-    padding: [],
-    color: [],
-    border: [],
-    layout: [],
-  }
+      padding: [],
+      color: [],
+      border: [],
+      layout: [],
+    } as StyleProps,
+  } as ComponentData<Props, ClassesSchema>
 
   Object.keys(props).forEach((key) => {
     // Check *on* events
@@ -113,16 +118,15 @@ function useSystem<Props extends AllProps<HTMLElement, ClassesSchema>, ClassesSc
       data.events[key as keyof AllEventProps<any>] = props[key]
     }
     if (Object.prototype.hasOwnProperty.call(propsResolvers, key)) {
-      propsResolvers[key](props, data, styleProps, theme)
+      propsResolvers[key](props, data, theme)
     }
   })
 
   // Override default focus styles
-  data.events.onFocus = (event: React.FocusEvent<HTMLElement>) => {
+  data.events.onFocus = (event: React.FocusEvent<Element>) => {
     event.stopPropagation()
     if (!PAGE_FOCUS) {
       if ((focus === 'tabOnly' && !IS_MOUSE_DOWN) || focus === 'always') {
-        // eslint-disable-next-line no-param-reassign
         event.target.className += ' focused'
       }
     }
@@ -132,15 +136,14 @@ function useSystem<Props extends AllProps<HTMLElement, ClassesSchema>, ClassesSc
   }
 
   // Override default focus styles
-  data.events.onBlur = (event: React.FocusEvent<HTMLElement>) => {
+  data.events.onBlur = (event: React.FocusEvent<Element>) => {
     event.stopPropagation()
-    // eslint-disable-next-line no-param-reassign
     event.target.className = event.target.className.replace(' focused', '')
     props.onBlur?.(event)
   }
 
   // Additional key handlers
-  data.events.onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+  data.events.onKeyDown = (event: React.KeyboardEvent<Element>) => {
     props.onKeyPress?.(event)
     if (event.key === 'Enter' && props.onEnter) {
       props.onEnter(event)
@@ -153,71 +156,59 @@ function useSystem<Props extends AllProps<HTMLElement, ClassesSchema>, ClassesSc
 
   // Cursor must be pointer if interactive
   if (props.onClick) {
-    styleProps.container.push({
+    data.styleProps.container.push({
       cursor: 'pointer',
       userSelect: 'none',
     })
   }
 
-  styleProps.container = styleProps.container.concat(
-    styleProps.margin,
-    styleProps.flex,
-    styleProps.grid,
-    styleProps.style,
+  data.styleProps.container = data.styleProps.container.concat(
+    data.styleProps.margin,
+    data.styleProps.flex,
+    data.styleProps.grid,
+    data.styleProps.style,
   )
-  styleProps.content = styleProps.content.concat(
-    styleProps.padding,
-    styleProps.color,
-    styleProps.border,
-    styleProps.layout,
+  data.styleProps.content = data.styleProps.content.concat(
+    data.styleProps.padding,
+    data.styleProps.color,
+    data.styleProps.border,
+    data.styleProps.layout,
   )
-  styleProps.all = styleProps.all.concat(styleProps.container, styleProps.content)
+  data.styleProps.all = data.styleProps.all.concat(data.styleProps.container, data.styleProps.content)
 
   const themeOverrides = theme.overrides[name]
   const propsOverrides = props.overrides
 
-  const componentClasses: ClassesDefinition<ClassesSchema> = createClasses(theme, props, styleProps)
-  const additionalComponentClasses: Partial<ClassesDefinition<AdditionalClassesSchema>> =
-    additionalClasses?.(theme, props, styleProps) || ({} as ClassesDefinition<AdditionalClassesSchema>)
+  const componentClasses: ClassesDefinition<ClassesSchema> = createClasses(theme, props, data.styleProps)
 
-  const themeOverrideClasses: ClassesDefinition<ClassesSchema> = isFunction(themeOverrides)
-    ? themeOverrides(props, styleProps)
+  const themeOverrideClasses: OverridesClassesDefinition<ClassesSchema> = isFunction(themeOverrides)
+    ? themeOverrides(props, data.styleProps)
     : themeOverrides || {}
 
-  const propsOverrideClasses: Partial<ClassesDefinition<ClassesSchema>> = isFunction(propsOverrides)
-    ? propsOverrides(theme, styleProps)
+  const propsOverrideClasses: OverridesClassesDefinition<ClassesSchema> = isFunction(propsOverrides)
+    ? propsOverrides(theme, data.styleProps)
     : propsOverrides || {}
 
-  Object.keys(componentClasses)
-    .concat(
-      Object.keys(additionalComponentClasses).filter(
-        (className) => !Object.prototype.hasOwnProperty.call(componentClasses, className),
-      ),
-    )
-    .forEach((key) => {
-      const classLabel = { label: `${label}-${key}` }
+  Object.keys(componentClasses).forEach((key) => {
+    const classLabel = { label: `${label}-${key}` }
 
-      data.classes[key] = (
-        isFunction(componentClasses[key]) || isFunction(additionalComponentClasses[key])
-          ? (state) => {
-              const variant = createVariant(state)
-              return [
-                classLabel,
-                (additionalComponentClasses[key] as FunctionClassDefinition<any>)?.(variant, state),
-                (componentClasses[key] as FunctionClassDefinition<any>)?.(variant, state),
-                (themeOverrideClasses[key] as FunctionClassDefinition<any>)?.(variant, state),
-                (propsOverrideClasses[key] as FunctionClassDefinition<any>)?.(variant, state),
-              ] as Stage.JSS
-            }
-          : [
-              classLabel,
-              additionalComponentClasses,
-              componentClasses[key],
-              themeOverrideClasses[key],
-              propsOverrideClasses[key],
-            ]
-      ) as Stage.JSS
-    })
+    // @ts-ignore
+    data.classes[key] = isFunction(componentClasses[key])
+      ? (state) => {
+          const variant = createVariant(state)
+          return [
+            classLabel,
+            (componentClasses[key] as Function)?.(variant, state),
+            isFunction(themeOverrideClasses[key])
+              ? (themeOverrideClasses[key] as Function)(variant, state)
+              : themeOverrideClasses[key],
+            isFunction(propsOverrideClasses[key])
+              ? (propsOverrideClasses[key] as Function)(variant, state)
+              : propsOverrideClasses[key],
+          ] as Stage.JSS
+        }
+      : [classLabel, componentClasses[key], themeOverrideClasses[key], propsOverrideClasses[key]]
+  })
 
   return data
 }

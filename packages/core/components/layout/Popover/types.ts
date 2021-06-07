@@ -1,7 +1,7 @@
 import CSS from 'csstype'
 
 declare namespace PopoverTypes {
-  interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
+  interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
     /**
      * Alignment of popover's arrow
      */
@@ -28,7 +28,7 @@ declare namespace PopoverTypes {
     arrowHeight?: CSS.Properties['height']
   }
 
-  interface Styles {
+  type Classes = {
     /**
      * Root element
      */

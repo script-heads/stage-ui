@@ -1,5 +1,5 @@
 declare namespace SubmenuTypes {
-  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Classes>, 'onChange'> {
     /**
      * Title for menu item
      */
@@ -35,7 +35,7 @@ declare namespace SubmenuTypes {
     rightChild?: React.ReactNode
   }
 
-  interface Styles {
+  type Classes = {
     /**
      * Root view
      */

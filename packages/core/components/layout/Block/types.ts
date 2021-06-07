@@ -2,7 +2,7 @@ import { LayoutDecoration } from '@stage-ui/core/utils/applyLayoutDecoration'
 import CSS from 'csstype'
 
 declare namespace BlockTypes {
-  interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
+  interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
     /**
      * HTML element which is used as a container
      */
@@ -21,7 +21,7 @@ declare namespace BlockTypes {
     overflow?: CSS.Properties['overflow']
   }
 
-  interface Styles {
+  type Classes = {
     /**
      * Root element
      */

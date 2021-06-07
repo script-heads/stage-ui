@@ -2,23 +2,20 @@ import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import { Block } from '@stage-ui/core'
 import { Checkmark } from '@stage-ui/icons'
 import Check from '@stage-ui/core/components/basic/Check'
-import additionalClasses from '@stage-ui/core/components/basic/Check/styles'
 import { useSystem } from '@stage-ui/system'
 import createClasses from './styles'
 import Types from './types'
 
-const Checkbox: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
+const Checkbox: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props: Types.Props, ref) => {
   const { size = 'm', disabled } = props
-  const { classes, attributes, events } = useSystem<Types.Props, Types.Styles>('Checkbox', props, createClasses, {
-    additionalClasses,
-  })
+  const { classes, attributes, events, styleProps } = useSystem('Checkbox', props, createClasses)
 
   return (
     <Check
       {...attributes}
       {...events}
       {...props}
-      classes={classes}
+      name="Checkbox"
       ref={ref}
       size={size}
       onFocus={(e) => {
@@ -33,6 +30,9 @@ const Checkbox: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
        * Checkbox use
        */
       type="checkbox"
+      overrides={{
+        container: styleProps.all,
+      }}
     >
       {(checked, focus) => (
         <Block css={classes.check({ size, disabled, focus, checked })}>

@@ -236,7 +236,7 @@ declare namespace TableTypes {
   interface Props<ROW>
     extends RowEvents<ROW>,
       RowDelegates<ROW>,
-      Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+      Omit<SystemTypes.AllProps<HTMLDivElement, Classes>, 'onChange'> {
     ref?: any
     /**
      * Array of any data objects can be provided
@@ -280,7 +280,7 @@ declare namespace TableTypes {
 
   interface HeadCellProps<ROW> {
     column: TableColumn<ROW>
-    styles: Classes<Styles>
+    styles: Classes<Classes>
     toggleSort: (sort: TableSortObject) => Promise<unknown>
   }
 
@@ -288,7 +288,7 @@ declare namespace TableTypes {
     rowCtxItem: TableRowContext<ROW>
     column: TableColumn<ROW>
     rowIndex: number
-    styles: Classes<Styles>
+    styles: Classes<Classes>
     getCellContext: TableRef<ROW>['getCellContext']
   }
 
@@ -296,7 +296,7 @@ declare namespace TableTypes {
     rowCtxItem: TableRowContext<ROW>
     columns: TableColumn<ROW>[]
     rowIndex: number
-    styles: Classes<Styles>
+    styles: Classes<Classes>
     getCellContext: TableRef<ROW>['getCellContext']
     events: RowEvents<ROW>
     rowDidMount?: (rowCtxItem: TableRowContext<ROW>) => void
@@ -316,10 +316,10 @@ declare namespace TableTypes {
     footerContent?: Props<ROW>['footer']
     pagination?: TablePaginationOptions
     onPageChange: (pageNumber: number) => void
-    styles: Classes<Styles>
+    styles: Classes<Classes>
   }
 
-  interface Styles {
+  type Classes = {
     /**
      * Root view
      */

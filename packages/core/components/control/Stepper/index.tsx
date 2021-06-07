@@ -10,7 +10,7 @@ const Stepper: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
   return (
     <div {...attributes} {...events} css={classes.container}>
       {data.map((step, i) => {
-        const state: Types.StyleState = {
+        const state: Types.ClassState = {
           active: current == i,
           complete: current > i,
           pointer: !!onChange,

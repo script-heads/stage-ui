@@ -1,7 +1,7 @@
 import colorResolver from '@stage-ui/system/props/color'
 import Types from './types'
 
-const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props) => {
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
   const color = colorResolver(props.color || theme.color.light, theme)
 
   return {
@@ -103,7 +103,7 @@ const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, pr
       }),
     ],
 
-    content1: (variant) => ({
+    content: (variant) => ({
       display: 'flex',
       flexGrow: 1,
       flexShrink: 1,

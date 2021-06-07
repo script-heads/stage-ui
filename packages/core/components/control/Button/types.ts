@@ -1,5 +1,5 @@
 declare namespace ButtonTypes {
-  interface Props extends Stage.AllProps<HTMLButtonElement, Styles> {
+  interface Props extends Stage.AllProps<HTMLButtonElement, Classes> {
     /**
      * Specifies that the button should have input focus when the page loads
      */
@@ -90,21 +90,21 @@ declare namespace ButtonTypes {
     leftChild?: React.ReactNode
   }
 
-  interface StyleState {
+  type ClassState = {
     decoration: Props['decoration']
     shape: Props['shape']
     size: Props['size']
   }
 
-  interface Styles {
+  type Classes = {
     /**
      * Root element
      */
-    container: StyleState
+    container: ClassState
     /**
      * Content's wrappers
      */
-    child: StyleState & {
+    child: ClassState & {
       align: 'left' | 'right'
     }
   }

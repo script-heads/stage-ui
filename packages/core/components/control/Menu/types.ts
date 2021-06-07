@@ -15,7 +15,7 @@ declare namespace MenuTypes {
     itemAs?: keyof HTMLElementTagNameMap
   }
 
-  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Classes>, 'onChange'> {
     /**
      * Value selected by default
      */
@@ -73,50 +73,50 @@ declare namespace MenuTypes {
      */
     itemAs?: keyof HTMLElementTagNameMap
   }
-  interface StyleState {
+  type ClassState = {
     decoration: Props['decoration']
   }
-  interface Styles {
+  type Classes = {
     /**
      * Root container
      */
-    container: StyleState
+    container: ClassState
     /**
      * Menu item container
      */
-    item: StyleState
+    item: ClassState
     /**
      * Group title container
      */
-    group: StyleState
+    group: ClassState
     /**
      * Group title text
      */
-    groupTitle: StyleState
+    groupTitle: ClassState
     /**
      * Submenu container
      */
-    subMenu: StyleState
+    subMenu: ClassState
     /**
      * Submenu content view
      */
-    subMenuContent: StyleState
+    subMenuContent: ClassState
     /**
      * Submenu arrow icon
      */
-    subMenuArrow: StyleState
+    subMenuArrow: ClassState
     /**
      * Left child at menu item
      */
-    leftChild: StyleState
+    leftChild: ClassState
     /**
      * Middle child at menu item
      */
-    middleChild: StyleState
+    middleChild: ClassState
     /**
      * Right child at menu item
      */
-    rightChild: StyleState
+    rightChild: ClassState
   }
 }
 

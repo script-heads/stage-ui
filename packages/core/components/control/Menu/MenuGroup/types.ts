@@ -1,5 +1,5 @@
 declare namespace MenuGroupTypes {
-  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Classes>, 'onChange'> {
     /**
      * Title of group
      */
@@ -15,7 +15,7 @@ declare namespace MenuGroupTypes {
     rightChild?: React.ReactNode
   }
 
-  interface Styles {
+  type Classes = {
     /**
      * Group view
      */

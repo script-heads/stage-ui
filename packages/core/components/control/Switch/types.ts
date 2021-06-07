@@ -1,9 +1,9 @@
 import CheckTypes from '../../basic/Check/types'
 
 declare namespace SwitchTypes {
-  interface Props extends CheckTypes.Props {}
+  interface Props extends CheckTypes.Props<HTMLDivElement, Classes> {}
 
-  interface Styles extends CheckTypes.Styles {
+  type Classes = {
     /**
      * Switch container
      */

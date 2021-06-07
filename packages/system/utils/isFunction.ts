@@ -1,3 +1,3 @@
-export default function isFunction(a: any): a is Function {
+export default function isFunction<V = Function>(a: any): a is V {
   return typeof (a as Function) === 'function'
 }

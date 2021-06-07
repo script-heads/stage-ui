@@ -1,5 +1,5 @@
 declare namespace BadgeTypes {
-  interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
+  interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
     /**
      * Show in badge
      */
@@ -25,7 +25,7 @@ declare namespace BadgeTypes {
     children?: React.ReactNode
   }
 
-  interface Styles {
+  type Classes = {
     /**
      * Root element
      */

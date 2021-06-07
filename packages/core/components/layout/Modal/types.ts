@@ -1,11 +1,19 @@
-import { Classes } from "@stage-ui/system/hooks/useSystem"
-import { AllEventProps, AttributeProps, BorderProps, ColorProps, CoreProps, LayoutProps, PaddingProps } from "@stage-ui/system/props/types"
+import { Classes } from '@stage-ui/system/hooks/useSystem'
+import {
+  AllEventProps,
+  AttributeProps,
+  BorderProps,
+  ColorProps,
+  CoreProps,
+  LayoutProps,
+  PaddingProps,
+} from '@stage-ui/system/props/types'
 
 declare namespace ModalTypes {
   type ModalDecoration = 'modal' | 'panel' | 'fullscreen'
   type ExtentedProps = AttributeProps &
     AllEventProps<HTMLDivElement> &
-    CoreProps<Styles> &
+    CoreProps<Classes> &
     ColorProps &
     BorderProps &
     PaddingProps &
@@ -112,8 +120,8 @@ declare namespace ModalTypes {
 
   interface ModalOverlayProps {
     getStyles: () => {
-      classes: Classes<Styles>
-      state: StyleState
+      classes: Classes<Classes>
+      state: ClassState
     }
     children?: React.ReactNode
   }
@@ -127,8 +135,8 @@ declare namespace ModalTypes {
     containerEvents?: any
     onClosePressed: () => void
     getStyles: () => {
-      classes: Classes<Styles>
-      state: StyleState
+      classes: Classes<Classes>
+      state: ClassState
     }
   }
 
@@ -138,37 +146,37 @@ declare namespace ModalTypes {
     hideHeader?: boolean
     onClosePressed: () => void
     getStyles: () => {
-      classes: Classes<Styles>
-      state: StyleState
+      classes: Classes<Classes>
+      state: ClassState
     }
   }
 
-  type StyleState = {
+  type ClassState = {
     visible?: boolean
     decoration?: Props['decoration']
   }
 
-  interface Styles {
+  type Classes = {
     /**
      * Backside view
      */
-    overlay: StyleState
+    overlay: ClassState
     /**
      * Wrapper of modal
      */
-    wrapper: StyleState
+    wrapper: ClassState
     /**
      * Window it self
      */
-    window: StyleState
+    window: ClassState
     /**
      * Header of window
      */
-    header: StyleState
+    header: ClassState
     /**
      * Close button
      */
-    cross: StyleState
+    cross: ClassState
   }
 
   interface DialogOptions extends Props {

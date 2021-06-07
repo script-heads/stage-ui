@@ -1,6 +1,5 @@
 import { jsx } from '@emotion/react'
 import Field from '@stage-ui/core/components/basic/Field'
-import additionalClasses from '@stage-ui/core/components/basic/Field/styles'
 import { useSystem } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction, useImperativeHandle, useRef, useEffect, useState } from 'react'
 import createClasses from './styles'
@@ -17,9 +16,7 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
     leftChildNumber,
   } = props
 
-  const { classes, attributes, events } = useSystem('TextField', props, createClasses, {
-    additionalClasses: additionalClasses as Stage.CreateAdditionalClasses<Types.Styles, Types.Props>,
-  })
+  const { classes, events } = useSystem('TextField', props, createClasses)
 
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
 
@@ -80,11 +77,11 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
   return (
     <Field
       {...props}
+      tabIndex={tabIndex}
       ref={fieldRef}
       decoration={decoration}
       size={size}
       shape={shape}
-      classes={classes}
       clearable={props.value !== undefined && !props.value ? false : props.clearable}
       leftChild={leftChildNumber && multiline ? <LeftCountLine /> : props.leftChild}
       onClear={onClear}
@@ -94,16 +91,24 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
         }
         props.onEsc?.(e)
       }}
-      events={{
-        ...events,
-        onFocus: (e: React.FocusEvent<HTMLInputElement>) => {
-          inputRef.current?.focus()
-          events.onFocus?.(e)
-        },
+      onFocus={(e: React.FocusEvent<HTMLInputElement>) => {
+        inputRef.current?.focus()
+        events.onFocus?.(e)
       }}
-      attributes={{
-        ...attributes,
-        tabIndex,
+      overrides={{
+        container: styleProps.container,
+        field: styleProps.content,
+        child: (variant) => [
+          props.leftChildNumber &&
+            variant({
+              align: {
+                left: {
+                  overflow: 'hidden',
+                  position: 'relative',
+                },
+              },
+            }),
+        ],
       }}
     >
       {jsx(props.multiline ? 'textarea' : 'input', {

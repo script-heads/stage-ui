@@ -1,5 +1,5 @@
 declare namespace DividerTypes {
-  interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
+  interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
     /**
      * Draw divider vertical
      */
@@ -23,7 +23,7 @@ declare namespace DividerTypes {
     color?: Stage.ColorProp
   }
 
-  interface Styles {
+  type Classes = {
     /**
      * Root element
      */

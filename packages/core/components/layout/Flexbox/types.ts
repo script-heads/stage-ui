@@ -4,7 +4,7 @@ import { FlexSelf } from '@stage-ui/system/props/types'
 import CSS from 'csstype'
 
 declare namespace FlexboxTypes {
-  interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
+  interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
     /**
      * Sets alignItems and justifyContent styles center
      * @BreakpointProp
@@ -100,7 +100,7 @@ declare namespace FlexboxTypes {
     children?: React.ReactNode
   }
 
-  interface Styles {
+  type Classes = {
     /**
      * Root element
      */

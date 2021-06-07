@@ -2,7 +2,7 @@ import applyLayoutDecoration from '@stage-ui/core/utils/applyLayoutDecoration'
 import breakpointProp from '@stage-ui/system/props/breakpoint'
 import Types from './types'
 
-const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, styleProps) => {
   return {
     container: (variant) => [
       applyLayoutDecoration(props, theme),

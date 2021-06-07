@@ -13,14 +13,14 @@ const Button: ForwardRefRenderFunction<HTMLButtonElement, Types.Props> = (props,
     }
   }
 
-  const styleState = { shape, decoration, size }
+  const classState = { shape, decoration, size }
 
   return (
     <button
       {...attributes}
       {...events}
       ref={ref}
-      css={classes.container(styleState)}
+      css={classes.container(classState)}
       onClick={onClick}
       disabled={props.disabled}
       form={props.form}
@@ -33,9 +33,9 @@ const Button: ForwardRefRenderFunction<HTMLButtonElement, Types.Props> = (props,
       type={props.type}
       value={props.value}
     >
-      {props.leftChild && <div css={classes.child({ align: 'left', ...styleState })}>{props.leftChild}</div>}
+      {props.leftChild && <div css={classes.child({ align: 'left', ...classState })}>{props.leftChild}</div>}
       {props.children || props.label}
-      {props.rightChild && <div css={classes.child({ align: 'right', ...styleState })}>{props.rightChild} </div>}
+      {props.rightChild && <div css={classes.child({ align: 'right', ...classState })}>{props.rightChild} </div>}
     </button>
   )
 }

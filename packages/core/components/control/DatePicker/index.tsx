@@ -26,7 +26,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
   const [value, setValue] = useState(now)
   const [isActive, setActive] = useState(false)
   const { classes, attributes, events, focus } = useSystem('DatePicker', props, createClasses, {
-    additionalClasses: additionalClasses as Stage.CreateAdditionalClasses<Types.Styles, Types.Props>,
+    additionalClasses: additionalClasses as Stage.CreateAdditionalClasses<Types.Classes, Types.Props>,
   })
 
   // TODO: container check

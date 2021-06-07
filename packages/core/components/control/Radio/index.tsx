@@ -9,9 +9,7 @@ import Types from './types'
 const Radio: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
   const { size = 'm', disabled } = props
 
-  const { classes, attributes, events } = useSystem('Radio', props, createClasses, {
-    additionalClasses
-  })
+  const { classes, attributes, events, styleProps } = useSystem('Radio', props, createClasses)
 
   return (
     <Check
@@ -19,6 +17,7 @@ const Radio: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
       {...events}
       {...props}
       ref={ref}
+      name="Radio"
       size={size}
       onFocus={(e) => {
         props.onFocus?.(e)
@@ -32,7 +31,9 @@ const Radio: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
        * Radio use
        */
       type="checkbox"
-      classes={classes}
+      overrides={{
+        container: styleProps.all,
+      }}
     >
       {(checked, focus) => (
         <Block css={classes.check({ size, disabled, focus, checked })}>

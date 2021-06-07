@@ -1,6 +1,5 @@
 import { Block } from '@stage-ui/core'
 import Check from '@stage-ui/core/components/basic/Check'
-import additionalClasses from '@stage-ui/core/components/basic/Check/styles'
 import { useSystem } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import styles from './styles'
@@ -8,7 +7,7 @@ import Types from './types'
 
 const Switch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
   const { size = 'm', disabled } = props
-  const { classes, attributes, events } = useSystem('Switch', props, styles, { additionalClasses })
+  const { classes, attributes, events, styleProps } = useSystem('Switch', props, styles)
 
   return (
     <Check
@@ -17,7 +16,6 @@ const Switch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
       {...props}
       ref={ref}
       size={size}
-      classes={classes}
       onFocus={(e) => {
         props.onFocus?.(e)
         e.stopPropagation()
@@ -30,6 +28,7 @@ const Switch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
        * Switch use
        */
       type="checkbox"
+      overrides={{ container: styleProps.all }}
     >
       {(checked) => (
         <Block css={classes.check({ size, disabled, checked })}>

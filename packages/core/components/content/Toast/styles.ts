@@ -1,7 +1,7 @@
 import colorProp from '@stage-ui/system/props/color'
 import Types from './types'
 
-const styles: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
+const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, styleProps) => {
   const backgroundColor = colorProp(props.color || theme.color.primary, theme)
     ?.rgb()
     .string()

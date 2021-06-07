@@ -1,54 +1,9 @@
 import Types from './types'
 
-const styles: Stage.CreateAdditionalClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
+const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
   const minHeight = theme.assets.field[props.size || 'm']?.minHeight || theme.assets.field.m.minHeight || '2.5rem'
 
   return {
-    container: (variant) => [
-      variant({
-        isOpen: {
-          zIndex: 999,
-        },
-      }),
-      styleProps.margin,
-      styleProps.flex,
-      styleProps.grid,
-      styleProps.layout,
-    ],
-    field: (variant) => [
-      variant({
-        isOpen: {
-          borderColor: theme.color.primary.rgb().string(),
-        },
-        decoration: {
-          filled: [
-            variant({
-              isOpen: {
-                borderColor: 'transparent',
-              },
-            }),
-          ],
-          none: [
-            { padding: 0 },
-            variant({
-              isOpen: {
-                borderColor: 'transparent',
-              },
-            }),
-          ],
-          underline: [
-            variant({
-              isOpen: {
-                borderColor: 'transparent',
-              },
-            }),
-          ],
-        },
-      }),
-      styleProps.color,
-      styleProps.border,
-      styleProps.padding,
-    ],
     drop: (variant) => [
       {
         position: 'relative',
@@ -242,4 +197,4 @@ const styles: Stage.CreateAdditionalClasses<Types.Styles, Types.Props> = (theme,
   }
 }
 
-export default styles as Stage.CreateClasses<Types.Styles, Types.Props>
+export default styles

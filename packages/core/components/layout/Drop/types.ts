@@ -19,7 +19,7 @@ declare namespace DropTypes {
   interface Props
     extends AttributeProps,
       AllEventProps<HTMLDivElement>,
-      CoreProps<Styles>,
+      CoreProps<Classes>,
       ColorProps,
       BorderProps,
       PaddingProps,
@@ -103,7 +103,7 @@ declare namespace DropTypes {
     setVisible: (state: boolean) => void
   }
 
-  interface Styles {
+  type Classes = {
     /**
      * Root element
      */

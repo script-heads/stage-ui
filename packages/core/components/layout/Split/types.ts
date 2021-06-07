@@ -1,7 +1,7 @@
 import React from 'react'
 
 declare namespace SplitTypes {
-  export interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onMove' | 'onChange'> {
+  export interface Props extends Omit<Stage.AllProps<HTMLDivElement, Classes>, 'onMove' | 'onChange'> {
     direction?: 'row' | 'column'
     children: React.ReactElement[]
     /**
@@ -22,7 +22,7 @@ declare namespace SplitTypes {
     onChange?: (positions: number[]) => void
   }
 
-  interface Styles {
+  type Classes = {
     container: {
       vertical: boolean
     }

@@ -1,8 +1,8 @@
-import { Classes, ComponentData } from '@stage-ui/system/hooks/useSystem'
 import React from 'react'
 
 declare namespace FieldTypes {
-  interface Props<S = Styles> extends Omit<Stage.AllProps<HTMLInputElement, S>, 'onChange'> {
+  interface Props<Element = HTMLInputElement, ClassesDefinition = Classes>
+    extends Stage.AllProps<Element, ClassesDefinition> {
     /**
      * Label for field
      */
@@ -57,70 +57,60 @@ declare namespace FieldTypes {
      * Allow user clear value
      */
     clearable?: boolean
-
-    /**
-     * Event is fired when user press Enter
-     */
-    onEnter?: () => void
     /**
      * Event is fired when user clear value
      */
     onClear?: () => void
   }
 
-  type State<AdditionalState = {}> = {
+  type State = {
     disabled: Props['disabled']
     shape: Props['shape']
     size: Props['size']
     decoration: Props['decoration']
     labelType: Props['labelType']
-  } & AdditionalState
+  }
 
-  interface Styles<AdditionalStyles extends Record<string, any> = {}, AdditionalState = {}> {
+  type Classes = {
     /**
      * Root element
      */
-    container: State<AdditionalState> & AdditionalStyles['container']
+    container: State
     /**
      * Container of field
      */
-    field: State<AdditionalState> & AdditionalStyles['field']
+    field: State
     /**
      * Container of field content
      */
-    content: State<AdditionalState> & AdditionalStyles['content']
+    content: State
     /**
      * Label element
      */
-    label: State<AdditionalState> & AdditionalStyles['label']
+    label: State
     /**
      * Container for left and right childs
      */
-    child: {
+    child: State & {
       align: 'right' | 'left'
-    } & State<AdditionalState> &
-      AdditionalStyles['child']
+    }
     /**
      * The button that clear value
      */
-    clearButton: State<AdditionalState> & AdditionalStyles['clearButton']
+    clearButton: State
     /**
      * Container of hint
      */
-    hint: State<AdditionalState> & AdditionalStyles['hint']
+    hint: State
     /**
      * Container of error
      */
-    error: State<AdditionalState> & AdditionalStyles['error']
+    error: State
   }
 
   interface PrivateProps extends Props {
-    classes: Record<keyof Styles, (...args: any) => Stage.JSS>
-    classesState?: Partial<State>
-
+    name?: string
     labelName?: string
-    attributes?: Omit<ComponentData<Props, Styles>['attributes'], 'onChange'>
-    events?: Record<string, Function>
     children?: React.ReactNode
   }
 }

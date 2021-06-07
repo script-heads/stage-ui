@@ -1,9 +1,8 @@
-import { Classes } from '@stage-ui/system/hooks/useSystem'
-
 declare namespace CheckTypes {
   type CheckType = 'checkbox' | 'radio' | 'switch'
 
-  interface Props extends Stage.AllProps<HTMLInputElement, Styles> {
+  interface Props<Element = HTMLDivElement, ClassesOveddides = Classes>
+    extends Stage.AllProps<Element, ClassesOveddides> {
     label?: string
     labelColor?: Stage.ColorProp
     checked?: boolean
@@ -11,15 +10,16 @@ declare namespace CheckTypes {
     defaultValue?: boolean
     uppercase?: boolean
     size?: Stage.Sizes
+    onChange?: (state: boolean) => void
   }
 
   interface PrivateProps extends Props {
-    children: (checked: boolean, focus: boolean) => React.ReactElement
+    name?: string
     type?: CheckType
-    classes: Classes<Styles>
+    children: (checked: boolean, focus: boolean) => React.ReactElement
   }
 
-  interface Styles {
+  type Classes = {
     container: {
       disabled: Props['disabled']
     }

@@ -6,7 +6,7 @@ declare namespace TreeTypes {
     lvl: number
   }
   type RenderChild = (options: RenderChildOptions) => React.ReactNode
-  interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
+  interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
     label?: React.ReactNode | string | RenderChild
     leftChild?: React.ReactNode | string | RenderChild
     rightChild?: React.ReactNode | string | RenderChild
@@ -51,16 +51,16 @@ declare namespace TreeTypes {
     }
   }
 
-  interface StyleState {
+  type ClassState = {
     hasChilds: boolean
     decoration: Props['decoration']
     size: Props['size']
   }
-  interface Styles {
-    container: StyleState
-    row: StyleState
-    label: StyleState
-    arrow: StyleState
+  type Classes = {
+    container: ClassState
+    row: ClassState
+    label: ClassState
+    arrow: ClassState
     child: {
       isOpen: boolean
     }

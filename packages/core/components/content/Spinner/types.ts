@@ -1,5 +1,5 @@
 declare namespace SpinnerTypes {
-  interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
+  interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
     /**
      * Color of spinner
      * @default hardest
@@ -31,7 +31,7 @@ declare namespace SpinnerTypes {
     size?: string
   }
 
-  interface Styles {
+  type Classes = {
     /**
      * Root element
      */

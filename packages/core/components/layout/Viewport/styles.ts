@@ -1,7 +1,7 @@
 import Types from './types'
 import resets from './resets'
 
-const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, styleProps) => {
   const attachTheme = {
     background: theme.color.background.rgb().string(),
     color: theme.color.onBackground.rgb().string(),

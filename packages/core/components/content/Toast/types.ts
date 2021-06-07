@@ -1,5 +1,5 @@
 declare namespace ToastTypes {
-  interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
+  interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
     /**
      * Color of divider
      * @default primary
@@ -23,7 +23,7 @@ declare namespace ToastTypes {
     label?: React.ReactNode
   }
 
-  interface Styles {
+  type Classes = {
     /**
      * Root element
      */

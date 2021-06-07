@@ -3,7 +3,7 @@ import { BreakpointProp } from '@stage-ui/system/props/breakpoint'
 import CSS from 'csstype'
 
 declare namespace GridTypes {
-  interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
+  interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
     /**
      * @display string
      * @BreakpointProp
@@ -92,7 +92,7 @@ declare namespace GridTypes {
      */
     children?: React.ReactNode
   }
-  interface Styles {
+  type Classes = {
     /**
      * Root element
      */

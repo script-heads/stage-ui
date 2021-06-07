@@ -1,7 +1,7 @@
 import Types from './types'
 
 // @ts-ignore
-const createClasses: Stage.CreateClasses<Types.Styles, Types.Props> = (theme, props, styleProps) => {
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, styleProps) => {
   const { size, shape } = props
 
   const spacing = theme.spacing[size || 'm'] || theme.spacing.m

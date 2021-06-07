@@ -71,7 +71,7 @@ declare namespace DatePickerTypes {
     formTarget?: string
   }
 
-  interface Styles extends FieldTypes.Styles {
+  type Classes = FieldTypes.Classes & {
     /**
      * Drop view
      */

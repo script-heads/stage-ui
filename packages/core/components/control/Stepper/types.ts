@@ -3,7 +3,7 @@ declare namespace StepperTypes {
     label?: React.ReactNode
   }
 
-  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Classes>, 'onChange'> {
     data: StepperData[]
 
     size?: Stage.Sizes
@@ -13,20 +13,20 @@ declare namespace StepperTypes {
     onChange?: (step: StepperData, stepIndex: number) => void
   }
 
-  interface StyleState {
+  type ClassState = {
     size: Stage.Sizes
     active: boolean
     complete: boolean
     pointer: boolean
   }
 
-  interface Styles {
+  type Classes = {
     /**
      * Root element
      */
     container: void
-    step: StyleState
-    separator: StyleState
+    step: ClassState
+    separator: ClassState
   }
 }
 

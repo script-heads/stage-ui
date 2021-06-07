@@ -1,23 +1,24 @@
 import CheckTypes from '../../basic/Check/types'
 
 declare namespace RadioTypes {
-  interface Props extends CheckTypes.Props {}
+  interface Props extends CheckTypes.Props<HTMLDivElement, Classes> {}
 
-  interface StyleState {
+  type ClassState = {
     checked: Props['checked']
     size: Props['size']
     disabled: Props['disabled']
     focus: boolean
   }
-  interface Styles extends CheckTypes.Styles {
+
+  type Classes = {
     /**
      * Radio container
      */
-    check: StyleState
+    check: ClassState
     /**
      * Icon of Radio
      */
-    radio: StyleState
+    radio: ClassState
   }
 }
 

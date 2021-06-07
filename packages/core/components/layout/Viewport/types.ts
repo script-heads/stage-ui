@@ -3,7 +3,7 @@ import { SerializedStyles } from '@emotion/react'
 import SystemTypes from '@stage-ui/system/types'
 
 declare namespace ViewportTypes {
-  interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
+  interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
     /**
      * Defines whether the viewport renders content inside the container
      * @default false
@@ -28,7 +28,7 @@ declare namespace ViewportTypes {
     children?: React.ReactNode
   }
 
-  interface Styles {
+  type Classes = {
     /**
      * Root element
      */

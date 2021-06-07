@@ -1,7 +1,7 @@
 import MeterTypes from '../types'
 
 declare namespace MeterThumbTypes {
-  interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
+  interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
     /**
      * Value for controlled compoents
      */
@@ -19,11 +19,11 @@ declare namespace MeterThumbTypes {
 
   interface PrivateProps extends MeterTypes.Props {}
 
-  interface Styles {
+  type Classes = {
     /**
      * Thumb view
      */
-    container: MeterTypes.Styles['thumb']
+    container: MeterTypes.Classes['thumb']
   }
 }
 

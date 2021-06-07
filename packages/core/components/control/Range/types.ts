@@ -1,5 +1,5 @@
 declare namespace RangeTypes {
-  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Classes>, 'onChange'> {
     min?: number
     max?: number
     defaultValue?: number
@@ -13,7 +13,7 @@ declare namespace RangeTypes {
     container: HTMLDivElement
     setValue: (value: number) => void
   }
-  interface Styles {
+  type Classes = {
     container: void
     rail: void
     track: void
