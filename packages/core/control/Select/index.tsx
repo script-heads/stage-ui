@@ -52,7 +52,8 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
             return false
         }
         // Filter only matching search
-        if (searchQuery && !option.text.toUpperCase().match(searchQuery.toUpperCase())) {
+        const escapeSearchQuery = searchQuery.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&').toUpperCase()
+        if (escapeSearchQuery && !option.text.toUpperCase().match(escapeSearchQuery)) {
             return false
         }
         return true
