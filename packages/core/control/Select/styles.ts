@@ -52,7 +52,6 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                 boxShadow: theme.assets.shadow.l,
                 boxSizing: 'border-box',
                 overflow: 'hidden',
-                top: '0.25rem',
             },
             variant({
                 shape: {

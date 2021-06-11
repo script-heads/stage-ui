@@ -294,6 +294,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
             <Drop
                 visible={isOpen}
                 ref={dropRef}
+                spacing={4}
                 animation={props.animation || {
                     type: 'slide',
                     duration: 100,
