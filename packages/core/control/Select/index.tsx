@@ -5,7 +5,7 @@ import { ArrowIosDownward, Close } from '@stage-ui/core/icons'
 import DropTypes from '@stage-ui/core/layout/Drop/types'
 import Field from '@stage-ui/core/misc/hocs/Field'
 import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, ForwardRefRenderFunction, Fragment, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, Fragment, useEffect, useImperativeHandle, useRef, useState, useMemo } from 'react'
 import styles from './styles'
 import Types from './types'
 
@@ -149,7 +149,16 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
         if (props.values === undefined) {
             setValues(values)
         }
+        
         props.onChange?.(values, value)
+    }
+
+    function onChangeClear(values: Types.Option[], value?: Types.Option, search = '') {
+        setSearchQuery(search)
+        props.onSearch?.(value?.text ?? search)
+        if (props.values === undefined) {
+            setValues(values)
+        }
     }
 
     /**
@@ -178,6 +187,10 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
      * also can set filter for search
      */
     function clearValues(search = '') {
+        onChangeClear([], undefined, search)
+    }
+
+    function handleClearValues(search = ''){
         onChange([], undefined, search)
     }
 
@@ -204,7 +217,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                 shape={shape}
                 decoration={decoration}
                 clearable={disabled ? false : (props.clearable && values.length > 0)}
-                onClear={() => clearValues()}
+                onClear={handleClearValues}
 
                 attributes={{ ...attributes, tabIndex }}
                 events={{
@@ -251,7 +264,9 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                                 )}
                             </div>
                         ))}
+                                                
                         <input
+                            type="text"
                             size={5}
                             disabled={disabled || !props.searchable}
                             css={cs.input({
@@ -261,14 +276,14 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                             })}
                             placeholder={(!props.multiselect || values.length === 0) ? props.placeholder : ''}
                             value={(!props.multiselect && values[0]?.text) || searchQuery}
-                            onChange={(e) => {
-                                if (!isOpen) {
+                            onChange={(e) => {                                
+                                if (!isOpen) {                                   
                                     setOpen(true)
                                 }
-                                if (props.multiselect) {
+                                if (props.multiselect) {                                    
                                     props.onSearch?.(e.target.value)
                                     setSearchQuery(e.target.value)
-                                } else {
+                                } else {                                    
                                     clearValues(e.target.value)
                                 }
                             }}

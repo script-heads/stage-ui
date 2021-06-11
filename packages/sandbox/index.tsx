@@ -1,10 +1,11 @@
 import { jsx } from '@emotion/react'
-import { Viewport } from '@stage-ui/core'
+import { Viewport, Select } from '@stage-ui/core'
 import ModalTypes from '@stage-ui/core/layout/Modal/types'
 import dt from '@stage-ui/docs/utils/types'
 import React, { useRef } from 'react'
 import ReactDOM from 'react-dom'
 import TableTests from './app/table'
+import SelectTest from './app/selectTest'
 
 declare global {
     interface Window { 
@@ -23,7 +24,8 @@ const Playground = () => {
 
 	return (
 		<Viewport theme="dark">
-			<TableTests />
+			{/* <TableTests /> */}
+			<SelectTest />
 		</Viewport>
 	)
 }
