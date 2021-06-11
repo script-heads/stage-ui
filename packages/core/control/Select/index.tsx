@@ -155,14 +155,16 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
      * Setting values
      */
     function setOption(changedValue: Types.Option) {
-        if (props.multiselect) {
-            onChange(values.concat(changedValue), changedValue)
-        } else {
-            onChange([changedValue], changedValue)
-        }
         if (!keepOpen) {
             setOpen(false)
         }
+        setTimeout(() => {
+            if (props.multiselect) {
+                onChange(values.concat(changedValue), changedValue)
+            } else {
+                onChange([changedValue], changedValue)
+            }
+        }, 100)
     }
 
     /**
@@ -290,7 +292,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                 )}
             />
             <Drop
-                visible={(isOpen)}
+                visible={isOpen}
                 ref={dropRef}
                 animation={props.animation || {
                     type: 'slide',
@@ -299,7 +301,6 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                 }}
                 onClickOutside={(e, outTarget) => {
                     if (outTarget) {
-                        //@ts-ignore
                         setOpen(false)
                     }
                 }}
@@ -309,8 +310,9 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                     <div css={cs.drop(styleState)}>
                         <ScrollView
                             size="xs"
+                            xBarPosition="none"
                             css={{ maxHeight: maxScrollHeight }}
-                            sendFlowScollEvent={false}
+                            sendFlowScrollEvent={false}
                             children={
                                 <Fragment>
                                     {options.map(option => (

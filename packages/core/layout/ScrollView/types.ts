@@ -79,7 +79,7 @@ declare namespace ScrollViewTypes {
          * If false
          * onflowscroll will not dispatch
          */
-        sendFlowScollEvent?: boolean
+        sendFlowScrollEvent?: boolean
         /**
          * Calls when ever user scrolls
          */
