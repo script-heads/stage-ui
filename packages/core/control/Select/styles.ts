@@ -97,6 +97,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
                 alignItems: 'center',
                 cursor: 'pointer',
                 userSelect: 'none',
+                transition: 'all 0.25s',
                 ':hover': {
                     color: theme.color.primary.rgb().string(),
                     backgroundColor: theme.color.primary.alpha(0.1).rgb().string()

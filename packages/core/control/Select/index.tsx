@@ -38,7 +38,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     /**
      * Value need for search
      */
-    const [searchQuery, setSearchQuery] = useState('')
+    const [searchValue, setSearchValue] = useState('')
     /**
      * Store of selected values
      */
@@ -52,8 +52,8 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
             return false
         }
         // Filter only matching search
-        const escapeSearchQuery = searchQuery.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&').toUpperCase()
-        if (escapeSearchQuery && !option.text.toUpperCase().match(escapeSearchQuery)) {
+        const escapeSearchValue = searchValue.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&').toUpperCase()
+        if (escapeSearchValue && !option.text.toUpperCase().match(escapeSearchValue)) {
             return false
         }
         return true
@@ -98,8 +98,9 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     useEffect(() => {
         if (props.values) {
             setValues(props.values)
-        }
-    }, [props.values])
+            }
+
+    }, [props.values?.map(value => value.value).join()])
 
     /**
      * Update drop position after
@@ -107,7 +108,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
      */
     useEffect(() => {
         isOpen && dropRef.current?.updatePosition()
-    }, [values])
+    }, [isOpen, searchValue, options?.map(value => value.value).join()])
 
     /*
     * Keyboard control
@@ -143,32 +144,21 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
      * support controlled and uncontrolled
      * second arg need if you need filter values by search
      */
-    function onChange(values: Types.Option[], value?: Types.Option, search = '') {
-        setSearchQuery(search)
-        props.onSearch?.(value?.text ?? search)
+    function onChange(values: Types.Option[] = [], changedValue?: Types.Option) {
         if (props.values === undefined) {
             setValues(values)
         }
-        
-        props.onChange?.(values, value)
+        props.onChange?.(values, changedValue)
+        setSearchValue('')
     }
-
-    function onChangeClear(values: Types.Option[], value?: Types.Option, search = '') {
-        setSearchQuery(search)
-        props.onSearch?.(value?.text ?? search)
-        if (props.values === undefined) {
-            setValues(values)
-        }
-    }
-
     /**
      * Setting values
      */
-    function setOption(value: Types.Option) {
+    function setOption(changedValue: Types.Option) {
         if (props.multiselect) {
-            onChange(values.concat(value), value)
+            onChange(values.concat(changedValue), changedValue)
         } else {
-            onChange([value], value)
+            onChange([changedValue], changedValue)
         }
         if (!keepOpen) {
             setOpen(false)
@@ -178,20 +168,14 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     /**
      * Unsetting values
      */
-    function unsetOption(value: Types.Option) {
-        onChange(values.filter(v => v.value !== value.value), value)
-    }
-
-    /**
-     * Clears values
-     * also can set filter for search
-     */
-    function clearValues(search = '') {
-        onChangeClear([], undefined, search)
-    }
-
-    function handleClearValues(search = ''){
-        onChange([], undefined, search)
+    function unsetOption(changedValue?: Types.Option) {
+        if (changedValue) {
+            onChange(values.filter(v => v.value !== changedValue.value), changedValue)
+        } else {
+            if (values.length > 0) {
+                onChange(values.slice(0, -1))
+            }
+        }
     }
 
     useImperativeHandle(ref, () => ({
@@ -217,7 +201,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                 shape={shape}
                 decoration={decoration}
                 clearable={disabled ? false : (props.clearable && values.length > 0)}
-                onClear={handleClearValues}
+                onClear={onChange}
 
                 attributes={{ ...attributes, tabIndex }}
                 events={{
@@ -229,6 +213,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                         }
                         events.all.onClick?.(e)
                     },
+                    onChange: () => undefined,
                     onKeyDown: (e) => handleKeyDown(e)
                 }}
                 rightChild={(
@@ -271,21 +256,27 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                             disabled={disabled || !props.searchable}
                             css={cs.input({
                                 disableEvents: !props.searchable,
-                                searchMode: searchQuery !== '',
+                                searchMode: searchValue !== '',
                                 multiselect: !!props.multiselect,
                             })}
                             placeholder={(!props.multiselect || values.length === 0) ? props.placeholder : ''}
-                            value={(!props.multiselect && values[0]?.text) || searchQuery}
+                            value={props.multiselect ? searchValue : (searchValue || values[0]?.text || '')}
+                            onKeyDown={(e) => {
+                                if (props.multiselect) {
+                                    if (!searchValue && e.code === "Backspace") {
+                                        unsetOption()
+                                    }
+                                }
+                            }}
                             onChange={(e) => {                                
                                 if (!isOpen) {                                   
                                     setOpen(true)
                                 }
-                                if (props.multiselect) {                                    
-                                    props.onSearch?.(e.target.value)
-                                    setSearchQuery(e.target.value)
-                                } else {                                    
-                                    clearValues(e.target.value)
+                                if (!props.multiselect) {
+                                    onChange()
                                 }
+                                setSearchValue(e.target.value)
+                                props.onSearch?.(e.target.value)
                             }}
                             onClick={(e) => {
                                 e.preventDefault()
@@ -335,7 +326,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                                     ))}
                                     {options.length === 0 && (
                                         <div css={cs.emptyConteiner}>
-                                            <div css={cs.emptyText}>{emptyText}</div>
+                                            <div css={cs.emptyText(styleState)}>{emptyText}</div>
                                         </div>
                                     )}
                                 </Fragment>
