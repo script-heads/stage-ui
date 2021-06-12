@@ -1,11 +1,10 @@
-import code from './default.raw'
+import basic from './basic.raw'
 
 export const title = 'Switch'
-export const subtitle = 'allow users to swtich on/off'
 export const ns = 'SwitchTypes'
 export const cases = [
-    {
-        label: 'Basic',
-        code
-    }
+  {
+    label: 'Basic',
+    code: basic,
+  },
 ]

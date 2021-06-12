@@ -31,7 +31,7 @@ module.exports = {
         singleQuote: true,
         endOfLine: 'auto',
         trailingComma: 'all',
-        printWidth: 120,
+        printWidth: 100,
       },
     ],
     '@typescript-eslint/explicit-function-return-type': 'off',

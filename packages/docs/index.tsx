@@ -1,7 +1,6 @@
 import { Global, jsx } from '@emotion/react'
 import { Viewport } from '@stage-ui/core'
 import * as defaultThemes from '@stage-ui/core/themes/index'
-
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import Router from './pages/router'

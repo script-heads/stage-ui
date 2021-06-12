@@ -6,7 +6,8 @@ import CalendarTypes from './types'
 const DateGridYear = (props: CalendarTypes.DateGridYearProps) => {
   const { value: self, active, onClick, minValue, maxValue, type } = props
 
-  const isDisabled = minValue.valueOf() > self.valueOf() || maxValue.valueOf() < self.valueOf() || false
+  const isDisabled =
+    minValue.valueOf() > self.valueOf() || maxValue.valueOf() < self.valueOf() || false
 
   const now = moment()
   const yearValue = self.clone().startOf('year').valueOf()
@@ -22,7 +23,19 @@ const DateGridYear = (props: CalendarTypes.DateGridYearProps) => {
    * Custom render
    */
   if (props.onYearRender) {
-    return <>{props.onYearRender({ now, self, active, isActive, isCurrent, isDisabled, onClick })}</>
+    return (
+      <>
+        {props.onYearRender({
+          now,
+          self,
+          active,
+          isActive,
+          isCurrent,
+          isDisabled,
+          onClick,
+        })}
+      </>
+    )
   }
 
   return (

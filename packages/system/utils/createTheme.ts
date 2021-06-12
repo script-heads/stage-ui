@@ -11,12 +11,16 @@ export interface ThemeDefiniton {
     breakpoints?: string[]
   }
   assets: ((main: Stage.ThemeMain) => Stage.ThemeAssets) | Stage.ThemeAssets
-  overrides?: ((main: Stage.ThemeMain, assets: Stage.ThemeAssets) => Stage.ThemeOverrides) | Stage.ThemeOverrides
+  overrides?:
+    | ((main: Stage.ThemeMain, assets: Stage.ThemeAssets) => Stage.ThemeOverrides)
+    | Stage.ThemeOverrides
 }
 
 export interface ReplaceTheme {
   main?: DeepPartial<ThemeDefiniton['main']>
-  assets?: ((main: Stage.ThemeMain) => DeepPartial<Stage.ThemeAssets>) | DeepPartial<Stage.ThemeAssets>
+  assets?:
+    | ((main: Stage.ThemeMain) => DeepPartial<Stage.ThemeAssets>)
+    | DeepPartial<Stage.ThemeAssets>
   overrides?:
     | ((main: Stage.ThemeMain, assets: Stage.ThemeAssets) => DeepPartial<Stage.ThemeOverrides>)
     | DeepPartial<Stage.ThemeOverrides>
@@ -63,7 +67,9 @@ const createTheme = (themeDefinition: ThemeDefiniton): Stage.Theme => {
 
   main.color.palette = convertColors(paletteDefinitions)
 
-  const assets = isFunction(themeDefinition.assets) ? themeDefinition.assets(main) : themeDefinition.assets
+  const assets = isFunction(themeDefinition.assets)
+    ? themeDefinition.assets(main)
+    : themeDefinition.assets
   const overrides = isFunction(themeDefinition.overrides)
     ? themeDefinition.overrides(main, assets)
     : themeDefinition.overrides || {}
@@ -78,7 +84,9 @@ const createTheme = (themeDefinition: ThemeDefiniton): Stage.Theme => {
 
     const nextAssets = ((replacedMain) =>
       mergeObjects(
-        isFunction(themeDefinition.assets) ? themeDefinition.assets(replacedMain) : themeDefinition.assets || {},
+        isFunction(themeDefinition.assets)
+          ? themeDefinition.assets(replacedMain)
+          : themeDefinition.assets || {},
         isFunction(themeReplaceDefinition.assets)
           ? themeReplaceDefinition.assets(replacedMain)
           : themeReplaceDefinition.assets || {},
@@ -96,7 +104,11 @@ const createTheme = (themeDefinition: ThemeDefiniton): Stage.Theme => {
 
     nextMain.name = nextMain.name || `${nextMain.name}-${createID()}`
 
-    return createTheme({ main: nextMain, assets: nextAssets, overrides: nextOverrides })
+    return createTheme({
+      main: nextMain,
+      assets: nextAssets,
+      overrides: nextOverrides,
+    })
   }
 
   return { ...main, assets, overrides, replace }

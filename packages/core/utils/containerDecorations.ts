@@ -11,9 +11,16 @@ const skeleton = keyframes`
     opacity: .8;
   }
 `
-export type ContainerDecorations = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' | 'skeleton'
+export type ContainerDecorations =
+  | 'surface'
+  | 'minorShadow'
+  | 'mediumShadow'
+  | 'majorShadow'
+  | 'skeleton'
 
-type Props = Stage.AllProps<HTMLDivElement, {}> & { decoration?: ContainerDecorations }
+type Props = Stage.AllProps<HTMLDivElement, {}> & {
+  decoration?: ContainerDecorations
+}
 
 const containerDecorations = (props: Props, theme: Stage.Theme) => {
   switch (props.decoration) {

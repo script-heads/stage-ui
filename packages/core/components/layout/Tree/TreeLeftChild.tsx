@@ -10,7 +10,11 @@ const TreeLeftChild = (props: Types.TreeLeftChildProps) => {
   }
   return (
     <>
-      {children !== undefined ? children : <ArrowRight rotate={options.isOpen ? 90 : 0} className={className} />}
+      {children !== undefined ? (
+        children
+      ) : (
+        <ArrowRight rotate={options.isOpen ? 90 : 0} className={className} />
+      )}
     </>
   )
 }

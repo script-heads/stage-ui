@@ -1,9 +1,5 @@
-import code from './default.raw'
+import basic from './basic.raw'
 
 export const title = 'Paragraph'
-export const subtitle= 'Basic block text component'
-
 export const ns = 'ParagraphTypes'
-export const cases = [
-    { label: 'Basic', code },
-]
+export const cases = [{ label: 'Basic', code: basic }]

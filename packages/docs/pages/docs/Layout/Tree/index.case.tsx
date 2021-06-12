@@ -1,21 +1,20 @@
-import code from './default.raw'
+import basic from './basic.raw'
 import finder from './finder.raw'
 import custom from './custom.raw'
 
 export const title = 'Tree'
-export const subtitle = 'presents a hierarchical list'
 export const ns = 'TreeTypes'
 export const cases = [
-    {
-        label: 'Basic',
-        code
-    },
-    {
-        label: 'Finder',
-        code: finder
-    },
-    {
-        label: 'Custom farbica',
-        code: custom
-    }
+  {
+    label: 'Basic',
+    code: basic,
+  },
+  {
+    label: 'Finder',
+    code: finder,
+  },
+  {
+    label: 'Custom farbica',
+    code: custom,
+  },
 ]

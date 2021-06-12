@@ -4,7 +4,16 @@ import CheckTypes from './types'
 import createClasses from './styles'
 
 const Check: ForwardRefRenderFunction<HTMLDivElement, CheckTypes.PrivateProps> = (props, ref) => {
-  const { label, disabled, size, uppercase, defaultValue, children, checked: checkedProp, name } = props
+  const {
+    label,
+    disabled,
+    size,
+    uppercase,
+    defaultValue,
+    children,
+    checked: checkedProp,
+    name,
+  } = props
   const {
     classes,
     attributes,
@@ -72,7 +81,9 @@ const Check: ForwardRefRenderFunction<HTMLDivElement, CheckTypes.PrivateProps> =
       }}
     >
       {children(checked, focus)}
-      {label && label.length && <div css={classes.label({ disabled, size, uppercase })}>{label}</div>}
+      {label && label.length && (
+        <div css={classes.label({ disabled, size, uppercase })}>{label}</div>
+      )}
     </div>
   )
 }

@@ -1,7 +1,6 @@
 /**
 The MIT License (MIT)
 */
-
 import React from 'react'
 import { Props, createIcon } from '../Icon'
 

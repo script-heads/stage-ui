@@ -1,15 +1,14 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import { Flexbox, Link, Text } from '@stage-ui/core'
 import TextTypes from '@stage-ui/core/content/Text/types'
 import { OType, Property } from '@stage-ui/docs/utils/types'
-
 // import { ValueDefinition } from '@stage-ui/docs/components/Page/Types/Interface'
 // interface ValueProps {
 //     type: ValueDefinition,
 // }
 
-const LightText = (props: { children: string }) => <Text size="xs" color={(c) => c.hard} children={props.children} />
+const LightText = (props: { children: string }) => (
+  <Text size="xs" color={(c) => c.hard} children={props.children} />
+)
 
 const Value = (props: { property: Property }) => {
   const { property } = props
@@ -79,7 +78,9 @@ const Value = (props: { property: Property }) => {
       ret = <Badge text={val.name} backgroundColor="onSurface" textColor="surface" />
     }
 
-    values.push(isArray ? <span key={Math.random()}>[{ret}]</span> : <span key={Math.random()}>{ret}</span>)
+    values.push(
+      isArray ? <span key={Math.random()}>[{ret}]</span> : <span key={Math.random()}>{ret}</span>,
+    )
   }
 
   if (val.type === 'union') {

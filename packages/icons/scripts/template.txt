@@ -1,8 +1,6 @@
 /**
 The MIT License (MIT)
-*/
-
-import { Props, createIcon } from '../Icon'
+*/import{ Props, createIcon } from '../Icon'
 import React from 'react'
 
 export default React.forwardRef((props: Props, ref: React.ForwardedRef<HTMLSpanElement>) => (

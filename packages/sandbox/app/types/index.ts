@@ -4,9 +4,9 @@ export type ResponsePassenger = {
   totalPassengers: number
 }
 
-export type PassengersData = {  
+export type PassengersData = {
   name: string
   trips: number
   __v: number
-  _id: string  
+  _id: string
 }

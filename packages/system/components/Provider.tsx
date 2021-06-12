@@ -18,7 +18,9 @@ const Provider = <T extends ProviderProps>(props: T) => {
 
   const Content = (
     <CacheProvider value={cache}>
-      <Global styles={[global, theme && ({ '.focused': theme.assets.focus } as Interpolation<any>)]} />
+      <Global
+        styles={[global, theme && ({ '.focused': theme.assets.focus } as Interpolation<any>)]}
+      />
       {children}
     </CacheProvider>
   )

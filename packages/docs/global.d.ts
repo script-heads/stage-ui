@@ -1,4 +1,4 @@
 declare module '*.raw' {
-    const content: any
-    export default content
+  const content: any
+  export default content
 }

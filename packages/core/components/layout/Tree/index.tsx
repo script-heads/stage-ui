@@ -119,4 +119,6 @@ Tree.defaultProps = {
   __TYPE: 'Tree',
 }
 
-export default Tree as React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>
+export default Tree as React.ForwardRefExoticComponent<
+  Types.Props & React.RefAttributes<HTMLDivElement>
+>

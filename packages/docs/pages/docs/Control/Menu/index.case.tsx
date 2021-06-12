@@ -1,16 +1,15 @@
-import code from './default.raw'
+import basic from './basic.raw'
 import advanced from './advanced.raw'
 
 export const title = 'Menu'
-export const subtitle = 'display a list of choices on surfaces'
 export const ns = 'MenuTypes'
 export const cases = [
-    {
-        label: 'Basic',
-        code
-    },
-    {
-        label: 'Advanced',
-        code: advanced
-    }
+  {
+    label: 'Basic',
+    code: basic,
+  },
+  {
+    label: 'Advanced',
+    code: advanced,
+  },
 ]

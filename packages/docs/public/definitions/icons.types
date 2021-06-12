@@ -39,8 +39,8 @@ declare module 'Icon/styles' {
 
 }
 declare module 'Icon' {
-	/** @jsx jsx */
-	import { jsx } from '@emotion/react';
+	
+	i;
 	import React, { RefObject } from 'react';
 	import Types from 'Icon/types'; type Icons = {
 	    filled: React.ReactElement;

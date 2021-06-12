@@ -39,7 +39,9 @@ export default (theme: SystemTypes.Theme): AddPanelStyles => {
     component: (focused: boolean) =>
       css({
         padding: '1rem 2rem',
-        background: focused ? theme.color.primary.alpha(0.2).rgb().string() : theme.color.surface.rgb().string(),
+        background: focused
+          ? theme.color.primary.alpha(0.2).rgb().string()
+          : theme.color.surface.rgb().string(),
       }),
   }
 }

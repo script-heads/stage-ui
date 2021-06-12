@@ -30,7 +30,9 @@ const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (pro
         </label>
       )}
       <div css={classes.field(classesState)}>
-        {props.leftChild && <div css={classes.child({ align: 'left', ...classesState })}>{props.leftChild}</div>}
+        {props.leftChild && (
+          <div css={classes.child({ align: 'left', ...classesState })}>{props.leftChild}</div>
+        )}
         <div css={classes.content(classesState)}>
           {label !== undefined && labelType === 'inside' && (
             <label css={classes.label(classesState)} htmlFor={htmlId}>
@@ -59,7 +61,9 @@ const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (pro
             />
           </div>
         )}
-        {props.rightChild && <div css={classes.child({ align: 'right', ...classesState })}>{props.rightChild}</div>}
+        {props.rightChild && (
+          <div css={classes.child({ align: 'right', ...classesState })}>{props.rightChild}</div>
+        )}
       </div>
       {!!props.hint && !props.error && <div css={classes.hint(classesState)}>{props.hint}</div>}
       {!!props.error && (

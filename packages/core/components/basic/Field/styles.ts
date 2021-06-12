@@ -46,10 +46,18 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
             },
             variant({
               size: {
-                xl: { borderRadius: `calc(${theme.assets.field.xl.minHeight}/2)` },
-                l: { borderRadius: `calc(${theme.assets.field.l.minHeight}/2)` },
-                s: { borderRadius: `calc(${theme.assets.field.s.minHeight}/2)` },
-                xs: { borderRadius: `calc(${theme.assets.field.xs.minHeight}/2)` },
+                xl: {
+                  borderRadius: `calc(${theme.assets.field.xl.minHeight}/2)`,
+                },
+                l: {
+                  borderRadius: `calc(${theme.assets.field.l.minHeight}/2)`,
+                },
+                s: {
+                  borderRadius: `calc(${theme.assets.field.s.minHeight}/2)`,
+                },
+                xs: {
+                  borderRadius: `calc(${theme.assets.field.xs.minHeight}/2)`,
+                },
               },
             }),
           ],

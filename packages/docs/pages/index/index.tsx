@@ -51,7 +51,13 @@ export default (props: CustomPageProps) => {
           graphic={
             <Flexbox column alignItems="center" w="11rem">
               <Badge content="Badge" backgroundColor="error">
-                <Flexbox justifyContent="center" alignItems="center" decoration="surface" w="10rem" h="5rem">
+                <Flexbox
+                  justifyContent="center"
+                  alignItems="center"
+                  decoration="surface"
+                  w="10rem"
+                  h="5rem"
+                >
                   Flexbox
                 </Flexbox>
               </Badge>
@@ -59,7 +65,18 @@ export default (props: CustomPageProps) => {
             </Flexbox>
           }
           subtitle="Simplifies markup with special containers and their shorthands."
-          components={['Badge', 'Block', 'Drop', 'Flexbox', 'Grid', 'Modal', 'Popover', 'Split', 'ScrollView', 'Tree']}
+          components={[
+            'Badge',
+            'Block',
+            'Drop',
+            'Flexbox',
+            'Grid',
+            'Modal',
+            'Popover',
+            'Split',
+            'ScrollView',
+            'Tree',
+          ]}
         />
         <Components
           title="Content"
@@ -161,7 +178,7 @@ export default (props: CustomPageProps) => {
         <Components
           title="Lab"
           subtitle="Special place to TestFlight components."
-          components={['Chart', 'ButtonGroup', 'Split', 'Toolbar']}
+          components={['Chart']}
         />
         <Footer />
       </Block>

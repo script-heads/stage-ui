@@ -1,7 +1,13 @@
-import { jsx } from '@emotion/react'
 import Field from '@stage-ui/core/components/basic/Field'
 import { useSystem } from '@stage-ui/system'
-import React, { forwardRef, ForwardRefRenderFunction, useImperativeHandle, useRef, useEffect, useState } from 'react'
+import React, {
+  forwardRef,
+  ForwardRefRenderFunction,
+  useImperativeHandle,
+  useRef,
+  useEffect,
+  useState,
+} from 'react'
 import createClasses from './styles'
 import Types from './types'
 
@@ -23,7 +29,10 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
 
   function onClear() {
     if (inputRef.current) {
-      Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value')?.set?.call(inputRef.current, '')
+      Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value')?.set?.call(
+        inputRef.current,
+        '',
+      )
 
       inputRef.current.dispatchEvent(new Event('input', { bubbles: true }))
     }
@@ -61,11 +70,16 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
       return null
     }
     const arr = new Array(leftCountLineState.count).fill('')
-    const render = typeof leftChildNumber === 'function' ? leftChildNumber : (index: number) => index + 1
+    const render =
+      typeof leftChildNumber === 'function' ? leftChildNumber : (index: number) => index + 1
 
     return (
       <>
-        <div ref={leftCountLineRef} style={{ top: leftCountLineState.top }} css={classes.lineNumbers}>
+        <div
+          ref={leftCountLineRef}
+          style={{ top: leftCountLineState.top }}
+          css={classes.lineNumbers}
+        >
           {arr.map((_, index) => (
             <div key={index}>{render(index)}</div>
           ))}

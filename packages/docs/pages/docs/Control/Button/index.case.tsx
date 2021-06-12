@@ -1,18 +1,15 @@
-import justButton from './justButton.raw'
-import withIcon from './withIcon.raw'
+import basic from './basic.raw'
+import icon from './icon.raw'
 
 export const title = 'Button'
-export const subtitle = 'allow user to take action with a single click'
 export const ns = 'ButtonTypes'
 export const cases = [
-    {
-        label: 'Just button',
-        code: justButton
-    },
-    {
-        label: 'With icon',
-        code: withIcon
-    }
+  {
+    label: 'Basic',
+    code: basic,
+  },
+  {
+    label: 'Icon',
+    code: icon,
+  },
 ]
-
-export { default as test } from './index.test'

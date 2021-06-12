@@ -4,7 +4,13 @@ import useMask from '@stage-ui/core/hooks/useMask'
 import { Calendar as CalendarIcon } from '@stage-ui/icons'
 import { useSystem } from '@stage-ui/system'
 import moment, { Moment } from 'moment'
-import React, { forwardRef, ForwardRefRenderFunction, useLayoutEffect, useRef, useState } from 'react'
+import React, {
+  forwardRef,
+  ForwardRefRenderFunction,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react'
 import Field from '../../basic/Field'
 import Drop from '../../layout/Drop'
 import Popover from '../../layout/Popover'
@@ -31,8 +37,12 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
   const [isActive, setActive] = useState(false)
   const { classes, events, styleProps } = useSystem('DatePicker', props, createClasses)
 
-  const minValue = props.minValue ? moment(props.minValue).startOf('day') : now.clone().add(-500, 'year')
-  const maxValue = props.maxValue ? moment(props.maxValue).startOf('day') : now.clone().add(500, 'year')
+  const minValue = props.minValue
+    ? moment(props.minValue).startOf('day')
+    : now.clone().add(-500, 'year')
+  const maxValue = props.maxValue
+    ? moment(props.maxValue).startOf('day')
+    : now.clone().add(500, 'year')
 
   const inputRef = useRef<HTMLInputElement>(null)
   const mask = props.masked && useMask(inputRef, maskConf(format, minValue, maxValue))
@@ -100,7 +110,11 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
           ref={inputRef}
           onKeyUp={(e) => {
             const date = moment(
-              (e as React.KeyboardEvent<HTMLInputElement> & { target: { value: string } }).target.value,
+              (
+                e as React.KeyboardEvent<HTMLInputElement> & {
+                  target: { value: string }
+                }
+              ).target.value,
               format,
             )
             if (date.isValid() && date > minValue && date < maxValue) {
@@ -108,7 +122,9 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
             }
           }}
           css={classes.input}
-          defaultValue={defaultValue ? moment(defaultValue, format).format(format) : moment().format(format)}
+          defaultValue={
+            defaultValue ? moment(defaultValue, format).format(format) : moment().format(format)
+          }
           disabled={props.disabled}
           autoComplete={props.autoComplete}
           list={props.list}

@@ -11,7 +11,9 @@ export type Variant<ClassState extends Exclude<ClassStateDefinition, void>> = (
   },
 ) => Stage.JSS
 
-export default function createVariant<ClassState extends Exclude<ClassStateDefinition, void>>(state: ClassState) {
+export default function createVariant<ClassState extends Exclude<ClassStateDefinition, void>>(
+  state: ClassState,
+) {
   const variant: Variant<ClassState> = (variants) => {
     const styles: Stage.JSS = []
 

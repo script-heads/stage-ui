@@ -1,9 +1,5 @@
-import code from './default.raw'
+import basic from './basic.raw'
 
 export const title = 'Text'
-export const subtitle= 'Basic inline text component'
-
 export const ns = 'TextTypes'
-export const cases = [
-    { label: 'Basic', code },
-]
+export const cases = [{ label: 'Basic', code: basic }]

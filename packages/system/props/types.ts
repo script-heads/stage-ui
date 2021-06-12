@@ -344,7 +344,14 @@ export interface MarginProps {
  * Used for flex attributes
  * CSS props have string witch kills helps at ide
  */
-export type FlexSelf = 'inherit' | 'auto' | 'baseline' | 'center' | 'flex-start' | 'flex-end' | 'stretch'
+export type FlexSelf =
+  | 'inherit'
+  | 'auto'
+  | 'baseline'
+  | 'center'
+  | 'flex-start'
+  | 'flex-end'
+  | 'stretch'
 /**
  * Component flexbox children styles props
  * @name Flex

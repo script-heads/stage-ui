@@ -1,7 +1,6 @@
 /**
 The MIT License (MIT)
 */
-
 import React from 'react'
 import { Props, createIcon } from '../Icon'
 
@@ -16,7 +15,15 @@ export default React.forwardRef((props: Props, ref: React.ForwardedRef<HTMLSpanE
             clipRule="evenodd"
             d="M13 13C13 13.552 12.552 14 12 14C11.448 14 11 13.552 11 13V9C11 8.448 11.448 8 12 8C12.552 8 13 8.448 13 9V13ZM12 17C11.448 17 11 16.552 11 16C11 15.448 11.448 15 12 15C12.552 15 13 15.448 13 16C13 16.552 12.552 17 12 17ZM22.561 16.303L14.889 3.584C14.29 2.592 13.21 2 12 2C10.79 2 9.71 2.592 9.111 3.584L1.439 16.303C0.870997 17.246 0.853997 18.38 1.394 19.336C1.973 20.363 3.098 21 4.328 21H19.672C20.902 21 22.027 20.363 22.606 19.336C23.146 18.38 23.129 17.246 22.561 16.303Z"
           />
-          <mask id="AlertTrianglemask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="1" y="2" width="22" height="19">
+          <mask
+            id="AlertTrianglemask0"
+            mask-type="alpha"
+            maskUnits="userSpaceOnUse"
+            x="1"
+            y="2"
+            width="22"
+            height="19"
+          >
             <path
               id="AlertTriangleMask_2"
               fillRule="evenodd"

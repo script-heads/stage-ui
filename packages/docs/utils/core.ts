@@ -93,7 +93,12 @@ class Core {
     const dirsCount = dirs.length
     const name = page.title || dirs[dirsCount] || 'Untitled'
 
-    return { ...page, id: this.getId('PAGE', name), title: name, url: `/${name.toLowerCase().replace(' ', '-')}` }
+    return {
+      ...page,
+      id: this.getId('PAGE', name),
+      title: name,
+      url: `/${name.toLowerCase().replace(' ', '-')}`,
+    }
   }
 
   private searchPage(pages: PagesType, key: string, value: unknown) {
@@ -131,7 +136,9 @@ class Core {
       })
 
       if (pagesByPaths[section]) {
-        const otherPages = pagesByPaths[section].filter((page) => !order[section].includes(page.title))
+        const otherPages = pagesByPaths[section].filter(
+          (page) => !order[section].includes(page.title),
+        )
         pagesByOrder[section] = pagesByOrder[section].concat(otherPages)
       }
     }

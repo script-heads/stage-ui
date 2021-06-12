@@ -80,7 +80,11 @@ class Monaco {
     })
 
     if (!this.model) {
-      this.model = monaco.editor.createModel(defaultCode, 'typescript', monaco.Uri.parse(`${location.origin}/main.tsx`))
+      this.model = monaco.editor.createModel(
+        defaultCode,
+        'typescript',
+        monaco.Uri.parse(`${location.origin}/main.tsx`),
+      )
     }
 
     this.editor = monaco.editor.create(document.getElementById(id)!, {

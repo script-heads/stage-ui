@@ -34,9 +34,7 @@ declare module 'react' {
 // to 'react/experimental' in their project. See experimental.d.ts's top comment
 // for reference and documentation on how exactly to do it.
 
-/// <reference path="global.d.ts" />
-
-import * as CSS from 'csstype';
+/// <reference path="global.d.ts" />import* as CSS from 'csstype';
 import * as PropTypes from 'prop-types';
 import { Interaction as SchedulerInteraction } from 'scheduler/tracing';
 

@@ -2,7 +2,16 @@ import { ChangeEventHandler } from 'react'
 import FieldTypes from '../../basic/Field/types'
 
 declare namespace TextFieldTypes {
-  type InputTypes = 'email' | 'hidden' | 'number' | 'password' | 'reset' | 'search' | 'tel' | 'text' | 'url'
+  type InputTypes =
+    | 'email'
+    | 'hidden'
+    | 'number'
+    | 'password'
+    | 'reset'
+    | 'search'
+    | 'tel'
+    | 'text'
+    | 'url'
 
   type Ref = {
     clear: () => void

@@ -1,9 +1,5 @@
-import code from './default.raw'
+import basic from './basic.raw'
 
 export const title = 'Link'
-export const subtitle= 'Basic link component'
-
 export const ns = 'LinkTypes'
-export const cases = [
-    { label: 'Basic', code },
-]
+export const cases = [{ label: 'Basic', code: basic }]

@@ -11,7 +11,10 @@ export const getTR = (target: HTMLElement | null): HTMLTableRowElement | null =>
   return getTR(target.parentElement)
 }
 
-const TableRow: ForwardRefRenderFunction<HTMLTableRowElement, Types.RowProps<any>> = (props, ref) => {
+const TableRow: ForwardRefRenderFunction<HTMLTableRowElement, Types.RowProps<any>> = (
+  props,
+  ref,
+) => {
   const { columns, rowIndex, rowCtxItem, delegates, styles, getCellContext } = props
   const style: React.CSSProperties = {}
   /**

@@ -1,11 +1,10 @@
-import code from './default.raw'
+import basic from './basic.raw'
 
 export const title = 'DatePicker'
-export const subtitle = 'allow users to select datatime'
 export const ns = 'DatePickerTypes'
 export const cases = [
-    {
-        label: 'Basic',
-        code
-    }
+  {
+    label: 'Basic',
+    code: basic,
+  },
 ]

@@ -26,8 +26,12 @@ const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
 
   const { classes, attributes } = useSystem('Calendar', props, createClasses)
 
-  const minValue = props.minValue ? moment(props.minValue).startOf('day') : now.clone().add(-500, 'year')
-  const maxValue = props.maxValue ? moment(props.maxValue).startOf('day') : now.clone().add(500, 'year')
+  const minValue = props.minValue
+    ? moment(props.minValue).startOf('day')
+    : now.clone().add(-500, 'year')
+  const maxValue = props.maxValue
+    ? moment(props.maxValue).startOf('day')
+    : now.clone().add(500, 'year')
 
   useLayoutEffect(() => {
     if (props.value) {

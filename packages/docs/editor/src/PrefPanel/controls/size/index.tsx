@@ -1,29 +1,28 @@
 import { Block, Button, Flexbox, Paragraph } from '@stage-ui/core'
-import { ButtonGroup } from '@stage-ui/lab'
-import { context } from '../../../..'
 import React from 'react'
+import { context } from '../../../..'
 
 const SizeConrols = () => {
-    if (!context.tools.focused) {
-        return null
-    }
-    const valueTypes = [
-        { text: 'rem', value: 'rem' },
-        { text: '%', value: '%' }
-    ]
-    let valueType = valueTypes[0].value
+  if (!context.tools.focused) {
+    return null
+  }
+  const valueTypes = [
+    { text: 'rem', value: 'rem' },
+    { text: '%', value: '%' },
+  ]
+  const valueType = valueTypes[0].value
 
-    return (
-        <Block pb="0.5rem">
-            <Paragraph
-                pb=".25rem"
-                pl=".25rem"
-                lineHeight="0.75rem"
-                color={c => c.light}
-                children="Flex"
-            />
-            <Flexbox flex={1}>
-                {/* <TextField 
+  return (
+    <Block pb="0.5rem">
+      <Paragraph
+        pb=".25rem"
+        pl=".25rem"
+        lineHeight="0.75rem"
+        color={(c) => c.light}
+        children="Flex"
+      />
+      <Flexbox flex={1}>
+        {/* <TextField 
                     placeholder="auto" 
                     label="Width"
                     defaultValue={context.tools.focused.props.w}
@@ -58,33 +57,33 @@ const SizeConrols = () => {
                         }
                     }}
                 /> */}
-                <ButtonGroup flex={1}>
-                    {Array(11).fill(0).map((_, index) => {
-                        const focused = context.tools.focused
-                        return (
-                            <Button
-                                key={index}
-                                flex={1}
-                                size="xs"
-                                children={index ? index : '✕'}
-                                decoration={(focused && focused.props.flex === index)
-                                    ? 'filled'
-                                    : 'outline'}
-                                onClick={() => {
-                                    if (focused) {
-                                        if (index) {
-                                            focused.props.flex = index
-                                        } else {
-                                            delete focused.props.flex
-                                        }
-                                        context.tools.update()
-                                    }
-                                }}
-                            />
-                        )
-                    })}
-                </ButtonGroup>
-                {/* <TextField 
+        <Flexbox flex={1}>
+          {Array(11)
+            .fill(0)
+            .map((_, index) => {
+              const { focused } = context.tools
+              return (
+                <Button
+                  key={index}
+                  flex={1}
+                  size="xs"
+                  children={index || '✕'}
+                  decoration={focused && focused.props.flex === index ? 'filled' : 'outline'}
+                  onClick={() => {
+                    if (focused) {
+                      if (index) {
+                        focused.props.flex = index
+                      } else {
+                        delete focused.props.flex
+                      }
+                      context.tools.update()
+                    }
+                  }}
+                />
+              )
+            })}
+        </Flexbox>
+        {/* <TextField 
                     ml="1rem"
                     placeholder="auto" 
                     label="Flex"
@@ -102,8 +101,8 @@ const SizeConrols = () => {
                         }
                     }}
                 /> */}
-            </Flexbox>
-        </Block>
-    )
+      </Flexbox>
+    </Block>
+  )
 }
 export default SizeConrols

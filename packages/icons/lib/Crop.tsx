@@ -1,7 +1,6 @@
 /**
 The MIT License (MIT)
 */
-
 import React from 'react'
 import { Props, createIcon } from '../Icon'
 
@@ -16,7 +15,15 @@ export default React.forwardRef((props: Props, ref: React.ForwardedRef<HTMLSpanE
             clipRule="evenodd"
             d="M8.55569 16C8.24969 16 7.99969 15.751 7.99969 15.444V8H15.4447C15.7507 8 15.9997 8.249 15.9997 8.556V16H8.55569ZM20.9997 16H17.9997V8.556C17.9997 7.146 16.8537 6 15.4447 6H7.99969V3C7.99969 2.447 7.55269 2 6.99969 2C6.44769 2 5.99969 2.447 5.99969 3V6H2.99969C2.44769 6 1.99969 6.447 1.99969 7C1.99969 7.553 2.44769 8 2.99969 8H5.99969V15.444C5.99969 16.854 7.1467 18 8.5557 18H15.9997V21C15.9997 21.553 16.4477 22 16.9997 22C17.5527 22 17.9997 21.553 17.9997 21V18H20.9997C21.5527 18 21.9997 17.553 21.9997 17C21.9997 16.447 21.5527 16 20.9997 16Z"
           />
-          <mask id="Cropmask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="1" y="2" width="21" height="20">
+          <mask
+            id="Cropmask0"
+            mask-type="alpha"
+            maskUnits="userSpaceOnUse"
+            x="1"
+            y="2"
+            width="21"
+            height="20"
+          >
             <path
               id="CropMask_2"
               fillRule="evenodd"
@@ -41,7 +48,15 @@ export default React.forwardRef((props: Props, ref: React.ForwardedRef<HTMLSpanE
             clipRule="evenodd"
             d="M8.55569 16C8.24969 16 7.99969 15.751 7.99969 15.444V8H15.4447C15.7507 8 15.9997 8.249 15.9997 8.556V16H8.55569ZM20.9997 16H17.9997V8.556C17.9997 7.146 16.8537 6 15.4447 6H7.99969V3C7.99969 2.447 7.55269 2 6.99969 2C6.44769 2 5.99969 2.447 5.99969 3V6H2.99969C2.44769 6 1.99969 6.447 1.99969 7C1.99969 7.553 2.44769 8 2.99969 8H5.99969V15.444C5.99969 16.854 7.1467 18 8.5557 18H15.9997V21C15.9997 21.553 16.4477 22 16.9997 22C17.5527 22 17.9997 21.553 17.9997 21V18H20.9997C21.5527 18 21.9997 17.553 21.9997 17C21.9997 16.447 21.5527 16 20.9997 16Z"
           />
-          <mask id="Crop-omask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="1" y="2" width="21" height="20">
+          <mask
+            id="Crop-omask0"
+            mask-type="alpha"
+            maskUnits="userSpaceOnUse"
+            x="1"
+            y="2"
+            width="21"
+            height="20"
+          >
             <path
               id="Crop-oMask_2"
               fillRule="evenodd"

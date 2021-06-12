@@ -1,11 +1,8 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import { Block, Flexbox, Header, Paragraph, ScrollView } from '@stage-ui/core'
 import React, { Fragment } from 'react'
 import { PageType, Config, PagesType } from '../../utils/core'
 import Editor from './Editor'
 import Types from './Types'
-
 import Menu from '../Menu'
 import Sidebar from '../Sidebar'
 
@@ -72,7 +69,9 @@ const Page = (props: ContentProps) => {
                   />
                 )}
               </Flexbox>
-              {data.ns && <Types nameSpace={data.ns} config={config} shrink={data.cases === void 0} />}
+              {data.ns && (
+                <Types nameSpace={data.ns} config={config} shrink={data.cases === void 0} />
+              )}
             </Block>
           </Flexbox>
         </ScrollView>

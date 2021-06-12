@@ -1,11 +1,8 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
+import React from 'react'
 import * as CoreScope from '@stage-ui/core'
 import { Block } from '@stage-ui/core'
 import * as IconScope from '@stage-ui/icons'
 import * as LabScope from '@stage-ui/lab'
-
-import React from 'react'
 import ts, { JsxEmit, ModuleKind } from 'typescript'
 
 Object.assign(window, {
@@ -75,10 +72,18 @@ const Preview = (props: PreviewProps) => {
               top: 0,
               backgroundColor: theme.color.background.rgb().string(),
               backgroundImage: `
-                                linear-gradient(45deg, ${theme.color.surface.rgb().string()} 25%, transparent 25%),
-                                linear-gradient(-45deg, ${theme.color.surface.rgb().string()} 25%, transparent 25%), 
-                                linear-gradient(45deg, transparent 75%, ${theme.color.surface.rgb().string()} 75%), 
-                                linear-gradient(-45deg, transparent 75%, ${theme.color.surface.rgb().string()} 75%)
+                                linear-gradient(45deg, ${theme.color.surface
+                                  .rgb()
+                                  .string()} 25%, transparent 25%),
+                                linear-gradient(-45deg, ${theme.color.surface
+                                  .rgb()
+                                  .string()} 25%, transparent 25%), 
+                                linear-gradient(45deg, transparent 75%, ${theme.color.surface
+                                  .rgb()
+                                  .string()} 75%), 
+                                linear-gradient(-45deg, transparent 75%, ${theme.color.surface
+                                  .rgb()
+                                  .string()} 75%)
                             `,
               backgroundSize: '2rem 2rem',
               backgroundPosition: '0 0, 0 1rem, 1rem -1rem, -1rem 0px',

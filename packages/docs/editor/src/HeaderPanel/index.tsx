@@ -1,8 +1,5 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import { Flexbox, Header, Link, Paragraph } from '@stage-ui/core'
 import { Github } from '@stage-ui/icons'
-
 import ThemeSwitcher from '../../../components/Menu/ThemeSwitcher'
 import styles from './styles'
 
@@ -22,10 +19,21 @@ const HeaderPanel = (props: HeaderPanelProps) => {
     <Flexbox css={cs.container}>
       <div>
         <Header m="0" size="xs" weight="bold" onClick={props.setIndex} children={props.title} />
-        <Paragraph m="0" size="xs" css={{ opacity: 0.5 }} onClick={props.setIndex} weight={600} children="Architect" />
+        <Paragraph
+          m="0"
+          size="xs"
+          css={{ opacity: 0.5 }}
+          onClick={props.setIndex}
+          weight={600}
+          children="Architect"
+        />
       </div>
       <div>
-        <ThemeSwitcher themes={props.themes} currentTheme={props.currentTheme} setTheme={props.setTheme} />
+        <ThemeSwitcher
+          themes={props.themes}
+          currentTheme={props.currentTheme}
+          setTheme={props.setTheme}
+        />
         {props.git && (
           <Link target="_blank" href={props.git} ml="1rem">
             <Github size="1.5rem" />

@@ -668,43 +668,43 @@ declare module 'control/Calendar/types' {
 
 }
 declare module 'control/Calendar/DateGridMonth' {
-	/** @jsx jsx */
-	import { jsx } from '@emotion/react';
+	
+	i;
 	import CalendarTypes from 'control/Calendar/types'; const DateGridMonth: (props: CalendarTypes.DateGridMonthProps) => jsx.JSX.Element;
 	export default DateGridMonth;
 
 }
 declare module 'control/Calendar/DateGridTitle' {
-	/** @jsx jsx */
-	import { jsx } from '@emotion/react';
+	
+	i;
 	import CalendarTypes from 'control/Calendar/types'; const DateGridTitle: (props: CalendarTypes.DateGridTitleProps) => jsx.JSX.Element;
 	export default DateGridTitle;
 
 }
 declare module 'control/Calendar/DateGridDay' {
-	/** @jsx jsx */
-	import { jsx } from '@emotion/react';
+	
+	i;
 	import T from 'control/Calendar/types'; const DateGridDay: (props: T.DateGridDayProps) => jsx.JSX.Element;
 	export default DateGridDay;
 
 }
 declare module 'control/Calendar/DateGridWeek' {
-	/** @jsx jsx */
-	import { jsx } from '@emotion/react';
+	
+	i;
 	import T from 'control/Calendar/types'; const DateGridWeek: (props: T.DateGridWeekProps) => jsx.JSX.Element;
 	export default DateGridWeek;
 
 }
 declare module 'control/Calendar/DateGridYear' {
-	/** @jsx jsx */
-	import { jsx } from '@emotion/react';
+	
+	i;
 	import CalendarTypes from 'control/Calendar/types'; const DateGridYear: (props: CalendarTypes.DateGridYearProps) => jsx.JSX.Element;
 	export default DateGridYear;
 
 }
 declare module 'control/Calendar/DateGrid' {
-	/** @jsx jsx */
-	import { jsx } from '@emotion/react';
+	
+	i;
 	import T from 'control/Calendar/types'; const DateGrid: (props: T.DateGridProps) => jsx.JSX.Element;
 	export default DateGrid;
 
@@ -761,8 +761,8 @@ declare module 'misc/hocs/Icon/styles' {
 
 }
 declare module 'misc/hocs/Icon' {
-	/** @jsx jsx */
-	import { jsx } from '@emotion/react';
+	
+	i;
 	import React, { RefObject } from 'react';
 	import Types from '@stage-ui/core/components/basic/Icon/types'; type Icons = {
 	    filled: React.ReactElement;
@@ -9795,7 +9795,7 @@ declare module 'layout/Badge' {
 
 }
 declare module 'layout/Drop/animation' {
-	/** @jsx jsx */
+	
 	import Types from 'layout/Drop/types'; type AnimationProp = Exclude<Types.Props['animation'], undefined>; type AlignProp = Types.Props['align'];
 	export default class DropAnimation {
 	    style: CSSStyleDeclaration;
@@ -10047,8 +10047,8 @@ declare module 'layout/Modal/ModalPortal' {
 
 }
 declare module 'layout/Modal/ModalHeader' {
-	/** @jsx jsx */
-	import { jsx } from '@emotion/react';
+	
+	i;
 	import ModalTypes from '@stage-ui/core/layout/Modal/types'; const ModalHeader: (props: ModalTypes.ModalHeaderProps) => jsx.JSX.Element | null;
 	export default ModalHeader;
 

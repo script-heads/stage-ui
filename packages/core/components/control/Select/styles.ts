@@ -1,7 +1,8 @@
 import Types from './types'
 
 const styles: Stage.CreateClasses<Types.Classes, Types.Props<string>> = (theme, props) => {
-  const minHeight = theme.assets.field[props.size || 'm']?.minHeight || theme.assets.field.m.minHeight || '2.5rem'
+  const minHeight =
+    theme.assets.field[props.size || 'm']?.minHeight || theme.assets.field.m.minHeight || '2.5rem'
 
   return {
     drop: (variant) => [
@@ -126,10 +127,14 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props<string>> = (theme, 
           : theme.color.primary.alpha(0.2).rgb().string(),
         borderWidth: '1px',
         borderStyle: 'solid',
-        borderColor: props.disabled ? theme.color.light.rgb().string() : theme.color.primary.rgb().string(),
+        borderColor: props.disabled
+          ? theme.color.light.rgb().string()
+          : theme.color.primary.rgb().string(),
         borderRadius: `calc(${theme.radius.s} / 2)`,
         boxSizing: 'border-box',
-        color: props.disabled ? theme.color.light.rgb().string() : theme.color.primary.rgb().string(),
+        color: props.disabled
+          ? theme.color.light.rgb().string()
+          : theme.color.primary.rgb().string(),
         padding: `0 calc(${minHeight} / 5)`,
         margin: `calc(${minHeight} / 20)`,
         marginRight: `calc(${minHeight} / 10)`,
@@ -170,10 +175,14 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props<string>> = (theme, 
         marginLeft: `calc(${minHeight} / 10)`,
         marginRight: `calc(-${minHeight} / 10)`,
         borderLeft: '1px solid',
-        color: props.disabled ? theme.color.light.rgb().string() : theme.color.primary.alpha(0.8).rgb().string(),
+        color: props.disabled
+          ? theme.color.light.rgb().string()
+          : theme.color.primary.alpha(0.8).rgb().string(),
         cursor: 'pointer',
         ':hover': {
-          color: props.disabled ? theme.color.light.rgb().string() : theme.color.primary.rgb().string(),
+          color: props.disabled
+            ? theme.color.light.rgb().string()
+            : theme.color.primary.rgb().string(),
         },
       },
     ],

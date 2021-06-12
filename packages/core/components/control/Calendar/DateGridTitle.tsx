@@ -3,7 +3,11 @@ import { ChevronLeft, ChevronRight } from '@stage-ui/icons'
 import React from 'react'
 import CalendarTypes from './types'
 
-const Arrow = (props: { onClick: () => void; icon: 'chevronLeft' | 'chevronRight'; disabled: boolean }) => (
+const Arrow = (props: {
+  onClick: () => void
+  icon: 'chevronLeft' | 'chevronRight'
+  disabled: boolean
+}) => (
   <Flexbox
     flexBasis="1.5rem"
     alignItems="center"
@@ -47,16 +51,29 @@ const DateGridTitle = (props: CalendarTypes.DateGridTitleProps) => {
             <Title onClick={() => props.onGridTypeChange('year')} value={value.format('YYYY')} />
           </Flexbox>
         )}
-        {gridType === 'month' && <Title onClick={() => props.onGridTypeChange('year')} value={value.format('YYYY')} />}
+        {gridType === 'month' && (
+          <Title onClick={() => props.onGridTypeChange('year')} value={value.format('YYYY')} />
+        )}
         {gridType === 'year' && (
           <Title
-            value={`${value.clone().add(-4, 'year').format('YYYY')} - ${value.clone().add(4, 'year').format('YYYY')}`}
+            value={`${value.clone().add(-4, 'year').format('YYYY')} - ${value
+              .clone()
+              .add(4, 'year')
+              .format('YYYY')}`}
           />
         )}
       </Flexbox>
       <Flexbox alignItems="center">
-        <Arrow onClick={props.onPrevious} icon="chevronLeft" disabled={minValue.valueOf() > value.valueOf()} />
-        <Arrow onClick={props.onNext} icon="chevronRight" disabled={maxValue.valueOf() < value.valueOf()} />
+        <Arrow
+          onClick={props.onPrevious}
+          icon="chevronLeft"
+          disabled={minValue.valueOf() > value.valueOf()}
+        />
+        <Arrow
+          onClick={props.onNext}
+          icon="chevronRight"
+          disabled={maxValue.valueOf() < value.valueOf()}
+        />
       </Flexbox>
     </Flexbox>
   )

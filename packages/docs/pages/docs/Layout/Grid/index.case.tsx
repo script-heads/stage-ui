@@ -1,11 +1,10 @@
-import code from './default.raw'
+import basic from './basic.raw'
 
 export const title = 'Grid'
-export const subtitle = 'adapts to screen size and orientation'
 export const ns = 'GridTypes'
 export const cases = [
-    {
-        label: 'Basic',
-        code
-    }
+  {
+    label: 'Basic',
+    code: basic,
+  },
 ]

@@ -57,9 +57,19 @@ export default (props: CustomPageProps) => {
           columnGap="1rem"
           justifyItems="center"
         >
-          <Button w="12rem" size="l" onClick={() => props.setPath('/getting-started')} children="Getting started" />
+          <Button
+            w="12rem"
+            size="l"
+            onClick={() => props.setPath('/getting-started')}
+            children="Getting started"
+          />
           <Badge content="Preview">
-            <Button w="12rem" size="l" color={(c) => c.lightest} onClick={() => props.setPath('/editor')}>
+            <Button
+              w="12rem"
+              size="l"
+              color={(c) => c.lightest}
+              onClick={() => props.setPath('/editor')}
+            >
               Visual editor
             </Button>
           </Badge>

@@ -1,11 +1,10 @@
-import code from './default.raw'
+import basic from './basic.raw'
 
 export const title = 'Split'
-export const subtitle = 'Creates split areas'
 export const ns = 'SplitTypes'
 export const cases = [
-    {
-        label: 'Basic',
-        code
-    }
+  {
+    label: 'Basic',
+    code: basic,
+  },
 ]

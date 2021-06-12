@@ -110,7 +110,9 @@ const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref)
   let { children } = props
 
   if (props.data) {
-    children = props.data.map((item, index) => <MenuItem value={index} key={index} title={item} as={ctx.itemAs} />)
+    children = props.data.map((item, index) => (
+      <MenuItem value={index} key={index} title={item} as={ctx.itemAs} />
+    ))
   }
 
   return (

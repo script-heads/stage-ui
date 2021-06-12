@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import { Block, Flexbox, Link, Text, useTheme } from '@stage-ui/core'
 import { Brush, Github } from '@stage-ui/icons'
 import { panel } from '@stage-ui/docs/components/Themer/src/ThemeConfigurator'
@@ -27,11 +25,19 @@ const Menu = (props: MenuProps) => {
         top: 0,
         right: 0,
         left: 0,
-        background: `linear-gradient(180deg, ${theme.color.surface.rgb()}, ${theme.color.surface.alpha(0).rgb()})`,
+        background: `linear-gradient(180deg, ${theme.color.surface.rgb()}, ${theme.color.surface
+          .alpha(0)
+          .rgb()})`,
       })}
     >
       <Block flex={1}>
-        <Text size="xl" weight="bold" css={{ cursor: 'pointer' }} onClick={props.setIndex} children={props.title} />
+        <Text
+          size="xl"
+          weight="bold"
+          css={{ cursor: 'pointer' }}
+          onClick={props.setIndex}
+          children={props.title}
+        />
         <Text
           size="xs"
           lineHeight="0"
@@ -53,7 +59,11 @@ const Menu = (props: MenuProps) => {
         />
       </Block>
       <Flexbox>
-        <ThemeSwitcher themes={props.themes} currentTheme={props.currentTheme} setTheme={props.setTheme} />
+        <ThemeSwitcher
+          themes={props.themes}
+          currentTheme={props.currentTheme}
+          setTheme={props.setTheme}
+        />
         <Brush
           onClick={() => {
             panel(theme, props.setTheme, {

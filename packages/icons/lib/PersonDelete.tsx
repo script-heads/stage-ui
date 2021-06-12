@@ -1,7 +1,6 @@
 /**
 The MIT License (MIT)
 */
-
 import React from 'react'
 import { Props, createIcon } from '../Icon'
 
@@ -16,7 +15,15 @@ export default React.forwardRef((props: Props, ref: React.ForwardedRef<HTMLSpanE
             clipRule="evenodd"
             d="M10 11C12.206 11 14 9.206 14 7C14 4.794 12.206 3 10 3C7.794 3 6 4.794 6 7C6 9.206 7.794 11 10 11ZM20.4648 7.5L21.1978 6.768C21.6008 6.364 21.6008 5.705 21.1978 5.302C20.7948 4.899 20.1358 4.899 19.7328 5.302L18.9998 6.035L18.2678 5.302C17.8638 4.899 17.2048 4.899 16.8018 5.302C16.3998 5.705 16.3998 6.364 16.8018 6.768L17.5348 7.5L16.8018 8.232C16.3998 8.636 16.3998 9.295 16.8018 9.698C17.2048 10.101 17.8638 10.101 18.2678 9.698L18.9998 8.965L19.7328 9.698C20.1358 10.101 20.7948 10.101 21.1978 9.698C21.6008 9.295 21.6008 8.636 21.1978 8.232L20.4648 7.5ZM17 20C17 20.553 16.553 21 16 21H4C3.447 21 3 20.553 3 20C3 16.141 6.141 13 10 13C13.859 13 17 16.141 17 20Z"
           />
-          <mask id="PersonDeletemask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="3" y="3" width="19" height="18">
+          <mask
+            id="PersonDeletemask0"
+            mask-type="alpha"
+            maskUnits="userSpaceOnUse"
+            x="3"
+            y="3"
+            width="19"
+            height="18"
+          >
             <path
               id="PersonDeleteMask_2"
               fillRule="evenodd"

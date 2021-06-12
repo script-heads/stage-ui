@@ -1,11 +1,10 @@
-import code from './default.raw'
+import basic from './basic.raw'
 
 export const title = 'Checkbox'
-export const subtitle = 'allow users to select items'
 export const ns = 'CheckboxTypes'
 export const cases = [
-    {
-        label: 'Basic',
-        code
-    }
+  {
+    label: 'Basic',
+    code: basic,
+  },
 ]

@@ -28,7 +28,11 @@ const Router = (props: RouterProps) => {
   const CustomPage = config.pages?.custom?.[path] || null
   const noPages = Object.keys(pages).length === 0
 
-  document.title = page?.title ? (config.name ? `${page.title} - ${config.name}` : page.title) : config.name || 'Docs'
+  document.title = page?.title
+    ? config.name
+      ? `${page.title} - ${config.name}`
+      : page.title
+    : config.name || 'Docs'
 
   window.onpopstate = (e: PopStateEvent) => setPath(e.state.path)
 

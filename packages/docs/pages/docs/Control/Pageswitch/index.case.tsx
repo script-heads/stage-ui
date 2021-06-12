@@ -1,13 +1,12 @@
-import code from './default.raw'
+import basic from './basic.raw'
 
 export const title = 'Pageswitch'
-export const subtitle = 'allow users switch page on <Table/> for example'
 export const ns = 'PageswitchTypes'
 export const cases = [
-    {
-        label: 'Default',
-        code
-    }
+  {
+    label: 'Basic',
+    code: basic,
+  },
 ]
 
 export { default as test } from './index.test'

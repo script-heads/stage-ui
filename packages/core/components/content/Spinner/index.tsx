@@ -42,7 +42,13 @@ const Spinner: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
       {children ? (
         <div css={classes.children}>{children}</div>
       ) : (
-        <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid" fill="currentColor" height="1em" width="1em">
+        <svg
+          viewBox="0 0 24 24"
+          preserveAspectRatio="xMidYMid"
+          fill="currentColor"
+          height="1em"
+          width="1em"
+        >
           {Array(count)
             .fill('')
             .map((e, i) => (

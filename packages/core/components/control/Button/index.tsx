@@ -14,7 +14,9 @@ const Button: ForwardRefRenderFunction<HTMLButtonElement, Types.Props> = (props,
     disabled,
     label,
   } = props
-  const { classes, attributes, events } = useSystem('Button', props, createClasses, { focus: 'tabOnly' })
+  const { classes, attributes, events } = useSystem('Button', props, createClasses, {
+    focus: 'tabOnly',
+  })
   const classState = { shape, decoration, size }
   const leftChildClasses = classes.child({ align: 'left', ...classState })
   const rightChildClasses = classes.child({ align: 'right', ...classState })

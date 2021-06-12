@@ -1,6 +1,5 @@
 import React, { Fragment, useRef, useState } from 'react'
 import { Block, Flexbox, Drop, Popover, Grid } from '@stage-ui/core'
-
 import { ColorPalette } from '@stage-ui/icons'
 
 export interface ThemeSwitcherProps {
@@ -23,7 +22,12 @@ const ThemeSwitcher = (props: ThemeSwitcherProps) => {
         onClick={() => setVisible(!visible)}
         color={(c) => c.primary}
       />
-      <Drop target={iconRef} visible={visible} spacing={16} onClickOutside={(e, ot) => ot && setVisible(!visible)}>
+      <Drop
+        target={iconRef}
+        visible={visible}
+        spacing={16}
+        onClickOutside={(e, ot) => ot && setVisible(!visible)}
+      >
         <Popover>
           <Grid templateRows="auto auto" templateColumns="auto auto" gap=".5rem" p=".25rem">
             {Object.keys(props.themes).map((theme, index) => (
@@ -38,7 +42,9 @@ const ThemeSwitcher = (props: ThemeSwitcherProps) => {
                 }}
                 borderWidth="2px"
                 borderStyle="solid"
-                borderColor={(c) => (currentTheme.name === themes[theme].name ? c.primary : c.lightest)}
+                borderColor={(c) =>
+                  currentTheme.name === themes[theme].name ? c.primary : c.lightest
+                }
                 onClick={() => {
                   setTheme(themes[theme])
                 }}

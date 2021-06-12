@@ -1,9 +1,5 @@
-import code from './default.raw'
+import basic from './basic.raw'
 
 export const title = 'Header'
-export const subtitle= 'Head text component'
-
 export const ns = 'HeaderTypes'
-export const cases = [
-    { label: 'Basic', code },
-]
+export const cases = [{ label: 'Basic', code: basic }]
