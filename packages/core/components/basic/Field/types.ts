@@ -110,7 +110,6 @@ declare namespace FieldTypes {
 
   interface PrivateProps extends Props {
     name?: string
-    labelName?: string
     children?: React.ReactNode
   }
 }

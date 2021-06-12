@@ -2,7 +2,7 @@ import colorProp from '@stage-ui/system/props/color'
 import Types from './types'
 
 const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, styleProps) => {
-  const { size, shape } = props
+  const { size = 'm' } = props
   const color = colorProp(props.color, theme) || theme.color.primary
   const typography = theme.assets.typography.text[size || 'm'] || theme.assets.typography.text.m
   const isBlack = color.contrast(theme.color.onPrimary) > 3
@@ -30,6 +30,8 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, s
         '&::-moz-focus-inner': {
           border: 0,
         },
+        ...theme.assets.button.m,
+        ...(theme.assets.typography.text.m as {}),
       },
 
       variant({
@@ -106,39 +108,39 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, s
           ],
           round: [
             {
-              borderRadius: '4rem',
+              borderRadius: '100rem',
             },
           ],
         },
         size: {
           xs: [
             {
-              ...theme.assets.field.xs,
+              ...theme.assets.button.xs,
               ...(theme.assets.typography.text.xs as {}),
             },
           ],
           s: [
             {
-              ...theme.assets.field.s,
+              ...theme.assets.button.s,
               ...(theme.assets.typography.text.s as {}),
             },
           ],
           m: [
             {
-              ...theme.assets.field.m,
+              ...theme.assets.button.m,
               ...(theme.assets.typography.text.m as {}),
             },
           ],
           l: [
             {
-              ...theme.assets.field.l,
+              ...theme.assets.button.l,
               ...(theme.assets.typography.text.l as {}),
             },
           ],
           xl: [
             {
-              ...theme.assets.field.xl,
-              ...(theme.assets.typography.header.xs as {}),
+              ...theme.assets.button.xl,
+              ...(theme.assets.typography.text.xl as {}),
             },
           ],
         },

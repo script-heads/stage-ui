@@ -144,12 +144,11 @@ function useSystem<
 
   // Additional key handlers
   data.events.onKeyDown = (event: React.KeyboardEvent<Element>) => {
-    props.onKeyPress?.(event)
     if (event.key === 'Enter' && props.onEnter) {
-      props.onEnter(event)
+      props.onEnter?.(event)
     }
     if (event.key === 'Esc' && props.onEsc) {
-      props.onEsc(event)
+      props.onEsc?.(event)
     }
     props.onKeyDown?.(event)
   }

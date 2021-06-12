@@ -97,7 +97,7 @@ declare namespace GridTypes {
      * Root element
      */
     container: {
-      decoration?: LayoutDecoration
+      decoration?: LayoutDecoration | undefined
     }
   }
   /**

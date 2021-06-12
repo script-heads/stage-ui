@@ -6,26 +6,26 @@ import Types from './types'
 import createClasses from './styles'
 
 const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (props, ref) => {
-  const { name, labelName, labelType = 'outside', label, clearable } = props
-
+  const { name, labelType = 'outside', label, clearable = false } = props
+  const htmlId = React.useMemo(() => `${'Field'}-${Math.random().toString(16).slice(2)}`, [])
   const {
     classes,
     attributes,
-    events: { onClear, ...events },
+    events: { onClear, onEsc, onEnter, ...events },
   } = useSystem(name || 'Field', props, createClasses)
 
   const classesState = {
-    size: props.size,
-    decoration: props.decoration,
-    labelType: props.labelType,
-    shape: props.shape,
-    disabled: props.disabled,
+    size: props.size || 'm',
+    decoration: props.decoration || 'filled',
+    labelType: props.labelType || 'outside',
+    shape: props.shape || 'rounded',
+    disabled: props.disabled || false,
   }
 
   return (
     <div {...attributes} {...events} ref={ref} css={classes.container(classesState)}>
       {label !== undefined && labelType === 'outside' && (
-        <label css={classes.label(classesState)} htmlFor={labelName}>
+        <label css={classes.label(classesState)} htmlFor={htmlId}>
           {label}
         </label>
       )}
@@ -33,7 +33,7 @@ const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (pro
         {props.leftChild && <div css={classes.child({ align: 'left', ...classesState })}>{props.leftChild}</div>}
         <div css={classes.content(classesState)}>
           {label !== undefined && labelType === 'inside' && (
-            <label css={classes.label(classesState)} htmlFor={labelName}>
+            <label css={classes.label(classesState)} htmlFor={htmlId}>
               {label}
             </label>
           )}

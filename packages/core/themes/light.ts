@@ -135,24 +135,36 @@ export default createTheme({
     },
     field: {
       xs: {
-        padding: '0 0.25rem',
-        minHeight: '1.5rem',
+        padding: '0.125rem 0.25rem',
       },
       s: {
-        padding: '0 0.5rem',
-        minHeight: '2rem',
+        padding: '0.25rem 0.5rem',
       },
       m: {
-        padding: '0 0.75rem',
-        minHeight: '2.5rem',
+        padding: '0.375rem 0.75rem',
       },
       l: {
-        padding: '0 1rem',
-        minHeight: '3rem',
+        padding: '0.5rem 1rem',
       },
       xl: {
-        padding: '0 1.25rem',
-        minHeight: '3.5rem',
+        padding: '0.625rem 1.25rem',
+      },
+    },
+    button: {
+      xs: {
+        padding: '0.125rem 0.5rem',
+      },
+      s: {
+        padding: '0.25rem 0.75rem',
+      },
+      m: {
+        padding: '0.375rem 1rem',
+      },
+      l: {
+        padding: '0.5rem 1.25rem',
+      },
+      xl: {
+        padding: '0.625rem 1.375rem',
       },
     },
   }),

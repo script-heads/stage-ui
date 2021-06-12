@@ -15,13 +15,15 @@ export default function createVariant<ClassState extends Exclude<ClassStateDefin
   const variant: Variant<ClassState> = (variants) => {
     const styles: Stage.JSS = []
 
-    Object.keys(state).forEach((key: keyof ClassState) => {
+    Object.keys(variants).forEach((key: keyof ClassState) => {
       if (Object.prototype.hasOwnProperty.call(variants, key)) {
         if (typeof state[key] === 'boolean' && state[key] === true) {
           styles.push(variants[key] as BooleanVariant)
         }
         if (typeof state[key] === 'string' && Object.prototype.hasOwnProperty.call(variants[key], state[key])) {
-          styles.push(variants[key][state[key] as string])
+          if (variants[key]) {
+            styles.push(variants[key]?.[state[key] as string])
+          }
         }
       }
     })
