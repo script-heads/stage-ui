@@ -132,7 +132,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
    */
   function onChange(newValues: Types.Option[] = [], changedValue?: Types.Option) {
     if (props.values === undefined) {
-      setValues(values)
+      setValues(newValues)
     }
     props.onChange?.(newValues, changedValue)
     setSearchValue('')
