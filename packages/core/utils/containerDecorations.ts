@@ -46,6 +46,7 @@ const containerDecorations = (props: Props, theme: Stage.Theme) => {
     case 'skeleton':
       return {
         background: theme.color.lightest.rgb().string(),
+        borderRadius: theme.radius.m,
         animation: `${skeleton} 2s ease-in-out infinite`,
       }
   }
