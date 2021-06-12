@@ -55,7 +55,7 @@ export default createTheme({
       xl: '0 24px 26px rgba(0,0,0,0.15)',
     },
     innerShadow: {
-      xs: 'inset 0px 1px 1px rgba(0,0,0,0.1)',
+      xs: 'inset 0px 1px 1px rgba(0,0,0,0.075)',
       s: 'inset 0px 2px 4px rgba(0,0,0,0.1)',
       m: 'inset 0px 4px 8px rgba(0,0,0,0.1)',
       l: 'inset 0 16px 18px rgba(0,0,0,0.1)',
@@ -135,24 +135,36 @@ export default createTheme({
     },
     field: {
       xs: {
-        padding: '0 0.25rem',
-        minHeight: '1.5rem',
+        padding: '0.25rem 0.25rem',
       },
       s: {
-        padding: '0 0.5rem',
-        minHeight: '2rem',
+        padding: '0.25rem 0.5rem',
       },
       m: {
-        padding: '0 0.75rem',
-        minHeight: '2.5rem',
+        padding: '0.5rem 0.75rem',
       },
       l: {
-        padding: '0 1rem',
-        minHeight: '3rem',
+        padding: '1rem 1rem',
       },
       xl: {
-        padding: '0 1.25rem',
-        minHeight: '3.5rem',
+        padding: '1rem 1.25rem',
+      },
+    },
+    button: {
+      xs: {
+        padding: '0.25rem 0.5rem',
+      },
+      s: {
+        padding: '0.25rem 1rem',
+      },
+      m: {
+        padding: '0.5rem 1rem',
+      },
+      l: {
+        padding: '1rem 1rem',
+      },
+      xl: {
+        padding: '1rem 1.5rem',
       },
     },
   }),

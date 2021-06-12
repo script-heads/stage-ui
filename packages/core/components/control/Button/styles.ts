@@ -2,7 +2,7 @@ import colorProp from '@stage-ui/system/props/color'
 import Types from './types'
 
 const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, styleProps) => {
-  const { size, shape } = props
+  const { size = 'm' } = props
   const color = colorProp(props.color, theme) || theme.color.primary
   const typography = theme.assets.typography.text[size || 'm'] || theme.assets.typography.text.m
   const isBlack = color.contrast(theme.color.onPrimary) > 3
@@ -17,6 +17,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, s
         borderColor: 'transparent',
         borderWidth: '1px',
         borderStyle: 'solid',
+        borderRadius: theme.radius.m,
         textOverflow: 'ellipsis',
         overflow: 'hidden',
         background: 'transparent',
@@ -30,6 +31,8 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, s
         '&::-moz-focus-inner': {
           border: 0,
         },
+        ...theme.assets.button.m,
+        ...(theme.assets.typography.text.m as {}),
       },
 
       variant({
@@ -99,46 +102,40 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, s
           ],
         },
         shape: {
-          rounded: [
+          square: [
             {
-              borderRadius: theme.radius.s,
+              borderRadius: 0,
             },
           ],
           round: [
             {
-              borderRadius: '4rem',
+              borderRadius: '100rem',
             },
           ],
         },
         size: {
           xs: [
             {
-              ...theme.assets.field.xs,
+              ...theme.assets.button.xs,
               ...(theme.assets.typography.text.xs as {}),
             },
           ],
           s: [
             {
-              ...theme.assets.field.s,
+              ...theme.assets.button.s,
               ...(theme.assets.typography.text.s as {}),
-            },
-          ],
-          m: [
-            {
-              ...theme.assets.field.m,
-              ...(theme.assets.typography.text.m as {}),
             },
           ],
           l: [
             {
-              ...theme.assets.field.l,
+              ...theme.assets.button.l,
               ...(theme.assets.typography.text.l as {}),
             },
           ],
           xl: [
             {
-              ...theme.assets.field.xl,
-              ...(theme.assets.typography.header.xs as {}),
+              ...theme.assets.button.xl,
+              ...(theme.assets.typography.text.xl as {}),
             },
           ],
         },
@@ -170,28 +167,24 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, s
       variant({
         align: {
           left: [
-            {
-              marginRight: '.375rem',
-            },
+            { marginRight: '0.5rem' },
             variant({
               size: {
-                xs: { marginRight: '.125rem' },
-                s: { marginRight: '.25rem' },
-                l: { marginRight: '.5rem' },
-                xl: { marginRight: '.75rem' },
+                xs: { marginRight: '0.125rem', marginLeft: '-0.125rem' },
+                s: { marginRight: '0.25rem', marginLeft: '-0.25rem' },
+                l: { marginRight: '0.5rem', marginLeft: '-0.5rem' },
+                xl: { marginRight: '0.75rem', marginLeft: '-0.75rem' },
               },
             }),
           ],
           right: [
-            {
-              marginLeft: '.375rem',
-            },
+            { marginLeft: '0.5rem' },
             variant({
               size: {
-                xs: { marginLeft: '.125rem' },
-                s: { marginLeft: '.25rem' },
-                l: { marginLeft: '.5rem' },
-                xl: { marginLeft: '.75rem' },
+                xs: { marginLeft: '0.125rem', marginRight: '-0.125rem' },
+                s: { marginLeft: '0.25rem', marginRight: '-0.25rem' },
+                l: { marginLeft: '0.5rem', marginRight: '-0.5rem' },
+                xl: { marginLeft: '0.75rem', marginRight: '-0.75rem' },
               },
             }),
           ],

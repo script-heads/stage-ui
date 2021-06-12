@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import React, { forwardRef, ForwardRefRenderFunction, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { Drop, ScrollView } from '@stage-ui/core'
 import { ChevronDown, Close } from '@stage-ui/icons'
 import DropTypes from '@stage-ui/core/components/layout/Drop/types'
 import Field from '@stage-ui/core/components/basic/Field'
 import { useSystem } from '@stage-ui/system'
-import React, { forwardRef, ForwardRefRenderFunction, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import styles from './styles'
 import Types from './types'
 
@@ -19,6 +18,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     disabled = false,
     openOnFocus = true,
     emptyText = '-',
+    clearable = false,
   } = props
 
   /**
@@ -35,7 +35,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
   /**
    * Value need for search
    */
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchValue, setSearchValue] = useState('')
   /**
    * Store of selected values
    */
@@ -49,13 +49,14 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
       return false
     }
     // Filter only matching search
-    if (searchQuery && !RegExp(searchQuery.toUpperCase()).exec(option.text.toUpperCase())) {
+    const escapeSearchValue = searchValue.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&').toUpperCase()
+    if (escapeSearchValue && !RegExp(escapeSearchValue).exec(option.text.toUpperCase())) {
       return false
     }
     return true
   })
 
-  const { classes, events, styleProps } = useSystem('Select', props, styles)
+  const { classes, styleProps } = useSystem('Select', props, styles)
 
   /**
    * Object for variant styles
@@ -82,7 +83,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     if (props.values) {
       setValues(props.values)
     }
-  }, [props.values])
+  }, [props.values?.map((value) => value.value).join()])
 
   /**
    * Update drop position after
@@ -92,13 +93,23 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     if (isOpen) {
       dropRef.current?.updatePosition()
     }
-  }, [values])
+  }, [isOpen, searchValue, options?.map((value) => value.value).join()])
 
   /*
    * Keyboard control
    * TODO: handle keyboard control
    */
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    switch (event.key) {
+      case 'Enter':
+        break
+      case 'ArrowUp':
+        break
+      case 'ArrowDown':
+        break
+      case 'Backspace':
+        break
+    }
     props.onKeyDown?.(event)
   }
 
@@ -118,45 +129,41 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
    * support controlled and uncontrolled
    * second arg need if you need filter values by search
    */
-  function onChange(allValues: Types.Option[], value?: Types.Option, search = '') {
-    setSearchQuery(search)
-    props.onSearch?.(value?.text ?? search)
+  function onChange(newValues: Types.Option[] = [], changedValue?: Types.Option) {
     if (props.values === undefined) {
-      setValues(allValues)
+      setValues(newValues)
     }
-    props.onChange?.(allValues, value)
+    props.onChange?.(newValues, changedValue)
+    setSearchValue('')
   }
-
   /**
    * Setting values
    */
-  function setOption(value: Types.Option) {
-    if (props.multiselect) {
-      onChange(values.concat(value), value)
-    } else {
-      onChange([value], value)
-    }
+  function setOption(changedValue: Types.Option) {
     if (!keepOpen) {
       setOpen(false)
     }
+    setTimeout(() => {
+      if (props.multiselect) {
+        onChange(values.concat(changedValue), changedValue)
+      } else {
+        onChange([changedValue], changedValue)
+      }
+    }, 100)
   }
 
   /**
    * Unsetting values
    */
-  function unsetOption(value: Types.Option) {
-    onChange(
-      values.filter((v) => v.value !== value.value),
-      value,
-    )
-  }
-
-  /**
-   * Clears values
-   * also can set filter for search
-   */
-  function clearValues(search = '') {
-    onChange([], undefined, search)
+  function unsetOption(changedValue?: Types.Option) {
+    if (changedValue) {
+      onChange(
+        values.filter((v) => v.value !== changedValue.value),
+        changedValue,
+      )
+    } else if (values.length > 0) {
+      onChange(values.slice(0, -1))
+    }
   }
 
   useImperativeHandle(ref, () => ({
@@ -211,16 +218,15 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
         disabled={disabled}
         shape={shape}
         decoration={decoration}
-        clearable={disabled ? false : props.clearable && values.length > 0}
-        onClear={() => clearValues()}
-        onClick={(e: React.MouseEvent<HTMLInputElement>) => {
+        clearable={disabled ? false : clearable && values.length > 0}
+        onClear={onChange}
+        onClick={(e) => {
           e.preventDefault()
           if (openOnFocus) {
             setOpen(true)
           }
-          events.onClick?.(e)
         }}
-        onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => handleKeyDown(e)}
+        onKeyDown={(e) => handleKeyDown(e)}
         rightChild={
           props.rightChild !== undefined ? (
             props.rightChild
@@ -244,7 +250,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
         <div css={classes.selected}>
           {props.multiselect &&
             values.map((option) => (
-              <div css={classes.tag(classState)} key={option.value}>
+              <div css={classes.tag(classState)} key={option.value.toString?.()}>
                 {option.text}
                 {!disabled && (
                   <Close
@@ -259,26 +265,34 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                 )}
               </div>
             ))}
+
           <input
+            type="text"
             size={5}
             disabled={disabled || !props.searchable}
             css={classes.input({
               disableEvents: !props.searchable,
-              searchMode: searchQuery !== '',
+              searchMode: searchValue !== '',
               multiselect: !!props.multiselect,
             })}
-            placeholder={!props.multiselect || values.length === 0 ? props.placeholder : ''}
-            value={(!props.multiselect && values[0]?.text) || searchQuery}
+            placeholder={!props.multiselect || values.length === 0 ? props.placeholder || '' : ''}
+            value={props.multiselect ? searchValue : searchValue || values[0]?.text || ''}
+            onKeyDown={(e) => {
+              if (props.multiselect) {
+                if (!searchValue && e.code === 'Backspace') {
+                  unsetOption()
+                }
+              }
+            }}
             onChange={(e) => {
               if (!isOpen) {
                 setOpen(true)
               }
-              if (props.multiselect) {
-                props.onSearch?.(e.target.value)
-                setSearchQuery(e.target.value)
-              } else {
-                clearValues(e.target.value)
+              if (!props.multiselect) {
+                onChange()
               }
+              setSearchValue(e.target.value)
+              props.onSearch?.(e.target.value)
             }}
             onClick={(e) => {
               e.preventDefault()
@@ -293,6 +307,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
       <Drop
         visible={isOpen}
         ref={dropRef}
+        spacing={4}
         animation={
           props.animation || {
             type: 'slide',
@@ -302,7 +317,6 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
         }
         onClickOutside={(e, outTarget) => {
           if (outTarget) {
-            // @ts-ignore
             setOpen(false)
           }
         }}
@@ -310,24 +324,26 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
         target={fieldRef}
       >
         <div css={classes.drop(classState)}>
-          <ScrollView size="xs" css={{ maxHeight: maxScrollHeight }} sendFlowScollEvent={false}>
-            {options.map((option) => (
-              <div
-                css={classes.dropItem({ ...classState, selected: values.includes(option) })}
-                key={option.value}
-                onClick={(e) => {
-                  e.preventDefault()
-                  setOption(option)
-                }}
-              >
-                {option.text}
-              </div>
-            ))}
-            {options.length === 0 && (
-              <div css={classes.emptyConteiner(classState)}>
-                <div css={classes.emptyText(classState)}>{emptyText}</div>
-              </div>
-            )}
+          <ScrollView size="xs" xBarPosition="none" css={{ maxHeight: maxScrollHeight }} sendFlowScrollEvent={false}>
+            <>
+              {options.map((option) => (
+                <div
+                  css={classes.dropItem({ ...classState, selected: values.includes(option) })}
+                  key={option.value.toString?.()}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setOption(option)
+                  }}
+                >
+                  {option.text}
+                </div>
+              ))}
+              {options.length === 0 && (
+                <div css={classes.emptyConteiner(classState)}>
+                  <div css={classes.emptyText(classState)}>{emptyText}</div>
+                </div>
+              )}
+            </>
           </ScrollView>
         </div>
       </Drop>

@@ -83,7 +83,7 @@ const Sidebar = (props: SidebarProps) => {
       >
         <Block p="4rem 1rem 0 1rem">
           <TextField
-            size="s"
+            // size="s"
             mb=".5rem"
             rightChild={<Search />}
             decoration="none"

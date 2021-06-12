@@ -83,10 +83,6 @@ declare namespace DropTypes {
      */
     onClickOutside?: (event: MouseEvent, outsideTarget?: boolean) => void
     /**
-     * Fired when user press esc
-     */
-    onEsc?: () => void
-    /**
      * Drop's content
      */
     children?: React.ReactNode

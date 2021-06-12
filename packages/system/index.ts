@@ -66,6 +66,12 @@ declare global {
           padding: string
         }
       >
+      button: Record<
+        Sizes,
+        {
+          padding: string
+        }
+      >
       typography: {
         header: Record<
           Sizes,

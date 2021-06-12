@@ -22,8 +22,8 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         flexShrink: 0,
         flexGrow: 1,
         background: theme.color.surface.string(),
-        borderColor: theme.color.lightest.string(),
-        borderRadius: theme.radius.s,
+        borderColor: theme.color.light.alpha(0.4).string(),
+        borderRadius: theme.radius.m,
         boxShadow: theme.assets.innerShadow.xs,
         borderWidth: '1px',
         borderStyle: 'solid',
@@ -77,6 +77,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
           filled: [
             {
               borderColor: 'transparent',
+              boxShadow: 'none',
             },
             variant({
               disabled: [
@@ -94,10 +95,12 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
             paddingLeft: 0,
             paddingRight: 0,
             borderRadius: 0,
+            boxShadow: 'none',
           },
           none: {
             background: 'transparent',
             borderColor: 'transparent',
+            boxShadow: 'none',
           },
         },
       }),

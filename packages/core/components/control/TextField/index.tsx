@@ -14,6 +14,7 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
     multiline = false,
     disabled = false,
     leftChildNumber,
+    clearable = false,
   } = props
 
   const { classes, events, styleProps } = useSystem('TextField', props, createClasses)
@@ -82,18 +83,19 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
       decoration={decoration}
       size={size}
       shape={shape}
-      clearable={props.value !== undefined && !props.value ? false : props.clearable}
+      clearable={props.value !== undefined && !props.value ? false : clearable}
       leftChild={leftChildNumber && multiline ? <LeftCountLine /> : props.leftChild}
       onClear={onClear}
+      onFocus={(e: React.FocusEvent<HTMLInputElement>) => {
+        inputRef.current?.focus()
+        events.onFocus?.(e)
+      }}
       onEsc={(e) => {
         if (props.clearable) {
           onClear()
         }
-        props.onEsc?.(e)
-      }}
-      onFocus={(e: React.FocusEvent<HTMLInputElement>) => {
-        inputRef.current?.focus()
-        events.onFocus?.(e)
+        events.onEsc?.(e)
+        console.log(1)
       }}
       overrides={{
         container: styleProps.container,

@@ -3,9 +3,10 @@ import FieldTypes from '../../basic/Field/types'
 import DropTypes from '../../layout/Drop/types'
 
 declare namespace SelectTypes {
+  interface T extends String {}
   interface Option {
     text: string
-    value: any
+    value: T
   }
 
   interface Ref {
