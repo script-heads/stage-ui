@@ -55,7 +55,7 @@ export default createTheme({
       xl: '0 24px 26px rgba(0,0,0,0.15)',
     },
     innerShadow: {
-      xs: 'inset 0px 1px 1px rgba(0,0,0,0.1)',
+      xs: 'inset 0px 1px 1px rgba(0,0,0,0.075)',
       s: 'inset 0px 2px 4px rgba(0,0,0,0.1)',
       m: 'inset 0px 4px 8px rgba(0,0,0,0.1)',
       l: 'inset 0 16px 18px rgba(0,0,0,0.1)',
