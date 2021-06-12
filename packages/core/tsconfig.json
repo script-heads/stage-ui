@@ -12,6 +12,13 @@
     "suppressImplicitAnyIndexErrors": true,
     "strict": true
   },
+  "include": [
+    "components/**/*",
+    "hooks/**/*",
+    "scripts/**/*",
+    "themes/**/*",
+    "utils/**/*",
+  ],
   "exclude": [
     "node_modules"
   ]

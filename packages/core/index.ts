@@ -53,4 +53,3 @@ export { default as notify } from './utils/notify'
  */
 export { useTheme } from '@stage-ui/system'
 export { createTheme } from '@stage-ui/system'
-export { useBreakpoints } from '@stage-ui/system'

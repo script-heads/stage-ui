@@ -1,14 +1,10 @@
+/* eslint-disable @typescript-eslint/unbound-method */
+/* eslint-disable no-param-reassign */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable no-bitwise */
 import isWebKit from '@stage-ui/core/utils/isWebKit'
 import { useSystem } from '@stage-ui/system'
-import React, {
-  forwardRef,
-  ForwardRefRenderFunction,
-  Fragment,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useState,
-} from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, useEffect, useImperativeHandle, useMemo, useState } from 'react'
 import styles from './styles'
 import Types from './types'
 
@@ -35,9 +31,9 @@ interface MemoParams {
 }
 
 const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
-  const { classes, attributes, events } = useSystem('ScrollView', props, styles)
-
   const { shape = 'round', size = 'm', mode = 'scroll', xBarPosition = 'bottom', yBarPosition = 'right' } = props
+  const { classes, attributes, events } = useSystem('ScrollView', props, styles)
+  const [active, setActive] = useState(mode === 'always')
 
   const memo: MemoParams = useMemo(
     () => ({
@@ -67,65 +63,6 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
     offsetTop += elem?.offsetTop
     return getOffsetTop(elem.offsetParent as HTMLDivElement, offsetTop)
   }
-
-  const scrollTo = (x: number, y: number, options?: Types.ScrollToOptions) => {
-    memo.preventWatchElement = options?.preventWatchElement || false
-    if (isLegacyScrollSupport) {
-      if (memo.container) {
-        if (options?.smooth) {
-          memo.container.style['scroll-behavior'] = 'smooth'
-        }
-        memo.container.scrollTo(x, y)
-      }
-    } else {
-      updateScroll({
-        deltaX: x,
-        deltaY: y,
-        preventDefault: () => null,
-        stopPropagation: () => null,
-        ...options,
-      })
-    }
-  }
-
-  useImperativeHandle(ref, () => ({
-    updateScroll: () => {
-      updateScroll({
-        deltaX: 0,
-        deltaY: 0,
-        preventDefault: () => null,
-        stopPropagation: () => null,
-      })
-    },
-    /**
-     * @deprecated use scrollTop()
-     */
-    onScrollTop: () => {
-      const x = isLegacyScrollSupport ? 0 : memo.content?.offsetLeft || -1e10
-      const y = isLegacyScrollSupport ? 0 : memo.content?.offsetTop || -1e10
-      scrollTo(x, y)
-    },
-    scrollTo,
-    scrollTop: (options?: Types.ScrollToOptions) => {
-      const x = isLegacyScrollSupport ? 0 : memo.content?.offsetLeft || -1e10
-      const y = isLegacyScrollSupport ? 0 : memo.content?.offsetTop || -1e10
-      scrollTo(x, y, options)
-    },
-    scrollBottom: (options?: Types.ScrollToOptions) => {
-      scrollTo(1e10, 1e10, options)
-    },
-    scrollToElement: (itemId: string, options?: Types.ScrollToElementOptions) => {
-      const item = document.querySelector<HTMLDivElement>(`[data-id="${itemId}"]`)
-      if (item) {
-        scrollTo(item.offsetLeft, getOffsetTop(item) - (options?.offsetTop || 0), options)
-        return true
-      }
-      return false
-    },
-    container: memo.container,
-  }))
-
-  const [active, setActive] = useState(mode === 'always')
 
   const updateThumb = (e: Types.ScrollParams, axes: 'x' | 'y') => {
     if (!memo.content || !memo.container) return
@@ -193,39 +130,6 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
     return false
   }
 
-  const scrollToHandle = useMemo(
-    () => (e: MouseEvent | React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-      if (!memo.x && !memo.y) return
-
-      e.preventDefault()
-      const rect = memo[memo.x ? 'xThumb' : 'yThumb']?.getBoundingClientRect()
-      if (rect && memo.container) {
-        let delta = 0
-        if (memo.x) {
-          delta = e.pageX - rect.x - rect.width / 2
-        }
-        if (memo.y) {
-          delta = e.pageY - rect.y - rect.height / 2
-        }
-        if (isLegacyScrollSupport) {
-          const currentScroll = memo.container[memo.x ? 'scrollLeft' : 'scrollTop']
-          memo.container?.scrollTo(
-            memo.x ? currentScroll + delta : memo.container.scrollLeft,
-            memo.y ? currentScroll + delta : memo.container.scrollTop,
-          )
-        } else {
-          updateScroll({
-            deltaX: memo.x ? delta : 0,
-            deltaY: memo.y ? delta : 0,
-            preventDefault: () => null,
-            stopPropagation: () => null,
-          })
-        }
-      }
-    },
-    [],
-  )
-
   const updateScroll = useMemo(
     () => (e: Types.ScrollParams) => {
       if (!memo.container || !memo.content) {
@@ -242,7 +146,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
             memo.timeout = null
           }
           memo.timeout = setTimeout(() => {
-            memo.mounted && setActive(false)
+            if (memo.mounted) setActive(false)
           }, 500)
         }
       }
@@ -279,7 +183,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
 
         for (const el of elements.reverse()) {
           if (scrollTop - (getOffsetTop(el) - el.offsetHeight) > 0) {
-            const id = el.attributes['data-id'].value
+            const id = el.attributes['data-id'].value as string
             if (memo.watchElementId !== id) {
               memo.watchElementId = id
               props.watchElement(id, el)
@@ -295,6 +199,96 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
           memo.container.style['scroll-behavior'] = ''
         }
       }, 100)
+    },
+    [],
+  )
+
+  const scrollTo = (x: number, y: number, options?: Types.ScrollToOptions) => {
+    memo.preventWatchElement = options?.preventWatchElement || false
+    if (isLegacyScrollSupport) {
+      if (memo.container) {
+        if (options?.smooth) {
+          memo.container.style['scroll-behavior'] = 'smooth'
+        }
+        memo.container.scrollTo(x, y)
+      }
+    } else {
+      updateScroll({
+        deltaX: x,
+        deltaY: y,
+        preventDefault: () => null,
+        stopPropagation: () => null,
+        ...options,
+      })
+    }
+  }
+
+  useImperativeHandle(ref, () => ({
+    updateScroll: () => {
+      updateScroll({
+        deltaX: 0,
+        deltaY: 0,
+        preventDefault: () => null,
+        stopPropagation: () => null,
+      })
+    },
+    /**
+     * @deprecated use scrollTop()
+     */
+    onScrollTop: () => {
+      const x = isLegacyScrollSupport ? 0 : memo.content?.offsetLeft || -1e10
+      const y = isLegacyScrollSupport ? 0 : memo.content?.offsetTop || -1e10
+      scrollTo(x, y)
+    },
+    scrollTo,
+    scrollTop: (options?: Types.ScrollToOptions) => {
+      const x = isLegacyScrollSupport ? 0 : memo.content?.offsetLeft || -1e10
+      const y = isLegacyScrollSupport ? 0 : memo.content?.offsetTop || -1e10
+      scrollTo(x, y, options)
+    },
+    scrollBottom: (options?: Types.ScrollToOptions) => {
+      scrollTo(1e10, 1e10, options)
+    },
+    scrollToElement: (itemId: string, options?: Types.ScrollToElementOptions) => {
+      const item = document.querySelector<HTMLDivElement>(`[data-id="${itemId}"]`)
+      if (item) {
+        scrollTo(item.offsetLeft, getOffsetTop(item) - (options?.offsetTop || 0), options)
+        return true
+      }
+      return false
+    },
+    container: memo.container,
+  }))
+
+  const scrollToHandle = useMemo(
+    () => (e: MouseEvent | React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      if (!memo.x && !memo.y) return
+
+      e.preventDefault()
+      const rect = memo[memo.x ? 'xThumb' : 'yThumb']?.getBoundingClientRect()
+      if (rect && memo.container) {
+        let delta = 0
+        if (memo.x) {
+          delta = e.pageX - rect.x - rect.width / 2
+        }
+        if (memo.y) {
+          delta = e.pageY - rect.y - rect.height / 2
+        }
+        if (isLegacyScrollSupport) {
+          const currentScroll = memo.container[memo.x ? 'scrollLeft' : 'scrollTop']
+          memo.container?.scrollTo(
+            memo.x ? currentScroll + delta : memo.container.scrollLeft,
+            memo.y ? currentScroll + delta : memo.container.scrollTop,
+          )
+        } else {
+          updateScroll({
+            deltaX: memo.x ? delta : 0,
+            deltaY: memo.y ? delta : 0,
+            preventDefault: () => null,
+            stopPropagation: () => null,
+          })
+        }
+      }
     },
     [],
   )
@@ -376,7 +370,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
 
     memo.mounted = true
     memo.mode = mode
-    setActive(memo.mode == 'always')
+    setActive(memo.mode === 'always')
 
     if (memo.mode === 'always') {
       updateScroll({
@@ -397,8 +391,8 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
   }, [props])
 
   const createRef = useMemo(
-    () => (ref: HTMLDivElement) => {
-      if (ref && !memo.events) {
+    () => (currentRef: HTMLDivElement) => {
+      if (currentRef && !memo.events) {
         memo.events = true
 
         if (memo.yThumb) {
@@ -414,7 +408,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
           }
         }
       }
-      memo.container = ref
+      memo.container = currentRef
     },
     [],
   )
@@ -423,17 +417,28 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
     <div {...attributes} css={classes.wrapper} data-scroll-id={memo.id}>
       <div
         {...events}
-        onScroll={updateScroll as any}
+        onScroll={(e) => {
+          updateScroll({ deltaX: 0, deltaY: 0, preventDefault: e.preventDefault, stopPropagation: e.stopPropagation })
+        }}
         css={isLegacyScrollSupport ? classes.webkit : classes.container}
         ref={createRef}
-        children={<div css={classes.content} ref={(ref) => (memo.content = ref)} children={props.children} />}
-      />
+      >
+        <div
+          css={classes.content}
+          ref={(currentRef) => {
+            memo.content = currentRef
+          }}
+        >
+          {props.children}{' '}
+        </div>
+      </div>
       {mode !== 'hidden' && (
         <>
           <div
             css={classes.yBar({ active, size, shape, position: yBarPosition })}
-            ref={(ref) => (memo.yBar = ref)}
-            children={<span css={classes.yThumb({ active, size, shape })} ref={(ref) => (memo.yThumb = ref)} />}
+            ref={(currentRef) => {
+              memo.yBar = currentRef
+            }}
             onMouseEnter={() => {
               window.addEventListener('mouseup', mouseUp)
             }}
@@ -443,11 +448,19 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
               window.addEventListener('mousemove', scrollToHandle)
             }}
             onMouseUp={mouseUp}
-          />
+          >
+            <span
+              css={classes.yThumb({ active, size, shape })}
+              ref={(currentRef) => {
+                memo.yThumb = currentRef
+              }}
+            />
+          </div>
           <div
             css={classes.xBar({ active, size, shape, position: xBarPosition })}
-            ref={(ref) => (memo.xBar = ref)}
-            children={<span css={classes.xThumb({ active, size, shape })} ref={(ref) => (memo.xThumb = ref)} />}
+            ref={(currentRef) => {
+              memo.xBar = currentRef
+            }}
             onMouseEnter={() => {
               window.addEventListener('mouseup', mouseUp)
             }}
@@ -457,7 +470,14 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
               window.addEventListener('mousemove', scrollToHandle)
             }}
             onMouseUp={mouseUp}
-          />
+          >
+            <span
+              css={classes.xThumb({ active, size, shape })}
+              ref={(currentRef) => {
+                memo.xThumb = currentRef
+              }}
+            />
+          </div>
         </>
       )}
     </div>

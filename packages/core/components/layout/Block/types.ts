@@ -1,4 +1,4 @@
-import { LayoutDecoration } from '@stage-ui/core/utils/applyLayoutDecoration'
+import { ContainerDecorations } from '@stage-ui/core/utils/containerDecorations'
 import CSS from 'csstype'
 
 declare namespace BlockTypes {
@@ -10,7 +10,7 @@ declare namespace BlockTypes {
     /**
      * Defines how block looks
      */
-    decoration?: LayoutDecoration
+    decoration?: ContainerDecorations
     /**
      * Block's content
      */
@@ -26,7 +26,7 @@ declare namespace BlockTypes {
      * Root element
      */
     container: {
-      decoration?: LayoutDecoration
+      decoration?: ContainerDecorations
     }
   }
 }

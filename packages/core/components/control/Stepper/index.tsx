@@ -6,12 +6,16 @@ import Types from './types'
 
 const Stepper: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
   const { data, current = -1 } = props
-  const { classes, attributes, events } = useSystem('Stepper', props, styles)
+  const {
+    classes,
+    attributes,
+    events: { onChange, ...events },
+  } = useSystem('Stepper', props, styles)
   return (
-    <div {...attributes} {...events} css={classes.container}>
+    <div {...attributes} {...events} ref={ref} css={classes.container}>
       {data.map((step, i) => {
         const state: Types.ClassState = {
-          active: current == i,
+          active: current === i,
           complete: current > i,
           pointer: !!onChange,
           size: props.size || 'm',

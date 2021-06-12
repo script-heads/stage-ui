@@ -5,7 +5,7 @@ import styles from './styles'
 import Types from './types'
 
 const Meter: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-  const { decoration = 'filled', shape = 'round', size = 'm', value = 0 } = props
+  const { decoration = 'filled', shape = 'round', size = 'm', value = 0, color, loading } = props
 
   const { classes, attributes, events } = useSystem('Meter', props, styles)
 
@@ -25,7 +25,7 @@ const Meter: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
           }),
         )
       ) : (
-        <Thumb {...props} value={value} />
+        <Thumb shape={shape} size={size} value={value} color={color} loading={loading} />
       )}
     </div>
   )

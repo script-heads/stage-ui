@@ -56,6 +56,7 @@ module.exports = {
     'consistent-return': 'off',
     'react/no-array-index-key': 'off',
     'react/button-has-type': 'off',
-    'default-case': 'off'
+    'default-case': 'off',
+    "no-restricted-syntax": 'off'
   },
 }

@@ -18,6 +18,7 @@ declare namespace TreeTypes {
     indent?: boolean
   }
   interface PrivateProps extends Props {
+    __TYPE: 'Tree'
     lvl: number
     isParentOpen: boolean
   }
@@ -43,13 +44,7 @@ declare namespace TreeTypes {
     options: RenderChildOptions
   }
 
-  interface ExtentedReactElement extends Omit<React.ReactElement, 'type'> {
-    type: {
-      render: {
-        name: string
-      }
-    }
-  }
+  type TreeElement = React.ReactElement<PrivateProps>
 
   type ClassState = {
     hasChilds: boolean

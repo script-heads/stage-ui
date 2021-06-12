@@ -7,7 +7,7 @@ declare namespace IconTypes {
   type IconShapes = 'circle' | 'oval' | 'square'
   type IconType = 'filled' | 'outline'
 
-  interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
+  interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
     svg: React.ReactElement
     shape?: IconShapes
     size?: Stage.Sizes | (string & { T?: string })
@@ -21,7 +21,7 @@ declare namespace IconTypes {
     type?: IconType
   }
 
-  interface Styles {
+  type Classes = {
     container: {
       shape?: IconShapes
       size: Stage.Sizes | (string & { T?: string })

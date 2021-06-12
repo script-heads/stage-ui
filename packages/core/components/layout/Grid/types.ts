@@ -1,4 +1,4 @@
-import { LayoutDecoration } from '@stage-ui/core/utils/applyLayoutDecoration'
+import { ContainerDecorations } from '@stage-ui/core/utils/containerDecorations'
 import { BreakpointProp } from '@stage-ui/system/props/breakpoint'
 import CSS from 'csstype'
 
@@ -86,7 +86,7 @@ declare namespace GridTypes {
     /**
      * Defines how grid look
      */
-    decoration?: LayoutDecoration
+    decoration?: ContainerDecorations
     /**
      * Grid content
      */
@@ -97,7 +97,7 @@ declare namespace GridTypes {
      * Root element
      */
     container: {
-      decoration?: LayoutDecoration
+      decoration?: ContainerDecorations
     }
   }
   /**

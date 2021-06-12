@@ -1,2 +1,1 @@
-const isWebKit = navigator.userAgent.indexOf('AppleWebKit') != -1
-export default isWebKit
+export default navigator.userAgent.indexOf('AppleWebKit') !== -1

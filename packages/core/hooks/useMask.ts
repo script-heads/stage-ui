@@ -4,7 +4,7 @@ import IMask from 'imask'
 
 const elements: { [key: string]: IMask.InputMask<IMask.AnyMaskedOptions> } = {}
 
-export default (ref, masked) => {
+export default (ref: React.RefObject<HTMLInputElement>, masked: IMask.AnyMaskedOptions) => {
   const id = useMemo(() => createID(), [])
 
   useEffect(() => {

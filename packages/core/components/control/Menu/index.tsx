@@ -13,7 +13,7 @@ const Context = React.createContext<Types.Context>({ values: {} })
  * most optimized method to change item value
  */
 export const useValue = (value?: Types.MenuValue): [boolean, () => void, Types.Context] => {
-  const [_, update] = React.useState(false)
+  const [updateValue, forceUpdate] = React.useState(false)
   const ctx = React.useContext(Context)
 
   if (ctx === undefined) {
@@ -21,7 +21,7 @@ export const useValue = (value?: Types.MenuValue): [boolean, () => void, Types.C
   }
 
   if (value !== undefined) {
-    ctx.values[value] = () => update(!_)
+    ctx.values[value] = () => forceUpdate(!updateValue)
   }
 
   return [
@@ -81,7 +81,11 @@ const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref)
     }
   }, [props.itemAs])
 
-  const { classes, attributes, events } = useSystem('Menu', props, createClasses, {
+  const {
+    classes,
+    attributes,
+    events: { onChange, ...events },
+  } = useSystem('Menu', props, createClasses, {
     label: 'Menu',
   })
 

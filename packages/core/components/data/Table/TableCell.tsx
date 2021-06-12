@@ -1,4 +1,5 @@
-import { forwardRef, ForwardRefRenderFunction, useState } from 'react'
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import React, { forwardRef, ForwardRefRenderFunction, useState } from 'react'
 import { getTR } from './TableRow'
 import Types from './types'
 
@@ -22,7 +23,7 @@ const TableCell: ForwardRefRenderFunction<HTMLTableDataCellElement, Types.CellPr
    * Draggble anchor
    */
   if (column.dnd) {
-    content = <div css={styles.rowCellAnchor} children={content} />
+    content = <div css={styles.rowCellAnchor}>{content}</div>
   }
 
   if (column.render) {
@@ -36,7 +37,6 @@ const TableCell: ForwardRefRenderFunction<HTMLTableDataCellElement, Types.CellPr
       style={{
         width: column.width || (column.dnd ? '1rem' : 'auto'),
       }}
-      children={content}
       onMouseDown={(e) => {
         if (column.dnd) {
           const tr = getTR(e.target as HTMLElement)
@@ -45,7 +45,9 @@ const TableCell: ForwardRefRenderFunction<HTMLTableDataCellElement, Types.CellPr
           }
         }
       }}
-    />
+    >
+      {content}
+    </td>
   )
 }
 

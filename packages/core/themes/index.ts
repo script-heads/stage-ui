@@ -42,34 +42,34 @@ import ScrollView from '../components/layout/ScrollView/types'
 declare global {
   namespace Stage {
     interface ThemeOverrides {
-      Divider?: DividerTypes.Classes
-      Spinner?: SpinnerTypes.Classes
-      Header?: HeaderTypes.Classes
-      Paragraph?: ParagraphTypes.Classes
-      Text?: TextTypes.Classes
-      Link?: LinkTypes.Classes
-      Button?: ButtonTypes.Classes
-      Calendar?: Calendar.Classes
-      Checkbox?: CheckboxTypes.Classes
-      DatePicker?: DatePickerTypes.Classes
-      Menu?: MenuTypes.Classes
-      Radio?: RadioTypes.Classes
-      Range?: RangeTypes.Classes
-      Select?: SelectTypes.Classes
-      Switch?: SwitchTypes.Classes
-      TextField?: TextFieldTypes.Classes
-      Meter?: MeterTypes.Classes
-      Table?: TableTypes.Classes
-      Badge?: BadgeTypes.Classes
-      Block?: BlockTypes.Classes
-      Drop?: DropTypes.Classes
-      Flexbox?: FlexboxTypes.Classes
-      Grid?: GridTypes.Classes
-      Modal?: ModalTypes.Classes
-      Notification?: NotificationTypes.Classes
-      Popover?: PopoverTypes.Classes
-      Tree?: TreeTypes.Classes
-      ScrollView?: ScrollView.Classes
+      Divider?: Stage.ComponentThemeOverrides<DividerTypes.Props, DividerTypes.Classes>
+      Spinner?: Stage.ComponentThemeOverrides<SpinnerTypes.Props, SpinnerTypes.Classes>
+      Header?: Stage.ComponentThemeOverrides<HeaderTypes.Props, HeaderTypes.Classes>
+      Paragraph?: Stage.ComponentThemeOverrides<ParagraphTypes.Props, ParagraphTypes.Classes>
+      Text?: Stage.ComponentThemeOverrides<TextTypes.Props, TextTypes.Classes>
+      Link?: Stage.ComponentThemeOverrides<LinkTypes.Props, LinkTypes.Classes>
+      Button?: Stage.ComponentThemeOverrides<ButtonTypes.Props, ButtonTypes.Classes>
+      Calendar?: Stage.ComponentThemeOverrides<Calendar.Props, Calendar.Classes>
+      Checkbox?: Stage.ComponentThemeOverrides<CheckboxTypes.Props, CheckboxTypes.Classes>
+      DatePicker?: Stage.ComponentThemeOverrides<DatePickerTypes.Props, DatePickerTypes.Classes>
+      Menu?: Stage.ComponentThemeOverrides<MenuTypes.Props, MenuTypes.Classes>
+      Radio?: Stage.ComponentThemeOverrides<RadioTypes.Props, RadioTypes.Classes>
+      Range?: Stage.ComponentThemeOverrides<RangeTypes.Props, RangeTypes.Classes>
+      Select?: Stage.ComponentThemeOverrides<SelectTypes.Props, SelectTypes.Classes>
+      Switch?: Stage.ComponentThemeOverrides<SwitchTypes.Props, SwitchTypes.Classes>
+      TextField?: Stage.ComponentThemeOverrides<TextFieldTypes.Props, TextFieldTypes.Classes>
+      Meter?: Stage.ComponentThemeOverrides<MeterTypes.Props, MeterTypes.Classes>
+      Table?: Stage.ComponentThemeOverrides<TableTypes.Props<any>, TableTypes.Classes>
+      Badge?: Stage.ComponentThemeOverrides<BadgeTypes.Props, BadgeTypes.Classes>
+      Block?: Stage.ComponentThemeOverrides<BlockTypes.Props, BlockTypes.Classes>
+      Drop?: Stage.ComponentThemeOverrides<DropTypes.Props, DropTypes.Classes>
+      Flexbox?: Stage.ComponentThemeOverrides<FlexboxTypes.Props, FlexboxTypes.Classes>
+      Grid?: Stage.ComponentThemeOverrides<GridTypes.Props, GridTypes.Classes>
+      Modal?: Stage.ComponentThemeOverrides<ModalTypes.Props, ModalTypes.Classes>
+      Notification?: Stage.ComponentThemeOverrides<NotificationTypes.Props, NotificationTypes.Classes>
+      Popover?: Stage.ComponentThemeOverrides<PopoverTypes.Props, PopoverTypes.Classes>
+      Tree?: Stage.ComponentThemeOverrides<TreeTypes.Props, TreeTypes.Classes>
+      ScrollView?: Stage.ComponentThemeOverrides<ScrollView.Props, ScrollView.Classes>
     }
   }
 }

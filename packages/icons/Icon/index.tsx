@@ -1,9 +1,9 @@
 import { useSystem } from '@stage-ui/system'
-import React, { ForwardRefRenderFunction, RefObject } from 'react'
+import React, { ForwardRefRenderFunction } from 'react'
 import createClasses from './styles'
 import Types from './types'
 
-type SVG = ForwardRefRenderFunction<HTMLSpanElement, Types.Props & { reference?: RefObject<HTMLSpanElement> }>
+type SVG = ForwardRefRenderFunction<HTMLSpanElement, Types.Props & { reference?: React.ForwardedRef<HTMLSpanElement> }>
 
 const Svg: SVG = (props) => {
   const { size = 'm', shape } = props
@@ -38,7 +38,7 @@ type Icons = {
   outline: React.ReactElement
 }
 
-export const createIcon = (props: Types.IconProps = {}, ref: RefObject<HTMLSpanElement>, icons: Icons) => {
+export const createIcon = (props: Types.IconProps = {}, ref: React.ForwardedRef<HTMLSpanElement>, icons: Icons) => {
   return <Svg reference={ref} {...props} svg={icons[props.type || 'outline']} />
 }
 

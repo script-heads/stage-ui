@@ -1,15 +1,17 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-continue */
+/* eslint-disable no-restricted-syntax */
 import { Block, Flexbox } from '@stage-ui/core'
 import { useSystem } from '@stage-ui/system'
-import React, { forwardRef, ForwardRefRenderFunction, Fragment, useState } from 'react'
+import React, { forwardRef, Fragment, useState } from 'react'
 import styles from './styles'
 import TreeLabel from './TreeLabel'
 import TreeLeftChild from './TreeLeftChild'
 import TreeRightChild from './TreeRightChild'
 import Types from './types'
 
-const Tree: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props: Types.PrivateProps, ref) => {
-  let {
-    children,
+const Tree = forwardRef((props: Types.PrivateProps, ref: React.ForwardedRef<HTMLDivElement>) => {
+  const {
     leftChild,
     rightChild,
     label,
@@ -22,45 +24,43 @@ const Tree: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props: Type
     isParentOpen = true,
   } = props
 
+  const children = Array.isArray(props.children) ? props.children : [props.children]
+
   const [isOpen, setOpen] = useState(!!(props.open || props.defaultOpen))
 
   const { classes, attributes, events } = useSystem('Tree', props, styles)
 
-  const childs: {
-    child?: React.ReactNode
-    tree?: Types.ExtentedReactElement
+  const sortedChildrens: {
+    treeElement?: Types.TreeElement
+    otherElement?: React.ReactNode
   }[] = []
 
-  if (!Array.isArray(children)) {
-    children = [children]
-  }
-
-  for (const child of children as Types.ExtentedReactElement[]) {
+  for (const child of children as Types.TreeElement[]) {
     try {
-      if (child.type.render.name === 'Tree') {
-        childs.push({ tree: child })
+      if (child.props.__TYPE === 'Tree') {
+        sortedChildrens.push({ treeElement: child })
         continue
       }
       throw new Error()
     } catch (error) {
       if (child) {
-        childs.push({ child })
+        sortedChildrens.push({ otherElement: child })
       }
     }
   }
 
-  const hasChilds = childs.length > 0
+  const hasChilds = sortedChildrens.length > 0
 
-  const openHandle = (event) => {
+  const handleOpen = (event: React.MouseEvent<HTMLDivElement>) => {
     if (!props.open && hasChilds) {
       setOpen(!isOpen)
     }
-    events.all.onClick && events.all.onClick(event)
+    events.onClick?.(event)
   }
 
-  const keyPressHandle = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Enter') {
-      openHandle(event)
+      events.onEnter?.(event)
     }
   }
 
@@ -81,34 +81,42 @@ const Tree: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props: Type
           css={classes.row(variant)}
           {...attributes}
           {...events}
-          onKeyPress={keyPressHandle}
-          onClick={openHandle}
+          onKeyPress={handleKeyPress}
+          onClick={handleOpen}
           alignItems="center"
-          children={
-            <>
-              <TreeLeftChild css={classes.arrow(variant)} options={options} size={size} children={leftChild} />
-              <TreeLabel css={classes.label(variant)} options={options} size={size} children={label} />
-              <TreeRightChild options={options} size={size} children={rightChild} />
-            </>
-          }
-        />
+        >
+          <TreeLeftChild css={classes.arrow(variant)} options={options} size={size}>
+            {leftChild}{' '}
+          </TreeLeftChild>
+          <TreeLabel css={classes.label(variant)} options={options} size={size}>
+            {label}
+          </TreeLabel>
+          <TreeRightChild options={options} size={size}>
+            {rightChild}
+          </TreeRightChild>
+        </Flexbox>
       )}
-      {childs.map((child, index) => (
-        <Fragment key={index}>
-          {child.tree
-            ? React.cloneElement(child.tree as any, {
-                size: child.tree.props.size || props.size,
-                decoration: child.tree.props.decoration || props.decoration,
-                lvl: lvl + 1,
-                isParentOpen: !isParentOpen ? false : isOpen,
-              })
-            : isOpen
-            ? child.child
-            : null}
-        </Fragment>
-      ))}
+      {sortedChildrens.map((child, index) => {
+        const render = isOpen ? child.otherElement : null
+        return (
+          <Fragment key={index}>
+            {child.treeElement
+              ? React.cloneElement(child.treeElement, {
+                  size: child.treeElement.props.size || size,
+                  decoration: child.treeElement.props.decoration || decoration,
+                  lvl: lvl + 1,
+                  isParentOpen: !isParentOpen ? false : isOpen,
+                })
+              : render}
+          </Fragment>
+        )
+      })}
     </Container>
   )
+})
+
+Tree.defaultProps = {
+  __TYPE: 'Tree',
 }
 
-export default forwardRef(Tree)
+export default Tree as React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>

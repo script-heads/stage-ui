@@ -16,14 +16,9 @@ const dialog = (options: ModalTypes.DialogOptions) => {
   addElement(
     <Modal
       {...options}
-      ref={(ref: ModalTypes.Ref) => (modal = ref)}
-      title={options.title}
-      subtitle={options.subtitle}
-      hideHeader={options.hideHeader}
-      styles={options.styles}
-      size={options.size}
-      decoration={options.decoration}
-      onOpen={options.onOpen}
+      ref={(ref: ModalTypes.Ref) => {
+        modal = ref
+      }}
       didClose={() => {
         removeElement(key)
         options.didClose?.()

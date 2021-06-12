@@ -1,6 +1,6 @@
 import { Flexbox, Spinner } from '@stage-ui/core'
 import { ChevronDown } from '@stage-ui/icons'
-import { useState, forwardRef, ForwardRefRenderFunction } from 'react'
+import React, { useState, forwardRef, ForwardRefRenderFunction } from 'react'
 import Types from './types'
 
 const TableHeadCell: ForwardRefRenderFunction<HTMLTableDataCellElement, Types.HeadCellProps<any>> = (props, ref) => {
@@ -10,14 +10,14 @@ const TableHeadCell: ForwardRefRenderFunction<HTMLTableDataCellElement, Types.He
 
   const toggleSort = () => {
     setUp(!up)
-    typeof column.sort === 'function' && setBusy(true)
+    if (typeof column.sort === 'function') setBusy(true)
     props
       .toggleSort({
         key: column.key,
         sort: up ? 'ASC' : 'DESC',
       })
       .then(() => {
-        typeof column.sort === 'function' && setBusy(false)
+        if (typeof column.sort === 'function') setBusy(false)
       })
   }
 

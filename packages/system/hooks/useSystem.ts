@@ -7,8 +7,6 @@ import createVariant, { Variant } from '../utils/createVariant'
 import isFunction from '../utils/isFunction'
 import { AllEventProps, AllProps, AttributeProps } from '../props/types'
 
-export type FilterStartingWith<Set, Needle extends string> = Set extends `${Needle}${infer X}` ? Set : never
-
 export interface Options {
   focus?: 'always' | 'tabOnly' | 'never'
   label?: string
@@ -43,6 +41,14 @@ export type OverridesClassesDefinition<ClassesSchema extends ClassesSchemaDefini
   [ClassName in keyof ClassesSchema]?: FunctionClassDefinition<Exclude<ClassesSchema[ClassName], void>> | Stage.JSS
 }
 
+export type PropOverrides<ClassesSchema extends ClassesSchemaDefinition> =
+  | ((theme: Stage.Theme, styleProps: StyleProps) => OverridesClassesDefinition<ClassesSchema>)
+  | OverridesClassesDefinition<ClassesSchema>
+
+export type ThemeOverrides<Props, ClassesSchema extends ClassesSchemaDefinition> =
+  | ((props: Props, styleProps: StyleProps) => OverridesClassesDefinition<ClassesSchema>)
+  | OverridesClassesDefinition<ClassesSchema>
+
 export type ClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = {
   [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends void
     ? Stage.JSS
@@ -66,7 +72,7 @@ export type CreateClasses<ClassesSchema extends ClassesSchemaDefinition, Props> 
 export type ComponentData<Props extends Record<string, any>, ClassesSchema extends ClassesSchemaDefinition> = {
   classes: Classes<ClassesSchema>
   attributes: Pick<Props, keyof AttributeProps>
-  events: Pick<Props, FilterStartingWith<keyof Props, 'on'>>
+  events: Pick<Props, Stage.FilterStartingWith<keyof Props, 'on'>>
   styleProps: StyleProps
 }
 
@@ -84,7 +90,13 @@ window.addEventListener('focus', () => {
 })
 
 function useSystem<
-  Props extends AllProps<Element, ClassesSchema>,
+  Props extends Omit<
+    AllProps<Element, ClassesSchema>,
+    keyof Omit<
+      AllEventProps<Element>,
+      'onFocus' | 'onBlur' | 'onKeyPress' | 'onClick' | 'onKeyDown' | 'onEsc' | 'onEnter'
+    >
+  >,
   ClassesSchema extends ClassesSchemaDefinition,
   Element extends HTMLElement,
 >(name: string, props: Props, createClasses: Stage.CreateClasses<ClassesSchema, Props>, options: Options = {}) {
@@ -115,7 +127,8 @@ function useSystem<
   Object.keys(props).forEach((key) => {
     // Check *on* events
     if (key[0] === 'o' && key[1] === 'n') {
-      data.events[key as keyof AllEventProps<any>] = props[key]
+      // @ts-ignore
+      data.events[key] = props[key]
     }
     if (Object.prototype.hasOwnProperty.call(propsResolvers, key)) {
       propsResolvers[key](props, data, theme)
@@ -176,7 +189,7 @@ function useSystem<
   )
   data.styleProps.all = data.styleProps.all.concat(data.styleProps.container, data.styleProps.content)
 
-  const themeOverrides = theme.overrides[name]
+  const themeOverrides = theme.overrides[name as keyof typeof theme.overrides] as ThemeOverrides<Props, ClassesSchema>
   const propsOverrides = props.overrides
 
   const componentClasses: ClassesDefinition<ClassesSchema> = createClasses(theme, props, data.styleProps)
@@ -194,7 +207,8 @@ function useSystem<
 
     // @ts-ignore
     data.classes[key] = isFunction(componentClasses[key])
-      ? (state) => {
+      ? // @ts-ignore
+        (state) => {
           const variant = createVariant(state)
           return [
             classLabel,

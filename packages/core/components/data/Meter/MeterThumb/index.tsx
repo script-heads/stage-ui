@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './styles'
 import Types from './types'
 
-const MeterThumb = (props: Types.PrivateProps) => {
+const MeterThumb = (props: Types.Props) => {
   const { shape = 'round', size = 'm', value = 0 } = props
   const { classes, attributes, events } = useSystem('MeterThumb', props, styles)
 

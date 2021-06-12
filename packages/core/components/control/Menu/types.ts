@@ -1,5 +1,3 @@
-import Menu from '.'
-
 declare namespace MenuTypes {
   type MenuValue = string | number
   type MenuDirection = 'row' | 'column' | 'row-reverse' | 'column-reverse'
@@ -15,7 +13,7 @@ declare namespace MenuTypes {
     itemAs?: keyof HTMLElementTagNameMap
   }
 
-  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Classes>, 'onChange'> {
+  interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
     /**
      * Value selected by default
      */

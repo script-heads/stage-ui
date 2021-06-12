@@ -1,11 +1,11 @@
-import applyLayoutDecoration from '@stage-ui/core/utils/applyLayoutDecoration'
+import containerDecorations from '@stage-ui/core/utils/containerDecorations'
 import breakpointProps from '@stage-ui/system/props/breakpoint'
 import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, styleProps) => {
   return {
     container: (variant) => [
-      applyLayoutDecoration(props, theme),
+      containerDecorations(props, theme),
       {
         position: 'relative',
         display: props.inline ? 'inline-flex' : 'flex',

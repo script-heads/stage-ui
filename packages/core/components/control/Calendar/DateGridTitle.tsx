@@ -25,7 +25,7 @@ const Title = (props: { value: string; onClick?: () => void }) => (
     weight={700}
     css={{
       userSelect: 'none',
-      cursor: props.onClick !== void 0 ? 'pointer' : 'default',
+      cursor: props.onClick !== undefined ? 'pointer' : 'default',
     }}
     onClick={props.onClick}
     capitalize

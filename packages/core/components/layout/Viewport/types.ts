@@ -1,6 +1,5 @@
 import { Options } from '@emotion/cache'
 import { SerializedStyles } from '@emotion/react'
-import SystemTypes from '@stage-ui/system/types'
 
 declare namespace ViewportTypes {
   interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
@@ -17,7 +16,7 @@ declare namespace ViewportTypes {
      * Defines which theme to put in context.
      * @default light
      */
-    theme?: 'dark' | 'light' | SystemTypes.Theme
+    theme?: 'dark' | 'light' | Stage.Theme
     /**
      * Set global CSS
      */
@@ -36,8 +35,8 @@ declare namespace ViewportTypes {
   }
 
   interface Themes {
-    light: SystemTypes.Theme
-    dark: SystemTypes.Theme
+    light: Stage.Theme
+    dark: Stage.Theme
   }
 
   interface MountArea {
@@ -50,7 +49,7 @@ declare namespace ViewportTypes {
   }
 
   interface Context {
-    theme: SystemTypes.Theme
+    theme: Stage.Theme
   }
 }
 

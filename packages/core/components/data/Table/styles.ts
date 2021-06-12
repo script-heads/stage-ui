@@ -1,4 +1,4 @@
-import applyLayoutDecoration from '@stage-ui/core/utils/applyLayoutDecoration'
+import containerDecorations from '@stage-ui/core/utils/containerDecorations'
 import Types from './types'
 
 // TODO: borderBottomStyle type incorrect
@@ -6,7 +6,7 @@ import Types from './types'
 const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, styleProps) => {
   return {
     container: [
-      applyLayoutDecoration({ decoration: 'surface', ...props }, theme),
+      containerDecorations({ decoration: 'surface', ...props }, theme),
       {
         width: '100%',
         borderCollapse: 'inherit',

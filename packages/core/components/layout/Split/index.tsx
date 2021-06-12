@@ -1,74 +1,76 @@
+/* eslint-disable no-param-reassign */
 import { useSystem } from '@stage-ui/system'
-import { forwardRef, ForwardRefRenderFunction, Fragment, useEffect, useMemo } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, Fragment, useEffect, useMemo } from 'react'
 import Separator from './Separator'
 import styles from './styles'
 import Types from './types'
 
-export type SplitElRef =
-  | (HTMLDivElement & {
-      _vertical?: true
-      _onMove?: () => void
-      _onChange?: () => void
-    })
-  | null
-
-interface SplitElRefs {
-  [key: number]: SplitElRef
-}
-
 const Split: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-  const { classes, attributes, events } = useSystem('Split', props, styles)
+  const { positions, direction } = props
+  const {
+    classes,
+    attributes,
+    events: { onChange, onMove, ...events },
+  } = useSystem('Split', props, styles)
 
   const vertical = props.direction === 'column'
 
-  const refs: SplitElRefs = useMemo(() => ({}), [])
+  const refs = useMemo<Record<string, Types.Ref>>(() => ({}), [])
 
   const defaultSize = useMemo(() => 100 / props.children.length, [])
 
   const getPositions = () =>
     Object.keys(refs)
-      .filter((key) => parseInt(key) >= 0)
-      .map((key) => parseFloat(refs[key].style[vertical ? 'height' : 'width'] || ''))
+      .filter((key) => parseInt(key, 10) >= 0)
+      .map((key) => parseFloat(refs[key].current?.style[vertical ? 'height' : 'width'] || ''))
 
   useEffect(() => {
-    refs['-1']._onMove = () => {
-      props.onMove && props.onMove(getPositions())
+    if (refs['-1'].current) {
+      refs['-1'].current.onMove = () => {
+        onMove?.(getPositions())
+      }
+      refs['-1'].current.onChange = () => {
+        onChange?.(getPositions())
+      }
     }
-    refs['-1']._onChange = () => {
-      props.onChange && props.onChange(getPositions())
-    }
-  }, [props.onChange, props.onMove])
+  }, [onChange, onMove])
 
   useEffect(() => {
     Object.keys(refs)
-      .filter((key) => parseInt(key) >= 0)
-      .map((key) => {
-        const percent = props.positions ? props.positions[key] : defaultSize
-        refs[key].style[vertical ? 'height' : 'width'] = `${percent}%`
+      .filter((key) => parseInt(key, 10) >= 0)
+      .forEach((key) => {
+        if (refs[key].current) {
+          refs[key].current!.style[vertical ? 'height' : 'width'] = `${
+            positions ? positions[parseInt(key, 10)] : defaultSize
+          }%`
+        }
       })
-    refs['-1']._vertical = props.direction === 'column'
-  }, [props.positions, props.direction])
+    if (refs['-1'].current) {
+      refs['-1'].current.vertical = direction === 'column'
+    }
+  }, [positions, direction])
 
   return (
     <div
       {...attributes}
       {...events}
-      ref={(r) => {
-        refs[-1] = r
-        ref = { current: r }
+      ref={(containerRef) => {
+        refs['-1'] = { current: containerRef }
+        ref = { current: containerRef }
       }}
       css={classes.container({
         vertical,
       })}
-      children={props.children.map((child, index) => {
+    >
+      {props.children.map((child, index) => {
         const separator =
           props.children.length !== index + 1 ? (
             <Separator
               areaSize={props.areaSize || 4}
               defaultVertical={vertical}
-              container={() => refs[-1] as HTMLDivElement}
-              prev={() => refs[index] as HTMLDivElement}
-              next={() => refs[index + 1] as HTMLDivElement}
+              container={() => refs[-1]}
+              prev={() => refs[index]}
+              next={() => refs[index + 1]}
             />
           ) : null
 
@@ -81,14 +83,17 @@ const Split: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
               style={{
                 [vertical ? 'height' : 'width']: `${defaultSize}%`,
               }}
-              ref={(ref) => (refs[index] = ref)}
-              children={child}
-            />
+              ref={(nestedRef) => {
+                refs[index] = { current: nestedRef }
+              }}
+            >
+              {child}
+            </div>
             {separator}
           </Fragment>
         )
       })}
-    />
+    </div>
   )
 }
 

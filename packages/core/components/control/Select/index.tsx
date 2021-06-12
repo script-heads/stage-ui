@@ -5,7 +5,6 @@ import DropTypes from '@stage-ui/core/components/layout/Drop/types'
 import Field from '@stage-ui/core/components/basic/Field'
 import { useSystem } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction, useEffect, useImperativeHandle, useRef, useState } from 'react'
-import additionalClasses from '@stage-ui/core/components/basic/Field/styles'
 import styles from './styles'
 import Types from './types'
 
@@ -56,7 +55,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     return true
   })
 
-  const { classes, attributes, events } = useSystem('Select', props, styles)
+  const { classes, events, styleProps } = useSystem('Select', props, styles)
 
   /**
    * Object for variant styles
@@ -171,49 +170,42 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
   return (
     <>
       <Field
-        {...attributes}
-        overrides={{
-          container: (variant) => [
-            variant({
-              isOpen: {
-                zIndex: 999,
-              },
-            }),
+        {...props}
+        tabIndex={tabIndex}
+        overrides={(theme) => ({
+          container: [
+            isOpen && {
+              zIndex: 999,
+            },
             styleProps.container,
           ],
           field: (variant) => [
+            isOpen && {
+              borderColor: theme.color.primary.rgb().string(),
+            },
             variant({
-              isOpen: {
-                borderColor: theme.color.primary.rgb().string(),
-              },
               decoration: {
                 filled: [
-                  variant({
-                    isOpen: {
-                      borderColor: 'transparent',
-                    },
-                  }),
+                  isOpen && {
+                    borderColor: 'transparent',
+                  },
                 ],
                 none: [
                   { padding: 0 },
-                  variant({
-                    isOpen: {
-                      borderColor: 'transparent',
-                    },
-                  }),
+                  isOpen && {
+                    borderColor: 'transparent',
+                  },
                 ],
                 underline: [
-                  variant({
-                    isOpen: {
-                      borderColor: 'transparent',
-                    },
-                  }),
+                  isOpen && {
+                    borderColor: 'transparent',
+                  },
                 ],
               },
             }),
             styleProps.content,
           ],
-        }}
+        })}
         ref={fieldRef}
         size={size}
         disabled={disabled}

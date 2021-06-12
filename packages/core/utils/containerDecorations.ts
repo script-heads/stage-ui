@@ -11,11 +11,11 @@ const skeleton = keyframes`
     opacity: .8;
   }
 `
-export type LayoutDecoration = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' | 'skeleton'
+export type ContainerDecorations = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' | 'skeleton'
 
-type Props = AllProps<HTMLDivElement, {}> & { decoration?: LayoutDecoration }
+type Props = Stage.AllProps<HTMLDivElement, {}> & { decoration?: ContainerDecorations }
 
-const applyLayoutDecoration = (props: Props, theme: Theme) => {
+const containerDecorations = (props: Props, theme: Stage.Theme) => {
   switch (props.decoration) {
     case 'surface':
       return {
@@ -50,7 +50,7 @@ const applyLayoutDecoration = (props: Props, theme: Theme) => {
       }
   }
 
-  return void 0
+  return null
 }
 
-export default applyLayoutDecoration
+export default containerDecorations

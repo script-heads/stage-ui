@@ -1,12 +1,36 @@
 import { useSystem } from '@stage-ui/system'
-import { forwardRef, ForwardRefRenderFunction, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import React, {
+  forwardRef,
+  ForwardRefRenderFunction,
+  MouseEvent,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react'
 import createClasses from './styles'
 import Types from './types'
+
+function value2Percent(value: number, min: number, max: number) {
+  const percent = ((value - min) / (max - min)) * 100
+
+  if (percent <= 0) return 0
+  if (percent >= 100) return 100
+  return percent
+}
+
+function percent2Value(percent: number, min: number, max: number) {
+  return Math.floor(min + ((max - min) / 100) * percent)
+}
 
 const Range: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
   const { min = 0, max = 100, value, defaultValue } = props
 
-  const { classes, attributes, events } = useSystem('Range', props, createClasses)
+  const {
+    classes,
+    attributes,
+    events: { onChange, ...events },
+  } = useSystem('Range', props, createClasses)
 
   const thumbRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
@@ -15,18 +39,18 @@ const Range: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
 
   useImperativeHandle(ref, () => ({
     container: containerRef.current as HTMLDivElement,
-    setValue: (value: number) => {
-      setPosition(value2Percent(value, min, max))
+    setValue: (currentValue: number) => {
+      setPosition(value2Percent(currentValue, min, max))
     },
   }))
 
   let isActive = false
 
-  function onUp(e: any) {
+  function onUp() {
     isActive = false
   }
 
-  function onMove(e: any, force?: boolean) {
+  function onMove(e: Pick<MouseEvent, 'pageX'>, force?: boolean) {
     if (force) {
       isActive = true
     }
@@ -36,7 +60,7 @@ const Range: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
       const { left, right } = containerRef.current.getBoundingClientRect()
       const percent = value2Percent(e.pageX, left, right)
 
-      props.onChange && props.onChange(percent2Value(percent, min, max))
+      onChange?.(percent2Value(percent, min, max))
 
       if (!value && thumbRef.current && trackRef.current) {
         thumbRef.current.style.left = `${percent}%`
@@ -74,18 +98,6 @@ const Range: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
       <div ref={thumbRef} css={classes.thumb} style={{ left: `${position}%` }} />
     </div>
   )
-}
-
-function value2Percent(value: number, min: number, max: number) {
-  const percent = ((value - min) / (max - min)) * 100
-
-  if (percent <= 0) return 0
-  if (percent >= 100) return 100
-  return percent
-}
-
-function percent2Value(percent: number, min: number, max: number) {
-  return Math.floor(min + ((max - min) / 100) * percent)
 }
 
 export default forwardRef(Range)

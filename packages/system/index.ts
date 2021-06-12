@@ -1,14 +1,19 @@
-import { Interpolation } from '@emotion/react'
+import { CSSInterpolation } from '@emotion/serialize'
 import ColorType from 'color'
 import { ColorProp as ColorPropType } from '@stage-ui/system/props/color'
 import { ReplaceTheme } from './utils/createTheme'
 import { AllProps as AllPropsType } from './props/types'
-import { ClassesSchemaDefinition, CreateClasses as CreateClassesType } from './hooks/useSystem'
+import {
+  ClassesSchemaDefinition,
+  CreateClasses as CreateClassesType,
+  PropOverrides as PropOverridesType,
+  ThemeOverrides as ThemeOverridesType,
+} from './hooks/useSystem'
 
 declare global {
   namespace Stage {
     type Sizes = 'xs' | 's' | 'm' | 'l' | 'xl'
-    type JSS = Interpolation<Theme>
+    type JSS = CSSInterpolation
     type ColorDefinition = [number, number, number, number?]
     type Color = ColorType<ColorDefinition>
 
@@ -94,9 +99,16 @@ declare global {
       replace: (theme: ReplaceTheme) => Theme
     }
 
-    type AllProps<Containter, ClassSchema> = AllPropsType<Containter, ClassSchema>
+    type AllProps<Containter, ClassSchema extends ClassesSchemaDefinition> = AllPropsType<Containter, ClassSchema>
     type CreateClasses<ClassesSchema extends ClassesSchemaDefinition, Props> = CreateClassesType<ClassesSchema, Props>
     type ColorProp = ColorPropType
+    type PropOverrides<ClassSchema extends ClassesSchemaDefinition> = PropOverridesType<ClassSchema>
+    type ComponentThemeOverrides<Props, ClassSchema extends ClassesSchemaDefinition> = ThemeOverridesType<
+      Props,
+      ClassSchema
+    >
+
+    type FilterStartingWith<Set, Needle extends string> = Set extends `${Needle}${infer X}` ? Set : never
   }
 }
 

@@ -1,9 +1,14 @@
-import additionalClasses from '@stage-ui/core/components/basic/Field/styles'
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import useMask from '@stage-ui/core/hooks/useMask'
+import { Calendar as CalendarIcon } from '@stage-ui/icons'
 import { useSystem } from '@stage-ui/system'
 import moment, { Moment } from 'moment'
-import { forwardRef, ForwardRefRenderFunction, useLayoutEffect, useRef, useState } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, useLayoutEffect, useRef, useState } from 'react'
 import Field from '../../basic/Field'
+import Drop from '../../layout/Drop'
+import Popover from '../../layout/Popover'
+import Calendar from '../Calendar'
 import maskConf from './mask'
 import createClasses from './styles'
 import Types from './types'
@@ -17,7 +22,6 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
     size = 'm',
     shape = 'rounded',
     tabIndex = 0,
-    label,
   } = props
 
   moment.locale(locale)
@@ -25,16 +29,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
   const now = moment()
   const [value, setValue] = useState(now)
   const [isActive, setActive] = useState(false)
-  const { classes, attributes, events, focus } = useSystem('DatePicker', props, createClasses, {
-    additionalClasses: additionalClasses as Stage.CreateAdditionalClasses<Types.Classes, Types.Props>,
-  })
-
-  // TODO: container check
-  // styleProps: {
-  //   container: ['margin','flex','grid', 'layout'],
-  //   field: ['color', 'border', 'padding'],
-  // },
-  
+  const { classes, events, styleProps } = useSystem('DatePicker', props, createClasses)
 
   const minValue = props.minValue ? moment(props.minValue).startOf('day') : now.clone().add(-500, 'year')
   const maxValue = props.maxValue ? moment(props.maxValue).startOf('day') : now.clone().add(500, 'year')
@@ -42,25 +37,15 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
   const inputRef = useRef<HTMLInputElement>(null)
   const mask = props.masked && useMask(inputRef, maskConf(format, minValue, maxValue))
 
-  useLayoutEffect(() => {
-    if (props.value) {
-      if (typeof props.value === 'string') {
-        onChange(moment(props.value, format))
-      } else {
-        onChange(moment(props.value))
-      }
-    }
-  }, [props.value])
-
-  function onChange(value: Moment) {
-    if (!value.isValid) {
+  function onChange(currentValue: Moment) {
+    if (!currentValue.isValid) {
       return
     }
 
     if (mask) {
-      mask.value = value.format(format)
+      mask.value = currentValue.format(format)
     } else if (inputRef.current) {
-      inputRef.current.value = value.format(format)
+      inputRef.current.value = currentValue.format(format)
     }
 
     setValue(value)
@@ -73,71 +58,76 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
     }
   }
 
+  useLayoutEffect(() => {
+    if (props.value) {
+      if (typeof props.value === 'string') {
+        onChange(moment(props.value, format))
+      } else {
+        onChange(moment(props.value))
+      }
+    }
+  }, [props.value])
+
   return (
     <>
       <Field
         {...props}
+        tabIndex={tabIndex}
         ref={ref}
         decoration={decoration}
         size={size}
         shape={shape}
-        focus={focus}
-        styles={classes}
-        events={{
-          ...events,
-          onFocus: (e) => {
-            inputRef.current?.focus()
-            events?.all?.onFocus?.(e)
-            if (!props.disabled) {
-              setActive(true)
-            }
-          },
-          onClick: (e) => {
-            events.all.onClick?.(e)
-            if (!props.disabled) {
-              setActive(true)
-            }
-          },
+        overrides={{
+          container: styleProps.container,
+          content: styleProps.content,
         }}
-        attributes={{
-          ...attributes,
-          tabIndex,
+        onFocus={(e) => {
+          inputRef.current?.focus()
+          events.onFocus?.(e)
+          if (!props.disabled) {
+            setActive(true)
+          }
+        }}
+        onClick={(e) => {
+          events.onClick?.(e)
+          if (!props.disabled) {
+            setActive(true)
+          }
         }}
         rightChild={props.rightChild || <CalendarIcon />}
-        children={jsx('input', {
-          ref: inputRef,
-          onKeyUp: (e) => {
-            const date = moment(e.target.value, format)
+      >
+        <input
+          ref={inputRef}
+          onKeyUp={(e) => {
+            const date = moment(
+              (e as React.KeyboardEvent<HTMLInputElement> & { target: { value: string } }).target.value,
+              format,
+            )
             if (date.isValid() && date > minValue && date < maxValue) {
               setValue(date)
             }
-          },
-          css: classes.input,
-
-          defaultValue: defaultValue ? moment(defaultValue, format) : moment().format(format),
-          disabled: props.disabled,
-          autoComplete: props.autoComplete,
-          autoFocus: props.autoFocus,
-          list: props.list,
-          name: props.name,
-          placeholder: props.placeholder,
-          pattern: props.pattern,
-          readOnly: props.readOnly,
-          required: props.required,
-          // type: props.type,
-
-          form: props.form,
-          formAction: props.formAction,
-          formEncType: props.formEncType,
-          formMethod: props.formMethod,
-          formNoValidate: props.formNoValidate,
-          formTarget: props.formTarget,
-
-          tabIndex: props.tabIndex,
-          onFocus: (e) => props.onFocus && props.onFocus(e),
-          onBlur: (e) => props.onBlur && props.onBlur(e),
-        })}
-      />
+          }}
+          css={classes.input}
+          defaultValue={defaultValue ? moment(defaultValue, format).format(format) : moment().format(format)}
+          disabled={props.disabled}
+          autoComplete={props.autoComplete}
+          list={props.list}
+          name={props.name}
+          placeholder={props.placeholder}
+          pattern={props.pattern}
+          readOnly={props.readOnly}
+          required={props.required}
+          form={props.form}
+          formAction={props.formAction}
+          formEncType={props.formEncType}
+          formMethod={props.formMethod}
+          formNoValidate={props.formNoValidate}
+          formTarget={props.formTarget}
+          tabIndex={props.tabIndex}
+          onFocus={(e) => props.onFocus && props.onFocus(e)}
+          onBlur={(e) => props.onBlur && props.onBlur(e)}
+        />
+      </Field>
       <Drop
         visible={isActive}
         // TODO: wtf

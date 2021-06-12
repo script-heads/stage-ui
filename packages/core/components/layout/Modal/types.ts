@@ -1,4 +1,4 @@
-import { Classes } from '@stage-ui/system/hooks/useSystem'
+import { Classes as ClassesType } from '@stage-ui/system/hooks/useSystem'
 import {
   AllEventProps,
   AttributeProps,
@@ -120,7 +120,7 @@ declare namespace ModalTypes {
 
   interface ModalOverlayProps {
     getStyles: () => {
-      classes: Classes<Classes>
+      classes: ClassesType<Classes>
       state: ClassState
     }
     children?: React.ReactNode
@@ -135,7 +135,7 @@ declare namespace ModalTypes {
     containerEvents?: any
     onClosePressed: () => void
     getStyles: () => {
-      classes: Classes<Classes>
+      classes: ClassesType<Classes>
       state: ClassState
     }
   }
@@ -146,7 +146,7 @@ declare namespace ModalTypes {
     hideHeader?: boolean
     onClosePressed: () => void
     getStyles: () => {
-      classes: Classes<Classes>
+      classes: ClassesType<Classes>
       state: ClassState
     }
   }

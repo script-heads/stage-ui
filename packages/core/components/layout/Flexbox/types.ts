@@ -1,4 +1,4 @@
-import { LayoutDecoration } from '@stage-ui/core/utils/applyLayoutDecoration'
+import { ContainerDecorations } from '@stage-ui/core/utils/containerDecorations'
 import { BreakpointProp } from '@stage-ui/system/props/breakpoint'
 import { FlexSelf } from '@stage-ui/system/props/types'
 import CSS from 'csstype'
@@ -93,7 +93,7 @@ declare namespace FlexboxTypes {
     /**
      * Defines how flexbox look
      */
-    decoration?: LayoutDecoration
+    decoration?: ContainerDecorations
     /**
      * Flexbox content
      */
@@ -105,7 +105,7 @@ declare namespace FlexboxTypes {
      * Root element
      */
     container: {
-      decoration?: LayoutDecoration
+      decoration?: ContainerDecorations
     }
   }
 

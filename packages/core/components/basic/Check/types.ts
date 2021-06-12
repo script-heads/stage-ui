@@ -1,7 +1,9 @@
+import { ClassesSchemaDefinition } from '@stage-ui/system/hooks/useSystem'
+
 declare namespace CheckTypes {
   type CheckType = 'checkbox' | 'radio' | 'switch'
 
-  interface Props<Element = HTMLDivElement, ClassesOveddides = Classes>
+  interface Props<Element = HTMLDivElement, ClassesOveddides extends ClassesSchemaDefinition = Classes>
     extends Stage.AllProps<Element, ClassesOveddides> {
     label?: string
     labelColor?: Stage.ColorProp

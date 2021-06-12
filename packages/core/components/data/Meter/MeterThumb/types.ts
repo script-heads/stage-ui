@@ -15,9 +15,9 @@ declare namespace MeterThumbTypes {
      * @default false
      */
     loading?: MeterTypes.Props['loading']
+    shape?: MeterTypes.Props['shape']
+    size?: MeterTypes.Props['size']
   }
-
-  interface PrivateProps extends MeterTypes.Props {}
 
   type Classes = {
     /**

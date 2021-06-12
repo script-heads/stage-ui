@@ -1,5 +1,5 @@
 import { useSystem } from '@stage-ui/system'
-import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
+import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import styles from './styles'
 import TableFoot from './TableFoot'
 import TableHeadCell from './TableHeadCell'
@@ -12,9 +12,13 @@ export const dndContext = {
   target: -1,
 }
 
-function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
+function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.TableRef<Row>) {
   const tableRef = useRef<HTMLTableElement>(null)
-  const { classes, attributes, events } = useSystem('Table', props, styles)
+  const {
+    classes,
+    attributes,
+    events: { onChange, ...events },
+  } = useSystem('Table', props, styles)
   const { columns, pagination, footer } = props
   const [currentPage, setCurrentPage] = useState(1)
   const [reloadData, reload] = useState(false)
@@ -25,8 +29,8 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
 
   const isDraggableSupport = !!columns.find((column) => column.dnd)
 
-  const mapRowContext = (row: any) => {
-    const isCellModify: Types.TableRowContext<ROW>['isCellModify'] = {}
+  const mapRowContext = (row: Row) => {
+    const isCellModify: Types.TableRowContext<Row>['isCellModify'] = {}
     columns.forEach((column) => {
       isCellModify[column.key] = false
     })
@@ -44,13 +48,13 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
    * will not work and vice versa
    */
   let rowCtx = isDraggableSupport
-    ? useMemo(() => (props.data as any).map(mapRowContext), [])
-    : (props.data.slice() as any).map(mapRowContext)
+    ? useMemo(() => props.data.map(mapRowContext), [])
+    : props.data.slice().map(mapRowContext)
 
   /**
    * Getting current data state
    */
-  const getData = () => rowCtx.map((rowCtx: any) => rowCtx.row)
+  const getData = () => rowCtx.map((currentRowCtx) => currentRowCtx.row)
 
   /**
    * Soring column by its settings
@@ -73,14 +77,14 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
   }
 
   const toggleSort = (value: Types.TableSortObject) => {
-    const column = columns.find((column) => column.key === value.key)
+    const column = columns.find((currentColumn) => currentColumn.key === value.key)
     if (column) {
       if (typeof column.sort === 'function') {
         return column.sort(value.sort)
       }
       setSort(value)
     }
-    return new Promise((resolve) => resolve(void 0))
+    return new Promise((resolve) => resolve(undefined))
   }
 
   /**
@@ -95,13 +99,12 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
     })
     /** keepit */
     setTimeout(() => {
-      props.onChange?.(data)
+      onChange?.(data)
     }, 0)
     reload(!reloadData)
   }
 
-  // @ts-ignore
-  const getCellContext: Types.TableRef<ROW>['getCellContext'] = (index, key) => {
+  const getCellContext: Types.TableRef<Row>['getCellContext'] = (index, key) => {
     if (!rowCtx[index]?.row) {
       return null
     }
@@ -127,7 +130,7 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
     }
   }
 
-  const setExpand: Types.TableRef<ROW>['setExpand'] = (index, content) => {
+  const setExpand: Types.TableRef<Row>['setExpand'] = (index, content) => {
     if (rowCtx[index]) {
       rowCtx[index].setExpandComponent?.(content)
       return true
@@ -135,17 +138,17 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
     return false
   }
 
-  const setModify: Types.TableRef<ROW>['setModify'] = (modify, index, key) => {
+  const setModify: Types.TableRef<Row>['setModify'] = (modify, index, key) => {
     if (rowCtx[index]) {
       if (key !== undefined) {
         // @ts-ignore
-        if (rowCtx[index].row.hasOwnProperty(key)) {
+        if (Object.prototype.hasOwnProperty.call(rowCtx[index].row, key)) {
           rowCtx[index].setModifyState[key]?.(modify)
           return true
         }
       }
-      Object.keys(rowCtx[index].isCellModify).forEach((key) => {
-        rowCtx[index].setModifyState[key]?.(modify)
+      Object.keys(rowCtx[index].isCellModify).forEach((currentKey) => {
+        rowCtx[index].setModifyState[currentKey]?.(modify)
       })
       return true
     }
@@ -209,7 +212,7 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
 
   useEffect(() => {
     if (sort.key) {
-      props.onChange?.(getData())
+      onChange?.(getData())
     }
   }, [sort.key, sort.sort])
 
@@ -219,14 +222,14 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
   return (
     <table {...attributes} {...events} ref={tableRef} css={classes.container}>
       <thead>
-        <tr
-          children={columns.map((column, colIndex) => (
+        <tr>
+          {columns.map((column, colIndex) => (
             <TableHeadCell key={colIndex} styles={classes} column={column} toggleSort={toggleSort} />
           ))}
-        />
+        </tr>
       </thead>
-      <tbody
-        children={rowCtx.map((rowCtxItem, rowIndex) => {
+      <tbody>
+        {rowCtx.map((rowCtxItem, rowIndex) => {
           if (pagination) {
             const { pageSize } = pagination
             const startIndex = pageSize * (currentPage - 1)
@@ -237,18 +240,18 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
           /**
            * Row events map
            */
-          const events: Types.RowEvents<ROW> = {}
+          const currentEvents: Types.RowEvents<Row> = {}
           /**
            * We'll call onRow*Event* at on*Event*
            * with injected rowIndex.
            */
-          Object.keys(props).forEach((key) => {
-            if (/onRow/.exec(key)) {
-              events[key.replace('Row', '')] = (e: MouseEvent) => {
-                return props[key](rowCtxItem, e)
+          Object.keys(props)
+            .filter((key) => /onRow/.exec(key))
+            .forEach((key) => {
+              currentEvents[key.replace('Row', '')] = (e: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => {
+                return props[key as Stage.FilterStartingWith<keyof typeof props, 'onRow'>]?.(rowCtxItem, e)
               }
-            }
-          })
+            })
 
           return (
             <TableRow
@@ -271,7 +274,7 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
             />
           )
         })}
-      />
+      </tbody>
       <TableFoot
         rowCtx={rowCtx}
         styles={classes}
@@ -284,7 +287,7 @@ function Table<ROW>(props: Types.Props<ROW>, ref: Types.TableRef<ROW>) {
   )
 }
 
-export default forwardRef(Table as any) as <ROW>(
-  props: Types.Props<ROW>,
-  ref: Types.TableRef<ROW>,
+export default forwardRef(Table as any) as <Row extends Types.RowType>(
+  props: Types.Props<Row>,
+  ref: Types.TableRef<Row>,
 ) => React.ReactElement

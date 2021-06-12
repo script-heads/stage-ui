@@ -22,12 +22,28 @@ declare namespace SplitTypes {
     onChange?: (positions: number[]) => void
   }
 
+  interface SeparatorProps {
+    areaSize: number
+    defaultVertical: boolean
+    container: () => Ref
+    prev: () => Ref
+    next: () => Ref
+  }
+
   type Classes = {
     container: {
       vertical: boolean
     }
     test: void
   }
+
+  type Ref = React.RefObject<
+    HTMLDivElement & {
+      vertical?: boolean
+      onMove?: () => void
+      onChange?: () => void
+    }
+  >
 }
 
 export default SplitTypes

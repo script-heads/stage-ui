@@ -1,7 +1,8 @@
+import { ClassesSchemaDefinition } from '@stage-ui/system/hooks/useSystem'
 import React from 'react'
 
 declare namespace FieldTypes {
-  interface Props<Element = HTMLInputElement, ClassesDefinition = Classes>
+  interface Props<Element = HTMLInputElement, ClassesDefinition extends ClassesSchemaDefinition = Classes>
     extends Stage.AllProps<Element, ClassesDefinition> {
     /**
      * Label for field

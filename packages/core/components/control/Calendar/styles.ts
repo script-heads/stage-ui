@@ -1,6 +1,6 @@
 import Types from './types'
 
-const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, styleProps) => {
+const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => {
   return {
     dateGrid: [
       {

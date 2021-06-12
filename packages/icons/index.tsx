@@ -254,7 +254,7 @@ export { default as Wifi } from './lib/Wifi'
 declare global {
   namespace Stage {
     interface ThemeOverrides {
-      Icon?: IconTypes.Styles
+      Icon?: IconTypes.Classes
     }
   }
 }

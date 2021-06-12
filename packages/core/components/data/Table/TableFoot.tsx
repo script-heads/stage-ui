@@ -1,5 +1,5 @@
 import { Flexbox, Pageswitch } from '@stage-ui/core'
-import { forwardRef, ForwardRefRenderFunction } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import Types from './types'
 
 const TableFoot: ForwardRefRenderFunction<HTMLTableCellElement, Types.FootProps<any>> = (props, ref) => {

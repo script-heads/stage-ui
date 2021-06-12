@@ -1,3 +1,4 @@
+/* eslint-disable no-bitwise */
 import React, { forwardRef, ForwardRefRenderFunction, Fragment, useState } from 'react'
 import { dndContext } from '.'
 import TableCell from './TableCell'
@@ -98,11 +99,12 @@ const TableRow: ForwardRefRenderFunction<HTMLTableRowElement, Types.RowProps<any
               e.stopPropagation()
               setDragOver(false)
             }}
-            onDragEnd={(e: any) => {
+            onDragEnd={() => {
               dndContext.source = -1
               dndContext.target = -1
             }}
-            children={columns.map((column, columnIndex) => (
+          >
+            {columns.map((column, columnIndex) => (
               <TableCell
                 rowCtxItem={rowCtxItem}
                 getCellContext={getCellContext}
@@ -112,10 +114,12 @@ const TableRow: ForwardRefRenderFunction<HTMLTableRowElement, Types.RowProps<any
                 rowIndex={rowIndex}
               />
             ))}
-          />
+          </tr>
           {expandComponent && (
             <tr ref={ref}>
-              <td css={styles.expandContainer} colSpan={columns.length} children={expandComponent} />
+              <td css={styles.expandContainer} colSpan={columns.length}>
+                {expandComponent}
+              </td>
             </tr>
           )}
         </>
