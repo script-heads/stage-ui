@@ -17,7 +17,7 @@ const Button: ForwardRefRenderFunction<HTMLButtonElement, Types.Props> = (props,
   const { classes, attributes, events } = useSystem('Button', props, createClasses, { focus: 'tabOnly' })
   const classState = { shape, decoration, size }
   const leftChildClasses = classes.child({ align: 'left', ...classState })
-  const rightChildClasses = classes.child({ align: 'left', ...classState })
+  const rightChildClasses = classes.child({ align: 'right', ...classState })
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (!disabled) {
       events.onClick?.(event)

@@ -103,7 +103,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, s
         shape: {
           rounded: [
             {
-              borderRadius: theme.radius.s,
+              borderRadius: theme.radius.m,
             },
           ],
           round: [
@@ -123,12 +123,6 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, s
             {
               ...theme.assets.button.s,
               ...(theme.assets.typography.text.s as {}),
-            },
-          ],
-          m: [
-            {
-              ...theme.assets.button.m,
-              ...(theme.assets.typography.text.m as {}),
             },
           ],
           l: [
@@ -172,28 +166,24 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, s
       variant({
         align: {
           left: [
-            {
-              marginRight: '.375rem',
-            },
+            { marginRight: '0.5rem' },
             variant({
               size: {
-                xs: { marginRight: '.125rem' },
-                s: { marginRight: '.25rem' },
-                l: { marginRight: '.5rem' },
-                xl: { marginRight: '.75rem' },
+                xs: { marginRight: '0.125rem', marginLeft: '-0.125rem' },
+                s: { marginRight: '0.25rem', marginLeft: '-0.25rem' },
+                l: { marginRight: '0.5rem', marginLeft: '-0.5rem' },
+                xl: { marginRight: '0.75rem', marginLeft: '-0.75rem' },
               },
             }),
           ],
           right: [
-            {
-              marginLeft: '.375rem',
-            },
+            { marginLeft: '0.5rem' },
             variant({
               size: {
-                xs: { marginLeft: '.125rem' },
-                s: { marginLeft: '.25rem' },
-                l: { marginLeft: '.5rem' },
-                xl: { marginLeft: '.75rem' },
+                xs: { marginLeft: '0.125rem', marginRight: '-0.125rem' },
+                s: { marginLeft: '0.25rem', marginRight: '-0.25rem' },
+                l: { marginLeft: '0.5rem', marginRight: '-0.5rem' },
+                xl: { marginLeft: '0.75rem', marginRight: '-0.75rem' },
               },
             }),
           ],

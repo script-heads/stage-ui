@@ -1,5 +1,5 @@
-import { Button, Grid } from '@stage-ui/core'
-import { ArrowRight, ArrowLeft, Cube } from '@stage-ui/icons'
+import { Button, Grid, Spinner } from '@stage-ui/core'
+import { ArrowRight, ArrowLeft } from '@stage-ui/icons'
 import React from 'react'
 
 export default () => {
@@ -13,8 +13,8 @@ export default () => {
                 rightChild={<ArrowRight />}
                 label="Go right"
             />
-            <Button>
-                <Cube />
+            <Button px="xl">
+                <Spinner />
             </Button>
         </Grid>
     )
