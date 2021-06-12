@@ -23,7 +23,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         flexGrow: 1,
         background: theme.color.surface.string(),
         borderColor: theme.color.lightest.string(),
-        borderRadius: theme.radius.s,
+        borderRadius: theme.radius.m,
         boxShadow: theme.assets.innerShadow.xs,
         borderWidth: '1px',
         borderStyle: 'solid',

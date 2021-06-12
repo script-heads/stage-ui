@@ -17,6 +17,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, s
         borderColor: 'transparent',
         borderWidth: '1px',
         borderStyle: 'solid',
+        borderRadius: theme.radius.m,
         textOverflow: 'ellipsis',
         overflow: 'hidden',
         background: 'transparent',
@@ -101,9 +102,9 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, s
           ],
         },
         shape: {
-          rounded: [
+          square: [
             {
-              borderRadius: theme.radius.m,
+              borderRadius: 0,
             },
           ],
           round: [
