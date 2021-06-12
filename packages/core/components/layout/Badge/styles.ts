@@ -59,6 +59,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
             {
               bottom: 0,
               right: 0,
+              top: 'unset',
               transform: 'translate(50%, 50%)',
             },
           ],
@@ -66,6 +67,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
             {
               bottom: 0,
               left: 0,
+              top: 'unset',
               transform: 'translate(-50%, 50%)',
             },
           ],
@@ -80,6 +82,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
             {
               bottom: 0,
               left: '50%',
+              top: 'unset',
               transform: 'translate(-50%, 50%)',
             },
           ],
