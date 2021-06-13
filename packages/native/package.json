@@ -1,0 +1,37 @@
+{
+    "name": "@stage-ui/native",
+    "author": "Research technology",
+    "version": "0.1.164",
+    "license": "MIT",
+    "scripts": {
+        "pub": "git pull && npm version patch && yarn build && cd ../../build/core && yarn publish --access public && cd .. && rm -rf ./core",
+        "build": "yarn build:types && yarn build:js && cp package.json README.md babelImportPlugins.js ../../build/core/ && node ../../scripts/buildConfig core",
+        "build:types": "tsc --emitDeclarationOnly",
+        "build:js": "babel ./ --out-dir ../../build/core --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
+        "type-check": "tsc --noEmit",
+        "type-check:watch": "yarn type-check -- --watch",
+        "icons:generate": "node ./scripts/iconsGenerate"
+    },
+    "dependencies": {
+        "@emotion/react": "11.4.0",
+        "@stage-ui/system": "0.1.46",
+        "@stage-ui/icons": "0.1.11"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.7.5",
+        "@babel/core": "^7.7.5",
+        "@babel/plugin-proposal-class-properties": "^7.7.4",
+        "@babel/plugin-proposal-object-rest-spread": "^7.7.4",
+        "@babel/plugin-proposal-optional-chaining": "^7.7.5",
+        "@babel/plugin-transform-runtime": "^7.7.6",
+        "@babel/preset-env": "^7.7.6",
+        "@babel/preset-react": "^7.7.4",
+        "@babel/preset-typescript": "^7.7.4",
+        "csstype": "^3.0.6"
+    },
+    "peerDependencies": {
+        "@babel/runtime": "*",
+        "react": "*",
+        "react-dom": "*"
+    }
+}
