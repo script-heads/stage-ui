@@ -12,7 +12,7 @@
         "sandbox:a": "yarn workspace @stage-ui/sandbox analyze",
         "start": "yarn workspace @stage-ui/docs start",
         "gen": "yarn gen:createTypes && yarn gen:generateTypes && yarn gen:fixTypes",
-        "gen:createTypes": "cd ./packages/docs && typedoc -mode file --json ./public/definitions/original.json ../docs/pages/docs",
+        "gen:createTypes": "cd ./packages/docs && typedoc -mode file --json ./public/definitions/original.json ../docs/showcases",
         "gen:generateTypes": "cd ./packages/docs && node ./scripts/generateTypes.js",
         "gen:fixTypes": "cd ./packages/docs && node ./scripts/fixTypes.js",
         "gen:evaicons": "cd ./packages/core && yarn icons:generate",
