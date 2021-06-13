@@ -92,7 +92,7 @@ const Chart: ForwardRefRenderFunction<ChartRef, Types.Props> = (props, ref) => {
 
   const params = {
     ref,
-    options: mergeObjects(defaultOptions, options),
+    options: mergeObjects(defaultOptions, options || {}),
     data: {
       labels,
       datasets,
