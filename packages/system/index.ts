@@ -149,7 +149,7 @@ declare module 'csstype' {
   }
 }
 
-export { default as Provider } from './components/Provider'
+export { default as Provider } from './Provider'
 
 export { default as useTheme } from './hooks/useTheme'
 export { default as useSystem } from './hooks/useSystem'

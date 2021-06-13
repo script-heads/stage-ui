@@ -10,7 +10,7 @@ import PlaygroundTree from './tree'
 const App = () => {
   return (
     <Flexbox>
-      <ScrollView h="100vh" w="15rem" backgroundColor={(c) => c.surface}>
+      <ScrollView h="100vh" w="15rem" backgroundColor="surface">
         <PlaygroundSidebar />
       </ScrollView>
       <ScrollView h="100vh" w="calc(100vw - 15rem)">

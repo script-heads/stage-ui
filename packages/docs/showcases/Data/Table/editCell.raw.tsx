@@ -1,6 +1,6 @@
 import React from 'react'
 import { Flexbox, Table, Text, TextField } from '@stage-ui/core'
-import TableTypes from '@stage-ui/core/components/data/Table/types'
+import TableTypes from '@stage-ui/core/data/Table/types'
 import { Checkmark, Edit2 } from '@stage-ui/icons'
 
 type CellData = { name: string; age: number }

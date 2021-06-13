@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import { Block, Header, Flexbox, Table, ScrollView } from '@stage-ui/core'
-import TableTypes from '@stage-ui/core/components/data/Table/types'
+import TableTypes from '@stage-ui/core/data/Table/types'
 import { Interface as InterfaceType, Property } from '../../../utils/types'
 
 interface InterfaceProps {

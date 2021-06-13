@@ -1,5 +1,5 @@
 import { Block, notify, ScrollView } from '@stage-ui/core'
-import T from '@stage-ui/core/components/layout/ScrollView/types'
+import T from '@stage-ui/core/layout/ScrollView/types'
 import React, { useRef } from 'react'
 
 export default () => {

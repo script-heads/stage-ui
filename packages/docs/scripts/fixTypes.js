@@ -20,12 +20,12 @@ function fixTypes(package, replaces = []) {
 }
 fixTypes('system', [["declare module 'types'", "declare module '@stage-ui/system/types'"]])
 fixTypes('core', [
-  ['data/Table/types', '@stage-ui/core/components/data/Table/types'],
-  ['layout/Modal/types', '@stage-ui/core/components/layout/Modal/types'],
-  ['misc/hocs/Icon/types', '@stage-ui/core/components/basic/Icon/types'],
-  ['misc/hocs/Field/types', '@stage-ui/core/components/basic/Field/types'],
-  ['misc/hocs/Check/types', '@stage-ui/core/components/basic/Check/types'],
-  ['misc/hocs/Typography/types', '@stage-ui/core/components/basic/Typography/types'],
+  ['data/Table/types', '@stage-ui/core/data/Table/types'],
+  ['layout/Modal/types', '@stage-ui/core/layout/Modal/types'],
+  ['misc/hocs/Icon/types', '@stage-ui/core/basic/Icon/types'],
+  ['misc/hocs/Field/types', '@stage-ui/core/basic/Field/types'],
+  ['misc/hocs/Check/types', '@stage-ui/core/basic/Check/types'],
+  ['misc/hocs/Typography/types', '@stage-ui/core/basic/Typography/types'],
   ["declare module 'icons'", "declare module '@stage-ui/icons'"],
 ])
 fixTypes('lab', [

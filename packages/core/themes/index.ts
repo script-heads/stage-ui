@@ -1,43 +1,43 @@
 /**
  * Content
  */
-import DividerTypes from '../components/content/Divider/types'
-import SpinnerTypes from '../components/content/Spinner/types'
-import HeaderTypes from '../components/content/Header/types'
-import ParagraphTypes from '../components/content/Paragraph/types'
-import TextTypes from '../components/content/Text/types'
-import LinkTypes from '../components/content/Link/types'
+import DividerTypes from '../content/Divider/types'
+import SpinnerTypes from '../content/Spinner/types'
+import HeaderTypes from '../content/Header/types'
+import ParagraphTypes from '../content/Paragraph/types'
+import TextTypes from '../content/Text/types'
+import LinkTypes from '../content/Link/types'
 /**
  * Control
  */
-import ButtonTypes from '../components/control/Button/types'
-import Calendar from '../components/control/Calendar/types'
-import CheckboxTypes from '../components/control/Checkbox/types'
-import DatePickerTypes from '../components/control/DatePicker/types'
-import MenuTypes from '../components/control/Menu/types'
-import RadioTypes from '../components/control/Radio/types'
-import RangeTypes from '../components/control/Range/types'
-import SelectTypes from '../components/control/Select/types'
-import SwitchTypes from '../components/control/Switch/types'
-import TextFieldTypes from '../components/control/TextField/types'
+import ButtonTypes from '../control/Button/types'
+import Calendar from '../control/Calendar/types'
+import CheckboxTypes from '../control/Checkbox/types'
+import DatePickerTypes from '../control/DatePicker/types'
+import MenuTypes from '../control/Menu/types'
+import RadioTypes from '../control/Radio/types'
+import RangeTypes from '../control/Range/types'
+import SelectTypes from '../control/Select/types'
+import SwitchTypes from '../control/Switch/types'
+import TextFieldTypes from '../control/TextField/types'
 /**
  * Data
  */
-import MeterTypes from '../components/data/Meter/types'
-import TableTypes from '../components/data/Table/types'
+import MeterTypes from '../data/Meter/types'
+import TableTypes from '../data/Table/types'
 /**
  * Layout
  */
-import BadgeTypes from '../components/layout/Badge/types'
-import BlockTypes from '../components/layout/Block/types'
-import DropTypes from '../components/layout/Drop/types'
-import FlexboxTypes from '../components/layout/Flexbox/types'
-import GridTypes from '../components/layout/Grid/types'
-import ModalTypes from '../components/layout/Modal/types'
-import NotificationTypes from '../components/layout/Notification/types'
-import PopoverTypes from '../components/layout/Popover/types'
-import TreeTypes from '../components/layout/Tree/types'
-import ScrollView from '../components/layout/ScrollView/types'
+import BadgeTypes from '../layout/Badge/types'
+import BlockTypes from '../layout/Block/types'
+import DropTypes from '../layout/Drop/types'
+import FlexboxTypes from '../layout/Flexbox/types'
+import GridTypes from '../layout/Grid/types'
+import ModalTypes from '../layout/Modal/types'
+import NotificationTypes from '../layout/Notification/types'
+import PopoverTypes from '../layout/Popover/types'
+import TreeTypes from '../layout/Tree/types'
+import ScrollView from '../layout/ScrollView/types'
 
 declare global {
   namespace Stage {

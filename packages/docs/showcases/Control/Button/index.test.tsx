@@ -1,6 +1,6 @@
 import React from 'react'
 import * as Core from '@stage-ui/core'
-import ButtonTypes from '@stage-ui/core/components/control/Button/types'
+import ButtonTypes from '@stage-ui/core/control/Button/types'
 
 const sizes = ['xl', 'l', 'm', 's', 'xs'] as ButtonTypes.Props['size'][]
 const buttonDecoration = ['filled', 'outline', 'plain', 'text'] as ButtonTypes.Props['decoration'][]

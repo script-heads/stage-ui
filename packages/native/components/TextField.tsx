@@ -5,7 +5,7 @@ import {
   TextInputMaskOptionProp,
   TextInputMaskTypeProp,
 } from 'react-native-masked-text'
-import Flexbox from 'shared/components/Flexbox'
+import Flexbox from 'shared/Flexbox'
 import useStyleProps, { StyleProps } from 'shared/hooks/useStyleProps'
 import useTheme from 'shared/hooks/useTheme'
 import scale from 'shared/utils/scale'

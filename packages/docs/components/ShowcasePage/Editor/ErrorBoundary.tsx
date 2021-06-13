@@ -41,7 +41,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
   render() {
     if (this.state.error || this.props.error) {
       return (
-        <Block p="2rem" h="100%" backgroundColor={(c) => c.surface}>
+        <Block p="2rem" h="100%" backgroundColor="surface">
           <Text color="error">{this.state.error || this.props.error}</Text>
           <Divider color="lightest" my="0.5rem" />
           <Flexbox mb="1rem" borderRadius="4px" alignItems="center" justifyContent="space-between">

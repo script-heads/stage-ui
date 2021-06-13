@@ -6,7 +6,7 @@ export default () => {
     <Menu
       defaultValue={0}
       decoration="marker"
-      backgroundColor={(c) => c.surface}
+      backgroundColor="surface"
       data={['Video', 'Music', 'News']}
     />
   )

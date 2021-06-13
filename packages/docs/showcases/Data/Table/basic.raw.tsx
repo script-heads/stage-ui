@@ -1,5 +1,5 @@
 import { Table } from '@stage-ui/core'
-import TableTypes from '@stage-ui/core/components/data/Table/types'
+import TableTypes from '@stage-ui/core/data/Table/types'
 import React, { useRef } from 'react'
 
 type Row = { name: string; age: number }

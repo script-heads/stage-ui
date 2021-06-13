@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { Button, ScrollView, Paragraph } from '@stage-ui/core'
-import ScrollViewTypes from '@stage-ui/core/components/layout/ScrollView/types'
+import ScrollViewTypes from '@stage-ui/core/layout/ScrollView/types'
 
 export default () => {
   const ref = useRef<ScrollViewTypes.Ref>(null)

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Block, Flexbox, Header, Notification, Paragraph } from '@stage-ui/core'
 import { Close } from '@stage-ui/icons'
-import NotificationType from '@stage-ui/core/components/layout/Notification/types'
-import { ViewportShared } from '@stage-ui/core/components/layout/Viewport/MountArea'
+import NotificationType from '@stage-ui/core/layout/Notification/types'
+import { ViewportShared } from '@stage-ui/core/layout/Viewport/MountArea'
 import createID from '@stage-ui/system/utils/createID'
 
 export default (options: NotificationType.NotifyOptions) => {

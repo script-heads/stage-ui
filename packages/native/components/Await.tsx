@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator } from 'react-native'
-import Flexbox from 'shared/components/Flexbox'
-import Text from 'shared/components/Text'
+import Flexbox from 'shared/Flexbox'
+import Text from 'shared/Text'
 import useTheme from 'shared/hooks/useTheme'
 
 interface AwaitProps<T> {

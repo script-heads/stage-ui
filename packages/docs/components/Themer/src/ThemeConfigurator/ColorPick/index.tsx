@@ -1,5 +1,5 @@
 import { Block, Flexbox, Header, Paragraph } from '@stage-ui/core'
-import FlexboxTypes from '@stage-ui/core/components/layout/Flexbox/types'
+import FlexboxTypes from '@stage-ui/core/layout/Flexbox/types'
 import colorUtils from 'color'
 import { useEffect, useRef, useState } from 'react'
 

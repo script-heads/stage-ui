@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { ScrollView, Text, Block, Flexbox } from '@stage-ui/core'
-import ScrollViewTypes from '@stage-ui/core/components/layout/ScrollView/types'
+import { Block, ScrollView, Text } from '@stage-ui/core'
+import ScrollViewTypes from '@stage-ui/core/layout/ScrollView/types'
 import React, { useRef, useState } from 'react'
-import ShowcasePage from '../components/ShowcasePage'
 import Menu from '../components/Menu'
+import ShowcasePage from '../components/ShowcasePage'
 import core from '../utils/core'
 import Page404 from './404'
 

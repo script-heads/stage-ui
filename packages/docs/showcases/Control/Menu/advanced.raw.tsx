@@ -4,7 +4,7 @@ import React from 'react'
 
 export default () => {
   return (
-    <Menu column defaultValue="Video" backgroundColor={(c) => c.surface}>
+    <Menu column defaultValue="Video" backgroundColor="surface">
       <Menu.Group title="Menu">
         <Menu.Item value="Video" title="Video" leftChild={<Video />} as="a" href="/test.html" />
         <Menu.Item value="Music" title="Music" leftChild={<Music />} />

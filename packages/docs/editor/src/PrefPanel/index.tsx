@@ -112,7 +112,7 @@ const PrefPanel = () => {
   }
   // findProps(data[ComponentTypeName + 'Types'])
   return (
-    <Block css={cs.container} backgroundColor={(c) => c.surface} borderColor="lightest">
+    <Block css={cs.container} backgroundColor="surface" borderColor="lightest">
       <Flexbox justifyContent="space-between" alignItems="center" my=".5rem">
         <Menu direction="row" size="s" ml="0.5rem" decoration="color" value="design">
           <Menu.Item value="design" leftChild={<Cube />} title="Design" />

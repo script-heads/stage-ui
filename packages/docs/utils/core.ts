@@ -4,7 +4,7 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-import TableTypes from '@stage-ui/core/components/data/Table/types'
+import TableTypes from '@stage-ui/core/data/Table/types'
 import { Property } from '@stage-ui/docs/utils/types'
 
 declare global {
@@ -15,7 +15,7 @@ export interface CustomPageProps {
   config: Config
   pages: PagesType
   path: string
-  setPath: React.Dispatch<React.SetStateAction<string>>
+  setPath: React.Dispatch<string>
   theme: Stage.Theme
   themes: Record<string, Stage.Theme>
   setTheme: React.Dispatch<React.SetStateAction<Stage.Theme>>
