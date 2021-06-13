@@ -118,7 +118,7 @@ declare global {
     type ComponentThemeOverrides<Props, ClassSchema extends ClassesSchemaDefinition> =
       ThemeOverridesType<Props, ClassSchema>
 
-    type FilterStartingWith<Set, Needle extends string> = Set extends `${Needle}${infer X}`
+    type FilterStartingWith<Set, Needle extends string> = Set extends `${Needle}${string}`
       ? Set
       : never
   }
