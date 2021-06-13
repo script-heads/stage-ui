@@ -49,13 +49,13 @@ export interface AllEventProps<T>
 export interface CoreProps<ClassSchema extends ClassesSchemaDefinition> {
   /**
    * Override any component style
-   * @display SystemTypes.Styles
+   * @display Stage.Styles
    * @link /props#styles
    */
   overrides?: PropOverrides<ClassSchema>
   /**
    * Shortcut for fast styles
-   * @display SystemTypes.Styles
+   * @display Stage.Styles
    * @link /props#styles
    */
   style?: ((theme: Stage.Theme) => Stage.JSS) | Stage.JSS
@@ -102,7 +102,7 @@ export interface AttributeProps extends React.AriaAttributes {
 export interface ColorProps {
   /**
    * Set color style
-   * @display SystemTypes.Color
+   * @display Stage.Color
    * @link /props#color
    * @BreakpointProp
    * @see https://developer.mozilla.org/docs/Web/CSS/color
@@ -110,7 +110,7 @@ export interface ColorProps {
   textColor?: BreakpointProp<ColorProp>
   /**
    * Set background-color style
-   * @display SystemTypes.Color
+   * @display Stage.Color
    * @link /props#color
    * @BreakpointProp
    * @see https://developer.mozilla.org/docs/Web/CSS/background-color
@@ -139,7 +139,7 @@ export interface BorderProps {
   borderStyle?: BreakpointProp<CSS.Properties['borderStyle']>
   /**
    * Set border-color style
-   * @display SystemTypes.Color
+   * @display Stage.Color
    * @link /props#color
    * @BreakpointProp
    * @see https://developer.mozilla.org/docs/Web/CSS/border-color
@@ -344,7 +344,14 @@ export interface MarginProps {
  * Used for flex attributes
  * CSS props have string witch kills helps at ide
  */
-export type FlexSelf = 'inherit' | 'auto' | 'baseline' | 'center' | 'flex-start' | 'flex-end' | 'stretch'
+export type FlexSelf =
+  | 'inherit'
+  | 'auto'
+  | 'baseline'
+  | 'center'
+  | 'flex-start'
+  | 'flex-end'
+  | 'stretch'
 /**
  * Component flexbox children styles props
  * @name Flex

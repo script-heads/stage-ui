@@ -179,19 +179,13 @@ declare namespace ModalTypes {
     cross: ClassState
   }
 
+  type DialogRenderFn = (close: () => void) => React.ReactElement
+
   interface DialogOptions extends Props {
-    /**
-     * Message of dialog
-     */
-    message?: string
-    /**
-     * Button text
-     */
-    buttonText?: string
     /**
      * if custom content filled then message and buttonText will be ignored
      */
-    render?: (close: () => void) => React.ReactElement
+    render: DialogRenderFn
   }
 }
 

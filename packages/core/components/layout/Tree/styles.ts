@@ -1,6 +1,10 @@
 import Types from './types'
 
-const createClasses: Stage.CreateClasses<Types.Classes, Types.PrivateProps> = (theme, props, styleProps) => {
+const createClasses: Stage.CreateClasses<Types.Classes, Types.PrivateProps> = (
+  theme,
+  props,
+  styleProps,
+) => {
   return {
     container: (variant) => [
       variant({

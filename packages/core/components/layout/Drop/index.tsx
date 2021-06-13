@@ -191,7 +191,8 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
     if (stickCursor) {
       window.addEventListener('mousemove', updateStickCursor)
     } else if (mountState) {
-      const rect = stretchHeight || stretchWidth ? targetRef?.current?.getBoundingClientRect() : null
+      const rect =
+        stretchHeight || stretchWidth ? targetRef?.current?.getBoundingClientRect() : null
       const style = rect && dropRef.current?.style
 
       if (style) {

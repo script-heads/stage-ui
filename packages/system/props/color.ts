@@ -1,7 +1,7 @@
 import Color from 'color'
 
 /**
- * @display SystemTypes.Color
+ * @display Stage.Color
  * @link /props#color
  */
 export type ColorProp =
@@ -18,10 +18,13 @@ export default function color<V extends ColorProp | undefined>(
   const resolvedColor = typeof value === 'function' ? value(theme.color) : value
 
   if (typeof resolvedColor === 'string') {
-    if (theme.color[resolvedColor as keyof Omit<Stage.Theme['color'], 'palette'>] && resolvedColor !== 'palette') {
-      return theme.color[resolvedColor as keyof Omit<Stage.Theme['color'], 'palette'>] as V extends undefined
-        ? undefined
-        : Stage.Color
+    if (
+      theme.color[resolvedColor as keyof Omit<Stage.Theme['color'], 'palette'>] &&
+      resolvedColor !== 'palette'
+    ) {
+      return theme.color[
+        resolvedColor as keyof Omit<Stage.Theme['color'], 'palette'>
+      ] as V extends undefined ? undefined : Stage.Color
     }
     if (theme.color.palette[resolvedColor]) {
       return theme.color.palette[resolvedColor] as V extends undefined ? undefined : Stage.Color

@@ -8,7 +8,10 @@ const DateGridDay = (props: T.DateGridDayProps) => {
 
   const now = moment()
 
-  const isDisabled = minValue.valueOf() > moment(day).valueOf() || maxValue.valueOf() < moment(day).valueOf() || false
+  const isDisabled =
+    minValue.valueOf() > moment(day).valueOf() ||
+    maxValue.valueOf() < moment(day).valueOf() ||
+    false
 
   const dayValue = day.startOf('day').valueOf()
   const nowValue = now.startOf('day').valueOf()

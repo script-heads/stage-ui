@@ -11,7 +11,7 @@ declare namespace ChartTypes {
     | 'polar'
     | 'scatter'
     | 'bubble'
-  interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
+  interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
     /**
      * @default line
      */

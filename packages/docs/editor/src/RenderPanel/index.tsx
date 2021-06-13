@@ -1,7 +1,4 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import { Block, Flexbox, Paragraph, Text, useTheme } from '@stage-ui/core'
-
 import { RefObject, useRef, useState } from 'react'
 import { context } from '../..'
 import { ArchitectItem } from '../../types'
@@ -13,7 +10,7 @@ export const componentsTypography = ['Header', 'Display', 'Paragraph', 'Link', '
 
 interface RenderItemProps {
   item: ArchitectItem
-  theme: SystemTypes.Theme
+  theme: Stage.Theme
   mask: {
     hover: RefObject<MaskRefs>
     target: RefObject<MaskRefs>
@@ -38,14 +35,21 @@ const RenderItem = (props: RenderItemProps) => {
   }
 
   let Component = (props) => (
-    <Text {...props} align="center" color={(c) => c.error} children={`⚠ ${item.component} not found ⚠`} />
+    <Text
+      {...props}
+      align="center"
+      color={(c) => c.error}
+      children={`⚠ ${item.component} not found ⚠`}
+    />
   )
 
   if (context.tools.components[item.component]) {
     Component = context.tools.components[item.component].component
   }
 
-  let children = item.children?.map((child) => <RenderItem mask={mask} key={child.id} item={child} theme={theme} />)
+  let children = item.children?.map((child) => (
+    <RenderItem mask={mask} key={child.id} item={child} theme={theme} />
+  ))
 
   if (!children || children.length === 0) {
     children = item.props.children || item.text || null
@@ -91,7 +95,10 @@ const RenderItem = (props: RenderItemProps) => {
                 context.tools.target = context.tools.target?.parent
               }
               if (context.tools.target && mask.target.current) {
-                mask.target.current.update(context.tools.target.$.getRect(), context.tools.target.component)
+                mask.target.current.update(
+                  context.tools.target.$.getRect(),
+                  context.tools.target.component,
+                )
               }
             }
           }}
@@ -163,7 +170,11 @@ const Render = () => {
     <Flexbox column flex={1} css={cs.container}>
       {architectItems.length === 0 && (
         <Flexbox justifyContent="center" pt="4.75rem" css={{ position: 'absolute', width: '100%' }}>
-          <Paragraph align="center" color={(c) => c.light} children="Create any component by droping it here." />
+          <Paragraph
+            align="center"
+            color={(c) => c.light}
+            children="Create any component by droping it here."
+          />
         </Flexbox>
       )}
       <Block
@@ -200,7 +211,11 @@ const Render = () => {
       />
       <Mask ref={hoverMask} color={(c) => c.primary.alpha(0.5).rgb().string()} />
       <Mask ref={targetMask} color={(c) => c.primary.rgb().string()} />
-      <Mask ref={focusMask} color={(c) => c.secondary.rgb().string()} item={context.tools.focused} />
+      <Mask
+        ref={focusMask}
+        color={(c) => c.secondary.rgb().string()}
+        item={context.tools.focused}
+      />
     </Flexbox>
   )
 }

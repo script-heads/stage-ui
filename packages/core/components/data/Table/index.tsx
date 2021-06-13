@@ -224,7 +224,12 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
       <thead>
         <tr>
           {columns.map((column, colIndex) => (
-            <TableHeadCell key={colIndex} styles={classes} column={column} toggleSort={toggleSort} />
+            <TableHeadCell
+              key={colIndex}
+              styles={classes}
+              column={column}
+              toggleSort={toggleSort}
+            />
           ))}
         </tr>
       </thead>
@@ -248,8 +253,13 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
           Object.keys(props)
             .filter((key) => /onRow/.exec(key))
             .forEach((key) => {
-              currentEvents[key.replace('Row', '')] = (e: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => {
-                return props[key as Stage.FilterStartingWith<keyof typeof props, 'onRow'>]?.(rowCtxItem, e)
+              currentEvents[key.replace('Row', '')] = (
+                e: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
+              ) => {
+                return props[key as Stage.FilterStartingWith<keyof typeof props, 'onRow'>]?.(
+                  rowCtxItem,
+                  e,
+                )
               }
             })
 

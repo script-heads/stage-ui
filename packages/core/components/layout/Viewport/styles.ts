@@ -1,11 +1,16 @@
 import Types from './types'
 import resets from './resets'
 
-const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, styleProps) => {
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
+  theme,
+  props,
+  styleProps,
+) => {
   const attachTheme = {
     background: theme.color.background.rgb().string(),
     color: theme.color.onBackground.rgb().string(),
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    fontFamily:
+      '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
     p: theme.assets.typography.paragraph,
     h1: theme.assets.typography.header.l,
     h2: theme.assets.typography.header.m,

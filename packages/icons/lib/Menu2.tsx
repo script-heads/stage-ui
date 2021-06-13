@@ -1,7 +1,6 @@
 /**
 The MIT License (MIT)
 */
-
 import React from 'react'
 import { Props, createIcon } from '../Icon'
 
@@ -16,7 +15,15 @@ export default React.forwardRef((props: Props, ref: React.ForwardedRef<HTMLSpanE
             clipRule="evenodd"
             d="M3.9355 6H20.0645C20.5795 6 21.0005 6.421 21.0005 6.936V7.064C21.0005 7.579 20.5795 8 20.0645 8H3.9355C3.4205 8 3.0005 7.579 3.0005 7.064V6.936C3.0005 6.421 3.4205 6 3.9355 6ZM5 12C5 12.553 4.552 13 4 13C3.448 13 3 12.553 3 12C3 11.447 3.448 11 4 11C4.552 11 5 11.447 5 12ZM7.9355 11H20.0645C20.5795 11 21.0005 11.421 21.0005 11.936V12.064C21.0005 12.579 20.5795 13 20.0645 13H7.9355C7.4205 13 7.0005 12.579 7.0005 12.064V11.936C7.0005 11.421 7.4205 11 7.9355 11ZM20.0645 16H3.9355C3.4205 16 3.0005 16.421 3.0005 16.936V17.064C3.0005 17.579 3.4205 18 3.9355 18H20.0645C20.5795 18 21.0005 17.579 21.0005 17.064V16.936C21.0005 16.421 20.5795 16 20.0645 16Z"
           />
-          <mask id="Menu2mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="3" y="6" width="19" height="12">
+          <mask
+            id="Menu2mask0"
+            mask-type="alpha"
+            maskUnits="userSpaceOnUse"
+            x="3"
+            y="6"
+            width="19"
+            height="12"
+          >
             <path
               id="Menu2Mask_2"
               fillRule="evenodd"
@@ -41,7 +48,15 @@ export default React.forwardRef((props: Props, ref: React.ForwardedRef<HTMLSpanE
             clipRule="evenodd"
             d="M3.9355 6H20.0645C20.5795 6 21.0005 6.421 21.0005 6.936V7.064C21.0005 7.579 20.5795 8 20.0645 8H3.9355C3.4205 8 3.0005 7.579 3.0005 7.064V6.936C3.0005 6.421 3.4205 6 3.9355 6ZM5 12C5 12.553 4.552 13 4 13C3.448 13 3 12.553 3 12C3 11.447 3.448 11 4 11C4.552 11 5 11.447 5 12ZM7.9355 11H20.0645C20.5795 11 21.0005 11.421 21.0005 11.936V12.064C21.0005 12.579 20.5795 13 20.0645 13H7.9355C7.4205 13 7.0005 12.579 7.0005 12.064V11.936C7.0005 11.421 7.4205 11 7.9355 11ZM20.0645 16H3.9355C3.4205 16 3.0005 16.421 3.0005 16.936V17.064C3.0005 17.579 3.4205 18 3.9355 18H20.0645C20.5795 18 21.0005 17.579 21.0005 17.064V16.936C21.0005 16.421 20.5795 16 20.0645 16Z"
           />
-          <mask id="Menu2-omask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="3" y="6" width="19" height="12">
+          <mask
+            id="Menu2-omask0"
+            mask-type="alpha"
+            maskUnits="userSpaceOnUse"
+            x="3"
+            y="6"
+            width="19"
+            height="12"
+          >
             <path
               id="Menu2-oMask_2"
               fillRule="evenodd"

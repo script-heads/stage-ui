@@ -66,7 +66,10 @@ declare global {
       Flexbox?: Stage.ComponentThemeOverrides<FlexboxTypes.Props, FlexboxTypes.Classes>
       Grid?: Stage.ComponentThemeOverrides<GridTypes.Props, GridTypes.Classes>
       Modal?: Stage.ComponentThemeOverrides<ModalTypes.Props, ModalTypes.Classes>
-      Notification?: Stage.ComponentThemeOverrides<NotificationTypes.Props, NotificationTypes.Classes>
+      Notification?: Stage.ComponentThemeOverrides<
+        NotificationTypes.Props,
+        NotificationTypes.Classes
+      >
       Popover?: Stage.ComponentThemeOverrides<PopoverTypes.Props, PopoverTypes.Classes>
       Tree?: Stage.ComponentThemeOverrides<TreeTypes.Props, TreeTypes.Classes>
       ScrollView?: Stage.ComponentThemeOverrides<ScrollView.Props, ScrollView.Classes>

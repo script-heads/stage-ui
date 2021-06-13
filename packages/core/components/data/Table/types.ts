@@ -191,7 +191,10 @@ declare namespace TableTypes {
     /**
      * Calls when ever row clicked
      */
-    onRowClick?: (rowCtxItem: TableRowContext<Row>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+    onRowClick?: (
+      rowCtxItem: TableRowContext<Row>,
+      event: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
+    ) => void
     /**
      * Calls when mouse enters row
      */
@@ -207,7 +210,10 @@ declare namespace TableTypes {
       event: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
     ) => void
 
-    onRowDrag?: (rowCtxItem: TableRowContext<Row>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+    onRowDrag?: (
+      rowCtxItem: TableRowContext<Row>,
+      event: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
+    ) => void
     onRowDragStart?: (
       rowCtxItem: TableRowContext<Row>,
       event: React.MouseEvent<HTMLTableRowElement, MouseEvent>,

@@ -18,7 +18,15 @@ declare namespace BadgeTypes {
     /**
      * Where barge will be placed
      */
-    align?: 'top' | 'bottom' | 'left' | 'right' | 'top-right' | 'bottom-right' | 'top-left' | 'bottom-left'
+    align?:
+      | 'top'
+      | 'bottom'
+      | 'left'
+      | 'right'
+      | 'top-right'
+      | 'bottom-right'
+      | 'top-left'
+      | 'bottom-left'
     /**
      * The element whose badge will be shown
      */

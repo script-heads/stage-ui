@@ -1,5 +1,12 @@
 import { useSystem } from '@stage-ui/system'
-import React, { forwardRef, ForwardRefRenderFunction, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import React, {
+  forwardRef,
+  ForwardRefRenderFunction,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react'
 import ModalOverlay from './ModalOverlay'
 import ModalPortal from './ModalPortal'
 import ModalWindow from './ModalWindow'
@@ -29,7 +36,6 @@ const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
     if (opened === true) open()
     if (opened === false) close()
   }, [opened])
-
 
   function open(customRender?: React.ReactElement | null) {
     document.body.style.overflow = 'hidden'

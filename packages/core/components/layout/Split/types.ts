@@ -1,7 +1,8 @@
 import React from 'react'
 
 declare namespace SplitTypes {
-  export interface Props extends Omit<Stage.AllProps<HTMLDivElement, Classes>, 'onMove' | 'onChange'> {
+  export interface Props
+    extends Omit<Stage.AllProps<HTMLDivElement, Classes>, 'onMove' | 'onChange'> {
     direction?: 'row' | 'column'
     children: React.ReactElement[]
     /**

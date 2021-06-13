@@ -1,8 +1,5 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import { Block, Flexbox, Header, Paragraph } from '@stage-ui/core'
 import FlexboxTypes from '@stage-ui/core/layout/Flexbox/types'
-
 import colorUtils from 'color'
 import { useEffect, useRef, useState } from 'react'
 
@@ -58,7 +55,15 @@ const ColorPick = (props: ColorPickProps) => {
         <Block css={{ letterSpacing: '0.125rem' }} pl="0.5rem">
           {title && <Header m={0} size="s" weight={700} fontSize="0.75rem" children={title} />}
           {subtitle && (
-            <Paragraph m={0} p={0} size="s" lineHeight={1} textColor="hard" fontSize="0.625rem" children={subtitle} />
+            <Paragraph
+              m={0}
+              p={0}
+              size="s"
+              lineHeight={1}
+              textColor="hard"
+              fontSize="0.625rem"
+              children={subtitle}
+            />
           )}
         </Block>
       )}

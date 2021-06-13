@@ -3,7 +3,10 @@ import React, { forwardRef, ForwardRefRenderFunction, useState } from 'react'
 import { getTR } from './TableRow'
 import Types from './types'
 
-const TableCell: ForwardRefRenderFunction<HTMLTableDataCellElement, Types.CellProps<any>> = (props, ref) => {
+const TableCell: ForwardRefRenderFunction<HTMLTableDataCellElement, Types.CellProps<any>> = (
+  props,
+  ref,
+) => {
   const { column, rowIndex, rowCtxItem, styles, getCellContext } = props
 
   let content = rowCtxItem.row[column.key] || null
@@ -27,7 +30,10 @@ const TableCell: ForwardRefRenderFunction<HTMLTableDataCellElement, Types.CellPr
   }
 
   if (column.render) {
-    content = column.render(getCellContext(rowIndex, column.key) as Types.TableCellContext<any>, rowIndex)
+    content = column.render(
+      getCellContext(rowIndex, column.key) as Types.TableCellContext<any>,
+      rowIndex,
+    )
   }
 
   return (

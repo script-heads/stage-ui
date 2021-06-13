@@ -87,12 +87,18 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, s
           filled: [
             {
               background: color.rgb().string(),
-              color: isBlack ? theme.color.onPrimary.rgb().string() : theme.color.onSurface.rgb().string(),
+              color: isBlack
+                ? theme.color.onPrimary.rgb().string()
+                : theme.color.onSurface.rgb().string(),
               '&:hover:not([disabled])': {
-                background: isBlack ? color.lighten(0.05).rgb().string() : color.darken(0.05).rgb().string(),
+                background: isBlack
+                  ? color.lighten(0.05).rgb().string()
+                  : color.darken(0.05).rgb().string(),
               },
               '&:active:not([disabled])': {
-                background: isBlack ? color.lighten(0.1).rgb().string() : color.darken(0.1).rgb().string(),
+                background: isBlack
+                  ? color.lighten(0.1).rgb().string()
+                  : color.darken(0.1).rgb().string(),
               },
               '&:disabled': {
                 background: theme.color.lightest.rgb().string(),

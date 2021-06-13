@@ -110,7 +110,15 @@ declare namespace FlexboxTypes {
   }
 
   type FlexSpace = 'space-around' | 'space-between' | 'space-evenly'
-  type FlexDirection = 'inherit' | 'initial' | 'revert' | 'unset' | 'column' | 'column-reverse' | 'row' | 'row-reverse'
+  type FlexDirection =
+    | 'inherit'
+    | 'initial'
+    | 'revert'
+    | 'unset'
+    | 'column'
+    | 'column-reverse'
+    | 'row'
+    | 'row-reverse'
   type FlexWrap = 'inherit' | 'initial' | 'revert' | 'unset' | 'nowrap' | 'wrap' | 'wrap-reverse'
 }
 

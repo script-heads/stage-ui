@@ -1,4 +1,3 @@
-import { jsx } from '@emotion/react'
 import { Viewport } from '@stage-ui/core'
 import dt from '@stage-ui/docs/utils/types'
 import React, { useRef } from 'react'

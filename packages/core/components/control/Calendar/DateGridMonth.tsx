@@ -6,7 +6,8 @@ import CalendarTypes from './types'
 const DateGridMonth = (props: CalendarTypes.DateGridMonthProps) => {
   const { value: self, active, onClick, minValue, maxValue, type } = props
 
-  const isDisabled = minValue.valueOf() > self.valueOf() || maxValue.valueOf() < self.valueOf() || false
+  const isDisabled =
+    minValue.valueOf() > self.valueOf() || maxValue.valueOf() < self.valueOf() || false
 
   const now = moment()
   const monthValue = self.clone().startOf('month').valueOf()
@@ -22,7 +23,19 @@ const DateGridMonth = (props: CalendarTypes.DateGridMonthProps) => {
    * Custom render
    */
   if (props.onMonthRender) {
-    return <>{props.onMonthRender({ now, self, active, isActive, isCurrent, isDisabled, onClick })}</>
+    return (
+      <>
+        {props.onMonthRender({
+          now,
+          self,
+          active,
+          isActive,
+          isCurrent,
+          isDisabled,
+          onClick,
+        })}
+      </>
+    )
   }
 
   return (

@@ -1,13 +1,17 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import { Block, Text, useTheme } from '@stage-ui/core'
-
-import { forwardRef, ForwardRefRenderFunction, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import {
+  forwardRef,
+  ForwardRefRenderFunction,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react'
 import { ArchitectItem } from '../../types'
 import styles from './styles'
 
 type MaskProps = {
-  color: (color: SystemTypes.Theme['color']) => string
+  color: (color: Stage.Theme['color']) => string
   item?: ArchitectItem | null
 }
 export type MaskRefs = {

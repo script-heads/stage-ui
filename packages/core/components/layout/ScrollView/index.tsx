@@ -4,7 +4,14 @@
 /* eslint-disable no-bitwise */
 import isWebKit from '@stage-ui/core/utils/isWebKit'
 import { useSystem } from '@stage-ui/system'
-import React, { forwardRef, ForwardRefRenderFunction, useEffect, useImperativeHandle, useMemo, useState } from 'react'
+import React, {
+  forwardRef,
+  ForwardRefRenderFunction,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useState,
+} from 'react'
 import styles from './styles'
 import Types from './types'
 
@@ -31,7 +38,13 @@ interface MemoParams {
 }
 
 const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
-  const { shape = 'round', size = 'm', mode = 'scroll', xBarPosition = 'bottom', yBarPosition = 'right' } = props
+  const {
+    shape = 'round',
+    size = 'm',
+    mode = 'scroll',
+    xBarPosition = 'bottom',
+    yBarPosition = 'right',
+  } = props
   const { classes, attributes, events } = useSystem('ScrollView', props, styles)
   const [active, setActive] = useState(mode === 'always')
 
@@ -175,9 +188,11 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
        */
       if (props.watchElement && memo.preventWatchElement !== true) {
         const elements: HTMLDivElement[] = []
-        document.querySelectorAll(`[data-scroll-id="${memo.id}"] [data-id]`).forEach((queryElement) => {
-          elements.push(queryElement as HTMLDivElement)
-        })
+        document
+          .querySelectorAll(`[data-scroll-id="${memo.id}"] [data-id]`)
+          .forEach((queryElement) => {
+            elements.push(queryElement as HTMLDivElement)
+          })
 
         const scrollTop = Math.abs(memo.container.scrollTop || memo.content.offsetTop)
 
@@ -418,7 +433,12 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
       <div
         {...events}
         onScroll={(e) => {
-          updateScroll({ deltaX: 0, deltaY: 0, preventDefault: e.preventDefault, stopPropagation: e.stopPropagation })
+          updateScroll({
+            deltaX: 0,
+            deltaY: 0,
+            preventDefault: e.preventDefault,
+            stopPropagation: e.stopPropagation,
+          })
         }}
         css={isLegacyScrollSupport ? classes.webkit : classes.container}
         ref={createRef}

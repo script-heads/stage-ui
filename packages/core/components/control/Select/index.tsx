@@ -1,4 +1,11 @@
-import React, { forwardRef, ForwardRefRenderFunction, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import React, {
+  forwardRef,
+  ForwardRefRenderFunction,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react'
 import { Drop, ScrollView } from '@stage-ui/core'
 import { ChevronDown, Close } from '@stage-ui/icons'
 import DropTypes from '@stage-ui/core/components/layout/Drop/types'
@@ -324,11 +331,19 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
         target={fieldRef}
       >
         <div css={classes.drop(classState)}>
-          <ScrollView size="xs" xBarPosition="none" css={{ maxHeight: maxScrollHeight }} sendFlowScrollEvent={false}>
+          <ScrollView
+            size="xs"
+            xBarPosition="none"
+            css={{ maxHeight: maxScrollHeight }}
+            sendFlowScrollEvent={false}
+          >
             <>
               {options.map((option) => (
                 <div
-                  css={classes.dropItem({ ...classState, selected: values.includes(option) })}
+                  css={classes.dropItem({
+                    ...classState,
+                    selected: values.includes(option),
+                  })}
                   key={option.value.toString?.()}
                   onClick={(e) => {
                     e.preventDefault()

@@ -1,4 +1,3 @@
-import { jsx } from '@emotion/react'
 import { useSystem } from '@stage-ui/system'
 import { forwardRef, ForwardRefRenderFunction, useMemo } from 'react'
 import createClasses from './styles'
@@ -9,11 +8,14 @@ const capitalizeFirstLetter = (s: string) => {
 }
 
 const Typography: ForwardRefRenderFunction<Types.Ref, Types.PrivateProps> = (props, ref) => {
-  const { name, download, href, hrefLang, media, ping, rel, target, type, referrerPolicy, focus } = props
+  const { name, download, href, hrefLang, media, ping, rel, target, type, referrerPolicy, focus } =
+    props
   const { classes, attributes, events } = useSystem(name, props, createClasses, { focus })
 
   const children =
-    typeof props.children === 'string' && props.capitalize ? capitalizeFirstLetter(props.children) : props.children
+    typeof props.children === 'string' && props.capitalize
+      ? capitalizeFirstLetter(props.children)
+      : props.children
 
   return useMemo(
     () =>

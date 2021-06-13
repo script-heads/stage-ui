@@ -1,4 +1,3 @@
-import { jsx } from '@emotion/react'
 import { useSystem } from '@stage-ui/system'
 import { forwardRef, ForwardRefRenderFunction } from 'react'
 import createClasses from './styles'

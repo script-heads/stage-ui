@@ -33,7 +33,9 @@ const Separator = (props: Types.SeparatorProps) => {
 
       const prevSize = (vertical ? prev.current.offsetHeight : prev.current.offsetWidth) + movement
       const nextSize = (vertical ? next.current.offsetHeight : next.current.offsetWidth) - movement
-      const containerSize = vertical ? container.current.offsetHeight : container.current.offsetWidth
+      const containerSize = vertical
+        ? container.current.offsetHeight
+        : container.current.offsetWidth
       const total = prevSize + nextSize
       const otherSize = containerSize - prevSize - nextSize
       const percent = 100 - (otherSize / containerSize) * 100

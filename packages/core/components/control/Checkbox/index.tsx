@@ -6,7 +6,10 @@ import { useSystem } from '@stage-ui/system'
 import createClasses from './styles'
 import Types from './types'
 
-const Checkbox: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props: Types.Props, ref) => {
+const Checkbox: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
+  props: Types.Props,
+  ref,
+) => {
   const { size = 'm', disabled } = props
   const { classes, attributes, events, styleProps } = useSystem('Checkbox', props, createClasses)
 

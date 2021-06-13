@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import {
   Block,
   Button,
@@ -14,7 +12,6 @@ import {
   useTheme,
 } from '@stage-ui/core'
 import { CodeDownload, Plus } from '@stage-ui/icons'
-
 import mergeObjects from '@stage-ui/system/utils/mergeObjects'
 import React, { CSSProperties, useEffect, useState } from 'react'
 import ColorPick from './ColorPick'

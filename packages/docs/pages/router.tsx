@@ -1,13 +1,16 @@
-import { Text } from '@stage-ui/core'
-import React, { useState, Fragment } from 'react'
-import Page from '../components/Page'
-import Page404 from './404'
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import { ScrollView, Text, Block, Flexbox } from '@stage-ui/core'
+import ScrollViewTypes from '@stage-ui/core/components/layout/ScrollView/types'
+import React, { useRef, useState } from 'react'
+import ShowcasePage from '../components/ShowcasePage'
+import Menu from '../components/Menu'
 import core from '../utils/core'
+import Page404 from './404'
 
 interface RouterProps {
-  theme: SystemTypes.Theme
-  defaultThemes: Record<string, SystemTypes.Theme>
-  setTheme: React.Dispatch<React.SetStateAction<SystemTypes.Theme>>
+  theme: Stage.Theme
+  defaultThemes: Record<string, Stage.Theme>
+  setTheme: React.Dispatch<React.SetStateAction<Stage.Theme>>
 }
 
 core.init()
@@ -17,6 +20,8 @@ const Router = (props: RouterProps) => {
   const { defaultThemes, theme, setTheme } = props
   const themes = Object.assign(defaultThemes, config.themes)
 
+  const scrollView = useRef<ScrollViewTypes.Ref>(null)
+
   const [path, setPath] = useState<string>(
     `/${window.location.pathname
       .split('/')
@@ -24,24 +29,24 @@ const Router = (props: RouterProps) => {
       .join('/')}`,
   )
 
-  const page = core.getPageByUrl(path)
+  const showcasePage = core.getPageByUrl(path)
   const CustomPage = config.pages?.custom?.[path] || null
   const noPages = Object.keys(pages).length === 0
 
-  document.title = page?.title ? (config.name ? `${page.title} - ${config.name}` : page.title) : config.name || 'Docs'
+  document.title = showcasePage?.title || config.name || 'StageUI'
 
   window.onpopstate = (e: PopStateEvent) => setPath(e.state.path)
 
-  function historyPush(path: string) {
-    history.pushState({ path }, '', path)
-    setPath(path)
+  function historyPush(currentPath: string) {
+    window.history.pushState({ path: currentPath }, '', currentPath)
+    setPath(currentPath)
+    scrollView.current?.scrollTop()
   }
 
   return (
-    <>
-      {page && (
-        <Page
-          data={page}
+    <ScrollView h="100vh" w="100%" ref={scrollView}>
+      <Block>
+        <Menu
           pages={pages}
           config={config}
           path={path}
@@ -50,21 +55,33 @@ const Router = (props: RouterProps) => {
           themes={themes}
           setTheme={setTheme}
         />
-      )}
-      {CustomPage && !page && (
-        <CustomPage
-          pages={pages}
-          config={config}
-          path={path}
-          setPath={historyPush}
-          theme={theme}
-          themes={themes}
-          setTheme={setTheme}
-        />
-      )}
-      {!CustomPage && !page && !noPages && <Page404 />}
-      {!CustomPage && !page && noPages && <Text>Docs has no pages</Text>}
-    </>
+        {showcasePage && (
+          <ShowcasePage
+            data={showcasePage}
+            pages={pages}
+            config={config}
+            path={path}
+            setPath={historyPush}
+            theme={theme}
+            themes={themes}
+            setTheme={setTheme}
+          />
+        )}
+        {CustomPage && !showcasePage && (
+          <CustomPage
+            pages={pages}
+            config={config}
+            path={path}
+            setPath={historyPush}
+            theme={theme}
+            themes={themes}
+            setTheme={setTheme}
+          />
+        )}
+        {!CustomPage && !showcasePage && !noPages && <Page404 />}
+        {!CustomPage && !showcasePage && noPages && <Text>Docs has no pages</Text>}
+      </Block>
+    </ScrollView>
   )
 }
 

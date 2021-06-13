@@ -1,48 +1,38 @@
-import { Block, Button, Flexbox, Modal } from '@stage-ui/core'
+import { Modal } from '@stage-ui/core'
 import ModalTypes from '@stage-ui/core/components/layout/Modal/types'
-import { addElement, removeElement } from '@stage-ui/core/components/layout/Viewport/MountArea'
+import { ViewportShared } from '@stage-ui/core/components/layout/Viewport/MountArea'
 import createID from '@stage-ui/system/utils/createID'
 import React from 'react'
 
-const dialog = (options: ModalTypes.DialogOptions) => {
+export default (render: ModalTypes.DialogOptions | ModalTypes.DialogRenderFn) => {
   const key = createID()
-
+  const options = typeof render === 'object' ? render : null
   let modal: ModalTypes.Ref
-
+  const assignRef = (ref: ModalTypes.Ref) => {
+    modal = ref
+  }
   const close = () => {
     modal.close()
   }
-
-  addElement(
+  ViewportShared.addElement(
     <Modal
       {...options}
-      ref={(ref: ModalTypes.Ref) => {
-        modal = ref
-      }}
+      ref={assignRef}
+      title={options?.title}
+      subtitle={options?.subtitle}
+      hideHeader={options?.hideHeader || typeof render === 'function'}
+      style={options?.style}
+      size={options?.size}
+      decoration={options?.decoration}
+      onOpen={options?.onOpen}
       didClose={() => {
-        removeElement(key)
-        options.didClose?.()
+        ViewportShared.removeElement(key)
+        options?.didClose?.()
       }}
     >
-      {options.render ? (
-        options.render(close)
-      ) : (
-        <Flexbox column>
-          <Block>{options.message}</Block>
-          <Flexbox flex={1} justifyContent="flex-end" pt="1rem">
-            <Button
-              onClick={() => {
-                modal.close()
-              }}
-              label={options.buttonText || 'OK'}
-            />
-          </Flexbox>
-        </Flexbox>
-      )}
+      {typeof render === 'function' ? render(close) : options?.render(close)}
     </Modal>,
     key,
   )
   setTimeout(() => modal.open())
 }
-
-export default dialog

@@ -2,7 +2,11 @@ import colorResolver from '@stage-ui/system/props/color'
 import sizeProp from '@stage-ui/system/props/size'
 import Types from './types'
 
-const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, styleProps) => {
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
+  theme,
+  props,
+  styleProps,
+) => {
   const { gap, dash, vertical } = props
   const color = colorResolver(props.color || theme.assets.border.color, theme)
     ?.rgb()

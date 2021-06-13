@@ -11,9 +11,16 @@ const skeleton = keyframes`
     opacity: .8;
   }
 `
-export type ContainerDecorations = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' | 'skeleton'
+export type ContainerDecorations =
+  | 'surface'
+  | 'minorShadow'
+  | 'mediumShadow'
+  | 'majorShadow'
+  | 'skeleton'
 
-type Props = Stage.AllProps<HTMLDivElement, {}> & { decoration?: ContainerDecorations }
+type Props = Stage.AllProps<HTMLDivElement, {}> & {
+  decoration?: ContainerDecorations
+}
 
 const containerDecorations = (props: Props, theme: Stage.Theme) => {
   switch (props.decoration) {
@@ -46,6 +53,7 @@ const containerDecorations = (props: Props, theme: Stage.Theme) => {
     case 'skeleton':
       return {
         background: theme.color.lightest.rgb().string(),
+        borderRadius: theme.radius.m,
         animation: `${skeleton} 2s ease-in-out infinite`,
       }
   }

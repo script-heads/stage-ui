@@ -1,40 +1,42 @@
-
 export type ArchitectPage = {
-    id: string
-    name: string
-    items: ArchitectItem[]
+  id: string
+  name: string
+  items: ArchitectItem[]
 }
 
 export type ArchitectItem = {
-    id: string
-    component: string
-    name?: string
-    text?: string
-    parent?: ArchitectItem | null
-    children?: ArchitectItem[]
-    props: Record<string,any>
-    $: Record<string,any>
+  id: string
+  component: string
+  name?: string
+  text?: string
+  parent?: ArchitectItem | null
+  children?: ArchitectItem[]
+  props: Record<string, any>
+  $: Record<string, any>
 }
 
 export interface ArchitectTools {
-    components: Record<string, {
-        component: any
-        hidden: boolean
-        create: () => ArchitectItem
-    }>
-    getItems: () => ArchitectItem[]
-    captured?: ArchitectItem | null
-    focused?: ArchitectItem | null
-    target?: ArchitectItem | null 
-    targetIndex?: number
-    
-    move: () => void
-    update: () => void
-    remove: () => void
-    duplicate:() => void
-    undo: () => void
-    redo: () => void
+  components: Record<
+    string,
+    {
+      component: any
+      hidden: boolean
+      create: () => ArchitectItem
+    }
+  >
+  getItems: () => ArchitectItem[]
+  captured?: ArchitectItem | null
+  focused?: ArchitectItem | null
+  target?: ArchitectItem | null
+  targetIndex?: number
 
-    componentLibraryShow: () => void
-    componentLibraryHide: () => void
+  move: () => void
+  update: () => void
+  remove: () => void
+  duplicate: () => void
+  undo: () => void
+  redo: () => void
+
+  componentLibraryShow: () => void
+  componentLibraryHide: () => void
 }

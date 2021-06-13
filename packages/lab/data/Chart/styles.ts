@@ -1,5 +1,5 @@
-import ChartTypes from './types';
+import ChartTypes from './types'
 
 export default (props: ChartTypes.Props) => {
-    return {}
+  return {}
 }

@@ -36,7 +36,13 @@ const Submenu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
           }
         }}
       />
-      <div data-flow="sub-menu-content" {...attributes} {...events} ref={ref} css={classes.container}>
+      <div
+        data-flow="sub-menu-content"
+        {...attributes}
+        {...events}
+        ref={ref}
+        css={classes.container}
+      >
         {props.children || props.title}
       </div>
     </div>

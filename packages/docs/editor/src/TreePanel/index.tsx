@@ -1,15 +1,12 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import { Block, Divider, Flexbox, Menu, ScrollView, useTheme } from '@stage-ui/core'
 import { Browser, Layers, Plus } from '@stage-ui/icons'
-
 import { useState } from 'react'
 import { context } from '../..'
 import { default as LayersTab, default as PagesTab } from './layers'
 import createStyles, { StyleTypes } from './styles'
 
 export type TabProps = {
-  theme: SystemTypes.Theme
+  theme: Stage.Theme
   styles: StyleTypes
 }
 
@@ -27,9 +24,20 @@ const ComponentTree = () => {
   }
 
   return (
-    <Block css={styles.container} backgroundColor={(c) => c.surface} borderColor={(c) => c.lightest}>
+    <Block
+      css={styles.container}
+      backgroundColor={(c) => c.surface}
+      borderColor={(c) => c.lightest}
+    >
       <Flexbox justifyContent="space-between" alignItems="center" my=".5rem">
-        <Menu direction="row" size="s" ml="0.5rem" decoration="color" value={tab} onChange={toolBarActions.onTabChange}>
+        <Menu
+          direction="row"
+          size="s"
+          ml="0.5rem"
+          decoration="color"
+          value={tab}
+          onChange={toolBarActions.onTabChange}
+        >
           <Menu.Item value="layers" title="Layers" leftChild={<Layers />} />
           <Menu.Item value="pages" title="Pages" leftChild={<Browser />} />
         </Menu>

@@ -105,16 +105,22 @@ declare global {
       replace: (theme: ReplaceTheme) => Theme
     }
 
-    type AllProps<Containter, ClassSchema extends ClassesSchemaDefinition> = AllPropsType<Containter, ClassSchema>
-    type CreateClasses<ClassesSchema extends ClassesSchemaDefinition, Props> = CreateClassesType<ClassesSchema, Props>
-    type ColorProp = ColorPropType
-    type PropOverrides<ClassSchema extends ClassesSchemaDefinition> = PropOverridesType<ClassSchema>
-    type ComponentThemeOverrides<Props, ClassSchema extends ClassesSchemaDefinition> = ThemeOverridesType<
-      Props,
+    type AllProps<Containter, ClassSchema extends ClassesSchemaDefinition> = AllPropsType<
+      Containter,
       ClassSchema
     >
+    type CreateClasses<ClassesSchema extends ClassesSchemaDefinition, Props> = CreateClassesType<
+      ClassesSchema,
+      Props
+    >
+    type ColorProp = ColorPropType
+    type PropOverrides<ClassSchema extends ClassesSchemaDefinition> = PropOverridesType<ClassSchema>
+    type ComponentThemeOverrides<Props, ClassSchema extends ClassesSchemaDefinition> =
+      ThemeOverridesType<Props, ClassSchema>
 
-    type FilterStartingWith<Set, Needle extends string> = Set extends `${Needle}${string}` ? Set : never
+    type FilterStartingWith<Set, Needle extends string> = Set extends `${Needle}${string}`
+      ? Set
+      : never
   }
 }
 

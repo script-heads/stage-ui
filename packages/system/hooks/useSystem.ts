@@ -38,7 +38,9 @@ export type FunctionClassDefinition<ClassState extends Exclude<ClassStateDefinit
 ) => Stage.JSS
 
 export type OverridesClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = {
-  [ClassName in keyof ClassesSchema]?: FunctionClassDefinition<Exclude<ClassesSchema[ClassName], void>> | Stage.JSS
+  [ClassName in keyof ClassesSchema]?:
+    | FunctionClassDefinition<Exclude<ClassesSchema[ClassName], void>>
+    | Stage.JSS
 }
 
 export type PropOverrides<ClassesSchema extends ClassesSchemaDefinition> =
@@ -55,7 +57,9 @@ export type ClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = {
     : FunctionClassDefinition<Exclude<ClassesSchema[ClassName], void>>
 }
 
-export type FunctionClass<ClassSchema extends ClassStateDefinition> = (state: ClassSchema) => Stage.JSS
+export type FunctionClass<ClassSchema extends ClassStateDefinition> = (
+  state: ClassSchema,
+) => Stage.JSS
 
 export type Classes<ClassesSchema extends ClassesSchemaDefinition> = {
   [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends void
@@ -69,7 +73,10 @@ export type CreateClasses<ClassesSchema extends ClassesSchemaDefinition, Props> 
   styleProps: StyleProps,
 ) => ClassesDefinition<ClassesSchema>
 
-export type ComponentData<Props extends Record<string, any>, ClassesSchema extends ClassesSchemaDefinition> = {
+export type ComponentData<
+  Props extends Record<string, any>,
+  ClassesSchema extends ClassesSchemaDefinition,
+> = {
   classes: Classes<ClassesSchema>
   attributes: Pick<Props, keyof AttributeProps>
   events: Pick<Props, Stage.FilterStartingWith<keyof Props, 'on'>>
@@ -99,7 +106,12 @@ function useSystem<
   >,
   ClassesSchema extends ClassesSchemaDefinition,
   Element extends HTMLElement,
->(name: string, props: Props, createClasses: Stage.CreateClasses<ClassesSchema, Props>, options: Options = {}) {
+>(
+  name: string,
+  props: Props,
+  createClasses: Stage.CreateClasses<ClassesSchema, Props>,
+  options: Options = {},
+) {
   const currentTheme = useTheme()
   const { focus = 'always', label = name, theme = currentTheme } = options
 
@@ -186,12 +198,22 @@ function useSystem<
     data.styleProps.border,
     data.styleProps.layout,
   )
-  data.styleProps.all = data.styleProps.all.concat(data.styleProps.container, data.styleProps.content)
+  data.styleProps.all = data.styleProps.all.concat(
+    data.styleProps.container,
+    data.styleProps.content,
+  )
 
-  const themeOverrides = theme.overrides[name as keyof typeof theme.overrides] as ThemeOverrides<Props, ClassesSchema>
+  const themeOverrides = theme.overrides[name as keyof typeof theme.overrides] as ThemeOverrides<
+    Props,
+    ClassesSchema
+  >
   const propsOverrides = props.overrides
 
-  const componentClasses: ClassesDefinition<ClassesSchema> = createClasses(theme, props, data.styleProps)
+  const componentClasses: ClassesDefinition<ClassesSchema> = createClasses(
+    theme,
+    props,
+    data.styleProps,
+  )
 
   const themeOverrideClasses: OverridesClassesDefinition<ClassesSchema> = isFunction(themeOverrides)
     ? themeOverrides(props, data.styleProps)

@@ -20,7 +20,9 @@ const NewColorDialog = (props: NewColorDialogProps) => {
     props.edit?.color.rgb().array() || [],
   ])
   const [name, setName] = useState(props.edit?.name || '')
-  const alreadyExist = !!props.palettKeys.find((palettKey) => name.toUpperCase() === palettKey.toUpperCase())
+  const alreadyExist = !!props.palettKeys.find(
+    (palettKey) => name.toUpperCase() === palettKey.toUpperCase(),
+  )
 
   return (
     <Block>
@@ -40,7 +42,9 @@ const NewColorDialog = (props: NewColorDialogProps) => {
           }}
           hint={
             alreadyExist &&
-            !props.edit && <Paragraph color="error">Color with name {name} already exist in palette!</Paragraph>
+            !props.edit && (
+              <Paragraph color="error">Color with name {name} already exist in palette!</Paragraph>
+            )
           }
         />
         {props.edit ? (

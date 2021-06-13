@@ -1,23 +1,23 @@
+import React from 'react'
 import { Block, Flexbox, Header, Notification, Paragraph } from '@stage-ui/core'
 import { Close } from '@stage-ui/icons'
 import NotificationType from '@stage-ui/core/components/layout/Notification/types'
-import { addElement, removeElement } from '@stage-ui/core/components/layout/Viewport/MountArea'
+import { ViewportShared } from '@stage-ui/core/components/layout/Viewport/MountArea'
 import createID from '@stage-ui/system/utils/createID'
-import React from 'react'
 
 export default (options: NotificationType.NotifyOptions) => {
   let timer: NodeJS.Timeout
   const key = createID()
   if (options.timeout) {
-    timer = setTimeout(() => removeElement(key), options.timeout)
+    timer = setTimeout(() => ViewportShared.removeElement(key), options.timeout)
   }
 
   const close = () => {
     clearInterval(timer)
-    removeElement(key)
+    ViewportShared.removeElement(key)
   }
 
-  addElement(
+  ViewportShared.addElement(
     <Notification {...options}>
       {options.render ? (
         options.render(close)

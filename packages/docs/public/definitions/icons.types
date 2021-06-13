@@ -5,15 +5,15 @@ declare module 'Icon/types' {
 	     */
 	    type IconShapes = 'circle' | 'oval' | 'square';
 	    type IconType = 'filled' | 'outline';
-	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
+	    interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
 	        svg: React.ReactElement;
 	        shape?: IconShapes;
-	        size?: SystemTypes.Size | (string & {
+	        size?: Stage.Size | (string & {
 	            T?: string;
 	        });
-	        color?: SystemTypes.ColorProp;
-	        hoverColor?: SystemTypes.ColorProp;
-	        background?: SystemTypes.ColorProp;
+	        color?: Stage.ColorProp;
+	        hoverColor?: Stage.ColorProp;
+	        background?: Stage.ColorProp;
 	        rotate?: number;
 	    }
 	    interface IconProps extends Omit<Props, 'svg'> {
@@ -22,7 +22,7 @@ declare module 'Icon/types' {
 	    interface Styles {
 	        container: {
 	            shape?: IconShapes;
-	            size: SystemTypes.Size | (string & {
+	            size: Stage.Size | (string & {
 	                T?: string;
 	            });
 	        };
@@ -39,8 +39,8 @@ declare module 'Icon/styles' {
 
 }
 declare module 'Icon' {
-	/** @jsx jsx */
-	import { jsx } from '@emotion/react';
+	
+	i;
 	import React, { RefObject } from 'react';
 	import Types from 'Icon/types'; type Icons = {
 	    filled: React.ReactElement;
