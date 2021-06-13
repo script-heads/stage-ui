@@ -1,5 +1,5 @@
 import { notify, Table } from '@stage-ui/core'
-import Types from '@stage-ui/core/data/Table/types'
+import Types from '@stage-ui/core/components/data/Table/types'
 import React, { useState } from 'react'
 
 export default () => {

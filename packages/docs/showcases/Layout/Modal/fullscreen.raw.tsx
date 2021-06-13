@@ -1,6 +1,6 @@
 import { Button, Modal } from '@stage-ui/core'
 import React, { Fragment, useRef } from 'react'
-import ModalTypes from '@stage-ui/core/layout/Modal/types'
+import ModalTypes from '@stage-ui/core/components/layout/Modal/types'
 
 export default () => {
   const modal = useRef<ModalTypes.Ref>(null)
