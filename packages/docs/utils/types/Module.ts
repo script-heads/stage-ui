@@ -1,14 +1,16 @@
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { OChild } from '.'
-import Abstract from './Abstract'
-import Alias from './Alias'
-import Interface from './Interface'
-import Root from './Root'
+import { Abstract } from './Abstract'
+import { Alias } from './Alias'
+import { Interface } from './Interface'
+import { Root } from './Root'
 
 /**
  * Class for Modules
  */
 export class Module extends Abstract {
-  root: Root
+  root!: Root
 
   constructor(child: OChild, _root: Root) {
     super(child)
@@ -60,5 +62,3 @@ export class Module extends Abstract {
     return null
   }
 }
-
-export default Module

@@ -1,6 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/unbound-method */
+/* eslint-disable no-restricted-globals */
 import * as monaco from 'monaco-editor'
 
-interface createArgs {
+interface CreateArgs {
   id: string
   code?: string
   setCode?: (code: string) => void
@@ -24,13 +28,13 @@ class Monaco {
 
   protected redoStates: any[] = []
 
-  protected model: monaco.editor.ITextModel
+  protected model!: monaco.editor.ITextModel
 
-  protected code: string
+  protected editor!: monaco.editor.IStandaloneCodeEditor
+
+  protected code: string = ''
 
   protected theme = 'vs'
-
-  protected editor: monaco.editor.IStandaloneCodeEditor
 
   constructor() {
     this.keydown = this.keydown.bind(this)
@@ -50,7 +54,7 @@ class Monaco {
     }
   }
 
-  public async create(agrs: createArgs) {
+  public async create(agrs: CreateArgs) {
     const { id, code: defaultCode = '', setCode } = agrs
 
     const domNode = document.createElement('div')
@@ -120,7 +124,7 @@ class Monaco {
         }
         this.input = true
         this.restoring = false
-        setCode && setCode(code)
+        setCode?.(code)
       })
     })
 
@@ -150,9 +154,11 @@ class Monaco {
   }
 
   public waitEditor() {
-    return new Promise((resolve, reject) => {
-      const check = async () => {
-        if (this.editor) return resolve(true)
+    return new Promise((resolve) => {
+      const check = () => {
+        if (this.editor) {
+          return resolve(true)
+        }
         setTimeout(check, 50)
       }
       check()
@@ -198,7 +204,7 @@ class Monaco {
 
   public setTheme(theme: 'vs-dark' | 'vs') {
     this.theme = theme
-    monaco.editor && monaco.editor.setTheme(theme)
+    monaco.editor?.setTheme(theme)
   }
 }
 

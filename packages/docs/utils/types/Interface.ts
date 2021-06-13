@@ -1,13 +1,14 @@
+/* eslint-disable no-console */
 import { OChild } from '.'
-import Abstract from './Abstract'
-import Module from './Module'
-import Property from './Property'
+import { Abstract } from './Abstract'
+import { Module } from './Module'
+import { Property } from './Property'
 
 /**
  * Class for Interfaces
  */
 export class Interface extends Abstract {
-  module: Module
+  module!: Module
 
   constructor(child: OChild, _module: Module) {
     super(child)
@@ -39,7 +40,7 @@ export class Interface extends Abstract {
     })
   }
 
-  private extendedTypeStorage: Interface[]
+  private extendedTypeStorage: Interface[] = []
 
   get extendedTypes() {
     if (this.extendedTypeStorage) {
@@ -57,5 +58,3 @@ export class Interface extends Abstract {
     return this.extendedTypeStorage
   }
 }
-
-export default Interface

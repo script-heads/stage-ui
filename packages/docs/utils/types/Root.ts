@@ -1,13 +1,14 @@
-import Abstract from './Abstract'
+/* eslint-disable global-require */
+import { Abstract } from './Abstract'
 import { OChild } from '.'
-import Interface from './Interface'
-import Module from './Module'
-import Alias from './Alias'
+import { Interface } from './Interface'
+import { Module } from './Module'
+import { Alias } from './Alias'
 
 /**
  * Just root
  */
-class Root extends Abstract {
+export class Root extends Abstract {
   static instance: Root
 
   static getInstance() {
@@ -50,7 +51,7 @@ class Root extends Abstract {
           return new Interface(child, module)
         case this.$kinds.TYPE_ALIAS:
           return new Alias(child, module)
-        case this.$kinds.INTERFACE:
+        case this.$kinds.MODULE:
           return new Module(child, this)
       }
     }
@@ -66,5 +67,3 @@ class Root extends Abstract {
     return this.storageReturnHelper(this, 'moduleStorage', [this.$kinds.MODULE], Module)
   }
 }
-
-export default Root

@@ -1,12 +1,13 @@
+/* eslint-disable no-console */
 import { OChild } from '.'
-import Abstract from './Abstract'
-import Module from './Module'
+import { Abstract } from './Abstract'
+import { Module } from './Module'
 
 /**
  * Class for TypeAliases
  */
 export class Alias extends Abstract {
-  module: Module
+  module!: Module
 
   constructor(child: OChild, _module: Module) {
     super(child)
@@ -17,5 +18,3 @@ export class Alias extends Abstract {
     this.module = _module
   }
 }
-
-export default Alias

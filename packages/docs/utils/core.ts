@@ -8,7 +8,7 @@ import TableTypes from '@stage-ui/core/components/data/Table/types'
 import { Property } from '@stage-ui/docs/utils/types'
 
 declare global {
-  const require
+  const require: any
 }
 
 export interface CustomPageProps {
