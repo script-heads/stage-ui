@@ -1,6 +1,7 @@
+/* eslint-disable no-prototype-builtins */
+import React from 'react'
 import { Text } from '@stage-ui/core'
 import { Property } from '@stage-ui/docs/utils/types'
-import React from 'react'
 import BreakpointifyFeature from './Features/Breakpointify'
 
 const PropName = (props: { property: Property }) => {
@@ -17,7 +18,7 @@ const PropName = (props: { property: Property }) => {
     </Text>
   )
   if (property.tags?.hasOwnProperty('breakpointify')) {
-    return <BreakpointifyFeature children={name} />
+    return <BreakpointifyFeature>{name}</BreakpointifyFeature>
   }
   return name
 }

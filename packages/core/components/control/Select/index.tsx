@@ -332,10 +332,10 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
       >
         <div css={classes.drop(classState)}>
           <ScrollView
+            preventStageEvents
             size="xs"
             xBarPosition="none"
             css={{ maxHeight: maxScrollHeight }}
-            sendFlowScrollEvent={false}
           >
             <>
               {options.map((option) => (

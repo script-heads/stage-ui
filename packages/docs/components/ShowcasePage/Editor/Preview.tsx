@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-implied-eval */
 import React from 'react'
 import * as CoreScope from '@stage-ui/core'
 import { Block } from '@stage-ui/core'
@@ -8,7 +9,7 @@ import ts, { JsxEmit, ModuleKind } from 'typescript'
 Object.assign(window, {
   React,
   ...React,
-  FlowScope: {
+  StageUI: {
     React,
     ...React,
     ...IconScope,
@@ -21,12 +22,10 @@ interface PreviewProps {
   theme: Stage.Theme
   code: string
   grid: boolean
-  fullscreen: boolean
-  setFullscreen: (state: boolean) => void
 }
 
 const Preview = (props: PreviewProps) => {
-  const { theme, code, grid, fullscreen, setFullscreen } = props
+  const { theme, code, grid } = props
   let traspiledCode =
     code &&
     ts.transpile(code, {
@@ -37,15 +36,15 @@ const Preview = (props: PreviewProps) => {
    * Butch of crutchs before execute :)
    */
   traspiledCode = traspiledCode.split('export default ')[1].trim().slice(0, -1)
-  traspiledCode = traspiledCode.replace(/createElement\(/g, 'createElement(FlowScope.')
-  traspiledCode = traspiledCode.replace(/dialog\(/g, 'FlowScope.dialog(')
-  traspiledCode = traspiledCode.replace(/notify\(/g, 'FlowScope.notify(')
-  traspiledCode = traspiledCode.replace(/useTheme\(/g, 'FlowScope.useTheme(')
-  traspiledCode = traspiledCode.replace(/useBreakpoints\(/g, 'FlowScope.useBreakpoints(')
+  traspiledCode = traspiledCode.replace(/createElement\(/g, 'createElement(StageUI.')
+  traspiledCode = traspiledCode.replace(/dialog\(/g, 'StageUI.dialog(')
+  traspiledCode = traspiledCode.replace(/notify\(/g, 'StageUI.notify(')
+  traspiledCode = traspiledCode.replace(/useTheme\(/g, 'StageUI.useTheme(')
+  traspiledCode = traspiledCode.replace(/useBreakpoints\(/g, 'StageUI.useBreakpoints(')
 
-  traspiledCode.match(/var \S+/g)?.map((varible) => {
+  traspiledCode.match(/var \S+/g)?.forEach((varible) => {
     const varName = varible.split('var ')[1]
-    traspiledCode = traspiledCode.replace(new RegExp(`FlowScope.${varName}`, 'g'), varName)
+    traspiledCode = traspiledCode.replace(new RegExp(`StageUI.${varName}`, 'g'), varName)
   })
   traspiledCode += '()'
 
@@ -92,10 +91,9 @@ const Preview = (props: PreviewProps) => {
           },
         ]}
       >
-        <span
-          style={{ position: 'relative', display: 'block', height: '100%' }}
-          children={Function(`"use strict";return (${traspiledCode})`)()}
-        />
+        <span style={{ position: 'relative', display: 'block', height: '100%' }}>
+          {Function(`"use strict";return (${traspiledCode})`)()}
+        </span>
       </Block>
     </Block>
   )

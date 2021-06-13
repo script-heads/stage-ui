@@ -1,13 +1,47 @@
+import React from 'react'
 import { Flexbox, Link, Text } from '@stage-ui/core'
-import TextTypes from '@stage-ui/core/content/Text/types'
+import TextTypes from '@stage-ui/core/components/content/Text/types'
 import { OType, Property } from '@stage-ui/docs/utils/types'
-// import { ValueDefinition } from '@stage-ui/docs/components/Page/Types/Interface'
-// interface ValueProps {
-//     type: ValueDefinition,
-// }
 
 const LightText = (props: { children: string }) => (
-  <Text size="xs" color={(c) => c.hard} children={props.children} />
+  <Text size="xs" color="hard">
+    {props.children}
+  </Text>
+)
+
+const Badge = (props: {
+  text: string
+  textColor?: TextTypes.Props['textColor']
+  backgroundColor?: TextTypes.Props['backgroundColor']
+}) => (
+  <Text
+    h="fit-content"
+    size="xs"
+    p=".125rem 0.25rem"
+    mx=".125rem"
+    mb=".25rem"
+    textColor={props.textColor || 'onSurface'}
+    backgroundColor={
+      props.backgroundColor ||
+      ((c) => {
+        switch (props.text) {
+          case 'number':
+            return c.success.alpha(0.2)
+          case 'boolean':
+            return c.primary.alpha(0.2)
+          case 'string':
+            return c.error.alpha(0.2)
+          case 'function':
+            return c.primary.alpha(0.3)
+          default:
+            return c.onSurface.alpha(0.1)
+        }
+      })
+    }
+    css={{ borderRadius: '.25rem' }}
+  >
+    {props.text}
+  </Text>
 )
 
 const Value = (props: { property: Property }) => {
@@ -15,45 +49,10 @@ const Value = (props: { property: Property }) => {
 
   let values: JSX.Element[] = []
 
-  const Badge = (props: {
-    text: string
-    textColor?: TextTypes.Props['textColor']
-    backgroundColor?: TextTypes.Props['backgroundColor']
-  }) => (
-    <Text
-      h="fit-content"
-      size="xs"
-      p=".125rem 0.25rem"
-      mx=".125rem"
-      mb=".25rem"
-      textColor={props.textColor}
-      backgroundColor={
-        props.backgroundColor ||
-        ((c) => {
-          switch (props.text) {
-            case 'number':
-              return c.success.alpha(0.2)
-            case 'boolean':
-              return c.primary.alpha(0.2)
-            case 'string':
-              return c.error.alpha(0.2)
-            case 'function':
-              return c.primary.alpha(0.3)
-            default:
-              return c.onSurface.alpha(0.1)
-          }
-        })
-      }
-      css={{ borderRadius: '.25rem' }}
-      children={`${props.text}`}
-    />
-  )
-
   const { value, tags } = property
 
-  const val = value
-
-  const push = (val: OType) => {
+  const push = (newVal: OType) => {
+    let val = newVal
     let isArray = false
     let ret = <span />
 
@@ -83,8 +82,10 @@ const Value = (props: { property: Property }) => {
     )
   }
 
+  const val = value
+
   if (val.type === 'union') {
-    val.types.map((val) => push(val))
+    val.types.map((v) => push(v))
   } else {
     push(val)
   }
@@ -96,12 +97,12 @@ const Value = (props: { property: Property }) => {
   if (tags.display) {
     const vals = tags.display.split('|')
     values = []
-    for (const val of vals) {
+    for (const v of vals) {
       values.push(
         <Badge
           key={Math.random()}
-          text={val.trim()}
-          textColor={tags.display ? (c) => c.primary : undefined}
+          text={v.trim()}
+          textColor={tags.display ? 'primary' : undefined}
           backgroundColor={tags.display ? (c) => c.primary.alpha(0.1) : undefined}
         />,
       )

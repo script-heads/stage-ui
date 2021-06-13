@@ -201,11 +201,11 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
       setNeedDisplay()
       document.addEventListener('resize', setNeedDisplay)
       document.addEventListener('scroll', setNeedDisplay)
-      document.addEventListener('onflowscroll', setNeedDisplay)
+      document.addEventListener('onstagescroll', setNeedDisplay)
       return () => {
         document.removeEventListener('resize', setNeedDisplay)
         document.removeEventListener('scroll', setNeedDisplay)
-        document.removeEventListener('onflowscroll', setNeedDisplay)
+        document.removeEventListener('onstagescroll', setNeedDisplay)
       }
     }
   }, [])

@@ -73,10 +73,10 @@ declare namespace ScrollViewTypes {
      */
     yBarPosition?: 'left' | 'right' | 'none'
     /**
-     * If false
-     * onflowscroll will not dispatch
+     * If true
+     * onstagescroll will not dispatch
      */
-    sendFlowScollEvent?: boolean
+    preventStageEvents?: boolean
     /**
      * Calls when ever user scrolls
      */

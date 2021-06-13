@@ -1,6 +1,6 @@
 import Types from './types'
 
-const styles: Stage.CreateClasses<Types.Classes, Types.Props<string>> = (theme, props) => {
+const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
   const minHeight =
     theme.assets.field[props.size || 'm']?.minHeight || theme.assets.field.m.minHeight || '2.5rem'
 

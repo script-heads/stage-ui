@@ -176,9 +176,9 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
        * Was issue with <Drop/> updateLayoyt
        * in <Select/> component
        */
-      if (props.sendFlowScollEvent !== false) {
+      if (!props.preventStageEvents) {
         document.dispatchEvent(
-          new CustomEvent('onflowscroll', {
+          new CustomEvent('onstagescroll', {
             detail: event,
           }),
         )

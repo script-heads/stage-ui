@@ -1,6 +1,6 @@
+import React from 'react'
 import { Link, Paragraph, Text } from '@stage-ui/core'
 import { Property } from '@stage-ui/docs/utils/types'
-import { Fragment } from 'react'
 
 const Description = (props: { property: Property }) => {
   const { property } = props

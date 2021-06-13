@@ -28,7 +28,7 @@ const Types = (props: TypesProps) => {
             key={`interface-${index}`}
             data={interfaceTypes}
             columns={configType.columns}
-            separatedTypes={config.pages?.separatedTypes}
+            separatedTypes={config.pages?.separatedTypes || []}
           />
         )
       })}

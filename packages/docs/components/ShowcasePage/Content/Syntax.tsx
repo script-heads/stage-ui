@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useTheme } from '@stage-ui/core'
 import React from 'react'
 import { Prism } from 'react-syntax-highlighter'
 import light from 'react-syntax-highlighter/dist/esm/styles/prism/prism'
-import dark from 'react-syntax-highlighter/dist/esm/styles/prism/vs-dark'
+import dark from 'react-syntax-highlighter/dist/esm/styles/prism/dark'
 
 const Syntax = (props: { code?: (() => JSX.Element) | string; children?: string }) => {
   const theme = useTheme()
@@ -14,12 +15,9 @@ const Syntax = (props: { code?: (() => JSX.Element) | string; children?: string 
     background: theme.color.background,
   }
   return (
-    <Prism
-      language="typescript"
-      style={isDark ? dark : light}
-      children={props.children || props.code}
-      customStyle={styles}
-    />
+    <Prism language="typescript" style={isDark ? dark : light} customStyle={styles}>
+      {props.children || props.code}
+    </Prism>
   )
 }
 
