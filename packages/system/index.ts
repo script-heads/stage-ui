@@ -114,7 +114,7 @@ declare global {
       ClassSchema
     >
 
-    type FilterStartingWith<Set, Needle extends string> = Set extends `${Needle}${infer X}` ? Set : never
+    type FilterStartingWith<Set, Needle extends string> = Set extends `${Needle}${string}` ? Set : never
   }
 }
 
