@@ -1,9 +1,13 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { OChild } from '.'
 
 /**
  * Abstract class for any Child element
  */
-abstract class Abstract {
+export abstract class Abstract {
   $data: OChild
 
   id: OChild['id']
@@ -28,7 +32,7 @@ abstract class Abstract {
     TYPE_ALIAS: 0x400000,
   }
 
-  constructor(child: OChild, _?: unknown) {
+  constructor(child: OChild) {
     this.$data = child
     this.id = child.id
     this.name = child.name
@@ -38,7 +42,7 @@ abstract class Abstract {
         this.comment = this.$data.comment
       } else {
         this.comment = this.$data.comment.shortText || ''
-        this.$data.comment.tags?.map((tag) => {
+        this.$data.comment.tags?.forEach((tag) => {
           this.tags[tag.tag] = tag.text
         })
       }
@@ -62,7 +66,7 @@ abstract class Abstract {
   /**
    * Helps caching and finding elements
    */
-  protected storageReturnHelper<R extends new (...args) => unknown, S>(
+  protected storageReturnHelper<R extends new (...args: any) => unknown, S>(
     self: S,
     storageId: string,
     kinds: number[],
@@ -70,9 +74,11 @@ abstract class Abstract {
     filter?: (item: InstanceType<R>) => boolean,
   ): InstanceType<R>[] {
     if (self[storageId].length === 0) {
+      // @ts-expect-error
       const groupInterfaces = self.$data.groups?.find((g) => kinds.includes(g.kind))
       if (groupInterfaces) {
         self[storageId] = groupInterfaces.children.map(
+          // @ts-expect-error
           (child) => new Prototype(self.$data.children.find((c) => c.id === child) as OChild, self),
         )
         if (filter) {
@@ -84,5 +90,3 @@ abstract class Abstract {
     return self[storageId]
   }
 }
-
-export default Abstract

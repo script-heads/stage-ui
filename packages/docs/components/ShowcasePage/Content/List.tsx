@@ -1,3 +1,4 @@
+import React from 'react'
 import { useTheme } from '@stage-ui/system/'
 
 export default (props: { data: string[]; higlightBefore?: string }) => {
@@ -24,7 +25,7 @@ export default (props: { data: string[]; higlightBefore?: string }) => {
             const other = child.substring(split.length)
 
             return (
-              <li key={child + index}>
+              <li key={`${child}${index}`}>
                 <span
                   css={{
                     backgroundColor: theme.color.primary.lighten(0.5).rgb().string(),
@@ -38,7 +39,7 @@ export default (props: { data: string[]; higlightBefore?: string }) => {
               </li>
             )
           })
-        : props.data.map((child, index) => <li key={child + index}>{child}</li>)}
+        : props.data.map((child, index) => <li key={`${child}${index}`}>{child}</li>)}
     </ul>
   )
 }

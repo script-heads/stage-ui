@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import React from 'react'
 import { Flexbox, Text, Block, Divider } from '@stage-ui/core'
 import { Code } from '@stage-ui/icons'
@@ -13,13 +14,9 @@ interface ErrorBoundaryState {
 }
 
 class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  constructor(props) {
+  constructor(props: ErrorBoundaryProps) {
     super(props)
     this.state = { error: null }
-  }
-
-  handleTopLevelError(event) {
-    event.preventDefault()
   }
 
   UNSAFE_componentWillReceiveProps() {
@@ -31,10 +28,14 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
     window.removeEventListener('error', this.handleTopLevelError)
   }
 
-  componentDidCatch(error, errorInfo) {
+  componentDidCatch(error: Error) {
     this.setState({ error: error.toString() })
-    this.props.onError && this.props.onError(error.toString())
+    this.props.onError?.(error.toString())
     return true
+  }
+
+  handleTopLevelError(event: ErrorEvent) {
+    event.preventDefault()
   }
 
   render() {
@@ -43,14 +44,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
         <Block p="2rem" h="100%" backgroundColor={(c) => c.surface}>
           <Text color={(c) => c.error}>{this.state.error || this.props.error}</Text>
           <Divider color={(c) => c.lightest} my="0.5rem" />
-          <Flexbox
-            mb="1rem"
-            borderRadius="4px"
-            alignItems="center"
-            justifyContent="space-between"
-            // backgroundColor={c=>c.error.alpha(0.1)}
-            // textColor={c => c.error}
-          >
+          <Flexbox mb="1rem" borderRadius="4px" alignItems="center" justifyContent="space-between">
             <Text color={(c) => c.light} size="s">
               Looks like you typed wrong
             </Text>

@@ -1,9 +1,9 @@
-import Root from './Root'
+import { Root } from './Root'
 
-export { default as Module } from './Module'
-export { default as Property } from './Property'
-export { default as Alias } from './Alias'
-export { default as Interface } from './Interface'
+export { Module } from './Module'
+export { Property } from './Property'
+export { Alias } from './Alias'
+export { Interface } from './Interface'
 
 export type OFlags = {
   isExported?: boolean

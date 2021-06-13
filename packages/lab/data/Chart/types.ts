@@ -11,7 +11,7 @@ declare namespace ChartTypes {
     | 'polar'
     | 'scatter'
     | 'bubble'
-  interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
+  interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
     /**
      * @default line
      */
@@ -21,7 +21,7 @@ declare namespace ChartTypes {
     options?: ChartOptions
   }
 
-  interface Styles {}
+  type Classes = {}
 }
 
 export default ChartTypes

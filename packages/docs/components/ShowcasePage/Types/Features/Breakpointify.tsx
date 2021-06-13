@@ -31,22 +31,23 @@ const BreakpointifyFeature = (props: { children: React.ReactNode }) => {
         onClickOutside={() => {
           setActive(false)
         }}
-        children={
-          <Popover
-            onMouseLeave={() => {
-              setActive(false)
-            }}
-            css={{ maxWidth: '15rem' }}
-          >
-            <Paragraph m={0} weight="bold" textColor="hardest" children="Breakpoints support" />
-            <Paragraph>You could provide array of properties for responsive render.</Paragraph>
-            <Divider mb="0.5rem" />
-            <Link href="/props/#breakpoints">
-              More info <ExternalLink />
-            </Link>
-          </Popover>
-        }
-      />
+      >
+        <Popover
+          onMouseLeave={() => {
+            setActive(false)
+          }}
+          css={{ maxWidth: '15rem' }}
+        >
+          <Paragraph m={0} weight="bold" textColor="hardest">
+            Breakpoints support
+          </Paragraph>
+          <Paragraph>You could provide array of properties for responsive render.</Paragraph>
+          <Divider mb="0.5rem" />
+          <Link href="/props/#breakpoints">
+            More info <ExternalLink />
+          </Link>
+        </Popover>
+      </Drop>
     </Block>
   )
 }

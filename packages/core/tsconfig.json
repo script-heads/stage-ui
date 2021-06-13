@@ -10,7 +10,8 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "suppressImplicitAnyIndexErrors": true,
-    "strict": true
+    "strict": true,
+    "types": ["@emotion/react"]
   },
   "include": [
     "components/**/*",

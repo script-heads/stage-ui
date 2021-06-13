@@ -40,7 +40,7 @@ const MonacoEditor = React.memo(
 const Editor = (props: EditorProps) => {
   const { cases } = props
   const [currentCase, setCurrentCase] = useState<number>(0)
-  const [code, _setCode] = useState<string>(cases[0].code)
+  const [code, setEditorCode] = useState<string>(cases[0].code)
   const [grid, setGrid] = useState(!(localStorage.getItem('case_grid') === 'false'))
   const isMobile = () => document.body.offsetWidth < window.breakpoints[1]
   let directionVar: 'row' | 'column' = isMobile() ? 'column' : 'row'
@@ -48,9 +48,9 @@ const Editor = (props: EditorProps) => {
   const theme = useTheme()
   const [direction, setDirection] = useState(directionVar)
 
-  const setCode = (code: string) => {
-    _setCode('')
-    setTimeout(() => _setCode(code))
+  const setCode = (newCode: string) => {
+    setEditorCode('')
+    setTimeout(() => setEditorCode(newCode))
   }
 
   useEffect(() => {
@@ -113,11 +113,12 @@ const Editor = (props: EditorProps) => {
             mr="1rem"
             key={caseIndex}
             weight={600}
-            color={(c) => (caseIndex === currentCase ? c.primary : c.onBackground)}
-            children={c.label}
+            color={caseIndex === currentCase ? 'primary' : 'onBackground'}
             onClick={() => setCurrentCase(caseIndex)}
             css={{ cursor: 'pointer' }}
-          />
+          >
+            {c.label}
+          </Text>
         ))}
         <Block flex={1} />
         <Grid
@@ -178,15 +179,7 @@ const Editor = (props: EditorProps) => {
         <Split direction={direction}>
           <Block h="100%" flex={1} overflow="hidden">
             <ErrorBoundary>
-              {code && (
-                <Preview
-                  theme={theme}
-                  code={code}
-                  grid={grid}
-                  fullscreen={fullscreen}
-                  setFullscreen={setFullscreen}
-                />
-              )}
+              {code && <Preview theme={theme} code={code} grid={grid} />}
             </ErrorBoundary>
             {fullscreen && (
               <Collapse

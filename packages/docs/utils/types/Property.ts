@@ -1,14 +1,17 @@
+/* eslint-disable no-console */
+/* eslint-disable react/no-this-in-sfc */
+/* eslint-disable no-param-reassign */
 import { OChild, OType, OTypeIntrinsic, OTypeUnion, OTypeReference } from '.'
-import Abstract from './Abstract'
-import Interface from './Interface'
+import { Abstract } from './Abstract'
+import { Interface } from './Interface'
 
 /**
  * Class for Interfaces
  */
 export class Property extends Abstract {
-  interface: Interface
+  interface!: Interface
 
-  type: OType['type']
+  type!: OType['type']
 
   constructor(child: OChild, _interface: Interface) {
     super(child)
@@ -55,7 +58,7 @@ export class Property extends Abstract {
     /**
      * Fix union types
      */
-    if (this.$data.type.type == 'union') {
+    if (this.$data.type.type === 'union') {
       this.unionVoidRemove(this.$data.type)
       this.unionOptionalBooleanConvert(this.$data.type)
       return this.$data.type
@@ -116,5 +119,3 @@ export class Property extends Abstract {
     }
   }
 }
-
-export default Property

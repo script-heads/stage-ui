@@ -203,7 +203,7 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
 
       updatePosition()
       document.addEventListener('scroll', updatePosition, true)
-      document.addEventListener('onflowscroll', updatePosition, true)
+      document.addEventListener('onstagescroll', updatePosition, true)
       document.addEventListener('mouseup', handleClickOutside)
       window.addEventListener('resize', updatePosition)
 
@@ -215,7 +215,7 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
         window.removeEventListener('mousemove', updateStickCursor)
       } else {
         document.removeEventListener('scroll', updatePosition, true)
-        document.removeEventListener('onflowscroll', updatePosition, true)
+        document.removeEventListener('onstagescroll', updatePosition, true)
         document.removeEventListener('mouseup', handleClickOutside)
         window.removeEventListener('resize', updatePosition)
       }

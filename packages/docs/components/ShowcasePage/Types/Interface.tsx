@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import { Block, Header, Flexbox, Table, ScrollView } from '@stage-ui/core'
-import TableTypes from '@stage-ui/core/data/Table/types'
+import TableTypes from '@stage-ui/core/components/data/Table/types'
 import { Interface as InterfaceType, Property } from '../../../utils/types'
 
 interface InterfaceProps {
@@ -15,7 +15,7 @@ const sortTypes = (data: InterfaceType, separatedTypes?: string[]) => {
   }
 
   const getExtendedTypes = (type: InterfaceType, parent?: string) => {
-    type.extendedTypes.map((innerType) => {
+    type.extendedTypes.forEach((innerType) => {
       const innerName = innerType.tags.name?.trim()
       if ((separatedTypes && separatedTypes.includes(innerName)) || parent) {
         if (parent) {
@@ -65,10 +65,11 @@ const Interface = (props: InterfaceProps) => {
               <Header
                 key={name}
                 mr="1.5rem"
-                children={name}
                 color={name === active ? 'onBackground' : 'light'}
                 onClick={() => setActive(name)}
-              />
+              >
+                {name}
+              </Header>
             ))}
           </Flexbox>
         </ScrollView>
