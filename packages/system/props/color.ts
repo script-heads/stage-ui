@@ -1,7 +1,7 @@
 import Color from 'color'
 
 /**
- * @display SystemTypes.Color
+ * @display Stage.Color
  * @link /props#color
  */
 export type ColorProp =

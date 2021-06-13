@@ -24,7 +24,7 @@ const useProgress = (animate: boolean, time: number, pause, currentProgress) => 
       rafId = requestAnimationFrame(step)
       return () => cancelAnimationFrame(rafId!)
     }
-    return () => void 0
+    return () => undefined
   }, [animate, time])
 
   return progress / time

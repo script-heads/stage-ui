@@ -2,7 +2,7 @@ declare module 'data/Chart/types' {
 	import { ChartDataSets, ChartOptions } from 'chart.js';
 	; namespace ChartTypes {
 	    type ChartType = 'line' | 'pie' | 'verticalBar' | 'horizontalBar' | 'doughnut' | 'radar' | 'polar' | 'scatter' | 'bubble';
-	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
+	    interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
 	        /**
 	         * @default line
 	         */

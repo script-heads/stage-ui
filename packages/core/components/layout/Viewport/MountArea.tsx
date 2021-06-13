@@ -1,12 +1,14 @@
-import { css, jsx } from '@emotion/react'
+import { css } from '@emotion/react'
 import createID from '@stage-ui/system/utils/createID'
 import React, { FC, Fragment, useState } from 'react'
 import ViewportTypes from './types'
 
-export let addElement: (children: React.ReactElement, key?: string) => string
-export let removeElement: (key: string) => void
+export const ViewportShared: ViewportTypes.Shared = {
+  addElement: () => '',
+  removeElement: () => undefined,
+}
 
-const MountArea: FC<ViewportTypes.MountArea> = (props) => {
+const MountArea: FC<ViewportTypes.MountArea> = () => {
   const styles = css({
     position: 'fixed',
     display: 'flex',
@@ -23,22 +25,19 @@ const MountArea: FC<ViewportTypes.MountArea> = (props) => {
 
   const [elements, setElements] = useState<ViewportTypes.MountAreaElement[]>([])
 
-  addElement = (children: React.ReactElement, key?: string) => {
-    if (!key) {
-      key = createID()
-    }
+  ViewportShared.addElement = (children: React.ReactElement, key: string = createID()) => {
     setElements(elements.concat({ key, children }))
     return key
   }
 
-  removeElement = (key: string) => {
+  ViewportShared.removeElement = (key: string) => {
     setElements(elements.filter((el) => el.key !== key))
   }
 
   return (
     <div css={styles}>
       {elements.map((element) => (
-        <Fragment key={element.key} children={element.children} />
+        <Fragment key={element.key}>{element.children}</Fragment>
       ))}
     </div>
   )

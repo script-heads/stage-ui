@@ -1,8 +1,0 @@
-// DON'T DO THAT
-import * as Icons from '@stage-ui/icons'
-
-export default () => {
-    return (
-        <Icons.Clock/>
-    )
-}

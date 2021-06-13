@@ -1,31 +1,31 @@
 declare module 'content/Divider/types' {
 	; namespace DividerTypes {
-	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
+	    interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
 	        /**
 	        * Draw divider vertical
 	        */
 	        vertical?: boolean;
 	        /**
 	        * Size of dash
-	        * @display SystemTypes.Size
+	        * @display Stage.Size
 	        * @link /props/#size
 	        */
-	        dash?: SystemTypes.Size | (string & {
+	        dash?: Stage.Size | (string & {
 	            T?: string;
 	        });
 	        /**
 	        * Size of the gap between dashes
-	        * @display SystemTypes.Size
+	        * @display Stage.Size
 	        * @link /props/#size
 	        */
-	        gap?: SystemTypes.Size | (string & {
+	        gap?: Stage.Size | (string & {
 	            T?: string;
 	        });
 	        /**
 	        * Color of divider
 	        * @default lightest
 	        */
-	        color?: SystemTypes.ColorProp;
+	        color?: Stage.ColorProp;
 	    }
 	    interface Styles {
 	        /**
@@ -50,12 +50,12 @@ declare module 'content/Divider' {
 }
 declare module 'content/Spinner/types' {
 	; namespace SpinnerTypes {
-	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
+	    interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
 	        /**
 	         * Color of spinner
 	         * @default hardest
 	         */
-	        color?: SystemTypes.ColorProp;
+	        color?: Stage.ColorProp;
 	        /**
 	         * Custom content
 	         */
@@ -147,7 +147,7 @@ declare module '@stage-ui/core/components/basic/Typography/types' {
 	         */
 	        referrerPolicy?: string;
 	    }
-	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
+	    interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
 	        /**
 	         * Capitalize first letter
 	         */
@@ -167,11 +167,11 @@ declare module '@stage-ui/core/components/basic/Typography/types' {
 	        /**
 	         * Text color
 	         */
-	        color?: SystemTypes.ColorProp;
+	        color?: Stage.ColorProp;
 	        /**
 	         * Shorthand for background-color
 	         */
-	        backgroundColor?: SystemTypes.ColorProp;
+	        backgroundColor?: Stage.ColorProp;
 	        /**
 	         * Shorthand for text-align
 	         */
@@ -183,10 +183,10 @@ declare module '@stage-ui/core/components/basic/Typography/types' {
 	        /**
 	         * Shorthand for font-size
 	         * @default m
-	         * @display SystemTypes.Size
+	         * @display Stage.Size
 	         * @link /props/#size
 	         */
-	        size?: SystemTypes.Size | (string & {
+	        size?: Stage.Size | (string & {
 	            T?: string;
 	        });
 	        /**
@@ -202,7 +202,7 @@ declare module '@stage-ui/core/components/basic/Typography/types' {
 	    }
 	    interface PrivateProps extends LinkProps {
 	        tag: string;
-	        sizesOf: keyof SystemTypes.ThemeAssets['typography'];
+	        sizesOf: keyof Stage.ThemeAssets['typography'];
 	        specificStyles?: any;
 	        mouseFocus?: boolean;
 	        overrides: string;
@@ -288,12 +288,12 @@ declare module 'content/Link' {
 }
 declare module 'content/Toast/types' {
 	; namespace DividerTypes {
-	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
+	    interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
 	        /**
 	        * Color of divider
 	        * @default primary
 	        */
-	        color?: SystemTypes.ColorProp;
+	        color?: Stage.ColorProp;
 	        /**
 	         * Place for items to the right of children
 	         */
@@ -340,7 +340,7 @@ declare module 'content/Toast' {
 }
 declare module 'control/Button/types' {
 	; namespace ButtonTypes {
-	    interface Props extends SystemTypes.AllProps<HTMLButtonElement, Styles> {
+	    interface Props extends Stage.AllProps<HTMLButtonElement, Styles> {
 	        /**
 	         * Specifies that the button should have input focus when the page loads
 	         */
@@ -389,11 +389,11 @@ declare module 'control/Button/types' {
 	        value?: string | string[] | number;
 	        /**
 	         * Size of button
-	         * @display SystemTypes.Size
+	         * @display Stage.Size
 	         * @link /props/#size
 	         * @default m
 	         */
-	        size?: SystemTypes.Size;
+	        size?: Stage.Size;
 	        /**
 	         * Defines how button look
 	         * @default filled
@@ -411,7 +411,7 @@ declare module 'control/Button/types' {
 	        /**
 	         * Color of button
 	         */
-	        color?: SystemTypes.ColorProp;
+	        color?: Stage.ColorProp;
 	        /**
 	         * Button's label
 	         */
@@ -500,7 +500,7 @@ declare module 'control/Calendar/types' {
 	    type DayRenderOptions = RenderOptions & {
 	        isCurrentMonth: boolean;
 	    };
-	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+	    interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        /**
 	         * Type for Calendar
 	         * @default day
@@ -575,7 +575,7 @@ declare module 'control/Calendar/types' {
 	        maxValue: Moment;
 	        onChange: (date: Moment) => void;
 	        onViewChange?: (date: Moment) => void;
-	        styles: SystemTypes.ComponentStyles<Styles>;
+	        styles: Stage.ComponentStyles<Styles>;
 	        type: GridType;
 	        onYearRender?: (options: YearRenderOptions) => React.ReactNode;
 	        onMonthRender?: (options: MonthRenderOptions) => React.ReactNode;
@@ -589,7 +589,7 @@ declare module 'control/Calendar/types' {
 	        maxValue: Moment;
 	        onClick: () => void;
 	        style?: CSSProperties;
-	        styles: SystemTypes.ComponentStyles<Styles>;
+	        styles: Stage.ComponentStyles<Styles>;
 	    }
 	    interface DateGridDayProps extends Omit<DateGridCalendarProps, 'onClick'> {
 	        hideNeighborMonths: boolean;
@@ -622,7 +622,7 @@ declare module 'control/Calendar/types' {
 	        onNext: () => void;
 	        onPrevious: () => void;
 	        onGridTypeChange: (type: GridType) => void;
-	        styles: SystemTypes.ComponentStyles<Styles>;
+	        styles: Stage.ComponentStyles<Styles>;
 	    }
 	    interface Styles {
 	        /**
@@ -728,14 +728,14 @@ declare module '@stage-ui/core/components/basic/Icon/types' {
 	     */
 	    type IconShapes = 'circle' | 'oval' | 'square';
 	    type IconType = 'filled' | 'outline';
-	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
+	    interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
 	        svg: React.ReactElement;
 	        shape?: IconShapes;
-	        size?: SystemTypes.Size | (string & {
+	        size?: Stage.Size | (string & {
 	            T?: string;
 	        });
-	        color?: SystemTypes.ColorProp;
-	        background?: SystemTypes.ColorProp;
+	        color?: Stage.ColorProp;
+	        background?: Stage.ColorProp;
 	        rotate?: number;
 	    }
 	    interface IconProps extends Omit<Props, 'svg'> {
@@ -744,7 +744,7 @@ declare module '@stage-ui/core/components/basic/Icon/types' {
 	    interface Styles {
 	        container: {
 	            shape?: IconShapes;
-	            size: SystemTypes.Size | (string & {
+	            size: Stage.Size | (string & {
 	                T?: string;
 	            });
 	        };
@@ -7916,19 +7916,19 @@ declare module '@stage-ui/icons' {
 declare module '@stage-ui/core/components/basic/Check/types' {
 	; namespace CheckTypes {
 	    type CheckType = 'checkbox' | 'radio' | 'switch';
-	    interface Props extends SystemTypes.AllProps<HTMLInputElement, Styles> {
+	    interface Props extends Stage.AllProps<HTMLInputElement, Styles> {
 	        label?: string;
-	        labelColor?: SystemTypes.ColorProp;
+	        labelColor?: Stage.ColorProp;
 	        checked?: boolean;
 	        disabled?: boolean;
 	        defaultValue?: boolean;
 	        uppercase?: boolean;
-	        size?: SystemTypes.Size;
+	        size?: Stage.Size;
 	    }
 	    interface PrivateProps extends Omit<Props, 'styles'> {
 	        children: (checked: boolean, focus: boolean) => React.ReactElement;
 	        type?: CheckType;
-	        styles: SystemTypes.ComponentStyles<Styles>;
+	        styles: Stage.ComponentStyles<Styles>;
 	    }
 	    interface Styles {
 	        container: {
@@ -7995,7 +7995,7 @@ declare module 'control/Checkbox' {
 declare module '@stage-ui/core/components/basic/Field/types' {
 	;
 	import React from 'react'; namespace FieldTypes {
-	    interface Props<S = Styles> extends Omit<SystemTypes.AllProps<HTMLInputElement, S>, 'onChange'> {
+	    interface Props<S = Styles> extends Omit<Stage.AllProps<HTMLInputElement, S>, 'onChange'> {
 	        /**
 	         * Label for field
 	         */
@@ -8015,10 +8015,10 @@ declare module '@stage-ui/core/components/basic/Field/types' {
 	        /**
 	         * Size of field
 	         * @default m
-	         * @display SystemTypes.Size
+	         * @display Stage.Size
 	         * @link /props/#size
 	         */
-	        size?: SystemTypes.Size;
+	        size?: Stage.Size;
 	        /**
 	         * Defines how field look
 	         * @default filled
@@ -8028,7 +8028,7 @@ declare module '@stage-ui/core/components/basic/Field/types' {
 	         * Color of field
 	         * @default surface
 	         */
-	        color?: SystemTypes.ColorProp;
+	        color?: Stage.ColorProp;
 	        /**
 	         * Shape of field
 	         * @default rounded
@@ -8107,7 +8107,7 @@ declare module '@stage-ui/core/components/basic/Field/types' {
 	    }
 	    interface PrivateProps extends Omit<Props, 'styles'> {
 	        focus: boolean;
-	        styles: SystemTypes.ComponentStyles<Styles>;
+	        styles: Stage.ComponentStyles<Styles>;
 	        state?: Object;
 	        labelName?: string;
 	        attributes?: any;
@@ -8138,7 +8138,7 @@ declare module 'misc/hocs/Field/styles' {
 	;
 	import Types from '@stage-ui/core/components/basic/Field/types'; type ExtractFunction<T> = {
 	    [K in keyof T]: Extract<T[K], Function>;
-	}; const fieldStyles: <T extends Types.Styles<{}>>(props: Omit<Types.Props, 'onChange'>, theme: SystemTypes.Theme, stylePatch?: Partial<ExtractFunction<SystemTypes.Styles<T>>> | undefined) => SystemTypes.Styles<Types.Styles>;
+	}; const fieldStyles: <T extends Types.Styles<{}>>(props: Omit<Types.Props, 'onChange'>, theme: Stage.Theme, stylePatch?: Partial<ExtractFunction<Stage.Styles<T>>> | undefined) => Stage.Styles<Types.Styles>;
 	export default fieldStyles;
 
 }
@@ -8240,7 +8240,7 @@ declare module 'control/DatePicker' {
 }
 declare module 'control/Menu/MenuGroup/types' {
 	; namespace MenuGroupTypes {
-	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+	    interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        /**
 	         * Title of group
 	         */
@@ -8290,7 +8290,7 @@ declare module 'control/Menu/types' {
 	        onChange?: (value?: MenuValue) => void;
 	        itemAs?: keyof HTMLElementTagNameMap;
 	    }
-	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+	    interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        /**
 	         * Value selected by default
 	         */
@@ -8330,10 +8330,10 @@ declare module 'control/Menu/types' {
 	        /**
 	         * Size of each item
 	         * @default m
-	         * @display SystemTypes.Size
+	         * @display Stage.Size
 	         * @link /props/#size
 	         */
-	        size?: SystemTypes.Size;
+	        size?: Stage.Size;
 	        /**
 	         * Flex align
 	         * @default flex-start
@@ -8400,7 +8400,7 @@ declare module 'control/Menu/types' {
 declare module 'control/Menu/MenuItem/types' {
 	;
 	import MenuTypes from 'control/Menu/types'; namespace MenuItemTypes {
-	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+	    interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        /**
 	         * Controlled item state
 	         */
@@ -8469,7 +8469,7 @@ declare module 'control/Menu/styles' {
 }
 declare module 'control/Menu/Submenu/types' {
 	; namespace SubmenuTypes {
-	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+	    interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        /**
 	         * Title for menu item
 	         */
@@ -8580,7 +8580,7 @@ declare module 'control/Radio' {
 }
 declare module 'control/Range/types' {
 	; namespace RangeTypes {
-	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+	    interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        min?: number;
 	        max?: number;
 	        defaultValue?: number;
@@ -8616,7 +8616,7 @@ declare module 'control/Range' {
 }
 declare module 'control/Pageswitch/types' {
 	; namespace PageswitchTypes {
-	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+	    interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        /**
 	         * Total count of records
 	         */
@@ -8674,7 +8674,7 @@ declare module 'layout/Drop/types' {
 	        left: number;
 	        right: number;
 	    }
-	    interface Props extends SystemTypes.AttributeProps, SystemTypes.AllEventProps<HTMLDivElement>, SystemTypes.CoreProps<Styles>, SystemTypes.ColorProps, SystemTypes.BorderProps, SystemTypes.PaddingProps, SystemTypes.LayoutProps {
+	    interface Props extends Stage.AttributeProps, Stage.AllEventProps<HTMLDivElement>, Stage.CoreProps<Styles>, Stage.ColorProps, Stage.BorderProps, Stage.PaddingProps, Stage.LayoutProps {
 	        /**
 	         * Ref of the target element near which the drop will be shown
 	         */
@@ -9081,7 +9081,7 @@ declare module 'control/TextField/types' {
 	         */
 	        input: {
 	            multiline: boolean;
-	            size: SystemTypes.Size;
+	            size: Stage.Size;
 	            disabled: boolean;
 	        };
 	        lineNumbers: void;
@@ -9104,9 +9104,9 @@ declare module 'control/TextField' {
 }
 declare module 'misc/utils/applyLayoutDecoration' {
 	;
-	export type LayoutDecoration = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' | 'skeleton'; type Props = SystemTypes.AllProps<HTMLDivElement, {}> & {
+	export type LayoutDecoration = 'surface' | 'minorShadow' | 'mediumShadow' | 'majorShadow' | 'skeleton'; type Props = Stage.AllProps<HTMLDivElement, {}> & {
 	    decoration?: LayoutDecoration;
-	}; const applyLayoutDecoration: (props: Props, theme: SystemTypes.Theme) => {
+	}; const applyLayoutDecoration: (props: Props, theme: Stage.Theme) => {
 	    background: string;
 	    borderRadius: string;
 	    borderWidth: string;
@@ -9138,7 +9138,7 @@ declare module 'layout/Block/types' {
 	import { LayoutDecoration } from '@stage-ui/core/utils/applyLayoutDecoration';
 	;
 	import CSS from 'csstype'; namespace BlockTypes {
-	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
+	    interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
 	        /**
 	         * HTML element which is used as a container
 	         */
@@ -9182,7 +9182,7 @@ declare module 'layout/Block' {
 declare module 'layout/Flexbox/types' {
 	import { LayoutDecoration } from '@stage-ui/core/utils/applyLayoutDecoration';
 	; namespace FlexboxTypes {
-	    interface Props extends SystemTypes.FlexboxContainerProps, SystemTypes.AllProps<HTMLDivElement, Styles> {
+	    interface Props extends Stage.FlexboxContainerProps, Stage.AllProps<HTMLDivElement, Styles> {
 	        /**
 	         * Defines how flexbox look
 	         */
@@ -9220,14 +9220,14 @@ declare module 'control/Stepper/types' {
 	    interface StepperData {
 	        label?: React.ReactNode;
 	    }
-	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+	    interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        data: StepperData[];
-	        size?: SystemTypes.Size;
+	        size?: Stage.Size;
 	        current?: number;
 	        onChange?: (step: StepperData, stepIndex: number) => void;
 	    }
 	    interface StyleState {
-	        size: SystemTypes.Size;
+	        size: Stage.Size;
 	        active: boolean;
 	        complete: boolean;
 	        pointer: boolean;
@@ -9261,18 +9261,18 @@ declare module 'data/Meter/types' {
 	import MeterThumbTypes from 'data/Meter/MeterThumb/types'; namespace MeterTypes {
 	    type MeterDecoration = 'filled' | 'outline';
 	    type MeterShape = 'square' | 'round';
-	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
+	    interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
 	        /**
 	         * Current value of meter, for controlled component
 	         */
 	        value?: number;
 	        /**
 	         * Size of meter
-	         * @display SystemTypes.Size
+	         * @display Stage.Size
 	         * @link /props/#size
 	         * @default m
 	         */
-	        size?: SystemTypes.Size;
+	        size?: Stage.Size;
 	        /**
 	         * Defines how meter look
 	         * @default filled
@@ -9286,7 +9286,7 @@ declare module 'data/Meter/types' {
 	        /**
 	         * Color of meter
 	         */
-	        color?: SystemTypes.ColorProp;
+	        color?: Stage.ColorProp;
 	        /**
 	         * Enabled progress animation
 	         * @default false
@@ -9303,7 +9303,7 @@ declare module 'data/Meter/types' {
 	         */
 	        container: {
 	            shape: MeterShape;
-	            size: SystemTypes.Size;
+	            size: Stage.Size;
 	            decoration: MeterDecoration;
 	        };
 	        /**
@@ -9311,7 +9311,7 @@ declare module 'data/Meter/types' {
 	         */
 	        thumb: {
 	            shape: MeterShape;
-	            size: SystemTypes.Size;
+	            size: Stage.Size;
 	        };
 	    }
 	}
@@ -9321,7 +9321,7 @@ declare module 'data/Meter/types' {
 declare module 'data/Meter/MeterThumb/types' {
 	;
 	import MeterTypes from 'data/Meter/types'; namespace MeterThumbTypes {
-	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
+	    interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
 	        /**
 	         * Value for controlled compoents
 	         */
@@ -9489,7 +9489,7 @@ declare module '@stage-ui/core/data/Table/types' {
 	        };
 	        /**
 	         * Settings cells for modify
-	         * void 0 - changes all row
+	         * undefined - changes all row
 	         */
 	        setModifyState: {
 	            [key: string]: React.Dispatch<React.SetStateAction<boolean>>;
@@ -9585,7 +9585,7 @@ declare module '@stage-ui/core/data/Table/types' {
 	         */
 	        rowShouldRender?: (rowCtxItem: TableRowContext<ROW>) => boolean;
 	    }
-	    interface Props<ROW> extends RowEvents<ROW>, RowDelegates<ROW>, Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onChange'> {
+	    interface Props<ROW> extends RowEvents<ROW>, RowDelegates<ROW>, Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onChange'> {
 	        ref?: any;
 	        /**
 	         * Array of any data objects can be provided
@@ -9628,21 +9628,21 @@ declare module '@stage-ui/core/data/Table/types' {
 	    }
 	    interface HeadCellProps<ROW> {
 	        column: TableColumn<ROW>;
-	        styles: SystemTypes.ComponentStyles<Styles>;
+	        styles: Stage.ComponentStyles<Styles>;
 	        toggleSort: (sort: TableSortObject) => Promise<unknown>;
 	    }
 	    interface CellProps<ROW> {
 	        rowCtxItem: TableRowContext<ROW>;
 	        column: TableColumn<ROW>;
 	        rowIndex: number;
-	        styles: SystemTypes.ComponentStyles<Styles>;
+	        styles: Stage.ComponentStyles<Styles>;
 	        getCellContext: TableRef<ROW>['getCellContext'];
 	    }
 	    interface RowProps<ROW> {
 	        rowCtxItem: TableRowContext<ROW>;
 	        columns: TableColumn<ROW>[];
 	        rowIndex: number;
-	        styles: SystemTypes.ComponentStyles<Styles>;
+	        styles: Stage.ComponentStyles<Styles>;
 	        getCellContext: TableRef<ROW>['getCellContext'];
 	        events: RowEvents<ROW>;
 	        rowDidMount?: (rowCtxItem: TableRowContext<ROW>) => void;
@@ -9661,7 +9661,7 @@ declare module '@stage-ui/core/data/Table/types' {
 	        footerContent?: Props<ROW>['footer'];
 	        pagination?: TablePaginationOptions;
 	        onPageChange: (pageNumber: number) => void;
-	        styles: SystemTypes.ComponentStyles<Styles>;
+	        styles: Stage.ComponentStyles<Styles>;
 	    }
 	    interface Styles {
 	        /**
@@ -9741,7 +9741,7 @@ declare module 'data/Table' {
 }
 declare module 'layout/Badge/types' {
 	; namespace BadgeTypes {
-	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
+	    interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
 	        /**
 	         * Show in badge
 	         */
@@ -9749,10 +9749,10 @@ declare module 'layout/Badge/types' {
 	        /**
 	         * Badge size
 	         * @default m
-	         * @display SystemTypes.Size
+	         * @display Stage.Size
 	         * @link /props/#size
 	         */
-	        size?: SystemTypes.Size;
+	        size?: Stage.Size;
 	        /**
 	         * Badge shape
 	         */
@@ -9827,7 +9827,7 @@ declare module 'layout/Drop' {
 declare module 'layout/Grid/types' {
 	import { LayoutDecoration } from '@stage-ui/core/utils/applyLayoutDecoration';
 	; namespace GridTypes {
-	    interface Props extends SystemTypes.GridContainerProps, SystemTypes.AllProps<HTMLDivElement, Styles> {
+	    interface Props extends Stage.GridContainerProps, Stage.AllProps<HTMLDivElement, Styles> {
 	        /**
 	         * Defines how grid look
 	         */
@@ -9863,7 +9863,7 @@ declare module 'layout/Grid' {
 declare module '@stage-ui/core/layout/Modal/types' {
 	; namespace ModalTypes {
 	    type ModalDecoration = 'modal' | 'panel' | 'fullscreen';
-	    type ExtentedProps = SystemTypes.AttributeProps & SystemTypes.AllEventProps<HTMLDivElement> & SystemTypes.CoreProps<Styles> & SystemTypes.ColorProps & SystemTypes.BorderProps & SystemTypes.PaddingProps & SystemTypes.LayoutProps;
+	    type ExtentedProps = Stage.AttributeProps & Stage.AllEventProps<HTMLDivElement> & Stage.CoreProps<Styles> & Stage.ColorProps & Stage.BorderProps & Stage.PaddingProps & Stage.LayoutProps;
 	    interface Ref {
 	        /**
 	         * Opens modal view with optionaly custom content
@@ -9931,10 +9931,10 @@ declare module '@stage-ui/core/layout/Modal/types' {
 	        /**
 	         * Size of view and its content
 	         * @default m
-	         * @display SystemTypes.Size
+	         * @display Stage.Size
 	         * @link /props/#size
 	         */
-	        size?: SystemTypes.Size;
+	        size?: Stage.Size;
 	        /**
 	         * Disable header and hide it
 	         */
@@ -9963,7 +9963,7 @@ declare module '@stage-ui/core/layout/Modal/types' {
 	    }
 	    interface ModalOverlayProps {
 	        getStyles: () => {
-	            cs: SystemTypes.ComponentStyles<Styles>;
+	            cs: Stage.ComponentStyles<Styles>;
 	            state: StyleState;
 	        };
 	        children?: React.ReactNode;
@@ -9977,7 +9977,7 @@ declare module '@stage-ui/core/layout/Modal/types' {
 	        containerEvents?: any;
 	        onClosePressed: () => void;
 	        getStyles: () => {
-	            cs: SystemTypes.ComponentStyles<Styles>;
+	            cs: Stage.ComponentStyles<Styles>;
 	            state: StyleState;
 	        };
 	    }
@@ -9987,7 +9987,7 @@ declare module '@stage-ui/core/layout/Modal/types' {
 	        hideHeader?: boolean;
 	        onClosePressed: () => void;
 	        getStyles: () => {
-	            cs: SystemTypes.ComponentStyles<Styles>;
+	            cs: Stage.ComponentStyles<Styles>;
 	            state: StyleState;
 	        };
 	    }
@@ -10074,7 +10074,7 @@ declare module 'layout/Modal' {
 declare module 'layout/Notification/types' {
 	;
 	import BlockTypes from 'layout/Block/types'; namespace NotificationTypes {
-	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles>, Omit<BlockTypes.Props, 'styles'> {
+	    interface Props extends Stage.AllProps<HTMLDivElement, Styles>, Omit<BlockTypes.Props, 'styles'> {
 	        children?: React.ReactNode;
 	    }
 	    interface NotifyOptions extends Props {
@@ -10119,7 +10119,7 @@ declare module 'layout/Notification' {
 declare module 'layout/Popover/types' {
 	;
 	import CSS from 'csstype'; namespace PopoverTypes {
-	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
+	    interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
 	        /**
 	         * Alignment of popover's arrow
 	         */
@@ -10127,11 +10127,11 @@ declare module 'layout/Popover/types' {
 	        /**
 	         * Color of popover's border
 	         */
-	        borderColor?: SystemTypes.ColorProp;
+	        borderColor?: Stage.ColorProp;
 	        /**
 	         * Color of popover's background
 	         */
-	        backgroundColor?: SystemTypes.ColorProp;
+	        backgroundColor?: Stage.ColorProp;
 	        /**
 	         * Popover's content
 	         */
@@ -10181,13 +10181,13 @@ declare module 'layout/Tree/types' {
 	        lvl: number;
 	    };
 	    type RenderChild = (options: RenderChildOptions) => React.ReactNode;
-	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
+	    interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
 	        label?: React.ReactNode | string | RenderChild;
 	        leftChild?: React.ReactNode | string | RenderChild;
 	        rightChild?: React.ReactNode | string | RenderChild;
 	        children?: React.ReactNode;
 	        decoration?: 'none' | 'finder';
-	        size?: SystemTypes.Size;
+	        size?: Stage.Size;
 	        open?: boolean;
 	        defaultOpen?: boolean;
 	        indent?: boolean;
@@ -10305,7 +10305,7 @@ declare module 'layout/ScrollView/types' {
 	        stopPropagation: () => void;
 	        cursorHandle?: boolean;
 	    }
-	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onScroll'> {
+	    interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onScroll'> {
 	        /**
 	         * Any contant of scrollview
 	         */
@@ -10318,14 +10318,14 @@ declare module 'layout/ScrollView/types' {
 	        /**
 	         * Custom ScrollBar color
 	         */
-	        color?: SystemTypes.ColorProp;
+	        color?: Stage.ColorProp;
 	        /**
 	         * Bars size
 	         * @default m
-	         * @display SystemTypes.Size
+	         * @display Stage.Size
 	         * @link /props/#size
 	         */
-	        size?: SystemTypes.Size;
+	        size?: Stage.Size;
 	        /**
 	         * Bars shape
 	         * @default round
@@ -10472,7 +10472,7 @@ declare module 'layout/Split/Separator' {
 declare module 'layout/Split/types' {
 	import React from 'react';
 	; namespace SplitTypes {
-	    interface Props extends Omit<SystemTypes.AllProps<HTMLDivElement, Styles>, 'onMove' | 'onChange'> {
+	    interface Props extends Omit<Stage.AllProps<HTMLDivElement, Styles>, 'onMove' | 'onChange'> {
 	        direction?: 'row' | 'column';
 	        children: React.ReactElement[];
 	        /**
@@ -10595,7 +10595,7 @@ declare module 'types' {
 
 }
 declare module 'misc/themes/light' {
-	; const _default: SystemTypes.Theme;
+	; const _default: Stage.Theme;
 	export default _default;
 
 }
@@ -10619,7 +10619,7 @@ declare module 'layout/Viewport/types' {
 	;
 	import { Options } from '@emotion/cache';
 	import { SerializedStyles } from '@emotion/react'; namespace ViewportTypes {
-	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
+	    interface Props extends Stage.AllProps<HTMLDivElement, Styles> {
 	        /**
 	         * Defines whether the viewport renders content inside the container
 	         * @default false
@@ -10633,7 +10633,7 @@ declare module 'layout/Viewport/types' {
 	         * Defines which theme to put in context.
 	         * @default light
 	         */
-	        theme?: 'dark' | 'light' | SystemTypes.Theme;
+	        theme?: 'dark' | 'light' | Stage.Theme;
 	        /**
 	         * Set global CSS
 	         */
@@ -10650,8 +10650,8 @@ declare module 'layout/Viewport/types' {
 	        container: void;
 	    }
 	    interface Themes {
-	        light: SystemTypes.Theme;
-	        dark: SystemTypes.Theme;
+	        light: Stage.Theme;
+	        dark: Stage.Theme;
 	    }
 	    interface MountArea {
 	        className?: string;
@@ -10661,7 +10661,7 @@ declare module 'layout/Viewport/types' {
 	        children: React.ReactElement;
 	    }
 	    interface Context {
-	        theme: SystemTypes.Theme;
+	        theme: Stage.Theme;
 	    }
 	}
 	export default ViewportTypes;

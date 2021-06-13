@@ -15,7 +15,7 @@ declare module '@stage-ui/system/types' {
 	export type Breakpointify<T> = T[] | T; namespace SystemTypes {
 	    type Size = 'xs' | 's' | 'm' | 'l' | 'xl';
 	    /**
-	     * @display SystemTypes.Color
+	     * @display Stage.Color
 	     * @link /props#color
 	     */
 	    type ColorProp = ((colors: Theme['color']) => QIXColor | string) | keyof Omit<Theme['color'], 'palette'> | keyof Theme['color']['palette'] | QIXColor | (string & {
@@ -132,7 +132,7 @@ declare module '@stage-ui/system/types' {
 	    interface CoreProps<S = {}> {
 	        /**
 	         * Override any component style
-	         * @display SystemTypes.Styles
+	         * @display Stage.Styles
 	         * @link /props#styles
 	         */
 	        styles?: Partial<Styles<S>>;
@@ -178,7 +178,7 @@ declare module '@stage-ui/system/types' {
 	    interface ColorProps {
 	        /**
 	         * Set color style
-	         * @display SystemTypes.Color
+	         * @display Stage.Color
 	         * @link /props#color
 	         * @breakpointify
 	         * @see https://developer.mozilla.org/docs/Web/CSS/color
@@ -186,7 +186,7 @@ declare module '@stage-ui/system/types' {
 	        textColor?: Breakpointify<ColorProp>;
 	        /**
 	         * Set background-color style
-	         * @display SystemTypes.Color
+	         * @display Stage.Color
 	         * @link /props#color
 	         * @breakpointify
 	         * @see https://developer.mozilla.org/docs/Web/CSS/background-color
@@ -214,7 +214,7 @@ declare module '@stage-ui/system/types' {
 	        borderStyle?: Breakpointify<CSS.Properties['borderStyle']>;
 	        /**
 	         * Set border-color style
-	         * @display SystemTypes.Color
+	         * @display Stage.Color
 	         * @link /props#color
 	         * @breakpointify
 	         * @see https://developer.mozilla.org/docs/Web/CSS/border-color
@@ -1509,12 +1509,12 @@ declare module 'components/Provider' {
 	import { SerializedStyles } from '@emotion/react';
 	import SystemTypes from 'types';
 	interface ProviderProps {
-	    theme?: SystemTypes.Theme;
+	    theme?: Stage.Theme;
 	    global?: SerializedStyles;
 	    cache?: Options;
 	    children?: React.ReactNode;
 	}
-	export const SystemContext: React.Context<SystemTypes.Theme>; const Provider: <T extends ProviderProps>(props: T) => JSX.Element;
+	export const SystemContext: React.Context<Stage.Theme>; const Provider: <T extends ProviderProps>(props: T) => JSX.Element;
 	export default Provider;
 
 }
@@ -1537,10 +1537,10 @@ declare module 'utils/attachProps/types' {
 	        propValue: any;
 	        propName: string;
 	        styleName: string;
-	        theme: SystemTypes.Theme;
+	        theme: Stage.Theme;
 	        ctx: StyleResolverContext;
 	    }) => string | Record<string, string> | void;
-	    interface StyleProps extends SystemTypes.ColorProps, SystemTypes.BorderProps, SystemTypes.PaddingProps, SystemTypes.MarginProps, SystemTypes.LayoutProps, SystemTypes.FlexProps, SystemTypes.GridProps {
+	    interface StyleProps extends Stage.ColorProps, Stage.BorderProps, Stage.PaddingProps, Stage.MarginProps, Stage.LayoutProps, Stage.FlexProps, Stage.GridProps {
 	        [key: string]: unknown;
 	    }
 	    interface InjectedStyles {
@@ -1585,9 +1585,9 @@ declare module 'utils/attachProps/types' {
 	        flexBasis: CSS.Properties['flexBasis'];
 	        flexGrow: CSS.Properties['flexGrow'];
 	        flexShrink: CSS.Properties['flexShrink'];
-	        alignSelf: SystemTypes.FlexSelf;
-	        justifySelf: SystemTypes.FlexSelf;
-	        placeSelf: SystemTypes.FlexSelf;
+	        alignSelf: Stage.FlexSelf;
+	        justifySelf: Stage.FlexSelf;
+	        placeSelf: Stage.FlexSelf;
 	    };
 	    type GridStyles = {
 	        gridColumnStart: CSS.Properties['gridColumnStart'];
@@ -1605,25 +1605,25 @@ declare module 'utils/attachProps/types' {
 }
 declare module 'utils/attachProps/attribute' {
 	import SystemTypes from 'types';
-	import { Options } from 'hooks/useSystem'; const createAttributes: <Styles, Props extends SystemTypes.AllProps<unknown, Styles>>(props: Props, setFocus: React.Dispatch<React.SetStateAction<boolean>>, options: Options<Styles, Props>) => {
-	    attributes: SystemTypes.AttributeProps;
+	import { Options } from 'hooks/useSystem'; const createAttributes: <Styles, Props extends Stage.AllProps<unknown, Styles>>(props: Props, setFocus: React.Dispatch<React.SetStateAction<boolean>>, options: Options<Styles, Props>) => {
+	    attributes: Stage.AttributeProps;
 	    events: {
 	        all: any;
-	        form: Pick<Props, keyof SystemTypes.FormEventProps<unknown>>;
-	        focus: Pick<Props, keyof SystemTypes.FocusEventProps<unknown>>;
-	        image: Pick<Props, keyof SystemTypes.ImageEventProps<unknown>>;
-	        media: Pick<Props, keyof SystemTypes.MediaEventProps<unknown>>;
-	        mouse: Pick<Props, keyof SystemTypes.MouseEventProps<unknown>>;
-	        touch: Pick<Props, keyof SystemTypes.TouchEventProps<unknown>>;
-	        wheel: Pick<Props, keyof SystemTypes.WheelEventProps<unknown>>;
-	        pointer: Pick<Props, keyof SystemTypes.PointerEventProps<unknown>>;
-	        keyboard: Pick<Props, keyof SystemTypes.KeyboardEventProps<unknown>>;
-	        selection: Pick<Props, keyof SystemTypes.SelectionEventProps<unknown>>;
-	        animation: Pick<Props, keyof SystemTypes.AnimationEventProps<unknown>>;
-	        clipboard: Pick<Props, keyof SystemTypes.ClipboardEventProps<unknown>>;
-	        transition: Pick<Props, keyof SystemTypes.TransitionEventProps<unknown>>;
-	        composition: Pick<Props, keyof SystemTypes.CompositionEventProps<unknown>>;
-	        scroll: Pick<Props, keyof SystemTypes.ScrollEventProps<unknown>>;
+	        form: Pick<Props, keyof Stage.FormEventProps<unknown>>;
+	        focus: Pick<Props, keyof Stage.FocusEventProps<unknown>>;
+	        image: Pick<Props, keyof Stage.ImageEventProps<unknown>>;
+	        media: Pick<Props, keyof Stage.MediaEventProps<unknown>>;
+	        mouse: Pick<Props, keyof Stage.MouseEventProps<unknown>>;
+	        touch: Pick<Props, keyof Stage.TouchEventProps<unknown>>;
+	        wheel: Pick<Props, keyof Stage.WheelEventProps<unknown>>;
+	        pointer: Pick<Props, keyof Stage.PointerEventProps<unknown>>;
+	        keyboard: Pick<Props, keyof Stage.KeyboardEventProps<unknown>>;
+	        selection: Pick<Props, keyof Stage.SelectionEventProps<unknown>>;
+	        animation: Pick<Props, keyof Stage.AnimationEventProps<unknown>>;
+	        clipboard: Pick<Props, keyof Stage.ClipboardEventProps<unknown>>;
+	        transition: Pick<Props, keyof Stage.TransitionEventProps<unknown>>;
+	        composition: Pick<Props, keyof Stage.CompositionEventProps<unknown>>;
+	        scroll: Pick<Props, keyof Stage.ScrollEventProps<unknown>>;
 	        data: Pick<Props, never>;
 	    };
 	};
@@ -1636,7 +1636,7 @@ declare module 'utils/attachProps/style/resolvers/event' {
 
 }
 declare module 'utils/colorProp' {
-	import SystemTypes from 'types'; const _default: (theme: SystemTypes.Theme, prop?: SystemTypes.ColorProp | undefined) => any;
+	import SystemTypes from 'types'; const _default: (theme: Stage.Theme, prop?: Stage.ColorProp | undefined) => any;
 	export default _default;
 
 }
@@ -1660,31 +1660,31 @@ declare module 'utils/mergeObjects' {
 
 }
 declare module 'utils/attachProps/style' {
-	import SystemTypes, { EmotionStyles } from '@stage-ui/system/types'; const createPropStyles: <Props, StyleProps>(props: Props, theme: SystemTypes.Theme, styleProps: StyleProps) => Record<keyof StyleProps, EmotionStyles>;
+	import SystemTypes, { EmotionStyles } from '@stage-ui/system/types'; const createPropStyles: <Props, StyleProps>(props: Props, theme: Stage.Theme, styleProps: StyleProps) => Record<keyof StyleProps, EmotionStyles>;
 	export default createPropStyles;
 
 }
 declare module 'utils/attachProps' {
 	import { Options } from 'hooks/useSystem';
-	import SystemTypes from 'types'; type SetFocus = React.Dispatch<React.SetStateAction<boolean>>; const attachProps: <Styles, Props>(props: Props, theme: SystemTypes.Theme, setFocus: SetFocus, options: Options<Styles, Props>) => {
-	    attributes: SystemTypes.AttributeProps;
+	import SystemTypes from 'types'; type SetFocus = React.Dispatch<React.SetStateAction<boolean>>; const attachProps: <Styles, Props>(props: Props, theme: Stage.Theme, setFocus: SetFocus, options: Options<Styles, Props>) => {
+	    attributes: Stage.AttributeProps;
 	    events: {
 	        all: any;
-	        form: Pick<Props, keyof SystemTypes.FormEventProps<unknown>>;
-	        focus: Pick<Props, keyof SystemTypes.FocusEventProps<unknown>>;
-	        image: Pick<Props, keyof SystemTypes.ImageEventProps<unknown>>;
-	        media: Pick<Props, keyof SystemTypes.MediaEventProps<unknown>>;
-	        mouse: Pick<Props, keyof SystemTypes.MouseEventProps<unknown>>;
-	        touch: Pick<Props, keyof SystemTypes.TouchEventProps<unknown>>;
-	        wheel: Pick<Props, keyof SystemTypes.WheelEventProps<unknown>>;
-	        pointer: Pick<Props, keyof SystemTypes.PointerEventProps<unknown>>;
-	        keyboard: Pick<Props, keyof SystemTypes.KeyboardEventProps<unknown>>;
-	        selection: Pick<Props, keyof SystemTypes.SelectionEventProps<unknown>>;
-	        animation: Pick<Props, keyof SystemTypes.AnimationEventProps<unknown>>;
-	        clipboard: Pick<Props, keyof SystemTypes.ClipboardEventProps<unknown>>;
-	        transition: Pick<Props, keyof SystemTypes.TransitionEventProps<unknown>>;
-	        composition: Pick<Props, keyof SystemTypes.CompositionEventProps<unknown>>;
-	        scroll: Pick<Props, keyof SystemTypes.ScrollEventProps<unknown>>;
+	        form: Pick<Props, keyof Stage.FormEventProps<unknown>>;
+	        focus: Pick<Props, keyof Stage.FocusEventProps<unknown>>;
+	        image: Pick<Props, keyof Stage.ImageEventProps<unknown>>;
+	        media: Pick<Props, keyof Stage.MediaEventProps<unknown>>;
+	        mouse: Pick<Props, keyof Stage.MouseEventProps<unknown>>;
+	        touch: Pick<Props, keyof Stage.TouchEventProps<unknown>>;
+	        wheel: Pick<Props, keyof Stage.WheelEventProps<unknown>>;
+	        pointer: Pick<Props, keyof Stage.PointerEventProps<unknown>>;
+	        keyboard: Pick<Props, keyof Stage.KeyboardEventProps<unknown>>;
+	        selection: Pick<Props, keyof Stage.SelectionEventProps<unknown>>;
+	        animation: Pick<Props, keyof Stage.AnimationEventProps<unknown>>;
+	        clipboard: Pick<Props, keyof Stage.ClipboardEventProps<unknown>>;
+	        transition: Pick<Props, keyof Stage.TransitionEventProps<unknown>>;
+	        composition: Pick<Props, keyof Stage.CompositionEventProps<unknown>>;
+	        scroll: Pick<Props, keyof Stage.ScrollEventProps<unknown>>;
 	        data: Pick<Props, never>;
 	    };
 	    propStyles: {};
@@ -1694,8 +1694,8 @@ declare module 'utils/attachProps' {
 }
 declare module 'utils/createStyles' {
 	import SystemTypes, { EmotionStyles } from 'types'; const createComponentStyles: <Styles, Props extends {
-	    styles?: Partial<SystemTypes.Styles<Styles>> | undefined;
-	}>(styles: SystemTypes.Styles<Styles>, propStyles: Partial<Record<keyof Styles, EmotionStyles>>, styleLabel: string, props: Props, overrideName: string, overrides: SystemTypes.Theme['overrides']) => SystemTypes.ComponentStyles<Styles>;
+	    styles?: Partial<Stage.Styles<Styles>> | undefined;
+	}>(styles: Stage.Styles<Styles>, propStyles: Partial<Record<keyof Styles, EmotionStyles>>, styleLabel: string, props: Props, overrideName: string, overrides: Stage.Theme['overrides']) => Stage.ComponentStyles<Styles>;
 	export default createComponentStyles;
 
 }
@@ -1704,38 +1704,38 @@ declare module 'hooks/useSystem' {
 	import SystemPropsTypes from 'utils/attachProps/types';
 	export interface Options<Styles, Props> {
 	    props: Props;
-	    styles: SystemTypes.Styles<Styles> | Stage.CreateClasses<Styles, Props>;
+	    styles: Stage.Styles<Styles> | Stage.CreateClasses<Styles, Props>;
 	    styleProps?: Partial<Record<keyof Styles, (keyof SystemPropsTypes.InjectedStyles)[]>>;
 	    styleLabel?: string;
 	    focus?: {
 	        applyDecoration?: boolean;
 	        ignoreMouse?: boolean;
 	    };
-	    theme?: SystemTypes.Theme;
+	    theme?: Stage.Theme;
 	} const useSystem: <Styles, Props, Params>(overrideName: string, options: Options<Styles, Props>, params?: Params | undefined) => {
-	    cs: SystemTypes.ComponentStyles<Styles>;
-	    attributes: SystemTypes.AttributeProps;
+	    cs: Stage.ComponentStyles<Styles>;
+	    attributes: Stage.AttributeProps;
 	    events: {
 	        all: any;
-	        form: Pick<Props, keyof SystemTypes.FormEventProps<unknown>>;
-	        focus: Pick<Props, keyof SystemTypes.FocusEventProps<unknown>>;
-	        image: Pick<Props, keyof SystemTypes.ImageEventProps<unknown>>;
-	        media: Pick<Props, keyof SystemTypes.MediaEventProps<unknown>>;
-	        mouse: Pick<Props, keyof SystemTypes.MouseEventProps<unknown>>;
-	        touch: Pick<Props, keyof SystemTypes.TouchEventProps<unknown>>;
-	        wheel: Pick<Props, keyof SystemTypes.WheelEventProps<unknown>>;
-	        pointer: Pick<Props, keyof SystemTypes.PointerEventProps<unknown>>;
-	        keyboard: Pick<Props, keyof SystemTypes.KeyboardEventProps<unknown>>;
-	        selection: Pick<Props, keyof SystemTypes.SelectionEventProps<unknown>>;
-	        animation: Pick<Props, keyof SystemTypes.AnimationEventProps<unknown>>;
-	        clipboard: Pick<Props, keyof SystemTypes.ClipboardEventProps<unknown>>;
-	        transition: Pick<Props, keyof SystemTypes.TransitionEventProps<unknown>>;
-	        composition: Pick<Props, keyof SystemTypes.CompositionEventProps<unknown>>;
-	        scroll: Pick<Props, keyof SystemTypes.ScrollEventProps<unknown>>;
+	        form: Pick<Props, keyof Stage.FormEventProps<unknown>>;
+	        focus: Pick<Props, keyof Stage.FocusEventProps<unknown>>;
+	        image: Pick<Props, keyof Stage.ImageEventProps<unknown>>;
+	        media: Pick<Props, keyof Stage.MediaEventProps<unknown>>;
+	        mouse: Pick<Props, keyof Stage.MouseEventProps<unknown>>;
+	        touch: Pick<Props, keyof Stage.TouchEventProps<unknown>>;
+	        wheel: Pick<Props, keyof Stage.WheelEventProps<unknown>>;
+	        pointer: Pick<Props, keyof Stage.PointerEventProps<unknown>>;
+	        keyboard: Pick<Props, keyof Stage.KeyboardEventProps<unknown>>;
+	        selection: Pick<Props, keyof Stage.SelectionEventProps<unknown>>;
+	        animation: Pick<Props, keyof Stage.AnimationEventProps<unknown>>;
+	        clipboard: Pick<Props, keyof Stage.ClipboardEventProps<unknown>>;
+	        transition: Pick<Props, keyof Stage.TransitionEventProps<unknown>>;
+	        composition: Pick<Props, keyof Stage.CompositionEventProps<unknown>>;
+	        scroll: Pick<Props, keyof Stage.ScrollEventProps<unknown>>;
 	        data: Pick<Props, never>;
 	    };
 	    focus: boolean;
-	    theme: SystemTypes.Theme;
+	    theme: Stage.Theme;
 	};
 	export default useSystem;
 

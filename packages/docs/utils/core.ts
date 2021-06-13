@@ -1,20 +1,30 @@
-import TableTypes from '@stage-ui/core/data/Table/types'
+/* eslint-disable global-require */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable guard-for-in */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+import TableTypes from '@stage-ui/core/components/data/Table/types'
 import { Property } from '@stage-ui/docs/utils/types'
+
+declare global {
+  const require
+}
 
 export interface CustomPageProps {
   config: Config
   pages: PagesType
   path: string
   setPath: React.Dispatch<React.SetStateAction<string>>
-  theme: SystemTypes.Theme
-  themes: Record<string, SystemTypes.Theme>
-  setTheme: React.Dispatch<React.SetStateAction<SystemTypes.Theme>>
+  theme: Stage.Theme
+  themes: Record<string, Stage.Theme>
+  setTheme: React.Dispatch<React.SetStateAction<Stage.Theme>>
 }
 
 export interface Config {
   name?: string
   git?: string
-  themes?: Record<string, SystemTypes.Theme>
+  themes?: Record<string, Stage.Theme>
   pages?: {
     order?: Record<string, string[]>
     types?: {
@@ -30,12 +40,14 @@ export interface PageType {
   id: string
   url: string
   title: string
+  glyph?: string
   subtitle: string
   ns?: string
   cases?: {
     label: string
     code: string
   }[]
+  lab?: boolean
   test?: React.SFC<{}>
   sticky?: boolean
   default?: React.SFC<{}>
@@ -60,9 +72,7 @@ class Core {
   protected content: PagesType = {}
 
   constructor() {
-    // @ts-ignore
-    this.rawContent = require.context('../pages/docs', true, /\.case$/)
-    // @ts-ignore
+    this.rawContent = require.context('../showcases', true, /\.case$/)
     this.rawConfig = require('../config')?.default || {}
   }
 
@@ -97,7 +107,7 @@ class Core {
       ...page,
       id: this.getId('PAGE', name),
       title: name,
-      url: `/${name.toLowerCase().replace(' ', '-')}`,
+      url: `/components/${name.toLowerCase().replace(' ', '-')}`,
     }
   }
 
@@ -112,10 +122,9 @@ class Core {
 
   private makePages() {
     const order = this.config?.pages?.order
-    const pagesByPaths: PagesType = { Index: [] }
-
-    this.rawContent.keys().map((path: string) => {
-      const section = path.split('/').slice(-3)[0] || 'Index'
+    const pagesByPaths: PagesType = {}
+    this.rawContent.keys().forEach((path: string) => {
+      const section = path.split('/').slice(-3)[0]
       const page = this.makePage(path)
       pagesByPaths[section] = pagesByPaths[section] || []
       pagesByPaths[section].push(page)
@@ -123,12 +132,12 @@ class Core {
 
     if (!order) return pagesByPaths
 
-    const pagesByOrder: PagesType = { Index: [] }
+    const pagesByOrder: PagesType = {}
 
     for (const section in order) {
       pagesByOrder[section] = []
 
-      order[section].map((pageTitle) => {
+      order[section].forEach((pageTitle) => {
         const findedPage = this.searchPage(pagesByPaths, 'title', pageTitle)
         if (findedPage) {
           pagesByOrder[section].push(findedPage)

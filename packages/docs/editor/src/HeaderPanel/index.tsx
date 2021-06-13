@@ -6,9 +6,9 @@ import styles from './styles'
 interface HeaderPanelProps {
   title?: string
   git?: string
-  themes: Record<string, SystemTypes.Theme>
-  currentTheme: SystemTypes.Theme
-  setTheme: (theme: SystemTypes.Theme) => void
+  themes: Record<string, Stage.Theme>
+  currentTheme: Stage.Theme
+  setTheme: (theme: Stage.Theme) => void
   setIndex: () => void
 }
 

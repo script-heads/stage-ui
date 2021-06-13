@@ -225,8 +225,8 @@ class Architect extends React.Component<CustomPageProps> {
     /**
      * TODO: Some day
      */
-    undo: () => void 0,
-    redo: () => void 0,
+    undo: () => undefined,
+    redo: () => undefined,
   }
 
   render() {

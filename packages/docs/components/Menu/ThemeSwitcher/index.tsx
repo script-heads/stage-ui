@@ -3,9 +3,9 @@ import { Block, Flexbox, Drop, Popover, Grid } from '@stage-ui/core'
 import { ColorPalette } from '@stage-ui/icons'
 
 export interface ThemeSwitcherProps {
-  themes: Record<string, SystemTypes.Theme>
-  currentTheme: SystemTypes.Theme
-  setTheme: (theme: SystemTypes.Theme) => void
+  themes: Record<string, Stage.Theme>
+  currentTheme: Stage.Theme
+  setTheme: (theme: Stage.Theme) => void
 }
 
 const ThemeSwitcher = (props: ThemeSwitcherProps) => {

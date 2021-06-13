@@ -34,22 +34,27 @@ declare namespace ViewportTypes {
     container: void
   }
 
-  interface Themes {
+  type Themes = {
     light: Stage.Theme
     dark: Stage.Theme
   }
 
-  interface MountArea {
+  type MountArea = {
     className?: string
   }
 
-  interface MountAreaElement {
+  type MountAreaElement = {
     key: string
     children: React.ReactElement
   }
 
-  interface Context {
+  type Context = {
     theme: Stage.Theme
+  }
+
+  type Shared = {
+    addElement: (children: React.ReactElement, key?: string) => string
+    removeElement: (key: string) => void
   }
 }
 
