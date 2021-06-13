@@ -70,7 +70,7 @@ const FlexConrols = () => {
           pb=".25rem"
           pl=".25rem"
           lineHeight="0.75rem"
-          color={(c) => c.light}
+          color="light"
           children="Justify content"
         />
         <Grid templateColumns="1fr 1fr 1fr" gap="0.125rem" css={styles.container}>
@@ -87,7 +87,7 @@ const FlexConrols = () => {
           pb=".25rem"
           pl=".25rem"
           lineHeight="0.75rem"
-          color={(c) => c.light}
+          color="light"
           children="Align items"
         />
         <Grid templateColumns="1fr 1fr 1fr" gap="0.125rem" css={styles.container}>
@@ -101,7 +101,7 @@ const FlexConrols = () => {
           pb=".25rem"
           pl=".25rem"
           lineHeight="0.75rem"
-          color={(c) => c.light}
+          color="light"
           children="Direction"
         />
         <Grid templateColumns="1fr 1fr" gap="0.125rem" css={styles.container}>

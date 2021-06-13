@@ -39,7 +39,7 @@ const Menu = (props: CustomPageProps) => {
               style={{ display: 'block' }}
               size="1.5rem"
               ml="1rem"
-              color={(c) => c.primary}
+              color="primary"
             />
             {props.config.git && (
               <Link target="_blank" href={props.config.git} ml="1rem">

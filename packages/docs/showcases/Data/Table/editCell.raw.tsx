@@ -3,7 +3,7 @@ import { Flexbox, Table, Text, TextField } from '@stage-ui/core'
 import TableTypes from '@stage-ui/core/components/data/Table/types'
 import { Checkmark, Edit2 } from '@stage-ui/icons'
 
-type CellData = { name: string, age: number }
+type CellData = { name: string; age: number }
 
 export default () => {
   const EditName = (props: { ctx: TableTypes.TableCellContext<CellData> }) => {
@@ -14,7 +14,7 @@ export default () => {
     }
     return (
       <Flexbox alignItems="center">
-        <Checkmark size="1rem" mr="0.5rem" color={(c) => c.success} onClick={save} />
+        <Checkmark size="1rem" mr="0.5rem" color="success" onClick={save} />
         <TextField
           autoFocus
           name={props.ctx.column?.title as string}
@@ -31,7 +31,7 @@ export default () => {
       <Edit2
         size="1rem"
         mr="0.5rem"
-        color={"primary"}
+        color="primary"
         onClick={() => {
           props.ctx.setModify(true)
         }}

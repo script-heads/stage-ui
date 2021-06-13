@@ -11,9 +11,7 @@ import useTheme from 'shared/hooks/useTheme'
 import scale from 'shared/utils/scale'
 import scaleText from 'shared/utils/scaleText'
 
-export interface TextFieldProps
-  extends StyleProps,
-    Omit<TextInputProps, 'style'> {
+export interface TextFieldProps extends StyleProps, Omit<TextInputProps, 'style'> {
   right?: React.ReactNode
   left?: React.ReactNode
   shape?: 'round' | 'rounded' | 'square'
@@ -78,7 +76,7 @@ function TextField(props: TextFieldProps) {
         color,
         margin: 0,
         padding: scale(theme.spacing.m),
-        lineHeight: 0,  
+        lineHeight: 0,
         fontSize: scale(44),
       },
       !!left && {
@@ -102,7 +100,7 @@ function TextField(props: TextFieldProps) {
           borderStyle: 'solid',
           borderColor: borderColor || theme.color.primary.string(),
           borderWidth: borderWidth || scale(4),
-          backgroundColor
+          backgroundColor,
         },
         multiline && {
           alignItems: 'flex-start',
@@ -118,11 +116,7 @@ function TextField(props: TextFieldProps) {
     >
       {left}
       {mask ? (
-        <TextInputMask
-          type={mask}
-          options={maskOptions}
-          {...inputSharedProps}
-        />
+        <TextInputMask type={mask} options={maskOptions} {...inputSharedProps} />
       ) : (
         <TextInput {...inputSharedProps} />
       )}

@@ -138,7 +138,7 @@ export default (props: CustomPageProps) => {
                       <Flexbox alignItems="center" flex={1}>
                         <Meter borderWidth={0} flex={1}>
                           <Meter.Thumb loading value={100} color={(c) => c.backgroundVariant} />
-                          <Meter.Thumb m="xs" value={35} color={(c) => c.primary} />
+                          <Meter.Thumb m="xs" value={35} color="primary" />
                         </Meter>
                       </Flexbox>
                     ),

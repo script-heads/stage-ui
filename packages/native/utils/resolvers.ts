@@ -19,9 +19,8 @@ export function colorResolver(theme: NativeTypes.Theme) {
     if (typeof prop === 'function') {
       return prop(theme.color)
     }
-    const thatColor = theme.color[
-      prop as Exclude<keyof NativeTypes.Theme['color'], 'palette'>
-    ]?.hex()
+    const thatColor =
+      theme.color[prop as Exclude<keyof NativeTypes.Theme['color'], 'palette'>]?.hex()
     return thatColor || prop
   }
 }
@@ -34,10 +33,7 @@ export function identityResolver() {
 
 const resolvers: Record<
   keyof StyleProps,
-  [
-    string,
-    typeof spacingResolver | typeof colorResolver | typeof identityResolver
-  ]
+  [string, typeof spacingResolver | typeof colorResolver | typeof identityResolver]
 > = {
   flex: ['flex', identityResolver],
   alignSelf: ['alignSelf', identityResolver],

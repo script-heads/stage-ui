@@ -7,7 +7,7 @@ const PagesTab = (props: TabProps) => {
   return (
     <>
       {context.tools.getItems().length === 0 && (
-        <Paragraph align="center" pt="2rem" color={(c) => c.light} children="Pages" />
+        <Paragraph align="center" pt="2rem" color="light" children="Pages" />
       )}
     </>
   )

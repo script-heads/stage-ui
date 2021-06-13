@@ -11,7 +11,7 @@ const PlaygroundControl = () => {
         <Text>Cancel</Text>
       </Button>
       <Button
-        color={(c) => c.primary}
+        color="primary"
         mr="0.5rem"
         onClick={() => {
           notify({
@@ -24,7 +24,7 @@ const PlaygroundControl = () => {
         <Text>Notification</Text>
       </Button>
       <Button
-        color={(c) => c.error}
+        color="error"
         mr="0.5rem"
         onClick={() => {
           dialog({

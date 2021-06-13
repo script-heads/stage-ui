@@ -24,11 +24,7 @@ const ComponentTree = () => {
   }
 
   return (
-    <Block
-      css={styles.container}
-      backgroundColor={(c) => c.surface}
-      borderColor={(c) => c.lightest}
-    >
+    <Block css={styles.container} backgroundColor={(c) => c.surface} borderColor="lightest">
       <Flexbox justifyContent="space-between" alignItems="center" my=".5rem">
         <Menu
           direction="row"

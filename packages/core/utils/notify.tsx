@@ -30,7 +30,7 @@ export default (options: NotificationType.NotifyOptions) => {
             <Paragraph m={0}>{options.message}</Paragraph>
           </Block>
           <Block pl="0.5rem">
-            <Close size="1.25rem" alignSelf="flex-end" color={(c) => c.light} onClick={close} />
+            <Close size="1.25rem" alignSelf="flex-end" color="light" onClick={close} />
           </Block>
         </Flexbox>
       )}

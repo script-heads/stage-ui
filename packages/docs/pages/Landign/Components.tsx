@@ -13,16 +13,10 @@ export default (props: ComponentsProps) => {
   return (
     <Block h="70vh">
       <Block flex={1} css={{ overflow: 'hidden' }}>
-        <Header
-          size="xl"
-          children={title}
-          color={(c) => c.light}
-          mb={0}
-          css={{ maxWidth: '40rem' }}
-        />
+        <Header size="xl" children={title} color="light" mb={0} css={{ maxWidth: '40rem' }} />
         <Header mt={0} mb="2rem" children={subtitle} css={{ maxWidth: '50rem' }} />
         {props.graphic}
-        <Text display="block" mt="2rem" size="xs" color={(c) => c.light}>
+        <Text display="block" mt="2rem" size="xs" color="light">
           Also at {title}:
         </Text>
         <Flexbox

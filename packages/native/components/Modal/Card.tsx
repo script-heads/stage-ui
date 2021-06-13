@@ -7,10 +7,7 @@ import ModalTypes from './types'
 
 export const bounceOffset = scale(120)
 
-const Card: ForwardRefRenderFunction<
-  ModalTypes.CardRef,
-  ModalTypes.CardProps
-> = (props, ref) => {
+const Card: ForwardRefRenderFunction<ModalTypes.CardRef, ModalTypes.CardProps> = (props, ref) => {
   const { ctx, height: heightProp, card, showCloseHandler, children } = props
   const { animations, dimensions } = ctx
 
@@ -76,11 +73,7 @@ const Card: ForwardRefRenderFunction<
       }}
     >
       {!!showCloseHandler && (
-        <Flexbox
-          alignItems="center"
-          pointerEvents="none"
-          style={handleContainer}
-        >
+        <Flexbox alignItems="center" pointerEvents="none" style={handleContainer}>
           <View style={handleStyle} />
         </Flexbox>
       )}

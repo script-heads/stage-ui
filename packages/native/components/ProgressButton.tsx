@@ -15,13 +15,7 @@ export interface ProgressButtonProps extends StyleProps {
   onPress: () => void
 }
 
-function ProgressButton({
-  progress,
-  leftLabel,
-  rightLabel,
-  style,
-  onPress,
-}: ProgressButtonProps) {
+function ProgressButton({ progress, leftLabel, rightLabel, style, onPress }: ProgressButtonProps) {
   const theme = useTheme()
 
   return (
@@ -37,11 +31,7 @@ function ProgressButton({
       p={0}
       onPress={onPress}
     >
-      <Flexbox
-        direction="row"
-        alignItems="center"
-        justifyContent="space-between"
-      >
+      <Flexbox direction="row" alignItems="center" justifyContent="space-between">
         <Text
           style={{
             position: 'absolute',

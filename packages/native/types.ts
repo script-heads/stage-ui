@@ -1,10 +1,4 @@
-import {
-  StyleProp,
-  ImageStyle,
-  TextStyle,
-  ViewStyle,
-  Animated,
-} from 'react-native'
+import { StyleProp, ImageStyle, TextStyle, ViewStyle, Animated } from 'react-native'
 import { LightTheme } from './themes/light'
 
 declare namespace NativeTypes {

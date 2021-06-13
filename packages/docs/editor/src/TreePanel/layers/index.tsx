@@ -76,7 +76,7 @@ const LayersTab = (props: TabProps) => {
                         />
                         <Trash2
                           pr="0.25rem"
-                          color={(c) => c.error}
+                          color="error"
                           onClick={(e) => {
                             e.preventDefault()
                             e.stopPropagation()
@@ -153,7 +153,7 @@ const LayersTab = (props: TabProps) => {
   return (
     <>
       {context.tools.getItems().length === 0 && (
-        <Paragraph align="center" pt="2rem" color={(c) => c.light} children="Components" />
+        <Paragraph align="center" pt="2rem" color="light" children="Components" />
       )}
       {renderTree(context.tools.getItems())}
     </>

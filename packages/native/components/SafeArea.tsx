@@ -23,22 +23,12 @@ export default (props: SafeAreaProps) => {
     <View
       style={{
         flex: typeof flex === 'number' ? flex : 1,
-        marginTop:
-          typeof top !== 'undefined'
-            ? spacingResolver(theme)(top)
-            : edgeInsets.top,
+        marginTop: typeof top !== 'undefined' ? spacingResolver(theme)(top) : edgeInsets.top,
         marginRight:
-          typeof right !== 'undefined'
-            ? spacingResolver(theme)(right)
-            : edgeInsets.right,
+          typeof right !== 'undefined' ? spacingResolver(theme)(right) : edgeInsets.right,
         marginBottom:
-          typeof bottom !== 'undefined'
-            ? spacingResolver(theme)(bottom)
-            : edgeInsets.bottom,
-        marginLeft:
-          typeof left !== 'undefined'
-            ? spacingResolver(theme)(left)
-            : edgeInsets.left,
+          typeof bottom !== 'undefined' ? spacingResolver(theme)(bottom) : edgeInsets.bottom,
+        marginLeft: typeof left !== 'undefined' ? spacingResolver(theme)(left) : edgeInsets.left,
       }}
     >
       {children}

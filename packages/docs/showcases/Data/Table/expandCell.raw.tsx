@@ -15,7 +15,7 @@ export default () => {
           }
         }}
       >
-        <ArrowIosDown mr="0.5rem" color={(c) => c.primary} rotate={props.ctx.isExpand ? 180 : 0} />
+        <ArrowIosDown mr="0.5rem" color="primary" rotate={props.ctx.isExpand ? 180 : 0} />
         <Text>{props.ctx.value}</Text>
       </Flexbox>
     )

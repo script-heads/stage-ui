@@ -14,13 +14,7 @@ export type ColorProp =
 
 export interface StyleProps {
   flex?: number
-  alignSelf?:
-    | 'center'
-    | 'flex-start'
-    | 'flex-end'
-    | 'stretch'
-    | 'baseline'
-    | 'auto'
+  alignSelf?: 'center' | 'flex-start' | 'flex-end' | 'stretch' | 'baseline' | 'auto'
 
   color?: ColorProp
   background?: ColorProp
@@ -46,7 +40,7 @@ export interface StyleProps {
 }
 
 function useStyleProps<P extends StyleProps>(
-  props: P
+  props: P,
 ): [Record<keyof typeof resolvers, any>, Exclude<P, keyof StyleProps>] {
   const theme = useTheme()
   const styleProps = {} as Record<string, string | number>

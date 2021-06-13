@@ -8,7 +8,7 @@ export default () => {
       <ArrowIosUp
         shape="oval"
         color={(c) => c.onPrimary}
-        background={(c) => c.primary}
+        background="primary"
         size="2rem"
         rotate={deg}
         onClick={() => {

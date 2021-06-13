@@ -42,10 +42,7 @@ export const setModalGestureEnabled = (state: boolean) => {
 
 export let setModalScrollEnabled = (state: boolean) => {}
 
-const Modal: ForwardRefRenderFunction<ModalTypes.Ref, ModalTypes.Props> = (
-  props,
-  ref
-) => {
+const Modal: ForwardRefRenderFunction<ModalTypes.Ref, ModalTypes.Props> = (props, ref) => {
   const {
     overlayStyle,
     cardStyle,
@@ -101,8 +98,7 @@ const Modal: ForwardRefRenderFunction<ModalTypes.Ref, ModalTypes.Props> = (
 
   const ctx: ModalTypes.Ctx = useMemo(
     () => ({
-      useNativeDriver:
-        useNativeDriverProp !== undefined ? useNativeDriverProp : true,
+      useNativeDriver: useNativeDriverProp !== undefined ? useNativeDriverProp : true,
       dimensions: Dimensions.get('screen'),
       /**
        * All animation objects
@@ -116,7 +112,7 @@ const Modal: ForwardRefRenderFunction<ModalTypes.Ref, ModalTypes.Props> = (
         overlay: undefined,
       },
     }),
-    [useNativeDriverProp]
+    [useNativeDriverProp],
   )
 
   ctx.animations.overlayOpacity = useAnimation(0)
@@ -190,13 +186,10 @@ const Modal: ForwardRefRenderFunction<ModalTypes.Ref, ModalTypes.Props> = (
   function open() {
     setMount(true)
     onOpen?.()
-    backButtonRef.current = BackHandler.addEventListener(
-      'hardwareBackPress',
-      () => {
-        close()
-        return true
-      }
-    )
+    backButtonRef.current = BackHandler.addEventListener('hardwareBackPress', () => {
+      close()
+      return true
+    })
     animateOpen(() => {
       onOpened?.()
     })
@@ -226,9 +219,7 @@ const Modal: ForwardRefRenderFunction<ModalTypes.Ref, ModalTypes.Props> = (
     }
   }
 
-  function onOverlayHandlerStateChange(
-    event: LongPressGestureHandlerGestureEvent
-  ) {
+  function onOverlayHandlerStateChange(event: LongPressGestureHandlerGestureEvent) {
     const {
       nativeEvent: { state },
     } = event
@@ -306,9 +297,7 @@ const Modal: ForwardRefRenderFunction<ModalTypes.Ref, ModalTypes.Props> = (
     }
   }
 
-  function onFlatlistScrollBeginDrag(
-    event: NativeSyntheticEvent<NativeScrollEvent>
-  ) {
+  function onFlatlistScrollBeginDrag(event: NativeSyntheticEvent<NativeScrollEvent>) {
     ALLOW_CLOSE = false
     if (isAndroid && CONTENT_SCROLL_OFFSET === 0) {
       flatListRef.current?.setNativeProps({
@@ -324,10 +313,7 @@ const Modal: ForwardRefRenderFunction<ModalTypes.Ref, ModalTypes.Props> = (
     CONTENT_SCROLL_OFFSET = nativeEvent.contentOffset.y
 
     if (isAndroid) {
-      if (
-        (nativeEvent.velocity?.y || 0) < 0 &&
-        nativeEvent.contentOffset.y <= 0
-      ) {
+      if ((nativeEvent.velocity?.y || 0) < 0 && nativeEvent.contentOffset.y <= 0) {
         flatListRef.current?.setNativeProps({
           scrollEnabled: false,
         })
@@ -413,9 +399,7 @@ const Modal: ForwardRefRenderFunction<ModalTypes.Ref, ModalTypes.Props> = (
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
                     keyboardShouldPersistTaps="always"
-                    style={
-                      withSafeArea ? contentStyleWithSafeArea : contentStyle
-                    }
+                    style={withSafeArea ? contentStyleWithSafeArea : contentStyle}
                   />
                 ) : (
                   <View

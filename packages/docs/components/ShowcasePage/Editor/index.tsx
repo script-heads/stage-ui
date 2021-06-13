@@ -184,7 +184,7 @@ const Editor = (props: EditorProps) => {
             {fullscreen && (
               <Collapse
                 shape="oval"
-                background={(c) => c.lightest}
+                background="lightest"
                 css={{
                   position: 'fixed',
                   top: '1rem',

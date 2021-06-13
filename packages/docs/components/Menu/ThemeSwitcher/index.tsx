@@ -20,7 +20,7 @@ const ThemeSwitcher = (props: ThemeSwitcherProps) => {
         size="1.5rem"
         ref={iconRef}
         onClick={() => setVisible(!visible)}
-        color={(c) => c.primary}
+        color="primary"
       />
       <Drop
         target={iconRef}

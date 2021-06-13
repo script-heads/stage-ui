@@ -44,11 +44,7 @@ function Await<T>(props: AwaitProps<T>) {
           <Flexbox centered flex={1}>
             <ActivityIndicator color={theme.color.success.hex()} />
             {!!props.text && (
-              <Text
-                mt={16}
-                color={theme.color.success.hex()}
-                as={(t) => t.text.xs}
-              >
+              <Text mt={16} color={theme.color.success.hex()} as={(t) => t.text.xs}>
                 {props.text}
               </Text>
             )}
@@ -61,10 +57,9 @@ function Await<T>(props: AwaitProps<T>) {
             <Text color={theme.color.warning.hex()} as={(t) => t.text.m} pb={8}>
               🧑‍💻 Что-то пошло не так
             </Text>
-            <Text
-              color={theme.color.error.hex()}
-              as={(t) => t.text.s}
-            >{`${JSON.stringify(error)}`}</Text>
+            <Text color={theme.color.error.hex()} as={(t) => t.text.s}>{`${JSON.stringify(
+              error,
+            )}`}</Text>
           </Flexbox>
         ))}
       {isDone && !error && children(data)}
