@@ -1,8 +1,8 @@
 import React from 'react'
 import { Block, Flexbox, Header, Notification, Paragraph } from '@stage-ui/core'
 import { Close } from '@stage-ui/icons'
-import NotificationType from '@stage-ui/core/components/layout/Notification/types'
-import { ViewportShared } from '@stage-ui/core/components/layout/Viewport/MountArea'
+import NotificationType from '@stage-ui/core/layout/Notification/types'
+import { ViewportShared } from '@stage-ui/core/layout/Viewport/MountArea'
 import createID from '@stage-ui/system/utils/createID'
 
 export default (options: NotificationType.NotifyOptions) => {
@@ -30,7 +30,7 @@ export default (options: NotificationType.NotifyOptions) => {
             <Paragraph m={0}>{options.message}</Paragraph>
           </Block>
           <Block pl="0.5rem">
-            <Close size="1.25rem" alignSelf="flex-end" color={(c) => c.light} onClick={close} />
+            <Close size="1.25rem" alignSelf="flex-end" color="light" onClick={close} />
           </Block>
         </Flexbox>
       )}

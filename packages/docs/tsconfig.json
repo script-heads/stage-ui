@@ -11,7 +11,7 @@
         "experimentalDecorators": true,
         "suppressImplicitAnyIndexErrors": true,
         "strict": true,
-        "types": ["@emotion/react"]
+        "types": ["@emotion/react", "node"]
     },
     "exclude": [
         "node_modules"

@@ -51,7 +51,7 @@ const AddPanel = () => {
               data={[<Layers size="1.5rem" />, <Grid size="1.5rem" />]}
             />
           </Flexbox>
-          <Divider color={(c) => c.lightest} />
+          <Divider color="lightest" />
         </Block>
         <Flexbox h="26rem" pt="1px">
           {menuValue === 0 && <ComponentsView search={search} styles={cs} />}

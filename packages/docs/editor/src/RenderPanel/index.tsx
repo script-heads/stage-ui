@@ -35,12 +35,7 @@ const RenderItem = (props: RenderItemProps) => {
   }
 
   let Component = (props) => (
-    <Text
-      {...props}
-      align="center"
-      color={(c) => c.error}
-      children={`⚠ ${item.component} not found ⚠`}
-    />
+    <Text {...props} align="center" color="error" children={`⚠ ${item.component} not found ⚠`} />
   )
 
   if (context.tools.components[item.component]) {
@@ -172,7 +167,7 @@ const Render = () => {
         <Flexbox justifyContent="center" pt="4.75rem" css={{ position: 'absolute', width: '100%' }}>
           <Paragraph
             align="center"
-            color={(c) => c.light}
+            color="light"
             children="Create any component by droping it here."
           />
         </Flexbox>

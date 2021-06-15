@@ -42,7 +42,7 @@ export default (props: CustomPageProps) => {
   }, [])
 
   return (
-    <Flexbox backgroundColor={(c) => c.surface} justifyContent="center">
+    <Flexbox backgroundColor="surface" justifyContent="center">
       <Block w="62rem" flexShrink={1} px={['2rem', '2rem', '1rem']} css={{ overflow: 'hidden' }}>
         <Header {...props} />
         <Features />
@@ -138,7 +138,7 @@ export default (props: CustomPageProps) => {
                       <Flexbox alignItems="center" flex={1}>
                         <Meter borderWidth={0} flex={1}>
                           <Meter.Thumb loading value={100} color={(c) => c.backgroundVariant} />
-                          <Meter.Thumb m="xs" value={35} color={(c) => c.primary} />
+                          <Meter.Thumb m="xs" value={35} color="primary" />
                         </Meter>
                       </Flexbox>
                     ),

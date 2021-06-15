@@ -1,9 +1,12 @@
-import { Flexbox, Table, Text, TextField } from '@stage-ui/core'
-import { Checkmark, Edit2 } from '@stage-ui/icons'
 import React from 'react'
+import { Flexbox, Table, Text, TextField } from '@stage-ui/core'
+import TableTypes from '@stage-ui/core/data/Table/types'
+import { Checkmark, Edit2 } from '@stage-ui/icons'
+
+type CellData = { name: string; age: number }
 
 export default () => {
-  const EditName = (props: { ctx }) => {
+  const EditName = (props: { ctx: TableTypes.TableCellContext<CellData> }) => {
     let tmp = props.ctx.value as string
     const save = () => {
       props.ctx.row[props.ctx.key] = tmp
@@ -11,10 +14,10 @@ export default () => {
     }
     return (
       <Flexbox alignItems="center">
-        <Checkmark size="1rem" mr="0.5rem" color={(c) => c.success} onClick={save} />
+        <Checkmark size="1rem" mr="0.5rem" color="success" onClick={save} />
         <TextField
           autoFocus
-          name={props.ctx.column?.title}
+          name={props.ctx.column?.title as string}
           defaultValue={tmp}
           onChange={(e) => (tmp = e.target.value)}
           onEnter={save}
@@ -23,12 +26,12 @@ export default () => {
     )
   }
 
-  const DisplayName = (props: { ctx }) => (
+  const DisplayName = (props: { ctx: TableTypes.TableCellContext<CellData> }) => (
     <Flexbox alignItems="center">
       <Edit2
         size="1rem"
         mr="0.5rem"
-        color={(c) => c.primary}
+        color="primary"
         onClick={() => {
           props.ctx.setModify(true)
         }}

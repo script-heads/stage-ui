@@ -17,12 +17,7 @@ function CheckBox(props: CheckBoxProps) {
   const { value, onChange, style } = otherProps
 
   return (
-    <Button
-      style={[styleProps]}
-      decoration="none"
-      w="100%"
-      onPress={() => onChange?.(!value)}
-    >
+    <Button style={[styleProps]} decoration="none" w="100%" onPress={() => onChange?.(!value)}>
       <Flexbox
         centered
         w={28}

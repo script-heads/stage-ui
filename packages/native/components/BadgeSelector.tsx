@@ -24,11 +24,7 @@ function BadgeSelector(props: BadgeSelectorProps) {
   const [styleProps] = useStyleProps(props)
 
   return (
-    <ScrollView
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      style={[styleProps, props.style]}
-    >
+    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={[styleProps, props.style]}>
       {!!props.leftOffset && <Flexbox w={props.leftOffset} />}
       {props.values.map((value, index) => {
         const isCurrent = value === props.value
@@ -79,11 +75,7 @@ function BadgeSelector(props: BadgeSelectorProps) {
                 <Text
                   as={(t) => t.text.m}
                   size={15}
-                  color={
-                    isCurrent
-                      ? theme.color.onPrimary.hex()
-                      : theme.color.hard.hex()
-                  }
+                  color={isCurrent ? theme.color.onPrimary.hex() : theme.color.hard.hex()}
                   children={props.renderItem?.(value) || value}
                 />
               </Animated.View>

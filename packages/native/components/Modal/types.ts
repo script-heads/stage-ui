@@ -1,10 +1,4 @@
-import {
-  Animated,
-  FlatListProps,
-  LayoutRectangle,
-  ScaledSize,
-  ViewStyle,
-} from 'react-native'
+import { Animated, FlatListProps, LayoutRectangle, ScaledSize, ViewStyle } from 'react-native'
 import {
   LongPressGestureHandlerGestureEvent,
   PanGestureHandlerGestureEvent,

@@ -1,12 +1,6 @@
 import React from 'react'
-import {
-  Image as NativeImage,
-  ImageProps as NativeImageProps,
-} from 'react-native'
-import useStyleProps, {
-  ColorProp,
-  StyleProps,
-} from 'shared/hooks/useStyleProps'
+import { Image as NativeImage, ImageProps as NativeImageProps } from 'react-native'
+import useStyleProps, { ColorProp, StyleProps } from 'shared/hooks/useStyleProps'
 import useTheme from 'shared/hooks/useTheme'
 import { colorResolver } from 'shared/utils/resolvers'
 
@@ -22,11 +16,7 @@ function Image(props: ImageProps) {
   return (
     <NativeImage
       {...imageProps}
-      style={[
-        !!tintColor && { tintColor: colorResolver(theme)(tintColor) },
-        style,
-        styleProps,
-      ]}
+      style={[!!tintColor && { tintColor: colorResolver(theme)(tintColor) }, style, styleProps]}
       resizeMode={resizeMode || 'contain'}
     />
   )

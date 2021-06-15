@@ -10,7 +10,7 @@ export interface ContentProps {
   pages: PagesType
   config: Config
   path: string
-  setPath: React.Dispatch<React.SetStateAction<string>>
+  setPath: React.Dispatch<string>
   theme: Stage.Theme
   themes: Record<string, Stage.Theme>
   setTheme: React.Dispatch<React.SetStateAction<Stage.Theme>>

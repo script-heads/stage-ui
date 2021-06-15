@@ -177,11 +177,7 @@ function Button(props: ButtonProps) {
           <>
             {(typeof children === 'string' || typeof children === 'number') && (
               <Flexbox flex={1} centered>
-                <Text
-                  as={(t) => t.text.m}
-                  color={styleProps.color || color}
-                  weight="bold"
-                >
+                <Text as={(t) => t.text.m} color={styleProps.color || color} weight="bold">
                   {children}
                 </Text>
               </Flexbox>

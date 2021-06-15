@@ -60,7 +60,7 @@ const ComponentsView = (props: { search: string; styles: AddPanelStyles }) => {
                     setTimeout(context.tools.componentLibraryHide)
                   }}
                 >
-                  <PreviewIcon size="2rem" color={(c) => c.light} />
+                  <PreviewIcon size="2rem" color="light" />
                   <Text size="xs" mt=".5rem" children={key} />
                 </Flexbox>
               </Delay>

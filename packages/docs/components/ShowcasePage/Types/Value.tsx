@@ -1,6 +1,6 @@
 import React from 'react'
 import { Flexbox, Link, Text } from '@stage-ui/core'
-import TextTypes from '@stage-ui/core/components/content/Text/types'
+import TextTypes from '@stage-ui/core/content/Text/types'
 import { OType, Property } from '@stage-ui/docs/utils/types'
 
 const LightText = (props: { children: string }) => (

@@ -14,13 +14,7 @@ const SizeConrols = () => {
 
   return (
     <Block pb="0.5rem">
-      <Paragraph
-        pb=".25rem"
-        pl=".25rem"
-        lineHeight="0.75rem"
-        color={(c) => c.light}
-        children="Flex"
-      />
+      <Paragraph pb=".25rem" pl=".25rem" lineHeight="0.75rem" color="light" children="Flex" />
       <Flexbox flex={1}>
         {/* <TextField 
                     placeholder="auto" 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Flexbox, Table, notify, Spinner, Select } from '@stage-ui/core'
 import axios, { AxiosResponse } from 'axios'
-import SelectTypes from '@stage-ui/core/components/control/Select/types'
+import SelectTypes from '@stage-ui/core/control/Select/types'
 import { ResponsePassenger, PassengersData } from './types'
 
 type DataRow = {

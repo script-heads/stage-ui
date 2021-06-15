@@ -112,7 +112,7 @@ const PrefPanel = () => {
   }
   // findProps(data[ComponentTypeName + 'Types'])
   return (
-    <Block css={cs.container} backgroundColor={(c) => c.surface} borderColor={(c) => c.lightest}>
+    <Block css={cs.container} backgroundColor="surface" borderColor="lightest">
       <Flexbox justifyContent="space-between" alignItems="center" my=".5rem">
         <Menu direction="row" size="s" ml="0.5rem" decoration="color" value="design">
           <Menu.Item value="design" leftChild={<Cube />} title="Design" />
@@ -138,12 +138,7 @@ const PrefPanel = () => {
       <ScrollView size="xs" css={cs.scrollView}>
         <Block css={cs.scrollContainer}>
           {!context.tools.focused && (
-            <Paragraph
-              align="center"
-              pt="2rem"
-              color={(c) => c.light}
-              children="Preferences panel"
-            />
+            <Paragraph align="center" pt="2rem" color="light" children="Preferences panel" />
           )}
           {!!context.tools.focused && (
             <>
@@ -163,7 +158,7 @@ const PrefPanel = () => {
                     pb=".25rem"
                     pl=".25rem"
                     lineHeight="0.75rem"
-                    color={(c) => c.light}
+                    color="light"
                     children="Flags"
                   />
                   <Block p="0.25rem">

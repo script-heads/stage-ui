@@ -1,6 +1,6 @@
 import { Flexbox, Header, Link, Paragraph } from '@stage-ui/core'
 import { Github } from '@stage-ui/icons'
-import ThemeSwitcher from '../../../components/Menu/ThemeSwitcher'
+import ThemeSwitcher from '../../../Menu/ThemeSwitcher'
 import styles from './styles'
 
 interface HeaderPanelProps {

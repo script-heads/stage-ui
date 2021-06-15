@@ -33,16 +33,16 @@ const ComponentsView = (props: { search: string; styles: AddPanelStyles }) => {
             : null,
         )}
       </ScrollView>
-      <Divider vertical color={(c) => c.lightest} />
+      <Divider vertical color="lightest" />
       <Block p="2rem">
         {currentComponent !== '' ? (
           <>
             <Header>{currentComponent}</Header>
-            <Text color={(c) => c.light} children="No description." />
+            <Text color="light" children="No description." />
           </>
         ) : (
           <Text
-            color={(c) => c.light}
+            color="light"
             children="Find component what you want and then Drag and Drop it to workspace"
           />
         )}

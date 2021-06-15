@@ -42,12 +42,12 @@ export default (props: CustomPageProps) => {
             css={{
               verticalAlign: 'text-top',
             }}
-            textColor={(c) => c.primary}
+            textColor="primary"
           >
             β
           </Text>
         </Header>
-        <Paragraph size="l" color={(c) => c.light}>
+        <Paragraph size="l" color="light">
           Flexible UI Framework declared by your own Design System.
         </Paragraph>
         <Grid
@@ -67,7 +67,7 @@ export default (props: CustomPageProps) => {
             <Button
               w="12rem"
               size="l"
-              color={(c) => c.lightest}
+              color="lightest"
               onClick={() => props.setPath('/components')}
             >
               Components

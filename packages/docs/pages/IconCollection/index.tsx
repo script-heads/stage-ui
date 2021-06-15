@@ -113,7 +113,7 @@ export default () => {
                       />
                     </Flexbox>
                     <Text
-                      color={(c) => c.light}
+                      color="light"
                       mt=".5rem"
                       size="xs"
                       align="center"
