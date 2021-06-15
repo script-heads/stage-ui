@@ -58,7 +58,7 @@ export interface CoreProps<ClassSchema extends ClassesSchemaDefinition> {
    * @display Stage.Styles
    * @link /props#styles
    */
-  style?: ((theme: Stage.Theme) => Stage.JSS) | Stage.JSS
+  style?: ((theme: Stage.Theme) => BreakpointProp<Stage.JSS>) | BreakpointProp<Stage.JSS>
 }
 
 /**
