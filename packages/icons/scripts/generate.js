@@ -49,19 +49,21 @@ for (const file of svgFiles) {
 }
 
 const groupSvgContent = (fileName, svgString) => {
-    return `<g>${svgString.toString()
+    return svgString.toString()
         .replace(/<svg[^>]*>/, '')
+        .replace(/<g[^>]*>/, '')
+        .replace(/<\/g[^>]*>/, '')
         .replace(/<\/svg[^>]*>/, '')
         .replace(/clip-rule/g, 'clipRule')
         .replace(/fill-rule/g, 'fillRule')
         .replace(/ fill="[^"]*"/g, '')
         .replace(/ stroke="[^"]*"/g, '')
-        .replace(/id="/g, `id="${fileName}`)
-        .replace(/#/g, `#${fileName}`)}</g>`
+        .replace(/id="\S+"/g, ``)
+        .replace('  ', ' ')
 }
 
 for (let icon of svgFill) {
-    let fileName = toCamelCase(icon.replace('.svg',''))
+    let fileName = toCamelCase(icon.replace('.svg', ''))
     let filled = groupSvgContent(fileName, fs.readFileSync(svgSourcePath + '/Fill/' + icon))
     let outline = filled
     if (svgOutline.includes(icon)) {
