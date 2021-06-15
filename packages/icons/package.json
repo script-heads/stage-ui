@@ -1,7 +1,7 @@
 {
     "name": "@stage-ui/icons",
     "author": "Research technology",
-    "version": "0.1.20",
+    "version": "0.1.21",
     "license": "MIT",
     "scripts": {
         "pub": "git pull && npm version patch && yarn build && cd ../../build/icons && yarn publish --access public && cd .. && rm -rf ./icons",
