@@ -15,19 +15,13 @@ const path = require('path')
 
 const svgSourcePath = path.resolve(__dirname, '..', 'svg')
 const svgIndexPath = path.resolve(__dirname, '..', 'index.tsx')
-const svgDstPath = path.resolve(__dirname, '..', 'lib')
+const svgLibPath = path.resolve(__dirname, '..', 'lib')
 
 const template = fs.readFileSync(path.resolve(__dirname, 'template.txt'), { encoding: 'utf-8' })
 
-const svgFiles = fs.readdirSync(svgDstPath)
-const svgFill = fs.readdirSync(`${svgSourcePath}/Fill`)
 const svgOutline = fs.readdirSync(`${svgSourcePath}/Outline`)
-
-function attributeToCamelCase(attribute) {
-  return attribute.replace(/^(data-)?(.*)/, '$2').replace(/-([a-z])/g, (match) => {
-    return match[1].toUpperCase()
-  })
-}
+const svgFill = fs.readdirSync(`${svgSourcePath}/Fill`)
+const svgTsx = fs.readdirSync(svgLibPath)
 
 const toCamelCase = (name) => {
   const match = name.match('-')
@@ -44,37 +38,41 @@ let iconsIndexData = `/**
 version: ${packageJson.version}
 */\n`
 
-for (const file of svgFiles) {
-  fs.unlinkSync(path.join(svgDstPath, file))
-}
-
-const groupSvgContent = (fileName, svgString) => {
-  return `<g>${svgString
+const groupSvgContent = (svgString) => {
+  return svgString
     .toString()
     .replace(/<svg[^>]*>/, '')
+    .replace(/<g[^>]*>/, '')
+    .replace(/<\/g[^>]*>/, '')
     .replace(/<\/svg[^>]*>/, '')
     .replace(/clip-rule/g, 'clipRule')
     .replace(/fill-rule/g, 'fillRule')
     .replace(/ fill="[^"]*"/g, '')
     .replace(/ stroke="[^"]*"/g, '')
-    .replace(/id="/g, `id="${fileName}`)
-    .replace(/#/g, `#${fileName}`)}</g>`
+    .replace(/id="\S+"/g, ``)
+    .replace('  ', ' ')
+}
+
+for (const file of svgTsx) {
+  fs.unlinkSync(path.join(svgLibPath, file))
 }
 
 for (const icon of svgFill) {
   const fileName = toCamelCase(icon.replace('.svg', ''))
-  const filled = groupSvgContent(fileName, fs.readFileSync(`${svgSourcePath}/Fill/${icon}`))
+  const filled = groupSvgContent(fs.readFileSync(`${svgSourcePath}/Fill/${icon}`))
   let outline = filled
   if (svgOutline.includes(icon)) {
-    outline = groupSvgContent(`${fileName}-o`, fs.readFileSync(`${svgSourcePath}/Outline/${icon}`))
+    outline = groupSvgContent(fs.readFileSync(`${svgSourcePath}/Outline/${icon}`))
   }
 
   /**
    * Write svg/*.tsx
    */
   fs.writeFileSync(
-    path.resolve(svgDstPath, `${fileName}.tsx`),
-    template.replace('#FILLED#', filled.replace(/\n/g, '')).replace('#OUTLINE#', outline.replace(/\n/g, '')),
+    path.resolve(svgLibPath, `${fileName}.tsx`),
+    template
+      .replace('#FILLED#', filled.replace(/\n/g, ''))
+      .replace('#OUTLINE#', outline.replace(/\n/g, '')),
     { encoding: 'utf-8' },
   )
 

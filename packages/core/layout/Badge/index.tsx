@@ -5,7 +5,6 @@ import Types from './types'
 
 const Badge: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
   const { classes, attributes, events } = useSystem('Badge', props, createClasses)
-
   return (
     <div css={classes.container}>
       <div
@@ -16,8 +15,9 @@ const Badge: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
           align: props.align,
           shape: props.shape,
         })}
-        children={props.content}
-      />
+      >
+        {props.content}
+      </div>
       {props.children}
     </div>
   )
