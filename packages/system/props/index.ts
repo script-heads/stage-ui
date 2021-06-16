@@ -38,7 +38,12 @@ const resolvers: Record<string, Resolver> = {
   },
 
   // Style
-  style: (p, cd, t) => cd.styleProps.style.push(isFunction(p.style) ? p.style(t) : p.style),
+  style: (p, cd, t) =>
+    cd.styleProps.style.push(
+      isFunction(p.style)
+        ? resolveBreakpoints(p.style(t), t, (v) => v)
+        : resolveBreakpoints(p.style, t, (v) => v),
+    ),
 
   // Color
   backgroundColor: (p, cd, t) =>
