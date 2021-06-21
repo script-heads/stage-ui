@@ -9,21 +9,19 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
   const { loading } = props
 
   const color = colorResolver(props.color || theme.color.primary, theme)
-  const field = theme.assets.field[props.size || 'm'] || theme.assets.field.m
 
   return {
     container: (variant) => [
       {
         position: 'absolute',
         top: 0,
-        height: '100%',
         background: color.rgb().string(),
         animation: loading ? 'move 2s linear infinite' : 'none',
         overflow: 'hidden',
         borderRadius: '4rem',
         transition: 'width 0.25s',
         boxSizing: 'border-box',
-        minHeight: `calc(${field.minHeight} / 4)`,
+        height: '0.75rem',
         zIndex: 1,
         '&:last-child': {
           position: 'relative',
@@ -83,6 +81,12 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
         },
       },
       variant({
+        size: {
+          xl: { height: '1.25rem' },
+          l: { height: '1rem' },
+          s: { height: '0.5rem' },
+          xs: { height: '0.375rem' },
+        },
         shape: {
           square: [
             {

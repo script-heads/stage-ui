@@ -7,7 +7,7 @@ import Editor from './editor'
 import ShowcaseLayout from './components/ShowcaseLayout'
 import LandignPage from './pages/Landign'
 import GettingStartedPage from './pages/GettingStarted'
-import IconCollectionPage from './pages/IconCollection'
+import IconsPage from './pages/Icons'
 import OverridesPage from './pages/Overrides'
 import ThemingPage from './pages/Theming'
 import PropsPage from './pages/Props'
@@ -94,7 +94,7 @@ const config: Config = {
       '/overrides': OverridesPage,
       '/props': PropsPage,
       '/theming': ThemingPage,
-      '/icons': IconCollectionPage,
+      '/icons': IconsPage,
       '/components': ShowcaseLayout,
       '/editor': Editor,
     },

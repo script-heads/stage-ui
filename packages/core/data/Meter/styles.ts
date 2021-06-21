@@ -12,15 +12,12 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
     container: (variant) => [
       {
         position: 'relative',
-        minWidth: '1rem',
+        minWidth: '0.25rem',
         alignSelf: 'center',
         userSelect: 'none',
         overflow: 'hidden',
         boxSizing: 'border-box',
-        borderWidth: '1px',
-        borderStyle: 'solid',
-        borderColor: 'transparent',
-        background: theme.color.background.rgb().string(),
+        background: theme.color.backgroundVariant.rgb().string(),
         height: `0.75rem`,
         zIndex: 1,
       },

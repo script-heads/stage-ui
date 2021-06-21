@@ -3,6 +3,7 @@ import createTheme from '@stage-ui/system/utils/createTheme'
 export default createTheme({
   main: {
     name: 'Light',
+    breakpoints: ['100rem', '80rem', '64rem', '50rem', '40rem'],
     color: {
       background: [245, 245, 245],
       backgroundVariant: [235, 235, 235],
