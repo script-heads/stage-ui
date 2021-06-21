@@ -12,10 +12,9 @@ import ReactDOM from 'react-dom'
 import Animation from './animation'
 import styles from './styles'
 import Types from './types'
+import SharedZIndex from '../../utils/SharedZIndex'
 
 type GetCoord = (tr: ClientRect, td: ClientRect) => string
-
-let sharedZIndex = 300
 
 function toStyle(value: number) {
   return `${value.toString()}px`
@@ -31,7 +30,7 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
     justify,
     stretchHeight,
     stretchWidth,
-    visible,
+    visible = false,
     stickCursor,
   } = props
 
@@ -45,7 +44,7 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
    * zIndex magic stuff
    */
   const [clicks, click] = useState(0)
-  const zIndex = useMemo(() => sharedZIndex, [mountState, clicks])
+  const zIndex = useMemo(() => SharedZIndex.increment, [mountState, clicks])
 
   let getTopCoord: GetCoord = (tr) => toStyle(tr.bottom + spacing)
   let getLeftCoord: GetCoord = (tr, dr) => toStyle(tr.left + tr.width / 2 - dr.width / 2)
@@ -199,8 +198,6 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
         if (stretchHeight) style.height = toStyle(rect?.height || 0)
         if (stretchWidth) style.width = toStyle(rect?.width || 0)
       }
-      sharedZIndex++
-
       updatePosition()
       document.addEventListener('scroll', updatePosition, true)
       document.addEventListener('onstagescroll', updatePosition, true)

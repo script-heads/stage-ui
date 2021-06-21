@@ -1,4 +1,5 @@
 import Types from './types'
+import SharedZIndex from '../../utils/SharedZIndex'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
   theme,
@@ -17,7 +18,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
     overlay: (variant) => [
       {
         opacity: 0,
-        zIndex: 200,
+        zIndex: SharedZIndex.increment,
         position: 'fixed',
         width: '100vw',
         height: '100vh',
@@ -64,7 +65,6 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
       {
         position: 'relative',
         opacity: 0,
-        zIndex: 200,
         margin: '0 auto',
         padding: spacing,
         minHeight: '1rem',
