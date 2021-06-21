@@ -6,10 +6,8 @@ import ReactDOM from 'react-dom'
 import Animation from './animation'
 import styles from './styles'
 import Types from './types'
-
+import SharedZIndex from '../../misc/utils/SharedZIndex'
 type GetCoord = (tr: ClientRect, td: ClientRect) => string
-
-let sharedZIndex = 300
 
 function toStyle(value: number) {
     return value.toString() + 'px'
@@ -19,19 +17,19 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
 
     let align = props.align || 'bottom'
     const { children, target: targetRef, onClickOutside, spacing = 0,
-        justify, stretchHeight, stretchWidth, visible, stickCursor } = props
+        justify, stretchHeight, stretchWidth, visible = false, stickCursor } = props
 
     const { cs, attributes, events } = useComponent('Drop', { props, styles, styleProps: { container: ['self'] } })
 
     const dropRef = useRef<HTMLDivElement>(null)
 
-    const [mountState, setMountState] = useState(visible || false)
+    const [mountState, setMountState] = useState(visible)
 
     /**
      * zIndex magic stuff
      */
     const [clicks, click] = useState(0)
-    const zIndex = useMemo(() => sharedZIndex, [mountState, clicks])
+    const zIndex = useMemo(() => SharedZIndex.increment, [mountState, clicks])
     
     let getTopCoord: GetCoord = (tr) => toStyle(tr.bottom + spacing)
     let getLeftCoord: GetCoord = (tr, dr) => toStyle((tr.left + tr.width / 2) - dr.width / 2)
@@ -188,8 +186,6 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
                     if (stretchHeight) style.height = toStyle(rect.height)
                     if (stretchWidth) style.width = toStyle(rect.width)
                 }
-                sharedZIndex++
-
                 updatePosition()
                 document.addEventListener('scroll', updatePosition, true)
                 document.addEventListener('onflowscroll', updatePosition, true)

@@ -1,4 +1,5 @@
 import SystemTypes from '@stage-ui/system/types'
+import SharedZIndex from '../../misc/utils/SharedZIndex'
 import Types from './types'
 
 const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
@@ -15,7 +16,7 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
         overlay: (variant) => [
             {
                 opacity: 0,
-                zIndex: 200,
+                zIndex: SharedZIndex.increment,
                 position: 'fixed',
                 width: '100vw',
                 height: '100vh',
@@ -66,7 +67,6 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
             {
                 position: 'relative',
                 opacity: 0,
-                zIndex: 200,
                 margin: '0 auto',
                 padding: spacing,
                 minHeight: '1rem',
