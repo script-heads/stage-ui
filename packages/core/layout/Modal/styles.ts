@@ -16,10 +16,10 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
         overlay: (variant) => [
             {
                 opacity: 0,
+                display: 'flex',
+                flexDirection: 'column',
                 zIndex: SharedZIndex.increment,
                 position: 'fixed',
-                width: '100vw',
-                height: '100vh',
                 top: 0,
                 bottom: 0,
                 left: 0,
@@ -44,18 +44,18 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
             variant({
                 decoration: {
                     modal: {
-                        minHeight: '100vh',
+                        flex: 1,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                     },
                     panel: {
-                        minHeight: '100vh',
+                        flex: 1,
                         display: 'flex',
                         alignItems: 'flex-end',
                     },
                     fullscreen: {
-                        minHeight: '100vh',
+                        flex: 1,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -71,9 +71,6 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                 padding: spacing,
                 minHeight: '1rem',
                 backgroundColor: theme.color.surface.hex(),
-                // borderWidth: theme.assets.border.width,
-                // borderStyle: theme.assets.border.style,
-                // borderColor: theme.assets.border.color,
                 borderRadius: theme.radius.m,
                 boxSizing: 'border-box',
                 overflow: 'hidden',
@@ -84,25 +81,24 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, them
                     modal: {
                         transform: 'translateY(-2rem)',
                         minWidth: '15rem',
-                        maxWidth: '80vw',
+                        maxWidth: '80%',
                         marginTop: spacing,
                         marginBottom: spacing,
                         boxShadow: '0 1rem 4rem ' + theme.color.onSurface.alpha(0.2).rgb().string(),
                     },
                     panel: {
                         minWidth: '15rem',
-                        maxWidth: '80vw',
-                        marginTop: '20vh',
+                        maxWidth: '80%',
+                        marginTop: '20%',
                         transform: 'translateY(15rem)',
                         borderBottomLeftRadius: 0,
                         borderBottomRightRadius: 0,
                         boxShadow: '0 0 4rem ' + theme.color.onSurface.alpha(0.2).rgb().string(),
                     },
                     fullscreen: {
-                        width: '100%',
+                        borderRadius: 0,
                         minWidth: '100%',
-                        height: '100vh',
-                        minHeight: '100vh',
+                        minHeight: '100%',
                     }
                 },
                 visible: [
