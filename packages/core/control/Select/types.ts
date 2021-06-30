@@ -67,6 +67,10 @@ declare namespace SelectTypes {
          */
         onSearch?: (value: string) => void
         /**
+         * Custom render row
+         */
+        onRenderItem?: (value: Option, index: number) => React.ReactNode
+        /**
          * Display when empty
          */
         emptyText?: React.ReactNode

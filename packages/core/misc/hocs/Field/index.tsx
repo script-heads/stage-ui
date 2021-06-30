@@ -30,9 +30,6 @@ const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (pro
 
     return (
         <div
-            {...attributes}
-            {...events}
-            ref={ref}
             css={styles.container(state)}
         >
             {label !== undefined && labelType === 'outside' &&  (
@@ -43,7 +40,7 @@ const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (pro
                 />
             )}
             {
-                <div css={styles.field(state)}>
+                <div css={styles.field(state)} ref={ref} {...attributes} {...events}>
                     {props.leftChild && (
                         <div 
                             css={styles.child({align: 'left', ...state})}

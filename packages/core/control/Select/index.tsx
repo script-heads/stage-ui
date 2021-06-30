@@ -210,7 +210,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                     ...events.all,
                     onClick: (e) => {
                         e.preventDefault()
-                        if (openOnFocus) {
+                        if (openOnFocus && !disabled) {
                             setOpen(true)
                         }
                         events.all.onClick?.(e)
@@ -271,7 +271,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                                 }
                             }}
                             onChange={(e) => {                                
-                                if (!isOpen) {                                   
+                                if (!isOpen && !disabled) {                                   
                                     setOpen(true)
                                 }
                                 if (!props.multiselect) {
@@ -283,7 +283,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                             onClick={(e) => {
                                 e.preventDefault()
                                 e.stopPropagation()
-                                if (openOnFocus) {
+                                if (openOnFocus && !disabled) {
                                     setOpen(true)
                                 }
                             }}
@@ -316,11 +316,11 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                             sendFlowScrollEvent={false}
                             children={
                                 <Fragment>
-                                    {options.map(option => (
+                                    {options.map((option, index) => (
                                         <div
                                             css={cs.dropItem({ ...styleState, selected: values.includes(option) })}
                                             key={option.value}
-                                            children={option.text}
+                                            children={props.onRenderItem?.(option, index) || option.text}
                                             onClick={(e) => {
                                                 e.preventDefault()
                                                 setOption(option)

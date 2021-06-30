@@ -1,6 +1,7 @@
 import Types from './types'
 import fieldStyles from '../../misc/hocs/Field/styles'
 import SystemTypes from '@stage-ui/system/types'
+import SharedZIndex from '../../misc/utils/SharedZIndex'
 
 const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StyleParams> = (props, theme, params) => {
 
@@ -11,16 +12,10 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props, Types.StylePar
 
     return {
         ...fieldStyles<Types.Styles>(props, theme, {
-            container: (variant) => [
-                variant({
-                    isOpen: {
-                        zIndex: 999
-                    }
-                })
-            ],
             field: (variant) => [
                 params?.isOpen && {
                     borderColor: theme.color.primary.rgb().string(),
+                    zIndex: SharedZIndex.increment + 2
                 },
                 variant({
                     decoration: {
