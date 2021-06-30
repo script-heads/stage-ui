@@ -23,13 +23,13 @@ const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (pro
   }
 
   return (
-    <div {...attributes} {...events} ref={ref} css={classes.container(classesState)}>
+    <div css={classes.container(classesState)}>
       {label !== undefined && labelType === 'outside' && (
         <label css={classes.label(classesState)} htmlFor={htmlId}>
           {label}
         </label>
       )}
-      <div css={classes.field(classesState)}>
+      <div css={classes.field(classesState)} {...attributes} {...events} ref={ref}>
         {props.leftChild && (
           <div css={classes.child({ align: 'left', ...classesState })}>{props.leftChild}</div>
         )}

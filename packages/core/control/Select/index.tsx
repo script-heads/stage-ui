@@ -13,6 +13,7 @@ import Field from '@stage-ui/core/basic/Field'
 import { useSystem } from '@stage-ui/system'
 import styles from './styles'
 import Types from './types'
+import SharedZIndex from '../../utils/SharedZIndex'
 
 const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
   const {
@@ -187,15 +188,11 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
         {...props}
         tabIndex={tabIndex}
         overrides={(theme) => ({
-          container: [
-            isOpen && {
-              zIndex: 999,
-            },
-            styleProps.container,
-          ],
+          container: styleProps.container,
           field: (variant) => [
             isOpen && {
               borderColor: theme.color.primary.rgb().string(),
+              zIndex: SharedZIndex.increment + 2,
             },
             variant({
               decoration: {
@@ -229,7 +226,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
         onClear={onChange}
         onClick={(e) => {
           e.preventDefault()
-          if (openOnFocus) {
+          if (openOnFocus && !disabled) {
             setOpen(true)
           }
         }}
@@ -292,7 +289,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
               }
             }}
             onChange={(e) => {
-              if (!isOpen) {
+              if (!isOpen && !disabled) {
                 setOpen(true)
               }
               if (!props.multiselect) {
@@ -304,7 +301,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
             onClick={(e) => {
               e.preventDefault()
               e.stopPropagation()
-              if (openOnFocus) {
+              if (openOnFocus && !disabled) {
                 setOpen(true)
               }
             }}
