@@ -253,9 +253,9 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
       >
         <div css={classes.selected}>
           {props.multiselect &&
-            values.map((option) => (
+            values.map((option, index) => (
               <div css={classes.tag(classState)} key={option.value.toString?.()}>
-                {option.text}
+                {props.onRenderItem?.(option, index) || option.text}
                 {!disabled && (
                   <Close
                     size={size}
