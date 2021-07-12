@@ -311,6 +311,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
         memo.y = false
         memo.x = false
         window.removeEventListener('mouseup', mouseUp)
+        window.removeEventListener('click', mouseUp)
         window.removeEventListener('mousemove', scrollToHandle)
     }, [])
 
@@ -435,6 +436,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
                   )}
                   onMouseEnter={() => {
                       window.addEventListener('mouseup', mouseUp)
+                      window.addEventListener('click', mouseUp)
                   }}
                   onMouseDown={(e) => {
                       yMouseDown()
@@ -454,6 +456,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
                   )}
                   onMouseEnter={() => {
                       window.addEventListener('mouseup', mouseUp)
+                      window.addEventListener('click', mouseUp)
                   }}
                   onMouseDown={(e) => {
                       xMouseDown()
