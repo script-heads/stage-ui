@@ -6,7 +6,7 @@ export const title = 'Icon'
 export const glyph = require(`./Icon.svg`)
 export const ns = 'IconTypes'
 export const cases = [
-  { label: 'Basic', code: basic },
+  { label: 'Icon', code: basic },
   { label: 'Shapes', code: shapes },
   { label: 'Rotate', code: rotate },
 ]

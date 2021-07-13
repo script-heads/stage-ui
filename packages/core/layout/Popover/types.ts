@@ -19,13 +19,13 @@ declare namespace PopoverTypes {
      */
     children?: React.ReactNode
     /**
-     * Width of popover's arrow
+     * offset arrow position
      */
-    arrowWidth?: CSS.Properties['width']
+    arrowOffset?: CSS.Properties['height']
     /**
-     * Height of popover's arrow
+     * Width/height of popover's arrow
      */
-    arrowHeight?: CSS.Properties['height']
+    arrowSize?: CSS.Properties['width']
   }
 
   type Classes = {

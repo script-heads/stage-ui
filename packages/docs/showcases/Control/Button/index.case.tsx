@@ -6,7 +6,7 @@ export const glyph = require(`./Button.svg`)
 export const ns = 'ButtonTypes'
 export const cases = [
   {
-    label: 'Basic',
+    label: 'Button',
     code: basic,
   },
   {

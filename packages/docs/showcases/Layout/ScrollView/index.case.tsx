@@ -8,7 +8,7 @@ export const glyph = require(`./ScrollView.svg`)
 export const ns = 'ScrollViewTypes'
 export const cases = [
   {
-    label: 'Basic',
+    label: 'ScrollView',
     code: basic,
   },
   {

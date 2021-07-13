@@ -10,7 +10,7 @@ export const title = 'Table'
 export const glyph = require(`./Table.svg`)
 export const ns = 'TableTypes'
 export const cases = [
-  { label: 'Basic', code: basic },
+  { label: 'Table', code: basic },
   { label: 'Edit', code: editCell },
   { label: 'Expand', code: expandCell },
   { label: 'Sorting', code: sorting },

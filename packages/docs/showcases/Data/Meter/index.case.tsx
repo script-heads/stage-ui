@@ -6,7 +6,7 @@ export const glyph = require(`./Meter.svg`)
 export const ns = 'MeterTypes'
 export const cases = [
   {
-    label: 'Basic',
+    label: 'Meter',
     code: basic,
   },
   {

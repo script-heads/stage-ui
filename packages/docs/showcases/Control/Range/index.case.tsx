@@ -5,7 +5,7 @@ export const glyph = require(`./Range.svg`)
 export const ns = 'RangeTypes'
 export const cases = [
   {
-    label: 'Basic',
+    label: 'Range',
     code: basic,
   },
 ]

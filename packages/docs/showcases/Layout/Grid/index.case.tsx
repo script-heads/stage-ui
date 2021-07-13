@@ -5,7 +5,7 @@ export const glyph = require(`./Grid.svg`)
 export const ns = 'GridTypes'
 export const cases = [
   {
-    label: 'Basic',
+    label: 'Grid',
     code: basic,
   },
 ]

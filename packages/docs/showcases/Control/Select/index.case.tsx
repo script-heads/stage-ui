@@ -7,7 +7,7 @@ export const glyph = require(`./Select.svg`)
 export const ns = 'SelectTypes'
 export const cases = [
   {
-    label: 'Basic',
+    label: 'Select',
     code: basic,
   },
   {

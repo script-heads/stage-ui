@@ -5,7 +5,7 @@ export const glyph = require(`./Split.svg`)
 export const ns = 'SplitTypes'
 export const cases = [
   {
-    label: 'Basic',
+    label: 'Split',
     code: basic,
   },
 ]

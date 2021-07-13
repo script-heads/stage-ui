@@ -5,7 +5,7 @@ export const glyph = require(`./Radio.svg`)
 export const ns = 'RadioTypes'
 export const cases = [
   {
-    label: 'Basic',
+    label: 'Radio',
     code: basic,
   },
 ]

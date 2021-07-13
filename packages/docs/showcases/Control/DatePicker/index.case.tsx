@@ -5,7 +5,7 @@ export const glyph = require(`./DatePicker.svg`)
 export const ns = 'DatePickerTypes'
 export const cases = [
   {
-    label: 'Basic',
+    label: 'DatePicker',
     code: basic,
   },
 ]

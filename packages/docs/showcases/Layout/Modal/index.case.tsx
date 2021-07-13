@@ -7,7 +7,7 @@ export const glyph = require(`./Modal.svg`)
 export const ns = 'ModalTypes'
 export const cases = [
   {
-    label: 'Basic',
+    label: 'Modal',
     code: basic,
   },
   {

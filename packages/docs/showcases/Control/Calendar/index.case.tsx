@@ -6,7 +6,7 @@ export const glyph = require(`./Calendar.svg`)
 export const ns = 'CalendarTypes'
 export const cases = [
   {
-    label: 'Basic',
+    label: 'Calendar',
     code: basic,
   },
   {

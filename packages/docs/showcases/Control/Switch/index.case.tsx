@@ -5,7 +5,7 @@ export const glyph = require(`./Switch.svg`)
 export const ns = 'SwitchTypes'
 export const cases = [
   {
-    label: 'Basic',
+    label: 'Switch',
     code: basic,
   },
 ]

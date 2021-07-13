@@ -9,7 +9,7 @@ export const glyph = require(`./TextField.svg`)
 export const ns = 'TextFieldTypes'
 export const cases = [
   {
-    label: 'Basic',
+    label: 'TextField',
     code: basic,
   },
   {

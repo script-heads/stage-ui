@@ -6,7 +6,7 @@ export const glyph = require(`./Menu.svg`)
 export const ns = 'MenuTypes'
 export const cases = [
   {
-    label: 'Basic',
+    label: 'Menu',
     code: basic,
   },
   {

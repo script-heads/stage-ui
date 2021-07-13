@@ -5,6 +5,6 @@ export const title = 'Notify'
 export const glyph = require(`./Notify.svg`)
 export const ns = 'NotifyTypes'
 export const cases = [
-  { label: 'Basic', code: basic },
+  { label: 'Notify', code: basic },
   { label: 'Custom render', code: custom },
 ]

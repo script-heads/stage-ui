@@ -7,7 +7,7 @@ export const glyph = require(`./Tree.svg`)
 export const ns = 'TreeTypes'
 export const cases = [
   {
-    label: 'Basic',
+    label: 'Tree',
     code: basic,
   },
   {

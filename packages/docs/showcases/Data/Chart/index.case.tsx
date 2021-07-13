@@ -7,7 +7,7 @@ export const lab = true
 export const ns = 'ChartTypes'
 export const cases = [
   {
-    label: 'Basic',
+    label: 'Chart',
     code: basic,
   },
   {

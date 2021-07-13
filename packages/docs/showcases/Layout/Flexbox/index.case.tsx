@@ -9,7 +9,7 @@ export const glyph = require(`./Flexbox.svg`)
 export const ns = 'FlexboxTypes'
 export const cases = [
   {
-    label: 'Basic',
+    label: 'Flexbox',
     code: basic,
   },
   {

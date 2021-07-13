@@ -5,6 +5,6 @@ export const title = 'Divider'
 export const glyph = require(`./Divider.svg`)
 export const ns = 'DividerTypes'
 export const cases = [
-  { label: 'Basic', code: basic },
+  { label: 'Divider', code: basic },
   { label: 'Vertical', code: vertical },
 ]

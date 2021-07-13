@@ -5,7 +5,7 @@ export const glyph = require(`./Checkbox.svg`)
 export const ns = 'CheckboxTypes'
 export const cases = [
   {
-    label: 'Basic',
+    label: 'Checkbox',
     code: basic,
   },
 ]

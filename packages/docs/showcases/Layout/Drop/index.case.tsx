@@ -7,7 +7,7 @@ export const glyph = require(`./Drop.svg`)
 export const ns = 'DropTypes'
 export const cases = [
   {
-    label: 'Basic',
+    label: 'Drop',
     code: basic,
   },
   {

@@ -5,7 +5,7 @@ export const glyph = require(`./Pageswitch.svg`)
 export const ns = 'PageswitchTypes'
 export const cases = [
   {
-    label: 'Basic',
+    label: 'Pageswitch',
     code: basic,
   },
 ]

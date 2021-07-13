@@ -5,7 +5,7 @@ export const glyph = require(`./Popover.svg`)
 export const ns = 'PopoverTypes'
 export const cases = [
   {
-    label: 'Basic',
+    label: 'Popover',
     code: basic,
   },
 ]
