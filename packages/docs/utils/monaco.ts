@@ -97,14 +97,21 @@ class Monaco {
       minimap: {
         enabled: false,
       },
-      lineNumbers: 'off',
       automaticLayout: true,
       fontSize: 14,
+      padding: {
+        top: 0,
+      },
+      folding: false,
+      lineNumbers: 'off',
+      overviewRulerBorder: false,
       fontWeight: '600',
       scrollBeyondLastLine: false,
       scrollbar: {
         alwaysConsumeMouseWheel: false,
       },
+      codeLens: false,
+      cursorWidth: 4,
     })
 
     this.editor.onDidChangeModelContent((event) => {

@@ -1,5 +1,4 @@
-import { Block, Flexbox, Header, Text } from '@stage-ui/core'
-import { ArrowLeft } from '@stage-ui/icons'
+import { Block, Flexbox, Divider } from '@stage-ui/core'
 import React from 'react'
 import { Config, PagesType, PageType } from '../../utils/core'
 import Editor from './Editor'
@@ -20,40 +19,29 @@ const ShowcasePage = (props: ContentProps) => {
   const { data, config, setPath } = props
 
   return (
-    <Flexbox
-      flex={1}
-      p={['2rem 4rem 1.5rem 4rem', '2rem 4rem 1.5rem 4rem', '1rem']}
-      justifyContent="center"
+    <Block
+      m="0 auto"
+      mb="xl"
+      css={{
+        width: '100%',
+        maxWidth: '64rem',
+      }}
     >
-      <Block
-        css={{
-          width: '100%',
-          maxWidth: '64rem',
-          overflow: 'hidden',
-        }}
-      >
-        <Flexbox column alignItems="center">
-          {data.title && (
-            <Block
-              style={{
-                width: '100%',
-                maxWidth: data.cases === undefined ? '60rem' : '100%',
-              }}
-            >
-              <Flexbox
-                alignItems="center"
-                textColor="primary"
-                onClick={() => setPath('/components')}
-              >
-                <ArrowLeft mr="xs" />
-                <Text>Back</Text>
-              </Flexbox>
-              <Header my={0} size="xl" weight={800}>
-                {data.title}
-              </Header>
-            </Block>
-          )}
-          {data.cases && <Editor cases={data.cases} />}
+      <Flexbox column alignItems="center">
+        <Flexbox
+          column
+          // justifyContent="space-between"
+          style={{
+            width: '100%',
+            maxWidth: data.cases === undefined ? '60rem' : '100%',
+          }}
+          backgroundColor="surface"
+          borderRadius="0.75rem"
+          p="l"
+          pt="m"
+          mt="m"
+        >
+          {data.cases && <Editor cases={data.cases} onBack={() => setPath('/components')} />}
           {data.default && (
             <Block
               style={{
@@ -64,10 +52,12 @@ const ShowcasePage = (props: ContentProps) => {
               <data.default />
             </Block>
           )}
+          {data.ns && (
+            <Types nameSpace={data.ns} config={config} shrink={data.cases === undefined} />
+          )}
         </Flexbox>
-        {data.ns && <Types nameSpace={data.ns} config={config} shrink={data.cases === undefined} />}
-      </Block>
-    </Flexbox>
+      </Flexbox>
+    </Block>
   )
 }
 

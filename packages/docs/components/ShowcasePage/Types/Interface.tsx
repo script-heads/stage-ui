@@ -51,16 +51,10 @@ const Interface = (props: InterfaceProps) => {
   })
 
   return (
-    <Block>
-      <div
-        style={{
-          position: 'relative',
-          paddingBottom: '0.5rem',
-          marginBottom: '0.5rem',
-        }}
-      >
-        <ScrollView size="xs">
-          <Flexbox>
+    <Block ml="-1.5rem" mr="-1.5rem">
+      <Block>
+        <ScrollView size="xs" xBarPosition="none" yBarPosition="none">
+          <Flexbox px="1rem">
             {names.map((name) => (
               <Header
                 key={name}
@@ -73,8 +67,8 @@ const Interface = (props: InterfaceProps) => {
             ))}
           </Flexbox>
         </ScrollView>
-      </div>
-      <Table columns={props.columns} data={data || []} />
+      </Block>
+      <Table columns={props.columns} data={data || []} borderWidth={0} />
     </Block>
   )
 }

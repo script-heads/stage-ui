@@ -19,7 +19,7 @@ const Types = (props: TypesProps) => {
   }
 
   return (
-    <Grid templateColumns={props.shrink ? '60rem' : '100%'} gap="3rem" mt="3rem">
+    <Grid templateColumns={props.shrink ? '60rem' : '100%'} gap="3rem">
       {config.pages.types.map((configType, index) => {
         const interfaceTypes = types.findInterface(configType.interface)
         if (!interfaceTypes) return null

@@ -1,7 +1,7 @@
-import { Block, Divider, Flexbox, notify, Split, Text, useTheme } from '@stage-ui/core'
+import { Block, Divider, Flexbox, notify, Split, Text, Button, useTheme } from '@stage-ui/core'
 import { PageType } from '@stage-ui/docs/utils/core'
 import monaco from '@stage-ui/docs/utils/monaco'
-import { Collapse, Copy, Expand, Grid } from '@stage-ui/icons'
+import { Collapse, Copy, Expand, Grid, ArrowLeft } from '@stage-ui/icons'
 import Color from 'color'
 import React, { useEffect, useState } from 'react'
 import ErrorBoundary from './ErrorBoundary'
@@ -9,6 +9,7 @@ import Preview from './Preview'
 
 interface EditorProps {
   cases: Exclude<PageType['cases'], undefined>
+  onBack: () => void
 }
 
 const MonacoEditor = React.memo(
@@ -28,6 +29,8 @@ const MonacoEditor = React.memo(
         id="docs-code-editor"
         h="100%"
         w="100%"
+        mt="-1rem"
+        mr="1rem"
         css={{
           boxShadow: 'none !important',
         }}
@@ -97,28 +100,32 @@ const Editor = (props: EditorProps) => {
 
   return (
     <Block w="100%">
-      <Flexbox
-        mt="1.5rem"
-        p="1rem"
-        decoration="surface"
-        alignItems="stretch"
-        css={{
-          borderBottom: 0,
-          borderBottomLeftRadius: 0,
-          borderBottomRightRadius: 0,
-        }}
-      >
+      <Flexbox mb="m" alignItems="center">
+        <Flexbox
+          alignItems="center"
+          mr="m"
+          ml="-0.5rem"
+          mb="0.125rem"
+          textColor="primary"
+          onClick={props.onBack}
+        >
+          <ArrowLeft mr="xs" />
+          <Text>Back</Text>
+        </Flexbox>
         {cases.map((c, caseIndex) => (
-          <Text
-            mr="1rem"
+          <Button
+            p="xs m"
+            mr="s"
+            shape="round"
             key={caseIndex}
-            weight={600}
-            color={caseIndex === currentCase ? 'primary' : 'onBackground'}
+            backgroundColor={caseIndex === currentCase ? 'primary' : 'surface'}
+            textColor={caseIndex === currentCase ? 'onPrimary' : 'onSurface'}
+            decoration={caseIndex === currentCase ? 'filled' : 'text'}
             onClick={() => setCurrentCase(caseIndex)}
             css={{ cursor: 'pointer' }}
           >
             {c.label}
-          </Text>
+          </Button>
         ))}
         <Block flex={1} />
         <Grid
@@ -136,7 +143,6 @@ const Editor = (props: EditorProps) => {
           color={(c) => c.onSurface}
           onClick={() => setFullscreen(true)}
         />
-        <Divider vertical mx="0.5rem" />
         <Copy
           ml="0.5rem"
           size="1.25rem"
@@ -152,10 +158,9 @@ const Editor = (props: EditorProps) => {
         />
       </Flexbox>
       <Block
-        mb="2rem"
         h="24rem"
         decoration="surface"
-        backgroundColor={(c) => c.background}
+        borderWidth={0}
         css={[
           {
             overflow: 'hidden',
@@ -170,14 +175,14 @@ const Editor = (props: EditorProps) => {
             bottom: 0,
             margin: 0,
             borderRadius: 0,
-            borderWidth: '0px',
             height: '100%',
             zIndex: 10,
           },
         ]}
       >
         <Split direction={direction}>
-          <Block h="100%" flex={1} overflow="hidden">
+          <MonacoEditor setCode={setCode} />
+          <Block h="calc(100% - 0.25rem)" flex={1} overflow="hidden" m="0.125rem">
             <ErrorBoundary>
               {code && <Preview theme={theme} code={code} grid={grid} />}
             </ErrorBoundary>
@@ -195,7 +200,6 @@ const Editor = (props: EditorProps) => {
               />
             )}
           </Block>
-          <MonacoEditor setCode={setCode} />
         </Split>
       </Block>
     </Block>
