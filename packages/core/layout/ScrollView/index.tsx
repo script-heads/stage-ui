@@ -179,7 +179,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
         }
 
         if (bar && thumb) {
-            bar.style[vSize] = content + 'px'
+            bar.style[vSize] = memo.container.getBoundingClientRect()[vSize] + 'px'
             thumb.style[vSize] = content * ratio / 100 + 'px'
             thumb.style.transform = `translate${isX ? 'X' : 'Y'}(${-(value * ratio / 100)}px)`
         }
