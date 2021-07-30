@@ -138,14 +138,13 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
         const isX = axes === 'x'
         const vScrollSize = isX ? 'scrollWidth' : 'scrollHeight'
         const vScrollDirection = isX ? 'scrollLeft' : 'scrollTop'
-        const vOffsetSize = isX ? 'offsetWidth' : 'offsetHeight'
         const vOffsetDirection = isX ? 'offsetLeft' : 'offsetTop'
         const vDelta = isX ? 'deltaX' : 'deltaY'
         const vSize = isX ? 'width' : 'height'
         const vDirection = isX ? 'left' : 'top'
 
         const total = memo.content[vScrollSize]
-        const content = memo.container[vOffsetSize]
+        const content = memo.container.getBoundingClientRect()[vSize]
         const bar = isX ? memo.xBar : memo.yBar
         const thumb = isX ? memo.xThumb : memo.yThumb
 
@@ -179,7 +178,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
         }
 
         if (bar && thumb) {
-            bar.style[vSize] = memo.container.getBoundingClientRect()[vSize] + 'px'
+            bar.style[vSize] = content + 'px'
             thumb.style[vSize] = content * ratio / 100 + 'px'
             thumb.style.transform = `translate${isX ? 'X' : 'Y'}(${-(value * ratio / 100)}px)`
         }
