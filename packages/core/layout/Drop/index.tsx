@@ -32,9 +32,10 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
     stretchWidth,
     visible = false,
     stickCursor,
+    ...otherProps
   } = props
 
-  const { classes, attributes, events } = useSystem('Drop', props, styles)
+  const { classes, attributes, events } = useSystem('Drop', otherProps, styles)
 
   const dropRef = useRef<HTMLDivElement>(null)
 

@@ -1,5 +1,3 @@
-import Field from '@stage-ui/core/basic/Field'
-import { useSystem } from '@stage-ui/system'
 import React, {
   forwardRef,
   ForwardRefRenderFunction,
@@ -8,6 +6,9 @@ import React, {
   useEffect,
   useState,
 } from 'react'
+import { jsx } from '@emotion/react'
+import Field from '@stage-ui/core/basic/Field'
+import { useSystem } from '@stage-ui/system'
 import createClasses from './styles'
 import Types from './types'
 
@@ -16,16 +17,59 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
     decoration = 'outline',
     size = 'm',
     shape = 'rounded',
-    tabIndex = 0,
     multiline = false,
     disabled = false,
     leftChildNumber,
     clearable = false,
+    onFocus,
+
+    defaultValue,
+    value,
+    autoComplete,
+    autoFocus,
+    list,
+    name,
+    placeholder,
+    pattern,
+    readOnly,
+    required,
+    type,
+    form,
+    formAction,
+    formEncType,
+    formMethod,
+    formNoValidate,
+    formTarget,
+    max,
+    maxLength,
+    min,
+    minLength,
+    step,
+    cols,
+    rows,
+    wrap,
   } = props
 
-  const { classes, events, styleProps } = useSystem('TextField', props, createClasses)
+  const { classes, styleProps, overridesPropClasses } = useSystem('TextField', props, createClasses)
 
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
+  const leftCountLineRef = useRef<HTMLDivElement>(null)
+  const fieldRef = useRef<HTMLDivElement>(null)
+
+  const [leftCountLineState, setleftCountLineState] = useState({
+    count: 0,
+    top: '0px',
+  })
+
+  useEffect(() => {
+    if (leftChildNumber) {
+      const currentValue = (defaultValue || value || '').toString()
+      setleftCountLineState({
+        count: currentValue.split(`\n`).length,
+        top: leftCountLineState.top,
+      })
+    }
+  }, [])
 
   function onClear() {
     if (inputRef.current) {
@@ -38,27 +82,6 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
     }
   }
 
-  const leftCountLineRef = useRef<HTMLDivElement>(null)
-  const [leftCountLineState, setleftCountLineState] = useState({
-    count: 0,
-    top: '0px',
-  })
-
-  useEffect(() => {
-    if (leftChildNumber) {
-      const value = (props.defaultValue || props.value || '').toString()
-      setleftCountLineState({
-        count: value.split(`\n`).length,
-        top: leftCountLineState.top,
-      })
-    }
-  }, [])
-
-  const fieldRef = useRef<HTMLDivElement>(null)
-
-  /**
-   * Handle refs
-   */
   useImperativeHandle(ref, () => ({
     clear: () => onClear(),
     container: fieldRef.current,
@@ -92,29 +115,27 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
   return (
     <Field
       {...props}
-      tabIndex={tabIndex}
       ref={fieldRef}
       decoration={decoration}
       size={size}
       shape={shape}
-      clearable={props.value !== undefined && !props.value ? false : clearable}
+      clearable={value !== undefined && !value ? false : clearable}
       leftChild={leftChildNumber && multiline ? <LeftCountLine /> : props.leftChild}
       onClear={onClear}
-      onFocus={(e: React.FocusEvent<HTMLInputElement>) => {
+      onFocus={(e) => {
         inputRef.current?.focus()
-        events.onFocus?.(e)
+        onFocus?.(e)
       }}
-      onEsc={(e) => {
+      onEsc={() => {
         if (props.clearable) {
           onClear()
         }
-        events.onEsc?.(e)
-        console.log(1)
       }}
       overrides={{
-        container: styleProps.container,
-        field: styleProps.content,
-        child: (variant) => [
+        ...overridesPropClasses,
+        container: [overridesPropClasses.container, styleProps.container],
+        field: [overridesPropClasses.field, styleProps.content],
+        child: (variant, state) => [
           props.leftChildNumber &&
             variant({
               align: {
@@ -124,12 +145,14 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
                 },
               },
             }),
+          overridesPropClasses.child?.(variant, state),
         ],
       }}
     >
       {jsx(props.multiline ? 'textarea' : 'input', {
         ref: inputRef,
         css: classes.input({ size, multiline, disabled }),
+        tabIndex: -1,
         onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
           if (leftCountLineRef.current) {
             setleftCountLineState({
@@ -138,37 +161,6 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
             })
           }
         },
-        defaultValue: props.defaultValue,
-        value: props.value,
-        disabled: props.disabled,
-        autoComplete: props.autoComplete,
-        autoFocus: props.autoFocus,
-        list: props.list,
-        name: props.name,
-        placeholder: props.placeholder,
-        pattern: props.pattern,
-        readOnly: props.readOnly,
-        required: props.required,
-        type: props.type,
-
-        form: props.form,
-        formAction: props.formAction,
-        formEncType: props.formEncType,
-        formMethod: props.formMethod,
-        formNoValidate: props.formNoValidate,
-        formTarget: props.formTarget,
-
-        max: props.max,
-        maxLength: props.maxLength,
-        min: props.min,
-        minLength: props.minLength,
-        step: props.step,
-        cols: props.cols,
-        rows: props.rows,
-        wrap: props.wrap,
-        tabIndex: props.tabIndex,
-        onFocus: (e: React.FocusEvent<HTMLInputElement>) => events.onFocus?.(e),
-        onBlur: (e: React.FocusEvent<HTMLInputElement>) => events.onBlur?.(e),
         onScroll: (e: React.ChangeEvent<HTMLInputElement>) => {
           if (leftCountLineRef.current) {
             setleftCountLineState({
@@ -177,6 +169,32 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
             })
           }
         },
+        disabled,
+        defaultValue,
+        value,
+        autoComplete,
+        autoFocus,
+        list,
+        name,
+        placeholder,
+        pattern,
+        readOnly,
+        required,
+        type,
+        form,
+        formAction,
+        formEncType,
+        formMethod,
+        formNoValidate,
+        formTarget,
+        max,
+        maxLength,
+        min,
+        minLength,
+        step,
+        cols,
+        rows,
+        wrap,
       })}
     </Field>
   )

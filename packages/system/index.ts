@@ -6,9 +6,9 @@ import { AllProps as AllPropsType } from './props/types'
 import {
   ClassesSchemaDefinition,
   CreateClasses as CreateClassesType,
-  PropOverrides as PropOverridesType,
   ThemeOverrides as ThemeOverridesType,
 } from './hooks/useSystem'
+import { OverridesProp } from './props/overrides'
 
 declare global {
   namespace Stage {
@@ -114,7 +114,7 @@ declare global {
       Props
     >
     type ColorProp = ColorPropType
-    type PropOverrides<ClassSchema extends ClassesSchemaDefinition> = PropOverridesType<ClassSchema>
+    type PropOverrides<ClassSchema extends ClassesSchemaDefinition> = OverridesProp<ClassSchema>
     type ComponentThemeOverrides<Props, ClassSchema extends ClassesSchemaDefinition> =
       ThemeOverridesType<Props, ClassSchema>
 

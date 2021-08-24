@@ -1,11 +1,15 @@
 import colorResolver from '@stage-ui/system/props/color'
 import Types from './types'
 
-const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
+  theme,
+  props,
+  styleProps,
+) => {
   const labelColor = props.labelColor ? colorResolver(props.labelColor, theme) : undefined
-
+  const { disabled, uppercase, size = 'm' } = props
   return {
-    container: (variant) => [
+    container: [
       {
         display: 'flex',
         alignItems: 'center',
@@ -13,34 +17,25 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         color: theme.color.onSurface.rgb().string(),
         outline: 'none',
       },
-      variant({
-        disabled: [
-          {
-            cursor: 'not-allowed',
-          },
-        ],
-      }),
+      disabled && {
+        cursor: 'not-allowed',
+      },
+      styleProps.all,
     ],
 
-    label: (variant) => [
+    label: [
       {
         marginLeft: '0.5rem',
         userSelect: 'none',
         color: labelColor?.rgb().string(),
       },
-      variant({
-        size: theme.assets.typography.text,
-        disabled: [
-          {
-            color: theme.color.light.rgb().string(),
-          },
-        ],
-        uppercase: [
-          {
-            textTransform: 'uppercase',
-          },
-        ],
-      }),
+      theme.assets.typography.text[size],
+      disabled && {
+        color: theme.color.light.rgb().string(),
+      },
+      uppercase && {
+        textTransform: 'uppercase',
+      },
     ],
   }
 }

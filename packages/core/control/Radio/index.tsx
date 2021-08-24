@@ -1,44 +1,25 @@
-import { Block } from '@stage-ui/core'
+import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import Check from '@stage-ui/core/basic/Check'
 import { useSystem } from '@stage-ui/system'
-import React, { forwardRef, ForwardRefRenderFunction } from 'react'
-import additionalClasses from '@stage-ui/core/basic/Check/styles'
 import createClasses from './styles'
 import Types from './types'
 
 const Radio: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-  const { size = 'm', disabled } = props
+  const { size = 'm', tabIndex = 0 } = props
 
-  const { classes, attributes, events, styleProps } = useSystem('Radio', props, createClasses)
+  const { classes, events } = useSystem('Radio', props, createClasses, { focus: 'tabOnly' })
 
   return (
-    <Check
-      {...attributes}
-      {...events}
-      {...props}
-      ref={ref}
-      name="Radio"
-      size={size}
-      onFocus={(e) => {
-        props.onFocus?.(e)
-        e.stopPropagation()
-      }}
-      onBlur={(e) => {
-        props.onBlur?.(e)
-        e.stopPropagation()
-      }}
-      /**
-       * Radio use
-       */
-      type="checkbox"
-      overrides={{
-        container: styleProps.all,
-      }}
-    >
-      {(checked, focus) => (
-        <Block css={classes.check({ size, disabled, focus, checked })}>
-          <div css={classes.radio({ size, disabled, focus, checked })} />
-        </Block>
+    <Check {...props} ref={ref} name="Radio" size={size}>
+      {(checked) => (
+        <div
+          tabIndex={tabIndex}
+          css={classes.check({ checked })}
+          onFocus={events.onFocus}
+          onBlur={events.onBlur}
+        >
+          <div css={classes.radio({ checked })} />
+        </div>
       )}
     </Check>
   )

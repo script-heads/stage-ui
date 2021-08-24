@@ -2,6 +2,11 @@ import { ClassesSchemaDefinition } from '@stage-ui/system/hooks/useSystem'
 import React from 'react'
 
 declare namespace FieldTypes {
+  interface PrivateProps extends Props {
+    name?: string
+    children?: React.ReactNode
+  }
+
   interface Props<
     Element = HTMLInputElement,
     ClassesDefinition extends ClassesSchemaDefinition = Classes,
@@ -66,54 +71,41 @@ declare namespace FieldTypes {
     onClear?: () => void
   }
 
-  type State = {
-    disabled: Props['disabled']
-    shape: Props['shape']
-    size: Props['size']
-    decoration: Props['decoration']
-    labelType: Props['labelType']
-  }
-
   type Classes = {
     /**
      * Root element
      */
-    container: State
+    container: void
     /**
      * Container of field
      */
-    field: State
+    field: void
     /**
      * Container of field content
      */
-    content: State
+    content: void
     /**
      * Label element
      */
-    label: State
+    label: void
     /**
      * Container for left and right childs
      */
-    child: State & {
+    child: {
       align: 'right' | 'left'
     }
     /**
      * The button that clear value
      */
-    clearButton: State
+    clearButton: void
     /**
      * Container of hint
      */
-    hint: State
+    hint: void
     /**
      * Container of error
      */
-    error: State
-  }
-
-  interface PrivateProps extends Props {
-    name?: string
-    children?: React.ReactNode
+    error: void
   }
 }
 

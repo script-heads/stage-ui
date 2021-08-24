@@ -82,7 +82,7 @@ declare namespace DatePickerTypes {
      * Input view
      */
     input: void
-  }
+  } & FieldTypes.Classes
 }
 
 export default DatePickerTypes

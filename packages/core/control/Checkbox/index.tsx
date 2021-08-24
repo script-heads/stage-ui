@@ -1,5 +1,4 @@
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
-import { Block } from '@stage-ui/core'
 import { Checkmark } from '@stage-ui/icons'
 import Check from '@stage-ui/core/basic/Check'
 import { useSystem } from '@stage-ui/system'
@@ -10,37 +9,20 @@ const Checkbox: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
   props: Types.Props,
   ref,
 ) => {
-  const { size = 'm', disabled } = props
-  const { classes, attributes, events, styleProps } = useSystem('Checkbox', props, createClasses)
+  const { size = 'm', tabIndex = 0 } = props
+  const { classes, events } = useSystem('Checkbox', props, createClasses, { focus: 'tabOnly' })
 
   return (
-    <Check
-      {...attributes}
-      {...events}
-      {...props}
-      name="Checkbox"
-      ref={ref}
-      size={size}
-      onFocus={(e) => {
-        props.onFocus?.(e)
-        e.stopPropagation()
-      }}
-      onBlur={(e) => {
-        props.onBlur?.(e)
-        e.stopPropagation()
-      }}
-      /**
-       * Checkbox use
-       */
-      type="checkbox"
-      overrides={{
-        container: styleProps.all,
-      }}
-    >
-      {(checked, focus) => (
-        <Block css={classes.check({ size, disabled, focus, checked })}>
-          <Checkmark css={classes.icon({ size, disabled, focus, checked })} />
-        </Block>
+    <Check {...props} name="Checkbox" ref={ref} size={size}>
+      {(checked) => (
+        <div
+          tabIndex={tabIndex}
+          css={classes.check({ checked })}
+          onFocus={events.onFocus}
+          onBlur={events.onBlur}
+        >
+          <Checkmark css={classes.icon({ checked })} />
+        </div>
       )}
     </Check>
   )

@@ -4,19 +4,25 @@ import Types from './types'
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
   const color = colorResolver(props.color || theme.color.light, theme)
 
-  return {
-    container: (variant) => [
-      {
-        position: 'relative',
-        display: 'flex',
-        minWidth: '1rem',
-        flex: 1,
-        flexDirection: 'column',
-        outline: 'none',
-      },
-    ],
+  const {
+    size = 'm',
+    decoration = 'filled',
+    labelType = 'outside',
+    shape = 'rounded',
+    disabled = false,
+  } = props
 
-    field: (variant) => [
+  return {
+    container: {
+      position: 'relative',
+      display: 'flex',
+      minWidth: '1rem',
+      flex: 1,
+      flexDirection: 'column',
+      outline: 'none',
+    },
+
+    field: [
       {
         position: 'relative',
         flexShrink: 0,
@@ -33,97 +39,58 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         boxSizing: 'border-box',
         transition: 'border 0.125s',
       },
-      theme.assets.field.m,
-      theme.assets.typography.text.m,
-      variant({
-        shape: {
-          square: {
-            borderRadius: 0,
-          },
-          round: [
-            {
-              borderRadius: `calc(${theme.assets.field.m.minHeight}/2)`,
-            },
-            variant({
-              size: {
-                xl: {
-                  borderRadius: `calc(${theme.assets.field.xl.minHeight}/2)`,
-                },
-                l: {
-                  borderRadius: `calc(${theme.assets.field.l.minHeight}/2)`,
-                },
-                s: {
-                  borderRadius: `calc(${theme.assets.field.s.minHeight}/2)`,
-                },
-                xs: {
-                  borderRadius: `calc(${theme.assets.field.xs.minHeight}/2)`,
-                },
-              },
-            }),
-          ],
+      theme.assets.field[size],
+      theme.assets.typography.text[size],
+      shape === 'square' && {
+        borderRadius: 0,
+      },
+      shape === 'round' && {
+        borderRadius: `calc(${theme.assets.field[size].minHeight}/2)`,
+      },
+      decoration === 'outline' &&
+        disabled && {
+          background: theme.color.lightest.rgb().string(),
         },
-        size: {
-          xs: [theme.assets.field.xs, theme.assets.typography.text.xs],
-          s: [theme.assets.field.s, theme.assets.typography.text.s],
-          l: [theme.assets.field.l, theme.assets.typography.text.l],
-          xl: [theme.assets.field.xl, theme.assets.typography.text.xl],
+      decoration === 'filled' && [
+        {
+          borderColor: 'transparent',
+          boxShadow: 'none',
         },
-        disabled: {
-          color: theme.color.light.rgb().string(),
-          cursor: 'not-allowed',
+        disabled && {
+          background: theme.color.lightest.rgb().string(),
         },
-        decoration: {
-          outline: [
-            variant({
-              disabled: [
-                {
-                  background: theme.color.lightest.rgb().string(),
-                },
-              ],
-            }),
-          ],
-          filled: [
-            {
-              borderColor: 'transparent',
-              boxShadow: 'none',
-            },
-            variant({
-              disabled: [
-                {
-                  background: theme.color.lightest.rgb().string(),
-                },
-              ],
-            }),
-          ],
-          underline: {
-            borderTopColor: 'transparent',
-            borderLeftColor: 'transparent',
-            borderRightColor: 'transparent',
-            background: 'transparent',
-            paddingLeft: 0,
-            paddingRight: 0,
-            borderRadius: 0,
-            boxShadow: 'none',
-          },
-          none: {
-            background: 'transparent',
-            borderColor: 'transparent',
-            boxShadow: 'none',
-          },
-        },
-      }),
+      ],
+      decoration === 'underline' && {
+        borderTopColor: 'transparent',
+        borderLeftColor: 'transparent',
+        borderRightColor: 'transparent',
+        background: 'transparent',
+        paddingLeft: 0,
+        paddingRight: 0,
+        borderRadius: 0,
+        boxShadow: 'none',
+      },
+      decoration === 'none' && {
+        background: 'transparent',
+        borderColor: 'transparent',
+        boxShadow: 'none',
+      },
+      disabled && {
+        color: theme.color.light.rgb().string(),
+        cursor: 'not-allowed',
+      },
     ],
 
-    content: (variant) => ({
+    content: {
       display: 'flex',
       flexGrow: 1,
       flexShrink: 1,
       flexDirection: 'column',
       justifyContent: 'center',
       overflow: 'hidden',
-    }),
+    },
 
-    label: (variant) => [
+    label: [
       {
         color: theme.color.hard.rgb().string(),
         display: 'flex',
@@ -131,47 +98,37 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         paddingBottom: '0.25rem',
       },
       theme.assets.typography.text.s,
-      variant({
-        size: {
-          xs: [theme.assets.typography.text.xs],
-          s: [theme.assets.typography.text.xs],
-          l: [theme.assets.typography.text.m],
-          xl: [theme.assets.typography.text.l],
+      size === 'xs' && [theme.assets.typography.text.xs],
+      size === 's' && [theme.assets.typography.text.xs],
+      size === 'l' && [theme.assets.typography.text.m],
+      size === 'xl' && [theme.assets.typography.text.l],
+      labelType === 'inside' && [
+        {
+          lineHeight: 0.7,
+          fontSize: '0.85rem',
+          paddingTop: '0.25rem',
         },
-        labelType: {
-          inside: [
-            {
-              lineHeight: 0.7,
-              fontSize: '0.85rem',
-              paddingTop: '0.25rem',
-            },
-            variant({
-              size: {
-                xs: {
-                  fontSize: '0.5rem',
-                  lineHeight: 0.2,
-                },
-                s: {
-                  fontSize: '0.625rem',
-                  lineHeight: 0.6,
-                  paddingTop: '0.125rem',
-                },
-                l: {
-                  fontSize: '1rem',
-                  lineHeight: 0.8,
-                },
-                xl: {
-                  fontSize: '1.25rem',
-                  lineHeight: 1,
-                },
-              },
-            }),
-          ],
+        size === 'xs' && {
+          fontSize: '0.5rem',
+          lineHeight: 0.2,
         },
-      }),
+        size === 's' && {
+          fontSize: '0.625rem',
+          lineHeight: 0.6,
+          paddingTop: '0.125rem',
+        },
+        size === 'l' && {
+          fontSize: '1rem',
+          lineHeight: 0.8,
+        },
+        size === 'xl' && {
+          fontSize: '1.25rem',
+          lineHeight: 1,
+        },
+      ],
     ],
 
-    child: (variant) => [
+    child: (v, state) => [
       {
         color: color.rgb().string(),
         flexGrow: 0,
@@ -179,39 +136,27 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         display: 'flex',
         alignItems: 'center',
       },
-      variant({
-        align: {
-          left: [
-            {
-              marginRight: '.375rem',
-            },
-            variant({
-              size: {
-                xs: { marginRight: '.125rem' },
-                s: { marginRight: '.25rem' },
-                l: { marginRight: '.5rem' },
-                xl: { marginRight: '.75rem' },
-              },
-            }),
-          ],
-          right: [
-            {
-              marginLeft: '.375rem',
-            },
-            variant({
-              size: {
-                xs: { marginLeft: '.125rem' },
-                s: { marginLeft: '.25rem' },
-                l: { marginLeft: '.5rem' },
-                xl: { marginLeft: '.75rem' },
-              },
-            }),
-          ],
+      state.align === 'left' && [
+        {
+          marginRight: '.375rem',
         },
-      }),
+        size === 'xs' && { marginRight: '.125rem' },
+        size === 's' && { marginRight: '.25rem' },
+        size === 'l' && { marginRight: '.5rem' },
+        size === 'xl' && { marginRight: '.75rem' },
+      ],
+      state.align === 'right' && [
+        {
+          marginLeft: '.375rem',
+        },
+        size === 'xs' && { marginLeft: '.125rem' },
+        size === 's' && { marginLeft: '.25rem' },
+        size === 'l' && { marginLeft: '.5rem' },
+        size === 'xl' && { marginLeft: '.75rem' },
+      ],
     ],
 
-    clearButton: (variant) => [
+    clearButton: [
       {
         cursor: 'pointer',
         backgroundColor: theme.color.onSurface.alpha(0.05).rgb().string(),
@@ -228,21 +173,17 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       },
     ],
 
-    hint: (variant) => [
+    hint: [
       {
         paddingTop: '.25rem',
         paddingLeft: props.decoration !== 'underline' ? '.25rem' : '',
         color: color.rgb().string(),
         ...theme.assets.typography.text.m,
       },
-      variant({
-        size: {
-          s: [theme.assets.typography.text.s],
-          xs: [theme.assets.typography.text.xs],
-        },
-      }),
+      size === 's' && theme.assets.typography.text.s,
+      size === 'xs' && theme.assets.typography.text.xs,
     ],
-    error: (variant) => [
+    error: [
       {
         paddingTop: '.25rem',
         paddingLeft: props.decoration !== 'underline' ? '.25rem' : '',
@@ -255,29 +196,25 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
           ...theme.assets.typography.text.m,
         },
       },
-      variant({
-        size: {
-          s: [
-            {
-              ...theme.assets.typography.text.s,
-              ' svg': {
-                marginTop: '-0.125rem',
-                marginRight: '0.125rem',
-                ...theme.assets.typography.text.s,
-              },
-            },
-          ],
-          xs: [
-            {
-              ...theme.assets.typography.text.xs,
-              ' svg': {
-                marginRight: '0.125rem',
-                ...theme.assets.typography.text.xs,
-              },
-            },
-          ],
+      size === 's' && [
+        {
+          ...theme.assets.typography.text.s,
+          ' svg': {
+            marginTop: '-0.125rem',
+            marginRight: '0.125rem',
+            ...theme.assets.typography.text.s,
+          },
         },
-      }),
+      ],
+      size === 'xs' && [
+        {
+          ...theme.assets.typography.text.xs,
+          ' svg': {
+            marginRight: '0.125rem',
+            ...theme.assets.typography.text.xs,
+          },
+        },
+      ],
     ],
   }
 }

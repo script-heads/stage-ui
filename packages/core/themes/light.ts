@@ -64,7 +64,7 @@ export default createTheme({
     },
     focus: {
       outline: 'none !important',
-      // boxShadow: `0 0 0 3px ${theme.color.primary.alpha(0.3).rgb().string()} !important`,
+      boxShadow: `0 0 0 3px ${theme.color.primary.alpha(0.3).rgb().string()} !important`,
     },
     typography: {
       header: {

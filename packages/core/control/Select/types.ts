@@ -133,7 +133,7 @@ declare namespace SelectTypes {
      * Container text when list is empty
      */
     emptyText: ClassState
-  }
+  } & Partial<FieldTypes.Classes>
 }
 
 export default SelectTypes

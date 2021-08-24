@@ -11,7 +11,7 @@ export type ColorProp =
   | Color
   | (string & { T?: string })
 
-export default function color<V extends ColorProp | undefined>(
+function colorProp<V extends ColorProp | undefined>(
   value: V,
   theme: Stage.Theme,
 ): V extends undefined ? undefined : Stage.Color {
@@ -34,3 +34,5 @@ export default function color<V extends ColorProp | undefined>(
 
   return resolvedColor as V extends undefined ? undefined : Stage.Color
 }
+
+export default colorProp

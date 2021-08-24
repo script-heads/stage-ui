@@ -1,8 +1,9 @@
 import CSS from 'csstype'
 import React from 'react'
-import { ClassesSchemaDefinition, PropOverrides } from '../hooks/useSystem'
+import { ClassesSchemaDefinition } from '../hooks/useSystem'
 import { BreakpointProp } from './breakpoint'
 import { ColorProp } from './color'
+import { OverridesProp } from './overrides'
 import { SpaceProp } from './space'
 
 /**
@@ -52,7 +53,7 @@ export interface CoreProps<ClassSchema extends ClassesSchemaDefinition> {
    * @display Stage.Styles
    * @link /props#styles
    */
-  overrides?: PropOverrides<ClassSchema>
+  overrides?: OverridesProp<ClassSchema>
   /**
    * Shortcut for fast styles
    * @display Stage.Styles

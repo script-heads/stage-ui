@@ -9,18 +9,14 @@ declare namespace SwitchTypes {
      */
     check: {
       checked: Props['checked']
-      size: Props['size']
-      disabled: Props['disabled']
     }
     /**
      * Icon of Switch
      */
     switch: {
       checked: Props['checked']
-      size: Props['size']
-      disabled: Props['disabled']
     }
-  }
+  } & Partial<CheckTypes.Classes>
 }
 
 export default SwitchTypes

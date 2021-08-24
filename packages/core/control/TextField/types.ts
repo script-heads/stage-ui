@@ -155,7 +155,7 @@ declare namespace TextFieldTypes {
       disabled: boolean
     }
     lineNumbers: void
-  }
+  } & Partial<FieldTypes.Classes>
 }
 
 export default TextFieldTypes

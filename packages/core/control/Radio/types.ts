@@ -5,9 +5,6 @@ declare namespace RadioTypes {
 
   type ClassState = {
     checked: Props['checked']
-    size: Props['size']
-    disabled: Props['disabled']
-    focus: boolean
   }
 
   type Classes = {
@@ -19,7 +16,7 @@ declare namespace RadioTypes {
      * Icon of Radio
      */
     radio: ClassState
-  }
+  } & Partial<CheckTypes.Classes>
 }
 
 export default RadioTypes

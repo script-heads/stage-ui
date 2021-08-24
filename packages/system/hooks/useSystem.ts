@@ -5,7 +5,8 @@ import useTheme from './useTheme'
 import propsResolvers from '../props'
 import createVariant, { Variant } from '../utils/createVariant'
 import isFunction from '../utils/isFunction'
-import { AllEventProps, AllProps, AttributeProps } from '../props/types'
+import { AllProps, AttributeProps } from '../props/types'
+import overridesProp from '../props/overrides'
 
 export interface Options {
   focus?: 'always' | 'tabOnly' | 'never'
@@ -38,14 +39,10 @@ export type FunctionClassDefinition<ClassState extends Exclude<ClassStateDefinit
 ) => Stage.JSS
 
 export type OverridesClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = {
-  [ClassName in keyof ClassesSchema]?:
-    | FunctionClassDefinition<Exclude<ClassesSchema[ClassName], void>>
-    | Stage.JSS
+  [ClassName in keyof ClassesSchema]?: ClassesSchema[ClassName] extends void
+    ? Stage.JSS
+    : FunctionClassDefinition<Exclude<ClassesSchema[ClassName], void>>
 }
-
-export type PropOverrides<ClassesSchema extends ClassesSchemaDefinition> =
-  | ((theme: Stage.Theme, styleProps: StyleProps) => OverridesClassesDefinition<ClassesSchema>)
-  | OverridesClassesDefinition<ClassesSchema>
 
 export type ThemeOverrides<Props, ClassesSchema extends ClassesSchemaDefinition> =
   | ((props: Props, styleProps: StyleProps) => OverridesClassesDefinition<ClassesSchema>)
@@ -81,10 +78,10 @@ export type ComponentData<
   attributes: Pick<Props, keyof AttributeProps>
   events: Pick<Props, Stage.FilterStartingWith<keyof Props, 'on'>>
   styleProps: StyleProps
+  overridesPropClasses: OverridesClassesDefinition<ClassesSchema>
 }
 
 let IS_MOUSE_DOWN = false
-let PAGE_FOCUS = false
 
 window.addEventListener('mousedown', () => {
   IS_MOUSE_DOWN = true
@@ -92,18 +89,9 @@ window.addEventListener('mousedown', () => {
 window.addEventListener('mouseup', () => {
   IS_MOUSE_DOWN = false
 })
-window.addEventListener('focus', () => {
-  PAGE_FOCUS = true
-})
 
 function useSystem<
-  Props extends Omit<
-    AllProps<Element, ClassesSchema>,
-    keyof Omit<
-      AllEventProps<Element>,
-      'onFocus' | 'onBlur' | 'onKeyPress' | 'onClick' | 'onKeyDown' | 'onEsc' | 'onEnter'
-    >
-  >,
+  Props extends AllProps<Element, ClassesSchema>,
   ClassesSchema extends ClassesSchemaDefinition,
   Element extends HTMLElement,
 >(
@@ -134,6 +122,7 @@ function useSystem<
       border: [],
       layout: [],
     } as StyleProps,
+    overridesPropClasses: {},
   } as ComponentData<Props, ClassesSchema>
 
   Object.keys(props).forEach((key) => {
@@ -149,22 +138,23 @@ function useSystem<
 
   // Override default focus styles
   data.events.onFocus = (event: React.FocusEvent<Element>) => {
-    event.stopPropagation()
-    if (!PAGE_FOCUS) {
-      if ((focus === 'tabOnly' && !IS_MOUSE_DOWN) || focus === 'always') {
-        event.target.className += ' focused'
-      }
+    if ((focus === 'tabOnly' && !IS_MOUSE_DOWN) || focus === 'always') {
+      event.currentTarget.id = event.currentTarget.id
+        ? `${event.currentTarget.id} focused`
+        : 'focused'
     }
-    PAGE_FOCUS = false
-
     props.onFocus?.(event)
+    event.stopPropagation()
   }
 
   // Override default focus styles
   data.events.onBlur = (event: React.FocusEvent<Element>) => {
-    event.stopPropagation()
-    event.target.className = event.target.className.replace(' focused', '')
+    event.currentTarget.id = event.currentTarget.id
+      .split(' ')
+      .filter((id) => id !== 'focused')
+      .join(' ')
     props.onBlur?.(event)
+    event.stopPropagation()
   }
 
   // Additional key handlers
@@ -202,26 +192,24 @@ function useSystem<
     data.styleProps.container,
     data.styleProps.content,
   )
+  data.overridesPropClasses = overridesProp(props.overrides, theme, data.styleProps)
 
   const themeOverrides = theme.overrides[name as keyof typeof theme.overrides] as ThemeOverrides<
     Props,
     ClassesSchema
   >
-  const propsOverrides = props.overrides
+
+  const overridesThemeClasses: OverridesClassesDefinition<ClassesSchema> = isFunction(
+    themeOverrides,
+  )
+    ? themeOverrides(props, data.styleProps)
+    : themeOverrides || {}
 
   const componentClasses: ClassesDefinition<ClassesSchema> = createClasses(
     theme,
     props,
     data.styleProps,
   )
-
-  const themeOverrideClasses: OverridesClassesDefinition<ClassesSchema> = isFunction(themeOverrides)
-    ? themeOverrides(props, data.styleProps)
-    : themeOverrides || {}
-
-  const propsOverrideClasses: OverridesClassesDefinition<ClassesSchema> = isFunction(propsOverrides)
-    ? propsOverrides(theme, data.styleProps)
-    : propsOverrides || {}
 
   Object.keys(componentClasses).forEach((key) => {
     const classLabel = { label: `${label}-${key}` }
@@ -234,15 +222,20 @@ function useSystem<
           return [
             classLabel,
             (componentClasses[key] as Function)?.(variant, state),
-            isFunction(themeOverrideClasses[key])
-              ? (themeOverrideClasses[key] as Function)(variant, state)
-              : themeOverrideClasses[key],
-            isFunction(propsOverrideClasses[key])
-              ? (propsOverrideClasses[key] as Function)(variant, state)
-              : propsOverrideClasses[key],
+            isFunction(overridesThemeClasses[key])
+              ? (overridesThemeClasses[key] as Function)(variant, state)
+              : overridesThemeClasses[key],
+            isFunction(data.overridesPropClasses[key])
+              ? (data.overridesPropClasses[key] as Function)(variant, state)
+              : data.overridesPropClasses[key],
           ] as Stage.JSS
         }
-      : [classLabel, componentClasses[key], themeOverrideClasses[key], propsOverrideClasses[key]]
+      : [
+          classLabel,
+          componentClasses[key],
+          overridesThemeClasses[key],
+          data.overridesPropClasses[key],
+        ]
   })
 
   return data

@@ -20,7 +20,6 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     decoration = 'outline',
     size = 'm',
     shape = 'rounded',
-    tabIndex = 0,
     maxScrollHeight = '16rem',
     keepOpen = false,
     disabled = false,
@@ -28,6 +27,8 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     emptyText = '-',
     clearable = false,
   } = props
+
+  const { classes, styleProps, overridesPropClasses } = useSystem('Select', props, styles)
 
   /**
    * References
@@ -63,8 +64,6 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     }
     return true
   })
-
-  const { classes, styleProps } = useSystem('Select', props, styles)
 
   /**
    * Object for variant styles
@@ -183,131 +182,115 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
   }))
 
   return (
-    <>
-      <Field
-        {...props}
-        tabIndex={tabIndex}
-        overrides={(theme) => ({
-          container: styleProps.container,
-          field: (variant) => [
-            isOpen && {
-              borderColor: theme.color.primary.rgb().string(),
-              zIndex: SharedZIndex.increment + 2,
-            },
-            variant({
-              decoration: {
-                filled: [
-                  isOpen && {
-                    borderColor: 'transparent',
-                  },
-                ],
-                none: [
-                  { padding: 0 },
-                  isOpen && {
-                    borderColor: 'transparent',
-                  },
-                ],
-                underline: [
-                  isOpen && {
-                    borderColor: 'transparent',
-                  },
-                ],
-              },
-            }),
-            styleProps.content,
-          ],
-        })}
-        ref={fieldRef}
-        size={size}
-        disabled={disabled}
-        shape={shape}
-        decoration={decoration}
-        clearable={disabled ? false : clearable && values.length > 0}
-        onClear={onChange}
-        onClick={(e) => {
-          e.preventDefault()
-          if (openOnFocus && !disabled) {
-            setOpen(true)
-          }
-        }}
-        onKeyDown={(e) => handleKeyDown(e)}
-        rightChild={
-          props.rightChild !== undefined ? (
-            props.rightChild
-          ) : (
-            <ChevronDown
-              alignSelf="center"
-              size={size}
-              style={{
-                transition: 'transform 0.25s',
-                transform: `scale(1.5) rotate(${isOpen ? '90deg' : 0})`,
-              }}
-              color={(c) => (isOpen ? c.primary : c.light)}
-              onClick={(e) => {
-                e.preventDefault()
-                toggleOpen(e)
-              }}
-            />
-          )
+    <Field
+      {...props}
+      ref={fieldRef}
+      size={size}
+      disabled={disabled}
+      shape={shape}
+      decoration={decoration}
+      clearable={clearable && values.length > 0}
+      onClear={onChange}
+      onClick={(e) => {
+        e.preventDefault()
+        if (openOnFocus && !disabled) {
+          setOpen(true)
         }
-      >
-        <div css={classes.selected}>
-          {props.multiselect &&
-            values.map((option, index) => (
-              <div css={classes.tag(classState)} key={option.value.toString?.()}>
-                {props.onRenderItem?.(option, index) || option.text}
-                {!disabled && (
-                  <Close
-                    size={size}
-                    css={classes.tagRemove(classState)}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      e.stopPropagation()
-                      unsetOption(option)
-                    }}
-                  />
-                )}
-              </div>
-            ))}
-
-          <input
-            type="text"
-            size={5}
-            disabled={disabled || !props.searchable}
-            css={classes.input({
-              disableEvents: !props.searchable,
-              searchMode: searchValue !== '',
-              multiselect: !!props.multiselect,
-            })}
-            placeholder={!props.multiselect || values.length === 0 ? props.placeholder || '' : ''}
-            value={props.multiselect ? searchValue : searchValue || values[0]?.text || ''}
-            onKeyDown={(e) => {
-              if (props.multiselect) {
-                if (!searchValue && e.code === 'Backspace') {
-                  unsetOption()
-                }
-              }
+      }}
+      onKeyDown={(e) => handleKeyDown(e)}
+      rightChild={
+        props.rightChild !== undefined ? (
+          props.rightChild
+        ) : (
+          <ChevronDown
+            alignSelf="center"
+            size={size}
+            style={{
+              transition: 'transform 0.25s',
+              transform: `scale(1.5) rotate(${isOpen ? '90deg' : 0})`,
             }}
-            onChange={(e) => {
-              if (!isOpen && !disabled) {
-                setOpen(true)
-              }
-              if (!props.multiselect) {
-                onChange()
-              }
-              setSearchValue(e.target.value)
-              props.onSearch?.(e.target.value)
-            }}
+            color={(c) => (isOpen ? c.primary : c.light)}
             onClick={(e) => {
               e.preventDefault()
-              e.stopPropagation()
-              if (openOnFocus && !disabled) {
-                setOpen(true)
-              }
+              toggleOpen(e)
             }}
           />
-        </div>
-      </Field>
+        )
+      }
+      overrides={{
+        ...overridesPropClasses,
+        container: [overridesPropClasses.container, styleProps.container],
+        field: [
+          isOpen && [
+            {
+              zIndex: SharedZIndex.increment + 2,
+            },
+            (decoration === 'filled' || decoration === 'underline' || decoration === 'none') && {
+              borderColor: 'transparent',
+            },
+          ],
+          decoration === 'none' && [{ padding: 0 }],
+          overridesPropClasses.field,
+          styleProps.content,
+        ],
+      }}
+    >
+      <div css={classes.selected}>
+        {props.multiselect &&
+          values.map((option, index) => (
+            <div css={classes.tag(classState)} key={option.value.toString?.()}>
+              {props.onRenderItem?.(option, index) || option.text}
+              {!disabled && (
+                <Close
+                  size={size}
+                  css={classes.tagRemove(classState)}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    unsetOption(option)
+                  }}
+                />
+              )}
+            </div>
+          ))}
+        <input
+          type="text"
+          tabIndex={-1}
+          size={5}
+          disabled={disabled || !props.searchable}
+          css={classes.input({
+            disableEvents: !props.searchable,
+            searchMode: searchValue !== '',
+            multiselect: !!props.multiselect,
+          })}
+          placeholder={!props.multiselect || values.length === 0 ? props.placeholder || '' : ''}
+          value={props.multiselect ? searchValue : searchValue || values[0]?.text || ''}
+          onKeyDown={(e) => {
+            if (props.multiselect) {
+              if (!searchValue && e.code === 'Backspace') {
+                unsetOption()
+              }
+            }
+          }}
+          onChange={(e) => {
+            if (!isOpen && !disabled) {
+              setOpen(true)
+            }
+            if (!props.multiselect) {
+              onChange()
+            }
+            setSearchValue(e.target.value)
+            props.onSearch?.(e.target.value)
+          }}
+          onClick={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            if (openOnFocus && !disabled) {
+              setOpen(true)
+            }
+          }}
+        />
+      </div>
       <Drop
         visible={isOpen}
         ref={dropRef}
@@ -334,32 +317,30 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
             xBarPosition="none"
             css={{ maxHeight: maxScrollHeight }}
           >
-            <>
-              {options.map((option) => (
-                <div
-                  css={classes.dropItem({
-                    ...classState,
-                    selected: values.includes(option),
-                  })}
-                  key={option.value.toString?.()}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    setOption(option)
-                  }}
-                >
-                  {option.text}
-                </div>
-              ))}
-              {options.length === 0 && (
-                <div css={classes.emptyConteiner(classState)}>
-                  <div css={classes.emptyText(classState)}>{emptyText}</div>
-                </div>
-              )}
-            </>
+            {options.map((option) => (
+              <div
+                css={classes.dropItem({
+                  ...classState,
+                  selected: values.includes(option),
+                })}
+                key={option.value.toString?.()}
+                onClick={(e) => {
+                  e.preventDefault()
+                  setOption(option)
+                }}
+              >
+                {option.text}
+              </div>
+            ))}
+            {options.length === 0 && (
+              <div css={classes.emptyConteiner(classState)}>
+                <div css={classes.emptyText(classState)}>{emptyText}</div>
+              </div>
+            )}
           </ScrollView>
         </div>
       </Drop>
-    </>
+    </Field>
   )
 }
 

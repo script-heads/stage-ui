@@ -1,4 +1,3 @@
-import { Block } from '@stage-ui/core'
 import Check from '@stage-ui/core/basic/Check'
 import { useSystem } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
@@ -6,34 +5,20 @@ import styles from './styles'
 import Types from './types'
 
 const Switch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-  const { size = 'm', disabled } = props
-  const { classes, attributes, events, styleProps } = useSystem('Switch', props, styles)
+  const { size = 'm', tabIndex = 0 } = props
+  const { classes, events } = useSystem('Switch', props, styles, { focus: 'tabOnly' })
 
   return (
-    <Check
-      {...attributes}
-      {...events}
-      {...props}
-      ref={ref}
-      size={size}
-      onFocus={(e) => {
-        props.onFocus?.(e)
-        e.stopPropagation()
-      }}
-      onBlur={(e) => {
-        props.onBlur?.(e)
-        e.stopPropagation()
-      }}
-      /**
-       * Switch use
-       */
-      type="checkbox"
-      overrides={{ container: styleProps.all }}
-    >
+    <Check {...props} ref={ref} size={size} name="Switch">
       {(checked) => (
-        <Block css={classes.check({ size, disabled, checked })}>
-          <div css={classes.switch({ size, disabled, checked })} />
-        </Block>
+        <div css={classes.check({ checked })}>
+          <div
+            tabIndex={tabIndex}
+            css={classes.switch({ checked })}
+            onFocus={events.onFocus}
+            onBlur={events.onBlur}
+          />
+        </div>
       )}
     </Check>
   )

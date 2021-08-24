@@ -35,7 +35,11 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
   const now = moment()
   const [value, setValue] = useState(now)
   const [isActive, setActive] = useState(false)
-  const { classes, events, styleProps } = useSystem('DatePicker', props, createClasses)
+  const { classes, events, styleProps, overridesPropClasses } = useSystem(
+    'DatePicker',
+    props,
+    createClasses,
+  )
 
   const minValue = props.minValue
     ? moment(props.minValue).startOf('day')
@@ -79,74 +83,65 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
   }, [props.value])
 
   return (
-    <>
-      <Field
-        {...props}
-        tabIndex={tabIndex}
-        ref={ref}
-        decoration={decoration}
-        size={size}
-        shape={shape}
-        overrides={{
-          container: styleProps.container,
-          content: styleProps.content,
-        }}
-        onFocus={(e) => {
-          inputRef.current?.focus()
-          events.onFocus?.(e)
-          if (!props.disabled) {
-            setActive(true)
+    <Field
+      {...props}
+      tabIndex={tabIndex}
+      ref={ref}
+      decoration={decoration}
+      size={size}
+      shape={shape}
+      overrides={{
+        ...overridesPropClasses,
+        container: [overridesPropClasses.container, styleProps.container],
+        content: [overridesPropClasses.content, styleProps.content],
+      }}
+      onFocus={() => inputRef.current?.focus()}
+      onClick={(e) => {
+        events.onClick?.(e)
+        if (!props.disabled) {
+          setActive(true)
+        }
+      }}
+      rightChild={props.rightChild || <CalendarIcon />}
+    >
+      <input
+        ref={inputRef}
+        onKeyUp={(e) => {
+          const date = moment(
+            (
+              e as React.KeyboardEvent<HTMLInputElement> & {
+                target: { value: string }
+              }
+            ).target.value,
+            format,
+          )
+          if (date.isValid() && date > minValue && date < maxValue) {
+            setValue(date)
           }
         }}
-        onClick={(e) => {
-          events.onClick?.(e)
-          if (!props.disabled) {
-            setActive(true)
-          }
-        }}
-        rightChild={props.rightChild || <CalendarIcon />}
-      >
-        <input
-          ref={inputRef}
-          onKeyUp={(e) => {
-            const date = moment(
-              (
-                e as React.KeyboardEvent<HTMLInputElement> & {
-                  target: { value: string }
-                }
-              ).target.value,
-              format,
-            )
-            if (date.isValid() && date > minValue && date < maxValue) {
-              setValue(date)
-            }
-          }}
-          css={classes.input}
-          defaultValue={
-            defaultValue ? moment(defaultValue, format).format(format) : moment().format(format)
-          }
-          disabled={props.disabled}
-          autoComplete={props.autoComplete}
-          list={props.list}
-          name={props.name}
-          placeholder={props.placeholder}
-          pattern={props.pattern}
-          readOnly={props.readOnly}
-          required={props.required}
-          form={props.form}
-          formAction={props.formAction}
-          formEncType={props.formEncType}
-          formMethod={props.formMethod}
-          formNoValidate={props.formNoValidate}
-          formTarget={props.formTarget}
-          tabIndex={props.tabIndex}
-          onFocus={(e) => props.onFocus && props.onFocus(e)}
-          onBlur={(e) => props.onBlur && props.onBlur(e)}
-        />
-      </Field>
+        css={classes.input}
+        defaultValue={
+          defaultValue ? moment(defaultValue, format).format(format) : moment().format(format)
+        }
+        disabled={props.disabled}
+        autoComplete={props.autoComplete}
+        list={props.list}
+        name={props.name}
+        placeholder={props.placeholder}
+        pattern={props.pattern}
+        readOnly={props.readOnly}
+        required={props.required}
+        form={props.form}
+        formAction={props.formAction}
+        formEncType={props.formEncType}
+        formMethod={props.formMethod}
+        formNoValidate={props.formNoValidate}
+        formTarget={props.formTarget}
+        tabIndex={-1}
+      />
       <Drop
+        target={inputRef}
         visible={isActive}
-        // TODO: wtf
         spacing={9}
         align="bottom"
         justify="start"
@@ -155,7 +150,6 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
             setActive(false)
           }
         }}
-        target={inputRef}
       >
         <Popover css={classes.drop({ isActive })}>
           <Calendar
@@ -168,7 +162,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
           />
         </Popover>
       </Drop>
-    </>
+    </Field>
   )
 }
 

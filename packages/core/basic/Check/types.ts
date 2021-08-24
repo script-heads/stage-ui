@@ -1,8 +1,6 @@
 import { ClassesSchemaDefinition } from '@stage-ui/system/hooks/useSystem'
 
 declare namespace CheckTypes {
-  type CheckType = 'checkbox' | 'radio' | 'switch'
-
   interface Props<
     Element = HTMLDivElement,
     ClassesOveddides extends ClassesSchemaDefinition = Classes,
@@ -19,19 +17,12 @@ declare namespace CheckTypes {
 
   interface PrivateProps extends Props {
     name?: string
-    type?: CheckType
-    children: (checked: boolean, focus: boolean) => React.ReactElement
+    children: (checked: boolean) => React.ReactElement
   }
 
   type Classes = {
-    container: {
-      disabled: Props['disabled']
-    }
-    label: {
-      disabled: Props['disabled']
-      size: Props['size']
-      uppercase: Props['uppercase']
-    }
+    container: void
+    label: void
   }
 }
 

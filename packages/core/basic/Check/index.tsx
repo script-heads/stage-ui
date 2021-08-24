@@ -4,28 +4,18 @@ import CheckTypes from './types'
 import createClasses from './styles'
 
 const Check: ForwardRefRenderFunction<HTMLDivElement, CheckTypes.PrivateProps> = (props, ref) => {
-  const {
-    label,
-    disabled,
-    size,
-    uppercase,
-    defaultValue,
-    children,
-    checked: checkedProp,
-    name,
-  } = props
+  const { label, disabled, defaultValue, children, checked: checkedProp, name } = props
+
   const {
     classes,
-    attributes,
-    events: { onChange, onKeyDown, onClick, ...events },
+    attributes: { tabIndex, ...attributes },
+    events: { onChange, onKeyDown, onClick, onFocus, onBlur, ...events },
   } = useSystem('Check' || name, props, createClasses)
-  const [focus, setFocus] = useState(false)
+
   const [checked, setChecked] = useState(checkedProp || defaultValue || false)
 
   useEffect(() => {
-    if (typeof checked !== 'undefined') {
-      setChecked(checked)
-    }
+    setChecked(checked)
   }, [checked])
 
   /**
@@ -33,9 +23,7 @@ const Check: ForwardRefRenderFunction<HTMLDivElement, CheckTypes.PrivateProps> =
    */
   function handleChange() {
     onChange?.(checked)
-    if (typeof checked === 'undefined') {
-      setChecked(!checked)
-    }
+    setChecked(!checked)
   }
   /*
    * Keyboard control
@@ -68,22 +56,13 @@ const Check: ForwardRefRenderFunction<HTMLDivElement, CheckTypes.PrivateProps> =
       ref={ref}
       {...attributes}
       {...events}
-      css={classes.container({ disabled })}
+      tabIndex={-1}
+      css={classes.container}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
-      onFocus={(e: React.FocusEvent<HTMLInputElement>) => {
-        setFocus(true)
-        events.onFocus?.(e)
-      }}
-      onBlur={(e: React.FocusEvent<HTMLInputElement>) => {
-        setFocus(false)
-        events.onBlur?.(e)
-      }}
     >
-      {children(checked, focus)}
-      {label && label.length && (
-        <div css={classes.label({ disabled, size, uppercase })}>{label}</div>
-      )}
+      {children(checked)}
+      {label && label.length && <div css={classes.label}>{label}</div>}
     </div>
   )
 }

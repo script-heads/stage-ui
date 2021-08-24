@@ -4,10 +4,7 @@ declare namespace CheckboxTypes {
   interface Props extends CheckTypes.Props<HTMLDivElement, Classes> {}
 
   type ClassState = {
-    focus: boolean
-    size: Props['size']
     checked: Props['checked']
-    disabled: Props['disabled']
   }
 
   type Classes = {
@@ -19,7 +16,7 @@ declare namespace CheckboxTypes {
      * Icon of checkbox
      */
     icon: ClassState
-  }
+  } & Partial<CheckTypes.Classes>
 }
 
 export default CheckboxTypes
