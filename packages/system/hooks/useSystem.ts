@@ -5,7 +5,7 @@ import useTheme from './useTheme'
 import propsResolvers from '../props'
 import createVariant, { Variant } from '../utils/createVariant'
 import isFunction from '../utils/isFunction'
-import { AllProps, AttributeProps } from '../props/types'
+import { AllEventProps, AllStyleProps, AttributeProps } from '../props/types'
 import overridesProp from '../props/overrides'
 
 export interface Options {
@@ -15,19 +15,19 @@ export interface Options {
 }
 
 export type StyleProps = {
-  all: Stage.JSS[]
-  container: Stage.JSS[]
-  content: Stage.JSS[]
+  all: Stage.CSSInterpolation[]
+  container: Stage.CSSInterpolation[]
+  content: Stage.CSSInterpolation[]
 
-  style: Stage.JSS[]
-  margin: Stage.JSS[]
-  flex: Stage.JSS[]
-  grid: Stage.JSS[]
+  style: Stage.CSSInterpolation[]
+  margin: Stage.CSSInterpolation[]
+  flex: Stage.CSSInterpolation[]
+  grid: Stage.CSSInterpolation[]
 
-  padding: Stage.JSS[]
-  color: Stage.JSS[]
-  border: Stage.JSS[]
-  layout: Stage.JSS[]
+  padding: Stage.CSSInterpolation[]
+  color: Stage.CSSInterpolation[]
+  border: Stage.CSSInterpolation[]
+  layout: Stage.CSSInterpolation[]
 }
 
 export type ClassStateDefinition = Record<string, string | boolean | undefined> | void
@@ -36,11 +36,11 @@ export type ClassesSchemaDefinition = Record<string, ClassStateDefinition>
 export type FunctionClassDefinition<ClassState extends Exclude<ClassStateDefinition, void>> = (
   variant: Variant<ClassState>,
   state: ClassState,
-) => Stage.JSS
+) => Stage.CSSInterpolation
 
 export type OverridesClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = {
   [ClassName in keyof ClassesSchema]?: ClassesSchema[ClassName] extends void
-    ? Stage.JSS
+    ? Stage.CSSInterpolation
     : FunctionClassDefinition<Exclude<ClassesSchema[ClassName], void>>
 }
 
@@ -50,17 +50,17 @@ export type ThemeOverrides<Props, ClassesSchema extends ClassesSchemaDefinition>
 
 export type ClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = {
   [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends void
-    ? Stage.JSS
+    ? Stage.CSSInterpolation
     : FunctionClassDefinition<Exclude<ClassesSchema[ClassName], void>>
 }
 
 export type FunctionClass<ClassSchema extends ClassStateDefinition> = (
   state: ClassSchema,
-) => Stage.JSS
+) => Stage.CSSInterpolation
 
 export type Classes<ClassesSchema extends ClassesSchemaDefinition> = {
   [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends void
-    ? Stage.JSS
+    ? Stage.CSSInterpolation
     : FunctionClass<ClassesSchema[ClassName]>
 }
 
@@ -91,7 +91,11 @@ window.addEventListener('mouseup', () => {
 })
 
 function useSystem<
-  Props extends AllProps<Element, ClassesSchema>,
+  Props extends AllStyleProps<ClassesSchema> &
+    Pick<
+      AllEventProps<Element>,
+      'onFocus' | 'onBlur' | 'onClick' | 'onEnter' | 'onEsc' | 'onKeyDown'
+    >,
   ClassesSchema extends ClassesSchemaDefinition,
   Element extends HTMLElement,
 >(
@@ -228,7 +232,7 @@ function useSystem<
             isFunction(data.overridesPropClasses[key])
               ? (data.overridesPropClasses[key] as Function)(variant, state)
               : data.overridesPropClasses[key],
-          ] as Stage.JSS
+          ] as Stage.CSSInterpolation
         }
       : [
           classLabel,

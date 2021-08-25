@@ -1,4 +1,4 @@
-import { CSSInterpolation } from '@emotion/serialize'
+import { CSSInterpolation as CSSI, CSSObject as CSSO } from '@emotion/serialize'
 import ColorType from 'color'
 import { ColorProp as ColorPropType } from '@stage-ui/system/props/color'
 import { ReplaceTheme } from './utils/createTheme'
@@ -13,7 +13,8 @@ import { OverridesProp } from './props/overrides'
 declare global {
   namespace Stage {
     type Sizes = 'xs' | 's' | 'm' | 'l' | 'xl'
-    type JSS = CSSInterpolation
+    type CSSInterpolation = CSSI
+    type CSSObject = CSSO
     type ColorDefinition = [number, number, number, number?]
     type Color = ColorType<ColorDefinition>
 
@@ -50,7 +51,7 @@ declare global {
     }
 
     interface ThemeAssets {
-      global?: Stage.JSS
+      global?: Stage.CSSInterpolation
       border: {
         width: string
         style: string
@@ -58,14 +59,8 @@ declare global {
       }
       shadow: Record<Sizes, string>
       innerShadow: Record<Sizes, string>
-      focus: Stage.JSS
-      field: Record<
-        Sizes,
-        {
-          minHeight: string
-          padding: string
-        }
-      >
+      focus: CSSObject
+      field: Record<Sizes, CSSObject>
       button: Record<
         Sizes,
         {

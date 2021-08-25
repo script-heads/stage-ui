@@ -45,7 +45,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         borderRadius: 0,
       },
       shape === 'round' && {
-        borderRadius: `calc(${theme.assets.field[size].minHeight}/2)`,
+        borderRadius: `calc(${theme.assets.field[size]?.minHeight || '2.5 rem'}/2)`,
       },
       decoration === 'outline' &&
         disabled && {

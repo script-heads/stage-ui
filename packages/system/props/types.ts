@@ -23,6 +23,21 @@ export interface AllProps<Container, ClassSchema extends ClassesSchemaDefinition
     GridProps {}
 
 /**
+ * All typical component props except events
+ * @name All
+ */
+export interface AllStyleProps<ClassSchema extends ClassesSchemaDefinition>
+  extends AttributeProps,
+    CoreProps<ClassSchema>,
+    ColorProps,
+    BorderProps,
+    PaddingProps,
+    LayoutProps,
+    MarginProps,
+    FlexProps,
+    GridProps {}
+
+/**
  * DOM events
  * @name Event
  */
@@ -59,7 +74,7 @@ export interface CoreProps<ClassSchema extends ClassesSchemaDefinition> {
    * @display Stage.Styles
    * @link /props#styles
    */
-  style?: ((theme: Stage.Theme) => BreakpointProp<Stage.JSS>) | BreakpointProp<Stage.JSS>
+  style?: ((theme: Stage.Theme) => BreakpointProp<Stage.CSSInterpolation>) | BreakpointProp<Stage.CSSInterpolation>
 }
 
 /**

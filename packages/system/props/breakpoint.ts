@@ -3,7 +3,7 @@ export type BreakpointProp<T> = T[] | T
 function breakpointProp<P = string | number | undefined>(
   value: P | P[],
   theme: Stage.Theme,
-  resolver: (currentValue: P, theme: Stage.Theme) => Stage.JSS,
+  resolver: (currentValue: P, theme: Stage.Theme) => Stage.CSSInterpolation,
 ) {
   if (Array.isArray(value)) {
     return value.map((currentValue: any, index: number) => {
@@ -11,7 +11,7 @@ function breakpointProp<P = string | number | undefined>(
       return {
         [`@media (max-width: ${theme.breakpoints[index]})`]: resolver(currentValue, theme),
       }
-    }) as Stage.JSS
+    }) as Stage.CSSInterpolation
   }
   return resolver(value, theme)
 }

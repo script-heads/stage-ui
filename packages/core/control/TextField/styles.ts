@@ -1,8 +1,10 @@
 import Types from './types'
 
-const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, styleProps) => {
-  const minHeight =
-    theme.assets.field[props.size || 'm']?.minHeight || theme.assets.field.m.minHeight || '2.5rem'
+const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
+  theme,
+  { lineHeight, size = 'm' },
+) => {
+  const minHeight = theme.assets.field[size]?.minHeight || '2.5rem'
 
   return {
     input: (variant) => [
@@ -39,7 +41,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, s
         position: 'absolute',
         margin: `calc(${minHeight} / 4.5) 0`,
         '> div': {
-          height: props.lineHeight || theme.assets.typography.text[props.size || 'm'].lineHeight,
+          height: lineHeight || theme.assets.typography.text[size].lineHeight,
         },
       },
     ],

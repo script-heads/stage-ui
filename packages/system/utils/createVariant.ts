@@ -1,7 +1,9 @@
 import { ClassStateDefinition } from '../hooks/useSystem'
 
-type ObjectVariant<States extends string> = Partial<Record<States, Stage.JSS | Stage.JSS[]>>
-type BooleanVariant = Stage.JSS | Stage.JSS[]
+type ObjectVariant<States extends string> = Partial<
+  Record<States, Stage.CSSInterpolation | Stage.CSSInterpolation[]>
+>
+type BooleanVariant = Stage.CSSInterpolation | Stage.CSSInterpolation[]
 
 export type Variant<ClassState extends Exclude<ClassStateDefinition, void>> = (
   variants: {
@@ -9,13 +11,13 @@ export type Variant<ClassState extends Exclude<ClassStateDefinition, void>> = (
       ? BooleanVariant
       : ObjectVariant<Exclude<ClassState[State], boolean | undefined>>
   },
-) => Stage.JSS
+) => Stage.CSSInterpolation
 
 export default function createVariant<ClassState extends Exclude<ClassStateDefinition, void>>(
   state: ClassState,
 ) {
   const variant: Variant<ClassState> = (variants) => {
-    const styles: Stage.JSS = []
+    const styles: Stage.CSSInterpolation = []
 
     Object.keys(variants).forEach((key: keyof ClassState) => {
       if (Object.prototype.hasOwnProperty.call(variants, key)) {

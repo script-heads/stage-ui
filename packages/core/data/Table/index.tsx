@@ -29,7 +29,7 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
 
   const isDraggableSupport = !!columns.find((column) => column.dnd)
 
-  const mapRowContext = (row: Row) => {
+  const mapRowContext = (row: Row): Types.TableRowContext<Row> => {
     const isCellModify: Types.TableRowContext<Row>['isCellModify'] = {}
     columns.forEach((column) => {
       isCellModify[column.key] = false
@@ -127,6 +127,7 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
         }
         reload(!reloadData)
       },
+      isCellModify: false,
     }
   }
 

@@ -4,7 +4,7 @@ function convertColors<Colors extends Object>(colors: Colors): Record<keyof Colo
   const resolvedColors = {} as Record<keyof Colors, Stage.Color>
 
   Object.keys(colors).forEach((key) => {
-    resolvedColors[key] = Color(colors[key])
+    resolvedColors[key as keyof Colors] = Color(colors[key as keyof Colors])
   })
 
   return resolvedColors

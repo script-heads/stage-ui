@@ -1,24 +1,28 @@
 {
     "name": "@stage-ui/core",
     "author": "Research technology",
-    "version": "0.1.164",
+    "version": "0.2.0-beta0",
     "license": "MIT",
     "scripts": {
-        "pub": "git pull && npm version patch && yarn build && cd ../../build/core && yarn publish --access public && cd .. && rm -rf ./core",
-        "build": "yarn build:types && yarn build:js && cp package.json README.md babelImportPlugins.js ../../build/core/ && node ../../scripts/buildConfig core",
-        "build:types": "tsc --emitDeclarationOnly",
+        "build": "yarn build:types && yarn build:js && cp package.json README.md ../../build/core/ && node ../../scripts/buildConfig core",
+        "build:types": "tsc --declaration --emitDeclarationOnly",
         "build:js": "babel ./ --out-dir ../../build/core --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
         "type-check": "tsc --noEmit",
         "type-check:watch": "yarn type-check -- --watch",
         "icons:generate": "node ./scripts/iconsGenerate"
     },
     "dependencies": {
-        "@emotion/react": "11.4.0",
         "@stage-ui/system": "0.1.46",
         "@stage-ui/icons": "0.1.11",
         "imask": "6.0.1",
         "moment": "2.29.1",
         "rifm": "0.12.0"
+    },
+    "peerDependencies": {
+        "@babel/runtime": "7.x",
+        "react": "16.x",
+        "react-dom": "16.x",
+        "@emotion/react": "11.x"
     },
     "devDependencies": {
         "@babel/cli": "^7.7.5",
@@ -32,10 +36,5 @@
         "@babel/preset-typescript": "^7.7.4",
         "csstype": "^3.0.6",
         "eva-icons": "^1.1.2"
-    },
-    "peerDependencies": {
-        "@babel/runtime": "*",
-        "react": "*",
-        "react-dom": "*"
     }
 }

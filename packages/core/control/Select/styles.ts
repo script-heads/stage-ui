@@ -1,8 +1,10 @@
 import Types from './types'
 
-const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
-  const minHeight =
-    theme.assets.field[props.size || 'm']?.minHeight || theme.assets.field.m.minHeight || '2.5rem'
+const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
+  theme,
+  { size = 'm', disabled },
+) => {
+  const minHeight = theme.assets.field[size]?.minHeight || '2.5rem'
 
   return {
     drop: (variant) => [
@@ -21,7 +23,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
             borderRadius: 0,
           },
           round: {
-            borderRadius: `calc(${minHeight}/2)`,
+            borderRadius: theme.radius.s,
           },
         },
         decoration: {
@@ -122,19 +124,17 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
     tag: (variant) => [
       {
         display: 'inline-flex',
-        background: props.disabled
+        background: disabled
           ? theme.color.lightest.rgb().string()
           : theme.color.primary.alpha(0.2).rgb().string(),
         borderWidth: '1px',
         borderStyle: 'solid',
-        borderColor: props.disabled
+        borderColor: disabled
           ? theme.color.light.rgb().string()
           : theme.color.primary.rgb().string(),
         borderRadius: `calc(${theme.radius.s} / 2)`,
         boxSizing: 'border-box',
-        color: props.disabled
-          ? theme.color.light.rgb().string()
-          : theme.color.primary.rgb().string(),
+        color: disabled ? theme.color.light.rgb().string() : theme.color.primary.rgb().string(),
         padding: `0 calc(${minHeight} / 5)`,
         margin: `calc(${minHeight} / 20)`,
         marginRight: `calc(${minHeight} / 10)`,
@@ -175,14 +175,12 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         marginLeft: `calc(${minHeight} / 10)`,
         marginRight: `calc(-${minHeight} / 10)`,
         borderLeft: '1px solid',
-        color: props.disabled
+        color: disabled
           ? theme.color.light.rgb().string()
           : theme.color.primary.alpha(0.8).rgb().string(),
         cursor: 'pointer',
         ':hover': {
-          color: props.disabled
-            ? theme.color.light.rgb().string()
-            : theme.color.primary.rgb().string(),
+          color: disabled ? theme.color.light.rgb().string() : theme.color.primary.rgb().string(),
         },
       },
     ],

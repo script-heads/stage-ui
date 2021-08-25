@@ -4,7 +4,7 @@ import { ThemeProvider, CacheProvider, Global, Interpolation } from '@emotion/re
 
 interface ProviderProps {
   theme?: Stage.Theme
-  global?: Stage.JSS
+  global?: Stage.CSSInterpolation
   cache?: Options
   children?: React.ReactNode
 }

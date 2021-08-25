@@ -10,20 +10,17 @@ const buildDir = __dirname + '/../build/'
 const workspacesDir = __dirname + '/../packages/'
 let config, systemConfig, coreConfig
 packageName = packageName.toLocaleLowerCase()
-
 config = JSON.parse(fs.readFileSync(buildDir + packageName + '/package.json'))
+systemConfig = JSON.parse(fs.readFileSync(workspacesDir + 'system/package.json'))
 
 switch (packageName) {
     case 'core':
-        systemConfig = JSON.parse(fs.readFileSync(workspacesDir + 'system/package.json'))
         config.dependencies[systemConfig.name] = `^${systemConfig.version}`
         break;
     case 'icons':
-        systemConfig = JSON.parse(fs.readFileSync(workspacesDir + 'system/package.json'))
         config.dependencies[systemConfig.name] = `^${systemConfig.version}`
         break;
     case 'lab':
-        systemConfig = JSON.parse(fs.readFileSync(workspacesDir + 'system/package.json'))
         coreConfig = JSON.parse(fs.readFileSync(workspacesDir + 'core/package.json'))
         config.dependencies[coreConfig.name] = `^${coreConfig.version}`
         config.dependencies[systemConfig.name] = `^${systemConfig.version}`
