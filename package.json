@@ -8,27 +8,19 @@
         "packages/*"
     ],
     "scripts": {
+        "start": "yarn workspace @stage-ui/docs start",
         "sandbox": "yarn workspace @stage-ui/sandbox start",
         "sandbox:a": "yarn workspace @stage-ui/sandbox analyze",
-        "start": "yarn workspace @stage-ui/docs start",
+        "build": "cd ./packages/core && yarn build && cd ../icons && yarn build && cd ../system && yarn build",
         "gen": "yarn gen:createTypes && yarn gen:generateTypes && yarn gen:fixTypes",
         "gen:createTypes": "cd ./packages/docs && typedoc",
         "gen:generateTypes": "cd ./packages/docs && node ./scripts/generateTypes.js",
         "gen:fixTypes": "cd ./packages/docs && node ./scripts/fixTypes.js",
-        "gen:evaicons": "cd ./packages/core && yarn icons:generate",
         "gen:icons": "cd ./packages/icons && yarn gen",
-        "pub": "yarn pub:system && yarn pub:core && yarn deploy",
-        "pub:core": "cd ./packages/core && yarn pub",
-        "pub:icons": "cd ./packages/icons && yarn pub",
-        "pub:lab": "cd ./packages/lab && yarn pub",
-        "pub:system": "cd ./packages/system && yarn pub",
-        "gitpush": "git commit . -m 'Update version' && git push",
-        "build": "cd ./packages/docs && yarn build",
         "form": "cd ./build/docs && pm2 start --name StageUI server.js",
         "test": "yarn workspace @stage-ui/docs test",
         "approve": "yarn workspace @stage-ui/docs approve",
-        "format": "prettier --write --semi=false --single-quote=true --end-of-line=auto --trailing-comma=all --print-width=100 \"{,!(node_modules)/**/}*.{ts,tsx}\"",
-        "hh": "prettier --help"
+        "format": "prettier --write --semi=false --single-quote=true --end-of-line=auto --trailing-comma=all --print-width=100 \"{,!(node_modules)/**/}*.{ts,tsx}\""
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "4.26.0",

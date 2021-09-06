@@ -22,8 +22,8 @@ export interface ReplaceTheme {
     | ((main: Stage.ThemeMain) => DeepPartial<Stage.ThemeAssets>)
     | DeepPartial<Stage.ThemeAssets>
   overrides?:
-    | ((main: Stage.ThemeMain, assets: Stage.ThemeAssets) => DeepPartial<Stage.ThemeOverrides>)
-    | DeepPartial<Stage.ThemeOverrides>
+    | ((main: Stage.ThemeMain, assets: Stage.ThemeAssets) => Stage.ThemeOverrides)
+    | Stage.ThemeOverrides
 }
 
 export type DeepPartial<T> = {

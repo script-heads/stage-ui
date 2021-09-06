@@ -1,14 +1,17 @@
-import colorProp from '@stage-ui/system/props/color'
 import Types from './types'
 
 const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, styleProps) => {
-  const { size = 'm' } = props
-  const color = colorProp(props.color, theme) || theme.color.primary
-  const typography = theme.assets.typography.text[size || 'm'] || theme.assets.typography.text.m
-  const isBlack = color.contrast(theme.color.onPrimary) > 3
+  const { size = 'm', decoration = 'filled', shape = 'rounded', disabled, uppercase } = props
+  const childSpacing = {
+    xs: '0.125rem',
+    s: '0.25rem',
+    m: '0.5rem',
+    l: '0.5rem',
+    xl: '0.75rem',
+  }
 
   return {
-    container: (variant) => [
+    container: [
       {
         fontWeight: 500,
         whiteSpace: 'nowrap',
@@ -31,132 +34,58 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, s
         '&::-moz-focus-inner': {
           border: 0,
         },
-        ...theme.assets.button.m,
-        ...(theme.assets.typography.text.m as {}),
+        '&:hover:not([disabled])': {
+          background: theme.color.primary.alpha(0.05).rgb().string(),
+        },
+        '&:active:not([disabled])': {
+          background: theme.color.primary.alpha(0.02).rgb().string(),
+        },
+        '&:disabled': {
+          color: theme.color.light.rgb().string(),
+        },
       },
-
-      variant({
-        decoration: {
-          outline: [
-            {
-              borderColor: color.alpha(0.7).rgb().string(),
-              color: color.rgb().string(),
-              '&:hover:not([disabled])': {
-                background: color.alpha(0.05).rgb().string(),
-              },
-              '&:active:not([disabled])': {
-                background: color.alpha(0.02).rgb().string(),
-              },
-              '&:disabled': {
-                borderColor: theme.color.lightest.rgb().string(),
-                color: theme.color.light.rgb().string(),
-              },
-            },
-          ],
-          text: [
-            {
-              color: color.rgb().string(),
-              '&:hover:not([disabled])': {
-                background: color.alpha(0.05).rgb().string(),
-              },
-              '&:active:not([disabled])': {
-                background: color.alpha(0.02).rgb().string(),
-              },
-              '&:disabled': {
-                color: theme.color.light.rgb().string(),
-              },
-            },
-          ],
-          plain: [
-            {
-              borderColor: theme.assets.border.color,
-              background: theme.color.surface.rgb().string(),
-              color: theme.color.onSurface.rgb().string(),
-              '&:hover:not([disabled])': {
-                background: color.alpha(0.05).rgb().string(),
-              },
-              '&:active:not([disabled])': {
-                background: color.alpha(0.02).rgb().string(),
-              },
-              '&:disabled': {
-                background: theme.color.lightest.rgb().string(),
-                color: theme.color.light.rgb().string(),
-              },
-            },
-          ],
-          filled: [
-            {
-              background: color.rgb().string(),
-              color: isBlack
-                ? theme.color.onPrimary.rgb().string()
-                : theme.color.onSurface.rgb().string(),
-              '&:hover:not([disabled])': {
-                background: isBlack
-                  ? color.lighten(0.05).rgb().string()
-                  : color.darken(0.05).rgb().string(),
-              },
-              '&:active:not([disabled])': {
-                background: isBlack
-                  ? color.lighten(0.1).rgb().string()
-                  : color.darken(0.1).rgb().string(),
-              },
-              '&:disabled': {
-                background: theme.color.lightest.rgb().string(),
-                color: theme.color.light.rgb().string(),
-              },
-            },
-          ],
+      theme.assets.button[size],
+      theme.assets.typography.text[size],
+      decoration === 'outline' && {
+        borderColor: theme.color.primary.rgb().string(),
+        color: theme.color.primary.rgb().string(),
+        '&:disabled': {
+          borderColor: theme.color.lightest.rgb().string(),
         },
-        shape: {
-          square: [
-            {
-              borderRadius: 0,
-            },
-          ],
-          round: [
-            {
-              borderRadius: '100rem',
-            },
-          ],
+      },
+      decoration === 'text' && {
+        color: theme.color.onBackground.rgb().string(),
+      },
+      decoration === 'plain' && {
+        borderColor: theme.assets.border.color,
+        background: theme.color.surface.rgb().string(),
+        color: theme.color.onSurface.rgb().string(),
+        '&:disabled': {
+          background: theme.color.lightest.rgb().string(),
         },
-        size: {
-          xs: [
-            {
-              ...theme.assets.button.xs,
-              ...(theme.assets.typography.text.xs as {}),
-            },
-          ],
-          s: [
-            {
-              ...theme.assets.button.s,
-              ...(theme.assets.typography.text.s as {}),
-            },
-          ],
-          l: [
-            {
-              ...theme.assets.button.l,
-              ...(theme.assets.typography.text.l as {}),
-            },
-          ],
-          xl: [
-            {
-              ...theme.assets.button.xl,
-              ...(theme.assets.typography.text.xl as {}),
-            },
-          ],
+      },
+      decoration === 'filled' && {
+        background: theme.color.primary.rgb().string(),
+        color: theme.color.onPrimary.rgb().string(),
+        '&:disabled': {
+          background: theme.color.lightest.rgb().string(),
         },
-      }),
-
-      props.disabled && {
+      },
+      shape === 'square' && {
+        borderRadius: 0,
+      },
+      shape === 'round' && {
+        borderRadius: '100rem',
+      },
+      disabled && {
         cursor: 'not-allowed',
       },
-
-      props.uppercase && {
+      uppercase && {
         textTransform: 'uppercase',
       },
       styleProps.all,
     ],
-    child: (variant) => [
+    child: (variant, state) => [
       {
         flexGrow: 0,
         flexShrink: 1,
@@ -165,37 +94,19 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, s
         ' > span': {
           height: 'auto',
           '> svg': {
-            height: typography.lineHeight,
-            width: typography.lineHeight,
+            height: theme.assets.typography.text[size].lineHeight,
+            width: theme.assets.typography.text[size].lineHeight,
           },
         },
       },
-      variant({
-        align: {
-          left: [
-            { marginRight: '0.5rem' },
-            variant({
-              size: {
-                xs: { marginRight: '0.125rem', marginLeft: '-0.125rem' },
-                s: { marginRight: '0.25rem', marginLeft: '-0.25rem' },
-                l: { marginRight: '0.5rem', marginLeft: '-0.5rem' },
-                xl: { marginRight: '0.75rem', marginLeft: '-0.75rem' },
-              },
-            }),
-          ],
-          right: [
-            { marginLeft: '0.5rem' },
-            variant({
-              size: {
-                xs: { marginLeft: '0.125rem', marginRight: '-0.125rem' },
-                s: { marginLeft: '0.25rem', marginRight: '-0.25rem' },
-                l: { marginLeft: '0.5rem', marginRight: '-0.5rem' },
-                xl: { marginLeft: '0.75rem', marginRight: '-0.75rem' },
-              },
-            }),
-          ],
-        },
-      }),
+      state.align === 'left' && {
+        marginRight: childSpacing[size],
+        marginLeft: `-${childSpacing[size]}`,
+      },
+      state.align === 'right' && {
+        marginRight: `-${childSpacing[size]}`,
+        marginLeft: childSpacing[size],
+      },
     ],
   }
 }

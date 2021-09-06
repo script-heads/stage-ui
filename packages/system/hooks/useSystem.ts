@@ -5,29 +5,13 @@ import useTheme from './useTheme'
 import propsResolvers from '../props'
 import createVariant, { Variant } from '../utils/createVariant'
 import isFunction from '../utils/isFunction'
-import { AllEventProps, AllStyleProps, AttributeProps } from '../props/types'
+import { AllEventProps, AllStyleProps, AttributeProps, ResolvedStyleProps } from '../props/types'
 import overridesProp from '../props/overrides'
 
 export interface Options {
   focus?: 'always' | 'tabOnly' | 'never'
   label?: string
   theme?: Stage.Theme
-}
-
-export type StyleProps = {
-  all: Stage.CSSInterpolation[]
-  container: Stage.CSSInterpolation[]
-  content: Stage.CSSInterpolation[]
-
-  style: Stage.CSSInterpolation[]
-  margin: Stage.CSSInterpolation[]
-  flex: Stage.CSSInterpolation[]
-  grid: Stage.CSSInterpolation[]
-
-  padding: Stage.CSSInterpolation[]
-  color: Stage.CSSInterpolation[]
-  border: Stage.CSSInterpolation[]
-  layout: Stage.CSSInterpolation[]
 }
 
 export type ClassStateDefinition = Record<string, string | boolean | undefined> | void
@@ -45,7 +29,7 @@ export type OverridesClassesDefinition<ClassesSchema extends ClassesSchemaDefini
 }
 
 export type ThemeOverrides<Props, ClassesSchema extends ClassesSchemaDefinition> =
-  | ((props: Props, styleProps: StyleProps) => OverridesClassesDefinition<ClassesSchema>)
+  | ((props: Props, styleProps: ResolvedStyleProps) => OverridesClassesDefinition<ClassesSchema>)
   | OverridesClassesDefinition<ClassesSchema>
 
 export type ClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = {
@@ -67,7 +51,7 @@ export type Classes<ClassesSchema extends ClassesSchemaDefinition> = {
 export type CreateClasses<ClassesSchema extends ClassesSchemaDefinition, Props> = (
   theme: Stage.Theme,
   props: Props,
-  styleProps: StyleProps,
+  styleProps: ResolvedStyleProps,
 ) => ClassesDefinition<ClassesSchema>
 
 export type ComponentData<
@@ -75,9 +59,9 @@ export type ComponentData<
   ClassesSchema extends ClassesSchemaDefinition,
 > = {
   classes: Classes<ClassesSchema>
-  attributes: Pick<Props, keyof AttributeProps>
+  attributes: React.HTMLAttributes<any>
   events: Pick<Props, Stage.FilterStartingWith<keyof Props, 'on'>>
-  styleProps: StyleProps
+  styleProps: ResolvedStyleProps
   overridesPropClasses: OverridesClassesDefinition<ClassesSchema>
 }
 
@@ -125,7 +109,7 @@ function useSystem<
       color: [],
       border: [],
       layout: [],
-    } as StyleProps,
+    } as ResolvedStyleProps,
     overridesPropClasses: {},
   } as ComponentData<Props, ClassesSchema>
 

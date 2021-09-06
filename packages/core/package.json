@@ -1,30 +1,30 @@
 {
     "name": "@stage-ui/core",
     "author": "Research technology",
-    "version": "0.2.0-beta0",
+    "version": "0.2.0-beta7",
     "license": "MIT",
     "scripts": {
-        "build": "yarn build:types && yarn build:js && cp package.json README.md ../../build/core/ && node ../../scripts/buildConfig core",
-        "build:types": "tsc --declaration --emitDeclarationOnly",
+        "build": "tsc && yarn build:js && cp package.json README.md ../../build/core/ && node ../../scripts/buildConfig core",
         "build:js": "babel ./ --out-dir ../../build/core --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
         "type-check": "tsc --noEmit",
         "type-check:watch": "yarn type-check -- --watch",
         "icons:generate": "node ./scripts/iconsGenerate"
     },
     "dependencies": {
-        "@stage-ui/system": "0.1.46",
-        "@stage-ui/icons": "0.1.11",
+        "@stage-ui/icons": "0.2.0-beta4",
+        "@stage-ui/system": "0.2.0-beta4",
         "imask": "6.0.1",
         "moment": "2.29.1",
         "rifm": "0.12.0"
     },
     "peerDependencies": {
         "@babel/runtime": "7.x",
+        "@emotion/react": "11.x",
         "react": "16.x",
-        "react-dom": "16.x",
-        "@emotion/react": "11.x"
+        "react-dom": "16.x"
     },
     "devDependencies": {
+        "@emotion/babel-preset-css-prop": "^11.2.0",
         "@babel/cli": "^7.7.5",
         "@babel/core": "^7.7.5",
         "@babel/plugin-proposal-class-properties": "^7.7.4",

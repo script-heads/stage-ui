@@ -1,17 +1,19 @@
 {
-    "compilerOptions": {
-        "jsx": "react-jsx",
-        "target": "esnext",
-        "module": "commonjs",
-        "outDir": "../../build/system",
-        "skipLibCheck": true,
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "experimentalDecorators": true,
-        "strict": true,
-        "types": ["@emotion/react"]
-    },
-    "exclude": [
-        "node_modules"
-    ]
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "target": "esnext",
+    "module": "commonjs",
+    "outDir": "../../build/system",
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "strict": true,
+    "types": ["@emotion/react"],
+    "declaration": true,
+    "emitDeclarationOnly": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }

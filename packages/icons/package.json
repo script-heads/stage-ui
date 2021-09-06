@@ -1,17 +1,21 @@
 {
     "name": "@stage-ui/icons",
     "author": "Research technology",
-    "version": "0.2.0",
+    "version": "0.2.0-beta4",
     "license": "MIT",
     "scripts": {
-        "pub": "git pull && npm version patch && yarn build && cd ../../build/icons && yarn publish --access public && cd .. && rm -rf ./icons",
-        "build": "tsc && cp package.json README.md ../../build/icons/ && node ../../scripts/buildConfig icons",
+        "build": "tsc && yarn build:js && cp package.json README.md ../../build/icons/ && node ../../scripts/buildConfig icons",
+        "build:types": "tsc --declaration --emitDeclarationOnly",
+        "build:js": "babel ./ --out-dir ../../build/icons --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
         "gen": "node ./scripts/generate"
     },
-    "dependencies": {},
-    "devDependencies": {},
+    "devDependencies": {
+        "@emotion/babel-preset-css-prop": "^11.2.0"
+    },
+    "dependencies": {
+        "@stage-ui/system": "0.2.0-beta4"
+    },
     "peerDependencies": {
-        "@stage-ui/system": "*",
-        "@emotion/react": "*"
+        "@emotion/react": "11.x"
     }
 }

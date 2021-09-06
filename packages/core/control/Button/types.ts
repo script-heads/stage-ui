@@ -69,10 +69,6 @@ declare namespace ButtonTypes {
      */
     uppercase?: boolean
     /**
-     * Color of button
-     */
-    color?: Stage.ColorProp
-    /**
      * Button's label
      */
     label?: React.ReactNode
@@ -90,21 +86,15 @@ declare namespace ButtonTypes {
     leftChild?: React.ReactNode
   }
 
-  type ClassState = {
-    decoration: Props['decoration']
-    shape: Props['shape']
-    size: Props['size']
-  }
-
   type Classes = {
     /**
      * Root element
      */
-    container: ClassState
+    container: void
     /**
      * Content's wrappers
      */
-    child: ClassState & {
+    child: {
       align: 'left' | 'right'
     }
   }

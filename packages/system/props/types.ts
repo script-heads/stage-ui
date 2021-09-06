@@ -6,6 +6,21 @@ import { ColorProp } from './color'
 import { OverridesProp } from './overrides'
 import { SpaceProp } from './space'
 
+export type ResolvedStyleProps = {
+  all: Stage.CSSInterpolation[]
+  container: Stage.CSSInterpolation[]
+  content: Stage.CSSInterpolation[]
+
+  style: Stage.CSSInterpolation[]
+  margin: Stage.CSSInterpolation[]
+  padding: Stage.CSSInterpolation[]
+  color: Stage.CSSInterpolation[]
+  border: Stage.CSSInterpolation[]
+  layout: Stage.CSSInterpolation[]
+  flex: Stage.CSSInterpolation[]
+  grid: Stage.CSSInterpolation[]
+}
+
 /**
  * All typical component props
  * @name All
@@ -74,7 +89,9 @@ export interface CoreProps<ClassSchema extends ClassesSchemaDefinition> {
    * @display Stage.Styles
    * @link /props#styles
    */
-  style?: ((theme: Stage.Theme) => BreakpointProp<Stage.CSSInterpolation>) | BreakpointProp<Stage.CSSInterpolation>
+  style?:
+    | ((theme: Stage.Theme) => BreakpointProp<Stage.CSSInterpolation>)
+    | BreakpointProp<Stage.CSSInterpolation>
 }
 
 /**

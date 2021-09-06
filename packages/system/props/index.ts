@@ -7,10 +7,11 @@ import resolveColor from './color'
 import resolveSpace from './space'
 import isFunction from '../utils/isFunction'
 import { ClassesSchemaDefinition, ComponentData } from '../hooks/useSystem'
+import sizeProp from './size'
 
-export type Resolver = <ClassesSchema extends ClassesSchemaDefinition>(
+export type Resolver = <Props, ClassesSchema extends ClassesSchemaDefinition>(
   props: Record<string, any>,
-  componentData: Record<keyof ComponentData<any, ClassesSchema>, any>,
+  componentData: ComponentData<Props, ClassesSchema>,
   theme: Stage.Theme,
 ) => void
 
@@ -71,7 +72,11 @@ const resolvers: Record<string, Resolver> = {
       })),
     ),
   borderRadius: (p, cd, t) =>
-    cd.styleProps.border.push(resolveBreakpoints(p.borderRadius, t, (v) => ({ borderRadius: v }))),
+    cd.styleProps.border.push(
+      resolveBreakpoints(p.borderRadius, t, (v) => ({
+        borderRadius: sizeProp(v, t.radius, (ov) => ov),
+      })),
+    ),
 
   p: (p, cd, t) =>
     cd.styleProps.padding.push(
