@@ -93,33 +93,30 @@ const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
 
   return (
     <ModalPortal>
-      <ModalOverlay
-        ref={overlayRef}
-        getStyles={getStyles}
-        children={
-          <div
-            data-wrapper
-            css={classes.wrapper(styleProps)}
-            onClick={(e) => {
-              if ((e.target as HTMLDivElement).dataset.wrapper) {
-                if (overlayClose) close()
-              }
-            }}
+      <ModalOverlay ref={overlayRef} getStyles={getStyles}>
+        <div
+          data-wrapper
+          css={classes.wrapper(styleProps)}
+          onClick={(e) => {
+            if ((e.target as HTMLDivElement).dataset.wrapper) {
+              if (overlayClose) close()
+            }
+          }}
+        >
+          <ModalWindow
+            getStyles={getStyles}
+            ref={windowRef}
+            title={title}
+            subtitle={subtitle}
+            hideHeader={hideHeader}
+            onClosePressed={() => close()}
+            containerAttr={attributes}
+            containerEvents={events}
           >
-            <ModalWindow
-              getStyles={getStyles}
-              ref={windowRef}
-              title={title}
-              subtitle={subtitle}
-              hideHeader={hideHeader}
-              onClosePressed={() => close()}
-              children={customRender !== null ? customRender : props.children}
-              containerAttr={attributes}
-              containerEvents={events}
-            />
-          </div>
-        }
-      />
+            {customRender !== null ? customRender : props.children}
+          </ModalWindow>
+        </div>
+      </ModalOverlay>
     </ModalPortal>
   )
 }

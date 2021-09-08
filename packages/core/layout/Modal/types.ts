@@ -8,12 +8,13 @@ import {
   LayoutProps,
   PaddingProps,
 } from '@stage-ui/system/props/types'
+import React from 'react'
 
 declare namespace ModalTypes {
   type ModalDecoration = 'modal' | 'panel' | 'fullscreen'
   type ExtentedProps = AttributeProps &
     AllEventProps<HTMLDivElement> &
-    CoreProps<Classes> &
+    CoreProps<Classes, HTMLDivElement> &
     ColorProps &
     BorderProps &
     PaddingProps &
@@ -126,12 +127,12 @@ declare namespace ModalTypes {
     children?: React.ReactNode
   }
 
-  interface ModalWindowProps {
+  interface ModalWindowProps<Element extends HTMLElement> {
     title?: string
     subtitle?: string
     hideHeader?: boolean
     children?: React.ReactNode
-    containerAttr?: ExtentedProps
+    containerAttr?: React.HTMLAttributes<Element>
     containerEvents?: any
     onClosePressed: () => void
     getStyles: () => {

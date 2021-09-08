@@ -6,84 +6,27 @@ import { ColorProp } from './color'
 import { OverridesProp } from './overrides'
 import { SpaceProp } from './space'
 
-export type ResolvedStyleProps = {
-  all: Stage.CSSInterpolation[]
-  container: Stage.CSSInterpolation[]
-  content: Stage.CSSInterpolation[]
-
-  style: Stage.CSSInterpolation[]
-  margin: Stage.CSSInterpolation[]
-  padding: Stage.CSSInterpolation[]
-  color: Stage.CSSInterpolation[]
-  border: Stage.CSSInterpolation[]
-  layout: Stage.CSSInterpolation[]
-  flex: Stage.CSSInterpolation[]
-  grid: Stage.CSSInterpolation[]
-}
-
 /**
  * All typical component props
  * @name All
  */
 export interface AllProps<Container, ClassSchema extends ClassesSchemaDefinition>
-  extends AttributeProps,
+  extends CoreProps<ClassSchema, Container>,
+    AttributeProps,
     AllEventProps<Container>,
-    CoreProps<ClassSchema>,
-    ColorProps,
-    BorderProps,
-    PaddingProps,
-    LayoutProps,
-    MarginProps,
-    FlexProps,
-    GridProps {}
-
-/**
- * All typical component props except events
- * @name All
- */
-export interface AllStyleProps<ClassSchema extends ClassesSchemaDefinition>
-  extends AttributeProps,
-    CoreProps<ClassSchema>,
-    ColorProps,
-    BorderProps,
-    PaddingProps,
-    LayoutProps,
-    MarginProps,
-    FlexProps,
-    GridProps {}
-
-/**
- * DOM events
- * @name Event
- */
-export interface AllEventProps<T>
-  extends Omit<FormEventProps<T>, 'onChange'>,
-    FocusEventProps<T>,
-    ImageEventProps<T>,
-    MediaEventProps<T>,
-    MouseEventProps<T>,
-    TouchEventProps<T>,
-    WheelEventProps<T>,
-    PointerEventProps<T>,
-    KeyboardEventProps<T>,
-    SelectionEventProps<T>,
-    AnimationEventProps<T>,
-    ClipboardEventProps<T>,
-    TransitionEventProps<T>,
-    CompositionEventProps<T>,
-    ScrollEventProps<T> {}
+    AllStyleProps {}
 
 /**
  * Component core props
  * @name Core
  */
-export interface CoreProps<ClassSchema extends ClassesSchemaDefinition> {
+export interface CoreProps<ClassesSchema extends ClassesSchemaDefinition, T> {
   /**
    * Override any component style
    * @display Stage.Styles
-   * @link /props#styles
+   * @link /props#overrides
    */
-  overrides?: OverridesProp<ClassSchema>
+  overrides?: OverridesProp<ClassesSchema>
   /**
    * Shortcut for fast styles
    * @display Stage.Styles
@@ -92,6 +35,13 @@ export interface CoreProps<ClassSchema extends ClassesSchemaDefinition> {
   style?:
     | ((theme: Stage.Theme) => BreakpointProp<Stage.CSSInterpolation>)
     | BreakpointProp<Stage.CSSInterpolation>
+
+  /**
+   * HMTL Attributes for container
+   * @display Stage.Styles
+   * @link /props#attributes
+   */
+  attributes?: React.HTMLAttributes<T>
 }
 
 /**
@@ -128,6 +78,41 @@ export interface AttributeProps extends React.AriaAttributes {
    */
   attrs?: Object
 }
+
+/**
+ * All typical component props except events
+ * @name AllStyle
+ */
+export interface AllStyleProps
+  extends ColorProps,
+    BorderProps,
+    PaddingProps,
+    LayoutProps,
+    MarginProps,
+    FlexProps,
+    GridProps {}
+
+/**
+ * DOM events
+ * @name Event
+ */
+export interface AllEventProps<T>
+  extends Omit<FormEventProps<T>, 'onChange'>,
+    FocusEventProps<T>,
+    ImageEventProps<T>,
+    MediaEventProps<T>,
+    MouseEventProps<T>,
+    TouchEventProps<T>,
+    WheelEventProps<T>,
+    PointerEventProps<T>,
+    KeyboardEventProps<T>,
+    SelectionEventProps<T>,
+    AnimationEventProps<T>,
+    ClipboardEventProps<T>,
+    TransitionEventProps<T>,
+    CompositionEventProps<T>,
+    ScrollEventProps<T> {}
+
 /**
  * Component color styles props
  * @name Color

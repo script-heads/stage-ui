@@ -1,6 +1,6 @@
 import { Block } from '@stage-ui/core'
 import { useSystem } from '@stage-ui/system'
-import { forwardRef, ForwardRefRenderFunction } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import styles from './styles'
 import Types from './types'
 
@@ -14,8 +14,8 @@ const Notifications: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
     <Block
       decoration="surface"
       css={classes.container}
+      attributes={attributes}
       {...props}
-      {...attributes}
       {...events}
       ref={ref}
     />
