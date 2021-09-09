@@ -41,14 +41,14 @@ export interface CoreProps<ClassesSchema extends ClassesSchemaDefinition, T> {
    * @display Stage.Styles
    * @link /props#attributes
    */
-  attributes?: React.HTMLAttributes<T>
+  attributes?: React.HTMLAttributes<T> & React.AriaAttributes
 }
 
 /**
  * Component attribute props
  * @name Attributes
  */
-export interface AttributeProps extends React.AriaAttributes {
+export interface AttributeProps {
   /**
    * Set class atrribute on component's container
    */
@@ -73,10 +73,6 @@ export interface AttributeProps extends React.AriaAttributes {
    * Set draggable atrribute on component's container
    */
   draggable?: boolean
-  /**
-   * Set any atrributes on component's container
-   */
-  attrs?: Object
 }
 
 /**

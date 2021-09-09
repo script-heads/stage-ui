@@ -5,7 +5,7 @@ import Types from './types'
 
 const Button: ForwardRefRenderFunction<HTMLButtonElement, Types.Props> = (props, ref) => {
   const { leftChild, rightChild, children, disabled, label } = props
-  const { classes, attributes, events } = useSystem('Button', props, createClasses, {
+  const { classes, attributes, events, styleProps } = useSystem('Button', props, createClasses, {
     focus: 'tabOnly',
   })
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -19,7 +19,7 @@ const Button: ForwardRefRenderFunction<HTMLButtonElement, Types.Props> = (props,
       {...attributes}
       {...events}
       ref={ref}
-      css={classes.container}
+      css={[classes.container, styleProps.all]}
       onClick={onClick}
       disabled={disabled}
       form={props.form}

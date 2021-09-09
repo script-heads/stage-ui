@@ -1,11 +1,7 @@
 import colorResolver from '@stage-ui/system/props/color'
 import Types from './types'
 
-const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
-  theme,
-  props,
-  styleProps,
-) => {
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
   const labelColor = props.labelColor ? colorResolver(props.labelColor, theme) : undefined
   const { disabled, uppercase, size = 'm' } = props
   return {
@@ -20,7 +16,6 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
       disabled && {
         cursor: 'not-allowed',
       },
-      styleProps.all,
     ],
 
     label: [

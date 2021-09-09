@@ -133,7 +133,6 @@ function useSystem<
   } as ComponentData<Props, ClassesSchema, Element>
 
   Object.keys(props).forEach((key) => {
-    // Check *on* events
     if (key[0] === 'o' && key[1] === 'n') {
       // @ts-ignore
       data.events[key] = props[key]

@@ -10,19 +10,20 @@ const Link: ForwardRefRenderFunction<HTMLAnchorElement, Types.Props> = (
   return (
     <Typography
       tag="a"
+      color="primary"
       sizesOf="text"
       name="Link"
       overrides={(theme, styleProps) => ({
         container: [
           {
             outline: 'none',
-            color: theme.color.primary.rgb().string(),
             textDecoration: 'unset',
             '&:hover': {
               textDecoration: 'underline',
             },
           },
           isFunction(overrides) ? overrides(theme, styleProps).container : overrides?.container,
+          styleProps.all,
         ],
       })}
       ref={ref}

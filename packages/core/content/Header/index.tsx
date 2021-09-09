@@ -2,8 +2,12 @@ import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import Typography from '@stage-ui/core/basic/Typography'
 import sizeProp from '@stage-ui/system/props/size'
 import Types from './types'
+import isFunction from '../../../system/utils/isFunction'
 
-const Header: ForwardRefRenderFunction<HTMLSpanElement, Types.Props> = (props, ref) => (
+const Header: ForwardRefRenderFunction<HTMLSpanElement, Types.Props> = (
+  { overrides, ...props },
+  ref,
+) => (
   <Typography
     tag={sizeProp(
       props.size,
@@ -18,10 +22,16 @@ const Header: ForwardRefRenderFunction<HTMLSpanElement, Types.Props> = (props, r
     )}
     sizesOf="header"
     name="Header"
-    css={{
-      fontWeight: 'bold',
-      display: 'block',
-    }}
+    overrides={(theme, styleProps) => ({
+      container: [
+        {
+          fontWeight: 'bold',
+          display: 'block',
+        },
+        isFunction(overrides) ? overrides(theme, styleProps).container : overrides?.container,
+        styleProps.all,
+      ],
+    })}
     ref={ref}
     size="m"
     {...props}

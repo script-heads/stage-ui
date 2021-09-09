@@ -10,6 +10,7 @@ const Check: ForwardRefRenderFunction<HTMLDivElement, CheckTypes.PrivateProps> =
     classes,
     attributes: { tabIndex, ...attributes },
     events: { onChange, onKeyDown, onClick, onFocus, onBlur, ...events },
+    styleProps,
   } = useSystem('Check' || name, props, createClasses)
 
   const [checked, setChecked] = useState(checkedProp || defaultValue || false)
@@ -57,7 +58,7 @@ const Check: ForwardRefRenderFunction<HTMLDivElement, CheckTypes.PrivateProps> =
       {...attributes}
       {...events}
       tabIndex={-1}
-      css={classes.container}
+      css={[classes.container, styleProps.all]}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
     >
