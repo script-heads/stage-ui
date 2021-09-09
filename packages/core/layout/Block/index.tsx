@@ -5,7 +5,7 @@ import createClasses from './styles'
 import Types from './types'
 
 const Block: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-  const { classes, attributes, events } = useSystem('Block', props, createClasses)
+  const { classes, attributes, events, styleProps } = useSystem('Block', props, createClasses)
 
   return jsx(
     props.as || 'div',
@@ -13,9 +13,12 @@ const Block: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
       ...attributes,
       ...events,
       ref,
-      css: classes.container({
-        decoration: props.decoration,
-      }),
+      css: [
+        classes.container({
+          decoration: props.decoration,
+        }),
+        styleProps.all,
+      ],
       className: props.className,
     },
     props.children,
