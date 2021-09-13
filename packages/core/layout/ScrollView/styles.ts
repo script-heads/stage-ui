@@ -1,11 +1,7 @@
 import colorResolver from '@stage-ui/system/props/color'
 import Types from './types'
 
-const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
-  theme,
-  props,
-  styleProps,
-) => {
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
   const color = colorResolver(props.color || theme.color.onBackground, theme)
 
   return {
@@ -15,7 +11,6 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
         height: '100%',
         width: '100%',
       },
-      styleProps.all,
     ],
     container: [
       {
@@ -52,7 +47,6 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
           display: 'none',
         },
       },
-      styleProps.all,
     ],
     yBar: (variant) => [
       {

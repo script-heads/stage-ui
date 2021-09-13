@@ -8,12 +8,12 @@ const Notifications: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
   { overrides, ...props },
   ref,
 ) => {
-  const { classes, attributes, events } = useSystem('Notification', props, styles)
+  const { classes, attributes, events, styleProps } = useSystem('Notification', props, styles)
 
   return (
     <Block
       decoration="surface"
-      css={classes.container}
+      css={[classes.container, styleProps.all]}
       attributes={attributes}
       {...props}
       {...events}

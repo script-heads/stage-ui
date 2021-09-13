@@ -18,6 +18,7 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
     classes,
     attributes,
     events: { onChange, ...events },
+    styleProps,
   } = useSystem('Table', props, styles)
   const { columns, pagination, footer } = props
   const [currentPage, setCurrentPage] = useState(1)
@@ -221,7 +222,7 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
    * Render Data
    */
   return (
-    <table {...attributes} {...events} ref={tableRef} css={classes.container}>
+    <table {...attributes} {...events} ref={tableRef} css={[classes.container, styleProps.all]}>
       <thead>
         <tr>
           {columns.map((column, colIndex) => (

@@ -35,7 +35,7 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
     ...otherProps
   } = props
 
-  const { classes, attributes, events } = useSystem('Drop', otherProps, styles)
+  const { classes, attributes, events, styleProps } = useSystem('Drop', otherProps, styles)
 
   const dropRef = useRef<HTMLDivElement>(null)
 
@@ -239,7 +239,7 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
         props.onClick?.(e)
       }}
       ref={dropRef}
-      css={classes.container}
+      css={[classes.container, styleProps.content]}
       style={
         {
           top: 0,

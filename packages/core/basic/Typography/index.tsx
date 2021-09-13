@@ -11,7 +11,9 @@ const capitalizeFirstLetter = (s: string) => {
 const Typography: ForwardRefRenderFunction<Types.Ref, Types.PrivateProps> = (props, ref) => {
   const { name, download, href, hrefLang, media, ping, rel, target, type, referrerPolicy, focus } =
     props
-  const { classes, attributes, events } = useSystem(name, props, createClasses, { focus })
+  const { classes, attributes, events, styleProps } = useSystem(name, props, createClasses, {
+    focus,
+  })
 
   const children =
     typeof props.children === 'string' && props.capitalize
@@ -26,7 +28,7 @@ const Typography: ForwardRefRenderFunction<Types.Ref, Types.PrivateProps> = (pro
           ...attributes,
           ...events,
           ref,
-          css: classes.container,
+          css: [classes.container, styleProps.all],
           download,
           href,
           hrefLang,

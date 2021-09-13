@@ -2,11 +2,7 @@ import colorResolver from '@stage-ui/system/props/color'
 import { toPixel, toRem } from '@stage-ui/system/utils/size'
 import Types from './types'
 
-const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
-  theme,
-  props,
-  styleProps,
-) => {
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
   const background = colorResolver(props.backgroundColor || theme.color.surface, theme)
     .rgb()
     .string()
@@ -32,7 +28,6 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
         filter: `drop-shadow(${theme.assets.shadow.m})`,
         padding: theme.spacing.s,
       },
-      styleProps.all,
     ],
     arrow: (variant) => [
       {

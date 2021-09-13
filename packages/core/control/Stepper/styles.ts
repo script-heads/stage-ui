@@ -1,6 +1,6 @@
 import Types from './types'
 
-const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, styleProps) => {
+const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
   return {
     container: [
       {
@@ -12,7 +12,6 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, s
         transition: 'all 0.25s',
         ...theme.assets.typography.text[props.size || 'm'],
       },
-      styleProps.all,
     ],
     step: (variant) => [
       {

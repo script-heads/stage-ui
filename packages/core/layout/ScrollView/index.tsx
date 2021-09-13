@@ -45,7 +45,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
     xBarPosition = 'bottom',
     yBarPosition = 'right',
   } = props
-  const { classes, attributes, events } = useSystem('ScrollView', props, styles)
+  const { classes, attributes, events, styleProps } = useSystem('ScrollView', props, styles)
   const [active, setActive] = useState(mode === 'always')
 
   const memo: MemoParams = useMemo(
@@ -429,7 +429,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
   )
 
   return (
-    <div {...attributes} css={classes.wrapper} data-scroll-id={memo.id}>
+    <div {...attributes} css={[classes.wrapper, styleProps.container]} data-scroll-id={memo.id}>
       <div
         {...events}
         onScroll={(e) => {
@@ -444,7 +444,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
         ref={createRef}
       >
         <div
-          css={classes.content}
+          css={[classes.content, styleProps.content]}
           ref={(currentRef) => {
             memo.content = currentRef
           }}

@@ -16,7 +16,7 @@ import Types from './types'
 const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
   const { hideHeader, overlayClose = true, opened, decoration = 'modal' } = props
 
-  const { classes, attributes, events } = useSystem('Modal', props, styles)
+  const { classes, attributes, events, styleProps } = useSystem('Modal', props, styles)
 
   const overlayRef = useRef<HTMLDivElement>(null)
   const windowRef = useRef<HTMLDivElement>(null)
@@ -84,19 +84,19 @@ const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
     return null
   }
 
-  const styleProps = {
+  const otherStyleProps = {
     visible,
     decoration,
   }
 
-  const getStyles = () => ({ classes, state: styleProps })
+  const getStyles = () => ({ classes, state: otherStyleProps })
 
   return (
     <ModalPortal>
       <ModalOverlay ref={overlayRef} getStyles={getStyles}>
         <div
           data-wrapper
-          css={classes.wrapper(styleProps)}
+          css={[classes.wrapper(otherStyleProps), styleProps.all]}
           onClick={(e) => {
             if ((e.target as HTMLDivElement).dataset.wrapper) {
               if (overlayClose) close()

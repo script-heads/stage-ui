@@ -8,7 +8,7 @@ import Types from './types'
 const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
   const { length, pageSize = 20, value } = props
   const lastPage = Math.ceil(length / pageSize)
-  const { classes, attributes, events } = useSystem('Pageswitch', props, createClasses)
+  const { classes, attributes, events, styleProps } = useSystem('Pageswitch', props, createClasses)
 
   let defaultValue = value || props.defaultValue || 1
   if (defaultValue <= 0) defaultValue = 1
@@ -53,7 +53,7 @@ const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
     <Flexbox
       attributes={attributes}
       ref={ref}
-      css={classes.container}
+      css={[classes.container, styleProps.all]}
       alignItems="center"
       {...events}
     >

@@ -88,6 +88,7 @@ const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref)
     classes,
     attributes,
     events: { onChange, ...events },
+    styleProps,
   } = useSystem('Menu', props, createClasses, {
     label: 'Menu',
   })
@@ -109,6 +110,7 @@ const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref)
       '[data-flow=middle]': classes.middleChild(classState),
       '[data-flow=right]': classes.rightChild(classState),
     },
+    styleProps.all,
   ]
   let { children } = props
 

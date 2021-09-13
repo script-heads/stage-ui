@@ -11,6 +11,7 @@ const Split: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
     classes,
     attributes,
     events: { onChange, onMove, ...events },
+    styleProps,
   } = useSystem('Split', props, styles)
 
   const vertical = props.direction === 'column'
@@ -58,9 +59,12 @@ const Split: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
         refs['-1'] = { current: containerRef }
         ref = { current: containerRef }
       }}
-      css={classes.container({
-        vertical,
-      })}
+      css={[
+        classes.container({
+          vertical,
+        }),
+        styleProps.all,
+      ]}
     >
       {props.children.map((child, index) => {
         const separator =

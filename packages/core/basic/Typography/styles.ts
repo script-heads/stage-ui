@@ -3,11 +3,7 @@ import sizeResolver from '@stage-ui/system/props/size'
 import breakpointResolver from '@stage-ui/system/props/breakpoint'
 import Types from './types'
 
-const createClasses: Stage.CreateClasses<Types.Classes, Types.PrivateProps> = (
-  theme,
-  props,
-  styleProps,
-) => {
+const createClasses: Stage.CreateClasses<Types.Classes, Types.PrivateProps> = (theme, props) => {
   return {
     container: [
       props.ellipsis && {
@@ -40,7 +36,6 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.PrivateProps> = (
       breakpointResolver(props.backgroundColor, theme, (currentValue) => ({
         background: colorResolver(currentValue, theme)?.rgb().string(),
       })),
-      styleProps.all,
     ],
   }
 }

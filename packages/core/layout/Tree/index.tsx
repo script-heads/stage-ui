@@ -28,7 +28,7 @@ const Tree = forwardRef((props: Types.PrivateProps, ref: React.ForwardedRef<HTML
 
   const [isOpen, setOpen] = useState(!!(props.open || props.defaultOpen))
 
-  const { classes, attributes, events } = useSystem('Tree', props, styles)
+  const { classes, attributes, events, styleProps } = useSystem('Tree', props, styles)
 
   const sortedChildrens: {
     treeElement?: Types.TreeElement
@@ -78,7 +78,7 @@ const Tree = forwardRef((props: Types.PrivateProps, ref: React.ForwardedRef<HTML
       {isParentOpen && (
         <Flexbox
           ref={ref}
-          css={classes.row(variant)}
+          css={[classes.row(variant), styleProps.all]}
           attributes={attributes}
           {...events}
           onKeyPress={handleKeyPress}

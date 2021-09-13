@@ -7,7 +7,7 @@ import Types from './types'
 const Meter: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
   const { decoration = 'filled', shape = 'round', size = 'm', value = 0, color, loading } = props
 
-  const { classes, attributes, events } = useSystem('Meter', props, styles)
+  const { classes, attributes, events, styleProps } = useSystem('Meter', props, styles)
 
   let childs = props.children as React.ReactElement[]
   if (childs && !Array.isArray(childs)) {
@@ -15,7 +15,12 @@ const Meter: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
   }
 
   return (
-    <div ref={ref} {...attributes} {...events} css={classes.container({ decoration, shape, size })}>
+    <div
+      ref={ref}
+      {...attributes}
+      {...events}
+      css={[classes.container({ decoration, shape, size }), styleProps.all]}
+    >
       {childs ? (
         childs.map((child, index) =>
           React.cloneElement(child, {

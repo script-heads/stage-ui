@@ -1,7 +1,7 @@
 {
     "name": "@stage-ui/core",
     "author": "Research technology",
-    "version": "0.2.0-beta11",
+    "version": "0.2.0-beta12",
     "license": "MIT",
     "scripts": {
         "build": "tsc && yarn build:js && cp package.json README.md ../../build/core/ && node ../../scripts/buildConfig core",

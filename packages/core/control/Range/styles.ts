@@ -1,10 +1,6 @@
 import Types from './types'
 
-const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
-  theme,
-  props,
-  styleProps,
-) => {
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => {
   return {
     container: [
       {
@@ -13,7 +9,6 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
         height: 'calc(1rem + 4px)',
         cursor: 'pointer',
       },
-      styleProps.all,
     ],
     rail: [
       {

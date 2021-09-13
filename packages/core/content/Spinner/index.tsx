@@ -5,7 +5,7 @@ import Types from './types'
 
 const Spinner: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
   const { children, shape, duration = 1, count = 12 } = props
-  const { classes, attributes, events } = useSystem('Spinner', props, createClasses)
+  const { classes, attributes, events, styleProps } = useSystem('Spinner', props, createClasses)
 
   let rectShape: Partial<Record<'x' | 'width' | 'height' | 'ry' | 'rx', string>>
 
@@ -38,7 +38,7 @@ const Spinner: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
   }
 
   return (
-    <div {...attributes} {...events} css={classes.container} ref={ref}>
+    <div {...attributes} {...events} css={[classes.container, styleProps.all]} ref={ref}>
       {children ? (
         <div css={classes.children}>{children}</div>
       ) : (

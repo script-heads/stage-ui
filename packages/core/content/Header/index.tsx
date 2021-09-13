@@ -29,7 +29,6 @@ const Header: ForwardRefRenderFunction<HTMLSpanElement, Types.Props> = (
           display: 'block',
         },
         isFunction(overrides) ? overrides(theme, styleProps).container : overrides?.container,
-        styleProps.all,
       ],
     })}
     ref={ref}

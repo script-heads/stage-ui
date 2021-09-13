@@ -23,7 +23,6 @@ const Link: ForwardRefRenderFunction<HTMLAnchorElement, Types.Props> = (
             },
           },
           isFunction(overrides) ? overrides(theme, styleProps).container : overrides?.container,
-          styleProps.all,
         ],
       })}
       ref={ref}

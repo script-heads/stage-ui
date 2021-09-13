@@ -76,7 +76,7 @@ const DateGrid = (props: T.DateGridProps) => {
   }
 
   return (
-    <Flexbox column css={props.classes.dateGrid} {...props.attributes}>
+    <Flexbox column css={[props.classes.dateGrid, props.styleProps.all]} {...props.attributes}>
       <Flexbox column mb="l">
         <DateGridTitle
           classes={props.classes}

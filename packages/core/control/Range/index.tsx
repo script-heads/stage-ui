@@ -30,6 +30,7 @@ const Range: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
     classes,
     attributes,
     events: { onChange, ...events },
+    styleProps,
   } = useSystem('Range', props, createClasses)
 
   const thumbRef = useRef<HTMLDivElement>(null)
@@ -88,7 +89,7 @@ const Range: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
     <div
       {...attributes}
       {...events}
-      css={classes.container}
+      css={[classes.container, styleProps.all]}
       ref={containerRef}
       onMouseDown={(e) => onMove(e, true)}
       // onTouchStart={onMove}

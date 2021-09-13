@@ -24,7 +24,7 @@ const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
   const now = moment()
   const [value, setValue] = useState(now)
 
-  const { classes, attributes } = useSystem('Calendar', props, createClasses)
+  const { classes, attributes, styleProps } = useSystem('Calendar', props, createClasses)
 
   const minValue = props.minValue
     ? moment(props.minValue).startOf('day')
@@ -55,6 +55,7 @@ const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
     <DateGrid
       attributes={attributes}
       classes={classes}
+      styleProps={styleProps}
       value={value}
       minValue={minValue}
       maxValue={maxValue}

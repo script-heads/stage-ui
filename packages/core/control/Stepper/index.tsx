@@ -10,9 +10,10 @@ const Stepper: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
     classes,
     attributes,
     events: { onChange, ...events },
+    styleProps,
   } = useSystem('Stepper', props, styles)
   return (
-    <div {...attributes} {...events} ref={ref} css={classes.container}>
+    <div {...attributes} {...events} ref={ref} css={[classes.container, styleProps.all]}>
       {data.map((step, i) => {
         const state: Types.ClassState = {
           active: current === i,

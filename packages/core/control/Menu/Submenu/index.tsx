@@ -10,7 +10,7 @@ const Submenu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
 
   const [open, setOpen] = useState(props.open || props.defaultOpen || false)
 
-  const { classes, attributes, events } = useSystem('Submenu', props, createClasses)
+  const { classes, attributes, events, styleProps } = useSystem('Submenu', props, createClasses)
   const attr: Record<string, string> = {
     'data-flow': 'sub-menu',
   }
@@ -41,7 +41,7 @@ const Submenu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
         {...attributes}
         {...events}
         ref={ref}
-        css={classes.container}
+        css={[classes.container, styleProps.all]}
       >
         {props.children || props.title}
       </div>

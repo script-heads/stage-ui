@@ -10,7 +10,7 @@ const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
 
   const { rightChild, leftChild, disabled, as = ctx.itemAs || 'a', href } = props
 
-  const { classes, attributes, events } = useSystem('MenuItem', props, createClasses)
+  const { classes, attributes, events, styleProps } = useSystem('MenuItem', props, createClasses)
 
   /**
    * Support controlled
@@ -84,7 +84,7 @@ const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
       events.onKeyPress?.(e)
     },
     ref: containerRef,
-    css: classes.container,
+    css: [classes.container, styleProps.all],
   }
 
   return jsx(

@@ -108,6 +108,7 @@ declare namespace CalendarTypes {
 
   interface DateGridProps {
     attributes: any
+    styleProps: any
     hideToday: boolean
     hideNeighborMonths: boolean
     value: Moment
