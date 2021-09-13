@@ -7,11 +7,8 @@ export const title = 'Getting started'
 export const sticky = true
 
 export default () => (
-  <Flexbox alignItems="center" column m="0 auto" w={['53rem', '44.5rem', '35.5rem', '17rem']}>
-    <Block backgroundColor="surface" borderRadius="1rem" p="m" my="m">
-      <Header size="l" m="0">
-        Getting started
-      </Header>
+  <Flexbox alignItems="center" column m="0 auto">
+    <Block backgroundColor="surface" borderRadius="1rem">
       <P color="hardest">Install StageUI</P>
       <Syntax code="npm i @stage-ui/core" />
       <P color="hardest">

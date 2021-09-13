@@ -1,4 +1,5 @@
 import colorResolver from '@stage-ui/system/props/color'
+import { toRem } from '../../../system/utils/size'
 import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
@@ -7,6 +8,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
   styleProps,
 ) => {
   const color = colorResolver(props.color || theme.color.onBackground, theme)
+  const barOffset = toRem(props.barOffset || 0)
 
   return {
     wrapper: [
@@ -57,9 +59,10 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
     yBar: (variant) => [
       {
         zIndex: 999,
+        overflow: 'hidden',
         position: 'absolute',
-        top: 0,
-        right: 0,
+        top: barOffset,
+        right: barOffset,
         width: '0.5rem',
         borderRadius: '5rem',
         backgroundColor: color.alpha(0.1).rgb().string(),
@@ -163,9 +166,10 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
     xBar: (variant) => [
       {
         zIndex: 999,
+        overflow: 'hidden',
         position: 'absolute',
-        left: 0,
-        bottom: 0,
+        left: barOffset,
+        bottom: barOffset,
         height: '0.5rem',
         width: '100%',
         borderRadius: '1rem',

@@ -14,16 +14,11 @@ export const title = 'Props'
 export const sticky = true
 
 export default () => (
-  <Flexbox alignItems="center" column m="0 auto" w={['53rem', '44.5rem', '35.5rem', '17rem']}>
-    <Block backgroundColor="surface" borderRadius="1rem" p="m" my="m">
-      <Header size="l" m="0">
-        Props
-      </Header>
-      <P color="hardest">StageUI comonents have special props to customize thier styles</P>
-      <Header id="styles">Styles</Header>
+  <Flexbox alignItems="center" column m="0 auto">
+    <Block borderRadius="1rem">
       <P color="hardest">
-        Like style tag in HTML or CSS prop in emotion with styles prop you can provide custom styles
-        to any component.
+        Our comonents have special props to customize thier styles, like style tag in HTML or CSS
+        prop in emotion with styles prop you can provide custom styles to any component.
       </P>
       <P color="hardest">
         Component may render in DOM many different HTML elements which have unique classNames. So in

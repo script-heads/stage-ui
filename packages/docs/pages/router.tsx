@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { Block, ScrollView, Text } from '@stage-ui/core'
+import { Block, Flexbox, ScrollView, Text } from '@stage-ui/core'
 import ScrollViewTypes from '@stage-ui/core/layout/ScrollView/types'
 import React, { useRef, useState } from 'react'
 import Menu from '../components/Menu'
@@ -44,43 +44,58 @@ const Router = (props: RouterProps) => {
   }
 
   return (
-    <ScrollView h="100vh" w="100%" ref={scrollView}>
-      <Block>
-        <Menu
-          pages={pages}
-          config={config}
-          path={path}
-          setPath={historyPush}
-          theme={theme}
-          themes={themes}
-          setTheme={setTheme}
-        />
-        {showcasePage && (
-          <ShowcasePage
-            data={showcasePage}
-            pages={pages}
-            config={config}
-            path={path}
-            setPath={historyPush}
-            theme={theme}
-            themes={themes}
-            setTheme={setTheme}
-          />
-        )}
-        {CustomPage && !showcasePage && (
-          <CustomPage
-            pages={pages}
-            config={config}
-            path={path}
-            setPath={historyPush}
-            theme={theme}
-            themes={themes}
-            setTheme={setTheme}
-          />
-        )}
-        {!CustomPage && !showcasePage && !noPages && <Page404 />}
-        {!CustomPage && !showcasePage && noPages && <Text>Docs has no pages</Text>}
-      </Block>
+    <ScrollView
+      h="100vh"
+      w="100%"
+      barOffset={8}
+      ref={scrollView}
+      overrides={{
+        yThumb: (variant) =>
+          variant({
+            active: [{ opacity: 1 }],
+          }),
+      }}
+    >
+      <Flexbox column alignItems="center" p="xl">
+        <Block css={{ maxWidth: '64rem' }}>
+          {!showcasePage && (
+            <Menu
+              pages={pages}
+              config={config}
+              path={path}
+              setPath={historyPush}
+              theme={theme}
+              themes={themes}
+              setTheme={setTheme}
+            />
+          )}
+          {showcasePage && (
+            <ShowcasePage
+              data={showcasePage}
+              pages={pages}
+              config={config}
+              path={path}
+              setPath={historyPush}
+              theme={theme}
+              themes={themes}
+              setTheme={setTheme}
+            />
+          )}
+          {CustomPage && !showcasePage && (
+            <CustomPage
+              pages={pages}
+              config={config}
+              path={path}
+              setPath={historyPush}
+              theme={theme}
+              themes={themes}
+              setTheme={setTheme}
+            />
+          )}
+          {!CustomPage && !showcasePage && !noPages && <Page404 />}
+          {!CustomPage && !showcasePage && noPages && <Text>Docs has no pages</Text>}
+        </Block>
+      </Flexbox>
     </ScrollView>
   )
 }

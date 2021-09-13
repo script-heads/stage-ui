@@ -7,16 +7,9 @@ export default (props: { data: string[]; higlightBefore?: string }) => {
   return (
     <ul
       css={{
+        padding: 0,
         listStyle: 'none',
         lineHeight: 1.5,
-        'li::before': {
-          content: `'\\2022'`,
-          color: theme.color.primary.rgb().string(),
-          fontWeight: 'bold',
-          display: 'inline-block',
-          width: '1em',
-          marginLeft: '-1em',
-        },
       }}
     >
       {props.higlightBefore
@@ -28,9 +21,11 @@ export default (props: { data: string[]; higlightBefore?: string }) => {
               <li key={`${child}${index}`}>
                 <span
                   css={{
-                    backgroundColor: theme.color.primary.lighten(0.5).rgb().string(),
-                    padding: '.05rem .3rem .1rem',
+                    backgroundColor: theme.color.onSurface.alpha(0.1).rgb().string(),
+                    color: theme.color.onSurface.hex(),
+                    padding: '.05rem .4rem .1rem',
                     borderRadius: '.2rem',
+                    fontSize: '0.75rem',
                   }}
                 >
                   {split}

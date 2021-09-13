@@ -11,8 +11,8 @@
         "icons:generate": "node ./scripts/iconsGenerate"
     },
     "dependencies": {
-        "@stage-ui/icons": "0.2.0-beta4",
         "@stage-ui/system": "0.2.0-beta4",
+        "@stage-ui/icons": "0.2.0-beta4",
         "imask": "6.0.1",
         "moment": "2.29.1",
         "rifm": "0.12.0"

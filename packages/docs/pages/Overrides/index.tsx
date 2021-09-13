@@ -8,11 +8,8 @@ export const title = 'Overrides'
 export const sticky = true
 
 export default () => (
-  <Flexbox alignItems="center" column m="0 auto" w={['53rem', '44.5rem', '35.5rem', '17rem']}>
-    <Block backgroundColor="surface" borderRadius="1rem" p="m" my="m">
-      <Header size="l" m="0">
-        Overrides
-      </Header>
+  <Flexbox alignItems="center" column m="0 auto">
+    <Block backgroundColor="surface" borderRadius="1rem">
       <P color="hardest">
         Often you need to override component styles that depended on its internal state and
         properties. Styles may also be necessary for each HTML element that is rendered in a DOM

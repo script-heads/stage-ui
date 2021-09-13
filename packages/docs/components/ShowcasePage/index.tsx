@@ -19,21 +19,14 @@ const ShowcasePage = (props: ContentProps) => {
   const { data, config, setPath } = props
 
   return (
-    <Block
-      m="0 auto"
-      mb="xl"
-      css={{
-        width: '100%',
-        maxWidth: '64rem',
-      }}
-    >
+    <Flexbox column selfAlign="stretch" mb="xl">
       <Flexbox column alignItems="center">
         <Flexbox
           column
           // justifyContent="space-between"
           style={{
             width: '100%',
-            maxWidth: data.cases === undefined ? '60rem' : '100%',
+            // maxWidth: data.cases === undefined ? '60rem' : '100%',
           }}
           backgroundColor="surface"
           borderRadius="0.75rem"
@@ -43,12 +36,7 @@ const ShowcasePage = (props: ContentProps) => {
         >
           {data.cases && <Editor cases={data.cases} onBack={() => setPath('/components')} />}
           {data.default && (
-            <Block
-              style={{
-                width: '100%',
-                maxWidth: '60rem',
-              }}
-            >
+            <Block>
               <data.default />
             </Block>
           )}
@@ -57,7 +45,7 @@ const ShowcasePage = (props: ContentProps) => {
           )}
         </Flexbox>
       </Flexbox>
-    </Block>
+    </Flexbox>
   )
 }
 

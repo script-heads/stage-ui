@@ -11,7 +11,7 @@ const ModalWindow = forwardRef(
         ref={ref}
         css={styles.classes.window(styles.state)}
         {...props.containerAttr}
-        {...props.containerEvents.all}
+        {...props.containerEvents}
       >
         <ModalHeader
           getStyles={props.getStyles}

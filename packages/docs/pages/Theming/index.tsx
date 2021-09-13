@@ -11,11 +11,8 @@ export const title = 'Theming'
 export const sticky = true
 
 export default () => (
-  <Flexbox alignItems="center" column m="0 auto" w={['53rem', '44.5rem', '35.5rem', '17rem']}>
-    <Block backgroundColor="surface" borderRadius="1rem" p="m" my="m">
-      <Header size="l" m="0">
-        Theming
-      </Header>
+  <Flexbox alignItems="center" column m="0 auto">
+    <Block backgroundColor="surface" borderRadius="1rem">
       <P color="hardest">
         StageUI contains two themes itself: Light and Dark. Light setup by default. Any others theme
         icludes user created pass on the theme prop of Viewport component. There's three section to
