@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
@@ -9,16 +8,32 @@ import isFunction from '../utils/isFunction'
 import { ClassesSchemaDefinition, ComponentData } from '../hooks/useSystem'
 import sizeProp from './size'
 
-export type Resolver = <Props, ClassesSchema extends ClassesSchemaDefinition>(
+export type Resolver = <
+  Props,
+  ClassesSchema extends ClassesSchemaDefinition,
+  Element extends HTMLElement,
+>(
   props: Record<string, any>,
-  componentData: ComponentData<Props, ClassesSchema>,
+  componentData: ComponentData<Props, ClassesSchema, Element>,
   theme: Stage.Theme,
 ) => void
 
 const resolvers: Record<string, Resolver> = {
+  // Core
+
   attributes: (p, cd) => {
     cd.attributes = Object.assign(cd.attributes, p.attributes)
   },
+
+  style: (p, cd, t) =>
+    cd.styleProps.style.push(
+      isFunction(p.style)
+        ? resolveBreakpoints(p.style(t), t, (v) => v)
+        : resolveBreakpoints(p.style, t, (v) => v),
+    ),
+
+  // Attributes
+
   id: (p, cd) => {
     cd.attributes.id = p.id
   },
@@ -38,45 +53,42 @@ const resolvers: Record<string, Resolver> = {
     cd.attributes.role = p.role
   },
 
-  // Style
-  style: (p, cd, t) =>
-    cd.styleProps.style.push(
-      isFunction(p.style)
-        ? resolveBreakpoints(p.style(t), t, (v) => v)
-        : resolveBreakpoints(p.style, t, (v) => v),
+  // Margin
+
+  m: (p, cd, t) =>
+    cd.styleProps.margin.push(resolveBreakpoints(p.m, t, (v) => ({ margin: resolveSpace(v, t) }))),
+  mx: (p, cd, t) =>
+    cd.styleProps.margin.push(
+      resolveBreakpoints(p.mx, t, (v) => ({
+        marginRight: resolveSpace(v, t),
+        marginLeft: resolveSpace(v, t),
+      })),
+    ),
+  my: (p, cd, t) =>
+    cd.styleProps.margin.push(
+      resolveBreakpoints(p.my, t, (v) => ({
+        marginTop: resolveSpace(v, t),
+        marginBottom: resolveSpace(v, t),
+      })),
+    ),
+  mt: (p, cd, t) =>
+    cd.styleProps.margin.push(
+      resolveBreakpoints(p.mt, t, (v) => ({ marginTop: resolveSpace(v, t) })),
+    ),
+  mr: (p, cd, t) =>
+    cd.styleProps.margin.push(
+      resolveBreakpoints(p.mr, t, (v) => ({ marginRight: resolveSpace(v, t) })),
+    ),
+  mb: (p, cd, t) =>
+    cd.styleProps.margin.push(
+      resolveBreakpoints(p.mb, t, (v) => ({ marginBottom: resolveSpace(v, t) })),
+    ),
+  ml: (p, cd, t) =>
+    cd.styleProps.margin.push(
+      resolveBreakpoints(p.ml, t, (v) => ({ marginLeft: resolveSpace(v, t) })),
     ),
 
-  // Color
-  backgroundColor: (p, cd, t) =>
-    cd.styleProps.color.push(
-      resolveBreakpoints(p.backgroundColor, t, (v) => ({
-        backgroundColor: resolveColor(v, t)?.rgb().string(),
-      })),
-    ),
-  textColor: (p, cd, t) =>
-    cd.styleProps.color.push(
-      resolveBreakpoints(p.textColor, t, (v) => ({
-        color: resolveColor(v, t)?.rgb().string(),
-      })),
-    ),
-
-  // Border
-  borderWidth: (p, cd, t) =>
-    cd.styleProps.border.push(resolveBreakpoints(p.borderWidth, t, (v) => ({ borderWidth: v }))),
-  borderStyle: (p, cd, t) =>
-    cd.styleProps.border.push(resolveBreakpoints(p.borderStyle, t, (v) => ({ borderStyle: v }))),
-  borderColor: (p, cd, t) =>
-    cd.styleProps.border.push(
-      resolveBreakpoints(p.borderColor, t, (v) => ({
-        borderColor: resolveColor(v, t)?.rgb().string(),
-      })),
-    ),
-  borderRadius: (p, cd, t) =>
-    cd.styleProps.border.push(
-      resolveBreakpoints(p.borderRadius, t, (v) => ({
-        borderRadius: sizeProp(v, t.radius, (ov) => ov),
-      })),
-    ),
+  // Padding
 
   p: (p, cd, t) =>
     cd.styleProps.padding.push(
@@ -115,41 +127,42 @@ const resolvers: Record<string, Resolver> = {
       resolveBreakpoints(p.pl, t, (v) => ({ paddingLeft: resolveSpace(v, t) })),
     ),
 
-  // Margin
-  m: (p, cd, t) =>
-    cd.styleProps.margin.push(resolveBreakpoints(p.m, t, (v) => ({ margin: resolveSpace(v, t) }))),
-  mx: (p, cd, t) =>
-    cd.styleProps.margin.push(
-      resolveBreakpoints(p.mx, t, (v) => ({
-        marginRight: resolveSpace(v, t),
-        marginLeft: resolveSpace(v, t),
+  // Color
+
+  backgroundColor: (p, cd, t) =>
+    cd.styleProps.color.push(
+      resolveBreakpoints(p.backgroundColor, t, (v) => ({
+        backgroundColor: resolveColor(v, t)?.rgb().string(),
       })),
     ),
-  my: (p, cd, t) =>
-    cd.styleProps.margin.push(
-      resolveBreakpoints(p.my, t, (v) => ({
-        marginTop: resolveSpace(v, t),
-        marginBottom: resolveSpace(v, t),
+  textColor: (p, cd, t) =>
+    cd.styleProps.color.push(
+      resolveBreakpoints(p.textColor, t, (v) => ({
+        color: resolveColor(v, t)?.rgb().string(),
       })),
     ),
-  mt: (p, cd, t) =>
-    cd.styleProps.margin.push(
-      resolveBreakpoints(p.mt, t, (v) => ({ marginTop: resolveSpace(v, t) })),
+
+  // Border
+
+  borderWidth: (p, cd, t) =>
+    cd.styleProps.border.push(resolveBreakpoints(p.borderWidth, t, (v) => ({ borderWidth: v }))),
+  borderStyle: (p, cd, t) =>
+    cd.styleProps.border.push(resolveBreakpoints(p.borderStyle, t, (v) => ({ borderStyle: v }))),
+  borderColor: (p, cd, t) =>
+    cd.styleProps.border.push(
+      resolveBreakpoints(p.borderColor, t, (v) => ({
+        borderColor: resolveColor(v, t)?.rgb().string(),
+      })),
     ),
-  mr: (p, cd, t) =>
-    cd.styleProps.margin.push(
-      resolveBreakpoints(p.mr, t, (v) => ({ marginRight: resolveSpace(v, t) })),
-    ),
-  mb: (p, cd, t) =>
-    cd.styleProps.margin.push(
-      resolveBreakpoints(p.mb, t, (v) => ({ marginBottom: resolveSpace(v, t) })),
-    ),
-  ml: (p, cd, t) =>
-    cd.styleProps.margin.push(
-      resolveBreakpoints(p.ml, t, (v) => ({ marginLeft: resolveSpace(v, t) })),
+  borderRadius: (p, cd, t) =>
+    cd.styleProps.border.push(
+      resolveBreakpoints(p.borderRadius, t, (v) => ({
+        borderRadius: sizeProp(v, t.radius, (ov) => ov),
+      })),
     ),
 
   // Layout
+
   display: (p, cd, t) =>
     cd.styleProps.layout.push(resolveBreakpoints(p.display, t, (v) => ({ display: v }))),
   position: (p, cd, t) =>
@@ -170,6 +183,7 @@ const resolvers: Record<string, Resolver> = {
   h: (p, cd, t) => cd.styleProps.layout.push(resolveBreakpoints(p.h, t, (v) => ({ height: v }))),
 
   // Flex
+
   flex: (p, cd, t) => cd.styleProps.flex.push(resolveBreakpoints(p.flex, t, (v) => ({ flex: v }))),
   wrap: (p, cd, t) =>
     cd.styleProps.flex.push(resolveBreakpoints(p.wrap, t, (v) => ({ flexWrap: v }))),
@@ -201,6 +215,7 @@ const resolvers: Record<string, Resolver> = {
     cd.styleProps.flex.push(resolveBreakpoints(p.placeContent, t, (v) => ({ placeContent: v }))),
 
   // Grid children
+
   gridColumnStart: (p, cd, t) =>
     cd.styleProps.grid.push(
       resolveBreakpoints(p.gridColumnStart, t, (v) => ({ gridColumnStart: v })),

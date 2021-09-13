@@ -5,7 +5,7 @@ import useTheme from './useTheme'
 import propsResolvers from '../props'
 import createVariant, { Variant } from '../utils/createVariant'
 import isFunction from '../utils/isFunction'
-import { AllEventProps, AllStyleProps, AttributeProps, ResolvedStyleProps } from '../props/types'
+import { AllEventProps, AttributeProps, CoreProps } from '../props/types'
 import overridesProp from '../props/overrides'
 
 export interface Options {
@@ -54,16 +54,39 @@ export type CreateClasses<ClassesSchema extends ClassesSchemaDefinition, Props> 
   styleProps: ResolvedStyleProps,
 ) => ClassesDefinition<ClassesSchema>
 
+export type ResolvedStyleProps = {
+  all: Stage.CSSInterpolation[]
+  container: Stage.CSSInterpolation[]
+  content: Stage.CSSInterpolation[]
+
+  style: Stage.CSSInterpolation[]
+  margin: Stage.CSSInterpolation[]
+  padding: Stage.CSSInterpolation[]
+  color: Stage.CSSInterpolation[]
+  border: Stage.CSSInterpolation[]
+  layout: Stage.CSSInterpolation[]
+  flex: Stage.CSSInterpolation[]
+  grid: Stage.CSSInterpolation[]
+}
+
 export type ComponentData<
-  Props extends Record<string, any>,
+  Props extends SystemPropsMeta<ClassesSchema, Element>,
   ClassesSchema extends ClassesSchemaDefinition,
+  Element extends HTMLElement,
 > = {
   classes: Classes<ClassesSchema>
-  attributes: React.HTMLAttributes<any>
+  attributes: Exclude<CoreProps<ClassesSchema, Element>['attributes'], undefined>
   events: Pick<Props, Stage.FilterStartingWith<keyof Props, 'on'>>
   styleProps: ResolvedStyleProps
   overridesPropClasses: OverridesClassesDefinition<ClassesSchema>
 }
+
+export type SystemPropsMeta<
+  ClassesSchema extends ClassesSchemaDefinition,
+  Element extends HTMLElement,
+> = CoreProps<ClassesSchema, Element> &
+  AttributeProps &
+  Pick<AllEventProps<Element>, 'onFocus' | 'onBlur' | 'onClick' | 'onEnter' | 'onEsc' | 'onKeyDown'>
 
 let IS_MOUSE_DOWN = false
 
@@ -75,11 +98,7 @@ window.addEventListener('mouseup', () => {
 })
 
 function useSystem<
-  Props extends AllStyleProps<ClassesSchema> &
-    Pick<
-      AllEventProps<Element>,
-      'onFocus' | 'onBlur' | 'onClick' | 'onEnter' | 'onEsc' | 'onKeyDown'
-    >,
+  Props extends SystemPropsMeta<ClassesSchema, Element>,
   ClassesSchema extends ClassesSchemaDefinition,
   Element extends HTMLElement,
 >(
@@ -111,10 +130,9 @@ function useSystem<
       layout: [],
     } as ResolvedStyleProps,
     overridesPropClasses: {},
-  } as ComponentData<Props, ClassesSchema>
+  } as ComponentData<Props, ClassesSchema, Element>
 
   Object.keys(props).forEach((key) => {
-    // Check *on* events
     if (key[0] === 'o' && key[1] === 'n') {
       // @ts-ignore
       data.events[key] = props[key]

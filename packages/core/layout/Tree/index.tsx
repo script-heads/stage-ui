@@ -79,7 +79,7 @@ const Tree = forwardRef((props: Types.PrivateProps, ref: React.ForwardedRef<HTML
         <Flexbox
           ref={ref}
           css={classes.row(variant)}
-          {...attributes}
+          attributes={attributes}
           {...events}
           onKeyPress={handleKeyPress}
           onClick={handleOpen}

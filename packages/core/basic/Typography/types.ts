@@ -1,5 +1,6 @@
 import { Options } from '@stage-ui/system/hooks/useSystem'
 import CSS from 'csstype'
+import { BreakpointProp } from '@stage-ui/system/props/breakpoint'
 
 declare namespace TypographyTypes {
   interface LinkProps extends Props {
@@ -41,7 +42,7 @@ declare namespace TypographyTypes {
     referrerPolicy?: string
   }
 
-  interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
+  interface Props extends Omit<Stage.AllProps<HTMLDivElement, Classes>, 'textColor'> {
     /**
      * Capitalize first letter
      */
@@ -62,30 +63,26 @@ declare namespace TypographyTypes {
     /**
      * Text color
      */
-    color?: Stage.ColorProp
-    /**
-     * Shorthand for background-color
-     */
-    backgroundColor?: Stage.ColorProp
+    color?: BreakpointProp<Stage.ColorProp>
     /**
      * Shorthand for text-align
      */
-    align?: CSS.Properties['textAlign']
+    align?: BreakpointProp<CSS.Properties['textAlign']>
     /**
      * Shorthand for font-weight
      */
-    weight?: CSS.Properties['fontWeight']
+    weight?: BreakpointProp<CSS.Properties['fontWeight']>
     /**
      * Shorthand for font-size
      * @default m
      * @display Stage.Sizes
      * @link /props/#size
      */
-    size?: Stage.Sizes | (string & { T?: string })
+    size?: BreakpointProp<Stage.Sizes | (string & { T?: string })>
     /**
      * Shorthand for text-transform
      */
-    transform?: CSS.Properties['textTransform']
+    transform?: BreakpointProp<CSS.Properties['textTransform']>
   }
 
   type Classes = {

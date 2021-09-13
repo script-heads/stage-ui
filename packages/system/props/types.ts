@@ -6,45 +6,81 @@ import { ColorProp } from './color'
 import { OverridesProp } from './overrides'
 import { SpaceProp } from './space'
 
-export type ResolvedStyleProps = {
-  all: Stage.CSSInterpolation[]
-  container: Stage.CSSInterpolation[]
-  content: Stage.CSSInterpolation[]
-
-  style: Stage.CSSInterpolation[]
-  margin: Stage.CSSInterpolation[]
-  padding: Stage.CSSInterpolation[]
-  color: Stage.CSSInterpolation[]
-  border: Stage.CSSInterpolation[]
-  layout: Stage.CSSInterpolation[]
-  flex: Stage.CSSInterpolation[]
-  grid: Stage.CSSInterpolation[]
-}
-
 /**
  * All typical component props
  * @name All
  */
 export interface AllProps<Container, ClassSchema extends ClassesSchemaDefinition>
-  extends AttributeProps,
+  extends CoreProps<ClassSchema, Container>,
+    AttributeProps,
     AllEventProps<Container>,
-    CoreProps<ClassSchema>,
-    ColorProps,
-    BorderProps,
-    PaddingProps,
-    LayoutProps,
-    MarginProps,
-    FlexProps,
-    GridProps {}
+    AllStyleProps {}
+
+/**
+ * Component core props
+ * @name Core
+ */
+export interface CoreProps<ClassesSchema extends ClassesSchemaDefinition, T> {
+  /**
+   * Override any component style
+   * @display Stage.Styles
+   * @link /props#overrides
+   */
+  overrides?: OverridesProp<ClassesSchema>
+  /**
+   * Shortcut for fast styles
+   * @display Stage.Styles
+   * @link /props#styles
+   */
+  style?:
+    | ((theme: Stage.Theme) => BreakpointProp<Stage.CSSInterpolation>)
+    | BreakpointProp<Stage.CSSInterpolation>
+
+  /**
+   * HMTL Attributes for container
+   * @display Stage.Styles
+   * @link /props#attributes
+   */
+  attributes?: React.HTMLAttributes<T> & React.AriaAttributes
+}
+
+/**
+ * Component attribute props
+ * @name Attributes
+ */
+export interface AttributeProps {
+  /**
+   * Set class atrribute on component's container
+   */
+  className?: string
+  /**
+   * Set id atrribute on component's container
+   */
+  id?: string
+  /**
+   * Set style atrribute on component's container
+   */
+  inlineStyle?: React.CSSProperties
+  /**
+   * Set tab-index atrribute on component's container
+   */
+  tabIndex?: number
+  /**
+   * Set role atrribute on component's container
+   */
+  role?: string
+  /**
+   * Set draggable atrribute on component's container
+   */
+  draggable?: boolean
+}
 
 /**
  * All typical component props except events
- * @name All
+ * @name AllStyle
  */
-export interface AllStyleProps<ClassSchema extends ClassesSchemaDefinition>
-  extends AttributeProps,
-    CoreProps<ClassSchema>,
-    ColorProps,
+export interface AllStyleProps
+  extends ColorProps,
     BorderProps,
     PaddingProps,
     LayoutProps,
@@ -73,61 +109,6 @@ export interface AllEventProps<T>
     CompositionEventProps<T>,
     ScrollEventProps<T> {}
 
-/**
- * Component core props
- * @name Core
- */
-export interface CoreProps<ClassSchema extends ClassesSchemaDefinition> {
-  /**
-   * Override any component style
-   * @display Stage.Styles
-   * @link /props#styles
-   */
-  overrides?: OverridesProp<ClassSchema>
-  /**
-   * Shortcut for fast styles
-   * @display Stage.Styles
-   * @link /props#styles
-   */
-  style?:
-    | ((theme: Stage.Theme) => BreakpointProp<Stage.CSSInterpolation>)
-    | BreakpointProp<Stage.CSSInterpolation>
-}
-
-/**
- * Component attribute props
- * @name Attributes
- */
-export interface AttributeProps extends React.AriaAttributes {
-  /**
-   * Set class atrribute on component's container
-   */
-  className?: string
-  /**
-   * Set id atrribute on component's container
-   */
-  id?: string
-  /**
-   * Set style atrribute on component's container
-   */
-  inlineStyle?: React.CSSProperties
-  /**
-   * Set tab-index atrribute on component's container
-   */
-  tabIndex?: number
-  /**
-   * Set role atrribute on component's container
-   */
-  role?: string
-  /**
-   * Set draggable atrribute on component's container
-   */
-  draggable?: boolean
-  /**
-   * Set any atrributes on component's container
-   */
-  attrs?: Object
-}
 /**
  * Component color styles props
  * @name Color

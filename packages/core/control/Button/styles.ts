@@ -1,7 +1,9 @@
+import colorProp from '@stage-ui/system/props/color'
 import Types from './types'
 
-const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, styleProps) => {
+const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
   const { size = 'm', decoration = 'filled', shape = 'rounded', disabled, uppercase } = props
+  const color = colorProp(props.color, theme) || theme.color.primary
   const childSpacing = {
     xs: '0.125rem',
     s: '0.25rem',
@@ -35,10 +37,10 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, s
           border: 0,
         },
         '&:hover:not([disabled])': {
-          background: theme.color.primary.alpha(0.05).rgb().string(),
+          background: color.alpha(0.07).rgb().string(),
         },
         '&:active:not([disabled])': {
-          background: theme.color.primary.alpha(0.02).rgb().string(),
+          background: color.alpha(0.05).rgb().string(),
         },
         '&:disabled': {
           color: theme.color.light.rgb().string(),
@@ -47,17 +49,17 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, s
       theme.assets.button[size],
       theme.assets.typography.text[size],
       decoration === 'outline' && {
-        borderColor: theme.color.primary.rgb().string(),
-        color: theme.color.primary.rgb().string(),
+        borderColor: color.rgb().string(),
+        color: color.rgb().string(),
         '&:disabled': {
           borderColor: theme.color.lightest.rgb().string(),
         },
       },
       decoration === 'text' && {
-        color: theme.color.onBackground.rgb().string(),
+        color: color.rgb().string(),
       },
       decoration === 'plain' && {
-        borderColor: theme.assets.border.color,
+        borderColor: theme.color.lightest.rgb().string(),
         background: theme.color.surface.rgb().string(),
         color: theme.color.onSurface.rgb().string(),
         '&:disabled': {
@@ -65,10 +67,20 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, s
         },
       },
       decoration === 'filled' && {
-        background: theme.color.primary.rgb().string(),
-        color: theme.color.onPrimary.rgb().string(),
+        background: color.rgb().string(),
+        color:
+          color.contrast(theme.color.onPrimary) > 3
+            ? theme.color.onPrimary.rgb().string()
+            : theme.color.onSurface.rgb().string(),
+        '&:hover:not([disabled])': {
+          background: color.alpha(0.7).rgb().string(),
+        },
+        '&:active:not([disabled])': {
+          background: color.alpha(0.5).rgb().string(),
+        },
         '&:disabled': {
           background: theme.color.lightest.rgb().string(),
+          color: theme.color.light.rgb().string(),
         },
       },
       shape === 'square' && {
@@ -83,7 +95,6 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props, s
       uppercase && {
         textTransform: 'uppercase',
       },
-      styleProps.all,
     ],
     child: (variant, state) => [
       {

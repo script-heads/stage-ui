@@ -50,7 +50,13 @@ const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
   }
 
   return (
-    <Flexbox {...attributes} {...events} ref={ref} css={classes.container} alignItems="center">
+    <Flexbox
+      attributes={attributes}
+      ref={ref}
+      css={classes.container}
+      alignItems="center"
+      {...events}
+    >
       <ArrowLeft
         mr="0.5rem"
         size="1rem"

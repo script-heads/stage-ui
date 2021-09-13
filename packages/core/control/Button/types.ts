@@ -69,6 +69,10 @@ declare namespace ButtonTypes {
      */
     uppercase?: boolean
     /**
+     * Color of button
+     */
+    color?: Stage.ColorProp
+    /**
      * Button's label
      */
     label?: React.ReactNode

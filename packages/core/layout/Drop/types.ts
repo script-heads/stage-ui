@@ -19,7 +19,7 @@ declare namespace DropTypes {
   interface Props
     extends AttributeProps,
       AllEventProps<HTMLDivElement>,
-      CoreProps<Classes>,
+      CoreProps<Classes, HTMLDivElement>,
       ColorProps,
       BorderProps,
       PaddingProps,

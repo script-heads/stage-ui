@@ -6,8 +6,7 @@ import Color from 'color'
  */
 export type ColorProp =
   | ((colors: Stage.Theme['color']) => Color | string)
-  | keyof Omit<Stage.Theme['color'], 'palette'>
-  | keyof Stage.Theme['color']['palette']
+  | (keyof Omit<Stage.Theme['color'], 'palette'> & keyof Stage.Theme['color']['palette'])
   | Color
   | (string & { T?: string })
 
@@ -26,8 +25,10 @@ function colorProp<V extends ColorProp | undefined>(
         resolvedColor as keyof Omit<Stage.Theme['color'], 'palette'>
       ] as V extends undefined ? undefined : Stage.Color
     }
-    if (theme.color.palette[resolvedColor]) {
-      return theme.color.palette[resolvedColor] as V extends undefined ? undefined : Stage.Color
+    if (theme.color.palette[resolvedColor as keyof Stage.Theme['color']['palette']]) {
+      return theme.color.palette[
+        resolvedColor as keyof Stage.Theme['color']['palette']
+      ] as V extends undefined ? undefined : Stage.Color
     }
     return Color(resolvedColor) as V extends undefined ? undefined : Stage.Color
   }
