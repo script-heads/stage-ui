@@ -39,7 +39,7 @@ const MenuItems = (props: CustomPageProps & { onCloseMobileMenu?: () => void }) 
       <MenuItem
         mobile={!!props.onCloseMobileMenu}
         label="Getting started"
-        active={props.path === '/getting-started'}
+        active={!!/\/getting-started/.exec(props.path)}
         onClick={() => {
           props.onCloseMobileMenu?.()
           props.setPath('/getting-started')
@@ -48,7 +48,7 @@ const MenuItems = (props: CustomPageProps & { onCloseMobileMenu?: () => void }) 
       <MenuItem
         mobile={!!props.onCloseMobileMenu}
         label="Props"
-        active={props.path === '/props'}
+        active={!!/\/props/.exec(props.path)}
         onClick={() => {
           props.onCloseMobileMenu?.()
           props.setPath('/props')
@@ -57,7 +57,7 @@ const MenuItems = (props: CustomPageProps & { onCloseMobileMenu?: () => void }) 
       <MenuItem
         mobile={!!props.onCloseMobileMenu}
         label="Overrides"
-        active={props.path === '/overrides'}
+        active={!!/\/overrides/.exec(props.path)}
         onClick={() => {
           props.onCloseMobileMenu?.()
           props.setPath('/overrides')
@@ -66,7 +66,7 @@ const MenuItems = (props: CustomPageProps & { onCloseMobileMenu?: () => void }) 
       <MenuItem
         mobile={!!props.onCloseMobileMenu}
         label="Theming"
-        active={props.path === '/theming'}
+        active={!!/\/theming/.exec(props.path)}
         onClick={() => {
           props.onCloseMobileMenu?.()
           props.setPath('/theming')
@@ -75,7 +75,7 @@ const MenuItems = (props: CustomPageProps & { onCloseMobileMenu?: () => void }) 
       <MenuItem
         mobile={!!props.onCloseMobileMenu}
         label="Icons"
-        active={props.path === '/icons'}
+        active={!!/\/icons/.exec(props.path)}
         onClick={() => {
           props.onCloseMobileMenu?.()
           props.setPath('/icons')
@@ -84,7 +84,7 @@ const MenuItems = (props: CustomPageProps & { onCloseMobileMenu?: () => void }) 
       <MenuItem
         mobile={!!props.onCloseMobileMenu}
         label="Components"
-        active={props.path === '/components'}
+        active={!!/\/components/.exec(props.path)}
         onClick={() => {
           props.onCloseMobileMenu?.()
           props.setPath('/components')

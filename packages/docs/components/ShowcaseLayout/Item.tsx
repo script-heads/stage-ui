@@ -21,7 +21,7 @@ const itemStyle = (theme: Stage.Theme): Interpolation<Stage.Theme> => ({
     transform: 'scale(1.1)',
     boxShadow: `0 0 10rem rgba(0,0,0,0.15)`,
 
-    zIndex: 999,
+    zIndex: 100,
     ' svg path': {
       fill: theme.color.onSurface.alpha(1).rgb().string(),
     },
