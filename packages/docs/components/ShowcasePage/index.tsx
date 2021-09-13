@@ -1,4 +1,4 @@
-import { Block, Flexbox, Divider } from '@stage-ui/core'
+import { Block, Flexbox } from '@stage-ui/core'
 import React from 'react'
 import { Config, PagesType, PageType } from '../../utils/core'
 import Editor from './Editor'
@@ -9,31 +9,24 @@ export interface ContentProps {
   pages: PagesType
   config: Config
   path: string
-  setPath: React.Dispatch<string>
+  onClose: () => void
   theme: Stage.Theme
   themes: Record<string, Stage.Theme>
   setTheme: React.Dispatch<React.SetStateAction<Stage.Theme>>
 }
 
 const ShowcasePage = (props: ContentProps) => {
-  const { data, config, setPath } = props
+  const { data, config, onClose } = props
 
   return (
-    <Block
-      m="0 auto"
-      mb="xl"
-      css={{
-        width: '100%',
-        maxWidth: '64rem',
-      }}
-    >
+    <Flexbox column alignSelf="stretch" mb="xl">
       <Flexbox column alignItems="center">
         <Flexbox
           column
           // justifyContent="space-between"
           style={{
             width: '100%',
-            maxWidth: data.cases === undefined ? '60rem' : '100%',
+            // maxWidth: data.cases === undefined ? '60rem' : '100%',
           }}
           backgroundColor="surface"
           borderRadius="0.75rem"
@@ -41,14 +34,9 @@ const ShowcasePage = (props: ContentProps) => {
           pt="m"
           mt="m"
         >
-          {data.cases && <Editor cases={data.cases} onBack={() => setPath('/components')} />}
+          {data.cases && <Editor cases={data.cases} onBack={onClose} />}
           {data.default && (
-            <Block
-              style={{
-                width: '100%',
-                maxWidth: '60rem',
-              }}
-            >
+            <Block>
               <data.default />
             </Block>
           )}
@@ -57,7 +45,7 @@ const ShowcasePage = (props: ContentProps) => {
           )}
         </Flexbox>
       </Flexbox>
-    </Block>
+    </Flexbox>
   )
 }
 

@@ -1,3 +1,4 @@
+import React from 'react'
 import { Flexbox, Header, Paragraph } from '@stage-ui/core'
 import { Close } from '@stage-ui/icons'
 import ModalTypes from './types'
@@ -13,8 +14,10 @@ const ModalHeader = (props: ModalTypes.ModalHeaderProps) => {
     <div css={styles.classes.header(styles.state)}>
       <Flexbox>
         <Flexbox flex={1} column>
-          <Header m={0} children={props.title} />
-          <Paragraph m={0} color="hard" children={props.subtitle} />
+          <Header m={0}>{props.title}</Header>
+          <Paragraph m={0} color="hard">
+            {props.subtitle}
+          </Paragraph>
         </Flexbox>
         <Close
           ml="m"

@@ -20,7 +20,8 @@ const itemStyle = (theme: Stage.Theme): Interpolation<Stage.Theme> => ({
   ':hover': {
     transform: 'scale(1.1)',
     boxShadow: `0 0 10rem rgba(0,0,0,0.15)`,
-    zIndex: 999,
+
+    zIndex: 100,
     ' svg path': {
       fill: theme.color.onSurface.alpha(1).rgb().string(),
     },
@@ -33,7 +34,7 @@ export default (props: { page: PageType; setPath: CustomPageProps['setPath'] }) 
       column
       alignItems="center"
       p="m"
-      w={['7.85rem', '7.25rem', '7.25rem', '6.25rem']}
+      w="6rem"
       borderRadius="1rem"
       onClick={() => {
         props.setPath(props.page.url)

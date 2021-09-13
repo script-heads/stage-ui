@@ -5,7 +5,7 @@ const ModalOverlay = forwardRef(
   (props: ModalTypes.ModalOverlayProps, ref: React.Ref<HTMLDivElement>) => {
     const styles = props.getStyles()
 
-    return <div ref={ref} css={styles.classes.overlay(styles.state)} children={props.children} />
+    return <div {...props} ref={ref} css={styles.classes.overlay(styles.state)} />
   },
 )
 

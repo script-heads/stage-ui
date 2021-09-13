@@ -88,8 +88,8 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
     const vSize = isX ? 'width' : 'height'
     const vDirection = isX ? 'left' : 'top'
 
-    const total = memo.content[vScrollSize]
-    const content = memo.container[vOffsetSize]
+    const total = memo.content[vScrollSize] - (props.barOffset || 0) * 2
+    const content = memo.container[vOffsetSize] - (props.barOffset || 0) * 2
     const bar = isX ? memo.xBar : memo.yBar
     const thumb = isX ? memo.xThumb : memo.yThumb
 

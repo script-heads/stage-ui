@@ -30,6 +30,7 @@ const Docs = () => {
         styles={{
           'html,body,#docs': {
             minHeight: '100vh',
+            background: theme.color.surface.hex(),
             overscrollBehavior: 'none',
           },
         }}

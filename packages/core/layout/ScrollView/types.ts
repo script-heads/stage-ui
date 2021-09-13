@@ -73,6 +73,10 @@ declare namespace ScrollViewTypes {
      */
     yBarPosition?: 'left' | 'right' | 'none'
     /**
+     * Scroll bar padding offset
+     */
+    barOffset?: number
+    /**
      * If true
      * onstagescroll will not dispatch
      */

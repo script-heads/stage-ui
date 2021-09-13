@@ -32,24 +32,19 @@ const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
     setSubtitle(props.subtitle)
   }, [props.title, props.subtitle])
 
-  useEffect(() => {
-    if (opened === true) open()
-    if (opened === false) close()
-  }, [opened])
-
-  function open(customRender?: React.ReactElement | null) {
+  function open(render?: React.ReactElement | null) {
     document.body.style.overflow = 'hidden'
 
-    if (customRender) {
-      setCustomRender(customRender)
+    if (render) {
+      setCustomRender(render)
     }
 
-    props.onOpen && props.onOpen()
+    props.onOpen?.()
 
     setActive(true)
     setTimeout(() => {
       setVisible(true)
-      props.didOpen && props.didOpen()
+      props.didOpen?.()
     }, 50)
   }
 
@@ -60,12 +55,17 @@ const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
 
     setTimeout(() => {
       setActive(false)
-      props.didClose && props.didClose()
-      didClose && didClose()
+      props.didClose?.()
+      didClose?.()
     }, 300)
 
-    props.onClose && props.onClose()
+    props.onClose?.()
   }
+
+  useEffect(() => {
+    if (opened === true) open()
+    if (opened === false) close()
+  }, [opened])
 
   useImperativeHandle(ref, () => ({
     open,
