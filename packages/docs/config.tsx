@@ -8,9 +8,6 @@ import ShowcaseLayout from './components/ShowcaseLayout'
 import LandignPage from './pages/Landign'
 import GettingStartedPage from './pages/GettingStarted'
 import IconsPage from './pages/Icons'
-import OverridesPage from './pages/Overrides'
-import ThemingPage from './pages/Theming'
-import PropsPage from './pages/Props'
 
 import { Config } from './utils/core'
 
@@ -91,11 +88,8 @@ const config: Config = {
     custom: {
       '/': LandignPage,
       '/getting-started': GettingStartedPage,
-      '/overrides': OverridesPage,
-      '/props': PropsPage,
-      '/theming': ThemingPage,
-      '/icons': IconsPage,
       '/components': ShowcaseLayout,
+      '/icons': IconsPage,
       '/editor': Editor,
     },
   },

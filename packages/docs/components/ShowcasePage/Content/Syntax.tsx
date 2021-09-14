@@ -14,6 +14,7 @@ const Syntax = (props: { code?: (() => JSX.Element) | string; children?: string 
     borderRadius: theme.radius.m,
     border: 'none',
     background: theme.color.background,
+    minWidth: 0,
   }
   return (
     <Prism language="typescript" style={isDark ? dark : light} customStyle={styles}>

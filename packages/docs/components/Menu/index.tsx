@@ -19,7 +19,13 @@ const MenuItem = (props: MenuItemProps & { mobile?: boolean }) => {
       decoration="text"
       color={
         // eslint-disable-next-line no-nested-ternary
-        props.active ? (props.mobile ? 'surface' : 'primary') : props.mobile ? 'hardest' : 'light'
+        props.active
+          ? props.mobile
+            ? 'surface'
+            : 'primary'
+          : props.mobile
+          ? 'hardest'
+          : 'onSurface'
       }
       overrides={{
         container: {
@@ -47,29 +53,11 @@ const MenuItems = (props: CustomPageProps & { onCloseMobileMenu?: () => void }) 
       />
       <MenuItem
         mobile={!!props.onCloseMobileMenu}
-        label="Props"
-        active={!!/\/props/.exec(props.path)}
+        label="Components"
+        active={!!/\/components/.exec(props.path)}
         onClick={() => {
           props.onCloseMobileMenu?.()
-          props.setPath('/props')
-        }}
-      />
-      <MenuItem
-        mobile={!!props.onCloseMobileMenu}
-        label="Overrides"
-        active={!!/\/overrides/.exec(props.path)}
-        onClick={() => {
-          props.onCloseMobileMenu?.()
-          props.setPath('/overrides')
-        }}
-      />
-      <MenuItem
-        mobile={!!props.onCloseMobileMenu}
-        label="Theming"
-        active={!!/\/theming/.exec(props.path)}
-        onClick={() => {
-          props.onCloseMobileMenu?.()
-          props.setPath('/theming')
+          props.setPath('/components')
         }}
       />
       <MenuItem
@@ -79,15 +67,6 @@ const MenuItems = (props: CustomPageProps & { onCloseMobileMenu?: () => void }) 
         onClick={() => {
           props.onCloseMobileMenu?.()
           props.setPath('/icons')
-        }}
-      />
-      <MenuItem
-        mobile={!!props.onCloseMobileMenu}
-        label="Components"
-        active={!!/\/components/.exec(props.path)}
-        onClick={() => {
-          props.onCloseMobileMenu?.()
-          props.setPath('/components')
         }}
       />
     </>
@@ -102,7 +81,7 @@ const Menu = (props: CustomPageProps) => {
   }
 
   return (
-    <Flexbox w="100%" column pb="xl">
+    <Flexbox w="100%" column pb="xl" my="m">
       <Flexbox justifyContent="space-between" alignItems="center">
         {/* <Block mr="xl">
           <Text size="m" weight={800} onClick={() => {
