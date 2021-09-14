@@ -13,31 +13,27 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         borderSpacing: 0,
       },
     ],
-    row: (state, variant) => [
+    row: (state) => [
       {
         transition: 'background 0.25s',
       },
-      variant({
-        dragOver: {
-          background: theme.color.primary.alpha(0.25).string(),
-        },
-      }),
+      state.dragOver && {
+        background: theme.color.primary.alpha(0.25).string(),
+      },
     ],
-    headCell: (state, variant) => [
+    headCell: (state) => [
       {
         textAlign: 'left',
         padding: '1.25rem 1rem',
         fontWeight: 500,
       },
-      variant({
-        sort: {
-          cursor: 'pointer',
-          userSelect: 'none',
-          ':hover': {
-            color: theme.color.primary.rgb().string(),
-          },
+      state.sort && {
+        cursor: 'pointer',
+        userSelect: 'none',
+        ':hover': {
+          color: theme.color.primary.rgb().string(),
         },
-      }),
+      },
     ],
     rowCell: [
       {
