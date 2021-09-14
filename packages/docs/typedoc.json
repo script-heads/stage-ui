@@ -1,6 +1,5 @@
 {
-    "json": true,
     "entryPoints": ["./showcases"],
     "tsconfig": "./typedoc.tsconfig.json",
-    "out": "./public/definitions/original.json"
+    "json": "./public/definitions/original.json"
 }
