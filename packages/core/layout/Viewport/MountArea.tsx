@@ -1,4 +1,3 @@
-import { css } from '@emotion/react'
 import createID from '@stage-ui/system/utils/createID'
 import React, { FC, Fragment, useState } from 'react'
 import ViewportTypes from './types'
@@ -9,20 +8,6 @@ export const ViewportShared: ViewportTypes.Shared = {
 }
 
 const MountArea: FC<ViewportTypes.MountArea> = () => {
-  const styles = css({
-    position: 'fixed',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-end',
-    top: '2rem',
-    right: '2rem',
-
-    zIndex: 1000,
-    '>*': {
-      marginBottom: '1rem',
-    },
-  })
-
   const [elements, setElements] = useState<ViewportTypes.MountAreaElement[]>([])
 
   ViewportShared.addElement = (children: React.ReactElement, key: string = createID()) => {
@@ -35,7 +20,21 @@ const MountArea: FC<ViewportTypes.MountArea> = () => {
   }
 
   return (
-    <div css={styles}>
+    <div
+      css={{
+        position: 'fixed',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-end',
+        top: '2rem',
+        right: '2rem',
+
+        zIndex: 1000,
+        '>*': {
+          marginBottom: '1rem',
+        },
+      }}
+    >
       {elements.map((element) => (
         <Fragment key={element.key}>{element.children}</Fragment>
       ))}

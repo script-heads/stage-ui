@@ -16,7 +16,12 @@ import Types from './types'
 const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
   const { hideHeader, overlayClose = true, opened, decoration = 'modal' } = props
 
-  const { classes, attributes, events, styleProps } = useSystem('Modal', props, styles)
+  const {
+    classes,
+    attributes,
+    events: { onOpen, ...events },
+    styleProps,
+  } = useSystem('Modal', props, styles)
 
   const overlayRef = useRef<HTMLDivElement>(null)
   const windowRef = useRef<HTMLDivElement>(null)
@@ -39,7 +44,7 @@ const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
       setCustomRender(render)
     }
 
-    props.onOpen?.()
+    onOpen?.()
 
     setActive(true)
     setTimeout(() => {
