@@ -1,4 +1,3 @@
-import { css } from '@emotion/react'
 import createID from '@stage-ui/system/utils/createID'
 import React, { FC, Fragment, useState } from 'react'
 import ViewportTypes from './types'
@@ -9,62 +8,6 @@ export const ViewportShared: ViewportTypes.Shared = {
 }
 
 const MountArea: FC<ViewportTypes.MountArea> = () => {
-  const styles = css({
-    position: 'fixed',
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr 1fr',
-    gridTemplateRows: '1fr 1fr 1fr',
-    top: '0',
-    right: '0',
-    left: '0',
-    bottom: '0',
-    pointerEvents: 'none',
-    zIndex: 1000,
-    '> div': {
-      display: 'flex',
-      flexDirection: 'column',
-      ':nth-child(1)': {
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-      },
-      ':nth-child(2)': {
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-      },
-      ':nth-child(3)': {
-        alignItems: 'flex-end',
-        justifyContent: 'flex-start',
-      },
-      ':nth-child(4)': {
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-      },
-      ':nth-child(5)': {
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-      ':nth-child(6)': {
-        alignItems: 'flex-end',
-        justifyContent: 'center',
-      },
-      ':nth-child(7)': {
-        alignItems: 'flex-start',
-        justifyContent: 'end',
-      },
-      ':nth-child(8)': {
-        alignItems: 'center',
-        justifyContent: 'end',
-      },
-      ':nth-child(9)': {
-        alignItems: 'flex-end',
-        justifyContent: 'end',
-      },
-      '>*': {
-        pointerEvents: 'all',
-      },
-    },
-  })
-
   const [elements, setElements] = useState<ViewportTypes.MountAreaElement[]>([])
 
   ViewportShared.addElement = (
@@ -81,7 +24,63 @@ const MountArea: FC<ViewportTypes.MountArea> = () => {
   }
 
   return (
-    <div css={styles}>
+    <div
+      css={{
+        position: 'fixed',
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr 1fr',
+        gridTemplateRows: '1fr 1fr 1fr',
+        top: '0',
+        right: '0',
+        left: '0',
+        bottom: '0',
+        pointerEvents: 'none',
+        zIndex: 1000,
+        '> div': {
+          display: 'flex',
+          flexDirection: 'column',
+          ':nth-child(1)': {
+            alignItems: 'flex-start',
+            justifyContent: 'flex-start',
+          },
+          ':nth-child(2)': {
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+          },
+          ':nth-child(3)': {
+            alignItems: 'flex-end',
+            justifyContent: 'flex-start',
+          },
+          ':nth-child(4)': {
+            alignItems: 'flex-start',
+            justifyContent: 'center',
+          },
+          ':nth-child(5)': {
+            alignItems: 'center',
+            justifyContent: 'center',
+          },
+          ':nth-child(6)': {
+            alignItems: 'flex-end',
+            justifyContent: 'center',
+          },
+          ':nth-child(7)': {
+            alignItems: 'flex-start',
+            justifyContent: 'end',
+          },
+          ':nth-child(8)': {
+            alignItems: 'center',
+            justifyContent: 'end',
+          },
+          ':nth-child(9)': {
+            alignItems: 'flex-end',
+            justifyContent: 'end',
+          },
+          '>*': {
+            pointerEvents: 'all',
+          },
+        },
+      }}
+    >
       <div>
         {elements
           .filter((el) => el.placement === 'topLeft')
