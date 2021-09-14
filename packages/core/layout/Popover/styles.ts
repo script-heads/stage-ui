@@ -29,7 +29,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         padding: theme.spacing.s,
       },
     ],
-    arrow: (state, variant) => [
+    arrow: (state) => [
       {
         display: 'none',
         height: arrowSize,
@@ -40,46 +40,42 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         border: 'inherit',
         borderRadius: `0 0 0 calc(${arrowSize} / 4)`,
       },
-      variant({
-        align: {
-          top: [
-            {
-              display: 'block',
-              top: `-${halfArrowSize}`,
-              left: `calc(50% - ${halfArrowSize} + ${arrowOffset})`,
-              clipPath: `polygon(0% 0%, 100% 100%, 0% 100%)`,
-              transform: `rotate(135deg)`,
-            },
-          ],
-          bottom: [
-            {
-              display: 'block',
-              bottom: `-${halfArrowSize}`,
-              left: `calc(50% - ${halfArrowSize} + ${arrowOffset})`,
-              clipPath: `polygon(0% 0%, 100% 100%, 0% 100%)`,
-              transform: `rotate(-45deg)`,
-            },
-          ],
-          right: [
-            {
-              display: 'block',
-              right: `-${halfArrowSize}`,
-              top: `calc(50% - ${halfArrowSize} + ${arrowOffset})`,
-              clipPath: `polygon(0% 0%, 100% 100%, 0% 100%)`,
-              transform: `rotate(-135deg)`,
-            },
-          ],
-          left: [
-            {
-              display: 'block',
-              left: `-${halfArrowSize}`,
-              top: `calc(50% - ${halfArrowSize} + ${arrowOffset})`,
-              clipPath: `polygon(0% 0%, 100% 100%, 0% 100%)`,
-              transform: `rotate(45deg)`,
-            },
-          ],
+      state.align === 'top' && [
+        {
+          display: 'block',
+          top: `-${halfArrowSize}`,
+          left: `calc(50% - ${halfArrowSize} + ${arrowOffset})`,
+          clipPath: `polygon(0% 0%, 100% 100%, 0% 100%)`,
+          transform: `rotate(135deg)`,
         },
-      }),
+      ],
+      state.align === 'bottom' && [
+        {
+          display: 'block',
+          bottom: `-${halfArrowSize}`,
+          left: `calc(50% - ${halfArrowSize} + ${arrowOffset})`,
+          clipPath: `polygon(0% 0%, 100% 100%, 0% 100%)`,
+          transform: `rotate(-45deg)`,
+        },
+      ],
+      state.align === 'right' && [
+        {
+          display: 'block',
+          right: `-${halfArrowSize}`,
+          top: `calc(50% - ${halfArrowSize} + ${arrowOffset})`,
+          clipPath: `polygon(0% 0%, 100% 100%, 0% 100%)`,
+          transform: `rotate(-135deg)`,
+        },
+      ],
+      state.align === 'left' && [
+        {
+          display: 'block',
+          left: `-${halfArrowSize}`,
+          top: `calc(50% - ${halfArrowSize} + ${arrowOffset})`,
+          clipPath: `polygon(0% 0%, 100% 100%, 0% 100%)`,
+          transform: `rotate(45deg)`,
+        },
+      ],
     ],
   }
 }

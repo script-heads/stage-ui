@@ -13,7 +13,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         width: 'fit-content',
       },
     ],
-    holder: (state, variant) => [
+    holder: (state) => [
       {
         zIndex: 1,
         display: 'flex',
@@ -30,77 +30,71 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         borderRadius: '100rem',
         ...typography,
       },
-      variant({
-        shape: {
-          rounded: {
-            borderRadius: theme.radius.s,
-          },
-          square: {
-            borderRadius: '0',
-          },
+      state.shape === 'rounded' && {
+        borderRadius: theme.radius.s,
+      },
+      state.shape === 'square' && {
+        borderRadius: '0',
+      },
+      state.align === 'top-right' && [
+        {
+          top: 0,
+          right: 0,
+          transform: 'translate(50%, -50%)',
         },
-        align: {
-          'top-right': [
-            {
-              top: 0,
-              right: 0,
-              transform: 'translate(50%, -50%)',
-            },
-          ],
-          'top-left': [
-            {
-              top: 0,
-              left: 0,
-              transform: 'translate(-50%, -50%)',
-            },
-          ],
-          'bottom-right': [
-            {
-              bottom: 0,
-              right: 0,
-              top: 'unset',
-              transform: 'translate(50%, 50%)',
-            },
-          ],
-          'bottom-left': [
-            {
-              bottom: 0,
-              left: 0,
-              top: 'unset',
-              transform: 'translate(-50%, 50%)',
-            },
-          ],
-          top: [
-            {
-              top: 0,
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-            },
-          ],
-          bottom: [
-            {
-              bottom: 0,
-              left: '50%',
-              top: 'unset',
-              transform: 'translate(-50%, 50%)',
-            },
-          ],
-          right: [
-            {
-              top: '50%',
-              right: 0,
-              transform: 'translate(50%, -50%)',
-            },
-          ],
-          left: [
-            {
-              top: '50%',
-              left: 0,
-              transform: 'translate(-50%, -50%)',
-            },
-          ],
+      ],
+      state.align === 'top-left' && [
+        {
+          top: 0,
+          left: 0,
+          transform: 'translate(-50%, -50%)',
         },
-      }),
+      ],
+      state.align === 'bottom-right' && [
+        {
+          bottom: 0,
+          right: 0,
+          top: 'unset',
+          transform: 'translate(50%, 50%)',
+        },
+      ],
+      state.align === 'bottom-left' && [
+        {
+          bottom: 0,
+          left: 0,
+          top: 'unset',
+          transform: 'translate(-50%, 50%)',
+        },
+      ],
+      state.align === 'top' && [
+        {
+          top: 0,
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+        },
+      ],
+      state.align === 'bottom' && [
+        {
+          bottom: 0,
+          left: '50%',
+          top: 'unset',
+          transform: 'translate(-50%, 50%)',
+        },
+      ],
+      state.align === 'right' && [
+        {
+          top: '50%',
+          right: 0,
+          transform: 'translate(50%, -50%)',
+        },
+      ],
+      state.align === 'left' && [
+        {
+          top: '50%',
+          left: 0,
+          transform: 'translate(-50%, -50%)',
+        },
+      ],
     ],
   }
 }

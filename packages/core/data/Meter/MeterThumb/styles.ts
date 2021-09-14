@@ -1,17 +1,13 @@
 import colorResolver from '@stage-ui/system/props/color'
 import Types from './types'
 
-const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
-  theme,
-  props,
-  styleProps,
-) => {
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
   const { loading } = props
 
   const color = colorResolver(props.color || theme.color.primary, theme)
 
   return {
-    container: (state, variant) => [
+    container: (state) => [
       {
         position: 'absolute',
         top: 0,
@@ -46,30 +42,26 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
             animation: 'move 2s linear infinite',
             overflow: 'hidden',
           },
-          variant({
-            size: {
-              xs: [
-                {
-                  backgroundSize: '0.5rem 0.5rem',
-                },
-              ],
-              s: [
-                {
-                  backgroundSize: '1rem 1rem',
-                },
-              ],
-              l: [
-                {
-                  backgroundSize: '3rem 3rem',
-                },
-              ],
-              xl: [
-                {
-                  backgroundSize: '4rem 4rem',
-                },
-              ],
+          state.size === 'xs' && [
+            {
+              backgroundSize: '0.5rem 0.5rem',
             },
-          }),
+          ],
+          state.size === 's' && [
+            {
+              backgroundSize: '1rem 1rem',
+            },
+          ],
+          state.size === 'l' && [
+            {
+              backgroundSize: '3rem 3rem',
+            },
+          ],
+          state.size === 'xl' && [
+            {
+              backgroundSize: '4rem 4rem',
+            },
+          ],
         ],
         '@keyframes move': {
           '0%': {
@@ -80,22 +72,15 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
           },
         },
       },
-      variant({
-        size: {
-          xl: { height: '1.25rem' },
-          l: { height: '1rem' },
-          s: { height: '0.5rem' },
-          xs: { height: '0.375rem' },
+      state.size === 'xl' && { height: '1.25rem' },
+      state.size === 'l' && { height: '1rem' },
+      state.size === 's' && { height: '0.5rem' },
+      state.size === 'xs' && { height: '0.375rem' },
+      state.shape === 'square' && [
+        {
+          borderRadius: 0,
         },
-        shape: {
-          square: [
-            {
-              borderRadius: 0,
-            },
-          ],
-        },
-      }),
-      styleProps.all,
+      ],
     ],
   }
 }
