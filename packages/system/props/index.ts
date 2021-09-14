@@ -234,6 +234,15 @@ const resolvers: Record<string, Resolver> = {
     cd.styleProps.grid.push(resolveBreakpoints(p.gridArea, t, (v) => ({ gridArea: v }))),
   placeSelf: (p, cd, t) =>
     cd.styleProps.grid.push(resolveBreakpoints(p.placeSelf, t, (v) => ({ placeSelf: v }))),
+
+  // Shadow children
+
+  shadow: (p, cd, t) =>
+    cd.styleProps.shadow.push(
+      resolveBreakpoints(p.shadow, t, (v) => ({
+        boxShadow: sizeProp(v, t.assets.shadow, (sv) => sv),
+      })),
+    ),
 }
 
 export default resolvers

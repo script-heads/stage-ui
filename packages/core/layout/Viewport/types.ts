@@ -43,9 +43,21 @@ declare namespace ViewportTypes {
     className?: string
   }
 
+  type MountAreaPlacement =
+    | 'topLeft'
+    | 'topCenter'
+    | 'topRight'
+    | 'centerLeft'
+    | 'center'
+    | 'centerRight'
+    | 'bottomLeft'
+    | 'bottomCenter'
+    | 'bottomRight'
+
   type MountAreaElement = {
     key: string
     children: React.ReactElement
+    placement: MountAreaPlacement
   }
 
   type Context = {
@@ -53,7 +65,11 @@ declare namespace ViewportTypes {
   }
 
   type Shared = {
-    addElement: (children: React.ReactElement, key?: string) => string
+    addElement: (
+      children: React.ReactElement,
+      key?: string,
+      placement?: MountAreaPlacement,
+    ) => string
     removeElement: (key: string) => void
   }
 }

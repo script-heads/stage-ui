@@ -1,13 +1,22 @@
 import BlockTypes from '../Block/types'
+import ViewportTypes from '../Viewport/types'
 
 declare namespace NotificationTypes {
   interface Props
     extends Stage.AllProps<HTMLDivElement, Classes>,
       Omit<BlockTypes.Props, 'overrides'> {
     children?: React.ReactNode
+    /**
+     * Position of notification block
+     */
+    placement?: ViewportTypes.MountAreaPlacement
   }
 
   interface NotifyOptions extends Props {
+    /**
+     * Position of notification block
+     */
+    placement?: ViewportTypes.MountAreaPlacement
     /**
      * Title of notification
      */

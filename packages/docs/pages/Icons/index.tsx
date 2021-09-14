@@ -31,6 +31,7 @@ export default () => {
                 },
               }}
               onClick={() => {
+                // TODO: fix clipboard
                 navigator.clipboard
                   .writeText(`import ${key} from '@stage-ui/icons/lib/${key}'`)
                   .then(

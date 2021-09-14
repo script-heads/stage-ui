@@ -67,6 +67,8 @@ export type ResolvedStyleProps = {
   layout: Stage.CSSInterpolation[]
   flex: Stage.CSSInterpolation[]
   grid: Stage.CSSInterpolation[]
+
+  shadow: Stage.CSSInterpolation[]
 }
 
 export type ComponentData<
@@ -128,6 +130,8 @@ function useSystem<
       color: [],
       border: [],
       layout: [],
+
+      shadow: [],
     } as ResolvedStyleProps,
     overridesPropClasses: {},
   } as ComponentData<Props, ClassesSchema, Element>
@@ -187,6 +191,7 @@ function useSystem<
     data.styleProps.flex,
     data.styleProps.grid,
     data.styleProps.style,
+    data.styleProps.shadow,
   )
   data.styleProps.content = data.styleProps.content.concat(
     data.styleProps.padding,

@@ -86,7 +86,8 @@ export interface AllStyleProps
     LayoutProps,
     MarginProps,
     FlexProps,
-    GridProps {}
+    GridProps,
+    ShadowProps {}
 
 /**
  * DOM events
@@ -516,6 +517,14 @@ export interface GridProps {
    * @BreakpointProp
    */
   placeSelf?: BreakpointProp<FlexSelf>
+}
+
+/**
+ * Component shadow children styles props
+ * @name Shadow
+ */
+export interface ShadowProps {
+  shadow?: BreakpointProp<Stage.Sizes>
 }
 
 /**

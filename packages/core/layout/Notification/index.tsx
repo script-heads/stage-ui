@@ -12,7 +12,7 @@ const Notifications: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
 
   return (
     <Block
-      decoration="surface"
+      decoration="mediumShadow"
       css={[classes.container, styleProps.all]}
       attributes={attributes}
       {...props}

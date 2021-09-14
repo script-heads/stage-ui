@@ -36,5 +36,6 @@ export default (options: NotificationType.NotifyOptions) => {
       )}
     </Notification>,
     key,
+    options.placement || 'topRight',
   )
 }
