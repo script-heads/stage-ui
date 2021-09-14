@@ -8,22 +8,20 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) =
         userSelect: 'none',
       },
     ],
-    arrowButton: (state, variant) => [
+    arrowButton: (state) => [
       {
         color: theme.color.hardest.rgb().string(),
         ':hover': {
           color: theme.color.primary.rgb().string(),
         },
       },
-      variant({
-        disabled: {
-          cursor: 'not-allowed',
+      state.disabled && {
+        cursor: 'not-allowed',
+        color: theme.color.lightest.rgb().string(),
+        ':hover': {
           color: theme.color.lightest.rgb().string(),
-          ':hover': {
-            color: theme.color.lightest.rgb().string(),
-          },
         },
-      }),
+      },
     ],
   }
 }
