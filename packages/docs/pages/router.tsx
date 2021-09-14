@@ -42,27 +42,7 @@ const Router = (props: RouterProps) => {
   function historyPush(currentPath: string) {
     window.history.pushState({ path: currentPath }, '', currentPath)
     setPath(currentPath)
-    scrollView.current?.scrollTop()
-    // const data = core.getPageByUrl(currentPath)
-    // if (data) {
-    //   dialog({
-    //     decoration: 'panel',
-    //     render: () => {
-    //       return (
-    //         <ShowcasePage
-    //           data={data}
-    //           pages={pages}
-    //           config={config}
-    //           path={path}
-    //           setPath={historyPush}
-    //           theme={theme}
-    //           themes={themes}
-    //           setTheme={setTheme}
-    //         />
-    //       )
-    //     },
-    //   })
-    // }
+    // scrollView.current?.scrollTop()
   }
 
   useEffect(() => {
@@ -128,19 +108,6 @@ const Router = (props: RouterProps) => {
             themes={themes}
             setTheme={setTheme}
           />
-          {/* )} */}
-          {/* {showcasePage && (
-            <ShowcasePage
-              data={showcasePage}
-              pages={pages}
-              config={config}
-              path={path}
-              setPath={historyPush}
-              theme={theme}
-              themes={themes}
-              setTheme={setTheme}
-            />
-          )} */}
           {CustomPage && (
             <CustomPage
               pages={pages}

@@ -351,16 +351,5 @@ export const panel = (
   dialog({
     decoration: 'panel',
     hideHeader: true,
-    styles: {
-      window: (state, variant) =>
-        variant({
-          decoration: {
-            panel: {
-              marginTop: '50vh',
-              ...css,
-            },
-          },
-        }),
-    },
-    render: (close) => <ThemeConfigurator original={original} updateTheme={updateTheme} />,
+    render: () => <ThemeConfigurator original={original} updateTheme={updateTheme} />,
   })
