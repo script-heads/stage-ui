@@ -12,6 +12,7 @@ const Syntax = (props: { code?: (() => JSX.Element) | string; children?: string 
     padding: '1rem',
     fontSize: theme.assets.typography.text.s.fontSize,
     borderRadius: theme.radius.m,
+    border: 'none',
     background: theme.color.background,
   }
   return (
