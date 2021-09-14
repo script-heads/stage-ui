@@ -3,7 +3,7 @@ import Types from './types'
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
   const { disabled, size = 'm' } = props
   return {
-    check: (v, { checked }) => [
+    check: ({ checked }) => [
       {
         boxSizing: 'border-box',
         display: 'flex',
@@ -55,7 +55,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         height: '2rem',
       },
     ],
-    icon: (v, { checked }) => [
+    icon: ({ checked }) => [
       {
         height: 'auto',
         transition: 'opacity .15s, transform .15s',

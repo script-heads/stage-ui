@@ -15,11 +15,11 @@ const MenuItem = (props: MenuItemProps & { mobile?: boolean }) => {
     <Button
       p="0"
       mr="m"
-      size="xl"
+      size="l"
       decoration="text"
       color={
         // eslint-disable-next-line no-nested-ternary
-        props.active ? (props.mobile ? 'surface' : 'onSurface') : props.mobile ? 'hardest' : 'light'
+        props.active ? (props.mobile ? 'surface' : 'primary') : props.mobile ? 'hardest' : 'light'
       }
       overrides={{
         container: {
@@ -131,10 +131,10 @@ const Menu = (props: CustomPageProps) => {
             style={{ display: 'block' }}
             size="1.5rem"
             ml="1rem"
-            color="primary"
+            color="onSurface"
           />
           {props.config.git && (
-            <Link target="_blank" href={props.config.git} ml="1rem">
+            <Link target="_blank" href={props.config.git} ml="1rem" color="onSurface">
               <Github size="1.5rem" />
             </Link>
           )}

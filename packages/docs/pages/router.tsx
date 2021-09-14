@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Block, dialog, Flexbox, ScrollView, Text } from '@stage-ui/core'
 import ScrollViewTypes from '@stage-ui/core/layout/ScrollView/types'
+import breakpointProp from '@stage-ui/system/props/breakpoint'
 import React, { useEffect, useRef, useState } from 'react'
 import Menu from '../components/Menu'
 import ShowcasePage from '../components/ShowcasePage'
@@ -71,6 +72,14 @@ const Router = (props: RouterProps) => {
     dialog({
       hideHeader: true,
       decoration: 'panel',
+      overrides: (t) => ({
+        window: () => [
+          {
+            width: '100%',
+          },
+          breakpointProp(['80vw', '90vw', '100vw'], t, (maxWidth) => ({ maxWidth })),
+        ],
+      }),
       didClose: () => {
         historyPush('/components')
       },

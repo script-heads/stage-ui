@@ -19,19 +19,15 @@ const ShowcasePage = (props: ContentProps) => {
   const { data, config, onClose } = props
 
   return (
-    <Flexbox column alignSelf="stretch">
-      <Flexbox column alignItems="center">
-        <Flexbox column>
-          {data.cases && <Editor cases={data.cases} onBack={onClose} />}
-          {data.default && (
-            <Block>
-              <data.default />
-            </Block>
-          )}
-          {data.ns && (
-            <Types nameSpace={data.ns} config={config} shrink={data.cases === undefined} />
-          )}
-        </Flexbox>
+    <Flexbox column>
+      {data.cases && <Editor cases={data.cases} onBack={onClose} />}
+      {data.default && (
+        <Block>
+          <data.default />
+        </Block>
+      )}
+      <Flexbox column m="m" mt="m">
+        {data.ns && <Types nameSpace={data.ns} config={config} shrink={data.cases === undefined} />}
       </Flexbox>
     </Flexbox>
   )

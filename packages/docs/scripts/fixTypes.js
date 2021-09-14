@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 const fs = require('fs')
 
 function fixTypes(package, replaces = []) {
@@ -20,17 +23,18 @@ function fixTypes(package, replaces = []) {
 }
 fixTypes('system', [["declare module 'types'", "declare module '@stage-ui/system/types'"]])
 fixTypes('core', [
-  ['data/Table/types', '@stage-ui/core/data/Table/types'],
-  ['layout/Modal/types', '@stage-ui/core/layout/Modal/types'],
-  ['misc/hocs/Icon/types', '@stage-ui/core/basic/Icon/types'],
-  ['misc/hocs/Field/types', '@stage-ui/core/basic/Field/types'],
-  ['misc/hocs/Check/types', '@stage-ui/core/basic/Check/types'],
-  ['misc/hocs/Typography/types', '@stage-ui/core/basic/Typography/types'],
-  ["declare module 'icons'", "declare module '@stage-ui/icons'"],
+  ['core', '@stage-ui/core'],
+  ['core/data/Table/types', '@stage-ui/core/data/Table/types'],
+  ['core/layout/Modal/types', '@stage-ui/core/layout/Modal/types'],
+  ['core/misc/hocs/Icon/types', '@stage-ui/core/basic/Icon/types'],
+  ['core/misc/hocs/Field/types', '@stage-ui/core/basic/Field/types'],
+  ['core/misc/hocs/Check/types', '@stage-ui/core/basic/Check/types'],
+  ['core/misc/hocs/Typography/types', '@stage-ui/core/basic/Typography/types'],
+  ["core/declare module 'icons'", "declare module '@stage-ui/icons'"],
 ])
 fixTypes('lab', [
   ['@stage-ui/core', ''],
-  ["declare module 'icons'", "declare module '@stage-ui/icons'"],
+  ["declare module 'lab'", "declare module '@stage-ui/lab'"],
 ])
 fixTypes('icons', [
   ['@stage-ui/core', ''],
