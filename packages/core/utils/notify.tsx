@@ -6,7 +6,7 @@ import { ViewportShared } from '@stage-ui/core/layout/Viewport/MountArea'
 import createID from '@stage-ui/system/utils/createID'
 
 export default (options: NotificationType.NotifyOptions) => {
-  let timer: number
+  let timer: any
   const key = createID()
   if (options.timeout) {
     timer = setTimeout(() => ViewportShared.removeElement(key), options.timeout)
