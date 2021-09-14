@@ -44,11 +44,11 @@ const MenuItems = (props: CustomPageProps & { onCloseMobileMenu?: () => void }) 
     <>
       <MenuItem
         mobile={!!props.onCloseMobileMenu}
-        label="Getting started"
-        active={!!/\/getting-started/.exec(props.path)}
+        label="StageUI"
+        active={!!/\/docs/.exec(props.path)}
         onClick={() => {
           props.onCloseMobileMenu?.()
-          props.setPath('/getting-started')
+          props.setPath('/docs')
         }}
       />
       <MenuItem

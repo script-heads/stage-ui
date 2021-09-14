@@ -6,7 +6,7 @@ import Value from './components/ShowcasePage/Types/Value'
 import Editor from './editor'
 import ShowcaseLayout from './components/ShowcaseLayout'
 import LandignPage from './pages/Landign'
-import GettingStartedPage from './pages/GettingStarted'
+import DocsPage from './pages/Docs'
 import IconsPage from './pages/Icons'
 
 import { Config } from './utils/core'
@@ -87,7 +87,7 @@ const config: Config = {
     ],
     custom: {
       '/': LandignPage,
-      '/getting-started': GettingStartedPage,
+      '/docs': DocsPage,
       '/components': ShowcaseLayout,
       '/icons': IconsPage,
       '/editor': Editor,

@@ -117,7 +117,7 @@ const Router = (props: RouterProps) => {
       }}
     >
       <Flexbox column alignItems="center" p="xl">
-        <Block css={{ maxWidth: '64rem' }}>
+        <Block css={{ maxWidth: '64rem', width: '100%' }}>
           {/* {!showcasePage && ( */}
           <Menu
             pages={pages}
