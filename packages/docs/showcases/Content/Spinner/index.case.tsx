@@ -5,6 +5,6 @@ export const title = 'Spinner'
 export const glyph = require(`./Spinner.svg`)
 export const ns = 'SpinnerTypes'
 export const cases = [
-  { label: 'Spinner', basic },
+  { label: 'Spinner', code: basic },
   { label: 'Spin anything', code: another },
 ]
