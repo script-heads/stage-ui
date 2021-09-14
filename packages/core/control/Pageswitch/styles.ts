@@ -8,7 +8,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) =
         userSelect: 'none',
       },
     ],
-    arrowButton: (variant) => [
+    arrowButton: (state, variant) => [
       {
         color: theme.color.hardest.rgb().string(),
         ':hover': {

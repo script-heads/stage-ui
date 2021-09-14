@@ -18,8 +18,8 @@ export type ClassStateDefinition = Record<string, string | boolean | undefined> 
 export type ClassesSchemaDefinition = Record<string, ClassStateDefinition>
 
 export type FunctionClassDefinition<ClassState extends Exclude<ClassStateDefinition, void>> = (
-  variant: Variant<ClassState>,
   state: ClassState,
+  variant: Variant<ClassState>,
 ) => Stage.CSSInterpolation
 
 export type OverridesClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = {
@@ -227,12 +227,12 @@ function useSystem<
           const variant = createVariant(state)
           return [
             classLabel,
-            (componentClasses[key] as Function)?.(variant, state),
+            (componentClasses[key] as Function)?.(state, variant),
             isFunction(overridesThemeClasses[key])
-              ? (overridesThemeClasses[key] as Function)(variant, state)
+              ? (overridesThemeClasses[key] as Function)(state, variant)
               : overridesThemeClasses[key],
             isFunction(data.overridesPropClasses[key])
-              ? (data.overridesPropClasses[key] as Function)(variant, state)
+              ? (data.overridesPropClasses[key] as Function)(state, variant)
               : data.overridesPropClasses[key],
           ] as Stage.CSSInterpolation
         }

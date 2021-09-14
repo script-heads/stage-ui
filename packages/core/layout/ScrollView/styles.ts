@@ -50,7 +50,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         },
       },
     ],
-    yBar: (variant) => [
+    yBar: (state, variant) => [
       {
         zIndex: 999,
         overflow: 'hidden',
@@ -112,7 +112,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         },
       }),
     ],
-    yThumb: (variant) => [
+    yThumb: (state, variant) => [
       {
         zIndex: 999,
         display: 'block',
@@ -157,7 +157,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         },
       }),
     ],
-    xBar: (variant) => [
+    xBar: (state, variant) => [
       {
         zIndex: 999,
         overflow: 'hidden',
@@ -220,7 +220,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         },
       }),
     ],
-    xThumb: (variant) => [
+    xThumb: (state, variant) => [
       {
         zIndex: 999,
         display: 'block',

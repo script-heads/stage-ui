@@ -7,7 +7,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
   const minHeight = theme.assets.field[size]?.minHeight || '2.5rem'
 
   return {
-    drop: (variant) => [
+    drop: (state, variant) => [
       {
         position: 'relative',
         background: theme.color.surface.rgb().string(),
@@ -52,7 +52,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
         },
       }),
     ],
-    dropItem: (variant) => [
+    dropItem: (state, variant) => [
       theme.assets.typography.text.m,
       theme.assets.field,
       {
@@ -93,7 +93,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
       },
     ],
 
-    input: (variant) => [
+    input: (state, variant) => [
       {
         flex: 1,
         outline: 0,
@@ -121,7 +121,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
         },
       }),
     ],
-    tag: (variant) => [
+    tag: (state, variant) => [
       {
         display: 'inline-flex',
         background: disabled
@@ -170,7 +170,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
         },
       }),
     ],
-    tagRemove: (variant) => [
+    tagRemove: (state, variant) => [
       {
         marginLeft: `calc(${minHeight} / 10)`,
         marginRight: `calc(-${minHeight} / 10)`,
@@ -184,7 +184,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
         },
       },
     ],
-    emptyConteiner: (variant) => [
+    emptyConteiner: (state, variant) => [
       {
         display: 'flex',
         alignItems: 'center',
@@ -192,7 +192,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
         padding: `calc(${minHeight} / 5)`,
       },
     ],
-    emptyText: (variant) => [
+    emptyText: (state, variant) => [
       {
         color: theme.color.light.rgb().string(),
         userSelect: 'none',

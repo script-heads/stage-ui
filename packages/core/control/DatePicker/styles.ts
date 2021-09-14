@@ -2,7 +2,7 @@ import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => {
   return {
-    drop: (variant) => [
+    drop: (state, variant) => [
       {
         transition: 'all 0.2s',
         transform: `translateY(-1rem) scale(0.9)`,

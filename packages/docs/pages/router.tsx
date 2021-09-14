@@ -101,7 +101,7 @@ const Router = (props: RouterProps) => {
       barOffset={8}
       ref={scrollView}
       overrides={{
-        yThumb: (variant) =>
+        yThumb: (state, variant) =>
           variant({
             active: [{ opacity: 1 }],
           }),

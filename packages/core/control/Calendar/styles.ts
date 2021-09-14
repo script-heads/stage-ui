@@ -20,7 +20,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => {
       },
     ],
 
-    monthOrYear: (variant) => [
+    monthOrYear: (state, variant) => [
       {
         transition: 'all 0.2s',
         fontWeight: 500,
@@ -80,7 +80,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => {
     /**
      * Styles for day/month/year squire
      * */
-    day: (variant) => [
+    day: (state, variant) => [
       {
         transition: 'all 0.2s',
         fontWeight: 500,
@@ -212,7 +212,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => {
     /**
      * Styles for week
      * */
-    week: (variant) => [
+    week: (state, variant) => [
       {
         userSelect: 'none',
         gridColumn: 'span 7',

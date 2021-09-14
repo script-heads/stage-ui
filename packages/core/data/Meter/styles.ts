@@ -5,7 +5,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
   const color = colorResolver(props.color || theme.color.primary, theme)
 
   return {
-    container: (variant) => [
+    container: (state, variant) => [
       {
         position: 'relative',
         minWidth: '0.25rem',
@@ -41,7 +41,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         },
       }),
     ],
-    thumb: (variant) => [],
+    thumb: (state, variant) => [],
   }
 }
 

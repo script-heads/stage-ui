@@ -16,7 +16,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
   }
 
   return {
-    container: (variant) => [
+    container: (state, variant) => [
       {
         ...typography,
         display: 'flex',
@@ -31,7 +31,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
             }),
       },
     ],
-    item: (variant) => [
+    item: (state, variant) => [
       {
         display: 'flex',
         cursor: 'pointer',
@@ -112,7 +112,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       },
     ],
 
-    subMenu: (variant) => [
+    subMenu: (state, variant) => [
       {
         position: 'relative',
         outline: 'none',
@@ -150,7 +150,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       },
     ],
 
-    subMenuArrow: (variant) => [
+    subMenuArrow: (state, variant) => [
       {
         height: typography.fontSize,
         width: typography.fontSize,
@@ -158,7 +158,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       },
     ],
 
-    subMenuContent: (variant) => [
+    subMenuContent: (state, variant) => [
       {
         display: 'none',
       },
@@ -171,7 +171,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       },
     ],
 
-    group: (variant) => [
+    group: (state, variant) => [
       {
         display: 'flex',
         flexDirection: props.direction || (props.column ? 'column' : 'row'),
@@ -179,7 +179,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       },
     ],
 
-    groupTitle: (variant) => [
+    groupTitle: (state, variant) => [
       {
         display: 'flex',
         alignItems: 'center',
@@ -189,7 +189,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       },
     ],
 
-    leftChild: (variant) => [
+    leftChild: (state, variant) => [
       {
         display: 'flex',
         alignItems: 'center',
@@ -205,13 +205,13 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       },
     ],
 
-    middleChild: (variant) => [
+    middleChild: (state, variant) => [
       {
         flex: 1,
       },
     ],
 
-    rightChild: (variant) => [
+    rightChild: (state, variant) => [
       {
         display: 'flex',
         alignItems: 'center',

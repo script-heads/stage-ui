@@ -3,7 +3,7 @@ import Types from './types'
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
   const { size = 'm', disabled } = props
   return {
-    check: (variant, state) => [
+    check: (state, variant) => [
       {
         boxSizing: 'border-box',
         display: 'flex',
@@ -45,7 +45,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         backgroundColor: theme.color.lightest.rgb().string(),
       },
     ],
-    switch: (variant, state) => [
+    switch: (state, variant) => [
       {
         position: 'relative',
         boxSizing: 'border-box',

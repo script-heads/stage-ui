@@ -13,7 +13,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         width: 'fit-content',
       },
     ],
-    holder: (variant) => [
+    holder: (state, variant) => [
       {
         zIndex: 1,
         display: 'flex',

@@ -1,5 +1,5 @@
 {
-    item: (variant) => variant({
+    item: (state, variant) => variant({
         decoration: {
             filled: [
                 {

@@ -3,7 +3,7 @@
     "jsx": "react-jsx",
     "target": "esnext",
     "module": "commonjs",
-    "outDir": "../../build/system",
+    "outDir": "../../build",
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,

@@ -29,7 +29,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         padding: theme.spacing.s,
       },
     ],
-    arrow: (variant) => [
+    arrow: (state, variant) => [
       {
         display: 'none',
         height: arrowSize,

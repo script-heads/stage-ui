@@ -2,7 +2,7 @@ import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.PrivateProps> = (theme, props) => {
   return {
-    container: (variant) => [
+    container: (state, variant) => [
       variant({
         decoration: {
           finder: {
@@ -13,7 +13,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.PrivateProps> = (t
         },
       }),
     ],
-    row: (variant) => [
+    row: (state, variant) => [
       variant({
         decoration: {
           finder: [
@@ -41,7 +41,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.PrivateProps> = (t
       }),
     ],
 
-    label: (variant) => [
+    label: (state, variant) => [
       {
         cursor: 'pointer',
         userSelect: 'none',
@@ -56,7 +56,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.PrivateProps> = (t
       }),
     ],
 
-    arrow: (variant) => [
+    arrow: (state, variant) => [
       {
         opacity: 0,
         cursor: 'pointer',
@@ -94,7 +94,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.PrivateProps> = (t
         },
       }),
     ],
-    child: (variant) => [
+    child: (state, variant) => [
       {
         display: 'none',
       },

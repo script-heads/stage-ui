@@ -8,7 +8,7 @@ const createClsses: CreateClasses<Types.Classes, Types.Props> = (theme, props, s
   const hoverColor = colorProp(props.hoverColor, theme)
 
   return {
-    container: (variant) => [
+    container: (state, variant) => [
       {
         width: 'min-content',
         display: 'inline-flex',

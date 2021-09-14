@@ -352,7 +352,7 @@ export const panel = (
     decoration: 'panel',
     hideHeader: true,
     styles: {
-      window: (variant) =>
+      window: (state, variant) =>
         variant({
           decoration: {
             panel: {

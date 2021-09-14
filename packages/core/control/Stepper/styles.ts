@@ -13,7 +13,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         ...theme.assets.typography.text[props.size || 'm'],
       },
     ],
-    step: (variant) => [
+    step: (state, variant) => [
       {
         position: 'relative',
         display: 'flex',
@@ -76,7 +76,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         },
       }),
     ],
-    separator: (variant) => [
+    separator: (state, variant) => [
       {
         position: 'relative',
         flex: 1,

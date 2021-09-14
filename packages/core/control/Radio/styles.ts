@@ -3,7 +3,7 @@ import Types from './types'
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
   const { size = 'm', disabled = false } = props
   return {
-    check: (variant, state) => [
+    check: (state, variant) => [
       {
         boxSizing: 'border-box',
         display: 'flex',
@@ -55,7 +55,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         height: '2rem',
       },
     ],
-    radio: (variant, state) => [
+    radio: (state, variant) => [
       {
         transition: 'all 0.2s',
         transform: `scale(0)`,

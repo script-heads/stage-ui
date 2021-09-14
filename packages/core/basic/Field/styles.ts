@@ -128,7 +128,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       ],
     ],
 
-    child: (v, state) => [
+    child: (state, variant) => [
       {
         color: color.rgb().string(),
         flexGrow: 0,

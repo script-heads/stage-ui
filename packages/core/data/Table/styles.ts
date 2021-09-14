@@ -13,7 +13,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         borderSpacing: 0,
       },
     ],
-    row: (variant) => [
+    row: (state, variant) => [
       {
         transition: 'background 0.25s',
       },
@@ -23,7 +23,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         },
       }),
     ],
-    headCell: (variant) => [
+    headCell: (state, variant) => [
       {
         textAlign: 'left',
         padding: '1.25rem 1rem',

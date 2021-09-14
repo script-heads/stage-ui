@@ -4,7 +4,7 @@
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
     "target": "esnext",
-    "outDir": "../../build/core",
+    "outDir": "../../build",
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,

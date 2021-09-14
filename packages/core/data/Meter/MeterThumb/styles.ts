@@ -11,7 +11,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
   const color = colorResolver(props.color || theme.color.primary, theme)
 
   return {
-    container: (variant) => [
+    container: (state, variant) => [
       {
         position: 'absolute',
         top: 0,

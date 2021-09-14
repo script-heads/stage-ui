@@ -11,7 +11,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
   const subtitleSize = theme.assets.typography.text[size] || theme.assets.typography.text.m
 
   return {
-    overlay: (variant) => [
+    overlay: (state, variant) => [
       {
         opacity: 0,
         zIndex: SharedZIndex.increment,
@@ -34,7 +34,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         },
       }),
     ],
-    wrapper: (variant) => [
+    wrapper: (state, variant) => [
       variant({
         decoration: {
           modal: {
@@ -57,7 +57,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         },
       }),
     ],
-    window: (variant) => [
+    window: (state, variant) => [
       {
         position: 'relative',
         opacity: 0,
@@ -108,7 +108,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       }),
     ],
 
-    header: (variant) => [
+    header: (state, variant) => [
       {
         h3: titleSize,
         p: [

@@ -3,7 +3,7 @@
         container: {
             backgroundColor: main.color.light.rgb().string()
         },
-        item: (variant) => variant({
+        item: (state, variant) => variant({
             active: {
                 backgroundColor: main.color.primary.rgb().string(),
                 fontSize: assets.typography.l.fontSize

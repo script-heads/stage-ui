@@ -96,7 +96,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         textTransform: 'uppercase',
       },
     ],
-    child: (variant, state) => [
+    child: (state, variant) => [
       {
         flexGrow: 0,
         flexShrink: 1,

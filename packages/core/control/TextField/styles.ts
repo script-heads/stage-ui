@@ -7,7 +7,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
   const minHeight = theme.assets.field[size]?.minHeight || '2.5rem'
 
   return {
-    input: (variant) => [
+    input: (state, variant) => [
       {
         outline: 0,
         padding: 0,
