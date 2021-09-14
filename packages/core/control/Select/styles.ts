@@ -7,7 +7,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
   const minHeight = theme.assets.field[size]?.minHeight || '2.5rem'
 
   return {
-    drop: (state, variant) => [
+    drop: (state) => [
       {
         position: 'relative',
         background: theme.color.surface.rgb().string(),
@@ -17,42 +17,36 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
         overflow: 'hidden',
         top: '0.25rem',
       },
-      variant({
-        shape: {
-          square: {
-            borderRadius: 0,
-          },
-          round: {
-            borderRadius: theme.radius.s,
-          },
+      state.shape === 'square' && {
+        borderRadius: 0,
+      },
+      state.shape === 'round' && {
+        borderRadius: theme.radius.s,
+      },
+      state.decoration === 'filled' && [
+        {
+          boxShadow: 'none',
+          top: 0,
+          borderColor: 'transparent',
         },
-        decoration: {
-          filled: [
-            {
-              boxShadow: 'none',
-              top: 0,
-              borderColor: 'transparent',
-            },
-          ],
-          underline: {
-            borderTopColor: 'transparent',
-            borderLeftColor: 'transparent',
-            borderRightColor: 'transparent',
-            background: 'transparent',
-            paddingLeft: 0,
-            paddingRight: 0,
-            borderRadius: 0,
-            backgroundColor: theme.color.surface.rgb().string(),
-          },
-          none: {
-            borderTopLeftRadius: theme.radius.s,
-            borderTopRightRadius: theme.radius.s,
-            borderTopWidth: '1px',
-          },
-        },
-      }),
+      ],
+      state.decoration === 'underline' && {
+        borderTopColor: 'transparent',
+        borderLeftColor: 'transparent',
+        borderRightColor: 'transparent',
+        background: 'transparent',
+        paddingLeft: 0,
+        paddingRight: 0,
+        borderRadius: 0,
+        backgroundColor: theme.color.surface.rgb().string(),
+      },
+      state.decoration === 'none' && {
+        borderTopLeftRadius: theme.radius.s,
+        borderTopRightRadius: theme.radius.s,
+        borderTopWidth: '1px',
+      },
     ],
-    dropItem: (state, variant) => [
+    dropItem: (state) => [
       theme.assets.typography.text.m,
       theme.assets.field,
       {
@@ -65,22 +59,16 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
           backgroundColor: theme.color.primary.alpha(0.1).rgb().string(),
         },
       },
-      variant({
-        size: theme.assets.typography.text,
-      }),
-      variant({
-        size: theme.assets.field,
-      }),
-      variant({
-        selected: {
+      theme.assets.typography.text[size],
+      theme.assets.field[size],
+      state.selected && {
+        color: theme.color.onPrimary.rgb().string(),
+        backgroundColor: theme.color.primary.rgb().string(),
+        ':hover': {
           color: theme.color.onPrimary.rgb().string(),
           backgroundColor: theme.color.primary.rgb().string(),
-          ':hover': {
-            color: theme.color.onPrimary.rgb().string(),
-            backgroundColor: theme.color.primary.rgb().string(),
-          },
         },
-      }),
+      },
     ],
 
     selected: [
@@ -93,7 +81,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
       },
     ],
 
-    input: (state, variant) => [
+    input: (state) => [
       {
         flex: 1,
         outline: 0,
@@ -112,16 +100,14 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
           color: theme.color.light.rgb().string(),
         },
       },
-      variant({
-        searchMode: {
-          color: theme.color.hard.rgb().string(),
-        },
-        disableEvents: {
-          pointerEvents: 'none',
-        },
-      }),
+      state.searchMode && {
+        color: theme.color.hard.rgb().string(),
+      },
+      state.disableEvents && {
+        pointerEvents: 'none',
+      },
     ],
-    tag: (state, variant) => [
+    tag: (state) => [
       {
         display: 'inline-flex',
         background: disabled
@@ -141,36 +127,30 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
         marginLeft: 0,
         alignItems: 'center',
       },
-      variant({
-        shape: {
-          square: {
-            borderRadius: 0,
-          },
-          round: {
-            borderRadius: `100px`,
-          },
+      state.shape === 'square' && {
+        borderRadius: 0,
+      },
+      state.shape === 'round' && {
+        borderRadius: `100px`,
+      },
+      state.decoration === 'filled' && [
+        {
+          borderColor: 'transparent',
         },
-        decoration: {
-          filled: [
-            {
-              borderColor: 'transparent',
-            },
-          ],
-          underline: {
-            borderBottomWidth: '1px',
-            borderBottomStyle: 'solid',
-            background: 'transparent',
-            paddingLeft: 0,
-            paddingRight: 0,
-            borderRadius: 0,
-          },
-          none: {
-            background: 'transparent',
-          },
-        },
-      }),
+      ],
+      state.decoration === 'underline' && {
+        borderBottomWidth: '1px',
+        borderBottomStyle: 'solid',
+        background: 'transparent',
+        paddingLeft: 0,
+        paddingRight: 0,
+        borderRadius: 0,
+      },
+      state.decoration === 'none' && {
+        background: 'transparent',
+      },
     ],
-    tagRemove: (state, variant) => [
+    tagRemove: () => [
       {
         marginLeft: `calc(${minHeight} / 10)`,
         marginRight: `calc(-${minHeight} / 10)`,
@@ -184,7 +164,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
         },
       },
     ],
-    emptyConteiner: (state, variant) => [
+    emptyConteiner: () => [
       {
         display: 'flex',
         alignItems: 'center',
@@ -192,14 +172,12 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
         padding: `calc(${minHeight} / 5)`,
       },
     ],
-    emptyText: (state, variant) => [
+    emptyText: () => [
       {
         color: theme.color.light.rgb().string(),
         userSelect: 'none',
       },
-      variant({
-        size: theme.assets.typography.text,
-      }),
+      theme.assets.typography.text[size],
     ],
   }
 }

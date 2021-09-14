@@ -5,7 +5,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
   const color = colorResolver(props.color || theme.color.primary, theme)
 
   return {
-    container: (state, variant) => [
+    container: (state) => [
       {
         position: 'relative',
         minWidth: '0.25rem',
@@ -17,31 +17,23 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         height: `0.75rem`,
         zIndex: 1,
       },
-      variant({
-        size: {
-          xl: { height: '1.25rem' },
-          l: { height: '1rem' },
-          s: { height: '0.5rem' },
-          xs: { height: '0.375rem' },
+      state.size === 'xl' && { height: '1.25rem' },
+      state.size === 'l' && { height: '1rem' },
+      state.size === 's' && { height: '0.5rem' },
+      state.size === 'xs' && { height: '0.375rem' },
+      state.shape === 'round' && [
+        {
+          borderRadius: '100rem',
         },
-        shape: {
-          round: [
-            {
-              borderRadius: '100rem',
-            },
-          ],
+      ],
+      state.decoration === 'outline' && [
+        {
+          background: 'transparent',
+          borderColor: color.rgb().string(),
         },
-        decoration: {
-          outline: [
-            {
-              background: 'transparent',
-              borderColor: color.rgb().string(),
-            },
-          ],
-        },
-      }),
+      ],
     ],
-    thumb: (state, variant) => [],
+    thumb: () => [],
   }
 }
 

@@ -137,15 +137,11 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
         field: [overridesPropClasses.field, styleProps.content],
         child: (state, variant) => [
           props.leftChildNumber &&
-            variant({
-              align: {
-                left: {
-                  overflow: 'hidden',
-                  position: 'relative',
-                },
-              },
-            }),
-          overridesPropClasses.child?.(variant, state),
+            state.align === 'left' && {
+              overflow: 'hidden',
+              position: 'relative',
+            },
+          overridesPropClasses.child?.(state, variant),
         ],
       }}
     >

@@ -7,7 +7,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
   const minHeight = theme.assets.field[size]?.minHeight || '2.5rem'
 
   return {
-    input: (state, variant) => [
+    input: (state) => [
       {
         outline: 0,
         padding: 0,
@@ -26,15 +26,13 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
           color: theme.color.light.rgb().string(),
         },
       },
-      variant({
-        multiline: {
-          margin: `calc(${minHeight} / 4.5) 0`,
-          minHeight: `calc(${minHeight} * 2)`,
-        },
-        disabled: {
-          color: theme.color.hardest.rgb().string(),
-        },
-      }),
+      state.multiline && {
+        margin: `calc(${minHeight} / 4.5) 0`,
+        minHeight: `calc(${minHeight} * 2)`,
+      },
+      state.disabled && {
+        color: theme.color.hardest.rgb().string(),
+      },
     ],
     lineNumbers: [
       {

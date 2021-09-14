@@ -2,22 +2,20 @@ import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => {
   return {
-    drop: (state, variant) => [
+    drop: (state) => [
       {
         transition: 'all 0.2s',
         transform: `translateY(-1rem) scale(0.9)`,
         opacity: 0,
         visibility: 'hidden',
       },
-      variant({
-        isActive: [
-          {
-            transform: `translateY(0) scale(1)`,
-            opacity: 1,
-            visibility: 'visible',
-          },
-        ],
-      }),
+      state.isActive && [
+        {
+          transform: `translateY(0) scale(1)`,
+          opacity: 1,
+          visibility: 'visible',
+        },
+      ],
     ],
     input: [
       {

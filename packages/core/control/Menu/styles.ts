@@ -16,7 +16,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
   }
 
   return {
-    container: (state, variant) => [
+    container: () => [
       {
         ...typography,
         display: 'flex',
@@ -31,7 +31,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
             }),
       },
     ],
-    item: (state, variant) => [
+    item: (state) => [
       {
         display: 'flex',
         cursor: 'pointer',
@@ -46,63 +46,55 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
           borderRadius,
         },
         ':hover:not([data-flow-disabled]):not([data-flow-active])': [
-          variant({
-            decoration: {
-              filled: {
-                color: theme.color.onSurface.rgb().string(),
-              },
-              marker: {
-                color: theme.color.onSurface.rgb().string(),
-              },
-              'marker-reverse': {
-                color: theme.color.onSurface.rgb().string(),
-              },
-              color: {
-                color: theme.color.primary.rgb().string(),
-              },
-            },
-          }),
+          state.decoration === 'filled' && {
+            color: theme.color.onSurface.rgb().string(),
+          },
+          state.decoration === 'marker' && {
+            color: theme.color.onSurface.rgb().string(),
+          },
+          state.decoration === 'marker-reverse' && {
+            color: theme.color.onSurface.rgb().string(),
+          },
+          state.decoration === 'color' && {
+            color: theme.color.primary.rgb().string(),
+          },
         ],
         '&[data-flow-active]': [
           {
             cursor: 'default',
           },
-          variant({
-            decoration: {
-              filled: {
-                background: theme.color.primary.rgb().string(),
-                color: theme.color.onPrimary.rgb().string(),
-                borderRadius,
-              },
-              marker: {
-                position: 'relative',
-                paddingLeft: spacing,
-                color: theme.color.primary.rgb().string(),
-                ':before': {
-                  width: isRow ? `100%` : `calc(${spacing} / 4)`,
-                  height: isRow ? `calc(${spacing} / 4)` : `100%`,
-                  background: theme.color.primary.rgb().string(),
-                  left: 0,
-                  bottom: 0,
-                },
-              },
-              'marker-reverse': {
-                position: 'relative',
-                paddingLeft: spacing,
-                color: theme.color.primary.rgb().string(),
-                ':before': {
-                  width: isRow ? `100%` : `calc(${spacing} / 4)`,
-                  height: isRow ? `calc(${spacing} / 4)` : `100%`,
-                  background: theme.color.primary.rgb().string(),
-                  right: 0,
-                  top: 0,
-                },
-              },
-              color: {
-                color: theme.color.primary.rgb().string(),
-              },
+          state.decoration === 'filled' && {
+            background: theme.color.primary.rgb().string(),
+            color: theme.color.onPrimary.rgb().string(),
+            borderRadius,
+          },
+          state.decoration === 'marker' && {
+            position: 'relative',
+            paddingLeft: spacing,
+            color: theme.color.primary.rgb().string(),
+            ':before': {
+              width: isRow ? `100%` : `calc(${spacing} / 4)`,
+              height: isRow ? `calc(${spacing} / 4)` : `100%`,
+              background: theme.color.primary.rgb().string(),
+              left: 0,
+              bottom: 0,
             },
-          }),
+          },
+          state.decoration === 'marker-reverse' && {
+            position: 'relative',
+            paddingLeft: spacing,
+            color: theme.color.primary.rgb().string(),
+            ':before': {
+              width: isRow ? `100%` : `calc(${spacing} / 4)`,
+              height: isRow ? `calc(${spacing} / 4)` : `100%`,
+              background: theme.color.primary.rgb().string(),
+              right: 0,
+              top: 0,
+            },
+          },
+          state.decoration === 'color' && {
+            color: theme.color.primary.rgb().string(),
+          },
         ],
         '&[data-flow-disabled]': [
           {
@@ -112,7 +104,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       },
     ],
 
-    subMenu: (state, variant) => [
+    subMenu: () => [
       {
         position: 'relative',
         outline: 'none',
@@ -150,7 +142,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       },
     ],
 
-    subMenuArrow: (state, variant) => [
+    subMenuArrow: () => [
       {
         height: typography.fontSize,
         width: typography.fontSize,
@@ -158,7 +150,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       },
     ],
 
-    subMenuContent: (state, variant) => [
+    subMenuContent: () => [
       {
         display: 'none',
       },
@@ -171,7 +163,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       },
     ],
 
-    group: (state, variant) => [
+    group: () => [
       {
         display: 'flex',
         flexDirection: props.direction || (props.column ? 'column' : 'row'),
@@ -179,7 +171,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       },
     ],
 
-    groupTitle: (state, variant) => [
+    groupTitle: () => [
       {
         display: 'flex',
         alignItems: 'center',
@@ -189,7 +181,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       },
     ],
 
-    leftChild: (state, variant) => [
+    leftChild: () => [
       {
         display: 'flex',
         alignItems: 'center',
@@ -205,13 +197,13 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       },
     ],
 
-    middleChild: (state, variant) => [
+    middleChild: () => [
       {
         flex: 1,
       },
     ],
 
-    rightChild: (state, variant) => [
+    rightChild: () => [
       {
         display: 'flex',
         alignItems: 'center',
