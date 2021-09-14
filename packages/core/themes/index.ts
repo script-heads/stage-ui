@@ -134,11 +134,11 @@ export const light = createTheme({
       color: theme.color.lightest.rgb().string(),
     },
     shadow: {
-      xs: '0px 1px 2px rgba(0,0,0,0.15)',
-      s: '0px 2px 4px rgba(0,0,0,0.15)',
-      m: '0px 4px 8px rgba(0,0,0,0.15)',
-      l: '0 16px 18px rgba(0,0,0,0.15)',
-      xl: '0 24px 26px rgba(0,0,0,0.15)',
+      xs: '0px 0px 9px rgba(0, 0, 0, 0.09), 0px 0px 3.03027px rgba(0, 0, 0, 0.0534838), 0px 0px 1.31328px rgba(0, 0, 0, 0.0417053), 0px 0px 0.445327px rgba(0, 0, 0, 0.0337542), 0px 0px 0.0493852px rgba(0, 0, 0, 0.0248326)',
+      s: '0px 6px 7px rgba(0, 0, 0, 0.09), 0px 0.287374px 3.5294px rgba(0, 0, 0, 0.0534838), 0px -0.434029px 2.25515px rgba(0, 0, 0, 0.0417053), 0px -0.219386px 1.3565px rgba(0, 0, 0, 0.0337542), 0px 0.267283px 0.635625px rgba(0, 0, 0, 0.0248326)',
+      m: `0px 24px 58px rgba(0, 0, 0, 0.09), 0px 7.7756px 19.55px rgba(0, 0, 0, 0.0534838), 0px 4.13855px 10.6433px rgba(0, 0, 0, 0.0417053), 0px 2.38694px 6.55259px rgba(0, 0, 0, 0.0337542), 0px 1.1744px 3.75697px rgba(0, 0, 0, 0.0248326)`,
+      l: '0px 45px 85px rgba(0, 0, 0, 0.09), 0px 16.8299px 36.6996px rgba(0, 0, 0, 0.0534838), 0px 9.09173px 20.3938px rgba(0, 0, 0, 0.0417053), 0px 5.0881px 12.016px rgba(0, 0, 0, 0.0337542), 0px 2.35997px 6.25509px rgba(0, 0, 0, 0.0248326)',
+      xl: '0px 45px 121px rgba(0, 0, 0, 0.09), 0px 16.8299px 52.243px rgba(0, 0, 0, 0.0534838), 0px 9.09173px 29.0311px rgba(0, 0, 0, 0.0417053), 0px 5.0881px 17.1052px rgba(0, 0, 0, 0.0337542), 0px 2.35997px 8.90431px rgba(0, 0, 0, 0.0248326)',
     },
     innerShadow: {
       xs: 'inset 0px 1px 1px rgba(0,0,0,0.075)',

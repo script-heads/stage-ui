@@ -6,14 +6,14 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
   const background = colorResolver(props.backgroundColor || theme.color.surface, theme)
     .rgb()
     .string()
-  const borderColor = colorResolver(props.borderColor || theme.assets.border.color, theme)
-    .rgb()
-    .string()
-  const borderWidth = theme.assets.border.width
-  const borderStyle = theme.assets.border.style
   const arrowSize = toRem(props.arrowSize || '.75rem')
   const halfArrowSize = toRem(toPixel(arrowSize) / 2)
   const arrowOffset = toRem(props.arrowOffset || '0')
+
+  if (/#/.exec(theme.assets.shadow.m)) {
+    // eslint-disable-next-line no-console
+    console.warn('Shadow assets must be rgba or hsl or rgb')
+  }
 
   return {
     container: [
@@ -21,11 +21,11 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         position: 'relative',
         width: 'fit-content',
         background,
-        borderWidth,
-        borderStyle,
-        borderColor,
         borderRadius: theme.radius.m,
-        filter: `drop-shadow(${theme.assets.shadow.m})`,
+        filter: theme.assets.shadow.m
+          .split('),')
+          .map((s) => `drop-shadow(${s})`)
+          .join(') '),
         padding: theme.spacing.s,
       },
     ],
