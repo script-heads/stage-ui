@@ -43,6 +43,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'flex-end',
+        backgroundColor: 'rgba(0,0,0,0.1)',
       },
       state.decoration === 'fullscreen' && {
         minHeight: '100vh',
@@ -73,7 +74,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         maxWidth: '80vw',
         marginTop: spacing,
         marginBottom: spacing,
-        boxShadow: `0 1rem 4rem ${theme.color.onSurface.alpha(0.2).rgb().string()}`,
+        boxShadow: theme.assets.shadow.xl,
       },
       state.decoration === 'panel' && {
         minWidth: '15rem',
@@ -82,7 +83,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         transform: 'translateY(15rem)',
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
-        boxShadow: `0 0 4rem ${theme.color.onSurface.alpha(0.2).rgb().string()}`,
+        boxShadow: theme.assets.shadow.xl,
       },
       state.decoration === 'fullscreen' && {
         width: '100%',
@@ -90,12 +91,6 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         height: '100vh',
         minHeight: '100vh',
       },
-      state.visible && [
-        {
-          opacity: 1,
-          transform: 'translateY(0)',
-        },
-      ],
     ],
 
     header: () => [

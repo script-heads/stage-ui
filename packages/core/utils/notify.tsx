@@ -29,9 +29,14 @@ export default (options: NotificationType.NotifyOptions) => {
             </Header>
             <Paragraph m={0}>{options.message}</Paragraph>
           </Block>
-          <Block pl="0.5rem">
-            <Close size="1.25rem" alignSelf="flex-end" color="light" onClick={close} />
-          </Block>
+          <Close
+            size="1.25rem"
+            m="-0.5rem -0.5rem 0.5rem 0.5rem"
+            type="filled"
+            alignSelf="flex-start"
+            color="light"
+            onClick={close}
+          />
         </Flexbox>
       )}
     </Notification>,
