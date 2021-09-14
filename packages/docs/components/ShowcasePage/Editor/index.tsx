@@ -9,7 +9,6 @@ import Preview from './Preview'
 
 interface EditorProps {
   cases: Exclude<PageType['cases'], undefined>
-  onBack: () => void
 }
 
 const MonacoEditor = React.memo(
@@ -47,7 +46,6 @@ const Editor = (props: EditorProps) => {
   const [grid, setGrid] = useState(!(localStorage.getItem('case_grid') === 'false'))
   const isMobile = () => document.body.offsetWidth < window.breakpoints[1]
   let directionVar: 'row' | 'column' = isMobile() ? 'column' : 'row'
-  const [fullscreen, setFullscreen] = useState(false)
   const theme = useTheme()
   const [direction, setDirection] = useState(directionVar)
 
@@ -94,31 +92,16 @@ const Editor = (props: EditorProps) => {
     monaco.setCode(cases[currentCase].code)
   }, [currentCase])
 
-  useEffect(() => {
-    document.body.style.overflow = fullscreen ? 'hidden' : 'auto'
-  }, [fullscreen])
-
   return (
     <Block w="100%">
       <Flexbox mb="m" alignItems="center">
-        <Flexbox
-          alignItems="center"
-          mr="m"
-          ml="-0.5rem"
-          mb="0.125rem"
-          textColor="primary"
-          onClick={props.onBack}
-        >
-          <ArrowLeft mr="xs" />
-          <Text>Back</Text>
-        </Flexbox>
         {cases.map((c, caseIndex) => (
           <Button
             p="xs m"
             mr="s"
             shape="round"
             key={caseIndex}
-            backgroundColor={caseIndex === currentCase ? 'primary' : 'surface'}
+            color={caseIndex === currentCase ? 'onSurface' : 'surface'}
             textColor={caseIndex === currentCase ? 'onPrimary' : 'onSurface'}
             decoration={caseIndex === currentCase ? 'filled' : 'text'}
             onClick={() => setCurrentCase(caseIndex)}
@@ -129,7 +112,7 @@ const Editor = (props: EditorProps) => {
         ))}
         <Block flex={1} />
         <Grid
-          size="1.25rem"
+          size="1.5rem"
           color={(c) => (grid ? c.primary : c.onSurface)}
           onClick={() => {
             localStorage.setItem('case_grid', !grid ? 'true' : 'false')
@@ -137,15 +120,9 @@ const Editor = (props: EditorProps) => {
           }}
           mx="0.5rem"
         />
-        <Expand
-          size="1.25rem"
-          mx="0.5rem"
-          color={(c) => c.onSurface}
-          onClick={() => setFullscreen(true)}
-        />
         <Copy
           ml="0.5rem"
-          size="1.25rem"
+          size="1.5rem"
           color={(c) => c.onSurface}
           onClick={() => {
             monaco.copyToClipboard()
@@ -158,47 +135,21 @@ const Editor = (props: EditorProps) => {
         />
       </Flexbox>
       <Block
-        h="24rem"
-        decoration="surface"
-        borderWidth={0}
+        h="28rem"
+        shadow="xs"
+        borderRadius="m"
         css={[
           {
             overflow: 'hidden',
-            borderTopLeftRadius: 0,
-            borderTopRightRadius: 0,
-          },
-          fullscreen && {
-            position: 'fixed',
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
-            margin: 0,
-            borderRadius: 0,
-            height: '100%',
-            zIndex: 10,
           },
         ]}
       >
         <Split direction={direction}>
           <MonacoEditor setCode={setCode} />
-          <Block h="calc(100% - 0.25rem)" flex={1} overflow="hidden" m="0.125rem">
+          <Block h="calc(100% - 0.25rem)" flex={1} overflow="hidden">
             <ErrorBoundary>
               {code && <Preview theme={theme} code={code} grid={grid} />}
             </ErrorBoundary>
-            {fullscreen && (
-              <Collapse
-                shape="oval"
-                background="lightest"
-                css={{
-                  position: 'fixed',
-                  top: '1rem',
-                  right: '1rem',
-                  zIndex: 100,
-                }}
-                onClick={() => setFullscreen(false)}
-              />
-            )}
           </Block>
         </Split>
       </Block>
