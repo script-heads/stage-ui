@@ -3,7 +3,7 @@ import Types from './types'
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = () => {
   return {
     test: {},
-    container: (state, variant) => [
+    container: (state) => [
       {
         display: 'flex',
         width: '100%',
@@ -11,11 +11,9 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = () => {
         flex: 1,
         flexDirection: 'row',
       },
-      variant({
-        vertical: {
-          flexDirection: 'column',
-        },
-      }),
+      state.vertical && {
+        flexDirection: 'column',
+      },
     ],
   }
 }

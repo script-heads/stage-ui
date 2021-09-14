@@ -50,7 +50,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         },
       },
     ],
-    yBar: (state, variant) => [
+    yBar: (state) => [
       {
         zIndex: 999,
         overflow: 'hidden',
@@ -68,51 +68,43 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
           '> span': { opacity: 0.4 },
         },
       },
-      variant({
-        active: [{ opacity: 1 }],
-        size: {
-          xs: [
-            {
-              width: '0.25rem',
-            },
-          ],
-          s: [
-            {
-              width: '0.375rem',
-            },
-          ],
-          l: [
-            {
-              width: '0.625rem',
-            },
-          ],
-          xl: [
-            {
-              width: '0.75rem',
-            },
-          ],
+      state.active && [{ opacity: 1 }],
+      state.size === 'xs' && [
+        {
+          width: '0.25rem',
         },
-        shape: {
-          square: [
-            {
-              borderRadius: 0,
-            },
-          ],
+      ],
+      state.size === 's' && [
+        {
+          width: '0.375rem',
         },
-        position: {
-          none: {
-            display: 'none',
-          },
-          left: [
-            {
-              right: 'auto',
-              left: 0,
-            },
-          ],
+      ],
+      state.size === 'l' && [
+        {
+          width: '0.625rem',
         },
-      }),
+      ],
+      state.size === 'xl' && [
+        {
+          width: '0.75rem',
+        },
+      ],
+      state.shape === 'square' && [
+        {
+          borderRadius: 0,
+        },
+      ],
+      state.position === 'none' && {
+        display: 'none',
+      },
+      state.position === 'left' && [
+        {
+          right: 'auto',
+          left: 0,
+        },
+      ],
     ],
-    yThumb: (state, variant) => [
+    yThumb: (state) => [
       {
         zIndex: 999,
         display: 'block',
@@ -124,40 +116,34 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         transition: 'opacity 0.5s',
         willChange: 'opacity',
       },
-      variant({
-        active: [{ opacity: 0.4 }],
-        size: {
-          xs: [
-            {
-              width: '0.25rem',
-            },
-          ],
-          s: [
-            {
-              width: '0.375rem',
-            },
-          ],
-          l: [
-            {
-              width: '0.625rem',
-            },
-          ],
-          xl: [
-            {
-              width: '0.75rem',
-            },
-          ],
+      state.active && [{ opacity: 0.4 }],
+      state.size === 'xs' && [
+        {
+          width: '0.25rem',
         },
-        shape: {
-          square: [
-            {
-              borderRadius: 0,
-            },
-          ],
+      ],
+      state.size === 's' && [
+        {
+          width: '0.375rem',
         },
-      }),
+      ],
+      state.size === 'l' && [
+        {
+          width: '0.625rem',
+        },
+      ],
+      state.size === 'xl' && [
+        {
+          width: '0.75rem',
+        },
+      ],
+      state.shape === 'square' && [
+        {
+          borderRadius: 0,
+        },
+      ],
     ],
-    xBar: (state, variant) => [
+    xBar: (state) => [
       {
         zIndex: 999,
         overflow: 'hidden',
@@ -176,51 +162,43 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
           '> span': { opacity: 0.4 },
         },
       },
-      variant({
-        active: [{ opacity: 1 }],
-        size: {
-          xs: [
-            {
-              height: '0.25rem',
-            },
-          ],
-          s: [
-            {
-              height: '0.5rem',
-            },
-          ],
-          l: [
-            {
-              height: '1rem',
-            },
-          ],
-          xl: [
-            {
-              height: '1.25rem',
-            },
-          ],
+      state.size === 'xs' && [
+        {
+          height: '0.25rem',
         },
-        shape: {
-          square: [
-            {
-              borderRadius: 0,
-            },
-          ],
+      ],
+      state.size === 's' && [
+        {
+          height: '0.5rem',
         },
-        position: {
-          none: {
-            display: 'none',
-          },
-          top: [
-            {
-              bottom: 'auto',
-              top: 0,
-            },
-          ],
+      ],
+      state.size === 'l' && [
+        {
+          height: '1rem',
         },
-      }),
+      ],
+      state.size === 'xl' && [
+        {
+          height: '1.25rem',
+        },
+      ],
+      state.active && [{ opacity: 1 }],
+      state.shape === 'square' && [
+        {
+          borderRadius: 0,
+        },
+      ],
+      state.position === 'none' && {
+        display: 'none',
+      },
+      state.position === 'top' && [
+        {
+          bottom: 'auto',
+          top: 0,
+        },
+      ],
     ],
-    xThumb: (state, variant) => [
+    xThumb: (state) => [
       {
         zIndex: 999,
         display: 'block',
@@ -232,38 +210,32 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         transition: 'opacity 0.5s',
         willChange: 'opacity',
       },
-      variant({
-        active: [{ opacity: 0.4 }],
-        size: {
-          xs: [
-            {
-              height: '0.25rem',
-            },
-          ],
-          s: [
-            {
-              height: '0.5rem',
-            },
-          ],
-          l: [
-            {
-              height: '1rem',
-            },
-          ],
-          xl: [
-            {
-              height: '1.25rem',
-            },
-          ],
+      state.size === 'xs' && [
+        {
+          height: '0.25rem',
         },
-        shape: {
-          square: [
-            {
-              borderRadius: 0,
-            },
-          ],
+      ],
+      state.size === 's' && [
+        {
+          height: '0.5rem',
         },
-      }),
+      ],
+      state.size === 'l' && [
+        {
+          height: '1rem',
+        },
+      ],
+      state.size === 'xl' && [
+        {
+          height: '1.25rem',
+        },
+      ],
+      state.active && [{ opacity: 0.4 }],
+      state.shape === 'square' && [
+        {
+          borderRadius: 0,
+        },
+      ],
     ],
   }
 }
