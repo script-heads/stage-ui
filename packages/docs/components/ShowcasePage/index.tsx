@@ -19,21 +19,9 @@ const ShowcasePage = (props: ContentProps) => {
   const { data, config, onClose } = props
 
   return (
-    <Flexbox column alignSelf="stretch" mb="xl">
+    <Flexbox column alignSelf="stretch">
       <Flexbox column alignItems="center">
-        <Flexbox
-          column
-          // justifyContent="space-between"
-          style={{
-            width: '100%',
-            // maxWidth: data.cases === undefined ? '60rem' : '100%',
-          }}
-          backgroundColor="surface"
-          borderRadius="0.75rem"
-          p="l"
-          pt="m"
-          mt="m"
-        >
+        <Flexbox column>
           {data.cases && <Editor cases={data.cases} onBack={onClose} />}
           {data.default && (
             <Block>

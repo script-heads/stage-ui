@@ -91,6 +91,12 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         height: '100vh',
         minHeight: '100vh',
       },
+      state.visible && [
+        {
+          opacity: 1,
+          transform: 'translateY(0)',
+        },
+      ],
     ],
 
     header: () => [
