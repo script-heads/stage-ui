@@ -16,6 +16,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
         boxSizing: 'border-box',
         overflow: 'hidden',
         top: '0.25rem',
+        padding: '0.5rem',
       },
       state.shape === 'square' && {
         borderRadius: 0,
@@ -54,6 +55,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
         alignItems: 'center',
         cursor: 'pointer',
         userSelect: 'none',
+        borderRadius: theme.radius.s,
         ':hover': {
           color: theme.color.primary.rgb().string(),
           backgroundColor: theme.color.primary.alpha(0.1).rgb().string(),
