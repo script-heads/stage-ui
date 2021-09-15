@@ -8,12 +8,12 @@ import { CustomPageProps } from '../../utils/core'
 type MenuItemProps = ButtonTypes.Props & {
   active: boolean
 }
-const MenuItem = (props: MenuItemProps & { mobile?: boolean }) => {
+const LogoItem = (props: MenuItemProps & { mobile?: boolean }) => {
   const { active, ...buttomProps } = props
   return (
     <Button
       p="0"
-      mr="m"
+      mr="4rem"
       size="l"
       decoration="text"
       color={
@@ -37,11 +37,38 @@ const MenuItem = (props: MenuItemProps & { mobile?: boolean }) => {
     />
   )
 }
+const MenuItem = (props: MenuItemProps & { mobile?: boolean }) => {
+  const { active, ...buttomProps } = props
+  return (
+    <Button
+      p="0"
+      mr="xl"
+      decoration="text"
+      color={
+        // eslint-disable-next-line no-nested-ternary
+        props.active
+          ? props.mobile
+            ? 'surface'
+            : 'primary'
+          : props.mobile
+          ? 'hardest'
+          : 'onSurface'
+      }
+      overrides={{
+        container: {
+          transition: 'all 0.125s',
+          background: 'none !important',
+        },
+      }}
+      {...buttomProps}
+    />
+  )
+}
 
 const MenuItems = (props: CustomPageProps & { onCloseMobileMenu?: () => void }) => {
   return (
     <>
-      <MenuItem
+      <LogoItem
         mobile={!!props.onCloseMobileMenu}
         label="StageUI"
         active={false}
@@ -52,11 +79,11 @@ const MenuItems = (props: CustomPageProps & { onCloseMobileMenu?: () => void }) 
       />
       <MenuItem
         mobile={!!props.onCloseMobileMenu}
-        label="Documentation"
-        active={!!/\/docs/.exec(props.path)}
+        label="Getting started"
+        active={!!/\/getting-started/.exec(props.path)}
         onClick={() => {
           props.onCloseMobileMenu?.()
-          props.setPath('/docs')
+          props.setPath('/getting-started')
         }}
       />
       <MenuItem

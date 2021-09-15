@@ -60,7 +60,7 @@ export default (props: CustomPageProps) => {
           <Button
             w="12rem"
             size="l"
-            onClick={() => props.setPath('/docs')}
+            onClick={() => props.setPath('/getting-started')}
             label="Getting started"
           />
           <Badge size="xs" content={`v.${corePackage.version}`}>

@@ -21,9 +21,6 @@ export const sticky = true
 
 export default () => (
   <>
-    <Header size="l" id="getting_started">
-      Getting started
-    </Header>
     <P color="hardest">Install StageUI</P>
     <Syntax code="npm i @stage-ui/core" />
     <P color="hardest">
