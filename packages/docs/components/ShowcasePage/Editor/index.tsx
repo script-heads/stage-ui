@@ -99,7 +99,6 @@ const Editor = (props: EditorProps) => {
           <Button
             p="xs m"
             mr="s"
-            color="hardest"
             key={caseIndex}
             decoration={caseIndex === currentCase ? 'filled' : 'text'}
             onClick={() => setCurrentCase(caseIndex)}
