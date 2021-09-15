@@ -31,6 +31,7 @@ export default () => {
             const PreviewIcon = AllIcons[key]
             return (
               <Flexbox
+                key={key}
                 column
                 alignItems="center"
                 p="m"
