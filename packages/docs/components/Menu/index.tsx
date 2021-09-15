@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Block, Button, Flexbox, Link, Text, useTheme } from '@stage-ui/core'
+import { Block, Button, Flexbox, Link, useTheme } from '@stage-ui/core'
 import { Brush, Github, Menu as Burger } from '@stage-ui/icons'
 import ButtonTypes from '@stage-ui/core/control/Button/types'
 import { panel } from '@stage-ui/docs/components/Themer/src/ThemeConfigurator'
@@ -45,6 +45,15 @@ const MenuItems = (props: CustomPageProps & { onCloseMobileMenu?: () => void }) 
       <MenuItem
         mobile={!!props.onCloseMobileMenu}
         label="StageUI"
+        active={false}
+        onClick={() => {
+          props.onCloseMobileMenu?.()
+          props.setPath('/')
+        }}
+      />
+      <MenuItem
+        mobile={!!props.onCloseMobileMenu}
+        label="Documentation"
         active={!!/\/docs/.exec(props.path)}
         onClick={() => {
           props.onCloseMobileMenu?.()

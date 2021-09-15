@@ -7,11 +7,11 @@ import { CustomPageProps, PageType } from '@stage-ui/docs/utils/core'
 const itemStyle = (theme: Stage.Theme): Interpolation<Stage.Theme> => ({
   flexDirection: 'column',
   transition: 'all 0.125s',
-  boxShadow: 'none',
+  boxShadow: theme.assets.shadow.xs,
   backgroundColor: theme.color.surface.rgb().string(),
   ' svg': {
-    width: '4rem',
-    height: '4rem',
+    width: '3rem',
+    height: '3rem',
     ' path': {
       transition: 'all 0.125s',
       fill: theme.color.onSurface.alpha(0.7).rgb().string(),
@@ -19,7 +19,7 @@ const itemStyle = (theme: Stage.Theme): Interpolation<Stage.Theme> => ({
   },
   ':hover': {
     transform: 'scale(1.1)',
-    boxShadow: `0 0 10rem rgba(0,0,0,0.15)`,
+    boxShadow: theme.assets.shadow.xl,
 
     zIndex: 100,
     ' svg path': {

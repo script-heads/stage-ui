@@ -42,7 +42,7 @@ export default (props: CustomPageProps) => {
   }, [])
 
   return (
-    <Flexbox backgroundColor="surface" justifyContent="center">
+    <Flexbox justifyContent="center">
       <Block w="62rem" flexShrink={1} px={['2rem', '2rem', '1rem']} css={{ overflow: 'hidden' }}>
         <Header {...props} />
         <Features />

@@ -19,7 +19,7 @@ export const title = 'Getting started'
 export const sticky = true
 
 export default () => (
-  <Block backgroundColor="surface" borderRadius="1rem">
+  <>
     <Header size="l" id="getting_started">
       Getting started
     </Header>
@@ -175,5 +175,5 @@ export default () => (
       More details about in you can find in <Link href="/overrides">Overrides</Link> section
     </P>
     <Syntax code={overrides} />
-  </Block>
+  </>
 )

@@ -96,6 +96,9 @@ const Router = (props: RouterProps) => {
           }),
       }}
     >
+      <div className="background_light" />
+      <div className="background_light background_light_1" />
+      <div className="background_light background_light_2" />
       <Flexbox column alignItems="center" p="xl">
         <Block css={{ maxWidth: '64rem', width: '100%' }}>
           {/* {!showcasePage && ( */}

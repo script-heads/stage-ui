@@ -12,7 +12,7 @@ const ShowcaseLayout = (props: CustomPageProps) => {
             {/* <Text size="s" color="light" weight={600} pl="xl">
               {pageCode}
             </Text> */}
-            <Flexbox wrap="wrap">
+            <Flexbox wrap="wrap" css={{ gap: '1rem' }}>
               {props.pages[pageCode].map((item) => {
                 return <Item key={item.id} page={item} setPath={props.setPath} />
               })}

@@ -1,90 +1,93 @@
-import { Flexbox, notify, Text } from '@stage-ui/core'
+import { Flexbox, TextField, notify, Text, useTheme } from '@stage-ui/core'
+import { Search } from '@stage-ui/icons'
 import * as AllIcons from '@stage-ui/icons'
-import React from 'react'
+import React, { useState } from 'react'
 
 export const title = 'Collection'
 
 export default () => {
+  const theme = useTheme()
+  const [search, setSearch] = useState('')
   return (
-    <Flexbox wrap="wrap" pb="4rem" justifyContent="space-between">
-      {Object.keys(AllIcons).map((key) => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const PreviewIcon = AllIcons[key]
-        return (
-          // <Delay key={key} index={index}>
-          <Flexbox
-            key={key}
-            column
-            p="1rem"
-            justifyContent="center"
-            alignItems="center"
-            alignContent="center"
-          >
-            <Flexbox
-              css={{
-                transition: 'all 0.25s',
-                ':hover': {
-                  transform: 'scale(1.1)',
-                },
-                ':active': {
-                  transform: 'scale(0.9)',
-                },
-              }}
-              onClick={() => {
-                // TODO: fix clipboard
-                navigator.clipboard
-                  .writeText(`import ${key} from '@stage-ui/icons/lib/${key}'`)
-                  .then(
-                    () => {
-                      notify({
-                        title: 'Icons',
-                        message: `${key} copyed to clipboard`,
-                        timeout: 3000,
-                      })
+    <Flexbox column>
+      <TextField
+        placeholder="Find"
+        w="12rem"
+        mb="l"
+        rightChild={<Search />}
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      <Flexbox wrap="wrap" pb="4rem" css={{ gap: '1rem' }}>
+        {Object.keys(AllIcons)
+          .filter((key) => {
+            if (!!search && !RegExp(search.toLowerCase()).exec(key.toLowerCase())) {
+              return false
+            }
+            return true
+          })
+          .map((key) => {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+            const PreviewIcon = AllIcons[key]
+            return (
+              <Flexbox
+                column
+                alignItems="center"
+                p="m"
+                w="10rem"
+                borderRadius="1rem"
+                onClick={() => {
+                  const el = document.createElement('textarea')
+                  el.value = `import ${key} from '@stage-ui/icons/lib/${key}`
+                  document.body.appendChild(el)
+                  el.select()
+                  document.execCommand('copy')
+                  document.body.removeChild(el)
+                  notify({
+                    title: 'Icons',
+                    message: `${key} copyed to clipboard`,
+                    timeout: 3000,
+                  })
+                }}
+                css={{
+                  flexDirection: 'column',
+                  transition: 'all 0.125s',
+                  boxShadow: theme.assets.shadow.xs,
+                  backgroundColor: theme.color.surface.rgb().string(),
+                  ':hover': {
+                    transform: 'scale(1.1)',
+                    boxShadow: theme.assets.shadow.xl,
+                    zIndex: 100,
+                    '[data-id="filled"]': {
+                      display: 'block',
                     },
-                    (err) => {
-                      if (err instanceof Error) {
-                        notify({
-                          title: 'Icons',
-                          message: `Could not copy import cause of error ${err.message}`,
-                        })
-                      }
+                    '[data-id="outline"]': {
+                      display: 'none',
                     },
-                  )
-              }}
-            >
-              <PreviewIcon
-                type="filled"
-                shape="oval"
-                size="2rem"
-                borderRadius="1rem 0 0 1rem"
-                background="lightest"
-              />
-              <PreviewIcon
-                type="outline"
-                shape="oval"
-                size="2rem"
-                borderRadius="0 1rem 1rem 0"
-                color="lightest"
-                background="onSurface"
-              />
-            </Flexbox>
-            <Text
-              color="light"
-              mt=".5rem"
-              size="xs"
-              align="center"
-              css={{
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                width: '100%',
-              }}
-            >
-              {key}
-            </Text>
-          </Flexbox>
-        )
-      })}
+                  },
+                }}
+              >
+                <Flexbox pb="s">
+                  <PreviewIcon
+                    type="filled"
+                    size="3rem"
+                    attributes={{ 'data-id': 'filled' }}
+                    css={{ display: 'none' }}
+                  />
+                  <PreviewIcon
+                    color="hardest"
+                    type="outline"
+                    size="3rem"
+                    attributes={{ 'data-id': 'outline' }}
+                  />
+                </Flexbox>
+                <Text weight={500} color="hardest" p="s">
+                  {key}
+                </Text>
+              </Flexbox>
+            )
+          })}
+      </Flexbox>
     </Flexbox>
   )
 }
