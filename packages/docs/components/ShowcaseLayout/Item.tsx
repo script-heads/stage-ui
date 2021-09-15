@@ -34,7 +34,7 @@ export default (props: { page: PageType; setPath: CustomPageProps['setPath'] }) 
       column
       alignItems="center"
       p="m"
-      w="6rem"
+      w="10rem"
       borderRadius="1rem"
       onClick={() => {
         props.setPath(props.page.url)

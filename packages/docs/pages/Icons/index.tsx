@@ -11,7 +11,7 @@ export default () => {
   return (
     <Flexbox column>
       <TextField
-        placeholder="Find"
+        placeholder="Find by name"
         w="12rem"
         mb="l"
         rightChild={<Search />}
@@ -71,14 +71,14 @@ export default () => {
                 <Flexbox pb="s">
                   <PreviewIcon
                     type="filled"
-                    size="3rem"
+                    size="2.75rem"
                     attributes={{ 'data-id': 'filled' }}
                     css={{ display: 'none' }}
                   />
                   <PreviewIcon
                     color="hardest"
                     type="outline"
-                    size="3rem"
+                    size="2.75rem"
                     attributes={{ 'data-id': 'outline' }}
                   />
                 </Flexbox>

@@ -10,8 +10,8 @@ const ShowcaseLayout = (props: CustomPageProps) => {
   return (
     <Flexbox column>
       <TextField
-        placeholder="Find"
-        w="8rem"
+        placeholder="Find by name"
+        w="12rem"
         mb="l"
         rightChild={<Search />}
         value={search}
