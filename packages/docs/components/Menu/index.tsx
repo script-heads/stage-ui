@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { Block, Button, Flexbox, Link, useTheme } from '@stage-ui/core'
+import { Block, Button, Flexbox, Link, Text, useTheme } from '@stage-ui/core'
 import { Brush, Github, Menu as Burger, Moon } from '@stage-ui/icons'
 import ButtonTypes from '@stage-ui/core/control/Button/types'
 import { panel } from '@stage-ui/docs/components/Themer/src/ThemeConfigurator'
 import { CustomPageProps } from '../../utils/core'
+import corePackage from '../../../core/package.json'
 
 type MenuItemProps = ButtonTypes.Props & {
   active: boolean
@@ -34,7 +35,14 @@ const LogoItem = (props: MenuItemProps & { mobile?: boolean }) => {
         },
       }}
       {...buttomProps}
-    />
+    >
+      <Flexbox column alignItems="flex-start">
+        {buttomProps.label}
+        <Text size="xs" mt="xs" color="light" weight="normal">
+          v.{corePackage.version}
+        </Text>
+      </Flexbox>
+    </Button>
   )
 }
 const MenuItem = (props: MenuItemProps & { mobile?: boolean }) => {
