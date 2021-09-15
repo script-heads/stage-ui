@@ -9,18 +9,17 @@ export interface ContentProps {
   pages: PagesType
   config: Config
   path: string
-  onClose: () => void
   theme: Stage.Theme
   themes: Record<string, Stage.Theme>
   setTheme: React.Dispatch<React.SetStateAction<Stage.Theme>>
 }
 
 const ShowcasePage = (props: ContentProps) => {
-  const { data, config, onClose } = props
+  const { data, config } = props
 
   return (
     <Flexbox column>
-      {data.cases && <Editor cases={data.cases} onBack={onClose} />}
+      {data.cases && <Editor cases={data.cases} />}
       {data.default && (
         <Block>
           <data.default />

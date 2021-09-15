@@ -35,9 +35,6 @@ const ShowcaseLayout = (props: CustomPageProps) => {
           .map((pageCode) => {
             return (
               <Block key={pageCode}>
-                {/* <Text size="s" color="light" weight={600} pl="xl">
-              {pageCode}
-            </Text> */}
                 <Flexbox wrap="wrap" css={{ gap: '1rem' }}>
                   {props.pages[pageCode]
                     .filter((key) => {

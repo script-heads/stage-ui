@@ -1,5 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react'
-import { Block, Flexbox, Header, Link, Paragraph as P, Text } from '@stage-ui/core'
+import { Header, Link, Paragraph as P, Text } from '@stage-ui/core'
 import Syntax from '../../components/ShowcasePage/Content/Syntax'
 import ViewportCode from './viewport.raw'
 import styleProp from './styleProp.raw'
