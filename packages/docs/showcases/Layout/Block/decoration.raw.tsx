@@ -7,15 +7,6 @@ export default () => {
       <Block decoration="surface" p="m">
         Surface
       </Block>
-      <Block decoration="minorShadow" p="m">
-        Minor shadow
-      </Block>
-      <Block decoration="mediumShadow" p="m">
-        Medium shadow
-      </Block>
-      <Block decoration="majorShadow" p="m">
-        Major shadow
-      </Block>
       <Block decoration="skeleton" p="m">
         Skeleton
       </Block>
