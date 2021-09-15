@@ -25,7 +25,7 @@ export default (props: ComponentsProps) => {
           Also at {title}:
         </Text>
         <Flexbox
-          css={(t) => ({
+          css={() => ({
             flexWrap: 'wrap',
             color: theme.color.primary.rgb().string(),
             span: {
@@ -43,7 +43,7 @@ export default (props: ComponentsProps) => {
               mt="0.5rem"
               transform="uppercase"
               onClick={() => {
-                window.location.href = `/${name.toLocaleLowerCase()}`
+                window.location.href = `/components/${name.toLocaleLowerCase()}`
               }}
             >
               {name}

@@ -158,7 +158,14 @@ export default (props: CustomPageProps) => {
                 mr="0.5rem"
                 size="s"
                 decoration="outline"
-                onClick={() => dialog({ title: 'Title', message: 'Message' })}
+                onClick={() =>
+                  dialog({
+                    title: 'Title',
+                    render: () => {
+                      return <div>Body</div>
+                    },
+                  })
+                }
               >
                 Dialog
               </Button>
