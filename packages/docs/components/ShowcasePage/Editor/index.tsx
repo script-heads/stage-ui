@@ -99,10 +99,7 @@ const Editor = (props: EditorProps) => {
           <Button
             p="xs m"
             mr="s"
-            shape="round"
             key={caseIndex}
-            color={caseIndex === currentCase ? 'onSurface' : 'surface'}
-            textColor={caseIndex === currentCase ? 'onPrimary' : 'onSurface'}
             decoration={caseIndex === currentCase ? 'filled' : 'text'}
             onClick={() => setCurrentCase(caseIndex)}
             css={{ cursor: 'pointer' }}
