@@ -1,4 +1,5 @@
 import colorResolver from '@stage-ui/system/props/color'
+import { breakpoint } from '@stage-ui/system/utils/breakpoint'
 import { toPixel, toRem } from '@stage-ui/system/utils/size'
 import Types from './types'
 
@@ -9,8 +10,17 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
   const arrowSize = toRem(props.arrowSize || '.75rem')
   const halfArrowSize = toRem(toPixel(arrowSize) / 2)
   const arrowOffset = toRem(props.arrowOffset || '0')
+  let shadow = theme.assets.shadow.m
+  if (props.shadow) {
+    if (Array.isArray(props.shadow)) {
+      const shadowSize = breakpoint(props.shadow, theme)
+      shadow = theme.assets.shadow[shadowSize]
+    } else {
+      shadow = theme.assets.shadow[props.shadow]
+    }
+  }
 
-  if (/#/.exec(theme.assets.shadow.m)) {
+  if (/#/.exec(shadow)) {
     // eslint-disable-next-line no-console
     console.warn('Shadow assets must be rgba or hsl or rgb')
   }
@@ -22,11 +32,14 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         width: 'fit-content',
         background,
         borderRadius: theme.radius.m,
-        filter: theme.assets.shadow.m
+        filter: shadow
           .split('),')
           .map((s) => `drop-shadow(${s})`)
           .join(') '),
         padding: theme.spacing.s,
+      },
+      props.shadow && {
+        boxShadow: 'none !important',
       },
     ],
     arrow: (state) => [

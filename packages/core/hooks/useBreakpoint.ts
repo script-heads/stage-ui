@@ -1,31 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState, useMemo } from 'react'
 import useTheme from '@stage-ui/system/hooks/useTheme'
+import { breakpointIndex } from '@stage-ui/system/utils/breakpoint'
 
 export const useBreakpoint = <T>(values: T[]): T => {
   const theme = useTheme()
-  const breakpoints = useMemo(
-    () => theme.breakpoints.map((s) => parseFloat(s.replace(/[^0-9\\.]/g, ''))),
-    [],
-  )
 
-  const calcIndex = () => {
-    let idx = 0
-    const w = document.body.clientWidth || document.body.offsetWidth
-    breakpoints.forEach((breakpoint, i) => {
-      if (w <= breakpoint) {
-        idx = i
-      }
-    })
-    return idx
-  }
+  let index = breakpointIndex(theme)
 
-  let index = calcIndex()
-
-  const [reload, forceReload] = useState<number>(index)
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  const [_, forceReload] = useState<number>(index)
 
   const calcState = () => {
-    const idx = calcIndex()
+    const idx = breakpointIndex(theme)
     if (idx !== index) {
       forceReload(idx)
       index = idx
