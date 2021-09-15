@@ -3,18 +3,12 @@ import { Grid, Block } from '@stage-ui/core'
 
 export default () => {
   return (
-    <Grid gap="1rem" textColor="hardest">
+    <Grid gap="2rem" textColor="hardest">
       <Block shadow="xs" p="m">
-        Shadows can be Stage.Size or css box-shadow string
-      </Block>
-      <Block shadow="s" backgroundColor="surface" p="m">
-        better user it with surface color
+        Our shadows have 5 layers for each Stage.Size for best effect
       </Block>
       <Block shadow="m" backgroundColor="surface" borderRadius="m" p="m">
-        then add some border radius
-      </Block>
-      <Block shadow="l" backgroundColor="surface" borderRadius="m" p="m">
-        more shadow more cool looking blocks
+        Better use shadows with surface color and add some radius for better look
       </Block>
     </Grid>
   )
