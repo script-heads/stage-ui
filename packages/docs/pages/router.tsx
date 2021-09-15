@@ -56,6 +56,7 @@ const Router = (props: RouterProps) => {
         window: () => [
           {
             width: '100%',
+            backgroundColor: t.color.background.hex(),
           },
           breakpointProp(['80vw', '90vw', '100vw'], t, (maxWidth) => ({ maxWidth })),
         ],

@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { Block, Button, Flexbox, Link, useTheme } from '@stage-ui/core'
-import { Brush, Github, Menu as Burger } from '@stage-ui/icons'
+import { Brush, Github, Menu as Burger, Moon } from '@stage-ui/icons'
 import ButtonTypes from '@stage-ui/core/control/Button/types'
 import { panel } from '@stage-ui/docs/components/Themer/src/ThemeConfigurator'
-import ThemeSwitcher from './ThemeSwitcher'
 import { CustomPageProps } from '../../utils/core'
 
 type MenuItemProps = ButtonTypes.Props & {
@@ -104,10 +103,12 @@ const Menu = (props: CustomPageProps) => {
           <MenuItems {...props} />
         </Flexbox>
         <Flexbox>
-          <ThemeSwitcher
-            themes={props.themes}
-            currentTheme={props.theme}
-            setTheme={props.setTheme}
+          <Moon
+            size="1.5rem"
+            onClick={() => {
+              props.setTheme(props.themes[props.theme.name === 'Dark' ? 'light' : 'dark'])
+            }}
+            color={props.theme.name === 'Dark' ? 'primary' : 'onSurface'}
           />
           <Brush
             onClick={() => {
