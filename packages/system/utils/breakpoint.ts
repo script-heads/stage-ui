@@ -1,7 +1,7 @@
 import { toPixel } from './size'
 
 /**
- * calculate breakpoint value
+ * calculate breakpoint index
  */
 export const breakpointIndex = (t: Stage.Theme) => {
   let idx = 0
@@ -15,7 +15,7 @@ export const breakpointIndex = (t: Stage.Theme) => {
 }
 
 /**
- * calculate breakpoint value
+ * get breakpoint value
  */
 export const breakpoint = <P = string | number | undefined>(v: P[], t: Stage.Theme): P => {
   return v[breakpointIndex(t)] || v[v.length - 1]
