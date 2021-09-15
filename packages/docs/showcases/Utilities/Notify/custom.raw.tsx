@@ -1,5 +1,4 @@
-import { Button, Flexbox, notify, Text } from '@stage-ui/core'
-import { Person } from '@stage-ui/icons'
+import { Button, Flexbox, Header, notify } from '@stage-ui/core'
 import React from 'react'
 
 export default () => {
@@ -9,10 +8,9 @@ export default () => {
       message: '',
       decoration: 'majorShadow',
       render: (close) => (
-        <Flexbox column p="1rem" w="10rem" alignItems="center">
-          <Person size="4rem" mb="m" />
-          <Text color="primary">Hello :)</Text>
-          <Button mt="m" label="Close" onClick={close} />
+        <Flexbox column p="m">
+          <Header color="primary">Hello there.</Header>
+          <Button mt="m" size="s" decoration="outline" label="Close" onClick={close} />
         </Flexbox>
       ),
       timeout: 10000,
