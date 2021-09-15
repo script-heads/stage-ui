@@ -39,39 +39,39 @@ const MountArea: FC<ViewportTypes.MountArea> = () => {
         '> div': {
           display: 'flex',
           flexDirection: 'column',
-          ':nth-child(1)': {
+          ':nth-of-type(1)': {
             alignItems: 'flex-start',
             justifyContent: 'flex-start',
           },
-          ':nth-child(2)': {
+          ':nth-of-type(2)': {
             alignItems: 'center',
             justifyContent: 'flex-start',
           },
-          ':nth-child(3)': {
+          ':nth-of-type(3)': {
             alignItems: 'flex-end',
             justifyContent: 'flex-start',
           },
-          ':nth-child(4)': {
+          ':nth-of-type(4)': {
             alignItems: 'flex-start',
             justifyContent: 'center',
           },
-          ':nth-child(5)': {
+          ':nth-of-type(5)': {
             alignItems: 'center',
             justifyContent: 'center',
           },
-          ':nth-child(6)': {
+          ':nth-of-type(6)': {
             alignItems: 'flex-end',
             justifyContent: 'center',
           },
-          ':nth-child(7)': {
+          ':nth-of-type(7)': {
             alignItems: 'flex-start',
             justifyContent: 'end',
           },
-          ':nth-child(8)': {
+          ':nth-of-type(8)': {
             alignItems: 'center',
             justifyContent: 'end',
           },
-          ':nth-child(9)': {
+          ':nth-of-type(9)': {
             alignItems: 'flex-end',
             justifyContent: 'end',
           },
