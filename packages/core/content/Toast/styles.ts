@@ -38,6 +38,10 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
       {
         paddingRight: theme.spacing.m,
         marginLeft: `-${theme.spacing.s}`,
+        ' svg': {
+          fontSize: '1.5rem',
+          marginTop: '0.25rem',
+        },
       },
     ],
   }
