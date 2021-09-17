@@ -4,11 +4,12 @@
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
     "target": "esnext",
-    "outDir": "../../build",
+    "outDir": "../../build/icons",
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
+    "suppressImplicitAnyIndexErrors": true,
     "strict": true,
     "declaration": true,
     "emitDeclarationOnly": true

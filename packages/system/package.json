@@ -1,35 +1,21 @@
 {
-    "name": "@stage-ui/system",
-    "author": "Research technology",
-    "version": "0.2.0-beta6",
-    "license": "MIT",
-    "scripts": {
-        "build": "tsc && yarn build:js && cp package.json README.md ../../build/system/ && node ../../scripts/buildConfig system",
-        "build:js": "babel ./ --out-dir ../../build/system --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
-        "type-check": "tsc --noEmit",
-        "type-check:watch": "tsc --noEmit --watch"
-    },
-    "dependencies": {
-        "color": "3.1.3"
-    },
-    "peerDependencies": {
-        "react": "16.x",
-        "@babel/runtime": "7.x",
-        "@emotion/react": "11.x",
-        "@emotion/cache": "11.x"
-    },
-    "devDependencies": {
-        "@babel/cli": "^7.7.5",
-        "@babel/core": "^7.7.5",
-        "@babel/plugin-proposal-class-properties": "^7.7.4",
-        "@babel/plugin-proposal-object-rest-spread": "^7.7.4",
-        "@babel/plugin-proposal-optional-chaining": "^7.7.5",
-        "@babel/plugin-transform-runtime": "^7.7.6",
-        "@babel/preset-env": "^7.7.6",
-        "@babel/preset-react": "^7.7.4",
-        "@babel/preset-typescript": "^7.7.4",
-        "@types/react": "^17.0.0",
-        "@types/color": "3.0.1",
-        "csstype": "^3.0.6"
-    }
+  "name": "@stage-ui/system",
+  "author": "Project one",
+  "version": "0.2.0-beta7",
+  "license": "MIT",
+  "scripts": {
+    "build": "node ../../scripts/make system && tsc && yarn build:js",
+    "build:js": "babel ./ --out-dir ../../build/system --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "tsc --noEmit --watch"
+  },
+  "dependencies": {
+    "color": "3.1.3"
+  },
+  "peerDependencies": {
+    "react": "16.x",
+    "@babel/runtime": "7.x",
+    "@emotion/react": "11.x",
+    "@emotion/cache": "11.x"
+  }
 }
