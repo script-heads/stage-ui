@@ -151,7 +151,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         left: barOffset,
         bottom: barOffset,
         height: '0.5rem',
-        width: '100%',
+        width: `calc(100% - ${barOffset})`,
         borderRadius: '1rem',
         backgroundColor: color.alpha(0.1).rgb().string(),
         transition: 'opacity 0.5s',
@@ -191,12 +191,6 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       state.position === 'none' && {
         display: 'none',
       },
-      state.position === 'top' && [
-        {
-          bottom: 'auto',
-          top: 0,
-        },
-      ],
     ],
     xThumb: (state) => [
       {

@@ -68,7 +68,7 @@ declare namespace ScrollViewTypes {
      * Position of X bar
      * @default bottom
      */
-    xBarPosition?: 'top' | 'bottom' | 'none'
+    xBarPosition?: 'bottom' | 'none'
     /**
      * Position of Y bar
      * @default right
