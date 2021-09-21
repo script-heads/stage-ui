@@ -1,6 +1,8 @@
 import React from 'react'
 
 declare namespace ScrollViewTypes {
+  type WatchElementFn = <T extends HTMLDivElement>(dataId: string, element: T) => void
+
   interface ScrollViewEvent {
     scrollTop: number
     scrollLeft: number
@@ -89,10 +91,39 @@ declare namespace ScrollViewTypes {
      * Calls when elements with data-id attribut got visible
      * and stays at the top of visible area of ScrollView
      */
-    watchElement?: <T extends HTMLDivElement>(dataId: string, element: T) => void
+    watchElement?: WatchElementFn
+    /**
+     * Include top offset when watchElement works
+     */
+    watchElementOffset?: number
+  }
+
+  interface MemoParams {
+    id: string
+    mounted: boolean
+    y: boolean
+    x: boolean
+    events: boolean
+    yBar: null | HTMLDivElement
+    yThumb: null | HTMLSpanElement
+    xBar: null | HTMLDivElement
+    xThumb: null | HTMLSpanElement
+    container: null | HTMLDivElement
+    content: null | HTMLDivElement
+    timeout?: any
+    mode: Props['mode']
+    watchElementId: string
+    watchElementListeners: Record<string, { fn: WatchElementFn; options?: { offset?: number } }>
+    preventWatchElement: boolean
+    preventWatchElementTimer: any
   }
 
   interface Ref {
+    addWatchElementListener: (fn: WatchElementFn, options?: { offset?: number }) => () => void
+    /**
+     * Current state
+     */
+    getCurrentState: () => MemoParams
     /**
      * Forcing update scrollview positions
      */

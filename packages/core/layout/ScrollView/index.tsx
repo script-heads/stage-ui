@@ -18,25 +18,6 @@ import Types from './types'
 const isLegacyScrollSupport = isWebKit
 const isTouchScreenSupport = Boolean('ontouchstart' in window)
 
-interface MemoParams {
-  id: string
-  mounted: boolean
-  y: boolean
-  x: boolean
-  events: boolean
-  yBar: null | HTMLDivElement
-  yThumb: null | HTMLSpanElement
-  xBar: null | HTMLDivElement
-  xThumb: null | HTMLSpanElement
-  container: null | HTMLDivElement
-  content: null | HTMLDivElement
-  timeout?: any
-  mode: Types.Props['mode']
-  watchElementId: string
-  preventWatchElement: boolean
-  preventWatchElementTimer: any
-}
-
 const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
   const {
     shape = 'round',
@@ -48,7 +29,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
   const { classes, attributes, events, styleProps } = useSystem('ScrollView', props, styles)
   const [active, setActive] = useState(mode === 'always')
 
-  const memo: MemoParams = useMemo(
+  const memo: Types.MemoParams = useMemo(
     () => ({
       id: (~~(Math.random() * 1e8)).toString(16),
       mounted: false,
@@ -63,6 +44,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
       content: null,
       mode: mode || 'scroll',
       watchElementId: '',
+      watchElementListeners: {},
       preventWatchElement: false,
       preventWatchElementTimer: null,
     }),
@@ -82,14 +64,13 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
     const isX = axes === 'x'
     const vScrollSize = isX ? 'scrollWidth' : 'scrollHeight'
     const vScrollDirection = isX ? 'scrollLeft' : 'scrollTop'
-    const vOffsetSize = isX ? 'offsetWidth' : 'offsetHeight'
     const vOffsetDirection = isX ? 'offsetLeft' : 'offsetTop'
     const vDelta = isX ? 'deltaX' : 'deltaY'
     const vSize = isX ? 'width' : 'height'
     const vDirection = isX ? 'left' : 'top'
 
     const total = memo.content[vScrollSize] - (props.barOffset || 0) * 2
-    const content = memo.container[vOffsetSize] - (props.barOffset || 0) * 2
+    const content = memo.container.getBoundingClientRect()[vSize] - (props.barOffset || 0) * 2
     const bar = isX ? memo.xBar : memo.yBar
     const thumb = isX ? memo.xThumb : memo.yThumb
 
@@ -186,7 +167,10 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
       /**
        * find elements with data-id
        */
-      if (props.watchElement && memo.preventWatchElement !== true) {
+      if (
+        (props.watchElement || Object.keys(memo.watchElementListeners).length) &&
+        memo.preventWatchElement !== true
+      ) {
         const elements: HTMLDivElement[] = []
         document
           .querySelectorAll(`[data-scroll-id="${memo.id}"] [data-id]`)
@@ -195,18 +179,29 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
           })
 
         const scrollTop = Math.abs(memo.container.scrollTop || memo.content.offsetTop)
-
+        const listeners = Object.values(memo.watchElementListeners)
+        if (props.watchElement) {
+          listeners.unshift({
+            fn: props.watchElement,
+            options: {
+              offset: props.watchElementOffset || 0,
+            },
+          })
+        }
+        const offset =
+          listeners[listeners.length - 1].options?.offset || props.watchElementOffset || 0
         for (const el of elements.reverse()) {
-          if (scrollTop - (getOffsetTop(el) - el.offsetHeight) > 0) {
-            const id = el.attributes['data-id'].value as string
+          if (scrollTop - getOffsetTop(el) + offset > 0) {
+            const id = el.attributes['data-id'].value
             if (memo.watchElementId !== id) {
               memo.watchElementId = id
-              props.watchElement(id, el)
+              listeners.forEach((listener) => listener.fn(id, el))
             }
             break
           }
         }
       }
+
       clearTimeout(memo.preventWatchElementTimer)
       memo.preventWatchElementTimer = setTimeout(() => {
         memo.preventWatchElement = false
@@ -239,6 +234,14 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
   }
 
   useImperativeHandle(ref, () => ({
+    getCurrentState: () => Object.freeze(memo),
+    addWatchElementListener: (fn, options) => {
+      const listenerId = (~~(Math.random() * 1e8)).toString(16)
+      memo.watchElementListeners[listenerId] = { fn, options }
+      return () => {
+        delete memo.watchElementListeners[listenerId]
+      }
+    },
     updateScroll: () => {
       updateScroll({
         deltaX: 0,
@@ -327,6 +330,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
       memo.y = false
       memo.x = false
       window.removeEventListener('mouseup', mouseUp)
+      window.removeEventListener('click', mouseUp)
       window.removeEventListener('mousemove', scrollToHandle)
     },
     [],
@@ -449,7 +453,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
             memo.content = currentRef
           }}
         >
-          {props.children}{' '}
+          {props.children}
         </div>
       </div>
       {mode !== 'hidden' && (
@@ -461,6 +465,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
             }}
             onMouseEnter={() => {
               window.addEventListener('mouseup', mouseUp)
+              window.addEventListener('click', mouseUp)
             }}
             onMouseDown={(e) => {
               yMouseDown()
@@ -483,6 +488,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
             }}
             onMouseEnter={() => {
               window.addEventListener('mouseup', mouseUp)
+              window.addEventListener('click', mouseUp)
             }}
             onMouseDown={(e) => {
               xMouseDown()
