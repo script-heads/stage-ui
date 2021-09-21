@@ -2,6 +2,7 @@
 import { Block, dialog, Flexbox, ScrollView, Text } from '@stage-ui/core'
 import ScrollViewTypes from '@stage-ui/core/layout/ScrollView/types'
 import breakpointProp from '@stage-ui/system/props/breakpoint'
+import { toPixel } from '@stage-ui/system/utils/size'
 import React, { useEffect, useRef, useState } from 'react'
 import Menu from '../components/Menu'
 import ShowcasePage from '../components/ShowcasePage'
@@ -85,18 +86,7 @@ const Router = (props: RouterProps) => {
   }, [showcasePage?.id])
 
   return (
-    <ScrollView
-      h="100vh"
-      w="100%"
-      barOffset={8}
-      ref={scrollView}
-      overrides={{
-        yThumb: (state, variant) =>
-          variant({
-            active: [{ opacity: 1 }],
-          }),
-      }}
-    >
+    <ScrollView h="100vh" w="100%" barOffset={toPixel('0.25rem')} ref={scrollView}>
       <div className="background_light" />
       <div className="background_light background_light_1" />
       <div className="background_light background_light_2" />
