@@ -87,9 +87,6 @@ const Router = (props: RouterProps) => {
 
   return (
     <ScrollView h="100vh" w="100%" barOffset={toPixel('0.25rem')} ref={scrollView}>
-      <div className="background_light" />
-      <div className="background_light background_light_1" />
-      <div className="background_light background_light_2" />
       <Flexbox column alignItems="center" p="xl">
         <Block css={{ maxWidth: '64rem', width: '100%' }}>
           {/* {!showcasePage && ( */}
@@ -115,6 +112,13 @@ const Router = (props: RouterProps) => {
           )}
           {!CustomPage && !showcasePage && !noPages && <Page404 />}
           {!CustomPage && !showcasePage && noPages && <Text>Docs has no pages</Text>}
+        </Block>
+      </Flexbox>
+      <Flexbox column alignItems="center" p="xl" mt="xl" backgroundColor="lightest">
+        <Block css={{ maxWidth: '64rem', width: '100%' }}>
+          <Text size="s" color="hardest">
+            Copyright © 2019-{new Date().getFullYear()} Script Heads. All rights reserved.
+          </Text>
         </Block>
       </Flexbox>
     </ScrollView>

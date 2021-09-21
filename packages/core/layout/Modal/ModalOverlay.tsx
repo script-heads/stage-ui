@@ -13,6 +13,10 @@ const ModalOverlay = forwardRef(
         barOffset={4}
         ref={ref}
         css={styles.classes.overlay(styles.state)}
+        overrides={{
+          xBar: () => [{ zIndex: 1000 }],
+          yBar: () => [{ zIndex: 1000 }],
+        }}
       >
         {props.children}
       </ScrollView>

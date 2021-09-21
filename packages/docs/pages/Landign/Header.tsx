@@ -18,10 +18,6 @@ export default (props: CustomPageProps) => {
         },
       }}
     >
-      <div className="background_light" />
-      <div className="background_light background_light_1" />
-      <div className="background_light background_light_2" />
-
       <Flexbox
         column
         justifyContent="center"

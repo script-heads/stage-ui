@@ -21,9 +21,9 @@ export const sticky = true
 
 export default () => (
   <>
-    <P color="hardest">Install StageUI</P>
+    <P>Install StageUI</P>
     <Syntax code="npm i @stage-ui/core" />
-    <P color="hardest">
+    <P>
       Use{' '}
       <Text weight="bold" color="primary">
         Viewport
@@ -36,11 +36,11 @@ export default () => (
     <Header size="l" pt="4rem" id="props">
       Props
     </Header>
-    <P color="hardest">
+    <P>
       Our comonents have special props to customize thier styles, like style tag in HTML or CSS prop
       in emotion with styles prop you can provide custom styles to any component.
     </P>
-    <P color="hardest">
+    <P>
       Component may render in DOM many different HTML elements which have unique classNames. So in
       style object you can provide CSS for each of them. If it's a typescript project you instantly
       have a tip what classes exist in this component. If it's not you may have find this
@@ -52,7 +52,7 @@ export default () => (
     <Header size="l" pt="4rem" id="color">
       Color
     </Header>
-    <P color="hardest">
+    <P>
       All colors described in Theme StageUI turn into Objects with useful methods that give you the
       opportunity to to adjust the color depending on the situation. To access theme colors provide
       function in these props. They recive theme colors and return one to component. Also you may
@@ -62,9 +62,7 @@ export default () => (
     <Header size="l" pt="4rem" id="margin-padding">
       Margin and Padding
     </Header>
-    <P color="hardest">
-      Shorthand for margin and padding styles with size alias from theme spacing
-    </P>
+    <P>Shorthand for margin and padding styles with size alias from theme spacing</P>
     <Syntax code={spacingProps} />
     <List
       data={[
@@ -88,7 +86,7 @@ export default () => (
     <Header size="l" pt="4rem" id="flex-grid">
       Flexbox and grid
     </Header>
-    <P color="hardest">Shorthand for flexbox and grid children styles</P>
+    <P>Shorthand for flexbox and grid children styles</P>
     <Syntax code={flexGridProps} />
     <List
       data={[
@@ -112,7 +110,7 @@ export default () => (
     <Header size="l" pt="4rem" id="layout">
       Layout
     </Header>
-    <P color="hardest">Shorthand for layout styles</P>
+    <P>Shorthand for layout styles</P>
     <Syntax code={layoutProps} />
     <List
       data={['w: width', 'h: height', 'visibility: visibility', 'display: display']}
@@ -121,7 +119,7 @@ export default () => (
     <Header size="l" pt="4rem" id="border">
       Border
     </Header>
-    <P color="hardest">Shorthand for border styles</P>
+    <P>Shorthand for border styles</P>
     <Syntax code={borderProps} />
     <List
       data={[
@@ -136,12 +134,12 @@ export default () => (
     <Header size="l" pt="4rem" id="overrides">
       Overrides
     </Header>
-    <P color="hardest">
+    <P>
       Often you need to override component styles that depended on its internal state and
       properties. There are two places you can do this: theme and the style props.
     </P>
     <Header size="s">Syntax</Header>
-    <P color="hardest">
+    <P>
       For example Menu have two CSS classes for container and item elements. Here you describe
       styles for any of them. This styles applyed with their own styles of component.
     </P>
@@ -150,7 +148,7 @@ export default () => (
     <Header size="l" pt="4rem" id="theming">
       Theming
     </Header>
-    <P color="hardest">
+    <P>
       StageUI contains two themes itself: Light and Dark. Light setup by default. Any others theme
       icludes user created pass on the theme prop of Viewport component. There's three section to
       describe a theme: main, assets and overrides. To create theme use createTheme function or
@@ -158,17 +156,17 @@ export default () => (
     </P>
     <Syntax code={theme} />
     <Header size="s">Main</Header>
-    <P color="hardest">Contains general variables of theme, like colors, radiuses and sizes</P>
+    <P>Contains general variables of theme, like colors, radiuses and sizes</P>
     <Syntax code={main} />
     <Header size="s">Assets</Header>
-    <P color="hardest">
+    <P>
       There's all styles that uses between components. Assets must be discribed by the function
       which takes main varaibles for use eg colors in styles. Empty objects here are filled by
       analogy.
     </P>
     <Syntax code={assets} />
     <Header size="s">Overrides</Header>
-    <P color="hardest">
+    <P>
       All components have special styled system, that can be overriden from theme and styles prop.
       More details about in you can find in <Link href="/overrides">Overrides</Link> section
     </P>

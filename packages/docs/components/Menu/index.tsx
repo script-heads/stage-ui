@@ -36,12 +36,7 @@ const LogoItem = (props: MenuItemProps & { mobile?: boolean }) => {
       }}
       {...buttomProps}
     >
-      <Flexbox column alignItems="flex-start">
-        {buttomProps.label}
-        <Text size="xs" mt="xs" color="light" weight="normal">
-          v.{corePackage.version}
-        </Text>
-      </Flexbox>
+      {buttomProps.label}
     </Button>
   )
 }
@@ -137,6 +132,16 @@ const Menu = (props: CustomPageProps) => {
         <Flexbox flex={1} display={['flex', 'flex', 'none']}>
           <MenuItems {...props} />
         </Flexbox>
+        <Text
+          size="xs"
+          mt="xs"
+          mr="m"
+          color="light"
+          weight="normal"
+          display={['inline', 'inline', 'none']}
+        >
+          v.{corePackage.version}
+        </Text>
         <Flexbox>
           <Moon
             size="1.5rem"
