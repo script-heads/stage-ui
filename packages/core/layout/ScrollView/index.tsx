@@ -75,7 +75,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
     const thumb = isX ? memo.xThumb : memo.yThumb
 
     if (bar) {
-      bar.style.visibility = total > content ? 'visible' : 'hidden'
+      bar.style.visibility = Math.round(total) > Math.round(content) ? 'visible' : 'hidden'
     }
 
     if (total <= content) {
@@ -192,7 +192,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
           listeners[listeners.length - 1].options?.offset || props.watchElementOffset || 0
         for (const el of elements.reverse()) {
           if (scrollTop - getOffsetTop(el) + offset > 0) {
-            const id = el.attributes['data-id'].value
+            const id = el.attributes['data-id'].value as string
             if (memo.watchElementId !== id) {
               memo.watchElementId = id
               listeners.forEach((listener) => listener.fn(id, el))
