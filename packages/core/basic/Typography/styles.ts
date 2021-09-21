@@ -21,6 +21,9 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.PrivateProps> = (t
       breakpointResolver(props.lineHeight, theme, (currentValue) => ({
         lineHeight: currentValue,
       })),
+      breakpointResolver(props.decoration, theme, (currentValue) => ({
+        textDecoration: currentValue,
+      })),
       breakpointResolver(props.weight, theme, (currentValue) => ({
         fontWeight: currentValue,
       })),

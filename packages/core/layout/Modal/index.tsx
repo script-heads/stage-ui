@@ -94,14 +94,14 @@ const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
     decoration,
   }
 
-  const getStyles = () => ({ classes, state: otherStyleProps })
+  const getStyles = () => ({ classes, state: otherStyleProps, styleProps })
 
   return (
     <ModalPortal>
       <ModalOverlay ref={overlayRef} getStyles={getStyles}>
         <div
           data-wrapper
-          css={[classes.wrapper(otherStyleProps), styleProps.all]}
+          css={classes.wrapper(otherStyleProps)}
           onClick={(e) => {
             if ((e.target as HTMLDivElement).dataset.wrapper) {
               if (overlayClose) close()
