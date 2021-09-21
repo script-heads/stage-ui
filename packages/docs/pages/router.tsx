@@ -114,6 +114,13 @@ const Router = (props: RouterProps) => {
           {!CustomPage && !showcasePage && noPages && <Text>Docs has no pages</Text>}
         </Block>
       </Flexbox>
+      <Flexbox column alignItems="center" p="xl" mt="xl" backgroundColor="lightest">
+        <Block css={{ maxWidth: '64rem', width: '100%' }}>
+          <Text size="s" color="hardest">
+            Copyright © 2019-{new Date().getFullYear()} Script Heads. All rights reserved.
+          </Text>
+        </Block>
+      </Flexbox>
     </ScrollView>
   )
 }
