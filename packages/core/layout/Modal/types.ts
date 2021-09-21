@@ -1,4 +1,4 @@
-import { Classes as ClassesType } from '@stage-ui/system/hooks/useSystem'
+import { Classes as ClassesType, ResolvedStyleProps } from '@stage-ui/system/hooks/useSystem'
 import {
   AllEventProps,
   AttributeProps,
@@ -124,6 +124,7 @@ declare namespace ModalTypes {
     getStyles: () => {
       classes: ClassesType<Classes>
       state: ClassState
+      styleProps: ResolvedStyleProps
     }
     children?: React.ReactNode
   }
@@ -139,6 +140,7 @@ declare namespace ModalTypes {
     getStyles: () => {
       classes: ClassesType<Classes>
       state: ClassState
+      styleProps: ResolvedStyleProps
     }
   }
 

@@ -9,7 +9,7 @@ const ModalWindow = forwardRef(
     return (
       <div
         ref={ref}
-        css={styles.classes.window(styles.state)}
+        css={[styles.classes.window(styles.state), styles.styleProps.all]}
         {...props.containerAttr}
         {...props.containerEvents}
       >

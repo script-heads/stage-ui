@@ -54,7 +54,7 @@ declare namespace TypographyTypes {
     /**
      * Shorthand for text-decoration
      */
-    decoration?: CSS.Properties['textDecoration']
+    decoration?: BreakpointProp<CSS.Properties['textDecoration']>
 
     /**
      * Content
