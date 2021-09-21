@@ -34,4 +34,4 @@ workflows:
             filters:
               branches:
                 only:
-                  - main
+                  - release/system2
