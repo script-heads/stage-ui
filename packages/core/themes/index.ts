@@ -151,6 +151,28 @@ export const light = createTheme({
       outline: 'none !important',
       boxShadow: `0 0 0 3px ${theme.color.primary.alpha(0.3).rgb().string()} !important`,
     },
+    field: {
+      xs: {
+        indent: '0.25rem',
+        height: '1.5rem',
+      },
+      s: {
+        indent: '0.5rem',
+        height: '2rem',
+      },
+      m: {
+        indent: '0.75rem',
+        height: '2.5rem',
+      },
+      l: {
+        indent: '1rem',
+        height: '3rem',
+      },
+      xl: {
+        indent: '1.25rem',
+        height: '3.5rem',
+      },
+    },
     typography: {
       header: {
         xl: {
@@ -217,40 +239,6 @@ export const light = createTheme({
           fontSize: '0.75rem',
           lineHeight: '0.875rem',
         },
-      },
-    },
-    field: {
-      xs: {
-        padding: '0.25rem 0.25rem',
-      },
-      s: {
-        padding: '0.25rem 0.5rem',
-      },
-      m: {
-        padding: '0.5rem 0.75rem',
-      },
-      l: {
-        padding: '1rem 1rem',
-      },
-      xl: {
-        padding: '1rem 1.25rem',
-      },
-    },
-    button: {
-      xs: {
-        padding: '0.25rem 0.5rem',
-      },
-      s: {
-        padding: '0.25rem 1rem',
-      },
-      m: {
-        padding: '0.5rem 1rem',
-      },
-      l: {
-        padding: '1rem 1rem',
-      },
-      xl: {
-        padding: '1rem 1.5rem',
       },
     },
   }),

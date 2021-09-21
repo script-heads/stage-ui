@@ -333,7 +333,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
               </div>
             ))}
             {options.length === 0 && (
-              <div css={classes.emptyConteiner(classState)}>
+              <div css={classes.emptyContainer(classState)}>
                 <div css={classes.emptyText(classState)}>{emptyText}</div>
               </div>
             )}

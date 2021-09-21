@@ -127,7 +127,7 @@ declare namespace SelectTypes {
     /**
      * Container view when list is empty
      */
-    emptyConteiner: ClassState
+    emptyContainer: ClassState
 
     /**
      * Container text when list is empty

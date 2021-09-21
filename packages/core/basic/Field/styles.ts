@@ -27,6 +27,8 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         position: 'relative',
         flexShrink: 0,
         flexGrow: 1,
+        flexBasis: theme.assets.field[size].height,
+        padding: `0 ${theme.assets.field[size].indent}`,
         background: theme.color.surface.string(),
         borderColor: theme.color.light.alpha(0.4).string(),
         borderRadius: theme.radius.m,
@@ -39,13 +41,12 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         boxSizing: 'border-box',
         transition: 'border 0.125s',
       },
-      theme.assets.field[size],
       theme.assets.typography.text[size],
       shape === 'square' && {
         borderRadius: 0,
       },
       shape === 'round' && {
-        borderRadius: `calc(${theme.assets.field[size]?.minHeight || '2.5 rem'}/2)`,
+        borderRadius: theme.radius.s,
       },
       decoration === 'outline' &&
         disabled && {
@@ -128,7 +129,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       ],
     ],
 
-    child: (state, variant) => [
+    child: (state) => [
       {
         color: color.rgb().string(),
         flexGrow: 0,

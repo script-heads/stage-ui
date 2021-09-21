@@ -60,11 +60,11 @@ declare global {
       shadow: Record<Sizes, string>
       innerShadow: Record<Sizes, string>
       focus: CSSObject
-      field: Record<Sizes, CSSObject>
-      button: Record<
+      field: Record<
         Sizes,
         {
-          padding: string
+          indent: string | number
+          height: string | number
         }
       >
       typography: {

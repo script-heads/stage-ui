@@ -1,10 +1,10 @@
 import Types from './types'
 
-const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
   theme,
   { size = 'm', disabled },
 ) => {
-  const minHeight = theme.assets.field[size]?.minHeight || '2.5rem'
+  const { height } = theme.assets.field[size]
 
   return {
     drop: (state) => [
@@ -77,9 +77,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
       {
         display: 'flex',
         flexWrap: 'wrap',
-        margin: `calc(${minHeight} / 10) 0`,
-        // marginLeft: 0,
-        // marginBottom: `calc(${minHeight} / 5)`,
+        margin: `calc(${height} / 10) 0`,
       },
     ],
 
@@ -123,9 +121,9 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
         borderRadius: `calc(${theme.radius.s} / 2)`,
         boxSizing: 'border-box',
         color: disabled ? theme.color.light.rgb().string() : theme.color.primary.rgb().string(),
-        padding: `0 calc(${minHeight} / 5)`,
-        margin: `calc(${minHeight} / 20)`,
-        marginRight: `calc(${minHeight} / 10)`,
+        padding: `0 calc(${height} / 5)`,
+        margin: `calc(${height} / 20)`,
+        marginRight: `calc(${height} / 10)`,
         marginLeft: 0,
         alignItems: 'center',
       },
@@ -154,8 +152,9 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
     ],
     tagRemove: () => [
       {
-        marginLeft: `calc(${minHeight} / 10)`,
-        marginRight: `calc(-${minHeight} / 10)`,
+        marginLeft: `calc(${height} / 5)`,
+        marginRight: `calc(-${height} / 5)`,
+        padding: ` 0 calc(${height} / 20)`,
         borderLeft: '1px solid',
         color: disabled
           ? theme.color.light.rgb().string()
@@ -166,12 +165,12 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
         },
       },
     ],
-    emptyConteiner: () => [
+    emptyContainer: () => [
       {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: `calc(${minHeight} / 5)`,
+        padding: `calc(${height} / 5)`,
       },
     ],
     emptyText: () => [
@@ -184,4 +183,4 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
   }
 }
 
-export default styles
+export default createClasses

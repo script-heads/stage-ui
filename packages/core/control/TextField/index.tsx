@@ -134,15 +134,8 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
       overrides={{
         ...overridesPropClasses,
         container: [overridesPropClasses.container, styleProps.container],
-        field: [overridesPropClasses.field, styleProps.content],
-        child: (state, variant) => [
-          props.leftChildNumber &&
-            state.align === 'left' && {
-              overflow: 'hidden',
-              position: 'relative',
-            },
-          overridesPropClasses.child?.(state, variant),
-        ],
+        field: [multiline && { padding: 0 }, overridesPropClasses.field, styleProps.content],
+        child: overridesPropClasses.child,
       }}
     >
       {jsx(props.multiline ? 'textarea' : 'input', {

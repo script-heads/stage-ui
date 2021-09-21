@@ -20,8 +20,6 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         outline: 'none',
         boxShadow: 'unset',
         borderColor: 'transparent',
-        borderWidth: '1px',
-        borderStyle: 'solid',
         borderRadius: theme.radius.m,
         textOverflow: 'ellipsis',
         overflow: 'hidden',
@@ -30,6 +28,8 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         justifyContent: 'center',
         alignItems: 'center',
         width: 'fit-content',
+        padding: `0 ${theme.assets.field[size].indent}`,
+        height: theme.assets.field[size].height,
         '&:active': {
           borderStyle: 'solid',
         },
@@ -46,9 +46,10 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
           color: theme.color.light.rgb().string(),
         },
       },
-      theme.assets.button[size],
       theme.assets.typography.text[size],
       decoration === 'outline' && {
+        borderWidth: '1px',
+        borderStyle: 'solid',
         borderColor: color.rgb().string(),
         color: color.rgb().string(),
         '&:disabled': {
@@ -59,6 +60,8 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         color: color.rgb().string(),
       },
       decoration === 'plain' && {
+        borderWidth: '1px',
+        borderStyle: 'solid',
         borderColor: theme.color.lightest.rgb().string(),
         background: theme.color.surface.rgb().string(),
         color: theme.color.onSurface.rgb().string(),
@@ -96,7 +99,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         textTransform: 'uppercase',
       },
     ],
-    child: (state, variant) => [
+    child: (state) => [
       {
         flexGrow: 0,
         flexShrink: 1,
