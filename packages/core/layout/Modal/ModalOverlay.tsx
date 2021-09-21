@@ -1,14 +1,21 @@
 import React, { forwardRef } from 'react'
-import ModalTypes from './types'
+import ScrollView from '../ScrollView'
+import Types from './types'
 
 const ModalOverlay = forwardRef(
-  (props: ModalTypes.ModalOverlayProps, ref: React.Ref<HTMLDivElement>) => {
+  (props: Types.ModalOverlayProps, ref: React.Ref<Types.Ref['overlay']>) => {
     const styles = props.getStyles()
 
     return (
-      <div ref={ref} css={styles.classes.overlay(styles.state)}>
+      <ScrollView
+        h="100vh"
+        w="100%"
+        barOffset={4}
+        ref={ref}
+        css={styles.classes.overlay(styles.state)}
+      >
         {props.children}
-      </div>
+      </ScrollView>
     )
   },
 )

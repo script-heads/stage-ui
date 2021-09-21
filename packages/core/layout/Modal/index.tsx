@@ -23,8 +23,8 @@ const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
     styleProps,
   } = useSystem('Modal', props, styles)
 
-  const overlayRef = useRef<HTMLDivElement>(null)
-  const windowRef = useRef<HTMLDivElement>(null)
+  const overlayRef = useRef<Types.Ref['overlay']>(null)
+  const windowRef = useRef<Types.Ref['window']>(null)
 
   const [active, setActive] = useState(false)
   const [visible, setVisible] = useState<boolean>(false)
@@ -81,8 +81,8 @@ const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
     setSubtitle,
     render: customRender,
     setRender: setCustomRender,
-    overlay: overlayRef.current as HTMLDivElement,
-    window: windowRef.current as HTMLDivElement,
+    overlay: overlayRef.current as Types.Ref['overlay'],
+    window: windowRef.current as Types.Ref['window'],
   }))
 
   if (!active) {

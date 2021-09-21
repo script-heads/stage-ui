@@ -1,9 +1,9 @@
 import React from 'react'
 import { Flexbox, Header, Paragraph } from '@stage-ui/core'
 import { Close } from '@stage-ui/icons'
-import ModalTypes from './types'
+import Types from './types'
 
-const ModalHeader = (props: ModalTypes.ModalHeaderProps) => {
+const ModalHeader = (props: Types.ModalHeaderProps) => {
   if (props.hideHeader) {
     return null
   }

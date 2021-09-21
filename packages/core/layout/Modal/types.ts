@@ -9,6 +9,7 @@ import {
   PaddingProps,
 } from '@stage-ui/system/props/types'
 import React from 'react'
+import ScrollViewTypes from '../ScrollView/types'
 
 declare namespace ModalTypes {
   type ModalDecoration = 'modal' | 'panel' | 'fullscreen'
@@ -56,7 +57,7 @@ declare namespace ModalTypes {
     /**
      * Ref for overlay view <div>
      */
-    overlay: HTMLDivElement
+    overlay: ScrollViewTypes.Ref
     /**
      * Ref for view view <div>
      */
