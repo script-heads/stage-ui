@@ -1,5 +1,5 @@
 import colorResolver from '@stage-ui/system/props/color'
-import { toRem } from '../../../system/utils/size'
+import { toRem } from '@stage-ui/system/utils/size'
 import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {

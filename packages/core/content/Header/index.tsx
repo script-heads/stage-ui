@@ -1,8 +1,8 @@
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import Typography from '@stage-ui/core/basic/Typography'
 import sizeProp from '@stage-ui/system/props/size'
+import isFunction from '@stage-ui/system/utils/isFunction'
 import Types from './types'
-import isFunction from '../../../system/utils/isFunction'
 
 const Header: ForwardRefRenderFunction<HTMLSpanElement, Types.Props> = (
   { overrides, ...props },
