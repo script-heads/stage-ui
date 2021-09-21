@@ -87,9 +87,6 @@ const Router = (props: RouterProps) => {
 
   return (
     <ScrollView h="100vh" w="100%" barOffset={toPixel('0.25rem')} ref={scrollView}>
-      <div className="background_light" />
-      <div className="background_light background_light_1" />
-      <div className="background_light background_light_2" />
       <Flexbox column alignItems="center" p="xl">
         <Block css={{ maxWidth: '64rem', width: '100%' }}>
           {/* {!showcasePage && ( */}

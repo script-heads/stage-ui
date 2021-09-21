@@ -2,45 +2,25 @@ import {
   Badge,
   Block,
   Button,
+  dialog,
   Flexbox,
-  Popover,
-  Spinner,
-  TextField,
-  Text,
-  useTheme,
-  Table,
   Meter,
   notify,
-  dialog,
+  Popover,
+  Spinner,
+  Table,
+  Text,
+  TextField,
 } from '@stage-ui/core'
 import { CustomPageProps } from '@stage-ui/docs/utils/core'
-import React, { useEffect } from 'react'
 import { Cube } from '@stage-ui/icons'
+import React from 'react'
 import Components from './Components'
 import Features from './Feauters'
 import Footer from './Footer'
 import Header from './Header'
 
 export default (props: CustomPageProps) => {
-  const { primary } = useTheme().color
-
-  useEffect(() => {
-    const labels = document.querySelectorAll('#component-label')
-    const scrollHandler = () =>
-      labels.forEach((label) => {
-        const labelTop = label.getBoundingClientRect().top
-        if (labelTop < window.innerHeight && labelTop > 0) {
-          label.style.color = primary
-            .darken(0.8 * (labelTop / window.innerHeight))
-            .rgb()
-            .string()
-        }
-      })
-
-    window.addEventListener('scroll', scrollHandler)
-    return () => window.removeEventListener('scroll', scrollHandler)
-  }, [])
-
   return (
     <Flexbox justifyContent="center">
       <Block w="62rem" flexShrink={1} px={['2rem', '2rem', '1rem']} css={{ overflow: 'hidden' }}>
