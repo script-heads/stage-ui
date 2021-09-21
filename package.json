@@ -17,6 +17,7 @@
     "system:build": "cd ./packages/system && yarn build",
     "system:pub": "cd ./packages/system && npm publish --registry=https://registry.npmjs.org",
     "docs:start": "yarn workspace @stage-ui/docs start",
+    "docs:build": "cd ./packages/docs && yarn build",
     "docs:serve": "cd ./build/docs && pm2 start --name StageUI server.js",
     "docs:test": "yarn workspace @stage-ui/docs test",
     "docs:test:approve": "yarn workspace @stage-ui/docs approve",

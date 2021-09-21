@@ -22,7 +22,7 @@ jobs:
           paths:
             - ~/.cache/yarn
       - run:
-          yarn build
+          yarn docs:build
       - run:
           scp -o "StrictHostKeyChecking no" -r build itrcz@project1.io:~/StageUI 
       - run:
