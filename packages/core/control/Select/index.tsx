@@ -11,6 +11,7 @@ import { ChevronDown, Close } from '@stage-ui/icons'
 import DropTypes from '@stage-ui/core/layout/Drop/types'
 import Field from '@stage-ui/core/basic/Field'
 import { useSystem } from '@stage-ui/system'
+import createID from '@stage-ui/system/utils/createID'
 import styles from './styles'
 import Types from './types'
 import SharedZIndex from '../../utils/SharedZIndex'
@@ -238,7 +239,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
       <div css={classes.selected}>
         {props.multiselect &&
           values.map((option, index) => (
-            <div css={classes.tag(classState)} key={option.value.toString?.()}>
+            <div css={classes.tag(classState)} key={createID()}>
               {props.onRenderItem?.(option, index) || option.text}
               {!disabled && (
                 <Close
@@ -323,7 +324,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
                   ...classState,
                   selected: values.includes(option),
                 })}
-                key={option.value.toString?.()}
+                key={createID()}
                 onClick={(e) => {
                   e.preventDefault()
                   setOption(option)
