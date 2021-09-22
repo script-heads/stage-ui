@@ -91,12 +91,16 @@ export type SystemPropsMeta<
   Pick<AllEventProps<Element>, 'onFocus' | 'onBlur' | 'onClick' | 'onEnter' | 'onEsc' | 'onKeyDown'>
 
 let IS_MOUSE_DOWN = false
+let PREV_ACTIVE_ELEMENT: Element | null = null
 
 window.addEventListener('mousedown', () => {
   IS_MOUSE_DOWN = true
 })
 window.addEventListener('mouseup', () => {
   IS_MOUSE_DOWN = false
+})
+window.addEventListener('focus', () => {
+  PREV_ACTIVE_ELEMENT = document.activeElement
 })
 
 function useSystem<
@@ -148,23 +152,35 @@ function useSystem<
 
   // Override default focus styles
   data.events.onFocus = (event: React.FocusEvent<Element>) => {
-    if ((focus === 'tabOnly' && !IS_MOUSE_DOWN) || focus === 'always') {
+    props.onFocus?.(event)
+
+    if (
+      PREV_ACTIVE_ELEMENT !== event.currentTarget &&
+      (event.currentTarget.tabIndex === 0 || event.currentTarget.tabIndex > -1) &&
+      ((focus === 'tabOnly' && !IS_MOUSE_DOWN) || focus === 'always')
+    ) {
       event.currentTarget.id = event.currentTarget.id
         ? `${event.currentTarget.id} focused`
         : 'focused'
     }
-    props.onFocus?.(event)
-    event.stopPropagation()
+    PREV_ACTIVE_ELEMENT = event.currentTarget
   }
 
   // Override default focus styles
   data.events.onBlur = (event: React.FocusEvent<Element>) => {
-    event.currentTarget.id = event.currentTarget.id
+    props.onBlur?.(event)
+    PREV_ACTIVE_ELEMENT = null
+
+    const ids = event.currentTarget.id
       .split(' ')
       .filter((id) => id !== 'focused')
       .join(' ')
-    props.onBlur?.(event)
-    event.stopPropagation()
+
+    if (!ids) {
+      event.currentTarget.removeAttribute('id')
+      return
+    }
+    event.currentTarget.id = ids
   }
 
   // Additional key handlers
