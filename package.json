@@ -15,7 +15,7 @@
     "icons:build": "cd ./packages/icons && yarn build",
     "icons:pub": "cd ./build/icons && npm publish --registry=https://registry.npmjs.org",
     "system:build": "cd ./packages/system && yarn build",
-    "system:pub": "cd ./packages/system && npm publish --registry=https://registry.npmjs.org",
+    "system:pub": "cd ./build/system && npm publish --registry=https://registry.npmjs.org",
     "docs:start": "yarn workspace @stage-ui/docs start",
     "docs:build": "cd ./packages/docs && yarn build",
     "docs:serve": "cd ./build/docs && pm2 start --name StageUI server.js",
