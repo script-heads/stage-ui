@@ -16,7 +16,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
         boxSizing: 'border-box',
         overflow: 'hidden',
         top: '0.25rem',
-        padding: '0.5rem',
+        padding: `calc(${theme.assets.field[size].indent} / 2)`,
       },
       state.shape === 'square' && {
         borderRadius: 0,
@@ -48,8 +48,6 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
       },
     ],
     dropItem: (state) => [
-      theme.assets.typography.text.m,
-      theme.assets.field,
       {
         display: 'flex',
         alignItems: 'center',
@@ -60,9 +58,9 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
           color: theme.color.primary.rgb().string(),
           backgroundColor: theme.color.primary.alpha(0.1).rgb().string(),
         },
+        padding: `calc(${theme.assets.field[size].indent} / 2)`,
       },
       theme.assets.typography.text[size],
-      theme.assets.field[size],
       state.selected && {
         color: theme.color.onPrimary.rgb().string(),
         backgroundColor: theme.color.primary.rgb().string(),
