@@ -335,7 +335,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
               })}
               key={createID()}
               onClick={(e) => {
-                e.preventDefault()
+                e.stopPropagation()
                 setOption(option)
               }}
             >
