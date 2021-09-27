@@ -129,32 +129,36 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       ],
     ],
 
-    child: (state) => [
+    rightChild: [
       {
         color: color.rgb().string(),
         flexGrow: 0,
         flexShrink: 1,
         display: 'flex',
         alignItems: 'center',
+        marginLeft: '.375rem',
+        overflow: 'hidden',
       },
-      state.align === 'left' && [
-        {
-          marginRight: '.375rem',
-        },
-        size === 'xs' && { marginRight: '.125rem' },
-        size === 's' && { marginRight: '.25rem' },
-        size === 'l' && { marginRight: '.5rem' },
-        size === 'xl' && { marginRight: '.75rem' },
-      ],
-      state.align === 'right' && [
-        {
-          marginLeft: '.375rem',
-        },
-        size === 'xs' && { marginLeft: '.125rem' },
-        size === 's' && { marginLeft: '.25rem' },
-        size === 'l' && { marginLeft: '.5rem' },
-        size === 'xl' && { marginLeft: '.75rem' },
-      ],
+      size === 'xs' && { marginLeft: '.125rem' },
+      size === 's' && { marginLeft: '.25rem' },
+      size === 'l' && { marginLeft: '.5rem' },
+      size === 'xl' && { marginLeft: '.75rem' },
+    ],
+
+    leftChild: [
+      {
+        color: color.rgb().string(),
+        flexGrow: 0,
+        flexShrink: 1,
+        display: 'flex',
+        alignItems: 'center',
+        marginRight: '.375rem',
+        overflow: 'hidden',
+      },
+      size === 'xs' && { marginRight: '.125rem' },
+      size === 's' && { marginRight: '.25rem' },
+      size === 'l' && { marginRight: '.5rem' },
+      size === 'xl' && { marginRight: '.75rem' },
     ],
 
     clearButton: [

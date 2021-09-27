@@ -50,7 +50,7 @@ const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (pro
   )
 
   const clearJSX = (
-    <div css={classes.child({ align: 'right' })}>
+    <div css={classes.rightChild}>
       <Close
         onMouseDown={handleClean}
         onTouchStart={handleClean}
@@ -71,7 +71,7 @@ const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (pro
         tabIndex={attributes.tabIndex || 0}
         ref={ref}
       >
-        {leftChild && <div css={classes.child({ align: 'left' })}>{leftChild}</div>}
+        {leftChild && <div css={classes.leftChild}>{leftChild}</div>}
 
         <div css={classes.content}>
           {label !== undefined && labelType === 'inside' && (
@@ -83,7 +83,7 @@ const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (pro
         </div>
 
         {clearable && clearJSX}
-        {rightChild && <div css={classes.child({ align: 'right' })}>{rightChild}</div>}
+        {rightChild && <div css={classes.rightChild}>{rightChild}</div>}
       </div>
 
       {!!props.hint && !props.error && hintJSX}
