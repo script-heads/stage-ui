@@ -35,6 +35,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
     lineNumbers: [
       {
         backgroundColor: theme.color.lightest.hex(),
+        height: '100%',
         position: 'absolute',
         padding: `${theme.assets.field[size].indent}`,
         textAlign: 'right',
