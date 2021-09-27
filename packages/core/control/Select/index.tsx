@@ -331,7 +331,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
             <div
               css={classes.dropItem({
                 ...classState,
-                selected: values.includes(option),
+                selected: values.map((item) => item.value).includes(option.value),
               })}
               key={createID()}
               onClick={(e) => {
