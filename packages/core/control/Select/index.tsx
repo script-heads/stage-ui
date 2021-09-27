@@ -321,7 +321,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
           size="xs"
           xBarPosition="none"
           overrides={{
-            container: {
+            content: {
               maxHeight: maxScrollHeight,
             },
             wrapper: classes.drop(classState),
