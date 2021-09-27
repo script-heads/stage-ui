@@ -89,11 +89,13 @@ declare namespace FieldTypes {
      */
     label: void
     /**
-     * Container for left and right childs
+     * Container for right child
      */
-    child: {
-      align: 'right' | 'left'
-    }
+    rightChild: void
+    /**
+     * Container for left child
+     */
+    leftChild: void
     /**
      * The button that clear value
      */

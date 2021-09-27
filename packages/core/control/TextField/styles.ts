@@ -2,7 +2,7 @@ import Types from './types'
 
 const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
   theme,
-  { lineHeight, size = 'm' },
+  { lineHeight, size = 'm', leftChildNumber },
 ) => {
   return {
     input: (state) => [
@@ -26,6 +26,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
       },
       state.multiline && {
         padding: theme.assets.field[size].indent,
+        paddingLeft: leftChildNumber ? 0 : undefined,
       },
       state.disabled && {
         color: theme.color.hardest.rgb().string(),
@@ -33,8 +34,10 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
     ],
     lineNumbers: [
       {
+        backgroundColor: theme.color.lightest.hex(),
         position: 'absolute',
-        margin: theme.assets.field[size].indent,
+        padding: `${theme.assets.field[size].indent}`,
+        textAlign: 'right',
         '> div': {
           height: lineHeight || theme.assets.typography.text[size].lineHeight,
         },

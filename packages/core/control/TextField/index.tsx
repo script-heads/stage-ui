@@ -112,6 +112,18 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
     )
   }
 
+  const lineNumberWidth = {
+    xl: '1rem',
+    l: '0.875rem',
+    m: '0.625rem',
+    s: '0.5rem',
+    xs: '0.5rem',
+  }
+
+  const numbersOfDigitsOfCountLine = Math.floor(
+    Math.log(leftCountLineState.count) * Math.LOG10E + 1 || 0,
+  )
+
   return (
     <Field
       {...props}
@@ -131,12 +143,20 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
           onClear()
         }
       }}
-      overrides={{
+      overrides={(theme) => ({
         ...overridesPropClasses,
         container: [overridesPropClasses.container, styleProps.container],
         field: [multiline && { padding: 0 }, overridesPropClasses.field, styleProps.content],
-        child: overridesPropClasses.child,
-      }}
+        leftChild: [
+          multiline && {
+            position: 'relative',
+            width: `calc(${theme.assets.field[size].indent} * 2 + ${numbersOfDigitsOfCountLine} * ${lineNumberWidth[size]})`,
+            borderRadius: `${theme.radius.m} 0 0 ${theme.radius.m}`,
+          },
+          overridesPropClasses.leftChild,
+        ],
+        rightChild: [overridesPropClasses.rightChild],
+      })}
     >
       {jsx(props.multiline ? 'textarea' : 'input', {
         ref: inputRef,
