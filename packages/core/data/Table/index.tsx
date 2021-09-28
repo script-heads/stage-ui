@@ -275,7 +275,7 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
               key={rowIndex}
               columns={columns}
               rowIndex={rowIndex}
-              events={events}
+              events={currentEvents}
               rowMountType={props.rowMountType}
               enableRenderOptimization={enableRenderOptimization}
               delegates={{
