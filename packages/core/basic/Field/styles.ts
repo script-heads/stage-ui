@@ -133,7 +133,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       {
         color: color.rgb().string(),
         flexGrow: 0,
-        flexShrink: 1,
+        flexShrink: 0,
         display: 'flex',
         alignItems: 'center',
         marginLeft: '.375rem',
@@ -149,7 +149,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       {
         color: color.rgb().string(),
         flexGrow: 0,
-        flexShrink: 1,
+        flexShrink: 0,
         display: 'flex',
         alignItems: 'center',
         marginRight: '.375rem',
