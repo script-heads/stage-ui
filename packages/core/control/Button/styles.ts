@@ -115,10 +115,8 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
       },
       state.align === 'left' && {
         marginRight: childSpacing[size],
-        marginLeft: `-${childSpacing[size]}`,
       },
       state.align === 'right' && {
-        marginRight: `-${childSpacing[size]}`,
         marginLeft: childSpacing[size],
       },
     ],
