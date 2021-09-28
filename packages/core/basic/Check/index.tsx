@@ -4,7 +4,7 @@ import CheckTypes from './types'
 import createClasses from './styles'
 
 const Check: ForwardRefRenderFunction<HTMLDivElement, CheckTypes.PrivateProps> = (props, ref) => {
-  const { label, disabled, defaultValue, children, checked: checkedProp, name } = props
+  const { label, disabled, defaultValue, children, checked: checkedProp = false, name } = props
 
   const {
     classes,
@@ -16,8 +16,8 @@ const Check: ForwardRefRenderFunction<HTMLDivElement, CheckTypes.PrivateProps> =
   const [checked, setChecked] = useState(checkedProp || defaultValue || false)
 
   useEffect(() => {
-    setChecked(checked)
-  }, [checked])
+    setChecked(checkedProp)
+  }, [checkedProp])
 
   /**
    * Change handler
