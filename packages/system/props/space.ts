@@ -1,6 +1,10 @@
 export type SpaceProp = Stage.Sizes | (string & { T?: string }) | number
 
-function spaceProp(value: string | number, theme: Stage.Theme): string {
+function spaceProp(value: string | number | undefined, theme: Stage.Theme): string | undefined {
+  if (value === undefined) {
+    return
+  }
+
   if (typeof value === 'number') {
     return `${value.toString()}px`
   }
