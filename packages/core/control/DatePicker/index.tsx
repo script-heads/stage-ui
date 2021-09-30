@@ -67,11 +67,10 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
     if (props.onChange) {
       props.onChange(currentValue, currentValue.format(format))
     }
+
     if (!props.stayOpen) {
       setActive(false)
     }
-
-    setActive(false)
   }
 
   useLayoutEffect(() => {
@@ -100,7 +99,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
       onFocus={() => inputRef.current?.focus()}
       onClick={(e) => {
         events.onClick?.(e)
-        if (!props.disabled) {
+        if (!props.disabled && !isActive) {
           setActive(true)
         }
       }}
@@ -147,8 +146,8 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
         spacing={9}
         align="bottom"
         justify="start"
-        onClickOutside={(event) => {
-          if (event.target !== inputRef.current) {
+        onClickOutside={(event, outside) => {
+          if (outside) {
             setActive(false)
           }
         }}
