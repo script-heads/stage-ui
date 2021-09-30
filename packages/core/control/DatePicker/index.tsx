@@ -65,11 +65,13 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
     setValue(currentValue)
 
     if (props.onChange) {
-      props.onChange(value, value.format(format))
+      props.onChange(currentValue, currentValue.format(format))
     }
     if (!props.stayOpen) {
       setActive(false)
     }
+
+    setActive(false)
   }
 
   useLayoutEffect(() => {
