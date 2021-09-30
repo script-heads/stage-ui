@@ -62,7 +62,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
       inputRef.current.value = currentValue.format(format)
     }
 
-    setValue(value)
+    setValue(currentValue)
 
     if (props.onChange) {
       props.onChange(value, value.format(format))
