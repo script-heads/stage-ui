@@ -9,6 +9,7 @@
     "gen": "node ./scripts/generate"
   },
   "peerDependencies": {
-    "@emotion/react": "11.x"
+    "@emotion/react": ">=11",
+    "react": ">=16"
   }
 }

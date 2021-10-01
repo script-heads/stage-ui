@@ -14,33 +14,18 @@
         "approve": "backstop approve"
     },
     "dependencies": {
-        "@emotion/react": "11.4.0",
+        "@types/react-syntax-highlighter": "^13.5.0",
         "backstopjs": "^5.1.0",
         "compression": "^1.7.4",
+        "clipanion": "^3.0.0-rc.5",
         "dts-bundle-generator": "^5.6.0",
-        "esbuild-loader": "^2.12.0",
-        "express": "^4.17.1",
+        "dts-generator": "^3.0.0",
+        "fakerator": "^0.3.0",
         "monaco-editor": "^0.21.3",
         "monaco-editor-webpack-plugin": "^2.1.0",
-        "react": "17.0.2",
-        "react-dom": "17.0.2",
-        "react-syntax-highlighter": "^15.4.3"
-    },
-    "devDependencies": {
-        "@types/node": "^15.12.2",
-        "@types/react": "^17.0.11",
-        "@types/react-dom": "^17.0.7",
-        "@types/react-syntax-highlighter": "^13.5.0",
-        "@types/webpack-env": "^1.14.1",
-        "clipanion": "^3.0.0-rc.5",
-        "css-loader": "^5.0.1",
-        "dts-generator": "^3.0.0",
-        "esm": "^3.2.25",
-        "fakerator": "^0.3.0",
+        "react-syntax-highlighter": "^15.4.3",
         "randomcolor": "^0.6.2",
         "resolve": "1.19.0",
-        "source-map-loader": "^2.0.0",
-        "style-loader": "^2.0.0",
         "typedoc": "^0.20.36"
     }
 }

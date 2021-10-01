@@ -12,26 +12,8 @@
         "type-check:watch": "yarn type-check -- --watch",
         "icons:generate": "node ./scripts/iconsGenerate"
     },
-    "dependencies": {
-        "@emotion/react": "11.4.0",
-        "@stage-ui/system": "0.1.46",
-        "@stage-ui/icons": "0.1.11"
-    },
-    "devDependencies": {
-        "@babel/cli": "^7.7.5",
-        "@babel/core": "^7.7.5",
-        "@babel/plugin-proposal-class-properties": "^7.7.4",
-        "@babel/plugin-proposal-object-rest-spread": "^7.7.4",
-        "@babel/plugin-proposal-optional-chaining": "^7.7.5",
-        "@babel/plugin-transform-runtime": "^7.7.6",
-        "@babel/preset-env": "^7.7.6",
-        "@babel/preset-react": "^7.7.4",
-        "@babel/preset-typescript": "^7.7.4",
-        "csstype": "^3.0.6"
-    },
     "peerDependencies": {
-        "@babel/runtime": "*",
-        "react": "*",
-        "react-dom": "*"
+        "@emotion/react": ">=11",
+        "react": ">=16"
     }
 }
