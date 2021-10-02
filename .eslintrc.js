@@ -2,6 +2,7 @@ var rules = {
   'class-methods-use-this': 'off',
   'no-plusplus': 'off',
   'max-classes-per-file': 'off',
+  'object-curly-newline': 'off',
   'prettier/prettier': [
     'error',
     {
@@ -12,6 +13,7 @@ var rules = {
       printWidth: 100,
     },
   ],
+  'react/jsx-wrap-multilines': ['error', { arrow: true, return: true, declaration: true }],
   'import/prefer-default-export': 'off',
   'import/no-cycle': 'off',
   'import/no-extraneous-dependencies': 'off',

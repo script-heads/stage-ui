@@ -1,93 +1,92 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import useMask from '@stage-ui/core/hooks/useMask'
 import { Calendar as CalendarIcon } from '@stage-ui/icons'
 import { useSystem } from '@stage-ui/system'
 import moment, { Moment } from 'moment'
-import React, {
-  forwardRef,
-  ForwardRefRenderFunction,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, useEffect, useRef, useState } from 'react'
 import Field from '../../basic/Field'
 import Drop from '../../layout/Drop'
 import Popover from '../../layout/Popover'
 import Calendar from '../Calendar'
-import maskConf from './mask'
 import createClasses from './styles'
 import Types from './types'
 
 const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
   const {
     locale = 'ru',
-    format = 'YYYY-MM-DD',
+    format = 'DD/MM/YYYY',
     defaultValue,
     decoration = 'outline',
     size = 'm',
     shape = 'rounded',
     tabIndex = 0,
+    disabled,
+    rightChild,
+    onChange: onChangeProp,
+
+    autoComplete,
+    list,
+    name,
+    placeholder,
+    pattern,
+    readOnly,
+    required,
+    form,
+    formAction,
+    formEncType,
+    formMethod,
+    formNoValidate,
+    formTarget,
+
+    ...fieldProps
   } = props
 
   moment.locale(locale)
 
-  const now = moment()
-  const [value, setValue] = useState(now)
-  const [isActive, setActive] = useState(false)
+  function makeDate(value: Types.Props['value']): Moment | undefined {
+    const date = moment(value, format, true)
+    return value && date.isValid() ? date : undefined
+  }
+
   const { classes, events, styleProps, overridesPropClasses } = useSystem(
     'DatePicker',
     props,
     createClasses,
   )
+  const [value, setValue] = useState(makeDate(props.value || defaultValue))
+  const [inputValue, setInputValue] = useState(
+    makeDate(props.value || defaultValue)?.format(format),
+  )
+  const [isActive, setActive] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const minValue = props.minValue
     ? moment(props.minValue).startOf('day')
-    : now.clone().add(-500, 'year')
+    : moment().clone().add(-500, 'year')
   const maxValue = props.maxValue
     ? moment(props.maxValue).startOf('day')
-    : now.clone().add(500, 'year')
+    : moment().clone().add(500, 'year')
 
-  const inputRef = useRef<HTMLInputElement>(null)
-  const mask = props.masked && useMask(inputRef, maskConf(format, minValue, maxValue))
-
-  function onChange(currentValue: Moment) {
-    if (!currentValue.isValid) {
-      return
+  function onChange(currentValue: Types.Props['value']) {
+    const currentDate = makeDate(currentValue)
+    let currentDateString = currentValue
+    if (currentDate) {
+      currentDateString = currentDate.format(format)
+      setValue(currentDate)
+      setActive(props.stayOpen || false)
     }
-
-    if (mask) {
-      mask.value = currentValue.format(format)
-    } else if (inputRef.current) {
-      inputRef.current.value = currentValue.format(format)
-    }
-
-    setValue(currentValue)
-
-    if (props.onChange) {
-      props.onChange(currentValue, currentValue.format(format))
-    }
-
-    if (!props.stayOpen) {
-      setActive(false)
-    }
+    onChangeProp?.(currentDate, currentDateString as string)
+    setInputValue(currentDateString as string)
   }
 
-  useLayoutEffect(() => {
-    if (props.value) {
-      if (typeof props.value === 'string') {
-        onChange(moment(props.value, format))
-      } else {
-        onChange(moment(props.value))
-      }
-    }
+  useEffect(() => {
+    setValue(makeDate(props.value))
   }, [props.value])
 
   return (
     <Field
-      {...props}
-      tabIndex={tabIndex}
+      {...fieldProps}
       ref={ref}
+      disabled={disabled}
+      tabIndex={tabIndex}
       decoration={decoration}
       size={size}
       shape={shape}
@@ -103,42 +102,35 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
           setActive(true)
         }
       }}
-      rightChild={props.rightChild || <CalendarIcon />}
+      rightChild={
+        <>
+          {rightChild}
+          <CalendarIcon />
+        </>
+      }
     >
       <input
         ref={inputRef}
-        onKeyUp={(e) => {
-          const date = moment(
-            (
-              e as React.KeyboardEvent<HTMLInputElement> & {
-                target: { value: string }
-              }
-            ).target.value,
-            format,
-          )
-          if (date.isValid() && date > minValue && date < maxValue) {
-            setValue(date)
-          }
-        }}
         css={classes.input}
-        defaultValue={
-          defaultValue ? moment(defaultValue, format).format(format) : moment().format(format)
-        }
-        disabled={props.disabled}
-        autoComplete={props.autoComplete}
-        list={props.list}
-        name={props.name}
-        placeholder={props.placeholder}
-        pattern={props.pattern}
-        readOnly={props.readOnly}
-        required={props.required}
-        form={props.form}
-        formAction={props.formAction}
-        formEncType={props.formEncType}
-        formMethod={props.formMethod}
-        formNoValidate={props.formNoValidate}
-        formTarget={props.formTarget}
         tabIndex={-1}
+        onChange={(e) => {
+          onChange(e.target.value)
+        }}
+        value={inputValue}
+        disabled={disabled}
+        autoComplete={autoComplete}
+        list={list}
+        name={name}
+        placeholder={placeholder}
+        pattern={pattern}
+        readOnly={readOnly}
+        required={required}
+        form={form}
+        formAction={formAction}
+        formEncType={formEncType}
+        formMethod={formMethod}
+        formNoValidate={formNoValidate}
+        formTarget={formTarget}
       />
       <Drop
         target={inputRef}
@@ -146,8 +138,8 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
         spacing={9}
         align="bottom"
         justify="start"
-        onClickOutside={(event, outside) => {
-          if (outside) {
+        onClickOutside={(event, outsideTarget) => {
+          if (outsideTarget) {
             setActive(false)
           }
         }}

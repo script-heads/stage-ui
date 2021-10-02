@@ -33,7 +33,7 @@ declare namespace DatePickerTypes {
      * Callback function will with Date object
      * or string if format property was passed.
      */
-    onChange?: (moment: Moment, value: string) => void
+    onChange?: (moment: Moment | undefined, value: string | undefined) => void
     /**
      * Do not close datepicker on change
      * latest value
