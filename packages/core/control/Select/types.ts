@@ -1,4 +1,5 @@
 import React from 'react'
+import { Classes as ClassesType } from '@stage-ui/system/hooks/useSystem'
 import FieldTypes from '../../basic/Field/types'
 import DropTypes from '../../layout/Drop/types'
 
@@ -67,9 +68,13 @@ declare namespace SelectTypes {
      */
     onSearch?: (value: string) => void
     /**
-     * Calls every row render, returned Node will be displayed
+     * Custom options render
      */
-    onRenderItem?: (option: Option, index: number) => React.ReactNode
+    renderOption?: (option: Option, selected: boolean) => React.ReactNode
+    /**
+     * Custom miltiselect value render
+     */
+    renderMultiselectValue?: (option: Option) => React.ReactNode
     /**
      * Display when empty
      */
@@ -91,48 +96,45 @@ declare namespace SelectTypes {
     isOpen: boolean
   }
 
-  type StyleStateItem = ClassState & {
-    selected: boolean
-  }
-
   type Classes = {
     /**
      * Container for selected items
      */
-    selected: void
+    selectedArea: void
     /**
      * Select's input
      */
     input: {
       searchMode: boolean
-      multiselect: boolean
       disableEvents: boolean
     }
     /**
      * Container of selected option in multiselect
      */
-    tag: ClassState
+    multiselectValue: void
     /**
      * Close button for selected option in multiselect
      */
-    tagRemove: ClassState
+    multiselectValueClose: void
     /**
      * Select's drop container
      */
-    drop: ClassState
+    drop: void
     /**
      * Container of every item in drop
      */
-    dropItem: StyleStateItem
+    option: {
+      selected: boolean
+    }
     /**
      * Container view when list is empty
      */
-    emptyContainer: ClassState
+    noOptions: void
 
     /**
      * Container text when list is empty
      */
-    emptyText: ClassState
+    noOptionsText: void
   } & Partial<FieldTypes.Classes>
 }
 

@@ -2,12 +2,12 @@ import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
   theme,
-  { size = 'm', disabled },
+  { size = 'm', disabled, shape = 'rounded', decoration = 'outline' },
 ) => {
   const { height } = theme.assets.field[size]
 
   return {
-    drop: (state) => [
+    drop: [
       {
         position: 'relative',
         background: theme.color.surface.rgb().string(),
@@ -18,20 +18,20 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
         top: '0.25rem',
         padding: `calc(${theme.assets.field[size].indent} / 2)`,
       },
-      state.shape === 'square' && {
+      shape === 'square' && {
         borderRadius: 0,
       },
-      state.shape === 'round' && {
+      shape === 'round' && {
         borderRadius: theme.radius.s,
       },
-      state.decoration === 'filled' && [
+      decoration === 'filled' && [
         {
           boxShadow: 'none',
           top: 0,
           borderColor: 'transparent',
         },
       ],
-      state.decoration === 'underline' && {
+      decoration === 'underline' && {
         borderTopColor: 'transparent',
         borderLeftColor: 'transparent',
         borderRightColor: 'transparent',
@@ -41,13 +41,14 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
         borderRadius: 0,
         backgroundColor: theme.color.surface.rgb().string(),
       },
-      state.decoration === 'none' && {
+      decoration === 'none' && {
         borderTopLeftRadius: theme.radius.s,
         borderTopRightRadius: theme.radius.s,
         borderTopWidth: '1px',
       },
     ],
-    dropItem: (state) => [
+
+    option: (state) => [
       {
         display: 'flex',
         alignItems: 'center',
@@ -71,13 +72,11 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
       },
     ],
 
-    selected: [
-      {
-        display: 'flex',
-        flexWrap: 'wrap',
-        margin: `calc(${height} / 10) 0`,
-      },
-    ],
+    selectedArea: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      margin: `calc(${height} / 10) 0`,
+    },
 
     input: (state) => [
       {
@@ -105,7 +104,8 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
         pointerEvents: 'none',
       },
     ],
-    tag: (state) => [
+
+    multiselectValue: [
       {
         display: 'inline-flex',
         background: disabled
@@ -125,18 +125,18 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
         marginLeft: 0,
         alignItems: 'center',
       },
-      state.shape === 'square' && {
+      shape === 'square' && {
         borderRadius: 0,
       },
-      state.shape === 'round' && {
-        borderRadius: `100px`,
+      shape === 'round' && {
+        borderRadius: '100px',
       },
-      state.decoration === 'filled' && [
+      decoration === 'filled' && [
         {
           borderColor: 'transparent',
         },
       ],
-      state.decoration === 'underline' && {
+      decoration === 'underline' && {
         borderBottomWidth: '1px',
         borderBottomStyle: 'solid',
         background: 'transparent',
@@ -144,34 +144,33 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
         paddingRight: 0,
         borderRadius: 0,
       },
-      state.decoration === 'none' && {
+      decoration === 'none' && {
         background: 'transparent',
       },
     ],
-    tagRemove: () => [
-      {
-        marginLeft: `calc(${height} / 5)`,
-        marginRight: `calc(-${height} / 5)`,
-        padding: ` 0 calc(${height} / 20)`,
-        borderLeft: '1px solid',
-        color: disabled
-          ? theme.color.light.rgb().string()
-          : theme.color.primary.alpha(0.8).rgb().string(),
-        cursor: 'pointer',
-        ':hover': {
-          color: disabled ? theme.color.light.rgb().string() : theme.color.primary.rgb().string(),
-        },
+
+    multiselectValueClose: {
+      marginLeft: `calc(${height} / 5)`,
+      marginRight: `calc(-${height} / 5)`,
+      padding: ` 0 calc(${height} / 20)`,
+      borderLeft: '1px solid',
+      color: disabled
+        ? theme.color.light.rgb().string()
+        : theme.color.primary.alpha(0.8).rgb().string(),
+      cursor: 'pointer',
+      ':hover': {
+        color: disabled ? theme.color.light.rgb().string() : theme.color.primary.rgb().string(),
       },
-    ],
-    emptyContainer: () => [
-      {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: `calc(${height} / 5)`,
-      },
-    ],
-    emptyText: () => [
+    },
+
+    noOptions: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: `calc(${height} / 5)`,
+    },
+
+    noOptionsText: [
       {
         color: theme.color.light.rgb().string(),
         userSelect: 'none',

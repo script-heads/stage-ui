@@ -33,6 +33,8 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     animation,
     defaultValues,
     onKeyDown,
+    renderOption: customRenderOption,
+    renderMultiselectValue: customRenderMultiselectValue,
     ...fieldProps
   } = props
 
@@ -73,15 +75,6 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     return true
   })
 
-  /**
-   * Object for variant styles
-   */
-  const classState: Types.ClassState = {
-    decoration,
-    shape,
-    size,
-    isOpen,
-  }
   /**
    * Component did mount
    */
@@ -189,6 +182,40 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     toggleOpen,
   }))
 
+  const renderOption = (option: Types.Option) => {
+    const isThisOptionSelected = values.map((item) => item.value).includes(option.value)
+    return (
+      <div
+        css={classes.option({
+          selected: isThisOptionSelected,
+        })}
+        key={createID()}
+        onClick={(e) => {
+          e.stopPropagation()
+          setOption(option)
+        }}
+      >
+        {customRenderOption ? customRenderOption(option, isThisOptionSelected) : option.text}
+      </div>
+    )
+  }
+
+  const renderMultiselectValue = (option: Types.Option) => (
+    <div css={classes.multiselectValue} key={createID()}>
+      {customRenderMultiselectValue ? customRenderMultiselectValue(option) : option.text}
+      {!disabled && (
+        <Close
+          size={size}
+          css={classes.multiselectValueClose}
+          onClick={(e) => {
+            e.stopPropagation()
+            unsetOption(option)
+          }}
+        />
+      )}
+    </div>
+  )
+
   return (
     <Field
       {...fieldProps}
@@ -242,24 +269,8 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
         </>
       }
     >
-      <div css={classes.selected}>
-        {multiselect &&
-          values.map((option, index) => (
-            <div css={classes.tag(classState)} key={createID()}>
-              {props.onRenderItem?.(option, index) || option.text}
-              {!disabled && (
-                <Close
-                  size={size}
-                  css={classes.tagRemove(classState)}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    e.stopPropagation()
-                    unsetOption(option)
-                  }}
-                />
-              )}
-            </div>
-          ))}
+      <div css={classes.selectedArea}>
+        {multiselect && values.map(renderMultiselectValue)}
         <input
           type="text"
           tabIndex={-1}
@@ -268,7 +279,6 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
           css={classes.input({
             disableEvents: !searchable,
             searchMode: searchValue !== '',
-            multiselect: !!multiselect,
           })}
           placeholder={!multiselect || values.length === 0 ? props.placeholder || '' : ''}
           value={multiselect ? searchValue : searchValue || values[0]?.text || ''}
@@ -324,27 +334,13 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
             content: {
               maxHeight: maxScrollHeight,
             },
-            wrapper: classes.drop(classState),
+            wrapper: classes.drop,
           }}
         >
-          {options.map((option) => (
-            <div
-              css={classes.dropItem({
-                ...classState,
-                selected: values.map((item) => item.value).includes(option.value),
-              })}
-              key={createID()}
-              onClick={(e) => {
-                e.stopPropagation()
-                setOption(option)
-              }}
-            >
-              {option.text}
-            </div>
-          ))}
+          {options.map(renderOption)}
           {options.length === 0 && (
-            <div css={classes.emptyContainer(classState)}>
-              <div css={classes.emptyText(classState)}>{emptyText}</div>
+            <div css={classes.noOptions}>
+              <div css={classes.noOptionsText}>{emptyText}</div>
             </div>
           )}
         </ScrollView>
