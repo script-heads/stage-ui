@@ -35,6 +35,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
     {
       backgroundColor: theme.color.lightest.hex(),
       height: 'max-content',
+      minHeight: '100%',
       position: 'absolute',
       padding: `${theme.assets.field[size].indent}`,
       textAlign: 'right',
