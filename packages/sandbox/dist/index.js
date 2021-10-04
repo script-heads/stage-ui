@@ -33193,9 +33193,16 @@
         shape === "round" && {
           borderRadius: theme.radius.s
         },
-        decoration === "outline" && disabled && {
-          background: theme.color.lightest.rgb().string()
-        },
+        decoration === "outline" && [
+          {
+            ":focus, :focus-within": {
+              borderColor: theme.color.primary.alpha(0.4).string()
+            }
+          },
+          disabled && {
+            background: theme.color.lightest.rgb().string()
+          }
+        ],
         decoration === "filled" && [
           {
             borderColor: "transparent",
@@ -33213,7 +33220,10 @@
           paddingLeft: 0,
           paddingRight: 0,
           borderRadius: 0,
-          boxShadow: "none"
+          boxShadow: "none",
+          ":focus, :focus-within": {
+            borderBottomColor: theme.color.primary.alpha(0.4).string()
+          }
         },
         decoration === "none" && {
           background: "transparent",
@@ -34990,79 +35000,14 @@
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses17 = (theme, { size = "m", disabled }) => {
+  var createClasses17 = (theme, { size = "m", disabled, shape = "rounded", decoration = "outline", maxScrollHeight = "16rem" }) => {
     const { height } = theme.assets.field[size];
     return {
-      drop: (state) => [
-        {
-          position: "relative",
-          background: theme.color.surface.rgb().string(),
-          borderRadius: theme.radius.s,
-          boxShadow: theme.assets.shadow.l,
-          boxSizing: "border-box",
-          overflow: "hidden",
-          top: "0.25rem",
-          padding: `calc(${theme.assets.field[size].indent} / 2)`
-        },
-        state.shape === "square" && {
-          borderRadius: 0
-        },
-        state.shape === "round" && {
-          borderRadius: theme.radius.s
-        },
-        state.decoration === "filled" && [
-          {
-            boxShadow: "none",
-            top: 0,
-            borderColor: "transparent"
-          }
-        ],
-        state.decoration === "underline" && {
-          borderTopColor: "transparent",
-          borderLeftColor: "transparent",
-          borderRightColor: "transparent",
-          background: "transparent",
-          paddingLeft: 0,
-          paddingRight: 0,
-          borderRadius: 0,
-          backgroundColor: theme.color.surface.rgb().string()
-        },
-        state.decoration === "none" && {
-          borderTopLeftRadius: theme.radius.s,
-          borderTopRightRadius: theme.radius.s,
-          borderTopWidth: "1px"
-        }
-      ],
-      dropItem: (state) => [
-        {
-          display: "flex",
-          alignItems: "center",
-          cursor: "pointer",
-          userSelect: "none",
-          borderRadius: theme.radius.s,
-          ":hover": {
-            color: theme.color.primary.rgb().string(),
-            backgroundColor: theme.color.primary.alpha(0.1).rgb().string()
-          },
-          padding: `calc(${theme.assets.field[size].indent} / 2)`
-        },
-        theme.assets.typography.text[size],
-        state.selected && {
-          color: theme.color.onPrimary.rgb().string(),
-          backgroundColor: theme.color.primary.rgb().string(),
-          ":hover": {
-            color: theme.color.onPrimary.rgb().string(),
-            backgroundColor: theme.color.primary.rgb().string()
-          }
-        }
-      ],
-      selected: [
-        {
-          display: "flex",
-          flexWrap: "wrap",
-          margin: `calc(${height} / 10) 0`
-        }
-      ],
+      selectedArea: {
+        display: "flex",
+        flexWrap: "wrap",
+        margin: `calc(${height} / 10) 0`
+      },
       input: (state) => [
         {
           flex: 1,
@@ -35089,7 +35034,7 @@
           pointerEvents: "none"
         }
       ],
-      tag: (state) => [
+      multiselectValue: [
         {
           display: "inline-flex",
           background: disabled ? theme.color.lightest.rgb().string() : theme.color.primary.alpha(0.2).rgb().string(),
@@ -35105,18 +35050,18 @@
           marginLeft: 0,
           alignItems: "center"
         },
-        state.shape === "square" && {
+        shape === "square" && {
           borderRadius: 0
         },
-        state.shape === "round" && {
-          borderRadius: `100px`
+        shape === "round" && {
+          borderRadius: "100px"
         },
-        state.decoration === "filled" && [
+        decoration === "filled" && [
           {
             borderColor: "transparent"
           }
         ],
-        state.decoration === "underline" && {
+        decoration === "underline" && {
           borderBottomWidth: "1px",
           borderBottomStyle: "solid",
           background: "transparent",
@@ -35124,32 +35069,102 @@
           paddingRight: 0,
           borderRadius: 0
         },
-        state.decoration === "none" && {
+        decoration === "none" && {
           background: "transparent"
         }
       ],
-      tagRemove: () => [
+      multiselectValueClose: {
+        marginLeft: `calc(${height} / 5)`,
+        marginRight: `calc(-${height} / 5)`,
+        padding: ` 0 calc(${height} / 20)`,
+        borderLeft: "1px solid",
+        color: disabled ? theme.color.light.rgb().string() : theme.color.primary.alpha(0.8).rgb().string(),
+        cursor: "pointer",
+        ":hover": {
+          color: disabled ? theme.color.light.rgb().string() : theme.color.primary.rgb().string()
+        }
+      },
+      drop: [
         {
-          marginLeft: `calc(${height} / 5)`,
-          marginRight: `calc(-${height} / 5)`,
-          padding: ` 0 calc(${height} / 20)`,
-          borderLeft: "1px solid",
-          color: disabled ? theme.color.light.rgb().string() : theme.color.primary.alpha(0.8).rgb().string(),
-          cursor: "pointer",
-          ":hover": {
-            color: disabled ? theme.color.light.rgb().string() : theme.color.primary.rgb().string()
+          position: "relative",
+          background: theme.color.surface.rgb().string(),
+          borderRadius: theme.radius.s,
+          boxShadow: theme.assets.shadow.l,
+          boxSizing: "border-box",
+          overflow: "hidden",
+          top: "0.25rem"
+        },
+        shape === "square" && {
+          borderRadius: 0
+        },
+        shape === "round" && {
+          borderRadius: theme.radius.s
+        },
+        decoration === "filled" && [
+          {
+            boxShadow: "none",
+            top: 0,
+            borderColor: "transparent"
           }
+        ],
+        decoration === "underline" && {
+          borderTopColor: "transparent",
+          borderLeftColor: "transparent",
+          borderRightColor: "transparent",
+          background: "transparent",
+          paddingLeft: 0,
+          paddingRight: 0,
+          borderRadius: 0,
+          backgroundColor: theme.color.surface.rgb().string()
+        },
+        decoration === "none" && {
+          borderTopLeftRadius: theme.radius.s,
+          borderTopRightRadius: theme.radius.s,
+          borderTopWidth: "1px"
         }
       ],
-      emptyContainer: () => [
+      dropHeader: {
+        padding: `calc(${theme.assets.field[size].indent} / 2)`,
+        paddingBottom: 0
+      },
+      scrollContent: {
+        maxHeight: maxScrollHeight,
+        padding: `calc(${theme.assets.field[size].indent} / 2)`
+      },
+      option: (state) => [
         {
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
-          padding: `calc(${height} / 5)`
+          cursor: "pointer",
+          userSelect: "none",
+          borderRadius: theme.radius.s,
+          ":hover": {
+            color: theme.color.primary.rgb().string(),
+            backgroundColor: theme.color.primary.alpha(0.1).rgb().string()
+          },
+          padding: `calc(${theme.assets.field[size].indent} / 2)`
+        },
+        theme.assets.typography.text[size],
+        state.selected && {
+          color: theme.color.onPrimary.rgb().string(),
+          backgroundColor: theme.color.primary.rgb().string(),
+          ":hover": {
+            color: theme.color.onPrimary.rgb().string(),
+            backgroundColor: theme.color.primary.rgb().string()
+          }
         }
       ],
-      emptyText: () => [
+      dropFooter: {
+        padding: `calc(${theme.assets.field[size].indent} / 2)`,
+        paddingTop: 0
+      },
+      noOptions: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: `calc(${height} / 5)`
+      },
+      noOptionsText: [
         {
           color: theme.color.light.rgb().string(),
           userSelect: "none"
@@ -35167,7 +35182,6 @@
       decoration = "outline",
       size = "m",
       shape = "rounded",
-      maxScrollHeight = "16rem",
       keepOpen = false,
       disabled = false,
       openOnFocus = true,
@@ -35178,12 +35192,15 @@
       multiselect,
       animation,
       defaultValues,
-      onKeyDown
+      dropHeader,
+      dropFooter,
+      onKeyDown,
+      renderOption: customRenderOption,
+      renderMultiselectValue: customRenderMultiselectValue
     } = _a, fieldProps = __objRest(_a, [
       "decoration",
       "size",
       "shape",
-      "maxScrollHeight",
       "keepOpen",
       "disabled",
       "openOnFocus",
@@ -35194,7 +35211,11 @@
       "multiselect",
       "animation",
       "defaultValues",
-      "onKeyDown"
+      "dropHeader",
+      "dropFooter",
+      "onKeyDown",
+      "renderOption",
+      "renderMultiselectValue"
     ]);
     const { classes, styleProps, overridesPropClasses } = useSystem_default("Select", props, styles_default21);
     const fieldRef = (0, import_react285.useRef)(null);
@@ -35212,12 +35233,6 @@
       }
       return true;
     });
-    const classState = {
-      decoration,
-      shape,
-      size,
-      isOpen
-    };
     (0, import_react285.useEffect)(() => {
       if (defaultValues) {
         setValues(defaultValues);
@@ -35287,6 +35302,30 @@
       values,
       toggleOpen
     }));
+    const renderOption = (option) => {
+      const isThisOptionSelected = values.map((item) => item.value).includes(option.value);
+      return /* @__PURE__ */ jsx("div", {
+        css: classes.option({
+          selected: isThisOptionSelected
+        }),
+        key: createID_default(),
+        onClick: (e) => {
+          e.stopPropagation();
+          setOption(option);
+        }
+      }, customRenderOption ? customRenderOption(option, isThisOptionSelected) : option.text);
+    };
+    const renderMultiselectValue = (option) => /* @__PURE__ */ jsx("div", {
+      css: classes.multiselectValue,
+      key: createID_default()
+    }, customRenderMultiselectValue ? customRenderMultiselectValue(option) : option.text, !disabled && /* @__PURE__ */ jsx(Close_default, {
+      size,
+      css: classes.multiselectValueClose,
+      onClick: (e) => {
+        e.stopPropagation();
+        unsetOption(option);
+      }
+    }));
     return /* @__PURE__ */ jsx(Field_default, __spreadProps(__spreadValues({}, fieldProps), {
       ref: fieldRef,
       size,
@@ -35332,30 +35371,15 @@
         }
       }))
     }), /* @__PURE__ */ jsx("div", {
-      css: classes.selected
-    }, multiselect && values.map((option, index) => {
-      var _a2;
-      return /* @__PURE__ */ jsx("div", {
-        css: classes.tag(classState),
-        key: createID_default()
-      }, ((_a2 = props.onRenderItem) == null ? void 0 : _a2.call(props, option, index)) || option.text, !disabled && /* @__PURE__ */ jsx(Close_default, {
-        size,
-        css: classes.tagRemove(classState),
-        onClick: (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          unsetOption(option);
-        }
-      }));
-    }), /* @__PURE__ */ jsx("input", {
+      css: classes.selectedArea
+    }, multiselect && values.map(renderMultiselectValue), /* @__PURE__ */ jsx("input", {
       type: "text",
       tabIndex: -1,
       size: 5,
       disabled: disabled || !searchable,
       css: classes.input({
         disableEvents: !searchable,
-        searchMode: searchValue !== "",
-        multiselect: !!multiselect
+        searchMode: searchValue !== ""
       }),
       placeholder: !multiselect || values.length === 0 ? props.placeholder || "" : "",
       value: multiselect ? searchValue : searchValue || ((_c = values[0]) == null ? void 0 : _c.text) || "",
@@ -35399,30 +35423,24 @@
       },
       stretchWidth: true,
       target: fieldRef
-    }, /* @__PURE__ */ jsx(ScrollView_default, {
+    }, /* @__PURE__ */ jsx("div", {
+      css: classes.drop
+    }, /* @__PURE__ */ jsx("div", {
+      css: classes.dropHeader
+    }, dropHeader), /* @__PURE__ */ jsx(ScrollView_default, {
       preventStageEvents: true,
       size: "xs",
       xBarPosition: "none",
       overrides: {
-        content: {
-          maxHeight: maxScrollHeight
-        },
-        wrapper: classes.drop(classState)
+        content: classes.scrollContent
       }
-    }, options.map((option) => /* @__PURE__ */ jsx("div", {
-      css: classes.dropItem(__spreadProps(__spreadValues({}, classState), {
-        selected: values.map((item) => item.value).includes(option.value)
-      })),
-      key: createID_default(),
-      onClick: (e) => {
-        e.stopPropagation();
-        setOption(option);
-      }
-    }, option.text)), options.length === 0 && /* @__PURE__ */ jsx("div", {
-      css: classes.emptyContainer(classState)
+    }, options.map(renderOption), options.length === 0 && /* @__PURE__ */ jsx("div", {
+      css: classes.noOptions
     }, /* @__PURE__ */ jsx("div", {
-      css: classes.emptyText(classState)
-    }, emptyText)))));
+      css: classes.noOptionsText
+    }, emptyText))), /* @__PURE__ */ jsx("div", {
+      css: classes.dropFooter
+    }, dropFooter))));
   };
   var Select_default = (0, import_react285.forwardRef)(Select);
 
@@ -36857,7 +36875,7 @@
   var styles_default29 = createClasses22;
 
   // ../core/layout/Block/index.tsx
-  var Block = (props, ref) => {
+  var Block2 = (props, ref) => {
     const { classes, attributes, events, styleProps } = useSystem_default("Block", props, styles_default29);
     return jsx(props.as || "div", __spreadProps(__spreadValues(__spreadValues({}, attributes), events), {
       ref,
@@ -36870,7 +36888,7 @@
       className: props.className
     }), props.children);
   };
-  var Block_default = (0, import_react299.forwardRef)(Block);
+  var Block_default = (0, import_react299.forwardRef)(Block2);
 
   // ../core/layout/Flexbox/index.tsx
   init_define_ENV();
@@ -39360,7 +39378,7 @@
   init_react_shim();
   var import_react319 = __toModule(require_react());
   var PlaygroundToolbar = () => {
-    const [date, setDate] = (0, import_react319.useState)(void 0);
+    const [date, setDate] = (0, import_react319.useState)(new Date("2022-03-30T22:00:00.000Z"));
     console.log("Controlled state:", date);
     return /* @__PURE__ */ jsx(Flexbox_default, {
       p: "1rem",
@@ -39380,6 +39398,7 @@
       searchable: true,
       multiselect: true,
       placeholder: "Please select type",
+      dropFooter: /* @__PURE__ */ jsx(Button_default, null, "sdgsfg"),
       options: [
         { text: "Man", value: 1 },
         { text: "Woman", value: 2 },
@@ -39389,9 +39408,8 @@
     }), /* @__PURE__ */ jsx(DatePicker_default, {
       flex: 1,
       ml: "0.5rem",
-      defaultValue: "07/07/2019",
       value: date,
-      onChange: (nextDate) => setDate(nextDate)
+      onChange: (nextDate) => setDate(nextDate == null ? void 0 : nextDate.toDate())
     }), /* @__PURE__ */ jsx(Divider_default, {
       vertical: true,
       mx: "0.5rem",

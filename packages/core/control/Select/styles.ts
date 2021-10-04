@@ -2,76 +2,11 @@ import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
   theme,
-  { size = 'm', disabled, shape = 'rounded', decoration = 'outline' },
+  { size = 'm', disabled, shape = 'rounded', decoration = 'outline', maxScrollHeight = '16rem' },
 ) => {
   const { height } = theme.assets.field[size]
 
   return {
-    drop: [
-      {
-        position: 'relative',
-        background: theme.color.surface.rgb().string(),
-        borderRadius: theme.radius.s,
-        boxShadow: theme.assets.shadow.l,
-        boxSizing: 'border-box',
-        overflow: 'hidden',
-        top: '0.25rem',
-        padding: `calc(${theme.assets.field[size].indent} / 2)`,
-      },
-      shape === 'square' && {
-        borderRadius: 0,
-      },
-      shape === 'round' && {
-        borderRadius: theme.radius.s,
-      },
-      decoration === 'filled' && [
-        {
-          boxShadow: 'none',
-          top: 0,
-          borderColor: 'transparent',
-        },
-      ],
-      decoration === 'underline' && {
-        borderTopColor: 'transparent',
-        borderLeftColor: 'transparent',
-        borderRightColor: 'transparent',
-        background: 'transparent',
-        paddingLeft: 0,
-        paddingRight: 0,
-        borderRadius: 0,
-        backgroundColor: theme.color.surface.rgb().string(),
-      },
-      decoration === 'none' && {
-        borderTopLeftRadius: theme.radius.s,
-        borderTopRightRadius: theme.radius.s,
-        borderTopWidth: '1px',
-      },
-    ],
-
-    option: (state) => [
-      {
-        display: 'flex',
-        alignItems: 'center',
-        cursor: 'pointer',
-        userSelect: 'none',
-        borderRadius: theme.radius.s,
-        ':hover': {
-          color: theme.color.primary.rgb().string(),
-          backgroundColor: theme.color.primary.alpha(0.1).rgb().string(),
-        },
-        padding: `calc(${theme.assets.field[size].indent} / 2)`,
-      },
-      theme.assets.typography.text[size],
-      state.selected && {
-        color: theme.color.onPrimary.rgb().string(),
-        backgroundColor: theme.color.primary.rgb().string(),
-        ':hover': {
-          color: theme.color.onPrimary.rgb().string(),
-          backgroundColor: theme.color.primary.rgb().string(),
-        },
-      },
-    ],
-
     selectedArea: {
       display: 'flex',
       flexWrap: 'wrap',
@@ -161,6 +96,85 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
       ':hover': {
         color: disabled ? theme.color.light.rgb().string() : theme.color.primary.rgb().string(),
       },
+    },
+
+    drop: [
+      {
+        position: 'relative',
+        background: theme.color.surface.rgb().string(),
+        borderRadius: theme.radius.s,
+        boxShadow: theme.assets.shadow.l,
+        boxSizing: 'border-box',
+        overflow: 'hidden',
+        top: '0.25rem',
+      },
+      shape === 'square' && {
+        borderRadius: 0,
+      },
+      shape === 'round' && {
+        borderRadius: theme.radius.s,
+      },
+      decoration === 'filled' && [
+        {
+          boxShadow: 'none',
+          top: 0,
+          borderColor: 'transparent',
+        },
+      ],
+      decoration === 'underline' && {
+        borderTopColor: 'transparent',
+        borderLeftColor: 'transparent',
+        borderRightColor: 'transparent',
+        background: 'transparent',
+        paddingLeft: 0,
+        paddingRight: 0,
+        borderRadius: 0,
+        backgroundColor: theme.color.surface.rgb().string(),
+      },
+      decoration === 'none' && {
+        borderTopLeftRadius: theme.radius.s,
+        borderTopRightRadius: theme.radius.s,
+        borderTopWidth: '1px',
+      },
+    ],
+
+    dropHeader: {
+      padding: `calc(${theme.assets.field[size].indent} / 2)`,
+      paddingBottom: 0,
+    },
+
+    scrollContent: {
+      maxHeight: maxScrollHeight,
+      padding: `calc(${theme.assets.field[size].indent} / 2)`,
+    },
+
+    option: (state) => [
+      {
+        display: 'flex',
+        alignItems: 'center',
+        cursor: 'pointer',
+        userSelect: 'none',
+        borderRadius: theme.radius.s,
+        ':hover': {
+          color: theme.color.primary.rgb().string(),
+          backgroundColor: theme.color.primary.alpha(0.1).rgb().string(),
+        },
+        padding: `calc(${theme.assets.field[size].indent} / 2)`,
+      },
+      theme.assets.typography.text[size],
+      state.selected && {
+        color: theme.color.onPrimary.rgb().string(),
+        backgroundColor: theme.color.primary.rgb().string(),
+        ':hover': {
+          color: theme.color.onPrimary.rgb().string(),
+          backgroundColor: theme.color.primary.rgb().string(),
+        },
+      },
+    ],
+
+    dropFooter: {
+      padding: `calc(${theme.assets.field[size].indent} / 2)`,
+      paddingTop: 0,
     },
 
     noOptions: {

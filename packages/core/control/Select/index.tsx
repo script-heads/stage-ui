@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { Drop, ScrollView } from '@stage-ui/core'
+import { Block, Drop, ScrollView } from '@stage-ui/core'
 import { ChevronDown, Close } from '@stage-ui/icons'
 import DropTypes from '@stage-ui/core/layout/Drop/types'
 import Field from '@stage-ui/core/basic/Field'
@@ -21,7 +21,6 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     decoration = 'outline',
     size = 'm',
     shape = 'rounded',
-    maxScrollHeight = '16rem',
     keepOpen = false,
     disabled = false,
     openOnFocus = true,
@@ -32,6 +31,8 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     multiselect,
     animation,
     defaultValues,
+    dropHeader,
+    dropFooter,
     onKeyDown,
     renderOption: customRenderOption,
     renderMultiselectValue: customRenderMultiselectValue,
@@ -326,24 +327,25 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
         stretchWidth
         target={fieldRef}
       >
-        <ScrollView
-          preventStageEvents
-          size="xs"
-          xBarPosition="none"
-          overrides={{
-            content: {
-              maxHeight: maxScrollHeight,
-            },
-            wrapper: classes.drop,
-          }}
-        >
-          {options.map(renderOption)}
-          {options.length === 0 && (
-            <div css={classes.noOptions}>
-              <div css={classes.noOptionsText}>{emptyText}</div>
-            </div>
-          )}
-        </ScrollView>
+        <div css={classes.drop}>
+          <div css={classes.dropHeader}>{dropHeader}</div>
+          <ScrollView
+            preventStageEvents
+            size="xs"
+            xBarPosition="none"
+            overrides={{
+              content: classes.scrollContent,
+            }}
+          >
+            {options.map(renderOption)}
+            {options.length === 0 && (
+              <div css={classes.noOptions}>
+                <div css={classes.noOptionsText}>{emptyText}</div>
+              </div>
+            )}
+          </ScrollView>
+          <div css={classes.dropFooter}>{dropFooter}</div>
+        </div>
       </Drop>
     </Field>
   )

@@ -60,6 +60,14 @@ declare namespace SelectTypes {
      */
     animation?: DropTypes.Props['animation']
     /**
+     * Any content in top of drop
+     */
+    dropHeader?: React.ReactNode
+    /**
+     * Any content in bottom of drop
+     */
+    dropFooter?: React.ReactNode
+    /**
      * Event is fired when user change value
      */
     onChange?: (values: Option[], changedValue?: Option) => void
@@ -135,6 +143,21 @@ declare namespace SelectTypes {
      * Container text when list is empty
      */
     noOptionsText: void
+
+    /**
+     * Moveable part of scroll in drop
+     */
+    scrollContent: void
+
+    /**
+     * Container of top content in drop
+     */
+    dropHeader: void
+
+    /**
+     * Container of bottom content in drop
+     */
+    dropFooter: void
   } & Partial<FieldTypes.Classes>
 }
 

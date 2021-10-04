@@ -48,10 +48,16 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       shape === 'round' && {
         borderRadius: theme.radius.s,
       },
-      decoration === 'outline' &&
+      decoration === 'outline' && [
+        {
+          ':focus, :focus-within': {
+            borderColor: theme.color.primary.alpha(0.4).string(),
+          },
+        },
         disabled && {
           background: theme.color.lightest.rgb().string(),
         },
+      ],
       decoration === 'filled' && [
         {
           borderColor: 'transparent',
@@ -70,6 +76,9 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         paddingRight: 0,
         borderRadius: 0,
         boxShadow: 'none',
+        ':focus, :focus-within': {
+          borderBottomColor: theme.color.primary.alpha(0.4).string(),
+        },
       },
       decoration === 'none' && {
         background: 'transparent',
