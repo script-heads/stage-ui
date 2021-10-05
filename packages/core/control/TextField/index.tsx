@@ -65,7 +65,7 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
     if (leftChildNumber) {
       const currentValue = (defaultValue || value || '').toString()
       setleftCountLineState({
-        count: currentValue.split(`\n`).length,
+        count: currentValue.split('\n').length,
         top: leftCountLineState.top,
       })
     }
@@ -154,6 +154,7 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
             borderRadius: `${theme.radius.m} 0 0 ${theme.radius.m}`,
           },
           overridesPropClasses.leftChild,
+          overridesPropClasses.lineNumbers,
         ],
         rightChild: [overridesPropClasses.rightChild],
       })}
@@ -165,7 +166,7 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
         onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
           if (leftCountLineRef.current) {
             setleftCountLineState({
-              count: e.target.value.split(`\n`).length,
+              count: e.target.value.split('\n').length,
               top: leftCountLineState.top,
             })
           }
@@ -173,7 +174,7 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
         onScroll: (e: React.ChangeEvent<HTMLInputElement>) => {
           if (leftCountLineRef.current) {
             setleftCountLineState({
-              count: e.target.value.split(`\n`).length,
+              count: e.target.value.split('\n').length,
               top: `${-e.target.scrollTop}px`,
             })
           }
