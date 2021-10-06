@@ -34,6 +34,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     dropHeader,
     dropFooter,
     onKeyDown,
+    onChange: onChangeProp,
     renderOption: customRenderOption,
     renderMultiselectValue: customRenderMultiselectValue,
     ...fieldProps
@@ -142,7 +143,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     if (props.values === undefined) {
       setValues(newValues)
     }
-    props.onChange?.(newValues, changedValue)
+    onChangeProp?.(newValues, changedValue)
     setSearchValue('')
   }
   /**
@@ -293,9 +294,6 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
           onChange={(e) => {
             if (!isOpen && !disabled) {
               setOpen(true)
-            }
-            if (!multiselect) {
-              onChange()
             }
             setSearchValue(e.target.value)
             props.onSearch?.(e.target.value)
