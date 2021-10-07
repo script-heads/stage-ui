@@ -7,7 +7,7 @@
     "build": "node ../../scripts/make core && tsc && yarn build:js",
     "build:js": "babel ./ --out-dir ../../build/core --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
     "type-check": "tsc --noEmit",
-    "type-check:watch": "yarn type-check -- --watch"
+    "type-check:watch": "tsc --noEmit --watch"
   },
   "dependencies": {
     "imask": "6.0.1",
@@ -16,7 +16,6 @@
   },
   "peerDependencies": {
     "@emotion/react": ">=11",
-    "react": ">=16",
-    "react-dom": ">=16"
+    "react": ">=16"
   }
 }
