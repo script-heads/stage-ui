@@ -1,10 +1,18 @@
-import { Button, dialog, Divider, Flexbox, notify, Text } from '@stage-ui/core'
+import { Button, dialog, Divider, Flexbox, notify, Text, Toggle } from '@stage-ui/core'
 import { QuestionMarkCircle, Save } from '@stage-ui/icons'
 import React from 'react'
 
 const PlaygroundControl = () => (
-  <Flexbox p="1rem" mt="0.5rem" decoration="surface" alignItems="center">
+  <Flexbox p="s m" my="0.5rem" decoration="surface" alignItems="center">
     <QuestionMarkCircle flex={1} size="1.5rem" color={(c) => c.warning} />
+    <Toggle
+      defaultValue={{ text: 'No', value: 0 }}
+      options={[
+        { text: 'No', value: 0 },
+        { text: 'Yes', value: 1 },
+        { text: 'Maybe', value: 2 },
+      ]}
+    />
     <Divider vertical mx="0.5rem" h="2.5rem" />
     <Button decoration="plain" mr="0.5rem">
       <Text>Cancel</Text>

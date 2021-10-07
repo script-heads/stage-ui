@@ -12,7 +12,7 @@ declare global {
 window.dt = dt
 
 ReactDOM.render(
-  <Viewport theme="dark">
+  <Viewport theme="light">
     <App />
   </Viewport>,
   document.getElementById('app'),

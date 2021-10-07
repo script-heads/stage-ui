@@ -1307,8 +1307,8 @@
             currentSheet.insert(rule);
           })];
           var serializer = middleware(omnipresentPlugins.concat(stylisPlugins, finalizingPlugins));
-          var stylis = function stylis2(styles7) {
-            return serialize(compile(styles7), serializer);
+          var stylis = function stylis2(styles8) {
+            return serialize(compile(styles8), serializer);
           };
           _insert = function insert(selector, serialized, sheet, shouldCache) {
             currentSheet = sheet;
@@ -1753,11 +1753,11 @@
               next2 = next2.next;
             }
           }
-          var styles7 = interpolation.styles + ";";
+          var styles8 = interpolation.styles + ";";
           if (false) {
-            styles7 += interpolation.map;
+            styles8 += interpolation.map;
           }
-          return styles7;
+          return styles8;
         }
         return createStringFromObject(mergedProps, registered, interpolation);
       }
@@ -1911,30 +1911,30 @@
           return args[0];
         }
         var stringMode = true;
-        var styles7 = "";
+        var styles8 = "";
         cursor = void 0;
         var strings = args[0];
         if (strings == null || strings.raw === void 0) {
           stringMode = false;
-          styles7 += handleInterpolation(mergedProps, registered, strings);
+          styles8 += handleInterpolation(mergedProps, registered, strings);
         } else {
           if (false) {
             console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR);
           }
-          styles7 += strings[0];
+          styles8 += strings[0];
         }
         for (var i = 1; i < args.length; i++) {
-          styles7 += handleInterpolation(mergedProps, registered, args[i]);
+          styles8 += handleInterpolation(mergedProps, registered, args[i]);
           if (stringMode) {
             if (false) {
               console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR);
             }
-            styles7 += strings[i];
+            styles8 += strings[i];
           }
         }
         var sourceMap;
         if (false) {
-          styles7 = styles7.replace(sourceMapPattern, function(match3) {
+          styles8 = styles8.replace(sourceMapPattern, function(match3) {
             sourceMap = match3;
             return "";
           });
@@ -1942,14 +1942,14 @@
         labelPattern.lastIndex = 0;
         var identifierName = "";
         var match2;
-        while ((match2 = labelPattern.exec(styles7)) !== null) {
+        while ((match2 = labelPattern.exec(styles8)) !== null) {
           identifierName += "-" + match2[1];
         }
-        var name = hash_browser_esm_default(styles7) + identifierName;
+        var name = hash_browser_esm_default(styles8) + identifierName;
         if (false) {
           return {
             name,
-            styles: styles7,
+            styles: styles8,
             map: sourceMap,
             next: cursor,
             toString: function toString() {
@@ -1959,7 +1959,7 @@
         }
         return {
           name,
-          styles: styles7,
+          styles: styles8,
           next: cursor
         };
       };
@@ -2131,8 +2131,8 @@
           console.error("It looks like you're using the css prop on Global, did you mean to use the styles prop instead?");
           warnedAboutCssPropForGlobal = true;
         }
-        var styles7 = props.styles;
-        var serialized = serializeStyles([styles7], void 0, (0, import_react2.useContext)(ThemeContext));
+        var styles8 = props.styles;
+        var serialized = serializeStyles([styles8], void 0, (0, import_react2.useContext)(ThemeContext));
         var sheetRef = (0, import_react2.useRef)();
         (0, import_react2.useLayoutEffect)(function() {
           var key = cache.key + "-global";
@@ -26868,18 +26868,18 @@
   init_react_shim();
   function createVariant(state) {
     const variant = (variants) => {
-      const styles7 = [];
+      const styles8 = [];
       Object.keys(variants).forEach((key) => {
         if (Object.prototype.hasOwnProperty.call(variants, key)) {
           if (typeof state[key] === "boolean" && state[key] === true) {
-            styles7.push(variants[key]);
+            styles8.push(variants[key]);
           }
           if (typeof state[key] === "string" && Object.prototype.hasOwnProperty.call(variants[key], state[key])) {
-            styles7.push(variants[key][state[key]]);
+            styles8.push(variants[key][state[key]]);
           }
         }
       });
-      return styles7;
+      return styles8;
     };
     return variant;
   }
@@ -35195,6 +35195,7 @@
       dropHeader,
       dropFooter,
       onKeyDown,
+      onChange: onChangeProp,
       renderOption: customRenderOption,
       renderMultiselectValue: customRenderMultiselectValue
     } = _a, fieldProps = __objRest(_a, [
@@ -35214,6 +35215,7 @@
       "dropHeader",
       "dropFooter",
       "onKeyDown",
+      "onChange",
       "renderOption",
       "renderMultiselectValue"
     ]);
@@ -35270,11 +35272,10 @@
       setOpen(!isOpen);
     }
     function onChange(newValues = [], changedValue) {
-      var _a2;
       if (props.values === void 0) {
         setValues(newValues);
       }
-      (_a2 = props.onChange) == null ? void 0 : _a2.call(props, newValues, changedValue);
+      onChangeProp == null ? void 0 : onChangeProp(newValues, changedValue);
       setSearchValue("");
     }
     function setOption(changedValue) {
@@ -35394,9 +35395,6 @@
         var _a2;
         if (!isOpen && !disabled) {
           setOpen(true);
-        }
-        if (!multiselect) {
-          onChange();
         }
         setSearchValue(e.target.value);
         (_a2 = props.onSearch) == null ? void 0 : _a2.call(props, e.target.value);
@@ -35605,49 +35603,48 @@
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var styles4 = (theme, { lineHeight, size = "m", leftChildNumber }) => {
-    return {
-      input: (state) => [
-        {
-          outline: 0,
-          padding: 0,
-          margin: 0,
-          border: "none",
-          backgroundImage: "none",
-          backgroundColor: "transparent",
-          resize: "vertical",
-          boxShadow: "none",
-          color: "inherit",
-          font: "inherit",
-          cursor: "inherit",
-          textOverflow: "ellipsis",
-          "&::placeholder": {
-            userSelect: "none",
-            color: theme.color.light.rgb().string()
-          }
-        },
-        state.multiline && {
-          padding: theme.assets.field[size].indent,
-          paddingLeft: leftChildNumber ? 0 : void 0
-        },
-        state.disabled && {
-          color: theme.color.hardest.rgb().string()
+  var styles4 = (theme, { lineHeight, size = "m", leftChildNumber }) => ({
+    input: (state) => [
+      {
+        outline: 0,
+        padding: 0,
+        margin: 0,
+        border: "none",
+        backgroundImage: "none",
+        backgroundColor: "transparent",
+        resize: "vertical",
+        boxShadow: "none",
+        color: "inherit",
+        font: "inherit",
+        cursor: "inherit",
+        textOverflow: "ellipsis",
+        "&::placeholder": {
+          userSelect: "none",
+          color: theme.color.light.rgb().string()
         }
-      ],
-      lineNumbers: [
-        {
-          backgroundColor: theme.color.lightest.hex(),
-          height: "100%",
-          position: "absolute",
-          padding: `${theme.assets.field[size].indent}`,
-          textAlign: "right",
-          "> div": {
-            height: lineHeight || theme.assets.typography.text[size].lineHeight
-          }
+      },
+      state.multiline && {
+        padding: theme.assets.field[size].indent,
+        paddingLeft: leftChildNumber ? 0 : void 0
+      },
+      state.disabled && {
+        color: theme.color.hardest.rgb().string()
+      }
+    ],
+    lineNumbers: [
+      {
+        backgroundColor: theme.color.lightest.hex(),
+        height: "max-content",
+        minHeight: "100%",
+        position: "absolute",
+        padding: `${theme.assets.field[size].indent}`,
+        textAlign: "right",
+        "> div": {
+          height: lineHeight || theme.assets.typography.text[size].lineHeight
         }
-      ]
-    };
-  };
+      }
+    ]
+  });
   var styles_default23 = styles4;
 
   // ../core/control/TextField/index.tsx
@@ -35699,8 +35696,7 @@
       if (leftChildNumber) {
         const currentValue = (defaultValue || value || "").toString();
         setleftCountLineState({
-          count: currentValue.split(`
-`).length,
+          count: currentValue.split("\n").length,
           top: leftCountLineState.top
         });
       }
@@ -35768,7 +35764,8 @@
             width: `calc(${theme.assets.field[size].indent} * 2 + ${numbersOfDigitsOfCountLine} * ${lineNumberWidth[size]})`,
             borderRadius: `${theme.radius.m} 0 0 ${theme.radius.m}`
           },
-          overridesPropClasses.leftChild
+          overridesPropClasses.leftChild,
+          overridesPropClasses.lineNumbers
         ],
         rightChild: [overridesPropClasses.rightChild]
       })
@@ -35779,8 +35776,7 @@
       onChange: (e) => {
         if (leftCountLineRef.current) {
           setleftCountLineState({
-            count: e.target.value.split(`
-`).length,
+            count: e.target.value.split("\n").length,
             top: leftCountLineState.top
           });
         }
@@ -35788,8 +35784,7 @@
       onScroll: (e) => {
         if (leftCountLineRef.current) {
           setleftCountLineState({
-            count: e.target.value.split(`
-`).length,
+            count: e.target.value.split("\n").length,
             top: `${-e.target.scrollTop}px`
           });
         }
@@ -35966,11 +35961,147 @@
   };
   var Stepper_default = (0, import_react289.forwardRef)(Stepper);
 
-  // ../core/data/Meter/index.tsx
+  // ../core/control/Toggle/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
   var import_react290 = __toModule(require_react());
+
+  // ../core/control/Toggle/styles.ts
+  init_define_ENV();
+  init_wsClientInjection();
+  init_react_shim();
+  var styles6 = (theme, props) => {
+    const { size = "m", shape = "rounded", disabled } = props;
+    return {
+      container: [
+        {
+          position: "relative",
+          whiteSpace: "nowrap",
+          borderRadius: theme.radius[size],
+          textOverflow: "ellipsis",
+          overflow: "hidden",
+          background: "transparent",
+          display: "flex",
+          alignItems: "stretch",
+          width: "fit-content",
+          height: theme.assets.field[size].height,
+          backgroundColor: theme.color.background.rgb().string(),
+          borderColor: theme.color.lightest.rgb().string(),
+          borderWidth: "1px",
+          borderStyle: "solid",
+          "&:disabled": {
+            color: theme.color.light.rgb().string()
+          },
+          ":before": {
+            userSelect: "none",
+            color: "transparent",
+            transition: "all 0.2s",
+            position: "absolute",
+            paddingLeft: theme.spacing[size],
+            paddingRight: theme.spacing[size],
+            height: "100%",
+            borderRadius: theme.radius[size],
+            backgroundColor: theme.color.surface.rgb().string(),
+            borderColor: theme.color.lightest.rgb().string(),
+            borderWidth: "1px",
+            borderStyle: "solid",
+            margin: "-1px"
+          }
+        },
+        shape === "square" && {
+          borderRadius: 0
+        },
+        shape === "round" && {
+          borderRadius: "100rem"
+        },
+        disabled && {
+          cursor: "not-allowed"
+        }
+      ],
+      option: (state) => [
+        theme.assets.typography.text[size],
+        {
+          zIndex: 1,
+          display: "flex",
+          alignItems: "center",
+          paddingLeft: theme.spacing[size],
+          paddingRight: theme.spacing[size],
+          color: theme.color.hard.rgb().string(),
+          cursor: "pointer"
+        },
+        state.selected && {
+          cursor: "default",
+          color: theme.color.onSurface.rgb().string()
+        }
+      ]
+    };
+  };
+  var styles_default25 = styles6;
+
+  // ../core/control/Toggle/index.tsx
+  var Button2 = (props, ref) => {
+    var _a;
+    const { disabled, defaultValue } = props;
+    const { classes, attributes, events, styleProps } = useSystem_default("Toggle", props, styles_default25, {
+      focus: "tabOnly"
+    });
+    const [value, setValue] = (0, import_react290.useState)();
+    const [offset, setOffset] = (0, import_react290.useState)(0);
+    (0, import_react290.useEffect)(() => {
+      if (defaultValue) {
+        setValue(defaultValue);
+      }
+    }, []);
+    (0, import_react290.useEffect)(() => {
+      if (props.value) {
+        setValue(props.value);
+      }
+    }, [(_a = props.value) == null ? void 0 : _a.value]);
+    function onChange(newValue) {
+      var _a2;
+      if (props.value === void 0) {
+        setValue(newValue);
+      }
+      (_a2 = props.onChange) == null ? void 0 : _a2.call(props, newValue);
+    }
+    function setOption(changedValue) {
+      onChange == null ? void 0 : onChange(changedValue);
+    }
+    return /* @__PURE__ */ jsx("div", __spreadProps(__spreadValues(__spreadValues({}, attributes), events), {
+      ref,
+      onChange: void 0,
+      css: [
+        classes.container,
+        styleProps.all,
+        {
+          ":before": {
+            content: value && `"${value == null ? void 0 : value.text}"`,
+            left: `${offset}px`
+          }
+        }
+      ]
+    }), props.options.map((option) => /* @__PURE__ */ jsx("div", {
+      key: option.value.toString(),
+      css: [
+        classes.option({
+          selected: option.value === (value == null ? void 0 : value.value)
+        })
+      ],
+      onClick: (e) => {
+        e.stopPropagation();
+        setOption(option);
+        setOffset(e.target.offsetLeft);
+      }
+    }, option.text)));
+  };
+  var Toggle_default = (0, import_react290.forwardRef)(Button2);
+
+  // ../core/data/Meter/index.tsx
+  init_define_ENV();
+  init_wsClientInjection();
+  init_react_shim();
+  var import_react291 = __toModule(require_react());
 
   // ../core/data/Meter/MeterThumb/index.tsx
   init_define_ENV();
@@ -36062,12 +36193,12 @@
       ]
     };
   };
-  var styles_default25 = createClasses19;
+  var styles_default26 = createClasses19;
 
   // ../core/data/Meter/MeterThumb/index.tsx
   var MeterThumb = (props) => {
     const { shape = "round", size = "m", value = 0 } = props;
-    const { classes, attributes, events } = useSystem_default("MeterThumb", props, styles_default25);
+    const { classes, attributes, events } = useSystem_default("MeterThumb", props, styles_default26);
     return /* @__PURE__ */ jsx("div", __spreadProps(__spreadValues(__spreadValues({}, attributes), events), {
       css: classes.container({ shape, size }),
       style: {
@@ -36115,12 +36246,12 @@
       thumb: () => []
     };
   };
-  var styles_default26 = createClasses20;
+  var styles_default27 = createClasses20;
 
   // ../core/data/Meter/index.tsx
   var Meter = (props, ref) => {
     const { decoration = "filled", shape = "round", size = "m", value = 0, color, loading } = props;
-    const { classes, attributes, events, styleProps } = useSystem_default("Meter", props, styles_default26);
+    const { classes, attributes, events, styleProps } = useSystem_default("Meter", props, styles_default27);
     let childs = props.children;
     if (childs && !Array.isArray(childs)) {
       childs = [childs];
@@ -36129,7 +36260,7 @@
       ref
     }, attributes), events), {
       css: [classes.container({ decoration, shape, size }), styleProps.all]
-    }), childs ? childs.map((child, index) => import_react290.default.cloneElement(child, __spreadValues(__spreadValues({
+    }), childs ? childs.map((child, index) => import_react291.default.cloneElement(child, __spreadValues(__spreadValues({
       key: index
     }, props), child.props))) : /* @__PURE__ */ jsx(MeterThumb_default, {
       shape,
@@ -36139,7 +36270,7 @@
       loading
     }));
   };
-  var Default2 = (0, import_react290.forwardRef)(Meter);
+  var Default2 = (0, import_react291.forwardRef)(Meter);
   var Meter_default = __spreadProps(__spreadValues({}, Default2), {
     Thumb: MeterThumb_default
   });
@@ -36148,7 +36279,7 @@
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react296 = __toModule(require_react());
+  var import_react297 = __toModule(require_react());
 
   // ../core/data/Table/styles.ts
   init_define_ENV();
@@ -36211,7 +36342,7 @@
   var containerDecorations_default = containerDecorations;
 
   // ../core/data/Table/styles.ts
-  var styles6 = (theme, props) => {
+  var styles7 = (theme, props) => {
     return {
       container: [
         containerDecorations_default(__spreadValues({ decoration: "surface" }, props), theme),
@@ -36276,15 +36407,15 @@
       ]
     };
   };
-  var styles_default27 = styles6;
+  var styles_default28 = styles7;
 
   // ../core/data/Table/TableFoot.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react292 = __toModule(require_react());
+  var import_react293 = __toModule(require_react());
   var TableFoot = (props, ref) => {
-    const { columns, pagination, rowCtx, styles: styles7, footerContent, onPageChange } = props;
+    const { columns, pagination, rowCtx, styles: styles8, footerContent, onPageChange } = props;
     let needDisplay = false;
     const paginationNeedDisplay = pagination && (pagination.alwaysVisible || rowCtx.length > pagination.pageSize);
     if (paginationNeedDisplay || footerContent) {
@@ -36295,7 +36426,7 @@
     }
     return /* @__PURE__ */ jsx("tfoot", null, /* @__PURE__ */ jsx("tr", null, /* @__PURE__ */ jsx("td", {
       ref,
-      css: styles7.footer,
+      css: styles8.footer,
       colSpan: columns.length
     }, /* @__PURE__ */ jsx(Flexbox_default, {
       justifyContent: footerContent ? "space-between" : "flex-end"
@@ -36304,17 +36435,17 @@
       onChange: onPageChange
     }, pagination))))));
   };
-  var TableFoot_default = (0, import_react292.forwardRef)(TableFoot);
+  var TableFoot_default = (0, import_react293.forwardRef)(TableFoot);
 
   // ../core/data/Table/TableHeadCell.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react293 = __toModule(require_react());
+  var import_react294 = __toModule(require_react());
   var TableHeadCell = (props, ref) => {
-    const { column: column2, styles: styles7 } = props;
-    const [busy, setBusy] = (0, import_react293.useState)(false);
-    const [up, setUp] = (0, import_react293.useState)(column2.sort === "DESC");
+    const { column: column2, styles: styles8 } = props;
+    const [busy, setBusy] = (0, import_react294.useState)(false);
+    const [up, setUp] = (0, import_react294.useState)(column2.sort === "DESC");
     const toggleSort = () => {
       setUp(!up);
       if (typeof column2.sort === "function")
@@ -36331,7 +36462,7 @@
       return /* @__PURE__ */ jsx("th", {
         ref,
         onClick: toggleSort,
-        css: styles7.headCell({
+        css: styles8.headCell({
           sort: typeof column2.sort !== "undefined"
         })
       }, /* @__PURE__ */ jsx(Flexbox_default, {
@@ -36346,31 +36477,31 @@
     }
     return /* @__PURE__ */ jsx("th", {
       ref,
-      css: styles7.headCell({ sort: false })
+      css: styles8.headCell({ sort: false })
     }, column2.title);
   };
-  var TableHeadCell_default = (0, import_react293.forwardRef)(TableHeadCell);
+  var TableHeadCell_default = (0, import_react294.forwardRef)(TableHeadCell);
 
   // ../core/data/Table/TableRow.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react295 = __toModule(require_react());
+  var import_react296 = __toModule(require_react());
 
   // ../core/data/Table/TableCell.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react294 = __toModule(require_react());
+  var import_react295 = __toModule(require_react());
   var TableCell = (props, ref) => {
-    const { column: column2, rowIndex, rowCtxItem, styles: styles7, getCellContext } = props;
+    const { column: column2, rowIndex, rowCtxItem, styles: styles8, getCellContext } = props;
     let content = rowCtxItem.row[column2.key] || null;
-    const [modifyState, setModifyState] = (0, import_react294.useState)(false);
+    const [modifyState, setModifyState] = (0, import_react295.useState)(false);
     rowCtxItem.setModifyState[column2.key] = setModifyState;
     rowCtxItem.isCellModify[column2.key] = modifyState;
     if (column2.dnd) {
       content = /* @__PURE__ */ jsx("div", {
-        css: styles7.rowCellAnchor
+        css: styles8.rowCellAnchor
       }, content);
     }
     if (column2.render) {
@@ -36378,7 +36509,7 @@
     }
     return /* @__PURE__ */ jsx("td", {
       ref,
-      css: styles7.rowCell,
+      css: styles8.rowCell,
       style: {
         width: column2.width || (column2.dnd ? "1rem" : "auto")
       },
@@ -36392,7 +36523,7 @@
       }
     }, content);
   };
-  var TableCell_default = (0, import_react294.forwardRef)(TableCell);
+  var TableCell_default = (0, import_react295.forwardRef)(TableCell);
 
   // ../core/data/Table/TableRow.tsx
   var getTR = (target) => {
@@ -36403,19 +36534,19 @@
   };
   var TableRow = (props, ref) => {
     var _a, _b, _c;
-    const { columns, rowIndex, rowCtxItem, delegates, styles: styles7, getCellContext } = props;
+    const { columns, rowIndex, rowCtxItem, delegates, styles: styles8, getCellContext } = props;
     const style = {};
-    const [expandComponent, setExpandComponent] = (0, import_react295.useState)(null);
+    const [expandComponent, setExpandComponent] = (0, import_react296.useState)(null);
     rowCtxItem.setExpandComponent = setExpandComponent;
     rowCtxItem.isExpand = Boolean(expandComponent);
     let rowId;
-    const [needDisplay, setNeedDisplay] = (0, import_react295.useState)(!props.enableRenderOptimization);
-    const [dragOver, setDragOver] = (0, import_react295.useState)(false);
+    const [needDisplay, setNeedDisplay] = (0, import_react296.useState)(!props.enableRenderOptimization);
+    const [dragOver, setDragOver] = (0, import_react296.useState)(false);
     if (props.enableRenderOptimization) {
       const height = (_b = (_a = props.delegates).rowHeight) == null ? void 0 : _b.call(_a, rowCtxItem);
       if (typeof height === "number") {
         style.height = `${height}px`;
-        rowId = import_react295.default.useMemo(() => `tr${rowIndex}_${(~~(Math.random() * 1e8)).toString(16)}`, []);
+        rowId = import_react296.default.useMemo(() => `tr${rowIndex}_${(~~(Math.random() * 1e8)).toString(16)}`, []);
         rowCtxItem.setNeedDisplay = (forceUnmount) => {
           var _a2, _b2, _c2;
           if (forceUnmount) {
@@ -36445,12 +36576,12 @@
     if (((_c = delegates.rowShouldRender) == null ? void 0 : _c.call(delegates, rowCtxItem)) === false) {
       return null;
     }
-    return /* @__PURE__ */ jsx(import_react295.default.Fragment, null, needDisplay ? /* @__PURE__ */ jsx(import_react295.default.Fragment, null, /* @__PURE__ */ jsx("tr", __spreadProps(__spreadValues({
+    return /* @__PURE__ */ jsx(import_react296.default.Fragment, null, needDisplay ? /* @__PURE__ */ jsx(import_react296.default.Fragment, null, /* @__PURE__ */ jsx("tr", __spreadProps(__spreadValues({
       id: rowId,
       style
     }, props.events), {
       ref,
-      css: [styles7.row({ dragOver })],
+      css: [styles8.row({ dragOver })],
       key: rowIndex,
       onDragStart: (e) => {
         e.stopPropagation();
@@ -36480,14 +36611,14 @@
     }), columns.map((column2, columnIndex) => /* @__PURE__ */ jsx(TableCell_default, {
       rowCtxItem,
       getCellContext,
-      styles: styles7,
+      styles: styles8,
       key: columnIndex,
       column: column2,
       rowIndex
     }))), expandComponent && /* @__PURE__ */ jsx("tr", {
       ref
     }, /* @__PURE__ */ jsx("td", {
-      css: styles7.expandContainer,
+      css: styles8.expandContainer,
       colSpan: columns.length
     }, expandComponent))) : /* @__PURE__ */ jsx("tr", {
       ref,
@@ -36495,7 +36626,7 @@
       style
     }));
   };
-  var TableRow_default = (0, import_react295.forwardRef)(TableRow);
+  var TableRow_default = (0, import_react296.forwardRef)(TableRow);
 
   // ../core/data/Table/index.tsx
   var dndContext = {
@@ -36505,8 +36636,8 @@
   };
   function Table(props, ref) {
     var _d;
-    const tableRef = (0, import_react296.useRef)(null);
-    const _a = useSystem_default("Table", props, styles_default27), {
+    const tableRef = (0, import_react297.useRef)(null);
+    const _a = useSystem_default("Table", props, styles_default28), {
       classes,
       attributes,
       events: _b
@@ -36514,9 +36645,9 @@
       styleProps
     } = _a;
     const { columns, pagination, footer } = props;
-    const [currentPage, setCurrentPage] = (0, import_react296.useState)(1);
-    const [reloadData, reload] = (0, import_react296.useState)(false);
-    const [sort, setSort] = (0, import_react296.useState)({
+    const [currentPage, setCurrentPage] = (0, import_react297.useState)(1);
+    const [reloadData, reload] = (0, import_react297.useState)(false);
+    const [sort, setSort] = (0, import_react297.useState)({
       key: "",
       sort: "ASC"
     });
@@ -36534,7 +36665,7 @@
         setModifyState: {}
       };
     };
-    let rowCtx = isDraggableSupport ? (0, import_react296.useMemo)(() => props.data.map(mapRowContext), []) : props.data.slice().map(mapRowContext);
+    let rowCtx = isDraggableSupport ? (0, import_react297.useMemo)(() => props.data.map(mapRowContext), []) : props.data.slice().map(mapRowContext);
     const getData = () => rowCtx.map((currentRowCtx) => currentRowCtx.row);
     const columnSort = (value) => {
       if (value.sort) {
@@ -36626,7 +36757,7 @@
       }
       return false;
     };
-    (0, import_react296.useImperativeHandle)(ref, () => __spreadValues({
+    (0, import_react297.useImperativeHandle)(ref, () => __spreadValues({
       getCellContext,
       setExpand,
       setModify,
@@ -36654,7 +36785,7 @@
       }
     };
     const enableRenderOptimization = !!((_d = props.rowMountType) == null ? void 0 : _d.match("Visible"));
-    (0, import_react296.useEffect)(() => {
+    (0, import_react297.useEffect)(() => {
       if (enableRenderOptimization) {
         setNeedDisplay();
         document.addEventListener("resize", setNeedDisplay);
@@ -36667,7 +36798,7 @@
         };
       }
     }, []);
-    (0, import_react296.useEffect)(() => {
+    (0, import_react297.useEffect)(() => {
       if (sort.key) {
         onChange == null ? void 0 : onChange(getData());
       }
@@ -36722,13 +36853,13 @@
       onPageChange: setCurrentPage
     }));
   }
-  var Table_default = (0, import_react296.forwardRef)(Table);
+  var Table_default = (0, import_react297.forwardRef)(Table);
 
   // ../core/layout/Badge/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react297 = __toModule(require_react());
+  var import_react298 = __toModule(require_react());
 
   // ../core/layout/Badge/styles.ts
   init_define_ENV();
@@ -36830,11 +36961,11 @@
       ]
     };
   };
-  var styles_default28 = createClasses21;
+  var styles_default29 = createClasses21;
 
   // ../core/layout/Badge/index.tsx
   var Badge = (props, ref) => {
-    const { classes, attributes, events, styleProps } = useSystem_default("Badge", props, styles_default28);
+    const { classes, attributes, events, styleProps } = useSystem_default("Badge", props, styles_default29);
     return /* @__PURE__ */ jsx("div", {
       css: [classes.container, styleProps.container]
     }, /* @__PURE__ */ jsx("div", __spreadProps(__spreadValues(__spreadValues({}, attributes), events), {
@@ -36848,14 +36979,14 @@
       ]
     }), props.content), props.children);
   };
-  var Badge_default = (0, import_react297.forwardRef)(Badge);
+  var Badge_default = (0, import_react298.forwardRef)(Badge);
 
   // ../core/layout/Block/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
   init_emotion_react_browser_esm();
-  var import_react299 = __toModule(require_react());
+  var import_react300 = __toModule(require_react());
 
   // ../core/layout/Block/styles.ts
   init_define_ENV();
@@ -36872,11 +37003,11 @@
       ]
     };
   };
-  var styles_default29 = createClasses22;
+  var styles_default30 = createClasses22;
 
   // ../core/layout/Block/index.tsx
   var Block2 = (props, ref) => {
-    const { classes, attributes, events, styleProps } = useSystem_default("Block", props, styles_default29);
+    const { classes, attributes, events, styleProps } = useSystem_default("Block", props, styles_default30);
     return jsx(props.as || "div", __spreadProps(__spreadValues(__spreadValues({}, attributes), events), {
       ref,
       css: [
@@ -36888,14 +37019,14 @@
       className: props.className
     }), props.children);
   };
-  var Block_default = (0, import_react299.forwardRef)(Block2);
+  var Block_default = (0, import_react300.forwardRef)(Block2);
 
   // ../core/layout/Flexbox/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
   init_emotion_react_browser_esm();
-  var import_react301 = __toModule(require_react());
+  var import_react302 = __toModule(require_react());
 
   // ../core/layout/Flexbox/styles.ts
   init_define_ENV();
@@ -36949,11 +37080,11 @@
       ]
     };
   };
-  var styles_default30 = createClasses23;
+  var styles_default31 = createClasses23;
 
   // ../core/layout/Flexbox/index.tsx
   var Flexbox = (props, ref) => {
-    const { classes, attributes, events, styleProps } = useSystem_default("Flexbox", props, styles_default30);
+    const { classes, attributes, events, styleProps } = useSystem_default("Flexbox", props, styles_default31);
     return jsx(props.as || "div", __spreadProps(__spreadValues(__spreadValues({}, attributes), events), {
       ref,
       css: [
@@ -36965,14 +37096,14 @@
       className: props.className
     }), props.children);
   };
-  var Flexbox_default = (0, import_react301.forwardRef)(Flexbox);
+  var Flexbox_default = (0, import_react302.forwardRef)(Flexbox);
 
   // ../core/layout/Grid/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
   init_emotion_react_browser_esm();
-  var import_react303 = __toModule(require_react());
+  var import_react304 = __toModule(require_react());
 
   // ../core/layout/Grid/styles.ts
   init_define_ENV();
@@ -37028,11 +37159,11 @@
       ]
     };
   };
-  var styles_default31 = createClasses24;
+  var styles_default32 = createClasses24;
 
   // ../core/layout/Grid/index.tsx
   var Grid = (props, ref) => {
-    const { classes, attributes, events, styleProps } = useSystem_default("Grid", props, styles_default31);
+    const { classes, attributes, events, styleProps } = useSystem_default("Grid", props, styles_default32);
     return jsx("div", __spreadProps(__spreadValues(__spreadValues({}, attributes), events), {
       ref,
       css: [
@@ -37043,19 +37174,19 @@
       ]
     }), props.children);
   };
-  var Grid_default2 = (0, import_react303.forwardRef)(Grid);
+  var Grid_default2 = (0, import_react304.forwardRef)(Grid);
 
   // ../core/layout/Modal/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react307 = __toModule(require_react());
+  var import_react308 = __toModule(require_react());
 
   // ../core/layout/Modal/ModalOverlay.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react305 = __toModule(require_react());
+  var import_react306 = __toModule(require_react());
 
   // ../core/layout/ScrollView/index.tsx
   init_define_ENV();
@@ -37069,7 +37200,7 @@
   var isWebKit_default = navigator.userAgent.indexOf("AppleWebKit") !== -1;
 
   // ../core/layout/ScrollView/index.tsx
-  var import_react304 = __toModule(require_react());
+  var import_react305 = __toModule(require_react());
 
   // ../core/layout/ScrollView/styles.ts
   init_define_ENV();
@@ -37301,7 +37432,7 @@
       ]
     };
   };
-  var styles_default32 = createClasses25;
+  var styles_default33 = createClasses25;
 
   // ../core/layout/ScrollView/index.tsx
   var isLegacyScrollSupport = isWebKit_default;
@@ -37314,9 +37445,9 @@
       xBarPosition = "bottom",
       yBarPosition = "right"
     } = props;
-    const { classes, attributes, events, styleProps } = useSystem_default("ScrollView", props, styles_default32);
-    const [active, setActive] = (0, import_react304.useState)(mode === "always");
-    const memo = (0, import_react304.useMemo)(() => ({
+    const { classes, attributes, events, styleProps } = useSystem_default("ScrollView", props, styles_default33);
+    const [active, setActive] = (0, import_react305.useState)(mode === "always");
+    const memo = (0, import_react305.useMemo)(() => ({
       id: (~~(Math.random() * 1e8)).toString(16),
       mounted: false,
       y: false,
@@ -37394,7 +37525,7 @@
       }
       return false;
     };
-    const updateScroll = (0, import_react304.useMemo)(() => (e) => {
+    const updateScroll = (0, import_react305.useMemo)(() => (e) => {
       var _a, _b;
       if (!memo.container || !memo.content) {
         return;
@@ -37479,7 +37610,7 @@
         }, options));
       }
     };
-    (0, import_react304.useImperativeHandle)(ref, () => ({
+    (0, import_react305.useImperativeHandle)(ref, () => ({
       getCurrentState: () => Object.freeze(memo),
       addWatchElementListener: (fn, options) => {
         const listenerId = (~~(Math.random() * 1e8)).toString(16);
@@ -37522,7 +37653,7 @@
       },
       container: memo.container
     }));
-    const scrollToHandle = (0, import_react304.useMemo)(() => (e) => {
+    const scrollToHandle = (0, import_react305.useMemo)(() => (e) => {
       var _a, _b;
       if (!memo.x && !memo.y)
         return;
@@ -37549,20 +37680,20 @@
         }
       }
     }, []);
-    const yMouseDown = (0, import_react304.useMemo)(() => () => {
+    const yMouseDown = (0, import_react305.useMemo)(() => () => {
       memo.y = true;
     }, []);
-    const xMouseDown = (0, import_react304.useMemo)(() => () => {
+    const xMouseDown = (0, import_react305.useMemo)(() => () => {
       memo.x = true;
     }, []);
-    const mouseUp = (0, import_react304.useMemo)(() => () => {
+    const mouseUp = (0, import_react305.useMemo)(() => () => {
       memo.y = false;
       memo.x = false;
       window.removeEventListener("mouseup", mouseUp);
       window.removeEventListener("click", mouseUp);
       window.removeEventListener("mousemove", scrollToHandle);
     }, []);
-    const moveScrollContentByMouse = (0, import_react304.useMemo)(() => (e) => {
+    const moveScrollContentByMouse = (0, import_react305.useMemo)(() => (e) => {
       const deltaY = memo.y ? e.movementY : 0;
       const deltaX = memo.x ? e.movementX : 0;
       if (deltaX !== 0 || deltaY !== 0) {
@@ -37575,7 +37706,7 @@
         });
       }
     }, []);
-    (0, import_react304.useEffect)(() => {
+    (0, import_react305.useEffect)(() => {
       if (!isLegacyScrollSupport) {
         const { content, container } = memo;
         if (content && container) {
@@ -37585,7 +37716,7 @@
         }
       }
     });
-    (0, import_react304.useEffect)(() => {
+    (0, import_react305.useEffect)(() => {
       const resize = () => {
         updateScroll({
           deltaX: 0,
@@ -37619,7 +37750,7 @@
         document.removeEventListener("mouseleave", mouseUp);
       };
     }, [props]);
-    const createRef = (0, import_react304.useMemo)(() => (currentRef) => {
+    const createRef = (0, import_react305.useMemo)(() => (currentRef) => {
       if (currentRef && !memo.events) {
         memo.events = true;
         if (memo.yThumb) {
@@ -37656,7 +37787,7 @@
       ref: (currentRef) => {
         memo.content = currentRef;
       }
-    }, props.children)), mode !== "hidden" && /* @__PURE__ */ jsx(import_react304.default.Fragment, null, /* @__PURE__ */ jsx("div", {
+    }, props.children)), mode !== "hidden" && /* @__PURE__ */ jsx(import_react305.default.Fragment, null, /* @__PURE__ */ jsx("div", {
       css: classes.yBar({ active, size, shape, position: yBarPosition }),
       ref: (currentRef) => {
         memo.yBar = currentRef;
@@ -37698,17 +37829,17 @@
       }
     }))));
   };
-  var ScrollView_default = (0, import_react304.forwardRef)(ScrollView);
+  var ScrollView_default = (0, import_react305.forwardRef)(ScrollView);
 
   // ../core/layout/Modal/ModalOverlay.tsx
-  var ModalOverlay = (0, import_react305.forwardRef)((props, ref) => {
-    const styles7 = props.getStyles();
+  var ModalOverlay = (0, import_react306.forwardRef)((props, ref) => {
+    const styles8 = props.getStyles();
     return /* @__PURE__ */ jsx(ScrollView_default, {
       h: "100vh",
       w: "100%",
       barOffset: 4,
       ref,
-      css: styles7.classes.overlay(styles7.state),
+      css: styles8.classes.overlay(styles8.state),
       overrides: {
         xBar: () => [{ zIndex: 1e3 }],
         yBar: () => [{ zIndex: 1e3 }]
@@ -37728,7 +37859,7 @@
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react306 = __toModule(require_react());
+  var import_react307 = __toModule(require_react());
 
   // ../core/layout/Modal/ModalHeader.tsx
   init_define_ENV();
@@ -37738,9 +37869,9 @@
     if (props.hideHeader) {
       return null;
     }
-    const styles7 = props.getStyles();
+    const styles8 = props.getStyles();
     return /* @__PURE__ */ jsx("div", {
-      css: styles7.classes.header(styles7.state)
+      css: styles8.classes.header(styles8.state)
     }, /* @__PURE__ */ jsx(Flexbox_default, null, /* @__PURE__ */ jsx(Flexbox_default, {
       flex: 1,
       column: true
@@ -37751,7 +37882,7 @@
       color: "hard"
     }, props.subtitle)), /* @__PURE__ */ jsx(Close_default, {
       ml: "m",
-      css: styles7.classes.cross(styles7.state),
+      css: styles8.classes.cross(styles8.state),
       onClick: props.onClosePressed,
       color: "light"
     })));
@@ -37759,11 +37890,11 @@
   var ModalHeader_default = ModalHeader;
 
   // ../core/layout/Modal/ModalWindow.tsx
-  var ModalWindow = (0, import_react306.forwardRef)((props, ref) => {
-    const styles7 = props.getStyles();
+  var ModalWindow = (0, import_react307.forwardRef)((props, ref) => {
+    const styles8 = props.getStyles();
     return /* @__PURE__ */ jsx("div", __spreadValues(__spreadValues({
       ref,
-      css: [styles7.classes.window(styles7.state), styles7.styleProps.all]
+      css: [styles8.classes.window(styles8.state), styles8.styleProps.all]
     }, props.containerAttr), props.containerEvents), /* @__PURE__ */ jsx(ModalHeader_default, {
       getStyles: props.getStyles,
       onClosePressed: props.onClosePressed,
@@ -37897,26 +38028,26 @@
       ]
     };
   };
-  var styles_default33 = createClasses26;
+  var styles_default34 = createClasses26;
 
   // ../core/layout/Modal/index.tsx
   var Modal = (props, ref) => {
     const { hideHeader, overlayClose = true, opened, decoration = "modal" } = props;
-    const _a = useSystem_default("Modal", props, styles_default33), {
+    const _a = useSystem_default("Modal", props, styles_default34), {
       classes,
       attributes,
       events: _b
     } = _a, _c = _b, { onOpen } = _c, events = __objRest(_c, ["onOpen"]), {
       styleProps
     } = _a;
-    const overlayRef = (0, import_react307.useRef)(null);
-    const windowRef = (0, import_react307.useRef)(null);
-    const [active, setActive] = (0, import_react307.useState)(false);
-    const [visible, setVisible] = (0, import_react307.useState)(false);
-    const [customRender, setCustomRender] = (0, import_react307.useState)(null);
-    const [title, setTitle] = (0, import_react307.useState)(props.title);
-    const [subtitle, setSubtitle] = (0, import_react307.useState)(props.subtitle);
-    (0, import_react307.useEffect)(() => {
+    const overlayRef = (0, import_react308.useRef)(null);
+    const windowRef = (0, import_react308.useRef)(null);
+    const [active, setActive] = (0, import_react308.useState)(false);
+    const [visible, setVisible] = (0, import_react308.useState)(false);
+    const [customRender, setCustomRender] = (0, import_react308.useState)(null);
+    const [title, setTitle] = (0, import_react308.useState)(props.title);
+    const [subtitle, setSubtitle] = (0, import_react308.useState)(props.subtitle);
+    (0, import_react308.useEffect)(() => {
       setTitle(props.title);
       setSubtitle(props.subtitle);
     }, [props.title, props.subtitle]);
@@ -37945,13 +38076,13 @@
       }, 300);
       (_a2 = props.onClose) == null ? void 0 : _a2.call(props);
     }
-    (0, import_react307.useEffect)(() => {
+    (0, import_react308.useEffect)(() => {
       if (opened === true)
         open();
       if (opened === false)
         close();
     }, [opened]);
-    (0, import_react307.useImperativeHandle)(ref, () => ({
+    (0, import_react308.useImperativeHandle)(ref, () => ({
       open,
       close,
       title,
@@ -37994,13 +38125,13 @@
       containerEvents: events
     }, customRender !== null ? customRender : props.children))));
   };
-  var Modal_default = (0, import_react307.forwardRef)(Modal);
+  var Modal_default = (0, import_react308.forwardRef)(Modal);
 
   // ../core/layout/Notification/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react308 = __toModule(require_react());
+  var import_react309 = __toModule(require_react());
 
   // ../core/layout/Notification/styles.ts
   init_define_ENV();
@@ -38035,12 +38166,12 @@
       ]
     };
   };
-  var styles_default34 = createClasses27;
+  var styles_default35 = createClasses27;
 
   // ../core/layout/Notification/index.tsx
   var Notifications = (_a, ref) => {
     var _b = _a, { overrides } = _b, props = __objRest(_b, ["overrides"]);
-    const { classes, attributes, events, styleProps } = useSystem_default("Notification", props, styles_default34);
+    const { classes, attributes, events, styleProps } = useSystem_default("Notification", props, styles_default35);
     return /* @__PURE__ */ jsx(Block_default, __spreadProps(__spreadValues(__spreadValues({
       decoration: "mediumShadow",
       css: [classes.container, styleProps.all],
@@ -38049,13 +38180,13 @@
       ref
     }));
   };
-  var Notification_default = (0, import_react308.forwardRef)(Notifications);
+  var Notification_default = (0, import_react309.forwardRef)(Notifications);
 
   // ../core/layout/Tree/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react312 = __toModule(require_react());
+  var import_react313 = __toModule(require_react());
 
   // ../core/layout/Tree/styles.ts
   init_define_ENV();
@@ -38145,13 +38276,13 @@
       ]
     };
   };
-  var styles_default35 = createClasses28;
+  var styles_default36 = createClasses28;
 
   // ../core/layout/Tree/TreeLabel.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react309 = __toModule(require_react());
+  var import_react310 = __toModule(require_react());
   var TreeLabel = (props) => {
     let { size, options, children, className } = props;
     if (typeof children === "string") {
@@ -38164,7 +38295,7 @@
     if (typeof children === "function") {
       children = children(options);
     }
-    return /* @__PURE__ */ jsx(import_react309.default.Fragment, null, children);
+    return /* @__PURE__ */ jsx(import_react310.default.Fragment, null, children);
   };
   var TreeLabel_default = TreeLabel;
 
@@ -38172,13 +38303,13 @@
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react310 = __toModule(require_react());
+  var import_react311 = __toModule(require_react());
   var TreeLeftChild = (props) => {
     let { options, children, className } = props;
     if (typeof children === "function") {
       children = children(options);
     }
-    return /* @__PURE__ */ jsx(import_react310.default.Fragment, null, children !== void 0 ? children : /* @__PURE__ */ jsx(ArrowRight_default, {
+    return /* @__PURE__ */ jsx(import_react311.default.Fragment, null, children !== void 0 ? children : /* @__PURE__ */ jsx(ArrowRight_default, {
       rotate: options.isOpen ? 90 : 0,
       className
     }));
@@ -38189,18 +38320,18 @@
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react311 = __toModule(require_react());
+  var import_react312 = __toModule(require_react());
   var TreeRightChild = (props) => {
     let { options, children } = props;
     if (typeof children === "function") {
       children = children(options);
     }
-    return /* @__PURE__ */ jsx(import_react311.default.Fragment, null, children);
+    return /* @__PURE__ */ jsx(import_react312.default.Fragment, null, children);
   };
   var TreeRightChild_default = TreeRightChild;
 
   // ../core/layout/Tree/index.tsx
-  var Tree = (0, import_react312.forwardRef)((props, ref) => {
+  var Tree = (0, import_react313.forwardRef)((props, ref) => {
     const {
       leftChild,
       rightChild,
@@ -38211,8 +38342,8 @@
       isParentOpen = true
     } = props;
     const children = Array.isArray(props.children) ? props.children : [props.children];
-    const [isOpen, setOpen] = (0, import_react312.useState)(!!(props.open || props.defaultOpen));
-    const { classes, attributes, events, styleProps } = useSystem_default("Tree", props, styles_default35);
+    const [isOpen, setOpen] = (0, import_react313.useState)(!!(props.open || props.defaultOpen));
+    const { classes, attributes, events, styleProps } = useSystem_default("Tree", props, styles_default36);
     const sortedChildrens = [];
     for (const child of children) {
       try {
@@ -38243,7 +38374,7 @@
     };
     const variant = { decoration, size, hasChilds };
     const options = { isOpen, isParentOpen, hasChilds, lvl };
-    const Container = lvl === 0 ? Block_default : import_react312.Fragment;
+    const Container = lvl === 0 ? Block_default : import_react313.Fragment;
     let containerProps = {};
     if (lvl === 0) {
       containerProps = {
@@ -38271,9 +38402,9 @@
       size
     }, rightChild)), sortedChildrens.map((child, index) => {
       const render = isOpen ? child.otherElement : null;
-      return /* @__PURE__ */ jsx(import_react312.Fragment, {
+      return /* @__PURE__ */ jsx(import_react313.Fragment, {
         key: index
-      }, child.treeElement ? import_react312.default.cloneElement(child.treeElement, {
+      }, child.treeElement ? import_react313.default.cloneElement(child.treeElement, {
         size: child.treeElement.props.size || size,
         decoration: child.treeElement.props.decoration || decoration,
         lvl: lvl + 1,
@@ -38289,16 +38420,16 @@
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react314 = __toModule(require_react());
+  var import_react315 = __toModule(require_react());
 
   // ../core/layout/Split/Separator.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react313 = __toModule(require_react());
+  var import_react314 = __toModule(require_react());
   var Separator = (props) => {
     const { defaultVertical } = props;
-    const ref = (0, import_react313.useRef)(null);
+    const ref = (0, import_react314.useRef)(null);
     let active = false;
     let move = false;
     const mouseDown = () => {
@@ -38345,7 +38476,7 @@
         (_b = (_a = container.current).onMove) == null ? void 0 : _b.call(_a);
       }
     };
-    (0, import_react313.useEffect)(() => {
+    (0, import_react314.useEffect)(() => {
       var _a;
       window.addEventListener("mouseup", mouseUp);
       window.addEventListener("mousemove", mouseMove);
@@ -38401,12 +38532,12 @@
       ]
     };
   };
-  var styles_default36 = createClasses29;
+  var styles_default37 = createClasses29;
 
   // ../core/layout/Split/index.tsx
   var Split = (props, ref) => {
     const { positions, direction } = props;
-    const _a = useSystem_default("Split", props, styles_default36), {
+    const _a = useSystem_default("Split", props, styles_default37), {
       classes,
       attributes,
       events: _b
@@ -38414,13 +38545,13 @@
       styleProps
     } = _a;
     const vertical = props.direction === "column";
-    const refs = (0, import_react314.useMemo)(() => ({}), []);
-    const defaultSize = (0, import_react314.useMemo)(() => 100 / props.children.length, []);
+    const refs = (0, import_react315.useMemo)(() => ({}), []);
+    const defaultSize = (0, import_react315.useMemo)(() => 100 / props.children.length, []);
     const getPositions = () => Object.keys(refs).filter((key) => parseInt(key, 10) >= 0).map((key) => {
       var _a2;
       return parseFloat(((_a2 = refs[key].current) == null ? void 0 : _a2.style[vertical ? "height" : "width"]) || "");
     });
-    (0, import_react314.useEffect)(() => {
+    (0, import_react315.useEffect)(() => {
       if (refs["-1"].current) {
         refs["-1"].current.onMove = () => {
           onMove == null ? void 0 : onMove(getPositions());
@@ -38430,7 +38561,7 @@
         };
       }
     }, [onChange, onMove]);
-    (0, import_react314.useEffect)(() => {
+    (0, import_react315.useEffect)(() => {
       Object.keys(refs).filter((key) => parseInt(key, 10) >= 0).forEach((key) => {
         if (refs[key].current) {
           refs[key].current.style[vertical ? "height" : "width"] = `${positions ? positions[parseInt(key, 10)] : defaultSize}%`;
@@ -38459,7 +38590,7 @@
         prev: () => refs[index],
         next: () => refs[index + 1]
       }) : null;
-      return /* @__PURE__ */ jsx(import_react314.Fragment, {
+      return /* @__PURE__ */ jsx(import_react315.Fragment, {
         key: index
       }, /* @__PURE__ */ jsx("div", {
         css: {
@@ -38474,7 +38605,7 @@
       }, child), separator);
     }));
   };
-  var Split_default = (0, import_react314.forwardRef)(Split);
+  var Split_default = (0, import_react315.forwardRef)(Split);
 
   // ../core/layout/Viewport/index.tsx
   init_define_ENV();
@@ -38669,19 +38800,19 @@
   });
 
   // ../core/layout/Viewport/index.tsx
-  var import_react316 = __toModule(require_react());
+  var import_react317 = __toModule(require_react());
 
   // ../core/layout/Viewport/MountArea.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react315 = __toModule(require_react());
+  var import_react316 = __toModule(require_react());
   var ViewportShared = {
     addElement: () => "",
     removeElement: () => void 0
   };
   var MountArea = () => {
-    const [elements, setElements] = (0, import_react315.useState)([]);
+    const [elements, setElements] = (0, import_react316.useState)([]);
     ViewportShared.addElement = (children, key = createID_default(), placement = "center") => {
       setElements(elements.concat({ key, children, placement }));
       return key;
@@ -38745,23 +38876,23 @@
           }
         }
       }
-    }, /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "topLeft").map((el) => /* @__PURE__ */ jsx(import_react315.Fragment, {
+    }, /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "topLeft").map((el) => /* @__PURE__ */ jsx(import_react316.Fragment, {
       key: el.key
-    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "topCenter").map((el) => /* @__PURE__ */ jsx(import_react315.Fragment, {
+    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "topCenter").map((el) => /* @__PURE__ */ jsx(import_react316.Fragment, {
       key: el.key
-    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "topRight").map((el) => /* @__PURE__ */ jsx(import_react315.Fragment, {
+    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "topRight").map((el) => /* @__PURE__ */ jsx(import_react316.Fragment, {
       key: el.key
-    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "centerLeft").map((el) => /* @__PURE__ */ jsx(import_react315.Fragment, {
+    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "centerLeft").map((el) => /* @__PURE__ */ jsx(import_react316.Fragment, {
       key: el.key
-    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "center").map((el) => /* @__PURE__ */ jsx(import_react315.Fragment, {
+    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "center").map((el) => /* @__PURE__ */ jsx(import_react316.Fragment, {
       key: el.key
-    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "centerRight").map((el) => /* @__PURE__ */ jsx(import_react315.Fragment, {
+    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "centerRight").map((el) => /* @__PURE__ */ jsx(import_react316.Fragment, {
       key: el.key
-    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "bottomLeft").map((el) => /* @__PURE__ */ jsx(import_react315.Fragment, {
+    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "bottomLeft").map((el) => /* @__PURE__ */ jsx(import_react316.Fragment, {
       key: el.key
-    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "bottomCenter").map((el) => /* @__PURE__ */ jsx(import_react315.Fragment, {
+    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "bottomCenter").map((el) => /* @__PURE__ */ jsx(import_react316.Fragment, {
       key: el.key
-    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "bottomRight").map((el) => /* @__PURE__ */ jsx(import_react315.Fragment, {
+    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "bottomRight").map((el) => /* @__PURE__ */ jsx(import_react316.Fragment, {
       key: el.key
     }, el.children))));
   };
@@ -38817,32 +38948,32 @@
       ]
     };
   };
-  var styles_default37 = createClasses30;
+  var styles_default38 = createClasses30;
 
   // ../core/layout/Viewport/index.tsx
   var Viewport = (props, ref) => {
     const { wrapper, cache } = props;
     const theme = (typeof props.theme === "string" ? themes_exports[props.theme] : props.theme) || light;
-    const viewportRef = (0, import_react316.useRef)(null);
-    (0, import_react316.useImperativeHandle)(ref, () => viewportRef.current);
+    const viewportRef = (0, import_react317.useRef)(null);
+    (0, import_react317.useImperativeHandle)(ref, () => viewportRef.current);
     const EmotionCache = __spreadValues({
       key: "stage",
       container: viewportRef && viewportRef.current || void 0
     }, cache);
-    const { classes, attributes, events, styleProps } = useSystem_default("Viewport", props, styles_default37, {
+    const { classes, attributes, events, styleProps } = useSystem_default("Viewport", props, styles_default38, {
       theme
     });
     const Content = /* @__PURE__ */ jsx(Provider_default, {
       theme,
       global: !wrapper ? [classes.container, styleProps.all] : void 0,
       cache: EmotionCache
-    }, /* @__PURE__ */ jsx(import_react316.default.Fragment, null, props.children, /* @__PURE__ */ jsx(MountArea_default, null)));
+    }, /* @__PURE__ */ jsx(import_react317.default.Fragment, null, props.children, /* @__PURE__ */ jsx(MountArea_default, null)));
     return wrapper ? /* @__PURE__ */ jsx("div", __spreadProps(__spreadValues(__spreadValues({}, attributes), events), {
       ref: viewportRef,
       css: [classes.container, styleProps.all]
     }), Content) : Content;
   };
-  var Viewport_default = (0, import_react316.forwardRef)(Viewport);
+  var Viewport_default = (0, import_react317.forwardRef)(Viewport);
 
   // ../core/utils/dialog.tsx
   init_define_ENV();
@@ -38916,7 +39047,7 @@
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react317 = __toModule(require_react());
+  var import_react318 = __toModule(require_react());
 
   // ../docs/utils/types/index.ts
   init_define_ENV();
@@ -39230,14 +39361,21 @@
   init_wsClientInjection();
   init_react_shim();
   var PlaygroundControl = () => /* @__PURE__ */ jsx(Flexbox_default, {
-    p: "1rem",
-    mt: "0.5rem",
+    p: "s m",
+    my: "0.5rem",
     decoration: "surface",
     alignItems: "center"
   }, /* @__PURE__ */ jsx(QuestionMarkCircle_default, {
     flex: 1,
     size: "1.5rem",
     color: (c) => c.warning
+  }), /* @__PURE__ */ jsx(Toggle_default, {
+    defaultValue: { text: "No", value: 0 },
+    options: [
+      { text: "No", value: 0 },
+      { text: "Yes", value: 1 },
+      { text: "Maybe", value: 2 }
+    ]
   }), /* @__PURE__ */ jsx(Divider_default, {
     vertical: true,
     mx: "0.5rem",
@@ -39299,13 +39437,13 @@
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react318 = __toModule(require_react());
+  var import_react319 = __toModule(require_react());
   var import_axios = __toModule(require_axios2());
   var endPoint = "https://api.instantwebtools.net/v1";
   var PlaygroundTable = () => {
-    const [loading, setLoading] = (0, import_react318.useState)(false);
-    const [data, setData] = (0, import_react318.useState)([]);
-    const [pageSize, setPageSize] = (0, import_react318.useState)([{ value: 10, text: "10" }]);
+    const [loading, setLoading] = (0, import_react319.useState)(false);
+    const [data, setData] = (0, import_react319.useState)([]);
+    const [pageSize, setPageSize] = (0, import_react319.useState)([{ value: 10, text: "10" }]);
     const pages = async () => {
       setLoading(true);
       const { data: data2 } = await (0, import_axios.default)({
@@ -39316,7 +39454,7 @@
       setData(data2.data);
       setLoading(false);
     };
-    (0, import_react318.useEffect)(() => {
+    (0, import_react319.useEffect)(() => {
       pages();
     }, [pageSize]);
     return /* @__PURE__ */ jsx(Flexbox_default, {
@@ -39376,29 +39514,26 @@
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react319 = __toModule(require_react());
+  var import_react320 = __toModule(require_react());
   var PlaygroundToolbar = () => {
-    const [date, setDate] = (0, import_react319.useState)(new Date("2022-03-30T22:00:00.000Z"));
+    const [date, setDate] = (0, import_react320.useState)(void 0);
     console.log("Controlled state:", date);
     return /* @__PURE__ */ jsx(Flexbox_default, {
-      p: "1rem",
+      p: "s m",
       mb: "0.5rem",
       decoration: "surface"
     }, /* @__PURE__ */ jsx(TextField_default, {
-      flex: 3,
       leftChild: /* @__PURE__ */ jsx(Search_default, null),
       rightChild: /* @__PURE__ */ jsx(Button_default, {
         size: "xs"
       }, /* @__PURE__ */ jsx(Funnel_default, null), "Filter"),
       placeholder: "Search"
     }), /* @__PURE__ */ jsx(Select_default, {
-      flex: 1,
       ml: "0.5rem",
       clearable: true,
       searchable: true,
       multiselect: true,
       placeholder: "Please select type",
-      dropFooter: /* @__PURE__ */ jsx(Button_default, null, "sdgsfg"),
       options: [
         { text: "Man", value: 1 },
         { text: "Woman", value: 2 },
@@ -39408,8 +39543,9 @@
     }), /* @__PURE__ */ jsx(DatePicker_default, {
       flex: 1,
       ml: "0.5rem",
+      defaultValue: "07/07/2019",
       value: date,
-      onChange: (nextDate) => setDate(nextDate == null ? void 0 : nextDate.toDate())
+      onChange: (nextDate) => setDate(nextDate)
     }), /* @__PURE__ */ jsx(Divider_default, {
       vertical: true,
       mx: "0.5rem",
@@ -39433,16 +39569,18 @@
   }, /* @__PURE__ */ jsx(Flexbox_default, {
     p: "0.5rem",
     justifyContent: "space-between"
-  }, /* @__PURE__ */ jsx(Header_default, null, "Playground"), /* @__PURE__ */ jsx(Spinner_default, null)), /* @__PURE__ */ jsx(menu_default, null), /* @__PURE__ */ jsx(toolbar_default, null), /* @__PURE__ */ jsx(Grid_default2, {
+  }, /* @__PURE__ */ jsx(Header_default, null, "Playground"), /* @__PURE__ */ jsx(Spinner_default, {
+    size: "xl"
+  })), /* @__PURE__ */ jsx(menu_default, null), /* @__PURE__ */ jsx(toolbar_default, null), /* @__PURE__ */ jsx(control_default, null), /* @__PURE__ */ jsx(Grid_default2, {
     templateColumns: "1fr 1fr",
     columnGap: "0.5rem"
-  }, /* @__PURE__ */ jsx(table_default, null)), /* @__PURE__ */ jsx(control_default, null))));
+  }, /* @__PURE__ */ jsx(table_default, null)))));
   var app_default = App;
 
   // index.tsx
   window.dt = types_default;
   import_react_dom3.default.render(/* @__PURE__ */ jsx(Viewport_default, {
-    theme: "dark"
+    theme: "light"
   }, /* @__PURE__ */ jsx(app_default, null)), document.getElementById("app"));
 })();
 /*

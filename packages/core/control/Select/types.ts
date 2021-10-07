@@ -1,10 +1,9 @@
 import React from 'react'
-import { Classes as ClassesType } from '@stage-ui/system/hooks/useSystem'
 import FieldTypes from '../../basic/Field/types'
 import DropTypes from '../../layout/Drop/types'
 
 declare namespace SelectTypes {
-  interface Option<T = string | number> {
+  interface Option<T = string | number | boolean> {
     text: string
     value: T
   }

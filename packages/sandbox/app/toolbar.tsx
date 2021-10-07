@@ -7,9 +7,8 @@ const PlaygroundToolbar = () => {
   console.log('Controlled state:', date)
 
   return (
-    <Flexbox p="1rem" mb="0.5rem" decoration="surface">
+    <Flexbox p="s m" mb="0.5rem" decoration="surface">
       <TextField
-        flex={3}
         leftChild={<Search />}
         rightChild={
           <Button size="xs">
@@ -20,7 +19,6 @@ const PlaygroundToolbar = () => {
         placeholder="Search"
       />
       <Select
-        flex={1}
         ml="0.5rem"
         clearable
         searchable
