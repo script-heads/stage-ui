@@ -32,6 +32,7 @@ const Button: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
    */
   function setOption(v: Types.Option) {
     onChange?.(v)
+    setValue(v)
     setOffset(refs[props.options.findIndex((o) => o.value === v.value)]?.offsetLeft)
   }
 
@@ -81,7 +82,11 @@ const Button: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
           ]}
           onClick={(e) => {
             e.stopPropagation()
-            setOption(option)
+            if (typeof props.value !== 'undefined') {
+              props.onChange?.(option)
+            } else {
+              setOption(option)
+            }
           }}
         >
           {option.text}
