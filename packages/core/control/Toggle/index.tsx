@@ -14,25 +14,7 @@ const Button: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
    */
   const [value, setValue] = useState<Types.Option | undefined>()
   const [offset, setOffset] = useState(0)
-
-  /**
-   * Component did mount
-   */
-  useEffect(() => {
-    if (defaultValue) {
-      setValue(defaultValue)
-    }
-  }, [])
-
-  /**
-   * Component will receive value
-   */
-  useEffect(() => {
-    if (props.value) {
-      setValue(props.value)
-    }
-  }, [props.value?.value])
-
+  const refs: HTMLDivElement[] = []
   /**
    * Call when ever values change
    * support controlled and uncontrolled
@@ -48,9 +30,28 @@ const Button: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
   /**
    * Setting values
    */
-  function setOption(changedValue: Types.Option) {
-    onChange?.(changedValue)
+  function setOption(v: Types.Option) {
+    onChange?.(v)
+    setOffset(refs[props.options.findIndex((o) => o.value === v.value)]?.offsetLeft)
   }
+
+  /**
+   * Component did mount
+   */
+  useEffect(() => {
+    if (defaultValue) {
+      setOption(defaultValue)
+    }
+  }, [])
+
+  /**
+   * Component will receive value
+   */
+  useEffect(() => {
+    if (props.value) {
+      setOption(props.value)
+    }
+  }, [props.value?.value])
 
   return (
     <div
@@ -71,6 +72,7 @@ const Button: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
     >
       {props.options.map((option) => (
         <div
+          ref={(r) => refs.push(r)}
           key={option.value.toString()}
           css={[
             classes.option({
@@ -80,8 +82,6 @@ const Button: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
           onClick={(e) => {
             e.stopPropagation()
             setOption(option)
-            // @ts-expect-error
-            setOffset(e.target.offsetLeft)
           }}
         >
           {option.text}
