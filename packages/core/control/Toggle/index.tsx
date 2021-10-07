@@ -72,7 +72,7 @@ const Button: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, re
     >
       {props.options.map((option) => (
         <div
-          ref={(r) => refs.push(r)}
+          ref={(r) => refs.push(r!)}
           key={option.value.toString()}
           css={[
             classes.option({
