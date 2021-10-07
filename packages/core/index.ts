@@ -23,6 +23,7 @@ export { default as Select } from './control/Select'
 export { default as Switch } from './control/Switch'
 export { default as TextField } from './control/TextField'
 export { default as Stepper } from './control/Stepper'
+export { default as Toggle } from './control/Toggle'
 /**
  * Data
  */

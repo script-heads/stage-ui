@@ -16,15 +16,15 @@ const App = () => (
       <Block p={['4rem', '3rem', '2rem', '1rem']}>
         <Flexbox p="0.5rem" justifyContent="space-between">
           <Header>Playground</Header>
-          <Spinner />
+          <Spinner size="xl" />
         </Flexbox>
         <PlaygroundMenu />
         <PlaygroundToolbar />
+        <PlaygroundControl />
         <Grid templateColumns="1fr 1fr" columnGap="0.5rem">
           {/* <PlaygroundTree /> */}
           <PlaygroundTable />
         </Grid>
-        <PlaygroundControl />
       </Block>
     </ScrollView>
   </Flexbox>
