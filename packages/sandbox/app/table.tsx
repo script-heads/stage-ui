@@ -13,14 +13,14 @@ const endPoint = 'https://api.instantwebtools.net/v1'
 const PlaygroundTable = () => {
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState<PassengersData[]>([])
-  const [pageSize, setPageSize] = useState<SelectTypes.Option[]>([{ value: 10, text: '10' }])
+  const [pageSize, setPageSize] = useState<SelectTypes.Option[]>([{ value: 5, text: '5' }])
 
   const pages = async () => {
     setLoading(true)
     const { data }: AxiosResponse<ResponsePassenger> = await axios({
       method: 'GET',
       url: `${endPoint}/passenger`,
-      params: { page: 0, size: pageSize[0].value },
+      params: { page: 0, size: 50 },
     })
 
     setData(data.data)
@@ -60,7 +60,7 @@ const PlaygroundTable = () => {
           },
         ]}
         data={data}
-        pagination={{ pageSize: pageSize[0].value }}
+        pagination={{ pageSize: pageSize[0].value as number }}
         footer={
           loading ? (
             <Flexbox justifyContent="center" w="100%">
@@ -79,7 +79,7 @@ const PlaygroundTable = () => {
             { value: 20, text: '20' },
           ]}
           onChange={(item) => setPageSize(item)}
-          css={{
+          style={{
             maxWidth: '10rem',
           }}
         />
