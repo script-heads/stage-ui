@@ -25,6 +25,8 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
     mode = 'scroll',
     xBarPosition = 'bottom',
     yBarPosition = 'right',
+    watchElementOffset = 0,
+    watchElement,
   } = props
   const { classes, attributes, events, styleProps } = useSystem('ScrollView', props, styles)
   const [active, setActive] = useState(mode === 'always')
@@ -68,7 +70,6 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
     const vDelta = isX ? 'deltaX' : 'deltaY'
     const vSize = isX ? 'width' : 'height'
     const vDirection = isX ? 'left' : 'top'
-
     const total = memo.content[vScrollSize] - (props.barOffset || 0) * 2
     const content = memo.container.getBoundingClientRect()[vSize] - (props.barOffset || 0) * 2
     const bar = isX ? memo.xBar : memo.yBar
@@ -167,10 +168,8 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
       /**
        * find elements with data-id
        */
-      if (
-        (props.watchElement || Object.keys(memo.watchElementListeners).length) &&
-        memo.preventWatchElement !== true
-      ) {
+      const hasListeners = Boolean(Object.keys(memo.watchElementListeners).length)
+      if ((watchElement || hasListeners) && memo.preventWatchElement !== true) {
         const elements: HTMLDivElement[] = []
         document
           .querySelectorAll(`[data-scroll-id="${memo.id}"] [data-id]`)
@@ -180,16 +179,15 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
 
         const scrollTop = Math.abs(memo.container.scrollTop || memo.content.offsetTop)
         const listeners = Object.values(memo.watchElementListeners)
-        if (props.watchElement) {
+        if (watchElement) {
           listeners.unshift({
-            fn: props.watchElement,
+            fn: watchElement,
             options: {
-              offset: props.watchElementOffset || 0,
+              offset: watchElementOffset,
             },
           })
         }
-        const offset =
-          listeners[listeners.length - 1].options?.offset || props.watchElementOffset || 0
+        const offset = listeners[listeners.length - 1].options?.offset || watchElementOffset
         for (const el of elements.reverse()) {
           if (scrollTop - getOffsetTop(el) + offset > 0) {
             const id = el.attributes['data-id'].value as string

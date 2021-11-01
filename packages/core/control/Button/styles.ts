@@ -19,6 +19,8 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         whiteSpace: 'nowrap',
         outline: 'none',
         boxShadow: 'unset',
+        borderWidth: 0,
+        borderStyle: 'solid',
         borderColor: 'transparent',
         borderRadius: theme.radius.m,
         textOverflow: 'ellipsis',
@@ -30,9 +32,6 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         width: 'fit-content',
         padding: `0 ${theme.assets.field[size].indent}`,
         height: theme.assets.field[size].height,
-        '&:active': {
-          borderStyle: 'solid',
-        },
         '&::-moz-focus-inner': {
           border: 0,
         },
@@ -48,8 +47,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
       },
       theme.assets.typography.text[size],
       decoration === 'outline' && {
-        borderWidth: '1px',
-        borderStyle: 'solid',
+        borderWidth: '0.0625rem',
         borderColor: color.rgb().string(),
         color: color.rgb().string(),
         '&:disabled': {
@@ -57,11 +55,11 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         },
       },
       decoration === 'text' && {
+        borderWidth: 0,
         color: color.rgb().string(),
       },
       decoration === 'plain' && {
-        borderWidth: '1px',
-        borderStyle: 'solid',
+        borderWidth: '0.0625rem',
         borderColor: theme.color.lightest.rgb().string(),
         background: theme.color.surface.rgb().string(),
         color: theme.color.onSurface.rgb().string(),

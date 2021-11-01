@@ -326,7 +326,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
         target={fieldRef}
       >
         <div css={classes.drop}>
-          <div css={classes.dropHeader}>{dropHeader}</div>
+          {!!dropHeader && <div css={classes.dropHeader}>{dropHeader}</div>}
           <ScrollView
             preventStageEvents
             size="xs"
@@ -342,7 +342,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
               </div>
             )}
           </ScrollView>
-          <div css={classes.dropFooter}>{dropFooter}</div>
+          {!!dropFooter && <div css={classes.dropFooter}>{dropFooter}</div>}
         </div>
       </Drop>
     </Field>

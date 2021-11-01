@@ -37,6 +37,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         '> :nth-of-type(n)': {
           margin: '0 !important',
         },
+        boxSizing: 'border-box',
       },
     ],
     webkit: [
