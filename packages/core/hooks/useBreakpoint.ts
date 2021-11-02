@@ -28,5 +28,5 @@ export const useBreakpoint = <T>(values: T[]): T => {
     }
   }, [])
 
-  return values[index] || values[values.length - 1]
+  return typeof values[index] !== 'undefined' ? values[index] : values[values.length - 1]
 }

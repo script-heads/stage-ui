@@ -1,0 +1,6 @@
+<Button
+    color={c => c.primary.darken(.5)}
+    textColor={c => c.light}
+    borderColor={'green'}>
+    Hello
+</Button>

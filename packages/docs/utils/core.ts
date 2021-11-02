@@ -4,37 +4,6 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-import TableTypes from '@stage-ui/core/data/Table/types'
-import { Property } from '@stage-ui/docs/utils/types'
-
-declare global {
-  const require: any
-}
-
-export interface CustomPageProps {
-  config: Config
-  pages: PagesType
-  path: string
-  setPath: React.Dispatch<string>
-  theme: Stage.Theme
-  themes: Record<string, Stage.Theme>
-  setTheme: React.Dispatch<React.SetStateAction<Stage.Theme>>
-}
-
-export interface Config {
-  name?: string
-  git?: string
-  themes?: Record<string, Stage.Theme>
-  pages?: {
-    order?: Record<string, string[]>
-    types?: {
-      interface: string
-      columns: TableTypes.TableColumn<Property>[]
-    }[]
-    separatedTypes?: string[]
-    custom?: Record<string, React.ComponentType<CustomPageProps>>
-  }
-}
 
 export interface PageType {
   id: string
@@ -55,6 +24,14 @@ export interface PageType {
 
 export type PagesType = Record<string, PageType[]>
 
+const order = {
+  Layout: [],
+  Content: [],
+  Control: [],
+  Data: [],
+  Utilities: [],
+}
+
 class Core {
   static instance: Core
 
@@ -67,21 +44,14 @@ class Core {
 
   protected rawContent: any
 
-  protected rawConfig: Config = {}
-
   protected content: PagesType = {}
 
   constructor() {
-    this.rawContent = require.context('../showcases', true, /\.case$/)
-    this.rawConfig = require('../config')?.default || {}
+    this.rawContent = require.context('../pages/Components', true, /\.case$/)
   }
 
   get pages(): PagesType {
     return this.content
-  }
-
-  get config(): Config {
-    return this.rawConfig
   }
 
   private getId(prefix: string, id?: string) {
@@ -121,7 +91,6 @@ class Core {
   }
 
   private makePages() {
-    const order = this.config?.pages?.order
     const pagesByPaths: PagesType = {}
     this.rawContent.keys().forEach((path: string) => {
       const section = path.split('/').slice(-3)[0]

@@ -1,0 +1,5 @@
+<Block
+    borderWidth='1px'
+    borderStyle='solid'
+    borderColor={c => c.light}
+/>

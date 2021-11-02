@@ -1,0 +1,31 @@
+(main) => ({
+    border: {
+        width: '1px',
+        style: 'solid',
+        color: main.color.lightest.rgb().string()
+    },
+    shadow: {
+        default: `0px 4px 8px rgba(0,0,0,0.15)`,
+        short: `0px 2px 4px rgba(0,0,0,0.15)`,
+        long: `0 16px 16px rgba(0,0,0,0.15)`,
+    },
+    focus: {
+        boxShadow: '0 0 0 3px ' + main.color.primary.alpha(.3).rgb().string()
+    },
+    typography: {
+        header: {
+            xl: {
+                fontSize: '7.5rem',
+                lineHeight: 1.5,
+            }, l: {}, m: {}, s: {}, xs: {}
+        },
+        paragraph: {},
+        text: {},
+    },
+    field: {
+        xs: {
+            padding: '0 0.25rem',
+            minHeight: '1.5rem',
+        }, l: {}, m: {}, s: {}, xs: {}
+    }
+})

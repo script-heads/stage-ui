@@ -1,5 +1,4 @@
 import { Options } from '@emotion/cache'
-import { SerializedStyles } from '@emotion/react'
 
 declare namespace ViewportTypes {
   interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
@@ -20,7 +19,7 @@ declare namespace ViewportTypes {
     /**
      * Set global CSS
      */
-    global?: SerializedStyles
+    global?: Stage.CSSInterpolation
     /**
      * Application content
      */

@@ -1,19 +1,20 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "jsx": "react-jsx",
-        "jsxImportSource": "@emotion/react",
-        "target": "esnext",
-        "outDir": "../../build/docs",
-        "skipLibCheck": true,
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "experimentalDecorators": true,
-        "suppressImplicitAnyIndexErrors": true,
-        "strict": true,
-        "types": ["@emotion/react", "node"]
-    },
-    "exclude": [
-        "node_modules"
-    ]
+  "compilerOptions": {
+    "module": "commonjs",
+    "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
+    "target": "esnext",
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "strict": true,
+    "declaration": true,
+		"resolveJsonModule": true,
+    "emitDeclarationOnly": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }

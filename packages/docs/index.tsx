@@ -1,42 +1,79 @@
-import { Global, jsx } from '@emotion/react'
-import { Viewport } from '@stage-ui/core'
-import * as defaultThemes from '@stage-ui/core/themes/index'
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
-import Router from './pages/router'
+import { Global } from '@emotion/react'
+import { light, dark } from '@stage-ui/core/themes'
+import { Viewport, Block, Flexbox, ScrollView } from '@stage-ui/core'
+import { toPixel } from '@stage-ui/system/utils/size'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Header from './components/Header'
+import ComponentModal from './modals/ComponentModal'
+import core from './utils/core'
+import Page404 from './pages/404'
+import Components from './pages/Components'
+import Index from './pages/Index'
+import Icons from './pages/Icons'
+import Footer from './components/Footer'
 
-declare global {
-  interface Window {
-    breakpoints: number[]
-    jsx: any
-  }
+core.init()
+const initialDocsContext: {
+  currentTheme: Stage.Theme
+  themes: Record<'light' | 'dark', Stage.Theme>
+  setTheme?: React.Dispatch<React.SetStateAction<Stage.Theme>>
+} = {
+  currentTheme: light,
+  themes: { light, dark },
 }
-
-// esbuild hack
-window.jsx = jsx
-
-window.breakpoints = [960, 768]
+export const DocsContext = React.createContext(initialDocsContext)
 
 const Docs = () => {
-  const [theme, setTheme] = useState<Stage.Theme>(defaultThemes.light)
+  const [currentTheme, setTheme] = useState(initialDocsContext.currentTheme)
 
   useEffect(() => {
-    localStorage.setItem('current_theme', theme.name.toLowerCase())
-  }, [theme])
+    localStorage.setItem('current_theme', currentTheme.name.toLowerCase())
+  }, [currentTheme.name])
 
   return (
-    <Viewport theme={theme}>
-      <Global
-        styles={{
+    <DocsContext.Provider value={{ currentTheme, themes: initialDocsContext.themes, setTheme }}>
+      <Viewport
+        theme={currentTheme}
+        global={{
           'html,body,#docs': {
             minHeight: '100vh',
-            background: theme.color.background.hex(),
+            background: currentTheme.color.background.hex(),
             overscrollBehavior: 'none',
           },
         }}
-      />
-      <Router theme={theme} defaultThemes={defaultThemes} setTheme={setTheme} />
-    </Viewport>
+      >
+        <Router>
+          <ScrollView h="100%" w="100%" barOffset={toPixel('0.25rem')}>
+            <Flexbox column alignItems="center" px="xl">
+              <Block w="100%" style={{ maxWidth: '64rem', width: '100%' }}>
+                <Header />
+                <Switch>
+                  <Route exact path="/">
+                    <Index />
+                  </Route>
+                  <Route exact path="/components">
+                    <Components />
+                  </Route>
+                  <Route exact path="/components/:name">
+                    <Components />
+                    <ComponentModal />
+                  </Route>
+                  <Route exact path="/icons">
+                    <Icons />
+                  </Route>
+                  <Route path="*">
+                    <Page404 />
+                  </Route>
+                </Switch>
+              </Block>
+            </Flexbox>
+            <Footer />
+          </ScrollView>
+        </Router>
+      </Viewport>
+    </DocsContext.Provider>
   )
 }
 

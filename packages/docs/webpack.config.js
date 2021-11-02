@@ -110,6 +110,9 @@ const plugins = [
   new webpack.DefinePlugin({
     ENV_MODE: JSON.stringify(MODE),
   }),
+  new webpack.ProvidePlugin({
+    jsx: ['@emotion/react', 'jsx'],
+  }),
 ]
 
 /**
@@ -119,7 +122,6 @@ plugins.push(
   new CopyWebPack({
     patterns: [
       { from: `${ProjectDIR}public/index.html` },
-      { from: `${ProjectDIR}server.js` },
       /**
        * definitions for monaco TSLint
        */
