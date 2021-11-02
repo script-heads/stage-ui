@@ -33,6 +33,22 @@ declare namespace PageswitchTypes {
     arrowButton: {
       disabled: boolean
     }
+    /**
+     * Dots
+     */
+    separator: void
+    /**
+     * Pagination button
+     */
+    pageButton: {
+      current: boolean
+    }
+    /**
+     * Pagination button text
+     */
+    pageButtonText: {
+      current: boolean
+    }
   }
 }
 
