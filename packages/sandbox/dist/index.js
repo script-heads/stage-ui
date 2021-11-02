@@ -27535,6 +27535,8 @@
           whiteSpace: "nowrap",
           outline: "none",
           boxShadow: "unset",
+          borderWidth: 0,
+          borderStyle: "solid",
           borderColor: "transparent",
           borderRadius: theme.radius.m,
           textOverflow: "ellipsis",
@@ -27546,9 +27548,6 @@
           width: "fit-content",
           padding: `0 ${theme.assets.field[size].indent}`,
           height: theme.assets.field[size].height,
-          "&:active": {
-            borderStyle: "solid"
-          },
           "&::-moz-focus-inner": {
             border: 0
           },
@@ -27564,8 +27563,7 @@
         },
         theme.assets.typography.text[size],
         decoration === "outline" && {
-          borderWidth: "1px",
-          borderStyle: "solid",
+          borderWidth: "0.0625rem",
           borderColor: color.rgb().string(),
           color: color.rgb().string(),
           "&:disabled": {
@@ -27573,11 +27571,11 @@
           }
         },
         decoration === "text" && {
+          borderWidth: 0,
           color: color.rgb().string()
         },
         decoration === "plain" && {
-          borderWidth: "1px",
-          borderStyle: "solid",
+          borderWidth: "0.0625rem",
           borderColor: theme.color.lightest.rgb().string(),
           background: theme.color.surface.rgb().string(),
           color: theme.color.onSurface.rgb().string(),
@@ -34883,37 +34881,78 @@
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses16 = (theme) => {
-    return {
-      container: [
-        {
-          color: theme.color.hard.rgb().string(),
-          userSelect: "none"
+  var createClasses16 = ({
+    color,
+    spacing,
+    assets
+  }) => ({
+    container: [
+      {
+        color: color.hard.rgb().string(),
+        userSelect: "none",
+        alignItems: "center"
+      }
+    ],
+    arrowButton: (state) => [
+      {
+        color: color.hard.rgb().string(),
+        ":hover": {
+          color: color.primary.rgb().string()
         }
-      ],
-      arrowButton: (state) => [
-        {
-          color: theme.color.hardest.rgb().string(),
-          ":hover": {
-            color: theme.color.primary.rgb().string()
-          }
-        },
-        state.disabled && {
-          cursor: "not-allowed",
-          color: theme.color.lightest.rgb().string(),
-          ":hover": {
-            color: theme.color.lightest.rgb().string()
-          }
+      },
+      state.disabled && {
+        cursor: "not-allowed",
+        color: color.light.rgb().string(),
+        ":hover": {
+          color: color.light.rgb().string()
         }
-      ]
-    };
-  };
+      }
+    ],
+    separator: {
+      color: color.light.rgb().string()
+    },
+    pageButton: (state) => [
+      {
+        transition: "background-color 0.25s",
+        color: state.current ? color.onPrimary.hex() : color.hard.hex(),
+        marginRight: spacing.xs,
+        marginLeft: spacing.xs,
+        padding: spacing.s,
+        boxShadow: state.current ? assets.shadow.m : "none",
+        borderRadius: "10rem",
+        backgroundColor: color.primary.alpha(state.current ? 1 : 0).rgb().string(),
+        ":hover": {
+          color: state.current ? color.onPrimary.hex() : color.primary.hex(),
+          backgroundColor: color.primary.alpha(state.current ? 1 : 0.1).rgb().string()
+        }
+      }
+    ],
+    pageButtonText: () => [
+      assets.typography.text.m,
+      {
+        fontWeight: 500,
+        textAlign: "center",
+        minWidth: "1.25rem"
+      }
+    ]
+  });
   var styles_default20 = createClasses16;
 
   // ../core/control/Pageswitch/index.tsx
+  var PAGE_BUTTON_MAX = 1;
+  var PageButton = (props) => {
+    const { page, classes, onClick } = props;
+    const current = !onClick;
+    return /* @__PURE__ */ jsx(Flexbox_default, {
+      css: classes.pageButton({ current }),
+      onClick: current ? void 0 : () => onClick == null ? void 0 : onClick(page)
+    }, /* @__PURE__ */ jsx(Text_default, {
+      css: classes.pageButtonText({ current })
+    }, page));
+  };
   var Pageswitch = (props, ref) => {
-    const { length: length2, pageSize = 20, value } = props;
-    const lastPage = Math.ceil(length2 / pageSize);
+    const { length: total, pageSize = 20, value } = props;
+    const lastPage = Math.ceil(total / pageSize);
     const { classes, attributes, events, styleProps } = useSystem_default("Pageswitch", props, styles_default20);
     let defaultValue = value || props.defaultValue || 1;
     if (defaultValue <= 0)
@@ -34951,41 +34990,57 @@
         setPage(currentPage - 1);
       }
     };
+    let prevPagesCount = currentPage - 1;
+    let nextPagesCount = lastPage - currentPage || 0;
+    let allowToFirst = false;
+    let allowToLast = false;
+    if (prevPagesCount > PAGE_BUTTON_MAX) {
+      prevPagesCount = PAGE_BUTTON_MAX;
+      allowToFirst = true;
+    }
+    if (nextPagesCount > PAGE_BUTTON_MAX) {
+      nextPagesCount = PAGE_BUTTON_MAX;
+      allowToLast = true;
+    }
     return /* @__PURE__ */ jsx(Flexbox_default, __spreadValues({
-      attributes,
       ref,
-      css: [classes.container, styleProps.all],
-      alignItems: "center"
-    }, events), /* @__PURE__ */ jsx(ArrowLeft_default, {
+      attributes,
+      css: [classes.container, styleProps.all]
+    }, events), /* @__PURE__ */ jsx(ArrowIosLeft_default, {
       mr: "0.5rem",
-      size: "1rem",
-      css: classes.arrowButton({
-        disabled: currentPage <= 1
-      }),
-      onClick: () => setPage(1)
-    }), /* @__PURE__ */ jsx(ArrowRight_default, {
-      mr: "0.5rem",
-      size: "1rem",
-      css: classes.arrowButton({
-        disabled: currentPage <= 1
-      }),
+      size: "1.25rem",
+      css: classes.arrowButton({ disabled: currentPage <= 1 }),
       onClick: () => prevPage()
-    }), /* @__PURE__ */ jsx(Text_default, {
-      size: "s"
-    }, currentPage, "/", lastPage), /* @__PURE__ */ jsx(ArrowheadLeft_default, {
+    }), allowToFirst && /* @__PURE__ */ jsx(PageButton, {
+      page: 1,
+      classes,
+      onClick: setPage
+    }), allowToFirst && /* @__PURE__ */ jsx(Text_default, {
+      css: classes.separator
+    }, "..."), Array(prevPagesCount).fill("").map((_, index) => /* @__PURE__ */ jsx(PageButton, {
+      key: index,
+      page: currentPage - prevPagesCount + index,
+      classes,
+      onClick: setPage
+    })), /* @__PURE__ */ jsx(PageButton, {
+      page: currentPage,
+      classes
+    }), Array(nextPagesCount).fill("").map((_, index) => /* @__PURE__ */ jsx(PageButton, {
+      key: index,
+      page: currentPage + 1 + index,
+      classes,
+      onClick: setPage
+    })), allowToLast && /* @__PURE__ */ jsx(Text_default, {
+      css: classes.separator
+    }, "..."), allowToLast && /* @__PURE__ */ jsx(PageButton, {
+      page: lastPage,
+      classes,
+      onClick: setPage
+    }), /* @__PURE__ */ jsx(ArrowIosRight_default, {
       ml: "0.5rem",
-      size: "1rem",
-      css: classes.arrowButton({
-        disabled: currentPage >= lastPage
-      }),
+      size: "1.25rem",
+      css: classes.arrowButton({ disabled: currentPage >= lastPage }),
       onClick: () => nextPage()
-    }), /* @__PURE__ */ jsx(ArrowheadRight_default, {
-      mr: "0.5rem",
-      size: "1rem",
-      css: classes.arrowButton({
-        disabled: currentPage >= lastPage
-      }),
-      onClick: () => setPage(lastPage)
     }));
   };
   var Pageswitch_default = (0, import_react284.forwardRef)(Pageswitch);
@@ -35423,7 +35478,7 @@
       target: fieldRef
     }, /* @__PURE__ */ jsx("div", {
       css: classes.drop
-    }, /* @__PURE__ */ jsx("div", {
+    }, !!dropHeader && /* @__PURE__ */ jsx("div", {
       css: classes.dropHeader
     }, dropHeader), /* @__PURE__ */ jsx(ScrollView_default, {
       preventStageEvents: true,
@@ -35436,7 +35491,7 @@
       css: classes.noOptions
     }, /* @__PURE__ */ jsx("div", {
       css: classes.noOptionsText
-    }, emptyText))), /* @__PURE__ */ jsx("div", {
+    }, emptyText))), !!dropFooter && /* @__PURE__ */ jsx("div", {
       css: classes.dropFooter
     }, dropFooter))));
   };
@@ -35979,13 +36034,14 @@
           position: "relative",
           whiteSpace: "nowrap",
           borderRadius: theme.radius[size],
+          padding: "0.125rem",
           textOverflow: "ellipsis",
           overflow: "hidden",
           background: "transparent",
           display: "flex",
           alignItems: "stretch",
           width: "fit-content",
-          height: theme.assets.field[size].height,
+          height: `calc(${theme.assets.field[size].height} - 0.25rem)`,
           backgroundColor: theme.color.background.rgb().string(),
           borderColor: theme.color.lightest.rgb().string(),
           borderWidth: "1px",
@@ -35998,10 +36054,10 @@
             color: "transparent",
             transition: "all 0.2s",
             position: "absolute",
-            paddingLeft: theme.spacing[size],
-            paddingRight: theme.spacing[size],
-            height: "100%",
-            borderRadius: theme.radius[size],
+            paddingLeft: `calc(${theme.spacing[size]} / 1.5)`,
+            paddingRight: `calc(${theme.spacing[size]} / 1.5)`,
+            height: "calc(100% - 0.25rem)",
+            borderRadius: `calc(${theme.radius[size]} / 1.25)`,
             backgroundColor: theme.color.surface.rgb().string(),
             borderColor: theme.color.lightest.rgb().string(),
             borderWidth: "1px",
@@ -36025,8 +36081,9 @@
           zIndex: 1,
           display: "flex",
           alignItems: "center",
-          paddingLeft: theme.spacing[size],
-          paddingRight: theme.spacing[size],
+          paddingLeft: `calc(${theme.spacing[size]} / 1.5)`,
+          paddingRight: `calc(${theme.spacing[size]} / 1.5)`,
+          height: "100%",
           color: theme.color.hard.rgb().string(),
           cursor: "pointer"
         },
@@ -36048,16 +36105,7 @@
     });
     const [value, setValue] = (0, import_react290.useState)();
     const [offset, setOffset] = (0, import_react290.useState)(0);
-    (0, import_react290.useEffect)(() => {
-      if (defaultValue) {
-        setValue(defaultValue);
-      }
-    }, []);
-    (0, import_react290.useEffect)(() => {
-      if (props.value) {
-        setValue(props.value);
-      }
-    }, [(_a = props.value) == null ? void 0 : _a.value]);
+    const refs = [];
     function onChange(newValue) {
       var _a2;
       if (props.value === void 0) {
@@ -36065,9 +36113,22 @@
       }
       (_a2 = props.onChange) == null ? void 0 : _a2.call(props, newValue);
     }
-    function setOption(changedValue) {
-      onChange == null ? void 0 : onChange(changedValue);
+    function setOption(v) {
+      var _a2;
+      onChange == null ? void 0 : onChange(v);
+      setValue(v);
+      setOffset((_a2 = refs[props.options.findIndex((o) => o.value === v.value)]) == null ? void 0 : _a2.offsetLeft);
     }
+    (0, import_react290.useEffect)(() => {
+      if (defaultValue) {
+        setOption(defaultValue);
+      }
+    }, []);
+    (0, import_react290.useEffect)(() => {
+      if (props.value) {
+        setOption(props.value);
+      }
+    }, [(_a = props.value) == null ? void 0 : _a.value]);
     return /* @__PURE__ */ jsx("div", __spreadProps(__spreadValues(__spreadValues({}, attributes), events), {
       ref,
       onChange: void 0,
@@ -36082,6 +36143,7 @@
         }
       ]
     }), props.options.map((option) => /* @__PURE__ */ jsx("div", {
+      ref: (r) => refs.push(r),
       key: option.value.toString(),
       css: [
         classes.option({
@@ -36089,9 +36151,13 @@
         })
       ],
       onClick: (e) => {
+        var _a2;
         e.stopPropagation();
-        setOption(option);
-        setOffset(e.target.offsetLeft);
+        if (typeof props.value !== "undefined") {
+          (_a2 = props.onChange) == null ? void 0 : _a2.call(props, option);
+        } else {
+          setOption(option);
+        }
       }
     }, option.text)));
   };
@@ -36416,9 +36482,11 @@
   var import_react293 = __toModule(require_react());
   var TableFoot = (props, ref) => {
     const { columns, pagination, rowCtx, styles: styles8, footerContent, onPageChange } = props;
+    const pageSize = pagination == null ? void 0 : pagination.pageSize;
+    const alwaysVisible = pagination == null ? void 0 : pagination.alwaysVisible;
     let needDisplay = false;
-    const paginationNeedDisplay = pagination && (pagination.alwaysVisible || rowCtx.length > pagination.pageSize);
-    if (paginationNeedDisplay || footerContent) {
+    const allowPagination = rowCtx.length > (pageSize || rowCtx.length) || alwaysVisible;
+    if (allowPagination || footerContent) {
       needDisplay = true;
     }
     if (!needDisplay) {
@@ -36430,7 +36498,7 @@
       colSpan: columns.length
     }, /* @__PURE__ */ jsx(Flexbox_default, {
       justifyContent: footerContent ? "space-between" : "flex-end"
-    }, footerContent, paginationNeedDisplay && /* @__PURE__ */ jsx(Pageswitch_default, __spreadValues({
+    }, footerContent, allowPagination && /* @__PURE__ */ jsx(Pageswitch_default, __spreadValues({
       length: rowCtx.length,
       onChange: onPageChange
     }, pagination))))));
@@ -37235,7 +37303,8 @@
           willChange: "left, top",
           "> :nth-of-type(n)": {
             margin: "0 !important"
-          }
+          },
+          boxSizing: "border-box"
         }
       ],
       webkit: [
@@ -37443,7 +37512,9 @@
       size = "m",
       mode = "scroll",
       xBarPosition = "bottom",
-      yBarPosition = "right"
+      yBarPosition = "right",
+      watchElementOffset = 0,
+      watchElement
     } = props;
     const { classes, attributes, events, styleProps } = useSystem_default("ScrollView", props, styles_default33);
     const [active, setActive] = (0, import_react305.useState)(mode === "always");
@@ -37557,22 +37628,23 @@
           detail: event
         }));
       }
-      if ((props.watchElement || Object.keys(memo.watchElementListeners).length) && memo.preventWatchElement !== true) {
+      const hasListeners = Boolean(Object.keys(memo.watchElementListeners).length);
+      if ((watchElement || hasListeners) && memo.preventWatchElement !== true) {
         const elements = [];
         document.querySelectorAll(`[data-scroll-id="${memo.id}"] [data-id]`).forEach((queryElement) => {
           elements.push(queryElement);
         });
         const scrollTop = Math.abs(memo.container.scrollTop || memo.content.offsetTop);
         const listeners = Object.values(memo.watchElementListeners);
-        if (props.watchElement) {
+        if (watchElement) {
           listeners.unshift({
-            fn: props.watchElement,
+            fn: watchElement,
             options: {
-              offset: props.watchElementOffset || 0
+              offset: watchElementOffset
             }
           });
         }
-        const offset = ((_b = listeners[listeners.length - 1].options) == null ? void 0 : _b.offset) || props.watchElementOffset || 0;
+        const offset = ((_b = listeners[listeners.length - 1].options) == null ? void 0 : _b.offset) || watchElementOffset;
         for (const el of elements.reverse()) {
           if (scrollTop - getOffsetTop(el) + offset > 0) {
             const id = el.attributes["data-id"].value;
@@ -39443,13 +39515,13 @@
   var PlaygroundTable = () => {
     const [loading, setLoading] = (0, import_react319.useState)(false);
     const [data, setData] = (0, import_react319.useState)([]);
-    const [pageSize, setPageSize] = (0, import_react319.useState)([{ value: 10, text: "10" }]);
+    const [pageSize, setPageSize] = (0, import_react319.useState)([{ value: 5, text: "5" }]);
     const pages = async () => {
       setLoading(true);
       const { data: data2 } = await (0, import_axios.default)({
         method: "GET",
         url: `${endPoint}/passenger`,
-        params: { page: 0, size: pageSize[0].value }
+        params: { page: 0, size: 50 }
       });
       setData(data2.data);
       setLoading(false);
@@ -39503,7 +39575,7 @@
         { value: 20, text: "20" }
       ],
       onChange: (item) => setPageSize(item),
-      css: {
+      style: {
         maxWidth: "10rem"
       }
     })));
