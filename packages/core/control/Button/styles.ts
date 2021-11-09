@@ -35,7 +35,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         '&::-moz-focus-inner': {
           border: 0,
         },
-        '&:hover:not([disabled])': {
+        '&:hover:not([disabled]):not(.no-hover)': {
           background: color.alpha(0.07).rgb().string(),
         },
         '&:active:not([disabled])': {
@@ -73,7 +73,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
           color.contrast(theme.color.onPrimary) > 3
             ? theme.color.onPrimary.rgb().string()
             : theme.color.onSurface.rgb().string(),
-        '&:hover:not([disabled])': {
+        '&:hover:not([disabled]):not(.no-hover)': {
           background: color.alpha(0.7).rgb().string(),
         },
         '&:active:not([disabled])': {
