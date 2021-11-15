@@ -11,6 +11,7 @@ const thatPackageName = process.argv[2].toLocaleLowerCase()
 const thatPackageDefinition = JSON.parse(fs.readFileSync(packagesDir + thatPackageName + '/package.json'))
 const systemPackageDefinition = JSON.parse(fs.readFileSync(packagesDir + 'system/package.json'))
 const corePackageDefinition = JSON.parse(fs.readFileSync(packagesDir + 'core/package.json'))
+const iconPackageDfinition = JSON.parse(fs.readFileSync(packagesDir + 'icons/package.json'))
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
@@ -36,7 +37,8 @@ getNextVersion.then((nextVersion) => {
 
   if (thatPackageName === 'core') {
     writeDependencies({
-      [systemPackageDefinition.name]: `^${systemPackageDefinition.version}`
+      [systemPackageDefinition.name]: `^${systemPackageDefinition.version}`,
+      [iconPackageDfinition.name]: `^${iconPackageDfinition.version}`,
     })
   }
   
@@ -50,7 +52,8 @@ getNextVersion.then((nextVersion) => {
   if (thatPackageName === 'lab') {
     writeDependencies({
       [corePackageDefinition.name]: `^${corePackageDefinition.version}`,
-      [systemPackageDefinition.name]: `^${systemPackageDefinition.version}`
+      [systemPackageDefinition.name]: `^${systemPackageDefinition.version}`,
+      [iconPackageDfinition.name]: `^${iconPackageDfinition.version}`,
     })
   }
   
