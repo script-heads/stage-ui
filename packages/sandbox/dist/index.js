@@ -26634,17 +26634,73 @@
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react4 = __toModule(require_react());
   init_emotion_cache_browser_esm();
   init_emotion_react_browser_esm();
-  var StageContext = import_react4.default.createContext({});
+  var import_react5 = __toModule(require_react());
+
+  // ../system/utils/cssReset.ts
+  init_define_ENV();
+  init_wsClientInjection();
+  init_react_shim();
+  var cssReset = `
+  html, body, div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, img, ins, kbd, q, s, samp,
+  small, strike, strong, sub, sup, tt, var,
+  b, u, i, center,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, embed, 
+  figure, figcaption, footer, header, hgroup, 
+  menu, nav, output, ruby, section, summary,
+  time, mark, audio, video, button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+  }
+  /* HTML5 display-role reset for older browsers */
+  article, aside, details, figcaption, figure, 
+  footer, header, hgroup, menu, nav, section {
+    display: block;
+  }
+  body {
+    line-height: 1;
+  }
+  ol, ul {
+    list-style: none;
+  }
+  blockquote, q {
+    quotes: none;
+  }
+  blockquote:before, blockquote:after,
+  q:before, q:after {
+    content: '';
+    content: none;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+`;
+
+  // ../system/Provider.tsx
+  var StageContext = import_react5.default.createContext({});
   var Provider = (props) => {
     const { theme, global: global2, children } = props;
-    const cache = (0, import_react4.useMemo)(() => emotion_cache_browser_esm_default(props.cache), []);
+    const cache = (0, import_react5.useMemo)(() => emotion_cache_browser_esm_default(props.cache), []);
     const Content = /* @__PURE__ */ jsx(CacheProvider, {
       value: cache
     }, /* @__PURE__ */ jsx(Global, {
-      styles: [global2, theme && { "#focused": theme.assets.focus }]
+      styles: [
+        cssReset,
+        global2,
+        theme && { "#focused": theme.assets.focus }
+      ]
     }), children);
     if (theme) {
       return /* @__PURE__ */ jsx(StageContext.Provider, {
@@ -38741,7 +38797,7 @@
       shadow: {
         xs: "0px 0px 9px rgba(0, 0, 0, 0.09), 0px 0px 3.03027px rgba(0, 0, 0, 0.0534838), 0px 0px 1.31328px rgba(0, 0, 0, 0.0417053), 0px 0px 0.445327px rgba(0, 0, 0, 0.0337542), 0px 0px 0.0493852px rgba(0, 0, 0, 0.0248326)",
         s: "0px 6px 7px rgba(0, 0, 0, 0.09), 0px 0.287374px 3.5294px rgba(0, 0, 0, 0.0534838), 0px -0.434029px 2.25515px rgba(0, 0, 0, 0.0417053), 0px -0.219386px 1.3565px rgba(0, 0, 0, 0.0337542), 0px 0.267283px 0.635625px rgba(0, 0, 0, 0.0248326)",
-        m: `0px 24px 58px rgba(0, 0, 0, 0.09), 0px 7.7756px 19.55px rgba(0, 0, 0, 0.0534838), 0px 4.13855px 10.6433px rgba(0, 0, 0, 0.0417053), 0px 2.38694px 6.55259px rgba(0, 0, 0, 0.0337542), 0px 1.1744px 3.75697px rgba(0, 0, 0, 0.0248326)`,
+        m: "0px 24px 58px rgba(0, 0, 0, 0.09), 0px 7.7756px 19.55px rgba(0, 0, 0, 0.0534838), 0px 4.13855px 10.6433px rgba(0, 0, 0, 0.0417053), 0px 2.38694px 6.55259px rgba(0, 0, 0, 0.0337542), 0px 1.1744px 3.75697px rgba(0, 0, 0, 0.0248326)",
         l: "0px 45px 85px rgba(0, 0, 0, 0.09), 0px 16.8299px 36.6996px rgba(0, 0, 0, 0.0534838), 0px 9.09173px 20.3938px rgba(0, 0, 0, 0.0417053), 0px 5.0881px 12.016px rgba(0, 0, 0, 0.0337542), 0px 2.35997px 6.25509px rgba(0, 0, 0, 0.0248326)",
         xl: "0px 45px 121px rgba(0, 0, 0, 0.09), 0px 16.8299px 52.243px rgba(0, 0, 0, 0.0534838), 0px 9.09173px 29.0311px rgba(0, 0, 0, 0.0417053), 0px 5.0881px 17.1052px rgba(0, 0, 0, 0.0337542), 0px 2.35997px 8.90431px rgba(0, 0, 0, 0.0248326)"
       },

@@ -1,6 +1,7 @@
-import React, { useMemo } from 'react'
 import createCache, { Options } from '@emotion/cache'
-import { ThemeProvider, CacheProvider, Global, Interpolation } from '@emotion/react'
+import { CacheProvider, Global, Interpolation, ThemeProvider } from '@emotion/react'
+import React, { useMemo } from 'react'
+import { cssReset } from './utils/cssReset'
 
 interface ProviderProps {
   theme?: Stage.Theme
@@ -19,7 +20,11 @@ const Provider = <T extends ProviderProps>(props: T) => {
   const Content = (
     <CacheProvider value={cache}>
       <Global
-        styles={[global, theme && ({ '#focused': theme.assets.focus } as Interpolation<any>)]}
+        styles={[
+          cssReset,
+          global,
+          theme && ({ '#focused': theme.assets.focus } as Interpolation<any>),
+        ]}
       />
       {children}
     </CacheProvider>
