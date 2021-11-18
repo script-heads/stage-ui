@@ -5,7 +5,6 @@ import PlaygroundMenu from './menu'
 import PlaygroundSidebar from './sidebar'
 import PlaygroundTable from './table'
 import PlaygroundToolbar from './toolbar'
-import PlaygroundTree from './tree'
 
 const App = () => (
   <Flexbox>

@@ -60,6 +60,7 @@ module.exports = {
     "react/require-default-props": "off",
     "react/destructuring-assignment": "off",
     "react-hooks/exhaustive-deps": "off",
+    "react/button-has-type": "off",
     "@typescript-eslint/semi": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",

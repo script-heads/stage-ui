@@ -176,8 +176,8 @@ type ColorNames =
   | 'purple/900'
 
 export type ColorProp =
-  | ((colors: Stage.Theme['color']) => Color | string)
-  | keyof Stage.ColorMain
+  | ((colors: Stage.Theme['color']) => Color)
+  | (keyof Stage.ColorMain & keyof Stage.ColorCustomPallete)
   | Color
   | (string & { T?: string })
   | ColorNames
@@ -186,19 +186,31 @@ function colorProp<V extends ColorProp | undefined>(
   value: V,
   theme: Stage.Theme,
 ): V extends undefined ? undefined : Stage.Color {
-  const resolvedColor = typeof value === 'function' ? value(theme.color) : value
-
-  if (typeof resolvedColor === 'string') {
-    if (theme.color[resolvedColor as keyof Stage.Theme['color']]) {
-      return theme.color[resolvedColor as keyof Stage.Theme['color']] as V extends undefined
-        ? undefined
-        : Stage.Color
-    }
-
-    return Color(resolvedColor) as V extends undefined ? undefined : Stage.Color
+  if (typeof value === 'function') {
+    return value(theme.color) as V extends undefined ? undefined : Stage.Color
   }
 
-  return resolvedColor as V extends undefined ? undefined : Stage.Color
+  if (typeof value === 'string' && Object.prototype.hasOwnProperty.call(theme.color, value)) {
+    return theme.color[value as keyof Stage.Theme['color']] as V extends undefined
+      ? undefined
+      : Stage.Color
+  }
+
+  if (theme.color.palette[value as keyof Stage.Theme['color']['palette']]) {
+    return theme.color.palette[
+      value as keyof Stage.Theme['color']['palette']
+    ] as V extends undefined ? undefined : Stage.Color
+  }
+
+  if (typeof value === 'string' && value.includes('/')) {
+    const name = value.split('/') as (keyof Stage.ColorPallete)[]
+
+    if (theme.color[name[0]] && theme.color[name[0]][name[1]]) {
+      return theme.color[name[0]][name[1]]
+    }
+  }
+
+  return undefined as V extends undefined ? undefined : Stage.Color
 }
 
 export default colorProp
