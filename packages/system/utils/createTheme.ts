@@ -5,7 +5,10 @@ import convertColors from './convertColors'
 
 export interface ThemeDefiniton {
   main: Omit<Stage.ThemeMain, 'color' | 'breakpoints'> & {
-    color: Stage.Colors<string>
+    color: Omit<Stage.Colors<string>, 'palette'> & {
+      /** @deprecated this field, please add new colors to the color field, e.g: name: '#000' */
+      palette?: Record<string, Stage.ColorDefinition>
+    }
     breakpoints?: string[]
   }
   assets: ((main: Stage.ThemeMain) => Stage.ThemeAssets) | Stage.ThemeAssets
@@ -52,11 +55,12 @@ const defaultGlobal = {
 }
 
 const createTheme = (themeDefinition: ThemeDefiniton): Stage.Theme => {
-  const { breakpoints = ['1199.98px', '991.98px', '767.98px', '575.98px'] } = themeDefinition.main
+  const { color, breakpoints = ['1199.98px', '991.98px', '767.98px', '575.98px'] } =
+    themeDefinition.main
 
   const main = {
     ...themeDefinition.main,
-    color: convertColors(themeDefinition.main.color),
+    color: convertColors(color),
     breakpoints,
   }
 

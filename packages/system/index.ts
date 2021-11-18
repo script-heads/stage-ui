@@ -21,8 +21,31 @@ declare global {
       primary: C
       secondary: C
 
+      /** @deprecated this field */
+      onPrimary: C
+      /** @deprecated this field */
+      onSecondary: C
+      /** @deprecated this field */
+      onSurface: C
+      /** @deprecated this field */
+      onBackground: C
+
+      /** @deprecated this field */
+      light: C
+      /** @deprecated this field */
+      lightest: C
+      /** @deprecated this field */
+      hard: C
+      /** @deprecated this field */
+      hardest: C
+
       surface: C
+      /** @deprecated this field */
+      surfaceVariant: C
+
       background: C
+      /** @deprecated this field */
+      backgroundVariant: C
 
       border: C
       text: C
@@ -249,7 +272,12 @@ declare global {
         900: C
       }
     }
-    type Colors<C = Color> = ColorMain<C> & ColorPallete<C>
+    type ColorCustomPallete<C = Color> = {
+      /** @deprecated this field, please add new colors to the color field, e.g: name: '#000' */
+      palette: Record<string, C>
+    }
+
+    type Colors<C = Color> = ColorMain<C> & ColorPallete<C> & ColorCustomPallete<C>
 
     interface ThemeMain {
       name: string

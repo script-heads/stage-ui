@@ -95,8 +95,21 @@ export const light = createTheme({
       primary: 'rgb(255, 204, 0)',
       secondary: 'rgb(124, 58, 237)',
 
+      onPrimary: 'rgb(255, 255, 255)',
+      onSecondary: 'rgb(255, 255, 255)',
+      onSurface: 'rgb(0, 0, 0)',
+      onBackground: 'rgb(0, 0, 0)',
+
+      light: 'rgb(150, 150, 150)',
+      lightest: 'rgb(230, 230, 230)',
+      hard: 'rgb(120, 120, 120)',
+      hardest: 'rgb(100, 100, 100)',
+
       surface: 'rgb(255, 255, 255)',
+      surfaceVariant: 'rgb(230, 230,230)',
+
       background: 'rgb(249, 250, 251)',
+      backgroundVariant: 'rgb(235, 235, 235)',
 
       border: 'rgb(209, 213, 219)',
       text: 'rgb(16, 16, 17)',
@@ -455,11 +468,24 @@ export const dark = light.replace({
   main: {
     name: 'Dark',
     color: {
-      // background: [22, 22, 24],
-      // surface: [28, 28, 30],
-      // error: [188, 0, 0],
-      // success: [0, 120, 0],
-      // warning: [255, 149, 0],
+      background: 'rgb(22, 22, 24)',
+      backgroundVariant: 'rgb(50, 50, 60)',
+      surface: 'rgb(28, 28, 30)',
+      surfaceVariant: 'rgb(75, 75, 85)',
+
+      onPrimary: 'rgb(255, 255, 255)',
+      onSecondary: 'rgb(255, 255, 255)',
+      onBackground: 'rgb(255, 255, 255)',
+      onSurface: 'rgb(255, 255, 255)',
+
+      light: 'rgb(110, 110, 120)',
+      lightest: 'rgb(57, 57, 67)',
+      hard: 'rgb(180, 180, 200)',
+      hardest: 'rgb(230, 230, 250)',
+
+      error: 'rgb(188, 0, 0)',
+      warning: 'rgb(255, 149, 0)',
+      success: 'rgb(0, 120, 0)',
     },
   },
 })
