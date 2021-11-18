@@ -42,7 +42,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
           background: color.alpha(0.05).rgb().string(),
         },
         '&:disabled': {
-          color: theme.color.gray[100].rgb().string(),
+          color: theme.color.light.rgb().string(),
         },
       },
       theme.assets.typography.text[size],
@@ -51,7 +51,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         borderColor: color.rgb().string(),
         color: color.rgb().string(),
         '&:disabled': {
-          borderColor: theme.color.gray[100].rgb().string(),
+          borderColor: theme.color.lightest.rgb().string(),
         },
       },
       decoration === 'text' && {
