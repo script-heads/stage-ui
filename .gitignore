@@ -2,10 +2,14 @@
 build
 dist
 public
+packages/**/dist/*.js
+packages/**/public/*.js
+
 
 # dependencies
 node_modules
 packages/mobile/**/build
+
 
 # Logs & Locks
 logs
