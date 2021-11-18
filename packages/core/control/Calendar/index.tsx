@@ -5,7 +5,7 @@ import DateGrid from './DateGrid'
 import createClasses from './styles'
 import Types from './types'
 
-const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
+const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props) => {
   const {
     locale = 'ru',
     hideToday = false,

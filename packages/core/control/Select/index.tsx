@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { Block, Drop, ScrollView } from '@stage-ui/core'
+import { Drop, ScrollView } from '@stage-ui/core'
 import { ChevronDown, Close } from '@stage-ui/icons'
 import DropTypes from '@stage-ui/core/layout/Drop/types'
 import Field from '@stage-ui/core/basic/Field'

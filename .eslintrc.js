@@ -80,4 +80,5 @@ module.exports = {
     "@typescript-eslint/no-unsafe-call": "off",
     "@typescript-eslint/no-unsafe-return": "off",
   },
+  ignorePatterns: [".*.js", "dist", "build", "public", "node_modules"]
 }

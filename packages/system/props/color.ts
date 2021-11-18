@@ -194,7 +194,10 @@ function colorProp<V extends ColorProp | undefined>(
     return value(theme.color) as V extends undefined ? undefined : Stage.Color
   }
 
-  if (typeof value === 'string' && Object.prototype.hasOwnProperty.call(theme.color, value)) {
+  if (
+    typeof value === 'string' &&
+    Object.prototype.hasOwnProperty.call(theme.color, value as string)
+  ) {
     return theme.color[value as keyof Stage.Theme['color']] as V extends undefined
       ? undefined
       : Stage.Color

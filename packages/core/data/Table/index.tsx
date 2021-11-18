@@ -257,7 +257,8 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
             .forEach((key) => {
               currentEvents[key.replace('Row', '')] = (
                 e: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
-              ) => props[key as Stage.FilterStartingWith<keyof typeof props, 'onRow'>]?.(rowCtxItem, e)
+              ) =>
+                props[key as Stage.FilterStartingWith<keyof typeof props, 'onRow'>]?.(rowCtxItem, e)
             })
 
           return (

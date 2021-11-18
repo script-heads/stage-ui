@@ -8,7 +8,8 @@
     "build:js": "babel ./ --out-dir ../../build/core --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
     "build:types": "tsc --emitDeclarationOnly",
     "type-check": "tsc --noEmit",
-    "type-check:watch": "tsc --noEmit --watch"
+    "type-check:watch": "tsc --noEmit --watch",
+    "lint": "../../node_modules/.bin/eslint --fix ./"
   },
   "dependencies": {
     "imask": "6.0.1",

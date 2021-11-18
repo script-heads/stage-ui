@@ -56,9 +56,10 @@ const containerDecorations = (props: Props, theme: Stage.Theme) => {
         borderRadius: theme.radius.m,
         animation: `${skeleton} 2s ease-in-out infinite`,
       }
-  }
 
-  return null
+    default:
+      return null
+  }
 }
 
 export default containerDecorations

@@ -52,6 +52,7 @@ const Spinner: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
           {Array(count)
             .fill('')
             .map((e, i) => (
+              // eslint-disable-next-line react/no-array-index-key
               <g key={i} transform={`rotate(${(i * 360) / count} 12 12)`}>
                 <rect y="0" opacity=".2" {...rectShape}>
                   <animate

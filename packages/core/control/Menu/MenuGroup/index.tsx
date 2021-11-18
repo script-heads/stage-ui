@@ -3,7 +3,7 @@ import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import createClasses from './styles'
 import Types from './types'
 
-const MenuGroup: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
+const MenuGroup: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props) => {
   const { rightChild, leftChild } = props
 
   const { classes, attributes, events, styleProps } = useSystem('MenuGroup', props, createClasses)
