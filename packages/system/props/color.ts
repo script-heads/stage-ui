@@ -186,6 +186,10 @@ function colorProp<V extends ColorProp | undefined>(
   value: V,
   theme: Stage.Theme,
 ): V extends undefined ? undefined : Stage.Color {
+  if (!value) {
+    return undefined as V extends undefined ? undefined : Stage.Color
+  }
+
   if (typeof value === 'function') {
     return value(theme.color) as V extends undefined ? undefined : Stage.Color
   }
@@ -196,7 +200,11 @@ function colorProp<V extends ColorProp | undefined>(
       : Stage.Color
   }
 
-  if (theme.color.palette[value as keyof Stage.Theme['color']['palette']]) {
+  if (
+    typeof value === 'string' &&
+    Object.prototype.hasOwnProperty.call(theme.color, 'palette') &&
+    theme.color.palette[value as keyof Stage.Theme['color']['palette']]
+  ) {
     return theme.color.palette[
       value as keyof Stage.Theme['color']['palette']
     ] as V extends undefined ? undefined : Stage.Color
@@ -210,7 +218,7 @@ function colorProp<V extends ColorProp | undefined>(
     }
   }
 
-  return undefined as V extends undefined ? undefined : Stage.Color
+  return Color(value) as V extends undefined ? undefined : Stage.Color
 }
 
 export default colorProp
