@@ -1,4 +1,4 @@
-import { Block, Flexbox, Grid, Header, ScrollView, Spinner } from '@stage-ui/core'
+import { Block, Button, Flexbox, Grid, Header, ScrollView, Spinner } from '@stage-ui/core'
 import React from 'react'
 import PlaygroundControl from './control'
 import PlaygroundMenu from './menu'
@@ -25,6 +25,7 @@ const App = () => (
           <PlaygroundTable />
         </Grid>
       </Block>
+      <Button color="rose/400" label="new button" />
     </ScrollView>
   </Flexbox>
 )
