@@ -1,6 +1,7 @@
 # build
-build/
-dist/
+build
+dist
+public
 
 # dependencies
 node_modules
