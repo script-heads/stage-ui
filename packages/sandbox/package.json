@@ -9,7 +9,7 @@
         "type-check": "tsc --noEmit",
         "type-check:watch": "yarn type-check -- --watch",
         "definitions": "ENV=development node ../../scripts/getDefinitions.js",
-        "lint": "eslint --config .eslintrc.json --fix ./"
+        "lint": "eslint --config .eslintrc.json --fix '**/*.+(js|jsx|ts|tsx)'"
     },
     "dependencies": {
         "dat.gui": "^0.7.6",
