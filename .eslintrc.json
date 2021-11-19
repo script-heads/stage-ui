@@ -1,34 +1,33 @@
-module.exports = {
-  root: true,
-  parserOptions: {
-    ecmaVersion: 12,
-    sourceType: "module",
-    ecmaFeatures: {
-      jsx: true,
+{
+  "root": true,
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
     },
-    project: './tsconfig.json',
-    tsconfigRootDir: __dirname,
+    "project": "./tsconfig.json"
   },
-  env: {
-    node: true,
-    es6: true,
+  "env": {
+    "node": true,
+    "es6": true
   },
-  extends: [
+  "extends": [
     "airbnb/hooks",
     "plugin:prettier/recommended",
     "airbnb-typescript",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "prettier",
+    "prettier"
   ],
-  plugins: [
+  "plugins": [
     "react",
     "react-hooks",
     "prettier",
     "@typescript-eslint",
-    "unused-imports",
+    "unused-imports"
   ],
-  parser: "@typescript-eslint/parser",
-  rules: {
+  "parser": "@typescript-eslint/parser",
+  "rules": {
     "class-methods-use-this": "off",
     "no-plusplus": "off",
     "max-classes-per-file": "off",
@@ -36,16 +35,16 @@ module.exports = {
     "prettier/prettier": [
       "error",
       {
-        semi: false,
-        singleQuote: true,
-        endOfLine: "auto",
-        trailingComma: "all",
-        printWidth: 100,
-      },
+        "semi": false,
+        "singleQuote": true,
+        "endOfLine": "auto",
+        "trailingComma": "all",
+        "printWidth": 100
+      }
     ],
     "react/jsx-wrap-multilines": [
       "error",
-      { arrow: true, return: true, declaration: true },
+      { "arrow": true, "return": true, "declaration": true }
     ],
     "import/prefer-default-export": "off",
     "import/no-cycle": "off",
@@ -53,9 +52,9 @@ module.exports = {
     "react/prop-types": "off",
     "no-param-reassign": [
       "error",
-      { props: true, ignorePropertyModificationsFor: ["state"] },
+      { "props": true, "ignorePropertyModificationsFor": ["state"] }
     ],
-    "no-void": ["error", { allowAsStatement: true }],
+    "no-void": ["error", { "allowAsStatement": true }],
     "react/jsx-props-no-spreading": "off",
     "react/require-default-props": "off",
     "react/destructuring-assignment": "off",
@@ -70,15 +69,15 @@ module.exports = {
     "unused-imports/no-unused-vars-ts": [
       "warn",
       {
-        vars: "all",
-        varsIgnorePattern: "^_",
-        args: "after-used",
-        argsIgnorePattern: "^_",
-      },
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
     ],
     "@typescript-eslint/no-floating-promises": "off",
     "@typescript-eslint/no-unsafe-call": "off",
-    "@typescript-eslint/no-unsafe-return": "off",
+    "@typescript-eslint/no-unsafe-return": "off"
   },
-  ignorePatterns: [".*.js", "dist", "build", "public", "node_modules"]
+  "ignorePatterns": [".*.js", "dist", "build", "public", "node_modules"]
 }
