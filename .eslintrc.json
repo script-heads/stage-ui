@@ -77,7 +77,8 @@
     ],
     "@typescript-eslint/no-floating-promises": "off",
     "@typescript-eslint/no-unsafe-call": "off",
-    "@typescript-eslint/no-unsafe-return": "off"
+    "@typescript-eslint/no-unsafe-return": "off",
+    "no-console": ["error", { "allow": ["warn", "error"] }]
   },
   "ignorePatterns": [".*.js", "dist", "build", "public", "node_modules"]
 }

@@ -9,7 +9,7 @@
     "build:types": "tsc --emitDeclarationOnly",
     "type-check": "tsc --noEmit",
     "type-check:watch": "tsc --noEmit --watch",
-    "lint": "../../node_modules/.bin/eslint --fix ./"
+    "lint": "eslint --config .eslintrc.json --fix ./"
   },
   "dependencies": {
     "@types/color": "3.0.2",

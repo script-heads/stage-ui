@@ -8,7 +8,7 @@
     "build:js": "babel ./ --out-dir ../../build/icons --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
     "build:types": "tsc --emitDeclarationOnly",
     "gen": "node ./scripts/generate",
-    "lint": "../../node_modules/.bin/eslint --fix ./"
+    "lint": "eslint --config .eslintrc.json --fix ./"
   },
   "peerDependencies": {
     "@emotion/react": ">=11",

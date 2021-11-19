@@ -1,6 +1,6 @@
 import Types from './types'
 
-const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => ({
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = () => ({
   container: {
     willChange: 'scroll-position',
     position: 'fixed',

@@ -2,7 +2,7 @@ import containerDecorations from '@stage-ui/core/utils/containerDecorations'
 import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => ({
-  container: (state, variant) => [
+  container: () => [
     containerDecorations(props, theme),
     {
       position: 'relative',

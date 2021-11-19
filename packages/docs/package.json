@@ -9,7 +9,7 @@
 		"build": "ENV=production webpack",
 		"type-check": "tsc --noEmit",
 		"type-check:watch": "yarn type-check -- --watch",
-		"lint": "../../node_modules/.bin/eslint --fix ./"
+		"lint": "eslint --config .eslintrc.json --fix ./"
 	},
 	"dependencies": {
 		"@types/react-router-dom": "^5.3.1",
