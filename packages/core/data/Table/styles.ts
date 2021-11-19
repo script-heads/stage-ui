@@ -1,4 +1,5 @@
 import containerDecorations from '@stage-ui/core/utils/containerDecorations'
+import CSS from 'csstype'
 import Types from './types'
 
 // TODO: borderBottomStyle type incorrect
@@ -38,7 +39,8 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
     {
       padding: '1rem',
       borderTopWidth: theme.assets.border.width,
-      borderTopStyle: theme.assets.border.style,
+      // CSSType is not fair
+      borderTopStyle: theme.assets.border.style as CSS.Properties['borderTopStyle'],
       borderTopColor: theme.assets.border.color,
     },
   ],
@@ -61,7 +63,8 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
     {
       padding: '1.25rem 1rem',
       borderTopWidth: theme.assets.border.width,
-      borderTopStyle: theme.assets.border.style,
+      // CSSType is not fair
+      borderTopStyle: theme.assets.border.style as CSS.Properties['borderTopStyle'],
       borderTopColor: theme.assets.border.color,
     },
   ],

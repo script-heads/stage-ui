@@ -1,6 +1,7 @@
 import { CSSInterpolation as CSSI, CSSObject as CSSO } from '@emotion/serialize'
 import { ColorProp as ColorPropType } from '@stage-ui/system/props/color'
 import ColorType from 'color'
+import CSS from 'csstype'
 import { ReplaceTheme } from './utils/createTheme'
 import { AllProps as AllPropsType } from './props/types'
 import {
@@ -291,7 +292,7 @@ declare global {
       global?: Stage.CSSInterpolation
       border: {
         width: string
-        style: string
+        style: CSS.Properties['borderStyle']
         color: string
       }
       shadow: Record<Sizes, string>

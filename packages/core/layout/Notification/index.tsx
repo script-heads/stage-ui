@@ -5,7 +5,7 @@ import styles from './styles'
 import Types from './types'
 
 const Notifications: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
-  { ...props },
+  { overrides, ...props },
   ref,
 ) => {
   const { classes, attributes, events, styleProps } = useSystem('Notification', props, styles)

@@ -87,7 +87,7 @@ const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref)
   const {
     classes,
     attributes,
-    events: { ...events },
+    events: { onChange, ...events },
     styleProps,
   } = useSystem('Menu', props, createClasses, {
     label: 'Menu',
