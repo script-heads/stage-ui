@@ -5,7 +5,7 @@ import Separator from './Separator'
 import styles from './styles'
 import Types from './types'
 
-const Split: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props) => {
+const Split: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
   const { positions, direction } = props
   const {
     classes,
