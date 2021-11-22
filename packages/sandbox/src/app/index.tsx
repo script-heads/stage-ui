@@ -24,11 +24,10 @@ const App = () => {
           <PlaygroundToolbar />
           <PlaygroundControl />
           <Grid templateColumns="1fr 1fr" columnGap="0.5rem">
-            {/* <PlaygroundTree /> */}
             <PlaygroundTable />
           </Grid>
         </Block>
-        <Button color="rose/400" label="new button" />
+        <Button color="gray700" label="new button" />
         <Block
           w="5rem"
           h="3rem"

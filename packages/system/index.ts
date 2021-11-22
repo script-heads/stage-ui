@@ -273,6 +273,7 @@ declare global {
         900: C
       }
     }
+
     type ColorCustomPallete<C = Color> = {
       /** @deprecated this field, please add new colors to the color field, e.g: name: '#000' */
       palette: Record<string, C>
