@@ -4,6 +4,7 @@ import ColorType from 'color'
 import CSS from 'csstype'
 import { ReplaceTheme } from './utils/createTheme'
 import { AllProps as AllPropsType } from './props/types'
+import { ColorNames } from './props/color'
 import {
   ClassesSchemaDefinition,
   CreateClasses as CreateClassesType,
@@ -336,7 +337,7 @@ declare global {
     interface Theme extends ThemeMain {
       assets: ThemeAssets
       overrides: ThemeOverrides
-      colorsFlat: Record<string, Stage.Color>
+      colorsFlat: Record<keyof Stage.ColorMain, Stage.Color> & Record<ColorNames, Stage.Color>
       replace: (theme: ReplaceTheme) => Theme
     }
 

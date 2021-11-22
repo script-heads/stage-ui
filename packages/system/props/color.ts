@@ -5,7 +5,7 @@ import Color from 'color'
  * @link /props#color
  */
 
-type ColorNames =
+export type ColorNames =
   | 'gray50'
   | 'gray100'
   | 'gray200'
@@ -194,7 +194,7 @@ function colorProp<V extends ColorProp | undefined>(
     typeof value === 'string' &&
     Object.prototype.hasOwnProperty.call(theme.colorsFlat, value as string)
   ) {
-    return theme.colorsFlat[value as keyof Stage.Theme['color']] as V extends undefined
+    return theme.colorsFlat[value as keyof Stage.Theme['colorsFlat']] as V extends undefined
       ? undefined
       : Stage.Color
   }

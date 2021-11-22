@@ -2,7 +2,7 @@ import createID from './createID'
 import mergeObjects from './mergeObjects'
 import isFunction from './isFunction'
 import convertColors from './convertColors'
-import onColorFlat from './onColorFlat'
+import onColorFlat from './onColorsFlat'
 
 export interface ThemeDefiniton {
   main: Omit<Stage.ThemeMain, 'color' | 'breakpoints'> & {
