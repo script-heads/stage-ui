@@ -59,6 +59,7 @@ const PlaygroundTable = () => {
             },
           },
         ]}
+        onRowClick={() => console.log('click')}
         data={data}
         pagination={{ pageSize: pageSize[0].value as number }}
         footer={

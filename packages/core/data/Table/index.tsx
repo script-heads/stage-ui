@@ -17,7 +17,7 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
   const {
     classes,
     attributes,
-    events: { onChange, ...events },
+    events: { onChange, onRowClick, ...events },
     styleProps,
   } = useSystem('Table', props, styles)
   const { columns, pagination, footer } = props
