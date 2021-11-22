@@ -186,32 +186,21 @@ function colorProp<V extends ColorProp | undefined>(
   value: V,
   theme: Stage.Theme,
 ): V extends undefined ? undefined : Stage.Color {
-  const colors: Record<string, Color> = {}
-
-  Object.keys(theme.color).forEach((colorKey) => {
-    if ((theme.color[colorKey] as { color: string }).color) {
-      Object.assign(colors, { [colorKey]: theme.color[colorKey] as Stage.Color })
-    } else {
-      Object.keys(theme.color[colorKey]).forEach((key) => {
-        Object.assign(colors, {
-          [`${colorKey}${key}`]: (theme.color[colorKey] as keyof Stage.Colors)[key] as Stage.Color,
-        })
-      })
-    }
-  })
-
   if (!value) {
     return undefined as V extends undefined ? undefined : Stage.Color
   }
 
-  if (typeof value === 'function') {
-    return value(theme.color) as V extends undefined ? undefined : Stage.Color
-  }
-
-  if (typeof value === 'string' && Object.prototype.hasOwnProperty.call(colors, value as string)) {
-    return colors[value as keyof Stage.Theme['color']] as V extends undefined
+  if (
+    typeof value === 'string' &&
+    Object.prototype.hasOwnProperty.call(theme.colorsFlat, value as string)
+  ) {
+    return theme.colorsFlat[value as keyof Stage.Theme['color']] as V extends undefined
       ? undefined
       : Stage.Color
+  }
+
+  if (typeof value === 'function') {
+    return value(theme.color) as V extends undefined ? undefined : Stage.Color
   }
 
   if (

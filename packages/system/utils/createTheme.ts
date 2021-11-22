@@ -2,6 +2,7 @@ import createID from './createID'
 import mergeObjects from './mergeObjects'
 import isFunction from './isFunction'
 import convertColors from './convertColors'
+import onColorFlat from './onColorFlat'
 
 export interface ThemeDefiniton {
   main: Omit<Stage.ThemeMain, 'color' | 'breakpoints'> & {
@@ -108,7 +109,9 @@ const createTheme = (themeDefinition: ThemeDefiniton): Stage.Theme => {
     })
   }
 
-  return { ...main, assets, overrides, replace }
+  const colorsFlat = onColorFlat(color)
+
+  return { ...main, assets, overrides, replace, colorsFlat }
 }
 
 export default createTheme
