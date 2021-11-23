@@ -6,7 +6,7 @@ const onColorsFlat = (colorList: ThemeDefiniton['main']['color']) => {
   const colors: Record<string, Stage.Color> = {}
 
   Object.keys(colorList).forEach((colorKey) => {
-    if (typeof colorList[colorKey] === 'string') {
+    if (typeof colorList[colorKey] === 'string' || Array.isArray(colorList[colorKey])) {
       Object.assign(colors, {
         [colorKey as keyof Stage.ColorMain]: Color(colorList[colorKey] as Stage.Color),
       })

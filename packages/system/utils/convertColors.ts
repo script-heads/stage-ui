@@ -9,7 +9,7 @@ function convertColors(colors: ThemeDefiniton['main']['color']): Stage.Colors {
       resolvedColors[key] = convertColors(colors[key])
     }
 
-    if (typeof colors[key] === 'string') {
+    if (typeof colors[key] === 'string' || Array.isArray(colors[key])) {
       resolvedColors[key] = Color(colors[key])
     }
   })

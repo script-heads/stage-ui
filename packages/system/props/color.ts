@@ -5,7 +5,9 @@ import Color from 'color'
  * @link /props#color
  */
 
-type ColorFlat = {_colorsFlat: Record<keyof Stage.ColorMain, Stage.Color> & Record<ColorNames, Stage.Color>}
+type ColorFlat = {
+  _colorsFlat: Record<keyof Stage.ColorMain, Stage.Color> & Record<ColorNames, Stage.Color>
+}
 
 export type ColorNames =
   | 'gray50'
@@ -194,11 +196,14 @@ function colorProp<V extends ColorProp | undefined>(
 
   if (
     typeof value === 'string' &&
-    Object.prototype.hasOwnProperty.call((theme as Stage.Theme & ColorFlat)._colorsFlat , value as string)
+    Object.prototype.hasOwnProperty.call(
+      (theme as Stage.Theme & ColorFlat)._colorsFlat,
+      value as string,
+    )
   ) {
-    return (theme as Stage.Theme & ColorFlat)._colorsFlat[value as keyof ColorFlat['_colorsFlat']] as V extends undefined
-      ? undefined
-      : Stage.Color
+    return (theme as Stage.Theme & ColorFlat)._colorsFlat[
+      value as keyof ColorFlat['_colorsFlat']
+    ] as V extends undefined ? undefined : Stage.Color
   }
 
   if (typeof value === 'function') {
