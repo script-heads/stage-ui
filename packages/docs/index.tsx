@@ -12,6 +12,7 @@ import Page404 from './pages/404'
 import Components from './pages/Components'
 import Index from './pages/Index'
 import Icons from './pages/Icons'
+import Colors from './pages/Colors'
 import Footer from './components/Footer'
 
 core.init()
@@ -62,6 +63,9 @@ const Docs = () => {
                   </Route>
                   <Route exact path="/icons">
                     <Icons />
+                  </Route>
+                  <Route exact path="/colors">
+                    <Colors />
                   </Route>
                   <Route path="*">
                     <Page404 />

@@ -46,6 +46,11 @@ const Menu = () => {
         active={location.pathname === '/icons'}
         onClick={() => history.push('/icons')}
       />
+      <MenuItem
+        label="Colors"
+        active={location.pathname === '/colors'}
+        onClick={() => history.push('/colors')}
+      />
     </Flexbox>
   )
 }
