@@ -39,7 +39,7 @@ export default () => {
             {Object.keys(colors[color]).map((key, index) => (
               <Flexbox key={key}>
                 <Block borderRadius="s" w="3rem" h="2rem" mr="xs" p="s" backgroundColor={colors[color][key]}>
-                  <Text weight={600} size="xs" color={index > 4 ? 'surface' : 'onSurface'}>{key}</Text>
+                  <Text weight={600} size="xs" color={index > 4 ? 'white' : 'black'}>{key}</Text>
                 </Block>
               </Flexbox>
             ))}
