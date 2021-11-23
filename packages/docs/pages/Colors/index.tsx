@@ -6,24 +6,6 @@ export const title = 'Collection'
 export default () => {
   const theme = useTheme()
 
-  const grades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900]
-  const sets = [
-    'gray',
-    'yellow',
-    'orange',
-    'red',
-    'rose',
-    'pink',
-    'green',
-    'lightGreen',
-    'teal',
-    'cyan',
-    'lightBlue',
-    'blue',
-    'indigo',
-    'purple',
-  ]
-
   const colors: Record<string, Record<string, string>> = {}
 
   const capString = (str: string) => `${str.charAt(0).toUpperCase()}${str.slice(1)}`
