@@ -109,9 +109,9 @@ const createTheme = (themeDefinition: ThemeDefiniton): Stage.Theme => {
     })
   }
 
-  const colorsFlat = onColorFlat(color)
+  const _colorsFlat = onColorFlat(color)
 
-  return { ...main, assets, overrides, replace, colorsFlat }
+  return { ...main, assets, overrides, replace, _colorsFlat } as Stage.Theme
 }
 
 export default createTheme

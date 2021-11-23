@@ -337,7 +337,6 @@ declare global {
     interface Theme extends ThemeMain {
       assets: ThemeAssets
       overrides: ThemeOverrides
-      colorsFlat: Record<keyof Stage.ColorMain, Stage.Color> & Record<ColorNames, Stage.Color>
       replace: (theme: ReplaceTheme) => Theme
     }
 
