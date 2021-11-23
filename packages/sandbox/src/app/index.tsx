@@ -27,7 +27,7 @@ const App = () => {
             <PlaygroundTable />
           </Grid>
         </Block>
-        <Button color={(c) => c.gray[700]} label="new button" />
+        <Button color="primary" label="new button" />
         <Block
           w="5rem"
           h="3rem"
