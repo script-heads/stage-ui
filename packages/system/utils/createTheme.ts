@@ -6,7 +6,7 @@ import onColorFlat from './onColorsFlat'
 
 export interface ThemeDefiniton {
   main: Omit<Stage.ThemeMain, 'color' | 'breakpoints'> & {
-    color: Omit<Stage.Colors<string>, 'palette'> & {
+    color: Omit<Stage.Colors<Stage.ColorDefinition>, 'palette'> & {
       /** @deprecated this field, please add new colors to the color field, e.g: name: '#000' */
       palette?: Record<string, Stage.ColorDefinition>
     }
