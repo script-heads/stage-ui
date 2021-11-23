@@ -1,7 +1,7 @@
 {
   "name": "@stage-ui/core",
   "author": "Project one",
-  "version": "0.2.1-beta4",
+  "version": "0.2.1-beta5",
   "license": "MIT",
   "scripts": {
     "build": "node ../../scripts/make core && yarn build:types && yarn build:js",
