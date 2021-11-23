@@ -18,6 +18,7 @@
     "react",
     "react-hooks",
     "unused-imports",
+    "deprecation",
     "prettier"
   ],
   "rules": {
@@ -132,7 +133,8 @@
             "return": true,
             "declaration": true
           }
-        ]
+        ],
+        "deprecation/deprecation": "warn",
       }
     },
     {
