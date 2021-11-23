@@ -9,7 +9,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: theme.color.lightest.rgb().string(),
+        backgroundColor: theme.color.gray['200'].rgb().string(),
         transition: 'backgroundColor .15s',
         willChange: 'backgroundColor',
       },
@@ -42,7 +42,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         backgroundColor: theme.color.primary.rgb().string(),
       },
       disabled && {
-        backgroundColor: theme.color.lightest.rgb().string(),
+        backgroundColor: theme.color.gray['200'].rgb().string(),
       },
     ],
     switch: (state) => [
@@ -114,7 +114,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         },
       ],
       disabled && {
-        borderColor: theme.color.lightest.rgb().string(),
+        borderColor: theme.color.gray[200].rgb().string(),
       },
     ],
   }

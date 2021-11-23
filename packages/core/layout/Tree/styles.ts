@@ -44,7 +44,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.PrivateProps> = (t
       opacity: 0,
       cursor: 'pointer',
       height: 'auto',
-      color: theme.color.light.rgb().string(),
+      color: theme.color.gray[500].rgb().string(),
       fontSize: theme.assets.typography.text.m.fontSize,
       paddingRight: `calc(${theme.spacing.m} / 2)`,
       paddingLeft: `calc(${theme.assets.typography.text.m.fontSize} * ${props.lvl * 1})`,

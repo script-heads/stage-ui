@@ -7,33 +7,33 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = ({
 }) => ({
   container: [
     {
-      color: color.hard.rgb().string(),
+      color: color.gray[600].rgb().string(),
       userSelect: 'none',
       alignItems: 'center',
     },
   ],
   arrowButton: (state) => [
     {
-      color: color.hard.rgb().string(),
+      color: color.gray[600].rgb().string(),
       ':hover': {
         color: color.primary.rgb().string(),
       },
     },
     state.disabled && {
       cursor: 'not-allowed',
-      color: color.light.rgb().string(),
+      color: color.gray[500].rgb().string(),
       ':hover': {
-        color: color.light.rgb().string(),
+        color: color.gray[500].rgb().string(),
       },
     },
   ],
   separator: {
-    color: color.light.rgb().string(),
+    color: color.gray[500].rgb().string(),
   },
   pageButton: (state) => [
     {
       transition: 'background-color 0.25s',
-      color: state.current ? color.onPrimary.hex() : color.hard.hex(),
+      color: state.current ? color.white.hex() : color.gray[600].hex(),
       marginRight: spacing.xs,
       marginLeft: spacing.xs,
       padding: spacing.s,
@@ -44,7 +44,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = ({
         .rgb()
         .string(),
       ':hover': {
-        color: state.current ? color.onPrimary.hex() : color.primary.hex(),
+        color: state.current ? color.white.hex() : color.primary.hex(),
         backgroundColor: color.primary
           .alpha(state.current ? 1 : 0.1)
           .rgb()

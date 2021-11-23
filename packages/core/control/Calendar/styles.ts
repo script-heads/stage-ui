@@ -4,7 +4,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
   dateGrid: [
     {
       position: 'relative',
-      color: theme.color.onSurface.rgb().string(),
+      color: theme.color.black.rgb().string(),
     },
   ],
 
@@ -29,7 +29,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
       padding: '0.125rem',
       opacity: 1,
       borderRadius: theme.radius.l,
-      color: theme.color.onSurface.rgb().string(),
+      color: theme.color.black.rgb().string(),
       userSelect: 'none',
     },
     state.isCurrent && [
@@ -54,7 +54,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
     state.isActive && [
       {
         background: theme.color.primary.rgb().string(),
-        color: theme.color.onPrimary.rgb().string(),
+        color: theme.color.white.rgb().string(),
         ':after': {
           content: 'none',
         },
@@ -86,10 +86,10 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
       padding: '0.125rem',
       opacity: 0.5,
       borderRadius: '50%',
-      color: theme.color.hardest.rgb().string(),
+      color: theme.color.gray[700].rgb().string(),
       userSelect: 'none',
       ':hover': {
-        background: theme.color.light.alpha(0.15).string(),
+        background: theme.color.gray[500].alpha(0.15).string(),
       },
     },
     state.isHidden && [
@@ -102,7 +102,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
     state.isCurrentMonth && [
       {
         opacity: 1,
-        color: theme.color.onSurface.rgb().string(),
+        color: theme.color.black.rgb().string(),
         ':hover': {
           background: theme.color.primary.alpha(0.15).string(),
         },
@@ -122,7 +122,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
     state.isActive && [
       {
         background: theme.color.primary.rgb().string(),
-        color: theme.color.onPrimary.rgb().string(),
+        color: theme.color.white.rgb().string(),
         ':hover': {
           background: theme.color.primary.rgb().string(),
         },
@@ -214,12 +214,12 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
         transition: 'all 0.2s',
         cursor: 'pointer',
         ':hover': {
-          background: theme.color.lightest.alpha(0.25).rgb().string(),
+          background: theme.color.gray[200].alpha(0.25).rgb().string(),
         },
       },
       state.isActive && [
         {
-          background: theme.color.lightest.alpha(0.5).rgb().string(),
+          background: theme.color.gray[200].alpha(0.5).rgb().string(),
         },
       ],
     ],

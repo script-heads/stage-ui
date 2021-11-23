@@ -29,11 +29,11 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
         cursor: 'inherit',
         textOverflow: 'ellipsis',
         '&::placeholder': {
-          color: theme.color.light.rgb().string(),
+          color: theme.color.gray[500].rgb().string(),
         },
       },
       state.searchMode && {
-        color: theme.color.hard.rgb().string(),
+        color: theme.color.gray[600].rgb().string(),
       },
       state.disableEvents && {
         pointerEvents: 'none',
@@ -44,16 +44,16 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
       {
         display: 'inline-flex',
         background: disabled
-          ? theme.color.lightest.rgb().string()
+          ? theme.color.gray[200].rgb().string()
           : theme.color.primary.alpha(0.2).rgb().string(),
         borderWidth: '1px',
         borderStyle: 'solid',
         borderColor: disabled
-          ? theme.color.light.rgb().string()
+          ? theme.color.gray[500].rgb().string()
           : theme.color.primary.rgb().string(),
         borderRadius: `calc(${theme.radius.s} / 2)`,
         boxSizing: 'border-box',
-        color: disabled ? theme.color.light.rgb().string() : theme.color.primary.rgb().string(),
+        color: disabled ? theme.color.gray[500].rgb().string() : theme.color.primary.rgb().string(),
         padding: `0 calc(${height} / 5)`,
         margin: `calc(${height} / 20)`,
         marginRight: `calc(${height} / 10)`,
@@ -90,11 +90,11 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
       padding: ` 0 calc(${height} / 20)`,
       borderLeft: '1px solid',
       color: disabled
-        ? theme.color.light.rgb().string()
+        ? theme.color.gray[500].rgb().string()
         : theme.color.primary.alpha(0.8).rgb().string(),
       cursor: 'pointer',
       ':hover': {
-        color: disabled ? theme.color.light.rgb().string() : theme.color.primary.rgb().string(),
+        color: disabled ? theme.color.gray[500].rgb().string() : theme.color.primary.rgb().string(),
       },
     },
 
@@ -163,10 +163,10 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
       },
       theme.assets.typography.text[size],
       state.selected && {
-        color: theme.color.onPrimary.rgb().string(),
+        color: theme.color.white.rgb().string(),
         backgroundColor: theme.color.primary.rgb().string(),
         ':hover': {
-          color: theme.color.onPrimary.rgb().string(),
+          color: theme.color.white.rgb().string(),
           backgroundColor: theme.color.primary.rgb().string(),
         },
       },
@@ -186,7 +186,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
 
     noOptionsText: [
       {
-        color: theme.color.light.rgb().string(),
+        color: theme.color.gray[500].rgb().string(),
         userSelect: 'none',
       },
       theme.assets.typography.text[size],

@@ -12,7 +12,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        color: theme.color.onPrimary.rgb().string(),
+        color: theme.color.white.rgb().string(),
         backgroundColor,
         borderRadius: theme.radius.m,
       },

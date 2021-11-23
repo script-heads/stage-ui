@@ -20,7 +20,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
       textOverflow: 'ellipsis',
       '&::placeholder': {
         userSelect: 'none',
-        color: theme.color.light.rgb().string(),
+        color: theme.color.gray[500].rgb().string(),
       },
     },
     state.multiline && {
@@ -28,12 +28,12 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
       paddingLeft: leftChildNumber ? 0 : undefined,
     },
     state.disabled && {
-      color: theme.color.hardest.rgb().string(),
+      color: theme.color.gray[700].rgb().string(),
     },
   ],
   lineNumbers: [
     {
-      backgroundColor: theme.color.lightest.hex(),
+      backgroundColor: theme.color.gray[200].hex(),
       height: 'max-content',
       minHeight: '100%',
       position: 'absolute',

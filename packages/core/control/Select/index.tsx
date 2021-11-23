@@ -262,7 +262,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
               transition: 'transform 0.25s',
               transform: `scale(1.5) rotate(${isOpen ? '90deg' : 0})`,
             }}
-            color={(c) => (isOpen ? c.primary : c.light)}
+            color={(c) => (isOpen ? c.primary : c.gray[500])}
             onClick={(e) => {
               e.preventDefault()
               toggleOpen(e)

@@ -33,12 +33,12 @@ const Check: ForwardRefRenderFunction<HTMLDivElement, CheckTypes.PrivateProps> =
     /**
      * Enter or Space
      */
-    if (event.keyCode === 0x0d || event.keyCode === 0x20) {
+    if (event.key === 'Enter' || event.key === ' ') {
       handleChange()
       /**
        * Prevent page scrolling
        */
-      if (event.keyCode === 0x20) {
+      if (event.key === ' ') {
         event.preventDefault()
       }
     }

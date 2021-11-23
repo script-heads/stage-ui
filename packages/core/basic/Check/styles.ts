@@ -10,7 +10,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         display: 'flex',
         alignItems: 'center',
         cursor: 'pointer',
-        color: theme.color.onSurface.rgb().string(),
+        color: theme.color.black.rgb().string(),
         outline: 'none',
       },
       disabled && {
@@ -26,7 +26,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       },
       theme.assets.typography.text[size],
       disabled && {
-        color: theme.color.light.rgb().string(),
+        color: theme.color.gray[500].rgb().string(),
       },
       uppercase && {
         textTransform: 'uppercase',

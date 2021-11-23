@@ -14,7 +14,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) =
       position: 'absolute',
       top: 'calc(50% - 2px)',
       height: '4px',
-      background: theme.color.lightest.rgb().string(),
+      background: theme.color.gray[200].rgb().string(),
       width: '100%',
       zIndex: 1,
       borderRadius: '2px',

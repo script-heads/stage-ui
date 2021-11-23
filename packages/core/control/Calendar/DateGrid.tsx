@@ -99,7 +99,7 @@ const DateGrid = (props: T.DateGridProps) => {
                 <Text
                   key={day}
                   css={props.classes.weekDay}
-                  color={(c) => (isWeekend ? c.error.alpha(0.75) : c.hardest)}
+                  color={(c) => (isWeekend ? c.error.alpha(0.75) : c.gray[700])}
                   capitalize
                 >
                   {day}

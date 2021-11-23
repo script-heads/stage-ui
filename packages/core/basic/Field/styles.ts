@@ -2,7 +2,7 @@ import colorResolver from '@stage-ui/system/props/color'
 import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
-  const color = colorResolver(props.color || theme.color.light, theme)
+  const color = colorResolver(props.color || theme.color.gray[500], theme)
 
   const {
     size = 'm',
@@ -30,7 +30,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         flexBasis: theme.assets.field[size].height,
         padding: `0 ${theme.assets.field[size].indent}`,
         background: theme.color.surface.string(),
-        borderColor: theme.color.light.alpha(0.4).string(),
+        borderColor: theme.color.gray[500].alpha(0.4).string(),
         borderRadius: theme.radius.m,
         boxShadow: theme.assets.innerShadow.xs,
         borderWidth: '1px',
@@ -55,7 +55,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
           },
         },
         disabled && {
-          background: theme.color.lightest.rgb().string(),
+          background: theme.color.gray[200].rgb().string(),
         },
       ],
       decoration === 'filled' && [
@@ -64,7 +64,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
           boxShadow: 'none',
         },
         disabled && {
-          background: theme.color.lightest.rgb().string(),
+          background: theme.color.gray[200].rgb().string(),
         },
       ],
       decoration === 'underline' && {
@@ -86,7 +86,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         boxShadow: 'none',
       },
       disabled && {
-        color: theme.color.light.rgb().string(),
+        color: theme.color.gray[500].rgb().string(),
         cursor: 'not-allowed',
       },
     ],
@@ -102,7 +102,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
 
     label: [
       {
-        color: theme.color.hard.rgb().string(),
+        color: theme.color.gray[600].rgb().string(),
         display: 'flex',
         userSelect: 'none',
         paddingBottom: '0.25rem',
@@ -173,7 +173,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
     clearButton: [
       {
         cursor: 'pointer',
-        backgroundColor: theme.color.onSurface.alpha(0.05).rgb().string(),
+        backgroundColor: theme.color.black.alpha(0.05).rgb().string(),
         borderRadius: '100rem',
         transition: 'transform 0.25s',
         ':hover': {

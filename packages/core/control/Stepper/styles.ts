@@ -19,8 +19,8 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
       alignItems: 'center',
       justifyContent: 'center',
       border: '1px solid',
-      color: theme.color.light.string(),
-      borderColor: theme.color.lightest.string(),
+      color: theme.color.gray[500].string(),
+      borderColor: theme.color.gray[200].string(),
       backgroundColor: theme.color.surface.string(),
       borderRadius: '100rem',
       userSelect: 'none',
@@ -47,7 +47,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
       width: '4.5rem',
       height: '0.25rem',
       border: 'none',
-      backgroundColor: theme.color.lightest.string(),
+      backgroundColor: theme.color.gray['200'].string(),
     },
     state.active && [
       {
@@ -55,11 +55,11 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         borderColor: theme.color.primary.alpha(0.5).string(),
       },
       state.size === 'xs' && {
-        backgroundColor: theme.color.light.string(),
+        backgroundColor: theme.color.gray['500'].string(),
       },
     ],
     state.complete && {
-      color: theme.color.onPrimary.string(),
+      color: theme.color.white.string(),
       backgroundColor: theme.color.primary.string(),
       borderColor: theme.color.primary.string(),
     },
@@ -72,10 +72,10 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
       position: 'relative',
       flex: 1,
       height: '0.125rem',
-      background: theme.color.lightest.string(),
+      background: theme.color.gray[200].string(),
     },
     state.active && {
-      background: theme.color.light.string(),
+      background: theme.color.gray['500'].string(),
     },
     state.complete && {
       background: theme.color.primary.alpha(0.5).string(),

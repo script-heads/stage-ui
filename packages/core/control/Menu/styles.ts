@@ -38,7 +38,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         userSelect: 'none',
         outline: 'none',
         padding: `calc(${spacing} / 2) ${spacing}`,
-        color: theme.color.onBackground.rgb().string(),
+        color: theme.color.black.rgb().string(),
         ':before': {
           content: `''`,
           transition: 'all 0.15s',
@@ -47,13 +47,13 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         },
         ':hover:not([data-flow-disabled]):not([data-flow-active])': [
           state.decoration === 'filled' && {
-            color: theme.color.onSurface.rgb().string(),
+            color: theme.color.black.rgb().string(),
           },
           state.decoration === 'marker' && {
-            color: theme.color.onSurface.rgb().string(),
+            color: theme.color.black.rgb().string(),
           },
           state.decoration === 'marker-reverse' && {
-            color: theme.color.onSurface.rgb().string(),
+            color: theme.color.black.rgb().string(),
           },
           state.decoration === 'color' && {
             color: theme.color.primary.rgb().string(),
@@ -65,7 +65,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
           },
           state.decoration === 'filled' && {
             background: theme.color.primary.rgb().string(),
-            color: theme.color.onPrimary.rgb().string(),
+            color: theme.color.white.rgb().string(),
             borderRadius,
           },
           state.decoration === 'marker' && {
@@ -177,7 +177,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         alignItems: 'center',
         padding: `calc(${spacing} / 4) ${spacing}`,
         fontSize: `calc(${typography.fontSize} / 1.25)`,
-        color: theme.color.hard.rgb().string(),
+        color: theme.color.gray[600].rgb().string(),
       },
     ],
 

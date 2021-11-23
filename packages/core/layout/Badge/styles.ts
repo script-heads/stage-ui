@@ -18,7 +18,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         zIndex: 1,
         display: 'flex',
         width: 'fit-content',
-        color: theme.color.onPrimary.rgb().string(),
+        color: theme.color.white.rgb().string(),
         alignContent: 'center',
         justifyContent: 'center',
         position: 'absolute',

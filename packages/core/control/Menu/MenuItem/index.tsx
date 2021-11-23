@@ -76,7 +76,7 @@ const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
       /**
        * Handle Space/Enter at focus
        */
-      if (!disabled && [13, 32].includes(e.charCode)) {
+      if (!disabled && ['Enter', ' '].includes(e.key)) {
         setActive()
         ctx.onChange?.(props.value)
         e.preventDefault()

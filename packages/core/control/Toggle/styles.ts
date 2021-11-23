@@ -18,12 +18,12 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         width: 'fit-content',
         height: `calc(${theme.assets.field[size].height} - 0.25rem)`,
         backgroundColor: theme.color.background.rgb().string(),
-        borderColor: theme.color.lightest.rgb().string(),
+        borderColor: theme.color.gray[200].rgb().string(),
         borderWidth: '1px',
         borderStyle: 'solid',
 
         '&:disabled': {
-          color: theme.color.light.rgb().string(),
+          color: theme.color.gray[500].rgb().string(),
         },
         ':before': {
           userSelect: 'none',
@@ -35,7 +35,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
           height: 'calc(100% - 0.25rem)',
           borderRadius: `calc(${theme.radius[size]} / 1.25)`,
           backgroundColor: theme.color.surface.rgb().string(),
-          borderColor: theme.color.lightest.rgb().string(),
+          borderColor: theme.color.gray[200].rgb().string(),
           borderWidth: '1px',
           borderStyle: 'solid',
           margin: '-1px',
@@ -60,12 +60,12 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         paddingLeft: `calc(${theme.spacing[size]} / 1.5)`,
         paddingRight: `calc(${theme.spacing[size]} / 1.5)`,
         height: '100%',
-        color: theme.color.hard.rgb().string(),
+        color: theme.color.gray[600].rgb().string(),
         cursor: 'pointer',
       },
       state.selected && {
         cursor: 'default',
-        color: theme.color.onSurface.rgb().string(),
+        color: theme.color.black.rgb().string(),
       },
     ],
   }

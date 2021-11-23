@@ -1,4 +1,14 @@
-import { Block, Button, Flexbox, Grid, Header, ScrollView, Spinner, useTheme } from '@stage-ui/core'
+import {
+  Block,
+  Button,
+  Flexbox,
+  Grid,
+  Header,
+  ScrollView,
+  Spinner,
+  useTheme,
+  Checkbox,
+} from '@stage-ui/core'
 import React from 'react'
 import PlaygroundControl from './control'
 import PlaygroundMenu from './menu'
@@ -27,6 +37,7 @@ const App = () => {
             <PlaygroundTable />
           </Grid>
         </Block>
+        <Checkbox />
         <Button color="primary" label="new button" />
         <Block
           w="5rem"

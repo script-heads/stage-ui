@@ -42,7 +42,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
           background: color.alpha(0.05).rgb().string(),
         },
         '&:disabled': {
-          color: theme.color.light.rgb().string(),
+          color: theme.color.gray[500].rgb().string(),
         },
       },
       theme.assets.typography.text[size],
@@ -51,7 +51,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         borderColor: color.rgb().string(),
         color: color.rgb().string(),
         '&:disabled': {
-          borderColor: theme.color.lightest.rgb().string(),
+          borderColor: theme.color.gray[200].rgb().string(),
         },
       },
       decoration === 'text' && {
@@ -60,19 +60,19 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
       },
       decoration === 'plain' && {
         borderWidth: '0.0625rem',
-        borderColor: theme.color.lightest.rgb().string(),
+        borderColor: theme.color.gray[200].rgb().string(),
         background: theme.color.surface.rgb().string(),
-        color: theme.color.onSurface.rgb().string(),
+        color: theme.color.black.rgb().string(),
         '&:disabled': {
-          background: theme.color.lightest.rgb().string(),
+          background: theme.color.gray[200].rgb().string(),
         },
       },
       decoration === 'filled' && {
         background: color.rgb().string(),
         color:
-          color.contrast(theme.color.onPrimary) > 3
-            ? theme.color.onPrimary.rgb().string()
-            : theme.color.onSurface.rgb().string(),
+          color.contrast(theme.color.white) > 3
+            ? theme.color.white.rgb().string()
+            : theme.color.black.rgb().string(),
         '&:hover:not([disabled])': {
           background: color.alpha(0.7).rgb().string(),
         },
@@ -80,8 +80,8 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
           background: color.alpha(0.5).rgb().string(),
         },
         '&:disabled': {
-          background: theme.color.lightest.rgb().string(),
-          color: theme.color.light.rgb().string(),
+          background: theme.color.gray[200].rgb().string(),
+          color: theme.color.gray[500].rgb().string(),
         },
       },
       shape === 'square' && {

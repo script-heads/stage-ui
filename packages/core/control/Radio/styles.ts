@@ -11,7 +11,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         justifyContent: 'center',
         color: theme.color.surface.rgb().string(),
         backgroundColor: theme.color.surface.rgb().string(),
-        borderColor: theme.color.light.rgb().string(),
+        borderColor: theme.color.gray[500].rgb().string(),
         borderWidth: theme.assets.border.width,
         borderStyle: theme.assets.border.style,
         boxShadow: theme.assets.innerShadow.m,
@@ -26,8 +26,8 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       },
       disabled && [
         {
-          backgroundColor: theme.color.lightest.rgb().string(),
-          borderColor: theme.color.light.rgb().string(),
+          backgroundColor: theme.color.gray[200].rgb().string(),
+          borderColor: theme.color.gray[500].rgb().string(),
         },
         state.checked && {
           backgroundColor: theme.color.primary.alpha(0.5).rgb().string(),
@@ -64,7 +64,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         height: '100%',
         width: '100%',
         borderRadius: '50%',
-        backgroundColor: theme.color.onPrimary.rgb().string(),
+        backgroundColor: theme.color.white.rgb().string(),
       },
       state.checked && {
         transform: `scale(0.5)`,

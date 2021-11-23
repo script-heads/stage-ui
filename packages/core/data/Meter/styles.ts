@@ -13,7 +13,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         userSelect: 'none',
         overflow: 'hidden',
         boxSizing: 'border-box',
-        background: theme.color.backgroundVariant.rgb().string(),
+        background: theme.color.gray[100].rgb().string(),
         height: `0.75rem`,
         zIndex: 1,
       },

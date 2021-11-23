@@ -17,9 +17,9 @@ const Arrow = (props: {
     }}
   >
     {props.icon === 'chevronLeft' ? (
-      <ChevronLeft size="1.5rem" color={(c) => (props.disabled ? c.light : c.hard)} />
+      <ChevronLeft size="1.5rem" color={(c) => (props.disabled ? c.gray[500] : c.gray[600])} />
     ) : (
-      <ChevronRight size="1.5rem" color={(c) => (props.disabled ? c.light : c.hard)} />
+      <ChevronRight size="1.5rem" color={(c) => (props.disabled ? c.gray[500] : c.gray[600])} />
     )}
   </Flexbox>
 )
