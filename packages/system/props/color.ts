@@ -177,10 +177,10 @@ export type ColorNames =
 
 export type ColorProp =
   | ((colors: Stage.Theme['color']) => Color)
-  | (keyof Stage.ColorMain & keyof Stage.ColorCustomPallete)
+  | (keyof Stage.ColorMain & keyof Stage.ColorCustomPallete['palette'])
+  | ColorNames
   | Color
   | (string & { T?: string })
-  | ColorNames
 
 function colorProp<V extends ColorProp | undefined>(
   value: V,

@@ -92,7 +92,7 @@ export const light = createTheme({
     name: 'Light',
     breakpoints: ['100rem', '80rem', '64rem', '50rem', '40rem'],
     color: {
-      primary: 'rgb(255, 204, 0)',
+      primary: 'rgb(37, 99, 235)',
       secondary: 'rgb(124, 58, 237)',
 
       onPrimary: 'rgb(255, 255, 255)',

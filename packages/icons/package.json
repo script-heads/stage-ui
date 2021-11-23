@@ -1,7 +1,7 @@
 {
   "name": "@stage-ui/icons",
   "author": "Project one",
-  "version": "0.2.1-beta3",
+  "version": "0.2.1-beta4",
   "license": "MIT",
   "scripts": {
     "build": "node ../../scripts/make icons && yarn build:types && yarn build:js",
