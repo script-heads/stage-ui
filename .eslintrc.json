@@ -134,7 +134,7 @@
             "declaration": true
           }
         ],
-        "deprecation/deprecation": "warn",
+        "deprecation/deprecation": "warn"
       }
     },
     {
