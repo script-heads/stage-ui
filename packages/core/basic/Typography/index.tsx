@@ -1,6 +1,6 @@
 import { jsx } from '@emotion/react'
 import { useSystem } from '@stage-ui/system'
-import { forwardRef, ForwardRefRenderFunction, useMemo } from 'react'
+import { forwardRef, ForwardRefRenderFunction } from 'react'
 import createClasses from './styles'
 import Types from './types'
 
@@ -18,28 +18,24 @@ const Typography: ForwardRefRenderFunction<Types.Ref, Types.PrivateProps> = (pro
       ? capitalizeFirstLetter(props.children)
       : props.children
 
-  return useMemo(
-    () =>
-      jsx(
-        props.tag,
-        {
-          ...attributes,
-          ...events,
-          ref,
-          css: [classes.container, styleProps.all],
-          download,
-          href,
-          hrefLang,
-          media,
-          ping,
-          rel,
-          target,
-          type,
-          referrerPolicy,
-        },
-        children,
-      ),
-    [props, attributes],
+  return jsx(
+    props.tag,
+    {
+      ...attributes,
+      ...events,
+      ref,
+      css: [classes.container, styleProps.all],
+      download,
+      href,
+      hrefLang,
+      media,
+      ping,
+      rel,
+      target,
+      type,
+      referrerPolicy,
+    },
+    children,
   )
 }
 
