@@ -4,7 +4,9 @@ import { forwardRef, ForwardRefRenderFunction, useMemo } from 'react'
 import createClasses from './styles'
 import Types from './types'
 
-const capitalizeFirstLetter = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
+const capitalizeFirstLetter = (s: string) => {
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}
 
 const Typography: ForwardRefRenderFunction<Types.Ref, Types.PrivateProps> = (props, ref) => {
   const { name, download, href, hrefLang, media, ping, rel, target, type, referrerPolicy, focus } =

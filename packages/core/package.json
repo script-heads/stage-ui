@@ -1,23 +1,21 @@
 {
   "name": "@stage-ui/core",
   "author": "Project one",
-  "version": "0.2.1-beta7",
+  "version": "0.2.0-beta50",
   "license": "MIT",
   "scripts": {
-    "build": "node ../../scripts/make core && yarn build:types && yarn build:js",
+    "build": "node ../../scripts/make core && tsc && yarn build:js",
     "build:js": "babel ./ --out-dir ../../build/core --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
-    "build:types": "tsc --emitDeclarationOnly",
     "type-check": "tsc --noEmit",
-    "type-check:watch": "tsc --noEmit --watch",
-    "lint": "eslint --config .eslintrc.json --fix '**/*.+(js|jsx|ts|tsx)'"
+    "type-check:watch": "tsc --noEmit --watch"
   },
   "dependencies": {
-    "@emotion/react": ">=11",
     "imask": "6.0.1",
     "moment": "2.29.1",
     "rifm": "0.12.0"
   },
   "peerDependencies": {
+    "@emotion/react": ">=11",
     "react": ">=16"
   }
 }

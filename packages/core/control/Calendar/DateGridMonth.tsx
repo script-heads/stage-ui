@@ -4,7 +4,7 @@ import React, { Fragment } from 'react'
 import CalendarTypes from './types'
 
 const DateGridMonth = (props: CalendarTypes.DateGridMonthProps) => {
-  const { value: self, active, onClick, minValue, maxValue } = props
+  const { value: self, active, onClick, minValue, maxValue, type } = props
 
   const isDisabled =
     minValue.valueOf() > self.valueOf() || maxValue.valueOf() < self.valueOf() || false

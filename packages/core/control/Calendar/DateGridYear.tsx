@@ -4,7 +4,7 @@ import React from 'react'
 import CalendarTypes from './types'
 
 const DateGridYear = (props: CalendarTypes.DateGridYearProps) => {
-  const { value: self, active, onClick, minValue, maxValue } = props
+  const { value: self, active, onClick, minValue, maxValue, type } = props
 
   const isDisabled =
     minValue.valueOf() > self.valueOf() || maxValue.valueOf() < self.valueOf() || false

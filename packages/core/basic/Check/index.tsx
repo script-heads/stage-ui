@@ -8,8 +8,8 @@ const Check: ForwardRefRenderFunction<HTMLDivElement, CheckTypes.PrivateProps> =
 
   const {
     classes,
-    attributes: { ...attributes },
-    events: { onChange, onKeyDown, onClick, ...events },
+    attributes: { tabIndex, ...attributes },
+    events: { onChange, onKeyDown, onClick, onFocus, onBlur, ...events },
     styleProps,
   } = useSystem('Check' || name, props, createClasses)
 
@@ -61,8 +61,6 @@ const Check: ForwardRefRenderFunction<HTMLDivElement, CheckTypes.PrivateProps> =
       css={[classes.container, styleProps.all]}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
-      role="checkbox"
-      aria-checked={checked}
     >
       {children(checked)}
       {label && label.length && <div css={classes.label}>{label}</div>}

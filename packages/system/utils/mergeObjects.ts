@@ -7,7 +7,6 @@ export default function mergeObjects<
   Resolver extends (value: any) => any,
 >(target: Target, src: Source, resolver?: Resolver) {
   const result = { ...target } as Target & Source
-
   Object.keys(src).forEach((key) => {
     if (typeof src[key] === 'object' && !Array.isArray(src[key])) {
       if (!target[key] || typeof target[key] !== 'object' || Array.isArray(target[key])) {
@@ -17,9 +16,7 @@ export default function mergeObjects<
     } else {
       result[key as keyof Source] = src[key]
     }
-
     if (resolver) result[key as keyof Source] = resolver(result[key])
   })
-
   return result
 }

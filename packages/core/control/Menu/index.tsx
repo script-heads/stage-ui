@@ -116,7 +116,6 @@ const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref)
 
   if (props.data) {
     children = props.data.map((item, index) => (
-      // eslint-disable-next-line react/no-array-index-key
       <MenuItem value={index} key={index} title={item} as={ctx.itemAs} />
     ))
   }
