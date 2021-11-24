@@ -23,6 +23,7 @@ export { default as Select } from './control/Select'
 export { default as Switch } from './control/Switch'
 export { default as TextField } from './control/TextField'
 export { default as Stepper } from './control/Stepper'
+export { default as Toggle } from './control/Toggle'
 /**
  * Data
  */
@@ -46,11 +47,15 @@ export { default as Viewport } from './layout/Viewport'
 /**
  * Utils
  */
-export { default as dialog } from './misc/utils/dialog'
-export { default as notify } from './misc/utils/notify'
+export { default as dialog } from './utils/dialog'
+export { default as notify } from './utils/notify'
 /**
  * Misc
  */
 export { useTheme } from '@stage-ui/system'
 export { createTheme } from '@stage-ui/system'
-export { useBreakpoints } from './misc/hooks/useBreakpoints'
+export { useBreakpoint } from './hooks/useBreakpoint'
+/**
+ * @deprecated
+ */
+export { useBreakpoint as useBreakpoints } from './hooks/useBreakpoint'

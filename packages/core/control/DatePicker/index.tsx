@@ -1,188 +1,162 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
-import { Calendar, Drop, Popover } from '@stage-ui/core'
-import { Calendar as CalendarIcon } from '@stage-ui/core/icons'
-import Field from '@stage-ui/core/misc/hocs/Field'
-import useMask from '@stage-ui/core/misc/hooks/useMask'
-import { useComponent } from '@stage-ui/system'
+import { Calendar as CalendarIcon } from '@stage-ui/icons'
+import { useSystem } from '@stage-ui/system'
 import moment, { Moment } from 'moment'
-import { forwardRef, ForwardRefRenderFunction, Fragment, useLayoutEffect, useRef, useState } from 'react'
-import maskConf from './mask'
-import styles from './styles'
+import React, { forwardRef, ForwardRefRenderFunction, useEffect, useRef, useState } from 'react'
+import Field from '../../basic/Field'
+import Drop from '../../layout/Drop'
+import Popover from '../../layout/Popover'
+import Calendar from '../Calendar'
+import createClasses from './styles'
 import Types from './types'
 
 const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
+  const {
+    locale = 'ru',
+    format = 'DD/MM/YYYY',
+    defaultValue,
+    decoration = 'outline',
+    size = 'm',
+    shape = 'rounded',
+    tabIndex = 0,
+    disabled,
+    rightChild,
+    onChange: onChangeProp,
 
-    const {
-        locale = 'ru',
-        format = 'YYYY-MM-DD',
-        defaultValue,
-        decoration = 'outline',
-        size = 'm',
-        shape = 'rounded',
-        tabIndex = 0,
-        label
-    } = props
+    autoComplete,
+    list,
+    name,
+    placeholder,
+    pattern,
+    readOnly,
+    required,
+    form,
+    formAction,
+    formEncType,
+    formMethod,
+    formNoValidate,
+    formTarget,
 
-    moment.locale(locale)
+    ...fieldProps
+  } = props
 
-    const now = moment()
-    const [value, setValue] = useState(now)
-    const [isActive, setActive] = useState(false)
-    //TODO: setEmpty
-    const [isEmpty, setEmpty] = useState<boolean>(
-        defaultValue === '' ||
-        defaultValue === 'undefined'
-    )
+  moment.locale(locale)
 
-    const { cs, attributes, events, focus } = useComponent('DatePicker', {
-        props,
-        styles,
-        styleProps: {
-            container: ['flow', 'layout'],
-            field: ['color', 'border', 'padding']
-        },
-        focus: {
-            applyDecoration: false
-        }
-    })
+  function makeDate(value: Types.Props['value']): Moment | undefined {
+    const date = moment(value, format, true)
+    return value && date.isValid() ? date : undefined
+  }
 
-    const minValue = props.minValue ? moment(props.minValue).startOf('day') : now.clone().add(-500, 'year')
-    const maxValue = props.maxValue ? moment(props.maxValue).startOf('day') : now.clone().add(500, 'year')
+  const { classes, events, styleProps, overridesPropClasses } = useSystem(
+    'DatePicker',
+    props,
+    createClasses,
+  )
+  const [value, setValue] = useState(makeDate(props.value || defaultValue))
+  const [inputValue, setInputValue] = useState(
+    makeDate(props.value || defaultValue)?.format(format),
+  )
+  const [isActive, setActive] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
 
-    const inputRef = useRef<HTMLInputElement>(null)
-    const mask = props.masked && useMask(inputRef, maskConf(format, minValue, maxValue))
+  const minValue = props.minValue
+    ? moment(props.minValue).startOf('day')
+    : moment().clone().add(-500, 'year')
+  const maxValue = props.maxValue
+    ? moment(props.maxValue).startOf('day')
+    : moment().clone().add(500, 'year')
 
-    useLayoutEffect(() => {
-        if (props.value) {
-            if (typeof props.value === 'string') {
-                onChange(moment(props.value, format))
-            } else {
-                onChange(moment(props.value))
-            }
-        }
-    }, [props.value])
-
-    function onChange(value: Moment) {
-        if (!value.isValid) {
-            return
-        }
-
-        if (mask) {
-            mask.value = value.format(format)
-        } else if (inputRef.current) {
-            inputRef.current.value = value.format(format)
-        }
-
-        setValue(value)
-
-        if (props.onChange) {
-            props.onChange(value, value.format(format))
-        }
-        if (!props.stayOpen) {
-            setActive(false)
-        }
+  function onChange(currentValue: Types.Props['value']) {
+    const currentDate = makeDate(currentValue)
+    let currentDateString = currentValue
+    if (currentDate) {
+      currentDateString = currentDate.format(format)
+      setValue(currentDate)
+      setActive(props.stayOpen || false)
     }
+    onChangeProp?.(currentDate, currentDateString as string)
+    setInputValue(currentDateString as string)
+  }
 
-    return (
-        <Fragment>
-            <Field
-                {...props}
-                ref={ref}
-                decoration={decoration}
-                size={size}
-                shape={shape}
-                focus={focus}
-                styles={cs}
-                events={{
-                    ...events.all,
-                    onFocus: (e) => {
-                        inputRef.current?.focus()
-                        events?.all?.onFocus?.(e)
-                        if (!props.disabled) {
-                            setActive(true)
-                        }
-                    },
-                    onClick: (e) => {
-                        events.all.onClick?.(e)
-                        if (!props.disabled) {
-                            setActive(true)
-                        }
-                    }
-                }}
-                attributes={{
-                    ...attributes,
-                    tabIndex,
-                }}
-                rightChild={props.rightChild || (
-                    <CalendarIcon />
-                )}
-                children={jsx(
-                    'input',
-                    {
-                        ref: inputRef,
-                        onKeyUp: (e) => {
-                            const date = moment(e.target.value, format)
-                            if (date.isValid() && date > minValue && date < maxValue) {
-                                setValue(date)
-                            }
-                        },
-                        css: cs.input,
+  useEffect(() => {
+    setValue(makeDate(props.value))
+  }, [props.value])
 
-                        defaultValue: defaultValue
-                            ? moment(defaultValue, format)
-                            : moment().format(format),
-                        disabled: props.disabled,
-                        autoComplete: props.autoComplete,
-                        autoFocus: props.autoFocus,
-                        list: props.list,
-                        name: props.name,
-                        placeholder: props.placeholder,
-                        pattern: props.pattern,
-                        readOnly: props.readOnly,
-                        required: props.required,
-                        // type: props.type,
-
-                        form: props.form,
-                        formAction: props.formAction,
-                        formEncType: props.formEncType,
-                        formMethod: props.formMethod,
-                        formNoValidate: props.formNoValidate,
-                        formTarget: props.formTarget,
-
-                        tabIndex: props.tabIndex,
-                        onFocus: (e) => props.onFocus && props.onFocus(e),
-                        onBlur: (e) => props.onBlur && props.onBlur(e)
-                    }
-                )}
-            />
-            <Drop
-                visible={isActive}
-                //TODO: wtf
-                spacing={9}
-                align="bottom"
-                justify="start"
-                onClickOutside={(event) => {
-                    if (event.target !== inputRef.current) {
-                        setActive(false)
-                    }
-                }}
-                target={inputRef}
-            >
-                <Popover css={cs.drop({ isActive })}>
-                    <Calendar
-                        value={value}
-                        minValue={minValue}
-                        maxValue={maxValue}
-                        onChange={onChange}
-                        hideToday={props.hideToday || false}
-                        type={props.type || 'day'}
-                    />
-                </Popover>
-            </Drop>
-        </Fragment>
-
-    )
+  return (
+    <Field
+      {...fieldProps}
+      ref={ref}
+      disabled={disabled}
+      tabIndex={tabIndex}
+      decoration={decoration}
+      size={size}
+      shape={shape}
+      overrides={{
+        ...overridesPropClasses,
+        container: [overridesPropClasses.container, styleProps.container],
+        content: [overridesPropClasses.content, styleProps.content],
+      }}
+      onFocus={() => inputRef.current?.focus()}
+      onClick={(e) => {
+        events.onClick?.(e)
+        if (!props.disabled && !isActive) {
+          setActive(true)
+        }
+      }}
+      rightChild={
+        <>
+          {rightChild}
+          <CalendarIcon />
+        </>
+      }
+    >
+      <input
+        ref={inputRef}
+        css={classes.input}
+        tabIndex={-1}
+        onChange={(e) => {
+          onChange(e.target.value)
+        }}
+        value={inputValue}
+        disabled={disabled}
+        autoComplete={autoComplete}
+        list={list}
+        name={name}
+        placeholder={placeholder}
+        pattern={pattern}
+        readOnly={readOnly}
+        required={required}
+        form={form}
+        formAction={formAction}
+        formEncType={formEncType}
+        formMethod={formMethod}
+        formNoValidate={formNoValidate}
+        formTarget={formTarget}
+      />
+      <Drop
+        target={inputRef}
+        visible={isActive}
+        spacing={9}
+        align="bottom"
+        justify="start"
+        onClickOutside={(event, outsideTarget) => {
+          if (outsideTarget) {
+            setActive(false)
+          }
+        }}
+      >
+        <Popover css={classes.drop({ isActive })}>
+          <Calendar
+            value={value}
+            minValue={minValue}
+            maxValue={maxValue}
+            onChange={onChange}
+            hideToday={props.hideToday || false}
+            type={props.type || 'day'}
+          />
+        </Popover>
+      </Drop>
+    </Field>
+  )
 }
 
 export default forwardRef(DatePicker)

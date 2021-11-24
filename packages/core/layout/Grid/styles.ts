@@ -1,17 +1,54 @@
-import SystemTypes from '@stage-ui/system/types'
+import containerDecorations from '@stage-ui/core/utils/containerDecorations'
+import breakpointProp from '@stage-ui/system/props/breakpoint'
 import Types from './types'
-import applyLayoutDecoration from '@stage-ui/core/misc/utils/applyLayoutDecoration'
 
-const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
-    return {
-        container: (variant) => [
-            applyLayoutDecoration(props, theme),
-            {
-                position: 'relative',
-                display: props.inline ? 'inline-grid' : 'grid',
-            },
-        ]
-    }
-}
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => ({
+  container: () => [
+    containerDecorations(props, theme),
+    {
+      position: 'relative',
+      display: props.inline ? 'inline-grid' : 'grid',
+    },
+    breakpointProp(props.templateColumns, theme, (currentValue) => ({
+      gridTemplateColumns: currentValue,
+    })),
+    breakpointProp(props.templateRows, theme, (currentValue) => ({
+      gridTemplateRows: currentValue,
+    })),
+    breakpointProp(props.templateAreas, theme, (currentValue) => ({
+      gridTemplateAreas: currentValue,
+    })),
+    breakpointProp(props.columnGap, theme, (currentValue) => ({
+      gridColumnGap: currentValue,
+    })),
+    breakpointProp(props.rowGap, theme, (currentValue) => ({
+      gridRowGap: currentValue,
+    })),
+    breakpointProp(props.gap, theme, (currentValue) => ({
+      gridGap: currentValue,
+    })),
+    breakpointProp(props.autoColumns, theme, (currentValue) => ({
+      gridAutoColumns: currentValue,
+    })),
+    breakpointProp(props.autoRows, theme, (currentValue) => ({
+      gridAutoRows: currentValue,
+    })),
+    breakpointProp(props.autoFlow, theme, (currentValue) => ({
+      gridAutoFlow: currentValue,
+    })),
+    breakpointProp(props.alignItems, theme, (currentValue) => ({
+      alignItems: currentValue,
+    })),
+    breakpointProp(props.alignContent, theme, (currentValue) => ({
+      alignContent: currentValue,
+    })),
+    breakpointProp(props.justifyContent, theme, (currentValue) => ({
+      justifyContent: currentValue,
+    })),
+    breakpointProp(props.justifyItems, theme, (currentValue) => ({
+      justifyItems: currentValue,
+    })),
+  ],
+})
 
-export default styles
+export default createClasses

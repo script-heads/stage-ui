@@ -1,13 +1,17 @@
 {
-    "name": "@stage-ui/icons",
-    "author": "Research technology",
-    "version": "0.1.21",
-    "license": "MIT",
-    "scripts": {
-        "pub": "git pull && npm version patch && yarn build && cd ../../build/icons && yarn publish --access public && cd .. && rm -rf ./icons",
-        "build": "tsc && cp package.json README.md ../../build/icons/ && node ../../scripts/buildConfig icons",
-        "gen": "node ./scripts/generate"
-    },
-    "dependencies": {},
-    "devDependencies": {}
+  "name": "@stage-ui/icons",
+  "author": "Project one",
+  "version": "0.2.1-beta7",
+  "license": "MIT",
+  "scripts": {
+    "build": "node ../../scripts/make icons && yarn build:types && yarn build:js",
+    "build:js": "babel ./ --out-dir ../../build/icons --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
+    "build:types": "tsc --emitDeclarationOnly",
+    "gen": "node ./scripts/generate",
+    "lint": "eslint --config .eslintrc.json --fix '**/*.+(js|jsx|ts|tsx)'"
+  },
+  "peerDependencies": {
+    "@emotion/react": ">=11",
+    "react": ">=16"
+  }
 }

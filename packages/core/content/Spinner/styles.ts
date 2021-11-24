@@ -1,42 +1,39 @@
 import { keyframes } from '@emotion/react'
-import SystemTypes from '@stage-ui/system/types'
-import colorProp from '@stage-ui/system/utils/colorProp'
+import colorResolver from '@stage-ui/system/props/color'
 import Types from './types'
 
-const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
+  const spinAnimation = keyframes({
+    from: {
+      transform: 'rotate(0deg)',
+    },
+    to: {
+      transform: 'rotate(360deg)',
+    },
+  })
 
-    const color = (colorProp(theme, props.color) || theme.color.hardest).rgb().string()
-    const duration = props.duration || 1
+  return {
+    container: [
+      {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        overflow: 'hidden',
+        position: 'relative',
+        boxSizing: 'border-box',
+        color: colorResolver(props.color, theme)?.rgb().string() || 'inherit',
+        fontSize: props.size || '1.125em',
+      },
+    ],
 
-    const spinAnimation = keyframes({
-        'from': {
-            transform: 'rotate(0deg)'
-        },
-        'to': {
-            transform: 'rotate(360deg)'
-        }
-    })
-
-    return {
-        container: [
-            {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'column',
-                overflow: 'hidden',
-                position: 'relative',
-                boxSizing: 'border-box',
-                color: color,
-                fontSize: props.size || '1.125em'
-            }
-        ],
-
-        children: [{
-            width: 'fit-content',
-            animation: `${spinAnimation} ${duration}s linear infinite`
-        }],
-    }
+    children: [
+      {
+        width: 'fit-content',
+        animation: `${spinAnimation} ${props.duration || 1}s linear infinite`,
+      },
+    ],
+  }
 }
 
-export default styles
+export default createClasses

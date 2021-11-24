@@ -1,16 +1,18 @@
-import SystemTypes from '@stage-ui/system/types'
 import Types from './types'
 
-const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
-    return {
-        container: [
-            props.indent && {
-                '> [data-flow=menu-item] > span[data-flow-indent]': {
-                    marginLeft: props.indent
-                }
-            }
-        ],
-    }
-}
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
+  theme,
+  props,
+  styleProps,
+) => ({
+  container: [
+    props.indent && {
+      '> [data-flow=menu-item] > span[data-flow-indent]': {
+        marginLeft: props.indent,
+      },
+    },
+    styleProps.all,
+  ],
+})
 
-export default styles
+export default createClasses

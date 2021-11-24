@@ -1,26 +1,19 @@
-import SystemTypes from '@stage-ui/system/types'
 import Types from './types'
 
-const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
-    return {
-        test: {
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = () => ({
+  test: {},
+  container: (state) => [
+    {
+      display: 'flex',
+      width: '100%',
+      height: '100%',
+      flex: 1,
+      flexDirection: 'row',
+    },
+    state.vertical && {
+      flexDirection: 'column',
+    },
+  ],
+})
 
-        },
-        container: (variant) => [
-            {
-                display: 'flex',
-                width: '100%',
-                height: '100%',
-                flex: 1,
-                flexDirection: 'row',
-            },
-            variant({
-                vertical: {
-                    flexDirection: 'column'
-                }
-            })
-        ],
-    }
-}
-
-export default styles
+export default createClasses

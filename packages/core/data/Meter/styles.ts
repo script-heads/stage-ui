@@ -1,47 +1,40 @@
-
-import colorProp from '@stage-ui/system/utils/colorProp'
-import SystemTypes from '@stage-ui/system/types'
+import colorResolver from '@stage-ui/system/props/color'
 import Types from './types'
 
-const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
+  const color = colorResolver(props.color || theme.color.primary, theme)
 
-    const color = colorProp(theme, props.color) || theme.color.primary
-    const field = theme.assets.field[props.size || 'm'] || theme.assets.field.m
-
-    return {
-        container: (variant) => [
-            {
-                position: 'relative',
-                minWidth: '1rem',
-                alignSelf: 'center',
-                userSelect: 'none',
-                overflow: 'hidden',
-                boxSizing: 'border-box',
-                borderWidth: '1px',
-                borderStyle: 'solid',
-                borderColor: 'transparent',
-                background: theme.color.background.rgb().string(),
-                minHeight: `calc(${field.minHeight} / 4)`,
-                zIndex: 1,
-            },
-            variant({
-                shape: {
-                    'round': [{
-                        borderRadius: '100rem',
-                    }]
-                },
-                decoration: {
-                    outline: [
-                        {
-                            background: 'transparent',
-                            borderColor: color.rgb().string(),
-                        },
-                    ],
-                }
-            })
-        ],
-        thumb: (variant) => []
-    }
+  return {
+    container: (state) => [
+      {
+        position: 'relative',
+        minWidth: '0.25rem',
+        alignSelf: 'center',
+        userSelect: 'none',
+        overflow: 'hidden',
+        boxSizing: 'border-box',
+        background: theme.color.backgroundVariant.rgb().string(),
+        height: `0.75rem`,
+        zIndex: 1,
+      },
+      state.size === 'xl' && { height: '1.25rem' },
+      state.size === 'l' && { height: '1rem' },
+      state.size === 's' && { height: '0.5rem' },
+      state.size === 'xs' && { height: '0.375rem' },
+      state.shape === 'round' && [
+        {
+          borderRadius: '100rem',
+        },
+      ],
+      state.decoration === 'outline' && [
+        {
+          background: 'transparent',
+          borderColor: color.rgb().string(),
+        },
+      ],
+    ],
+    thumb: () => [],
+  }
 }
 
-export default styles
+export default createClasses

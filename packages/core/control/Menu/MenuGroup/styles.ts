@@ -1,10 +1,11 @@
-import SystemTypes from '@stage-ui/system/types'
 import Types from './types'
 
-const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
-    return {
-        container: {},
-    }
-}
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
+  theme,
+  props,
+  styleProps,
+) => ({
+  container: [styleProps.all],
+})
 
-export default styles
+export default createClasses

@@ -1,9 +1,12 @@
 # build
-build/
+build
+dist
+public
 
 # dependencies
 node_modules
 packages/mobile/**/build
+
 
 # Logs & Locks
 logs

@@ -1,22 +1,18 @@
 import { jsx } from '@emotion/react'
-import { useComponent } from '@stage-ui/system'
+import { useSystem } from '@stage-ui/system'
 import { forwardRef, ForwardRefRenderFunction } from 'react'
-import styles from './styles'
+import createClasses from './styles'
 import Types from './types'
 
 const Divider: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-    
-    const { cs, attributes, events } = useComponent('Divider', { props, styles, styleProps: { container: ['all']} })
+  const { classes, attributes, events, styleProps } = useSystem('Divider', props, createClasses)
 
-    return jsx(
-        'div',
-        {
-            ...attributes,
-            ...events.all,
-            ref,
-            css: cs.container
-        }
-    )
+  return jsx('div', {
+    ...attributes,
+    ...events,
+    ref,
+    css: [classes.container, styleProps.all],
+  })
 }
 
 export default forwardRef(Divider)

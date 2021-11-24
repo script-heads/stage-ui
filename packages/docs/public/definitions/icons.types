@@ -1,2035 +1,1293 @@
 declare module 'Icon/types' {
-	import SystemTypes from '@stage-ui/system/types'; namespace IconTypes {
+	/// <reference types="react" />
+	import { ColorProp } from '@stage-ui/system/props/color'; namespace IconTypes {
 	    /**
 	     * TODO: circle и oval добавляют только padding
 	     */
 	    type IconShapes = 'circle' | 'oval' | 'square';
 	    type IconType = 'filled' | 'outline';
-	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
+	    interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
 	        svg: React.ReactElement;
 	        shape?: IconShapes;
-	        size?: SystemTypes.Size | (string & {
+	        size?: Stage.Sizes | (string & {
 	            T?: string;
 	        });
-	        color?: SystemTypes.ColorProp;
-	        hoverColor?: SystemTypes.ColorProp;
-	        background?: SystemTypes.ColorProp;
+	        color?: ColorProp;
+	        hoverColor?: ColorProp;
+	        background?: ColorProp;
 	        rotate?: number;
 	    }
 	    interface IconProps extends Omit<Props, 'svg'> {
 	        type?: IconType;
 	    }
-	    interface Styles {
+	    type Classes = {
 	        container: {
 	            shape?: IconShapes;
-	            size: SystemTypes.Size | (string & {
+	            size: Stage.Sizes | (string & {
 	                T?: string;
 	            });
 	        };
 	        icon: void;
-	    }
+	    };
 	}
 	export default IconTypes;
 
 }
 declare module 'Icon/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'Icon/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
-	export default styles;
+	import { CreateClasses } from '@stage-ui/system/hooks/useSystem';
+	import Types from 'Icon/types'; const createClsses: CreateClasses<Types.Classes, Types.Props>;
+	export default createClsses;
 
 }
 declare module 'Icon' {
-	/** @jsx jsx */
-	import { jsx } from '@emotion/react';
-	import React, { RefObject } from 'react';
+	import React from 'react';
 	import Types from 'Icon/types'; type Icons = {
 	    filled: React.ReactElement;
 	    outline: React.ReactElement;
 	};
-	export const createIcon: (props: Types.IconProps | undefined, ref: RefObject<HTMLSpanElement>, icons: Icons) => jsx.JSX.Element;
+	export const createIcon: (props: Types.IconProps | undefined, ref: React.ForwardedRef<HTMLSpanElement>, icons: Icons) => import("@emotion/react/jsx-runtime").JSX.Element;
 	export type Props = Types.IconProps;
 	export {};
 
 }
 declare module 'lib/Sync' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Activity' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/AlertCircle' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/AlertTriangle' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/AllDone' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Archive' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ArrowCircleDown' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ArrowCircleLeft' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ArrowCircleRight' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ArrowCircleUp' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ArrowDown' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ArrowIosDown' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ArrowIosLeft' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ArrowIosRight' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ArrowIosUp' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ArrowLeftDown' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ArrowLeftUp' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ArrowLeft' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ArrowRightDown' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ArrowRightUp' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ArrowRight' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ArrowUp' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ArrowheadDown' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ArrowheadLeft' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ArrowheadRight' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ArrowheadUp' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/At' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Attach2' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Attach' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Award' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Backspace' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/BarChart2' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/BarChart' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Battery' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/BattteryCharging' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Behance' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/BellOff' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Bell' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Bluetooth' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/BookOpen' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Book' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Bookmark' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Briefcase' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Browser' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Brush' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Bulb' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Calendar' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Camera' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Car' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Cast' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/CheckmarkCircle2' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/CheckmarkCircle' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/CheckmarkSquare2' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/CheckmarkSquare' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Checkmark' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ChevronDown' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ChevronLeft' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ChevronRight' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ChevronUp' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Clipboard' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Clock' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/CloseCircle1' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/CloseCircle' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Close' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/CloudDownload' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/CloudUpload' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/CodeDownload' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Code' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Collapse' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ColorPalette' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ColorPicker' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Compass' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Copy' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/CornerDownLeft' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/CornerDownRight' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/CornerLeftDown' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/CornerLeftUp' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/CornerRightDown' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/CornerRightUp' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/CornerUpLeft' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/CornerUpRight' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/CreditCard' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Crop' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Cube' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Download' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/DropletOff' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Droplet' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Edit2' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Edit' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Email' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Expand' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ExternalLink' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/EyeOff2' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/EyeOff' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Eye' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Facebook' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/FileAdd' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/FileRemove' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/FileText' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/File' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Film' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Fire' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Flag' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/FlashOff' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Flash' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Flip2' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Flip' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/FolderAdd' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/FolderRemove' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Folder' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Funnel' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Gift' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Github' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Globe2' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Globe' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Google' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Grid' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/HardDrive' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Hash' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Headphones' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Heart' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Height' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Home' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Image' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Inbox' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Info' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Keypad' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Layers' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Layout' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Link2' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Link' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Linkedin' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/List' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Loader' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Lock' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/LogIn' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/LogOut' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Map' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Maximize' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Menu2' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/MenuArrow' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Menu' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/MessageCircle' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/MessageSquare' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/MicOff' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Mic' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Minimize' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/MinusCircle' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/MinusSquare' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Minus' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Monitor' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Moon' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/MoreHorizontal' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/MoreVertical' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Move' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Music' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Navigation2' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Navigation' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Npm' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Options2' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Options' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Pantone' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/PaperPlane' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/PauseCircle' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/People' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Percent' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/PersonAdd' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/PersonDelete' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/PersonDone' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/PersonRemove' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Person' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/PhoneCall' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/PhoneMissed' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/PhoneOff' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Phone' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/PieChart' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Pin' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/PlayCircle' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/PlusCircle' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/PlusSquare' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Plus' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Power' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Pricetag' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Printer' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/QuestionMarkCircle' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/QuestionMark' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/RadioButtonOff' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/RadioButtonOn' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Radio' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Recording' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Refresh' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Repeat' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/RewindLeft' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/RewindRight' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Save' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Scissors' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Search' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Settings2' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Settings' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Shake' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Share' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ShieldOff' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Shield' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ShoppingBag' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ShoppingCart' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Shuffle2' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Shuffle' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/SkipBack' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/SkipForward' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Slash' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Smartphone' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Speaker' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Square' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Star' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/StopCircle' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Sun' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Swap' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Text' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ThermometerMinus' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ThermometerPlus' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Thermometer' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Timer' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ToggleLeft' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/ToggleRight' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Trash2' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Trash' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/TrendingDown' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/TrendingUp' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/TriangleDown' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/TriangleLeft' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/TriangleRight' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/TriangleUp' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Tv' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Twitter' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Umbrella' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Undo' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Unlock' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Upload' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/VideoOff' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Video' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/VolumeDown' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/VolumeOff' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/VolumeUp' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Volume' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Weight' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/WifiOff' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module 'lib/Wifi' {
-	/**
-	The MIT License (MIT)
-	*/
 	import React from 'react'; const _default: React.ForwardRefExoticComponent<import("../Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
 	export default _default;
 
 }
 declare module '@stage-ui/icons' {
 	/**
-	version: 0.1.7
+	version: 0.1.11
 	*/
 	export { default as Sync } from 'lib/Sync';
 	export { default as Activity } from 'lib/Activity';

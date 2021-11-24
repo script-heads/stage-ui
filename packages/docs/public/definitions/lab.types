@@ -1,8 +1,7 @@
 declare module 'data/Chart/types' {
-	import { ChartDataSets, ChartOptions } from 'chart.js';
-	import SystemTypes from '@stage-ui/system/types'; namespace ChartTypes {
+	import { ChartDataSets, ChartOptions } from 'chart.js'; namespace ChartTypes {
 	    type ChartType = 'line' | 'pie' | 'verticalBar' | 'horizontalBar' | 'doughnut' | 'radar' | 'polar' | 'scatter' | 'bubble';
-	    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
+	    interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
 	        /**
 	         * @default line
 	         */
@@ -11,8 +10,7 @@ declare module 'data/Chart/types' {
 	        data: Array<number[] | ChartDataSets>;
 	        options?: ChartOptions;
 	    }
-	    interface Styles {
-	    }
+	    type Classes = {};
 	}
 	export default ChartTypes;
 
@@ -24,55 +22,11 @@ declare module 'data/Chart' {
 	export default _default;
 
 }
-declare module 'layout/Toolbar/types' {
-	import FlexboxTypes from '/layout/Flexbox/types'; namespace ToolbarTypes {
-	    interface Props extends FlexboxTypes.Props {
-	    }
-	    interface Styles {
-	        container: void;
-	    }
-	}
-	export default ToolbarTypes;
-
-}
-declare module 'layout/Toolbar/styles' {
-	import SystemTypes from '@stage-ui/system/types';
-	import Types from 'layout/Toolbar/types'; const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props>;
-	export default styles;
-
-}
-declare module 'layout/Toolbar' {
-	import Types from 'layout/Toolbar/types'; const _default: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
-	export default _default;
-
-}
-declare module 'control/ButtonGroup/types' {
-	import ButtonTypes from '/control/Button/types'; namespace ButtonGroupTypes {
-	    interface Props extends ButtonTypes.Props {
-	        children: (React.ReactElement<ButtonTypes.Props> | React.ReactElement<ButtonTypes.Props>[]);
-	    }
-	}
-	export default ButtonGroupTypes;
-
-}
-declare module 'control/ButtonGroup' {
-	import React from 'react'; const _default: React.ForwardRefExoticComponent<Pick<any, string | number | symbol> & React.RefAttributes<HTMLDivElement>>;
-	export default _default;
-
-}
 declare module '@stage-ui/lab' {
 	/**
 	 * Data
 	 */
 	export { default as Chart } from 'data/Chart';
-	/**
-	 * Layout
-	 */
-	export { default as Toolbar } from 'layout/Toolbar';
-	/**
-	 * Control
-	 */
-	export { default as ButtonGroup } from 'control/ButtonGroup';
 
 }
 declare module 'data/Chart/styles' {
@@ -81,16 +35,7 @@ declare module 'data/Chart/styles' {
 
 }
 declare module 'misc/hooks/useProgress' {
-	 let useProgress: (animate: boolean, time: number, pause: any, currentProgress: any) => number;
+	 const useProgress: (animate: boolean, time: number, pause: any, currentProgress: any) => number;
 	export default useProgress;
-
-}
-declare module 'misc/themes/whiteCurrant' {
-	 const whiteCurrant: import("@stage-ui/system/types").default.Theme;
-	export default whiteCurrant;
-
-}
-declare module 'misc/themes' {
-	export { default as whiteCurrant } from 'misc/themes/whiteCurrant';
 
 }

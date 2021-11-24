@@ -1,15 +1,7 @@
 {
   "compilerOptions": {
-    "jsx": "react",
-    "target": "esnext",
-    "module": "commonjs",
     "outDir": "../../build/lab",
-    "allowJs": false,
-    "declaration": true,
-    "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
+    "allowJs": false,   
     "alwaysStrict": true,
     "noImplicitThis": true,
     "noImplicitAny": false,
@@ -20,7 +12,4 @@
     "strictPropertyInitialization": true,
     "types": ["@emotion/react"]
   },
-  "exclude": [
-    "node_modules"
-  ]
 }

@@ -1,36 +1,29 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
-import { useComponent } from '@stage-ui/system'
-import { forwardRef, ForwardRefRenderFunction } from 'react'
-import styles from './styles'
+import { useSystem } from '@stage-ui/system'
+import React, { forwardRef, ForwardRefRenderFunction } from 'react'
+import createClasses from './styles'
 import Types from './types'
 
 const Badge: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-
-    const { cs, attributes, events } = useComponent('Badge', { 
-        props, 
-        styles, 
-        styleProps: {
-            container: ['flow'], 
-            holder: ['self']
-        }
-    })
-
-    return (
-        <div css={cs.container}>
-            <div
-                {...attributes}
-                {...events.all}
-                ref={ref}
-                children={props.content}
-                css={cs.holder({
-                    align: props.align,
-                    shape: props.shape
-                })}
-            />
-            {props.children}
-        </div>
-    )
+  const { classes, attributes, events, styleProps } = useSystem('Badge', props, createClasses)
+  return (
+    <div css={[classes.container, styleProps.container]}>
+      <div
+        {...attributes}
+        {...events}
+        ref={ref}
+        css={[
+          classes.holder({
+            align: props.align,
+            shape: props.shape,
+          }),
+          styleProps.content,
+        ]}
+      >
+        {props.content}
+      </div>
+      {props.children}
+    </div>
+  )
 }
 
 export default forwardRef(Badge)

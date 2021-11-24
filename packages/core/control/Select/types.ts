@@ -1,145 +1,163 @@
-import FieldTypes from '../../misc/hocs/Field/types'
-import DropTypes from '../../layout/Drop/types'
 import React from 'react'
+import FieldTypes from '../../basic/Field/types'
+import DropTypes from '../../layout/Drop/types'
 
 declare namespace SelectTypes {
-    interface Option {
-        text: string
-        value: any
-    }
+  interface Option<T = string | number | boolean> {
+    text: string
+    value: T
+  }
 
-    interface Ref {
-        isOpen: boolean
-        options: Option[]
-        values: Option[]
-        toggleOpen: () => void
-    }
+  interface Ref {
+    isOpen: boolean
+    options: Option[]
+    values: Option[]
+    toggleOpen: () => void
+  }
 
-    interface Props extends Omit<FieldTypes.Props<Styles>, 'onChange'> {
-        /**
-         * Content to be appear in the form control when the form control is empty
-         */
-        placeholder?: string
-        /**
-         * Items contained in Select
-         */
-        options: Option[]
-        /**
-         * Allow selecting multiple options
-         */
-        multiselect?: boolean
-        /**
-         * Allow search values
-         */
-        searchable?: boolean
-        /**
-         * Select's drop will not close after select option
-         */
-        keepOpen?: boolean
-        /**
-         * Select's drop will appear only when start typing
-         */
-        openOnFocus?: boolean
-        /**
-         * Selected options
-         */
-        values?: Option[]
-        /**
-         * Options selected by default
-         */
-        defaultValues?: Option[]
-        /**
-         * Max size of scroll area at select's drop
-         * @default 16rem
-         */
-        maxScrollHeight?: string
-        /**
-         * Animation of drop
-         * @default { type: 'collapse' }
-         */
-        animation?: DropTypes.Props['animation']
-        /**
-         * Event is fired when user change value
-         */
-        onChange?: (values: Option[], changedValue?: Option) => void
-        /**
-         * Event is fired when user types in input
-         */
-        onSearch?: (value: string) => void
-        /**
-         * Custom render row
-         */
-        onRenderItem?: (value: Option, index: number) => React.ReactNode
-        /**
-         * Display when empty
-         */
-        emptyText?: React.ReactNode
-    }
+  interface Props extends FieldTypes.Props<HTMLDivElement, Classes> {
+    /**
+     * Content to be appear in the form control when the form control is empty
+     */
+    placeholder?: string
+    /**
+     * Items contained in Select
+     */
+    options: Option[]
+    /**
+     * Allow selecting multiple options
+     */
+    multiselect?: boolean
+    /**
+     * Allow search values
+     */
+    searchable?: boolean
+    /**
+     * Select's drop will not close after select option
+     */
+    keepOpen?: boolean
+    /**
+     * Select's drop will appear only when start typing
+     */
+    openOnFocus?: boolean
+    /**
+     * Selected options
+     */
+    values?: Option[]
+    /**
+     * Options selected by default
+     */
+    defaultValues?: Option[]
+    /**
+     * Max size of scroll area at select's drop
+     * @default 16rem
+     */
+    maxScrollHeight?: string
+    /**
+     * Animation of drop
+     * @default { type: 'collapse' }
+     */
+    animation?: DropTypes.Props['animation']
+    /**
+     * Any content in top of drop
+     */
+    dropHeader?: React.ReactNode
+    /**
+     * Any content in bottom of drop
+     */
+    dropFooter?: React.ReactNode
+    /**
+     * Event is fired when user change value
+     */
+    onChange?: (values: Option[], changedValue?: Option) => void
+    /**
+     * Event is fired when user types in input
+     */
+    onSearch?: (value: string) => void
+    /**
+     * Custom options render
+     */
+    renderOption?: (option: Option, selected: boolean) => React.ReactNode
+    /**
+     * Custom miltiselect value render
+     */
+    renderMultiselectValue?: (option: Option) => React.ReactNode
+    /**
+     * Display when empty
+     */
+    emptyText?: React.ReactNode
+  }
 
-    type State = {
-        selectedOptions: Option[]
-        open: boolean
-        searchValue: string
-        empty: boolean
-        cursor: number
-    }
+  type State = {
+    selectedOptions: Option[]
+    open: boolean
+    searchValue: string
+    empty: boolean
+    cursor: number
+  }
 
-    interface StyleState extends StyleParams {
-        shape: Props['shape']
-        size: Props['size']
-        decoration: Props['decoration']
-        focus: boolean
-    }
+  type ClassState = {
+    shape: Props['shape']
+    size: Props['size']
+    decoration: Props['decoration']
+    isOpen: boolean
+  }
 
-    interface StyleStateItem extends StyleState {
-        selected: boolean
+  type Classes = {
+    /**
+     * Container for selected items
+     */
+    selectedArea: void
+    /**
+     * Select's input
+     */
+    input: {
+      searchMode: boolean
+      disableEvents: boolean
     }
-
-    interface StyleParams {
-        isOpen: boolean
+    /**
+     * Container of selected option in multiselect
+     */
+    multiselectValue: void
+    /**
+     * Close button for selected option in multiselect
+     */
+    multiselectValueClose: void
+    /**
+     * Select's drop container
+     */
+    drop: void
+    /**
+     * Container of every item in drop
+     */
+    option: {
+      selected: boolean
     }
+    /**
+     * Container view when list is empty
+     */
+    noOptions: void
 
-    interface Styles extends FieldTypes.Styles<{
-        container: StyleState
-    }> {
-        /**
-         * Container for selected items
-         */
-        selected: void
-        /**
-         * Select's input
-         */
-        input: {
-            searchMode: boolean
-            multiselect: boolean
-            disableEvents: boolean
-        }
-        /**
-         * Container of selected option in multiselect
-         */
-        tag: StyleState
-        /**
-         * Close button for selected option in multiselect
-         */
-        tagRemove: StyleState
-        /**
-         * Select's drop container
-         */
-        drop: StyleState
-        /**
-         * Container of every item in drop
-         */
-        dropItem: StyleStateItem
-        /**
-         * Container view when list is empty
-         */
-        emptyConteiner: StyleState
+    /**
+     * Container text when list is empty
+     */
+    noOptionsText: void
 
-        /**
-         * Container text when list is empty
-         */
-        emptyText: StyleState
-    }
+    /**
+     * Moveable part of scroll in drop
+     */
+    scrollContent: void
+
+    /**
+     * Container of top content in drop
+     */
+    dropHeader: void
+
+    /**
+     * Container of bottom content in drop
+     */
+    dropFooter: void
+  } & Partial<FieldTypes.Classes>
 }
 
 export default SelectTypes

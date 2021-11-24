@@ -1,72 +1,65 @@
-import SystemTypes from '@stage-ui/system/types'
-import colorProp from '@stage-ui/system/utils/colorProp'
+import colorResolver from '@stage-ui/system/props/color'
+import sizeProp from '@stage-ui/system/props/size'
 import Types from './types'
 
-const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
+  const { gap, dash, vertical } = props
+  const color = colorResolver(props.color || theme.assets.border.color, theme)
+    ?.rgb()
+    .string()
 
-    let { gap = '0px', dash = '1px', vertical } = props
-    const color = colorProp(theme, props.color)?.rgb().string() || theme.assets.border.color
+  const resolvedGap = sizeProp(gap || dash, theme.spacing, (v) => v)
+  const resolvedDash = sizeProp(dash, theme.spacing, (v) => v)
 
-    if (dash && !gap) {
-        gap = dash
-    }
-
-    gap = theme.spacing[gap] || gap
-    dash = theme.spacing[dash] || dash
-
-    if (typeof (gap) === 'number') {
-        gap = `${gap}px`
-    }
-
-    if (typeof (dash) === 'number') {
-        dash = `${dash}px`
-    }
-
-    return {
-        container: [
-            vertical
-                ? {
-                    height: 'auto',
-                    width: '1px',
-                    ...(gap || dash)
-                        ? {
-                            backgroundImage: `linear-gradient(
+  return {
+    container: [
+      vertical
+        ? [
+            {
+              height: 'auto',
+              width: '1px',
+            },
+            resolvedGap && resolvedDash
+              ? {
+                  backgroundImage: `linear-gradient(
                             to bottom,
                             ${color},
-                            ${color} ${dash},
-                            transparent ${dash}, 
-                            transparent ${gap} 
+                            ${color} ${resolvedDash},
+                            transparent ${resolvedDash},
+                            transparent ${resolvedGap}
                         )`,
-                            backgroundPosition: 'right top',
-                            backgroundSize: `calc(${gap} + ${dash}) calc(${gap} + ${dash})`,
-                            backgroundRepeat: 'repeat-y',
-                        }
-                        : {
-                            background: color
-                        }
+                  backgroundPosition: 'right top',
+                  backgroundSize: `calc(${resolvedGap} + ${resolvedDash}) calc(${resolvedGap} + ${resolvedDash})`,
+                  backgroundRepeat: 'repeat-y',
                 }
-                : {
-                    width: '100%',
-                    height: '1px',
-                    ...(gap || dash)
-                        ? {
-                            backgroundImage: `linear-gradient(
+              : {
+                  background: color,
+                },
+          ]
+        : [
+            {
+              width: '100%',
+              height: '1px',
+            },
+            resolvedGap && resolvedDash
+              ? {
+                  backgroundImage: `linear-gradient(
                             to right,
                             ${color},
-                            ${color} ${dash},
-                            transparent ${dash}, 
-                            transparent ${gap} 
+                            ${color} ${resolvedDash},
+                            transparent ${resolvedDash},
+                            transparent ${resolvedGap}
                         )`,
-                            backgroundPosition: 'left bottom',
-                            backgroundSize: `calc(${gap} + ${dash}) calc(${gap} + ${dash})`,
-                            backgroundRepeat: 'repeat-x',
-                        }
-                        : {
-                            background: color
-                        }
+                  backgroundPosition: 'left bottom',
+                  backgroundSize: `calc(${resolvedGap} + ${resolvedDash}) calc(${resolvedGap} + ${resolvedDash})`,
+                  backgroundRepeat: 'repeat-x',
+                }
+              : {
+                  background: color,
                 },
-        ]
-    }
+          ],
+    ],
+  }
 }
 
-export default styles
+export default createClasses

@@ -1,38 +1,33 @@
-
-import colorProp from '@stage-ui/system/utils/colorProp'
-import SystemTypes from '@stage-ui/system/types'
+import colorResolver from '@stage-ui/system/props/color'
 import Types from './types'
 
-//@ts-ignore
-const styles: SystemTypes.CreateStyles<Types.Styles, Types.PrivateProps> = (props, theme) => {
-    const { loading } = props
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
+  const { loading } = props
 
-    const color = colorProp(theme, props.color) || theme.color.primary
-    const field = theme.assets.field[props.size || 'm'] || theme.assets.field.m
+  const color = colorResolver(props.color || theme.color.primary, theme)
 
-    return {
-        container: (variant) => [
-            {
-                position: 'absolute',
-                top: 0,
-                height: '100%',
-                background: color.rgb().string(),
-                animation: loading ? 'move 2s linear infinite' : 'none',
-                overflow: 'hidden',
-                borderRadius: '4rem',
-                transition: 'width 0.25s',
-                boxSizing: 'border-box',
-                minHeight: `calc(${field.minHeight} / 4)`,
-                zIndex: 1,
-                '&:last-child': {
-                    position: 'relative',
-                },
-                '&:after': loading && [
-                    {
-                        content: `''`,
-                        position: 'absolute',
-                        top: '0; left: 0; bottom: 0; right: 0',
-                        backgroundImage: `linear-gradient(
+  return {
+    container: (state) => [
+      {
+        position: 'absolute',
+        top: 0,
+        background: color.rgb().string(),
+        animation: loading ? 'move 2s linear infinite' : 'none',
+        overflow: 'hidden',
+        borderRadius: '4rem',
+        transition: 'width 0.25s',
+        boxSizing: 'border-box',
+        height: '0.75rem',
+        zIndex: 1,
+        '&:last-child': {
+          position: 'relative',
+        },
+        '&:after': loading && [
+          {
+            content: `''`,
+            position: 'absolute',
+            top: '0; left: 0; bottom: 0; right: 0',
+            backgroundImage: `linear-gradient(
                             -45deg, 
                             ${theme.color.surface.alpha(0.2).string()} 25%, 
                             transparent 25%, 
@@ -42,46 +37,52 @@ const styles: SystemTypes.CreateStyles<Types.Styles, Types.PrivateProps> = (prop
                             transparent 75%, 
                             transparent
                         )`,
-                        backgroundSize: '2rem 2rem',
-                        zIndex: 1,
-                        animation: 'move 2s linear infinite',
-                        overflow: 'hidden',
-                    },
-                    variant({
-                        size: {
-                            xs: [{
-                                backgroundSize: '0.5rem 0.5rem'
-                            }],
-                            s: [{
-                                backgroundSize: '1rem 1rem'
-                            }],
-                            l: [{
-                                backgroundSize: '3rem 3rem'
-                            }],
-                            xl: [{
-                                backgroundSize: '4rem 4rem'
-                            }],
-                        }
-                    }),
-                ],
-                '@keyframes move': {
-                    '0%': {
-                        backgroundposition: '0 0'
-                    },
-                    '100%': {
-                        backgroundPosition: '2rem 2rem'
-                    }
-                }
+            backgroundSize: '2rem 2rem',
+            zIndex: 1,
+            animation: 'move 2s linear infinite',
+            overflow: 'hidden',
+          },
+          state.size === 'xs' && [
+            {
+              backgroundSize: '0.5rem 0.5rem',
             },
-            variant({
-                shape: {
-                    square: [{
-                        borderRadius: 0
-                    }]
-                }
-            }),
-        ]
-    }
+          ],
+          state.size === 's' && [
+            {
+              backgroundSize: '1rem 1rem',
+            },
+          ],
+          state.size === 'l' && [
+            {
+              backgroundSize: '3rem 3rem',
+            },
+          ],
+          state.size === 'xl' && [
+            {
+              backgroundSize: '4rem 4rem',
+            },
+          ],
+        ],
+        '@keyframes move': {
+          '0%': {
+            backgroundposition: '0 0',
+          },
+          '100%': {
+            backgroundPosition: '2rem 2rem',
+          },
+        },
+      },
+      state.size === 'xl' && { height: '1.25rem' },
+      state.size === 'l' && { height: '1rem' },
+      state.size === 's' && { height: '0.5rem' },
+      state.size === 'xs' && { height: '0.375rem' },
+      state.shape === 'square' && [
+        {
+          borderRadius: 0,
+        },
+      ],
+    ],
+  }
 }
 
-export default styles
+export default createClasses

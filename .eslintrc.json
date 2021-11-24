@@ -1,0 +1,158 @@
+{
+  "root": true,
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "extends": [
+    "airbnb/hooks"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": [
+    "react",
+    "react-hooks",
+    "unused-imports",
+    "deprecation",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "semi": false,
+        "singleQuote": true,
+        "endOfLine": "auto",
+        "trailingComma": "all",
+        "printWidth": 100
+      }
+    ],
+    "class-methods-use-this": "off",
+    "no-plusplus": "off",
+    "max-classes-per-file": "off",
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": [
+          "state"
+        ]
+      }
+    ],
+    "no-void": [
+      "error",
+      {
+        "allowAsStatement": true
+      }
+    ],
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "warn",
+          "error"
+        ]
+      }
+    ],
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": "**/*.+(js|jsx)",
+      "extends": [
+        "plugin:prettier/recommended",
+        "prettier"
+      ],
+      "parser": "babel-eslint",
+      "parserOptions": {
+        "ecmaFeatures": {
+          "experimentalObjectRestSpread": true
+        }
+      }
+    },
+    {
+      "files": "**/*.+(ts|tsx)",
+      "extends": [
+        "airbnb-typescript",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:prettier/recommended",
+        "prettier"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "plugins": [
+        "@typescript-eslint",
+        "import"
+      ],
+      "rules": {
+        "@typescript-eslint/semi": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-namespace": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "unused-imports/no-unused-imports-ts": "error",
+        "unused-imports/no-unused-vars-ts": [
+          "warn",
+          {
+            "vars": "all",
+            "varsIgnorePattern": "^_",
+            "args": "after-used",
+            "argsIgnorePattern": "^_"
+          }
+        ],
+        "@typescript-eslint/no-floating-promises": "off",
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-unsafe-return": "off",
+        "import/no-extraneous-dependencies": "off",
+        "import/prefer-default-export": "off",
+        "import/no-cycle": "off",
+        "react/prop-types": "off",
+        "object-curly-newline": "off",
+        "react/jsx-props-no-spreading": "off",
+        "react/require-default-props": "off",
+        "react/destructuring-assignment": "off",
+        "react-hooks/exhaustive-deps": "off",
+        "react/button-has-type": "off",
+        "react/jsx-wrap-multilines": [
+          "error",
+          {
+            "arrow": true,
+            "return": true,
+            "declaration": true
+          }
+        ],
+        "deprecation/deprecation": "warn"
+      }
+    },
+    {
+      "files": "**/*.+(json)",
+      "extends": [
+        "plugin:json/recommended"
+      ],
+      "plugins": [
+        "json"
+      ],
+      "rules": {
+        "json/*": [
+          "error",
+          {
+            "allowComments": true
+          }
+        ]
+      }
+    }
+  ]
+}

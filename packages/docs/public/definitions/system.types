@@ -1,1748 +1,164 @@
-declare module '@stage-ui/system/types' {
-	import { Interpolation, SerializedStyles } from '@emotion/react';
-	import QIXColor from 'color';
-	import CSS from 'csstype';
-	import React from 'react'; global {
-	    namespace System {
-	        interface Palette<Color> {
-	            [key: string]: Color;
-	        }
-	        interface Overrides {
-	        }
-	    }
-	}
-	export type EmotionStyles = Interpolation<SerializedStyles>;
-	export type Breakpointify<T> = T[] | T; namespace SystemTypes {
-	    type Size = 'xs' | 's' | 'm' | 'l' | 'xl';
-	    /**
-	     * @display SystemTypes.Color
-	     * @link /props#color
-	     */
-	    type ColorProp = ((colors: Theme['color']) => QIXColor | string) | keyof Omit<Theme['color'], 'palette'> | keyof Theme['color']['palette'] | QIXColor | (string & {
-	        T?: string;
-	    });
-	    type Styles<StyleDefinitions> = {
-	        [StyleName in keyof StyleDefinitions]: StyleDefinitions[StyleName] extends Object ? ((variant: Variant<StyleDefinitions[StyleName]>) => EmotionStyles) : EmotionStyles;
-	    };
-	    type ComponentStyles<StyleDefinitions> = {
-	        [StyleName in keyof StyleDefinitions]: StyleDefinitions[StyleName] extends Object ? (state: StyleDefinitions[StyleName]) => SerializedStyles : SerializedStyles;
-	    };
-	    type Variant<StyleDefinitions> = (variants: Partial<{
-	        [StyleName in keyof StyleDefinitions]: Partial<Record<Extract<StyleDefinitions[StyleName], string>, EmotionStyles>>;
-	    }>) => EmotionStyles;
-	    type CreateStyles<Overrides, Props = {}, Params = {}> = (props: Props, theme: Theme, params?: Params) => Styles<Overrides>;
-	    interface Theme extends ThemeVariables {
-	        assets: ThemeAssets;
-	        overrides?: Partial<{
-	            [Component in keyof System.Overrides]: Styles<System.Overrides[Component]>;
-	        }>;
-	        replace: (theme: ReplaceTheme) => Theme;
-	    }
-	    interface SourceTheme {
-	        main: Omit<ThemeVariables<[number, number, number, number?]>, 'breakpoints' | 'color'> & {
-	            color: Omit<ThemeVariables<[number, number, number, number?]>['color'], 'palette'> & {
-	                palette?: System.Palette<[number, number, number, number?]>;
-	            };
-	            breakpoints?: string[];
-	        };
-	        assets: (main: ThemeVariables) => ThemeAssets;
-	        overrides?: (main: ThemeVariables, assets: ThemeAssets) => Partial<{
-	            [Component in keyof System.Overrides]: Styles<System.Overrides[Component]>;
-	        }>;
-	    }
-	    interface ReplaceTheme {
-	        main: DeepPartial<ThemeVariables<[number, number, number, number?]>>;
-	        assets?: (main: ThemeVariables) => DeepPartial<ThemeAssets>;
-	        overrides?: (main: ThemeVariables, assets: ThemeAssets) => Partial<{
-	            [Component in keyof System.Overrides]: Styles<System.Overrides[Component]>;
-	        }>;
-	    }
-	    interface ThemeVariables<Color = QIXColor<[number, number, number, number?]>> {
-	        name: string;
-	        color: {
-	            background: Color;
-	            backgroundVariant: Color;
-	            surface: Color;
-	            surfaceVariant: Color;
-	            primary: Color;
-	            secondary: Color;
-	            onBackground: Color;
-	            onSurface: Color;
-	            onPrimary: Color;
-	            onSecondary: Color;
-	            lightest: Color;
-	            light: Color;
-	            hard: Color;
-	            hardest: Color;
-	            error: Color;
-	            warning: Color;
-	            success: Color;
-	            info: Color;
-	            palette: System.Palette<Color>;
-	        };
-	        breakpoints: string[];
-	        radius: Record<Size, string>;
-	        spacing: Record<Size, string>;
-	    }
-	    interface ThemeAssets {
-	        global?: EmotionStyles;
-	        border: {
-	            width: string;
-	            style: string;
-	            color: string;
-	        };
-	        shadow: Record<Size, string>;
-	        innerShadow: Record<Size, string>;
-	        focus: EmotionStyles;
-	        field: Record<Size, {
-	            minHeight: string;
-	            padding: string;
-	        }>;
-	        typography: {
-	            header: Record<Size, {
-	                fontSize: string;
-	                lineHeight: string | number;
-	            }>;
-	            text: Record<Size, {
-	                fontSize: string;
-	                lineHeight: string | number;
-	            }>;
-	            paragraph: Record<Size, {
-	                fontSize: string;
-	                lineHeight: string | number;
-	            }>;
-	        };
-	    }
-	    /**
-	     * All typical component props
-	     * @name All
-	     */
-	    interface AllProps<Container, Styles> extends AttributeProps, AllEventProps<Container>, CoreProps<Styles>, ColorProps, BorderProps, PaddingProps, LayoutProps, MarginProps, FlexProps, GridProps {
-	    }
-	    /**
-	     * DOM events
-	     * @name Event
-	     */
-	    interface AllEventProps<T> extends FormEventProps<T>, FocusEventProps<T>, ImageEventProps<T>, MediaEventProps<T>, MouseEventProps<T>, TouchEventProps<T>, WheelEventProps<T>, PointerEventProps<T>, KeyboardEventProps<T>, SelectionEventProps<T>, AnimationEventProps<T>, ClipboardEventProps<T>, TransitionEventProps<T>, CompositionEventProps<T>, ScrollEventProps<T> {
-	    }
-	    /**
-	     * Component core props
-	     * @name Core
-	     */
-	    interface CoreProps<S = {}> {
-	        /**
-	         * Override any component style
-	         * @display SystemTypes.Styles
-	         * @link /props#styles
-	         */
-	        styles?: Partial<Styles<S>>;
-	    }
-	    /**
-	     * Component attribute props
-	     * @name Attributes
-	     */
-	    interface AttributeProps extends React.AriaAttributes {
-	        /**
-	         * Set class atrribute on component's container
-	         */
-	        className?: string;
-	        /**
-	         * Set id atrribute on component's container
-	         */
-	        id?: string;
-	        /**
-	         * Set style atrribute on component's container
-	         */
-	        style?: React.CSSProperties;
-	        /**
-	         * Set tab-index atrribute on component's container
-	         */
-	        tabIndex?: number;
-	        /**
-	         * Set role atrribute on component's container
-	         */
-	        role?: string;
-	        /**
-	         * Set draggable atrribute on component's container
-	         */
-	        draggable?: boolean;
-	        /**
-	         * Set any atrributes on component's container
-	         */
-	        attrs?: Object;
-	    }
-	    /**
-	     * Component color styles props
-	     * @name Color
-	     */
-	    interface ColorProps {
-	        /**
-	         * Set color style
-	         * @display SystemTypes.Color
-	         * @link /props#color
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/color
-	         */
-	        textColor?: Breakpointify<ColorProp>;
-	        /**
-	         * Set background-color style
-	         * @display SystemTypes.Color
-	         * @link /props#color
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/background-color
-	         */
-	        backgroundColor?: Breakpointify<ColorProp>;
-	    }
-	    /**
-	     * Component border styles props
-	     * @name Border
-	     */
-	    interface BorderProps {
-	        /**
-	         * Set border-width style
-	         * @display number | string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/border-width
-	         */
-	        borderWidth?: Breakpointify<CSS.Properties['borderWidth']>;
-	        /**
-	         * Set border-style style
-	         * @breakpointify
-	         * @display dashed | dotted | double | groove | hidden | inset | none | outset | ridge | solid
-	         * @see https://developer.mozilla.org/docs/Web/CSS/border-style
-	         */
-	        borderStyle?: Breakpointify<CSS.Properties['borderStyle']>;
-	        /**
-	         * Set border-color style
-	         * @display SystemTypes.Color
-	         * @link /props#color
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/border-color
-	         */
-	        borderColor?: Breakpointify<ColorProp>;
-	        /**
-	         * Set border-radius style
-	         * @display number | string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/border-radius
-	         */
-	        borderRadius?: Breakpointify<CSS.Properties['borderRadius']>;
-	    }
-	    /**
-	     * Component layout styles props
-	     * @name Layout
-	     */
-	    interface LayoutProps {
-	        /**
-	         * Set width style
-	         * @display number | string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/width
-	         */
-	        w?: Breakpointify<CSS.Properties['width']>;
-	        /**
-	         * Set height style
-	         * @display number | string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/visibility
-	         */
-	        h?: Breakpointify<CSS.Properties['height']>;
-	        /**
-	         * Specifies the type of positioning method used for an element
-	         * (static, relative, fixed, absolute or sticky).
-	         * @display static | relative | fixed | absolute | sticky
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/position
-	         */
-	        position?: Breakpointify<CSS.Properties['position']>;
-	        /**
-	         * Shows or hides an element without changing the layout
-	         * of a document.
-	         * @display visible | hidden | collapse
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/visibility
-	         */
-	        visibility?: Breakpointify<CSS.Properties['visibility']>;
-	        /**
-	         * Sets whether an element is treated as a block or
-	         * inline element and the layout used for its children,
-	         * such as flow layout, grid or flex.
-	         * @display block | inline | inline-block | inline-table | list-item | none | run-in | table | table-caption | table-cell | table-column-group | table-column | table-footer-group | table-header-group | table-row | table-row-group | flex | grid
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/display
-	         */
-	        display?: Breakpointify<CSS.Properties['display']>;
-	        /**
-	         * Set font-size style
-	         * @display number | string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/font-size
-	         */
-	        fontSize?: Breakpointify<CSS.Properties['fontSize']>;
-	        /**
-	         * Set line-height style
-	         * @display number | string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/line-height
-	         */
-	        lineHeight?: Breakpointify<CSS.Properties['lineHeight']>;
-	        /**
-	         * Set letter-spacing style
-	         * @display number | string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/letter-spacing
-	         */
-	        letterSpacing?: Breakpointify<CSS.Properties['letterSpacing']>;
-	        /**
-	         * Set text-align style
-	         * @display number | string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/text-align
-	         */
-	        textAlign?: Breakpointify<CSS.Properties['textAlign']>;
-	    }
-	    /**
-	     * Component padding styles props
-	     * @name Padding
-	     */
-	    interface PaddingProps {
-	        /**
-	         * Set padding style
-	         * @breakpointify
-	         * @display Size
-	         * @link /props#margin-padding
-	         */
-	        p?: Breakpointify<Size | (string & {
-	            T?: string;
-	        }) | number>;
-	        /**
-	         * Set horizontal padding style
-	         * @breakpointify
-	         * @display Size
-	         * @link /props#margin-padding
-	         */
-	        px?: Breakpointify<Size | (string & {
-	            T?: string;
-	        }) | number>;
-	        /**
-	         * Set vertical padding style
-	         * @breakpointify
-	         * @display Size
-	         * @link /props#margin-padding
-	         */
-	        py?: Breakpointify<Size | (string & {
-	            T?: string;
-	        }) | number>;
-	        /**
-	         * Set right padding style
-	         * @breakpointify
-	         * @display Size
-	         * @link /props#margin-padding
-	         */
-	        pr?: Breakpointify<Size | (string & {
-	            T?: string;
-	        }) | number>;
-	        /**
-	         * Set left padding style
-	         * @breakpointify
-	         * @display Size
-	         * @link /props#margin-padding
-	         */
-	        pl?: Breakpointify<Size | (string & {
-	            T?: string;
-	        }) | number>;
-	        /**
-	         * Set top padding style
-	         * @breakpointify
-	         * @display Size
-	         * @link /props#margin-padding
-	         */
-	        pt?: Breakpointify<Size | (string & {
-	            T?: string;
-	        }) | number>;
-	        /**
-	         * Set bottom padding style
-	         * @breakpointify
-	         * @display Size
-	         * @link /props#margin-padding
-	         */
-	        pb?: Breakpointify<Size | (string & {
-	            T?: string;
-	        }) | number>;
-	    }
-	    /**
-	     * Component margin styles props
-	     * @name Margin
-	     */
-	    interface MarginProps {
-	        /**
-	         * Set margin style
-	         * @breakpointify
-	         * @display Size
-	         * @link /props#margin-padding
-	         */
-	        m?: Breakpointify<Size | (string & {
-	            T?: string;
-	        }) | number>;
-	        /**
-	         * Set horizontal margin style
-	         * @breakpointify
-	         * @display Size
-	         * @link /props#margin-padding
-	         */
-	        mx?: Breakpointify<Size | (string & {
-	            T?: string;
-	        }) | number>;
-	        /**
-	         * Set vertical margin style
-	         * @breakpointify
-	         * @display Size
-	         * @link /props#margin-padding
-	         */
-	        my?: Breakpointify<Size | (string & {
-	            T?: string;
-	        }) | number>;
-	        /**
-	         * Set right margin style
-	         * @breakpointify
-	         * @display Size
-	         * @link /props#margin-padding
-	         */
-	        mr?: Breakpointify<Size | (string & {
-	            T?: string;
-	        }) | number>;
-	        /**
-	         * Set left margin style
-	         * @breakpointify
-	         * @display Size
-	         * @link /props#margin-padding
-	         */
-	        ml?: Breakpointify<Size | (string & {
-	            T?: string;
-	        }) | number>;
-	        /**
-	         * Set top margin style
-	         * @breakpointify
-	         * @display Size
-	         * @link /props#margin-padding
-	         */
-	        mt?: Breakpointify<Size | (string & {
-	            T?: string;
-	        }) | number>;
-	        /**
-	         * Set bottom margin style
-	         * @breakpointify
-	         * @display Size
-	         * @link /props#margin-padding
-	         */
-	        mb?: Breakpointify<Size | (string & {
-	            T?: string;
-	        }) | number>;
-	    }
-	    /**
-	     * Used for flex attributes
-	     * CSS props have string witch kills helps at ide
-	     */
-	    type FlexSpace = 'space-around' | 'space-between' | 'space-evenly';
-	    type FlexSelf = 'inherit' | 'auto' | 'baseline' | 'center' | 'flex-start' | 'flex-end' | 'stretch';
-	    type FlexDirection = 'inherit' | 'initial' | 'revert' | 'unset' | 'column' | 'column-reverse' | 'row' | 'row-reverse';
-	    type FlexWrap = 'inherit' | 'initial' | 'revert' | 'unset' | 'nowrap' | 'wrap' | 'wrap-reverse';
-	    /**
-	     * Used for grid attributes
-	     * CSS props have string witch kills helps at ide
-	     */
-	    type GridSpace = 'space-around' | 'space-between' | 'space-evenly';
-	    type GridSelf = 'inherit' | 'auto' | 'baseline' | 'center' | 'start' | 'end' | 'stretch';
-	    /**
-	     * Component flexbox children styles props
-	     * @name Flex
-	     */
-	    interface FlexProps {
-	        /**
-	         * Sets how a flex item will grow or shrink to fit the
-	         * space available in its flex container.
-	         * @display number
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/flex
-	         */
-	        flex?: Breakpointify<CSS.Properties['flex']>;
-	        /**
-	         * Sets the initial main size of a flex item. It sets the
-	         * size of the content box unless otherwise set with box-sizing.
-	         * @display number | string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/flex-basis
-	         */
-	        flexBasis?: Breakpointify<CSS.Properties['flexBasis']>;
-	        /**
-	         * Sets the flex grow factor of a flex item main size.
-	         * It specifies how much of the remaining space in the
-	         * flex container should be assigned to the item
-	         * (the flex grow factor).
-	         * @display number
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/flex-grow
-	         */
-	        flexGrow?: Breakpointify<CSS.Properties['flexGrow']>;
-	        /**
-	         * Sets the flex shrink factor of a flex item.
-	         * If the size of all flex items is lr than
-	         * the flex container, items shrink to fit
-	         * according to flex-shrink.
-	         * @display number
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/flex-shrink
-	         */
-	        flexShrink?: Breakpointify<CSS.Properties['flexShrink']>;
-	        /**
-	         * Property overrides a grid or flex item's
-	         * align-items value. In Grid, it aligns the
-	         * item inside the grid area. In Flexbox,
-	         * it aligns the item on the cross axis.
-	         * @display inherit | auto | baseline | center | flex-start | flex-end | stretch
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/align-self
-	         */
-	        alignSelf?: Breakpointify<FlexSelf>;
-	        /**
-	         * Sets the way a box is justified inside its
-	         * alignment container along the appropriate axis.
-	         * @display inherit | auto | baseline | center | flex-start | flex-end | stretch
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/justify-self
-	         */
-	        justifySelf?: Breakpointify<FlexSelf>;
-	    }
-	    interface GridContainerProps {
-	        /**
-	         * @display string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/grid-template-columns
-	         */
-	        templateColumns?: Breakpointify<CSS.Properties['gridTemplateColumns']>;
-	        /**
-	         * @display string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/grid-template-rows
-	         */
-	        templateRows?: Breakpointify<CSS.Properties['gridTemplateRows']>;
-	        /**
-	         * @display string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/grid-template-areas
-	         */
-	        templateAreas?: Breakpointify<CSS.Properties['gridTemplateAreas']>;
-	        /**
-	         * @display string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/grid-column-gap
-	         */
-	        columnGap?: Breakpointify<CSS.Properties['gridColumnGap']>;
-	        /**
-	         * @display string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/grid-row-gap
-	         */
-	        rowGap?: Breakpointify<CSS.Properties['gridRowGap']>;
-	        /**
-	         * @display string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/grid-gap
-	         */
-	        gap?: Breakpointify<CSS.Properties['gridGap']>;
-	        /**
-	         * @display string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/grid-auto-columns
-	         */
-	        autoColumns?: Breakpointify<CSS.Properties['gridAutoColumns']>;
-	        /**
-	         * @display string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/grid-auto-rows
-	         */
-	        autoRows?: Breakpointify<CSS.Properties['gridAutoRows']>;
-	        /**
-	         * @display string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/grid-auto-flow
-	         */
-	        autoFlow?: Breakpointify<CSS.Properties['gridAutoFlow']>;
-	        /**
-	         * @display string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/align-items
-	         */
-	        alignItems?: Breakpointify<GridSelf>;
-	        /**
-	         * @display inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/align-content
-	         */
-	        alignContent?: Breakpointify<GridSpace | GridSelf>;
-	        /**
-	         * @display inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/justify-content
-	         */
-	        justifyContent?: Breakpointify<GridSpace | GridSelf>;
-	        /**
-	         * @display inherit|auto|baseline|center|start|end|stretch|space-around|space-between|space-evenly
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/justify-items
-	         */
-	        justifyItems?: Breakpointify<GridSpace | GridSelf>;
-	        inline?: Breakpointify<boolean>;
-	    }
-	    interface FlexboxContainerProps {
-	        /**
-	         * Sets the align-self value on all direct children as a group.
-	         * In Flexbox, it controls the alignment of items on the Cross Axis
-	         * @breakpointify
-	         * @display inherit|auto|baseline|center|flex-start|flex-end|stretch
-	         * @see https://developer.mozilla.org/docs/Web/CSS/align-items
-	         */
-	        alignItems?: Breakpointify<FlexSelf>;
-	        /**
-	         * Sets the distribution of space between and around content
-	         * items along a flexbox's cross-axis or a grid's block axis
-	         * @breakpointify
-	         * @display inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
-	         * @see https://developer.mozilla.org/docs/Web/CSS/align-content
-	         */
-	        alignContent?: Breakpointify<FlexSelf | FlexSpace>;
-	        /**
-	         * The place-content CSS property is a shorthand for
-	         * align-content and justify-content
-	         * @breakpointify
-	         * @display inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
-	         * @see https://developer.mozilla.org/docs/Web/CSS/place-content
-	         */
-	        placeContent?: Breakpointify<FlexSelf | FlexSpace>;
-	        /**
-	         * Defines how the browser distributes space between and around
-	         * content items along the main-axis of a flex container, and
-	         * the inline axis of a grid container.
-	         * @breakpointify
-	         * @display inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
-	         * @see https://developer.mozilla.org/docs/Web/CSS/justify-content
-	         */
-	        justifyContent?: Breakpointify<FlexSelf | FlexSpace>;
-	        /**
-	         * Defines the default justify-self for all items of the box, giving them all
-	         * a default way of justifying each box along the appropriate axis
-	         * @breakpointify
-	         * @display inherit|auto|baseline|center|flex-start|flex-end|stretch|space-around|space-between|space-evenly
-	         * @see https://developer.mozilla.org/docs/Web/CSS/justify-items
-	         */
-	        justifyItems?: Breakpointify<FlexSelf | FlexSpace>;
-	        /**
-	         * Sets how flex items are placed in the flex container defining the
-	         * main axis and the direction (normal or reversed)
-	         * @breakpointify
-	         * @display inherit | initial | revert | unset | column | column-reverse | row | row-reverse
-	         * @see https://developer.mozilla.org/docs/Web/CSS/flex-direction
-	         */
-	        direction?: Breakpointify<FlexDirection>;
-	        /**
-	         * Sets flex-direction style to column
-	         * @display boolean
-	         * @breakpointify
-	         */
-	        column?: Breakpointify<boolean>;
-	        /**
-	         * Sets display style to inline-flex
-	         * @display boolean
-	         * @breakpointify
-	         */
-	        inline?: Breakpointify<boolean>;
-	        /**
-	         * Sets whether flex items are forced onto one line or can wrap onto multiple lines
-	         * @display inherit | initial | revert | unset | nowrap | wrap | wrap-reverse
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/flex-wrap
-	         */
-	        wrap?: Breakpointify<FlexWrap>;
-	        /**
-	         * Shorthand property for flex-direction and flex-wrap styles
-	         * @display column | column-reverse | nowrap | row | row-reverse | wrap | wrap-reverse
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/flex-flow
-	         */
-	        flow?: Breakpointify<CSS.Properties['flexFlow']>;
-	    }
-	    /**
-	     * Component grid children styles props
-	     * @name Grid
-	     */
-	    interface GridProps {
-	        /**
-	         * Specifies a grid item’s start position within
-	         * the grid column by contributing a line, a span,
-	         * or nothing (automatic) to its grid placement.
-	         * This start position defines the block-start edge
-	         * of the grid area.
-	         * @display string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/grid-column-start
-	         */
-	        gridColumnStart?: Breakpointify<CSS.Properties['gridColumnStart']>;
-	        /**
-	         * Specifies a grid item’s end position within the
-	         * grid column by contributing a line, a span, or
-	         * nothing (automatic) to its grid placement, thereby
-	         * specifying the block-end edge of its grid area.
-	         * @display string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/grid-column-end
-	         */
-	        gridColumnEnd?: Breakpointify<CSS.Properties['gridColumnEnd']>;
-	        /**
-	         * Specifies a grid item’s start position within the
-	         * grid row by contributing a line, a span, or nothing
-	         * (automatic) to its grid placement, thereby specifying
-	         * the inline-start edge of its grid area.
-	         * @display string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/grid-row-start
-	         */
-	        gridRowStart?: Breakpointify<CSS.Properties['gridRowStart']>;
-	        /**
-	         * Specifies a grid item’s end position within the grid
-	         * row by contributing a line, a span, or nothing
-	         * (automatic) to its grid placement, thereby
-	         * specifying the inline-end edge of its grid area.
-	         * @display string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/grid-row-end
-	         */
-	        gridRowEnd?: Breakpointify<CSS.Properties['gridRowEnd']>;
-	        /**
-	         * Shorthand property for grid-column-start and
-	         * grid-column-end specifying a grid item's size
-	         * and location within the grid column by contributing
-	         * a line, a span, or nothing (automatic) to its grid
-	         * placement, thereby specifying the inline-start and
-	         * inline-end edge of its grid area.
-	         * @display string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/grid-column
-	         */
-	        gridColumn?: Breakpointify<CSS.Properties['gridColumn']>;
-	        /**
-	         * Shorthand property for grid-row-start and grid-row-end
-	         * specifying a grid item’s size and location within the
-	         * grid row by contributing a line, a span, or nothing
-	         * (automatic) to its grid placement, thereby specifying
-	         * the inline-start and inline-end edge of its grid area.
-	         * @display string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/grid-row
-	         */
-	        gridRow?: Breakpointify<CSS.Properties['gridRow']>;
-	        /**
-	         * Shorthand property for grid-row-start, grid-column-start,
-	         * grid-row-end and grid-column-end, specifying a grid item’s
-	         * size and location within the grid by contributing a line, a
-	         * span, or nothing (automatic) to its grid placement, thereby
-	         * specifying the edges of its grid area.
-	         * @display string
-	         * @breakpointify
-	         * @see https://developer.mozilla.org/docs/Web/CSS/grid-area
-	         */
-	        gridArea?: Breakpointify<CSS.Properties['gridArea']>;
-	        /**
-	         * Shorthand property sets both the align-self and justify-self
-	         * properties. The first value is the align-self property value,
-	         * the second the justify-self one. If the second value is not
-	         * present, the first value is also used for it.
-	         * @display inherit | stretch | center | flex-end | flex-start | baseline | auto
-	         * @breakpointify
-	         */
-	        placeSelf?: Breakpointify<FlexSelf>;
-	    }
-	    /**
-	     * Clipboard Events
-	     * @name ClipboardEvents
-	     */
-	    interface ClipboardEventProps<T> {
-	        /**
-	         * @display function
-	         */
-	        onCopy?: React.ClipboardEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onCopyCapture?: React.ClipboardEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onCut?: React.ClipboardEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onCutCapture?: React.ClipboardEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onPaste?: React.ClipboardEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onPasteCapture?: React.ClipboardEventHandler<T>;
-	    }
-	    /**
-	     * Composition events
-	     * @name CompositionEvents
-	     */
-	    interface CompositionEventProps<T> {
-	        /**
-	         * @display function
-	         */
-	        onCompositionEnd?: React.CompositionEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onCompositionEndCapture?: React.CompositionEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onCompositionStart?: React.CompositionEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onCompositionStartCapture?: React.CompositionEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onCompositionUpdate?: React.CompositionEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onCompositionUpdateCapture?: React.CompositionEventHandler<T>;
-	    }
-	    /**
-	     * Focus events
-	     * @name FocusEvents
-	     */
-	    interface FocusEventProps<T> {
-	        /**
-	         * @display function
-	         */
-	        onFocus?: React.FocusEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onFocusCapture?: React.FocusEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onBlur?: React.FocusEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onBlurCapture?: React.FocusEventHandler<T>;
-	    }
-	    /**
-	     * Form events
-	     * @name FormEvents
-	     */
-	    interface FormEventProps<T> {
-	        /**
-	         * @display function
-	         */
-	        onChange?: React.FormEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onChangeCapture?: React.FormEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onBeforeInput?: React.FormEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onBeforeInputCapture?: React.FormEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onInput?: React.FormEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onInputCapture?: React.FormEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onReset?: React.FormEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onResetCapture?: React.FormEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onSubmit?: React.FormEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onSubmitCapture?: React.FormEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onInvalid?: React.FormEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onInvalidCapture?: React.FormEventHandler<T>;
-	    }
-	    /**
-	     * Image events
-	     * @name ImageEvents
-	     */
-	    interface ImageEventProps<T> {
-	        /**
-	         * @display function
-	         */
-	        onLoad?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onLoadCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onError?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onErrorCapture?: React.ReactEventHandler<T>;
-	    }
-	    /**
-	     * Keyboard events
-	     * @name KeyboardEvents
-	     */
-	    interface KeyboardEventProps<T> {
-	        /**
-	         * @display function
-	         */
-	        onKeyDown?: React.KeyboardEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onKeyDownCapture?: React.KeyboardEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onKeyPress?: React.KeyboardEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onKeyPressCapture?: React.KeyboardEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onKeyUp?: React.KeyboardEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onKeyUpCapture?: React.KeyboardEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onEnter?: React.KeyboardEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onEsc?: React.KeyboardEventHandler<T>;
-	    }
-	    /**
-	     * Media events
-	     * @name MediaEvents
-	     */
-	    interface MediaEventProps<T> {
-	        /**
-	         * @display function
-	         */
-	        onAbort?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onAbortCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onCanPlay?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onCanPlayCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onCanPlayThrough?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onCanPlayThroughCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onDurationChange?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onDurationChangeCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onEmptied?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onEmptiedCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onEncrypted?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onEncryptedCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onEnded?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onEndedCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onLoadedData?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onLoadedDataCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onLoadedMetadata?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onLoadedMetadataCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onLoadStart?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onLoadStartCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onPause?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onPauseCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onPlay?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onPlayCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onPlaying?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onPlayingCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onProgress?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onProgressCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onRateChange?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onRateChangeCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onSeeked?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onSeekedCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onSeeking?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onSeekingCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onStalled?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onStalledCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onSuspend?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onSuspendCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onTimeUpdate?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onTimeUpdateCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onVolumeChange?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onVolumeChangeCapture?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onWaiting?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onWaitingCapture?: React.ReactEventHandler<T>;
-	    }
-	    /**
-	     * Mouse event
-	     * @name MouseEvents
-	     */
-	    interface MouseEventProps<T> {
-	        /**
-	         * @display function
-	         */
-	        onAuxClick?: React.MouseEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onAuxClickCapture?: React.MouseEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onClick?: React.MouseEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onClickCapture?: React.MouseEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onContextMenu?: React.MouseEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onContextMenuCapture?: React.MouseEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onDoubleClick?: React.MouseEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onDoubleClickCapture?: React.MouseEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onDrag?: React.DragEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onDragCapture?: React.DragEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onDragEnd?: React.DragEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onDragEndCapture?: React.DragEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onDragEnter?: React.DragEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onDragEnterCapture?: React.DragEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onDragExit?: React.DragEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onDragExitCapture?: React.DragEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onDragLeave?: React.DragEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onDragLeaveCapture?: React.DragEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onDragOver?: React.DragEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onDragOverCapture?: React.DragEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onDragStart?: React.DragEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onDragStartCapture?: React.DragEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onDrop?: React.DragEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onDropCapture?: React.DragEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onMouseDown?: React.MouseEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onMouseDownCapture?: React.MouseEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onMouseEnter?: React.MouseEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onMouseLeave?: React.MouseEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onMouseMove?: React.MouseEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onMouseMoveCapture?: React.MouseEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onMouseOut?: React.MouseEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onMouseOutCapture?: React.MouseEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onMouseOver?: React.MouseEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onMouseOverCapture?: React.MouseEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onMouseUp?: React.MouseEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onMouseUpCapture?: React.MouseEventHandler<T>;
-	    }
-	    /**
-	     * Selection events
-	     * @name SelectionEvents
-	     */
-	    interface SelectionEventProps<T> {
-	        /**
-	         * @display function
-	         */
-	        onSelect?: React.ReactEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onSelectCapture?: React.ReactEventHandler<T>;
-	    }
-	    /**
-	     * Touch events
-	     * @name TouchEvents
-	     */
-	    interface TouchEventProps<T> {
-	        /**
-	         * @display function
-	         */
-	        onTouchCancel?: React.TouchEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onTouchCancelCapture?: React.TouchEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onTouchEnd?: React.TouchEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onTouchEndCapture?: React.TouchEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onTouchMove?: React.TouchEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onTouchMoveCapture?: React.TouchEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onTouchStart?: React.TouchEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onTouchStartCapture?: React.TouchEventHandler<T>;
-	    }
-	    /**
-	     * Pointer events
-	     * @name PointerEvents
-	     */
-	    interface PointerEventProps<T> {
-	        /**
-	         * @display function
-	         */
-	        onPointerDown?: React.PointerEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onPointerDownCapture?: React.PointerEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onPointerMove?: React.PointerEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onPointerMoveCapture?: React.PointerEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onPointerUp?: React.PointerEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onPointerUpCapture?: React.PointerEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onPointerCancel?: React.PointerEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onPointerCancelCapture?: React.PointerEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onPointerEnter?: React.PointerEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onPointerLeave?: React.PointerEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onPointerOver?: React.PointerEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onPointerOverCapture?: React.PointerEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onPointerOut?: React.PointerEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onPointerOutCapture?: React.PointerEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onGotPointerCapture?: React.PointerEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onGotPointerCaptureCapture?: React.PointerEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onLostPointerCapture?: React.PointerEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onLostPointerCaptureCapture?: React.PointerEventHandler<T>;
-	    }
-	    /**
-	     * Scroll events
-	     * @name ScrollEvents
-	     */
-	    interface ScrollEventProps<T> {
-	        /**
-	         * @display function
-	         */
-	        onScroll?: React.UIEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onScrollCapture?: React.UIEventHandler<T>;
-	    }
-	    /**
-	     * Wheel events
-	     * @name WheelEvents
-	     */
-	    interface WheelEventProps<T> {
-	        /**
-	         * @display function
-	         */
-	        onWheel?: React.WheelEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onWheelCapture?: React.WheelEventHandler<T>;
-	    }
-	    /**
-	     * Animation events
-	     * @name AnimationEvents
-	     */
-	    interface AnimationEventProps<T> {
-	        /**
-	         * @display function
-	         */
-	        onAnimationStart?: React.AnimationEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onAnimationStartCapture?: React.AnimationEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onAnimationEnd?: React.AnimationEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onAnimationEndCapture?: React.AnimationEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onAnimationIteration?: React.AnimationEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onAnimationIterationCapture?: React.AnimationEventHandler<T>;
-	    }
-	    /**
-	     * Transition events
-	     * @name TransitionEvents
-	     */
-	    interface TransitionEventProps<T> {
-	        /**
-	         * @display function
-	         */
-	        onTransitionEnd?: React.TransitionEventHandler<T>;
-	        /**
-	         * @display function
-	         */
-	        onTransitionEndCapture?: React.TransitionEventHandler<T>;
-	    }
-	} module 'csstype' {
-	    interface Properties {
-	        display?: 'block' | 'inline' | 'inline-block' | 'inline-table' | 'list-item' | 'none' | 'run-in' | 'table' | 'table-caption' | 'table-cell' | 'table-column-group' | 'table-column' | 'table-footer-group' | 'table-header-group' | 'table-row' | 'table-row-group' | 'flex' | 'grid';
-	        overflow?: 'auto' | 'hidden' | 'scroll' | 'visible' | 'inherit';
-	    }
-	}
-	export type DeepPartial<T> = {
-	    [P in keyof T]?: T[P] extends Array<infer U> ? Array<DeepPartial<U>> : T[P] extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : DeepPartial<T[P]>;
-	};
-	export default SystemTypes;
-
-}
-declare module 'components/Provider' {
+declare module 'Provider' {
 	import React from 'react';
 	import { Options } from '@emotion/cache';
-	import { SerializedStyles } from '@emotion/react';
-	import SystemTypes from 'types';
 	interface ProviderProps {
-	    theme?: SystemTypes.Theme;
-	    global?: SerializedStyles;
+	    theme?: Stage.Theme;
+	    global?: Stage.CSSInterpolation;
 	    cache?: Options;
 	    children?: React.ReactNode;
 	}
-	export const SystemContext: React.Context<SystemTypes.Theme>; const Provider: <T extends ProviderProps>(props: T) => JSX.Element;
+	export const StageContext: React.Context<Stage.Theme>; const Provider: <T extends ProviderProps>(props: T) => JSX.Element;
 	export default Provider;
 
 }
-declare module 'hooks/useTheme' {
-	 const _default: () => import("../types").default.Theme;
-	export default _default;
+declare module 'node_modules/@types/color' {
+	// Type definitions for color 3.0
+	// Project: https://github.com/qix-/color#readme
+	// Definitions by: Junyoung Clare Jang <https://github.com/Airlun>
+	//                 James W. Lane <https://github.com/jameswlane>
+	//                 Adam Haglund <https://github.com/BeeeQueue>
+	// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
+	// TypeScript Version: 3.7
 
-}
-declare module 'utils/attachProps/types' {
-	import CSS from 'csstype';
-	import SystemTypes from 'types'; namespace SystemPropsTypes {
-	    type StyleResolverObject = {
-	        [key: string]: [string, string, StyleResolver?];
-	    };
-	    type StyleResolverContext = {
-	        padding: [string, string, string, string];
-	        margin: [string, string, string, string];
-	    };
-	    type StyleResolver = (resolverParams: {
-	        propValue: any;
-	        propName: string;
-	        styleName: string;
-	        theme: SystemTypes.Theme;
-	        ctx: StyleResolverContext;
-	    }) => string | Record<string, string> | void;
-	    interface StyleProps extends SystemTypes.ColorProps, SystemTypes.BorderProps, SystemTypes.PaddingProps, SystemTypes.MarginProps, SystemTypes.LayoutProps, SystemTypes.FlexProps, SystemTypes.GridProps {
-	        [key: string]: unknown;
-	    }
-	    interface InjectedStyles {
-	        event: ColorStyles;
-	        color: ColorStyles;
-	        border: BorderStyles;
-	        padding: PaddingStyles;
-	        margin: MarginStyles;
-	        layout: LayoutStyles;
-	        flex: FlexStyles;
-	        grid: GridStyles;
-	        flow: MarginStyles & FlexStyles & GridStyles;
-	        self: PaddingStyles & LayoutStyles & ColorStyles & BorderStyles;
-	        all: MarginStyles & FlexStyles & GridStyles & PaddingStyles & LayoutStyles & ColorStyles & BorderStyles;
-	    }
-	    type InjectedStylesNames = keyof InjectedStyles;
-	    type ColorStyles = {
-	        background: CSS.Properties['background'];
-	        color: CSS.Properties['color'];
-	    };
-	    type BorderStyles = {
-	        borderWidth: CSS.Properties['borderWidth'];
-	        borderStyle: CSS.Properties['borderStyle'];
-	        borderColor: CSS.Properties['borderColor'];
-	        borderRadius: CSS.Properties['borderRadius'];
-	    };
-	    type PaddingStyles = {
-	        padding: CSS.Properties['padding'];
-	    };
-	    type MarginStyles = {
-	        margin: CSS.Properties['margin'];
-	    };
-	    type LayoutStyles = {
-	        display: CSS.Properties['display'];
-	        visibility: CSS.Properties['visibility'];
-	        width: CSS.Properties['width'];
-	        height: CSS.Properties['height'];
-	        transition: CSS.Properties['transition'];
-	    };
-	    type FlexStyles = {
-	        flex: CSS.Properties['flex'];
-	        flexBasis: CSS.Properties['flexBasis'];
-	        flexGrow: CSS.Properties['flexGrow'];
-	        flexShrink: CSS.Properties['flexShrink'];
-	        alignSelf: SystemTypes.FlexSelf;
-	        justifySelf: SystemTypes.FlexSelf;
-	        placeSelf: SystemTypes.FlexSelf;
-	    };
-	    type GridStyles = {
-	        gridColumnStart: CSS.Properties['gridColumnStart'];
-	        gridColumnEnd: CSS.Properties['gridColumnEnd'];
-	        gridRowStart: CSS.Properties['gridRowStart'];
-	        gridRowEnd: CSS.Properties['gridRowEnd'];
-	        gridColumn: CSS.Properties['gridColumn'];
-	        gridRow: CSS.Properties['gridRow'];
-	        gridArea: CSS.Properties['gridArea'];
-	        placeSelf: CSS.Properties['placeSelf'];
-	    };
+	import convert = require('color-convert');
+
+	type ColorParam = Color | string | ArrayLike<number> | number | { [key: string]: any };
+
+	interface Color<T extends ColorParam = ColorParam> {
+	    toString(): string;
+	    toJSON(): Color<T>;
+	    string(places?: number): string;
+	    percentString(places?: number): string;
+	    array(): number[];
+	    object(): { alpha?: number } & { [key: string]: number };
+	    unitArray(): number[];
+	    unitObject(): { r: number, g: number, b: number, alpha?: number };
+	    round(places?: number): Color;
+	    alpha(): number;
+	    alpha(val: number): Color;
+	    red(): number;
+	    red(val: number): Color;
+	    green(): number;
+	    green(val: number): Color;
+	    blue(): number;
+	    blue(val: number): Color;
+	    hue(): number;
+	    hue(val: number): Color;
+	    saturationl(): number;
+	    saturationl(val: number): Color;
+	    lightness(): number;
+	    lightness(val: number): Color;
+	    saturationv(): number;
+	    saturationv(val: number): Color;
+	    value(): number;
+	    value(val: number): Color;
+	    chroma(): number;
+	    chroma(val: number): Color;
+	    gray(): number;
+	    gray(val: number): Color;
+	    white(): number;
+	    white(val: number): Color;
+	    wblack(): number;
+	    wblack(val: number): Color;
+	    cyan(): number;
+	    cyan(val: number): Color;
+	    magenta(): number;
+	    magenta(val: number): Color;
+	    yellow(): number;
+	    yellow(val: number): Color;
+	    black(): number;
+	    black(val: number): Color;
+	    x(): number;
+	    x(val: number): Color;
+	    y(): number;
+	    y(val: number): Color;
+	    z(): number;
+	    z(val: number): Color;
+	    l(): number;
+	    l(val: number): Color;
+	    a(): number;
+	    a(val: number): Color;
+	    b(): number;
+	    b(val: number): Color;
+	    keyword(): string;
+	    keyword<V extends string>(val: V): Color<V>;
+	    hex(): string;
+	    hex<V extends string>(val: V): Color<V>;
+	    rgbNumber(): number;
+	    luminosity(): number;
+	    contrast(color2: Color): number;
+	    level(color2: Color): 'AAA' | 'AA' | '';
+	    isDark(): boolean;
+	    isLight(): boolean;
+	    negate(): Color;
+	    lighten(ratio: number): Color;
+	    darken(ratio: number): Color;
+	    saturate(ratio: number): Color;
+	    desaturate(ratio: number): Color;
+	    whiten(ratio: number): Color;
+	    blacken(ratio: number): Color;
+	    grayscale(): Color;
+	    fade(ratio: number): Color;
+	    opaquer(ratio: number): Color;
+	    rotate(degrees: number): Color;
+	    mix(mixinColor: Color, weight?: number): Color;
+
+	    rgb(...args: number[]): Color;
+	    hsl(...args: number[]): Color;
+	    hsv(...args: number[]): Color;
+	    hwb(...args: number[]): Color;
+	    cmyk(...args: number[]): Color;
+	    xyz(...args: number[]): Color;
+	    lab(...args: number[]): Color;
+	    lch(...args: number[]): Color;
+	    ansi16(...args: number[]): Color;
+	    ansi256(...args: number[]): Color;
+	    hcg(...args: number[]): Color;
+	    apple(...args: number[]): Color;
 	}
-	export default SystemPropsTypes;
+
+	interface ColorConstructor {
+	    <T extends ColorParam>(obj?: T, model?: keyof (typeof convert)): Color<T>;
+	    new<T extends ColorParam>(obj?: T, model?: keyof (typeof convert)): Color<T>;
+	    rgb(...val: number[]): Color;
+	    rgb(color: ColorParam): Color;
+	    hsl(...val: number[]): Color;
+	    hsl(color: ColorParam): Color;
+	    hsv(...val: number[]): Color;
+	    hsv(color: ColorParam): Color;
+	    hwb(...val: number[]): Color;
+	    hwb(color: ColorParam): Color;
+	    cmyk(...val: number[]): Color;
+	    cmyk(color: ColorParam): Color;
+	    xyz(...val: number[]): Color;
+	    xyz(color: ColorParam): Color;
+	    lab(...val: number[]): Color;
+	    lab(color: ColorParam): Color;
+	    lch(...val: number[]): Color;
+	    lch(color: ColorParam): Color;
+	    ansi16(...val: number[]): Color;
+	    ansi16(color: ColorParam): Color;
+	    ansi256(...val: number[]): Color;
+	    ansi256(color: ColorParam): Color;
+	    hcg(...val: number[]): Color;
+	    hcg(color: ColorParam): Color;
+	    apple(...val: number[]): Color;
+	    apple(color: ColorParam): Color;
+	} const Color: ColorConstructor;
+
+	export = Color;
 
 }
-declare module 'utils/attachProps/attribute' {
-	import SystemTypes from 'types';
-	import { Options } from 'hooks/useComponent'; const createAttributes: <Styles, Props extends SystemTypes.AllProps<unknown, Styles>>(props: Props, setFocus: React.Dispatch<React.SetStateAction<boolean>>, options: Options<Styles, Props>) => {
-	    attributes: SystemTypes.AttributeProps;
-	    events: {
-	        all: any;
-	        form: Pick<Props, keyof SystemTypes.FormEventProps<unknown>>;
-	        focus: Pick<Props, keyof SystemTypes.FocusEventProps<unknown>>;
-	        image: Pick<Props, keyof SystemTypes.ImageEventProps<unknown>>;
-	        media: Pick<Props, keyof SystemTypes.MediaEventProps<unknown>>;
-	        mouse: Pick<Props, keyof SystemTypes.MouseEventProps<unknown>>;
-	        touch: Pick<Props, keyof SystemTypes.TouchEventProps<unknown>>;
-	        wheel: Pick<Props, keyof SystemTypes.WheelEventProps<unknown>>;
-	        pointer: Pick<Props, keyof SystemTypes.PointerEventProps<unknown>>;
-	        keyboard: Pick<Props, keyof SystemTypes.KeyboardEventProps<unknown>>;
-	        selection: Pick<Props, keyof SystemTypes.SelectionEventProps<unknown>>;
-	        animation: Pick<Props, keyof SystemTypes.AnimationEventProps<unknown>>;
-	        clipboard: Pick<Props, keyof SystemTypes.ClipboardEventProps<unknown>>;
-	        transition: Pick<Props, keyof SystemTypes.TransitionEventProps<unknown>>;
-	        composition: Pick<Props, keyof SystemTypes.CompositionEventProps<unknown>>;
-	        scroll: Pick<Props, keyof SystemTypes.ScrollEventProps<unknown>>;
-	        data: Pick<Props, never>;
-	    };
-	};
-	export default createAttributes;
-
-}
-declare module 'utils/attachProps/style/resolvers/event' {
-	import SystemPropsTypes from 'utils/attachProps/types'; const resolver: SystemPropsTypes.StyleResolver;
-	export default resolver;
-
-}
-declare module 'utils/colorProp' {
-	import SystemTypes from 'types'; const _default: (theme: SystemTypes.Theme, prop?: SystemTypes.ColorProp | undefined) => any;
-	export default _default;
-
-}
-declare module 'utils/attachProps/style/resolvers/color' {
-	import SystemPropsTypes from 'utils/attachProps/types'; const resolver: SystemPropsTypes.StyleResolver;
-	export default resolver;
-
-}
-declare module 'utils/attachProps/style/resolvers/borderRadius' {
-	import SystemPropsTypes from 'utils/attachProps/types'; const resolver: SystemPropsTypes.StyleResolver;
-	export default resolver;
-
-}
-declare module 'utils/attachProps/style/resolvers/paddingMargin' {
-	import SystemPropsTypes from 'utils/attachProps/types'; const resolver: SystemPropsTypes.StyleResolver;
-	export default resolver;
-
-}
-declare module 'utils/mergeObjects' {
-	export default function mergeObjects(target?: Object, src?: Object, modify?: (value: any) => any): Object;
-
-}
-declare module 'utils/attachProps/style' {
-	import SystemTypes, { EmotionStyles } from '@stage-ui/system/types'; const createPropStyles: <Props, StyleProps>(props: Props, theme: SystemTypes.Theme, styleProps: StyleProps) => Record<keyof StyleProps, EmotionStyles>;
-	export default createPropStyles;
-
-}
-declare module 'utils/attachProps' {
-	import { Options } from 'hooks/useComponent';
-	import SystemTypes from 'types'; type SetFocus = React.Dispatch<React.SetStateAction<boolean>>; const attachProps: <Styles, Props>(props: Props, theme: SystemTypes.Theme, setFocus: SetFocus, options: Options<Styles, Props>) => {
-	    attributes: SystemTypes.AttributeProps;
-	    events: {
-	        all: any;
-	        form: Pick<Props, keyof SystemTypes.FormEventProps<unknown>>;
-	        focus: Pick<Props, keyof SystemTypes.FocusEventProps<unknown>>;
-	        image: Pick<Props, keyof SystemTypes.ImageEventProps<unknown>>;
-	        media: Pick<Props, keyof SystemTypes.MediaEventProps<unknown>>;
-	        mouse: Pick<Props, keyof SystemTypes.MouseEventProps<unknown>>;
-	        touch: Pick<Props, keyof SystemTypes.TouchEventProps<unknown>>;
-	        wheel: Pick<Props, keyof SystemTypes.WheelEventProps<unknown>>;
-	        pointer: Pick<Props, keyof SystemTypes.PointerEventProps<unknown>>;
-	        keyboard: Pick<Props, keyof SystemTypes.KeyboardEventProps<unknown>>;
-	        selection: Pick<Props, keyof SystemTypes.SelectionEventProps<unknown>>;
-	        animation: Pick<Props, keyof SystemTypes.AnimationEventProps<unknown>>;
-	        clipboard: Pick<Props, keyof SystemTypes.ClipboardEventProps<unknown>>;
-	        transition: Pick<Props, keyof SystemTypes.TransitionEventProps<unknown>>;
-	        composition: Pick<Props, keyof SystemTypes.CompositionEventProps<unknown>>;
-	        scroll: Pick<Props, keyof SystemTypes.ScrollEventProps<unknown>>;
-	        data: Pick<Props, never>;
-	    };
-	    propStyles: {};
-	};
-	export default attachProps;
-
-}
-declare module 'utils/createStyles' {
-	import SystemTypes, { EmotionStyles } from 'types'; const createComponentStyles: <Styles, Props extends {
-	    styles?: Partial<SystemTypes.Styles<Styles>> | undefined;
-	}>(styles: SystemTypes.Styles<Styles>, propStyles: Partial<Record<keyof Styles, EmotionStyles>>, styleLabel: string, props: Props, overrideName: string, overrides: SystemTypes.Theme['overrides']) => SystemTypes.ComponentStyles<Styles>;
-	export default createComponentStyles;
-
-}
-declare module 'hooks/useComponent' {
-	import SystemTypes from 'types';
-	import SystemPropsTypes from 'utils/attachProps/types';
-	export interface Options<Styles, Props> {
-	    props: Props;
-	    styles: SystemTypes.Styles<Styles> | SystemTypes.CreateStyles<Styles, Props>;
-	    styleProps?: Partial<Record<keyof Styles, (keyof SystemPropsTypes.InjectedStyles)[]>>;
-	    styleLabel?: string;
-	    focus?: {
-	        applyDecoration?: boolean;
-	        ignoreMouse?: boolean;
-	    };
-	    theme?: SystemTypes.Theme;
-	} const useComponent: <Styles, Props, Params>(overrideName: string, options: Options<Styles, Props>, params?: Params | undefined) => {
-	    cs: SystemTypes.ComponentStyles<Styles>;
-	    attributes: SystemTypes.AttributeProps;
-	    events: {
-	        all: any;
-	        form: Pick<Props, keyof SystemTypes.FormEventProps<unknown>>;
-	        focus: Pick<Props, keyof SystemTypes.FocusEventProps<unknown>>;
-	        image: Pick<Props, keyof SystemTypes.ImageEventProps<unknown>>;
-	        media: Pick<Props, keyof SystemTypes.MediaEventProps<unknown>>;
-	        mouse: Pick<Props, keyof SystemTypes.MouseEventProps<unknown>>;
-	        touch: Pick<Props, keyof SystemTypes.TouchEventProps<unknown>>;
-	        wheel: Pick<Props, keyof SystemTypes.WheelEventProps<unknown>>;
-	        pointer: Pick<Props, keyof SystemTypes.PointerEventProps<unknown>>;
-	        keyboard: Pick<Props, keyof SystemTypes.KeyboardEventProps<unknown>>;
-	        selection: Pick<Props, keyof SystemTypes.SelectionEventProps<unknown>>;
-	        animation: Pick<Props, keyof SystemTypes.AnimationEventProps<unknown>>;
-	        clipboard: Pick<Props, keyof SystemTypes.ClipboardEventProps<unknown>>;
-	        transition: Pick<Props, keyof SystemTypes.TransitionEventProps<unknown>>;
-	        composition: Pick<Props, keyof SystemTypes.CompositionEventProps<unknown>>;
-	        scroll: Pick<Props, keyof SystemTypes.ScrollEventProps<unknown>>;
-	        data: Pick<Props, never>;
-	    };
-	    focus: boolean;
-	    theme: SystemTypes.Theme;
-	};
-	export default useComponent;
-
-}
-declare module 'hooks/useBreakpoints' {
-	 const useBreakpoints: <T>(values: T[]) => T | null;
-	export default useBreakpoints;
+declare module 'props/color' {
+	import Color from 'color';
+	/**
+	 * @display Stage.Color
+	 * @link /props#color
+	 */
+	export type ColorProp = ((colors: Stage.Theme['color']) => Color | string) | (keyof Omit<Stage.Theme['color'], 'palette'> & keyof Stage.Theme['color']['palette']) | Color | (string & {
+	    T?: string;
+	}); function colorProp<V extends ColorProp | undefined>(value: V, theme: Stage.Theme): V extends undefined ? undefined : Stage.Color;
+	export default colorProp;
 
 }
 declare module 'utils/createID' {
@@ -1750,27 +166,1466 @@ declare module 'utils/createID' {
 	export default _default;
 
 }
+declare module 'utils/mergeObjects' {
+	export default function mergeObjects<Target extends Record<string, any>, Source extends Record<string, any>, Resolver extends (value: any) => any>(target: Target, src: Source, resolver?: Resolver): Target & Source;
+
+}
+declare module 'utils/isFunction' {
+	export default function isFunction<V = Function>(a: any): a is V;
+
+}
+declare module 'utils/convertColors' {
+	 function convertColors<Colors extends Object>(colors: Colors): Record<keyof Colors, Stage.Color>;
+	export default convertColors;
+
+}
 declare module 'utils/createTheme' {
-	import Types from 'types'; const createTheme: (theme: Types.SourceTheme) => Types.Theme;
+	export interface ThemeDefiniton {
+	    main: Omit<Stage.ThemeMain, 'color' | 'breakpoints'> & {
+	        color: Omit<Stage.ThemeMain<Stage.ColorDefinition>['color'], 'palette'> & {
+	            palette?: Record<string, Stage.ColorDefinition>;
+	        };
+	        breakpoints?: string[];
+	    };
+	    assets: ((main: Stage.ThemeMain) => Stage.ThemeAssets) | Stage.ThemeAssets;
+	    overrides?: ((main: Stage.ThemeMain, assets: Stage.ThemeAssets) => Stage.ThemeOverrides) | Stage.ThemeOverrides;
+	}
+	export interface ReplaceTheme {
+	    main?: DeepPartial<ThemeDefiniton['main']>;
+	    assets?: ((main: Stage.ThemeMain) => DeepPartial<Stage.ThemeAssets>) | DeepPartial<Stage.ThemeAssets>;
+	    overrides?: ((main: Stage.ThemeMain, assets: Stage.ThemeAssets) => Stage.ThemeOverrides) | Stage.ThemeOverrides;
+	}
+	export type DeepPartial<T> = {
+	    [P in keyof T]?: T[P] extends Array<infer U> ? Array<DeepPartial<U>> : T[P] extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : DeepPartial<T[P]>;
+	}; const createTheme: (themeDefinition: ThemeDefiniton) => Stage.Theme;
 	export default createTheme;
 
 }
-declare module '@stage-ui/system' {
-	export { default as Provider } from 'components/Provider';
-	export { default as useTheme } from 'hooks/useTheme';
-	export { default as useComponent } from 'hooks/useComponent';
-	export { default as useBreakpoints } from 'hooks/useBreakpoints';
-	export { default as colorProp } from 'utils/colorProp';
-	export { default as createTheme } from 'utils/createTheme';
-
-}
-declare module 'utils/variant' {
-	 const _default: <T>(prop: any, variant: { [K in T]?: any; }) => any;
+declare module 'hooks/useTheme' {
+	 const _default: () => Stage.Theme;
 	export default _default;
 
 }
-declare module 'utils/attachProps/style/resolvers/boxShadow' {
-	import SystemPropsTypes from 'utils/attachProps/types'; const resolver: SystemPropsTypes.StyleResolver;
-	export default resolver;
+declare module 'props/breakpoint' {
+	export type BreakpointProp<T> = T[] | T; function breakpointProp<P = string | number | undefined>(value: P | P[], theme: Stage.Theme, resolver: (currentValue: P, theme: Stage.Theme) => Stage.CSSInterpolation): Stage.CSSInterpolation;
+	export default breakpointProp;
+
+}
+declare module 'props/space' {
+	export type SpaceProp = Stage.Sizes | (string & {
+	    T?: string;
+	}) | number; function spaceProp(value: string | number, theme: Stage.Theme): string;
+	export default spaceProp;
+
+}
+declare module 'props/size' {
+	export const sizes: string[]; function sizeProp<T, V>(value: V, spacingResolvers: Record<Stage.Sizes, T>, otherResolver: (value: V) => T): T;
+	export default sizeProp;
+
+}
+declare module 'props' {
+	import { ClassesSchemaDefinition, ComponentData } from 'hooks/useSystem';
+	export type Resolver = <Props, ClassesSchema extends ClassesSchemaDefinition, Element extends HTMLElement>(props: Record<string, any>, componentData: ComponentData<Props, ClassesSchema, Element>, theme: Stage.Theme) => void; const resolvers: Record<string, Resolver>;
+	export default resolvers;
+
+}
+declare module 'utils/createVariant' {
+	import { ClassStateDefinition } from 'hooks/useSystem'; type ObjectVariant<States extends string> = Partial<Record<States, Stage.CSSInterpolation | Stage.CSSInterpolation[]>>; type BooleanVariant = Stage.CSSInterpolation | Stage.CSSInterpolation[];
+	export type Variant<ClassState extends Exclude<ClassStateDefinition, void>> = (variants: {
+	    [State in keyof ClassState]?: ClassState[State] extends boolean ? BooleanVariant : ObjectVariant<Exclude<ClassState[State], boolean | undefined>>;
+	}) => Stage.CSSInterpolation;
+	export default function createVariant<ClassState extends Exclude<ClassStateDefinition, void>>(state: ClassState): Variant<ClassState>;
+	export {};
+
+}
+declare module 'props/overrides' {
+	import { ClassesSchemaDefinition, OverridesClassesDefinition, ResolvedStyleProps } from 'hooks/useSystem';
+	export type OverridesProp<ClassesSchema extends ClassesSchemaDefinition> = ((theme: Stage.Theme, styleProps: ResolvedStyleProps) => OverridesClassesDefinition<ClassesSchema>) | OverridesClassesDefinition<ClassesSchema>; function overridesProp<ClassesSchema extends ClassesSchemaDefinition>(prop: OverridesProp<ClassesSchema> | undefined, theme: Stage.Theme, styleProps: ResolvedStyleProps): OverridesClassesDefinition<ClassesSchema>;
+	export default overridesProp;
+
+}
+declare module 'hooks/useSystem' {
+	import { Variant } from 'utils/createVariant';
+	import { AllEventProps, AttributeProps, CoreProps } from 'props/types';
+	export interface Options {
+	    focus?: 'always' | 'tabOnly' | 'never';
+	    label?: string;
+	    theme?: Stage.Theme;
+	}
+	export type ClassStateDefinition = Record<string, string | boolean | undefined> | void;
+	export type ClassesSchemaDefinition = Record<string, ClassStateDefinition>;
+	export type FunctionClassDefinition<ClassState extends Exclude<ClassStateDefinition, void>> = (state: ClassState, variant: Variant<ClassState>) => Stage.CSSInterpolation;
+	export type OverridesClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = {
+	    [ClassName in keyof ClassesSchema]?: ClassesSchema[ClassName] extends void ? Stage.CSSInterpolation : FunctionClassDefinition<Exclude<ClassesSchema[ClassName], void>>;
+	};
+	export type ThemeOverrides<Props, ClassesSchema extends ClassesSchemaDefinition> = ((props: Props, styleProps: ResolvedStyleProps) => OverridesClassesDefinition<ClassesSchema>) | OverridesClassesDefinition<ClassesSchema>;
+	export type ClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = {
+	    [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends void ? Stage.CSSInterpolation : FunctionClassDefinition<Exclude<ClassesSchema[ClassName], void>>;
+	};
+	export type FunctionClass<ClassSchema extends ClassStateDefinition> = (state: ClassSchema) => Stage.CSSInterpolation;
+	export type Classes<ClassesSchema extends ClassesSchemaDefinition> = {
+	    [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends void ? Stage.CSSInterpolation : FunctionClass<ClassesSchema[ClassName]>;
+	};
+	export type CreateClasses<ClassesSchema extends ClassesSchemaDefinition, Props> = (theme: Stage.Theme, props: Props, styleProps: ResolvedStyleProps) => ClassesDefinition<ClassesSchema>;
+	export type ResolvedStyleProps = {
+	    all: Stage.CSSInterpolation[];
+	    container: Stage.CSSInterpolation[];
+	    content: Stage.CSSInterpolation[];
+	    style: Stage.CSSInterpolation[];
+	    margin: Stage.CSSInterpolation[];
+	    padding: Stage.CSSInterpolation[];
+	    color: Stage.CSSInterpolation[];
+	    border: Stage.CSSInterpolation[];
+	    layout: Stage.CSSInterpolation[];
+	    flex: Stage.CSSInterpolation[];
+	    grid: Stage.CSSInterpolation[];
+	    shadow: Stage.CSSInterpolation[];
+	};
+	export type ComponentData<Props extends SystemPropsMeta<ClassesSchema, Element>, ClassesSchema extends ClassesSchemaDefinition, Element extends HTMLElement> = {
+	    classes: Classes<ClassesSchema>;
+	    attributes: Exclude<CoreProps<ClassesSchema, Element>['attributes'], undefined>;
+	    events: Pick<Props, Stage.FilterStartingWith<keyof Props, 'on'>>;
+	    styleProps: ResolvedStyleProps;
+	    overridesPropClasses: OverridesClassesDefinition<ClassesSchema>;
+	};
+	export type SystemPropsMeta<ClassesSchema extends ClassesSchemaDefinition, Element extends HTMLElement> = CoreProps<ClassesSchema, Element> & AttributeProps & Pick<AllEventProps<Element>, 'onFocus' | 'onBlur' | 'onClick' | 'onEnter' | 'onEsc' | 'onKeyDown'>; function useSystem<Props extends SystemPropsMeta<ClassesSchema, Element>, ClassesSchema extends ClassesSchemaDefinition, Element extends HTMLElement>(name: string, props: Props, createClasses: Stage.CreateClasses<ClassesSchema, Props>, options?: Options): ComponentData<Props, ClassesSchema, Element>;
+	export default useSystem;
+
+}
+declare module 'props/types' {
+	import CSS from 'csstype';
+	import React from 'react';
+	import { ClassesSchemaDefinition } from 'hooks/useSystem';
+	import { BreakpointProp } from 'props/breakpoint';
+	import { ColorProp } from 'props/color';
+	import { OverridesProp } from 'props/overrides';
+	import { SpaceProp } from 'props/space';
+	/**
+	 * All typical component props
+	 * @name All
+	 */
+	export interface AllProps<Container, ClassSchema extends ClassesSchemaDefinition> extends CoreProps<ClassSchema, Container>, AttributeProps, AllEventProps<Container>, AllStyleProps {
+	}
+	/**
+	 * Component core props
+	 * @name Core
+	 */
+	export interface CoreProps<ClassesSchema extends ClassesSchemaDefinition, T> {
+	    /**
+	     * Override any component style
+	     * @display Stage.Styles
+	     * @link /props#overrides
+	     */
+	    overrides?: OverridesProp<ClassesSchema>;
+	    /**
+	     * Shortcut for fast styles
+	     * @display Stage.Styles
+	     * @link /props#styles
+	     */
+	    style?: ((theme: Stage.Theme) => BreakpointProp<Stage.CSSObject>) | BreakpointProp<Stage.CSSObject>;
+	    /**
+	     * HMTL Attributes for container
+	     * @display Stage.Styles
+	     * @link /props#attributes
+	     */
+	    attributes?: React.HTMLAttributes<T> & React.AriaAttributes;
+	}
+	/**
+	 * Component attribute props
+	 * @name Attributes
+	 */
+	export interface AttributeProps {
+	    /**
+	     * Set class atrribute on component's container
+	     */
+	    className?: string;
+	    /**
+	     * Set id atrribute on component's container
+	     */
+	    id?: string;
+	    /**
+	     * Set style atrribute on component's container
+	     */
+	    inlineStyle?: React.CSSProperties;
+	    /**
+	     * Set tab-index atrribute on component's container
+	     */
+	    tabIndex?: number;
+	    /**
+	     * Set role atrribute on component's container
+	     */
+	    role?: string;
+	    /**
+	     * Set draggable atrribute on component's container
+	     */
+	    draggable?: boolean;
+	}
+	/**
+	 * All typical component props except events
+	 * @name AllStyle
+	 */
+	export interface AllStyleProps extends ColorProps, BorderProps, PaddingProps, LayoutProps, MarginProps, FlexProps, GridProps, ShadowProps {
+	}
+	/**
+	 * DOM events
+	 * @name Event
+	 */
+	export interface AllEventProps<T> extends Omit<FormEventProps<T>, 'onChange'>, FocusEventProps<T>, ImageEventProps<T>, MediaEventProps<T>, MouseEventProps<T>, TouchEventProps<T>, WheelEventProps<T>, PointerEventProps<T>, KeyboardEventProps<T>, SelectionEventProps<T>, AnimationEventProps<T>, ClipboardEventProps<T>, TransitionEventProps<T>, CompositionEventProps<T>, ScrollEventProps<T> {
+	}
+	/**
+	 * Component color styles props
+	 * @name Color
+	 */
+	export interface ColorProps {
+	    /**
+	     * Set color style
+	     * @display Stage.Color
+	     * @link /props#color
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/color
+	     */
+	    textColor?: BreakpointProp<ColorProp>;
+	    /**
+	     * Set background-color style
+	     * @display Stage.Color
+	     * @link /props#color
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/background-color
+	     */
+	    backgroundColor?: BreakpointProp<ColorProp>;
+	}
+	/**
+	 * Component border styles props
+	 * @name Border
+	 */
+	export interface BorderProps {
+	    /**
+	     * Set border-width style
+	     * @display number | string
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/border-width
+	     */
+	    borderWidth?: BreakpointProp<CSS.Properties['borderWidth']>;
+	    /**
+	     * Set border-style style
+	     * @BreakpointProp
+	     * @display dashed | dotted | double | groove | hidden | inset | none | outset | ridge | solid
+	     * @see https://developer.mozilla.org/docs/Web/CSS/border-style
+	     */
+	    borderStyle?: BreakpointProp<CSS.Properties['borderStyle']>;
+	    /**
+	     * Set border-color style
+	     * @display Stage.Color
+	     * @link /props#color
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/border-color
+	     */
+	    borderColor?: BreakpointProp<ColorProp>;
+	    /**
+	     * Set border-radius style
+	     * @display number | string
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/border-radius
+	     */
+	    borderRadius?: BreakpointProp<CSS.Properties['borderRadius']>;
+	}
+	/**
+	 * Component layout styles props
+	 * @name Layout
+	 */
+	export interface LayoutProps {
+	    /**
+	     * Set width style
+	     * @display number | string
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/width
+	     */
+	    w?: BreakpointProp<CSS.Properties['width']>;
+	    /**
+	     * Set height style
+	     * @display number | string
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/visibility
+	     */
+	    h?: BreakpointProp<CSS.Properties['height']>;
+	    /**
+	     * Specifies the type of positioning method used for an element
+	     * (static, relative, fixed, absolute or sticky).
+	     * @display static | relative | fixed | absolute | sticky
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/position
+	     */
+	    position?: BreakpointProp<CSS.Properties['position']>;
+	    /**
+	     * Shows or hides an element without changing the layout
+	     * of a document.
+	     * @display visible | hidden | collapse
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/visibility
+	     */
+	    visibility?: BreakpointProp<CSS.Properties['visibility']>;
+	    /**
+	     * Sets whether an element is treated as a block or
+	     * inline element and the layout used for its children,
+	     * such as flow layout, grid or flex.
+	     * @display block | inline | inline-block | inline-table | list-item | none | run-in | table | table-caption | table-cell | table-column-group | table-column | table-footer-group | table-header-group | table-row | table-row-group | flex | grid
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/display
+	     */
+	    display?: BreakpointProp<CSS.Properties['display']>;
+	    /**
+	     * Set font-size style
+	     * @display number | string
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/font-size
+	     */
+	    fontSize?: BreakpointProp<CSS.Properties['fontSize']>;
+	    /**
+	     * Set line-height style
+	     * @display number | string
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/line-height
+	     */
+	    lineHeight?: BreakpointProp<CSS.Properties['lineHeight']>;
+	    /**
+	     * Set letter-spacing style
+	     * @display number | string
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/letter-spacing
+	     */
+	    letterSpacing?: BreakpointProp<CSS.Properties['letterSpacing']>;
+	    /**
+	     * Set text-align style
+	     * @display number | string
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/text-align
+	     */
+	    textAlign?: BreakpointProp<CSS.Properties['textAlign']>;
+	}
+	/**
+	 * Component padding styles props
+	 * @name Padding
+	 */
+	export interface PaddingProps {
+	    /**
+	     * Set padding style
+	     * @BreakpointProp
+	     * @display Size
+	     * @link /props#margin-padding
+	     */
+	    p?: BreakpointProp<SpaceProp>;
+	    /**
+	     * Set horizontal padding style
+	     * @BreakpointProp
+	     * @display Size
+	     * @link /props#margin-padding
+	     */
+	    px?: BreakpointProp<SpaceProp>;
+	    /**
+	     * Set vertical padding style
+	     * @BreakpointProp
+	     * @display Size
+	     * @link /props#margin-padding
+	     */
+	    py?: BreakpointProp<SpaceProp>;
+	    /**
+	     * Set right padding style
+	     * @BreakpointProp
+	     * @display Size
+	     * @link /props#margin-padding
+	     */
+	    pr?: BreakpointProp<SpaceProp>;
+	    /**
+	     * Set left padding style
+	     * @BreakpointProp
+	     * @display Size
+	     * @link /props#margin-padding
+	     */
+	    pl?: BreakpointProp<SpaceProp>;
+	    /**
+	     * Set top padding style
+	     * @BreakpointProp
+	     * @display Size
+	     * @link /props#margin-padding
+	     */
+	    pt?: BreakpointProp<SpaceProp>;
+	    /**
+	     * Set bottom padding style
+	     * @BreakpointProp
+	     * @display Size
+	     * @link /props#margin-padding
+	     */
+	    pb?: BreakpointProp<SpaceProp>;
+	}
+	/**
+	 * Component margin styles props
+	 * @name Margin
+	 */
+	export interface MarginProps {
+	    /**
+	     * Set margin style
+	     * @BreakpointProp
+	     * @display Size
+	     * @link /props#margin-padding
+	     */
+	    m?: BreakpointProp<SpaceProp>;
+	    /**
+	     * Set horizontal margin style
+	     * @BreakpointProp
+	     * @display Size
+	     * @link /props#margin-padding
+	     */
+	    mx?: BreakpointProp<SpaceProp>;
+	    /**
+	     * Set vertical margin style
+	     * @BreakpointProp
+	     * @display Size
+	     * @link /props#margin-padding
+	     */
+	    my?: BreakpointProp<SpaceProp>;
+	    /**
+	     * Set right margin style
+	     * @BreakpointProp
+	     * @display Size
+	     * @link /props#margin-padding
+	     */
+	    mr?: BreakpointProp<SpaceProp>;
+	    /**
+	     * Set left margin style
+	     * @BreakpointProp
+	     * @display Size
+	     * @link /props#margin-padding
+	     */
+	    ml?: BreakpointProp<SpaceProp>;
+	    /**
+	     * Set top margin style
+	     * @BreakpointProp
+	     * @display Size
+	     * @link /props#margin-padding
+	     */
+	    mt?: BreakpointProp<SpaceProp>;
+	    /**
+	     * Set bottom margin style
+	     * @BreakpointProp
+	     * @display Size
+	     * @link /props#margin-padding
+	     */
+	    mb?: BreakpointProp<SpaceProp>;
+	}
+	/**
+	 * Used for flex attributes
+	 * CSS props have string witch kills helps at ide
+	 */
+	export type FlexSelf = 'inherit' | 'auto' | 'baseline' | 'center' | 'flex-start' | 'flex-end' | 'stretch';
+	/**
+	 * Component flexbox children styles props
+	 * @name Flex
+	 */
+	export interface FlexProps {
+	    /**
+	     * Sets how a flex item will grow or shrink to fit the
+	     * space available in its flex container.
+	     * @display number
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/flex
+	     */
+	    flex?: BreakpointProp<CSS.Properties['flex']>;
+	    /**
+	     * Sets the initial main size of a flex item. It sets the
+	     * size of the content box unless otherwise set with box-sizing.
+	     * @display number | string
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/flex-basis
+	     */
+	    flexBasis?: BreakpointProp<CSS.Properties['flexBasis']>;
+	    /**
+	     * Sets the flex grow factor of a flex item main size.
+	     * It specifies how much of the remaining space in the
+	     * flex container should be assigned to the item
+	     * (the flex grow factor).
+	     * @display number
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/flex-grow
+	     */
+	    flexGrow?: BreakpointProp<CSS.Properties['flexGrow']>;
+	    /**
+	     * Sets the flex shrink factor of a flex item.
+	     * If the size of all flex items is lr than
+	     * the flex container, items shrink to fit
+	     * according to flex-shrink.
+	     * @display number
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/flex-shrink
+	     */
+	    flexShrink?: BreakpointProp<CSS.Properties['flexShrink']>;
+	    /**
+	     * Property overrides a grid or flex item's
+	     * align-items value. In Grid, it aligns the
+	     * item inside the grid area. In Flexbox,
+	     * it aligns the item on the cross axis.
+	     * @display inherit | auto | baseline | center | flex-start | flex-end | stretch
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/align-self
+	     */
+	    alignSelf?: BreakpointProp<FlexSelf>;
+	    /**
+	     * Sets the way a box is justified inside its
+	     * alignment container along the appropriate axis.
+	     * @display inherit | auto | baseline | center | flex-start | flex-end | stretch
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/justify-self
+	     */
+	    justifySelf?: BreakpointProp<FlexSelf>;
+	}
+	/**
+	 * Component grid children styles props
+	 * @name Grid
+	 */
+	export interface GridProps {
+	    /**
+	     * Specifies a grid item’s start position within
+	     * the grid column by contributing a line, a span,
+	     * or nothing (automatic) to its grid placement.
+	     * This start position defines the block-start edge
+	     * of the grid area.
+	     * @display string
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/grid-column-start
+	     */
+	    gridColumnStart?: BreakpointProp<CSS.Properties['gridColumnStart']>;
+	    /**
+	     * Specifies a grid item’s end position within the
+	     * grid column by contributing a line, a span, or
+	     * nothing (automatic) to its grid placement, thereby
+	     * specifying the block-end edge of its grid area.
+	     * @display string
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/grid-column-end
+	     */
+	    gridColumnEnd?: BreakpointProp<CSS.Properties['gridColumnEnd']>;
+	    /**
+	     * Specifies a grid item’s start position within the
+	     * grid row by contributing a line, a span, or nothing
+	     * (automatic) to its grid placement, thereby specifying
+	     * the inline-start edge of its grid area.
+	     * @display string
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/grid-row-start
+	     */
+	    gridRowStart?: BreakpointProp<CSS.Properties['gridRowStart']>;
+	    /**
+	     * Specifies a grid item’s end position within the grid
+	     * row by contributing a line, a span, or nothing
+	     * (automatic) to its grid placement, thereby
+	     * specifying the inline-end edge of its grid area.
+	     * @display string
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/grid-row-end
+	     */
+	    gridRowEnd?: BreakpointProp<CSS.Properties['gridRowEnd']>;
+	    /**
+	     * Shorthand property for grid-column-start and
+	     * grid-column-end specifying a grid item's size
+	     * and location within the grid column by contributing
+	     * a line, a span, or nothing (automatic) to its grid
+	     * placement, thereby specifying the inline-start and
+	     * inline-end edge of its grid area.
+	     * @display string
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/grid-column
+	     */
+	    gridColumn?: BreakpointProp<CSS.Properties['gridColumn']>;
+	    /**
+	     * Shorthand property for grid-row-start and grid-row-end
+	     * specifying a grid item’s size and location within the
+	     * grid row by contributing a line, a span, or nothing
+	     * (automatic) to its grid placement, thereby specifying
+	     * the inline-start and inline-end edge of its grid area.
+	     * @display string
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/grid-row
+	     */
+	    gridRow?: BreakpointProp<CSS.Properties['gridRow']>;
+	    /**
+	     * Shorthand property for grid-row-start, grid-column-start,
+	     * grid-row-end and grid-column-end, specifying a grid item’s
+	     * size and location within the grid by contributing a line, a
+	     * span, or nothing (automatic) to its grid placement, thereby
+	     * specifying the edges of its grid area.
+	     * @display string
+	     * @BreakpointProp
+	     * @see https://developer.mozilla.org/docs/Web/CSS/grid-area
+	     */
+	    gridArea?: BreakpointProp<CSS.Properties['gridArea']>;
+	    /**
+	     * Shorthand property sets both the align-self and justify-self
+	     * properties. The first value is the align-self property value,
+	     * the second the justify-self one. If the second value is not
+	     * present, the first value is also used for it.
+	     * @display inherit | stretch | center | flex-end | flex-start | baseline | auto
+	     * @BreakpointProp
+	     */
+	    placeSelf?: BreakpointProp<FlexSelf>;
+	}
+	/**
+	 * Component shadow children styles props
+	 * @name Shadow
+	 */
+	export interface ShadowProps {
+	    shadow?: BreakpointProp<Stage.Sizes>;
+	}
+	/**
+	 * Clipboard Events
+	 * @name ClipboardEvents
+	 */
+	export interface ClipboardEventProps<T> {
+	    /**
+	     * @display function
+	     */
+	    onCopy?: React.ClipboardEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onCopyCapture?: React.ClipboardEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onCut?: React.ClipboardEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onCutCapture?: React.ClipboardEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onPaste?: React.ClipboardEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onPasteCapture?: React.ClipboardEventHandler<T>;
+	}
+	/**
+	 * Composition events
+	 * @name CompositionEvents
+	 */
+	export interface CompositionEventProps<T> {
+	    /**
+	     * @display function
+	     */
+	    onCompositionEnd?: React.CompositionEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onCompositionEndCapture?: React.CompositionEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onCompositionStart?: React.CompositionEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onCompositionStartCapture?: React.CompositionEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onCompositionUpdate?: React.CompositionEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onCompositionUpdateCapture?: React.CompositionEventHandler<T>;
+	}
+	/**
+	 * Focus events
+	 * @name FocusEvents
+	 */
+	export interface FocusEventProps<T> {
+	    /**
+	     * @display function
+	     */
+	    onFocus?: React.FocusEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onFocusCapture?: React.FocusEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onBlur?: React.FocusEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onBlurCapture?: React.FocusEventHandler<T>;
+	}
+	/**
+	 * Form events
+	 * @name FormEvents
+	 */
+	export interface FormEventProps<T> {
+	    /**
+	     * @display function
+	     */
+	    onChange?: React.FormEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onChangeCapture?: React.FormEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onBeforeInput?: React.FormEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onBeforeInputCapture?: React.FormEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onInput?: React.FormEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onInputCapture?: React.FormEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onReset?: React.FormEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onResetCapture?: React.FormEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onSubmit?: React.FormEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onSubmitCapture?: React.FormEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onInvalid?: React.FormEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onInvalidCapture?: React.FormEventHandler<T>;
+	}
+	/**
+	 * Image events
+	 * @name ImageEvents
+	 */
+	export interface ImageEventProps<T> {
+	    /**
+	     * @display function
+	     */
+	    onLoad?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onLoadCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onError?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onErrorCapture?: React.ReactEventHandler<T>;
+	}
+	/**
+	 * Keyboard events
+	 * @name KeyboardEvents
+	 */
+	export interface KeyboardEventProps<T> {
+	    /**
+	     * @display function
+	     */
+	    onKeyDown?: React.KeyboardEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onKeyDownCapture?: React.KeyboardEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onKeyPress?: React.KeyboardEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onKeyPressCapture?: React.KeyboardEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onKeyUp?: React.KeyboardEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onKeyUpCapture?: React.KeyboardEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onEnter?: React.KeyboardEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onEsc?: React.KeyboardEventHandler<T>;
+	}
+	/**
+	 * Media events
+	 * @name MediaEvents
+	 */
+	export interface MediaEventProps<T> {
+	    /**
+	     * @display function
+	     */
+	    onAbort?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onAbortCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onCanPlay?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onCanPlayCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onCanPlayThrough?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onCanPlayThroughCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onDurationChange?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onDurationChangeCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onEmptied?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onEmptiedCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onEncrypted?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onEncryptedCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onEnded?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onEndedCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onLoadedData?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onLoadedDataCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onLoadedMetadata?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onLoadedMetadataCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onLoadStart?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onLoadStartCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onPause?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onPauseCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onPlay?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onPlayCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onPlaying?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onPlayingCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onProgress?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onProgressCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onRateChange?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onRateChangeCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onSeeked?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onSeekedCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onSeeking?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onSeekingCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onStalled?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onStalledCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onSuspend?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onSuspendCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onTimeUpdate?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onTimeUpdateCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onVolumeChange?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onVolumeChangeCapture?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onWaiting?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onWaitingCapture?: React.ReactEventHandler<T>;
+	}
+	/**
+	 * Mouse event
+	 * @name MouseEvents
+	 */
+	export interface MouseEventProps<T> {
+	    /**
+	     * @display function
+	     */
+	    onAuxClick?: React.MouseEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onAuxClickCapture?: React.MouseEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onClick?: React.MouseEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onClickCapture?: React.MouseEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onContextMenu?: React.MouseEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onContextMenuCapture?: React.MouseEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onDoubleClick?: React.MouseEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onDoubleClickCapture?: React.MouseEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onDrag?: React.DragEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onDragCapture?: React.DragEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onDragEnd?: React.DragEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onDragEndCapture?: React.DragEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onDragEnter?: React.DragEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onDragEnterCapture?: React.DragEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onDragExit?: React.DragEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onDragExitCapture?: React.DragEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onDragLeave?: React.DragEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onDragLeaveCapture?: React.DragEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onDragOver?: React.DragEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onDragOverCapture?: React.DragEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onDragStart?: React.DragEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onDragStartCapture?: React.DragEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onDrop?: React.DragEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onDropCapture?: React.DragEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onMouseDown?: React.MouseEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onMouseDownCapture?: React.MouseEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onMouseEnter?: React.MouseEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onMouseLeave?: React.MouseEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onMouseMove?: React.MouseEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onMouseMoveCapture?: React.MouseEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onMouseOut?: React.MouseEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onMouseOutCapture?: React.MouseEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onMouseOver?: React.MouseEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onMouseOverCapture?: React.MouseEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onMouseUp?: React.MouseEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onMouseUpCapture?: React.MouseEventHandler<T>;
+	}
+	/**
+	 * Selection events
+	 * @name SelectionEvents
+	 */
+	export interface SelectionEventProps<T> {
+	    /**
+	     * @display function
+	     */
+	    onSelect?: React.ReactEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onSelectCapture?: React.ReactEventHandler<T>;
+	}
+	/**
+	 * Touch events
+	 * @name TouchEvents
+	 */
+	export interface TouchEventProps<T> {
+	    /**
+	     * @display function
+	     */
+	    onTouchCancel?: React.TouchEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onTouchCancelCapture?: React.TouchEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onTouchEnd?: React.TouchEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onTouchEndCapture?: React.TouchEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onTouchMove?: React.TouchEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onTouchMoveCapture?: React.TouchEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onTouchStart?: React.TouchEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onTouchStartCapture?: React.TouchEventHandler<T>;
+	}
+	/**
+	 * Pointer events
+	 * @name PointerEvents
+	 */
+	export interface PointerEventProps<T> {
+	    /**
+	     * @display function
+	     */
+	    onPointerDown?: React.PointerEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onPointerDownCapture?: React.PointerEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onPointerMove?: React.PointerEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onPointerMoveCapture?: React.PointerEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onPointerUp?: React.PointerEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onPointerUpCapture?: React.PointerEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onPointerCancel?: React.PointerEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onPointerCancelCapture?: React.PointerEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onPointerEnter?: React.PointerEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onPointerLeave?: React.PointerEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onPointerOver?: React.PointerEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onPointerOverCapture?: React.PointerEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onPointerOut?: React.PointerEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onPointerOutCapture?: React.PointerEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onGotPointerCapture?: React.PointerEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onGotPointerCaptureCapture?: React.PointerEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onLostPointerCapture?: React.PointerEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onLostPointerCaptureCapture?: React.PointerEventHandler<T>;
+	}
+	/**
+	 * Scroll events
+	 * @name ScrollEvents
+	 */
+	export interface ScrollEventProps<T> {
+	    /**
+	     * @display function
+	     */
+	    onScroll?: React.UIEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onScrollCapture?: React.UIEventHandler<T>;
+	}
+	/**
+	 * Wheel events
+	 * @name WheelEvents
+	 */
+	export interface WheelEventProps<T> {
+	    /**
+	     * @display function
+	     */
+	    onWheel?: React.WheelEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onWheelCapture?: React.WheelEventHandler<T>;
+	}
+	/**
+	 * Animation events
+	 * @name AnimationEvents
+	 */
+	export interface AnimationEventProps<T> {
+	    /**
+	     * @display function
+	     */
+	    onAnimationStart?: React.AnimationEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onAnimationStartCapture?: React.AnimationEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onAnimationEnd?: React.AnimationEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onAnimationEndCapture?: React.AnimationEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onAnimationIteration?: React.AnimationEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onAnimationIterationCapture?: React.AnimationEventHandler<T>;
+	}
+	/**
+	 * Transition events
+	 * @name TransitionEvents
+	 */
+	export interface TransitionEventProps<T> {
+	    /**
+	     * @display function
+	     */
+	    onTransitionEnd?: React.TransitionEventHandler<T>;
+	    /**
+	     * @display function
+	     */
+	    onTransitionEndCapture?: React.TransitionEventHandler<T>;
+	}
+
+}
+declare module '@stage-ui/system' {
+	import { CSSInterpolation as CSSI, CSSObject as CSSO } from '@emotion/serialize';
+	import ColorType from 'color';
+	import { ColorProp as ColorPropType } from '@stage-ui/system/props/color';
+	import { ReplaceTheme } from 'utils/createTheme';
+	import { AllProps as AllPropsType } from 'props/types';
+	import { ClassesSchemaDefinition, CreateClasses as CreateClassesType, ThemeOverrides as ThemeOverridesType } from 'hooks/useSystem';
+	import { OverridesProp } from 'props/overrides'; global {
+	    namespace Stage {
+	        type Sizes = 'xs' | 's' | 'm' | 'l' | 'xl';
+	        type CSSInterpolation = CSSI;
+	        type CSSObject = CSSO;
+	        type ColorDefinition = [number, number, number, number?];
+	        type Color = ColorType<ColorDefinition>;
+	        interface ThemeMain<C = Color> {
+	            name: string;
+	            color: {
+	                background: C;
+	                backgroundVariant: C;
+	                surface: C;
+	                surfaceVariant: C;
+	                primary: C;
+	                secondary: C;
+	                onBackground: C;
+	                onSurface: C;
+	                onPrimary: C;
+	                onSecondary: C;
+	                lightest: C;
+	                light: C;
+	                hard: C;
+	                hardest: C;
+	                error: C;
+	                warning: C;
+	                success: C;
+	                info: C;
+	                palette: Record<string, Color>;
+	            };
+	            breakpoints: string[];
+	            radius: Record<Sizes, string>;
+	            spacing: Record<Sizes, string>;
+	        }
+	        interface ThemeAssets {
+	            global?: Stage.CSSInterpolation;
+	            border: {
+	                width: string;
+	                style: string;
+	                color: string;
+	            };
+	            shadow: Record<Sizes, string>;
+	            innerShadow: Record<Sizes, string>;
+	            focus: CSSObject;
+	            field: Record<Sizes, CSSObject>;
+	            button: Record<Sizes, {
+	                padding: string;
+	            }>;
+	            typography: {
+	                header: Record<Sizes, {
+	                    fontSize: string;
+	                    lineHeight: string | number;
+	                }>;
+	                text: Record<Sizes, {
+	                    fontSize: string;
+	                    lineHeight: string | number;
+	                }>;
+	                paragraph: Record<Sizes, {
+	                    fontSize: string;
+	                    lineHeight: string | number;
+	                }>;
+	            };
+	        }
+	        interface ThemeOverrides {
+	        }
+	        interface Theme extends ThemeMain {
+	            assets: ThemeAssets;
+	            overrides: ThemeOverrides;
+	            replace: (theme: ReplaceTheme) => Theme;
+	        }
+	        type AllProps<Containter, ClassSchema extends ClassesSchemaDefinition> = AllPropsType<Containter, ClassSchema>;
+	        type CreateClasses<ClassesSchema extends ClassesSchemaDefinition, Props> = CreateClassesType<ClassesSchema, Props>;
+	        type ColorProp = ColorPropType;
+	        type PropOverrides<ClassSchema extends ClassesSchemaDefinition> = OverridesProp<ClassSchema>;
+	        type ComponentThemeOverrides<Props, ClassSchema extends ClassesSchemaDefinition> = ThemeOverridesType<Props, ClassSchema>;
+	        type FilterStartingWith<Set, Needle extends string> = Set extends `${Needle}${string}` ? Set : never;
+	    }
+	} module 'csstype' {
+	    interface Properties {
+	        display?: 'block' | 'inline' | 'inline-block' | 'inline-table' | 'list-item' | 'none' | 'run-in' | 'table' | 'table-caption' | 'table-cell' | 'table-column-group' | 'table-column' | 'table-footer-group' | 'table-header-group' | 'table-row' | 'table-row-group' | 'flex' | 'grid';
+	        overflow?: 'auto' | 'hidden' | 'scroll' | 'visible' | 'inherit';
+	    }
+	}
+	export { default as Provider } from 'Provider';
+	export { default as useTheme } from 'hooks/useTheme';
+	export { default as useSystem } from 'hooks/useSystem';
+	export { default as createTheme } from 'utils/createTheme';
+
+}
+declare module 'utils/size' {
+	/**
+	 * Converts any value to Float
+	 */
+	export const toFloat: (input: string | number) => number;
+	/**
+	 * Get base fontSize
+	 */
+	export const baseFontSize: () => number;
+	/**
+	 * Checks if value are rem value
+	 */
+	export const isRem: (input: string | number) => boolean;
+	/**
+	 * Converts any value to number (example response: 16)
+	 */
+	export const toPixel: (input: string | number) => number;
+	/**
+	 * Converts any value to pixels (example response: 16px)
+	 */
+	export const toPx: (input: string | number) => string;
+	/**
+	 * Converts any value to rems (example response: 1rem)
+	 */
+	export const toRem: (input: string | number) => string;
 
 }

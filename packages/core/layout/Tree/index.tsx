@@ -1,141 +1,124 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-continue */
+/* eslint-disable no-restricted-syntax */
 import { Block, Flexbox } from '@stage-ui/core'
-import { useComponent } from '@stage-ui/system'
-import React, { forwardRef, ForwardRefRenderFunction, Fragment, useState } from 'react'
+import { useSystem } from '@stage-ui/system'
+import React, { forwardRef, Fragment, useState } from 'react'
 import styles from './styles'
 import TreeLabel from './TreeLabel'
 import TreeLeftChild from './TreeLeftChild'
 import TreeRightChild from './TreeRightChild'
 import Types from './types'
 
-const Tree: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props: Types.PrivateProps, ref) => {
-    let {
-        children,
-        leftChild,
-        rightChild,
-        label,
-        size,
-        decoration = 'drop' as Types.Props['decoration'],
-        /**
-         * private props
-         */
-        lvl = 0,
-        isParentOpen = true
-    } = props
+const Tree = forwardRef((props: Types.PrivateProps, ref: React.ForwardedRef<HTMLDivElement>) => {
+  const {
+    leftChild,
+    rightChild,
+    label,
+    size,
+    decoration = 'drop' as Types.Props['decoration'],
+    /**
+     * private props
+     */
+    lvl = 0,
+    isParentOpen = true,
+  } = props
 
-    const [isOpen, setOpen] = useState((props.open || props.defaultOpen) ? true : false)
+  const children = Array.isArray(props.children) ? props.children : [props.children]
 
-    const { cs, attributes, events } = useComponent('Tree', {
-        props,
-        styles,
-        styleProps: {
-            row: ['all']
-        },
-        focus: {
-            applyDecoration: true
-        }
-    })
+  const [isOpen, setOpen] = useState(!!(props.open || props.defaultOpen))
 
-    let childs: ({
-        child?: React.ReactNode
-        tree?: Types.ExtentedReactElement
-    })[] = []
+  const { classes, attributes, events, styleProps } = useSystem('Tree', props, styles)
 
-    if (!Array.isArray(children)) {
-        children = [children]
+  const sortedChildrens: {
+    treeElement?: Types.TreeElement
+    otherElement?: React.ReactNode
+  }[] = []
+
+  for (const child of children as Types.TreeElement[]) {
+    try {
+      if (child.props.__TYPE === 'Tree') {
+        sortedChildrens.push({ treeElement: child })
+        continue
+      }
+      throw new Error()
+    } catch (error) {
+      if (child) {
+        sortedChildrens.push({ otherElement: child })
+      }
     }
+  }
 
-    for (const child of children as Types.ExtentedReactElement[]) {
-        try {
-            if (child.type.render.name === 'Tree') {
-                childs.push({ tree: child })
-                continue
-            }
-            throw new Error()
-        } catch (error) {
-            if (child) {
-                childs.push({ child })
-            }
-        }
+  const hasChilds = sortedChildrens.length > 0
+
+  const handleOpen = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (!props.open && hasChilds) {
+      setOpen(!isOpen)
     }
+    events.onClick?.(event)
+  }
 
-    const hasChilds = childs.length > 0
-
-    const openHandle = (event) => {
-        if (!props.open && hasChilds) {
-            setOpen(!isOpen)
-        }
-        events.all.onClick && events.all.onClick(event)
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Enter') {
+      events.onEnter?.(event)
     }
+  }
 
-    const keyPressHandle = (event: React.KeyboardEvent<HTMLDivElement>) => {
-        if (event.key === 'Enter') {
-            openHandle(event)
-        }
+  const variant = { decoration, size, hasChilds }
+  const options = { isOpen, isParentOpen, hasChilds, lvl }
+  const Container = lvl === 0 ? Block : Fragment
+  let containerProps = {}
+  if (lvl === 0) {
+    containerProps = {
+      css: classes.container(variant),
     }
+  }
+  return (
+    <Container {...containerProps}>
+      {isParentOpen && (
+        <Flexbox
+          ref={ref}
+          css={[classes.row(variant), styleProps.all]}
+          attributes={attributes}
+          {...events}
+          onKeyPress={handleKeyPress}
+          onClick={handleOpen}
+          alignItems="center"
+        >
+          <TreeLeftChild css={classes.arrow(variant)} options={options} size={size}>
+            {leftChild}{' '}
+          </TreeLeftChild>
+          <TreeLabel css={classes.label(variant)} options={options} size={size}>
+            {label}
+          </TreeLabel>
+          <TreeRightChild options={options} size={size}>
+            {rightChild}
+          </TreeRightChild>
+        </Flexbox>
+      )}
+      {sortedChildrens.map((child, index) => {
+        const render = isOpen ? child.otherElement : null
+        return (
+          <Fragment key={index}>
+            {child.treeElement
+              ? React.cloneElement(child.treeElement, {
+                  size: child.treeElement.props.size || size,
+                  decoration: child.treeElement.props.decoration || decoration,
+                  lvl: lvl + 1,
+                  isParentOpen: !isParentOpen ? false : isOpen,
+                })
+              : render}
+          </Fragment>
+        )
+      })}
+    </Container>
+  )
+})
 
-    const variant = { decoration, size, hasChilds }
-    const options = { isOpen, isParentOpen, hasChilds, lvl }
-    const Container = lvl === 0 ? Block : Fragment
-    let containerProps = {}
-    if (lvl === 0) {
-        containerProps = {
-            css: cs.container(variant)
-        }
-    }
-    return (
-        <Container {...containerProps}>
-            {isParentOpen && (
-                <Flexbox
-                    ref={ref}
-                    css={cs.row(variant)}
-                    {...attributes}
-                    {...events.all}
-                    onKeyPress={keyPressHandle}
-                    onClick={openHandle}
-                    alignItems="center"
-                    children={(
-                        <Fragment>
-                            <TreeLeftChild
-                                css={cs.arrow(variant)}
-                                options={options}
-                                size={size}
-                                children={leftChild}
-                            />
-                            <TreeLabel
-                                css={cs.label(variant)}
-                                options={options}
-                                size={size}
-                                children={label}
-                            />
-                            <TreeRightChild
-                                options={options}
-                                size={size}
-                                children={rightChild}
-                            />
-                        </Fragment>
-                    )}
-                />
-            )}
-            {
-                childs.map((child, index) => (
-                    <Fragment key={index}>
-                        {
-                            child.tree
-                                ? React.cloneElement(child.tree as any, {
-                                    size: child.tree.props.size || props.size,
-                                    decoration: child.tree.props.decoration || props.decoration,
-                                    lvl: lvl + 1,
-                                    isParentOpen: !isParentOpen ? false : isOpen
-                                })
-                                : isOpen ? child.child : null
-                        }
-                    </Fragment>
-                ))
-            }
-        </Container>
-    )
+Tree.defaultProps = {
+  __TYPE: 'Tree',
 }
 
-export default forwardRef(Tree)
+export default Tree as React.ForwardRefExoticComponent<
+  Types.Props & React.RefAttributes<HTMLDivElement>
+>

@@ -1,11 +1,12 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
-import { useComponent } from '@stage-ui/system'
+import { useSystem } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction, useLayoutEffect, useState } from 'react'
-import MenuGroup from './MenuGroup'
 import MenuItem from './MenuItem'
-import styles from './styles'
+import MenuItemTypes from './MenuItem/types'
+import MenuGroup from './MenuGroup'
+import MenuGroupTypes from './MenuGroup/types'
+import createClasses from './styles'
 import Submenu from './Submenu'
+import SubmenuTypes from './Submenu/types'
 import Types from './types'
 
 const Context = React.createContext<Types.Context>({ values: {} })
@@ -15,141 +16,131 @@ const Context = React.createContext<Types.Context>({ values: {} })
  * most optimized method to change item value
  */
 export const useValue = (value?: Types.MenuValue): [boolean, () => void, Types.Context] => {
-    const [_, update] = React.useState(false)
-    const ctx = React.useContext(Context)
+  const [updateValue, forceUpdate] = React.useState(false)
+  const ctx = React.useContext(Context)
 
-    if (ctx === void 0) {
-        throw Error('Hook useValue could be used only within Menu component!')
-    }
+  if (ctx === undefined) {
+    throw Error('Hook useValue could be used only within Menu component!')
+  }
 
-    if (value !== void 0) {
-        ctx.values[value] = () => update(!_)
-    }
-    
-    return [value !== void 0 ? ctx.current === value : false, () => {
-        if (value === void 0 || ctx.controlled) {
-            return
-        }
-        const valuePrevious = ctx.current
-        ctx.current = value
-        if (valuePrevious !== void 0 && ctx.values[valuePrevious]) {
-            ctx.values[valuePrevious]()
-        }
-        if (ctx.current !== void 0 && ctx.values[ctx.current]) {
-            ctx.values[ctx.current]()
-        }
-    }, ctx]
+  if (value !== undefined) {
+    ctx.values[value] = () => forceUpdate(!updateValue)
+  }
+
+  return [
+    value !== undefined ? ctx.current === value : false,
+    () => {
+      if (value === undefined || ctx.controlled) {
+        return
+      }
+      const valuePrevious = ctx.current
+      ctx.current = value
+      if (valuePrevious !== undefined && ctx.values[valuePrevious]) {
+        ctx.values[valuePrevious]()
+      }
+      if (ctx.current !== undefined && ctx.values[ctx.current]) {
+        ctx.values[ctx.current]()
+      }
+    },
+    ctx,
+  ]
 }
 
 const Menu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-    
-    const {
-        decoration = 'filled',
-    } = props
+  const { decoration = 'filled' } = props
 
-    const [ctx, setCtx] = useState({
-        values: {},
-        controlled: props.value !== void 0,
+  const [ctx, setCtx] = useState({
+    values: {},
+    controlled: props.value !== undefined,
+    current: props.value,
+    onChange: props.onChange,
+    itemAs: props.itemAs,
+  })
+
+  useLayoutEffect(() => {
+    if (props.defaultValue !== undefined && ctx.current === undefined) {
+      setCtx({
+        ...ctx,
+        current: props.defaultValue,
+      })
+    }
+  }, [])
+
+  useLayoutEffect(() => {
+    if (props.value !== undefined) {
+      setCtx({
+        ...ctx,
         current: props.value,
-        onChange: props.onChange,
-        itemAs: props.itemAs
-    })
-    
-    useLayoutEffect(() => {
-        if (props.defaultValue !== void 0 && ctx.current === void 0) {
-            setCtx({
-                ...ctx,
-                current: props.defaultValue
-            })
-        }
-    }, [])
-    
-    useLayoutEffect(() => {
-        if (props.value !== void 0) {
-            setCtx({
-                ...ctx,
-                current: props.value
-            })
-        }
-    }, [props.value])
-
-    useLayoutEffect(() => {
-        if (props.itemAs !== void 0) {
-            setCtx({
-                ...ctx,
-                itemAs: props.itemAs
-            })
-        }
-    }, [props.itemAs])
-
-    const { cs, attributes, events } = useComponent('Menu', { 
-        props, 
-        styles, 
-        styleProps: { 
-            container: ['all'],
-        },
-        styleLabel: 'Menu'
-    })
-    
-    const styleState: Types.StyleState = { 
-        decoration
+      })
     }
+  }, [props.value])
 
-    const css = [
-        cs.container(styleState), 
-        `
-            [data-flow=menu-item] { ${cs.item(styleState).styles} };
-            [data-flow=menu-group] { ${cs.group(styleState).styles} };
-            [data-flow=menu-group-title] { ${cs.groupTitle(styleState).styles} };
-            [data-flow=sub-menu] { ${cs.subMenu(styleState).styles} };
-            [data-flow=sub-menu-arrow] { ${cs.subMenuArrow(styleState).styles} };
-            [data-flow=sub-menu-content] { ${cs.subMenuContent(styleState).styles} };
-            [data-flow=left] { ${cs.leftChild(styleState).styles} };
-            [data-flow=middle] { ${cs.middleChild(styleState).styles} };
-            [data-flow=right] { ${cs.rightChild(styleState).styles} };
-        `
-    ]
-
-    let children = props.children
-
-    if (props.data) {
-        children = props.data.map((item, index) => (
-            <MenuItem
-                value={index}
-                key={index}
-                title={item}
-                as={ctx.itemAs}
-            />
-        ))
+  useLayoutEffect(() => {
+    if (props.itemAs !== undefined) {
+      setCtx({
+        ...ctx,
+        itemAs: props.itemAs,
+      })
     }
+  }, [props.itemAs])
 
-    return (
-        <div
-            data-flow="menu"
-            {...attributes}
-            {...events.all}
-            ref={ref}
-            onChange={undefined}
-            css={css}
-            children={(
-                <Context.Provider
-                    value={ctx}
-                    children={children}
-                />
-            )}
-        />
-    )
+  const {
+    classes,
+    attributes,
+    events: { onChange, ...events },
+    styleProps,
+  } = useSystem('Menu', props, createClasses, {
+    label: 'Menu',
+  })
+
+  const classState: Types.ClassState = {
+    decoration,
+  }
+
+  const css = [
+    classes.container(classState),
+    {
+      '[data-flow=menu-item]': classes.item(classState),
+      '[data-flow=menu-group]': classes.group(classState),
+      '[data-flow=menu-group-title]': classes.groupTitle(classState),
+      '[data-flow=sub-menu]': classes.subMenu(classState),
+      '[data-flow=sub-menu-arrow]': classes.subMenuArrow(classState),
+      '[data-flow=sub-menu-content]': classes.subMenuContent(classState),
+      '[data-flow=left]': classes.leftChild(classState),
+      '[data-flow=middle]': classes.middleChild(classState),
+      '[data-flow=right]': classes.rightChild(classState),
+    },
+    styleProps.all,
+  ]
+  let { children } = props
+
+  if (props.data) {
+    children = props.data.map((item, index) => (
+      // eslint-disable-next-line react/no-array-index-key
+      <MenuItem value={index} key={index} title={item} as={ctx.itemAs} />
+    ))
+  }
+
+  return (
+    <div data-flow="menu" {...attributes} {...events} ref={ref} css={css}>
+      <Context.Provider value={ctx}>{children}</Context.Provider>
+    </div>
+  )
 }
 
 const Default = forwardRef(Menu)
 
-export default {
-    ...Default,
-    Item: MenuItem,
-    Group: MenuGroup,
-    Submenu: Submenu
-} as typeof Default & {
-    Item: typeof MenuItem
-    Group: typeof MenuGroup
-    Submenu: typeof Submenu
+type ComplexMenu = React.ForwardRefExoticComponent<
+  Types.Props & React.RefAttributes<HTMLDivElement>
+> & {
+  Item: React.ForwardRefExoticComponent<MenuItemTypes.Props & React.RefAttributes<HTMLDivElement>>
+  Group: React.ForwardRefExoticComponent<MenuGroupTypes.Props & React.RefAttributes<HTMLDivElement>>
+  Submenu: React.ForwardRefExoticComponent<SubmenuTypes.Props & React.RefAttributes<HTMLDivElement>>
 }
+
+export default {
+  ...Default,
+  Item: MenuItem,
+  Group: MenuGroup,
+  Submenu,
+} as ComplexMenu

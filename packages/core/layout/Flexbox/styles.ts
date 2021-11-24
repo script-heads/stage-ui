@@ -1,18 +1,52 @@
-import SystemTypes from '@stage-ui/system/types'
+import containerDecorations from '@stage-ui/core/utils/containerDecorations'
+import breakpointProps from '@stage-ui/system/props/breakpoint'
 import Types from './types'
-import applyLayoutDecoration from '@stage-ui/core/misc/utils/applyLayoutDecoration'
 
-const styles: SystemTypes.CreateStyles<Types.Styles, Types.Props> = (props, theme) => {
-    return {
-        container: (variant) => [
-            applyLayoutDecoration(props, theme),
-            {
-                position: 'relative',
-                display: props.inline ? 'inline-flex' : 'flex',
-                flexDirection: props.column ? 'column' : undefined,
-            },
-        ]
-    }
-}
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => ({
+  container: () => [
+    containerDecorations(props, theme),
+    {
+      position: 'relative',
+      display: props.inline ? 'inline-flex' : 'flex',
+    },
+    props.column && {
+      flexDirection: 'column',
+    },
+    breakpointProps(props.centered, theme, (currentValue) => ({
+      alignItems: currentValue ? 'center' : undefined,
+      justifyContent: currentValue ? 'center' : undefined,
+    })),
+    breakpointProps(props.alignItems, theme, (currentValue) => ({
+      alignItems: currentValue,
+    })),
+    breakpointProps(props.alignContent, theme, (currentValue) => ({
+      alignContent: currentValue,
+    })),
+    breakpointProps(props.placeContent, theme, (currentValue) => ({
+      placeContent: currentValue,
+    })),
+    breakpointProps(props.justifyContent, theme, (currentValue) => ({
+      justifyContent: currentValue,
+    })),
+    breakpointProps(props.justifyItems, theme, (currentValue) => ({
+      justifyItems: currentValue,
+    })),
+    breakpointProps(props.direction, theme, (currentValue) => ({
+      flexDirection: currentValue,
+    })),
+    breakpointProps(props.column, theme, (currentValue) => ({
+      flexDirection: currentValue ? 'column' : undefined,
+    })),
+    breakpointProps(props.inline, theme, (currentValue) => ({
+      inline: currentValue,
+    })),
+    breakpointProps(props.wrap, theme, (currentValue) => ({
+      wrap: currentValue,
+    })),
+    breakpointProps(props.flow, theme, (currentValue) => ({
+      flow: currentValue,
+    })),
+  ],
+})
 
-export default styles
+export default createClasses

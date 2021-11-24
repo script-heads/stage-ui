@@ -1,29 +1,27 @@
 import { jsx } from '@emotion/react'
-import { useComponent } from '@stage-ui/system'
+import { useSystem } from '@stage-ui/system'
 import { forwardRef, ForwardRefRenderFunction } from 'react'
 import styles from './styles'
 import Types from './types'
 
 const Grid: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
+  const { classes, attributes, events, styleProps } = useSystem('Grid', props, styles)
 
-    const { cs, attributes, events } = useComponent('Grid', {
-        props,
-        styles,
-        styleProps: { container: ['all'] },
-    })
-
-    return jsx(
-        'div',
-        {
-            ...attributes,
-            ...events.all,
-            ref: ref,
-            css: cs.container({
-                decoration: props.decoration
-            })
-        },
-        props.children
-    )
+  return jsx(
+    'div',
+    {
+      ...attributes,
+      ...events,
+      ref,
+      css: [
+        classes.container({
+          decoration: props.decoration,
+        }),
+        styleProps.all,
+      ],
+    },
+    props.children,
+  )
 }
 
 export default forwardRef(Grid)

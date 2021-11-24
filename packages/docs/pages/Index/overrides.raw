@@ -1,0 +1,16 @@
+(main, assets) => ({
+    Menu: {
+        container: {
+            backgroundColor: main.color.light.rgb().string()
+        },
+        item: (state) => [
+            {
+                color: main.color.onPrimary.rgb().string()
+            },
+            state.active && {
+                backgroundColor: main.color.primary.rgb().string(),
+                fontSize: assets.typography.l.fontSize
+            }
+        ]
+    }
+})

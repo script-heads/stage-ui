@@ -6,14 +6,14 @@
   <a href="https://stageui.project1.io">
     <img alt="npm install @stage-ui/core" src="https://img.shields.io/npm/v/@stage-ui/core?style=flat-square&logo=visual-studio-code&label=Documentation&color=blue">
   </a>
-  <a href="https://www.npmjs.com/package/@stage-ui/lab">
-    <img alt="npm install @stage-ui/lab" src="https://img.shields.io/npm/v/@stage-ui/lab?style=flat-square&logo=npm&label=@stage-ui/lab&color=green">
+  <a href="https://www.npmjs.com/package/@stage-ui/core">
+    <img alt="npm install @stage-ui/core" src="https://img.shields.io/npm/v/@stage-ui/core?style=flat-square&logo=npm&label=@stage-ui/core&color=green">
   </a>
   <a href="https://www.npmjs.com/package/@stage-ui/system">
     <img alt="npm install @stage-ui/system" src="https://img.shields.io/npm/v/@stage-ui/system?style=flat-square&logo=npm&label=@stage-ui/system&color=green">
   </a>
-  <a href="https://www.npmjs.com/package/@stage-ui/system">
-    <img alt="npm install @stage-ui/system" src="https://img.shields.io/npm/v/@stage-ui/system?style=flat-square&logo=npm&label=@stage-ui/system&color=green">
+  <a href="https://www.npmjs.com/package/@stage-ui/icons">
+    <img alt="npm install @stage-ui/icons" src="https://img.shields.io/npm/v/@stage-ui/icons?style=flat-square&logo=npm&label=@stage-ui/icons&color=green">
   </a>
 </div>
 

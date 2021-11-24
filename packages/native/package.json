@@ -1,0 +1,19 @@
+{
+    "name": "@stage-ui/native",
+    "author": "Research technology",
+    "version": "0.1.164",
+    "license": "MIT",
+    "scripts": {
+        "pub": "git pull && npm version patch && yarn build && cd ../../build/core && yarn publish --access public && cd .. && rm -rf ./core",
+        "build": "yarn build:types && yarn build:js && cp package.json README.md babelImportPlugins.js ../../build/core/ && node ../../scripts/buildConfig core",
+        "build:types": "tsc --emitDeclarationOnly",
+        "build:js": "babel ./ --out-dir ../../build/core --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
+        "type-check": "tsc --noEmit",
+        "type-check:watch": "yarn type-check -- --watch",
+        "icons:generate": "node ./scripts/iconsGenerate"
+    },
+    "peerDependencies": {
+        "@emotion/react": ">=11",
+        "react": ">=16"
+    }
+}

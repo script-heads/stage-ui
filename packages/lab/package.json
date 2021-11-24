@@ -9,26 +9,15 @@
         "build:types": "tsc --emitDeclarationOnly",
         "build:js": "babel ./ --out-dir ../../build/lab --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
         "type-check": "tsc --noEmit",
-        "type-check:watch": "yarn type-check -- --watch"
+        "type-check:watch": "yarn type-check -- --watch",
+        "lint": "eslint --config .eslintrc.json --fix '**/*.+(js|jsx|ts|tsx)'"
     },
     "dependencies": {
-        "@emotion/react": "^11.1.4",
         "chart.js": "^2.9.3",
         "react-chartjs-2": "^2.9.0"
     },
-    "devDependencies": {
-        "@babel/cli": "^7.7.5",
-        "@babel/core": "^7.7.5",
-        "@babel/plugin-proposal-class-properties": "^7.7.4",
-        "@babel/plugin-proposal-object-rest-spread": "^7.7.4",
-        "@babel/plugin-proposal-optional-chaining": "^7.7.5",
-        "@babel/plugin-transform-runtime": "^7.7.6",
-        "@babel/preset-env": "^7.7.6",
-        "@babel/preset-react": "^7.7.4",
-        "@babel/preset-typescript": "^7.7.4",
-        "@types/chart.js": "2.9.30",
-        "@types/react": "^17.0.0",
-        "csstype": "^3.0.6"
-    },
-    "peerDependencies": {}
+    "peerDependencies": {
+        "@emotion/react": ">=11",
+        "react": ">=16"
+    }
 }

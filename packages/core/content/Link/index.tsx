@@ -1,28 +1,32 @@
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
-import { useTheme } from '@stage-ui/core'
-import Typography from '@stage-ui/core/misc/hocs/Typography'
+import Typography from '@stage-ui/core/basic/Typography'
+import isFunction from '@stage-ui/system/utils/isFunction'
 import Types from './types'
 
-const Link: ForwardRefRenderFunction<HTMLAnchorElement, Types.Props> = (props, ref) => {
-    const theme = useTheme()
-
-    return (
-        <Typography
-            tag="a"
-            sizesOf="text"
-            overrides="Link"
-            specificStyles={{
-                outline: 'none',
-                color: theme.color.primary.hex(),
-                textDecoration: 'unset',
-                '&:hover': {
-                    textDecoration: 'underline'
-                },
-            }}
-            ref={ref}
-            {...props}
-        />
-    )
-}
+const Link: ForwardRefRenderFunction<HTMLAnchorElement, Types.Props> = (
+  { overrides, ...props },
+  ref,
+) => (
+  <Typography
+    tag="a"
+    color="primary"
+    sizesOf="text"
+    name="Link"
+    overrides={(theme, styleProps) => ({
+      container: [
+        {
+          outline: 'none',
+          textDecoration: 'unset',
+          '&:hover': {
+            textDecoration: 'underline',
+          },
+        },
+        isFunction(overrides) ? overrides(theme, styleProps).container : overrides?.container,
+      ],
+    })}
+    ref={ref}
+    {...props}
+  />
+)
 
 export default forwardRef(Link)

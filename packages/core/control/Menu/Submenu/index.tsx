@@ -1,64 +1,52 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
-import { useComponent } from '@stage-ui/system'
-import { forwardRef, ForwardRefRenderFunction, useState } from 'react'
-import { ArrowIosDownward } from '../../../icons'
+import { ChevronDown } from '@stage-ui/icons'
+import { useSystem } from '@stage-ui/system'
+import React, { forwardRef, ForwardRefRenderFunction, useState } from 'react'
 import MenuItem from '../MenuItem'
-import styles from './styles'
+import createClasses from './styles'
 import Types from './types'
 
 const Submenu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-    
-    const { 
-        rightChild,
-        leftChild,
-        disabled,
-        indent,
-    } = props
+  const { rightChild, leftChild, disabled } = props
 
-    const [open, setOpen] = useState(props.open || props.defaultOpen || false)
+  const [open, setOpen] = useState(props.open || props.defaultOpen || false)
 
-    const { cs, attributes, events } = useComponent('Submenu', { 
-        props, 
-        styles, 
-        styleProps: { 
-            container: ['all'],
-        },
-    })
-    const attr: Record<string, string> = {
-        'data-flow': 'sub-menu'
-    }
-    if (open) attr['data-flow-open'] = ''
-    if (disabled) attr['data-flow-disabled'] = ''
+  const { classes, attributes, events, styleProps } = useSystem('Submenu', props, createClasses)
+  const attr: Record<string, string> = {
+    'data-flow': 'sub-menu',
+  }
+  if (open) attr['data-flow-open'] = ''
+  if (disabled) attr['data-flow-disabled'] = ''
 
-    return (
-        <div {...attr}>
-            <MenuItem 
-                disabled={disabled}
-                title={props.title} 
-                leftChild={leftChild}
-                rightChild={rightChild || (
-                    <div data-flow="sub-menu-arrow">
-                        <ArrowIosDownward />
-                    </div>
-                )}
-                onClick={() => {
-                    if (!disabled) {
-                        setOpen(!open)
-                    }
-                }}
-            />
-            <div
-                data-flow="sub-menu-content"
-                {...attributes}
-                {...events.all}
-                onChange={undefined}
-                ref={ref}
-                css={cs.container}
-                children={props.children || props.title}
-            />
-        </div>
-    )
+  return (
+    <div {...attr}>
+      <MenuItem
+        disabled={disabled || false}
+        title={props.title}
+        leftChild={leftChild}
+        rightChild={
+          rightChild || (
+            <div data-flow="sub-menu-arrow">
+              <ChevronDown color="light" size="1.25rem" rotate={!open ? 90 : 0} />
+            </div>
+          )
+        }
+        onClick={() => {
+          if (!disabled) {
+            setOpen(!open)
+          }
+        }}
+      />
+      <div
+        data-flow="sub-menu-content"
+        {...attributes}
+        {...events}
+        ref={ref}
+        css={[classes.container, styleProps.all]}
+      >
+        {props.children || props.title}
+      </div>
+    </div>
+  )
 }
 
 export default forwardRef(Submenu)

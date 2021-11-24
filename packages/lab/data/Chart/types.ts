@@ -1,21 +1,27 @@
 import { ChartDataSets, ChartOptions } from 'chart.js'
-import SystemTypes from '@stage-ui/system/types'
 
 declare namespace ChartTypes {
-    type ChartType = 'line' | 'pie' | 'verticalBar' | 'horizontalBar' | 'doughnut' | 'radar' | 'polar' | 'scatter' | 'bubble'
-    interface Props extends SystemTypes.AllProps<HTMLDivElement, Styles> {
-        /**
-         * @default line
-         */
-        type: ChartType
-        labels: Array<string | string[]>
-        data: Array<number[] | ChartDataSets>
-        options?: ChartOptions
-    }
+  type ChartType =
+    | 'line'
+    | 'pie'
+    | 'verticalBar'
+    | 'horizontalBar'
+    | 'doughnut'
+    | 'radar'
+    | 'polar'
+    | 'scatter'
+    | 'bubble'
+  interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
+    /**
+     * @default line
+     */
+    type: ChartType
+    labels: Array<string | string[]>
+    data: Array<number[] | ChartDataSets>
+    options?: ChartOptions
+  }
 
-    interface Styles {
-
-    }
+  type Classes = {}
 }
 
 export default ChartTypes

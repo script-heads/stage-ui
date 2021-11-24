@@ -1,52 +1,28 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
-import { Block } from '@stage-ui/core'
-import Check from '@stage-ui/core/misc/hocs/Check'
-import { useComponent } from '@stage-ui/system'
-import { forwardRef, ForwardRefRenderFunction } from 'react'
-import styles from './styles'
+import React, { forwardRef, ForwardRefRenderFunction } from 'react'
+import Check from '@stage-ui/core/basic/Check'
+import { useSystem } from '@stage-ui/system'
+import createClasses from './styles'
 import Types from './types'
 
-
 const Radio: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-    const { size = 'm', disabled } = props
+  const { size = 'm', tabIndex = 0 } = props
 
-    const { cs, attributes, events } = useComponent('Radio', {
-        props,
-        styles,
-        styleProps: { container: ['all'] },
-        focus: {
-            applyDecoration: true
-        }
-    })
+  const { classes, events } = useSystem('Radio', props, createClasses, { focus: 'tabOnly' })
 
-    return (
-        <Check
-            {...attributes}
-            {...events.all}
-            {...props}
-            ref={ref}
-            size={size}
-            onFocus={(e) => {
-                props.onFocus && props.onFocus(e)
-                e.stopPropagation()
-            }}
-            onBlur={(e) => {
-                props.onBlur && props.onBlur(e)
-                e.stopPropagation()
-            }}
-            /**
-             * Radio use
-             */
-            type="checkbox"
-            styles={cs}
-            children={(checked, focus) =>
-                <Block css={cs.check({ size, disabled, focus, checked })}>
-                    <div css={cs.radio({ size, disabled, focus, checked })} />
-                </Block>
-            }
-        />
-    )
+  return (
+    <Check {...props} ref={ref} name="Radio" size={size}>
+      {(checked) => (
+        <div
+          tabIndex={tabIndex}
+          css={classes.check({ checked })}
+          onFocus={events.onFocus}
+          onBlur={events.onBlur}
+        >
+          <div css={classes.radio({ checked })} />
+        </div>
+      )}
+    </Check>
+  )
 }
 
 export default forwardRef(Radio)

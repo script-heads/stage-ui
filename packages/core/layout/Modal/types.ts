@@ -1,191 +1,196 @@
-import SystemTypes from '@stage-ui/system/types'
+import { Classes as ClassesType, ResolvedStyleProps } from '@stage-ui/system/hooks/useSystem'
+import {
+  AllEventProps,
+  AttributeProps,
+  BorderProps,
+  ColorProps,
+  CoreProps,
+  LayoutProps,
+  PaddingProps,
+} from '@stage-ui/system/props/types'
+import React from 'react'
+import ScrollViewTypes from '../ScrollView/types'
 
 declare namespace ModalTypes {
+  type ModalDecoration = 'modal' | 'panel' | 'fullscreen'
+  type ExtentedProps = AttributeProps &
+    AllEventProps<HTMLDivElement> &
+    CoreProps<Classes, HTMLDivElement> &
+    ColorProps &
+    BorderProps &
+    PaddingProps &
+    LayoutProps
 
-    type ModalDecoration = 'modal' | 'panel' | 'fullscreen'
-    type ExtentedProps =
-        SystemTypes.AttributeProps &
-        SystemTypes.AllEventProps<HTMLDivElement> &
-        SystemTypes.CoreProps<Styles> &
-        SystemTypes.ColorProps &
-        SystemTypes.BorderProps &
-        SystemTypes.PaddingProps &
-        SystemTypes.LayoutProps
+  export interface Ref {
+    /**
+     * Opens modal view with optionaly custom content
+     */
+    open: (render?: React.ReactElement | null) => void
+    /**
+     * Closes modal, didClose arg called at closing complete
+     */
+    close: (didClose?: () => void) => void
+    /**
+     * Fn for changing title
+     */
+    setTitle: (title: string) => void
+    /**
+     * Fn for changing subtitle
+     */
+    setSubtitle: (subtitle: string) => void
+    /**
+     * Fn for changing content if it custom
+     */
+    setRender: (render: React.ReactElement | null) => void
+    /**
+     * Current custom content of modal view
+     */
+    render: React.ReactElement | null
+    /**
+     * Current title of modal view
+     */
+    title?: string
+    /**
+     * Current subtitle of modal view
+     */
+    subtitle?: string
+    /**
+     * Ref for overlay view <div>
+     */
+    overlay: ScrollViewTypes.Ref
+    /**
+     * Ref for view view <div>
+     */
+    window: HTMLDivElement
+  }
 
-    export interface Ref {
-        /**
-         * Opens modal view with optionaly custom content
-         */
-        open: (render?: React.ReactElement | null) => void
-        /**
-         * Closes modal, didClose arg called at closing complete
-         */
-        close: (didClose?: () => void) => void
-        /**
-         * Fn for changing title
-         */
-        setTitle: (title: string) => void
-        /**
-         * Fn for changing subtitle
-         */
-        setSubtitle: (subtitle: string) => void
-        /**
-         * Fn for changing content if it custom
-         */
-        setRender: (render: React.ReactElement | null) => void
-        /**
-         * Current custom content of modal view
-         */
-        render: React.ReactElement | null
-        /**
-         * Current title of modal view
-         */
-        title?: string
-        /**
-         * Current subtitle of modal view
-         */
-        subtitle?: string
-        /**
-         * Ref for overlay view <div>
-         */
-        overlay: HTMLDivElement
-        /**
-         * Ref for view view <div>
-         */
-        window: HTMLDivElement
+  interface Props extends ExtentedProps {
+    /**
+     * Title will be displaed at top
+     */
+    title?: string
+    /**
+     * Subtitle will be displaed after title
+     */
+    subtitle?: string
+    /**
+     * Content for modal view
+     */
+    children?: React.ReactNode
+    /**
+     * Open state, for controlled component
+     */
+    opened?: boolean
+    /**
+     * How view will looks like
+     * @default modal
+     */
+    decoration?: ModalDecoration
+    /**
+     * Sizes of view and its content
+     * @default m
+     * @display Sizes
+     * @link /props/#size
+     */
+    size?: Stage.Sizes
+    /**
+     * Disable header and hide it
+     */
+    hideHeader?: boolean
+    /**
+     * If true then tap on overlay will close view
+     * @default false
+     */
+    overlayClose?: boolean
+    /**
+     * Fn calls before view close
+     */
+    onClose?: () => void
+    /**
+     * Fn calls after view close
+     */
+    didClose?: () => void
+    /**
+     * Fn calls before view open
+     */
+    onOpen?: () => void
+    /**
+     * Fn calls after view open
+     */
+    didOpen?: () => void
+  }
+
+  interface ModalOverlayProps {
+    getStyles: () => {
+      classes: ClassesType<Classes>
+      state: ClassState
+      styleProps: ResolvedStyleProps
     }
+    children?: React.ReactNode
+  }
 
-    interface Props extends ExtentedProps {
-        /**
-         * Title will be displaed at top
-         */
-        title?: string
-        /**
-         * Subtitle will be displaed after title
-         */
-        subtitle?: string
-        /**
-         * Content for modal view
-         */
-        children?: React.ReactNode
-        /**
-         * Open state, for controlled component
-         */
-        opened?: boolean
-        /**
-         * How view will looks like
-         * @default modal
-         */
-        decoration?: ModalDecoration
-        /**
-         * Size of view and its content
-         * @default m
-         * @display SystemTypes.Size
-         * @link /props/#size
-         */
-        size?: SystemTypes.Size
-        /**
-         * Disable header and hide it
-         */
-        hideHeader?: boolean
-        /**
-         * If true then tap on overlay will close view
-         * @default false
-         */
-        overlayClose?: boolean
-        /**
-         * Fn calls before view close
-         */
-        onClose?: () => void
-        /**
-         * Fn calls after view close
-         */
-        didClose?: () => void
-        /**
-         * Fn calls before view open
-         */
-        onOpen?: () => void
-        /**
-         * Fn calls after view open
-         */
-        didOpen?: () => void
+  interface ModalWindowProps<Element extends HTMLElement> {
+    title?: string
+    subtitle?: string
+    hideHeader?: boolean
+    children?: React.ReactNode
+    containerAttr?: React.HTMLAttributes<Element>
+    containerEvents?: any
+    onClosePressed: () => void
+    getStyles: () => {
+      classes: ClassesType<Classes>
+      state: ClassState
+      styleProps: ResolvedStyleProps
     }
+  }
 
-    interface ModalOverlayProps {
-        getStyles: () => {
-            cs: SystemTypes.ComponentStyles<Styles>,
-            state: StyleState
-        }
-        children?: React.ReactNode
+  interface ModalHeaderProps {
+    title?: string
+    subtitle?: string
+    hideHeader?: boolean
+    onClosePressed: () => void
+    getStyles: () => {
+      classes: ClassesType<Classes>
+      state: ClassState
     }
+  }
 
-    interface ModalWindowProps {
-        title?: string
-        subtitle?: string
-        hideHeader?: boolean
-        children?: React.ReactNode
-        containerAttr?: ExtentedProps
-        containerEvents?: any
-        onClosePressed: () => void
-        getStyles: () => {
-            cs: SystemTypes.ComponentStyles<Styles>,
-            state: StyleState
-        }
-    }
+  type ClassState = {
+    visible?: boolean
+    decoration?: Props['decoration']
+  }
 
-    interface ModalHeaderProps {
-        title?: string
-        subtitle?: string
-        hideHeader?: boolean
-        onClosePressed: () => void
-        getStyles: () => {
-            cs: SystemTypes.ComponentStyles<Styles>,
-            state: StyleState
-        }
-    }
+  type Classes = {
+    /**
+     * Backside view
+     */
+    overlay: ClassState
+    /**
+     * Wrapper of modal
+     */
+    wrapper: ClassState
+    /**
+     * Window it self
+     */
+    window: ClassState
+    /**
+     * Header of window
+     */
+    header: ClassState
+    /**
+     * Close button
+     */
+    cross: ClassState
+  }
 
-    type StyleState = {
-        visible?: boolean
-        decoration?: Props['decoration']
-    }
+  type DialogRenderFn = (close: () => void) => React.ReactElement
 
-    interface Styles {
-        /**
-         * Backside view
-         */
-        overlay: StyleState
-        /**
-         * Wrapper of modal
-         */
-        wrapper: StyleState
-        /**
-         * Window it self
-         */
-        window: StyleState
-        /**
-         * Header of window
-         */
-        header: StyleState
-        /**
-         * Close button
-         */
-        cross: StyleState
-    }
-
-    interface DialogOptions extends Props {
-        /**
-         * Message of dialog
-         */
-        message?: string
-        /**
-         * Button text
-         */
-        buttonText?: string
-        /**
-         * if custom content filled then message and buttonText will be ignored
-         */
-        render?: (close: () => void) => React.ReactElement
-    }
+  interface DialogOptions extends Props {
+    /**
+     * if custom content filled then message and buttonText will be ignored
+     */
+    render: DialogRenderFn
+  }
 }
 
 export default ModalTypes

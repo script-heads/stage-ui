@@ -1,27 +1,18 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
-import { useComponent } from '@stage-ui/system'
-import { forwardRef, ForwardRefRenderFunction } from 'react'
-import styles from './styles'
+import { useSystem } from '@stage-ui/system'
+import React, { forwardRef, ForwardRefRenderFunction } from 'react'
+import createClasses from './styles'
 import Types from './types'
 
 const Divider: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-    
-    const { cs, attributes, events } = useComponent('Divider', { props, styles, styleProps: { container: ['all']} })
+  const { classes, attributes, events, styleProps } = useSystem('Divider', props, createClasses)
 
-    return (
-        <div {...events.all} {...attributes} ref={ref} css={cs.container}>
-            {!!props.leftChild && <div css={cs.leftChild}>
-                {props.leftChild}
-            </div>}
-            <div css={cs.content}>
-                {props.children || props.label}
-            </div>
-            {!!props.rightChild && <div css={cs.rightChild}>
-                {props.rightChild}
-            </div>}
-        </div>
-    )
+  return (
+    <div {...events} {...attributes} ref={ref} css={[classes.container, styleProps.all]}>
+      {!!props.leftChild && <div css={classes.leftChild}>{props.leftChild}</div>}
+      <div css={classes.content}>{props.children || props.label}</div>
+      {!!props.rightChild && <div css={classes.rightChild}>{props.rightChild}</div>}
+    </div>
+  )
 }
 
 export default forwardRef(Divider)
