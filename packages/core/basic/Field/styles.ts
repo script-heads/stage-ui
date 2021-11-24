@@ -2,7 +2,7 @@ import colorResolver from '@stage-ui/system/props/color'
 import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
-  const color = colorResolver(props.color || theme.color.gray[500], theme)
+  const color = colorResolver(props.color || theme.color.text, theme)
 
   const {
     size = 'm',
@@ -30,7 +30,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         flexBasis: theme.assets.field[size].height,
         padding: `0 ${theme.assets.field[size].indent}`,
         background: theme.color.surface.string(),
-        borderColor: theme.color.gray[500].alpha(0.4).string(),
+        borderColor: theme.color.border.string(),
         borderRadius: theme.radius.m,
         boxShadow: theme.assets.innerShadow.xs,
         borderWidth: '1px',
@@ -173,7 +173,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
     clearButton: [
       {
         cursor: 'pointer',
-        backgroundColor: theme.color.black.alpha(0.05).rgb().string(),
+        backgroundColor: theme.color.gray[900].string(),
         borderRadius: '100rem',
         transition: 'transform 0.25s',
         ':hover': {

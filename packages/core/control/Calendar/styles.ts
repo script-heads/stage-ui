@@ -4,7 +4,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
   dateGrid: [
     {
       position: 'relative',
-      color: theme.color.black.rgb().string(),
+      color: theme.color.text.rgb().string(),
     },
   ],
 
@@ -29,7 +29,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
       padding: '0.125rem',
       opacity: 1,
       borderRadius: theme.radius.l,
-      color: theme.color.black.rgb().string(),
+      color: theme.color.text.rgb().string(),
       userSelect: 'none',
     },
     state.isCurrent && [

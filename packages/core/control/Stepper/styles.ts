@@ -20,7 +20,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
       justifyContent: 'center',
       border: '1px solid',
       color: theme.color.gray[500].string(),
-      borderColor: theme.color.gray[200].string(),
+      borderColor: theme.color.border.string(),
       backgroundColor: theme.color.surface.string(),
       borderRadius: '100rem',
       userSelect: 'none',

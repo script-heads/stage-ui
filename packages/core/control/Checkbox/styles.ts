@@ -11,7 +11,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         justifyContent: 'center',
         color: theme.color.primary.rgb().string(),
         backgroundColor: theme.color.surface.rgb().string(),
-        borderColor: theme.color.gray[500].rgb().string(),
+        borderColor: theme.color.border.rgb().string(),
         boxShadow: theme.assets.innerShadow.m,
         borderWidth: theme.assets.border.width,
         borderStyle: theme.assets.border.style,

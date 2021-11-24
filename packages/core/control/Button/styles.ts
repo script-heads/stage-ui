@@ -60,9 +60,9 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
       },
       decoration === 'plain' && {
         borderWidth: '0.0625rem',
-        borderColor: theme.color.gray[200].rgb().string(),
+        borderColor: theme.color.border.rgb().string(),
         background: theme.color.surface.rgb().string(),
-        color: theme.color.black.rgb().string(),
+        color: theme.color.text.rgb().string(),
         '&:disabled': {
           background: theme.color.gray[200].rgb().string(),
         },
@@ -72,7 +72,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         color:
           color.contrast(theme.color.white) > 3
             ? theme.color.white.rgb().string()
-            : theme.color.black.rgb().string(),
+            : theme.color.text.rgb().string(),
         '&:hover:not([disabled])': {
           background: color.alpha(0.7).rgb().string(),
         },

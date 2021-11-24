@@ -65,7 +65,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
       },
       state.selected && {
         cursor: 'default',
-        color: theme.color.black.rgb().string(),
+        color: theme.color.text.rgb().string(),
       },
     ],
   }

@@ -3,7 +3,7 @@ import { toRem } from '@stage-ui/system/utils/size'
 import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
-  const color = colorProp(props.color || theme.color.black, theme)
+  const color = colorProp(props.color || theme.color.text, theme)
   const barOffset = toRem(props.barOffset || 0)
 
   return {

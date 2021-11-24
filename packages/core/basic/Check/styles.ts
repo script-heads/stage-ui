@@ -10,7 +10,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         display: 'flex',
         alignItems: 'center',
         cursor: 'pointer',
-        color: theme.color.black.rgb().string(),
+        color: theme.color.text.rgb().string(),
         outline: 'none',
       },
       disabled && {

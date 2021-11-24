@@ -38,7 +38,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         userSelect: 'none',
         outline: 'none',
         padding: `calc(${spacing} / 2) ${spacing}`,
-        color: theme.color.black.rgb().string(),
+        color: theme.color.text.rgb().string(),
         ':before': {
           content: `''`,
           transition: 'all 0.15s',

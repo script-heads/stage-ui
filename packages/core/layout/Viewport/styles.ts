@@ -4,7 +4,7 @@ import resets from './resets'
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
   const attachTheme = {
     background: theme.color.background.rgb().string(),
-    color: theme.color.black.rgb().string(),
+    color: theme.color.text.rgb().string(),
     fontFamily:
       '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
     p: theme.assets.typography.paragraph,
