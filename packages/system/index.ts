@@ -4,7 +4,6 @@ import ColorType from 'color'
 import CSS from 'csstype'
 import { ReplaceTheme } from './utils/createTheme'
 import { AllProps as AllPropsType } from './props/types'
-import { ColorNames } from './props/color'
 import {
   ClassesSchemaDefinition,
   CreateClasses as CreateClassesType,
@@ -17,7 +16,7 @@ declare global {
     type Sizes = 'xs' | 's' | 'm' | 'l' | 'xl'
     type CSSInterpolation = CSSI
     type CSSObject = CSSO
-    type ColorDefinition = string
+    type ColorDefinition = string | [number, number, number, number?]
     type Color = ColorType<ColorDefinition>
     type ColorMain<C = Color> = {
       primary: C

@@ -6,7 +6,7 @@ import onColorFlat from './onColorsFlat'
 
 export interface ThemeDefiniton {
   main: Omit<Stage.ThemeMain, 'color' | 'breakpoints'> & {
-    color: Omit<Stage.Colors<string>, 'palette'> & {
+    color: Omit<Stage.Colors<Stage.ColorDefinition>, 'palette'> & {
       /** @deprecated this field, please add new colors to the color field, e.g: name: '#000' */
       palette?: Record<string, Stage.ColorDefinition>
     }
@@ -80,15 +80,16 @@ const createTheme = (themeDefinition: ThemeDefiniton): Stage.Theme => {
       themeReplaceDefinition.main || {},
     ) as ThemeDefiniton['main']
 
-    const nextAssets = ((replacedMain) =>
-      mergeObjects(
+    const nextAssets = ((replacedMain) => {
+      return mergeObjects(
         isFunction(themeDefinition.assets)
           ? themeDefinition.assets(replacedMain)
           : themeDefinition.assets || {},
         isFunction(themeReplaceDefinition.assets)
           ? themeReplaceDefinition.assets(replacedMain)
           : themeReplaceDefinition.assets || {},
-      )) as ThemeDefiniton['assets']
+      )
+    }) as ThemeDefiniton['assets']
 
     const nextOverrides = ((replacedMain, replacedAssets) =>
       mergeObjects(
