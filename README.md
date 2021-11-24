@@ -1,21 +1,12 @@
-<div>
-  <h2>
-		<b>StageUI</b>
-	</h2>
-  <p>Flexible UI Framework declared by your own Design System.</p>
-  <a href="https://stageui.project1.io">
-    <img alt="npm install @stage-ui/core" src="https://img.shields.io/npm/v/@stage-ui/core?style=flat-square&logo=visual-studio-code&label=Documentation&color=blue">
-  </a>
-  <a href="https://www.npmjs.com/package/@stage-ui/core">
-    <img alt="npm install @stage-ui/core" src="https://img.shields.io/npm/v/@stage-ui/core?style=flat-square&logo=npm&label=@stage-ui/core&color=green">
-  </a>
-  <a href="https://www.npmjs.com/package/@stage-ui/system">
-    <img alt="npm install @stage-ui/system" src="https://img.shields.io/npm/v/@stage-ui/system?style=flat-square&logo=npm&label=@stage-ui/system&color=green">
-  </a>
-  <a href="https://www.npmjs.com/package/@stage-ui/icons">
-    <img alt="npm install @stage-ui/icons" src="https://img.shields.io/npm/v/@stage-ui/icons?style=flat-square&logo=npm&label=@stage-ui/icons&color=green">
-  </a>
-</div>
+# StageUI
+
+Flexible UI Framework declared by your own Design System.
+
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/script-heads/StageUI/blob/main/LICENSE)
+[![Documentation](https://img.shields.io/npm/v/@stage-ui/core?style=flat-square&logo=visual-studio-code&label=Documentation&color=blue)](https://stageui.project1.io/)
+[![Core version package](https://img.shields.io/npm/v/@stage-ui/core?style=flat-square&logo=npm&label=@stage-ui/core&color=green)](https://www.npmjs.com/package/@stage-ui/core)
+[![System version package](https://img.shields.io/npm/v/@stage-ui/system?style=flat-square&logo=npm&label=@stage-ui/system&color=green)](https://www.npmjs.com/package/@stage-ui/system)
+[![Icons version package](https://img.shields.io/npm/v/@stage-ui/icons?style=flat-square&logo=npm&label=@stage-ui/icons&color=green)](https://www.npmjs.com/package/@stage-ui/icons)
 
 ## Install
 
