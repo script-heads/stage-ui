@@ -1,7 +1,7 @@
 import IMask from 'imask'
 import moment, { Moment } from 'moment'
 
-export default (format: string, min: Moment) =>
+export default (format: string, min: Moment, max: Moment) =>
   ({
     mask: Date,
     pattern: format,

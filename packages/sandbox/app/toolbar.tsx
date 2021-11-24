@@ -1,10 +1,9 @@
 import { Button, DatePicker, Divider, Flexbox, Select, TextField } from '@stage-ui/core'
 import { Funnel, Refresh, Search } from '@stage-ui/icons'
 import React, { useState } from 'react'
-import { Moment } from 'moment'
 
 const PlaygroundToolbar = () => {
-  const [date, setDate] = useState<Moment | undefined>(undefined)
+  const [date, setDate] = useState(undefined)
   console.log('Controlled state:', date)
 
   return (
@@ -17,7 +16,6 @@ const PlaygroundToolbar = () => {
             Filter
           </Button>
         }
-        clearable
         placeholder="Search"
       />
       <Select
