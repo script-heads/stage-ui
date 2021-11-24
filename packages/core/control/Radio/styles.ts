@@ -1,9 +1,38 @@
+import colorResolver from '@stage-ui/system/props/color'
 import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
-  const { size = 'm', disabled = false } = props
+  const { disabled, uppercase, size = 'm' } = props
+  const labelColor = props.labelColor ? colorResolver(props.labelColor, theme) : undefined
+
   return {
-    check: (state) => [
+    container: [
+      {
+        display: 'flex',
+        alignItems: 'center',
+        cursor: 'pointer',
+        color: theme.color.onSurface.rgb().string(),
+        outline: 'none',
+      },
+      disabled && {
+        cursor: 'not-allowed',
+      },
+    ],
+    label: [
+      {
+        marginLeft: '0.5rem',
+        userSelect: 'none',
+        color: labelColor?.rgb().string(),
+      },
+      theme.assets.typography.text[size],
+      disabled && {
+        color: theme.color.light.rgb().string(),
+      },
+      uppercase && {
+        textTransform: 'uppercase',
+      },
+    ],
+    check: ({ checked }) => [
       {
         boxSizing: 'border-box',
         display: 'flex',
@@ -20,7 +49,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         willChange: 'color, border-color, background-color',
         outline: 'none',
       },
-      state.checked && {
+      checked && {
         backgroundColor: theme.color.primary.rgb().string(),
         borderColor: 'transparent',
       },
@@ -29,7 +58,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
           backgroundColor: theme.color.lightest.rgb().string(),
           borderColor: theme.color.light.rgb().string(),
         },
-        state.checked && {
+        checked && {
           backgroundColor: theme.color.primary.alpha(0.5).rgb().string(),
           borderColor: 'transparent',
         },
@@ -55,7 +84,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         height: '2rem',
       },
     ],
-    radio: (state) => [
+    icon: ({ checked }) => [
       {
         transition: 'all 0.2s',
         transform: `scale(0)`,
@@ -66,7 +95,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         borderRadius: '50%',
         backgroundColor: theme.color.onPrimary.rgb().string(),
       },
-      state.checked && {
+      checked && {
         transform: `scale(0.5)`,
         opacity: 1,
         transition: 'opacity .15s, transform .15s',

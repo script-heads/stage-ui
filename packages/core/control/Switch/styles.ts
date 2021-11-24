@@ -1,9 +1,38 @@
+import colorResolver from '@stage-ui/system/props/color'
 import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
-  const { size = 'm', disabled } = props
+  const { disabled, uppercase, size = 'm' } = props
+  const labelColor = props.labelColor ? colorResolver(props.labelColor, theme) : undefined
+
   return {
-    check: (state) => [
+    container: [
+      {
+        display: 'flex',
+        alignItems: 'center',
+        cursor: 'pointer',
+        color: theme.color.onSurface.rgb().string(),
+        outline: 'none',
+      },
+      disabled && {
+        cursor: 'not-allowed',
+      },
+    ],
+    label: [
+      {
+        marginLeft: '0.5rem',
+        userSelect: 'none',
+        color: labelColor?.rgb().string(),
+      },
+      theme.assets.typography.text[size],
+      disabled && {
+        color: theme.color.light.rgb().string(),
+      },
+      uppercase && {
+        textTransform: 'uppercase',
+      },
+    ],
+    check: ({ checked }) => [
       {
         boxSizing: 'border-box',
         display: 'flex',
@@ -38,14 +67,14 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         height: '1rem',
         borderRadius: '2rem',
       },
-      state.checked && {
+      checked && {
         backgroundColor: theme.color.primary.rgb().string(),
       },
       disabled && {
         backgroundColor: theme.color.lightest.rgb().string(),
       },
     ],
-    switch: (state) => [
+    icon: ({ checked }) => [
       {
         position: 'relative',
         boxSizing: 'border-box',
@@ -65,7 +94,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
           height: '0.75rem',
           left: '-0.1875rem',
         },
-        state.checked && {
+        checked && {
           left: '0.1875rem',
         },
       ],
@@ -76,7 +105,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
           height: '1rem',
           left: '-0.25rem',
         },
-        state.checked && {
+        checked && {
           left: '0.25rem',
         },
       ],
@@ -87,7 +116,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
           height: '1.25rem',
           left: '-0.3125rem',
         },
-        state.checked && {
+        checked && {
           left: '0.3125rem',
         },
       ],
@@ -98,7 +127,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
           height: '1.5rem',
           left: '-0.375rem',
         },
-        state.checked && {
+        checked && {
           left: '0.375rem',
         },
       ],
@@ -109,7 +138,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
           height: '2rem',
           left: '-0.5rem',
         },
-        state.checked && {
+        checked && {
           left: '0.5rem',
         },
       ],
