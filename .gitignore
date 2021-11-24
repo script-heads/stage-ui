@@ -2,9 +2,6 @@
 build
 dist
 public
-packages/**/dist/*.js
-packages/**/public/*.js
-
 
 # dependencies
 node_modules
