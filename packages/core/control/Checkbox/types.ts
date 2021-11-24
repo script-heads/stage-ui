@@ -1,22 +1,25 @@
-import CheckTypes from '@stage-ui/core/basic/Check/types'
-
 declare namespace CheckboxTypes {
-  interface Props extends CheckTypes.Props<HTMLDivElement, Classes> {}
+  interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
+    label?: string
+    labelColor?: Stage.ColorProp
+    checked?: boolean
+    disabled?: boolean
+    defaultValue?: boolean
+    uppercase?: boolean
+    size?: Stage.Sizes
+    onChange?: (state: boolean) => void
+  }
 
   type ClassState = {
     checked: Props['checked']
   }
 
   type Classes = {
-    /**
-     * Checkbox container
-     */
+    container: void
+    label: void
     check: ClassState
-    /**
-     * Icon of checkbox
-     */
     icon: ClassState
-  } & Partial<CheckTypes.Classes>
+  }
 }
 
 export default CheckboxTypes

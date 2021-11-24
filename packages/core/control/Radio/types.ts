@@ -1,22 +1,9 @@
-import CheckTypes from '../../basic/Check/types'
+import CheckboxTypes from '../Checkbox/types'
 
 declare namespace RadioTypes {
-  interface Props extends CheckTypes.Props<HTMLDivElement, Classes> {}
-
-  type ClassState = {
-    checked: Props['checked']
-  }
-
-  type Classes = {
-    /**
-     * Radio container
-     */
-    check: ClassState
-    /**
-     * Icon of Radio
-     */
-    radio: ClassState
-  } & Partial<CheckTypes.Classes>
+  type Props = CheckboxTypes.Props
+  type ClassState = CheckboxTypes.Props
+  type Classes = CheckboxTypes.Classes
 }
 
 export default RadioTypes

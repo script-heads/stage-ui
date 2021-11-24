@@ -1,22 +1,9 @@
-import CheckTypes from '../../basic/Check/types'
+import CheckboxTypes from '../Checkbox/types'
 
 declare namespace SwitchTypes {
-  interface Props extends CheckTypes.Props<HTMLDivElement, Classes> {}
-
-  type Classes = {
-    /**
-     * Switch container
-     */
-    check: {
-      checked: Props['checked']
-    }
-    /**
-     * Icon of Switch
-     */
-    switch: {
-      checked: Props['checked']
-    }
-  } & Partial<CheckTypes.Classes>
+  type Props = CheckboxTypes.Props
+  type ClassState = CheckboxTypes.Props
+  type Classes = CheckboxTypes.Classes
 }
 
 export default SwitchTypes

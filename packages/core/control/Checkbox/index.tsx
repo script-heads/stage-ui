@@ -1,6 +1,5 @@
-import React, { forwardRef, ForwardRefRenderFunction } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, useEffect, useState } from 'react'
 import { Checkmark } from '@stage-ui/icons'
-import Check from '@stage-ui/core/basic/Check'
 import { useSystem } from '@stage-ui/system'
 import createClasses from './styles'
 import Types from './types'
@@ -9,22 +8,75 @@ const Checkbox: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
   props: Types.Props,
   ref,
 ) => {
-  const { size = 'm', tabIndex = 0 } = props
-  const { classes, events } = useSystem('Checkbox', props, createClasses, { focus: 'tabOnly' })
+  const { tabIndex = 0, label, disabled, defaultValue, checked: checkedProp = false } = props
+
+  const { classes, attributes, events, styleProps } = useSystem('Checkbox', props, createClasses, {
+    focus: 'tabOnly',
+  })
+
+  const { onClick, onChange, onKeyDown, ...restEvents } = events
+
+  const [checked, setChecked] = useState(checkedProp || defaultValue || false)
+
+  useEffect(() => {
+    setChecked(checkedProp)
+  }, [checkedProp])
+
+  /**
+   * Change handler
+   */
+  function handleChange() {
+    onChange?.(checked)
+    setChecked(!checked)
+  }
+  /*
+   * Keyboard control
+   */
+  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    /**
+     * Enter or Space
+     */
+    if (event.keyCode === 0x0d || event.keyCode === 0x20) {
+      handleChange()
+      /**
+       * Prevent page scrolling
+       */
+      if (event.keyCode === 0x20) {
+        event.preventDefault()
+      }
+    }
+    onKeyDown?.(event)
+  }
+
+  function handleClick(e: React.MouseEvent<HTMLInputElement>) {
+    if (!disabled) {
+      handleChange()
+    }
+    onClick?.(e)
+  }
 
   return (
-    <Check {...props} name="Checkbox" ref={ref} size={size}>
-      {(checked) => (
-        <div
-          tabIndex={tabIndex}
-          css={classes.check({ checked })}
-          onFocus={events.onFocus}
-          onBlur={events.onBlur}
-        >
-          <Checkmark css={classes.icon({ checked })} />
-        </div>
-      )}
-    </Check>
+    <div
+      ref={ref}
+      {...attributes}
+      {...restEvents}
+      tabIndex={-1}
+      css={[classes.container, styleProps.all]}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      role="checkbox"
+      aria-checked={checked}
+    >
+      <div
+        tabIndex={tabIndex}
+        css={classes.check({ checked })}
+        onFocus={events.onFocus}
+        onBlur={events.onBlur}
+      >
+        <Checkmark css={classes.icon({ checked })} />
+      </div>
+      {label && label.length && <div css={classes.label}>{label}</div>}
+    </div>
   )
 }
 
