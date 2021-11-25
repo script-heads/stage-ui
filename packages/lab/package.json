@@ -9,7 +9,8 @@
         "build:types": "tsc --emitDeclarationOnly",
         "build:js": "babel ./ --out-dir ../../build/lab --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
         "type-check": "tsc --noEmit",
-        "type-check:watch": "yarn type-check -- --watch"
+        "type-check:watch": "yarn type-check -- --watch",
+        "lint": "eslint --config .eslintrc.json --fix '**/*.+(js|jsx|ts|tsx)'"
     },
     "dependencies": {
         "chart.js": "^2.9.3",

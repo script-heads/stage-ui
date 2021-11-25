@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
-import { Global } from '@emotion/react'
 import { light, dark } from '@stage-ui/core/themes'
 import { Viewport, Block, Flexbox, ScrollView } from '@stage-ui/core'
 import { toPixel } from '@stage-ui/system/utils/size'

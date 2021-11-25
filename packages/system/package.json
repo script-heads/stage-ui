@@ -4,10 +4,12 @@
   "version": "0.2.1",
   "license": "MIT",
   "scripts": {
-    "build": "node ../../scripts/make system && tsc && yarn build:js",
+    "build": "node ../../scripts/make system && yarn build:types && yarn build:js",
     "build:js": "babel ./ --out-dir ../../build/system --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
+    "build:types": "tsc --emitDeclarationOnly",
     "type-check": "tsc --noEmit",
-    "type-check:watch": "tsc --noEmit --watch"
+    "type-check:watch": "tsc --noEmit --watch",
+    "lint": "eslint --config .eslintrc.json --fix '**/*.+(js|jsx|ts|tsx)'"
   },
   "dependencies": {
     "@types/color": "3.0.2",

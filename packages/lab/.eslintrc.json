@@ -1,0 +1,14 @@
+{
+  "extends": "../../.eslintrc.json",
+  "env": {
+    "browser": true
+  },
+  "overrides": [
+    {
+     "files": "**/*.+(ts|tsx)",
+     "parserOptions": {
+       "project": ["./tsconfig.json"]
+     }
+    } 
+  ]
+}

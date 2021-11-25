@@ -6,29 +6,27 @@ import Types from './types'
 const Link: ForwardRefRenderFunction<HTMLAnchorElement, Types.Props> = (
   { overrides, ...props },
   ref,
-) => {
-  return (
-    <Typography
-      tag="a"
-      color="primary"
-      sizesOf="text"
-      name="Link"
-      overrides={(theme, styleProps) => ({
-        container: [
-          {
-            outline: 'none',
-            textDecoration: 'unset',
-            '&:hover': {
-              textDecoration: 'underline',
-            },
+) => (
+  <Typography
+    tag="a"
+    color="primary"
+    sizesOf="text"
+    name="Link"
+    overrides={(theme, styleProps) => ({
+      container: [
+        {
+          outline: 'none',
+          textDecoration: 'unset',
+          '&:hover': {
+            textDecoration: 'underline',
           },
-          isFunction(overrides) ? overrides(theme, styleProps).container : overrides?.container,
-        ],
-      })}
-      ref={ref}
-      {...props}
-    />
-  )
-}
+        },
+        isFunction(overrides) ? overrides(theme, styleProps).container : overrides?.container,
+      ],
+    })}
+    ref={ref}
+    {...props}
+  />
+)
 
 export default forwardRef(Link)

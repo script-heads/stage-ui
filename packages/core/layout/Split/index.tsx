@@ -57,7 +57,6 @@ const Split: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
       {...events}
       ref={(containerRef) => {
         refs['-1'] = { current: containerRef }
-        ref = { current: containerRef }
       }}
       css={[
         classes.container({
@@ -79,7 +78,7 @@ const Split: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
           ) : null
 
         return (
-          <Fragment key={index}>
+          <Fragment key={child.key}>
             <div
               css={{
                 display: 'flex',

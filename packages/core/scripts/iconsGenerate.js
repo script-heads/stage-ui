@@ -10,7 +10,9 @@ const evaIconsPath = path.resolve(__dirname, '..', '..', '..', 'node_modules', '
 const svgIndexPath = path.resolve(__dirname, '..', 'icons', 'index.tsx')
 const svgDstPath = path.resolve(__dirname, '..', 'icons', 'svg')
 
-const template = fs.readFileSync(path.resolve(__dirname, 'iconsTemplate.txt'), { encoding: 'utf-8' })
+const template = fs.readFileSync(path.resolve(__dirname, 'iconsTemplate.txt'), {
+  encoding: 'utf-8',
+})
 
 const packageJson = require(path.resolve(evaIconsPath, 'package.json'))
 const icons = require(path.resolve(evaIconsPath, 'eva-icons.json'))

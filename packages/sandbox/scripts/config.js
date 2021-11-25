@@ -3,7 +3,7 @@ const path = require('path')
 const HOST = '0.0.0.0'
 const PORT = 9055
 const PUBLIC_DIR = path.resolve(__dirname, '..', 'public')
-const SRC_DIR = path.resolve(__dirname, '..')
+const SRC_DIR = path.resolve(__dirname, '..', 'src')
 const DIST_DIR = path.resolve(__dirname, '..', 'dist')
 
 const DEFINE = {

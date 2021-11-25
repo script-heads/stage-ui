@@ -2,9 +2,7 @@ import Types from './types'
 import SharedZIndex from '../../utils/SharedZIndex'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
-  const { decoration = 'modal', size = 'm' } = props
-
-  const isPanel = decoration === 'panel'
+  const { size = 'm' } = props
 
   const spacing = theme.spacing[size] || theme.spacing.m
   const titleSize = theme.assets.typography.header[size] || theme.assets.typography.header.m

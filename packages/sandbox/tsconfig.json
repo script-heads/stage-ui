@@ -1,16 +1,10 @@
-{
+{"extends": "../../tsconfig.json",
   "compilerOptions": {
     "jsx": "preserve",
-    "target": "esnext",
-    "module": "commonjs",
     "outDir": "../../build/sandbox",
     "allowJs": false,
-    "declaration": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
     "alwaysStrict": true,
     "noImplicitThis": false,
     "noImplicitAny": false,
@@ -21,5 +15,4 @@
     "strictPropertyInitialization": false,
     "types": ["@emotion/react"]
   },
-  "exclude": ["node_modules"]
 }

@@ -1,6 +1,7 @@
 import { CSSInterpolation as CSSI, CSSObject as CSSO } from '@emotion/serialize'
-import ColorType from 'color'
 import { ColorProp as ColorPropType } from '@stage-ui/system/props/color'
+import ColorType from 'color'
+import CSS from 'csstype'
 import { ReplaceTheme } from './utils/createTheme'
 import { AllProps as AllPropsType } from './props/types'
 import {
@@ -15,36 +16,274 @@ declare global {
     type Sizes = 'xs' | 's' | 'm' | 'l' | 'xl'
     type CSSInterpolation = CSSI
     type CSSObject = CSSO
-    type ColorDefinition = [number, number, number, number?]
+    type ColorDefinition = string | [number, number, number, number?]
     type Color = ColorType<ColorDefinition>
+    type ColorMain<C = Color> = {
+      primary: C
+      secondary: C
 
-    interface ThemeMain<C = Color> {
-      name: string
-      color: {
-        background: C
-        backgroundVariant: C
-        surface: C
-        surfaceVariant: C
-        primary: C
-        secondary: C
+      /** @deprecated this field */
+      onPrimary: C
+      /** @deprecated this field */
+      onSecondary: C
+      /** @deprecated this field */
+      onSurface: C
+      /** @deprecated this field */
+      onBackground: C
 
-        onBackground: C
-        onSurface: C
-        onPrimary: C
-        onSecondary: C
+      /** @deprecated this field */
+      light: C
+      /** @deprecated this field */
+      lightest: C
+      /** @deprecated this field */
+      hard: C
+      /** @deprecated this field */
+      hardest: C
 
-        lightest: C
-        light: C
-        hard: C
-        hardest: C
+      surface: C
+      /** @deprecated this field */
+      surfaceVariant: C
 
-        error: C
-        warning: C
-        success: C
-        info: C
+      background: C
+      /** @deprecated this field */
+      backgroundVariant: C
 
-        palette: Record<string, Color>
+      border: C
+      text: C
+
+      error: C
+      warning: C
+      success: C
+      info: C
+
+      black: C
+      white: C
+    }
+    type ColorPallete<C = Color> = {
+      gray: {
+        50: C
+        100: C
+        200: C
+        300: C
+        400: C
+        500: C
+        600: C
+        700: C
+        800: C
+        900: C
       }
+
+      yellow: {
+        50: C
+        100: C
+        200: C
+        300: C
+        400: C
+        500: C
+        600: C
+        700: C
+        800: C
+        900: C
+        A100: C
+        A200: C
+        A400: C
+        A700: C
+      }
+
+      orange: {
+        50: C
+        100: C
+        200: C
+        300: C
+        400: C
+        500: C
+        600: C
+        700: C
+        800: C
+        900: C
+        A100: C
+        A200: C
+        A400: C
+        A700: C
+      }
+
+      red: {
+        50: C
+        100: C
+        200: C
+        300: C
+        400: C
+        500: C
+        600: C
+        700: C
+        800: C
+        900: C
+      }
+
+      rose: {
+        50: C
+        100: C
+        200: C
+        300: C
+        400: C
+        500: C
+        600: C
+        700: C
+        800: C
+        900: C
+      }
+
+      pink: {
+        50: C
+        100: C
+        200: C
+        300: C
+        400: C
+        500: C
+        600: C
+        700: C
+        800: C
+        900: C
+      }
+
+      green: {
+        50: C
+        100: C
+        200: C
+        300: C
+        400: C
+        500: C
+        600: C
+        700: C
+        800: C
+        900: C
+      }
+
+      lightGreen: {
+        50: C
+        100: C
+        200: C
+        300: C
+        400: C
+        500: C
+        600: C
+        700: C
+        800: C
+        900: C
+        A100: C
+        A200: C
+        A400: C
+        A700: C
+      }
+
+      lime: {
+        A100: C
+        A200: C
+        A400: C
+        A700: C
+      }
+
+      teal: {
+        50: C
+        100: C
+        200: C
+        300: C
+        400: C
+        500: C
+        600: C
+        700: C
+        800: C
+        900: C
+      }
+
+      cyan: {
+        50: C
+        100: C
+        200: C
+        300: C
+        400: C
+        500: C
+        600: C
+        700: C
+        800: C
+        900: C
+        A100: C
+        A200: C
+        A400: C
+        A700: C
+      }
+
+      lightBlue: {
+        50: C
+        100: C
+        200: C
+        300: C
+        400: C
+        500: C
+        600: C
+        700: C
+        800: C
+        900: C
+        A100: C
+        A200: C
+        A400: C
+        A700: C
+      }
+
+      blue: {
+        50: C
+        100: C
+        200: C
+        300: C
+        400: C
+        500: C
+        600: C
+        700: C
+        800: C
+        900: C
+        A100: C
+        A200: C
+        A400: C
+        A700: C
+      }
+
+      indigo: {
+        50: C
+        100: C
+        200: C
+        300: C
+        400: C
+        500: C
+        600: C
+        700: C
+        800: C
+        900: C
+      }
+
+      purple: {
+        50: C
+        100: C
+        200: C
+        300: C
+        400: C
+        500: C
+        600: C
+        700: C
+        800: C
+        900: C
+      }
+    }
+
+    type ColorCustomPallete<C = Color> = {
+      /** @deprecated this field, please add new colors to the color field, e.g: name: '#000' */
+      palette: Record<string, C>
+    }
+
+    type Colors<C = Color> = ColorMain<C> & ColorPallete<C> & ColorCustomPallete<C>
+
+    interface ThemeMain {
+      name: string
+      color: Colors
       breakpoints: string[]
       radius: Record<Sizes, string>
       spacing: Record<Sizes, string>
@@ -54,7 +293,7 @@ declare global {
       global?: Stage.CSSInterpolation
       border: {
         width: string
-        style: string
+        style: CSS.Properties['borderStyle']
         color: string
       }
       shadow: Record<Sizes, string>

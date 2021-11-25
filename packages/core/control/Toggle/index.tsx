@@ -5,7 +5,7 @@ import createClasses from './styles'
 import Types from './types'
 
 const Button: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-  const { disabled, defaultValue } = props
+  const { defaultValue } = props
   const { classes, attributes, events, styleProps } = useSystem('Toggle', props, createClasses, {
     focus: 'tabOnly',
   })

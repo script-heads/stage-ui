@@ -1,16 +1,7 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs",
-    "jsx": "react-jsx",
-    "jsxImportSource": "@emotion/react",
-    "target": "esnext",
     "outDir": "../../build/core",
-    "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "strict": true
   },
   "include": [
     "components/**/*",
@@ -19,7 +10,4 @@
     "themes/**/*",
     "utils/**/*",
   ],
-  "exclude": [
-    "node_modules"
-  ]
 }

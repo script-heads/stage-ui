@@ -4,9 +4,11 @@
   "version": "0.2.1",
   "license": "MIT",
   "scripts": {
-    "build": "node ../../scripts/make icons && tsc && yarn build:js",
+    "build": "node ../../scripts/make icons && yarn build:types && yarn build:js",
     "build:js": "babel ./ --out-dir ../../build/icons --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
-    "gen": "node ./scripts/generate"
+    "build:types": "tsc --emitDeclarationOnly",
+    "gen": "node ./scripts/generate",
+    "lint": "eslint --config .eslintrc.json --fix '**/*.+(js|jsx|ts|tsx)'"
   },
   "peerDependencies": {
     "@emotion/react": ">=11",

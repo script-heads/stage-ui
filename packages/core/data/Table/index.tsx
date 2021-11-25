@@ -17,7 +17,7 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
   const {
     classes,
     attributes,
-    events: { onChange, ...events },
+    events: { onChange, onRowClick, ...events },
     styleProps,
   } = useSystem('Table', props, styles)
   const { columns, pagination, footer } = props
@@ -257,7 +257,8 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
             .forEach((key) => {
               currentEvents[key.replace('Row', '')] = (
                 e: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
-              ) => props[key as Stage.FilterStartingWith<keyof typeof props, 'onRow'>]?.(rowCtxItem, e)
+              ) =>
+                props[key as Stage.FilterStartingWith<keyof typeof props, 'onRow'>]?.(rowCtxItem, e)
             })
 
           return (
