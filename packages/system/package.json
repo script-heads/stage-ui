@@ -8,7 +8,7 @@
     "url": "https://github.com/script-heads/StageUI.git",
     "directory": "packages/system"
   },
-  "homepage": "https://stageui.project1.io/",
+  "homepage": "https://stageui.project1.io",
   "bugs": "https://github.com/script-heads/StageUI/issues",
   "scripts": {
     "build": "node ../../scripts/make system && yarn build:types && yarn build:js",
