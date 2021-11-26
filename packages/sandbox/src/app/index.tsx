@@ -1,4 +1,14 @@
-import { Block, Button, Flexbox, Grid, Header, ScrollView, Spinner, useTheme } from '@stage-ui/core'
+import {
+  Block,
+  Button,
+  Flexbox,
+  Grid,
+  Header,
+  ScrollView,
+  Spinner,
+  useTheme,
+  Paragraph,
+} from '@stage-ui/core'
 import React from 'react'
 import PlaygroundControl from './control'
 import PlaygroundMenu from './menu'
@@ -35,6 +45,10 @@ const App = () => {
             background: color.blue[700].hex(),
           }}
         />
+        <Paragraph weight={600} color={(c) => c.hard.rgb().string()} size="s" mr="s">
+          test
+        </Paragraph>
+        <Flexbox h="10rem" w="20rem" backgroundColor={(c) => 'blue400'} borderRadius="l" />
       </ScrollView>
     </Flexbox>
   )
