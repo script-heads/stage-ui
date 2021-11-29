@@ -37,7 +37,7 @@ export type DeepPartial<T> = {
 }
 
 /**
- * autocomplete hack for webkit
+ * autocomplete hack f or webkit
  */
 const autocomplete = {
   transition: 'all 604800s ease-in-out 0s',
