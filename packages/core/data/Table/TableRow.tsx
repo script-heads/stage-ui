@@ -51,7 +51,7 @@ const TableRow: ForwardRefRenderFunction<HTMLTableRowElement, Types.RowProps<any
         const element = document.getElementById(rowId as string)
         if (element) {
           const position = element.getBoundingClientRect()
-          if (position.top + height * 2 >= 0 && position.top - height <= window.innerHeight) {
+          if (position.top + height * 2 >= 0 && position.top - height <= window?.innerHeight) {
             state = true
             props.rowDidMount?.(rowCtxItem)
             setNeedDisplay(true)

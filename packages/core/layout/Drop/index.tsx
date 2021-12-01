@@ -96,7 +96,7 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
       if (targetRef?.current) {
         if (!props.align || props.align === 'auto-vertical') {
           const lockedSpace = tr.top + tr.height + spacing
-          if (dr.height > window.innerHeight - lockedSpace) {
+          if (dr.height > window?.innerHeight - lockedSpace) {
             align = 'top'
           } else {
             align = 'bottom'
@@ -189,7 +189,7 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
 
   useEffect(() => {
     if (stickCursor) {
-      window.addEventListener('mousemove', updateStickCursor)
+      window?.addEventListener('mousemove', updateStickCursor)
     } else if (mountState) {
       const rect =
         stretchHeight || stretchWidth ? targetRef?.current?.getBoundingClientRect() : null
@@ -203,19 +203,19 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
       document.addEventListener('scroll', updatePosition, true)
       document.addEventListener('onstagescroll', updatePosition, true)
       document.addEventListener('mouseup', handleClickOutside)
-      window.addEventListener('resize', updatePosition)
+      window?.addEventListener('resize', updatePosition)
 
       afterMount()
     }
 
     return () => {
       if (stickCursor) {
-        window.removeEventListener('mousemove', updateStickCursor)
+        window?.removeEventListener('mousemove', updateStickCursor)
       } else {
         document.removeEventListener('scroll', updatePosition, true)
         document.removeEventListener('onstagescroll', updatePosition, true)
         document.removeEventListener('mouseup', handleClickOutside)
-        window.removeEventListener('resize', updatePosition)
+        window?.removeEventListener('resize', updatePosition)
       }
     }
   }, [mountState, stickCursor, align, justify])

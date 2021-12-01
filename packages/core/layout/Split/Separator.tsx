@@ -64,12 +64,12 @@ const Separator = (props: Types.SeparatorProps) => {
   }
 
   useEffect(() => {
-    window.addEventListener('mouseup', mouseUp)
-    window.addEventListener('mousemove', mouseMove)
+    window?.addEventListener('mouseup', mouseUp)
+    window?.addEventListener('mousemove', mouseMove)
     ref.current?.addEventListener('mousedown', mouseDown)
     return () => {
-      window.removeEventListener('mouseup', mouseUp)
-      window.removeEventListener('mousemove', mouseMove)
+      window?.removeEventListener('mouseup', mouseUp)
+      window?.removeEventListener('mousemove', mouseMove)
       ref.current?.removeEventListener('mousedown', mouseDown)
     }
   }, [])
