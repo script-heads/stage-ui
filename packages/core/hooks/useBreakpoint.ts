@@ -20,11 +20,11 @@ export const useBreakpoint = <T>(values: T[]): T => {
   }
 
   useEffect(() => {
-    window.addEventListener('resize', calcState)
-    window.addEventListener('orientationchange', calcState)
+    window?.addEventListener('resize', calcState)
+    window?.addEventListener('orientationchange', calcState)
     return () => {
-      window.removeEventListener('resize', calcState)
-      window.removeEventListener('orientationchange', calcState)
+      window?.removeEventListener('resize', calcState)
+      window?.removeEventListener('orientationchange', calcState)
     }
   }, [])
 

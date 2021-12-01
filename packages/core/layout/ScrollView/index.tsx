@@ -327,9 +327,9 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
     () => () => {
       memo.y = false
       memo.x = false
-      window.removeEventListener('mouseup', mouseUp)
-      window.removeEventListener('click', mouseUp)
-      window.removeEventListener('mousemove', scrollToHandle)
+      window?.removeEventListener('mouseup', mouseUp)
+      window?.removeEventListener('click', mouseUp)
+      window?.removeEventListener('mousemove', scrollToHandle)
     },
     [],
   )
@@ -380,7 +380,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
     document.addEventListener('mouseleave', mouseUp)
 
     if (mode === 'always') {
-      window.addEventListener('resize', resize)
+      window?.addEventListener('resize', resize)
     } else if (memo.timeout) {
       clearTimeout(memo.timeout)
     }
@@ -400,9 +400,9 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
 
     return () => {
       memo.mounted = false
-      window.removeEventListener('resize', resize)
-      window.removeEventListener('mouseup', mouseUp)
-      window.removeEventListener('mousemove', moveScrollContentByMouse)
+      window?.removeEventListener('resize', resize)
+      window?.removeEventListener('mouseup', mouseUp)
+      window?.removeEventListener('mousemove', moveScrollContentByMouse)
       document.removeEventListener('mouseleave', mouseUp)
     }
   }, [props])
@@ -419,7 +419,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
           memo.xThumb.addEventListener('mousedown', xMouseDown)
         }
         if (!isLegacyScrollSupport) {
-          window.addEventListener('mousemove', moveScrollContentByMouse)
+          window?.addEventListener('mousemove', moveScrollContentByMouse)
           if (memo.content) {
             memo.content.addEventListener('wheel', updateScroll)
           }
@@ -462,13 +462,13 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
               memo.yBar = currentRef
             }}
             onMouseEnter={() => {
-              window.addEventListener('mouseup', mouseUp)
-              window.addEventListener('click', mouseUp)
+              window?.addEventListener('mouseup', mouseUp)
+              window?.addEventListener('click', mouseUp)
             }}
             onMouseDown={(e) => {
               yMouseDown()
               scrollToHandle(e)
-              window.addEventListener('mousemove', scrollToHandle)
+              window?.addEventListener('mousemove', scrollToHandle)
             }}
             onMouseUp={mouseUp}
           >
@@ -485,13 +485,13 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
               memo.xBar = currentRef
             }}
             onMouseEnter={() => {
-              window.addEventListener('mouseup', mouseUp)
-              window.addEventListener('click', mouseUp)
+              window?.addEventListener('mouseup', mouseUp)
+              window?.addEventListener('click', mouseUp)
             }}
             onMouseDown={(e) => {
               xMouseDown()
               scrollToHandle(e)
-              window.addEventListener('mousemove', scrollToHandle)
+              window?.addEventListener('mousemove', scrollToHandle)
             }}
             onMouseUp={mouseUp}
           >

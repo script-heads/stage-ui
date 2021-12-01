@@ -73,7 +73,7 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
 
   function onClear() {
     if (inputRef.current) {
-      Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value')?.set?.call(
+      Object.getOwnPropertyDescriptor(window?.HTMLInputElement.prototype, 'value')?.set?.call(
         inputRef.current,
         '',
       )
