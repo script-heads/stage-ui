@@ -6,7 +6,7 @@ declare namespace BlockTypes {
     /**
      * HTML element which is used as a container
      */
-    as?: 'div' | 'span' | 'header' | 'footer' | 'article' | 'section' | 'aside' | 'main'
+    as?: 'div' | 'span' | 'header' | 'footer' | 'article' | 'section' | 'aside' | 'main' | 'nav' | 'figure' | 'figcaption'
     /**
      * Defines how block looks
      */
