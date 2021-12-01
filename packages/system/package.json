@@ -1,7 +1,7 @@
 {
   "name": "@stage-ui/system",
   "author": "Project one",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "license": "MIT",
   "scripts": {
     "build": "node ../../scripts/make system && tsc && yarn build:js",
