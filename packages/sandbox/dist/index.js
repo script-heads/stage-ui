@@ -37640,6 +37640,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       nextPagesCount = PAGE_BUTTON_MAX;
       allowToLast = true;
     }
+    if (total <= 0) {
+      return null;
+    }
     return /* @__PURE__ */ jsx(Flexbox_default, __spreadValues({
       ref,
       attributes,
@@ -37655,7 +37658,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       onClick: setPage
     }), allowToFirst && /* @__PURE__ */ jsx(Text_default, {
       css: classes.separator
-    }, "..."), prevPagesCount >= 0 && Array(prevPagesCount).fill("").map((_, index) => /* @__PURE__ */ jsx(PageButton, {
+    }, "..."), Array(prevPagesCount).fill("").map((_, index) => /* @__PURE__ */ jsx(PageButton, {
       key: index,
       page: currentPage - prevPagesCount + index,
       classes,

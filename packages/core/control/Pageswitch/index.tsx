@@ -86,6 +86,10 @@ const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
     allowToLast = true
   }
 
+  if (total <= 0) {
+    return null
+  }
+
   return (
     <Flexbox
       ref={ref}
@@ -101,17 +105,16 @@ const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
       />
       {allowToFirst && <PageButton page={1} classes={classes} onClick={setPage} />}
       {allowToFirst && <Text css={classes.separator}>...</Text>}
-      {prevPagesCount >= 0 &&
-        Array(prevPagesCount)
-          .fill('')
-          .map((_, index) => (
-            <PageButton
-              key={index}
-              page={currentPage - prevPagesCount + index}
-              classes={classes}
-              onClick={setPage}
-            />
-          ))}
+      {Array(prevPagesCount)
+        .fill('')
+        .map((_, index) => (
+          <PageButton
+            key={index}
+            page={currentPage - prevPagesCount + index}
+            classes={classes}
+            onClick={setPage}
+          />
+        ))}
       <PageButton page={currentPage} classes={classes} />
       {Array(nextPagesCount)
         .fill('')
