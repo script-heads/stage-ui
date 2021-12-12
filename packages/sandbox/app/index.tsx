@@ -1,4 +1,13 @@
-import { Block, Flexbox, Grid, Header, ScrollView, Spinner, Paragraph } from '@stage-ui/core'
+import {
+  Block,
+  Flexbox,
+  Grid,
+  Header,
+  ScrollView,
+  Spinner,
+  Paragraph,
+  Pageswitch,
+} from '@stage-ui/core'
 import React from 'react'
 import PlaygroundControl from './control'
 import PlaygroundMenu from './menu'

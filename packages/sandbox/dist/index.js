@@ -79,7 +79,7 @@
   var ws;
   var init_wsClientInjection = __esm({
     "scripts/wsClientInjection.js"() {
-      ws = new WebSocket("ws://127.0.0.1:23456");
+      ws = new WebSocket("ws://127.0.0.1:8000");
       ws.onopen = () => {
         console.log("%c ESBuild hot reload activated ", "background: #000; color: #00b6ff");
       };
@@ -1009,7 +1009,7 @@
             }
             return lazyType;
           }
-          function forwardRef50(render) {
+          function forwardRef49(render) {
             {
               if (render != null && render.$$typeof === REACT_MEMO_TYPE) {
                 error("forwardRef requires a render function but received a `memo` component. Instead of forwardRef(memo(...)), use memo(forwardRef(...)).");
@@ -1130,7 +1130,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect17(create, deps) {
+          function useEffect18(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1693,14 +1693,14 @@
           exports.createElement = createElement$1;
           exports.createFactory = createFactory;
           exports.createRef = createRef;
-          exports.forwardRef = forwardRef50;
+          exports.forwardRef = forwardRef49;
           exports.isValidElement = isValidElement;
           exports.lazy = lazy;
           exports.memo = memo;
           exports.useCallback = useCallback;
           exports.useContext = useContext8;
           exports.useDebugValue = useDebugValue;
-          exports.useEffect = useEffect17;
+          exports.useEffect = useEffect18;
           exports.useImperativeHandle = useImperativeHandle9;
           exports.useLayoutEffect = useLayoutEffect6;
           exports.useMemo = useMemo7;
@@ -9942,11 +9942,11 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       if (true) {
         (function() {
           "use strict";
-          var React301 = require_react();
+          var React298 = require_react();
           var _assign = require_object_assign();
           var Scheduler = require_scheduler();
           var tracing = require_tracing();
-          var ReactSharedInternals = React301.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React298.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function warn(format) {
             {
               for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -9978,7 +9978,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
               Function.prototype.apply.call(console[level], console, argsWithFormat);
             }
           }
-          if (!React301) {
+          if (!React298) {
             {
               throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
             }
@@ -11194,7 +11194,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           var didWarnInvalidChild = false;
           function flattenChildren(children) {
             var content = "";
-            React301.Children.forEach(children, function(child) {
+            React298.Children.forEach(children, function(child) {
               if (child == null) {
                 return;
               }
@@ -11205,7 +11205,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           function validateProps(element, props) {
             {
               if (typeof props.children === "object" && props.children !== null) {
-                React301.Children.forEach(props.children, function(child) {
+                React298.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -18398,7 +18398,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           }
           var fakeInternalInstance = {};
           var isArray = Array.isArray;
-          var emptyRefsObject = new React301.Component().refs;
+          var emptyRefsObject = new React298.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -27924,1336 +27924,6 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }
   });
 
-  // ../../node_modules/axios/lib/helpers/bind.js
-  var require_bind = __commonJS({
-    "../../node_modules/axios/lib/helpers/bind.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      module.exports = function bind(fn, thisArg) {
-        return function wrap() {
-          var args = new Array(arguments.length);
-          for (var i = 0; i < args.length; i++) {
-            args[i] = arguments[i];
-          }
-          return fn.apply(thisArg, args);
-        };
-      };
-    }
-  });
-
-  // ../../node_modules/axios/lib/utils.js
-  var require_utils = __commonJS({
-    "../../node_modules/axios/lib/utils.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      var bind = require_bind();
-      var toString = Object.prototype.toString;
-      function isArray(val) {
-        return toString.call(val) === "[object Array]";
-      }
-      function isUndefined(val) {
-        return typeof val === "undefined";
-      }
-      function isBuffer(val) {
-        return val !== null && !isUndefined(val) && val.constructor !== null && !isUndefined(val.constructor) && typeof val.constructor.isBuffer === "function" && val.constructor.isBuffer(val);
-      }
-      function isArrayBuffer(val) {
-        return toString.call(val) === "[object ArrayBuffer]";
-      }
-      function isFormData(val) {
-        return typeof FormData !== "undefined" && val instanceof FormData;
-      }
-      function isArrayBufferView(val) {
-        var result;
-        if (typeof ArrayBuffer !== "undefined" && ArrayBuffer.isView) {
-          result = ArrayBuffer.isView(val);
-        } else {
-          result = val && val.buffer && val.buffer instanceof ArrayBuffer;
-        }
-        return result;
-      }
-      function isString(val) {
-        return typeof val === "string";
-      }
-      function isNumber(val) {
-        return typeof val === "number";
-      }
-      function isObject(val) {
-        return val !== null && typeof val === "object";
-      }
-      function isPlainObject(val) {
-        if (toString.call(val) !== "[object Object]") {
-          return false;
-        }
-        var prototype = Object.getPrototypeOf(val);
-        return prototype === null || prototype === Object.prototype;
-      }
-      function isDate(val) {
-        return toString.call(val) === "[object Date]";
-      }
-      function isFile(val) {
-        return toString.call(val) === "[object File]";
-      }
-      function isBlob(val) {
-        return toString.call(val) === "[object Blob]";
-      }
-      function isFunction2(val) {
-        return toString.call(val) === "[object Function]";
-      }
-      function isStream(val) {
-        return isObject(val) && isFunction2(val.pipe);
-      }
-      function isURLSearchParams(val) {
-        return typeof URLSearchParams !== "undefined" && val instanceof URLSearchParams;
-      }
-      function trim2(str) {
-        return str.trim ? str.trim() : str.replace(/^\s+|\s+$/g, "");
-      }
-      function isStandardBrowserEnv() {
-        if (typeof navigator !== "undefined" && (navigator.product === "ReactNative" || navigator.product === "NativeScript" || navigator.product === "NS")) {
-          return false;
-        }
-        return typeof window !== "undefined" && typeof document !== "undefined";
-      }
-      function forEach(obj, fn) {
-        if (obj === null || typeof obj === "undefined") {
-          return;
-        }
-        if (typeof obj !== "object") {
-          obj = [obj];
-        }
-        if (isArray(obj)) {
-          for (var i = 0, l = obj.length; i < l; i++) {
-            fn.call(null, obj[i], i, obj);
-          }
-        } else {
-          for (var key in obj) {
-            if (Object.prototype.hasOwnProperty.call(obj, key)) {
-              fn.call(null, obj[key], key, obj);
-            }
-          }
-        }
-      }
-      function merge4() {
-        var result = {};
-        function assignValue(val, key) {
-          if (isPlainObject(result[key]) && isPlainObject(val)) {
-            result[key] = merge4(result[key], val);
-          } else if (isPlainObject(val)) {
-            result[key] = merge4({}, val);
-          } else if (isArray(val)) {
-            result[key] = val.slice();
-          } else {
-            result[key] = val;
-          }
-        }
-        for (var i = 0, l = arguments.length; i < l; i++) {
-          forEach(arguments[i], assignValue);
-        }
-        return result;
-      }
-      function extend(a, b, thisArg) {
-        forEach(b, function assignValue(val, key) {
-          if (thisArg && typeof val === "function") {
-            a[key] = bind(val, thisArg);
-          } else {
-            a[key] = val;
-          }
-        });
-        return a;
-      }
-      function stripBOM(content) {
-        if (content.charCodeAt(0) === 65279) {
-          content = content.slice(1);
-        }
-        return content;
-      }
-      module.exports = {
-        isArray,
-        isArrayBuffer,
-        isBuffer,
-        isFormData,
-        isArrayBufferView,
-        isString,
-        isNumber,
-        isObject,
-        isPlainObject,
-        isUndefined,
-        isDate,
-        isFile,
-        isBlob,
-        isFunction: isFunction2,
-        isStream,
-        isURLSearchParams,
-        isStandardBrowserEnv,
-        forEach,
-        merge: merge4,
-        extend,
-        trim: trim2,
-        stripBOM
-      };
-    }
-  });
-
-  // ../../node_modules/axios/lib/helpers/buildURL.js
-  var require_buildURL = __commonJS({
-    "../../node_modules/axios/lib/helpers/buildURL.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      var utils = require_utils();
-      function encode(val) {
-        return encodeURIComponent(val).replace(/%3A/gi, ":").replace(/%24/g, "$").replace(/%2C/gi, ",").replace(/%20/g, "+").replace(/%5B/gi, "[").replace(/%5D/gi, "]");
-      }
-      module.exports = function buildURL(url, params, paramsSerializer) {
-        if (!params) {
-          return url;
-        }
-        var serializedParams;
-        if (paramsSerializer) {
-          serializedParams = paramsSerializer(params);
-        } else if (utils.isURLSearchParams(params)) {
-          serializedParams = params.toString();
-        } else {
-          var parts = [];
-          utils.forEach(params, function serialize2(val, key) {
-            if (val === null || typeof val === "undefined") {
-              return;
-            }
-            if (utils.isArray(val)) {
-              key = key + "[]";
-            } else {
-              val = [val];
-            }
-            utils.forEach(val, function parseValue(v) {
-              if (utils.isDate(v)) {
-                v = v.toISOString();
-              } else if (utils.isObject(v)) {
-                v = JSON.stringify(v);
-              }
-              parts.push(encode(key) + "=" + encode(v));
-            });
-          });
-          serializedParams = parts.join("&");
-        }
-        if (serializedParams) {
-          var hashmarkIndex = url.indexOf("#");
-          if (hashmarkIndex !== -1) {
-            url = url.slice(0, hashmarkIndex);
-          }
-          url += (url.indexOf("?") === -1 ? "?" : "&") + serializedParams;
-        }
-        return url;
-      };
-    }
-  });
-
-  // ../../node_modules/axios/lib/core/InterceptorManager.js
-  var require_InterceptorManager = __commonJS({
-    "../../node_modules/axios/lib/core/InterceptorManager.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      var utils = require_utils();
-      function InterceptorManager() {
-        this.handlers = [];
-      }
-      InterceptorManager.prototype.use = function use(fulfilled, rejected, options) {
-        this.handlers.push({
-          fulfilled,
-          rejected,
-          synchronous: options ? options.synchronous : false,
-          runWhen: options ? options.runWhen : null
-        });
-        return this.handlers.length - 1;
-      };
-      InterceptorManager.prototype.eject = function eject(id) {
-        if (this.handlers[id]) {
-          this.handlers[id] = null;
-        }
-      };
-      InterceptorManager.prototype.forEach = function forEach(fn) {
-        utils.forEach(this.handlers, function forEachHandler(h) {
-          if (h !== null) {
-            fn(h);
-          }
-        });
-      };
-      module.exports = InterceptorManager;
-    }
-  });
-
-  // ../../node_modules/axios/lib/helpers/normalizeHeaderName.js
-  var require_normalizeHeaderName = __commonJS({
-    "../../node_modules/axios/lib/helpers/normalizeHeaderName.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      var utils = require_utils();
-      module.exports = function normalizeHeaderName(headers, normalizedName) {
-        utils.forEach(headers, function processHeader(value, name) {
-          if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {
-            headers[normalizedName] = value;
-            delete headers[name];
-          }
-        });
-      };
-    }
-  });
-
-  // ../../node_modules/axios/lib/core/enhanceError.js
-  var require_enhanceError = __commonJS({
-    "../../node_modules/axios/lib/core/enhanceError.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      module.exports = function enhanceError(error, config, code, request, response) {
-        error.config = config;
-        if (code) {
-          error.code = code;
-        }
-        error.request = request;
-        error.response = response;
-        error.isAxiosError = true;
-        error.toJSON = function toJSON() {
-          return {
-            message: this.message,
-            name: this.name,
-            description: this.description,
-            number: this.number,
-            fileName: this.fileName,
-            lineNumber: this.lineNumber,
-            columnNumber: this.columnNumber,
-            stack: this.stack,
-            config: this.config,
-            code: this.code,
-            status: this.response && this.response.status ? this.response.status : null
-          };
-        };
-        return error;
-      };
-    }
-  });
-
-  // ../../node_modules/axios/lib/core/createError.js
-  var require_createError = __commonJS({
-    "../../node_modules/axios/lib/core/createError.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      var enhanceError = require_enhanceError();
-      module.exports = function createError(message, config, code, request, response) {
-        var error = new Error(message);
-        return enhanceError(error, config, code, request, response);
-      };
-    }
-  });
-
-  // ../../node_modules/axios/lib/core/settle.js
-  var require_settle = __commonJS({
-    "../../node_modules/axios/lib/core/settle.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      var createError = require_createError();
-      module.exports = function settle(resolve, reject, response) {
-        var validateStatus = response.config.validateStatus;
-        if (!response.status || !validateStatus || validateStatus(response.status)) {
-          resolve(response);
-        } else {
-          reject(createError("Request failed with status code " + response.status, response.config, null, response.request, response));
-        }
-      };
-    }
-  });
-
-  // ../../node_modules/axios/lib/helpers/cookies.js
-  var require_cookies = __commonJS({
-    "../../node_modules/axios/lib/helpers/cookies.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      var utils = require_utils();
-      module.exports = utils.isStandardBrowserEnv() ? function standardBrowserEnv() {
-        return {
-          write: function write(name, value, expires, path, domain, secure) {
-            var cookie = [];
-            cookie.push(name + "=" + encodeURIComponent(value));
-            if (utils.isNumber(expires)) {
-              cookie.push("expires=" + new Date(expires).toGMTString());
-            }
-            if (utils.isString(path)) {
-              cookie.push("path=" + path);
-            }
-            if (utils.isString(domain)) {
-              cookie.push("domain=" + domain);
-            }
-            if (secure === true) {
-              cookie.push("secure");
-            }
-            document.cookie = cookie.join("; ");
-          },
-          read: function read(name) {
-            var match2 = document.cookie.match(new RegExp("(^|;\\s*)(" + name + ")=([^;]*)"));
-            return match2 ? decodeURIComponent(match2[3]) : null;
-          },
-          remove: function remove(name) {
-            this.write(name, "", Date.now() - 864e5);
-          }
-        };
-      }() : function nonStandardBrowserEnv() {
-        return {
-          write: function write() {
-          },
-          read: function read() {
-            return null;
-          },
-          remove: function remove() {
-          }
-        };
-      }();
-    }
-  });
-
-  // ../../node_modules/axios/lib/helpers/isAbsoluteURL.js
-  var require_isAbsoluteURL = __commonJS({
-    "../../node_modules/axios/lib/helpers/isAbsoluteURL.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      module.exports = function isAbsoluteURL(url) {
-        return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
-      };
-    }
-  });
-
-  // ../../node_modules/axios/lib/helpers/combineURLs.js
-  var require_combineURLs = __commonJS({
-    "../../node_modules/axios/lib/helpers/combineURLs.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      module.exports = function combineURLs(baseURL, relativeURL) {
-        return relativeURL ? baseURL.replace(/\/+$/, "") + "/" + relativeURL.replace(/^\/+/, "") : baseURL;
-      };
-    }
-  });
-
-  // ../../node_modules/axios/lib/core/buildFullPath.js
-  var require_buildFullPath = __commonJS({
-    "../../node_modules/axios/lib/core/buildFullPath.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      var isAbsoluteURL = require_isAbsoluteURL();
-      var combineURLs = require_combineURLs();
-      module.exports = function buildFullPath(baseURL, requestedURL) {
-        if (baseURL && !isAbsoluteURL(requestedURL)) {
-          return combineURLs(baseURL, requestedURL);
-        }
-        return requestedURL;
-      };
-    }
-  });
-
-  // ../../node_modules/axios/lib/helpers/parseHeaders.js
-  var require_parseHeaders = __commonJS({
-    "../../node_modules/axios/lib/helpers/parseHeaders.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      var utils = require_utils();
-      var ignoreDuplicateOf = [
-        "age",
-        "authorization",
-        "content-length",
-        "content-type",
-        "etag",
-        "expires",
-        "from",
-        "host",
-        "if-modified-since",
-        "if-unmodified-since",
-        "last-modified",
-        "location",
-        "max-forwards",
-        "proxy-authorization",
-        "referer",
-        "retry-after",
-        "user-agent"
-      ];
-      module.exports = function parseHeaders(headers) {
-        var parsed = {};
-        var key;
-        var val;
-        var i;
-        if (!headers) {
-          return parsed;
-        }
-        utils.forEach(headers.split("\n"), function parser(line2) {
-          i = line2.indexOf(":");
-          key = utils.trim(line2.substr(0, i)).toLowerCase();
-          val = utils.trim(line2.substr(i + 1));
-          if (key) {
-            if (parsed[key] && ignoreDuplicateOf.indexOf(key) >= 0) {
-              return;
-            }
-            if (key === "set-cookie") {
-              parsed[key] = (parsed[key] ? parsed[key] : []).concat([val]);
-            } else {
-              parsed[key] = parsed[key] ? parsed[key] + ", " + val : val;
-            }
-          }
-        });
-        return parsed;
-      };
-    }
-  });
-
-  // ../../node_modules/axios/lib/helpers/isURLSameOrigin.js
-  var require_isURLSameOrigin = __commonJS({
-    "../../node_modules/axios/lib/helpers/isURLSameOrigin.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      var utils = require_utils();
-      module.exports = utils.isStandardBrowserEnv() ? function standardBrowserEnv() {
-        var msie = /(msie|trident)/i.test(navigator.userAgent);
-        var urlParsingNode = document.createElement("a");
-        var originURL;
-        function resolveURL(url) {
-          var href = url;
-          if (msie) {
-            urlParsingNode.setAttribute("href", href);
-            href = urlParsingNode.href;
-          }
-          urlParsingNode.setAttribute("href", href);
-          return {
-            href: urlParsingNode.href,
-            protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, "") : "",
-            host: urlParsingNode.host,
-            search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, "") : "",
-            hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, "") : "",
-            hostname: urlParsingNode.hostname,
-            port: urlParsingNode.port,
-            pathname: urlParsingNode.pathname.charAt(0) === "/" ? urlParsingNode.pathname : "/" + urlParsingNode.pathname
-          };
-        }
-        originURL = resolveURL(window.location.href);
-        return function isURLSameOrigin(requestURL) {
-          var parsed = utils.isString(requestURL) ? resolveURL(requestURL) : requestURL;
-          return parsed.protocol === originURL.protocol && parsed.host === originURL.host;
-        };
-      }() : function nonStandardBrowserEnv() {
-        return function isURLSameOrigin() {
-          return true;
-        };
-      }();
-    }
-  });
-
-  // ../../node_modules/axios/lib/cancel/Cancel.js
-  var require_Cancel = __commonJS({
-    "../../node_modules/axios/lib/cancel/Cancel.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      function Cancel(message) {
-        this.message = message;
-      }
-      Cancel.prototype.toString = function toString() {
-        return "Cancel" + (this.message ? ": " + this.message : "");
-      };
-      Cancel.prototype.__CANCEL__ = true;
-      module.exports = Cancel;
-    }
-  });
-
-  // ../../node_modules/axios/lib/adapters/xhr.js
-  var require_xhr = __commonJS({
-    "../../node_modules/axios/lib/adapters/xhr.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      var utils = require_utils();
-      var settle = require_settle();
-      var cookies = require_cookies();
-      var buildURL = require_buildURL();
-      var buildFullPath = require_buildFullPath();
-      var parseHeaders = require_parseHeaders();
-      var isURLSameOrigin = require_isURLSameOrigin();
-      var createError = require_createError();
-      var defaults = require_defaults();
-      var Cancel = require_Cancel();
-      module.exports = function xhrAdapter(config) {
-        return new Promise(function dispatchXhrRequest(resolve, reject) {
-          var requestData = config.data;
-          var requestHeaders = config.headers;
-          var responseType = config.responseType;
-          var onCanceled;
-          function done() {
-            if (config.cancelToken) {
-              config.cancelToken.unsubscribe(onCanceled);
-            }
-            if (config.signal) {
-              config.signal.removeEventListener("abort", onCanceled);
-            }
-          }
-          if (utils.isFormData(requestData)) {
-            delete requestHeaders["Content-Type"];
-          }
-          var request = new XMLHttpRequest();
-          if (config.auth) {
-            var username = config.auth.username || "";
-            var password = config.auth.password ? unescape(encodeURIComponent(config.auth.password)) : "";
-            requestHeaders.Authorization = "Basic " + btoa(username + ":" + password);
-          }
-          var fullPath = buildFullPath(config.baseURL, config.url);
-          request.open(config.method.toUpperCase(), buildURL(fullPath, config.params, config.paramsSerializer), true);
-          request.timeout = config.timeout;
-          function onloadend() {
-            if (!request) {
-              return;
-            }
-            var responseHeaders = "getAllResponseHeaders" in request ? parseHeaders(request.getAllResponseHeaders()) : null;
-            var responseData = !responseType || responseType === "text" || responseType === "json" ? request.responseText : request.response;
-            var response = {
-              data: responseData,
-              status: request.status,
-              statusText: request.statusText,
-              headers: responseHeaders,
-              config,
-              request
-            };
-            settle(function _resolve(value) {
-              resolve(value);
-              done();
-            }, function _reject(err) {
-              reject(err);
-              done();
-            }, response);
-            request = null;
-          }
-          if ("onloadend" in request) {
-            request.onloadend = onloadend;
-          } else {
-            request.onreadystatechange = function handleLoad() {
-              if (!request || request.readyState !== 4) {
-                return;
-              }
-              if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf("file:") === 0)) {
-                return;
-              }
-              setTimeout(onloadend);
-            };
-          }
-          request.onabort = function handleAbort() {
-            if (!request) {
-              return;
-            }
-            reject(createError("Request aborted", config, "ECONNABORTED", request));
-            request = null;
-          };
-          request.onerror = function handleError() {
-            reject(createError("Network Error", config, null, request));
-            request = null;
-          };
-          request.ontimeout = function handleTimeout() {
-            var timeoutErrorMessage = "timeout of " + config.timeout + "ms exceeded";
-            var transitional = config.transitional || defaults.transitional;
-            if (config.timeoutErrorMessage) {
-              timeoutErrorMessage = config.timeoutErrorMessage;
-            }
-            reject(createError(timeoutErrorMessage, config, transitional.clarifyTimeoutError ? "ETIMEDOUT" : "ECONNABORTED", request));
-            request = null;
-          };
-          if (utils.isStandardBrowserEnv()) {
-            var xsrfValue = (config.withCredentials || isURLSameOrigin(fullPath)) && config.xsrfCookieName ? cookies.read(config.xsrfCookieName) : void 0;
-            if (xsrfValue) {
-              requestHeaders[config.xsrfHeaderName] = xsrfValue;
-            }
-          }
-          if ("setRequestHeader" in request) {
-            utils.forEach(requestHeaders, function setRequestHeader(val, key) {
-              if (typeof requestData === "undefined" && key.toLowerCase() === "content-type") {
-                delete requestHeaders[key];
-              } else {
-                request.setRequestHeader(key, val);
-              }
-            });
-          }
-          if (!utils.isUndefined(config.withCredentials)) {
-            request.withCredentials = !!config.withCredentials;
-          }
-          if (responseType && responseType !== "json") {
-            request.responseType = config.responseType;
-          }
-          if (typeof config.onDownloadProgress === "function") {
-            request.addEventListener("progress", config.onDownloadProgress);
-          }
-          if (typeof config.onUploadProgress === "function" && request.upload) {
-            request.upload.addEventListener("progress", config.onUploadProgress);
-          }
-          if (config.cancelToken || config.signal) {
-            onCanceled = function(cancel) {
-              if (!request) {
-                return;
-              }
-              reject(!cancel || cancel && cancel.type ? new Cancel("canceled") : cancel);
-              request.abort();
-              request = null;
-            };
-            config.cancelToken && config.cancelToken.subscribe(onCanceled);
-            if (config.signal) {
-              config.signal.aborted ? onCanceled() : config.signal.addEventListener("abort", onCanceled);
-            }
-          }
-          if (!requestData) {
-            requestData = null;
-          }
-          request.send(requestData);
-        });
-      };
-    }
-  });
-
-  // ../../node_modules/axios/lib/defaults.js
-  var require_defaults = __commonJS({
-    "../../node_modules/axios/lib/defaults.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      var utils = require_utils();
-      var normalizeHeaderName = require_normalizeHeaderName();
-      var enhanceError = require_enhanceError();
-      var DEFAULT_CONTENT_TYPE = {
-        "Content-Type": "application/x-www-form-urlencoded"
-      };
-      function setContentTypeIfUnset(headers, value) {
-        if (!utils.isUndefined(headers) && utils.isUndefined(headers["Content-Type"])) {
-          headers["Content-Type"] = value;
-        }
-      }
-      function getDefaultAdapter() {
-        var adapter;
-        if (typeof XMLHttpRequest !== "undefined") {
-          adapter = require_xhr();
-        } else if (typeof process !== "undefined" && Object.prototype.toString.call(process) === "[object process]") {
-          adapter = require_xhr();
-        }
-        return adapter;
-      }
-      function stringifySafely(rawValue, parser, encoder) {
-        if (utils.isString(rawValue)) {
-          try {
-            (parser || JSON.parse)(rawValue);
-            return utils.trim(rawValue);
-          } catch (e) {
-            if (e.name !== "SyntaxError") {
-              throw e;
-            }
-          }
-        }
-        return (encoder || JSON.stringify)(rawValue);
-      }
-      var defaults = {
-        transitional: {
-          silentJSONParsing: true,
-          forcedJSONParsing: true,
-          clarifyTimeoutError: false
-        },
-        adapter: getDefaultAdapter(),
-        transformRequest: [function transformRequest(data, headers) {
-          normalizeHeaderName(headers, "Accept");
-          normalizeHeaderName(headers, "Content-Type");
-          if (utils.isFormData(data) || utils.isArrayBuffer(data) || utils.isBuffer(data) || utils.isStream(data) || utils.isFile(data) || utils.isBlob(data)) {
-            return data;
-          }
-          if (utils.isArrayBufferView(data)) {
-            return data.buffer;
-          }
-          if (utils.isURLSearchParams(data)) {
-            setContentTypeIfUnset(headers, "application/x-www-form-urlencoded;charset=utf-8");
-            return data.toString();
-          }
-          if (utils.isObject(data) || headers && headers["Content-Type"] === "application/json") {
-            setContentTypeIfUnset(headers, "application/json");
-            return stringifySafely(data);
-          }
-          return data;
-        }],
-        transformResponse: [function transformResponse(data) {
-          var transitional = this.transitional || defaults.transitional;
-          var silentJSONParsing = transitional && transitional.silentJSONParsing;
-          var forcedJSONParsing = transitional && transitional.forcedJSONParsing;
-          var strictJSONParsing = !silentJSONParsing && this.responseType === "json";
-          if (strictJSONParsing || forcedJSONParsing && utils.isString(data) && data.length) {
-            try {
-              return JSON.parse(data);
-            } catch (e) {
-              if (strictJSONParsing) {
-                if (e.name === "SyntaxError") {
-                  throw enhanceError(e, this, "E_JSON_PARSE");
-                }
-                throw e;
-              }
-            }
-          }
-          return data;
-        }],
-        timeout: 0,
-        xsrfCookieName: "XSRF-TOKEN",
-        xsrfHeaderName: "X-XSRF-TOKEN",
-        maxContentLength: -1,
-        maxBodyLength: -1,
-        validateStatus: function validateStatus(status) {
-          return status >= 200 && status < 300;
-        },
-        headers: {
-          common: {
-            "Accept": "application/json, text/plain, */*"
-          }
-        }
-      };
-      utils.forEach(["delete", "get", "head"], function forEachMethodNoData(method) {
-        defaults.headers[method] = {};
-      });
-      utils.forEach(["post", "put", "patch"], function forEachMethodWithData(method) {
-        defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
-      });
-      module.exports = defaults;
-    }
-  });
-
-  // ../../node_modules/axios/lib/core/transformData.js
-  var require_transformData = __commonJS({
-    "../../node_modules/axios/lib/core/transformData.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      var utils = require_utils();
-      var defaults = require_defaults();
-      module.exports = function transformData(data, headers, fns) {
-        var context = this || defaults;
-        utils.forEach(fns, function transform(fn) {
-          data = fn.call(context, data, headers);
-        });
-        return data;
-      };
-    }
-  });
-
-  // ../../node_modules/axios/lib/cancel/isCancel.js
-  var require_isCancel = __commonJS({
-    "../../node_modules/axios/lib/cancel/isCancel.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      module.exports = function isCancel(value) {
-        return !!(value && value.__CANCEL__);
-      };
-    }
-  });
-
-  // ../../node_modules/axios/lib/core/dispatchRequest.js
-  var require_dispatchRequest = __commonJS({
-    "../../node_modules/axios/lib/core/dispatchRequest.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      var utils = require_utils();
-      var transformData = require_transformData();
-      var isCancel = require_isCancel();
-      var defaults = require_defaults();
-      var Cancel = require_Cancel();
-      function throwIfCancellationRequested(config) {
-        if (config.cancelToken) {
-          config.cancelToken.throwIfRequested();
-        }
-        if (config.signal && config.signal.aborted) {
-          throw new Cancel("canceled");
-        }
-      }
-      module.exports = function dispatchRequest(config) {
-        throwIfCancellationRequested(config);
-        config.headers = config.headers || {};
-        config.data = transformData.call(config, config.data, config.headers, config.transformRequest);
-        config.headers = utils.merge(config.headers.common || {}, config.headers[config.method] || {}, config.headers);
-        utils.forEach(["delete", "get", "head", "post", "put", "patch", "common"], function cleanHeaderConfig(method) {
-          delete config.headers[method];
-        });
-        var adapter = config.adapter || defaults.adapter;
-        return adapter(config).then(function onAdapterResolution(response) {
-          throwIfCancellationRequested(config);
-          response.data = transformData.call(config, response.data, response.headers, config.transformResponse);
-          return response;
-        }, function onAdapterRejection(reason) {
-          if (!isCancel(reason)) {
-            throwIfCancellationRequested(config);
-            if (reason && reason.response) {
-              reason.response.data = transformData.call(config, reason.response.data, reason.response.headers, config.transformResponse);
-            }
-          }
-          return Promise.reject(reason);
-        });
-      };
-    }
-  });
-
-  // ../../node_modules/axios/lib/core/mergeConfig.js
-  var require_mergeConfig = __commonJS({
-    "../../node_modules/axios/lib/core/mergeConfig.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      var utils = require_utils();
-      module.exports = function mergeConfig(config1, config2) {
-        config2 = config2 || {};
-        var config = {};
-        function getMergedValue(target, source) {
-          if (utils.isPlainObject(target) && utils.isPlainObject(source)) {
-            return utils.merge(target, source);
-          } else if (utils.isPlainObject(source)) {
-            return utils.merge({}, source);
-          } else if (utils.isArray(source)) {
-            return source.slice();
-          }
-          return source;
-        }
-        function mergeDeepProperties(prop) {
-          if (!utils.isUndefined(config2[prop])) {
-            return getMergedValue(config1[prop], config2[prop]);
-          } else if (!utils.isUndefined(config1[prop])) {
-            return getMergedValue(void 0, config1[prop]);
-          }
-        }
-        function valueFromConfig2(prop) {
-          if (!utils.isUndefined(config2[prop])) {
-            return getMergedValue(void 0, config2[prop]);
-          }
-        }
-        function defaultToConfig2(prop) {
-          if (!utils.isUndefined(config2[prop])) {
-            return getMergedValue(void 0, config2[prop]);
-          } else if (!utils.isUndefined(config1[prop])) {
-            return getMergedValue(void 0, config1[prop]);
-          }
-        }
-        function mergeDirectKeys(prop) {
-          if (prop in config2) {
-            return getMergedValue(config1[prop], config2[prop]);
-          } else if (prop in config1) {
-            return getMergedValue(void 0, config1[prop]);
-          }
-        }
-        var mergeMap = {
-          "url": valueFromConfig2,
-          "method": valueFromConfig2,
-          "data": valueFromConfig2,
-          "baseURL": defaultToConfig2,
-          "transformRequest": defaultToConfig2,
-          "transformResponse": defaultToConfig2,
-          "paramsSerializer": defaultToConfig2,
-          "timeout": defaultToConfig2,
-          "timeoutMessage": defaultToConfig2,
-          "withCredentials": defaultToConfig2,
-          "adapter": defaultToConfig2,
-          "responseType": defaultToConfig2,
-          "xsrfCookieName": defaultToConfig2,
-          "xsrfHeaderName": defaultToConfig2,
-          "onUploadProgress": defaultToConfig2,
-          "onDownloadProgress": defaultToConfig2,
-          "decompress": defaultToConfig2,
-          "maxContentLength": defaultToConfig2,
-          "maxBodyLength": defaultToConfig2,
-          "transport": defaultToConfig2,
-          "httpAgent": defaultToConfig2,
-          "httpsAgent": defaultToConfig2,
-          "cancelToken": defaultToConfig2,
-          "socketPath": defaultToConfig2,
-          "responseEncoding": defaultToConfig2,
-          "validateStatus": mergeDirectKeys
-        };
-        utils.forEach(Object.keys(config1).concat(Object.keys(config2)), function computeConfigValue(prop) {
-          var merge4 = mergeMap[prop] || mergeDeepProperties;
-          var configValue = merge4(prop);
-          utils.isUndefined(configValue) && merge4 !== mergeDirectKeys || (config[prop] = configValue);
-        });
-        return config;
-      };
-    }
-  });
-
-  // ../../node_modules/axios/lib/env/data.js
-  var require_data = __commonJS({
-    "../../node_modules/axios/lib/env/data.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      module.exports = {
-        "version": "0.22.0"
-      };
-    }
-  });
-
-  // ../../node_modules/axios/lib/helpers/validator.js
-  var require_validator = __commonJS({
-    "../../node_modules/axios/lib/helpers/validator.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      var VERSION = require_data().version;
-      var validators = {};
-      ["object", "boolean", "number", "function", "string", "symbol"].forEach(function(type, i) {
-        validators[type] = function validator(thing) {
-          return typeof thing === type || "a" + (i < 1 ? "n " : " ") + type;
-        };
-      });
-      var deprecatedWarnings = {};
-      validators.transitional = function transitional(validator, version, message) {
-        function formatMessage(opt, desc) {
-          return "[Axios v" + VERSION + "] Transitional option '" + opt + "'" + desc + (message ? ". " + message : "");
-        }
-        return function(value, opt, opts) {
-          if (validator === false) {
-            throw new Error(formatMessage(opt, " has been removed" + (version ? " in " + version : "")));
-          }
-          if (version && !deprecatedWarnings[opt]) {
-            deprecatedWarnings[opt] = true;
-            console.warn(formatMessage(opt, " has been deprecated since v" + version + " and will be removed in the near future"));
-          }
-          return validator ? validator(value, opt, opts) : true;
-        };
-      };
-      function assertOptions(options, schema, allowUnknown) {
-        if (typeof options !== "object") {
-          throw new TypeError("options must be an object");
-        }
-        var keys = Object.keys(options);
-        var i = keys.length;
-        while (i-- > 0) {
-          var opt = keys[i];
-          var validator = schema[opt];
-          if (validator) {
-            var value = options[opt];
-            var result = value === void 0 || validator(value, opt, options);
-            if (result !== true) {
-              throw new TypeError("option " + opt + " must be " + result);
-            }
-            continue;
-          }
-          if (allowUnknown !== true) {
-            throw Error("Unknown option " + opt);
-          }
-        }
-      }
-      module.exports = {
-        assertOptions,
-        validators
-      };
-    }
-  });
-
-  // ../../node_modules/axios/lib/core/Axios.js
-  var require_Axios = __commonJS({
-    "../../node_modules/axios/lib/core/Axios.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      var utils = require_utils();
-      var buildURL = require_buildURL();
-      var InterceptorManager = require_InterceptorManager();
-      var dispatchRequest = require_dispatchRequest();
-      var mergeConfig = require_mergeConfig();
-      var validator = require_validator();
-      var validators = validator.validators;
-      function Axios(instanceConfig) {
-        this.defaults = instanceConfig;
-        this.interceptors = {
-          request: new InterceptorManager(),
-          response: new InterceptorManager()
-        };
-      }
-      Axios.prototype.request = function request(config) {
-        if (typeof config === "string") {
-          config = arguments[1] || {};
-          config.url = arguments[0];
-        } else {
-          config = config || {};
-        }
-        config = mergeConfig(this.defaults, config);
-        if (config.method) {
-          config.method = config.method.toLowerCase();
-        } else if (this.defaults.method) {
-          config.method = this.defaults.method.toLowerCase();
-        } else {
-          config.method = "get";
-        }
-        var transitional = config.transitional;
-        if (transitional !== void 0) {
-          validator.assertOptions(transitional, {
-            silentJSONParsing: validators.transitional(validators.boolean),
-            forcedJSONParsing: validators.transitional(validators.boolean),
-            clarifyTimeoutError: validators.transitional(validators.boolean)
-          }, false);
-        }
-        var requestInterceptorChain = [];
-        var synchronousRequestInterceptors = true;
-        this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
-          if (typeof interceptor.runWhen === "function" && interceptor.runWhen(config) === false) {
-            return;
-          }
-          synchronousRequestInterceptors = synchronousRequestInterceptors && interceptor.synchronous;
-          requestInterceptorChain.unshift(interceptor.fulfilled, interceptor.rejected);
-        });
-        var responseInterceptorChain = [];
-        this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
-          responseInterceptorChain.push(interceptor.fulfilled, interceptor.rejected);
-        });
-        var promise;
-        if (!synchronousRequestInterceptors) {
-          var chain = [dispatchRequest, void 0];
-          Array.prototype.unshift.apply(chain, requestInterceptorChain);
-          chain = chain.concat(responseInterceptorChain);
-          promise = Promise.resolve(config);
-          while (chain.length) {
-            promise = promise.then(chain.shift(), chain.shift());
-          }
-          return promise;
-        }
-        var newConfig = config;
-        while (requestInterceptorChain.length) {
-          var onFulfilled = requestInterceptorChain.shift();
-          var onRejected = requestInterceptorChain.shift();
-          try {
-            newConfig = onFulfilled(newConfig);
-          } catch (error) {
-            onRejected(error);
-            break;
-          }
-        }
-        try {
-          promise = dispatchRequest(newConfig);
-        } catch (error) {
-          return Promise.reject(error);
-        }
-        while (responseInterceptorChain.length) {
-          promise = promise.then(responseInterceptorChain.shift(), responseInterceptorChain.shift());
-        }
-        return promise;
-      };
-      Axios.prototype.getUri = function getUri(config) {
-        config = mergeConfig(this.defaults, config);
-        return buildURL(config.url, config.params, config.paramsSerializer).replace(/^\?/, "");
-      };
-      utils.forEach(["delete", "get", "head", "options"], function forEachMethodNoData(method) {
-        Axios.prototype[method] = function(url, config) {
-          return this.request(mergeConfig(config || {}, {
-            method,
-            url,
-            data: (config || {}).data
-          }));
-        };
-      });
-      utils.forEach(["post", "put", "patch"], function forEachMethodWithData(method) {
-        Axios.prototype[method] = function(url, data, config) {
-          return this.request(mergeConfig(config || {}, {
-            method,
-            url,
-            data
-          }));
-        };
-      });
-      module.exports = Axios;
-    }
-  });
-
-  // ../../node_modules/axios/lib/cancel/CancelToken.js
-  var require_CancelToken = __commonJS({
-    "../../node_modules/axios/lib/cancel/CancelToken.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      var Cancel = require_Cancel();
-      function CancelToken(executor) {
-        if (typeof executor !== "function") {
-          throw new TypeError("executor must be a function.");
-        }
-        var resolvePromise;
-        this.promise = new Promise(function promiseExecutor(resolve) {
-          resolvePromise = resolve;
-        });
-        var token2 = this;
-        this.promise.then(function(cancel) {
-          if (!token2._listeners)
-            return;
-          var i;
-          var l = token2._listeners.length;
-          for (i = 0; i < l; i++) {
-            token2._listeners[i](cancel);
-          }
-          token2._listeners = null;
-        });
-        this.promise.then = function(onfulfilled) {
-          var _resolve;
-          var promise = new Promise(function(resolve) {
-            token2.subscribe(resolve);
-            _resolve = resolve;
-          }).then(onfulfilled);
-          promise.cancel = function reject() {
-            token2.unsubscribe(_resolve);
-          };
-          return promise;
-        };
-        executor(function cancel(message) {
-          if (token2.reason) {
-            return;
-          }
-          token2.reason = new Cancel(message);
-          resolvePromise(token2.reason);
-        });
-      }
-      CancelToken.prototype.throwIfRequested = function throwIfRequested() {
-        if (this.reason) {
-          throw this.reason;
-        }
-      };
-      CancelToken.prototype.subscribe = function subscribe(listener) {
-        if (this.reason) {
-          listener(this.reason);
-          return;
-        }
-        if (this._listeners) {
-          this._listeners.push(listener);
-        } else {
-          this._listeners = [listener];
-        }
-      };
-      CancelToken.prototype.unsubscribe = function unsubscribe(listener) {
-        if (!this._listeners) {
-          return;
-        }
-        var index = this._listeners.indexOf(listener);
-        if (index !== -1) {
-          this._listeners.splice(index, 1);
-        }
-      };
-      CancelToken.source = function source() {
-        var cancel;
-        var token2 = new CancelToken(function executor(c) {
-          cancel = c;
-        });
-        return {
-          token: token2,
-          cancel
-        };
-      };
-      module.exports = CancelToken;
-    }
-  });
-
-  // ../../node_modules/axios/lib/helpers/spread.js
-  var require_spread = __commonJS({
-    "../../node_modules/axios/lib/helpers/spread.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      module.exports = function spread(callback) {
-        return function wrap(arr) {
-          return callback.apply(null, arr);
-        };
-      };
-    }
-  });
-
-  // ../../node_modules/axios/lib/helpers/isAxiosError.js
-  var require_isAxiosError = __commonJS({
-    "../../node_modules/axios/lib/helpers/isAxiosError.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      module.exports = function isAxiosError(payload) {
-        return typeof payload === "object" && payload.isAxiosError === true;
-      };
-    }
-  });
-
-  // ../../node_modules/axios/lib/axios.js
-  var require_axios = __commonJS({
-    "../../node_modules/axios/lib/axios.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      "use strict";
-      var utils = require_utils();
-      var bind = require_bind();
-      var Axios = require_Axios();
-      var mergeConfig = require_mergeConfig();
-      var defaults = require_defaults();
-      function createInstance(defaultConfig) {
-        var context = new Axios(defaultConfig);
-        var instance = bind(Axios.prototype.request, context);
-        utils.extend(instance, Axios.prototype, context);
-        utils.extend(instance, context);
-        instance.create = function create(instanceConfig) {
-          return createInstance(mergeConfig(defaultConfig, instanceConfig));
-        };
-        return instance;
-      }
-      var axios2 = createInstance(defaults);
-      axios2.Axios = Axios;
-      axios2.Cancel = require_Cancel();
-      axios2.CancelToken = require_CancelToken();
-      axios2.isCancel = require_isCancel();
-      axios2.VERSION = require_data().version;
-      axios2.all = function all(promises) {
-        return Promise.all(promises);
-      };
-      axios2.spread = require_spread();
-      axios2.isAxiosError = require_isAxiosError();
-      module.exports = axios2;
-      module.exports.default = axios2;
-    }
-  });
-
-  // ../../node_modules/axios/index.js
-  var require_axios2 = __commonJS({
-    "../../node_modules/axios/index.js"(exports, module) {
-      init_define_ENV();
-      init_wsClientInjection();
-      init_react_shim();
-      module.exports = require_axios();
-    }
-  });
-
   // index.tsx
   init_define_ENV();
   init_wsClientInjection();
@@ -30566,9 +29236,6 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   body {
     line-height: 1;
   }
-  ol, ul {
-    list-style: none;
-  }
   blockquote, q {
     quotes: none;
   }
@@ -30850,16 +29517,16 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   // ../system/hooks/useSystem.ts
   var IS_MOUSE_DOWN = false;
   var PREV_ACTIVE_ELEMENT = null;
-  window.addEventListener("mousedown", () => {
+  window == null ? void 0 : window.addEventListener("mousedown", () => {
     IS_MOUSE_DOWN = true;
   });
-  window.addEventListener("mouseup", () => {
+  window == null ? void 0 : window.addEventListener("mouseup", () => {
     IS_MOUSE_DOWN = false;
   });
-  window.addEventListener("focus", () => {
+  window == null ? void 0 : window.addEventListener("focus", () => {
     PREV_ACTIVE_ELEMENT = document.activeElement;
   });
-  function useSystem(name, props, createClasses31, options = {}) {
+  function useSystem(name, props, createClasses30, options = {}) {
     const currentTheme = useTheme_default();
     const { focus = "always", label = name, theme = currentTheme } = options;
     const data = {
@@ -30931,7 +29598,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     data.overridesPropClasses = overrides_default(props.overrides, theme, data.styleProps);
     const themeOverrides = theme.overrides[name];
     const overridesThemeClasses = isFunction(themeOverrides) ? themeOverrides(props, data.styleProps) : themeOverrides || {};
-    const componentClasses = createClasses31(theme, props, data.styleProps);
+    const componentClasses = createClasses30(theme, props, data.styleProps);
     Object.keys(componentClasses).forEach((key) => {
       const classLabel = { label: `${label}-${key}` };
       data.classes[key] = isFunction(componentClasses[key]) ? (state) => {
@@ -36871,21 +35538,15 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react276 = __toModule(require_react());
-
-  // ../core/basic/Check/index.tsx
-  init_define_ENV();
-  init_wsClientInjection();
-  init_react_shim();
   var import_react275 = __toModule(require_react());
 
-  // ../core/basic/Check/styles.ts
+  // ../core/control/Checkbox/styles.ts
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
   var createClasses4 = (theme, props) => {
-    const labelColor = props.labelColor ? color_default(props.labelColor, theme) : void 0;
     const { disabled, uppercase, size = "m" } = props;
+    const labelColor = props.labelColor ? color_default(props.labelColor, theme) : void 0;
     return {
       container: [
         {
@@ -36912,65 +35573,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         uppercase && {
           textTransform: "uppercase"
         }
-      ]
-    };
-  };
-  var styles_default8 = createClasses4;
-
-  // ../core/basic/Check/index.tsx
-  var Check = (props, ref) => {
-    const { label, disabled, defaultValue, children, checked: checkedProp = false, name } = props;
-    const _a = useSystem_default("Check", props, styles_default8), {
-      classes,
-      attributes: _b
-    } = _a, _c = _b, { tabIndex } = _c, attributes = __objRest(_c, ["tabIndex"]), _d = _a, {
-      events: _e
-    } = _d, _f = _e, { onChange, onKeyDown, onClick, onFocus, onBlur } = _f, events = __objRest(_f, ["onChange", "onKeyDown", "onClick", "onFocus", "onBlur"]), {
-      styleProps
-    } = _d;
-    const [checked, setChecked] = (0, import_react275.useState)(checkedProp || defaultValue || false);
-    (0, import_react275.useEffect)(() => {
-      setChecked(checkedProp);
-    }, [checkedProp]);
-    function handleChange() {
-      onChange == null ? void 0 : onChange(checked);
-      setChecked(!checked);
-    }
-    function handleKeyDown(event) {
-      if (event.keyCode === 13 || event.keyCode === 32) {
-        handleChange();
-        if (event.keyCode === 32) {
-          event.preventDefault();
-        }
-      }
-      onKeyDown == null ? void 0 : onKeyDown(event);
-    }
-    function handleClick(e) {
-      if (!disabled) {
-        handleChange();
-      }
-      onClick == null ? void 0 : onClick(e);
-    }
-    return /* @__PURE__ */ jsx("div", __spreadProps(__spreadValues(__spreadValues({
-      ref
-    }, attributes), events), {
-      tabIndex: -1,
-      css: [classes.container, styleProps.all],
-      onClick: handleClick,
-      onKeyDown: handleKeyDown
-    }), children(checked), label && label.length && /* @__PURE__ */ jsx("div", {
-      css: classes.label
-    }, label));
-  };
-  var Check_default = (0, import_react275.forwardRef)(Check);
-
-  // ../core/control/Checkbox/styles.ts
-  init_define_ENV();
-  init_wsClientInjection();
-  init_react_shim();
-  var createClasses5 = (theme, props) => {
-    const { disabled, size = "m" } = props;
-    return {
+      ],
       check: ({ checked }) => [
         {
           boxSizing: "border-box",
@@ -37056,45 +35659,78 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default9 = createClasses5;
+  var styles_default8 = createClasses4;
 
   // ../core/control/Checkbox/index.tsx
   var Checkbox = (props, ref) => {
-    const { size = "m", tabIndex = 0 } = props;
-    const { classes, events } = useSystem_default("Checkbox", props, styles_default9, { focus: "tabOnly" });
-    return /* @__PURE__ */ jsx(Check_default, __spreadProps(__spreadValues({}, props), {
-      name: "Checkbox",
-      ref,
-      size
-    }), (checked) => /* @__PURE__ */ jsx("div", {
+    const { tabIndex = 0, label, disabled, defaultValue, checked: checkedProp = false } = props;
+    const { classes, attributes, events, styleProps } = useSystem_default("Checkbox", props, styles_default8, {
+      focus: "tabOnly"
+    });
+    const _a = events, { onClick, onChange, onKeyDown } = _a, restEvents = __objRest(_a, ["onClick", "onChange", "onKeyDown"]);
+    const [checked, setChecked] = (0, import_react275.useState)(checkedProp || defaultValue || false);
+    (0, import_react275.useEffect)(() => {
+      setChecked(checkedProp);
+    }, [checkedProp]);
+    function handleChange() {
+      onChange == null ? void 0 : onChange(checked);
+      setChecked(!checked);
+    }
+    function handleKeyDown(event) {
+      if (event.keyCode === 13 || event.keyCode === 32) {
+        handleChange();
+        if (event.keyCode === 32) {
+          event.preventDefault();
+        }
+      }
+      onKeyDown == null ? void 0 : onKeyDown(event);
+    }
+    function handleClick(e) {
+      if (!disabled) {
+        handleChange();
+      }
+      onClick == null ? void 0 : onClick(e);
+    }
+    return /* @__PURE__ */ jsx("div", __spreadProps(__spreadValues(__spreadValues({
+      ref
+    }, attributes), restEvents), {
+      tabIndex: -1,
+      css: [classes.container, styleProps.all],
+      onClick: handleClick,
+      onKeyDown: handleKeyDown,
+      role: "checkbox",
+      "aria-checked": checked
+    }), /* @__PURE__ */ jsx("div", {
       tabIndex,
       css: classes.check({ checked }),
       onFocus: events.onFocus,
       onBlur: events.onBlur
     }, /* @__PURE__ */ jsx(Checkmark_default, {
       css: classes.icon({ checked })
-    })));
+    })), label && label.length && /* @__PURE__ */ jsx("div", {
+      css: classes.label
+    }, label));
   };
-  var Checkbox_default = (0, import_react276.forwardRef)(Checkbox);
+  var Checkbox_default = (0, import_react275.forwardRef)(Checkbox);
 
   // ../core/control/DatePicker/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
   var import_moment7 = __toModule(require_moment());
-  var import_react280 = __toModule(require_react());
+  var import_react279 = __toModule(require_react());
 
   // ../core/basic/Field/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react277 = __toModule(require_react());
+  var import_react276 = __toModule(require_react());
 
   // ../core/basic/Field/styles.ts
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses6 = (theme, props) => {
+  var createClasses5 = (theme, props) => {
     const color = color_default(props.color || theme.color.light, theme);
     const {
       size = "m",
@@ -37310,7 +35946,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default10 = createClasses6;
+  var styles_default9 = createClasses5;
 
   // ../core/basic/Field/index.tsx
   var Field = (props, ref) => {
@@ -37331,8 +35967,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       classes,
       attributes,
       events: _a
-    } = useSystem_default(name || "Field", props, styles_default10), _b = _a, { onClear, onEsc, onEnter } = _b, events = __objRest(_b, ["onClear", "onEsc", "onEnter"]);
-    const htmlId = import_react277.default.useMemo(() => `${"Field"}-${Math.random().toString(16).slice(2)}`, []);
+    } = useSystem_default(name || "Field", props, styles_default9), _b = _a, { onClear, onEsc, onEnter } = _b, events = __objRest(_b, ["onClear", "onEsc", "onEnter"]);
+    const htmlId = import_react276.default.useMemo(() => `${"Field"}-${Math.random().toString(16).slice(2)}`, []);
     const handleClean = (e) => {
       if (onClear && !disabled) {
         e.stopPropagation();
@@ -37377,13 +36013,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       css: classes.rightChild
     }, rightChild)), !!props.hint && !props.error && hintJSX, !!props.error && errorJSX);
   };
-  var Field_default = (0, import_react277.forwardRef)(Field);
+  var Field_default = (0, import_react276.forwardRef)(Field);
 
   // ../core/layout/Drop/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react278 = __toModule(require_react());
+  var import_react277 = __toModule(require_react());
   var import_react_dom = __toModule(require_react_dom());
 
   // ../core/layout/Drop/animation.ts
@@ -37478,7 +36114,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses7 = (theme, props) => {
+  var createClasses6 = (theme, props) => {
     return {
       container: {
         willChange: "scroll-position",
@@ -37487,7 +36123,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
     };
   };
-  var styles_default11 = createClasses7;
+  var styles_default10 = createClasses6;
 
   // ../core/utils/SharedZIndex.tsx
   init_define_ENV();
@@ -37527,11 +36163,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       "visible",
       "stickCursor"
     ]);
-    const { classes, attributes, events, styleProps } = useSystem_default("Drop", otherProps, styles_default11);
-    const dropRef = (0, import_react278.useRef)(null);
-    const [mountState, setMountState] = (0, import_react278.useState)(visible || false);
-    const [clicks, click] = (0, import_react278.useState)(0);
-    const zIndex = (0, import_react278.useMemo)(() => SharedZIndex.increment, [mountState, clicks]);
+    const { classes, attributes, events, styleProps } = useSystem_default("Drop", otherProps, styles_default10);
+    const dropRef = (0, import_react277.useRef)(null);
+    const [mountState, setMountState] = (0, import_react277.useState)(visible || false);
+    const [clicks, click] = (0, import_react277.useState)(0);
+    const zIndex = (0, import_react277.useMemo)(() => SharedZIndex.increment, [mountState, clicks]);
     let getTopCoord = (tr) => toStyle(tr.bottom + spacing);
     let getLeftCoord = (tr, dr) => toStyle(tr.left + tr.width / 2 - dr.width / 2);
     const setHorizontalPosition = () => {
@@ -37577,7 +36213,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         if (targetRef == null ? void 0 : targetRef.current) {
           if (!props.align || props.align === "auto-vertical") {
             const lockedSpace = tr.top + tr.height + spacing;
-            if (dr.height > window.innerHeight - lockedSpace) {
+            if (dr.height > (window == null ? void 0 : window.innerHeight) - lockedSpace) {
               align = "top";
             } else {
               align = "bottom";
@@ -37650,15 +36286,15 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
       toggleVisible(state);
     }
-    (0, import_react278.useEffect)(() => {
+    (0, import_react277.useEffect)(() => {
       if (visible !== void 0) {
         toggleVisible(visible);
       }
     }, [visible]);
-    (0, import_react278.useEffect)(() => {
+    (0, import_react277.useEffect)(() => {
       var _a2, _b;
       if (stickCursor) {
-        window.addEventListener("mousemove", updateStickCursor);
+        window == null ? void 0 : window.addEventListener("mousemove", updateStickCursor);
       } else if (mountState) {
         const rect = stretchHeight || stretchWidth ? (_a2 = targetRef == null ? void 0 : targetRef.current) == null ? void 0 : _a2.getBoundingClientRect() : null;
         const style = rect && ((_b = dropRef.current) == null ? void 0 : _b.style);
@@ -37672,21 +36308,21 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         document.addEventListener("scroll", updatePosition, true);
         document.addEventListener("onstagescroll", updatePosition, true);
         document.addEventListener("mouseup", handleClickOutside);
-        window.addEventListener("resize", updatePosition);
+        window == null ? void 0 : window.addEventListener("resize", updatePosition);
         afterMount();
       }
       return () => {
         if (stickCursor) {
-          window.removeEventListener("mousemove", updateStickCursor);
+          window == null ? void 0 : window.removeEventListener("mousemove", updateStickCursor);
         } else {
           document.removeEventListener("scroll", updatePosition, true);
           document.removeEventListener("onstagescroll", updatePosition, true);
           document.removeEventListener("mouseup", handleClickOutside);
-          window.removeEventListener("resize", updatePosition);
+          window == null ? void 0 : window.removeEventListener("resize", updatePosition);
         }
       };
     }, [mountState, stickCursor, align, justify]);
-    (0, import_react278.useImperativeHandle)(ref, () => __spreadProps(__spreadValues({}, dropRef.current), {
+    (0, import_react277.useImperativeHandle)(ref, () => __spreadProps(__spreadValues({}, dropRef.current), {
       updatePosition,
       setVisible
     }));
@@ -37710,13 +36346,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
     }), children), document.body);
   };
-  var Drop_default = (0, import_react278.forwardRef)(Drop);
+  var Drop_default = (0, import_react277.forwardRef)(Drop);
 
   // ../core/layout/Popover/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react279 = __toModule(require_react());
+  var import_react278 = __toModule(require_react());
 
   // ../core/layout/Popover/styles.ts
   init_define_ENV();
@@ -37736,12 +36372,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     const value = parseFloat(input.toString().replace(/[^\d.-]+/, ""));
     return Number.isNaN(value) ? 0 : value;
   };
-  var baseFontSize = () => {
-    return toFloat(window.getComputedStyle(document.body).getPropertyValue("font-size"));
-  };
-  var isRem = (input) => {
-    return !!/rem/.exec(input.toString());
-  };
+  var baseFontSize = () => toFloat((window == null ? void 0 : window.getComputedStyle(document.body).getPropertyValue("font-size")) || "16px");
+  var isRem = (input) => !!/rem/.exec(input.toString());
   var toPixel = (input) => {
     if (isRem(input)) {
       return toFloat(input) * baseFontSize();
@@ -37771,7 +36403,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
 
   // ../core/layout/Popover/styles.ts
-  var createClasses8 = (theme, props) => {
+  var createClasses7 = (theme, props) => {
     const background = color_default(props.backgroundColor || theme.color.surface, theme).rgb().string();
     const arrowSize = toRem(props.arrowSize || ".75rem");
     const halfArrowSize = toRem(toPixel(arrowSize) / 2);
@@ -37852,12 +36484,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default12 = createClasses8;
+  var styles_default11 = createClasses7;
 
   // ../core/layout/Popover/index.tsx
   var Popover = (props, ref) => {
     const { align = "top" } = props;
-    const { classes, attributes, events, styleProps } = useSystem_default("Popover", props, styles_default12);
+    const { classes, attributes, events, styleProps } = useSystem_default("Popover", props, styles_default11);
     return /* @__PURE__ */ jsx("div", __spreadProps(__spreadValues(__spreadValues({}, attributes), events), {
       ref,
       css: [classes.container, styleProps.all]
@@ -37865,13 +36497,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       css: classes.arrow({ align })
     }), props.children);
   };
-  var Popover_default = (0, import_react279.forwardRef)(Popover);
+  var Popover_default = (0, import_react278.forwardRef)(Popover);
 
   // ../core/control/DatePicker/styles.ts
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses9 = (theme) => ({
+  var createClasses8 = (theme) => ({
     drop: (state) => [],
     input: [
       {
@@ -37893,7 +36525,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
     ]
   });
-  var styles_default13 = createClasses9;
+  var styles_default12 = createClasses8;
 
   // ../core/control/DatePicker/index.tsx
   var DatePicker = (props, ref) => {
@@ -37952,11 +36584,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       const date = (0, import_moment7.default)(value2, format, true);
       return value2 && date.isValid() ? date : void 0;
     }
-    const { classes, events, styleProps, overridesPropClasses } = useSystem_default("DatePicker", props, styles_default13);
-    const [value, setValue] = (0, import_react280.useState)(makeDate(props.value || defaultValue));
-    const [inputValue, setInputValue] = (0, import_react280.useState)((_b = makeDate(props.value || defaultValue)) == null ? void 0 : _b.format(format));
-    const [isActive, setActive] = (0, import_react280.useState)(false);
-    const inputRef = (0, import_react280.useRef)(null);
+    const { classes, events, styleProps, overridesPropClasses } = useSystem_default("DatePicker", props, styles_default12);
+    const [value, setValue] = (0, import_react279.useState)(makeDate(props.value || defaultValue));
+    const [inputValue, setInputValue] = (0, import_react279.useState)((_b = makeDate(props.value || defaultValue)) == null ? void 0 : _b.format(format));
+    const [isActive, setActive] = (0, import_react279.useState)(false);
+    const inputRef = (0, import_react279.useRef)(null);
     const minValue = props.minValue ? (0, import_moment7.default)(props.minValue).startOf("day") : (0, import_moment7.default)().clone().add(-500, "year");
     const maxValue = props.maxValue ? (0, import_moment7.default)(props.maxValue).startOf("day") : (0, import_moment7.default)().clone().add(500, "year");
     function onChange(currentValue) {
@@ -37970,7 +36602,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       onChangeProp == null ? void 0 : onChangeProp(currentDate, currentDateString);
       setInputValue(currentDateString);
     }
-    (0, import_react280.useEffect)(() => {
+    (0, import_react279.useEffect)(() => {
       setValue(makeDate(props.value));
     }, [props.value]);
     return /* @__PURE__ */ jsx(Field_default, __spreadProps(__spreadValues({}, fieldProps), {
@@ -37995,7 +36627,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           setActive(true);
         }
       },
-      rightChild: /* @__PURE__ */ jsx(import_react280.default.Fragment, null, rightChild, /* @__PURE__ */ jsx(Calendar_default, null))
+      rightChild: /* @__PURE__ */ jsx(import_react279.default.Fragment, null, rightChild, /* @__PURE__ */ jsx(Calendar_default, null))
     }), /* @__PURE__ */ jsx("input", {
       ref: inputRef,
       css: classes.input,
@@ -38040,25 +36672,25 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       type: props.type || "day"
     }))));
   };
-  var DatePicker_default = (0, import_react280.forwardRef)(DatePicker);
+  var DatePicker_default = (0, import_react279.forwardRef)(DatePicker);
 
   // ../core/control/Menu/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react285 = __toModule(require_react());
+  var import_react284 = __toModule(require_react());
 
   // ../core/control/Menu/MenuItem/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react282 = __toModule(require_react());
+  var import_react281 = __toModule(require_react());
 
   // ../core/control/Menu/MenuItem/styles.ts
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses10 = (theme, props, styleProps) => {
+  var createClasses9 = (theme, props, styleProps) => {
     return {
       container: [
         {
@@ -38069,18 +36701,18 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default14 = createClasses10;
+  var styles_default13 = createClasses9;
 
   // ../core/control/Menu/MenuItem/index.tsx
   var MenuItem = (props, ref) => {
     let [active, setActive, ctx] = useValue(props.value);
     const { rightChild, leftChild, disabled, as = ctx.itemAs || "a", href } = props;
-    const { classes, attributes, events, styleProps } = useSystem_default("MenuItem", props, styles_default14);
+    const { classes, attributes, events, styleProps } = useSystem_default("MenuItem", props, styles_default13);
     if (props.active != void 0) {
       active = props.active;
     }
-    const containerRef = import_react282.default.useRef(null);
-    import_react282.default.useEffect(() => {
+    const containerRef = import_react281.default.useRef(null);
+    import_react281.default.useEffect(() => {
       const recursive = (target) => {
         if (!target)
           return;
@@ -38101,7 +36733,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       };
       recursive(containerRef.current);
     }, [active]);
-    import_react282.default.useImperativeHandle(ref, () => containerRef.current);
+    import_react281.default.useImperativeHandle(ref, () => containerRef.current);
     const attr = {
       "data-flow": "menu-item"
     };
@@ -38133,7 +36765,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ref: containerRef,
       css: [classes.container, styleProps.all]
     });
-    return jsx3(`${as}`, itemProps, /* @__PURE__ */ jsx3(import_react282.default.Fragment, null, /* @__PURE__ */ jsx3("span", {
+    return jsx3(`${as}`, itemProps, /* @__PURE__ */ jsx3(import_react281.default.Fragment, null, /* @__PURE__ */ jsx3("span", {
       "data-flow-indent": ""
     }), leftChild && /* @__PURE__ */ jsx3("span", {
       "data-flow": "left"
@@ -38143,29 +36775,29 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       "data-flow": "right"
     }, rightChild)));
   };
-  var MenuItem_default = (0, import_react282.forwardRef)(MenuItem);
+  var MenuItem_default = (0, import_react281.forwardRef)(MenuItem);
 
   // ../core/control/Menu/MenuGroup/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react283 = __toModule(require_react());
+  var import_react282 = __toModule(require_react());
 
   // ../core/control/Menu/MenuGroup/styles.ts
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses11 = (theme, props, styleProps) => {
+  var createClasses10 = (theme, props, styleProps) => {
     return {
       container: [styleProps.all]
     };
   };
-  var styles_default15 = createClasses11;
+  var styles_default14 = createClasses10;
 
   // ../core/control/Menu/MenuGroup/index.tsx
   var MenuGroup = (props, ref) => {
     const { rightChild, leftChild } = props;
-    const { classes, attributes, events, styleProps } = useSystem_default("MenuGroup", props, styles_default15);
+    const { classes, attributes, events, styleProps } = useSystem_default("MenuGroup", props, styles_default14);
     return /* @__PURE__ */ jsx("div", __spreadProps(__spreadValues(__spreadValues({}, attributes), events), {
       "data-flow": "menu-group",
       css: [classes.container, styleProps.all]
@@ -38179,13 +36811,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       "data-flow": "right"
     }, rightChild)), props.children);
   };
-  var MenuGroup_default = (0, import_react283.forwardRef)(MenuGroup);
+  var MenuGroup_default = (0, import_react282.forwardRef)(MenuGroup);
 
   // ../core/control/Menu/styles.ts
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses12 = (theme, props) => {
+  var createClasses11 = (theme, props) => {
     var _a;
     const { size, shape } = props;
     const spacing = theme.spacing[size || "m"] || theme.spacing.m;
@@ -38387,19 +37019,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default16 = createClasses12;
+  var styles_default15 = createClasses11;
 
   // ../core/control/Menu/Submenu/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react284 = __toModule(require_react());
+  var import_react283 = __toModule(require_react());
 
   // ../core/control/Menu/Submenu/styles.ts
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses13 = (theme, props, styleProps) => {
+  var createClasses12 = (theme, props, styleProps) => {
     return {
       container: [
         props.indent && {
@@ -38411,13 +37043,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default17 = createClasses13;
+  var styles_default16 = createClasses12;
 
   // ../core/control/Menu/Submenu/index.tsx
   var Submenu = (props, ref) => {
     const { rightChild, leftChild, disabled } = props;
-    const [open, setOpen] = (0, import_react284.useState)(props.open || props.defaultOpen || false);
-    const { classes, attributes, events, styleProps } = useSystem_default("Submenu", props, styles_default17);
+    const [open, setOpen] = (0, import_react283.useState)(props.open || props.defaultOpen || false);
+    const { classes, attributes, events, styleProps } = useSystem_default("Submenu", props, styles_default16);
     const attr = {
       "data-flow": "sub-menu"
     };
@@ -38448,13 +37080,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       css: [classes.container, styleProps.all]
     }), props.children || props.title));
   };
-  var Submenu_default = (0, import_react284.forwardRef)(Submenu);
+  var Submenu_default = (0, import_react283.forwardRef)(Submenu);
 
   // ../core/control/Menu/index.tsx
-  var Context = import_react285.default.createContext({ values: {} });
+  var Context = import_react284.default.createContext({ values: {} });
   var useValue = (value) => {
-    const [updateValue, forceUpdate] = import_react285.default.useState(false);
-    const ctx = import_react285.default.useContext(Context);
+    const [updateValue, forceUpdate] = import_react284.default.useState(false);
+    const ctx = import_react284.default.useContext(Context);
     if (ctx === void 0) {
       throw Error("Hook useValue could be used only within Menu component!");
     }
@@ -38481,35 +37113,35 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
   var Menu = (props, ref) => {
     const { decoration = "filled" } = props;
-    const [ctx, setCtx] = (0, import_react285.useState)({
+    const [ctx, setCtx] = (0, import_react284.useState)({
       values: {},
       controlled: props.value !== void 0,
       current: props.value,
       onChange: props.onChange,
       itemAs: props.itemAs
     });
-    (0, import_react285.useLayoutEffect)(() => {
+    (0, import_react284.useLayoutEffect)(() => {
       if (props.defaultValue !== void 0 && ctx.current === void 0) {
         setCtx(__spreadProps(__spreadValues({}, ctx), {
           current: props.defaultValue
         }));
       }
     }, []);
-    (0, import_react285.useLayoutEffect)(() => {
+    (0, import_react284.useLayoutEffect)(() => {
       if (props.value !== void 0) {
         setCtx(__spreadProps(__spreadValues({}, ctx), {
           current: props.value
         }));
       }
     }, [props.value]);
-    (0, import_react285.useLayoutEffect)(() => {
+    (0, import_react284.useLayoutEffect)(() => {
       if (props.itemAs !== void 0) {
         setCtx(__spreadProps(__spreadValues({}, ctx), {
           itemAs: props.itemAs
         }));
       }
     }, [props.itemAs]);
-    const _a = useSystem_default("Menu", props, styles_default16, {
+    const _a = useSystem_default("Menu", props, styles_default15, {
       label: "Menu"
     }), {
       classes,
@@ -38554,7 +37186,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       value: ctx
     }, children));
   };
-  var Default = (0, import_react285.forwardRef)(Menu);
+  var Default = (0, import_react284.forwardRef)(Menu);
   var Menu_default2 = __spreadProps(__spreadValues({}, Default), {
     Item: MenuItem_default,
     Group: MenuGroup_default,
@@ -38565,16 +37197,43 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react286 = __toModule(require_react());
+  var import_react285 = __toModule(require_react());
 
   // ../core/control/Radio/styles.ts
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses14 = (theme, props) => {
-    const { size = "m", disabled = false } = props;
+  var createClasses13 = (theme, props) => {
+    const { disabled, uppercase, size = "m" } = props;
+    const labelColor = props.labelColor ? color_default(props.labelColor, theme) : void 0;
     return {
-      check: (state, variant) => [
+      container: [
+        {
+          display: "flex",
+          alignItems: "center",
+          cursor: "pointer",
+          color: theme.color.onSurface.rgb().string(),
+          outline: "none"
+        },
+        disabled && {
+          cursor: "not-allowed"
+        }
+      ],
+      label: [
+        {
+          marginLeft: "0.5rem",
+          userSelect: "none",
+          color: labelColor == null ? void 0 : labelColor.rgb().string()
+        },
+        theme.assets.typography.text[size],
+        disabled && {
+          color: theme.color.light.rgb().string()
+        },
+        uppercase && {
+          textTransform: "uppercase"
+        }
+      ],
+      check: ({ checked }) => [
         {
           boxSizing: "border-box",
           display: "flex",
@@ -38591,7 +37250,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           willChange: "color, border-color, background-color",
           outline: "none"
         },
-        state.checked && {
+        checked && {
           backgroundColor: theme.color.primary.rgb().string(),
           borderColor: "transparent"
         },
@@ -38600,7 +37259,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             backgroundColor: theme.color.lightest.rgb().string(),
             borderColor: theme.color.light.rgb().string()
           },
-          state.checked && {
+          checked && {
             backgroundColor: theme.color.primary.alpha(0.5).rgb().string(),
             borderColor: "transparent"
           }
@@ -38626,7 +37285,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           height: "2rem"
         }
       ],
-      radio: (state, variant) => [
+      icon: ({ checked }) => [
         {
           transition: "all 0.2s",
           transform: `scale(0)`,
@@ -38637,7 +37296,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           borderRadius: "50%",
           backgroundColor: theme.color.onPrimary.rgb().string()
         },
-        state.checked && {
+        checked && {
           transform: `scale(0.5)`,
           opacity: 1,
           transition: "opacity .15s, transform .15s",
@@ -38651,38 +37310,71 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default18 = createClasses14;
+  var styles_default17 = createClasses13;
 
   // ../core/control/Radio/index.tsx
   var Radio = (props, ref) => {
-    const { size = "m", tabIndex = 0 } = props;
-    const { classes, events } = useSystem_default("Radio", props, styles_default18, { focus: "tabOnly" });
-    return /* @__PURE__ */ jsx(Check_default, __spreadProps(__spreadValues({}, props), {
-      ref,
-      name: "Radio",
-      size
-    }), (checked) => /* @__PURE__ */ jsx("div", {
+    const { tabIndex = 0, label, disabled, defaultValue, checked: checkedProp = false } = props;
+    const { classes, attributes, events, styleProps } = useSystem_default("Radio", props, styles_default17, {
+      focus: "tabOnly"
+    });
+    const _a = events, { onClick, onChange, onKeyDown } = _a, restEvents = __objRest(_a, ["onClick", "onChange", "onKeyDown"]);
+    const [checked, setChecked] = (0, import_react285.useState)(checkedProp || defaultValue || false);
+    (0, import_react285.useEffect)(() => {
+      setChecked(checkedProp);
+    }, [checkedProp]);
+    function handleChange() {
+      onChange == null ? void 0 : onChange(checked);
+      setChecked(!checked);
+    }
+    function handleKeyDown(event) {
+      if (event.keyCode === 13 || event.keyCode === 32) {
+        handleChange();
+        if (event.keyCode === 32) {
+          event.preventDefault();
+        }
+      }
+      onKeyDown == null ? void 0 : onKeyDown(event);
+    }
+    function handleClick(e) {
+      if (!disabled) {
+        handleChange();
+      }
+      onClick == null ? void 0 : onClick(e);
+    }
+    return /* @__PURE__ */ jsx("div", __spreadProps(__spreadValues(__spreadValues({
+      ref
+    }, attributes), restEvents), {
+      tabIndex: -1,
+      css: [classes.container, styleProps.all],
+      onClick: handleClick,
+      onKeyDown: handleKeyDown,
+      role: "radio",
+      "aria-checked": checked
+    }), /* @__PURE__ */ jsx("div", {
       tabIndex,
       css: classes.check({ checked }),
       onFocus: events.onFocus,
       onBlur: events.onBlur
     }, /* @__PURE__ */ jsx("div", {
-      css: classes.radio({ checked })
-    })));
+      css: classes.icon({ checked })
+    })), label && label.length && /* @__PURE__ */ jsx("div", {
+      css: classes.label
+    }, label));
   };
-  var Radio_default2 = (0, import_react286.forwardRef)(Radio);
+  var Radio_default2 = (0, import_react285.forwardRef)(Radio);
 
   // ../core/control/Range/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react287 = __toModule(require_react());
+  var import_react286 = __toModule(require_react());
 
   // ../core/control/Range/styles.ts
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses15 = (theme) => {
+  var createClasses14 = (theme) => {
     return {
       container: [
         {
@@ -38738,7 +37430,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default19 = createClasses15;
+  var styles_default18 = createClasses14;
 
   // ../core/control/Range/index.tsx
   function value2Percent(value, min, max) {
@@ -38754,18 +37446,18 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
   var Range = (props, ref) => {
     const { min = 0, max = 100, value, defaultValue } = props;
-    const _a = useSystem_default("Range", props, styles_default19), {
+    const _a = useSystem_default("Range", props, styles_default18), {
       classes,
       attributes,
       events: _b
     } = _a, _c = _b, { onChange } = _c, events = __objRest(_c, ["onChange"]), {
       styleProps
     } = _a;
-    const thumbRef = (0, import_react287.useRef)(null);
-    const trackRef = (0, import_react287.useRef)(null);
-    const containerRef = (0, import_react287.useRef)(null);
-    const [position2, setPosition] = (0, import_react287.useState)(value2Percent(value || defaultValue || 0, min, max));
-    (0, import_react287.useImperativeHandle)(ref, () => ({
+    const thumbRef = (0, import_react286.useRef)(null);
+    const trackRef = (0, import_react286.useRef)(null);
+    const containerRef = (0, import_react286.useRef)(null);
+    const [position2, setPosition] = (0, import_react286.useState)(value2Percent(value || defaultValue || 0, min, max));
+    (0, import_react286.useImperativeHandle)(ref, () => ({
       container: containerRef.current,
       setValue: (currentValue) => {
         setPosition(value2Percent(currentValue, min, max));
@@ -38791,7 +37483,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
       }
     }
-    (0, import_react287.useEffect)(() => {
+    (0, import_react286.useEffect)(() => {
       document.addEventListener("mousemove", onMove);
       document.addEventListener("mouseup", onUp);
       return () => {
@@ -38815,19 +37507,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       style: { left: `${position2}%` }
     }));
   };
-  var Range_default = (0, import_react287.forwardRef)(Range);
+  var Range_default = (0, import_react286.forwardRef)(Range);
 
   // ../core/control/Pageswitch/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react288 = __toModule(require_react());
+  var import_react287 = __toModule(require_react());
 
   // ../core/control/Pageswitch/styles.ts
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses16 = ({
+  var createClasses15 = ({
     color,
     spacing,
     assets
@@ -38882,7 +37574,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
     ]
   });
-  var styles_default20 = createClasses16;
+  var styles_default19 = createClasses15;
 
   // ../core/control/Pageswitch/index.tsx
   var PAGE_BUTTON_MAX = 1;
@@ -38899,14 +37591,14 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var Pageswitch = (props, ref) => {
     const { length: total, pageSize = 20, value } = props;
     const lastPage = Math.ceil(total / pageSize);
-    const { classes, attributes, events, styleProps } = useSystem_default("Pageswitch", props, styles_default20);
+    const { classes, attributes, events, styleProps } = useSystem_default("Pageswitch", props, styles_default19);
     let defaultValue = value || props.defaultValue || 1;
     if (defaultValue <= 0)
       defaultValue = 1;
     if (defaultValue > lastPage)
       defaultValue = lastPage;
-    const [currentPage, setCurrentPage] = (0, import_react288.useState)(defaultValue);
-    (0, import_react288.useEffect)(() => {
+    const [currentPage, setCurrentPage] = (0, import_react287.useState)(defaultValue);
+    (0, import_react287.useEffect)(() => {
       if (value !== void 0) {
         if (value > 0) {
           if (value < lastPage) {
@@ -38963,7 +37655,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       onClick: setPage
     }), allowToFirst && /* @__PURE__ */ jsx(Text_default, {
       css: classes.separator
-    }, "..."), Array(prevPagesCount).fill("").map((_, index) => /* @__PURE__ */ jsx(PageButton, {
+    }, "..."), prevPagesCount >= 0 && Array(prevPagesCount).fill("").map((_, index) => /* @__PURE__ */ jsx(PageButton, {
       key: index,
       page: currentPage - prevPagesCount + index,
       classes,
@@ -38989,19 +37681,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       onClick: () => nextPage()
     }));
   };
-  var Pageswitch_default = (0, import_react288.forwardRef)(Pageswitch);
+  var Pageswitch_default = (0, import_react287.forwardRef)(Pageswitch);
 
   // ../core/control/Select/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react289 = __toModule(require_react());
+  var import_react288 = __toModule(require_react());
 
   // ../core/control/Select/styles.ts
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses17 = (theme, { size = "m", disabled, shape = "rounded", decoration = "outline", maxScrollHeight = "16rem" }) => {
+  var createClasses16 = (theme, { size = "m", disabled, shape = "rounded", decoration = "outline", maxScrollHeight = "16rem" }) => {
     const { height } = theme.assets.field[size];
     return {
       selectedArea: {
@@ -39174,7 +37866,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default21 = createClasses17;
+  var styles_default20 = createClasses16;
 
   // ../core/control/Select/index.tsx
   var Select = (props, ref) => {
@@ -39220,12 +37912,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       "renderOption",
       "renderMultiselectValue"
     ]);
-    const { classes, styleProps, overridesPropClasses } = useSystem_default("Select", props, styles_default21);
-    const fieldRef = (0, import_react289.useRef)(null);
-    const dropRef = (0, import_react289.useRef)(null);
-    const [isOpen, setOpen] = (0, import_react289.useState)(false);
-    const [searchValue, setSearchValue] = (0, import_react289.useState)("");
-    const [values, setValues] = (0, import_react289.useState)([]);
+    const { classes, styleProps, overridesPropClasses } = useSystem_default("Select", props, styles_default20);
+    const fieldRef = (0, import_react288.useRef)(null);
+    const dropRef = (0, import_react288.useRef)(null);
+    const [isOpen, setOpen] = (0, import_react288.useState)(false);
+    const [searchValue, setSearchValue] = (0, import_react288.useState)("");
+    const [values, setValues] = (0, import_react288.useState)([]);
     const options = props.options.filter((option) => {
       if (values.find((o) => o.value === option.value) && multiselect) {
         return false;
@@ -39236,17 +37928,17 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
       return true;
     });
-    (0, import_react289.useEffect)(() => {
+    (0, import_react288.useEffect)(() => {
       if (defaultValues) {
         setValues(defaultValues);
       }
     }, []);
-    (0, import_react289.useEffect)(() => {
+    (0, import_react288.useEffect)(() => {
       if (props.values) {
         setValues(props.values);
       }
     }, [(_b = props.values) == null ? void 0 : _b.map((value) => value.value).join()]);
-    (0, import_react289.useEffect)(() => {
+    (0, import_react288.useEffect)(() => {
       var _a2;
       if (isOpen) {
         (_a2 = dropRef.current) == null ? void 0 : _a2.updatePosition();
@@ -39298,7 +37990,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         onChange(values.slice(0, -1));
       }
     }
-    (0, import_react289.useImperativeHandle)(ref, () => __spreadProps(__spreadValues({}, fieldRef), {
+    (0, import_react288.useImperativeHandle)(ref, () => __spreadProps(__spreadValues({}, fieldRef), {
       isOpen,
       options,
       values,
@@ -39359,7 +38051,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           styleProps.content
         ]
       }),
-      rightChild: /* @__PURE__ */ jsx(import_react289.default.Fragment, null, rightChild, /* @__PURE__ */ jsx(ChevronDown_default, {
+      rightChild: /* @__PURE__ */ jsx(import_react288.default.Fragment, null, rightChild, /* @__PURE__ */ jsx(ChevronDown_default, {
         alignSelf: "center",
         size,
         style: {
@@ -39441,22 +38133,49 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       css: classes.dropFooter
     }, dropFooter))));
   };
-  var Select_default = (0, import_react289.forwardRef)(Select);
+  var Select_default = (0, import_react288.forwardRef)(Select);
 
   // ../core/control/Switch/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react290 = __toModule(require_react());
+  var import_react289 = __toModule(require_react());
 
   // ../core/control/Switch/styles.ts
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses18 = (theme, props) => {
-    const { size = "m", disabled } = props;
+  var createClasses17 = (theme, props) => {
+    const { disabled, uppercase, size = "m" } = props;
+    const labelColor = props.labelColor ? color_default(props.labelColor, theme) : void 0;
     return {
-      check: (state, variant) => [
+      container: [
+        {
+          display: "flex",
+          alignItems: "center",
+          cursor: "pointer",
+          color: theme.color.onSurface.rgb().string(),
+          outline: "none"
+        },
+        disabled && {
+          cursor: "not-allowed"
+        }
+      ],
+      label: [
+        {
+          marginLeft: "0.5rem",
+          userSelect: "none",
+          color: labelColor == null ? void 0 : labelColor.rgb().string()
+        },
+        theme.assets.typography.text[size],
+        disabled && {
+          color: theme.color.light.rgb().string()
+        },
+        uppercase && {
+          textTransform: "uppercase"
+        }
+      ],
+      check: ({ checked }) => [
         {
           boxSizing: "border-box",
           display: "flex",
@@ -39491,14 +38210,14 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           height: "1rem",
           borderRadius: "2rem"
         },
-        state.checked && {
+        checked && {
           backgroundColor: theme.color.primary.rgb().string()
         },
         disabled && {
           backgroundColor: theme.color.lightest.rgb().string()
         }
       ],
-      switch: (state, variant) => [
+      icon: ({ checked }) => [
         {
           position: "relative",
           boxSizing: "border-box",
@@ -39518,7 +38237,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             height: "0.75rem",
             left: "-0.1875rem"
           },
-          state.checked && {
+          checked && {
             left: "0.1875rem"
           }
         ],
@@ -39529,7 +38248,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             height: "1rem",
             left: "-0.25rem"
           },
-          state.checked && {
+          checked && {
             left: "0.25rem"
           }
         ],
@@ -39540,7 +38259,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             height: "1.25rem",
             left: "-0.3125rem"
           },
-          state.checked && {
+          checked && {
             left: "0.3125rem"
           }
         ],
@@ -39551,7 +38270,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             height: "1.5rem",
             left: "-0.375rem"
           },
-          state.checked && {
+          checked && {
             left: "0.375rem"
           }
         ],
@@ -39562,7 +38281,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             height: "2rem",
             left: "-0.5rem"
           },
-          state.checked && {
+          checked && {
             left: "0.5rem"
           }
         ],
@@ -39572,32 +38291,65 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default22 = createClasses18;
+  var styles_default21 = createClasses17;
 
   // ../core/control/Switch/index.tsx
   var Switch = (props, ref) => {
-    const { size = "m", tabIndex = 0 } = props;
-    const { classes, events } = useSystem_default("Switch", props, styles_default22, { focus: "tabOnly" });
-    return /* @__PURE__ */ jsx(Check_default, __spreadProps(__spreadValues({}, props), {
-      ref,
-      size,
-      name: "Switch"
-    }), (checked) => /* @__PURE__ */ jsx("div", {
+    const { tabIndex = 0, label, disabled, defaultValue, checked: checkedProp = false } = props;
+    const { classes, attributes, events, styleProps } = useSystem_default("Switch", props, styles_default21, {
+      focus: "tabOnly"
+    });
+    const _a = events, { onClick, onChange, onKeyDown } = _a, restEvents = __objRest(_a, ["onClick", "onChange", "onKeyDown"]);
+    const [checked, setChecked] = (0, import_react289.useState)(checkedProp || defaultValue || false);
+    (0, import_react289.useEffect)(() => {
+      setChecked(checkedProp);
+    }, [checkedProp]);
+    function handleChange() {
+      onChange == null ? void 0 : onChange(checked);
+      setChecked(!checked);
+    }
+    function handleKeyDown(event) {
+      if (event.keyCode === 13 || event.keyCode === 32) {
+        handleChange();
+        if (event.keyCode === 32) {
+          event.preventDefault();
+        }
+      }
+      onKeyDown == null ? void 0 : onKeyDown(event);
+    }
+    function handleClick(e) {
+      if (!disabled) {
+        handleChange();
+      }
+      onClick == null ? void 0 : onClick(e);
+    }
+    return /* @__PURE__ */ jsx("div", __spreadProps(__spreadValues(__spreadValues({
+      ref
+    }, attributes), restEvents), {
+      tabIndex: -1,
+      css: [classes.container, styleProps.all],
+      onClick: handleClick,
+      onKeyDown: handleKeyDown,
+      role: "checkbox",
+      "aria-checked": checked
+    }), /* @__PURE__ */ jsx("div", {
       css: classes.check({ checked })
     }, /* @__PURE__ */ jsx("div", {
       tabIndex,
-      css: classes.switch({ checked }),
+      css: classes.icon({ checked }),
       onFocus: events.onFocus,
       onBlur: events.onBlur
-    })));
+    })), label && label.length && /* @__PURE__ */ jsx("div", {
+      css: classes.label
+    }, label));
   };
-  var Switch_default = (0, import_react290.forwardRef)(Switch);
+  var Switch_default = (0, import_react289.forwardRef)(Switch);
 
   // ../core/control/TextField/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react291 = __toModule(require_react());
+  var import_react290 = __toModule(require_react());
 
   // ../core/control/TextField/styles.ts
   init_define_ENV();
@@ -39645,7 +38397,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
     ]
   });
-  var styles_default23 = styles4;
+  var styles_default22 = styles4;
 
   // ../core/control/TextField/index.tsx
   var TextField = (props, ref) => {
@@ -39684,15 +38436,15 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       rows,
       wrap
     } = props;
-    const { classes, styleProps, overridesPropClasses } = useSystem_default("TextField", props, styles_default23);
-    const inputRef = (0, import_react291.useRef)(null);
-    const leftCountLineRef = (0, import_react291.useRef)(null);
-    const fieldRef = (0, import_react291.useRef)(null);
-    const [leftCountLineState, setleftCountLineState] = (0, import_react291.useState)({
+    const { classes, styleProps, overridesPropClasses } = useSystem_default("TextField", props, styles_default22);
+    const inputRef = (0, import_react290.useRef)(null);
+    const leftCountLineRef = (0, import_react290.useRef)(null);
+    const fieldRef = (0, import_react290.useRef)(null);
+    const [leftCountLineState, setleftCountLineState] = (0, import_react290.useState)({
       count: 0,
       top: "0px"
     });
-    (0, import_react291.useEffect)(() => {
+    (0, import_react290.useEffect)(() => {
       if (leftChildNumber) {
         const currentValue = (defaultValue || value || "").toString();
         setleftCountLineState({
@@ -39704,11 +38456,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     function onClear() {
       var _a, _b;
       if (inputRef.current) {
-        (_b = (_a = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value")) == null ? void 0 : _a.set) == null ? void 0 : _b.call(inputRef.current, "");
+        (_b = (_a = Object.getOwnPropertyDescriptor(window == null ? void 0 : window.HTMLInputElement.prototype, "value")) == null ? void 0 : _a.set) == null ? void 0 : _b.call(inputRef.current, "");
         inputRef.current.dispatchEvent(new Event("input", { bubbles: true }));
       }
     }
-    (0, import_react291.useImperativeHandle)(ref, () => ({
+    (0, import_react290.useImperativeHandle)(ref, () => ({
       clear: () => onClear(),
       container: fieldRef.current,
       input: inputRef.current
@@ -39719,7 +38471,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
       const arr = new Array(leftCountLineState.count).fill("");
       const render = typeof leftChildNumber === "function" ? leftChildNumber : (index) => index + 1;
-      return /* @__PURE__ */ jsx3(import_react291.default.Fragment, null, /* @__PURE__ */ jsx3("div", {
+      return /* @__PURE__ */ jsx3(import_react290.default.Fragment, null, /* @__PURE__ */ jsx3("div", {
         ref: leftCountLineRef,
         style: { top: leftCountLineState.top },
         css: classes.lineNumbers
@@ -39817,13 +38569,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       wrap
     }));
   };
-  var TextField_default = (0, import_react291.forwardRef)(TextField);
+  var TextField_default = (0, import_react290.forwardRef)(TextField);
 
   // ../core/control/Stepper/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react293 = __toModule(require_react());
+  var import_react292 = __toModule(require_react());
 
   // ../core/control/Stepper/styles.ts
   init_define_ENV();
@@ -39923,12 +38675,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default24 = styles5;
+  var styles_default23 = styles5;
 
   // ../core/control/Stepper/index.tsx
   var Stepper = (props, ref) => {
     const { data, current = -1 } = props;
-    const _a = useSystem_default("Stepper", props, styles_default24), {
+    const _a = useSystem_default("Stepper", props, styles_default23), {
       classes,
       attributes,
       events: _b
@@ -39949,7 +38701,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       const label = state.complete ? /* @__PURE__ */ jsx(Checkmark_default, {
         size: "1.5rem"
       }) : step.label || i + 1;
-      return /* @__PURE__ */ jsx(import_react293.default.Fragment, {
+      return /* @__PURE__ */ jsx(import_react292.default.Fragment, {
         key: i
       }, /* @__PURE__ */ jsx("div", {
         css: classes.step(state),
@@ -39959,13 +38711,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }));
     }));
   };
-  var Stepper_default = (0, import_react293.forwardRef)(Stepper);
+  var Stepper_default = (0, import_react292.forwardRef)(Stepper);
 
   // ../core/control/Toggle/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react294 = __toModule(require_react());
+  var import_react293 = __toModule(require_react());
 
   // ../core/control/Toggle/styles.ts
   init_define_ENV();
@@ -40039,17 +38791,17 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default25 = styles6;
+  var styles_default24 = styles6;
 
   // ../core/control/Toggle/index.tsx
   var Button2 = (props, ref) => {
     var _a;
     const { disabled, defaultValue } = props;
-    const { classes, attributes, events, styleProps } = useSystem_default("Toggle", props, styles_default25, {
+    const { classes, attributes, events, styleProps } = useSystem_default("Toggle", props, styles_default24, {
       focus: "tabOnly"
     });
-    const [value, setValue] = (0, import_react294.useState)();
-    const [offset, setOffset] = (0, import_react294.useState)(0);
+    const [value, setValue] = (0, import_react293.useState)();
+    const [offset, setOffset] = (0, import_react293.useState)(0);
     const refs = [];
     function onChange(newValue) {
       var _a2;
@@ -40064,12 +38816,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       setValue(v);
       setOffset((_a2 = refs[props.options.findIndex((o) => o.value === v.value)]) == null ? void 0 : _a2.offsetLeft);
     }
-    (0, import_react294.useEffect)(() => {
+    (0, import_react293.useEffect)(() => {
       if (defaultValue) {
         setOption(defaultValue);
       }
     }, []);
-    (0, import_react294.useEffect)(() => {
+    (0, import_react293.useEffect)(() => {
       if (props.value) {
         setOption(props.value);
       }
@@ -40106,13 +38858,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
     }, option.text)));
   };
-  var Toggle_default = (0, import_react294.forwardRef)(Button2);
+  var Toggle_default = (0, import_react293.forwardRef)(Button2);
 
   // ../core/data/Meter/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react295 = __toModule(require_react());
+  var import_react294 = __toModule(require_react());
 
   // ../core/data/Meter/MeterThumb/index.tsx
   init_define_ENV();
@@ -40123,7 +38875,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses19 = (theme, props) => {
+  var createClasses18 = (theme, props) => {
     const { loading } = props;
     const color = color_default(props.color || theme.color.primary, theme);
     return {
@@ -40204,12 +38956,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default26 = createClasses19;
+  var styles_default25 = createClasses18;
 
   // ../core/data/Meter/MeterThumb/index.tsx
   var MeterThumb = (props) => {
     const { shape = "round", size = "m", value = 0 } = props;
-    const { classes, attributes, events } = useSystem_default("MeterThumb", props, styles_default26);
+    const { classes, attributes, events } = useSystem_default("MeterThumb", props, styles_default25);
     return /* @__PURE__ */ jsx("div", __spreadProps(__spreadValues(__spreadValues({}, attributes), events), {
       css: classes.container({ shape, size }),
       style: {
@@ -40223,7 +38975,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses20 = (theme, props) => {
+  var createClasses19 = (theme, props) => {
     const color = color_default(props.color || theme.color.primary, theme);
     return {
       container: (state) => [
@@ -40257,12 +39009,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       thumb: () => []
     };
   };
-  var styles_default27 = createClasses20;
+  var styles_default26 = createClasses19;
 
   // ../core/data/Meter/index.tsx
   var Meter = (props, ref) => {
     const { decoration = "filled", shape = "round", size = "m", value = 0, color, loading } = props;
-    const { classes, attributes, events, styleProps } = useSystem_default("Meter", props, styles_default27);
+    const { classes, attributes, events, styleProps } = useSystem_default("Meter", props, styles_default26);
     let childs = props.children;
     if (childs && !Array.isArray(childs)) {
       childs = [childs];
@@ -40271,7 +39023,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ref
     }, attributes), events), {
       css: [classes.container({ decoration, shape, size }), styleProps.all]
-    }), childs ? childs.map((child, index) => import_react295.default.cloneElement(child, __spreadValues(__spreadValues({
+    }), childs ? childs.map((child, index) => import_react294.default.cloneElement(child, __spreadValues(__spreadValues({
       key: index
     }, props), child.props))) : /* @__PURE__ */ jsx(MeterThumb_default, {
       shape,
@@ -40281,7 +39033,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       loading
     }));
   };
-  var Default2 = (0, import_react295.forwardRef)(Meter);
+  var Default2 = (0, import_react294.forwardRef)(Meter);
   var Meter_default = __spreadProps(__spreadValues({}, Default2), {
     Thumb: MeterThumb_default
   });
@@ -40290,7 +39042,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react301 = __toModule(require_react());
+  var import_react300 = __toModule(require_react());
 
   // ../core/data/Table/styles.ts
   init_define_ENV();
@@ -40417,13 +39169,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default28 = styles7;
+  var styles_default27 = styles7;
 
   // ../core/data/Table/TableFoot.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react297 = __toModule(require_react());
+  var import_react296 = __toModule(require_react());
   var TableFoot = (props, ref) => {
     const { columns, pagination, rowCtx, styles: styles8, footerContent, onPageChange } = props;
     const pageSize = pagination == null ? void 0 : pagination.pageSize;
@@ -40447,17 +39199,17 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       onChange: onPageChange
     }, pagination))))));
   };
-  var TableFoot_default = (0, import_react297.forwardRef)(TableFoot);
+  var TableFoot_default = (0, import_react296.forwardRef)(TableFoot);
 
   // ../core/data/Table/TableHeadCell.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react298 = __toModule(require_react());
+  var import_react297 = __toModule(require_react());
   var TableHeadCell = (props, ref) => {
     const { column: column2, styles: styles8 } = props;
-    const [busy, setBusy] = (0, import_react298.useState)(false);
-    const [up, setUp] = (0, import_react298.useState)(column2.sort === "DESC");
+    const [busy, setBusy] = (0, import_react297.useState)(false);
+    const [up, setUp] = (0, import_react297.useState)(column2.sort === "DESC");
     const toggleSort = () => {
       setUp(!up);
       if (typeof column2.sort === "function")
@@ -40492,23 +39244,23 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       css: styles8.headCell({ sort: false })
     }, column2.title);
   };
-  var TableHeadCell_default = (0, import_react298.forwardRef)(TableHeadCell);
+  var TableHeadCell_default = (0, import_react297.forwardRef)(TableHeadCell);
 
   // ../core/data/Table/TableRow.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react300 = __toModule(require_react());
+  var import_react299 = __toModule(require_react());
 
   // ../core/data/Table/TableCell.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react299 = __toModule(require_react());
+  var import_react298 = __toModule(require_react());
   var TableCell = (props, ref) => {
     const { column: column2, rowIndex, rowCtxItem, styles: styles8, getCellContext } = props;
     let content = rowCtxItem.row[column2.key] || null;
-    const [modifyState, setModifyState] = (0, import_react299.useState)(false);
+    const [modifyState, setModifyState] = (0, import_react298.useState)(false);
     rowCtxItem.setModifyState[column2.key] = setModifyState;
     rowCtxItem.isCellModify[column2.key] = modifyState;
     if (column2.dnd) {
@@ -40535,7 +39287,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
     }, content);
   };
-  var TableCell_default = (0, import_react299.forwardRef)(TableCell);
+  var TableCell_default = (0, import_react298.forwardRef)(TableCell);
 
   // ../core/data/Table/TableRow.tsx
   var getTR = (target) => {
@@ -40548,17 +39300,17 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     var _a, _b, _c;
     const { columns, rowIndex, rowCtxItem, delegates, styles: styles8, getCellContext } = props;
     const style = {};
-    const [expandComponent, setExpandComponent] = (0, import_react300.useState)(null);
+    const [expandComponent, setExpandComponent] = (0, import_react299.useState)(null);
     rowCtxItem.setExpandComponent = setExpandComponent;
     rowCtxItem.isExpand = Boolean(expandComponent);
     let rowId;
-    const [needDisplay, setNeedDisplay] = (0, import_react300.useState)(!props.enableRenderOptimization);
-    const [dragOver, setDragOver] = (0, import_react300.useState)(false);
+    const [needDisplay, setNeedDisplay] = (0, import_react299.useState)(!props.enableRenderOptimization);
+    const [dragOver, setDragOver] = (0, import_react299.useState)(false);
     if (props.enableRenderOptimization) {
       const height = (_b = (_a = props.delegates).rowHeight) == null ? void 0 : _b.call(_a, rowCtxItem);
       if (typeof height === "number") {
         style.height = `${height}px`;
-        rowId = import_react300.default.useMemo(() => `tr${rowIndex}_${(~~(Math.random() * 1e8)).toString(16)}`, []);
+        rowId = import_react299.default.useMemo(() => `tr${rowIndex}_${(~~(Math.random() * 1e8)).toString(16)}`, []);
         rowCtxItem.setNeedDisplay = (forceUnmount) => {
           var _a2, _b2, _c2;
           if (forceUnmount) {
@@ -40572,7 +39324,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           const element = document.getElementById(rowId);
           if (element) {
             const position2 = element.getBoundingClientRect();
-            if (position2.top + height * 2 >= 0 && position2.top - height <= window.innerHeight) {
+            if (position2.top + height * 2 >= 0 && position2.top - height <= (window == null ? void 0 : window.innerHeight)) {
               state = true;
               (_b2 = props.rowDidMount) == null ? void 0 : _b2.call(props, rowCtxItem);
               setNeedDisplay(true);
@@ -40588,7 +39340,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     if (((_c = delegates.rowShouldRender) == null ? void 0 : _c.call(delegates, rowCtxItem)) === false) {
       return null;
     }
-    return /* @__PURE__ */ jsx(import_react300.default.Fragment, null, needDisplay ? /* @__PURE__ */ jsx(import_react300.default.Fragment, null, /* @__PURE__ */ jsx("tr", __spreadProps(__spreadValues({
+    return /* @__PURE__ */ jsx(import_react299.default.Fragment, null, needDisplay ? /* @__PURE__ */ jsx(import_react299.default.Fragment, null, /* @__PURE__ */ jsx("tr", __spreadProps(__spreadValues({
       id: rowId,
       style
     }, props.events), {
@@ -40638,7 +39390,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       style
     }));
   };
-  var TableRow_default = (0, import_react300.forwardRef)(TableRow);
+  var TableRow_default = (0, import_react299.forwardRef)(TableRow);
 
   // ../core/data/Table/index.tsx
   var dndContext = {
@@ -40648,8 +39400,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
   function Table(props, ref) {
     var _d;
-    const tableRef = (0, import_react301.useRef)(null);
-    const _a = useSystem_default("Table", props, styles_default28), {
+    const tableRef = (0, import_react300.useRef)(null);
+    const _a = useSystem_default("Table", props, styles_default27), {
       classes,
       attributes,
       events: _b
@@ -40657,9 +39409,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       styleProps
     } = _a;
     const { columns, pagination, footer } = props;
-    const [currentPage, setCurrentPage] = (0, import_react301.useState)(1);
-    const [reloadData, reload] = (0, import_react301.useState)(false);
-    const [sort, setSort] = (0, import_react301.useState)({
+    const [currentPage, setCurrentPage] = (0, import_react300.useState)(1);
+    const [reloadData, reload] = (0, import_react300.useState)(false);
+    const [sort, setSort] = (0, import_react300.useState)({
       key: "",
       sort: "ASC"
     });
@@ -40677,7 +39429,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         setModifyState: {}
       };
     };
-    let rowCtx = isDraggableSupport ? (0, import_react301.useMemo)(() => props.data.map(mapRowContext), []) : props.data.slice().map(mapRowContext);
+    let rowCtx = isDraggableSupport ? (0, import_react300.useMemo)(() => props.data.map(mapRowContext), []) : props.data.slice().map(mapRowContext);
     const getData = () => rowCtx.map((currentRowCtx) => currentRowCtx.row);
     const columnSort = (value) => {
       if (value.sort) {
@@ -40769,7 +39521,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
       return false;
     };
-    (0, import_react301.useImperativeHandle)(ref, () => __spreadValues({
+    (0, import_react300.useImperativeHandle)(ref, () => __spreadValues({
       getCellContext,
       setExpand,
       setModify,
@@ -40797,7 +39549,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
     };
     const enableRenderOptimization = !!((_d = props.rowMountType) == null ? void 0 : _d.match("Visible"));
-    (0, import_react301.useEffect)(() => {
+    (0, import_react300.useEffect)(() => {
       if (enableRenderOptimization) {
         setNeedDisplay();
         document.addEventListener("resize", setNeedDisplay);
@@ -40810,7 +39562,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         };
       }
     }, []);
-    (0, import_react301.useEffect)(() => {
+    (0, import_react300.useEffect)(() => {
       if (sort.key) {
         onChange == null ? void 0 : onChange(getData());
       }
@@ -40865,19 +39617,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       onPageChange: setCurrentPage
     }));
   }
-  var Table_default = (0, import_react301.forwardRef)(Table);
+  var Table_default = (0, import_react300.forwardRef)(Table);
 
   // ../core/layout/Badge/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react302 = __toModule(require_react());
+  var import_react301 = __toModule(require_react());
 
   // ../core/layout/Badge/styles.ts
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses21 = (theme, props) => {
+  var createClasses20 = (theme, props) => {
     const { assets } = theme;
     const { text } = assets.typography;
     const typography = text[props.size || "m"] || text.m;
@@ -40973,11 +39725,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default29 = createClasses21;
+  var styles_default28 = createClasses20;
 
   // ../core/layout/Badge/index.tsx
   var Badge = (props, ref) => {
-    const { classes, attributes, events, styleProps } = useSystem_default("Badge", props, styles_default29);
+    const { classes, attributes, events, styleProps } = useSystem_default("Badge", props, styles_default28);
     return /* @__PURE__ */ jsx("div", {
       css: [classes.container, styleProps.container]
     }, /* @__PURE__ */ jsx("div", __spreadProps(__spreadValues(__spreadValues({}, attributes), events), {
@@ -40991,19 +39743,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     }), props.content), props.children);
   };
-  var Badge_default = (0, import_react302.forwardRef)(Badge);
+  var Badge_default = (0, import_react301.forwardRef)(Badge);
 
   // ../core/layout/Block/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react304 = __toModule(require_react());
+  var import_react303 = __toModule(require_react());
 
   // ../core/layout/Block/styles.ts
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses22 = (theme, props) => {
+  var createClasses21 = (theme, props) => {
     return {
       container: (state, variant) => [
         containerDecorations_default(props, theme),
@@ -41014,11 +39766,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default30 = createClasses22;
+  var styles_default29 = createClasses21;
 
   // ../core/layout/Block/index.tsx
   var Block2 = (props, ref) => {
-    const { classes, attributes, events, styleProps } = useSystem_default("Block", props, styles_default30);
+    const { classes, attributes, events, styleProps } = useSystem_default("Block", props, styles_default29);
     return jsx3(props.as || "div", __spreadProps(__spreadValues(__spreadValues({}, attributes), events), {
       ref,
       css: [
@@ -41030,19 +39782,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       className: props.className
     }), props.children);
   };
-  var Block_default = (0, import_react304.forwardRef)(Block2);
+  var Block_default = (0, import_react303.forwardRef)(Block2);
 
   // ../core/layout/Flexbox/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react306 = __toModule(require_react());
+  var import_react305 = __toModule(require_react());
 
   // ../core/layout/Flexbox/styles.ts
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses23 = (theme, props) => {
+  var createClasses22 = (theme, props) => {
     return {
       container: (state, variant) => [
         containerDecorations_default(props, theme),
@@ -41090,11 +39842,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default31 = createClasses23;
+  var styles_default30 = createClasses22;
 
   // ../core/layout/Flexbox/index.tsx
   var Flexbox = (props, ref) => {
-    const { classes, attributes, events, styleProps } = useSystem_default("Flexbox", props, styles_default31);
+    const { classes, attributes, events, styleProps } = useSystem_default("Flexbox", props, styles_default30);
     return jsx3(props.as || "div", __spreadProps(__spreadValues(__spreadValues({}, attributes), events), {
       ref,
       css: [
@@ -41106,19 +39858,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       className: props.className
     }), props.children);
   };
-  var Flexbox_default = (0, import_react306.forwardRef)(Flexbox);
+  var Flexbox_default = (0, import_react305.forwardRef)(Flexbox);
 
   // ../core/layout/Grid/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react308 = __toModule(require_react());
+  var import_react307 = __toModule(require_react());
 
   // ../core/layout/Grid/styles.ts
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses24 = (theme, props) => {
+  var createClasses23 = (theme, props) => {
     return {
       container: (state, variant) => [
         containerDecorations_default(props, theme),
@@ -41168,11 +39920,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default32 = createClasses24;
+  var styles_default31 = createClasses23;
 
   // ../core/layout/Grid/index.tsx
   var Grid = (props, ref) => {
-    const { classes, attributes, events, styleProps } = useSystem_default("Grid", props, styles_default32);
+    const { classes, attributes, events, styleProps } = useSystem_default("Grid", props, styles_default31);
     return jsx3("div", __spreadProps(__spreadValues(__spreadValues({}, attributes), events), {
       ref,
       css: [
@@ -41183,19 +39935,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     }), props.children);
   };
-  var Grid_default2 = (0, import_react308.forwardRef)(Grid);
+  var Grid_default2 = (0, import_react307.forwardRef)(Grid);
 
   // ../core/layout/Modal/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react312 = __toModule(require_react());
+  var import_react311 = __toModule(require_react());
 
   // ../core/layout/Modal/ModalOverlay.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react310 = __toModule(require_react());
+  var import_react309 = __toModule(require_react());
 
   // ../core/layout/ScrollView/index.tsx
   init_define_ENV();
@@ -41209,13 +39961,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var isWebKit_default = navigator.userAgent.indexOf("AppleWebKit") !== -1;
 
   // ../core/layout/ScrollView/index.tsx
-  var import_react309 = __toModule(require_react());
+  var import_react308 = __toModule(require_react());
 
   // ../core/layout/ScrollView/styles.ts
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses25 = (theme, props) => {
+  var createClasses24 = (theme, props) => {
     const color = color_default(props.color || theme.color.onBackground, theme);
     const barOffset = toRem(props.barOffset || 0);
     return {
@@ -41442,7 +40194,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default33 = createClasses25;
+  var styles_default32 = createClasses24;
 
   // ../core/layout/ScrollView/index.tsx
   var isLegacyScrollSupport = isWebKit_default;
@@ -41457,9 +40209,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       watchElementOffset = 0,
       watchElement
     } = props;
-    const { classes, attributes, events, styleProps } = useSystem_default("ScrollView", props, styles_default33);
-    const [active, setActive] = (0, import_react309.useState)(mode === "always");
-    const memo = (0, import_react309.useMemo)(() => ({
+    const { classes, attributes, events, styleProps } = useSystem_default("ScrollView", props, styles_default32);
+    const [active, setActive] = (0, import_react308.useState)(mode === "always");
+    const memo = (0, import_react308.useMemo)(() => ({
       id: (~~(Math.random() * 1e8)).toString(16),
       mounted: false,
       y: false,
@@ -41537,7 +40289,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
       return false;
     };
-    const updateScroll = (0, import_react309.useMemo)(() => (e) => {
+    const updateScroll = (0, import_react308.useMemo)(() => (e) => {
       var _a, _b;
       if (!memo.container || !memo.content) {
         return;
@@ -41623,7 +40375,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }, options));
       }
     };
-    (0, import_react309.useImperativeHandle)(ref, () => ({
+    (0, import_react308.useImperativeHandle)(ref, () => ({
       getCurrentState: () => Object.freeze(memo),
       addWatchElementListener: (fn, options) => {
         const listenerId = (~~(Math.random() * 1e8)).toString(16);
@@ -41666,7 +40418,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       },
       container: memo.container
     }));
-    const scrollToHandle = (0, import_react309.useMemo)(() => (e) => {
+    const scrollToHandle = (0, import_react308.useMemo)(() => (e) => {
       var _a, _b;
       if (!memo.x && !memo.y)
         return;
@@ -41693,20 +40445,20 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
       }
     }, []);
-    const yMouseDown = (0, import_react309.useMemo)(() => () => {
+    const yMouseDown = (0, import_react308.useMemo)(() => () => {
       memo.y = true;
     }, []);
-    const xMouseDown = (0, import_react309.useMemo)(() => () => {
+    const xMouseDown = (0, import_react308.useMemo)(() => () => {
       memo.x = true;
     }, []);
-    const mouseUp = (0, import_react309.useMemo)(() => () => {
+    const mouseUp = (0, import_react308.useMemo)(() => () => {
       memo.y = false;
       memo.x = false;
-      window.removeEventListener("mouseup", mouseUp);
-      window.removeEventListener("click", mouseUp);
-      window.removeEventListener("mousemove", scrollToHandle);
+      window == null ? void 0 : window.removeEventListener("mouseup", mouseUp);
+      window == null ? void 0 : window.removeEventListener("click", mouseUp);
+      window == null ? void 0 : window.removeEventListener("mousemove", scrollToHandle);
     }, []);
-    const moveScrollContentByMouse = (0, import_react309.useMemo)(() => (e) => {
+    const moveScrollContentByMouse = (0, import_react308.useMemo)(() => (e) => {
       const deltaY = memo.y ? e.movementY : 0;
       const deltaX = memo.x ? e.movementX : 0;
       if (deltaX !== 0 || deltaY !== 0) {
@@ -41719,7 +40471,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         });
       }
     }, []);
-    (0, import_react309.useEffect)(() => {
+    (0, import_react308.useEffect)(() => {
       if (!isLegacyScrollSupport) {
         const { content, container } = memo;
         if (content && container) {
@@ -41729,7 +40481,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
       }
     });
-    (0, import_react309.useEffect)(() => {
+    (0, import_react308.useEffect)(() => {
       const resize = () => {
         updateScroll({
           deltaX: 0,
@@ -41740,7 +40492,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       };
       document.addEventListener("mouseleave", mouseUp);
       if (mode === "always") {
-        window.addEventListener("resize", resize);
+        window == null ? void 0 : window.addEventListener("resize", resize);
       } else if (memo.timeout) {
         clearTimeout(memo.timeout);
       }
@@ -41757,13 +40509,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
       return () => {
         memo.mounted = false;
-        window.removeEventListener("resize", resize);
-        window.removeEventListener("mouseup", mouseUp);
-        window.removeEventListener("mousemove", moveScrollContentByMouse);
+        window == null ? void 0 : window.removeEventListener("resize", resize);
+        window == null ? void 0 : window.removeEventListener("mouseup", mouseUp);
+        window == null ? void 0 : window.removeEventListener("mousemove", moveScrollContentByMouse);
         document.removeEventListener("mouseleave", mouseUp);
       };
     }, [props]);
-    const createRef = (0, import_react309.useMemo)(() => (currentRef) => {
+    const createRef = (0, import_react308.useMemo)(() => (currentRef) => {
       if (currentRef && !memo.events) {
         memo.events = true;
         if (memo.yThumb) {
@@ -41773,7 +40525,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           memo.xThumb.addEventListener("mousedown", xMouseDown);
         }
         if (!isLegacyScrollSupport) {
-          window.addEventListener("mousemove", moveScrollContentByMouse);
+          window == null ? void 0 : window.addEventListener("mousemove", moveScrollContentByMouse);
           if (memo.content) {
             memo.content.addEventListener("wheel", updateScroll);
           }
@@ -41800,19 +40552,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ref: (currentRef) => {
         memo.content = currentRef;
       }
-    }, props.children)), mode !== "hidden" && /* @__PURE__ */ jsx(import_react309.default.Fragment, null, /* @__PURE__ */ jsx("div", {
+    }, props.children)), mode !== "hidden" && /* @__PURE__ */ jsx(import_react308.default.Fragment, null, /* @__PURE__ */ jsx("div", {
       css: classes.yBar({ active, size, shape, position: yBarPosition }),
       ref: (currentRef) => {
         memo.yBar = currentRef;
       },
       onMouseEnter: () => {
-        window.addEventListener("mouseup", mouseUp);
-        window.addEventListener("click", mouseUp);
+        window == null ? void 0 : window.addEventListener("mouseup", mouseUp);
+        window == null ? void 0 : window.addEventListener("click", mouseUp);
       },
       onMouseDown: (e) => {
         yMouseDown();
         scrollToHandle(e);
-        window.addEventListener("mousemove", scrollToHandle);
+        window == null ? void 0 : window.addEventListener("mousemove", scrollToHandle);
       },
       onMouseUp: mouseUp
     }, /* @__PURE__ */ jsx("span", {
@@ -41826,13 +40578,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         memo.xBar = currentRef;
       },
       onMouseEnter: () => {
-        window.addEventListener("mouseup", mouseUp);
-        window.addEventListener("click", mouseUp);
+        window == null ? void 0 : window.addEventListener("mouseup", mouseUp);
+        window == null ? void 0 : window.addEventListener("click", mouseUp);
       },
       onMouseDown: (e) => {
         xMouseDown();
         scrollToHandle(e);
-        window.addEventListener("mousemove", scrollToHandle);
+        window == null ? void 0 : window.addEventListener("mousemove", scrollToHandle);
       },
       onMouseUp: mouseUp
     }, /* @__PURE__ */ jsx("span", {
@@ -41842,10 +40594,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
     }))));
   };
-  var ScrollView_default = (0, import_react309.forwardRef)(ScrollView);
+  var ScrollView_default = (0, import_react308.forwardRef)(ScrollView);
 
   // ../core/layout/Modal/ModalOverlay.tsx
-  var ModalOverlay = (0, import_react310.forwardRef)((props, ref) => {
+  var ModalOverlay = (0, import_react309.forwardRef)((props, ref) => {
     const styles8 = props.getStyles();
     return /* @__PURE__ */ jsx(ScrollView_default, {
       h: "100vh",
@@ -41872,7 +40624,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react311 = __toModule(require_react());
+  var import_react310 = __toModule(require_react());
 
   // ../core/layout/Modal/ModalHeader.tsx
   init_define_ENV();
@@ -41903,7 +40655,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var ModalHeader_default = ModalHeader;
 
   // ../core/layout/Modal/ModalWindow.tsx
-  var ModalWindow = (0, import_react311.forwardRef)((props, ref) => {
+  var ModalWindow = (0, import_react310.forwardRef)((props, ref) => {
     const styles8 = props.getStyles();
     return /* @__PURE__ */ jsx("div", __spreadValues(__spreadValues({
       ref,
@@ -41922,7 +40674,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses26 = (theme, props) => {
+  var createClasses25 = (theme, props) => {
     const { decoration = "modal", size = "m" } = props;
     const isPanel = decoration === "panel";
     const spacing = theme.spacing[size] || theme.spacing.m;
@@ -42040,26 +40792,26 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default34 = createClasses26;
+  var styles_default33 = createClasses25;
 
   // ../core/layout/Modal/index.tsx
   var Modal = (props, ref) => {
     const { hideHeader, overlayClose = true, opened, decoration = "modal" } = props;
-    const _a = useSystem_default("Modal", props, styles_default34), {
+    const _a = useSystem_default("Modal", props, styles_default33), {
       classes,
       attributes,
       events: _b
     } = _a, _c = _b, { onOpen } = _c, events = __objRest(_c, ["onOpen"]), {
       styleProps
     } = _a;
-    const overlayRef = (0, import_react312.useRef)(null);
-    const windowRef = (0, import_react312.useRef)(null);
-    const [active, setActive] = (0, import_react312.useState)(false);
-    const [visible, setVisible] = (0, import_react312.useState)(false);
-    const [customRender, setCustomRender] = (0, import_react312.useState)(null);
-    const [title, setTitle] = (0, import_react312.useState)(props.title);
-    const [subtitle, setSubtitle] = (0, import_react312.useState)(props.subtitle);
-    (0, import_react312.useEffect)(() => {
+    const overlayRef = (0, import_react311.useRef)(null);
+    const windowRef = (0, import_react311.useRef)(null);
+    const [active, setActive] = (0, import_react311.useState)(false);
+    const [visible, setVisible] = (0, import_react311.useState)(false);
+    const [customRender, setCustomRender] = (0, import_react311.useState)(null);
+    const [title, setTitle] = (0, import_react311.useState)(props.title);
+    const [subtitle, setSubtitle] = (0, import_react311.useState)(props.subtitle);
+    (0, import_react311.useEffect)(() => {
       setTitle(props.title);
       setSubtitle(props.subtitle);
     }, [props.title, props.subtitle]);
@@ -42088,13 +40840,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }, 300);
       (_a2 = props.onClose) == null ? void 0 : _a2.call(props);
     }
-    (0, import_react312.useEffect)(() => {
+    (0, import_react311.useEffect)(() => {
       if (opened === true)
         open();
       if (opened === false)
         close();
     }, [opened]);
-    (0, import_react312.useImperativeHandle)(ref, () => ({
+    (0, import_react311.useImperativeHandle)(ref, () => ({
       open,
       close,
       title,
@@ -42137,19 +40889,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       containerEvents: events
     }, customRender !== null ? customRender : props.children))));
   };
-  var Modal_default = (0, import_react312.forwardRef)(Modal);
+  var Modal_default = (0, import_react311.forwardRef)(Modal);
 
   // ../core/layout/Notification/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react313 = __toModule(require_react());
+  var import_react312 = __toModule(require_react());
 
   // ../core/layout/Notification/styles.ts
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses27 = (theme, props) => {
+  var createClasses26 = (theme, props) => {
     const place = props.placement || "topRight";
     return {
       container: [
@@ -42178,12 +40930,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default35 = createClasses27;
+  var styles_default34 = createClasses26;
 
   // ../core/layout/Notification/index.tsx
   var Notifications = (_a, ref) => {
     var _b = _a, { overrides } = _b, props = __objRest(_b, ["overrides"]);
-    const { classes, attributes, events, styleProps } = useSystem_default("Notification", props, styles_default35);
+    const { classes, attributes, events, styleProps } = useSystem_default("Notification", props, styles_default34);
     return /* @__PURE__ */ jsx(Block_default, __spreadProps(__spreadValues(__spreadValues({
       decoration: "mediumShadow",
       css: [classes.container, styleProps.all],
@@ -42192,19 +40944,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ref
     }));
   };
-  var Notification_default = (0, import_react313.forwardRef)(Notifications);
+  var Notification_default = (0, import_react312.forwardRef)(Notifications);
 
   // ../core/layout/Tree/index.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react317 = __toModule(require_react());
+  var import_react316 = __toModule(require_react());
 
   // ../core/layout/Tree/styles.ts
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses28 = (theme, props) => {
+  var createClasses27 = (theme, props) => {
     return {
       container: (state) => [
         state.decoration === "finder" && {
@@ -42288,13 +41040,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default36 = createClasses28;
+  var styles_default35 = createClasses27;
 
   // ../core/layout/Tree/TreeLabel.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react314 = __toModule(require_react());
+  var import_react313 = __toModule(require_react());
   var TreeLabel = (props) => {
     let { size, options, children, className } = props;
     if (typeof children === "string") {
@@ -42307,7 +41059,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     if (typeof children === "function") {
       children = children(options);
     }
-    return /* @__PURE__ */ jsx(import_react314.default.Fragment, null, children);
+    return /* @__PURE__ */ jsx(import_react313.default.Fragment, null, children);
   };
   var TreeLabel_default = TreeLabel;
 
@@ -42315,13 +41067,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react315 = __toModule(require_react());
+  var import_react314 = __toModule(require_react());
   var TreeLeftChild = (props) => {
     let { options, children, className } = props;
     if (typeof children === "function") {
       children = children(options);
     }
-    return /* @__PURE__ */ jsx(import_react315.default.Fragment, null, children !== void 0 ? children : /* @__PURE__ */ jsx(ArrowRight_default, {
+    return /* @__PURE__ */ jsx(import_react314.default.Fragment, null, children !== void 0 ? children : /* @__PURE__ */ jsx(ArrowRight_default, {
       rotate: options.isOpen ? 90 : 0,
       className
     }));
@@ -42332,18 +41084,18 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react316 = __toModule(require_react());
+  var import_react315 = __toModule(require_react());
   var TreeRightChild = (props) => {
     let { options, children } = props;
     if (typeof children === "function") {
       children = children(options);
     }
-    return /* @__PURE__ */ jsx(import_react316.default.Fragment, null, children);
+    return /* @__PURE__ */ jsx(import_react315.default.Fragment, null, children);
   };
   var TreeRightChild_default = TreeRightChild;
 
   // ../core/layout/Tree/index.tsx
-  var Tree = (0, import_react317.forwardRef)((props, ref) => {
+  var Tree = (0, import_react316.forwardRef)((props, ref) => {
     const {
       leftChild,
       rightChild,
@@ -42354,8 +41106,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       isParentOpen = true
     } = props;
     const children = Array.isArray(props.children) ? props.children : [props.children];
-    const [isOpen, setOpen] = (0, import_react317.useState)(!!(props.open || props.defaultOpen));
-    const { classes, attributes, events, styleProps } = useSystem_default("Tree", props, styles_default36);
+    const [isOpen, setOpen] = (0, import_react316.useState)(!!(props.open || props.defaultOpen));
+    const { classes, attributes, events, styleProps } = useSystem_default("Tree", props, styles_default35);
     const sortedChildrens = [];
     for (const child of children) {
       try {
@@ -42386,7 +41138,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     };
     const variant = { decoration, size, hasChilds };
     const options = { isOpen, isParentOpen, hasChilds, lvl };
-    const Container = lvl === 0 ? Block_default : import_react317.Fragment;
+    const Container = lvl === 0 ? Block_default : import_react316.Fragment;
     let containerProps = {};
     if (lvl === 0) {
       containerProps = {
@@ -42414,9 +41166,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       size
     }, rightChild)), sortedChildrens.map((child, index) => {
       const render = isOpen ? child.otherElement : null;
-      return /* @__PURE__ */ jsx(import_react317.Fragment, {
+      return /* @__PURE__ */ jsx(import_react316.Fragment, {
         key: index
-      }, child.treeElement ? import_react317.default.cloneElement(child.treeElement, {
+      }, child.treeElement ? import_react316.default.cloneElement(child.treeElement, {
         size: child.treeElement.props.size || size,
         decoration: child.treeElement.props.decoration || decoration,
         lvl: lvl + 1,
@@ -42432,16 +41184,16 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react319 = __toModule(require_react());
+  var import_react318 = __toModule(require_react());
 
   // ../core/layout/Split/Separator.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react318 = __toModule(require_react());
+  var import_react317 = __toModule(require_react());
   var Separator = (props) => {
     const { defaultVertical } = props;
-    const ref = (0, import_react318.useRef)(null);
+    const ref = (0, import_react317.useRef)(null);
     let active = false;
     let move = false;
     const mouseDown = () => {
@@ -42488,15 +41240,15 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         (_b = (_a = container.current).onMove) == null ? void 0 : _b.call(_a);
       }
     };
-    (0, import_react318.useEffect)(() => {
+    (0, import_react317.useEffect)(() => {
       var _a;
-      window.addEventListener("mouseup", mouseUp);
-      window.addEventListener("mousemove", mouseMove);
+      window == null ? void 0 : window.addEventListener("mouseup", mouseUp);
+      window == null ? void 0 : window.addEventListener("mousemove", mouseMove);
       (_a = ref.current) == null ? void 0 : _a.addEventListener("mousedown", mouseDown);
       return () => {
         var _a2;
-        window.removeEventListener("mouseup", mouseUp);
-        window.removeEventListener("mousemove", mouseMove);
+        window == null ? void 0 : window.removeEventListener("mouseup", mouseUp);
+        window == null ? void 0 : window.removeEventListener("mousemove", mouseMove);
         (_a2 = ref.current) == null ? void 0 : _a2.removeEventListener("mousedown", mouseDown);
       };
     }, []);
@@ -42527,7 +41279,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var createClasses29 = () => {
+  var createClasses28 = () => {
     return {
       test: {},
       container: (state) => [
@@ -42544,12 +41296,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default37 = createClasses29;
+  var styles_default36 = createClasses28;
 
   // ../core/layout/Split/index.tsx
   var Split = (props, ref) => {
     const { positions, direction } = props;
-    const _a = useSystem_default("Split", props, styles_default37), {
+    const _a = useSystem_default("Split", props, styles_default36), {
       classes,
       attributes,
       events: _b
@@ -42557,13 +41309,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       styleProps
     } = _a;
     const vertical = props.direction === "column";
-    const refs = (0, import_react319.useMemo)(() => ({}), []);
-    const defaultSize = (0, import_react319.useMemo)(() => 100 / props.children.length, []);
+    const refs = (0, import_react318.useMemo)(() => ({}), []);
+    const defaultSize = (0, import_react318.useMemo)(() => 100 / props.children.length, []);
     const getPositions = () => Object.keys(refs).filter((key) => parseInt(key, 10) >= 0).map((key) => {
       var _a2;
       return parseFloat(((_a2 = refs[key].current) == null ? void 0 : _a2.style[vertical ? "height" : "width"]) || "");
     });
-    (0, import_react319.useEffect)(() => {
+    (0, import_react318.useEffect)(() => {
       if (refs["-1"].current) {
         refs["-1"].current.onMove = () => {
           onMove == null ? void 0 : onMove(getPositions());
@@ -42573,7 +41325,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         };
       }
     }, [onChange, onMove]);
-    (0, import_react319.useEffect)(() => {
+    (0, import_react318.useEffect)(() => {
       Object.keys(refs).filter((key) => parseInt(key, 10) >= 0).forEach((key) => {
         if (refs[key].current) {
           refs[key].current.style[vertical ? "height" : "width"] = `${positions ? positions[parseInt(key, 10)] : defaultSize}%`;
@@ -42602,7 +41354,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         prev: () => refs[index],
         next: () => refs[index + 1]
       }) : null;
-      return /* @__PURE__ */ jsx(import_react319.Fragment, {
+      return /* @__PURE__ */ jsx(import_react318.Fragment, {
         key: index
       }, /* @__PURE__ */ jsx("div", {
         css: {
@@ -42617,7 +41369,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }, child), separator);
     }));
   };
-  var Split_default = (0, import_react319.forwardRef)(Split);
+  var Split_default = (0, import_react318.forwardRef)(Split);
 
   // ../core/layout/Viewport/index.tsx
   init_define_ENV();
@@ -42812,19 +41564,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   });
 
   // ../core/layout/Viewport/index.tsx
-  var import_react321 = __toModule(require_react());
+  var import_react320 = __toModule(require_react());
 
   // ../core/layout/Viewport/MountArea.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react320 = __toModule(require_react());
+  var import_react319 = __toModule(require_react());
   var ViewportShared = {
     addElement: () => "",
     removeElement: () => void 0
   };
   var MountArea = () => {
-    const [elements, setElements] = (0, import_react320.useState)([]);
+    const [elements, setElements] = (0, import_react319.useState)([]);
     ViewportShared.addElement = (children, key = createID_default(), placement = "center") => {
       setElements(elements.concat({ key, children, placement }));
       return key;
@@ -42888,23 +41640,23 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           }
         }
       }
-    }, /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "topLeft").map((el) => /* @__PURE__ */ jsx(import_react320.Fragment, {
+    }, /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "topLeft").map((el) => /* @__PURE__ */ jsx(import_react319.Fragment, {
       key: el.key
-    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "topCenter").map((el) => /* @__PURE__ */ jsx(import_react320.Fragment, {
+    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "topCenter").map((el) => /* @__PURE__ */ jsx(import_react319.Fragment, {
       key: el.key
-    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "topRight").map((el) => /* @__PURE__ */ jsx(import_react320.Fragment, {
+    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "topRight").map((el) => /* @__PURE__ */ jsx(import_react319.Fragment, {
       key: el.key
-    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "centerLeft").map((el) => /* @__PURE__ */ jsx(import_react320.Fragment, {
+    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "centerLeft").map((el) => /* @__PURE__ */ jsx(import_react319.Fragment, {
       key: el.key
-    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "center").map((el) => /* @__PURE__ */ jsx(import_react320.Fragment, {
+    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "center").map((el) => /* @__PURE__ */ jsx(import_react319.Fragment, {
       key: el.key
-    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "centerRight").map((el) => /* @__PURE__ */ jsx(import_react320.Fragment, {
+    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "centerRight").map((el) => /* @__PURE__ */ jsx(import_react319.Fragment, {
       key: el.key
-    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "bottomLeft").map((el) => /* @__PURE__ */ jsx(import_react320.Fragment, {
+    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "bottomLeft").map((el) => /* @__PURE__ */ jsx(import_react319.Fragment, {
       key: el.key
-    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "bottomCenter").map((el) => /* @__PURE__ */ jsx(import_react320.Fragment, {
+    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "bottomCenter").map((el) => /* @__PURE__ */ jsx(import_react319.Fragment, {
       key: el.key
-    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "bottomRight").map((el) => /* @__PURE__ */ jsx(import_react320.Fragment, {
+    }, el.children))), /* @__PURE__ */ jsx("div", null, elements.filter((el) => el.placement === "bottomRight").map((el) => /* @__PURE__ */ jsx(import_react319.Fragment, {
       key: el.key
     }, el.children))));
   };
@@ -42941,7 +41693,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
 `;
 
   // ../core/layout/Viewport/styles.ts
-  var createClasses30 = (theme, props) => {
+  var createClasses29 = (theme, props) => {
     const attachTheme = __spreadValues({
       background: theme.color.background.rgb().string(),
       color: theme.color.onBackground.rgb().string(),
@@ -42960,340 +41712,57 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ]
     };
   };
-  var styles_default38 = createClasses30;
+  var styles_default37 = createClasses29;
 
   // ../core/layout/Viewport/index.tsx
   var Viewport = (props, ref) => {
     const { wrapper, cache } = props;
     const theme = (typeof props.theme === "string" ? themes_exports[props.theme] : props.theme) || light;
-    const viewportRef = (0, import_react321.useRef)(null);
-    (0, import_react321.useImperativeHandle)(ref, () => viewportRef.current);
+    const viewportRef = (0, import_react320.useRef)(null);
+    (0, import_react320.useImperativeHandle)(ref, () => viewportRef.current);
     const EmotionCache = __spreadValues({
       key: "stage",
       container: viewportRef && viewportRef.current || void 0
     }, cache);
-    const { classes, attributes, events, styleProps } = useSystem_default("Viewport", props, styles_default38, {
+    const { classes, attributes, events, styleProps } = useSystem_default("Viewport", props, styles_default37, {
       theme
     });
     const Content = /* @__PURE__ */ jsx(Provider_default, {
       theme,
       global: !wrapper ? [classes.container, styleProps.all] : void 0,
       cache: EmotionCache
-    }, /* @__PURE__ */ jsx(import_react321.default.Fragment, null, props.children, /* @__PURE__ */ jsx(MountArea_default, null)));
+    }, /* @__PURE__ */ jsx(import_react320.default.Fragment, null, props.children, /* @__PURE__ */ jsx(MountArea_default, null)));
     return wrapper ? /* @__PURE__ */ jsx("div", __spreadProps(__spreadValues(__spreadValues({}, attributes), events), {
       ref: viewportRef,
       css: [classes.container, styleProps.all]
     }), Content) : Content;
   };
-  var Viewport_default = (0, import_react321.forwardRef)(Viewport);
+  var Viewport_default = (0, import_react320.forwardRef)(Viewport);
 
   // ../core/utils/dialog.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var dialog_default = (render) => {
-    const key = createID_default();
-    const options = typeof render === "object" ? render : null;
-    let modal;
-    const assignRef = (ref) => {
-      modal = ref;
-    };
-    const close = () => {
-      modal.close();
-    };
-    ViewportShared.addElement(/* @__PURE__ */ jsx(Modal_default, __spreadProps(__spreadValues({}, options), {
-      ref: assignRef,
-      title: options == null ? void 0 : options.title,
-      subtitle: options == null ? void 0 : options.subtitle,
-      hideHeader: (options == null ? void 0 : options.hideHeader) || typeof render === "function",
-      style: options == null ? void 0 : options.style,
-      size: options == null ? void 0 : options.size,
-      decoration: options == null ? void 0 : options.decoration,
-      onOpen: options == null ? void 0 : options.onOpen,
-      didClose: () => {
-        var _a;
-        ViewportShared.removeElement(key);
-        (_a = options == null ? void 0 : options.didClose) == null ? void 0 : _a.call(options);
-      }
-    }), typeof render === "function" ? render(close) : options == null ? void 0 : options.render(close)), key);
-    setTimeout(() => modal.open());
-  };
 
   // ../core/utils/notify.tsx
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var notify_default = (options) => {
-    let timer;
-    const key = createID_default();
-    if (options.timeout) {
-      timer = setTimeout(() => ViewportShared.removeElement(key), options.timeout);
-    }
-    const close = () => {
-      clearInterval(timer);
-      ViewportShared.removeElement(key);
-    };
-    ViewportShared.addElement(/* @__PURE__ */ jsx(Notification_default, __spreadValues({}, options), options.render ? options.render(close) : /* @__PURE__ */ jsx(Flexbox_default, {
-      p: "1rem",
-      w: "20rem"
-    }, /* @__PURE__ */ jsx(Block_default, {
-      flex: 1,
-      css: { overflow: "hidden" }
-    }, /* @__PURE__ */ jsx(Header_default, {
-      m: 0,
-      size: "s",
-      ellipsis: true
-    }, options.title), /* @__PURE__ */ jsx(Paragraph_default, {
-      m: 0
-    }, options.message)), /* @__PURE__ */ jsx(Close_default, {
-      size: "1.25rem",
-      m: "-0.5rem -0.5rem 0.5rem 0.5rem",
-      type: "filled",
-      alignSelf: "flex-start",
-      color: "light",
-      onClick: close
-    }))), key, options.placement || "topRight");
-  };
 
   // ../core/hooks/useBreakpoint.ts
   init_define_ENV();
   init_wsClientInjection();
   init_react_shim();
-  var import_react322 = __toModule(require_react());
+  var import_react321 = __toModule(require_react());
 
   // index.tsx
   var import_react_dom3 = __toModule(require_react_dom());
-
-  // app/index.tsx
-  init_define_ENV();
-  init_wsClientInjection();
-  init_react_shim();
-
-  // app/control.tsx
-  init_define_ENV();
-  init_wsClientInjection();
-  init_react_shim();
-  var PlaygroundControl = () => /* @__PURE__ */ jsx(Flexbox_default, {
-    p: "s m",
-    my: "0.5rem",
-    decoration: "surface",
-    alignItems: "center"
-  }, /* @__PURE__ */ jsx(QuestionMarkCircle_default, {
-    flex: 1,
-    size: "1.5rem",
-    color: (c) => c.warning
-  }), /* @__PURE__ */ jsx(Toggle_default, {
-    defaultValue: { text: "No", value: 0 },
-    options: [
-      { text: "No", value: 0 },
-      { text: "Yes", value: 1 },
-      { text: "Maybe", value: 2 }
-    ]
-  }), /* @__PURE__ */ jsx(Divider_default, {
-    vertical: true,
-    mx: "0.5rem",
-    h: "2.5rem"
-  }), /* @__PURE__ */ jsx(Button_default, {
-    decoration: "plain",
-    mr: "0.5rem"
-  }, /* @__PURE__ */ jsx(Text_default, null, "Cancel")), /* @__PURE__ */ jsx(Button_default, {
-    color: "primary",
-    mr: "0.5rem",
-    onClick: () => {
-      notify_default({
-        title: "Hello",
-        message: "I'm notification displayed in right corner of your window",
-        timeout: 3e3
-      });
-    }
-  }, /* @__PURE__ */ jsx(Text_default, null, "Notification")), /* @__PURE__ */ jsx(Button_default, {
-    color: "error",
-    mr: "0.5rem",
-    onClick: () => {
-      dialog_default({
-        title: "Hello",
-        message: "Ops, something went wrong",
-        buttonText: "Close"
-      });
-    }
-  }, /* @__PURE__ */ jsx(Text_default, null, "Dialog")), /* @__PURE__ */ jsx(Button_default, {
-    color: (c) => c.secondary
-  }, /* @__PURE__ */ jsx(Text_default, null, "Save"), /* @__PURE__ */ jsx(Save_default, null)));
-  var control_default = PlaygroundControl;
-
-  // app/menu.tsx
-  init_define_ENV();
-  init_wsClientInjection();
-  init_react_shim();
-  var PlaygroundMenu = () => /* @__PURE__ */ jsx(Menu_default2, {
-    my: "1rem",
-    w: "fit-content",
-    defaultValue: 0
-  });
-  var menu_default = PlaygroundMenu;
-
-  // app/sidebar/index.tsx
-  init_define_ENV();
-  init_wsClientInjection();
-  init_react_shim();
-  var PlaygroundSidebar = () => {
-    return /* @__PURE__ */ jsx(Menu_default2, {
-      direction: "column",
-      decoration: "filled",
-      m: "1rem",
-      defaultValue: 0
-    });
-  };
-  var sidebar_default = PlaygroundSidebar;
-
-  // app/table.tsx
-  init_define_ENV();
-  init_wsClientInjection();
-  init_react_shim();
-  var import_react323 = __toModule(require_react());
-  var import_axios = __toModule(require_axios2());
-  var endPoint = "https://api.instantwebtools.net/v1";
-  var PlaygroundTable = () => {
-    const [loading, setLoading] = (0, import_react323.useState)(false);
-    const [data, setData] = (0, import_react323.useState)([]);
-    const [pageSize, setPageSize] = (0, import_react323.useState)([{ value: 5, text: "5" }]);
-    const pages = async () => {
-      setLoading(true);
-      const { data: data2 } = await (0, import_axios.default)({
-        method: "GET",
-        url: `${endPoint}/passenger`,
-        params: { page: 0, size: 50 }
-      });
-      setData(data2.data);
-      setLoading(false);
-    };
-    (0, import_react323.useEffect)(() => {
-      pages();
-    }, [pageSize]);
-    return /* @__PURE__ */ jsx(Flexbox_default, {
-      direction: "column"
-    }, /* @__PURE__ */ jsx(Table_default, {
-      key: loading.toString(),
-      onChange: (data2) => {
-        notify_default({
-          title: "Row chage event",
-          message: JSON.stringify(data2),
-          timeout: 3e3
-        });
-      },
-      columns: [
-        {
-          key: "name",
-          title: "Name",
-          render: (ctx) => /* @__PURE__ */ jsx(Flexbox_default, null, ctx.row.name)
-        },
-        {
-          key: "",
-          dnd: (source, target, data2) => {
-            notify_default({
-              title: "Row dnd event fired",
-              message: `Row ${source} moved to ${target}`,
-              timeout: 3e3
-            });
-          }
-        }
-      ],
-      data,
-      pagination: { pageSize: pageSize[0].value },
-      footer: loading ? /* @__PURE__ */ jsx(Flexbox_default, {
-        justifyContent: "center",
-        w: "100%"
-      }, /* @__PURE__ */ jsx(Spinner_default, {
-        size: "xl",
-        mx: "auto"
-      })) : void 0
-    }), /* @__PURE__ */ jsx(Flexbox_default, null, /* @__PURE__ */ jsx(Select_default, {
-      values: pageSize,
-      options: [
-        { value: 5, text: "5" },
-        { value: 10, text: "10" },
-        { value: 15, text: "15" },
-        { value: 20, text: "20" }
-      ],
-      onChange: (item) => setPageSize(item),
-      style: {
-        maxWidth: "10rem"
-      }
-    })));
-  };
-  var table_default = PlaygroundTable;
-
-  // app/toolbar.tsx
-  init_define_ENV();
-  init_wsClientInjection();
-  init_react_shim();
-  var import_react324 = __toModule(require_react());
-  var PlaygroundToolbar = () => {
-    const [date, setDate] = (0, import_react324.useState)(void 0);
-    console.log("Controlled state:", date);
-    return /* @__PURE__ */ jsx(Flexbox_default, {
-      p: "s m",
-      mb: "0.5rem",
-      decoration: "surface"
-    }, /* @__PURE__ */ jsx(TextField_default, {
-      leftChild: /* @__PURE__ */ jsx(Search_default, null),
-      rightChild: /* @__PURE__ */ jsx(Button_default, {
-        size: "xs"
-      }, /* @__PURE__ */ jsx(Funnel_default, null), "Filter"),
-      placeholder: "Search"
-    }), /* @__PURE__ */ jsx(Select_default, {
-      ml: "0.5rem",
-      clearable: true,
-      searchable: true,
-      multiselect: true,
-      placeholder: "Please select type",
-      options: [
-        { text: "Man", value: 1 },
-        { text: "Woman", value: 2 },
-        { text: "Others", value: 3 }
-      ],
-      defaultValues: [{ text: "Man", value: 1 }]
-    }), /* @__PURE__ */ jsx(DatePicker_default, {
-      flex: 1,
-      ml: "0.5rem",
-      defaultValue: "07/07/2019",
-      value: date,
-      onChange: (nextDate) => setDate(nextDate)
-    }), /* @__PURE__ */ jsx(Divider_default, {
-      vertical: true,
-      mx: "0.5rem",
-      h: "2.5rem"
-    }), /* @__PURE__ */ jsx(Button_default, {
-      decoration: "text"
-    }, /* @__PURE__ */ jsx(Refresh_default, null), "Reload"));
-  };
-  var toolbar_default = PlaygroundToolbar;
-
-  // app/index.tsx
-  var App = () => /* @__PURE__ */ jsx(Flexbox_default, null, /* @__PURE__ */ jsx(ScrollView_default, {
-    h: "100vh",
-    w: "15rem",
-    backgroundColor: "surface"
-  }, /* @__PURE__ */ jsx(sidebar_default, null)), /* @__PURE__ */ jsx(ScrollView_default, {
-    h: "100vh",
-    w: "calc(100vw - 15rem)"
-  }, /* @__PURE__ */ jsx(Block_default, {
-    p: ["4rem", "3rem", "2rem", "1rem"]
-  }, /* @__PURE__ */ jsx(Flexbox_default, {
-    p: "0.5rem",
-    justifyContent: "space-between"
-  }, /* @__PURE__ */ jsx(Header_default, null, "Playground"), /* @__PURE__ */ jsx(Spinner_default, {
-    size: "xl"
-  })), /* @__PURE__ */ jsx(menu_default, null), /* @__PURE__ */ jsx(toolbar_default, null), /* @__PURE__ */ jsx(control_default, null), /* @__PURE__ */ jsx(Grid_default2, {
-    templateColumns: "1fr 1fr",
-    columnGap: "0.5rem"
-  }, /* @__PURE__ */ jsx(table_default, null)), /* @__PURE__ */ jsx(Paragraph_default, null, "Text"))));
-  var app_default = App;
-
-  // index.tsx
   import_react_dom3.default.render(/* @__PURE__ */ jsx(Viewport_default, {
     theme: "light"
-  }, /* @__PURE__ */ jsx(app_default, null)), document.getElementById("app"));
+  }, /* @__PURE__ */ jsx(Pageswitch_default, {
+    length: 0,
+    pageSize: 20
+  })), document.getElementById("app"));
 })();
 /*
 object-assign
