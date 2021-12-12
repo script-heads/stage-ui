@@ -7,12 +7,13 @@ const formData = require('express-form-data')
 const WebSocket = require('ws')
 const axios = require('axios')
 const { SERVICE_PORTS, DIST_DIR, PORT, HOST } = require('./config')
+
 const app = express()
 const server = http.createServer(app)
 const sockets = []
 
 exports.serve = async () => {
-  const ws = new WebSocket.Server({ host: HOST, port: 23456 })
+  const ws = new WebSocket.Server({ host: HOST, port: 8000 })
 
   ws.on('connection', (socket) => {
     sockets.push(socket)
@@ -47,10 +48,10 @@ exports.serve = async () => {
         })
       }
       let url = req.url.slice(5)
-      let path = url.split('/')
-      let proxyPath = path[0]
-      let serviceName = path[1]
-      let isSecure = proxyPath !== 'localhost'
+      const path = url.split('/')
+      const proxyPath = path[0]
+      const serviceName = path[1]
+      const isSecure = proxyPath !== 'localhost'
 
       if (proxyPath === 'localhost') {
         url = url.replace('localhost', `0.0.0.0:${SERVICE_PORTS[serviceName]}`)
@@ -60,13 +61,11 @@ exports.serve = async () => {
         method: req.method,
         url: `${isSecure ? 'https' : 'http'}://${url}`,
         data,
-        headers: Object.assign(
-          {
-            token: req.headers.token || '',
-            'auth-token': req.headers['auth-token'] || '',
-          },
-          data.getHeaders ? data.getHeaders() : {},
-        ),
+        headers: {
+          token: req.headers.token || '',
+          'auth-token': req.headers['auth-token'] || '',
+          ...(data.getHeaders ? data.getHeaders() : {}),
+        },
       })
 
       res.writeHead(200, { 'Content-Type': 'application/json' })
@@ -81,7 +80,7 @@ exports.serve = async () => {
     }
   })
   app.get('*', async (req, res) => {
-    res.sendFile(DIST_DIR + '/index.html')
+    res.sendFile(`${DIST_DIR}/index.html`)
   })
 
   server.on('listening', () => {
