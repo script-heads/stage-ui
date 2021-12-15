@@ -15,8 +15,8 @@ steps:
   resources:
     requests:
       cpu: 1000
-      memory: 1000MiB
+      memory: 2000MiB
     # resource limits are defined for each step
     limits:
       cpu: 1000
-      memory: 1000MiB
+      memory: 2000MiB
