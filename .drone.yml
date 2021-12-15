@@ -13,6 +13,9 @@ steps:
     registry: cr.yandex
     repo: crptshuuct3ne1mn7rg1/stageui-docs
   resources:
+    requests:
+      cpu: 1000
+      memory: 1000MiB
     # resource limits are defined for each step
     limits:
       cpu: 1000
