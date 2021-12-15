@@ -3,7 +3,12 @@ type: kubernetes
 name: publish stage-ui docs
 
 steps:
-- name: greeting
-  image: docker
-  commands:
-  - docker build . -f ./kube/Dockerfile -t cr.yandex/crptshuuct3ne1mn7rg1/stageui-docs:v0.2.1-beta
+- name: build and push
+  image: plugins/docker
+  settings:
+    dockerfile: kube/Dockerfile
+    username: json_key
+    password:
+      from_secret:YC_REGISTRY_KEY
+    registry: cr.yandex
+    repo: crptshuuct3ne1mn7rg1/stageui-docs
