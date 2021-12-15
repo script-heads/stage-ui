@@ -12,3 +12,8 @@ steps:
       from_secret: YC_REGISTRY_KEY
     registry: cr.yandex
     repo: crptshuuct3ne1mn7rg1/stageui-docs
+  resources:
+    # resource limits are defined for each step
+    limits:
+      cpu: 1000
+      memory: 1000MiB
