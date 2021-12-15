@@ -4,7 +4,6 @@ name: publish stage-ui docs
 
 steps:
 - name: greeting
-  image: alpine
+  image: docker
   commands:
-  - echo hello
-  - echo world
+  - docker build . -f ./kube/Dockerfile -t cr.yandex/crptshuuct3ne1mn7rg1/stageui-docs:v0.2.1-beta
