@@ -9,6 +9,6 @@ steps:
     dockerfile: kube/Dockerfile
     username: json_key
     password:
-      from_secret:YC_REGISTRY_KEY
+      from_secret: YC_REGISTRY_KEY
     registry: cr.yandex
     repo: crptshuuct3ne1mn7rg1/stageui-docs
