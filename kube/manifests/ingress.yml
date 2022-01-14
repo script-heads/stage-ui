@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: stageui-docs-ingress
+  namespace: _NAMESPACE
   annotations:
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: letsencrypt-prod
@@ -19,7 +20,7 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: stageui-docs
+              name: stageui
               port:
                 number: 80
     - host: stageui.shds.io
