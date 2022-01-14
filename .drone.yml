@@ -14,9 +14,8 @@ steps:
     repo: crptshuuct3ne1mn7rg1/stageui-docs
   resources:
     requests:
-      cpu: 1000
-      memory: 2000MiB
-    # resource limits are defined for each step
+      cpu: 10m
+      memory: 64Mi
     limits:
-      cpu: 1000
-      memory: 2000MiB
+      cpu: 100m
+      memory: 128Mi

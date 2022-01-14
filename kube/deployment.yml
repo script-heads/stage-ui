@@ -2,10 +2,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: stageui-docs
+  name: stageui
+  namesmace: stageui
 spec:
   selector:
-    app: stageui-docs
+    app: stageui
   ports:
     - name: front
       protocol: TCP
@@ -16,28 +17,29 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: stageui-docs-deployment-test
+  name: stageui
+  namesmace: stageui
   labels:
-    app: stageui-docs
+    app: stageui
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: stageui-docs
+      app: stageui
   template:
     metadata:
       labels:
-        app: stageui-docs
+        app: stageui
     spec:
       containers:
-      - name: stageui-docs
-        image: cr.yandex/crptshuuct3ne1mn7rg1/stageui-docs:v0.2.1-beta
+      - name: stageui
+        image: cr.yandex/crptshuuct3ne1mn7rg1/stageui:v0.2.1-beta
         ports:
         - containerPort: 80
         resources:
           requests:
-            memory: "64Mi"
-            cpu: "250m"
+            cpu: 10m
+            memory: 64Mi
           limits:
-            memory: "128Mi"
-            cpu: "500m"
+            cpu: 100m
+            memory: 128Mi
