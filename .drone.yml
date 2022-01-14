@@ -1,21 +1,28 @@
 kind: pipeline
-type: kubernetes
-name: publish stage-ui docs
-
+type: exec
+name: Build
+trigger:
+  event:
+    include:
+      - custom
+      - tag
 steps:
-- name: build and push
-  image: plugins/docker
-  settings:
-    dockerfile: kube/Dockerfile
-    username: json_key
-    password:
-      from_secret: YC_REGISTRY_KEY
-    registry: cr.yandex
-    repo: crptshuuct3ne1mn7rg1/stageui-docs
-  resources:
-    requests:
-      cpu: 10m
-      memory: 64Mi
-    limits:
-      cpu: 100m
-      memory: 128Mi
+- name: Build
+  commands:
+  - kube/build.sh stageui
+- name: Uploading
+  depends_on:
+    - "Build"
+  environment:
+    DOCKER_KEY:
+      from_secret: DOCKER_KEY
+  commands:  
+  - kube/upload.sh stageui
+- name: Deploy
+  depends_on:
+    - "Uploading"
+  environment:
+    KUBE_CONFIG:
+      from_secret: KUBE_CONFIG
+  commands:
+  - kube/deploy.sh

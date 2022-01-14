@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: stageui
+  namesmace: stageui
+spec:
+  selector:
+    app: stageui
+  ports:
+    - name: front
+      protocol: TCP
+      port: 80
+      targetPort: 80
