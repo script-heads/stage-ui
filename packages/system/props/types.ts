@@ -33,8 +33,8 @@ export interface CoreProps<ClassesSchema extends ClassesSchemaDefinition, T> {
    * @link /props#styles
    */
   style?:
-    | ((theme: Stage.Theme) => BreakpointProp<Stage.CSSObject>)
-    | BreakpointProp<Stage.CSSObject>
+    | ((theme: Stage.Theme) => BreakpointProp<Stage.CSSInterpolation>)
+    | BreakpointProp<Stage.CSSInterpolation>
 
   /**
    * HMTL Attributes for container
