@@ -180,7 +180,7 @@ export type ColorNames =
   | 'purple900'
 
 export type ColorProp =
-  | ((colors: Stage.Theme['color']) => Color)
+  | ((colors: Stage.Theme['color']) => Color | ColorNames | keyof Stage.ColorMain | (string & {}))
   | (keyof Stage.ColorMain & keyof Stage.ColorCustomPallete['palette'])
   | ColorNames
   | Color
@@ -207,7 +207,18 @@ function colorProp<V extends ColorProp | undefined>(
   }
 
   if (typeof value === 'function') {
-    return value(theme.color) as V extends undefined ? undefined : Stage.Color
+    if (
+      Object.prototype.hasOwnProperty.call(
+        (theme as Stage.Theme & ColorFlat)._colorsFlat,
+        value(theme.color) as string,
+      )
+    ) {
+      return (theme as Stage.Theme & ColorFlat)._colorsFlat[
+        value(theme.color) as keyof ColorFlat['_colorsFlat']
+      ] as V extends undefined ? undefined : Stage.Color
+    }
+
+    return Color(value(theme.color)) as V extends undefined ? undefined : Stage.Color
   }
 
   if (

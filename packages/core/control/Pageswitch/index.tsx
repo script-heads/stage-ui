@@ -17,6 +17,7 @@ type PageButtonProps = {
 const PageButton: React.FC<PageButtonProps> = (props) => {
   const { page, classes, onClick } = props
   const current = !onClick
+
   return (
     <Flexbox
       css={classes.pageButton({ current })}
@@ -100,16 +101,17 @@ const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
       />
       {allowToFirst && <PageButton page={1} classes={classes} onClick={setPage} />}
       {allowToFirst && <Text css={classes.separator}>...</Text>}
-      {Array(prevPagesCount)
-        .fill('')
-        .map((_, index) => (
-          <PageButton
-            key={index}
-            page={currentPage - prevPagesCount + index}
-            classes={classes}
-            onClick={setPage}
-          />
-        ))}
+      {prevPagesCount >= 0 &&
+        Array(prevPagesCount)
+          .fill('')
+          .map((_, index) => (
+            <PageButton
+              key={index}
+              page={currentPage - prevPagesCount + index}
+              classes={classes}
+              onClick={setPage}
+            />
+          ))}
       <PageButton page={currentPage} classes={classes} />
       {Array(nextPagesCount)
         .fill('')

@@ -5,10 +5,29 @@
   },
   "overrides": [
     {
-     "files": "**/*.+(ts|tsx)",
-     "parserOptions": {
-       "project": ["./tsconfig.json"]
-     }
-    } 
+      "files": "**/*.+(ts|tsx)",
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "rules": {
+        "no-underscore-dangle": [
+          "warn",
+          {
+            "allow": [
+              "_colorsFlat"
+            ]
+          }
+        ],
+        "@typescript-eslint/naming-convention": [
+          "warn",
+          { 
+            "selector": "memberLike",
+            "modifiers": ["private"],
+            "format": ["camelCase"],
+            "leadingUnderscore": "require" 
+          }
+        ]
+      }
+    }
   ]
 }

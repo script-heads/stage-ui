@@ -9,16 +9,13 @@ export const toFloat = (input: string | number) => {
 /**
  * Get base fontSize
  */
-export const baseFontSize = () => {
-  return toFloat(window.getComputedStyle(document.body).getPropertyValue('font-size'))
-}
+export const baseFontSize = () =>
+  toFloat(window?.getComputedStyle(document.body).getPropertyValue('font-size') || '16px')
 
 /**
  * Checks if value are rem value
  */
-export const isRem = (input: string | number) => {
-  return !!/rem/.exec(input.toString())
-}
+export const isRem = (input: string | number) => !!/rem/.exec(input.toString())
 
 /**
  * Converts any value to number (example response: 16)
@@ -33,9 +30,7 @@ export const toPixel = (input: string | number) => {
 /**
  * Converts any value to pixels (example response: 16px)
  */
-export const toPx = (input: string | number) => {
-  return `${toPixel(input)}px`
-}
+export const toPx = (input: string | number) => `${toPixel(input)}px`
 
 /**
  * Converts any value to rems (example response: 1rem)

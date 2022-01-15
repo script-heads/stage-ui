@@ -1,8 +1,15 @@
 {
   "name": "@stage-ui/icons",
   "author": "Project one",
-  "version": "0.2.1-beta7",
+  "version": "0.3.1-beta1",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/script-heads/StageUI.git",
+    "directory": "packages/icons"
+  },
+  "homepage": "https://stageui.project1.io",
+  "bugs": "https://github.com/script-heads/StageUI/issues",
   "scripts": {
     "build": "node ../../scripts/make icons && yarn build:types && yarn build:js",
     "build:js": "babel ./ --out-dir ../../build/icons --extensions \".ts,.tsx\" --ignore \"node_modules/\"",

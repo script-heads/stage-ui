@@ -93,13 +93,13 @@ export type SystemPropsMeta<
 let IS_MOUSE_DOWN = false
 let PREV_ACTIVE_ELEMENT: Element | null = null
 
-window.addEventListener('mousedown', () => {
+window?.addEventListener('mousedown', () => {
   IS_MOUSE_DOWN = true
 })
-window.addEventListener('mouseup', () => {
+window?.addEventListener('mouseup', () => {
   IS_MOUSE_DOWN = false
 })
-window.addEventListener('focus', () => {
+window?.addEventListener('focus', () => {
   PREV_ACTIVE_ELEMENT = document.activeElement
 })
 
