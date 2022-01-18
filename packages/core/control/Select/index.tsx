@@ -93,7 +93,12 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     if (props.values) {
       setValues(props.values)
     }
-  }, [props.values?.map((value) => value.value).join()])
+  }, [
+    props.values
+      ?.filter((value) => value)
+      .map((value) => value.value)
+      .join(),
+  ])
 
   /**
    * Update drop position after
