@@ -100,7 +100,7 @@ declare global {
       replace: (theme: ReplaceTheme) => Theme
     }
 
-    type AllProps<Containter, ClassSchema extends ClassesSchemaDefinition> = AllPropsType<
+    type AllProps<Containter, ClassSchema extends ClassesSchemaDefinition = {}> = AllPropsType<
       Containter,
       ClassSchema
     >

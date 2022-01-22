@@ -72,21 +72,21 @@ export type ResolvedStyleProps = {
 }
 
 export type ComponentData<
-  Props extends SystemPropsMeta<ClassesSchema, Element>,
+  Props extends SystemPropsMeta<Element, ClassesSchema>,
   ClassesSchema extends ClassesSchemaDefinition,
   Element extends HTMLElement,
 > = {
   classes: Classes<ClassesSchema>
-  attributes: Exclude<CoreProps<ClassesSchema, Element>['attributes'], undefined>
+  attributes: Exclude<CoreProps<Element, ClassesSchema>['attributes'], undefined>
   events: Pick<Props, Stage.FilterStartingWith<keyof Props, 'on'>>
   styleProps: ResolvedStyleProps
   overridesPropClasses: OverridesClassesDefinition<ClassesSchema>
 }
 
-export type SystemPropsMeta<
-  ClassesSchema extends ClassesSchemaDefinition,
-  Element extends HTMLElement,
-> = CoreProps<ClassesSchema, Element> &
+export type SystemPropsMeta<Element, ClassesSchema extends ClassesSchemaDefinition> = CoreProps<
+  Element,
+  ClassesSchema
+> &
   AttributeProps &
   Pick<AllEventProps<Element>, 'onFocus' | 'onBlur' | 'onClick' | 'onEnter' | 'onEsc' | 'onKeyDown'>
 
@@ -104,13 +104,14 @@ window?.addEventListener('focus', () => {
 })
 
 function useSystem<
-  Props extends SystemPropsMeta<ClassesSchema, Element>,
+  Props extends SystemPropsMeta<Element, ClassesSchema>,
   ClassesSchema extends ClassesSchemaDefinition,
   Element extends HTMLElement,
 >(
   name: string,
   props: Props,
-  createClasses: Stage.CreateClasses<ClassesSchema, Props>,
+  createClasses: Stage.CreateClasses<ClassesSchema, Props> = () =>
+    ({} as ClassesDefinition<ClassesSchema>),
   options: Options = {},
 ) {
   const currentTheme = useTheme()

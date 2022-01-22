@@ -15,7 +15,7 @@ declare namespace ModalTypes {
   type ModalDecoration = 'modal' | 'panel' | 'fullscreen'
   type ExtentedProps = AttributeProps &
     AllEventProps<HTMLDivElement> &
-    CoreProps<Classes, HTMLDivElement> &
+    CoreProps<HTMLDivElement, Classes> &
     ColorProps &
     BorderProps &
     PaddingProps &
