@@ -10005,7 +10005,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           var SuspenseListComponent = 19;
           var FundamentalComponent = 20;
           var ScopeComponent = 21;
-          var Block3 = 22;
+          var Block2 = 22;
           var OffscreenComponent = 23;
           var LegacyHiddenComponent = 24;
           var enableProfilerTimer = true;
@@ -10776,7 +10776,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
                 return describeFunctionComponentFrame(fiber.type);
               case ForwardRef:
                 return describeFunctionComponentFrame(fiber.type.render);
-              case Block3:
+              case Block2:
                 return describeFunctionComponentFrame(fiber.type._render);
               case ClassComponent:
                 return describeClassComponentFrame(fiber.type);
@@ -19555,7 +19555,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
                       }
                       break;
                     }
-                    case Block3:
+                    case Block2:
                     default: {
                       if (child.elementType === element.type || isCompatibleFamilyForHotReloading(child, element)) {
                         deleteRemainingChildren(returnFiber, child.sibling);
@@ -19653,7 +19653,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
                       }
                     }
                   }
-                  case Block3:
+                  case Block2:
                   case FunctionComponent:
                   case ForwardRef:
                   case SimpleMemoComponent: {
@@ -23189,7 +23189,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
               case ScopeComponent: {
                 break;
               }
-              case Block3: {
+              case Block2: {
                 break;
               }
               case OffscreenComponent: {
@@ -23577,7 +23577,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
               case ScopeComponent: {
                 break;
               }
-              case Block3:
+              case Block2:
                 break;
               case OffscreenComponent:
               case LegacyHiddenComponent: {
@@ -23959,7 +23959,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
               case FunctionComponent:
               case ForwardRef:
               case SimpleMemoComponent:
-              case Block3: {
+              case Block2: {
                 return;
               }
               case ClassComponent: {
@@ -24080,7 +24080,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
               case FunctionComponent:
               case ForwardRef:
               case SimpleMemoComponent:
-              case Block3: {
+              case Block2: {
                 {
                   commitHookEffectListMount(Layout | HasEffect, finishedWork);
                 }
@@ -24282,7 +24282,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
               case ForwardRef:
               case MemoComponent:
               case SimpleMemoComponent:
-              case Block3: {
+              case Block2: {
                 var updateQueue = current2.updateQueue;
                 if (updateQueue !== null) {
                   var lastEffect = updateQueue.lastEffect;
@@ -24590,7 +24590,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
               case ForwardRef:
               case MemoComponent:
               case SimpleMemoComponent:
-              case Block3: {
+              case Block2: {
                 {
                   commitHookEffectListUnmount(Layout | HasEffect, finishedWork);
                 }
@@ -26142,7 +26142,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
                 return;
               }
               var tag = fiber.tag;
-              if (tag !== IndeterminateComponent && tag !== HostRoot && tag !== ClassComponent && tag !== FunctionComponent && tag !== ForwardRef && tag !== MemoComponent && tag !== SimpleMemoComponent && tag !== Block3) {
+              if (tag !== IndeterminateComponent && tag !== HostRoot && tag !== ClassComponent && tag !== FunctionComponent && tag !== ForwardRef && tag !== MemoComponent && tag !== SimpleMemoComponent && tag !== Block2) {
                 return;
               }
               var componentName = getComponentName(fiber.type) || "ReactComponent";
@@ -26171,7 +26171,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           function warnAboutUpdateOnUnmountedFiberInDEV(fiber) {
             {
               var tag = fiber.tag;
-              if (tag !== HostRoot && tag !== ClassComponent && tag !== FunctionComponent && tag !== ForwardRef && tag !== MemoComponent && tag !== SimpleMemoComponent && tag !== Block3) {
+              if (tag !== HostRoot && tag !== ClassComponent && tag !== FunctionComponent && tag !== ForwardRef && tag !== MemoComponent && tag !== SimpleMemoComponent && tag !== Block2) {
                 return;
               }
               if ((fiber.flags & PassiveUnmountPendingDev) !== NoFlags) {
@@ -26970,7 +26970,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
                           resolvedType = null;
                           break getTag;
                         case REACT_BLOCK_TYPE:
-                          fiberTag = Block3;
+                          fiberTag = Block2;
                           break getTag;
                       }
                     }
@@ -39819,7 +39819,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var styles_default29 = createClasses21;
 
   // ../core/layout/Block/index.tsx
-  var Block2 = (props, ref) => {
+  var Block = (props, ref) => {
     const { classes, attributes, events, styleProps } = useSystem_default("Block", props, styles_default29);
     return jsx3(props.as || "div", __spreadProps(__spreadValues(__spreadValues({}, attributes), events), {
       ref,
@@ -39832,7 +39832,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       className: props.className
     }), props.children);
   };
-  var Block_default = (0, import_react305.forwardRef)(Block2);
+  var Block_default = (0, import_react305.forwardRef)(Block);
 
   // ../core/layout/Flexbox/index.tsx
   init_define_ENV();
