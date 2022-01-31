@@ -36629,6 +36629,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     const minValue = props.minValue ? (0, import_moment7.default)(props.minValue).startOf("day") : (0, import_moment7.default)().clone().add(-500, "year");
     const maxValue = props.maxValue ? (0, import_moment7.default)(props.maxValue).startOf("day") : (0, import_moment7.default)().clone().add(500, "year");
     function onChange(currentValue) {
+      if (!currentValue) {
+        onChangeProp == null ? void 0 : onChangeProp(void 0, currentValue);
+        setInputValue("");
+        return;
+      }
       const currentDate = makeDate(currentValue);
       let currentDateString = currentValue;
       if (currentDate) {
@@ -36659,14 +36664,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       },
       onClick: (e) => {
         var _a2;
-        console.log(2);
         (_a2 = events.onClick) == null ? void 0 : _a2.call(events, e);
         if (!props.disabled && !isActive) {
           setActive(true);
         }
       },
       onClear: () => {
-        console.log(1);
+        onChange(void 0);
       },
       rightChild: /* @__PURE__ */ jsx(import_react281.default.Fragment, null, rightChild, /* @__PURE__ */ jsx(Calendar_default, null))
     }), /* @__PURE__ */ jsx("input", {

@@ -66,6 +66,11 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
     : moment().clone().add(500, 'year')
 
   function onChange(currentValue: Types.Props['value']) {
+    if (!currentValue) {
+      onChangeProp?.(undefined, currentValue)
+      setInputValue('')
+      return
+    }
     const currentDate = makeDate(currentValue)
     let currentDateString = currentValue
     if (currentDate) {
@@ -101,6 +106,9 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
         if (!props.disabled && !isActive) {
           setActive(true)
         }
+      }}
+      onClear={() => {
+        onChange(undefined)
       }}
       rightChild={
         <>
