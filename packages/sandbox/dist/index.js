@@ -38077,7 +38077,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       shape,
       decoration,
       clearable: clearable && values.length > 0,
-      onClear: onChange,
+      onClear: () => {
+        var _a2;
+        (_a2 = props.onClear) == null ? void 0 : _a2.call(props);
+        onChange();
+      },
       onClick: (e) => {
         e.preventDefault();
         if (openOnFocus && !disabled) {
