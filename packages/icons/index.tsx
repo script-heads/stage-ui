@@ -1,5 +1,5 @@
 /**
-version: 0.1.11
+version: 0.2.8
 */
 export { default as Sync } from './lib/Sync'
 export { default as Activity } from './lib/Activity'
@@ -133,6 +133,8 @@ export { default as Layout } from './lib/Layout'
 export { default as Link2 } from './lib/Link2'
 export { default as Link } from './lib/Link'
 export { default as Linkedin } from './lib/Linkedin'
+export { default as ListIn } from './lib/ListIn'
+export { default as ListOut } from './lib/ListOut'
 export { default as List } from './lib/List'
 export { default as Loader } from './lib/Loader'
 export { default as Lock } from './lib/Lock'
