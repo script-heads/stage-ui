@@ -8,6 +8,7 @@ function breakpointProp<P = string | number | undefined>(
   if (Array.isArray(value)) {
     return value.map((currentValue: any, index: number) => {
       if (!index) return resolver(currentValue, theme)
+      if (currentValue === '*') return false
       return {
         [`@media (max-width: ${theme.breakpoints[index]})`]: resolver(currentValue, theme),
       }
