@@ -1,4 +1,3 @@
-import { Moment } from 'moment'
 import CalendarTypes from '@stage-ui/core/control/Calendar/types'
 import FieldTypes from '../../basic/Field/types'
 
@@ -14,26 +13,31 @@ declare namespace DatePickerTypes {
      * if you pass format property aswell
      * otherwise value should be instance of Date
      */
-    value?: Moment | Date | string
-    defaultValue?: Moment | Date | string
+    value?: Date | string | [Date | string, Date | string]
+    defaultValue?: Date | string | [Date | string, Date | string]
     /**
-     * Format moment YYYY-MM-DD
+     * Format Date YYYY-MM-DD
      * @default YYYY-MM-DD
      */
     format?: string
     /**
      * Min datetime that could be selected
      */
-    minValue?: Moment | Date | string
+    minValue?: Date | string
     /**
      * Max datetime that could be selected
      */
-    maxValue?: Moment | Date | string
+    maxValue?: Date | string
     /**
      * Callback function will with Date object
      * or string if format property was passed.
      */
-    onChange?: (moment: Moment | undefined, value: string | undefined) => void
+    onChange?: (dt?: Date, value?: string) => void
+    /**
+     * Callback function will with Date object
+     * or string if format property was passed.
+     */
+    onChangeRange?: (range: [Date | undefined, Date | undefined]) => void
     /**
      * Do not close datepicker on change
      * latest value
@@ -51,6 +55,10 @@ declare namespace DatePickerTypes {
      * Hide today button
      */
     hideToday?: boolean
+    /**
+     * Select date range
+     */
+    range?: boolean
   }
 
   interface InputProps {

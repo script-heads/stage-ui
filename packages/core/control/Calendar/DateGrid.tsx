@@ -1,3 +1,6 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Button, Divider, Flexbox, Grid, Text } from '@stage-ui/core'
 import moment, { Moment } from 'moment'
 import React, { useEffect, useState } from 'react'
@@ -7,29 +10,29 @@ import DateGridWeek from './DateGridWeek'
 import DateGridYear from './DateGridYear'
 import T from './types'
 
-let toDayWord = ''
+const getCalendarWord = (dt: Moment) => {
+  const words = dt.calendar()
+  if (/,/.exec(words)) {
+    return words.split(',')[0].trim()
+  }
+  return words.split(' at ')[0].trim()
+}
 
 const DateGrid = (props: T.DateGridProps) => {
   const { value } = props
   const now = moment()
-
-  if (!toDayWord) {
-    for (const char of now.calendar()) {
-      if (char === ' ' || char === ',') {
-        break
-      }
-      toDayWord += char
-    }
-  }
+  const yesterday = moment().add(-1, 'day')
+  const tomorrow = moment().add(1, 'day')
 
   const [gridType, setGridType] = useState<T.GridType>(props.type)
-  const [tmpDate, setTmpDate] = useState(value)
+  const [tmpDate, setTmpDate] = useState<[Moment, Moment | undefined]>([moment(), undefined])
+  const [rangeSwitch, setRangeSwitch] = useState(false)
 
   const monthOffset = gridType === 'day' ? 1 : 9
 
   const grid: Moment[][] = []
-  const start = tmpDate.clone().startOf('month').startOf('isoWeek').startOf('day').add(-1, 'day')
-  const end = tmpDate.clone().endOf('month').endOf('isoWeek').startOf('day').add(-1, 'day')
+  const start = tmpDate[0].clone().startOf('month').startOf('isoWeek').startOf('day').add(-1, 'day')
+  const end = tmpDate[0].clone().endOf('month').endOf('isoWeek').startOf('day').add(-1, 'day')
 
   useEffect(() => {
     setGridType(props.type)
@@ -43,42 +46,51 @@ const DateGrid = (props: T.DateGridProps) => {
     )
   }
 
-  useEffect(() => setTmpDate(value), [value])
+  useEffect(() => {
+    if (typeof value !== 'undefined' && typeof value[0] !== 'undefined') {
+      // @ts-expect-error
+      setTmpDate(value)
+    }
+  }, [value])
 
   const onNextTitle = () => {
-    const clone = tmpDate.clone()
+    const dtStartClone = tmpDate[0].clone()
+    const dtEndClone = tmpDate[1]?.clone()
     if (gridType === 'day' || gridType === 'week') {
-      clone.add(1, 'month')
+      dtStartClone.add(1, 'month')
     }
     if (gridType === 'month') {
-      clone.add(1, 'year')
+      dtStartClone.add(1, 'year')
     }
     if (gridType === 'year') {
-      clone.add(monthOffset, 'year')
+      dtStartClone.add(monthOffset, 'year')
     }
-    setTmpDate(clone)
-    props.onViewChange?.(clone)
+    setTmpDate([dtStartClone, dtEndClone])
+    props.onViewChange?.(dtStartClone)
   }
 
   const onPreviousTitle = () => {
-    const clone = tmpDate.clone()
+    const dtStartClone = tmpDate[0].clone()
+    const dtEndClone = tmpDate[1]?.clone()
+
     if (gridType === 'day' || gridType === 'week') {
-      clone.add(-1, 'month')
+      dtStartClone.add(-1, 'month')
     }
     if (gridType === 'month') {
-      clone.add(-1, 'year')
+      dtStartClone.add(-1, 'year')
     }
     if (gridType === 'year') {
-      clone.add(-monthOffset, 'year')
+      dtStartClone.add(-monthOffset, 'year')
     }
-    setTmpDate(clone)
-    props.onViewChange?.(clone)
+    setTmpDate([dtStartClone, dtEndClone])
+    props.onViewChange?.(dtStartClone)
   }
 
   return (
-    <Flexbox column css={[props.classes.dateGrid, props.styleProps.all]} {...props.attributes}>
+    <Flexbox column css={[props.styleProps.all, props.classes.dateGrid]} {...props.attributes}>
       <Flexbox column mb="l">
         <DateGridTitle
+          size={props.size}
           classes={props.classes}
           gridType={gridType}
           onGridTypeChange={setGridType}
@@ -91,12 +103,62 @@ const DateGrid = (props: T.DateGridProps) => {
         {props.header}
       </Flexbox>
       {(gridType === 'day' || gridType === 'week') && (
-        <>
-          <Grid gap="1px" templateColumns="repeat(7, 1fr)">
+        <Flexbox>
+          {props.type === 'day' && !props.hideToday && (
+            <>
+              <Flexbox column>
+                <Button
+                  placeSelf="flex-start"
+                  size={props.size}
+                  decoration="text"
+                  onClick={() => {
+                    if (props.range) {
+                      props.onChange(yesterday, tomorrow)
+                    } else {
+                      props.onChange(yesterday, undefined)
+                    }
+                  }}
+                  alignSelf="center"
+                  label={getCalendarWord(yesterday)}
+                />
+                <Button
+                  placeSelf="flex-start"
+                  size={props.size}
+                  decoration="text"
+                  onClick={() => {
+                    if (props.range) {
+                      props.onChange(now, tomorrow)
+                    } else {
+                      props.onChange(now, undefined)
+                    }
+                  }}
+                  alignSelf="center"
+                  label={getCalendarWord(now)}
+                />
+                <Button
+                  placeSelf="flex-start"
+                  size={props.size}
+                  decoration="text"
+                  onClick={() => {
+                    if (props.range) {
+                      props.onChange(tomorrow, tomorrow)
+                    } else {
+                      props.onChange(tomorrow, undefined)
+                    }
+                  }}
+                  alignSelf="center"
+                  label={getCalendarWord(tomorrow)}
+                />
+              </Flexbox>
+              <Divider color="lightest" vertical m="s" />
+            </>
+          )}
+          <Grid templateColumns="repeat(7, 1fr)" flexShrink={0}>
             {moment.weekdaysShort(true).map((day, i) => {
               const isWeekend = [5, 6].indexOf(i) !== -1
               return (
                 <Text
+                  size="s"
                   key={day}
                   css={props.classes.weekDay}
                   color={(c) => (isWeekend ? c.error.alpha(0.75) : c.hardest)}
@@ -109,6 +171,7 @@ const DateGrid = (props: T.DateGridProps) => {
             {grid.map((week: Moment[], i) => (
               <DateGridWeek
                 key={week[i].valueOf()}
+                size={props.size}
                 hideNeighborMonths={props.hideNeighborMonths}
                 classes={props.classes}
                 week={week}
@@ -116,49 +179,46 @@ const DateGrid = (props: T.DateGridProps) => {
                 active={value}
                 minValue={props.minValue}
                 maxValue={props.maxValue}
-                onClick={props.onChange}
+                onClick={(dt) => {
+                  if (props.range) {
+                    if (rangeSwitch) {
+                      props.onChange(tmpDate[0], dt)
+                      setRangeSwitch(false)
+                      return
+                    }
+                    setRangeSwitch(true)
+                  }
+                  props.onChange(dt)
+                }}
                 type={props.type}
                 onDayRender={props.onDayRender}
               />
             ))}
           </Grid>
-          {props.type === 'day' && !props.hideToday && (
-            <>
-              <Divider color="lightest" m="1rem 0" />
-              <Button
-                size="s"
-                decoration="plain"
-                onClick={() => {
-                  props.onChange(now)
-                }}
-                alignSelf="center"
-                label={toDayWord}
-              />
-            </>
-          )}
-        </>
+        </Flexbox>
       )}
       {gridType === 'month' && (
         <Grid gap="2px" templateRows="1fr 1fr 1fr" templateColumns="1fr 1fr 1fr">
           {Array(12)
             .fill(null)
             .map((_, index) => {
-              const clone = tmpDate.clone().month(index)
+              const clone = tmpDate[0].clone().month(index)
               return (
                 <DateGridMonth
                   classes={props.classes}
                   key={index}
+                  size={props.size}
                   value={clone}
-                  tmp={tmpDate}
+                  tmp={tmpDate[0]}
                   style={{ padding: '0 0.5rem' }}
-                  active={value}
+                  active={value[0]}
                   minValue={props.minValue}
                   maxValue={props.maxValue}
                   onClick={() => {
                     if (props.type === 'month') {
-                      props.onChange(clone)
+                      props.onChange(clone, clone)
                     } else {
-                      setTmpDate(clone)
+                      setTmpDate([clone, clone])
                       props.onViewChange?.(clone)
                       setGridType('day')
                     }
@@ -175,22 +235,23 @@ const DateGrid = (props: T.DateGridProps) => {
           {Array(monthOffset)
             .fill(null)
             .map((_, index) => {
-              const clone = tmpDate.clone().add(index - 4, 'year')
+              const clone = tmpDate[0].clone().add(index - 4, 'year')
               return (
                 <DateGridYear
                   classes={props.classes}
                   key={index}
+                  size={props.size}
                   value={clone}
-                  tmp={tmpDate}
+                  tmp={tmpDate[0]}
                   style={{ padding: '0 1rem' }}
-                  active={value}
+                  active={value[0]}
                   minValue={props.minValue}
                   maxValue={props.maxValue}
                   onClick={() => {
                     if (props.type === 'year') {
-                      props.onChange(clone)
+                      props.onChange(clone, clone)
                     } else {
-                      setTmpDate(clone)
+                      setTmpDate([clone, clone])
                       props.onViewChange?.(clone)
                       setGridType('month')
                     }

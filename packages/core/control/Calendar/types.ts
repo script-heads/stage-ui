@@ -18,7 +18,7 @@ declare namespace CalendarTypes {
   type RenderOptions = {
     now: Moment
     self: Moment
-    active: Moment
+    active: Moment | undefined
     isActive: boolean
     isCurrent: boolean
     isDisabled: boolean
@@ -41,6 +41,13 @@ declare namespace CalendarTypes {
 
   interface Props extends Omit<Stage.AllProps<HTMLDivElement, Classes>, 'onChange'> {
     /**
+     * Sizes of field
+     * @default m
+     * @display Sizes
+     * @link /props/#size
+     */
+    size?: Stage.Sizes
+    /**
      * Type for Calendar
      * @default day
      */
@@ -48,30 +55,30 @@ declare namespace CalendarTypes {
     /**
      * Date or Moment value for controlled component
      */
-    value?: Moment | Date
+    value?: Date | [Date | undefined, Date | undefined]
     /**
      * Date or Moment value for uncontrolled component
      */
-    defaultValue?: Moment | Date
+    defaultValue?: Date | [Date, Date]
     /**
      * Min datetime that could be selected
      */
-    minValue?: Moment | Date
+    minValue?: Date
     /**
      * Max datetime that could be selected
      */
-    maxValue?: Moment | Date
+    maxValue?: Date
     /**
      * Callback will fire on user click day
      * moment date will be current date that
      * used just did set
      */
-    onChange?: (moment: Moment) => void
+    onChange?: (startDt: Date, endDt?: Date) => void
     /**
      * Callback will fire when user change any view at calendary
      * moment date will be temp date
      */
-    onViewChange?: (moment: Moment) => void
+    onViewChange?: (date: Date) => void
     /**
      * @default ru
      */
@@ -104,6 +111,10 @@ declare namespace CalendarTypes {
      * Footer element
      */
     footer?: React.ReactNode
+    /**
+     * Select range date
+     */
+    range?: boolean
   }
 
   interface DateGridProps {
@@ -111,11 +122,11 @@ declare namespace CalendarTypes {
     styleProps: any
     hideToday: boolean
     hideNeighborMonths: boolean
-    value: Moment
+    value: [Moment | undefined, Moment | undefined]
     minValue: Moment
     maxValue: Moment
-    onChange: (date: Moment) => void
-    onViewChange?: (date: Moment) => void
+    onChange: (startDate: Moment, endDate?: Moment) => void
+    onViewChange: (dt: Moment) => void
     classes: ClassesType<Classes>
     type: GridType
     onYearRender?: (options: YearRenderOptions) => React.ReactNode
@@ -123,6 +134,8 @@ declare namespace CalendarTypes {
     onDayRender?: (options: DayRenderOptions) => React.ReactNode
     header?: React.ReactNode
     footer?: React.ReactNode
+    size?: Stage.Sizes
+    range?: boolean
   }
 
   interface DateGridCalendarProps {
@@ -131,38 +144,43 @@ declare namespace CalendarTypes {
     maxValue: Moment
     onClick: () => void
     style?: CSSProperties
+    size?: Stage.Sizes
     classes: ClassesType<Classes>
   }
 
   interface DateGridDayProps extends Omit<DateGridCalendarProps, 'onClick'> {
     hideNeighborMonths: boolean
     day: Moment
-    tmp: Moment
-    active: Moment
+    tmp: [Moment, Moment | undefined]
+    active: [Moment | undefined, Moment | undefined]
+    size?: Stage.Sizes
     onDayRender?: (options: DayRenderOptions) => React.ReactNode
     onClick: (day: Moment) => void
   }
 
   interface DateGridWeekProps extends Omit<DateGridDayProps, 'day'> {
+    size?: Stage.Sizes
     week: Moment[]
   }
 
   interface DateGridMonthProps extends DateGridCalendarProps {
     value: Moment
     tmp: Moment
-    active: Moment
+    active: Moment | undefined
+    size?: Stage.Sizes
     onMonthRender?: (options: MonthRenderOptions) => React.ReactNode
   }
 
   interface DateGridYearProps extends DateGridCalendarProps {
     value: Moment
     tmp: Moment
-    active: Moment
+    active: Moment | undefined
+    size?: Stage.Sizes
     onYearRender?: (options: YearRenderOptions) => React.ReactNode
   }
 
   interface DateGridTitleProps {
-    value: Moment
+    value: [Moment, Moment | undefined]
     minValue: Moment
     maxValue: Moment
     gridType: GridType
@@ -170,6 +188,7 @@ declare namespace CalendarTypes {
     onPrevious: () => void
     onGridTypeChange: (type: GridType) => void
     classes: ClassesType<Classes>
+    size?: Stage.Sizes
   }
 
   type Classes = {
@@ -204,6 +223,9 @@ declare namespace CalendarTypes {
     day: {
       isActive: boolean
       isCurrent: boolean
+      isRange: boolean
+      isRangeStart: boolean
+      isRangeEnd: boolean
       isDisabled: boolean
       isHidden: boolean
       isCurrentMonth: boolean

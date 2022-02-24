@@ -46,17 +46,20 @@ const DateGridTitle = (props: CalendarTypes.DateGridTitleProps) => {
       <Flexbox flex={1} alignItems="center">
         {(gridType === 'day' || gridType === 'week') && (
           <Flexbox>
-            <Title onClick={() => props.onGridTypeChange('month')} value={value.format('MMMM')} />
+            <Title
+              onClick={() => props.onGridTypeChange('month')}
+              value={value[0].format('MMMM')}
+            />
             <Text>{`\u00A0`}</Text>
-            <Title onClick={() => props.onGridTypeChange('year')} value={value.format('YYYY')} />
+            <Title onClick={() => props.onGridTypeChange('year')} value={value[0].format('YYYY')} />
           </Flexbox>
         )}
         {gridType === 'month' && (
-          <Title onClick={() => props.onGridTypeChange('year')} value={value.format('YYYY')} />
+          <Title onClick={() => props.onGridTypeChange('year')} value={value[0].format('YYYY')} />
         )}
         {gridType === 'year' && (
           <Title
-            value={`${value.clone().add(-4, 'year').format('YYYY')} - ${value
+            value={`${value[0].clone().add(-4, 'year').format('YYYY')} - ${value[0]
               .clone()
               .add(4, 'year')
               .format('YYYY')}`}

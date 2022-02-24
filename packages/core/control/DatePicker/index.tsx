@@ -1,7 +1,14 @@
 import { Calendar as CalendarIcon } from '@stage-ui/icons'
 import { useSystem } from '@stage-ui/system'
 import moment, { Moment } from 'moment'
-import React, { forwardRef, ForwardRefRenderFunction, useEffect, useRef, useState } from 'react'
+import React, {
+  forwardRef,
+  ForwardRefRenderFunction,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react'
 import Field from '../../basic/Field'
 import Drop from '../../layout/Drop'
 import Popover from '../../layout/Popover'
@@ -12,7 +19,7 @@ import Types from './types'
 const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
   const {
     locale = 'ru',
-    format = 'DD/MM/YYYY',
+    format = 'DD.MM.YYYY',
     defaultValue,
     decoration = 'outline',
     size = 'm',
@@ -21,6 +28,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
     disabled,
     rightChild,
     onChange: onChangeProp,
+    onChangeRange: onChangeRangeProp,
 
     autoComplete,
     list,
@@ -41,7 +49,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
 
   moment.locale(locale)
 
-  function makeDate(value: Types.Props['value']): Moment | undefined {
+  function makeDate(value?: Moment | Date | string): Moment | undefined {
     const date = moment(value, format, true)
     return value && date.isValid() ? date : undefined
   }
@@ -51,10 +59,23 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
     props,
     createClasses,
   )
-  const [value, setValue] = useState(makeDate(props.value || defaultValue))
-  const [inputValue, setInputValue] = useState(
-    makeDate(props.value || defaultValue)?.format(format),
-  )
+  let initialValue: [Date | undefined, Date | undefined] = [undefined, undefined]
+  let initialInputValue = ''
+  const propsValue = props.value || props.defaultValue
+  if (propsValue) {
+    if (Array.isArray(propsValue)) {
+      const dtStart = makeDate(propsValue[0])
+      const dtEnd = makeDate(propsValue[1])
+      initialValue = [dtStart?.toDate(), dtEnd?.toDate()]
+      initialInputValue = `${dtStart?.format(format) || ''} - ${dtEnd?.format(format) || ''}`
+    } else {
+      const dt = makeDate(propsValue)
+      initialInputValue = dt?.format(format) || ''
+      initialValue = [dt?.toDate(), dt?.toDate()]
+    }
+  }
+  const [value, setValue] = useState(initialValue)
+  const [inputValue, setInputValue] = useState(initialInputValue)
   const [isActive, setActive] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -65,27 +86,49 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
     ? moment(props.maxValue).startOf('day')
     : moment().clone().add(500, 'year')
 
-  function onChange(currentValue: Types.Props['value']) {
-    if (!currentValue) {
-      onChangeProp?.(undefined, currentValue)
+  function onChange(startDt?: Date, endDt?: Date) {
+    setValue([startDt, endDt])
+    if (!startDt) {
       setInputValue('')
+      onChangeProp?.()
+      if (props.range) {
+        onChangeRangeProp?.([undefined, undefined])
+      }
+      setActive(props.stayOpen || false)
       return
     }
-    const currentDate = makeDate(currentValue)
-    let currentDateString = currentValue
-    if (currentDate) {
-      currentDateString = currentDate.format(format)
-      setValue(currentDate)
+    let stringDate = ''
+    if (startDt) {
+      stringDate += moment(startDt).format(format)
+    }
+    if (endDt) {
+      if (stringDate) {
+        stringDate += ' - '
+      }
+      stringDate += moment(endDt).format(format)
+    }
+
+    setInputValue(stringDate)
+    onChangeProp?.(startDt, moment(startDt).format(format))
+    if (props.range) {
+      onChangeRangeProp?.([startDt, endDt])
+      if (endDt) {
+        setActive(props.stayOpen || false)
+      }
+    } else {
       setActive(props.stayOpen || false)
     }
-    onChangeProp?.(currentDate, currentDateString as string)
-    setInputValue(currentDateString as string)
   }
 
-  useEffect(() => {
-    setValue(makeDate(props.value))
+  useLayoutEffect(() => {
+    if (typeof props.value !== 'undefined') {
+      if (Array.isArray(props.value)) {
+        setValue([makeDate(props.value[0])?.toDate(), makeDate(props.value[1])?.toDate()])
+      } else {
+        setValue([makeDate(props.value)?.toDate(), undefined])
+      }
+    }
   }, [props.value])
-
   return (
     <Field
       {...fieldProps}
@@ -93,6 +136,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
       disabled={disabled}
       tabIndex={tabIndex}
       decoration={decoration}
+      clearable={!!(inputValue && props.clearable)}
       size={size}
       shape={shape}
       overrides={{
@@ -108,7 +152,10 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
         }
       }}
       onClear={() => {
-        onChange(undefined)
+        props.onClear?.()
+        if (!props.value) {
+          onChange(undefined, undefined)
+        }
       }}
       rightChild={
         <>
@@ -122,7 +169,8 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
         css={classes.input}
         tabIndex={-1}
         onChange={(e) => {
-          onChange(e.target.value)
+          // TODO change by input
+          // onChange(e.target.value)
         }}
         value={inputValue}
         disabled={disabled}
@@ -155,11 +203,12 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
         <Popover css={classes.drop({ isActive })}>
           <Calendar
             value={value}
-            minValue={minValue}
-            maxValue={maxValue}
+            minValue={minValue.toDate()}
+            maxValue={maxValue.toDate()}
             onChange={onChange}
             hideToday={props.hideToday || false}
             type={props.type || 'day'}
+            range={props.range}
           />
         </Popover>
       </Drop>

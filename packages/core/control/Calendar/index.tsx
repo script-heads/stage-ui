@@ -13,16 +13,20 @@ const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
     type,
     header,
     footer,
-    onViewChange,
     onYearRender,
     onMonthRender,
     onDayRender,
+    size,
+    range,
   } = props
 
   moment.locale(locale)
 
   const now = moment()
-  const [value, setValue] = useState(now)
+  const [value, setValue] = useState<[Moment | undefined, Moment | undefined]>([
+    undefined,
+    undefined,
+  ])
 
   const { classes, attributes, styleProps } = useSystem('Calendar', props, createClasses)
 
@@ -34,23 +38,30 @@ const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
     : now.clone().add(500, 'year')
 
   useLayoutEffect(() => {
-    if (props.value) {
-      setValue(moment(props.value))
+    if (typeof props.value !== 'undefined') {
+      if (Array.isArray(props.value)) {
+        const dtStart = moment(props.value[0])
+        const dtEnd = props.value[1] ? moment(props.value[1]) : undefined
+        setValue([dtStart, dtEnd])
+      } else {
+        setValue([moment(props.value), undefined])
+      }
     }
   }, [props.value])
 
-  function onChange(newValue: Moment) {
-    if (!newValue.isValid) {
-      return
-    }
-
-    setValue(newValue)
-
-    if (props.onChange) {
-      props.onChange(newValue)
+  function onChange(dtStart: Moment, dtEnd?: Moment) {
+    if (dtEnd && dtEnd < dtStart) {
+      setValue([dtEnd, dtStart])
+      props.onChange?.(dtEnd.toDate(), dtStart.toDate())
+    } else {
+      setValue([dtStart, dtEnd])
+      props.onChange?.(dtStart.toDate(), dtEnd ? dtEnd.toDate() : undefined)
     }
   }
 
+  function onViewChange(dt: Moment) {
+    props.onViewChange?.(dt.toDate())
+  }
   return (
     <DateGrid
       attributes={attributes}
@@ -69,6 +80,8 @@ const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
       onDayRender={onDayRender}
       header={header}
       footer={footer}
+      size={size}
+      range={range}
     />
   )
 }
