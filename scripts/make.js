@@ -42,22 +42,22 @@ getNextVersion.then((nextVersion) => {
 
   if (thatPackageName === 'core') {
     writeDependencies({
-      [systemPackageDefinition.name]: `^${systemPackageDefinition.version}`,
-      [iconPackageDfinition.name]: `^${iconPackageDfinition.version}`,
+      [systemPackageDefinition.name]: systemPackageDefinition.version,
+      [iconPackageDfinition.name]: iconPackageDfinition.version,
     })
   }
 
   if (thatPackageName === 'icons') {
     writeDependencies({
-      [systemPackageDefinition.name]: `^${systemPackageDefinition.version}`,
+      [systemPackageDefinition.name]: systemPackageDefinition.version,
     })
   }
 
   if (thatPackageName === 'lab') {
     writeDependencies({
-      [corePackageDefinition.name]: `^${corePackageDefinition.version}`,
-      [systemPackageDefinition.name]: `^${systemPackageDefinition.version}`,
-      [iconPackageDfinition.name]: `^${iconPackageDfinition.version}`,
+      [corePackageDefinition.name]: corePackageDefinition.version,
+      [systemPackageDefinition.name]: systemPackageDefinition.version,
+      [iconPackageDfinition.name]: iconPackageDfinition.version,
     })
   }
 
