@@ -15,20 +15,26 @@ const DateGridDay = (props: T.DateGridDayProps) => {
 
   const dayValue = day.startOf('day').valueOf()
   const nowValue = now.startOf('day').valueOf()
-  const activeValue = active.startOf('day').valueOf()
-
+  const dtStart = active[0]?.startOf('day')
+  const dtEnd = active[1]?.startOf('day')
+  const activeValue = dtStart?.startOf('day').valueOf()
   const isActive = activeValue === dayValue
   const isCurrent = dayValue === nowValue
-  const isCurrentMonth = day.month() === tmp.month()
+  const isCurrentMonth = day.month() === tmp[0].month()
   const isHidden = !isCurrentMonth && hideNeighborMonths
   const isWeekend = [5, 6].indexOf(day.weekday()) !== -1
-
+  const isRange = !!(dtStart && dtEnd && day >= dtStart && day <= dtEnd)
+  const isRangeStart = !!(dtStart && dtEnd && dtStart.toString() === day.toString())
+  const isRangeEnd = !!(dtStart && dtEnd && dtEnd.toString() === day.toString())
   const isWeekType = type === 'week'
   const isDayType = type === 'day'
 
   const dayStyles = props.classes.day({
     isWeekType,
     isActive,
+    isRange,
+    isRangeStart,
+    isRangeEnd,
     isCurrentMonth,
     isCurrent,
     isDisabled,
@@ -56,7 +62,7 @@ const DateGridDay = (props: T.DateGridDayProps) => {
         {props.onDayRender({
           now,
           self: day,
-          active,
+          active: dtStart,
           isActive,
           isCurrent,
           isCurrentMonth,

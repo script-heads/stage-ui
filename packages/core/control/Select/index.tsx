@@ -1,3 +1,9 @@
+import { Drop, ScrollView } from '@stage-ui/core'
+import Field from '@stage-ui/core/basic/Field'
+import DropTypes from '@stage-ui/core/layout/Drop/types'
+import { ChevronDown, Close } from '@stage-ui/icons'
+import { useSystem } from '@stage-ui/system'
+import createID from '@stage-ui/system/utils/createID'
 import React, {
   forwardRef,
   ForwardRefRenderFunction,
@@ -6,15 +12,9 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { Drop, ScrollView } from '@stage-ui/core'
-import { ChevronDown, Close } from '@stage-ui/icons'
-import DropTypes from '@stage-ui/core/layout/Drop/types'
-import Field from '@stage-ui/core/basic/Field'
-import { useSystem } from '@stage-ui/system'
-import createID from '@stage-ui/system/utils/createID'
+import SharedZIndex from '../../utils/SharedZIndex'
 import styles from './styles'
 import Types from './types'
-import SharedZIndex from '../../utils/SharedZIndex'
 
 const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
   const {
@@ -93,7 +93,12 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     if (props.values) {
       setValues(props.values)
     }
-  }, [props.values?.map((value) => value.value).join()])
+  }, [
+    props.values
+      ?.filter((value) => value)
+      .map((value) => value.value)
+      .join(),
+  ])
 
   /**
    * Update drop position after
@@ -227,7 +232,10 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
       shape={shape}
       decoration={decoration}
       clearable={clearable && values.length > 0}
-      onClear={onChange}
+      onClear={() => {
+        props.onClear?.()
+        onChange()
+      }}
       onClick={(e) => {
         e.preventDefault()
         if (openOnFocus && !disabled) {

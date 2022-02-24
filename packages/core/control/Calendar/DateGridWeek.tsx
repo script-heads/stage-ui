@@ -8,7 +8,7 @@ const DateGridWeek = (props: T.DateGridWeekProps) => {
   const { week, ...rest } = props
 
   const now = moment().startOf('day').valueOf()
-  const activeDay = props.active.clone().startOf('day').valueOf()
+  const activeDay = props.active[0]?.clone().startOf('day').valueOf()
 
   const isCurrent = !!week.find((day) => day.clone().startOf('day').valueOf() === now)
   const isActive = !!week.find((day) => day.clone().startOf('day').valueOf() === activeDay)

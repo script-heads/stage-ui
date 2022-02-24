@@ -5,6 +5,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
     {
       position: 'relative',
       color: theme.color.onSurface.rgb().string(),
+      flexShrink: 0,
     },
   ],
 
@@ -50,7 +51,6 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
       },
     ],
 
-    //  selected day
     state.isActive && [
       {
         background: theme.color.primary.rgb().string(),
@@ -87,6 +87,9 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
       opacity: 0.5,
       borderRadius: '50%',
       color: theme.color.hardest.rgb().string(),
+      borderStyle: 'solid',
+      borderWidth: '0.125rem',
+      borderColor: theme.color.surface.hex(),
       userSelect: 'none',
       ':hover': {
         background: theme.color.light.alpha(0.15).string(),
@@ -118,11 +121,21 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
       },
     ],
 
+    state.isRange && [
+      {
+        backgroundColor: theme.color.primary.rgb().string(),
+        ':after': {
+          borderColor: theme.color.onPrimary.rgb().string(),
+        },
+      },
+    ],
+
     //  Selected one
     state.isActive && [
       {
         background: theme.color.primary.rgb().string(),
         color: theme.color.onPrimary.rgb().string(),
+        borderColor: theme.color.primary.rgb().string(),
         ':hover': {
           background: theme.color.primary.rgb().string(),
         },
@@ -130,11 +143,44 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
           content: 'none',
         },
       },
-      state.isWeekend && [
+    ],
+
+    state.isRange && [
+      {
+        borderRadius: 0,
+        borderColor: theme.color.primary.rgb().string(),
+        color: theme.color.onPrimary.hex(),
+        '> span': {
+          zIndex: 1,
+        },
+        ':after': {
+          content: `''`,
+          padding: '0.25rem',
+          position: 'absolute',
+          top: 0,
+          bottom: 0,
+          left: 0,
+          right: 0,
+          backgroundColor: theme.color.primary.rgb().string(),
+        },
+      },
+      state.isRangeStart && [
         {
-          background: theme.color.error.rgb().string(),
-          ':hover': {
-            background: theme.color.error.rgb().string(),
+          borderTopLeftRadius: '50%',
+          borderBottomLeftRadius: '50%',
+          ':after': {
+            borderTopLeftRadius: '50%',
+            borderBottomLeftRadius: '50%',
+          },
+        },
+      ],
+      state.isRangeEnd && [
+        {
+          borderTopRightRadius: '50%',
+          borderBottomRightRadius: '50%',
+          ':after': {
+            borderTopRightRadius: '50%',
+            borderBottomRightRadius: '50%',
           },
         },
       ],

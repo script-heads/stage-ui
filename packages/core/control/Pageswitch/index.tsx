@@ -86,6 +86,10 @@ const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
     allowToLast = true
   }
 
+  if (total <= 0) {
+    return null
+  }
+
   return (
     <Flexbox
       ref={ref}

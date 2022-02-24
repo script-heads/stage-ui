@@ -12,7 +12,7 @@ const DateGridMonth = (props: CalendarTypes.DateGridMonthProps) => {
   const now = moment()
   const monthValue = self.clone().startOf('month').valueOf()
   const nowValue = now.clone().startOf('month').valueOf()
-  const activeValue = active.clone().startOf('month').valueOf()
+  const activeValue = active?.clone().startOf('month').valueOf()
 
   const isActive = activeValue === monthValue
   const isCurrent = monthValue === nowValue

@@ -29,8 +29,9 @@ const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (pro
   const htmlId = React.useMemo(() => `${'Field'}-${Math.random().toString(16).slice(2)}`, [])
 
   const handleClean = (e: React.TouchEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation()
+    e.preventDefault()
     if (onClear && !disabled) {
-      e.stopPropagation()
       onClear()
     }
   }
@@ -52,12 +53,7 @@ const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (pro
 
   const clearJSX = (
     <div css={classes.rightChild}>
-      <Close
-        onMouseDown={handleClean}
-        onTouchStart={handleClean}
-        css={classes.clearButton}
-        size={size}
-      />
+      <Close onClick={handleClean} css={classes.clearButton} size={size} />
     </div>
   )
 

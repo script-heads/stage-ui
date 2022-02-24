@@ -22,7 +22,8 @@
     "@emotion/react": ">=11",
     "imask": "6.0.1",
     "moment": "2.29.1",
-    "rifm": "0.12.0"
+    "rifm": "0.12.0",
+    "@stage-ui/system": "^0.2.17"
   },
   "peerDependencies": {
     "react": ">=16"

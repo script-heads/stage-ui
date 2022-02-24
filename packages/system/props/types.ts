@@ -10,8 +10,8 @@ import { SpaceProp } from './space'
  * All typical component props
  * @name All
  */
-export interface AllProps<Container, ClassSchema extends ClassesSchemaDefinition>
-  extends CoreProps<ClassSchema, Container>,
+export interface AllProps<Container, ClassSchema extends ClassesSchemaDefinition = {}>
+  extends CoreProps<Container, ClassSchema>,
     AttributeProps,
     AllEventProps<Container>,
     AllStyleProps {}
@@ -20,7 +20,7 @@ export interface AllProps<Container, ClassSchema extends ClassesSchemaDefinition
  * Component core props
  * @name Core
  */
-export interface CoreProps<ClassesSchema extends ClassesSchemaDefinition, T> {
+export interface CoreProps<Container, ClassesSchema extends ClassesSchemaDefinition = {}> {
   /**
    * Override any component style
    * @display Stage.Styles
@@ -33,15 +33,15 @@ export interface CoreProps<ClassesSchema extends ClassesSchemaDefinition, T> {
    * @link /props#styles
    */
   style?:
-    | ((theme: Stage.Theme) => BreakpointProp<Stage.CSSObject>)
-    | BreakpointProp<Stage.CSSObject>
+    | ((theme: Stage.Theme) => BreakpointProp<Stage.CSSInterpolation>)
+    | BreakpointProp<Stage.CSSInterpolation>
 
   /**
    * HMTL Attributes for container
    * @display Stage.Styles
    * @link /props#attributes
    */
-  attributes?: React.HTMLAttributes<T> & React.AriaAttributes
+  attributes?: React.HTMLAttributes<Container>
 }
 
 /**

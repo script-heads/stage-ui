@@ -17,8 +17,11 @@
     "gen": "node ./scripts/generate",
     "lint": "eslint --config .eslintrc.json --fix '**/*.+(js|jsx|ts|tsx)'"
   },
+  "dependencies": {
+    "@emotion/react": "^11.8.1",
+    "@stage-ui/system": "^0.2.17"
+  },
   "peerDependencies": {
-    "@emotion/react": ">=11",
     "react": ">=16"
   }
 }
