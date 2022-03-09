@@ -31,19 +31,17 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
       color: theme.color.hardest.rgb().string(),
     },
   ],
-  lineNumbers: [
-    {
-      backgroundColor: theme.color.lightest.hex(),
-      height: 'max-content',
-      minHeight: '100%',
-      position: 'absolute',
-      padding: `${theme.assets.field[size].indent}`,
-      textAlign: 'right',
-      '> div': {
-        height: lineHeight || theme.assets.typography.text[size].lineHeight,
-      },
+  lineNumbers: {
+    backgroundColor: theme.color.lightest.hex(),
+    height: 'max-content',
+    minHeight: '100%',
+    position: 'absolute',
+    padding: `${theme.assets.field[size].indent}`,
+    textAlign: 'right',
+    '> div': {
+      height: String(lineHeight || theme.assets.typography.text[size].lineHeight),
     },
-  ],
+  },
 })
 
 export default styles

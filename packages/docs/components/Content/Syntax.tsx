@@ -13,7 +13,7 @@ const Syntax = (props: { code?: (() => JSX.Element) | string; children?: string 
     fontSize: theme.assets.typography.text.s.fontSize,
     borderRadius: theme.radius.m,
     border: '1px solid',
-    borderColor: theme.color.lightest.hex(),
+    borderColor: theme.color.gray[300].rgb().string(),
     background: theme.color.background,
     minWidth: 0,
     backgroundColor: theme.color.surface.hex(),
