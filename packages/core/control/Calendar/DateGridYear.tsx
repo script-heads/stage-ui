@@ -12,7 +12,7 @@ const DateGridYear = (props: CalendarTypes.DateGridYearProps) => {
   const now = moment()
   const yearValue = self.clone().startOf('year').valueOf()
   const nowValue = now.clone().startOf('year').valueOf()
-  const activeValue = active.clone().startOf('year').valueOf()
+  const activeValue = active?.clone().startOf('year').valueOf()
 
   const isActive = activeValue === yearValue
   const isCurrent = yearValue === nowValue

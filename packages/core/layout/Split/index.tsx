@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { useSystem } from '@stage-ui/system'
+import createID from '@stage-ui/system/utils/createID'
 import React, { forwardRef, ForwardRefRenderFunction, Fragment, useEffect, useMemo } from 'react'
 import Separator from './Separator'
 import styles from './styles'
@@ -78,7 +79,7 @@ const Split: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
           ) : null
 
         return (
-          <Fragment key={child.key}>
+          <Fragment key={child.key || createID()}>
             <div
               css={{
                 display: 'flex',

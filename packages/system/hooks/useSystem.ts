@@ -5,7 +5,7 @@ import useTheme from './useTheme'
 import propsResolvers from '../props'
 import createVariant, { Variant } from '../utils/createVariant'
 import isFunction from '../utils/isFunction'
-import { AllEventProps, AttributeProps, CoreProps } from '../props/types'
+import { AllEventProps, CoreProps } from '../props/types'
 import overridesProp from '../props/overrides'
 
 export interface Options {
@@ -87,7 +87,6 @@ export type SystemPropsMeta<Element, ClassesSchema extends ClassesSchemaDefiniti
   Element,
   ClassesSchema
 > &
-  AttributeProps &
   Pick<AllEventProps<Element>, 'onFocus' | 'onBlur' | 'onClick' | 'onEnter' | 'onEsc' | 'onKeyDown'>
 
 let IS_MOUSE_DOWN = false

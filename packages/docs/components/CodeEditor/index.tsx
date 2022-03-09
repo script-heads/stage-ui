@@ -23,33 +23,33 @@ interface EditorProps {
   title: string
 }
 
-const MonacoEditor = React.memo(
-  (props: { setCode: (code: string) => void }) => {
-    useEffect(() => {
-      /**
-       * Creates monaco editor
-       */
-      monaco.create({
-        id: 'docs-code-editor',
-        code: '',
-        setCode: props.setCode,
-      })
-    }, [])
-    return (
-      <Block
-        id="docs-code-editor"
-        h="100%"
-        w="100%"
-        mt="-0.75rem"
-        mr="1rem"
-        css={{
-          boxShadow: 'none !important',
-        }}
-      />
-    )
-  },
-  () => true,
-)
+const MonacoEditor: React.FC<{ setCode: (code: string) => void }> = (props) => {
+  useEffect(() => {
+    /**
+     * Creates monaco editor
+     */
+    monaco.create({
+      id: 'docs-code-editor',
+      code: '',
+      setCode: props.setCode,
+    })
+    return () => {
+      monaco.remove()
+    }
+  }, [])
+  return (
+    <Block
+      id="docs-code-editor"
+      h="100%"
+      w="100%"
+      mt="-0.75rem"
+      mr="1rem"
+      css={{
+        boxShadow: 'none !important',
+      }}
+    />
+  )
+}
 
 const CodeEditor = (props: EditorProps) => {
   const { cases, title } = props
@@ -151,8 +151,8 @@ const CodeEditor = (props: EditorProps) => {
         }}
       >
         <Split direction={direction}>
-          <MonacoEditor setCode={setCode} />
-          <Block h="calc(100% - 0.25rem)" flex={1} overflow="hidden">
+          <MonacoEditor setCode={setCode} key="editor" />
+          <Block h="calc(100% - 0.25rem)" flex={1} overflow="hidden" key="preview" >
             <ErrorBoundary>
               {code && <Preview theme={theme} code={code} grid={grid} />}
             </ErrorBoundary>

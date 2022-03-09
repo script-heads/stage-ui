@@ -1,5 +1,5 @@
 /**
-version: 0.2.8
+version: 0.3.1
 */
 export { default as Sync } from './lib/Sync'
 export { default as Activity } from './lib/Activity'

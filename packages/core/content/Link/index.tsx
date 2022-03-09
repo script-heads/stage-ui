@@ -12,6 +12,7 @@ const Link: ForwardRefRenderFunction<HTMLAnchorElement, Types.Props> = (
     color="primary"
     sizesOf="text"
     name="Link"
+    focus="tabOnly"
     overrides={(theme, styleProps) => ({
       container: [
         {

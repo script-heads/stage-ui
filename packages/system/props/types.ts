@@ -41,7 +41,7 @@ export interface CoreProps<Container, ClassesSchema extends ClassesSchemaDefinit
    * @display Stage.Styles
    * @link /props#attributes
    */
-  attributes?: React.HTMLAttributes<Container> & React.AriaAttributes
+  attributes?: React.HTMLAttributes<Container>
 }
 
 /**
