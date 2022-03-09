@@ -53,10 +53,7 @@ const Docs = () => {
                   <Route exact path="/">
                     <Index />
                   </Route>
-                  <Route exact path="/components">
-                    <Components />
-                  </Route>
-                  <Route exact path="/components/:name">
+                  <Route path="/components/:name?">
                     <Components />
                     <ComponentModal />
                   </Route>

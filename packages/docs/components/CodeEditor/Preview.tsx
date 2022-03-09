@@ -35,7 +35,7 @@ const Preview = (props: PreviewProps) => {
   /**
    * Butch of crutchs before execute :)
    */
-  traspiledCode = traspiledCode.split('export default ')[1].trim().slice(0, -1)
+  traspiledCode = traspiledCode.split('export default ')[1]?.trim().slice(0, -1) || ''
   traspiledCode = traspiledCode.replace(/createElement\(/g, 'createElement(StageUI.')
   traspiledCode = traspiledCode.replace(/dialog\(/g, 'StageUI.dialog(')
   traspiledCode = traspiledCode.replace(/notify\(/g, 'StageUI.notify(')
@@ -46,7 +46,9 @@ const Preview = (props: PreviewProps) => {
     const varName = varible.split('var ')[1]
     traspiledCode = traspiledCode.replace(new RegExp(`StageUI.${varName}`, 'g'), varName)
   })
-  traspiledCode += '()'
+  if (traspiledCode) {
+    traspiledCode += '()'
+  }
 
   return (
     <Block h="100%" css={{ position: 'relative' }}>
@@ -92,7 +94,7 @@ const Preview = (props: PreviewProps) => {
         ]}
       >
         <span style={{ position: 'relative', display: 'block', height: '100%' }}>
-          {Function(`"use strict";return (${traspiledCode})`)()}
+          {!!traspiledCode && Function(`"use strict";return (${traspiledCode})`)()}
         </span>
       </Block>
     </Block>

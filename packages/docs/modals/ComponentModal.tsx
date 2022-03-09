@@ -11,13 +11,8 @@ const componentTypes = get()
 const ComponentModal = () => {
   const history = useHistory()
   const location = useLocation()
-  const [data, setData] = useState<PageType | null>(null)
-
-  useEffect(() => {
-    const nextData = core.getPageByUrl(location.pathname)
-    document.title = `StageUI${nextData ? ` — ${nextData.title}` : ''}`
-    setData(nextData)
-  }, [location.pathname])
+  const data = core.getPageByUrl(location.pathname)
+  document.title = `StageUI${data ? ` — ${data.title}` : ''}`
 
   if (!data) return null
 
@@ -41,7 +36,7 @@ const ComponentModal = () => {
         {data.cases && <Editor cases={data.cases} title={data.title} />}
         {data.default && <data.default />}
         {componentTypes[data.title] && (
-          <ScrollView mt="l">
+          <ScrollView mt="l" xBarPosition="none">
             <Table
               data={componentTypes[data.title]}
               columns={[
