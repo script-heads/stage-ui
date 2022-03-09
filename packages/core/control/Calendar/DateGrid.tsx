@@ -25,14 +25,15 @@ const DateGrid = (props: T.DateGridProps) => {
   const tomorrow = moment().add(1, 'day')
 
   const [gridType, setGridType] = useState<T.GridType>(props.type)
+  const [viewDate, setViewDate] = useState(moment())
   const [tmpDate, setTmpDate] = useState<[Moment, Moment | undefined]>([moment(), undefined])
   const [rangeSwitch, setRangeSwitch] = useState(false)
 
   const monthOffset = gridType === 'day' ? 1 : 9
 
   const grid: Moment[][] = []
-  const start = tmpDate[0].clone().startOf('month').startOf('isoWeek').startOf('day').add(-1, 'day')
-  const end = tmpDate[0].clone().endOf('month').endOf('isoWeek').startOf('day').add(-1, 'day')
+  const start = viewDate.clone().startOf('month').startOf('isoWeek').startOf('day').add(-1, 'day')
+  const end = viewDate.clone().endOf('month').endOf('isoWeek').startOf('day').add(-1, 'day')
 
   useEffect(() => {
     setGridType(props.type)
@@ -50,40 +51,40 @@ const DateGrid = (props: T.DateGridProps) => {
     if (typeof value !== 'undefined' && typeof value[0] !== 'undefined') {
       // @ts-expect-error
       setTmpDate(value)
+      setViewDate(value[0])
     }
   }, [value])
 
   const onNextTitle = () => {
-    const dtStartClone = tmpDate[0].clone()
-    const dtEndClone = tmpDate[1]?.clone()
+    const dtClone = viewDate.clone()
     if (gridType === 'day' || gridType === 'week') {
-      dtStartClone.add(1, 'month')
+      dtClone.add(1, 'month')
     }
     if (gridType === 'month') {
-      dtStartClone.add(1, 'year')
+      dtClone.add(1, 'year')
     }
     if (gridType === 'year') {
-      dtStartClone.add(monthOffset, 'year')
+      dtClone.add(monthOffset, 'year')
     }
-    setTmpDate([dtStartClone, dtEndClone])
-    props.onViewChange?.(dtStartClone)
+    setViewDate(dtClone)
+
+    props.onViewChange?.(dtClone)
   }
 
   const onPreviousTitle = () => {
-    const dtStartClone = tmpDate[0].clone()
-    const dtEndClone = tmpDate[1]?.clone()
+    const dtClone = viewDate.clone()
 
     if (gridType === 'day' || gridType === 'week') {
-      dtStartClone.add(-1, 'month')
+      dtClone.add(-1, 'month')
     }
     if (gridType === 'month') {
-      dtStartClone.add(-1, 'year')
+      dtClone.add(-1, 'year')
     }
     if (gridType === 'year') {
-      dtStartClone.add(-monthOffset, 'year')
+      dtClone.add(-monthOffset, 'year')
     }
-    setTmpDate([dtStartClone, dtEndClone])
-    props.onViewChange?.(dtStartClone)
+    setViewDate(dtClone)
+    props.onViewChange?.(dtClone)
   }
 
   return (
@@ -94,7 +95,7 @@ const DateGrid = (props: T.DateGridProps) => {
           classes={props.classes}
           gridType={gridType}
           onGridTypeChange={setGridType}
-          value={tmpDate}
+          value={viewDate}
           minValue={props.minValue}
           maxValue={props.maxValue}
           onPrevious={onPreviousTitle}
@@ -171,6 +172,7 @@ const DateGrid = (props: T.DateGridProps) => {
             {grid.map((week: Moment[], i) => (
               <DateGridWeek
                 key={week[i].valueOf()}
+                viewDate={viewDate}
                 size={props.size}
                 hideNeighborMonths={props.hideNeighborMonths}
                 classes={props.classes}
@@ -202,7 +204,7 @@ const DateGrid = (props: T.DateGridProps) => {
           {Array(12)
             .fill(null)
             .map((_, index) => {
-              const clone = tmpDate[0].clone().month(index)
+              const clone = viewDate.clone().month(index)
               return (
                 <DateGridMonth
                   classes={props.classes}
@@ -218,7 +220,7 @@ const DateGrid = (props: T.DateGridProps) => {
                     if (props.type === 'month') {
                       props.onChange(clone, clone)
                     } else {
-                      setTmpDate([clone, clone])
+                      setViewDate(clone)
                       props.onViewChange?.(clone)
                       setGridType('day')
                     }
@@ -235,7 +237,7 @@ const DateGrid = (props: T.DateGridProps) => {
           {Array(monthOffset)
             .fill(null)
             .map((_, index) => {
-              const clone = tmpDate[0].clone().add(index - 4, 'year')
+              const clone = viewDate.clone().add(index - 4, 'year')
               return (
                 <DateGridYear
                   classes={props.classes}
@@ -251,7 +253,7 @@ const DateGrid = (props: T.DateGridProps) => {
                     if (props.type === 'year') {
                       props.onChange(clone, clone)
                     } else {
-                      setTmpDate([clone, clone])
+                      setViewDate(viewDate)
                       props.onViewChange?.(clone)
                       setGridType('month')
                     }

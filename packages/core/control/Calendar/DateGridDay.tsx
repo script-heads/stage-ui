@@ -4,7 +4,7 @@ import React from 'react'
 import T from './types'
 
 const DateGridDay = (props: T.DateGridDayProps) => {
-  const { day, tmp, active, minValue, maxValue, type, hideNeighborMonths } = props
+  const { day, viewDate, active, minValue, maxValue, type, hideNeighborMonths } = props
 
   const now = moment()
 
@@ -20,7 +20,7 @@ const DateGridDay = (props: T.DateGridDayProps) => {
   const activeValue = dtStart?.startOf('day').valueOf()
   const isActive = activeValue === dayValue
   const isCurrent = dayValue === nowValue
-  const isCurrentMonth = day.month() === tmp[0].month()
+  const isCurrentMonth = day.month() === viewDate.month()
   const isHidden = !isCurrentMonth && hideNeighborMonths
   const isWeekend = [5, 6].indexOf(day.weekday()) !== -1
   const isRange = !!(dtStart && dtEnd && day >= dtStart && day <= dtEnd)

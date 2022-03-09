@@ -45,7 +45,7 @@ const Docs = () => {
         }}
       >
         <Router>
-          <ScrollView h="100%" w="100%" barOffset={toPixel('0.25rem')}>
+          <ScrollView h="100%" w="100%" barOffset={toPixel('0.25rem')} xBarPosition="none">
             <Flexbox column alignItems="center" px="xl">
               <Block w="100%" style={{ maxWidth: '64rem', width: '100%' }}>
                 <Header />

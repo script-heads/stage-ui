@@ -151,6 +151,7 @@ declare namespace CalendarTypes {
   interface DateGridDayProps extends Omit<DateGridCalendarProps, 'onClick'> {
     hideNeighborMonths: boolean
     day: Moment
+    viewDate: Moment
     tmp: [Moment, Moment | undefined]
     active: [Moment | undefined, Moment | undefined]
     size?: Stage.Sizes
@@ -180,7 +181,7 @@ declare namespace CalendarTypes {
   }
 
   interface DateGridTitleProps {
-    value: [Moment, Moment | undefined]
+    value: Moment
     minValue: Moment
     maxValue: Moment
     gridType: GridType
