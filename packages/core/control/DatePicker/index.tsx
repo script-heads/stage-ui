@@ -4,7 +4,6 @@ import moment, { Moment } from 'moment'
 import React, {
   forwardRef,
   ForwardRefRenderFunction,
-  useEffect,
   useLayoutEffect,
   useRef,
   useState,
@@ -67,7 +66,15 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
       const dtStart = makeDate(propsValue[0])
       const dtEnd = makeDate(propsValue[1])
       initialValue = [dtStart?.toDate(), dtEnd?.toDate()]
-      initialInputValue = `${dtStart?.format(format) || ''} - ${dtEnd?.format(format) || ''}`
+      if (dtStart?.isValid()) {
+        if (dtEnd?.isValid()) {
+          if (dtStart?.unix() !== dtEnd?.unix()) {
+            initialInputValue = `${dtStart.format(format) || ''} - ${dtEnd.format(format) || ''}`
+          } else {
+            initialInputValue = dtStart.format(format)
+          }
+        }
+      }
     } else {
       const dt = makeDate(propsValue)
       initialInputValue = dt?.format(format) || ''
@@ -101,11 +108,11 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
     if (startDt) {
       stringDate += moment(startDt).format(format)
     }
-    if (endDt) {
+    if (endDt && moment(startDt).unix() !== moment(endDt).unix()) {
       if (stringDate) {
         stringDate += ' - '
+        stringDate += moment(endDt).format(format)
       }
-      stringDate += moment(endDt).format(format)
     }
 
     setInputValue(stringDate)
