@@ -114,7 +114,7 @@ const DateGrid = (props: T.DateGridProps) => {
                   decoration="text"
                   onClick={() => {
                     if (props.range) {
-                      props.onChange(yesterday, tomorrow)
+                      props.onChange(yesterday, yesterday)
                     } else {
                       props.onChange(yesterday, undefined)
                     }
@@ -128,7 +128,7 @@ const DateGrid = (props: T.DateGridProps) => {
                   decoration="text"
                   onClick={() => {
                     if (props.range) {
-                      props.onChange(now, tomorrow)
+                      props.onChange(now, now)
                     } else {
                       props.onChange(now, undefined)
                     }
