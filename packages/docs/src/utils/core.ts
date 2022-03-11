@@ -4,7 +4,7 @@ export type PageType = {
   id: string
   url: string
   title: string
-  glyph?: string
+  glyph?: React.FC<React.SVGProps<SVGElement>>
   subtitle: string
   ns?: string
   cases?: {

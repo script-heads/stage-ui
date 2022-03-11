@@ -3,7 +3,7 @@ import panel from './panel.raw?raw'
 import fullscreen from './fullscreen.raw?raw'
 
 export const title = 'Modal'
-export { default as glyph } from './Modal.svg'
+export { ReactComponent as glyph } from './Modal.svg'
 export const ns = 'ModalTypes'
 export const cases = [
   {

@@ -3,7 +3,7 @@ import rotate from './rotate.raw?raw'
 import shapes from './shapes.raw?raw'
 
 export const title = 'Icon'
-export { default as glyph } from './Icon.svg'
+export { ReactComponent as glyph } from './Icon.svg'
 export const ns = 'IconTypes'
 export const cases = [
   { label: 'Icon', code: basic },

@@ -7,7 +7,7 @@ import bigdata from './bigdata.raw?raw'
 import dnd from './dnd.raw?raw'
 
 export const title = 'Table'
-export { default as glyph } from './Table.svg'
+export { ReactComponent as glyph } from './Table.svg'
 export const ns = 'TableTypes'
 export const cases = [
   { label: 'Table', code: basic },

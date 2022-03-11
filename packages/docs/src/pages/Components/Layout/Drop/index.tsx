@@ -3,7 +3,7 @@ import animation from './animation.raw?raw'
 import stickCursor from './stickCursor.raw?raw'
 
 export const title = 'Drop'
-export { default as glyph } from './Drop.svg'
+export { ReactComponent as glyph } from './Drop.svg'
 export const ns = 'DropTypes'
 export const cases = [
   {

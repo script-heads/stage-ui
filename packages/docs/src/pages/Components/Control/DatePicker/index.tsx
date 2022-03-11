@@ -2,7 +2,7 @@ import basic from './basic.raw?raw'
 import range from './range.raw?raw'
 
 export const title = 'DatePicker'
-export { default as glyph } from './DatePicker.svg'
+export { ReactComponent as glyph } from './DatePicker.svg'
 export const ns = 'DatePickerTypes'
 export const cases = [
   {

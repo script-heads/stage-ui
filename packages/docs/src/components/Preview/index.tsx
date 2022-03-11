@@ -8,6 +8,7 @@ import { PageType } from '@/utils/core'
 function ComponentPreview({ page }: { page: PageType }) {
   const navigate = useNavigate()
   const theme = useTheme()
+  const Glyph = page.glyph
 
   return (
     <Flexbox
@@ -28,16 +29,19 @@ function ComponentPreview({ page }: { page: PageType }) {
           boxShadow: theme.assets.shadow.xl,
           zIndex: 100,
           ' svg path': {
-            fill: theme.color.onSurface.alpha(1).rgb().string(),
+            fill: theme.color.onBackground.hex(),
           },
         },
       }}
     >
-      {page.glyph && (
-        <img
-          src={page.glyph}
-          alt={page.title}
-          css={{ width: '3rem', height: '3rem', transition: 'all 0.125s' }}
+      {Glyph && (
+        <Glyph
+          css={{
+            fill: theme.color.onSurface.hex(),
+            width: '3rem',
+            height: '3rem',
+            transition: 'all 0.125s',
+          }}
         />
       )}
       <Text weight={500} color="hardest" p="s">

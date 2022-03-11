@@ -4,7 +4,7 @@ import scrollTop from './scrollTop.raw?raw'
 import watchElement from './watchElement.raw?raw'
 
 export const title = 'ScrollView'
-export { default as glyph } from './ScrollView.svg'
+export { ReactComponent as glyph } from './ScrollView.svg'
 export const ns = 'ScrollViewTypes'
 export const cases = [
   {

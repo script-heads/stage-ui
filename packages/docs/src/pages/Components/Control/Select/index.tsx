@@ -3,7 +3,7 @@ import multiselect from './multiselect.raw?raw'
 import keepOpen from './keepOpen.raw?raw'
 
 export const title = 'Select'
-export { default as glyph } from './Select.svg'
+export { ReactComponent as glyph } from './Select.svg'
 export const ns = 'SelectTypes'
 export const cases = [
   {

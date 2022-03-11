@@ -3,7 +3,7 @@ import finder from './finder.raw?raw'
 import custom from './custom.raw?raw'
 
 export const title = 'Tree'
-export { default as glyph } from './Tree.svg'
+export { ReactComponent as glyph } from './Tree.svg'
 export const ns = 'TreeTypes'
 export const cases = [
   {

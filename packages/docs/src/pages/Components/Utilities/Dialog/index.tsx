@@ -3,7 +3,7 @@ import fullscreen from './fullscreen.raw?raw'
 import panel from './panel.raw?raw'
 
 export const title = 'Dialog'
-export { default as glyph } from './Dialog.svg'
+export { ReactComponent as glyph } from './Dialog.svg'
 export const ns = 'DialogTypes'
 export const cases = [
   { label: 'Dialog', code: basic },

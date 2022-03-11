@@ -4,7 +4,7 @@ import skeleton from './skeleton.raw?raw'
 import shadow from './shadow.raw?raw'
 
 export const title = 'Block'
-export { default as glyph } from './Block.svg'
+export { ReactComponent as glyph } from './Block.svg'
 export const ns = 'BlockTypes'
 export const cases = [
   { label: 'Block', code: basic },

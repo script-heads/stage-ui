@@ -2,6 +2,7 @@ import path from 'path'
 
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import svgrPlugin from 'vite-plugin-svgr'
 
 export default defineConfig({
   plugins: [
@@ -11,8 +12,8 @@ export default defineConfig({
         plugins: ['@emotion/babel-plugin'],
       },
     }),
+    svgrPlugin(),
   ],
-  assetsInclude: ['**/*.svg'],
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
     alias: {

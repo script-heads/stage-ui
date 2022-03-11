@@ -3,7 +3,7 @@ import basic from './basic.raw?raw'
 import placement from './placement.raw?raw'
 
 export const title = 'Notify'
-export { default as glyph } from './Notify.svg'
+export { ReactComponent as glyph } from './Notify.svg'
 export const ns = 'NotifyTypes'
 export const cases = [
   { label: 'Notify', code: basic },

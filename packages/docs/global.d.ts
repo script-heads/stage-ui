@@ -4,6 +4,6 @@ declare module '*?raw' {
 }
 
 declare module '*.svg' {
-  const content: string
-  export default content
+  const content: React.FC<SVGProps<SVGElement>>
+  export { content as ReactComponent }
 }

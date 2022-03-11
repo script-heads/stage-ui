@@ -1,7 +1,7 @@
 import basic from './basic.raw?raw'
 
 export const title = 'Pageswitch'
-export { default as glyph } from './Pageswitch.svg'
+export { ReactComponent as glyph } from './Pageswitch.svg'
 export const ns = 'PageswitchTypes'
 export const cases = [
   {

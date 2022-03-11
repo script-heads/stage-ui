@@ -5,7 +5,7 @@ import password from './password.raw?raw'
 import textarea from './textarea.raw?raw'
 
 export const title = 'TextField'
-export { default as glyph } from './TextField.svg'
+export { ReactComponent as glyph } from './TextField.svg'
 export const ns = 'TextFieldTypes'
 export const cases = [
   {

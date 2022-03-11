@@ -5,7 +5,7 @@ import spaceBetween from './spaceBetween.raw?raw'
 import column from './column.raw?raw'
 
 export const title = 'Flexbox'
-export { default as glyph } from './Flexbox.svg'
+export { ReactComponent as glyph } from './Flexbox.svg'
 export const ns = 'FlexboxTypes'
 export const cases = [
   {

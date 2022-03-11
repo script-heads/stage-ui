@@ -2,7 +2,7 @@ import basic from './basic.raw?raw'
 import icon from './icon.raw?raw'
 
 export const title = 'Button'
-export { default as glyph } from './Button.svg'
+export { ReactComponent as glyph } from './Button.svg'
 export const ns = 'ButtonTypes'
 export const cases = [
   {
