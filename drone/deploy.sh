@@ -14,7 +14,7 @@ echo $KUBE_CONFIG | base64 -d > kubeconfig.yml
 
 echo "Deploy version '$VERSION' to '$NAMESPACE'"
 
-awk 'FNR==1{print "---"}{print}' ./kube/manifests/*.yaml | \
+awk 'FNR==1{print "---"}{print}' ./drone/manifests/*.yaml | \
 sed "s/_NAMESPACE/$NAMESPACE/g" | \
 sed "s/_VERSION/$VERSION/g" | \
 kubectl --kubeconfig=kubeconfig.yml apply -f  -

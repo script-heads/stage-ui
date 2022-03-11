@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 
 import ReactDOM from 'react-dom'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { light, dark } from '@stage-ui/core/themes'
 import { Viewport, Block, Flexbox, ScrollView } from '@stage-ui/core'
 import { toPixel } from '@stage-ui/system/utils/size'
@@ -57,24 +57,15 @@ function Docs() {
             <Flexbox column alignItems="center" px="xl">
               <Block w="100%" style={{ maxWidth: '64rem', width: '100%' }}>
                 <Header />
-                <Switch>
-                  <Route exact path="/">
-                    <Index />
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/components" element={<Components />}>
+                    <Route path=":name" element={<ComponentModal />} />
                   </Route>
-                  <Route path="/components/:name?">
-                    <Components />
-                    <ComponentModal />
-                  </Route>
-                  <Route exact path="/icons">
-                    <Icons />
-                  </Route>
-                  <Route exact path="/colors">
-                    <Colors />
-                  </Route>
-                  <Route path="*">
-                    <Page404 />
-                  </Route>
-                </Switch>
+                  <Route path="/icons" element={<Icons />} />
+                  <Route path="/colors" element={<Colors />} />
+                  <Route path="*" element={<Page404 />} />
+                </Routes>
               </Block>
             </Flexbox>
             <Footer />

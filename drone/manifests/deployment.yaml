@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: stageui
+  name: docs
   namespace: _NAMESPACE
   labels:
-    app: stageui
+    app: docs
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: stageui
+      app: docs
   template:
     metadata:
       labels:
-        app: stageui
+        app: docs
     spec:
       containers:
-      - name: stageui
-        image: cr.yandex/crptshuuct3ne1mn7rg1/stageui:_VERSION
+      - name: docs
+        image: cr.yandex/crptshuuct3ne1mn7rg1/stageui-docs:_VERSION
         ports:
         - containerPort: 80
         resources:

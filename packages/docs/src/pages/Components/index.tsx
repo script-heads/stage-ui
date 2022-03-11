@@ -4,6 +4,8 @@ import { Flexbox, TextField } from '@stage-ui/core'
 import { Search } from '@stage-ui/icons'
 import createID from '@stage-ui/system/utils/createID'
 
+import { Outlet } from 'react-router-dom'
+
 import Preview from '@/components/Preview'
 import core, { PagesType } from '@/utils/core'
 
@@ -36,6 +38,7 @@ function Components() {
           </Flexbox>
         ))}
       </Flexbox>
+      <Outlet />
     </Flexbox>
   )
 }

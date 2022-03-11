@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Flexbox, Text, useTheme } from '@stage-ui/core'
 
 import { PageType } from '@/utils/core'
 
 function ComponentPreview({ page }: { page: PageType }) {
-  const history = useHistory()
+  const navigate = useNavigate()
   const theme = useTheme()
 
   return (
@@ -17,7 +17,7 @@ function ComponentPreview({ page }: { page: PageType }) {
       w="10rem"
       borderRadius="1rem"
       onClick={() => {
-        history.push(page.url)
+        navigate(page.url)
       }}
       backgroundColor="surface"
       style={{

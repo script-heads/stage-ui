@@ -16,5 +16,5 @@ docker build \
   --build-arg NODE_ENV \
   --build-arg VERSION \
   -f $1.Dockerfile \
-  -t cr.yandex/crptshuuct3ne1mn7rg1/$1:$VERSION \
+  -t cr.yandex/crptshuuct3ne1mn7rg1/stageui-$1:$VERSION \
   .

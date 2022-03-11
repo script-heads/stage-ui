@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Block, Modal, ScrollView, Table } from '@stage-ui/core'
 import breakpointProp from '@stage-ui/system/props/breakpoint'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import core from '@/utils/core'
 import Playground from '@/components/Playground'
@@ -11,7 +11,7 @@ import { get } from '@/utils/typedoc'
 const componentTypes = get()
 
 function ComponentModal() {
-  const history = useHistory()
+  const navigate = useNavigate()
   const location = useLocation()
   const data = core.getPageByUrl(location.pathname)
   document.title = `StageUI${data ? ` — ${data.title}` : ''}`
@@ -32,7 +32,7 @@ function ComponentModal() {
           breakpointProp(['80vw', '90vw', '100vw'], t, (maxWidth) => ({ maxWidth })),
         ],
       })}
-      didClose={() => history.push('/components')}
+      didClose={() => navigate('/components')}
     >
       <Block>
         {data.cases && <Playground cases={data.cases} title={data.title} />}

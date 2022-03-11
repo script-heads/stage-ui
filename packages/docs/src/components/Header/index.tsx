@@ -1,13 +1,16 @@
 import React from 'react'
+
 import { Grid, Text, Header as TextHeader } from '@stage-ui/core'
 import { Github, Moon } from '@stage-ui/icons'
 import corePackage from '@stage-ui/core/package.json'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
 import useThemes from '../../hooks/useThemes'
+
 import Menu from './Menu'
 
-const Header = () => {
-  const history = useHistory()
+function Header() {
+  const navigate = useNavigate()
   const { currentTheme, themes, setTheme } = useThemes()
 
   return (
@@ -38,7 +41,7 @@ const Header = () => {
         style={{
           transition: 'all 0.125s',
         }}
-        onClick={() => history.push('/')}
+        onClick={() => navigate('/')}
       >
         StageUI
       </TextHeader>

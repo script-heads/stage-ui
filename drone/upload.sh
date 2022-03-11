@@ -8,6 +8,6 @@ echo "Upload '$VERSION'"
 
 echo $DOCKER_KEY | base64 -d | docker login --username json_key --password-stdin cr.yandex
 
-docker tag cr.yandex/crptshuuct3ne1mn7rg1/$1:$VERSION cr.yandex/crptshuuct3ne1mn7rg1/$1:vlatest
-docker push cr.yandex/crptshuuct3ne1mn7rg1/$1:$VERSION
-docker push cr.yandex/crptshuuct3ne1mn7rg1/$1:vlatest
+docker tag cr.yandex/crptshuuct3ne1mn7rg1/stageui-$1:$VERSION cr.yandex/crptshuuct3ne1mn7rg1/stageui-$1:vlatest
+docker push cr.yandex/crptshuuct3ne1mn7rg1/stageui-$1:$VERSION
+docker push cr.yandex/crptshuuct3ne1mn7rg1/stageui-$1:vlatest

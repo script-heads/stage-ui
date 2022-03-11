@@ -1,32 +1,12 @@
 import React from 'react'
-import { Text, Flexbox } from '@stage-ui/core'
-import { useHistory, useLocation } from 'react-router-dom'
 
-const MenuItem = ({
-  active,
-  label,
-  onClick,
-}: {
-  label: string
-  active: boolean
-  onClick: () => void
-}) => (
-  <Text
-    p="0"
-    mr="xl"
-    color={active ? 'primary' : 'onBackground'}
-    style={{
-      transition: 'all 0.125s',
-    }}
-    weight={500}
-    onClick={onClick}
-  >
-    {label}
-  </Text>
-)
+import { Flexbox } from '@stage-ui/core'
+import { useNavigate, useLocation } from 'react-router-dom'
 
-const Menu = () => {
-  const history = useHistory()
+import MenuItem from './MenuItem'
+
+function Menu() {
+  const navigate = useNavigate()
   const location = useLocation()
 
   return (
@@ -34,22 +14,22 @@ const Menu = () => {
       <MenuItem
         label="Guide"
         active={location.pathname === '/'}
-        onClick={() => history.push('/')}
+        onClick={() => navigate('/')}
       />
       <MenuItem
         label="Components"
         active={location.pathname === '/components'}
-        onClick={() => history.push('/components')}
+        onClick={() => navigate('/components')}
       />
       <MenuItem
         label="Icons"
         active={location.pathname === '/icons'}
-        onClick={() => history.push('/icons')}
+        onClick={() => navigate('/icons')}
       />
       <MenuItem
         label="Colors"
         active={location.pathname === '/colors'}
-        onClick={() => history.push('/colors')}
+        onClick={() => navigate('/colors')}
       />
     </Flexbox>
   )

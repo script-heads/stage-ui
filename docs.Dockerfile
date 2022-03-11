@@ -7,5 +7,5 @@ RUN yarn && \
 # Create server for static
 FROM nginx:alpine
 COPY --from=build /source/build/docs /usr/share/nginx/html/
-COPY ./kube/nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./drone/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
