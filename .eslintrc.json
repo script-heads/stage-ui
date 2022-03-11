@@ -9,8 +9,8 @@
       "./packages/icons/tsconfig.json",
       "./packages/lab/tsconfig.json",
       "./packages/native/tsconfig.json",
-      "./packages/sandbox/tsconfig.json",
-      "./packages/system/tsconfig.json"
+      "./packages/system/tsconfig.json",
+      "./packages/testbed/tsconfig.json"
     ]
   },
   "env":{

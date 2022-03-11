@@ -1,0 +1,19 @@
+{
+	"name": "@stage-ui/testbed",
+	"author": "Research technology",
+	"version": "0.1.0",
+	"license": "MIT",
+	"main": "index.ts",
+	"scripts": {
+		"start": "vite",
+		"type-check": "tsc --noEmit",
+		"type-check:watch": "yarn type-check -- --watch"
+	},
+	"dependencies": {
+		"axios": "^0.26.1",
+		"dat.gui": "^0.7.9",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"three": "^0.138.3"
+	}
+}

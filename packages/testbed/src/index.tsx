@@ -1,6 +1,8 @@
-import { Viewport, Pageswitch } from '@stage-ui/core'
 import React from 'react'
+
+import { Viewport } from '@stage-ui/core'
 import ReactDOM from 'react-dom'
+
 import App from './app'
 import theme from './themes/custom'
 
