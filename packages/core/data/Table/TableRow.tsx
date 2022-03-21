@@ -1,21 +1,25 @@
 /* eslint-disable no-bitwise */
-import React, { forwardRef, ForwardRefRenderFunction, Fragment, useState } from 'react'
-import { dndContext } from '.'
+import React, { forwardRef, useState } from 'react'
+
+import createID from '@stage-ui/system/utils/createID'
+
 import TableCell from './TableCell'
 import Types from './types'
 
-export const getTR = (target: HTMLElement | null): HTMLTableRowElement | null => {
-  if (!target || target.tagName === 'TR') {
-    return target as HTMLTableRowElement
-  }
-  return getTR(target.parentElement)
-}
-
-const TableRow: ForwardRefRenderFunction<HTMLTableRowElement, Types.RowProps<any>> = (
-  props,
-  ref,
-) => {
-  const { columns, rowIndex, rowCtxItem, delegates, styles, getCellContext } = props
+function TableRow(props: Types.RowProps, ref: React.ForwardedRef<HTMLTableRowElement>) {
+  const {
+    events,
+    columns,
+    rowIndex,
+    rowCtxItem,
+    delegates,
+    styles,
+    rowMountType,
+    getCellContext,
+    rowDidUnmount,
+    rowDidMount,
+    enableRenderOptimization,
+  } = props
   const style: React.CSSProperties = {}
   /**
    * State with expanded row
@@ -31,18 +35,17 @@ const TableRow: ForwardRefRenderFunction<HTMLTableRowElement, Types.RowProps<any
 
   let rowId: string | undefined
 
-  const [needDisplay, setNeedDisplay] = useState(!props.enableRenderOptimization)
-  const [dragOver, setDragOver] = useState(false)
+  const [needDisplay, setNeedDisplay] = useState(!enableRenderOptimization)
 
-  if (props.enableRenderOptimization) {
-    const height = props.delegates.rowHeight?.(rowCtxItem)
+  if (enableRenderOptimization) {
+    const height = delegates.rowHeight?.(rowCtxItem)
     if (typeof height === 'number') {
       style.height = `${height}px`
-      rowId = React.useMemo(() => `tr${rowIndex}_${(~~(Math.random() * 1e8)).toString(16)}`, [])
+      rowId = `tr${rowIndex}_${(~~(Math.random() * 1e8)).toString(16)}`
       rowCtxItem.setNeedDisplay = (forceUnmount?: boolean) => {
         if (forceUnmount) {
           if (needDisplay) {
-            props.rowDidUnmount?.(rowCtxItem)
+            rowDidUnmount?.(rowCtxItem)
             setNeedDisplay(false)
           }
           return false
@@ -51,12 +54,15 @@ const TableRow: ForwardRefRenderFunction<HTMLTableRowElement, Types.RowProps<any
         const element = document.getElementById(rowId as string)
         if (element) {
           const position = element.getBoundingClientRect()
-          if (position.top + height * 2 >= 0 && position.top - height <= window?.innerHeight) {
+          if (
+            position.top + height * 2 >= 0 &&
+            position.top - height <= window?.innerHeight
+          ) {
             state = true
-            props.rowDidMount?.(rowCtxItem)
+            rowDidMount?.(rowCtxItem)
             setNeedDisplay(true)
-          } else if (props.rowMountType === 'onlyWhenVisible') {
-            props.rowDidUnmount?.(rowCtxItem)
+          } else if (rowMountType === 'onlyWhenVisible') {
+            rowDidUnmount?.(rowCtxItem)
             setNeedDisplay(false)
           }
         }
@@ -69,68 +75,40 @@ const TableRow: ForwardRefRenderFunction<HTMLTableRowElement, Types.RowProps<any
     return null
   }
 
-  return (
-    <>
-      {needDisplay ? (
-        <>
-          <tr
-            id={rowId}
-            style={style}
-            {...props.events}
-            ref={ref}
-            css={[styles.row({ dragOver })]}
-            key={rowIndex}
-            onDragStart={(e) => {
-              e.stopPropagation()
-              // @ts-ignore incorrect event type
-              e.target.draggable = false
-              e.dataTransfer.dropEffect = 'move'
-              dndContext.source = rowIndex
-            }}
-            onDrop={(e) => {
-              e.stopPropagation()
-              setDragOver(false)
-              props.dndRender()
-            }}
-            onDragOver={(e) => {
-              e.stopPropagation()
-              e.preventDefault()
-              dndContext.target = rowIndex
-              setDragOver(true)
-            }}
-            onDragLeave={(e) => {
-              e.stopPropagation()
-              setDragOver(false)
-            }}
-            onDragEnd={() => {
-              dndContext.source = -1
-              dndContext.target = -1
-            }}
-          >
-            {columns.map((column, columnIndex) => (
-              <TableCell
-                rowCtxItem={rowCtxItem}
-                getCellContext={getCellContext}
-                styles={styles}
-                key={columnIndex}
-                column={column}
-                rowIndex={rowIndex}
-              />
-            ))}
+  if (needDisplay) {
+    return (
+      <>
+        <tr
+          id={rowId}
+          style={style}
+          {...events}
+          ref={ref}
+          css={styles.row}
+          key={rowIndex}
+        >
+          {columns.map((column, columnIndex) => (
+            <TableCell
+              rowCtxItem={rowCtxItem}
+              getCellContext={getCellContext}
+              styles={styles}
+              key={createID()}
+              column={column}
+              rowIndex={rowIndex}
+            />
+          ))}
+        </tr>
+        {expandComponent && (
+          <tr ref={ref}>
+            <td css={styles.expandContainer} colSpan={columns.length}>
+              {expandComponent}
+            </td>
           </tr>
-          {expandComponent && (
-            <tr ref={ref}>
-              <td css={styles.expandContainer} colSpan={columns.length}>
-                {expandComponent}
-              </td>
-            </tr>
-          )}
-        </>
-      ) : (
-        <tr ref={ref} id={rowId} style={style} />
-      )}
-    </>
-  )
+        )}
+      </>
+    )
+  }
+
+  return <tr ref={ref} id={rowId} style={style} />
 }
 
 export default forwardRef(TableRow)
