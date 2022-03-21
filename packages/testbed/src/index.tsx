@@ -4,10 +4,9 @@ import { Viewport } from '@stage-ui/core'
 import ReactDOM from 'react-dom'
 
 import App from './app'
-import theme from './themes/custom'
 
 ReactDOM.render(
-  <Viewport theme={theme}>
+  <Viewport>
     <App />
   </Viewport>,
   document.getElementById('app'),
