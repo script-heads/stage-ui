@@ -2,6 +2,7 @@ import { CSSInterpolation as CSSI, CSSObject as CSSO } from '@emotion/serialize'
 import { ColorProp as ColorPropType } from '@stage-ui/system/props/color'
 import ColorType from 'color'
 import CSS from 'csstype'
+
 import { ReplaceTheme } from './utils/createTheme'
 import { AllProps as AllPropsType } from './props/types'
 import {
@@ -339,18 +340,21 @@ declare global {
       replace: (theme: ReplaceTheme) => Theme
     }
 
-    type AllProps<Containter, ClassSchema extends ClassesSchemaDefinition = {}> = AllPropsType<
+    type AllProps<
       Containter,
-      ClassSchema
-    >
-    type CreateClasses<ClassesSchema extends ClassesSchemaDefinition, Props> = CreateClassesType<
-      ClassesSchema,
-      Props
-    >
+      ClassSchema extends ClassesSchemaDefinition = ClassesSchemaDefinition,
+    > = AllPropsType<Containter, ClassSchema>
+    type CreateClasses<
+      ClassesSchema extends ClassesSchemaDefinition,
+      Props,
+    > = CreateClassesType<ClassesSchema, Props>
     type ColorProp = ColorPropType
-    type PropOverrides<ClassSchema extends ClassesSchemaDefinition> = OverridesProp<ClassSchema>
-    type ComponentThemeOverrides<Props, ClassSchema extends ClassesSchemaDefinition> =
-      ThemeOverridesType<Props, ClassSchema>
+    type PropOverrides<ClassSchema extends ClassesSchemaDefinition> =
+      OverridesProp<ClassSchema>
+    type ComponentThemeOverrides<
+      Props,
+      ClassSchema extends ClassesSchemaDefinition,
+    > = ThemeOverridesType<Props, ClassSchema>
 
     type FilterStartingWith<Set, Needle extends string> = Set extends `${Needle}${string}`
       ? Set
@@ -387,5 +391,6 @@ export { default as Provider } from './Provider'
 
 export { default as useTheme } from './hooks/useTheme'
 export { default as useSystem } from './hooks/useSystem'
+export { default as useBreakpoint } from './hooks/useBreakpoint'
 
 export { default as createTheme } from './utils/createTheme'
