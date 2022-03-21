@@ -1,43 +1,6 @@
 import React from 'react'
 
 declare namespace ScrollViewTypes {
-  type WatchElementFn = <T extends HTMLDivElement>(dataId: string, element: T) => void
-
-  interface ScrollViewEvent {
-    scrollTop: number
-    scrollLeft: number
-    scrollWidth: number
-    scrollHeight: number
-  }
-
-  interface ScrollToOptions {
-    /**
-     * if true watchElement will not
-     * call at this scrollUpdate
-     */
-    preventWatchElement?: boolean
-    /**
-     * Smooth scroll
-     * @only webkit
-     */
-    smooth?: boolean
-  }
-
-  interface ScrollToElementOptions extends ScrollToOptions {
-    /**
-     * Offset px at top edge of element
-     */
-    offsetTop?: number
-  }
-
-  interface ScrollParams extends ScrollToOptions {
-    deltaX: number
-    deltaY: number
-    preventDefault: () => void
-    stopPropagation: () => void
-    cursorHandle?: boolean
-  }
-
   interface Props extends Omit<Stage.AllProps<HTMLDivElement, Classes>, 'onScroll'> {
     /**
      * Any contant of scrollview
@@ -98,28 +61,11 @@ declare namespace ScrollViewTypes {
     watchElementOffset?: number
   }
 
-  interface MemoParams {
-    id: string
-    mounted: boolean
-    y: boolean
-    x: boolean
-    events: boolean
-    yBar: null | HTMLDivElement
-    yThumb: null | HTMLSpanElement
-    xBar: null | HTMLDivElement
-    xThumb: null | HTMLSpanElement
-    container: null | HTMLDivElement
-    content: null | HTMLDivElement
-    timeout?: any
-    mode: Props['mode']
-    watchElementId: string
-    watchElementListeners: Record<string, { fn: WatchElementFn; options?: { offset?: number } }>
-    preventWatchElement: boolean
-    preventWatchElementTimer: any
-  }
-
-  interface Ref {
-    addWatchElementListener: (fn: WatchElementFn, options?: { offset?: number }) => () => void
+  type Ref = {
+    addWatchElementListener: (
+      fn: WatchElementListner['fn'],
+      options?: WatchElementListner['options'],
+    ) => () => void
     /**
      * Current state
      */
@@ -208,6 +154,74 @@ declare namespace ScrollViewTypes {
       shape: Props['shape']
       size: Props['size']
     }
+  }
+
+  interface ScrollHTMLDivElement extends HTMLDivElement {
+    attributes: HTMLDivElement['attributes'] & {
+      'data-scroll-id': Attr
+      'data-id': Attr
+    }
+    style: CSSStyleDeclaration & {
+      'scroll-behavior': string
+    }
+  }
+
+  type WatchElementFn = <T extends HTMLDivElement>(dataId: string, element: T) => void
+  type WatchElementListner = { fn: WatchElementFn; options?: { offset?: number } }
+
+  interface ScrollViewEvent {
+    scrollTop: number
+    scrollLeft: number
+    scrollWidth: number
+    scrollHeight: number
+  }
+
+  interface ScrollToOptions {
+    /**
+     * if true watchElement will not
+     * call at this scrollUpdate
+     */
+    preventWatchElement?: boolean
+    /**
+     * Smooth scroll
+     * @only webkit
+     */
+    smooth?: boolean
+  }
+
+  interface ScrollToElementOptions extends ScrollToOptions {
+    /**
+     * Offset px at top edge of element
+     */
+    offsetTop?: number
+  }
+
+  interface ScrollParams extends ScrollToOptions {
+    deltaX: number
+    deltaY: number
+    preventDefault: () => void
+    stopPropagation: () => void
+    cursorHandle?: boolean
+  }
+
+  interface MemoParams {
+    id: string
+    mounted: boolean
+    y: boolean
+    x: boolean
+    events: boolean
+    yBar: null | HTMLDivElement
+    yThumb: null | HTMLSpanElement
+    xBar: null | HTMLDivElement
+    xThumb: null | HTMLSpanElement
+    container: null | ScrollHTMLDivElement
+    content: null | HTMLDivElement
+    timeout?: number
+    mode: Props['mode']
+    watchElementId: string
+    watchElementListeners: Record<string, WatchElementListner>
+    preventWatchElement: boolean
+    preventWatchElementTimer?: number
   }
 }
 
