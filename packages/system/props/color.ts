@@ -19,8 +19,9 @@ function colorProp<V extends ColorProp | undefined>(
       ]
       if (shade) {
         resolvedColor = (theme.color[color] as Stage.ColorShades)[shade]
+      } else {
+        resolvedColor = theme.color[color]
       }
-      resolvedColor = theme.color[color]
       break
     }
     case 'function': {
