@@ -9,7 +9,7 @@ trigger:
 steps:
 - name: Build
   commands:
-  - kube/build.sh stageui
+  - drone/build.sh docs
 - name: Uploading
   depends_on:
     - "Build"
@@ -17,7 +17,7 @@ steps:
     DOCKER_KEY:
       from_secret: DOCKER_KEY
   commands:  
-  - kube/upload.sh stageui
+  - drone/upload.sh docs
 - name: Deploy
   depends_on:
     - "Uploading"
@@ -25,4 +25,4 @@ steps:
     KUBE_CONFIG:
       from_secret: KUBE_CONFIG
   commands:
-  - kube/deploy.sh
+  - drone/deploy.sh

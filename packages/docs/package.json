@@ -1,30 +1,35 @@
 {
 	"name": "@stage-ui/docs",
 	"author": "Project one",
-	"version": "0.1.0",
+	"version": "0.2.1",
 	"license": "MIT",
 	"main": "index.ts",
 	"scripts": {
-		"start": "ENV=development webpack serve",
-		"build": "ENV=production webpack",
+		"start": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"gen": "yarn gen:createTypes && yarn gen:generateTypes && yarn gen:fixTypes",
+		"gen:createTypes": "typedoc",
+    "gen:generateTypes": "node ./scripts/generateTypes.js",
+    "gen:fixTypes": "node ./scripts/fixTypes.js",
 		"type-check": "tsc --noEmit",
-		"type-check:watch": "yarn type-check -- --watch",
-		"lint": "eslint --config .eslintrc.json --fix '**/*.+(js|jsx|ts|tsx)'"
+    "type-check:watch": "tsc --noEmit --watch"
 	},
 	"dependencies": {
-		"@types/react-router-dom": "^5.3.1",
-		"@types/react-syntax-highlighter": "^13.5.0",
-		"clipanion": "^3.0.0-rc.5",
+		"@types/react-router-dom": "^5.3.3",
+		"@types/react-syntax-highlighter": "^13.5.2",
+		"clipanion": "^3.2.0-rc.10",
 		"compression": "^1.7.4",
-		"dts-bundle-generator": "^5.6.0",
+		"dts-bundle-generator": "^6.5.0",
 		"dts-generator": "^3.0.0",
-		"fakerator": "^0.3.0",
-		"monaco-editor": "^0.21.3",
-		"monaco-editor-webpack-plugin": "^2.1.0",
+		"fakerator": "^0.3.5",
+		"monaco-editor": "^0.32.1",
 		"randomcolor": "^0.6.2",
-		"react-router-dom": "^5.3.0",
-		"react-syntax-highlighter": "^15.4.3",
-		"resolve": "1.19.0",
-		"typedoc": "0.22.5"
+		"react-router-dom": "^6.2.2",
+		"react-syntax-highlighter": "^15.4.5",
+		"resolve": "^1.22.0",
+		"typedoc": "^0.22.13",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2"
 	}
 }

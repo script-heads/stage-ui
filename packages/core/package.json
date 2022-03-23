@@ -1,6 +1,6 @@
 {
   "name": "@stage-ui/core",
-  "author": "Project one",
+  "author": "Script Heads",
   "version": "0.3.4",
   "license": "MIT",
   "scripts": {
@@ -13,9 +13,9 @@
   },
   "dependencies": {
     "@emotion/react": ">=11",
-    "imask": "6.0.1",
-    "moment": "2.29.1",
-    "rifm": "0.12.0"
+    "imask": "^6.0.1",
+    "moment": "^2.29.1",
+    "rifm": "^0.12.0"
   },
   "peerDependencies": {
     "react": ">=16"

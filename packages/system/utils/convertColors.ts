@@ -1,15 +1,16 @@
 import Color from 'color'
-import { ThemeDefiniton } from './createTheme'
 
-function convertColors(colors: ThemeDefiniton['main']['color']): Stage.Colors {
-  const resolvedColors = {} as Stage.Colors
+type ColorObject<C = Stage.ColorDefinition> = Record<string, C | Record<string, C>>
+
+function convertColors(colors: ColorObject): ColorObject<Stage.Color> {
+  const resolvedColors: ColorObject<Stage.Color> = {}
 
   Object.keys(colors).forEach((key) => {
     if (typeof colors[key] === 'object') {
-      resolvedColors[key] = convertColors(colors[key])
-    }
-
-    if (typeof colors[key] === 'string' || Array.isArray(colors[key])) {
+      resolvedColors[key] = convertColors(
+        colors[key] as Record<string, Stage.ColorDefinition>,
+      ) as Record<string, Stage.Color>
+    } else {
       resolvedColors[key] = Color(colors[key])
     }
   })

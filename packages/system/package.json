@@ -1,15 +1,9 @@
 {
   "name": "@stage-ui/system",
-  "author": "Project one",
+  "author": "Script Heads",
   "version": "0.3.4",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/script-heads/StageUI.git",
-    "directory": "packages/system"
-  },
-  "homepage": "https://stageui.project1.io",
-  "bugs": "https://github.com/script-heads/StageUI/issues",
+  "main": "index.ts",
   "scripts": {
     "build": "node ../../scripts/make system && yarn build:types && yarn build:js",
     "build:js": "babel ./ --out-dir ../../build/system --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
@@ -19,8 +13,8 @@
     "lint": "eslint --config .eslintrc.json --fix '**/*.+(js|jsx|ts|tsx)'"
   },
   "dependencies": {
-    "@types/color": "3.0.2",
-    "color": "3.1.3",
+    "@types/color": "^3.0.2",
+    "color": "^3.1.3",
     "@emotion/cache": "^11.7.1"
   },
   "peerDependencies": {

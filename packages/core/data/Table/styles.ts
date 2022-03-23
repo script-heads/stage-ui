@@ -1,9 +1,8 @@
 import containerDecorations from '@stage-ui/core/utils/containerDecorations'
 import CSS from 'csstype'
+
 import Types from './types'
 
-// TODO: borderBottomStyle type incorrect
-// @ts-ignore
 const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => ({
   container: [
     containerDecorations({ decoration: 'surface', ...props }, theme),
@@ -13,14 +12,9 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
       borderSpacing: 0,
     },
   ],
-  row: (state) => [
-    {
-      transition: 'background 0.25s',
-    },
-    state.dragOver && {
-      background: theme.color.primary.alpha(0.25).string(),
-    },
-  ],
+  row: {
+    transition: 'background 0.25s',
+  },
   headCell: (state) => [
     {
       textAlign: 'left',
@@ -63,7 +57,6 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
     {
       padding: '1.25rem 1rem',
       borderTopWidth: theme.assets.border.width,
-      // CSSType is not fair
       borderTopStyle: theme.assets.border.style as CSS.Properties['borderTopStyle'],
       borderTopColor: theme.assets.border.color,
     },

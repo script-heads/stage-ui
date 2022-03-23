@@ -1,6 +1,4 @@
-import { ReplaceTheme } from '@stage-ui/system/utils/createTheme'
-
-export const darkTheme: ReplaceTheme = {
+export const darkTheme: Stage.ReplaceTheme = {
   main: {
     name: 'Dark',
     color: {

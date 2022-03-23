@@ -2,7 +2,7 @@ import { CSSInterpolation as CSSI, CSSObject as CSSO } from '@emotion/serialize'
 import { ColorProp as ColorPropType } from '@stage-ui/system/props/color'
 import ColorType from 'color'
 import CSS from 'csstype'
-import { ReplaceTheme } from './utils/createTheme'
+
 import { AllProps as AllPropsType } from './props/types'
 import {
   ClassesSchemaDefinition,
@@ -18,38 +18,40 @@ declare global {
     type CSSObject = CSSO
     type ColorDefinition = string | [number, number, number, number?]
     type Color = ColorType<ColorDefinition>
+
+    type ColorShades<C = Color> = {
+      50: C
+      100: C
+      200: C
+      300: C
+      400: C
+      500: C
+      600: C
+      700: C
+      800: C
+      900: C
+    }
+
+    type ColorAccentsShades<C = Color> = {
+      A100: C
+      A200: C
+      A400: C
+      A700: C
+    }
+
     type ColorMain<C = Color> = {
       primary: C
       secondary: C
 
-      /** @deprecated this field */
-      onPrimary: C
-      /** @deprecated this field */
-      onSecondary: C
-      /** @deprecated this field */
-      onSurface: C
-      /** @deprecated this field */
-      onBackground: C
-
-      /** @deprecated this field */
-      light: C
-      /** @deprecated this field */
-      lightest: C
-      /** @deprecated this field */
-      hard: C
-      /** @deprecated this field */
-      hardest: C
-
       surface: C
-      /** @deprecated this field */
-      surfaceVariant: C
-
       background: C
-      /** @deprecated this field */
-      backgroundVariant: C
-
       border: C
       text: C
+
+      onPrimary: C
+      onSecondary: C
+      onSurface: C
+      onBackground: C
 
       error: C
       warning: C
@@ -58,232 +60,71 @@ declare global {
 
       black: C
       white: C
-    }
-    type ColorPallete<C = Color> = {
-      gray: {
-        50: C
-        100: C
-        200: C
-        300: C
-        400: C
-        500: C
-        600: C
-        700: C
-        800: C
-        900: C
-      }
 
-      yellow: {
-        50: C
-        100: C
-        200: C
-        300: C
-        400: C
-        500: C
-        600: C
-        700: C
-        800: C
-        900: C
-        A100: C
-        A200: C
-        A400: C
-        A700: C
-      }
-
-      orange: {
-        50: C
-        100: C
-        200: C
-        300: C
-        400: C
-        500: C
-        600: C
-        700: C
-        800: C
-        900: C
-        A100: C
-        A200: C
-        A400: C
-        A700: C
-      }
-
-      red: {
-        50: C
-        100: C
-        200: C
-        300: C
-        400: C
-        500: C
-        600: C
-        700: C
-        800: C
-        900: C
-      }
-
-      rose: {
-        50: C
-        100: C
-        200: C
-        300: C
-        400: C
-        500: C
-        600: C
-        700: C
-        800: C
-        900: C
-      }
-
-      pink: {
-        50: C
-        100: C
-        200: C
-        300: C
-        400: C
-        500: C
-        600: C
-        700: C
-        800: C
-        900: C
-      }
-
-      green: {
-        50: C
-        100: C
-        200: C
-        300: C
-        400: C
-        500: C
-        600: C
-        700: C
-        800: C
-        900: C
-      }
-
-      lightGreen: {
-        50: C
-        100: C
-        200: C
-        300: C
-        400: C
-        500: C
-        600: C
-        700: C
-        800: C
-        900: C
-        A100: C
-        A200: C
-        A400: C
-        A700: C
-      }
-
-      lime: {
-        A100: C
-        A200: C
-        A400: C
-        A700: C
-      }
-
-      teal: {
-        50: C
-        100: C
-        200: C
-        300: C
-        400: C
-        500: C
-        600: C
-        700: C
-        800: C
-        900: C
-      }
-
-      cyan: {
-        50: C
-        100: C
-        200: C
-        300: C
-        400: C
-        500: C
-        600: C
-        700: C
-        800: C
-        900: C
-        A100: C
-        A200: C
-        A400: C
-        A700: C
-      }
-
-      lightBlue: {
-        50: C
-        100: C
-        200: C
-        300: C
-        400: C
-        500: C
-        600: C
-        700: C
-        800: C
-        900: C
-        A100: C
-        A200: C
-        A400: C
-        A700: C
-      }
-
-      blue: {
-        50: C
-        100: C
-        200: C
-        300: C
-        400: C
-        500: C
-        600: C
-        700: C
-        800: C
-        900: C
-        A100: C
-        A200: C
-        A400: C
-        A700: C
-      }
-
-      indigo: {
-        50: C
-        100: C
-        200: C
-        300: C
-        400: C
-        500: C
-        600: C
-        700: C
-        800: C
-        900: C
-      }
-
-      purple: {
-        50: C
-        100: C
-        200: C
-        300: C
-        400: C
-        500: C
-        600: C
-        700: C
-        800: C
-        900: C
-      }
+      /** @deprecated this field */
+      surfaceVariant: C
+      /** @deprecated this field */
+      backgroundVariant: C
+      /** @deprecated this field */
+      light: C
+      /** @deprecated this field */
+      lightest: C
+      /** @deprecated this field */
+      hard: C
+      /** @deprecated this field */
+      hardest: C
     }
 
-    type ColorCustomPallete<C = Color> = {
-      /** @deprecated this field, please add new colors to the color field, e.g: name: '#000' */
+    type ColorCustom<C = Color> = {
       palette: Record<string, C>
     }
 
-    type Colors<C = Color> = ColorMain<C> & ColorPallete<C> & ColorCustomPallete<C>
+    type ColorPallete<C = Color> = {
+      gray: ColorShades<C>
+      yellow: ColorShades<C> & ColorAccentsShades<C>
+      orange: ColorShades<C> & ColorAccentsShades<C>
+      red: ColorShades<C>
+      rose: ColorShades<C>
+      pink: ColorShades<C>
+      green: ColorShades<C>
+      lightGreen: ColorShades<C> & ColorAccentsShades<C>
+      lime: ColorAccentsShades<C>
+      teal: ColorShades<C>
+      cyan: ColorShades<C> & ColorAccentsShades<C>
+      lightBlue: ColorShades<C> & ColorAccentsShades<C>
+      blue: ColorShades<C> & ColorAccentsShades<C>
+      indigo: ColorShades<C>
+      purple: ColorShades<C>
+    }
 
-    interface ThemeMain {
+    type ColorNames = LiteralUnion<
+      | `gray/${keyof ColorPallete['gray']}`
+      | `yellow/${keyof ColorPallete['yellow']}`
+      | `orange/${keyof ColorPallete['orange']}`
+      | `red/${keyof ColorPallete['red']}`
+      | `rose/${keyof ColorPallete['rose']}`
+      | `pink/${keyof ColorPallete['pink']}`
+      | `green/${keyof ColorPallete['green']}`
+      | `lightGreen/${keyof ColorPallete['lightGreen']}`
+      | `lime/${keyof ColorPallete['lime']}`
+      | `teal/${keyof ColorPallete['teal']}`
+      | `cyan/${keyof ColorPallete['cyan']}`
+      | `lightBlue/${keyof ColorPallete['lightBlue']}`
+      | `blue/${keyof ColorPallete['blue']}`
+      | `indigo/${keyof ColorPallete['indigo']}`
+      | `purple/${keyof ColorPallete['purple']}`
+      | `palette/${keyof ColorCustom['palette']}`
+      | keyof ColorMain,
+      string
+    >
+
+    type Colors<C = Color, Definition = false> = ColorMain<C> &
+      ColorPallete<C> &
+      (Definition extends true ? Partial<ColorCustom<C>> : ColorCustom<C>)
+
+    interface ThemeMain<C = Color, Definition = false> {
       name: string
-      color: Colors
+      color: Colors<C, Definition>
       breakpoints: string[]
       radius: Record<Sizes, string>
       spacing: Record<Sizes, string>
@@ -339,22 +180,61 @@ declare global {
       replace: (theme: ReplaceTheme) => Theme
     }
 
-    type AllProps<Containter, ClassSchema extends ClassesSchemaDefinition = {}> = AllPropsType<
+    interface ThemeDefiniton {
+      main: Stage.ThemeMain<Stage.ColorDefinition, true>
+      assets: ((main: Stage.ThemeMain) => Stage.ThemeAssets) | Stage.ThemeAssets
+      overrides?:
+        | ((main: Stage.ThemeMain, assets: Stage.ThemeAssets) => Stage.ThemeOverrides)
+        | Stage.ThemeOverrides
+    }
+
+    interface ReplaceTheme {
+      main?: DeepPartial<ThemeDefiniton['main']>
+      assets?:
+        | ((main: Stage.ThemeMain) => DeepPartial<Stage.ThemeAssets>)
+        | DeepPartial<Stage.ThemeAssets>
+      overrides?:
+        | ((main: Stage.ThemeMain, assets: Stage.ThemeAssets) => Stage.ThemeOverrides)
+        | Stage.ThemeOverrides
+    }
+
+    type AllProps<
       Containter,
-      ClassSchema
-    >
-    type CreateClasses<ClassesSchema extends ClassesSchemaDefinition, Props> = CreateClassesType<
-      ClassesSchema,
-      Props
-    >
+      ClassSchema extends ClassesSchemaDefinition = ClassesSchemaDefinition,
+    > = AllPropsType<Containter, ClassSchema>
+
+    type CreateClasses<
+      ClassesSchema extends ClassesSchemaDefinition,
+      Props,
+    > = CreateClassesType<ClassesSchema, Props>
+
     type ColorProp = ColorPropType
-    type PropOverrides<ClassSchema extends ClassesSchemaDefinition> = OverridesProp<ClassSchema>
-    type ComponentThemeOverrides<Props, ClassSchema extends ClassesSchemaDefinition> =
-      ThemeOverridesType<Props, ClassSchema>
+
+    type PropOverrides<ClassSchema extends ClassesSchemaDefinition> =
+      OverridesProp<ClassSchema>
+
+    type ComponentThemeOverrides<
+      Props,
+      ClassSchema extends ClassesSchemaDefinition,
+    > = ThemeOverridesType<Props, ClassSchema>
+
+    type Primitive = null | undefined | string | number | boolean | symbol | bigint
 
     type FilterStartingWith<Set, Needle extends string> = Set extends `${Needle}${string}`
       ? Set
       : never
+
+    type DeepPartial<T> = {
+      [P in keyof T]?: T[P] extends Array<infer U>
+        ? Array<DeepPartial<U>>
+        : T[P] extends ReadonlyArray<infer U>
+        ? ReadonlyArray<DeepPartial<U>>
+        : DeepPartial<T[P]>
+    }
+
+    type LiteralUnion<LiteralType, BaseType extends Primitive> =
+      | LiteralType
+      | (BaseType & Record<never, never>)
   }
 }
 
@@ -387,5 +267,6 @@ export { default as Provider } from './Provider'
 
 export { default as useTheme } from './hooks/useTheme'
 export { default as useSystem } from './hooks/useSystem'
+export { default as useBreakpoint } from './hooks/useBreakpoint'
 
 export { default as createTheme } from './utils/createTheme'

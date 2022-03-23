@@ -1,37 +1,38 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React, { forwardRef, ForwardRefRenderFunction, useState } from 'react'
-import { getTR } from './TableRow'
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+import React, { forwardRef, useState } from 'react'
+
 import Types from './types'
 
-const TableCell: ForwardRefRenderFunction<HTMLTableDataCellElement, Types.CellProps<any>> = (
-  props,
-  ref,
-) => {
-  const { column, rowIndex, rowCtxItem, styles, getCellContext } = props
+export const getTR = (target: HTMLElement | null): HTMLTableRowElement | null => {
+  if (!target || target.tagName === 'TR') {
+    return target as HTMLTableRowElement
+  }
+  return getTR(target.parentElement)
+}
 
-  let content = rowCtxItem.row[column.key] || null
+function TableCell(
+  props: Types.CellProps,
+  ref: React.ForwardedRef<HTMLTableDataCellElement>,
+) {
+  const { column, rowIndex, rowCtxItem, styles, getCellContext } = props
 
   /**
    * Need to force function call column.render
    * when isModify changing for current cell
    */
   const [modifyState, setModifyState] = useState<boolean>(false)
+
+  rowCtxItem.setModifyState[column.key] = setModifyState
+  rowCtxItem.isCellModify[column.key] = modifyState
+  let content = rowCtxItem.row[column.key] || null
+
   /**
    * Update RowContextData state
    */
-  rowCtxItem.setModifyState[column.key] = setModifyState
-  rowCtxItem.isCellModify[column.key] = modifyState
-
-  /**
-   * Draggble anchor
-   */
-  if (column.dnd) {
-    content = <div css={styles.rowCellAnchor}>{content}</div>
-  }
-
   if (column.render) {
     content = column.render(
-      getCellContext(rowIndex, column.key) as Types.TableCellContext<any>,
+      getCellContext(rowIndex, column.key) as Types.TableCellContext,
       rowIndex,
     )
   }
@@ -41,15 +42,7 @@ const TableCell: ForwardRefRenderFunction<HTMLTableDataCellElement, Types.CellPr
       ref={ref}
       css={styles.rowCell}
       style={{
-        width: column.width || (column.dnd ? '1rem' : 'auto'),
-      }}
-      onMouseDown={(e) => {
-        if (column.dnd) {
-          const tr = getTR(e.target as HTMLElement)
-          if (tr) {
-            tr.draggable = true
-          }
-        }
+        width: column.width || 'auto',
       }}
     >
       {content}

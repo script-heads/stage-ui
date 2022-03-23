@@ -1,20 +1,32 @@
-import { useSystem } from '@stage-ui/system'
 import React, {
   forwardRef,
-  ForwardRefRenderFunction,
   useEffect,
   useImperativeHandle,
   useRef,
   useState,
 } from 'react'
+
+import { useSystem } from '@stage-ui/system'
+
 import ModalOverlay from './ModalOverlay'
 import ModalPortal from './ModalPortal'
 import ModalWindow from './ModalWindow'
 import styles from './styles'
 import Types from './types'
 
-const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
-  const { hideHeader, overlayClose = true, opened, decoration = 'modal' } = props
+function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
+  const {
+    hideHeader,
+    overlayClose = true,
+    opened,
+    decoration = 'modal',
+    title,
+    subtitle,
+    didOpen,
+    didClose,
+    onClose,
+    children,
+  } = props
 
   const {
     classes,
@@ -29,13 +41,13 @@ const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
   const [active, setActive] = useState(false)
   const [visible, setVisible] = useState<boolean>(false)
   const [customRender, setCustomRender] = useState<React.ReactElement | null>(null)
-  const [title, setTitle] = useState(props.title)
-  const [subtitle, setSubtitle] = useState(props.subtitle)
+  const [currentTitle, setTitle] = useState(title)
+  const [currentSubtitle, setSubtitle] = useState(subtitle)
 
   useEffect(() => {
-    setTitle(props.title)
-    setSubtitle(props.subtitle)
-  }, [props.title, props.subtitle])
+    setTitle(title)
+    setSubtitle(subtitle)
+  }, [title, subtitle])
 
   function open(render?: React.ReactElement | null) {
     document.body.style.overflow = 'hidden'
@@ -49,22 +61,22 @@ const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
     setActive(true)
     setTimeout(() => {
       setVisible(true)
-      props.didOpen?.()
+      didOpen?.()
     }, 50)
   }
 
-  function close(didClose?: () => void) {
+  function close(currentDidClose?: () => void) {
     document.body.style.overflow = ''
 
     setVisible(false)
 
     setTimeout(() => {
       setActive(false)
-      props.didClose?.()
-      didClose?.()
+      currentDidClose?.()
+      currentDidClose?.()
     }, 300)
 
-    props.onClose?.()
+    onClose?.()
   }
 
   useEffect(() => {
@@ -75,9 +87,9 @@ const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
   useImperativeHandle(ref, () => ({
     open,
     close,
-    title,
+    title: currentTitle,
     setTitle,
-    subtitle,
+    subtitle: currentSubtitle,
     setSubtitle,
     render: customRender,
     setRender: setCustomRender,
@@ -111,14 +123,14 @@ const Modal: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
           <ModalWindow
             getStyles={getStyles}
             ref={windowRef}
-            title={title}
-            subtitle={subtitle}
+            title={currentTitle}
+            subtitle={currentSubtitle}
             hideHeader={hideHeader}
             onClosePressed={() => close()}
             containerAttr={attributes}
             containerEvents={events}
           >
-            {customRender !== null ? customRender : props.children}
+            {customRender !== null ? customRender : children}
           </ModalWindow>
         </div>
       </ModalOverlay>

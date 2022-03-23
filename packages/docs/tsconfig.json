@@ -1,6 +1,10 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-		"resolveJsonModule": true,
+    "paths": {
+      "@/*": ["./src/*"],
+    },
   },
+  "include": ["src/**/*", "global.d.ts", "./vite.config.ts", "components"],
+  "exclude": ["node_modules","dist"],
 }
