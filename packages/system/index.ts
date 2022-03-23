@@ -76,6 +76,7 @@ declare global {
     }
 
     type ColorCustom<C = Color> = {
+      /** @deprecated this field */
       palette: Record<string, C>
     }
 
@@ -98,23 +99,25 @@ declare global {
     }
 
     type ColorNames = LiteralUnion<
-      | `gray/${keyof ColorPallete['gray']}`
-      | `yellow/${keyof ColorPallete['yellow']}`
-      | `orange/${keyof ColorPallete['orange']}`
-      | `red/${keyof ColorPallete['red']}`
-      | `rose/${keyof ColorPallete['rose']}`
-      | `pink/${keyof ColorPallete['pink']}`
-      | `green/${keyof ColorPallete['green']}`
-      | `lightGreen/${keyof ColorPallete['lightGreen']}`
-      | `lime/${keyof ColorPallete['lime']}`
-      | `teal/${keyof ColorPallete['teal']}`
-      | `cyan/${keyof ColorPallete['cyan']}`
-      | `lightBlue/${keyof ColorPallete['lightBlue']}`
-      | `blue/${keyof ColorPallete['blue']}`
-      | `indigo/${keyof ColorPallete['indigo']}`
-      | `purple/${keyof ColorPallete['purple']}`
-      | `palette/${keyof ColorCustom['palette']}`
-      | keyof ColorMain,
+      LiteralUnion<
+        | keyof ColorMain
+        | `gray${keyof ColorPallete['gray']}`
+        | `yellow${keyof ColorPallete['yellow']}`
+        | `orange${keyof ColorPallete['orange']}`
+        | `red${keyof ColorPallete['red']}`
+        | `rose${keyof ColorPallete['rose']}`
+        | `pink${keyof ColorPallete['pink']}`
+        | `green${keyof ColorPallete['green']}`
+        | `lightGreen${keyof ColorPallete['lightGreen']}`
+        | `lime${keyof ColorPallete['lime']}`
+        | `teal${keyof ColorPallete['teal']}`
+        | `cyan${keyof ColorPallete['cyan']}`
+        | `lightBlue${keyof ColorPallete['lightBlue']}`
+        | `blue${keyof ColorPallete['blue']}`
+        | `indigo${keyof ColorPallete['indigo']}`
+        | `purple${keyof ColorPallete['purple']}`,
+        keyof ColorCustom['palette']
+      >,
       string
     >
 

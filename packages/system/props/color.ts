@@ -13,14 +13,14 @@ function colorProp<V extends ColorProp | undefined>(
 
   switch (typeof value) {
     case 'string': {
-      const [color, shade] = value.split('/') as [
+      const [color, shade] = value.split(/(\d+)/) as [
         keyof Stage.Colors,
         keyof Stage.ColorShades,
       ]
       if (shade) {
         resolvedColor = (theme.color[color] as Stage.ColorShades)[shade]
       } else {
-        resolvedColor = theme.color[color]
+        resolvedColor = theme.color[color] || theme.color.palette[color]
       }
       break
     }
