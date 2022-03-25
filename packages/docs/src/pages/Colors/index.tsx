@@ -1,9 +1,10 @@
-import { Flexbox, Block, Text, Header, useTheme } from '@stage-ui/core'
 import React, { Fragment } from 'react'
+
+import { Flexbox, Block, Text, Header, useTheme } from '@stage-ui/core'
 
 export const title = 'Collection'
 
-export default () => {
+function ColorPage() {
   const theme = useTheme()
 
   const colors: Record<string, Record<string, string>> = {}
@@ -18,7 +19,7 @@ export default () => {
           colors[colorKey] = {}
         }
         if (key.startsWith('A')) {
-          colorKey = colorKey + ' Accent'
+          colorKey += ' Accent'
           if (!colors[colorKey]) {
             colors[colorKey] = {}
           }
@@ -34,12 +35,23 @@ export default () => {
     <Flexbox column mb="m">
       {Object.keys(colors).map((color) => (
         <Fragment key={color}>
-          <Header size="xs" my="s" color="gray400">{color}</Header>
+          <Header size="xs" my="s" color="gray400">
+            {color}
+          </Header>
           <Flexbox>
             {Object.keys(colors[color]).map((key, index) => (
               <Flexbox key={key}>
-                <Block borderRadius="s" w="3rem" h="2rem" mr="xs" p="s" backgroundColor={colors[color][key]}>
-                  <Text weight={600} size="xs" color={index > 4 ? 'white' : 'black'}>{key}</Text>
+                <Block
+                  borderRadius="s"
+                  w="3rem"
+                  h="2rem"
+                  mr="xs"
+                  p="s"
+                  backgroundColor={colors[color][key]}
+                >
+                  <Text weight={600} size="xs" color={index > 4 ? 'white' : 'black'}>
+                    {key}
+                  </Text>
                 </Block>
               </Flexbox>
             ))}
@@ -49,3 +61,5 @@ export default () => {
     </Flexbox>
   )
 }
+
+export default ColorPage

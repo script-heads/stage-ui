@@ -1,17 +1,16 @@
 {
 	"name": "@stage-ui/docs",
-	"author": "Project one",
-	"version": "0.2.1",
+	"author": "Script Heads",
+	"version": "0.3.0",
 	"license": "MIT",
 	"main": "index.ts",
 	"scripts": {
 		"start": "vite",
 		"build": "vite build",
 		"preview": "vite preview",
-		"gen": "yarn gen:createTypes && yarn gen:generateTypes && yarn gen:fixTypes",
-		"gen:createTypes": "typedoc",
-    "gen:generateTypes": "node ./scripts/generateTypes.js",
-    "gen:fixTypes": "node ./scripts/fixTypes.js",
+		"gen": "yarn gen:typedoc && yarn gen:declarations",
+		"gen:typedoc": "typedoc",
+    "gen:declarations": "cd ../core && yarn gen:declarations && cd ../icons && yarn gen:declarations && cd ../system && yarn gen:declarations && cd ../docs && mv ../../declarations/* ./public/types && rm -fr ../../declarations",
 		"type-check": "tsc --noEmit",
     "type-check:watch": "tsc --noEmit --watch"
 	},

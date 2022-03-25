@@ -1,6 +1,7 @@
 # build
 build
 dist
+declarations
 
 # dependencies
 node_modules

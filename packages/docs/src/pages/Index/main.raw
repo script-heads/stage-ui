@@ -1,10 +1,12 @@
 {
     name: 'Light',
     color: {
+        /* 
+        * Also includes pallete colors.
+        * You can find them in colors page
+        */
         background: [245, 245, 245],
-        backgroundVariant: [235, 235, 235],
         surface: [255, 255, 255],
-        surfaceVariant: [230, 230, 230],
         primary: [74, 139, 252],
         secondary: [252, 148, 74],
 
@@ -13,32 +15,24 @@
         onPrimary: [255, 255, 255],
         onSecondary: [255, 255, 255],
 
-        lightest: [230, 230, 230],
-        light: [150, 150, 150],
-        hard: [120, 120, 120],
-        hardest: [100, 100, 100],
-
         error: [224, 32, 32],
         successful: [109, 212, 0],
         warning: [250, 100, 0],
         info: [0, 145, 255],
-        /* 
-        * Optional. You can put any colors which  
-        * you planed to use in Application
-        */
-        palette: {}
     },
     radius: {
-        default: '0.5rem',
-        narrow: '0.25rem',
-        wide: '1rem',
+      xs: '0.125rem',
+      s: '0.25rem',
+      m: '0.5rem',
+      l: '0.75rem',
+      xl: '1rem',
     },
     spacing: {
-        xs: '.25rem',
-        s: '.5rem',
-        m: '1rem',
-        l: '1.5rem',
-        xl: '1.75rem',
+      xs: '.25rem',
+      s: '.5rem',
+      m: '1rem',
+      l: '1.5rem',
+      xl: '1.75rem',
     },
     /* 
     * Optional. Uses in style props for set 

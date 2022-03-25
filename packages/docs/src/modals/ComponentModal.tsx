@@ -1,20 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { Block, Modal, ScrollView, Table } from '@stage-ui/core'
+import { Block, Flexbox, Modal, ScrollView, Spinner, Table, Text } from '@stage-ui/core'
 import breakpointProp from '@stage-ui/system/props/breakpoint'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 import core from '@/utils/core'
 import Playground from '@/components/Playground'
-import { get } from '@/utils/typedoc'
-
-const componentTypes = get()
+import getDeclarations from '@/utils/declarations'
+import { TranspileProps } from '@/components/Playground/Viewport'
+import { Property } from '@/utils/typedoc'
 
 function ComponentModal() {
   const navigate = useNavigate()
   const location = useLocation()
   const data = core.getPageByUrl(location.pathname)
+  const [typedoc, setTypedoc] = useState<Record<string, Property[]> | null>(null)
+  const [typescript, setTypescript] = useState<TranspileProps | null>(null)
   document.title = `StageUI${data ? ` — ${data.title}` : ''}`
+
+  useEffect(() => {
+    getDeclarations().then((result) => {
+      setTypedoc(result)
+      import('typescript').then(({ transpile, JsxEmit, ModuleKind }) =>
+        setTypescript({
+          transpile,
+          jsxEmit: JsxEmit.React,
+          moduleKind: ModuleKind.ES2015,
+        }),
+      )
+    })
+  }, [])
 
   if (!data) return null
 
@@ -28,28 +43,45 @@ function ComponentModal() {
           {
             width: '100%',
             padding: '1rem 1.75rem',
+            minHeight: '25vh',
           },
           breakpointProp(['80vw', '90vw', '100vw'], t, (maxWidth) => ({ maxWidth })),
         ],
       })}
       didClose={() => navigate('/components')}
     >
-      <Block>
-        {data.cases && <Playground cases={data.cases} title={data.title} />}
-        {data.default && <data.default />}
-        {componentTypes[data.title] && (
-          <ScrollView mt="l" xBarPosition="none">
-            <Table
-              data={componentTypes[data.title]}
-              columns={[
-                { key: 'name', title: 'Property' },
-                { key: 'value', title: 'Value' },
-                { key: 'description', title: 'Description' },
-              ]}
+      {(!typedoc || !typescript) && (
+        <Flexbox h="100%" alignItems="center" justifyContent="center" column my="16rem">
+          <Spinner size="4rem" mb="xl" />
+          <Text>Loading Playground...</Text>
+        </Flexbox>
+      )}
+      {typedoc && typescript && (
+        <Block>
+          {data.cases && (
+            <Playground
+              cases={data.cases}
+              title={data.title}
+              transpile={typescript.transpile}
+              jsxEmit={typescript.jsxEmit}
+              moduleKind={typescript.moduleKind}
             />
-          </ScrollView>
-        )}
-      </Block>
+          )}
+          {data.default && <data.default />}
+          {typedoc[data.title] && (
+            <ScrollView mt="l" xBarPosition="none">
+              <Table
+                data={typedoc[data.title]}
+                columns={[
+                  { key: 'name', title: 'Property' },
+                  { key: 'value', title: 'Value' },
+                  { key: 'description', title: 'Description' },
+                ]}
+              />
+            </ScrollView>
+          )}
+        </Block>
+      )}
     </Modal>
   )
 }

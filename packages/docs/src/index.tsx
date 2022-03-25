@@ -45,6 +45,9 @@ function Docs() {
             background: currentTheme.color.background.hex(),
             overscrollBehavior: 'none',
           },
+          '.scroll-decoration': {
+            boxShadow: 'none !important',
+          },
         }}
       >
         <Router>

@@ -1,58 +1,112 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
-import {
-  Block,
-  Flexbox,
-  Grid,
-  notify,
-  Split,
-  Button,
-  useTheme,
-  useBreakpoints,
-  Header,
-} from '@stage-ui/core'
+import { Block, Flexbox, Grid, notify, Button, useTheme, Header } from '@stage-ui/core'
 
 import { Copy, Grid as GridIcon } from '@stage-ui/icons'
 import createID from '@stage-ui/system/utils/createID'
-import Color from 'color'
+import color from 'color'
 
-import Viewport from './Viewport'
-import Editor from './Editor'
+import Viewport, { TranspileProps } from './Viewport'
 
 import ErrorBoundary from './ErrorBoundary'
 
-import monaco from '@/utils/monaco'
 import { PageType } from '@/utils/core'
 
-interface EditorProps {
+interface EditorProps extends TranspileProps {
   cases: Exclude<PageType['cases'], undefined>
   title: string
 }
 
-function Playground({ cases, title }: EditorProps) {
+monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
+  target: monaco.languages.typescript.ScriptTarget.ES2016,
+  allowNonTsExtensions: true,
+  moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
+  module: monaco.languages.typescript.ModuleKind.CommonJS,
+  noEmit: true,
+  jsx: monaco.languages.typescript.JsxEmit.React,
+  jsxFactory: 'React.createElement',
+  esModuleInterop: true,
+})
+
+const model = monaco.editor.createModel(
+  '',
+  'typescript',
+  monaco.Uri.parse(`file:///main.tsx`),
+)
+
+let editor: monaco.editor.IStandaloneCodeEditor | null = null
+
+function Playground({ cases, title, jsxEmit, moduleKind, transpile }: EditorProps) {
   const [currentCase, setCurrentCase] = useState<number>(0)
   const [code, setEditorCode] = useState<string>(cases[0].code)
   const [grid, setGrid] = useState(!(localStorage.getItem('case_grid') === 'false'))
-  const direction = useBreakpoints<'row' | 'column'>(['row', 'row', 'row', 'column'])
+  const monacoRootRef = useRef<HTMLDivElement>(null)
   const theme = useTheme()
 
-  const setCode = (newCode: string) => {
-    setEditorCode('')
-    setTimeout(() => setEditorCode(newCode))
-  }
+  useEffect(() => {
+    if (monacoRootRef.current) {
+      editor = monaco.editor.create(monacoRootRef.current, {
+        model,
+        minimap: {
+          enabled: false,
+        },
+        automaticLayout: true,
+        fontSize: 14,
+        padding: {
+          top: 16,
+        },
+        folding: false,
+        lineNumbers: 'off',
+        overviewRulerBorder: false,
+        fontWeight: '600',
+        scrollBeyondLastLine: false,
+        scrollbar: {
+          alwaysConsumeMouseWheel: false,
+        },
+        codeLens: false,
+        cursorWidth: 4,
+      })
+    }
+    editor?.onDidChangeModelContent(() => setEditorCode(editor?.getValue() || ''))
+    return () => {
+      editor?.dispose()
+    }
+  }, [])
 
   useEffect(() => {
-    monaco.setTheme(theme.color.background.contrast(Color('#fff')) > 3 ? 'vs-dark' : 'vs')
+    monaco.editor?.setTheme(
+      theme.color.background.contrast(color('#fff')) > 3 ? 'vs-dark' : 'vs',
+    )
   }, [theme])
 
   useEffect(() => {
     setCurrentCase(0)
-    monaco.setCode(cases[0].code)
+    editor?.setValue(cases[0].code)
   }, [cases])
 
   useEffect(() => {
-    monaco.setCode(cases[currentCase].code)
+    editor?.setValue(cases[currentCase].code)
   }, [currentCase])
+
+  function copyToClipboard() {
+    const content = editor?.getValue() || ''
+    navigator?.clipboard.writeText(content).then(
+      () => {
+        notify({
+          title: 'Playground',
+          message: 'Code copied to clipboard',
+          timeout: 3000,
+        })
+      },
+      () => {
+        notify({
+          title: 'Playground',
+          message: 'Failed to copy',
+          timeout: 3000,
+        })
+      },
+    )
+  }
 
   return (
     <Block w="100%">
@@ -108,33 +162,23 @@ function Playground({ cases, title }: EditorProps) {
           ml="0.5rem"
           size="1.5rem"
           color={(c) => c.onSurface}
-          onClick={() => {
-            monaco.copyToClipboard()
-            notify({
-              title: 'UI Editor',
-              message: 'Code copied to clipboard!',
-              timeout: 3000,
-            })
-          }}
+          onClick={copyToClipboard}
         />
       </Grid>
-      <Block
-        h="28rem"
-        shadow="xs"
-        borderRadius="m"
-        style={{
-          overflow: 'hidden',
-          transform: 'translateZ(0)',
-        }}
-      >
-        <Split direction={direction}>
-          <Editor setCode={setCode} key="editor" />
-          <Block h="calc(100% - 0.25rem)" flex={1} overflow="hidden" key="preview">
-            <ErrorBoundary>
-              {code && <Viewport theme={theme} code={code} grid={grid} />}
-            </ErrorBoundary>
-          </Block>
-        </Split>
+      <Block h="28rem" shadow="xs" borderRadius="m">
+        <Flexbox h="100%" direction={['row', 'row', 'row', 'column']}>
+          <Block ref={monacoRootRef} flex={1} h="100%" pl="0.5rem" />
+          <ErrorBoundary code={code}>
+            <Viewport
+              theme={theme}
+              code={code}
+              grid={grid}
+              jsxEmit={jsxEmit}
+              moduleKind={moduleKind}
+              transpile={transpile}
+            />
+          </ErrorBoundary>
+        </Flexbox>
       </Block>
     </Block>
   )

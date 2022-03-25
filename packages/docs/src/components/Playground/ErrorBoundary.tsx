@@ -3,13 +3,26 @@ import React, { ErrorInfo } from 'react'
 import { Block, Divider, Flexbox, Header, ScrollView, Text } from '@stage-ui/core'
 import { Code } from '@stage-ui/icons'
 
-export type ErrorBoundaryProps = { children: React.ReactNode }
+export type ErrorBoundaryProps = { children: React.ReactNode; code: string }
 export type ErrorBoundaryState = { error: Error | null; errorInfo: ErrorInfo | null }
+
+let codeCache = ''
 
 class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
     super(props)
     this.state = { error: null, errorInfo: null }
+  }
+
+  componentDidUpdate() {
+    const { code } = this.props
+    const { error } = this.state
+
+    if (code !== codeCache && error !== null) {
+      this.setState({ error: null, errorInfo: null })
+    }
+
+    codeCache = code
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {

@@ -9,6 +9,7 @@
     "build:types": "tsc --emitDeclarationOnly",
     "type-check": "tsc --noEmit",
     "type-check:watch": "tsc --noEmit --watch",
+    "gen:declarations": "tsc --project tsconfig.docs.json",
     "lint": "eslint --config .eslintrc.json --fix '**/*.+(js|jsx|ts|tsx)'"
   },
   "dependencies": {
