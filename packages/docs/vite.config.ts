@@ -21,6 +21,7 @@ export default defineConfig({
     },
   },
   build: {
+    target: 'es2015',
     outDir: path.resolve(__dirname, '../../build/docs'),
   },
   server: {

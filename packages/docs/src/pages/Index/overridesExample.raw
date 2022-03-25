@@ -1,13 +1,13 @@
 {
-    container: {
-        backgroundColor: 'yellow'
+  container: {
+    backgroundColor: 'yellow'
+  },
+  item: (state) => [
+    {
+      backgroundColor: 'red'
     },
-    item: (state) => [
-        {
-            backgroundColor: 'red'
-        },
-        state.color === 'green' {
-            backgroundColor: 'green'
-        }  
-    ]
+    state.color === 'green' {
+      backgroundColor: 'green'
+    }  
+  ]
 }

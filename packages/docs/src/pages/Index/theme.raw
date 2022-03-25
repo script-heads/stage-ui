@@ -1,21 +1,21 @@
 import { createTheme } from '@stage-ui/core'
 
 const light = createTheme({
-    main,
-    assets,
-    overrides
+  main,
+  assets,
+  overrides
 })
 
 const dark = light.replace({
-    main: {
-        colors: {
-            // Some changes
-        }
+  main: {
+    colors: {
+      // Some changes
     }
+  }
 })
 
 export default (props) => {
-    return (
-        <Viewport theme={props.dark ? dark : light}/>
-    )
+  return (
+    <Viewport theme={props.dark ? dark : light}/>
+  )
 }
