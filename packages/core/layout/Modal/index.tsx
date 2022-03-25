@@ -72,7 +72,7 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
 
     setTimeout(() => {
       setActive(false)
-      currentDidClose?.()
+      didClose?.()
       currentDidClose?.()
     }, 300)
 
