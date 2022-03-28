@@ -126,6 +126,10 @@ plugins.push(
        * definitions for monaco TSLint
        */
       { from: `${ProjectDIR}/public/definitions`, to: `${BuildDIR}/definitions` },
+      /**
+       * Assets
+       */
+      { from: `${ProjectDIR}/public/assets`, to: `${BuildDIR}/assets` },
     ],
   }),
 )

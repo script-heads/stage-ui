@@ -3,6 +3,8 @@ build
 dist
 public
 
+!public/index.html
+
 # dependencies
 node_modules
 packages/mobile/**/build

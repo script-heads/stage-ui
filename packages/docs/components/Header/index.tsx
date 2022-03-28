@@ -41,6 +41,9 @@ const Header = () => {
         onClick={() => history.push('/')}
       >
         StageUI
+        <Text size="3rem" lineHeight={0}>
+          .
+        </Text>
       </TextHeader>
       <Menu />
       <Text size="xs" mt="xs" color="light" gridArea="version">
