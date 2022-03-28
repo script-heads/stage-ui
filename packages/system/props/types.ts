@@ -1,6 +1,9 @@
-import CSS from 'csstype'
 import React from 'react'
+
+import CSS from 'csstype'
+
 import { ClassesSchemaDefinition } from '../hooks/useSystem'
+
 import { BreakpointProp } from './breakpoint'
 import { ColorProp } from './color'
 import { OverridesProp } from './overrides'
@@ -10,8 +13,10 @@ import { SpaceProp } from './space'
  * All typical component props
  * @name All
  */
-export interface AllProps<Container, ClassSchema extends ClassesSchemaDefinition = {}>
-  extends CoreProps<Container, ClassSchema>,
+export interface AllProps<
+  Container,
+  ClassSchema extends ClassesSchemaDefinition = ClassesSchemaDefinition,
+> extends CoreProps<Container, ClassSchema>,
     AttributeProps,
     AllEventProps<Container>,
     AllStyleProps {}
@@ -20,7 +25,10 @@ export interface AllProps<Container, ClassSchema extends ClassesSchemaDefinition
  * Component core props
  * @name Core
  */
-export interface CoreProps<Container, ClassesSchema extends ClassesSchemaDefinition = {}> {
+export interface CoreProps<
+  Container,
+  ClassesSchema extends ClassesSchemaDefinition = ClassesSchemaDefinition,
+> {
   /**
    * Override any component style
    * @display Stage.Styles
@@ -41,7 +49,7 @@ export interface CoreProps<Container, ClassesSchema extends ClassesSchemaDefinit
    * @display Stage.Styles
    * @link /props#attributes
    */
-  attributes?: React.HTMLAttributes<Container>
+  attributes?: Record<string, string | number>
 }
 
 /**
