@@ -22,10 +22,11 @@ function Components() {
   return (
     <Flexbox column>
       <TextField
+        size="xl"
+        decoration="underline"
         placeholder="Find by name"
-        w="12rem"
+        w="100%"
         mb="l"
-        rightChild={<Search />}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />

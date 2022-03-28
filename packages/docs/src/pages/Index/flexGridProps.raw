@@ -1,4 +1,1 @@
-<Block
-  flex={1}
-  alignSelf='flex-end'
-/>
+<Block flex={1} alignSelf='flex-end' />

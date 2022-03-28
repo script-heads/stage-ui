@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Grid, Text, Header as TextHeader } from '@stage-ui/core'
-import { Github, Moon } from '@stage-ui/icons'
+import { Moon } from '@stage-ui/icons'
 import corePackage from '@stage-ui/core/package.json'
 import { useNavigate } from 'react-router-dom'
 
@@ -26,10 +26,10 @@ function Header() {
         '1fr repeat(3, max-content)',
       ]}
       templateAreas={[
-        `"logo menu version theme git"`,
-        `"logo menu version theme git"`,
-        `"logo menu version theme git"`,
-        `"logo version theme git" "menu menu menu menu"`,
+        `"logo menu version theme theme"`,
+        `"logo menu version theme theme"`,
+        `"logo menu version theme theme"`,
+        `"logo version theme theme" "menu menu menu menu"`,
       ]}
       alignItems="center"
     >
@@ -41,26 +41,23 @@ function Header() {
         style={{
           transition: 'all 0.125s',
         }}
+        color={(c) => c.onSurface.alpha(0.3)}
         onClick={() => navigate('/')}
       >
-        StageUI
+        StageUI<Text size="3rem" lineHeight={0}>.</Text>
       </TextHeader>
-      <Menu />
-      <Text size="xs" mt="xs" color="light" gridArea="version">
+      <Text size="xs" mt="xs" p="0.0625rem s" color="surface" weight={600} borderRadius="1rem" gridArea="version" backgroundColor={(c) => c.onSurface.alpha(0.9)}>
         v.{corePackage.version}
       </Text>
+      <Menu />
       <Moon
         gridArea="theme"
         size="1.5rem"
+        borderRadius="100%"
         color={currentTheme.name === 'Dark' ? 'primary' : 'onSurface'}
         onClick={() => {
           setTheme?.(themes[currentTheme.name === 'Dark' ? 'light' : 'dark'])
         }}
-      />
-      <Github
-        gridArea="git"
-        size="1.5rem"
-        onClick={() => window.open('https://github.com/pt-one/StageUI', '_blank')}
       />
     </Grid>
   )

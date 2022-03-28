@@ -15,10 +15,11 @@ function MenuItem({
     <Text
       p="0"
       mr="xl"
-      color={active ? 'primary' : 'onBackground'}
+      color={active ? 'primary' : 'onSurface'}
       style={{
         transition: 'all 0.125s',
       }}
+      size="l"
       weight={500}
       onClick={onClick}
     >

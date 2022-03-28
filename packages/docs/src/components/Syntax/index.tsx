@@ -11,14 +11,16 @@ function Syntax({ code, ...blockProps }: { code: string } & BlockTypes.Props) {
   const theme = useTheme()
   const isDark = !!/DARK/.exec(theme.name.toUpperCase())
   const styles = {
-    padding: '1rem',
+    paddingLeft: '2rem',
     fontSize: theme.assets.typography.text.m.fontSize,
     lineHeight: 1.5,
-    borderRadius: theme.radius.m,
-    border: '1px solid',
+    fontWeight: 600,
+    borderLeft: '1rem solid',
     borderColor: isDark
       ? theme.color.gray[700].rgb().string()
-      : theme.color.gray[300].rgb().string(),
+      : theme.color.gray[200].rgb().string(),
+    // borderTopWidth: '0px',
+    // borderBottomWidth: '0px',
     background: theme.color.background,
     minWidth: 0,
     backgroundColor: theme.color.surface.hex(),

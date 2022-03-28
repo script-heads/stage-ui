@@ -153,28 +153,15 @@ declare global {
       typography: {
         header: Record<
           Sizes,
-          {
-            fontSize: string
-            lineHeight: string | number
-            marginTop?: string | number
-            marginBottom?: string | number
-          }
+          CSSObject
         >
         text: Record<
           Sizes,
-          {
-            fontSize: string
-            lineHeight: string | number
-          }
+          CSSObject
         >
         paragraph: Record<
           Sizes,
-          {
-            fontSize: string
-            lineHeight: string | number
-            marginTop?: string | number
-            marginBottom?: string | number
-          }
+          CSSObject
         >
       }
     }

@@ -38,17 +38,71 @@ function Docs() {
   return (
     <DocsContext.Provider value={nextContext}>
       <Viewport
-        theme={currentTheme}
-        global={{
+        theme={currentTheme.replace({
+          assets: {
+            typography: {
+              header: {
+                xl: {
+                  fontSize: '3.5rem',
+                  lineHeight: 1.11,
+                  fontWeight: '600 !important',
+                  letterSpacing: '-1px',
+                  color: currentTheme.color.onSurface.alpha(0.85).rgb().string(),
+                  marginTop: '5rem',
+                }
+              }, 
+              paragraph: {
+                xl: {
+                  fontSize: '1.5rem',
+                  lineHeight: 1.5,
+                  letterSpacing: '0.0625rem',
+                  marginTop: '2rem',
+                  marginBottom: '2.5rem',
+                }
+              }
+            }
+          }
+        })}
+        global={[{
           'html,body,#docs': {
             minHeight: '100vh',
-            background: currentTheme.color.background.hex(),
+            background: currentTheme.color.surface.hex(),
             overscrollBehavior: 'none',
+            fontFamily: 'LotaGrotesque',
+            WebkitFontSmoothing: 'antialiased',
           },
           '.scroll-decoration': {
             boxShadow: 'none !important',
           },
-        }}
+        },`
+        @font-face{
+          font-family:LotaGrotesque;
+          src:url(/assets/fonts/LotaGrotesque-Regular.woff2);
+          src:url(/assets/fonts/LotaGrotesque-Regular.woff) format("woff"),
+              url(/assets/fonts/LotaGrotesque-Regular.eot?#iefix) format("embedded-opentype"),
+              url(/assets/fonts/LotaGrotesque-Regular.ttf) format("truetype");
+          font-weight:400;
+          font-style:normal
+        }
+        @font-face{
+          font-family:LotaGrotesque;
+          src:url(/assets/fonts/LotaGrotesque-SemiBold.woff2);
+          src:url(/assets/fonts/LotaGrotesque-SemiBold.woff) format("woff"),
+              url(/assets/fonts/LotaGrotesque-SemiBold.eot?#iefix) format("embedded-opentype"),
+              url(/assets/fonts/LotaGrotesque-SemiBold.ttf) format("truetype");
+          font-weight:600;
+          font-style:normal
+        }
+        @font-face{
+          font-family:LotaGrotesque;
+          src:url(/assets/fonts/LotaGrotesque-Bold.woff2);
+          src:url(/assets/fonts/LotaGrotesque-Bold.woff) format("woff"),
+              url(/assets/fonts/LotaGrotesque-Bold.eot?#iefix) format("embedded-opentype"),
+              url(/assets/fonts/LotaGrotesque-Bold.ttf) format("truetype");
+          font-weight:700;
+          font-style:normal;
+        }
+      `]}
       >
         <Router>
           <ScrollView

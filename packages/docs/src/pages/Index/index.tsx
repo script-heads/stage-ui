@@ -26,20 +26,19 @@ export const sticky = true
 export default function Index() {
   return (
     <Block>
-      <Header>Getting started</Header>
+      <Header size="xl">Getting started</Header>
       <Syntax code="npm i @stage-ui/core" />
-      <Paragraph>
+      <Paragraph size="xl">
         Use Viewport component at the top level of your application. It provide theme to
         all StageUI components, apply some Reset CSS and had another useful
         configurations.
       </Paragraph>
       <Syntax code={ViewportCode} />
 
-      <Header id="props">Props</Header>
-      <Header id="color" size="s">
+      <Header size="xl">
         Breakpoints
       </Header>
-      <Paragraph>
+      <Paragraph size="xl">
         All props what apply certain style to component, like padding, margin or
         backgroundColor suport array notation where value of each index is match with
         max-width media query breakpoint. Use "*" character to repeat previous value. It
@@ -48,29 +47,29 @@ export default function Index() {
       </Paragraph>
       <Syntax code={breakpoints} />
 
-      <Header id="color" size="s">
+      <Header size="xl">
         Style
       </Header>
-      <Paragraph>
+      <Paragraph size="xl">
         This prop is like corresponding attribute in HTML, but apply these styles to
         classname of components root element.
       </Paragraph>
       <Syntax code={styleProp} />
 
-      <Header id="color" size="s">
+      <Header size="xl">
         Overrides
       </Header>
-      <Paragraph>
+      <Paragraph size="xl">
         Like style prop, but there you able to specify styles to each elements of
         component. If they are matching existing styles in current class they will be
         overrided. It just one style prop what cant be specify as array of breakpoints.
       </Paragraph>
       <Syntax code={overridesProp} />
 
-      <Header id="color" size="s">
+      <Header size="xl">
         Color
       </Header>
-      <Paragraph>
+      <Paragraph size="xl">
         All colors described in StageUI theme turn into Objects with useful functions that
         can transform colors brightness, hue, get rgb or hex notation and much more useful
         parametrs. This props recive function what provide all theme colors in one
@@ -78,10 +77,10 @@ export default function Index() {
       </Paragraph>
       <Syntax code={colorProps} />
 
-      <Header id="margin-padding" size="s">
+      <Header size="xl" id="margin-padding">
         Margin and Padding
       </Header>
-      <Paragraph>
+      <Paragraph size="xl">
         Shorthand for margin and padding styles with size alias from theme spacing
       </Paragraph>
       <Syntax code={spacingProps} />
@@ -92,23 +91,23 @@ export default function Index() {
           'mr: margin-right',
           'mb: margin-bottom',
           'ml: margin-left',
-          'mx: margin-left and margin-right',
-          'my: margin-top and margin-bottom',
+          'mx: margin-left/right',
+          'my: margin-top/bottom',
           'p : padding',
           'pt: padding-top',
           'pr: padding-right',
           'pb: padding-bottom',
           'pl: padding-left',
-          'px: padding-left and padding-right',
-          'py: padding-top and padding-bottom',
+          'px: padding-left/right',
+          'py: padding-top/bottom',
         ]}
         higlightBefore=":"
       />
 
-      <Header id="flex-grid" size="s">
+      <Header size="xl" id="flex-grid">
         Flexbox and grid
       </Header>
-      <Paragraph>Shorthand for flexbox and grid children styles</Paragraph>
+      <Paragraph size="xl">Shorthand for flexbox and grid children styles</Paragraph>
       <Syntax code={flexGridProps} />
       <List
         data={[
@@ -130,19 +129,19 @@ export default function Index() {
         higlightBefore=":"
       />
 
-      <Header id="layout" size="s">
+      <Header size="xl" id="layout">
         Layout
       </Header>
-      <Paragraph>Shorthand for layout styles</Paragraph>
+      <Paragraph size="xl">Shorthand for layout styles</Paragraph>
       <Syntax code={layoutProps} />
       <List
         data={['w: width', 'h: height', 'visibility: visibility', 'display: display']}
         higlightBefore=":"
       />
-      <Header id="border" size="s">
+      <Header size="xl" id="border">
         Border
       </Header>
-      <Paragraph>Shorthand for border styles</Paragraph>
+      <Paragraph size="xl">Shorthand for border styles</Paragraph>
       <Syntax code={borderProps} />
       <List
         data={[
@@ -154,8 +153,8 @@ export default function Index() {
         higlightBefore=":"
       />
 
-      <Header id="theming">Theming</Header>
-      <Paragraph>
+      <Header size="xl" id="theming">Theming</Header>
+      <Paragraph size="xl">
         StageUI contains two themes by itself: Light and Dark. Light is default. Any theme
         passs into Viewports theme prop. For create new theme you can use replace method
         from existing theme and just override some values or make theme from scratch. If
@@ -164,20 +163,20 @@ export default function Index() {
       </Paragraph>
       <Syntax code={theme} />
 
-      <Header size="s">Main</Header>
-      <Paragraph>Contains general variables of theme.</Paragraph>
+      <Header size="l">Main</Header>
+      <Paragraph size="xl">Contains general variables of theme.</Paragraph>
       <Syntax code={main} />
 
-      <Header size="s">Assets</Header>
-      <Paragraph>
+      <Header size="l">Assets</Header>
+      <Paragraph size="xl">
         Place for all styles that uses between components. Assets must be discribed by the
         function which takes main varaibles for use eg colors. Empty objects in exaple
         below are filled by analogy.
       </Paragraph>
       <Syntax code={assets} />
 
-      <Header size="s">Overrides</Header>
-      <Paragraph>
+      <Header size="l">Overrides</Header>
+      <Paragraph size="xl">
         All components have special styled system, that can be overriden from theme and
         styles prop.
       </Paragraph>

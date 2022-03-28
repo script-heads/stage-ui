@@ -23,7 +23,6 @@ function ComponentPreview({ page }: { page: PageType }) {
       backgroundColor="surface"
       style={{
         transition: 'all 0.125s',
-        boxShadow: theme.assets.shadow.xs,
         ':hover': {
           transform: 'scale(1.1)',
           boxShadow: theme.assets.shadow.xl,
@@ -38,13 +37,13 @@ function ComponentPreview({ page }: { page: PageType }) {
         <Glyph
           css={{
             fill: theme.color.onSurface.hex(),
-            width: '3rem',
-            height: '3rem',
+            width: '6rem',
+            height: '6rem',
             transition: 'all 0.125s',
           }}
         />
       )}
-      <Text weight={500} color="hardest" p="s">
+      <Text mt="m" weight={500} color={(c) => c.onSurface.alpha(0.6)}>
         {page.title}
       </Text>
     </Flexbox>

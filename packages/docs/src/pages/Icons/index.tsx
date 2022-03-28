@@ -12,10 +12,11 @@ function IconsPage() {
   return (
     <>
       <TextField
+        size="xl"
+        decoration="underline"
         placeholder="Find by name"
-        w="12rem"
+        w="100%"
         mb="l"
-        rightChild={<Search />}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
@@ -34,8 +35,8 @@ function IconsPage() {
                 key={key}
                 column
                 alignItems="center"
-                p="m"
-                w="10rem"
+                p="xl m"
+                w="13rem"
                 borderRadius="1rem"
                 onClick={() => {
                   const el = document.createElement('textarea')
@@ -53,7 +54,6 @@ function IconsPage() {
                 css={{
                   flexDirection: 'column',
                   transition: 'all 0.125s',
-                  boxShadow: theme.assets.shadow.xs,
                   backgroundColor: theme.color.surface.rgb().string(),
                   ':hover': {
                     transform: 'scale(1.1)',
@@ -68,7 +68,7 @@ function IconsPage() {
                   },
                 }}
               >
-                <Flexbox pb="s">
+                <Flexbox pb="m">
                   <PreviewIcon
                     type="filled"
                     size="2.75rem"
@@ -76,13 +76,12 @@ function IconsPage() {
                     css={{ display: 'none' }}
                   />
                   <PreviewIcon
-                    color="hardest"
                     type="outline"
                     size="2.75rem"
                     attributes={{ 'data-id': 'outline' }}
                   />
                 </Flexbox>
-                <Text weight={500} color="hardest" p="s">
+                <Text mt="m" weight={500} color={(c) => c.onSurface.alpha(0.6)}>
                   {key}
                 </Text>
               </Flexbox>

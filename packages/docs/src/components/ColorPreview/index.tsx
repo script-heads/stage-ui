@@ -8,9 +8,8 @@ function ColorPreview({ value, name }: { value: Stage.Color; name: string }) {
 
   return (
     <Block
-      borderRadius="s"
-      w="6rem"
-      h="3rem"
+      w="8rem"
+      h="4rem"
       mr="xs"
       mt="xs"
       p="s"
@@ -18,7 +17,6 @@ function ColorPreview({ value, name }: { value: Stage.Color; name: string }) {
     >
       <Text
         weight={600}
-        size="xs"
         color={
           value.contrast(theme.color.white) > 3 ? theme.color.white : theme.color.black
         }

@@ -30,7 +30,7 @@ function ColorPage() {
     if (!(color as Stage.Color).rgb) {
       palette.push(
         <Fragment key={colorName}>
-          <Header size="xs">
+          <Header size="xl">
             {colorName.charAt(0).toUpperCase() + colorName.toLowerCase().slice(1)}
           </Header>
           <Flexbox wrap="wrap">
@@ -60,7 +60,7 @@ function ColorPage() {
 
   return (
     <>
-      <Header size="xs">General</Header>
+      <Header size="xl">General</Header>
       <Flexbox wrap="wrap">{general}</Flexbox>
       {palette}
     </>
