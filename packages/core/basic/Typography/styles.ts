@@ -1,9 +1,13 @@
 import colorResolver from '@stage-ui/system/props/color'
 import sizeResolver from '@stage-ui/system/props/size'
 import breakpointResolver from '@stage-ui/system/props/breakpoint'
+
 import Types from './types'
 
-const createClasses: Stage.CreateClasses<Types.Classes, Types.PrivateProps> = (theme, props) => ({
+const createClasses: Stage.CreateClasses<Types.Classes, Types.PrivateProps> = (
+  theme,
+  props,
+) => ({
   container: [
     props.ellipsis && {
       whiteSpace: 'nowrap',
@@ -12,10 +16,14 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.PrivateProps> = (t
       minWidth: 0,
     },
     breakpointResolver(props.size, theme, (currentValue) =>
-      sizeResolver(currentValue || 'm', theme.assets.typography[props.sizesOf], (value) => ({
-        fontSize: value,
-        lineHeight: 1.5,
-      })),
+      sizeResolver(
+        currentValue || 'm',
+        theme.assets.typography[props.sizesOf],
+        (value) => ({
+          fontSize: value,
+          lineHeight: 1.5,
+        }),
+      ),
     ),
     breakpointResolver(props.lineHeight, theme, (currentValue) => ({
       lineHeight: currentValue,

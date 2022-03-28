@@ -45,6 +45,9 @@ function Docs() {
             background: currentTheme.color.background.hex(),
             overscrollBehavior: 'none',
           },
+          '.scroll-decoration': {
+            boxShadow: 'none !important',
+          },
         }}
       >
         <Router>
@@ -55,7 +58,7 @@ function Docs() {
             xBarPosition="none"
           >
             <Flexbox column alignItems="center" px="xl">
-              <Block w="100%" style={{ maxWidth: '64rem', width: '100%' }}>
+              <Block w="100%" mb="4rem" style={{ maxWidth: '64rem', width: '100%' }}>
                 <Header />
                 <Routes>
                   <Route path="/" element={<Index />} />

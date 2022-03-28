@@ -5,6 +5,5 @@
       "@/*": ["./src/*"],
     },
   },
-  "include": ["src/**/*", "global.d.ts", "./vite.config.ts", "components"],
-  "exclude": ["node_modules","dist"],
+  "include": ["src/**/*", "global.d.ts", "monaco.d.ts", "./vite.config.ts"],
 }

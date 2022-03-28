@@ -286,5 +286,5 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
 }
 
 export default forwardRef(Table) as <Row extends Types.Row>(
-  props: Types.Props<Row> & { ref: React.ForwardedRef<Types.Ref<Row>> },
+  props: Types.Props<Row> & { ref?: React.ForwardedRef<Types.Ref<Row>> },
 ) => React.ReactElement

@@ -3,12 +3,12 @@ import React from 'react'
 import { Viewport, Header } from '@stage-ui/core'
 
 const App = () => (
-    <Viewport>
-        <Header>Hello world!</Header>
-    </Viewport>
+  <Viewport>
+    <Header>Hello world!</Header>
+  </Viewport>
 )
 
 ReactDOM.render(
-	<App />,
-	document.getElementById('app')
+  <App />,
+  document.getElementById('app')
 )

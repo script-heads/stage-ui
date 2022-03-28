@@ -20,7 +20,6 @@
     "system:pub": "cd ./build/system && npm publish --registry=https://registry.npmjs.org",
     "docs:start": "yarn workspace @stage-ui/docs start",
     "docs:build": "cd ./packages/docs && yarn build",
-    "docs:gen": "cd ./packages/docs && yarn gen",
     "testbed:start": "yarn workspace @stage-ui/testbed start"
   },
   "devDependencies": {

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react'
 
-import { Block, Header, Link, Paragraph as P, Text } from '@stage-ui/core'
+import { Block, Header, Paragraph } from '@stage-ui/core'
 
 import ViewportCode from './viewport.raw?raw'
 import styleProp from './styleProp.raw?raw'
@@ -10,11 +10,12 @@ import spacingProps from './spacingProps.raw?raw'
 import flexGridProps from './flexGridProps.raw?raw'
 import layoutProps from './layoutProps.raw?raw'
 import borderProps from './borderProps.raw?raw'
-import overridesExample from './overridesExample.raw?raw'
 import theme from './theme.raw?raw'
 import main from './main.raw?raw'
 import assets from './assets.raw?raw'
-import overrides from './overrides.raw?raw'
+import overridesTheme from './overridesTheme.raw?raw'
+import overridesProp from './overridesProp.raw?raw'
+import breakpoints from './breakpoints.raw?raw'
 
 import List from '@/components/List'
 import Syntax from '@/components/Syntax'
@@ -24,51 +25,65 @@ export const sticky = true
 
 export default function Index() {
   return (
-    <Block pb="4rem">
+    <Block>
       <Header>Getting started</Header>
       <Syntax code="npm i @stage-ui/core" />
-      <P>
-        Use{' '}
-        <Text weight="bold" color="primary">
-          Viewport
-        </Text>{' '}
-        component at the top level of your application. It provide theme to all Flow
-        components, apply some Reset CSS and had another useful configurations.
-      </P>
+      <Paragraph>
+        Use Viewport component at the top level of your application. It provide theme to
+        all StageUI components, apply some Reset CSS and had another useful
+        configurations.
+      </Paragraph>
       <Syntax code={ViewportCode} />
 
-      <Header pt="4rem" id="props">
-        Props
+      <Header id="props">Props</Header>
+      <Header id="color" size="s">
+        Breakpoints
       </Header>
-      <P>
-        Our comonents have special props to customize thier styles, like style tag in HTML
-        or CSS prop in emotion with styles prop you can provide custom styles to any
-        component.
-      </P>
-      <P>
-        Component may render in DOM many different HTML elements which have unique
-        classNames. So in style object you can provide CSS for each of them. If it's a
-        typescript project you instantly have a tip what classes exist in this component.
-        If it's not you may have find this information on comonent documentation page.
-        Also here you access component internal state for attach some styles in these
-        cases. More about it written in <Link href="/overrides">Overrides</Link> section.
-      </P>
+      <Paragraph>
+        All props what apply certain style to component, like padding, margin or
+        backgroundColor suport array notation where value of each index is match with
+        max-width media query breakpoint. Use "*" character to repeat previous value. It
+        makes resposive design much more easier and compact. Each props below except
+        overrides support this.
+      </Paragraph>
+      <Syntax code={breakpoints} />
+
+      <Header id="color" size="s">
+        Style
+      </Header>
+      <Paragraph>
+        This prop is like corresponding attribute in HTML, but apply these styles to
+        classname of components root element.
+      </Paragraph>
       <Syntax code={styleProp} />
-      <Header pt="4rem" id="color">
+
+      <Header id="color" size="s">
+        Overrides
+      </Header>
+      <Paragraph>
+        Like style prop, but there you able to specify styles to each elements of
+        component. If they are matching existing styles in current class they will be
+        overrided. It just one style prop what cant be specify as array of breakpoints.
+      </Paragraph>
+      <Syntax code={overridesProp} />
+
+      <Header id="color" size="s">
         Color
       </Header>
-      <P>
-        All colors described in Theme StageUI turn into Objects with useful methods that
-        give you the opportunity to to adjust the color depending on the situation. To
-        access theme colors provide function in these props. They recive theme colors and
-        return one to component. Also you may put here ordinary color string or variable
-        directly from Theme.
-      </P>
+      <Paragraph>
+        All colors described in StageUI theme turn into Objects with useful functions that
+        can transform colors brightness, hue, get rgb or hex notation and much more useful
+        parametrs. This props recive function what provide all theme colors in one
+        argument, a string corresponding to the color name or a simple CSS color value.
+      </Paragraph>
       <Syntax code={colorProps} />
-      <Header pt="4rem" id="margin-padding">
+
+      <Header id="margin-padding" size="s">
         Margin and Padding
       </Header>
-      <P>Shorthand for margin and padding styles with size alias from theme spacing</P>
+      <Paragraph>
+        Shorthand for margin and padding styles with size alias from theme spacing
+      </Paragraph>
       <Syntax code={spacingProps} />
       <List
         data={[
@@ -89,10 +104,11 @@ export default function Index() {
         ]}
         higlightBefore=":"
       />
-      <Header pt="4rem" id="flex-grid">
+
+      <Header id="flex-grid" size="s">
         Flexbox and grid
       </Header>
-      <P>Shorthand for flexbox and grid children styles</P>
+      <Paragraph>Shorthand for flexbox and grid children styles</Paragraph>
       <Syntax code={flexGridProps} />
       <List
         data={[
@@ -113,19 +129,20 @@ export default function Index() {
         ]}
         higlightBefore=":"
       />
-      <Header pt="4rem" id="layout">
+
+      <Header id="layout" size="s">
         Layout
       </Header>
-      <P>Shorthand for layout styles</P>
+      <Paragraph>Shorthand for layout styles</Paragraph>
       <Syntax code={layoutProps} />
       <List
         data={['w: width', 'h: height', 'visibility: visibility', 'display: display']}
         higlightBefore=":"
       />
-      <Header pt="4rem" id="border">
+      <Header id="border" size="s">
         Border
       </Header>
-      <P>Shorthand for border styles</P>
+      <Paragraph>Shorthand for border styles</Paragraph>
       <Syntax code={borderProps} />
       <List
         data={[
@@ -137,48 +154,34 @@ export default function Index() {
         higlightBefore=":"
       />
 
-      <Header pt="4rem" id="overrides">
-        Overrides
-      </Header>
-      <P>
-        Often you need to override component styles that depended on its internal state
-        and properties. There are two places you can do this: theme and the style props.
-      </P>
-      <Header size="s">Syntax</Header>
-      <P>
-        For example Menu have two CSS classes for container and item elements. Here you
-        describe styles for any of them. This styles applyed with their own styles of
-        component.
-      </P>
-      <Syntax code={overridesExample} />
-
-      <Header pt="4rem" id="theming">
-        Theming
-      </Header>
-      <P>
-        StageUI contains two themes itself: Light and Dark. Light setup by default. Any
-        others theme icludes user created pass on the theme prop of Viewport component.
-        There's three section to describe a theme: main, assets and overrides. To create
-        theme use createTheme function or import any other theme and just .replace() it
-      </P>
+      <Header id="theming">Theming</Header>
+      <Paragraph>
+        StageUI contains two themes by itself: Light and Dark. Light is default. Any theme
+        passs into Viewports theme prop. For create new theme you can use replace method
+        from existing theme and just override some values or make theme from scratch. If
+        you choose this way use createTheme function. Theme has three section to describe:
+        main, assets and overrides.
+      </Paragraph>
       <Syntax code={theme} />
+
       <Header size="s">Main</Header>
-      <P>Contains general variables of theme, like colors, radiuses and sizes</P>
+      <Paragraph>Contains general variables of theme.</Paragraph>
       <Syntax code={main} />
+
       <Header size="s">Assets</Header>
-      <P>
-        There's all styles that uses between components. Assets must be discribed by the
-        function which takes main varaibles for use eg colors in styles. Empty objects
-        here are filled by analogy.
-      </P>
+      <Paragraph>
+        Place for all styles that uses between components. Assets must be discribed by the
+        function which takes main varaibles for use eg colors. Empty objects in exaple
+        below are filled by analogy.
+      </Paragraph>
       <Syntax code={assets} />
+
       <Header size="s">Overrides</Header>
-      <P>
+      <Paragraph>
         All components have special styled system, that can be overriden from theme and
-        styles prop. More details about in you can find in{' '}
-        <Link href="/overrides">Overrides</Link> section
-      </P>
-      <Syntax code={overrides} />
+        styles prop.
+      </Paragraph>
+      <Syntax code={overridesTheme} mb={0} />
     </Block>
   )
 }

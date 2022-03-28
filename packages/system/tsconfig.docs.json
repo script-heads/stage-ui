@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "module": "amd",
+    "out": "../../declarations/system.d.ts",
+    "emitDeclarationOnly": true
+  },
+  "include": ["index.ts"]
+}

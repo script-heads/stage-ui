@@ -3,8 +3,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { JSONOutput } from 'typedoc'
 
-import typedocRaw from '@/generated/typedoc.json'
-
 export type Property = {
   name: string
   type?: JSONOutput.SomeType
@@ -12,12 +10,6 @@ export type Property = {
   value: string
   description?: string
 }
-
-const typedoc = typedocRaw as JSONOutput.DeclarationReflection
-const stagePropNames = typedoc.children
-  ?.find((declaration) => declaration.name === 'system/props/types')
-  ?.children?.find((i) => i.name === 'AllProps')
-  ?.children?.reduce<string[]>((pv, nv) => [...pv, nv.name], [])
 
 function prettyType(
   declaration: JSONOutput.SomeType | undefined,
@@ -83,7 +75,7 @@ function prettyProperty(declaration: JSONOutput.DeclarationReflection): Property
   }
 }
 
-function getComponentsDeclarations() {
+function getComponentsDeclarations(typedoc: JSONOutput.DeclarationReflection) {
   if (!typedoc || !typedoc.children) throw Error('Typedoc dont initilized')
 
   return typedoc.children.filter(
@@ -91,8 +83,11 @@ function getComponentsDeclarations() {
   )
 }
 
-function getComponentsProps(): Record<string, Property[]> {
-  return getComponentsDeclarations().reduce((pv, nv) => {
+function getComponentsProps(
+  typedoc: JSONOutput.DeclarationReflection,
+  stagePropNames?: string[],
+): Record<string, Property[]> {
+  return getComponentsDeclarations(typedoc).reduce((pv, nv) => {
     const name = nv.name.split('/')[2]
     const properties = nv.children?.[0].children?.find(
       (child) => child.name === 'Props',
@@ -107,6 +102,10 @@ function getComponentsProps(): Record<string, Property[]> {
   }, {})
 }
 
-export function get() {
-  return getComponentsProps()
+export function get(typedoc: JSONOutput.DeclarationReflection) {
+  const stagePropNames = typedoc.children
+    ?.find((declaration) => declaration.name === 'system/props/types')
+    ?.children?.find((i) => i.name === 'AllProps')
+    ?.children?.reduce<string[]>((pv, nv) => [...pv, nv.name], [])
+  return getComponentsProps(typedoc, stagePropNames)
 }

@@ -1,20 +1,76 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { Block, Modal, ScrollView, Table } from '@stage-ui/core'
+import { Block, Flexbox, Modal, ScrollView, Spinner, Table, Text } from '@stage-ui/core'
 import breakpointProp from '@stage-ui/system/props/breakpoint'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 import core from '@/utils/core'
 import Playground from '@/components/Playground'
-import { get } from '@/utils/typedoc'
+import getDeclarations from '@/utils/declarations'
+import { TranspileProps } from '@/components/Playground/Viewport'
+import { Property } from '@/utils/typedoc'
 
-const componentTypes = get()
+let model: monaco.editor.ITextModel
+
+const isMonacoLoaded = new Promise<boolean>((resolve) => {
+  const check = () => {
+    if (!monaco) {
+      setTimeout(check, 50)
+    } else {
+      if (!model) {
+        monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
+          target: monaco.languages.typescript.ScriptTarget.ES2016,
+          allowNonTsExtensions: true,
+          moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
+          module: monaco.languages.typescript.ModuleKind.CommonJS,
+          noEmit: true,
+          jsx: monaco.languages.typescript.JsxEmit.React,
+          jsxFactory: 'React.createElement',
+          esModuleInterop: true,
+        })
+
+        model = monaco.editor.createModel(
+          '',
+          'typescript',
+          monaco.Uri.parse(`file:///main.tsx`),
+        )
+        monaco.editor.defineTheme('vs-dark-custom', {
+          base: 'vs-dark',
+          inherit: true,
+          rules: [{ token: 'e3e4r5', background: '1f2937' }],
+          colors: {
+            'editor.background': '#1f2937',
+          },
+        })
+      }
+      resolve(true)
+    }
+  }
+  check()
+})
 
 function ComponentModal() {
   const navigate = useNavigate()
   const location = useLocation()
   const data = core.getPageByUrl(location.pathname)
+  const [typedoc, setTypedoc] = useState<Record<string, Property[]> | null>(null)
+  const [typescript, setTypescript] = useState<TranspileProps | null>(null)
   document.title = `StageUI${data ? ` — ${data.title}` : ''}`
+
+  useEffect(() => {
+    isMonacoLoaded.then(() => {
+      getDeclarations().then((result) => {
+        setTypedoc(result)
+        import('typescript').then(({ transpile, JsxEmit, ModuleKind }) =>
+          setTypescript({
+            transpile,
+            jsxEmit: JsxEmit.React,
+            moduleKind: ModuleKind.ES2015,
+          }),
+        )
+      })
+    })
+  }, [])
 
   if (!data) return null
 
@@ -28,28 +84,46 @@ function ComponentModal() {
           {
             width: '100%',
             padding: '1rem 1.75rem',
+            minHeight: '25vh',
           },
           breakpointProp(['80vw', '90vw', '100vw'], t, (maxWidth) => ({ maxWidth })),
         ],
       })}
       didClose={() => navigate('/components')}
     >
-      <Block>
-        {data.cases && <Playground cases={data.cases} title={data.title} />}
-        {data.default && <data.default />}
-        {componentTypes[data.title] && (
-          <ScrollView mt="l" xBarPosition="none">
-            <Table
-              data={componentTypes[data.title]}
-              columns={[
-                { key: 'name', title: 'Property' },
-                { key: 'value', title: 'Value' },
-                { key: 'description', title: 'Description' },
-              ]}
+      {(!typedoc || !typescript) && (
+        <Flexbox h="100%" alignItems="center" justifyContent="center" column my="16rem">
+          <Spinner size="4rem" mb="xl" />
+          <Text>Loading Playground...</Text>
+        </Flexbox>
+      )}
+      {typedoc && typescript && (
+        <Block>
+          {data.cases && (
+            <Playground
+              cases={data.cases}
+              title={data.title}
+              model={model}
+              transpile={typescript.transpile}
+              jsxEmit={typescript.jsxEmit}
+              moduleKind={typescript.moduleKind}
             />
-          </ScrollView>
-        )}
-      </Block>
+          )}
+          {data.default && <data.default />}
+          {typedoc[data.title] && (
+            <ScrollView mt="l" xBarPosition="none">
+              <Table
+                data={typedoc[data.title]}
+                columns={[
+                  { key: 'name', title: 'Property' },
+                  { key: 'value', title: 'Value' },
+                  { key: 'description', title: 'Description' },
+                ]}
+              />
+            </ScrollView>
+          )}
+        </Block>
+      )}
     </Modal>
   )
 }

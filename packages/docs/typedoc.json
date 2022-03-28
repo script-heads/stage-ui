@@ -1,7 +1,7 @@
 {
 	"entryPoints": ["../core/", "../system/", "../../node_modules/csstype"],
 	"entryPointStrategy": "expand",
-	"tsconfig": "../core/tsconfig.json",
-	"out": "./generated/typedoc",
-	"json": "./generated/typedoc.json"
+	"tsconfig": "../../tsconfig.json",
+	"out": "./public/types/typedoc",
+	"json": "./public/types/typedoc.json"
 }

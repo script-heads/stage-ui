@@ -1,4 +1,5 @@
 import colorResolver from '@stage-ui/system/props/color'
+
 import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
@@ -41,8 +42,8 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         color: theme.color.surface.rgb().string(),
         backgroundColor: theme.color.surface.rgb().string(),
         borderColor: theme.color.light.rgb().string(),
-        borderWidth: theme.assets.border.width,
-        borderStyle: theme.assets.border.style,
+        borderWidth: '1px',
+        borderStyle: 'solid',
         boxShadow: theme.assets.innerShadow.m,
         borderRadius: '50%',
         transition: 'color .15s, border-color .15s, background-color .15s',
