@@ -1,12 +1,15 @@
-import Types from './types'
 import SharedZIndex from '../../utils/SharedZIndex'
+
+import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
   const { size = 'm' } = props
 
   const spacing = theme.spacing[size] || theme.spacing.m
-  const titleSize = theme.assets.typography.header[size] || theme.assets.typography.header.m
-  const subtitleSize = theme.assets.typography.text[size] || theme.assets.typography.text.m
+  const titleSize =
+    theme.assets.typography.header[size] || theme.assets.typography.header.m
+  const subtitleSize =
+    theme.assets.typography.text[size] || theme.assets.typography.text.m
 
   return {
     overlay: (state) => [
@@ -57,9 +60,9 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         padding: spacing,
         minHeight: '1rem',
         backgroundColor: theme.color.surface.rgb().string(),
-        // borderWidth: theme.assets.border.width,
-        // borderStyle: theme.assets.border.style,
-        // borderColor: theme.assets.border.color,
+        // borderWidth: '1px',
+        // borderStyle: 'solid',
+        // borderColor: theme.color.border.rgb().string(),
         borderRadius: theme.radius.m,
         boxSizing: 'border-box',
         overflow: 'hidden',

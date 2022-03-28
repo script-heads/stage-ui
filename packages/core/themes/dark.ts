@@ -17,6 +17,8 @@ export const darkTheme: Stage.ReplaceTheme = {
       hard: 'rgb(209, 213, 219)',
       hardest: 'rgb(243, 244, 246)',
 
+      border: 'rgb(75, 85, 99)',
+
       error: 'rgb(188, 0, 0)',
       warning: 'rgb(255, 149, 0)',
       success: 'rgb(0, 120, 0)',
