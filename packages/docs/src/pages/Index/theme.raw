@@ -1,9 +1,10 @@
 import { createTheme } from '@stage-ui/core'
+import { light } from '@stage-ui/core/themes'
 
 const light = createTheme({
-  main,
-  assets,
-  overrides
+  /* 
+  * Main, assets, overrides
+  */
 })
 
 const dark = light.replace({

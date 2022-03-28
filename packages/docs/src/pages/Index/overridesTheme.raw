@@ -1,0 +1,16 @@
+{
+  // ...
+
+  overrides: (main, assets) => ({
+    Menu: {
+      container: {
+        backgroundColor: 'yellow'
+      },
+      item: (state) => [
+        state.active && {
+          backgroundColor: 'red'
+        }
+      ],
+    },
+  })
+}

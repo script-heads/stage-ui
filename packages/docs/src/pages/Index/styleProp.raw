@@ -1,12 +1,12 @@
-<Menu
-  styles={{
-    container: {
-      backgroundColor: 'yellow'
+<Flexbox
+  style={[
+    {
+      overflow: 'hidden'
     },
-    item: (state, variant) => variant({
-      active: {
-        backgroundColor: 'red'
-      }
-    })
-  }}
+    '*',
+    '*',
+    {
+      overflow: 'scroll'
+    }
+  ]}
 />

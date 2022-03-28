@@ -1,0 +1,12 @@
+<Menu
+  overrides={{
+    container: {
+      backgroundColor: 'yellow'
+    },
+    item: (state) => [
+      state.active && {
+        backgroundColor: 'red'
+      }
+    ],
+  }}
+/>
