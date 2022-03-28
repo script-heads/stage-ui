@@ -157,6 +157,7 @@ declare global {
             fontSize: string
             lineHeight: string | number
             marginTop?: string | number
+            marginBottom?: string | number
           }
         >
         text: Record<
@@ -171,6 +172,8 @@ declare global {
           {
             fontSize: string
             lineHeight: string | number
+            marginTop?: string | number
+            marginBottom?: string | number
           }
         >
       }
