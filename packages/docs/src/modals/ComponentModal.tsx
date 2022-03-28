@@ -10,6 +10,45 @@ import getDeclarations from '@/utils/declarations'
 import { TranspileProps } from '@/components/Playground/Viewport'
 import { Property } from '@/utils/typedoc'
 
+let model: monaco.editor.ITextModel
+
+const isMonacoLoaded = new Promise<boolean>((resolve) => {
+  const check = () => {
+    if (!monaco) {
+      setTimeout(check, 50)
+    } else {
+      if (!model) {
+        monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
+          target: monaco.languages.typescript.ScriptTarget.ES2016,
+          allowNonTsExtensions: true,
+          moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
+          module: monaco.languages.typescript.ModuleKind.CommonJS,
+          noEmit: true,
+          jsx: monaco.languages.typescript.JsxEmit.React,
+          jsxFactory: 'React.createElement',
+          esModuleInterop: true,
+        })
+
+        model = monaco.editor.createModel(
+          '',
+          'typescript',
+          monaco.Uri.parse(`file:///main.tsx`),
+        )
+        monaco.editor.defineTheme('vs-dark-custom', {
+          base: 'vs-dark',
+          inherit: true,
+          rules: [{ token: 'e3e4r5', background: '1f2937' }],
+          colors: {
+            'editor.background': '#1f2937',
+          },
+        })
+      }
+      resolve(true)
+    }
+  }
+  check()
+})
+
 function ComponentModal() {
   const navigate = useNavigate()
   const location = useLocation()
@@ -19,15 +58,17 @@ function ComponentModal() {
   document.title = `StageUI${data ? ` — ${data.title}` : ''}`
 
   useEffect(() => {
-    getDeclarations().then((result) => {
-      setTypedoc(result)
-      import('typescript').then(({ transpile, JsxEmit, ModuleKind }) =>
-        setTypescript({
-          transpile,
-          jsxEmit: JsxEmit.React,
-          moduleKind: ModuleKind.ES2015,
-        }),
-      )
+    isMonacoLoaded.then(() => {
+      getDeclarations().then((result) => {
+        setTypedoc(result)
+        import('typescript').then(({ transpile, JsxEmit, ModuleKind }) =>
+          setTypescript({
+            transpile,
+            jsxEmit: JsxEmit.React,
+            moduleKind: ModuleKind.ES2015,
+          }),
+        )
+      })
     })
   }, [])
 
@@ -62,6 +103,7 @@ function ComponentModal() {
             <Playground
               cases={data.cases}
               title={data.title}
+              model={model}
               transpile={typescript.transpile}
               jsxEmit={typescript.jsxEmit}
               moduleKind={typescript.moduleKind}

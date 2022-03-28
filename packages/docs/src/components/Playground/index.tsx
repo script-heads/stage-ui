@@ -15,28 +15,19 @@ import { PageType } from '@/utils/core'
 interface EditorProps extends TranspileProps {
   cases: Exclude<PageType['cases'], undefined>
   title: string
+  model: monaco.editor.ITextModel
 }
-
-monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
-  target: monaco.languages.typescript.ScriptTarget.ES2016,
-  allowNonTsExtensions: true,
-  moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
-  module: monaco.languages.typescript.ModuleKind.CommonJS,
-  noEmit: true,
-  jsx: monaco.languages.typescript.JsxEmit.React,
-  jsxFactory: 'React.createElement',
-  esModuleInterop: true,
-})
-
-const model = monaco.editor.createModel(
-  '',
-  'typescript',
-  monaco.Uri.parse(`file:///main.tsx`),
-)
 
 let editor: monaco.editor.IStandaloneCodeEditor | null = null
 
-function Playground({ cases, title, jsxEmit, moduleKind, transpile }: EditorProps) {
+function Playground({
+  cases,
+  title,
+  jsxEmit,
+  moduleKind,
+  transpile,
+  model,
+}: EditorProps) {
   const [currentCase, setCurrentCase] = useState<number>(0)
   const [code, setEditorCode] = useState<string>(cases[0].code)
   const [grid, setGrid] = useState(!(localStorage.getItem('case_grid') === 'false'))
@@ -75,7 +66,7 @@ function Playground({ cases, title, jsxEmit, moduleKind, transpile }: EditorProp
 
   useEffect(() => {
     monaco.editor?.setTheme(
-      theme.color.background.contrast(color('#fff')) > 3 ? 'vs-dark' : 'vs',
+      theme.color.background.contrast(color('#fff')) > 3 ? 'vs-dark-custom' : 'vs',
     )
   }, [theme])
 
