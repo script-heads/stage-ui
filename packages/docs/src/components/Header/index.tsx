@@ -40,8 +40,9 @@ function Header() {
         my={0}
         style={{
           transition: 'all 0.125s',
+          filter: 'blur(1px)',
         }}
-        color={(c) => c.onSurface.alpha(0.3)}
+        color={(c) => c.onSurface.alpha(0.35)}
         onClick={() => navigate('/')}
       >
         StageUI<Text size="3rem" lineHeight={0}>.</Text>
