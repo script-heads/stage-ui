@@ -25,7 +25,7 @@ export const sticky = true
 
 export default function Index() {
   return (
-    <Block pb="4rem">
+    <Block>
       <Header>Getting started</Header>
       <Syntax code="npm i @stage-ui/core" />
       <Paragraph>
@@ -181,7 +181,7 @@ export default function Index() {
         All components have special styled system, that can be overriden from theme and
         styles prop.
       </Paragraph>
-      <Syntax code={overridesTheme} />
+      <Syntax code={overridesTheme} mb={0} />
     </Block>
   )
 }

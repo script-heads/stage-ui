@@ -1,15 +1,16 @@
+import React, { useState } from 'react'
+
 import { Flexbox, TextField, notify, Text, useTheme } from '@stage-ui/core'
 import { Search } from '@stage-ui/icons'
 import * as AllIcons from '@stage-ui/icons'
-import React, { useState } from 'react'
 
 export const title = 'Collection'
 
-export default () => {
+function IconsPage() {
   const theme = useTheme()
   const [search, setSearch] = useState('')
   return (
-    <Flexbox column>
+    <>
       <TextField
         placeholder="Find by name"
         w="12rem"
@@ -18,7 +19,7 @@ export default () => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <Flexbox wrap="wrap" pb="4rem" css={{ gap: '1rem' }}>
+      <Flexbox wrap="wrap" css={{ gap: '1rem' }}>
         {Object.keys(AllIcons)
           .filter((key) => {
             if (!!search && !RegExp(search.toLowerCase()).exec(key.toLowerCase())) {
@@ -27,8 +28,7 @@ export default () => {
             return true
           })
           .map((key) => {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            const PreviewIcon = AllIcons[key]
+            const PreviewIcon = AllIcons[key as keyof typeof AllIcons]
             return (
               <Flexbox
                 key={key}
@@ -89,6 +89,8 @@ export default () => {
             )
           })}
       </Flexbox>
-    </Flexbox>
+    </>
   )
 }
+
+export default IconsPage

@@ -29,7 +29,7 @@ function Components() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <Flexbox column alignItems="flex-start" pb="4rem" css={{ gap: '1rem' }}>
+      <Flexbox column alignItems="flex-start" css={{ gap: '1rem' }}>
         {Object.values(findedPages).map((section) => (
           <Flexbox key={createID()} wrap="wrap" css={{ gap: '1rem' }}>
             {section.map((page) => (

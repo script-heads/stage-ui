@@ -5,8 +5,9 @@ import { Block, useTheme } from '@stage-ui/core'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import dark from 'react-syntax-highlighter/dist/esm/styles/hljs/atelier-cave-dark'
 import light from 'react-syntax-highlighter/dist/esm/styles/hljs/atelier-cave-light'
+import BlockTypes from '@stage-ui/core/layout/Block/types'
 
-function Syntax({ code }: { code: string }) {
+function Syntax({ code, ...blockProps }: { code: string } & BlockTypes.Props) {
   const theme = useTheme()
   const isDark = !!/DARK/.exec(theme.name.toUpperCase())
   const styles = {
@@ -24,7 +25,7 @@ function Syntax({ code }: { code: string }) {
     boxShadow: 'none',
   }
   return (
-    <Block my="1rem">
+    <Block my="1rem" {...blockProps}>
       <SyntaxHighlighter
         language="typescript"
         style={isDark ? dark : light}
