@@ -8,7 +8,7 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "yarn testbed:start",
+    "start": "yarn docs:start",
     "build": "yarn system:build && yarn icons:build && yarn core:build",
     "pub": "yarn core:pub && yarn icons:pub && yarn system:pub",
     "core:build": "cd ./packages/core && yarn build",
