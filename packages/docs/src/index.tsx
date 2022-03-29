@@ -6,15 +6,18 @@ import { light, dark } from '@stage-ui/core/themes'
 import { Viewport, Block, Flexbox, ScrollView } from '@stage-ui/core'
 import { toPixel } from '@stage-ui/system/utils/size'
 
+import { AsyncPage } from '@/components/AsyncPage'
 import Header from '@/components/Header'
-import ComponentModal from '@/modals/ComponentModal'
-import core from '@/utils/core'
-import Page404 from '@/pages/404'
-import Components from '@/pages/Components'
-import Index from '@/pages/Index'
-import Icons from '@/pages/Icons'
-import Colors from '@/pages/Colors'
 import Footer from '@/components/Footer'
+import core from '@/utils/core'
+import Index from '@/pages/Index'
+
+const Icons = React.lazy(() => import('@/pages/Icons'))
+const Components = React.lazy(() => import('@/pages/Components'))
+const ComponentModal = React.lazy(() => import('@/modals/ComponentModal'))
+const Colors = React.lazy(() => import('@/pages/Colors'))
+const Page404 = React.lazy(() => import('@/pages/404'))
+
 
 core.init()
 const initialDocsContext: {
@@ -116,12 +119,12 @@ function Docs() {
                 <Header />
                 <Routes>
                   <Route path="/" element={<Index />} />
-                  <Route path="/components" element={<Components />}>
-                    <Route path=":name" element={<ComponentModal />} />
+                  <Route path="/components" element={<AsyncPage component={Components} />}>
+                    <Route path=":name" element={<AsyncPage component={ComponentModal} />} />
                   </Route>
-                  <Route path="/icons" element={<Icons />} />
-                  <Route path="/colors" element={<Colors />} />
-                  <Route path="*" element={<Page404 />} />
+                  <Route path="/icons" element={<AsyncPage component={Icons} />} />
+                  <Route path="/colors" element={<AsyncPage component={Colors} />} />
+                  <Route path="*" element={<AsyncPage component={Page404} />} />
                 </Routes>
               </Block>
             </Flexbox>
