@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+
 import {
   ActivityIndicator,
   Animated,
@@ -7,9 +8,10 @@ import {
   TouchableWithoutFeedback,
   ViewStyle,
 } from 'react-native'
-import useStyleProps, { StyleProps } from 'shared/hooks/useStyleProps'
-import useTheme from 'shared/hooks/useTheme'
-import scale from 'shared/utils/scale'
+import useStyleProps, { StyleProps } from 'hooks/useStyleProps'
+import useTheme from 'hooks/useTheme'
+import scale from 'utils/scale'
+
 import Flexbox from './Flexbox'
 import Text from './Text'
 
@@ -177,7 +179,11 @@ function Button(props: ButtonProps) {
           <>
             {(typeof children === 'string' || typeof children === 'number') && (
               <Flexbox flex={1} centered>
-                <Text as={(t) => t.text.m} color={styleProps.color || color} weight="bold">
+                <Text
+                  as={(t) => t.text.m}
+                  color={styleProps.color || color}
+                  weight="bold"
+                >
                   {children}
                 </Text>
               </Flexbox>

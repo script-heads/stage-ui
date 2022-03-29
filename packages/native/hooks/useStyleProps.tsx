@@ -1,6 +1,6 @@
-import useTheme from 'shared/hooks/useTheme'
-import NativeTypes from 'shared/types'
-import resolvers from 'shared/utils/resolvers'
+import useTheme from 'hooks/useTheme'
+import NativeTypes from 'types'
+import resolvers from 'utils/resolvers'
 
 export type SpacingProp =
   | ((s: NativeTypes.Theme['spacing']) => number)
@@ -48,7 +48,7 @@ function useStyleProps<P extends StyleProps>(
   const propKeys = Object.keys(props) as Array<keyof P>
 
   propKeys.forEach((propKey) => {
-    const resolver = resolvers[propKey as keyof typeof resolvers]
+    const resolver = resolvers[propKey]
     if (resolver) {
       // @ts-expect-error type it if you can
       styleProps[resolver[0]] = resolver[1](theme)(props[propKey])

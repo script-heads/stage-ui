@@ -1,6 +1,8 @@
 import React from 'react'
+
 import { Text as NativeText, TextProps as OriginalTextProps } from 'react-native'
-import NativeTypes from 'shared/types'
+import NativeTypes from 'types'
+
 import useStyleProps, { StyleProps } from '../hooks/useStyleProps'
 import useTheme from '../hooks/useTheme'
 import scale from '../utils/scale'
@@ -8,7 +10,18 @@ import scaleText from '../utils/scaleText'
 
 export interface TextProps extends OriginalTextProps, StyleProps {
   as?: (t: NativeTypes.Theme['assets']['typography']) => NativeTypes.FontStyle
-  weight?: '700' | 'normal' | 'bold' | '100' | '200' | '300' | '400' | '500' | '600' | '800' | '900'
+  weight?:
+    | '700'
+    | 'normal'
+    | 'bold'
+    | '100'
+    | '200'
+    | '300'
+    | '400'
+    | '500'
+    | '600'
+    | '800'
+    | '900'
   lineHeight?: number
   lineHeightMultiplier?: number
   numberOfLines?: number

@@ -1,6 +1,7 @@
 import React from 'react'
+
 import { Animated, StyleProp, ViewProps, ViewStyle } from 'react-native'
-import useStyleProps, { StyleProps } from 'shared/hooks/useStyleProps'
+import useStyleProps, { StyleProps } from 'hooks/useStyleProps'
 
 export interface FlexboxProps extends ViewProps, StyleProps {
   centered?: boolean

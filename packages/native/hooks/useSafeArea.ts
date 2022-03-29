@@ -1,6 +1,6 @@
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import scale from 'shared/utils/scale'
-import useTheme from 'shared/hooks/useTheme'
+import scale from 'utils/scale'
+import useTheme from 'hooks/useTheme'
 
 export type SafeAreaType = 'narrow' | 'modal' | undefined
 

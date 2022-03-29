@@ -1,4 +1,5 @@
-import NativeTypes from 'shared/types'
+import NativeTypes from 'types'
+
 import scale from './scale'
 
 export default (textStyle: NativeTypes.FontStyle) => {

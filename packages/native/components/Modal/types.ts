@@ -1,10 +1,15 @@
-import { Animated, FlatListProps, LayoutRectangle, ScaledSize, ViewStyle } from 'react-native'
+import {
+  Animated,
+  FlatListProps,
+  LayoutRectangle,
+  ScaledSize,
+  ViewStyle,
+} from 'react-native'
 import {
   LongPressGestureHandlerGestureEvent,
   PanGestureHandlerGestureEvent,
   PanGestureHandlerProperties,
 } from 'react-native-gesture-handler'
-import { ColorProp, SpacingProp } from 'shared/hooks/useStyleProps'
 
 namespace ModalTypes {
   export type Props = {

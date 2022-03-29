@@ -1,9 +1,11 @@
 import React from 'react'
+
 import { Animated, TouchableWithoutFeedback } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-import useStyleProps from 'shared/hooks/useStyleProps'
-import useTheme from 'shared/hooks/useTheme'
-import scale from 'shared/utils/scale'
+import useStyleProps from 'hooks/useStyleProps'
+import useTheme from 'hooks/useTheme'
+import scale from 'utils/scale'
+
 import Flexbox, { FlexboxProps } from './Flexbox'
 import Text from './Text'
 
@@ -24,7 +26,11 @@ function BadgeSelector(props: BadgeSelectorProps) {
   const [styleProps] = useStyleProps(props)
 
   return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={[styleProps, props.style]}>
+    <ScrollView
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      style={[styleProps, props.style]}
+    >
       {!!props.leftOffset && <Flexbox w={props.leftOffset} />}
       {props.values.map((value, index) => {
         const isCurrent = value === props.value

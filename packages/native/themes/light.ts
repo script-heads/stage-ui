@@ -1,6 +1,5 @@
-import { Platform } from 'react-native'
 import light from '@stage-ui/core/misc/themes/light'
-import NativeTypes from 'shared/types'
+import NativeTypes from 'types'
 
 const defaultLightTheme = light.replace({
   main: {

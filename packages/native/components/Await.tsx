@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
+
 import { ActivityIndicator } from 'react-native'
-import Flexbox from 'shared/Flexbox'
-import Text from 'shared/Text'
-import useTheme from 'shared/hooks/useTheme'
+import Flexbox from 'Flexbox'
+import Text from 'Text'
+import useTheme from 'hooks/useTheme'
 
 interface AwaitProps<T> {
   that: (...args: any) => Promise<T>

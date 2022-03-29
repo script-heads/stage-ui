@@ -6,6 +6,7 @@ import React, {
   useRef,
   useState,
 } from 'react'
+
 import {
   Animated,
   BackHandler,
@@ -27,8 +28,8 @@ import {
   PanGestureHandlerStateChangeEvent,
   State,
 } from 'react-native-gesture-handler'
-import useSafeArea from 'shared/hooks/useSafeArea'
-import { spacingResolver } from 'shared/utils/resolvers'
+import useSafeArea from 'hooks/useSafeArea'
+
 import Card, { bounceOffset } from './Card'
 import Overlay from './Overlay'
 import ModalTypes from './types'
@@ -42,7 +43,10 @@ export const setModalGestureEnabled = (state: boolean) => {
 
 export let setModalScrollEnabled = (state: boolean) => {}
 
-const Modal: ForwardRefRenderFunction<ModalTypes.Ref, ModalTypes.Props> = (props, ref) => {
+const Modal: ForwardRefRenderFunction<ModalTypes.Ref, ModalTypes.Props> = (
+  props,
+  ref,
+) => {
   const {
     overlayStyle,
     cardStyle,
@@ -208,7 +212,7 @@ const Modal: ForwardRefRenderFunction<ModalTypes.Ref, ModalTypes.Props> = (props
     ALLOW_CLOSE = false
     const total = ctx.dimensions.height
     const abs = nativeEvent.absoluteY
-    const cardHeight = ctx.layouts.card!.height - (card ? 0 : bounceOffset)
+    const cardHeight = ctx.layouts.card.height - (card ? 0 : bounceOffset)
 
     if (total - abs < cardHeight) {
       const value = (total - abs) / cardHeight

@@ -1,15 +1,16 @@
 import React from 'react'
-import { TextInput, TextInputProps, TextStyle, View } from 'react-native'
+
+import { TextInput, TextInputProps, TextStyle } from 'react-native'
 import {
   TextInputMask,
   TextInputMaskOptionProp,
   TextInputMaskTypeProp,
 } from 'react-native-masked-text'
-import Flexbox from 'shared/Flexbox'
-import useStyleProps, { StyleProps } from 'shared/hooks/useStyleProps'
-import useTheme from 'shared/hooks/useTheme'
-import scale from 'shared/utils/scale'
-import scaleText from 'shared/utils/scaleText'
+import Flexbox from 'Flexbox'
+import useStyleProps, { StyleProps } from 'hooks/useStyleProps'
+import useTheme from 'hooks/useTheme'
+import scale from 'utils/scale'
+import scaleText from 'utils/scaleText'
 
 export interface TextFieldProps extends StyleProps, Omit<TextInputProps, 'style'> {
   right?: React.ReactNode

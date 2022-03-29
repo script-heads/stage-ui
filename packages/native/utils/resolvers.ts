@@ -1,6 +1,6 @@
-import { ColorProp, SpacingProp, StyleProps } from 'shared/hooks/useStyleProps'
-import NativeTypes from 'shared/types'
-import scale from 'shared/utils/scale'
+import { ColorProp, SpacingProp, StyleProps } from 'hooks/useStyleProps'
+import NativeTypes from 'types'
+import scale from 'utils/scale'
 
 export function spacingResolver(theme: NativeTypes.Theme) {
   return (prop: SpacingProp): number => {

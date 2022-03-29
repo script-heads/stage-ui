@@ -1,10 +1,12 @@
 import React from 'react'
+
 import { StyleProp, ViewStyle } from 'react-native'
-import scale from 'shared/utils/scale'
+import scale from 'utils/scale'
+
+import useStyleProps, { StyleProps } from '../hooks/useStyleProps'
+
 import Flexbox from './Flexbox'
 import Button from './Button'
-import useStyleProps, { StyleProps } from '../hooks/useStyleProps'
-import Image from './Image'
 
 interface CheckBoxProps extends StyleProps {
   value: boolean
@@ -17,7 +19,12 @@ function CheckBox(props: CheckBoxProps) {
   const { value, onChange, style } = otherProps
 
   return (
-    <Button style={[styleProps]} decoration="none" w="100%" onPress={() => onChange?.(!value)}>
+    <Button
+      style={[styleProps]}
+      decoration="none"
+      w="100%"
+      onPress={() => onChange?.(!value)}
+    >
       <Flexbox
         centered
         w={28}

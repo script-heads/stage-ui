@@ -1,8 +1,11 @@
 import React from 'react'
+
 import { StyleProp, ViewStyle } from 'react-native'
+
 import useStyleProps, { StyleProps } from '../hooks/useStyleProps'
 import useTheme from '../hooks/useTheme'
 import scale from '../utils/scale'
+
 import Button from './Button'
 import Flexbox from './Flexbox'
 

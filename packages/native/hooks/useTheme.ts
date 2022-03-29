@@ -1,5 +1,6 @@
 import { useContext } from 'react'
-import ThemeContext from 'shared/utils/themeContext'
+
+import ThemeContext from 'utils/themeContext'
 
 export default () => {
   return useContext(ThemeContext)

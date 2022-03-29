@@ -1,8 +1,10 @@
 import React from 'react'
+
 import { Dimensions, StyleProp, ViewStyle } from 'react-native'
-import { StyleProps } from 'shared/hooks/useStyleProps'
-import useTheme from 'shared/hooks/useTheme'
-import scale from 'shared/utils/scale'
+import { StyleProps } from 'hooks/useStyleProps'
+import useTheme from 'hooks/useTheme'
+import scale from 'utils/scale'
+
 import Button from './Button'
 import Flexbox from './Flexbox'
 import Text from './Text'
@@ -15,7 +17,13 @@ export interface ProgressButtonProps extends StyleProps {
   onPress: () => void
 }
 
-function ProgressButton({ progress, leftLabel, rightLabel, style, onPress }: ProgressButtonProps) {
+function ProgressButton({
+  progress,
+  leftLabel,
+  rightLabel,
+  style,
+  onPress,
+}: ProgressButtonProps) {
   const theme = useTheme()
 
   return (

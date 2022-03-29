@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../build/core",
+    "outDir": "../../build/native",
   },
   "include": [
     "components/**/*",

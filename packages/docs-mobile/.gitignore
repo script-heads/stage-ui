@@ -1,0 +1,10 @@
+node_modules/
+.expo/
+dist/
+npm-debug.*
+*.mobileprovision
+*.orig.*
+web-build/
+
+# macOS
+.DS_Store
