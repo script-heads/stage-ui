@@ -1,16 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react'
-
-import { Block, Flexbox, Grid, notify, Button, useTheme, Header } from '@stage-ui/core'
-
+import { PageType } from '@/utils/core'
+import { Block, Button, Flexbox, Grid, Header, notify, useTheme } from '@stage-ui/core'
 import { Copy, Grid as GridIcon } from '@stage-ui/icons'
 import createID from '@stage-ui/system/utils/createID'
 import color from 'color'
-
+import React, { useEffect, useRef, useState } from 'react'
+import ErrorBoundary from './ErrorBoundary'
 import Viewport, { TranspileProps } from './Viewport'
 
-import ErrorBoundary from './ErrorBoundary'
 
-import { PageType } from '@/utils/core'
+
+
+
 
 interface EditorProps extends TranspileProps {
   cases: Exclude<PageType['cases'], undefined>
