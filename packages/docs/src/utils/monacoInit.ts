@@ -1,22 +1,20 @@
 
-let monacoDidLoad = false
+let configured = false
 
 const checkMonacoInstance = (resolve: (state: boolean) => void) => {
-  if (window.require && !monacoDidLoad) {
+  if (window.monaco) {
+    return resolve(true)
+  }
+  if (window.require && !configured) {
     //@ts-expect-error
     window.require.config({
       paths: {
         vs: '/monaco/min/vs'
       }
     })
-    if (window.require && !monacoDidLoad) {
-      //@ts-expect-error
-      window.require(['/monaco/min/vs/editor/editor.main'], () => { })
-      monacoDidLoad = true
-    }
-  }
-  if (window.monaco) {
-    return resolve(true)
+    //@ts-expect-error
+    window.require(['/monaco/min/vs/editor/editor.main'], () => { })
+    configured = true
   }
   return setTimeout(() => {
     checkMonacoInstance(resolve)
