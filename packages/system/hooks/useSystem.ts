@@ -1,12 +1,14 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react'
-import useTheme from './useTheme'
+
 import propsResolvers from '../props'
 import createVariant, { Variant } from '../utils/createVariant'
 import isFunction from '../utils/isFunction'
 import { AllEventProps, CoreProps } from '../props/types'
 import overridesProp from '../props/overrides'
+
+import useTheme from './useTheme'
 
 export interface Options {
   focus?: 'always' | 'tabOnly' | 'never'
@@ -17,10 +19,9 @@ export interface Options {
 export type ClassStateDefinition = Record<string, string | boolean | undefined> | void
 export type ClassesSchemaDefinition = Record<string, ClassStateDefinition>
 
-export type FunctionClassDefinition<ClassState extends Exclude<ClassStateDefinition, void>> = (
-  state: ClassState,
-  variant: Variant<ClassState>,
-) => Stage.CSSInterpolation
+export type FunctionClassDefinition<
+  ClassState extends Exclude<ClassStateDefinition, void>,
+> = (state: ClassState, variant: Variant<ClassState>) => Stage.CSSInterpolation
 
 export type OverridesClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = {
   [ClassName in keyof ClassesSchema]?: ClassesSchema[ClassName] extends void
@@ -29,7 +30,10 @@ export type OverridesClassesDefinition<ClassesSchema extends ClassesSchemaDefini
 }
 
 export type ThemeOverrides<Props, ClassesSchema extends ClassesSchemaDefinition> =
-  | ((props: Props, styleProps: ResolvedStyleProps) => OverridesClassesDefinition<ClassesSchema>)
+  | ((
+      props: Props,
+      styleProps: ResolvedStyleProps,
+    ) => OverridesClassesDefinition<ClassesSchema>)
   | OverridesClassesDefinition<ClassesSchema>
 
 export type ClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = {
@@ -83,11 +87,14 @@ export type ComponentData<
   overridesPropClasses: OverridesClassesDefinition<ClassesSchema>
 }
 
-export type SystemPropsMeta<Element, ClassesSchema extends ClassesSchemaDefinition> = CoreProps<
+export type SystemPropsMeta<
   Element,
-  ClassesSchema
-> &
-  Pick<AllEventProps<Element>, 'onFocus' | 'onBlur' | 'onClick' | 'onEnter' | 'onEsc' | 'onKeyDown'>
+  ClassesSchema extends ClassesSchemaDefinition,
+> = CoreProps<Element, ClassesSchema> &
+  Pick<
+    AllEventProps<Element>,
+    'onFocus' | 'onBlur' | 'onClick' | 'onEnter' | 'onEsc' | 'onKeyDown'
+  >
 
 let IS_MOUSE_DOWN = false
 let PREV_ACTIVE_ELEMENT: Element | null = null
@@ -221,10 +228,9 @@ function useSystem<
   )
   data.overridesPropClasses = overridesProp(props.overrides, theme, data.styleProps)
 
-  const themeOverrides = theme.overrides[name as keyof typeof theme.overrides] as ThemeOverrides<
-    Props,
-    ClassesSchema
-  >
+  const themeOverrides = theme.overrides[
+    name as keyof typeof theme.overrides
+  ] as ThemeOverrides<Props, ClassesSchema>
 
   const overridesThemeClasses: OverridesClassesDefinition<ClassesSchema> = isFunction(
     themeOverrides,

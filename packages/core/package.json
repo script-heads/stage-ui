@@ -1,6 +1,6 @@
 {
   "name": "@stage-ui/core",
-  "author": "Project one",
+  "author": "Script Heads",
   "version": "0.3.4",
   "license": "MIT",
   "scripts": {
@@ -9,13 +9,14 @@
     "build:types": "tsc --emitDeclarationOnly",
     "type-check": "tsc --noEmit",
     "type-check:watch": "tsc --noEmit --watch",
+    "gen:declarations": "tsc --project tsconfig.docs.json",
     "lint": "eslint --config .eslintrc.json --fix '**/*.+(js|jsx|ts|tsx)'"
   },
   "dependencies": {
     "@emotion/react": ">=11",
-    "imask": "6.0.1",
-    "moment": "2.29.1",
-    "rifm": "0.12.0"
+    "imask": "^6.0.1",
+    "moment": "^2.29.1",
+    "rifm": "^0.12.0"
   },
   "peerDependencies": {
     "react": ">=16"

@@ -1,11 +1,13 @@
+import React, { forwardRef } from 'react'
+
 import { Flexbox, Pageswitch } from '@stage-ui/core'
-import React, { forwardRef, ForwardRefRenderFunction } from 'react'
+
 import Types from './types'
 
-const TableFoot: ForwardRefRenderFunction<HTMLTableCellElement, Types.FootProps<any>> = (
-  props,
-  ref,
-) => {
+function TableFoot(
+  props: Types.FootProps,
+  ref: React.ForwardedRef<HTMLTableCellElement>,
+) {
   const { columns, pagination, rowCtx, styles, footerContent, onPageChange } = props
   const pageSize = pagination?.pageSize
   const alwaysVisible = pagination?.alwaysVisible
@@ -28,7 +30,11 @@ const TableFoot: ForwardRefRenderFunction<HTMLTableCellElement, Types.FootProps<
           <Flexbox justifyContent={footerContent ? 'space-between' : 'flex-end'}>
             {footerContent}
             {allowPagination && (
-              <Pageswitch length={rowCtx.length} onChange={onPageChange} {...pagination} />
+              <Pageswitch
+                length={rowCtx.length}
+                onChange={onPageChange}
+                {...pagination}
+              />
             )}
           </Flexbox>
         </td>

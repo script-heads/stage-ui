@@ -1,6 +1,4 @@
-import { ThemeDefiniton } from '@stage-ui/system/utils/createTheme'
-
-export const lightTheme: ThemeDefiniton = {
+export const lightTheme: Stage.ThemeDefiniton = {
   main: {
     name: 'Light',
     breakpoints: ['100rem', '80rem', '64rem', '50rem', '40rem'],
@@ -260,11 +258,11 @@ export const lightTheme: ThemeDefiniton = {
       xl: '1.75rem',
     },
   },
-  assets: (theme) => ({
+  assets: (main) => ({
     border: {
       width: '1px',
       style: 'solid',
-      color: theme.color.border.hex(),
+      color: main.color.border.hex(),
     },
     shadow: {
       xs: '0px 0px 9px rgba(0, 0, 0, 0.09), 0px 0px 3.03027px rgba(0, 0, 0, 0.0534838), 0px 0px 1.31328px rgba(0, 0, 0, 0.0417053), 0px 0px 0.445327px rgba(0, 0, 0, 0.0337542), 0px 0px 0.0493852px rgba(0, 0, 0, 0.0248326)',
@@ -282,7 +280,7 @@ export const lightTheme: ThemeDefiniton = {
     },
     focus: {
       outline: 'none !important',
-      boxShadow: `0 0 0 3px ${theme.color.primary.alpha(0.3).rgb().string()} !important`,
+      boxShadow: `0 0 0 3px ${main.color.primary.alpha(0.3).rgb().string()} !important`,
     },
     field: {
       xs: {
@@ -311,44 +309,64 @@ export const lightTheme: ThemeDefiniton = {
         xl: {
           fontSize: '2.5rem',
           lineHeight: '3.5rem',
+          marginTop: '3.5rem',
+          marginBottom: '1.75rem',
         },
         l: {
           fontSize: '2rem',
           lineHeight: '3rem',
+          marginTop: '3rem',
+          marginBottom: '1.5rem',
         },
         m: {
           fontSize: '1.5rem',
           lineHeight: '2rem',
+          marginTop: '2rem',
+          marginBottom: '1rem',
         },
         s: {
           fontSize: '1.25rem',
           lineHeight: '1.5rem',
+          marginTop: '1.5rem',
+          marginBottom: '.75rem',
         },
         xs: {
           fontSize: '1.125rem',
           lineHeight: '1.5rem',
+          marginTop: '1.5rem',
+          marginBottom: '.75rem',
         },
       },
       paragraph: {
         xl: {
           fontSize: '1.5rem',
           lineHeight: '1.75rem',
+          marginTop: '1rem',
+          marginBottom: '1rem',
         },
         l: {
           fontSize: '1.25rem',
           lineHeight: '1.5rem',
+          marginTop: '.75rem',
+          marginBottom: '.75rem',
         },
         m: {
           fontSize: '1rem',
           lineHeight: '1.5rem',
+          marginTop: '.75rem',
+          marginBottom: '.75rem',
         },
         s: {
           fontSize: '0.875rem',
           lineHeight: '1.25rem',
+          marginTop: '.5rem',
+          marginBottom: '.5rem',
         },
         xs: {
           fontSize: '0.75rem',
           lineHeight: '1rem',
+          marginTop: '.5rem',
+          marginBottom: '.5rem',
         },
       },
       text: {

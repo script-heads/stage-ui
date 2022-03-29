@@ -1,24 +1,28 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-for-of-loops/no-for-of-loops */
 /* eslint-disable @typescript-eslint/unbound-method */
 /* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable no-bitwise */
-import isWebKit from '@stage-ui/core/utils/isWebKit'
-import { useSystem } from '@stage-ui/system'
 import React, {
   forwardRef,
-  ForwardRefRenderFunction,
   useEffect,
   useImperativeHandle,
   useMemo,
   useState,
 } from 'react'
+
+import isWebKit from '@stage-ui/core/utils/isWebKit'
+import { useSystem } from '@stage-ui/system'
+
 import styles from './styles'
 import Types from './types'
 
 const isLegacyScrollSupport = isWebKit
 const isTouchScreenSupport = Boolean('ontouchstart' in window)
 
-const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
+function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   const {
     shape = 'round',
     size = 'm',
@@ -27,8 +31,16 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
     yBarPosition = 'right',
     watchElementOffset = 0,
     watchElement,
+    onScroll,
+    barOffset,
+    preventStageEvents,
+    children,
   } = props
-  const { classes, attributes, events, styleProps } = useSystem('ScrollView', props, styles)
+  const { classes, attributes, events, styleProps } = useSystem(
+    'ScrollView',
+    props,
+    styles,
+  )
   const [active, setActive] = useState(mode === 'always')
 
   const memo: Types.MemoParams = useMemo(
@@ -48,17 +60,16 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
       watchElementId: '',
       watchElementListeners: {},
       preventWatchElement: false,
-      preventWatchElementTimer: null,
     }),
     [],
   )
 
-  const getOffsetTop = (elem: HTMLDivElement, offsetTop = 0): number => {
-    if (!elem || elem.attributes['data-scroll-id']?.value === memo.id) {
+  const getOffsetTop = (element: Types.ScrollHTMLDivElement, offsetTop = 0): number => {
+    if (!element || element.attributes['data-scroll-id']?.value === memo.id) {
       return offsetTop
     }
-    offsetTop += elem?.offsetTop
-    return getOffsetTop(elem.offsetParent as HTMLDivElement, offsetTop)
+    offsetTop += element.offsetTop
+    return getOffsetTop(element.offsetParent as Types.ScrollHTMLDivElement, offsetTop)
   }
 
   const updateThumb = (e: Types.ScrollParams, axes: 'x' | 'y') => {
@@ -70,13 +81,14 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
     const vDelta = isX ? 'deltaX' : 'deltaY'
     const vSize = isX ? 'width' : 'height'
     const vDirection = isX ? 'left' : 'top'
-    const total = memo.content[vScrollSize] - (props.barOffset || 0) * 2
-    const content = memo.container.getBoundingClientRect()[vSize] - (props.barOffset || 0) * 2
+    const total = memo.content[vScrollSize] - (barOffset || 0) * 2
+    const content = memo.container.getBoundingClientRect()[vSize] - (barOffset || 0) * 2
     const bar = isX ? memo.xBar : memo.yBar
     const thumb = isX ? memo.xThumb : memo.yThumb
 
     if (bar) {
-      bar.style.visibility = Math.round(total) > Math.round(content) ? 'visible' : 'hidden'
+      bar.style.visibility =
+        Math.round(total) > Math.round(content) ? 'visible' : 'hidden'
     }
 
     if (total <= content) {
@@ -138,7 +150,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
           setActive(true)
           if (memo.timeout) {
             clearTimeout(memo.timeout)
-            memo.timeout = null
+            memo.timeout = undefined
           }
           memo.timeout = setTimeout(() => {
             if (memo.mounted) setActive(false)
@@ -153,12 +165,12 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
         scrollHeight: memo.content.offsetHeight,
       }
 
-      props.onScroll?.(event)
+      onScroll?.(event)
       /**
        * Was issue with <Drop/> updateLayoyt
        * in <Select/> component
        */
-      if (!props.preventStageEvents) {
+      if (!preventStageEvents) {
         document.dispatchEvent(
           new CustomEvent('onstagescroll', {
             detail: event,
@@ -170,11 +182,11 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
        */
       const hasListeners = Boolean(Object.keys(memo.watchElementListeners).length)
       if ((watchElement || hasListeners) && memo.preventWatchElement !== true) {
-        const elements: HTMLDivElement[] = []
+        const elements: Types.ScrollHTMLDivElement[] = []
         document
           .querySelectorAll(`[data-scroll-id="${memo.id}"] [data-id]`)
           .forEach((queryElement) => {
-            elements.push(queryElement as HTMLDivElement)
+            elements.push(queryElement as Types.ScrollHTMLDivElement)
           })
 
         const scrollTop = Math.abs(memo.container.scrollTop || memo.content.offsetTop)
@@ -187,10 +199,11 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
             },
           })
         }
-        const offset = listeners[listeners.length - 1].options?.offset || watchElementOffset
+        const offset =
+          listeners[listeners.length - 1].options?.offset || watchElementOffset
         for (const el of elements.reverse()) {
           if (scrollTop - getOffsetTop(el) + offset > 0) {
-            const id = el.attributes['data-id'].value as string
+            const id = el.attributes['data-id'].value
             if (memo.watchElementId !== id) {
               memo.watchElementId = id
               listeners.forEach((listener) => listener.fn(id, el))
@@ -266,7 +279,9 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
       scrollTo(1e10, 1e10, options)
     },
     scrollToElement: (itemId: string, options?: Types.ScrollToElementOptions) => {
-      const item = document.querySelector<HTMLDivElement>(`[data-id="${itemId}"]`)
+      const item = document.querySelector<Types.ScrollHTMLDivElement>(
+        `[data-id="${itemId}"]`,
+      )
       if (item) {
         scrollTo(item.offsetLeft, getOffsetTop(item) - (options?.offsetTop || 0), options)
         return true
@@ -408,7 +423,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
   }, [props])
 
   const createRef = useMemo(
-    () => (currentRef: HTMLDivElement) => {
+    () => (currentRef: Types.ScrollHTMLDivElement) => {
       if (currentRef && !memo.events) {
         memo.events = true
 
@@ -431,7 +446,11 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
   )
 
   return (
-    <div {...attributes} css={[classes.wrapper, styleProps.container]} data-scroll-id={memo.id}>
+    <div
+      {...attributes}
+      css={[classes.wrapper, styleProps.container]}
+      data-scroll-id={memo.id}
+    >
       <div
         {...events}
         onScroll={(e) => {
@@ -451,7 +470,7 @@ const ScrollView: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref
             memo.content = currentRef
           }}
         >
-          {props.children}
+          {children}
         </div>
       </div>
       {mode !== 'hidden' && (

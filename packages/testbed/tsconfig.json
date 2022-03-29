@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+    },
+  },
+  "include": ["src/**/*", "global.d.ts", "./vite.config.ts"],
+  "exclude": ["node_modules","dist"],
+}

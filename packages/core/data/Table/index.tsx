@@ -1,26 +1,42 @@
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-for-of-loops/no-for-of-loops */
+import React, {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react'
+
 import { useSystem } from '@stage-ui/system'
-import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
+
+import createID from '@stage-ui/system/utils/createID'
+
 import styles from './styles'
 import TableFoot from './TableFoot'
 import TableHeadCell from './TableHeadCell'
 import TableRow from './TableRow'
 import Types from './types'
 
-export const dndContext = {
-  willRender: false,
-  source: -1,
-  target: -1,
-}
-
-function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.TableRef<Row>) {
-  const tableRef = useRef<HTMLTableElement>(null)
+function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   const {
     classes,
     attributes,
     events: { onChange, onRowClick, ...events },
     styleProps,
   } = useSystem('Table', props, styles)
-  const { columns, pagination, footer } = props
+  const {
+    columns,
+    pagination,
+    footer,
+    data,
+    rowHeight,
+    rowShouldRender,
+    rowMountType,
+    rowDidMount,
+    rowDidUnmount,
+  } = props
   const [currentPage, setCurrentPage] = useState(1)
   const [reloadData, reload] = useState(false)
   const [sort, setSort] = useState<Types.TableSortObject>({
@@ -28,10 +44,8 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
     sort: 'ASC',
   })
 
-  const isDraggableSupport = !!columns.find((column) => column.dnd)
-
-  const mapRowContext = (row: Row): Types.TableRowContext<Row> => {
-    const isCellModify: Types.TableRowContext<Row>['isCellModify'] = {}
+  const mapRowContext = (row: Types.Row): Types.TableRowContext => {
+    const isCellModify: Types.TableRowContext['isCellModify'] = {}
     columns.forEach((column) => {
       isCellModify[column.key] = false
     })
@@ -43,14 +57,8 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
       setModifyState: {},
     }
   }
-  /**
-   * TODO: issue with dragbale
-   * if dnd enabled then controlled data
-   * will not work and vice versa
-   */
-  let rowCtx = isDraggableSupport
-    ? useMemo(() => props.data.map(mapRowContext), [])
-    : props.data.slice().map(mapRowContext)
+
+  let rowCtx = data.slice().map(mapRowContext)
 
   /**
    * Getting current data state
@@ -65,12 +73,12 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
       rowCtx = rowCtx.sort((a, b) => {
         if (value.sort === 'ASC') {
           if (typeof a.row[value.key] === 'string') {
-            return a.row[value.key].localeCompare(b.row[value.key])
+            return (a.row[value.key] as string).localeCompare(b.row[value.key] as string)
           }
           return a.row[value.key] - b.row[value.key]
         }
         if (typeof b.row[value.key] === 'string') {
-          return b.row[value.key].localeCompare(a.row[value.key])
+          return (b.row[value.key] as string).localeCompare(a.row[value.key] as string)
         }
         return b.row[value.key] - a.row[value.key]
       })
@@ -88,24 +96,31 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
     return new Promise((resolve) => resolve(undefined))
   }
 
-  /**
-   * Render data after DnD
-   */
-  const dndRender = () => {
-    dndContext.willRender = true
-    rowCtx.splice(dndContext.target, 0, rowCtx.splice(dndContext.source, 1)[0])
-    const data = getData()
-    columns.forEach((column) => {
-      column.dnd?.(dndContext.source, dndContext.target, data)
-    })
-    /** keepit */
-    setTimeout(() => {
-      onChange?.(data)
-    }, 0)
-    reload(!reloadData)
+  const setExpand: Types.Methods['setExpand'] = (index, content) => {
+    if (rowCtx[index]) {
+      rowCtx[index].setExpandComponent?.(content)
+      return true
+    }
+    return false
   }
 
-  const getCellContext: Types.TableRef<Row>['getCellContext'] = (index, key) => {
+  const setModify: Types.Methods['setModify'] = (modify, index, key) => {
+    if (rowCtx[index]) {
+      if (key !== undefined) {
+        if (Object.prototype.hasOwnProperty.call(rowCtx[index].row, key)) {
+          rowCtx[index].setModifyState[key]?.(modify)
+          return true
+        }
+      }
+      Object.keys(rowCtx[index].isCellModify).forEach((currentKey) => {
+        rowCtx[index].setModifyState[currentKey]?.(modify)
+      })
+      return true
+    }
+    return false
+  }
+
+  const getCellContext: Types.Methods['getCellContext'] = (index, key) => {
     if (!rowCtx[index]?.row) {
       return null
     }
@@ -123,8 +138,8 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
       setModify: (modify, kkey = key) => setModify(modify, index, kkey),
       reloadData: () => reload(!reloadData),
       setRow: (row) => {
-        for (key in rowCtx[index].row) {
-          rowCtx[index].row[key] = row[key]
+        for (const rowKey in rowCtx[index].row) {
+          rowCtx[index].row[rowKey] = row[rowKey]
         }
         reload(!reloadData)
       },
@@ -132,56 +147,13 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
     }
   }
 
-  const setExpand: Types.TableRef<Row>['setExpand'] = (index, content) => {
-    if (rowCtx[index]) {
-      rowCtx[index].setExpandComponent?.(content)
-      return true
-    }
-    return false
-  }
-
-  const setModify: Types.TableRef<Row>['setModify'] = (modify, index, key) => {
-    if (rowCtx[index]) {
-      if (key !== undefined) {
-        // @ts-ignore
-        if (Object.prototype.hasOwnProperty.call(rowCtx[index].row, key)) {
-          rowCtx[index].setModifyState[key]?.(modify)
-          return true
-        }
-      }
-      Object.keys(rowCtx[index].isCellModify).forEach((currentKey) => {
-        rowCtx[index].setModifyState[currentKey]?.(modify)
-      })
-      return true
-    }
-    return false
-  }
-
-  /**
-   * Handle refs
-   */
-  // @ts-ignore
-  useImperativeHandle(ref, () => ({
-    getCellContext,
-    setExpand,
-    setModify,
-    getData,
-    ...tableRef.current,
-  }))
-
-  /**
-   * Sorting data
-   */
-  if (!dndContext.willRender) {
-    if (sort.key) {
-      columnSort(sort)
-    } else {
-      for (const column of columns) {
-        columnSort(column as Types.TableSortObject)
-      }
+  if (sort.key) {
+    columnSort(sort)
+  } else {
+    for (const column of columns) {
+      columnSort(column as Types.TableSortObject)
     }
   }
-  dndContext.willRender = false
 
   const setNeedDisplay = () => {
     let state = 1
@@ -193,7 +165,7 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
     }
   }
 
-  const enableRenderOptimization = !!props.rowMountType?.match('Visible')
+  const enableRenderOptimization = !!rowMountType?.match('Visible')
 
   useEffect(() => {
     /**
@@ -218,16 +190,28 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
     }
   }, [sort.key, sort.sort])
 
-  /**
-   * Render Data
-   */
+  const tableElementRef = useRef<HTMLTableElement>(null)
+
+  useImperativeHandle(ref, () => ({
+    getData,
+    getCellContext,
+    setExpand,
+    setModify,
+    ...(tableElementRef.current as HTMLTableElement),
+  }))
+
   return (
-    <table {...attributes} {...events} ref={tableRef} css={[classes.container, styleProps.all]}>
+    <table
+      {...attributes}
+      {...events}
+      ref={tableElementRef}
+      css={[classes.container, styleProps.all]}
+    >
       <thead>
         <tr>
-          {columns.map((column, colIndex) => (
+          {columns.map((column) => (
             <TableHeadCell
-              key={colIndex}
+              key={createID()}
               styles={classes}
               column={column}
               toggleSort={toggleSort}
@@ -247,7 +231,10 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
           /**
            * Row events map
            */
-          const currentEvents: Types.RowEvents<Row> = {}
+          const currentEvents: Record<
+            string,
+            React.MouseEventHandler<HTMLTableRowElement>
+          > = {}
           /**
            * We'll call onRow*Event* at on*Event*
            * with injected rowIndex.
@@ -258,27 +245,30 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
               currentEvents[key.replace('Row', '')] = (
                 e: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
               ) =>
-                props[key as Stage.FilterStartingWith<keyof typeof props, 'onRow'>]?.(rowCtxItem, e)
+                // eslint-disable-next-line react/destructuring-assignment
+                props[key as Stage.FilterStartingWith<keyof typeof props, 'onRow'>]?.(
+                  rowCtxItem,
+                  e,
+                )
             })
 
           return (
             <TableRow
+              key={createID()}
               rowCtxItem={rowCtxItem}
               getCellContext={getCellContext}
-              rowDidMount={props.rowDidMount}
-              rowDidUnmount={props.rowDidUnmount}
+              rowDidMount={rowDidMount}
+              rowDidUnmount={rowDidUnmount}
               styles={classes}
-              key={rowIndex}
               columns={columns}
               rowIndex={rowIndex}
               events={currentEvents}
-              rowMountType={props.rowMountType}
+              rowMountType={rowMountType}
               enableRenderOptimization={enableRenderOptimization}
               delegates={{
-                rowHeight: props.rowHeight,
-                rowShouldRender: props.rowShouldRender,
+                rowHeight,
+                rowShouldRender,
               }}
-              dndRender={dndRender}
             />
           )
         })}
@@ -295,7 +285,6 @@ function Table<Row extends Types.RowType>(props: Types.Props<Row>, ref: Types.Ta
   )
 }
 
-export default forwardRef(Table as any) as <Row extends Types.RowType>(
-  props: Types.Props<Row>,
-  ref: Types.TableRef<Row>,
+export default forwardRef(Table) as <Row extends Types.Row>(
+  props: Types.Props<Row> & { ref?: React.ForwardedRef<Types.Ref<Row>> },
 ) => React.ReactElement

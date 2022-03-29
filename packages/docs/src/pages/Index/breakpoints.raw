@@ -1,0 +1,3 @@
+<Button p={['1rem', '*', '.5rem', '.25rem']}>
+  Hello
+</Button>

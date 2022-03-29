@@ -1,0 +1,12 @@
+<Flexbox
+  style={[
+    {
+      overflow: 'hidden'
+    },
+    '*',
+    '*',
+    {
+      overflow: 'scroll'
+    }
+  ]}
+/>

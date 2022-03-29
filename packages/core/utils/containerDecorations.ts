@@ -28,9 +28,9 @@ const containerDecorations = (props: Props, theme: Stage.Theme) => {
       return {
         background: theme.color.surface.rgb().string(),
         borderRadius: theme.radius.m,
-        borderWidth: theme.assets.border.width,
-        borderStyle: theme.assets.border.style,
-        borderColor: theme.assets.border.color,
+        borderWidth: '1px',
+        borderStyle: 'solid',
+        borderColor: theme.color.border.rgb().string(),
       }
     case 'minorShadow':
       return {

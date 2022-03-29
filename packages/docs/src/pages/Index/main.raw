@@ -1,0 +1,44 @@
+{
+  name: 'Light',
+  color: {
+    /* 
+    * Also includes pallete colors.
+    * You can find them in colors page
+    */
+    background: [245, 245, 245],
+    surface: [255, 255, 255],
+    primary: [74, 139, 252],
+    secondary: [252, 148, 74],
+
+    onBackground: [0, 0, 0],
+    onSurface: [0, 0, 0],
+    onPrimary: [255, 255, 255],
+    onSecondary: [255, 255, 255],
+
+    error: [224, 32, 32],
+    successful: [109, 212, 0],
+    warning: [250, 100, 0],
+    info: [0, 145, 255],
+  },
+  radius: {
+    xs: '0.125rem',
+    s: '0.25rem',
+    m: '0.5rem',
+    l: '0.75rem',
+    xl: '1rem',
+  },
+  spacing: {
+    xs: '.25rem',
+    s: '.5rem',
+    m: '1rem',
+    l: '1.5rem',
+    xl: '1.75rem',
+  },
+  /* 
+  * Optional. Uses in style props for set 
+  * differt values depended of screen size
+  */
+  breakpoints: ['1199.98px','991.98px','767.98px','575.98px']
+
+  // ...
+}
