@@ -1,7 +1,7 @@
 import React from 'react'
 
-import NativeTypes from 'types'
+import NativeTypes from '@stage-ui/native/types'
 
-import lightTheme from '../themes/light'
+import lightTheme from '@stage-ui/native/themes/light'
 
 export default React.createContext(lightTheme as NativeTypes.Theme)

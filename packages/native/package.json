@@ -12,11 +12,9 @@
         "type-check:watch": "yarn type-check -- --watch",
         "icons:generate": "node ./scripts/iconsGenerate"
     },
-    "devDependencies": {
-        "react-native": "0.64.3"
-    },
     "peerDependencies": {
         "@emotion/react": ">=11",
+        "react-native": ">=0.64.3",
         "react": ">=16"
     }
 }

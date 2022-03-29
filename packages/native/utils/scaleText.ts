@@ -1,6 +1,6 @@
-import NativeTypes from 'types'
+import NativeTypes from '@stage-ui/native/types'
 
-import scale from './scale'
+import scale from '@stage-ui/native/utils/scale'
 
 export default (textStyle: NativeTypes.FontStyle) => {
   const scaledTextStyle: NativeTypes.FontStyle = Object.create(textStyle)
