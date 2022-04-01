@@ -245,7 +245,7 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   }
 
   useImperativeHandle(ref, () => ({
-    getCurrentState: () => Object.freeze(memo),
+    getCurrentState: () => memo,
     addWatchElementListener: (fn, options) => {
       const listenerId = (~~(Math.random() * 1e8)).toString(16)
       memo.watchElementListeners[listenerId] = { fn, options }
@@ -288,6 +288,7 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
       }
       return false
     },
+    content: memo.content,
     container: memo.container,
   }))
 
