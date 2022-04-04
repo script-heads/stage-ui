@@ -12,6 +12,8 @@ import React, {
 
 import { useSystem } from '@stage-ui/system'
 
+import Checkbox from '../../control/Checkbox'
+
 import styles from './styles'
 import TableFoot from './TableFoot'
 import TableHeadCell from './TableHeadCell'
@@ -22,7 +24,7 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   const {
     classes,
     attributes,
-    events: { onChange, onRowClick, ...events },
+    events: { onChange, onRowClick, onRowDoubleClick, onRowSelect, ...events },
     styleProps,
   } = useSystem('Table', props, styles)
   const {
@@ -30,12 +32,16 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     pagination,
     footer,
     data,
+    selected,
     rowHeight,
     rowShouldRender,
     rowMountType,
     rowDidMount,
     rowDidUnmount,
   } = props
+
+  const [primaryKey, setPrimaryKey] = useState<Types.TableCellKey>('')
+
   const [currentPage, setCurrentPage] = useState(1)
   const [reloadData, reload] = useState(false)
   const [sort, setSort] = useState<Types.TableSortObject>({
@@ -48,11 +54,18 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     columns.forEach((column) => {
       isCellModify[column.key] = false
     })
+
+    let isSelected: Types.TableCellContext['isSelected'] = false
+    if (Array.isArray(selected) && primaryKey) {
+      isSelected = selected.findIndex((c) => c[primaryKey] === row[primaryKey]) >= 0
+    }
+
     return {
       row,
       isExpand: false,
       isVisible: true,
       isCellModify,
+      isSelected,
       setModifyState: {},
     }
   }
@@ -134,6 +147,7 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
       isExpand: rowCtx[index].isExpand,
       isModify: rowCtx[index].isCellModify[key],
       isVisible: rowCtx[index].isVisible,
+      isSelected: rowCtx[index].isSelected,
       setExpand: (content) => setExpand(index, content),
       setModify: (modify, kkey = key) => setModify(modify, index, kkey),
       reloadData: () => reload(!reloadData),
@@ -182,6 +196,15 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
         document.removeEventListener('onstagescroll', setNeedDisplay)
       }
     }
+
+    if (Array.isArray(selected)) {
+      const keys = columns.filter((c) => c.primary)
+      if (keys.length === 1) {
+        setPrimaryKey(keys[0].key)
+      } else {
+        console.warn('You should assign only 1 column to primary key!')
+      }
+    }
   }, [])
 
   useEffect(() => {
@@ -209,6 +232,11 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     >
       <thead>
         <tr>
+          {Array.isArray(selected) && (
+            <td css={classes.headCell({ sort: false })} style={{ width: '1.25rem' }}>
+              <Checkbox onClick={() => {}} />
+            </td>
+          )}
           {columns.map((column, columnIndex) => (
             <TableHeadCell
               key={column.key || columnIndex.toString()}
@@ -265,6 +293,7 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
               events={currentEvents}
               rowMountType={rowMountType}
               enableRenderOptimization={enableRenderOptimization}
+              selectable={Array.isArray(selected)}
               delegates={{
                 rowHeight,
                 rowShouldRender,

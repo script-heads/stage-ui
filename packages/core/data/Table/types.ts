@@ -10,6 +10,10 @@ declare namespace TableTypes {
        */
       data: R[]
       /**
+       * Array of any selected data objects
+       */
+      selected: R[]
+      /**
        * Settings of columns
        */
       columns: TableColumn<R>[]
@@ -183,6 +187,11 @@ declare namespace TableTypes {
      */
     isVisible: boolean
     /**
+     * Is current row selected
+     * @readonly
+     */
+    isSelected: boolean
+    /**
      * Set expanded ReactNode below current row
      */
     setExpand: (el: React.ReactNode | null) => boolean
@@ -215,6 +224,11 @@ declare namespace TableTypes {
      * @default false
      */
     isVisible: boolean
+    /**
+     * true if element selected
+     * @default false
+     */
+    isSelected: boolean
     /**
      * keys of cells that in modify mode
      */
@@ -260,13 +274,31 @@ declare namespace TableTypes {
      * support ASC | DESC
      */
     sort?: TableSortType | TableSortAsync
+    /**
+     * Primary key for mappings
+     */
+    primary?: boolean
   }
 
   interface RowEvents<R extends Row = Row> {
     /**
+     * Calls when ever row selected
+     */
+    onRowSelect?: (
+      rowCtxItem: TableRowContext<R>,
+      event: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
+    ) => void
+    /**
      * Calls when ever row clicked
      */
     onRowClick?: (
+      rowCtxItem: TableRowContext<R>,
+      event: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
+    ) => void
+    /**
+     * Calls when row double-clicked
+     */
+    onRowDoubleClick?: (
       rowCtxItem: TableRowContext<R>,
       event: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
     ) => void
@@ -318,11 +350,12 @@ declare namespace TableTypes {
     rowIndex: number
     styles: ClassesType<Classes>
     getCellContext: Methods<R>['getCellContext']
-    events: RowEvents<R>
+    events: Record<string, React.MouseEventHandler<HTMLTableRowElement | HTMLDivElement>>
     rowDidMount?: (rowCtxItem: TableRowContext<R>) => void
     rowDidUnmount?: (rowCtxItem: TableRowContext<R>) => void
     rowMountType?: Props<R>['rowMountType']
     enableRenderOptimization: boolean
+    selectable: boolean
     delegates: {
       rowHeight?: Props<R>['rowHeight']
       rowShouldRender?: Props<R>['rowShouldRender']
