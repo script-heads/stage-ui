@@ -14,12 +14,12 @@ function TableHeadCell(
   const [up, setUp] = useState(column.sort === 'DESC')
 
   const onToggleSort = () => {
-    setUp(!up)
     if (typeof column.sort === 'function') setBusy(true)
     toggleSort({
       key: column.key,
       sort: up ? 'ASC' : 'DESC',
     }).then(() => {
+      setUp(!up)
       if (typeof column.sort === 'function') setBusy(false)
     })
   }

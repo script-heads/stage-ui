@@ -1,5 +1,6 @@
-import { Table, ScrollView } from '@stage-ui/core'
 import React from 'react'
+
+import { Table, ScrollView } from '@stage-ui/core'
 
 export default () => {
   return (

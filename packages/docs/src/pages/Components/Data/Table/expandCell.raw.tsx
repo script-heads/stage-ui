@@ -1,6 +1,7 @@
+import React from 'react'
+
 import { Flexbox, Table, Text } from '@stage-ui/core'
 import { ArrowIosDown } from '@stage-ui/icons'
-import React from 'react'
 
 export default () => {
   const ExpandCell = (props: { ctx }) => {

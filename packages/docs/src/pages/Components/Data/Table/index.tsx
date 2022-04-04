@@ -4,7 +4,6 @@ import expandCell from './expandCell.raw?raw'
 import sorting from './sorting.raw?raw'
 import pagination from './pagination.raw?raw'
 import bigdata from './bigdata.raw?raw'
-import dnd from './dnd.raw?raw'
 
 export const title = 'Table'
 export { ReactComponent as glyph } from './Table.svg'
@@ -16,5 +15,4 @@ export const cases = [
   { label: 'Sorting', code: sorting },
   { label: 'Pagination', code: pagination },
   { label: 'Bigdata', code: bigdata },
-  { label: 'Drag&Drop', code: dnd },
 ]

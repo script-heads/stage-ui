@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-for-of-loops/no-for-of-loops */
@@ -10,8 +11,6 @@ import React, {
 } from 'react'
 
 import { useSystem } from '@stage-ui/system'
-
-import createID from '@stage-ui/system/utils/createID'
 
 import styles from './styles'
 import TableFoot from './TableFoot'
@@ -85,14 +84,15 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     }
   }
 
-  const toggleSort = (value: Types.TableSortObject) => {
+  const toggleSort = async (value: Types.TableSortObject) => {
     const column = columns.find((currentColumn) => currentColumn.key === value.key)
     if (column) {
       if (typeof column.sort === 'function') {
-        return column.sort(value.sort)
+        await column.sort(value.sort)
       }
       setSort(value)
     }
+    // eslint-disable-next-line no-promise-executor-return
     return new Promise((resolve) => resolve(undefined))
   }
 
@@ -209,9 +209,9 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     >
       <thead>
         <tr>
-          {columns.map((column) => (
+          {columns.map((column, columnIndex) => (
             <TableHeadCell
-              key={createID()}
+              key={column.key || columnIndex.toString()}
               styles={classes}
               column={column}
               toggleSort={toggleSort}
@@ -254,7 +254,7 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
 
           return (
             <TableRow
-              key={createID()}
+              key={rowCtxItem.row.id || rowIndex.toString()}
               rowCtxItem={rowCtxItem}
               getCellContext={getCellContext}
               rowDidMount={rowDidMount}

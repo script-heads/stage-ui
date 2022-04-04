@@ -1,6 +1,7 @@
+import React, { useState } from 'react'
+
 import { notify, Table } from '@stage-ui/core'
 import Types from '@stage-ui/core/data/Table/types'
-import React, { useState } from 'react'
 
 export default () => {
   const dataA = [

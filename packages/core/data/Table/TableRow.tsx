@@ -1,8 +1,6 @@
 /* eslint-disable no-bitwise */
 import React, { forwardRef, useState } from 'react'
 
-import createID from '@stage-ui/system/utils/createID'
-
 import TableCell from './TableCell'
 import Types from './types'
 
@@ -91,7 +89,7 @@ function TableRow(props: Types.RowProps, ref: React.ForwardedRef<HTMLTableRowEle
               rowCtxItem={rowCtxItem}
               getCellContext={getCellContext}
               styles={styles}
-              key={createID()}
+              key={column.key || columnIndex.toString()}
               column={column}
               rowIndex={rowIndex}
             />

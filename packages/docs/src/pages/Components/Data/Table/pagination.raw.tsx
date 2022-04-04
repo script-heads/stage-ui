@@ -1,5 +1,6 @@
-import { Table } from '@stage-ui/core'
 import React from 'react'
+
+import { Table } from '@stage-ui/core'
 
 export default () => {
   return (

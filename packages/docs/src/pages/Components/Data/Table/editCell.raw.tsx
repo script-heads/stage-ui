@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Flexbox, Table, Text, TextField } from '@stage-ui/core'
 import TableTypes from '@stage-ui/core/data/Table/types'
 import { Checkmark, Edit2 } from '@stage-ui/icons'
@@ -6,7 +7,7 @@ import { Checkmark, Edit2 } from '@stage-ui/icons'
 type CellData = { name: string; age: number }
 
 export default () => {
-  const EditName = (props: { ctx: TableTypes.TableCellContext<CellData> }) => {
+  function EditName(props: { ctx: TableTypes.TableCellContext<CellData> }) {
     let tmp = props.ctx.value as string
     const save = () => {
       props.ctx.row[props.ctx.key] = tmp
@@ -26,19 +27,21 @@ export default () => {
     )
   }
 
-  const DisplayName = (props: { ctx: TableTypes.TableCellContext<CellData> }) => (
-    <Flexbox alignItems="center">
-      <Edit2
-        size="1rem"
-        mr="0.5rem"
-        color="primary"
-        onClick={() => {
-          props.ctx.setModify(true)
-        }}
-      />
-      <Text>{props.ctx.value}</Text>
-    </Flexbox>
-  )
+  function DisplayName(props: { ctx: TableTypes.TableCellContext<CellData> }) {
+    return (
+      <Flexbox alignItems="center">
+        <Edit2
+          size="1rem"
+          mr="0.5rem"
+          color="primary"
+          onClick={() => {
+            props.ctx.setModify(true)
+          }}
+        />
+        <Text>{props.ctx.value}</Text>
+      </Flexbox>
+    )
+  }
 
   return (
     <Table
