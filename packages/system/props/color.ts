@@ -13,6 +13,14 @@ function colorProp<V extends ColorProp | undefined>(
 
   switch (typeof value) {
     case 'string': {
+      if (Object.hasOwnProperty.call(theme.color, value)) {
+        resolvedColor = theme.color[value as keyof Stage.Colors]
+        break
+      }
+      if (Object.hasOwnProperty.call(theme.color.palette, value)) {
+        resolvedColor = theme.color.palette[value]
+        break
+      }
       const [color, shade] = value.split(/(\d+)/) as [
         keyof Stage.Colors,
         keyof Stage.ColorShades,
@@ -22,7 +30,7 @@ function colorProp<V extends ColorProp | undefined>(
           resolvedColor = (theme.color[color] as Stage.ColorShades)[shade]
           break
         }
-        resolvedColor = theme.color[color] || theme.color.palette[color]
+        resolvedColor = theme.color[color]
         break
       }
       resolvedColor = Color(value)
