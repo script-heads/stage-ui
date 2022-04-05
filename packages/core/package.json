@@ -1,8 +1,15 @@
 {
   "name": "@stage-ui/core",
-  "author": "Script Heads",
-  "version": "0.3.4",
+  "description": "Flexible UI Framework declared by your own Design System.",
+  "version": "0.3.9",
   "license": "MIT",
+  "homepage": "https://stageui.shds.io/",
+  "bugs": "https://github.com/script-heads/stage-ui/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/script-heads/stage-ui.git",
+    "directory": "packages/core"
+  },
   "scripts": {
     "build": "node ../../scripts/make core && yarn build:types && yarn build:js",
     "build:js": "babel ./ --out-dir ../../build/core --extensions \".ts,.tsx\" --ignore \"node_modules/\"",

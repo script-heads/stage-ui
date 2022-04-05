@@ -1,10 +1,12 @@
+import React, { forwardRef } from 'react'
+
 import { Close, AlertCircle } from '@stage-ui/icons'
 import { useSystem } from '@stage-ui/system'
-import React, { forwardRef, ForwardRefRenderFunction } from 'react'
+
 import Types from './types'
 import createClasses from './styles'
 
-const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (props, ref) => {
+function Field(props: Types.PrivateProps, ref: React.ForwardedRef<HTMLDivElement>) {
   const {
     name,
     disabled,
@@ -26,9 +28,16 @@ const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (pro
     events: { onClear, onEsc, onEnter, ...events },
   } = useSystem(name || 'Field', props, createClasses)
 
-  const htmlId = React.useMemo(() => `${'Field'}-${Math.random().toString(16).slice(2)}`, [])
+  attributes.tabIndex = attributes.tabIndex || 0
 
-  const handleClean = (e: React.TouchEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>) => {
+  const htmlId = React.useMemo(
+    () => `${'Field'}-${Math.random().toString(16).slice(2)}`,
+    [],
+  )
+
+  const handleClean = (
+    e: React.TouchEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>,
+  ) => {
     e.stopPropagation()
     e.preventDefault()
     if (onClear && !disabled) {
@@ -61,13 +70,7 @@ const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (pro
     <div css={classes.container}>
       {label !== undefined && labelType === 'outside' && labelJSX}
 
-      <div
-        css={classes.field}
-        {...attributes}
-        {...events}
-        tabIndex={attributes.tabIndex || 0}
-        ref={ref}
-      >
+      <div css={classes.field} {...attributes} {...events} ref={ref}>
         {leftChild && <div css={classes.leftChild}>{leftChild}</div>}
 
         <div css={classes.content}>
@@ -83,8 +86,8 @@ const Field: ForwardRefRenderFunction<HTMLDivElement, Types.PrivateProps> = (pro
         {rightChild && <div css={classes.rightChild}>{rightChild}</div>}
       </div>
 
-      {!!props.hint && !props.error && hintJSX}
-      {!!props.error && errorJSX}
+      {!!hint && !error && hintJSX}
+      {!!error && errorJSX}
     </div>
   )
 }
