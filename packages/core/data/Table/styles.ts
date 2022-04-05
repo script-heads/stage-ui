@@ -16,9 +16,9 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
       transition: 'background 0.25s',
     },
     state.selected && {
-      backgroundColor: `${theme.color.blue[50].hex()} !important`,
+      backgroundColor: `${theme.color.primary.alpha(0.1).string()} !important`,
     },
-    state.selectable && {
+    state.clickable && {
       ':hover': {
         backgroundColor: theme.color.gray[100].hex(),
       },

@@ -67,7 +67,7 @@ declare namespace TableTypes {
      * Row view <tr>
      */
     row: {
-      selectable: boolean
+      clickable: boolean
       selected: boolean
     }
     /**

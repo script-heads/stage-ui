@@ -117,7 +117,10 @@ function TableRow(props: Types.RowProps, ref: React.ForwardedRef<HTMLTableRowEle
           {...primaryEvents}
           onClick={onClick}
           ref={ref}
-          css={styles.row({ selected: rowCtxItem.isSelected, selectable })}
+          css={styles.row({
+            selected: rowCtxItem.isSelected,
+            clickable: selectable || !!onRowClick,
+          })}
           key={rowIndex}
         >
           {selectable && (
