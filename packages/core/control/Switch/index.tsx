@@ -1,14 +1,31 @@
 import React, { forwardRef, ForwardRefRenderFunction, useEffect, useState } from 'react'
+
 import { useSystem } from '@stage-ui/system'
+
 import createClasses from './styles'
 import Types from './types'
 
-const Switch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props: Types.Props, ref) => {
-  const { tabIndex = 0, label, disabled, defaultValue, checked: checkedProp = false } = props
+const Switch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
+  props: Types.Props,
+  ref,
+) => {
+  const {
+    tabIndex = 0,
+    label,
+    disabled,
+    defaultValue,
+    checked: checkedProp = false,
+    half = false,
+  } = props
 
-  const { classes, attributes, events, styleProps } = useSystem('Switch', props, createClasses, {
-    focus: 'tabOnly',
-  })
+  const { classes, attributes, events, styleProps } = useSystem(
+    'Switch',
+    props,
+    createClasses,
+    {
+      focus: 'tabOnly',
+    },
+  )
 
   const { onClick, onChange, onKeyDown, ...restEvents } = events
 
@@ -63,10 +80,10 @@ const Switch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props: Ty
       role="checkbox"
       aria-checked={checked}
     >
-      <div css={classes.check({ checked })}>
+      <div css={classes.check({ checked, half })}>
         <div
           tabIndex={tabIndex}
-          css={classes.icon({ checked })}
+          css={classes.icon({ checked, half })}
           onFocus={events.onFocus}
           onBlur={events.onBlur}
         />

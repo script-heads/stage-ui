@@ -16,7 +16,7 @@ const Checkbox: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
     disabled,
     defaultValue,
     checked: checkedProp = false,
-    half,
+    half = false,
   } = props
 
   const { classes, attributes, events, styleProps } = useSystem(

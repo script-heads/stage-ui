@@ -1,14 +1,28 @@
 import React, { forwardRef, useEffect, useState, ForwardRefRenderFunction } from 'react'
+
 import { useSystem } from '@stage-ui/system'
+
 import createClasses from './styles'
 import Types from './types'
 
 const Radio: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-  const { tabIndex = 0, label, disabled, defaultValue, checked: checkedProp = false } = props
+  const {
+    tabIndex = 0,
+    label,
+    disabled,
+    defaultValue,
+    checked: checkedProp = false,
+    half = false,
+  } = props
 
-  const { classes, attributes, events, styleProps } = useSystem('Radio', props, createClasses, {
-    focus: 'tabOnly',
-  })
+  const { classes, attributes, events, styleProps } = useSystem(
+    'Radio',
+    props,
+    createClasses,
+    {
+      focus: 'tabOnly',
+    },
+  )
 
   const { onClick, onChange, onKeyDown, ...restEvents } = events
 
@@ -65,11 +79,11 @@ const Radio: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
     >
       <div
         tabIndex={tabIndex}
-        css={classes.check({ checked })}
+        css={classes.check({ checked, half })}
         onFocus={events.onFocus}
         onBlur={events.onBlur}
       >
-        <div css={classes.icon({ checked })} />
+        <div css={classes.icon({ checked, half })} />
       </div>
       {label && label.length && <div css={classes.label}>{label}</div>}
     </div>
