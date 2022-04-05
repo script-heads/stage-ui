@@ -85,15 +85,20 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   }
 
   const toggleSort = async (value: Types.TableSortObject) => {
-    const column = columns.find((currentColumn) => currentColumn.key === value.key)
-    if (column) {
-      if (typeof column.sort === 'function') {
-        await column.sort(value.sort)
+    return new Promise((resolve) => {
+      const column = columns.find((currentColumn) => currentColumn.key === value.key)
+      if (column) {
+        if (typeof column.sort === 'function') {
+          column.sort(value.sort).then(() => {
+            setSort(value)
+            resolve(undefined)
+          })
+        } else {
+          setSort(value)
+          resolve(undefined)
+        }
       }
-      setSort(value)
-    }
-    // eslint-disable-next-line no-promise-executor-return
-    return new Promise((resolve) => resolve(undefined))
+    })
   }
 
   const setExpand: Types.Methods['setExpand'] = (index, content) => {
