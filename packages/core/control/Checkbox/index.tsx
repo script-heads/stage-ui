@@ -1,6 +1,6 @@
 import React, { forwardRef, ForwardRefRenderFunction, useEffect, useState } from 'react'
 
-import { Checkmark } from '@stage-ui/icons'
+import { Checkmark, Minus } from '@stage-ui/icons'
 import { useSystem } from '@stage-ui/system'
 
 import createClasses from './styles'
@@ -16,6 +16,7 @@ const Checkbox: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
     disabled,
     defaultValue,
     checked: checkedProp = false,
+    half,
   } = props
 
   const { classes, attributes, events, styleProps } = useSystem(
@@ -70,6 +71,8 @@ const Checkbox: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
     onClick?.(e)
   }
 
+  const Icon = half && !checked ? Minus : Checkmark
+
   return (
     <div
       ref={ref}
@@ -84,11 +87,11 @@ const Checkbox: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
     >
       <div
         tabIndex={tabIndex}
-        css={classes.check({ checked })}
+        css={classes.check({ checked, half })}
         onFocus={events.onFocus}
         onBlur={events.onBlur}
       >
-        <Checkmark css={classes.icon({ checked })} />
+        <Icon css={classes.icon({ checked, half })} />
       </div>
       {label && label.length && <div css={classes.label}>{label}</div>}
     </div>

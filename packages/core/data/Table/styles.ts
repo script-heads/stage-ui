@@ -11,9 +11,19 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
       borderSpacing: 0,
     },
   ],
-  row: {
-    transition: 'background 0.25s',
-  },
+  row: (state) => [
+    {
+      transition: 'background 0.25s',
+    },
+    state.selected && {
+      backgroundColor: `${theme.color.blue[50].hex()} !important`,
+    },
+    state.selectable && {
+      ':hover': {
+        backgroundColor: theme.color.gray[100].hex(),
+      },
+    },
+  ],
   headCell: (state) => [
     {
       verticalAlign: 'middle',

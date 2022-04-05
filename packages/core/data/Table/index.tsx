@@ -24,7 +24,7 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   const {
     classes,
     attributes,
-    events: { onChange, onRowClick, onRowDoubleClick, onRowSelect, ...events },
+    events: { onChange, onRowClick, onRowDoubleClick, onCheckboxClick, ...events },
     styleProps,
   } = useSystem('Table', props, styles)
   const {
@@ -228,6 +228,13 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     ...(tableElementRef.current as HTMLTableElement),
   }))
 
+  const handleSelectAll = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    onCheckboxClick?.(
+      rowCtx.every((s) => s.isSelected) ? rowCtx : rowCtx.filter((r) => !r.isSelected),
+      e,
+    )
+  }
+
   return (
     <table
       {...attributes}
@@ -239,7 +246,11 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
         <tr>
           {Array.isArray(selected) && (
             <td css={classes.headCell({ sort: false })} style={{ width: '1.25rem' }}>
-              <Checkbox onClick={() => {}} />
+              <Checkbox
+                onClick={handleSelectAll}
+                checked={rowCtx.every((s) => s.isSelected)}
+                half={rowCtx.some((s) => s.isSelected)}
+              />
             </td>
           )}
           {columns.map((column, columnIndex) => (
@@ -296,6 +307,7 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
               columns={columns}
               rowIndex={rowIndex}
               events={currentEvents}
+              onCheckboxClick={(e) => onCheckboxClick?.([rowCtxItem], e)}
               rowMountType={rowMountType}
               enableRenderOptimization={enableRenderOptimization}
               selectable={Array.isArray(selected)}

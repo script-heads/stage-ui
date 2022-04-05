@@ -23,18 +23,19 @@ const App = () => {
 
   const [selected, setSelected] = useState<Row[]>([])
 
-  const handleSelect = (
-    ctx: TableTypes.TableRowContext<Row>,
-    e: React.MouseEvent<HTMLTableRowElement | HTMLDivElement, MouseEvent>,
-  ) => {
-    let nextSelected = selected.slice()
-    if (!ctx.isSelected) {
-      nextSelected.push(ctx.row)
-    } else {
-      nextSelected = nextSelected.filter((s) => s.id !== ctx.row.id)
+  const handleSelect = (rows: TableTypes.TableRowContext<Row>[]) => {
+    const stateMap = (prevState: Row[]) => {
+      let a = prevState.slice()
+      rows.forEach((r) => {
+        a = r.isSelected ? a.filter((rr) => rr.id !== r.row.id) : a.concat(r.row)
+      })
+      return a
     }
+    setSelected(stateMap)
+  }
 
-    setSelected(nextSelected)
+  const handleClick = (row: TableTypes.TableRowContext<Row>) => {
+    handleSelect([row])
   }
 
   return (
@@ -42,9 +43,9 @@ const App = () => {
       <Table
         data={data}
         selected={selected}
-        onRowDoubleClick={() => console.log('ddc')}
-        onRowClick={handleSelect}
-        onRowSelect={handleSelect}
+        onRowDoubleClick={() => console.log('double click')}
+        onRowClick={handleClick}
+        onCheckboxClick={handleSelect}
         columns={[
           { key: 'id', title: 'id', primary: true },
           { key: 'name', title: 'name' },

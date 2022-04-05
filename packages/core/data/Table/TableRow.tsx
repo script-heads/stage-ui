@@ -20,6 +20,7 @@ function TableRow(props: Types.RowProps, ref: React.ForwardedRef<HTMLTableRowEle
     rowDidMount,
     enableRenderOptimization,
     selectable,
+    onCheckboxClick,
   } = props
 
   const {
@@ -80,19 +81,15 @@ function TableRow(props: Types.RowProps, ref: React.ForwardedRef<HTMLTableRowEle
     }
   }
 
-  const rowClickTimer = useRef<ReturnType<typeof setTimeout>>(null)
-
+  const rowClickTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const onClick = (e: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => {
     if (typeof onRowDoubleClick === 'function') {
       if (rowClickTimer.current) {
         clearTimeout(rowClickTimer.current)
-        // @ts-expect-error bla-bla
         rowClickTimer.current = null
         onRowDoubleClick(e)
       } else {
-        // @ts-expect-error bla-bla
         rowClickTimer.current = setTimeout(() => {
-          // @ts-expect-error bla-bla
           rowClickTimer.current = null
           onRowClick?.(e)
         }, 250)
@@ -100,6 +97,11 @@ function TableRow(props: Types.RowProps, ref: React.ForwardedRef<HTMLTableRowEle
     } else {
       onRowClick?.(e)
     }
+  }
+
+  const handleCheckboxClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation()
+    onCheckboxClick?.(e)
   }
 
   if (delegates.rowShouldRender?.(rowCtxItem) === false) {
@@ -115,18 +117,12 @@ function TableRow(props: Types.RowProps, ref: React.ForwardedRef<HTMLTableRowEle
           {...primaryEvents}
           onClick={onClick}
           ref={ref}
-          css={styles.row}
+          css={styles.row({ selected: rowCtxItem.isSelected, selectable })}
           key={rowIndex}
         >
           {selectable && (
             <td css={styles.rowCell} style={{ width: '1.25rem' }}>
-              <Checkbox
-                checked={rowCtxItem.isSelected}
-                onClick={(e) => {
-                  e.stopPropagation()
-                  onRowSelect?.(e)
-                }}
-              />
+              <Checkbox checked={rowCtxItem.isSelected} onClick={handleCheckboxClick} />
             </td>
           )}
           {columns.map((column, columnIndex) => (

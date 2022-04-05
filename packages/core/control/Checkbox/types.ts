@@ -3,6 +3,7 @@ declare namespace CheckboxTypes {
     label?: string
     labelColor?: Stage.ColorProp
     checked?: boolean
+    half?: boolean
     disabled?: boolean
     defaultValue?: boolean
     uppercase?: boolean
@@ -12,6 +13,7 @@ declare namespace CheckboxTypes {
 
   type ClassState = {
     checked: Props['checked']
+    half: Props['half']
   }
 
   type Classes = {

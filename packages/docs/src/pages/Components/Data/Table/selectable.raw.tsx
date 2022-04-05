@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 import { Table } from '@stage-ui/core'
+import TableTypes from '@stage-ui/core/data/Table/types'
 
 type Row = { id: number; name: string; age: number }
 
@@ -15,26 +16,37 @@ export default () => {
     { id: 3, name: 'Kate', age: 26 },
   ]
 
-  const [selectedData, setSelectedData] = useState<Row[]>([])
+  const [selected, setSelected] = useState<Row[]>([])
 
-  // const onRowSelect = (r) => {
-  //   const nextData = selectedData.slice().concat(r.row)
-  //   setSelectedData(nextData)
-  // }
+  const onCheckboxClick = (rows: TableTypes.TableRowContext<Row>[]) => {
+    const stateMap = (prevState: Row[]) => {
+      let array = prevState.slice()
+      rows.forEach((r) => {
+        array = r.isSelected
+          ? array.filter((rr) => rr.id !== r.row.id)
+          : array.concat(r.row)
+      })
+      return array
+    }
+    setSelected(stateMap)
+  }
+
+  const onRowClick = (row: TableTypes.TableRowContext<Row>) => {
+    onCheckboxClick([row])
+  }
 
   return (
     <Table
       data={data}
-      selected={[]}
-      onRowSelect={() => {}}
+      selected={selected}
+      onRowDoubleClick={() => alert('double click')}
+      onRowClick={onRowClick}
+      onCheckboxClick={onCheckboxClick}
       columns={[
         { title: 'ID', key: 'id', primary: true },
         { title: 'Fullname', key: 'name' },
         { title: 'Age', key: 'age', width: 120 },
       ]}
-      onChange={(e) => {
-        console.log(e)
-      }}
     />
   )
 }

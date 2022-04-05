@@ -33,7 +33,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         textTransform: 'uppercase',
       },
     ],
-    check: ({ checked }) => [
+    check: ({ checked, half }) => [
       {
         boxSizing: 'border-box',
         display: 'flex',
@@ -53,6 +53,9 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       checked && {
         backgroundColor: theme.color.primary.rgb().string(),
         borderColor: 'transparent',
+      },
+      half && {
+        backgroundColor: theme.color.primary.rgb().string(),
       },
       disabled && [
         {
@@ -85,7 +88,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         height: '2rem',
       },
     ],
-    icon: ({ checked }) => [
+    icon: ({ checked, half }) => [
       {
         height: 'auto',
         transition: 'opacity .15s, transform .15s',
@@ -111,7 +114,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       size === 'xl' && {
         fontSize: '1.9rem',
       },
-      checked && {
+      (checked || half) && {
         opacity: 1,
         transform: `scale(1)`,
       },

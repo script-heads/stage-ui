@@ -12,7 +12,7 @@ declare namespace TableTypes {
       /**
        * Array of any selected data objects
        */
-      selected: R[]
+      selected?: R[]
       /**
        * Settings of columns
        */
@@ -66,7 +66,10 @@ declare namespace TableTypes {
     /**
      * Row view <tr>
      */
-    row: void
+    row: {
+      selectable: boolean
+      selected: boolean
+    }
     /**
      * Row cell <td>
      */
@@ -284,9 +287,9 @@ declare namespace TableTypes {
     /**
      * Calls when ever row selected
      */
-    onRowSelect?: (
-      rowCtxItem: TableRowContext<R>,
-      event: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
+    onCheckboxClick?: (
+      rows: TableRowContext<R>[],
+      event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     ) => void
     /**
      * Calls when ever row clicked
@@ -350,7 +353,8 @@ declare namespace TableTypes {
     rowIndex: number
     styles: ClassesType<Classes>
     getCellContext: Methods<R>['getCellContext']
-    events: Record<string, React.MouseEventHandler<HTMLTableRowElement | HTMLDivElement>>
+    events: Record<string, React.MouseEventHandler<HTMLTableRowElement>>
+    onCheckboxClick?: React.MouseEventHandler<HTMLDivElement>
     rowDidMount?: (rowCtxItem: TableRowContext<R>) => void
     rowDidUnmount?: (rowCtxItem: TableRowContext<R>) => void
     rowMountType?: Props<R>['rowMountType']
