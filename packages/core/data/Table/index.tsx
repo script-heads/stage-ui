@@ -97,7 +97,7 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     }
   }
 
-  const toggleSort = async (value: Types.TableSortObject) => {
+  const toggleSort = (value: Types.TableSortObject) => {
     return new Promise((resolve) => {
       const column = columns.find((currentColumn) => currentColumn.key === value.key)
       if (column) {
