@@ -16,6 +16,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
   },
   headCell: (state) => [
     {
+      verticalAlign: 'middle',
       textAlign: 'left',
       padding: '1.25rem 1rem',
       fontWeight: 500,
@@ -30,6 +31,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
   ],
   rowCell: [
     {
+      verticalAlign: 'middle',
       padding: '1rem',
       borderTopWidth: '1px',
       borderTopStyle: 'solid',

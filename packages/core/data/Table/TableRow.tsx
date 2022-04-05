@@ -1,5 +1,7 @@
 /* eslint-disable no-bitwise */
-import React, { forwardRef, useState } from 'react'
+import React, { forwardRef, useRef, useState } from 'react'
+
+import Checkbox from '../../control/Checkbox'
 
 import TableCell from './TableCell'
 import Types from './types'
@@ -17,8 +19,17 @@ function TableRow(props: Types.RowProps, ref: React.ForwardedRef<HTMLTableRowEle
     rowDidUnmount,
     rowDidMount,
     enableRenderOptimization,
+    selectable,
   } = props
+
+  const {
+    onSelect: onRowSelect,
+    onClick: onRowClick,
+    onDoubleClick: onRowDoubleClick,
+    ...primaryEvents
+  } = events
   const style: React.CSSProperties = {}
+
   /**
    * State with expanded row
    * if null then RowContext isExpand will be false
@@ -69,6 +80,28 @@ function TableRow(props: Types.RowProps, ref: React.ForwardedRef<HTMLTableRowEle
     }
   }
 
+  const rowClickTimer = useRef<ReturnType<typeof setTimeout>>(null)
+
+  const onClick = (e: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => {
+    if (typeof onRowDoubleClick === 'function') {
+      if (rowClickTimer.current) {
+        clearTimeout(rowClickTimer.current)
+        // @ts-expect-error bla-bla
+        rowClickTimer.current = null
+        onRowDoubleClick(e)
+      } else {
+        // @ts-expect-error bla-bla
+        rowClickTimer.current = setTimeout(() => {
+          // @ts-expect-error bla-bla
+          rowClickTimer.current = null
+          onRowClick?.(e)
+        }, 250)
+      }
+    } else {
+      onRowClick?.(e)
+    }
+  }
+
   if (delegates.rowShouldRender?.(rowCtxItem) === false) {
     return null
   }
@@ -79,11 +112,23 @@ function TableRow(props: Types.RowProps, ref: React.ForwardedRef<HTMLTableRowEle
         <tr
           id={rowId}
           style={style}
-          {...events}
+          {...primaryEvents}
+          onClick={onClick}
           ref={ref}
           css={styles.row}
           key={rowIndex}
         >
+          {selectable && (
+            <td css={styles.rowCell} style={{ width: '1.25rem' }}>
+              <Checkbox
+                checked={rowCtxItem.isSelected}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onRowSelect?.(e)
+                }}
+              />
+            </td>
+          )}
           {columns.map((column, columnIndex) => (
             <TableCell
               rowCtxItem={rowCtxItem}

@@ -1,6 +1,8 @@
 import React, { forwardRef, ForwardRefRenderFunction, useEffect, useState } from 'react'
+
 import { Checkmark } from '@stage-ui/icons'
 import { useSystem } from '@stage-ui/system'
+
 import createClasses from './styles'
 import Types from './types'
 
@@ -8,11 +10,22 @@ const Checkbox: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
   props: Types.Props,
   ref,
 ) => {
-  const { tabIndex = 0, label, disabled, defaultValue, checked: checkedProp = false } = props
+  const {
+    tabIndex = 0,
+    label,
+    disabled,
+    defaultValue,
+    checked: checkedProp = false,
+  } = props
 
-  const { classes, attributes, events, styleProps } = useSystem('Checkbox', props, createClasses, {
-    focus: 'tabOnly',
-  })
+  const { classes, attributes, events, styleProps } = useSystem(
+    'Checkbox',
+    props,
+    createClasses,
+    {
+      focus: 'tabOnly',
+    },
+  )
 
   const { onClick, onChange, onKeyDown, ...restEvents } = events
 
@@ -27,7 +40,9 @@ const Checkbox: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
    */
   function handleChange() {
     onChange?.(checked)
-    setChecked(!checked)
+    if (checkedProp === undefined) {
+      setChecked(!checked)
+    }
   }
   /*
    * Keyboard control

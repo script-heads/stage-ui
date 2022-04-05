@@ -151,18 +151,9 @@ declare global {
         }
       >
       typography: {
-        header: Record<
-          Sizes,
-          CSSObject
-        >
-        text: Record<
-          Sizes,
-          CSSObject
-        >
-        paragraph: Record<
-          Sizes,
-          CSSObject
-        >
+        header: Record<Sizes, CSSObject>
+        text: Record<Sizes, CSSObject>
+        paragraph: Record<Sizes, CSSObject>
       }
     }
 

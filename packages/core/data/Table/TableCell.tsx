@@ -13,7 +13,7 @@ export const getTR = (target: HTMLElement | null): HTMLTableRowElement | null =>
 
 function TableCell(
   props: Types.CellProps,
-  ref: React.ForwardedRef<HTMLTableDataCellElement>,
+  ref: React.ForwardedRef<HTMLTableCellElement>,
 ) {
   const { column, rowIndex, rowCtxItem, styles, getCellContext } = props
 
