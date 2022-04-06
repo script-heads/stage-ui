@@ -14,10 +14,12 @@ const fs = require('fs')
 const path = require('path')
 
 const svgSourcePath = path.resolve(__dirname, '..', 'svg')
-const svgIndexPath = path.resolve(__dirname, '..', 'index.tsx')
+const svgIndexPath = path.resolve(__dirname, '..', 'index.ts')
 const svgLibPath = path.resolve(__dirname, '..', 'lib')
 
-const template = fs.readFileSync(path.resolve(__dirname, 'template.txt'), { encoding: 'utf-8' })
+const template = fs.readFileSync(path.resolve(__dirname, 'template.txt'), {
+  encoding: 'utf-8',
+})
 
 const svgOutline = fs.readdirSync(`${svgSourcePath}/Outline`)
 const svgFill = fs.readdirSync(`${svgSourcePath}/Fill`)
@@ -27,7 +29,9 @@ const toCamelCase = (name) => {
   const match = name.match('-')
   if (match && match.index >= 0) {
     const idx = match.index + 1
-    return toCamelCase(name.slice(0, idx - 1) + name[idx].toUpperCase() + name.slice(idx + 1, 0xff))
+    return toCamelCase(
+      name.slice(0, idx - 1) + name[idx].toUpperCase() + name.slice(idx + 1, 0xff),
+    )
   }
   return name.slice(0, 1).toUpperCase() + name.slice(1, 0xff)
 }

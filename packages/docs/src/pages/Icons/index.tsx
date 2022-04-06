@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 import { Flexbox, TextField, notify, Text, useTheme } from '@stage-ui/core'
-import { Search } from '@stage-ui/icons'
 import * as AllIcons from '@stage-ui/icons'
 
 export const title = 'Collection'
