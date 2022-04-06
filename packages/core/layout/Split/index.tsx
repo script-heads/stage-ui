@@ -1,7 +1,15 @@
 /* eslint-disable no-param-reassign */
+import React, {
+  forwardRef,
+  ForwardRefRenderFunction,
+  Fragment,
+  useEffect,
+  useMemo,
+} from 'react'
+
 import { useSystem } from '@stage-ui/system'
 import createID from '@stage-ui/system/utils/createID'
-import React, { forwardRef, ForwardRefRenderFunction, Fragment, useEffect, useMemo } from 'react'
+
 import Separator from './Separator'
 import styles from './styles'
 import Types from './types'
@@ -24,7 +32,9 @@ const Split: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
   const getPositions = () =>
     Object.keys(refs)
       .filter((key) => parseInt(key, 10) >= 0)
-      .map((key) => parseFloat(refs[key].current?.style[vertical ? 'height' : 'width'] || ''))
+      .map((key) =>
+        parseFloat(refs[key].current?.style[vertical ? 'height' : 'width'] || ''),
+      )
 
   useEffect(() => {
     if (refs['-1'].current) {

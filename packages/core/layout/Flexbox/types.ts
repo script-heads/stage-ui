@@ -119,7 +119,14 @@ declare namespace FlexboxTypes {
     | 'column-reverse'
     | 'row'
     | 'row-reverse'
-  type FlexWrap = 'inherit' | 'initial' | 'revert' | 'unset' | 'nowrap' | 'wrap' | 'wrap-reverse'
+  type FlexWrap =
+    | 'inherit'
+    | 'initial'
+    | 'revert'
+    | 'unset'
+    | 'nowrap'
+    | 'wrap'
+    | 'wrap-reverse'
 }
 
 export default FlexboxTypes

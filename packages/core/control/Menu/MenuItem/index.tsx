@@ -1,7 +1,10 @@
+import React, { forwardRef, ForwardRefRenderFunction } from 'react'
+
 import { jsx } from '@emotion/react'
 import { useSystem } from '@stage-ui/system'
-import React, { forwardRef, ForwardRefRenderFunction } from 'react'
+
 import { useValue } from '..'
+
 import createClasses from './styles'
 import Types from './types'
 
@@ -10,7 +13,11 @@ const MenuItem: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
 
   const { rightChild, leftChild, disabled, as = ctx.itemAs || 'a', href } = props
 
-  const { classes, attributes, events, styleProps } = useSystem('MenuItem', props, createClasses)
+  const { classes, attributes, events, styleProps } = useSystem(
+    'MenuItem',
+    props,
+    createClasses,
+  )
 
   /**
    * Support controlled

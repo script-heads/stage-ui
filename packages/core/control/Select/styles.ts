@@ -2,7 +2,13 @@ import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
   theme,
-  { size = 'm', disabled, shape = 'rounded', decoration = 'outline', maxScrollHeight = '16rem' },
+  {
+    size = 'm',
+    disabled,
+    shape = 'rounded',
+    decoration = 'outline',
+    maxScrollHeight = '16rem',
+  },
 ) => {
   const { height } = theme.assets.field[size]
 
@@ -53,7 +59,9 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
           : theme.color.primary.rgb().string(),
         borderRadius: `calc(${theme.radius.s} / 2)`,
         boxSizing: 'border-box',
-        color: disabled ? theme.color.light.rgb().string() : theme.color.primary.rgb().string(),
+        color: disabled
+          ? theme.color.light.rgb().string()
+          : theme.color.primary.rgb().string(),
         padding: `0 calc(${height} / 5)`,
         margin: `calc(${height} / 20)`,
         marginRight: `calc(${height} / 10)`,
@@ -94,7 +102,9 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
         : theme.color.primary.alpha(0.8).rgb().string(),
       cursor: 'pointer',
       ':hover': {
-        color: disabled ? theme.color.light.rgb().string() : theme.color.primary.rgb().string(),
+        color: disabled
+          ? theme.color.light.rgb().string()
+          : theme.color.primary.rgb().string(),
       },
     },
 

@@ -17,6 +17,9 @@ export const breakpointIndex = (t: Stage.Theme) => {
 /**
  * get breakpoint value
  */
-export const breakpoint = <P = string | number | undefined>(v: P[], t: Stage.Theme): P => {
+export const breakpoint = <P = string | number | undefined>(
+  v: P[],
+  t: Stage.Theme,
+): P => {
   return v[breakpointIndex(t)] || v[v.length - 1]
 }

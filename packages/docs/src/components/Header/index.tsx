@@ -45,9 +45,21 @@ function Header() {
         color={(c) => c.onSurface.alpha(0.35)}
         onClick={() => navigate('/')}
       >
-        StageUI<Text size="3rem" lineHeight={0}>.</Text>
+        StageUI
+        <Text size="3rem" lineHeight={0}>
+          .
+        </Text>
       </TextHeader>
-      <Text size="xs" mt="xs" p="0.0625rem s" color="surface" weight={600} borderRadius="1rem" gridArea="version" backgroundColor={(c) => c.onSurface.alpha(0.9)}>
+      <Text
+        size="xs"
+        mt="xs"
+        p="0.0625rem s"
+        color="surface"
+        weight={600}
+        borderRadius="1rem"
+        gridArea="version"
+        backgroundColor={(c) => c.onSurface.alpha(0.9)}
+      >
         v.{corePackage.version}
       </Text>
       <Menu />

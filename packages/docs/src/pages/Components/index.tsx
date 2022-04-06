@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 import { Flexbox, TextField } from '@stage-ui/core'
-import { Search } from '@stage-ui/icons'
 import createID from '@stage-ui/system/utils/createID'
 
 import { Outlet } from 'react-router-dom'

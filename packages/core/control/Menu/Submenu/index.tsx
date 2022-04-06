@@ -1,7 +1,10 @@
+import React, { forwardRef, ForwardRefRenderFunction, useState } from 'react'
+
 import { ChevronDown } from '@stage-ui/icons'
 import { useSystem } from '@stage-ui/system'
-import React, { forwardRef, ForwardRefRenderFunction, useState } from 'react'
+
 import MenuItem from '../MenuItem'
+
 import createClasses from './styles'
 import Types from './types'
 
@@ -10,7 +13,11 @@ const Submenu: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
 
   const [open, setOpen] = useState(props.open || props.defaultOpen || false)
 
-  const { classes, attributes, events, styleProps } = useSystem('Submenu', props, createClasses)
+  const { classes, attributes, events, styleProps } = useSystem(
+    'Submenu',
+    props,
+    createClasses,
+  )
   const attr: Record<string, string> = {
     'data-flow': 'sub-menu',
   }

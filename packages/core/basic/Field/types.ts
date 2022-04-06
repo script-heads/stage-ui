@@ -1,5 +1,6 @@
-import { ClassesSchemaDefinition } from '@stage-ui/system/hooks/useSystem'
 import React from 'react'
+
+import { ClassesSchemaDefinition } from '@stage-ui/system/hooks/useSystem'
 
 declare namespace FieldTypes {
   interface PrivateProps extends Props {

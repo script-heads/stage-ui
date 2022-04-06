@@ -1,4 +1,3 @@
-import { useSystem } from '@stage-ui/system'
 import React, {
   forwardRef,
   ForwardRefRenderFunction,
@@ -8,11 +7,15 @@ import React, {
   useRef,
   useState,
 } from 'react'
+
+import { useSystem } from '@stage-ui/system'
 import ReactDOM from 'react-dom'
+
+import SharedZIndex from '../../utils/SharedZIndex'
+
 import Animation from './animation'
 import styles from './styles'
 import Types from './types'
-import SharedZIndex from '../../utils/SharedZIndex'
 
 type GetCoord = (tr: ClientRect, td: ClientRect) => string
 
@@ -35,7 +38,11 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
     ...otherProps
   } = props
 
-  const { classes, attributes, events, styleProps } = useSystem('Drop', otherProps, styles)
+  const { classes, attributes, events, styleProps } = useSystem(
+    'Drop',
+    otherProps,
+    styles,
+  )
 
   const dropRef = useRef<HTMLDivElement>(null)
 

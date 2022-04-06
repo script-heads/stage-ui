@@ -5,7 +5,8 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
   const { size, shape } = props
 
   const spacing = theme.spacing[size || 'm'] || theme.spacing.m
-  const typography = theme.assets.typography.text[size || 'm'] || theme.assets.typography.text.m
+  const typography =
+    theme.assets.typography.text[size || 'm'] || theme.assets.typography.text.m
   const isRow = !(props.direction?.[0] === 'c' || props.column)
   let borderRadius = '0'
   if (shape === 'rounded') {

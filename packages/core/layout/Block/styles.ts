@@ -1,7 +1,11 @@
 import containerDecorations from '@stage-ui/core/utils/containerDecorations'
+
 import Types from './types'
 
-const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => ({
+const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
+  theme,
+  props,
+) => ({
   container: () => [
     containerDecorations(props, theme),
     {

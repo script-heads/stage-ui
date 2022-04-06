@@ -1,10 +1,16 @@
-import { useSystem } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
+
+import { useSystem } from '@stage-ui/system'
+
 import createClasses from './styles'
 import Types from './types'
 
 const Badge: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-  const { classes, attributes, events, styleProps } = useSystem('Badge', props, createClasses)
+  const { classes, attributes, events, styleProps } = useSystem(
+    'Badge',
+    props,
+    createClasses,
+  )
   return (
     <div css={[classes.container, styleProps.container]}>
       <div

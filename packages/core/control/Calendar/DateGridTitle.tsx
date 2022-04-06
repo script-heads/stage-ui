@@ -1,6 +1,8 @@
+import React from 'react'
+
 import { Flexbox, Text } from '@stage-ui/core'
 import { ChevronLeft, ChevronRight } from '@stage-ui/icons'
-import React from 'react'
+
 import CalendarTypes from './types'
 
 const Arrow = (props: {
@@ -51,11 +53,17 @@ const DateGridTitle = (props: CalendarTypes.DateGridTitleProps) => {
               value={value.format('MMMM')}
             />
             <Text>{`\u00A0`}</Text>
-            <Title onClick={() => props.onGridTypeChange('year')} value={value.format('YYYY')} />
+            <Title
+              onClick={() => props.onGridTypeChange('year')}
+              value={value.format('YYYY')}
+            />
           </Flexbox>
         )}
         {gridType === 'month' && (
-          <Title onClick={() => props.onGridTypeChange('year')} value={value.format('YYYY')} />
+          <Title
+            onClick={() => props.onGridTypeChange('year')}
+            value={value.format('YYYY')}
+          />
         )}
         {gridType === 'year' && (
           <Title

@@ -6,9 +6,11 @@ import React, {
   useEffect,
   useState,
 } from 'react'
+
 import { jsx } from '@emotion/react'
 import Field from '@stage-ui/core/basic/Field'
 import { useSystem } from '@stage-ui/system'
+
 import createClasses from './styles'
 import Types from './types'
 
@@ -50,7 +52,11 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
     wrap,
   } = props
 
-  const { classes, styleProps, overridesPropClasses } = useSystem('TextField', props, createClasses)
+  const { classes, styleProps, overridesPropClasses } = useSystem(
+    'TextField',
+    props,
+    createClasses,
+  )
 
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
   const leftCountLineRef = useRef<HTMLDivElement>(null)
@@ -73,10 +79,10 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
 
   function onClear() {
     if (inputRef.current) {
-      Object.getOwnPropertyDescriptor(window?.HTMLInputElement.prototype, 'value')?.set?.call(
-        inputRef.current,
-        '',
-      )
+      Object.getOwnPropertyDescriptor(
+        window?.HTMLInputElement.prototype,
+        'value',
+      )?.set?.call(inputRef.current, '')
 
       inputRef.current.dispatchEvent(new Event('input', { bubbles: true }))
     }
@@ -94,7 +100,9 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
     }
     const arr = new Array(leftCountLineState.count).fill('')
     const render =
-      typeof leftChildNumber === 'function' ? leftChildNumber : (index: number) => index + 1
+      typeof leftChildNumber === 'function'
+        ? leftChildNumber
+        : (index: number) => index + 1
 
     return (
       <>
@@ -146,7 +154,11 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
       overrides={(theme) => ({
         ...overridesPropClasses,
         container: [overridesPropClasses.container, styleProps.container],
-        field: [multiline && { padding: 0 }, overridesPropClasses.field, styleProps.content],
+        field: [
+          multiline && { padding: 0 },
+          overridesPropClasses.field,
+          styleProps.content,
+        ],
         leftChild: [
           multiline && {
             position: 'relative',

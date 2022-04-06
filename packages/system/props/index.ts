@@ -1,11 +1,14 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import isFunction from '../utils/isFunction'
+
+import { ClassesSchemaDefinition, ComponentData } from '../hooks/useSystem'
+
 import resolveBreakpoints from './breakpoint'
 import resolveColor from './color'
 import resolveSpace from './space'
-import isFunction from '../utils/isFunction'
-import { ClassesSchemaDefinition, ComponentData } from '../hooks/useSystem'
+
 import sizeProp from './size'
 
 export type Resolver = <
@@ -56,7 +59,9 @@ const resolvers: Record<string, Resolver> = {
   // Margin
 
   m: (p, cd, t) =>
-    cd.styleProps.margin.push(resolveBreakpoints(p.m, t, (v) => ({ margin: resolveSpace(v, t) }))),
+    cd.styleProps.margin.push(
+      resolveBreakpoints(p.m, t, (v) => ({ margin: resolveSpace(v, t) })),
+    ),
   mx: (p, cd, t) =>
     cd.styleProps.margin.push(
       resolveBreakpoints(p.mx, t, (v) => ({
@@ -145,9 +150,13 @@ const resolvers: Record<string, Resolver> = {
   // Border
 
   borderWidth: (p, cd, t) =>
-    cd.styleProps.border.push(resolveBreakpoints(p.borderWidth, t, (v) => ({ borderWidth: v }))),
+    cd.styleProps.border.push(
+      resolveBreakpoints(p.borderWidth, t, (v) => ({ borderWidth: v })),
+    ),
   borderStyle: (p, cd, t) =>
-    cd.styleProps.border.push(resolveBreakpoints(p.borderStyle, t, (v) => ({ borderStyle: v }))),
+    cd.styleProps.border.push(
+      resolveBreakpoints(p.borderStyle, t, (v) => ({ borderStyle: v })),
+    ),
   borderColor: (p, cd, t) =>
     cd.styleProps.border.push(
       resolveBreakpoints(p.borderColor, t, (v) => ({
@@ -166,53 +175,84 @@ const resolvers: Record<string, Resolver> = {
   display: (p, cd, t) =>
     cd.styleProps.layout.push(resolveBreakpoints(p.display, t, (v) => ({ display: v }))),
   position: (p, cd, t) =>
-    cd.styleProps.layout.push(resolveBreakpoints(p.position, t, (v) => ({ position: v }))),
+    cd.styleProps.layout.push(
+      resolveBreakpoints(p.position, t, (v) => ({ position: v })),
+    ),
   fontSize: (p, cd, t) =>
-    cd.styleProps.layout.push(resolveBreakpoints(p.fontSize, t, (v) => ({ fontSize: v }))),
+    cd.styleProps.layout.push(
+      resolveBreakpoints(p.fontSize, t, (v) => ({ fontSize: v })),
+    ),
   lineHeight: (p, cd, t) =>
-    cd.styleProps.layout.push(resolveBreakpoints(p.lineHeight, t, (v) => ({ lineHeight: v }))),
+    cd.styleProps.layout.push(
+      resolveBreakpoints(p.lineHeight, t, (v) => ({ lineHeight: v })),
+    ),
   letterSpacing: (p, cd, t) =>
     cd.styleProps.layout.push(
       resolveBreakpoints(p.letterSpacing, t, (v) => ({ letterSpacing: v })),
     ),
   textAlign: (p, cd, t) =>
-    cd.styleProps.layout.push(resolveBreakpoints(p.textAlign, t, (v) => ({ textAlign: v }))),
+    cd.styleProps.layout.push(
+      resolveBreakpoints(p.textAlign, t, (v) => ({ textAlign: v })),
+    ),
   visibility: (p, cd, t) =>
-    cd.styleProps.layout.push(resolveBreakpoints(p.visibility, t, (v) => ({ visibility: v }))),
-  w: (p, cd, t) => cd.styleProps.layout.push(resolveBreakpoints(p.w, t, (v) => ({ width: v }))),
-  h: (p, cd, t) => cd.styleProps.layout.push(resolveBreakpoints(p.h, t, (v) => ({ height: v }))),
+    cd.styleProps.layout.push(
+      resolveBreakpoints(p.visibility, t, (v) => ({ visibility: v })),
+    ),
+  w: (p, cd, t) =>
+    cd.styleProps.layout.push(resolveBreakpoints(p.w, t, (v) => ({ width: v }))),
+  h: (p, cd, t) =>
+    cd.styleProps.layout.push(resolveBreakpoints(p.h, t, (v) => ({ height: v }))),
 
   // Flex
 
-  flex: (p, cd, t) => cd.styleProps.flex.push(resolveBreakpoints(p.flex, t, (v) => ({ flex: v }))),
+  flex: (p, cd, t) =>
+    cd.styleProps.flex.push(resolveBreakpoints(p.flex, t, (v) => ({ flex: v }))),
   wrap: (p, cd, t) =>
     cd.styleProps.flex.push(resolveBreakpoints(p.wrap, t, (v) => ({ flexWrap: v }))),
   flow: (p, cd, t) =>
     cd.styleProps.flex.push(resolveBreakpoints(p.flow, t, (v) => ({ flowflow: v }))),
   direction: (p, cd, t) =>
-    cd.styleProps.flex.push(resolveBreakpoints(p.direction, t, (v) => ({ flexDirection: v }))),
+    cd.styleProps.flex.push(
+      resolveBreakpoints(p.direction, t, (v) => ({ flexDirection: v })),
+    ),
   flexBasis: (p, cd, t) =>
-    cd.styleProps.flex.push(resolveBreakpoints(p.flexBasis, t, (v) => ({ flexBasis: v }))),
+    cd.styleProps.flex.push(
+      resolveBreakpoints(p.flexBasis, t, (v) => ({ flexBasis: v })),
+    ),
   flexGrow: (p, cd, t) =>
     cd.styleProps.flex.push(resolveBreakpoints(p.flexGrow, t, (v) => ({ flexGrow: v }))),
   flexShrink: (p, cd, t) =>
-    cd.styleProps.flex.push(resolveBreakpoints(p.flexShrink, t, (v) => ({ flexShrink: v }))),
+    cd.styleProps.flex.push(
+      resolveBreakpoints(p.flexShrink, t, (v) => ({ flexShrink: v })),
+    ),
   alignSelf: (p, cd, t) =>
-    cd.styleProps.flex.push(resolveBreakpoints(p.alignSelf, t, (v) => ({ alignSelf: v }))),
+    cd.styleProps.flex.push(
+      resolveBreakpoints(p.alignSelf, t, (v) => ({ alignSelf: v })),
+    ),
   justifySelf: (p, cd, t) =>
-    cd.styleProps.flex.push(resolveBreakpoints(p.justifySelf, t, (v) => ({ justifySelf: v }))),
+    cd.styleProps.flex.push(
+      resolveBreakpoints(p.justifySelf, t, (v) => ({ justifySelf: v })),
+    ),
   alignItems: (p, cd, t) =>
-    cd.styleProps.flex.push(resolveBreakpoints(p.alignItems, t, (v) => ({ alignItems: v }))),
+    cd.styleProps.flex.push(
+      resolveBreakpoints(p.alignItems, t, (v) => ({ alignItems: v })),
+    ),
   alignContent: (p, cd, t) =>
-    cd.styleProps.flex.push(resolveBreakpoints(p.alignContent, t, (v) => ({ alignContent: v }))),
+    cd.styleProps.flex.push(
+      resolveBreakpoints(p.alignContent, t, (v) => ({ alignContent: v })),
+    ),
   justifyContent: (p, cd, t) =>
     cd.styleProps.flex.push(
       resolveBreakpoints(p.justifyContent, t, (v) => ({ justifyContent: v })),
     ),
   justifyItems: (p, cd, t) =>
-    cd.styleProps.flex.push(resolveBreakpoints(p.justifyItems, t, (v) => ({ justifyItems: v }))),
+    cd.styleProps.flex.push(
+      resolveBreakpoints(p.justifyItems, t, (v) => ({ justifyItems: v })),
+    ),
   placeContent: (p, cd, t) =>
-    cd.styleProps.flex.push(resolveBreakpoints(p.placeContent, t, (v) => ({ placeContent: v }))),
+    cd.styleProps.flex.push(
+      resolveBreakpoints(p.placeContent, t, (v) => ({ placeContent: v })),
+    ),
 
   // Grid children
 
@@ -221,19 +261,29 @@ const resolvers: Record<string, Resolver> = {
       resolveBreakpoints(p.gridColumnStart, t, (v) => ({ gridColumnStart: v })),
     ),
   gridColumnEnd: (p, cd, t) =>
-    cd.styleProps.grid.push(resolveBreakpoints(p.gridColumnEnd, t, (v) => ({ gridColumnEnd: v }))),
+    cd.styleProps.grid.push(
+      resolveBreakpoints(p.gridColumnEnd, t, (v) => ({ gridColumnEnd: v })),
+    ),
   gridRowStart: (p, cd, t) =>
-    cd.styleProps.grid.push(resolveBreakpoints(p.gridRowStart, t, (v) => ({ gridRowStart: v }))),
+    cd.styleProps.grid.push(
+      resolveBreakpoints(p.gridRowStart, t, (v) => ({ gridRowStart: v })),
+    ),
   gridRowEnd: (p, cd, t) =>
-    cd.styleProps.grid.push(resolveBreakpoints(p.gridRowEnd, t, (v) => ({ gridRowEnd: v }))),
+    cd.styleProps.grid.push(
+      resolveBreakpoints(p.gridRowEnd, t, (v) => ({ gridRowEnd: v })),
+    ),
   gridColumn: (p, cd, t) =>
-    cd.styleProps.grid.push(resolveBreakpoints(p.gridColumn, t, (v) => ({ gridColumn: v }))),
+    cd.styleProps.grid.push(
+      resolveBreakpoints(p.gridColumn, t, (v) => ({ gridColumn: v })),
+    ),
   gridRow: (p, cd, t) =>
     cd.styleProps.grid.push(resolveBreakpoints(p.gridRow, t, (v) => ({ gridRow: v }))),
   gridArea: (p, cd, t) =>
     cd.styleProps.grid.push(resolveBreakpoints(p.gridArea, t, (v) => ({ gridArea: v }))),
   placeSelf: (p, cd, t) =>
-    cd.styleProps.grid.push(resolveBreakpoints(p.placeSelf, t, (v) => ({ placeSelf: v }))),
+    cd.styleProps.grid.push(
+      resolveBreakpoints(p.placeSelf, t, (v) => ({ placeSelf: v })),
+    ),
 
   // Shadow children
 

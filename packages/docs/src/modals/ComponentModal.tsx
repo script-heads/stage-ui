@@ -23,12 +23,12 @@ function ComponentModal() {
 
   useEffect(() => {
     monacoInit().then(() => {
-      
       if (!model) {
         window.monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
           target: window.monaco.languages.typescript.ScriptTarget.ES2016,
           allowNonTsExtensions: true,
-          moduleResolution: window.monaco.languages.typescript.ModuleResolutionKind.NodeJs,
+          moduleResolution:
+            window.monaco.languages.typescript.ModuleResolutionKind.NodeJs,
           module: window.monaco.languages.typescript.ModuleKind.CommonJS,
           noEmit: true,
           jsx: window.monaco.languages.typescript.JsxEmit.React,
@@ -41,7 +41,7 @@ function ComponentModal() {
           'typescript',
           window.monaco.Uri.parse(`file:///main.tsx`),
         )
-        
+
         window.monaco.editor.defineTheme('vs-dark-custom', {
           base: 'vs-dark',
           inherit: true,
@@ -63,7 +63,6 @@ function ComponentModal() {
         )
       })
     })
-
   }, [])
 
   if (!data) return null
@@ -87,8 +86,8 @@ function ComponentModal() {
     >
       {(!typedoc || !typescript) && (
         <Flexbox h="100%" alignItems="center" justifyContent="center" column my="16rem">
-          <Spinner size="2rem" mb="xl" color={(c) => c.onSurface.alpha(.5)} />
-          <Text color={(c) => c.onSurface.alpha(.75)}>Loading playground</Text>
+          <Spinner size="2rem" mb="xl" color={(c) => c.onSurface.alpha(0.5)} />
+          <Text color={(c) => c.onSurface.alpha(0.75)}>Loading playground</Text>
         </Flexbox>
       )}
       {typedoc && typescript && (

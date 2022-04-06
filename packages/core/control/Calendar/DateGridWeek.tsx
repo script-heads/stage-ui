@@ -1,6 +1,8 @@
+import React from 'react'
+
 import { Flexbox } from '@stage-ui/core'
 import moment from 'moment'
-import React from 'react'
+
 import DateGridDay from './DateGridDay'
 import T from './types'
 
@@ -11,7 +13,9 @@ const DateGridWeek = (props: T.DateGridWeekProps) => {
   const activeDay = props.active[0]?.clone().startOf('day').valueOf()
 
   const isCurrent = !!week.find((day) => day.clone().startOf('day').valueOf() === now)
-  const isActive = !!week.find((day) => day.clone().startOf('day').valueOf() === activeDay)
+  const isActive = !!week.find(
+    (day) => day.clone().startOf('day').valueOf() === activeDay,
+  )
   const isWeekType = props.type === 'week'
 
   const weekStyles = props.classes.week({ isWeekType, isCurrent, isActive })

@@ -1,6 +1,9 @@
 export type SpaceProp = Stage.Sizes | (string & { T?: string }) | number
 
-function spaceProp(value: string | number | undefined, theme: Stage.Theme): string | undefined {
+function spaceProp(
+  value: string | number | undefined,
+  theme: Stage.Theme,
+): string | undefined {
   if (value === undefined) {
     return
   }
@@ -11,7 +14,10 @@ function spaceProp(value: string | number | undefined, theme: Stage.Theme): stri
 
   return value
     .split(' ')
-    .map((currentValue: string) => theme.spacing[currentValue as Stage.Sizes] || currentValue)
+    .map(
+      (currentValue: string) =>
+        theme.spacing[currentValue as Stage.Sizes] || currentValue,
+    )
     .join(' ')
 }
 

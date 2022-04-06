@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+
 import Types from './types'
 
 const Separator = (props: Types.SeparatorProps) => {
@@ -31,8 +32,10 @@ const Separator = (props: Types.SeparatorProps) => {
 
       if (movement === 0) return
 
-      const prevSize = (vertical ? prev.current.offsetHeight : prev.current.offsetWidth) + movement
-      const nextSize = (vertical ? next.current.offsetHeight : next.current.offsetWidth) - movement
+      const prevSize =
+        (vertical ? prev.current.offsetHeight : prev.current.offsetWidth) + movement
+      const nextSize =
+        (vertical ? next.current.offsetHeight : next.current.offsetWidth) - movement
       const containerSize = vertical
         ? container.current.offsetHeight
         : container.current.offsetWidth

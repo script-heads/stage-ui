@@ -1,6 +1,8 @@
+import React from 'react'
+
 import { Flexbox, Text } from '@stage-ui/core'
 import moment from 'moment'
-import React from 'react'
+
 import T from './types'
 
 const DateGridDay = (props: T.DateGridDayProps) => {

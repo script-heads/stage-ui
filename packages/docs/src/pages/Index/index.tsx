@@ -35,9 +35,7 @@ export default function Index() {
       </Paragraph>
       <Syntax code={ViewportCode} />
 
-      <Header size="xl">
-        Breakpoints
-      </Header>
+      <Header size="xl">Breakpoints</Header>
       <Paragraph size="xl">
         All props what apply certain style to component, like padding, margin or
         backgroundColor suport array notation where value of each index is match with
@@ -47,18 +45,14 @@ export default function Index() {
       </Paragraph>
       <Syntax code={breakpoints} />
 
-      <Header size="xl">
-        Style
-      </Header>
+      <Header size="xl">Style</Header>
       <Paragraph size="xl">
         This prop is like corresponding attribute in HTML, but apply these styles to
         classname of components root element.
       </Paragraph>
       <Syntax code={styleProp} />
 
-      <Header size="xl">
-        Overrides
-      </Header>
+      <Header size="xl">Overrides</Header>
       <Paragraph size="xl">
         Like style prop, but there you able to specify styles to each elements of
         component. If they are matching existing styles in current class they will be
@@ -66,9 +60,7 @@ export default function Index() {
       </Paragraph>
       <Syntax code={overridesProp} />
 
-      <Header size="xl">
-        Color
-      </Header>
+      <Header size="xl">Color</Header>
       <Paragraph size="xl">
         All colors described in StageUI theme turn into Objects with useful functions that
         can transform colors brightness, hue, get rgb or hex notation and much more useful
@@ -153,7 +145,9 @@ export default function Index() {
         higlightBefore=":"
       />
 
-      <Header size="xl" id="theming">Theming</Header>
+      <Header size="xl" id="theming">
+        Theming
+      </Header>
       <Paragraph size="xl">
         StageUI contains two themes by itself: Light and Dark. Light is default. Any theme
         passs into Viewports theme prop. For create new theme you can use replace method

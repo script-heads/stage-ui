@@ -1,5 +1,6 @@
-import { Moment } from 'moment'
 import { CSSProperties } from 'react'
+
+import { Moment } from 'moment'
 import { Classes as ClassesType } from '@stage-ui/system/hooks/useSystem'
 
 declare namespace CalendarTypes {

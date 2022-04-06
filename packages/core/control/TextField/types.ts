@@ -1,4 +1,5 @@
 import { ChangeEventHandler } from 'react'
+
 import FieldTypes from '../../basic/Field/types'
 
 declare namespace TextFieldTypes {
@@ -19,7 +20,10 @@ declare namespace TextFieldTypes {
     input: HTMLInputElement | HTMLTextAreaElement | null
   }
 
-  interface Props extends FieldTypes.Props<HTMLInputElement, Classes>, InputProps, TextAreaProps {
+  interface Props
+    extends FieldTypes.Props<HTMLInputElement, Classes>,
+      InputProps,
+      TextAreaProps {
     /**
      * Default input value
      */

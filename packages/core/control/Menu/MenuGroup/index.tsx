@@ -1,12 +1,18 @@
-import { useSystem } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
+
+import { useSystem } from '@stage-ui/system'
+
 import createClasses from './styles'
 import Types from './types'
 
 const MenuGroup: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
   const { rightChild, leftChild } = props
 
-  const { classes, attributes, events, styleProps } = useSystem('MenuGroup', props, createClasses)
+  const { classes, attributes, events, styleProps } = useSystem(
+    'MenuGroup',
+    props,
+    createClasses,
+  )
 
   return (
     <div

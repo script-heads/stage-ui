@@ -1,6 +1,8 @@
+import React, { Fragment } from 'react'
+
 import { Flexbox, Text } from '@stage-ui/core'
 import moment from 'moment'
-import React, { Fragment } from 'react'
+
 import CalendarTypes from './types'
 
 const DateGridMonth = (props: CalendarTypes.DateGridMonthProps) => {

@@ -1,5 +1,7 @@
-import { useSystem } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
+
+import { useSystem } from '@stage-ui/system'
+
 import styles from './styles'
 import Types from './types'
 

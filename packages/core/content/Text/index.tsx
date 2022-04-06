@@ -1,5 +1,7 @@
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
+
 import Typography from '@stage-ui/core/basic/Typography'
+
 import Types from './types'
 
 const Text: ForwardRefRenderFunction<HTMLSpanElement, Types.Props> = (props, ref) => (

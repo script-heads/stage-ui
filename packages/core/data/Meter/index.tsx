@@ -1,11 +1,20 @@
-import { useSystem } from '@stage-ui/system'
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
+
+import { useSystem } from '@stage-ui/system'
+
 import Thumb from './MeterThumb'
 import styles from './styles'
 import Types from './types'
 
 const Meter: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-  const { decoration = 'filled', shape = 'round', size = 'm', value = 0, color, loading } = props
+  const {
+    decoration = 'filled',
+    shape = 'round',
+    size = 'm',
+    value = 0,
+    color,
+    loading,
+  } = props
 
   const { classes, attributes, events, styleProps } = useSystem('Meter', props, styles)
 
