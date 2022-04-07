@@ -8,6 +8,8 @@ import isFunction from '../utils/isFunction'
 import { AllEventProps, CoreProps } from '../props/types'
 import overridesProp from '../props/overrides'
 
+import isBrowser from '../utils/isBrowser'
+
 import useTheme from './useTheme'
 
 export interface Options {
@@ -99,15 +101,17 @@ export type SystemPropsMeta<
 let IS_MOUSE_DOWN = false
 let PREV_ACTIVE_ELEMENT: Element | null = null
 
-window?.addEventListener('mousedown', () => {
-  IS_MOUSE_DOWN = true
-})
-window?.addEventListener('mouseup', () => {
-  IS_MOUSE_DOWN = false
-})
-window?.addEventListener('focus', () => {
-  PREV_ACTIVE_ELEMENT = document.activeElement
-})
+if (isBrowser) {
+  window.addEventListener('mousedown', () => {
+    IS_MOUSE_DOWN = true
+  })
+  window.addEventListener('mouseup', () => {
+    IS_MOUSE_DOWN = false
+  })
+  window.addEventListener('focus', () => {
+    PREV_ACTIVE_ELEMENT = document.activeElement
+  })
+}
 
 function useSystem<
   Props extends SystemPropsMeta<Element, ClassesSchema>,

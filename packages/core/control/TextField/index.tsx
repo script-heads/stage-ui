@@ -9,7 +9,7 @@ import React, {
 
 import { jsx } from '@emotion/react'
 import Field from '@stage-ui/core/basic/Field'
-import { useSystem } from '@stage-ui/system'
+import { isBrowser, useSystem } from '@stage-ui/system'
 
 import createClasses from './styles'
 import Types from './types'
@@ -78,9 +78,9 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
   }, [])
 
   function onClear() {
-    if (inputRef.current) {
+    if (inputRef.current && isBrowser) {
       Object.getOwnPropertyDescriptor(
-        window?.HTMLInputElement.prototype,
+        window.HTMLInputElement.prototype,
         'value',
       )?.set?.call(inputRef.current, '')
 

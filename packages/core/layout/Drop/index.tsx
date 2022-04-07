@@ -8,7 +8,7 @@ import React, {
   useState,
 } from 'react'
 
-import { useSystem } from '@stage-ui/system'
+import { isBrowser, useSystem } from '@stage-ui/system'
 import ReactDOM from 'react-dom'
 
 import SharedZIndex from '../../utils/SharedZIndex'
@@ -100,10 +100,10 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
       const dr: ClientRect = dropRef.current.getBoundingClientRect()
       const { style } = dropRef.current
 
-      if (targetRef?.current) {
+      if (targetRef?.current && isBrowser) {
         if (!props.align || props.align === 'auto-vertical') {
           const lockedSpace = tr.top + tr.height + spacing
-          if (dr.height > window?.innerHeight - lockedSpace) {
+          if (dr.height > window.innerHeight - lockedSpace) {
             align = 'top'
           } else {
             align = 'bottom'
@@ -195,34 +195,38 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
   }, [visible])
 
   useEffect(() => {
-    if (stickCursor) {
-      window?.addEventListener('mousemove', updateStickCursor)
-    } else if (mountState) {
-      const rect =
-        stretchHeight || stretchWidth ? targetRef?.current?.getBoundingClientRect() : null
-      const style = rect && dropRef.current?.style
-
-      if (style) {
-        if (stretchHeight) style.height = toStyle(rect?.height || 0)
-        if (stretchWidth) style.width = toStyle(rect?.width || 0)
-      }
-      updatePosition()
-      document.addEventListener('scroll', updatePosition, true)
-      document.addEventListener('onstagescroll', updatePosition, true)
-      document.addEventListener('mouseup', handleClickOutside)
-      window?.addEventListener('resize', updatePosition)
-
-      afterMount()
-    }
-
-    return () => {
+    if (isBrowser) {
       if (stickCursor) {
-        window?.removeEventListener('mousemove', updateStickCursor)
-      } else {
-        document.removeEventListener('scroll', updatePosition, true)
-        document.removeEventListener('onstagescroll', updatePosition, true)
-        document.removeEventListener('mouseup', handleClickOutside)
-        window?.removeEventListener('resize', updatePosition)
+        window.addEventListener('mousemove', updateStickCursor)
+      } else if (mountState) {
+        const rect =
+          stretchHeight || stretchWidth
+            ? targetRef?.current?.getBoundingClientRect()
+            : null
+        const style = rect && dropRef.current?.style
+
+        if (style) {
+          if (stretchHeight) style.height = toStyle(rect?.height || 0)
+          if (stretchWidth) style.width = toStyle(rect?.width || 0)
+        }
+        updatePosition()
+        document.addEventListener('scroll', updatePosition, true)
+        document.addEventListener('onstagescroll', updatePosition, true)
+        document.addEventListener('mouseup', handleClickOutside)
+        window.addEventListener('resize', updatePosition)
+
+        afterMount()
+      }
+
+      return () => {
+        if (stickCursor) {
+          window.removeEventListener('mousemove', updateStickCursor)
+        } else {
+          document.removeEventListener('scroll', updatePosition, true)
+          document.removeEventListener('onstagescroll', updatePosition, true)
+          document.removeEventListener('mouseup', handleClickOutside)
+          window.removeEventListener('resize', updatePosition)
+        }
       }
     }
   }, [mountState, stickCursor, align, justify])
@@ -233,7 +237,7 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
     setVisible,
   }))
 
-  if (mountState === false) {
+  if (mountState === false || !isBrowser) {
     return null
   }
 

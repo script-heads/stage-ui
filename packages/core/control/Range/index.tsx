@@ -8,7 +8,7 @@ import React, {
   useState,
 } from 'react'
 
-import { useSystem } from '@stage-ui/system'
+import { isBrowser, useSystem } from '@stage-ui/system'
 
 import createClasses from './styles'
 import Types from './types'
@@ -79,13 +79,15 @@ const Range: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
    * new props otherways scope will be broken
    */
   useEffect(() => {
-    // document.addEventListener('touchmove', onMove);
-    document.addEventListener('mousemove', onMove)
-    document.addEventListener('mouseup', onUp)
-    return () => {
-      // document.removeEventListener('touchmove', onMove);
-      document.removeEventListener('mousemove', onMove)
-      document.removeEventListener('mouseup', onUp)
+    if (isBrowser) {
+      // document.addEventListener('touchmove', onMove);
+      document.addEventListener('mousemove', onMove)
+      document.addEventListener('mouseup', onUp)
+      return () => {
+        // document.removeEventListener('touchmove', onMove);
+        document.removeEventListener('mousemove', onMove)
+        document.removeEventListener('mouseup', onUp)
+      }
     }
   }, [props])
 

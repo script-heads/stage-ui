@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react'
 
-import { useSystem } from '@stage-ui/system'
+import { isBrowser, useSystem } from '@stage-ui/system'
 
 import ModalOverlay from './ModalOverlay'
 import ModalPortal from './ModalPortal'
@@ -50,7 +50,9 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   }, [title, subtitle])
 
   function open(render?: React.ReactElement | null) {
-    document.body.style.overflow = 'hidden'
+    if (isBrowser) {
+      document.body.style.overflow = 'hidden'
+    }
 
     if (render) {
       setCustomRender(render)
@@ -66,7 +68,9 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   }
 
   function close(currentDidClose?: () => void) {
-    document.body.style.overflow = ''
+    if (isBrowser) {
+      document.body.style.overflow = ''
+    }
 
     setVisible(false)
 

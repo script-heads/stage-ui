@@ -255,3 +255,4 @@ export { default as useSystem } from './hooks/useSystem'
 export { default as useBreakpoint } from './hooks/useBreakpoint'
 
 export { default as createTheme } from './utils/createTheme'
+export { default as isBrowser } from './utils/isBrowser'

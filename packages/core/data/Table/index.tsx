@@ -10,7 +10,7 @@ import React, {
   useState,
 } from 'react'
 
-import { useSystem } from '@stage-ui/system'
+import { isBrowser, useSystem } from '@stage-ui/system'
 
 import Checkbox from '../../control/Checkbox'
 
@@ -190,7 +190,7 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     /**
      * Handle optimized method of render
      */
-    if (enableRenderOptimization) {
+    if (enableRenderOptimization && isBrowser) {
       setNeedDisplay()
       document.addEventListener('resize', setNeedDisplay)
       document.addEventListener('scroll', setNeedDisplay)

@@ -14,13 +14,13 @@ import React, {
 } from 'react'
 
 import isWebKit from '@stage-ui/core/utils/isWebKit'
-import { useSystem } from '@stage-ui/system'
+import { isBrowser, useSystem } from '@stage-ui/system'
 
 import styles from './styles'
 import Types from './types'
 
 const isLegacyScrollSupport = isWebKit
-const isTouchScreenSupport = Boolean('ontouchstart' in window)
+const isTouchScreenSupport = isBrowser && Boolean('ontouchstart' in window)
 
 function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   const {
@@ -170,7 +170,7 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
        * Was issue with <Drop/> updateLayoyt
        * in <Select/> component
        */
-      if (!preventStageEvents) {
+      if (!preventStageEvents && isBrowser) {
         document.dispatchEvent(
           new CustomEvent('onstagescroll', {
             detail: event,
@@ -279,9 +279,9 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
       scrollTo(1e10, 1e10, options)
     },
     scrollToElement: (itemId: string, options?: Types.ScrollToElementOptions) => {
-      const item = document.querySelector<Types.ScrollHTMLDivElement>(
-        `[data-id="${itemId}"]`,
-      )
+      const item = isBrowser
+        ? document.querySelector<Types.ScrollHTMLDivElement>(`[data-id="${itemId}"]`)
+        : null
       if (item) {
         scrollTo(item.offsetLeft, getOffsetTop(item) - (options?.offsetTop || 0), options)
         return true
@@ -343,9 +343,11 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     () => () => {
       memo.y = false
       memo.x = false
-      window?.removeEventListener('mouseup', mouseUp)
-      window?.removeEventListener('click', mouseUp)
-      window?.removeEventListener('mousemove', scrollToHandle)
+      if (isBrowser) {
+        window.removeEventListener('mouseup', mouseUp)
+        window.removeEventListener('click', mouseUp)
+        window.removeEventListener('mousemove', scrollToHandle)
+      }
     },
     [],
   )
@@ -384,42 +386,44 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   })
 
   useEffect(() => {
-    const resize = () => {
-      updateScroll({
-        deltaX: 0,
-        deltaY: 0,
-        preventDefault: () => null,
-        stopPropagation: () => null,
-      })
-    }
+    if (isBrowser) {
+      const resize = () => {
+        updateScroll({
+          deltaX: 0,
+          deltaY: 0,
+          preventDefault: () => null,
+          stopPropagation: () => null,
+        })
+      }
 
-    document.addEventListener('mouseleave', mouseUp)
+      document.addEventListener('mouseleave', mouseUp)
 
-    if (mode === 'always') {
-      window?.addEventListener('resize', resize)
-    } else if (memo.timeout) {
-      clearTimeout(memo.timeout)
-    }
+      if (mode === 'always') {
+        window.addEventListener('resize', resize)
+      } else if (memo.timeout) {
+        clearTimeout(memo.timeout)
+      }
 
-    memo.mounted = true
-    memo.mode = mode
-    setActive(memo.mode === 'always')
+      memo.mounted = true
+      memo.mode = mode
+      setActive(memo.mode === 'always')
 
-    if (memo.mode === 'always') {
-      updateScroll({
-        deltaX: 0,
-        deltaY: 0,
-        preventDefault: () => null,
-        stopPropagation: () => null,
-      })
-    }
+      if (memo.mode === 'always') {
+        updateScroll({
+          deltaX: 0,
+          deltaY: 0,
+          preventDefault: () => null,
+          stopPropagation: () => null,
+        })
+      }
 
-    return () => {
-      memo.mounted = false
-      window?.removeEventListener('resize', resize)
-      window?.removeEventListener('mouseup', mouseUp)
-      window?.removeEventListener('mousemove', moveScrollContentByMouse)
-      document.removeEventListener('mouseleave', mouseUp)
+      return () => {
+        memo.mounted = false
+        window.removeEventListener('resize', resize)
+        window.removeEventListener('mouseup', mouseUp)
+        window.removeEventListener('mousemove', moveScrollContentByMouse)
+        document.removeEventListener('mouseleave', mouseUp)
+      }
     }
   }, [props])
 
@@ -434,8 +438,8 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
         if (memo.xThumb) {
           memo.xThumb.addEventListener('mousedown', xMouseDown)
         }
-        if (!isLegacyScrollSupport) {
-          window?.addEventListener('mousemove', moveScrollContentByMouse)
+        if (!isLegacyScrollSupport && isBrowser) {
+          window.addEventListener('mousemove', moveScrollContentByMouse)
           if (memo.content) {
             memo.content.addEventListener('wheel', updateScroll)
           }
@@ -482,13 +486,17 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
               memo.yBar = currentRef
             }}
             onMouseEnter={() => {
-              window?.addEventListener('mouseup', mouseUp)
-              window?.addEventListener('click', mouseUp)
+              if (isBrowser) {
+                window.addEventListener('mouseup', mouseUp)
+                window.addEventListener('click', mouseUp)
+              }
             }}
             onMouseDown={(e) => {
               yMouseDown()
               scrollToHandle(e)
-              window?.addEventListener('mousemove', scrollToHandle)
+              if (isBrowser) {
+                window.addEventListener('mousemove', scrollToHandle)
+              }
             }}
             onMouseUp={mouseUp}
           >
@@ -505,13 +513,17 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
               memo.xBar = currentRef
             }}
             onMouseEnter={() => {
-              window?.addEventListener('mouseup', mouseUp)
-              window?.addEventListener('click', mouseUp)
+              if (isBrowser) {
+                window.addEventListener('mouseup', mouseUp)
+                window.addEventListener('click', mouseUp)
+              }
             }}
             onMouseDown={(e) => {
               xMouseDown()
               scrollToHandle(e)
-              window?.addEventListener('mousemove', scrollToHandle)
+              if (isBrowser) {
+                window.addEventListener('mousemove', scrollToHandle)
+              }
             }}
             onMouseUp={mouseUp}
           >

@@ -1,6 +1,8 @@
 /* eslint-disable no-bitwise */
 import React, { forwardRef, useRef, useState } from 'react'
 
+import { isBrowser } from '@stage-ui/system'
+
 import Checkbox from '../../control/Checkbox'
 
 import TableCell from './TableCell'
@@ -47,7 +49,7 @@ function TableRow(props: Types.RowProps, ref: React.ForwardedRef<HTMLTableRowEle
 
   const [needDisplay, setNeedDisplay] = useState(!enableRenderOptimization)
 
-  if (enableRenderOptimization) {
+  if (enableRenderOptimization && isBrowser) {
     const height = delegates.rowHeight?.(rowCtxItem)
     if (typeof height === 'number') {
       style.height = `${height}px`
@@ -62,11 +64,11 @@ function TableRow(props: Types.RowProps, ref: React.ForwardedRef<HTMLTableRowEle
         }
         let state = false
         const element = document.getElementById(rowId as string)
-        if (element) {
+        if (element && isBrowser) {
           const position = element.getBoundingClientRect()
           if (
             position.top + height * 2 >= 0 &&
-            position.top - height <= window?.innerHeight
+            position.top - height <= window.innerHeight
           ) {
             state = true
             rowDidMount?.(rowCtxItem)

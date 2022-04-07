@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 
+import { isBrowser } from '@stage-ui/system'
+
 import Types from './types'
 
 const Separator = (props: Types.SeparatorProps) => {
@@ -67,13 +69,15 @@ const Separator = (props: Types.SeparatorProps) => {
   }
 
   useEffect(() => {
-    window?.addEventListener('mouseup', mouseUp)
-    window?.addEventListener('mousemove', mouseMove)
-    ref.current?.addEventListener('mousedown', mouseDown)
-    return () => {
-      window?.removeEventListener('mouseup', mouseUp)
-      window?.removeEventListener('mousemove', mouseMove)
-      ref.current?.removeEventListener('mousedown', mouseDown)
+    if (isBrowser) {
+      window.addEventListener('mouseup', mouseUp)
+      window.addEventListener('mousemove', mouseMove)
+      ref.current?.addEventListener('mousedown', mouseDown)
+      return () => {
+        window.removeEventListener('mouseup', mouseUp)
+        window.removeEventListener('mousemove', mouseMove)
+        ref.current?.removeEventListener('mousedown', mouseDown)
+      }
     }
   }, [])
 

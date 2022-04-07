@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 import useTheme from '@stage-ui/system/hooks/useTheme'
 import { breakpointIndex } from '@stage-ui/system/utils/breakpoint'
 
+import isBrowser from '../utils/isBrowser'
+
 function useBreakpoint<T>(values: T[]): T {
   const theme = useTheme()
 
@@ -19,11 +21,13 @@ function useBreakpoint<T>(values: T[]): T {
   }
 
   useEffect(() => {
-    window?.addEventListener('resize', calcState)
-    window?.addEventListener('orientationchange', calcState)
-    return () => {
-      window?.removeEventListener('resize', calcState)
-      window?.removeEventListener('orientationchange', calcState)
+    if (isBrowser) {
+      window.addEventListener('resize', calcState)
+      window.addEventListener('orientationchange', calcState)
+      return () => {
+        window.removeEventListener('resize', calcState)
+        window.removeEventListener('orientationchange', calcState)
+      }
     }
   }, [])
 
