@@ -94,7 +94,7 @@ declare namespace TypographyTypes {
 
   interface PrivateProps extends LinkProps {
     tag: string
-    sizesOf: keyof Stage.ThemeAssets['typography']
+    sizesOf: Exclude<keyof Stage.ThemeAssets['typography'], 'article'>
     focus?: Options['focus']
     name: string
   }
