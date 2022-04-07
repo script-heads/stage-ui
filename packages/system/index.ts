@@ -154,6 +154,10 @@ declare global {
         header: Record<Sizes, CSSObject>
         text: Record<Sizes, CSSObject>
         paragraph: Record<Sizes, CSSObject>
+        article: {
+          header: Record<Sizes, CSSObject>
+          paragraph: CSSObject
+        }
       }
     }
 
