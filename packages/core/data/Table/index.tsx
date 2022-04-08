@@ -244,14 +244,14 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     >
       <thead>
         <tr>
-          {Array.isArray(selected) && (
-            <td css={classes.headCell({ sort: false })} style={{ width: '1.25rem' }}>
+          {onCheckboxClick && (
+            <th css={classes.headCell({ sort: false })} style={{ width: '1.25rem' }}>
               <Checkbox
                 onClick={handleSelectAll}
                 checked={rowCtx.every((s) => s.isSelected)}
                 half={rowCtx.some((s) => s.isSelected)}
               />
-            </td>
+            </th>
           )}
           {columns.map((column, columnIndex) => (
             <TableHeadCell
@@ -310,7 +310,6 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
               onCheckboxClick={(e) => onCheckboxClick?.([rowCtxItem], e)}
               rowMountType={rowMountType}
               enableRenderOptimization={enableRenderOptimization}
-              selectable={Array.isArray(selected)}
               delegates={{
                 rowHeight,
                 rowShouldRender,

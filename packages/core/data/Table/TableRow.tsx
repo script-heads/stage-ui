@@ -21,7 +21,6 @@ function TableRow(props: Types.RowProps, ref: React.ForwardedRef<HTMLTableRowEle
     rowDidUnmount,
     rowDidMount,
     enableRenderOptimization,
-    selectable,
     onCheckboxClick,
   } = props
 
@@ -121,11 +120,11 @@ function TableRow(props: Types.RowProps, ref: React.ForwardedRef<HTMLTableRowEle
           ref={ref}
           css={styles.row({
             selected: rowCtxItem.isSelected,
-            clickable: selectable || !!onRowClick,
+            clickable: !!onCheckboxClick || !!onRowClick,
           })}
           key={rowIndex}
         >
-          {selectable && (
+          {onCheckboxClick && (
             <td css={styles.rowCell} style={{ width: '1.25rem' }}>
               <Checkbox checked={rowCtxItem.isSelected} onClick={handleCheckboxClick} />
             </td>
