@@ -307,7 +307,9 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
               columns={columns}
               rowIndex={rowIndex}
               events={currentEvents}
-              onCheckboxClick={(e) => onCheckboxClick?.([rowCtxItem], e)}
+              onCheckboxClick={
+                onCheckboxClick ? (e) => onCheckboxClick([rowCtxItem], e) : undefined
+              }
               rowMountType={rowMountType}
               enableRenderOptimization={enableRenderOptimization}
               delegates={{
