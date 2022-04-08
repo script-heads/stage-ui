@@ -32,7 +32,7 @@ const createTheme = (themeDefinition: Stage.ThemeDefiniton): Stage.Theme => {
     breakpoints,
   }
 
-  main.color.palette = {}
+  main.color.palette = main.color.palette || {}
 
   const assets = isFunction(themeDefinition.assets)
     ? themeDefinition.assets(main)
