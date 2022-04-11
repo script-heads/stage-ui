@@ -50,7 +50,7 @@ declare namespace DropTypes {
        * type of animation
        * @default none
        */
-      type: 'fade' | 'slide' | 'collapse' | 'none'
+      type: 'fade' | 'slide' | 'collapse' | 'pop' | 'none'
       /**
        * duration in ms
        * @default 100

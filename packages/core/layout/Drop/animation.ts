@@ -38,6 +38,8 @@ export default class DropAnimation {
       return
     }
 
+    this.style.pointerEvents = ''
+
     this.animateOut()
 
     requestAnimationFrame(() => {
@@ -69,6 +71,12 @@ export default class DropAnimation {
         this.style.transform = `${scale}(1)`
         this.style.opacity = '1'
       }
+      if (this.type === 'pop') {
+        this.style.transition = `transform ${this.duration}ms, opacity ${this.duration}ms`
+        const translate = this.isHorizontal ? 'translateX' : 'translateY'
+        this.style.transform = `${translate}(0) scale(1)`
+        this.style.opacity = '1'
+      }
     })
   }
 
@@ -76,6 +84,8 @@ export default class DropAnimation {
     if (!this.enabled) {
       return
     }
+
+    this.style.pointerEvents = 'none'
 
     if (this.type === 'fade') {
       this.style.opacity = '0'
@@ -93,6 +103,17 @@ export default class DropAnimation {
       const scale = this.isHorizontal ? 'scaleX' : 'scaleY'
       const value = this.reverse ? 1.2 : 0.8
       this.style.transform = `${scale}(${value})`
+      this.style.opacity = '0'
+    }
+    if (this.type === 'pop') {
+      const translate = this.isHorizontal ? 'translateX' : 'translateY'
+      let value = this.align === 'top' || this.align === 'left' ? 1 : -1
+      if (this.reverse) {
+        value = -value
+      }
+      this.style.transform = `${translate}(${value}rem) scale(${
+        this.reverse ? 1.1 : 0.9
+      })`
       this.style.opacity = '0'
     }
   }

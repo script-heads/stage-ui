@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react'
+
 import { Drop, Button, Popover, Block } from '@stage-ui/core'
 
 export default () => {
@@ -10,14 +11,14 @@ export default () => {
         ref={ref}
         onMouseEnter={() => setState(!state)}
         onMouseLeave={() => setState(!state)}
-        label="Hover"
+        label="Hover me"
       />
       <Drop
         visible={state}
         target={ref}
         spacing={8}
         animation={{
-          type: 'slide',
+          type: 'pop',
           duration: 250,
           reverse: true,
         }}
