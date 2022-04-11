@@ -246,7 +246,7 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
       <thead>
         <tr>
           {onCheckboxClick && (
-            <th css={classes.headCell({ sort: false })} style={{ width: '1.25rem' }}>
+            <th css={classes.headCell({ sort: false })}>
               <Checkbox
                 onClick={handleSelectAll}
                 checked={rowCtx.every((s) => s.isSelected)}

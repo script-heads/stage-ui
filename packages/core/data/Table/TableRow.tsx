@@ -125,7 +125,7 @@ function TableRow(props: Types.RowProps, ref: React.ForwardedRef<HTMLTableRowEle
           key={rowIndex}
         >
           {!!onCheckboxClick && (
-            <td css={styles.rowCell} style={{ width: '1.25rem' }}>
+            <td css={[styles.rowCell, { width: '0' }]}>
               <Checkbox checked={rowCtxItem.isSelected} onClick={handleCheckboxClick} />
             </td>
           )}
