@@ -11,13 +11,6 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
     uppercase,
   } = props
   const color = colorProp(props.color, theme) || theme.color.primary
-  const childSpacing = {
-    xs: '0.125rem',
-    s: '0.25rem',
-    m: '0.5rem',
-    l: '0.5rem',
-    xl: '0.75rem',
-  }
 
   return {
     container: [
@@ -120,10 +113,10 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         },
       },
       state.align === 'left' && {
-        marginRight: childSpacing[size],
+        marginRight: theme.assets.field[size].indent,
       },
       state.align === 'right' && {
-        marginLeft: childSpacing[size],
+        marginLeft: theme.assets.field[size].indent,
       },
     ],
   }
