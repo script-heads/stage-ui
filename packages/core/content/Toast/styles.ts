@@ -1,4 +1,5 @@
 import colorProp from '@stage-ui/system/props/color'
+
 import Types from './types'
 
 const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {

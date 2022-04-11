@@ -1,6 +1,7 @@
+import React from 'react'
+
 import { Button, dialog, Divider, Flexbox, notify, Text, Toggle } from '@stage-ui/core'
 import { QuestionMarkCircle, Save } from '@stage-ui/icons'
-import React from 'react'
 
 const PlaygroundControl = () => (
   <Flexbox p="s m" my="0.5rem" decoration="surface" alignItems="center">

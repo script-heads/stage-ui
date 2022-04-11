@@ -1,6 +1,8 @@
+import React, { useMemo } from 'react'
+
 import createCache, { Options } from '@emotion/cache'
 import { CacheProvider, Global, Interpolation, ThemeProvider } from '@emotion/react'
-import React, { useMemo } from 'react'
+
 import { cssReset } from './utils/cssReset'
 
 interface ProviderProps {

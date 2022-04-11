@@ -1,6 +1,8 @@
+import React, { forwardRef, ForwardRefRenderFunction } from 'react'
+
 import { Checkmark } from '@stage-ui/icons'
 import { useSystem } from '@stage-ui/system'
-import React, { forwardRef, ForwardRefRenderFunction } from 'react'
+
 import styles from './styles'
 import Types from './types'
 

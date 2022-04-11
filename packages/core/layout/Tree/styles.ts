@@ -1,6 +1,9 @@
 import Types from './types'
 
-const createClasses: Stage.CreateClasses<Types.Classes, Types.PrivateProps> = (theme, props) => ({
+const createClasses: Stage.CreateClasses<Types.Classes, Types.PrivateProps> = (
+  theme,
+  props,
+) => ({
   container: (state) => [
     state.decoration === 'finder' && {
       '>div:nth-of-type(even)': {

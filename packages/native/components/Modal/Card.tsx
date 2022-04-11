@@ -1,13 +1,19 @@
 import React, { ForwardRefRenderFunction, forwardRef, useState } from 'react'
+
 import { Animated, View, ViewStyle } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+
 import Flexbox from '../Flexbox'
 import scale from '../../utils/scale'
+
 import ModalTypes from './types'
 
 export const bounceOffset = scale(120)
 
-const Card: ForwardRefRenderFunction<ModalTypes.CardRef, ModalTypes.CardProps> = (props, ref) => {
+const Card: ForwardRefRenderFunction<ModalTypes.CardRef, ModalTypes.CardProps> = (
+  props,
+  ref,
+) => {
   const { ctx, height: heightProp, card, showCloseHandler, children } = props
   const { animations, dimensions } = ctx
 

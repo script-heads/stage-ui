@@ -1,5 +1,12 @@
+import React, {
+  forwardRef,
+  ForwardRefRenderFunction,
+  useLayoutEffect,
+  useState,
+} from 'react'
+
 import { useSystem } from '@stage-ui/system'
-import React, { forwardRef, ForwardRefRenderFunction, useLayoutEffect, useState } from 'react'
+
 import MenuItem from './MenuItem'
 import MenuItemTypes from './MenuItem/types'
 import MenuGroup from './MenuGroup'
@@ -15,7 +22,9 @@ const Context = React.createContext<Types.Context>({ values: {} })
  * Hook used in every Menu.Item
  * most optimized method to change item value
  */
-export const useValue = (value?: Types.MenuValue): [boolean, () => void, Types.Context] => {
+export const useValue = (
+  value?: Types.MenuValue,
+): [boolean, () => void, Types.Context] => {
   const [updateValue, forceUpdate] = React.useState(false)
   const ctx = React.useContext(Context)
 
@@ -133,9 +142,15 @@ const Default = forwardRef(Menu)
 type ComplexMenu = React.ForwardRefExoticComponent<
   Types.Props & React.RefAttributes<HTMLDivElement>
 > & {
-  Item: React.ForwardRefExoticComponent<MenuItemTypes.Props & React.RefAttributes<HTMLDivElement>>
-  Group: React.ForwardRefExoticComponent<MenuGroupTypes.Props & React.RefAttributes<HTMLDivElement>>
-  Submenu: React.ForwardRefExoticComponent<SubmenuTypes.Props & React.RefAttributes<HTMLDivElement>>
+  Item: React.ForwardRefExoticComponent<
+    MenuItemTypes.Props & React.RefAttributes<HTMLDivElement>
+  >
+  Group: React.ForwardRefExoticComponent<
+    MenuGroupTypes.Props & React.RefAttributes<HTMLDivElement>
+  >
+  Submenu: React.ForwardRefExoticComponent<
+    SubmenuTypes.Props & React.RefAttributes<HTMLDivElement>
+  >
 }
 
 export default {

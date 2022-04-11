@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react'
+
 import { Text } from '@stage-ui/core'
+
 import Types from './types'
 
 const TreeLabel = (props: Types.TreeLabelProps) => {

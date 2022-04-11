@@ -1,9 +1,3 @@
-import { Drop, ScrollView } from '@stage-ui/core'
-import Field from '@stage-ui/core/basic/Field'
-import DropTypes from '@stage-ui/core/layout/Drop/types'
-import { ChevronDown, Close } from '@stage-ui/icons'
-import { useSystem } from '@stage-ui/system'
-import createID from '@stage-ui/system/utils/createID'
 import React, {
   forwardRef,
   ForwardRefRenderFunction,
@@ -12,7 +6,16 @@ import React, {
   useRef,
   useState,
 } from 'react'
+
+import { Drop, ScrollView } from '@stage-ui/core'
+import Field from '@stage-ui/core/basic/Field'
+import DropTypes from '@stage-ui/core/layout/Drop/types'
+import { ChevronDown, Close } from '@stage-ui/icons'
+import { useSystem } from '@stage-ui/system'
+import createID from '@stage-ui/system/utils/createID'
+
 import SharedZIndex from '../../utils/SharedZIndex'
+
 import styles from './styles'
 import Types from './types'
 
@@ -70,7 +73,9 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
       return false
     }
     // Filter only matching search
-    const escapeSearchValue = searchValue.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&').toUpperCase()
+    const escapeSearchValue = searchValue
+      .replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')
+      .toUpperCase()
     if (escapeSearchValue && !RegExp(escapeSearchValue).exec(option.text.toUpperCase())) {
       return false
     }
@@ -202,7 +207,9 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
           setOption(option)
         }}
       >
-        {customRenderOption ? customRenderOption(option, isThisOptionSelected) : option.text}
+        {customRenderOption
+          ? customRenderOption(option, isThisOptionSelected)
+          : option.text}
       </div>
     )
   }
@@ -251,7 +258,9 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
             {
               zIndex: SharedZIndex.increment + 2,
             },
-            (decoration === 'filled' || decoration === 'underline' || decoration === 'none') && {
+            (decoration === 'filled' ||
+              decoration === 'underline' ||
+              decoration === 'none') && {
               borderColor: 'transparent',
             },
           ],

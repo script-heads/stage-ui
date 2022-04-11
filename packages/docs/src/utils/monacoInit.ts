@@ -1,4 +1,3 @@
-
 let configured = false
 
 const checkMonacoInstance = (resolve: (state: boolean) => void) => {
@@ -6,14 +5,14 @@ const checkMonacoInstance = (resolve: (state: boolean) => void) => {
     return resolve(true)
   }
   if (window.require && !configured) {
-    //@ts-expect-error
+    // @ts-expect-error
     window.require.config({
       paths: {
-        vs: '/monaco/min/vs'
-      }
+        vs: '/monaco/min/vs',
+      },
     })
-    //@ts-expect-error
-    window.require(['/monaco/min/vs/editor/editor.main'], () => { })
+    // @ts-expect-error
+    window.require(['/monaco/min/vs/editor/editor.main'], () => {})
     configured = true
   }
   return setTimeout(() => {

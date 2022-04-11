@@ -1,4 +1,3 @@
-import { useSystem } from '@stage-ui/system'
 import React, {
   forwardRef,
   ForwardRefRenderFunction,
@@ -8,6 +7,9 @@ import React, {
   useRef,
   useState,
 } from 'react'
+
+import { isBrowser, useSystem } from '@stage-ui/system'
+
 import createClasses from './styles'
 import Types from './types'
 
@@ -36,7 +38,9 @@ const Range: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
   const thumbRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const [position, setPosition] = useState(value2Percent(value || defaultValue || 0, min, max))
+  const [position, setPosition] = useState(
+    value2Percent(value || defaultValue || 0, min, max),
+  )
 
   useImperativeHandle(ref, () => ({
     container: containerRef.current as HTMLDivElement,
@@ -75,13 +79,15 @@ const Range: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => 
    * new props otherways scope will be broken
    */
   useEffect(() => {
-    // document.addEventListener('touchmove', onMove);
-    document.addEventListener('mousemove', onMove)
-    document.addEventListener('mouseup', onUp)
-    return () => {
-      // document.removeEventListener('touchmove', onMove);
-      document.removeEventListener('mousemove', onMove)
-      document.removeEventListener('mouseup', onUp)
+    if (isBrowser) {
+      // document.addEventListener('touchmove', onMove);
+      document.addEventListener('mousemove', onMove)
+      document.addEventListener('mouseup', onUp)
+      return () => {
+        // document.removeEventListener('touchmove', onMove);
+        document.removeEventListener('mousemove', onMove)
+        document.removeEventListener('mouseup', onUp)
+      }
     }
   }, [props])
 

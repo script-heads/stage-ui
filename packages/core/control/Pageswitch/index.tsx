@@ -1,8 +1,10 @@
+import React, { forwardRef, ForwardRefRenderFunction, useEffect, useState } from 'react'
+
 import { Flexbox, Text } from '@stage-ui/core'
 import { ArrowIosLeft, ArrowIosRight } from '@stage-ui/icons'
 import { useSystem } from '@stage-ui/system'
 import { Classes } from '@stage-ui/system/hooks/useSystem'
-import React, { forwardRef, ForwardRefRenderFunction, useEffect, useState } from 'react'
+
 import createClasses from './styles'
 import Types from './types'
 
@@ -28,10 +30,17 @@ const PageButton: React.FC<PageButtonProps> = (props) => {
   )
 }
 
-const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
+const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
+  props,
+  ref,
+) => {
   const { length: total, pageSize = 20, value } = props
   const lastPage = Math.ceil(total / pageSize)
-  const { classes, attributes, events, styleProps } = useSystem('Pageswitch', props, createClasses)
+  const { classes, attributes, events, styleProps } = useSystem(
+    'Pageswitch',
+    props,
+    createClasses,
+  )
 
   let defaultValue = value || props.defaultValue || 1
   if (defaultValue <= 0) defaultValue = 1

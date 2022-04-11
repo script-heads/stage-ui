@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Block, Flexbox, Header, Notification, Paragraph } from '@stage-ui/core'
 import { Close } from '@stage-ui/icons'
 import NotificationType from '@stage-ui/core/layout/Notification/types'

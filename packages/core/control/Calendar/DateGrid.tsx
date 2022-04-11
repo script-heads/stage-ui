@@ -1,9 +1,11 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import React, { useEffect, useState } from 'react'
+
 import { Button, Divider, Flexbox, Grid, Text } from '@stage-ui/core'
 import moment, { Moment } from 'moment'
-import React, { useEffect, useState } from 'react'
+
 import DateGridMonth from './DateGridMonth'
 import DateGridTitle from './DateGridTitle'
 import DateGridWeek from './DateGridWeek'
@@ -26,14 +28,27 @@ const DateGrid = (props: T.DateGridProps) => {
 
   const [gridType, setGridType] = useState<T.GridType>(props.type)
   const [viewDate, setViewDate] = useState(moment())
-  const [tmpDate, setTmpDate] = useState<[Moment, Moment | undefined]>([moment(), undefined])
+  const [tmpDate, setTmpDate] = useState<[Moment, Moment | undefined]>([
+    moment(),
+    undefined,
+  ])
   const [rangeSwitch, setRangeSwitch] = useState(false)
 
   const monthOffset = gridType === 'day' ? 1 : 9
 
   const grid: Moment[][] = []
-  const start = viewDate.clone().startOf('month').startOf('isoWeek').startOf('day').add(-1, 'day')
-  const end = viewDate.clone().endOf('month').endOf('isoWeek').startOf('day').add(-1, 'day')
+  const start = viewDate
+    .clone()
+    .startOf('month')
+    .startOf('isoWeek')
+    .startOf('day')
+    .add(-1, 'day')
+  const end = viewDate
+    .clone()
+    .endOf('month')
+    .endOf('isoWeek')
+    .startOf('day')
+    .add(-1, 'day')
 
   useEffect(() => {
     setGridType(props.type)
@@ -88,7 +103,11 @@ const DateGrid = (props: T.DateGridProps) => {
   }
 
   return (
-    <Flexbox column css={[props.styleProps.all, props.classes.dateGrid]} {...props.attributes}>
+    <Flexbox
+      column
+      css={[props.styleProps.all, props.classes.dateGrid]}
+      {...props.attributes}
+    >
       <Flexbox column mb="l">
         <DateGridTitle
           size={props.size}

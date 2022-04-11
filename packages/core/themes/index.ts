@@ -1,6 +1,4 @@
 import createTheme from '@stage-ui/system/utils/createTheme'
-import { lightTheme } from './light'
-import { darkTheme } from './dark'
 
 /**
  * Content
@@ -45,26 +43,38 @@ import PopoverTypes from '../layout/Popover/types'
 import TreeTypes from '../layout/Tree/types'
 import ScrollView from '../layout/ScrollView/types'
 
+import { darkTheme } from './dark'
+import { lightTheme } from './light'
+
 declare global {
   namespace Stage {
     interface ThemeOverrides {
       Divider?: Stage.ComponentThemeOverrides<DividerTypes.Props, DividerTypes.Classes>
       Spinner?: Stage.ComponentThemeOverrides<SpinnerTypes.Props, SpinnerTypes.Classes>
       Header?: Stage.ComponentThemeOverrides<HeaderTypes.Props, HeaderTypes.Classes>
-      Paragraph?: Stage.ComponentThemeOverrides<ParagraphTypes.Props, ParagraphTypes.Classes>
+      Paragraph?: Stage.ComponentThemeOverrides<
+        ParagraphTypes.Props,
+        ParagraphTypes.Classes
+      >
       Text?: Stage.ComponentThemeOverrides<TextTypes.Props, TextTypes.Classes>
       Link?: Stage.ComponentThemeOverrides<LinkTypes.Props, LinkTypes.Classes>
       Button?: Stage.ComponentThemeOverrides<ButtonTypes.Props, ButtonTypes.Classes>
       Calendar?: Stage.ComponentThemeOverrides<Calendar.Props, Calendar.Classes>
       Checkbox?: Stage.ComponentThemeOverrides<CheckboxTypes.Props, CheckboxTypes.Classes>
-      DatePicker?: Stage.ComponentThemeOverrides<DatePickerTypes.Props, DatePickerTypes.Classes>
+      DatePicker?: Stage.ComponentThemeOverrides<
+        DatePickerTypes.Props,
+        DatePickerTypes.Classes
+      >
       Menu?: Stage.ComponentThemeOverrides<MenuTypes.Props, MenuTypes.Classes>
       Radio?: Stage.ComponentThemeOverrides<RadioTypes.Props, RadioTypes.Classes>
       Range?: Stage.ComponentThemeOverrides<RangeTypes.Props, RangeTypes.Classes>
       Select?: Stage.ComponentThemeOverrides<SelectTypes.Props, SelectTypes.Classes>
       Stepper?: Stage.ComponentThemeOverrides<StepperTypes.Props, StepperTypes.Classes>
       Switch?: Stage.ComponentThemeOverrides<SwitchTypes.Props, SwitchTypes.Classes>
-      TextField?: Stage.ComponentThemeOverrides<TextFieldTypes.Props, TextFieldTypes.Classes>
+      TextField?: Stage.ComponentThemeOverrides<
+        TextFieldTypes.Props,
+        TextFieldTypes.Classes
+      >
       Meter?: Stage.ComponentThemeOverrides<MeterTypes.Props, MeterTypes.Classes>
       Table?: Stage.ComponentThemeOverrides<TableTypes.Props<any>, TableTypes.Classes>
       Badge?: Stage.ComponentThemeOverrides<BadgeTypes.Props, BadgeTypes.Classes>

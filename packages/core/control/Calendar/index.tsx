@@ -1,6 +1,13 @@
+import React, {
+  forwardRef,
+  ForwardRefRenderFunction,
+  useLayoutEffect,
+  useState,
+} from 'react'
+
 import { useSystem } from '@stage-ui/system'
 import moment, { Moment } from 'moment'
-import React, { forwardRef, ForwardRefRenderFunction, useLayoutEffect, useState } from 'react'
+
 import DateGrid from './DateGrid'
 import createClasses from './styles'
 import Types from './types'

@@ -7,14 +7,7 @@ function ColorPreview({ value, name }: { value: Stage.Color; name: string }) {
   const theme = useTheme()
 
   return (
-    <Block
-      w="8rem"
-      h="4rem"
-      mr="xs"
-      mt="xs"
-      p="s"
-      backgroundColor={value}
-    >
+    <Block w="8rem" h="4rem" mr="xs" mt="xs" p="s" backgroundColor={value}>
       <Text
         weight={600}
         color={

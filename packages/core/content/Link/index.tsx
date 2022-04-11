@@ -1,6 +1,8 @@
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
+
 import Typography from '@stage-ui/core/basic/Typography'
 import isFunction from '@stage-ui/system/utils/isFunction'
+
 import Types from './types'
 
 const Link: ForwardRefRenderFunction<HTMLAnchorElement, Types.Props> = (
@@ -22,7 +24,9 @@ const Link: ForwardRefRenderFunction<HTMLAnchorElement, Types.Props> = (
             textDecoration: 'underline',
           },
         },
-        isFunction(overrides) ? overrides(theme, styleProps).container : overrides?.container,
+        isFunction(overrides)
+          ? overrides(theme, styleProps).container
+          : overrides?.container,
       ],
     })}
     ref={ref}

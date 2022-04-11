@@ -154,6 +154,10 @@ declare global {
         header: Record<Sizes, CSSObject>
         text: Record<Sizes, CSSObject>
         paragraph: Record<Sizes, CSSObject>
+        article: {
+          header: Record<Sizes, CSSObject>
+          paragraph: CSSObject
+        }
       }
     }
 
@@ -255,3 +259,4 @@ export { default as useSystem } from './hooks/useSystem'
 export { default as useBreakpoint } from './hooks/useBreakpoint'
 
 export { default as createTheme } from './utils/createTheme'
+export { default as isBrowser } from './utils/isBrowser'

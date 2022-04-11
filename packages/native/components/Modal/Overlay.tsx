@@ -1,12 +1,14 @@
 import React from 'react'
+
 import { Animated } from 'react-native'
 import { LongPressGestureHandler, PanGestureHandler } from 'react-native-gesture-handler'
+
 import ModalTypes from './types'
 
-const Overlay: React.ForwardRefRenderFunction<ModalTypes.OverlayRef, ModalTypes.OverlayProps> = (
-  props,
-  ref,
-) => {
+const Overlay: React.ForwardRefRenderFunction<
+  ModalTypes.OverlayRef,
+  ModalTypes.OverlayProps
+> = (props, ref) => {
   const { ctx, onHandlerStateChange, onGestureEvent, style, children } = props
   const { animations, dimensions } = ctx
 

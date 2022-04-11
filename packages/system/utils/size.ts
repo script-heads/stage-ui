@@ -1,3 +1,5 @@
+import isBrowser from './isBrowser'
+
 /**
  * Converts any value to Float
  */
@@ -10,7 +12,11 @@ export const toFloat = (input: string | number) => {
  * Get base fontSize
  */
 export const baseFontSize = () =>
-  toFloat(window?.getComputedStyle(document.body).getPropertyValue('font-size') || '16px')
+  isBrowser
+    ? toFloat(
+        window?.getComputedStyle(document.body).getPropertyValue('font-size') || '16px',
+      )
+    : 0
 
 /**
  * Checks if value are rem value

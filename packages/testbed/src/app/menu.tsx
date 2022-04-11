@@ -1,5 +1,6 @@
-import { Menu } from '@stage-ui/core'
 import React from 'react'
+
+import { Menu } from '@stage-ui/core'
 
 const PlaygroundMenu = () => (
   <Menu

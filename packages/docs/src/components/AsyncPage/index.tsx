@@ -7,11 +7,13 @@ export const AsyncPage: FC<
 > = ({ component, ...props }) => {
   const Component = component
   return (
-    <React.Suspense fallback={(
-      <Flexbox centered m="xl" my="40vh">
-        <Spinner color={(c) => c.onSurface.alpha(0.5)} />
-      </Flexbox>
-    )}>
+    <React.Suspense
+      fallback={
+        <Flexbox centered m="xl" my="40vh">
+          <Spinner color={(c) => c.onSurface.alpha(0.5)} />
+        </Flexbox>
+      }
+    >
       <Component {...props} />
     </React.Suspense>
   )

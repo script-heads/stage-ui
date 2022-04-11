@@ -341,32 +341,22 @@ export const lightTheme: Stage.ThemeDefiniton = {
         xl: {
           fontSize: '1.5rem',
           lineHeight: '1.75rem',
-          marginTop: '1rem',
-          marginBottom: '1rem',
         },
         l: {
           fontSize: '1.25rem',
           lineHeight: '1.5rem',
-          marginTop: '.75rem',
-          marginBottom: '.75rem',
         },
         m: {
           fontSize: '1rem',
           lineHeight: '1.5rem',
-          marginTop: '.75rem',
-          marginBottom: '.75rem',
         },
         s: {
           fontSize: '0.875rem',
           lineHeight: '1.25rem',
-          marginTop: '.5rem',
-          marginBottom: '.5rem',
         },
         xs: {
           fontSize: '0.75rem',
           lineHeight: '1rem',
-          marginTop: '.5rem',
-          marginBottom: '.5rem',
         },
       },
       text: {
@@ -389,6 +379,52 @@ export const lightTheme: Stage.ThemeDefiniton = {
         xs: {
           fontSize: '0.75rem',
           lineHeight: '0.875rem',
+        },
+      },
+      article: {
+        header: {
+          xl: {
+            fontSize: '2.5rem',
+            lineHeight: '3.5rem',
+          },
+          l: {
+            fontSize: '2rem',
+            lineHeight: '3rem',
+          },
+          m: {
+            fontSize: '1.5rem',
+            lineHeight: '2rem',
+          },
+          s: {
+            fontSize: '1.25rem',
+            lineHeight: '1.5rem',
+          },
+          xs: {
+            fontSize: '1.125rem',
+            lineHeight: '1.5rem',
+          },
+        },
+        paragraph: {
+          xl: {
+            marginTop: '1rem',
+            marginBottom: '1rem',
+          },
+          l: {
+            marginTop: '.75rem',
+            marginBottom: '.75rem',
+          },
+          m: {
+            marginTop: '.75rem',
+            marginBottom: '.75rem',
+          },
+          s: {
+            marginTop: '.5rem',
+            marginBottom: '.5rem',
+          },
+          xs: {
+            marginTop: '.5rem',
+            marginBottom: '.5rem',
+          },
         },
       },
     },

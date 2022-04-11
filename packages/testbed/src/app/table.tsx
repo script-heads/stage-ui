@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
+
 import { Flexbox, Table, notify, Spinner, Select } from '@stage-ui/core'
 import axios, { AxiosResponse } from 'axios'
 import SelectTypes from '@stage-ui/core/control/Select/types'
+
 import { ResponsePassenger, PassengersData } from './types'
 
 type DataRow = {
@@ -13,7 +15,9 @@ const endPoint = 'https://api.instantwebtools.net/v1'
 const PlaygroundTable = () => {
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState<PassengersData[]>([])
-  const [pageSize, setPageSize] = useState<SelectTypes.Option[]>([{ value: 5, text: '5' }])
+  const [pageSize, setPageSize] = useState<SelectTypes.Option[]>([
+    { value: 5, text: '5' },
+  ])
 
   const pages = async () => {
     setLoading(true)

@@ -1,8 +1,9 @@
+import React from 'react'
+
 import { Modal } from '@stage-ui/core'
 import ModalTypes from '@stage-ui/core/layout/Modal/types'
 import { ViewportShared } from '@stage-ui/core/layout/Viewport/MountArea'
 import createID from '@stage-ui/system/utils/createID'
-import React from 'react'
 
 export default (render: ModalTypes.DialogOptions | ModalTypes.DialogRenderFn) => {
   const key = createID()

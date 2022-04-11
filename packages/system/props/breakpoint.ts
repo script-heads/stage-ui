@@ -10,7 +10,10 @@ function breakpointProp<P = string | number | undefined>(
       if (!index) return resolver(currentValue, theme)
       if (currentValue === '*') return false
       return {
-        [`@media (max-width: ${theme.breakpoints[index]})`]: resolver(currentValue, theme),
+        [`@media (max-width: ${theme.breakpoints[index]})`]: resolver(
+          currentValue,
+          theme,
+        ),
       }
     }) as Stage.CSSInterpolation
   }

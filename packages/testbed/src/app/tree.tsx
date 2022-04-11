@@ -1,5 +1,6 @@
-import { Block, Tree } from '@stage-ui/core'
 import React from 'react'
+
+import { Block, Tree } from '@stage-ui/core'
 
 const PlaygroundTree = () => {
   const element = Tree({})

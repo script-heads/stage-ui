@@ -18,7 +18,6 @@ const ComponentModal = React.lazy(() => import('@/modals/ComponentModal'))
 const Colors = React.lazy(() => import('@/pages/Colors'))
 const Page404 = React.lazy(() => import('@/pages/404'))
 
-
 core.init()
 const initialDocsContext: {
   currentTheme: Stage.Theme
@@ -52,8 +51,8 @@ function Docs() {
                   letterSpacing: '-1px',
                   color: currentTheme.color.onSurface.alpha(0.85).rgb().string(),
                   marginTop: '5rem',
-                }
-              }, 
+                },
+              },
               paragraph: {
                 xl: {
                   fontSize: '1.5rem',
@@ -61,23 +60,25 @@ function Docs() {
                   letterSpacing: '0.0625rem',
                   marginTop: '2rem',
                   marginBottom: '2.5rem',
-                }
-              }
-            }
-          }
+                },
+              },
+            },
+          },
         })}
-        global={[{
-          'html,body,#docs': {
-            minHeight: '100vh',
-            background: currentTheme.color.surface.hex(),
-            overscrollBehavior: 'none',
-            fontFamily: 'LotaGrotesque',
-            WebkitFontSmoothing: 'antialiased',
+        global={[
+          {
+            'html,body,#docs': {
+              minHeight: '100vh',
+              background: currentTheme.color.surface.hex(),
+              overscrollBehavior: 'none',
+              fontFamily: 'LotaGrotesque',
+              WebkitFontSmoothing: 'antialiased',
+            },
+            '.scroll-decoration': {
+              boxShadow: 'none !important',
+            },
           },
-          '.scroll-decoration': {
-            boxShadow: 'none !important',
-          },
-        },`
+          `
         @font-face{
           font-family:LotaGrotesque;
           src:url(/assets/fonts/LotaGrotesque-Regular.woff2);
@@ -105,7 +106,8 @@ function Docs() {
           font-weight:700;
           font-style:normal;
         }
-      `]}
+      `,
+        ]}
       >
         <Router>
           <ScrollView
@@ -119,8 +121,14 @@ function Docs() {
                 <Header />
                 <Routes>
                   <Route path="/" element={<Index />} />
-                  <Route path="/components" element={<AsyncPage component={Components} />}>
-                    <Route path=":name" element={<AsyncPage component={ComponentModal} />} />
+                  <Route
+                    path="/components"
+                    element={<AsyncPage component={Components} />}
+                  >
+                    <Route
+                      path=":name"
+                      element={<AsyncPage component={ComponentModal} />}
+                    />
                   </Route>
                   <Route path="/icons" element={<AsyncPage component={Icons} />} />
                   <Route path="/colors" element={<AsyncPage component={Colors} />} />

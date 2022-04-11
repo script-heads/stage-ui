@@ -1,6 +1,3 @@
-import { Calendar as CalendarIcon } from '@stage-ui/icons'
-import { useSystem } from '@stage-ui/system'
-import moment, { Moment } from 'moment'
 import React, {
   forwardRef,
   ForwardRefRenderFunction,
@@ -8,14 +5,23 @@ import React, {
   useRef,
   useState,
 } from 'react'
+
+import { Calendar as CalendarIcon } from '@stage-ui/icons'
+import { useSystem } from '@stage-ui/system'
+import moment, { Moment } from 'moment'
+
 import Field from '../../basic/Field'
 import Drop from '../../layout/Drop'
 import Popover from '../../layout/Popover'
 import Calendar from '../Calendar'
+
 import createClasses from './styles'
 import Types from './types'
 
-const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
+const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
+  props,
+  ref,
+) => {
   const {
     locale = 'ru',
     format = 'DD.MM.YYYY',
@@ -69,7 +75,9 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props
       if (dtStart?.isValid()) {
         if (dtEnd?.isValid()) {
           if (dtStart?.unix() !== dtEnd?.unix()) {
-            initialInputValue = `${dtStart.format(format) || ''} - ${dtEnd.format(format) || ''}`
+            initialInputValue = `${dtStart.format(format) || ''} - ${
+              dtEnd.format(format) || ''
+            }`
           } else {
             initialInputValue = dtStart.format(format)
           }

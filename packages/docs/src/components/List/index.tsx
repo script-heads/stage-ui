@@ -2,13 +2,13 @@ import React from 'react'
 
 import { useTheme } from '@stage-ui/system/'
 import createID from '@stage-ui/system/utils/createID'
-import { Flexbox, Paragraph } from '@stage-ui/core';
+import { Flexbox, Paragraph } from '@stage-ui/core'
 
 function List({ data, higlightBefore }: { data: string[]; higlightBefore?: string }) {
   const theme = useTheme()
 
   return (
-    <Flexbox wrap={"wrap"}>
+    <Flexbox wrap="wrap">
       {higlightBefore
         ? data.map((child) => {
             const stageProp = child.split(higlightBefore)[0]
@@ -26,7 +26,9 @@ function List({ data, higlightBefore }: { data: string[]; higlightBefore?: strin
                 >
                   {stageProp}
                 </Paragraph>
-                <Paragraph m="xs" p="0" color={(c) => c.onSurface.alpha(0.6)}>{cssProp}</Paragraph>
+                <Paragraph m="xs" p="0" color={(c) => c.onSurface.alpha(0.6)}>
+                  {cssProp}
+                </Paragraph>
               </Flexbox>
             )
           })

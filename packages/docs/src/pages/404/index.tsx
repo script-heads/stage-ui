@@ -1,5 +1,6 @@
-import { Header, Text, Flexbox } from '@stage-ui/core'
 import React from 'react'
+
+import { Header, Text, Flexbox } from '@stage-ui/core'
 
 const Page404 = () => {
   return (

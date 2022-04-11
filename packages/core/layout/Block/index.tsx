@@ -1,11 +1,17 @@
+import { forwardRef, ForwardRefRenderFunction } from 'react'
+
 import { jsx } from '@emotion/react'
 import { useSystem } from '@stage-ui/system'
-import { forwardRef, ForwardRefRenderFunction } from 'react'
+
 import createClasses from './styles'
 import Types from './types'
 
 const Block: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-  const { classes, attributes, events, styleProps } = useSystem('Block', props, createClasses)
+  const { classes, attributes, events, styleProps } = useSystem(
+    'Block',
+    props,
+    createClasses,
+  )
 
   return jsx(
     props.as || 'div',

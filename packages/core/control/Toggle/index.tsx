@@ -1,4 +1,5 @@
 import React, { forwardRef, ForwardRefRenderFunction, useEffect, useState } from 'react'
+
 import { useSystem } from '@stage-ui/system'
 
 import createClasses from './styles'
@@ -6,9 +7,14 @@ import Types from './types'
 
 const Button: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
   const { defaultValue } = props
-  const { classes, attributes, events, styleProps } = useSystem('Toggle', props, createClasses, {
-    focus: 'tabOnly',
-  })
+  const { classes, attributes, events, styleProps } = useSystem(
+    'Toggle',
+    props,
+    createClasses,
+    {
+      focus: 'tabOnly',
+    },
+  )
   /**
    * Store of selected values
    */

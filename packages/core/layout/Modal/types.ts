@@ -1,4 +1,9 @@
-import { Classes as ClassesType, ResolvedStyleProps } from '@stage-ui/system/hooks/useSystem'
+import React from 'react'
+
+import {
+  Classes as ClassesType,
+  ResolvedStyleProps,
+} from '@stage-ui/system/hooks/useSystem'
 import {
   AllEventProps,
   AttributeProps,
@@ -8,7 +13,7 @@ import {
   LayoutProps,
   PaddingProps,
 } from '@stage-ui/system/props/types'
-import React from 'react'
+
 import ScrollViewTypes from '../ScrollView/types'
 
 declare namespace ModalTypes {

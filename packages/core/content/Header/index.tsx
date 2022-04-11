@@ -16,10 +16,10 @@ function Header(
         props.size,
         {
           xl: 'h1',
-          l: 'h1',
-          m: 'h1',
-          s: 'h2',
-          xs: 'h3',
+          l: 'h2',
+          m: 'h3',
+          s: 'h4',
+          xs: 'h5',
         },
         () => 'h1',
       )}

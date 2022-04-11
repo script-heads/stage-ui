@@ -359,7 +359,6 @@ declare namespace TableTypes {
     rowDidUnmount?: (rowCtxItem: TableRowContext<R>) => void
     rowMountType?: Props<R>['rowMountType']
     enableRenderOptimization: boolean
-    selectable: boolean
     delegates: {
       rowHeight?: Props<R>['rowHeight']
       rowShouldRender?: Props<R>['rowShouldRender']

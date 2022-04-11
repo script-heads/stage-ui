@@ -1,5 +1,7 @@
-import { ArrowRight } from '@stage-ui/icons'
 import React, { Fragment } from 'react'
+
+import { ArrowRight } from '@stage-ui/icons'
+
 import Types from './types'
 
 const TreeLeftChild = (props: Types.TreeLeftChildProps) => {

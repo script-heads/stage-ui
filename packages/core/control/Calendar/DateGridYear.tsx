@@ -1,6 +1,8 @@
+import React from 'react'
+
 import { Flexbox, Text } from '@stage-ui/core'
 import moment from 'moment'
-import React from 'react'
+
 import CalendarTypes from './types'
 
 const DateGridYear = (props: CalendarTypes.DateGridYearProps) => {

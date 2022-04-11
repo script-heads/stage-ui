@@ -1,5 +1,7 @@
-import createID from '@stage-ui/system/utils/createID'
 import React, { FC, Fragment, useState } from 'react'
+
+import createID from '@stage-ui/system/utils/createID'
+
 import ViewportTypes from './types'
 
 export const ViewportShared: ViewportTypes.Shared = {

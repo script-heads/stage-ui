@@ -1,13 +1,20 @@
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
+
 import { useSystem } from '@stage-ui/system'
+
 import createClasses from './styles'
 import Types from './types'
 
 const Button: ForwardRefRenderFunction<HTMLButtonElement, Types.Props> = (props, ref) => {
   const { leftChild, rightChild, children, disabled, label } = props
-  const { classes, attributes, events, styleProps } = useSystem('Button', props, createClasses, {
-    focus: 'tabOnly',
-  })
+  const { classes, attributes, events, styleProps } = useSystem(
+    'Button',
+    props,
+    createClasses,
+    {
+      focus: 'tabOnly',
+    },
+  )
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (!disabled) {
       events.onClick?.(event)

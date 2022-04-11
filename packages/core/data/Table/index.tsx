@@ -10,7 +10,7 @@ import React, {
   useState,
 } from 'react'
 
-import { useSystem } from '@stage-ui/system'
+import { isBrowser, useSystem } from '@stage-ui/system'
 
 import Checkbox from '../../control/Checkbox'
 
@@ -190,7 +190,7 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     /**
      * Handle optimized method of render
      */
-    if (enableRenderOptimization) {
+    if (enableRenderOptimization && isBrowser) {
       setNeedDisplay()
       document.addEventListener('resize', setNeedDisplay)
       document.addEventListener('scroll', setNeedDisplay)
@@ -244,14 +244,14 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     >
       <thead>
         <tr>
-          {Array.isArray(selected) && (
-            <td css={classes.headCell({ sort: false })} style={{ width: '1.25rem' }}>
+          {onCheckboxClick && (
+            <th css={classes.headCell({ sort: false })} style={{ width: '1.25rem' }}>
               <Checkbox
                 onClick={handleSelectAll}
                 checked={rowCtx.every((s) => s.isSelected)}
                 half={rowCtx.some((s) => s.isSelected)}
               />
-            </td>
+            </th>
           )}
           {columns.map((column, columnIndex) => (
             <TableHeadCell
@@ -307,10 +307,11 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
               columns={columns}
               rowIndex={rowIndex}
               events={currentEvents}
-              onCheckboxClick={(e) => onCheckboxClick?.([rowCtxItem], e)}
+              onCheckboxClick={
+                onCheckboxClick ? (e) => onCheckboxClick([rowCtxItem], e) : undefined
+              }
               rowMountType={rowMountType}
               enableRenderOptimization={enableRenderOptimization}
-              selectable={Array.isArray(selected)}
               delegates={{
                 rowHeight,
                 rowShouldRender,

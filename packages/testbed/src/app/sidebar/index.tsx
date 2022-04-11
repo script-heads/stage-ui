@@ -1,6 +1,6 @@
-import { Menu } from '@stage-ui/core'
-import { Cube } from '@stage-ui/icons'
 import React from 'react'
+
+import { Menu } from '@stage-ui/core'
 
 const PlaygroundSidebar = () => {
   return (

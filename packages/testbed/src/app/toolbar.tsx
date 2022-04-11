@@ -1,6 +1,7 @@
+import React, { useState } from 'react'
+
 import { Button, DatePicker, Divider, Flexbox, Select, TextField } from '@stage-ui/core'
 import { Funnel, Refresh, Search } from '@stage-ui/icons'
-import React, { useState } from 'react'
 import { Moment } from 'moment'
 
 const PlaygroundToolbar = () => {
