@@ -33,7 +33,7 @@ const Checkbox: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
   const [checked, setChecked] = useState(checkedProp || defaultValue || false)
 
   useEffect(() => {
-    setChecked(checkedProp)
+    setChecked(checkedProp || false)
   }, [checkedProp])
 
   /**
