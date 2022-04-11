@@ -342,7 +342,10 @@ export const lightTheme: Stage.ThemeDefiniton = {
           fontSize: '1rem',
           lineHeight: '1.5rem',
         },
-        s: ,
+        s: {
+          fontSize: '0.875rem',
+          lineHeight: '1.25rem',
+        },
         xs: {
           fontSize: '0.75rem',
           lineHeight: '1rem',
