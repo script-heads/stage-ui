@@ -40,10 +40,12 @@ function TableCell(
   return (
     <td
       ref={ref}
-      css={styles.rowCell}
-      style={{
-        width: column.width || 'auto',
-      }}
+      css={[
+        styles.rowCell,
+        {
+          width: column.width || 'auto',
+        },
+      ]}
     >
       {content}
     </td>
