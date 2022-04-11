@@ -50,6 +50,7 @@ declare namespace MeterTypes {
       size: Stage.Sizes
       decoration: MeterDecoration
     }
+    thumbWrapper: void
     /**
      * Thumb view
      */

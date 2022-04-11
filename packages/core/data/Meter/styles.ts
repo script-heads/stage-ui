@@ -14,14 +14,9 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         userSelect: 'none',
         overflow: 'hidden',
         boxSizing: 'border-box',
-        background: theme.color.backgroundVariant.rgb().string(),
-        height: `0.75rem`,
+        background: theme.color.gray[100].rgb().string(),
         zIndex: 1,
       },
-      state.size === 'xl' && { height: '1.25rem' },
-      state.size === 'l' && { height: '1rem' },
-      state.size === 's' && { height: '0.5rem' },
-      state.size === 'xs' && { height: '0.375rem' },
       state.shape === 'round' && [
         {
           borderRadius: '100rem',
@@ -34,6 +29,9 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         },
       ],
     ],
+    thumbWrapper: {
+      position: 'relative',
+    },
     thumb: () => [],
   }
 }

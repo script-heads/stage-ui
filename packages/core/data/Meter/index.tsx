@@ -30,17 +30,25 @@ const Meter: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
       {...events}
       css={[classes.container({ decoration, shape, size }), styleProps.all]}
     >
-      {childs ? (
-        childs.map((child, index) =>
-          React.cloneElement(child, {
-            key: index,
-            ...props,
-            ...child.props,
-          }),
-        )
-      ) : (
-        <Thumb shape={shape} size={size} value={value} color={color} loading={loading} />
-      )}
+      <div css={classes.thumbWrapper}>
+        {childs ? (
+          childs.map((child, index) =>
+            React.cloneElement(child, {
+              key: index,
+              ...props,
+              ...child.props,
+            }),
+          )
+        ) : (
+          <Thumb
+            shape={shape}
+            size={size}
+            value={value}
+            color={color}
+            loading={loading}
+          />
+        )}
+      </div>
     </div>
   )
 }
