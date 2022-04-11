@@ -1,3 +1,4 @@
+import { CSSInterpolation } from '@emotion/serialize'
 import colorProp from '@stage-ui/system/props/color'
 
 import Types from './types'
@@ -11,6 +12,35 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
     uppercase,
   } = props
   const color = colorProp(props.color, theme) || theme.color.primary
+  const isDark = color.contrast(theme.color.onPrimary) > 2.5
+
+  const primaryGradient = [
+    isDark ? color.lightness(50).hex() : color.darken(0).hex(),
+    isDark ? color.lightness(50).hex() : color.darken(0).hex(),
+    isDark ? color.lightness(50).hex() : color.darken(0).hex(),
+    isDark ? color.lightness(80).hex() : color.darken(0.1).hex(),
+  ]
+
+  const applyDecoration = (
+    decorations: Record<
+      Types.Decoration,
+      {
+        idle: CSSInterpolation
+        hover: CSSInterpolation
+        active: CSSInterpolation
+        disabled: CSSInterpolation
+      }
+    >,
+  ) => {
+    const style = decorations[decoration]
+    if (disabled) {
+      return Object.assign(style.idle, style.disabled)
+    }
+    return Object.assign(style.idle, {
+      '&:hover': style.hover,
+      '&:active': style.active,
+    })
+  }
 
   return {
     container: [
@@ -33,69 +63,109 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         width: 'fit-content',
         padding: `0 ${theme.assets.field[size].indent}`,
         height: theme.assets.field[size].height,
+        transition: 'all 0.25s',
+        transitionTimingFunction: 'ease',
         '&::-moz-focus-inner': {
           border: 0,
         },
-        '&:hover:not([disabled])': {
-          background: color.alpha(0.07).rgb().string(),
-        },
-        '&:active:not([disabled])': {
-          background: color.alpha(0.05).rgb().string(),
-        },
-        '&:disabled': {
-          color: theme.color.light.rgb().string(),
-        },
       },
       theme.assets.typography.text[size],
-      decoration === 'outline' && {
-        borderWidth: '0.0625rem',
-        borderColor: color.rgb().string(),
-        color: color.rgb().string(),
-        '&:disabled': {
-          borderColor: theme.color.lightest.rgb().string(),
+      applyDecoration({
+        filled: {
+          idle: {
+            background: color.rgb().string(),
+            backgroundSize: '300% 300%',
+            backgroundImage: `linear-gradient(45deg, ${primaryGradient.join(',')})`,
+            color: isDark
+              ? theme.color.onPrimary.rgb().string()
+              : theme.color.onSurface.rgb().string(),
+          },
+          hover: {
+            transition: 'all 0.15s',
+            backgroundPosition: '100% 100%',
+            transform: 'scale(1.01)',
+          },
+          active: {
+            backgroundPosition: '80% 80%',
+            transform: 'scale(0.99)',
+          },
+          disabled: {
+            color: theme.color.gray[500].hex(),
+            backgroundImage: 'none',
+            background: theme.color.gray[200].hex(),
+          },
         },
-      },
-      decoration === 'text' && {
-        borderWidth: 0,
-        color: color.rgb().string(),
-      },
-      decoration === 'plain' && {
-        borderWidth: '0.0625rem',
-        borderColor: theme.color.lightest.rgb().string(),
-        background: theme.color.surface.rgb().string(),
-        color: theme.color.onSurface.rgb().string(),
-        '&:disabled': {
-          background: theme.color.lightest.rgb().string(),
+        text: {
+          idle: {
+            borderWidth: 0,
+            color: color.rgb().string(),
+          },
+          hover: {
+            transition: 'all 0.15s',
+            background: color.alpha(0.05).rgb().string(),
+            transform: 'scale(1.01)',
+          },
+          active: {
+            background: color.alpha(0.1).rgb().string(),
+            transform: 'scale(0.99)',
+          },
+          disabled: {
+            color: theme.color.gray[400].hex(),
+            borderColor: theme.color.gray[300].hex(),
+          },
         },
-      },
-      decoration === 'filled' && {
-        background: color.rgb().string(),
-        color:
-          color.contrast(theme.color.onPrimary) > 3
-            ? theme.color.onPrimary.rgb().string()
-            : theme.color.onSurface.rgb().string(),
-        '&:hover:not([disabled])': {
-          background: color.alpha(0.7).rgb().string(),
+        outline: {
+          idle: {
+            borderWidth: '0.0625rem',
+            borderColor: color.rgb().string(),
+            color: color.rgb().string(),
+          },
+          hover: {
+            transition: 'all 0.15s',
+            background: color.alpha(0.05).rgb().string(),
+            transform: 'scale(1.01)',
+          },
+          active: {
+            background: color.alpha(0.05).rgb().string(),
+            transform: 'scale(0.99)',
+          },
+          disabled: {
+            color: theme.color.gray[400].hex(),
+            borderColor: theme.color.gray[300].hex(),
+          },
         },
-        '&:active:not([disabled])': {
-          background: color.alpha(0.5).rgb().string(),
+        plain: {
+          idle: {
+            borderWidth: '0.0625rem',
+            borderColor: theme.color.gray[300].rgb().string(),
+            background: theme.color.surface.rgb().string(),
+            color: theme.color.onSurface.rgb().string(),
+          },
+          hover: {
+            transition: 'all 0.15s',
+            background: theme.color.gray[50].rgb().string(),
+          },
+          active: {
+            background: theme.color.gray[100].rgb().string(),
+          },
+          disabled: {
+            color: theme.color.gray[400].hex(),
+            background: theme.color.gray[100].hex(),
+            borderColor: theme.color.gray[200].hex(),
+          },
         },
-        '&:disabled': {
-          background: theme.color.lightest.rgb().string(),
-          color: theme.color.light.rgb().string(),
-        },
-      },
+      }),
       shape === 'square' && {
         borderRadius: 0,
       },
       shape === 'round' && {
         borderRadius: '100rem',
       },
-      disabled && {
-        cursor: 'not-allowed !important',
-      },
       uppercase && {
         textTransform: 'uppercase',
+      },
+      disabled && {
+        cursor: 'not-allowed !important',
       },
     ],
     child: (state) => [

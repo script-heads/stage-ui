@@ -1,4 +1,8 @@
 declare namespace ButtonTypes {
+  type Decoration = 'filled' | 'outline' | 'text' | 'plain'
+  type Shape = 'square' | 'rounded' | 'round'
+  type Type = 'submit' | 'reset' | 'button'
+  type ChildAlign = 'left' | 'right'
   interface Props extends Stage.AllProps<HTMLButtonElement, Classes> {
     /**
      * Specifies that the button should have input focus when the page loads
@@ -41,7 +45,7 @@ declare namespace ButtonTypes {
     /**
      * The default behavior of the button
      */
-    type?: 'submit' | 'reset' | 'button'
+    type?: Type
     /**
      * Defines the value associated with the button’s name when it’s submitted with the form data
      */
@@ -58,12 +62,12 @@ declare namespace ButtonTypes {
      * Defines how button look
      * @default filled
      */
-    decoration?: 'filled' | 'outline' | 'text' | 'plain'
+    decoration?: Decoration
     /**
      * Shape of button
      * @default rounded
      */
-    shape?: 'square' | 'rounded' | 'round'
+    shape?: Shape
     /**
      * Make button's text uppercase
      */
@@ -99,7 +103,7 @@ declare namespace ButtonTypes {
      * Content's wrappers
      */
     child: {
-      align: 'left' | 'right'
+      align: ChildAlign
     }
   }
 }
