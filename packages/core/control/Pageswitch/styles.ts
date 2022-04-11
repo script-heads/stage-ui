@@ -20,7 +20,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = ({
       },
     },
     state.disabled && {
-      cursor: 'not-allowed',
+      cursor: 'not-allowed !important',
       color: color.light.rgb().string(),
       ':hover': {
         color: color.light.rgb().string(),

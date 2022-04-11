@@ -88,7 +88,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       },
       disabled && {
         color: theme.color.light.rgb().string(),
-        cursor: 'not-allowed',
+        cursor: 'not-allowed !important',
       },
     ],
 

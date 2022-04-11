@@ -99,7 +99,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         ],
         '&[data-flow-disabled]': [
           {
-            cursor: 'not-allowed',
+            cursor: 'not-allowed !important',
           },
         ],
       },

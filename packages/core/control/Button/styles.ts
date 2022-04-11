@@ -92,7 +92,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         borderRadius: '100rem',
       },
       disabled && {
-        cursor: 'not-allowed',
+        cursor: 'not-allowed !important',
       },
       uppercase && {
         textTransform: 'uppercase',
