@@ -5,6 +5,7 @@ import Types from './types'
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
   const { size = 'm' } = props
 
+  const isDark = theme.color.surface.isDark()
   const spacing = theme.spacing[size] || theme.spacing.m
   const titleSize =
     theme.assets.typography.header[size] || theme.assets.typography.header.m
@@ -23,7 +24,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         bottom: 0,
         left: 0,
         right: 0,
-        backgroundColor: 'rgba(0,0,0,.5)',
+        backgroundColor: theme.color.surface.alpha(0.75).rgb().string(),
         overflowY: 'auto',
         backdropFilter: 'blur(4px)',
         transition: 'opacity 0.25s',
@@ -59,10 +60,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         margin: '0 auto',
         padding: spacing,
         minHeight: '1rem',
-        backgroundColor: theme.color.surface.rgb().string(),
-        // borderWidth: '1px',
-        // borderStyle: 'solid',
-        // borderColor: theme.color.border.rgb().string(),
+        backgroundColor: theme.color.background.rgb().string(),
         borderRadius: theme.radius.m,
         boxSizing: 'border-box',
         overflow: 'hidden',
@@ -101,11 +99,17 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
 
     header: () => [
       {
-        h3: titleSize,
+        h1: [
+          titleSize,
+          {
+            color: isDark ? theme.color.gray[200].hex() : theme.color.gray[700].hex(),
+          },
+        ],
         p: [
           subtitleSize,
           {
             marginBottom: spacing,
+            color: isDark ? theme.color.gray[400].hex() : theme.color.gray[500].hex(),
           },
         ],
       },
