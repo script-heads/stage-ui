@@ -1,8 +1,15 @@
 import colorProp from '@stage-ui/system/props/color'
+
 import Types from './types'
 
 const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
-  const { size = 'm', decoration = 'filled', shape = 'rounded', disabled, uppercase } = props
+  const {
+    size = 'm',
+    decoration = 'filled',
+    shape = 'rounded',
+    disabled,
+    uppercase,
+  } = props
   const color = colorProp(props.color, theme) || theme.color.primary
   const childSpacing = {
     xs: '0.125rem',
@@ -15,6 +22,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
   return {
     container: [
       {
+        fontFamily: 'inherit',
         fontWeight: 500,
         whiteSpace: 'nowrap',
         outline: 'none',

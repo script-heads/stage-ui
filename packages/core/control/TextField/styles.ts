@@ -6,6 +6,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
 ) => ({
   input: (state) => [
     {
+      fontFamily: 'inherit',
       outline: 0,
       padding: 0,
       margin: 0,
