@@ -86,7 +86,7 @@ function ComponentModal() {
     >
       {(!typedoc || !typescript) && (
         <Flexbox h="100%" alignItems="center" justifyContent="center" column my="16rem">
-          <Spinner size="2rem" mb="xl" color={(c) => c.onSurface.alpha(0.5)} />
+          <Spinner count={6} size="2rem" mb="xl" color={(c) => c.onSurface.alpha(0.5)} />
           <Text color={(c) => c.onSurface.alpha(0.75)}>Loading playground</Text>
         </Flexbox>
       )}

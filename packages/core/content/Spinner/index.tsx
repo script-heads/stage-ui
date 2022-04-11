@@ -6,7 +6,7 @@ import createClasses from './styles'
 import Types from './types'
 
 const Spinner: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-  const { children, shape, duration = 1, count = 12 } = props
+  const { children, shape = 'rounded', duration = 1, count = 8 } = props
   const { classes, attributes, events, styleProps } = useSystem(
     'Spinner',
     props,
@@ -21,8 +21,8 @@ const Spinner: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
         x: '10',
         width: '3.5',
         height: '3.5',
-        ry: '3.5',
-        rx: '3.5',
+        ry: '100%',
+        rx: '100%',
       }
       break
     case 'rounded':
@@ -30,8 +30,8 @@ const Spinner: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
         x: '11',
         width: '2.5',
         height: '6.5',
-        ry: '3.5',
-        rx: '3.5',
+        ry: '5%',
+        rx: '5%',
       }
       break
     default:
