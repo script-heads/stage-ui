@@ -38,8 +38,6 @@ export default class DropAnimation {
       return
     }
 
-    this.style.pointerEvents = ''
-
     this.animateOut()
 
     requestAnimationFrame(() => {
@@ -84,8 +82,6 @@ export default class DropAnimation {
     if (!this.enabled) {
       return
     }
-
-    this.style.pointerEvents = 'none'
 
     if (this.type === 'fade') {
       this.style.opacity = '0'
