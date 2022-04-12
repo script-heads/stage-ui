@@ -83,11 +83,9 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
           hover: {
             transition: 'all 0.15s',
             backgroundPosition: '100% 100%',
-            transform: 'scale(1.01)',
           },
           active: {
             backgroundPosition: '80% 80%',
-            transform: 'scale(0.99)',
           },
           disabled: {
             color: theme.color.gray[500].hex(),
@@ -103,11 +101,9 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
           hover: {
             transition: 'all 0.15s',
             background: color.alpha(0.05).rgb().string(),
-            transform: 'scale(1.01)',
           },
           active: {
             background: color.alpha(0.1).rgb().string(),
-            transform: 'scale(0.99)',
           },
           disabled: {
             color: theme.color.gray[400].hex(),
@@ -123,11 +119,9 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
           hover: {
             transition: 'all 0.15s',
             background: color.alpha(0.05).rgb().string(),
-            transform: 'scale(1.01)',
           },
           active: {
             background: color.alpha(0.05).rgb().string(),
-            transform: 'scale(0.99)',
           },
           disabled: {
             color: theme.color.gray[400].hex(),
