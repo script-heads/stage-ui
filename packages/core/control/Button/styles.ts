@@ -15,10 +15,10 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
   const isDark = color.contrast(theme.color.onPrimary) > 2.5
 
   const primaryGradient = [
-    isDark ? color.lightness(50).hex() : color.darken(0).hex(),
-    isDark ? color.lightness(50).hex() : color.darken(0).hex(),
-    isDark ? color.lightness(50).hex() : color.darken(0).hex(),
-    isDark ? color.lightness(80).hex() : color.darken(0.1).hex(),
+    isDark ? color.lighten(0).hex() : color.darken(0).hex(),
+    isDark ? color.lighten(0).hex() : color.darken(0).hex(),
+    isDark ? color.lighten(0).hex() : color.darken(0).hex(),
+    isDark ? color.lighten(0.5).hex() : color.darken(0.1).hex(),
   ]
 
   const applyDecoration = (
