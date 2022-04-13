@@ -9,7 +9,7 @@ export default () => {
       decoration: 'panel',
       render: (close) => (
         <Flexbox column centered p="m" mb="xl">
-          <Text>Modal window can be with decorated like a panel!</Text>
+          <Text>Modal window can be decorated like a panel!</Text>
           <Button label="Okay" mt="m" onClick={close} />
         </Flexbox>
       ),
