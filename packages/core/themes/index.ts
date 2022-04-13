@@ -1,5 +1,3 @@
-import createTheme from '@stage-ui/system/utils/createTheme'
-
 /**
  * Content
  */
@@ -99,6 +97,6 @@ declare module '@emotion/react' {
   export interface Theme extends Stage.Theme {}
 }
 
-export const light = createTheme(lightTheme)
+export const light = lightTheme
 
-export const dark = light.replace(darkTheme)
+export const dark = darkTheme

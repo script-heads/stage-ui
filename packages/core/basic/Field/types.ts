@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { ClassesSchemaDefinition } from '@stage-ui/system/hooks/useSystem'
-
 declare namespace FieldTypes {
   interface PrivateProps extends Props {
     name?: string
@@ -10,7 +8,7 @@ declare namespace FieldTypes {
 
   interface Props<
     Element = HTMLInputElement,
-    ClassesDefinition extends ClassesSchemaDefinition = Classes,
+    ClassesDefinition extends Stage.ClassesSchemaDefinition = Classes,
   > extends Stage.AllProps<Element, ClassesDefinition> {
     /**
      * Label for field

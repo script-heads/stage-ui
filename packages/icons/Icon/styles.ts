@@ -1,9 +1,8 @@
-import { CreateClasses } from '@stage-ui/system/hooks/useSystem'
 import colorProp from '@stage-ui/system/props/color'
 
 import Types from './types'
 
-const createClsses: CreateClasses<Types.Classes, Types.Props> = (
+const createClsses: Stage.CreateClasses<Types.Classes, Types.Props> = (
   theme,
   props,
   styleProps,

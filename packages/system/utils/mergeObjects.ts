@@ -10,10 +10,10 @@ export default function mergeObjects<
 
   Object.keys(src).forEach((key) => {
     if (isObject(src[key])) {
-      if (!result[key] || !isObject(result[key])) {
+      if (!isObject(result[key])) {
         result[key as keyof typeof result] = {} as Target[keyof Target]
       }
-      result[key as keyof Source] = mergeObjects(target[key], src[key], resolver)
+      result[key as keyof Source] = mergeObjects(result[key], src[key], resolver)
       return
     }
     result[key as keyof Source] = src[key]

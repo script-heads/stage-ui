@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 
 import CSS from 'csstype'
 
@@ -46,8 +46,13 @@ export interface CoreProps<
    * @display Stage.Styles
    * @link /props#attributes
    */
-  attributes?: Record<string, string | number>
+  attributes?: AttributeProp
 }
+
+export type AttributeProp = Record<
+  string,
+  string | number | boolean | CSSProperties | undefined
+>
 
 /**
  * Component attribute props

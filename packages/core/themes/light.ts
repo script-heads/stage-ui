@@ -1,4 +1,6 @@
-export const lightTheme: Stage.ThemeDefiniton = {
+import { createTheme } from '@stage-ui/system'
+
+export const lightTheme = createTheme({
   main: {
     name: 'Light',
     breakpoints: ['100rem', '80rem', '64rem', '50rem', '40rem'],
@@ -403,4 +405,4 @@ export const lightTheme: Stage.ThemeDefiniton = {
       },
     },
   }),
-}
+})

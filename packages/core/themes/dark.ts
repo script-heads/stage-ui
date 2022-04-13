@@ -1,4 +1,6 @@
-export const darkTheme: Stage.ReplaceTheme = {
+import { lightTheme } from './light'
+
+export const darkTheme = lightTheme.replace({
   main: {
     name: 'Dark',
     color: {
@@ -24,4 +26,4 @@ export const darkTheme: Stage.ReplaceTheme = {
       success: 'rgb(0, 120, 0)',
     },
   },
-}
+})

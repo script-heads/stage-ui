@@ -8,16 +8,17 @@ import spaceProp from './space'
 
 import sizeProp from './size'
 import overridesProp from './overrides'
+import { AttributeProp } from './types'
 
 export type ResolvedProps<
   Props,
   ClassesSchema extends Stage.ClassesSchemaDefinition,
   Element,
 > = {
-  attributes: ResolvedAttributes<Element>
+  attributes: ResolvedAttributes
   events: ResolvedEvents<Props>
   styleProps: ResolvedStyleProps
-  propOverridesClasses: Partial<Stage.ClassesDefinition<ClassesSchema>>
+  propOverridesClasses: Stage.OverridesClassesDefinition<ClassesSchema>
 }
 
 export type ResolvedStyleProps = {
@@ -37,7 +38,7 @@ export type ResolvedStyleProps = {
   shadow: Stage.CSSInterpolation[]
 }
 
-export type ResolvedAttributes<Element> = React.HTMLAttributes<Element>
+export type ResolvedAttributes = AttributeProp
 export type ResolvedEvents<Props> = Pick<
   Props,
   Stage.FilterStartingWith<keyof Props, 'on'>
@@ -69,7 +70,7 @@ function resolveProps<
 
     shadow: [],
   } as ResolvedStyleProps
-  let attributes = {} as ResolvedAttributes<Element>
+  let attributes = {} as ResolvedAttributes
   const events = handleFocus(props, focus) as ResolvedEvents<Props>
 
   const resolvers = {
@@ -339,7 +340,9 @@ function resolveProps<
 
   Object.keys(props).forEach((key) => {
     if (key[0] === 'o' && key[1] === 'n') {
-      events[key] = props[key as keyof typeof props]
+      events[key as Stage.FilterStartingWith<keyof Props, 'on'>] = props[
+        key as keyof typeof props
+      ] as ResolvedEvents<Props>[Stage.FilterStartingWith<keyof Props, 'on'>]
       return
     }
     if (Object.prototype.hasOwnProperty.call(resolvers, key)) {

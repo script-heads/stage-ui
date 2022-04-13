@@ -3,7 +3,6 @@ import React, { forwardRef, ForwardRefRenderFunction, useEffect, useState } from
 import { Flexbox, Text } from '@stage-ui/core'
 import { ArrowIosLeft, ArrowIosRight } from '@stage-ui/icons'
 import { useSystem } from '@stage-ui/system'
-import { Classes } from '@stage-ui/system/hooks/useSystem'
 
 import createClasses from './styles'
 import Types from './types'
@@ -13,7 +12,7 @@ const PAGE_BUTTON_MAX = 1
 type PageButtonProps = {
   onClick?: (page: number) => void
   page: number
-  classes: Classes<Types.Classes>
+  classes: Stage.Classes<Types.Classes>
 }
 
 const PageButton: React.FC<PageButtonProps> = (props) => {

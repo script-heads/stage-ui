@@ -165,8 +165,8 @@ declare global {
       | ((
           props: Props,
           styleProps: ResolvedStyleProps,
-        ) => Partial<ClassesDefinition<ClassesSchema>>)
-      | Partial<ClassesDefinition<ClassesSchema>>
+        ) => OverridesClassesDefinition<ClassesSchema>)
+      | OverridesClassesDefinition<ClassesSchema>
 
     interface Theme extends ThemeMain {
       assets: ThemeAssets
@@ -200,6 +200,15 @@ declare global {
       props: Props,
       styleProps: ResolvedStyleProps,
     ) => Stage.ClassesDefinition<ClassesSchema>
+
+    type OverridesClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> =
+      Partial<{
+        [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends void
+          ? Stage.CSSInterpolation
+          :
+              | FunctionClassDefinition<Exclude<ClassesSchema[ClassName], void>>
+              | Stage.CSSInterpolation
+      }>
 
     type ClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = {
       [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends void
