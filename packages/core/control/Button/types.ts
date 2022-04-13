@@ -97,7 +97,7 @@ declare namespace ButtonTypes {
     /**
      * Async onClick
      */
-    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => Promise<void>
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => Promise<void> | void
     /**
      * Loading component shows when onClick pending promise
      * if no component set then regular spinner will be used instead
