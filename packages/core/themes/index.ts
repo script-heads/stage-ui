@@ -1,6 +1,8 @@
 /**
  * Content
  */
+import '@stage-ui/system'
+
 import DividerTypes from '../content/Divider/types'
 import SpinnerTypes from '../content/Spinner/types'
 import HeaderTypes from '../content/Header/types'
@@ -98,5 +100,4 @@ declare module '@emotion/react' {
 }
 
 export const light = lightTheme
-
 export const dark = darkTheme
