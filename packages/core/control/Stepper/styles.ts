@@ -6,11 +6,32 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
       position: 'relative',
       display: 'flex',
       flexDirection: 'row',
-      alignItems: 'center',
       flex: 1,
       transition: 'all 0.25s',
+    },
+  ],
+  stepContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  stepText: (state) => [
+    {
+      color: theme.color.light.string(),
+      marginTop: theme.spacing.s,
+      fontWeight: 500,
       ...theme.assets.typography.text[props.size || 'm'],
     },
+    state.active && [
+      {
+        color: theme.color.primary.string(),
+      },
+    ],
+    state.complete && [
+      {
+        color: theme.color.primary.string(),
+      },
+    ],
   ],
   step: (state) => [
     {
@@ -24,6 +45,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
       backgroundColor: theme.color.surface.string(),
       borderRadius: '100rem',
       userSelect: 'none',
+      ...theme.assets.typography.text[props.size || 'm'],
     },
     state.size === 'xl' && {
       width: '3.5rem',
@@ -72,24 +94,33 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
       position: 'relative',
       flex: 1,
       height: '0.125rem',
-      background: theme.color.lightest.string(),
-    },
-    state.active && {
-      background: theme.color.light.string(),
+      background: `linear-gradient(to left, ${theme.color.lightest.hex()} 50%, ${theme.color.primary.hex()} 50%)`,
+      backgroundPosition: 'right',
+      backgroundSize: '200%',
+      transition: 'background 0.25s ease-in-out',
+      marginTop: '1.25rem',
+      marginLeft: theme.spacing[props.size || 'm'],
+      marginRight: theme.spacing[props.size || 'm'],
     },
     state.complete && {
-      background: theme.color.primary.alpha(0.5).string(),
+      backgroundPosition: 'left',
     },
     state.size === 'xl' && {
       height: '0.375rem',
+      marginTop: '1.75rem',
     },
     state.size === 'l' && {
       height: '0.25rem',
+      marginTop: '1.5rem',
+    },
+    state.size === 's' && {
+      marginTop: '1rem',
     },
     state.size === 'xs' && {
       background: 'none',
       flexBasis: '0.375rem',
       flexGrow: 0,
+      marginTop: 0,
     },
   ],
 })

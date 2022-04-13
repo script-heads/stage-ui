@@ -1,12 +1,18 @@
-import React, { forwardRef, ForwardRefRenderFunction } from 'react'
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/destructuring-assignment */
+import React, { forwardRef, ForwardRefRenderFunction, useState } from 'react'
 
 import { useSystem } from '@stage-ui/system'
+
+import Spinner from '../../content/Spinner'
 
 import createClasses from './styles'
 import Types from './types'
 
 const Button: ForwardRefRenderFunction<HTMLButtonElement, Types.Props> = (props, ref) => {
-  const { leftChild, rightChild, children, disabled, label } = props
+  const [pending, setPending] = useState(false)
+  let { leftChild, rightChild, children } = props
+  const { disabled, label, loadingComponent } = props
   const { classes, attributes, events, styleProps } = useSystem(
     'Button',
     props,
@@ -15,10 +21,32 @@ const Button: ForwardRefRenderFunction<HTMLButtonElement, Types.Props> = (props,
       focus: 'tabOnly',
     },
   )
+
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (!disabled) {
-      events.onClick?.(event)
+    if (!disabled && !pending) {
+      const promise = events.onClick?.(event)
+      if (promise instanceof Promise) {
+        setPending(true)
+        promise
+          .then(() => {
+            setPending(false)
+          })
+          .catch(() => {
+            setPending(false)
+          })
+      }
     }
+  }
+
+  /**
+   * Support for async onClick
+   */
+  if (pending && rightChild) {
+    rightChild = loadingComponent || <Spinner />
+  } else if (pending && leftChild) {
+    leftChild = loadingComponent || <Spinner />
+  } else if (pending) {
+    children = loadingComponent || <Spinner />
   }
 
   return (

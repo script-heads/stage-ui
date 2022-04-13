@@ -14,6 +14,7 @@ const Stepper: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
     events: { onChange, ...events },
     styleProps,
   } = useSystem('Stepper', props, styles)
+
   return (
     <div {...attributes} {...events} ref={ref} css={[classes.container, styleProps.all]}>
       {data.map((step, i) => {
@@ -28,8 +29,11 @@ const Stepper: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, r
 
         return (
           <React.Fragment key={i}>
-            <div css={classes.step(state)} onClick={() => onChange?.(step, i)}>
-              {props.size !== 'xs' && label}
+            <div css={classes.stepContainer}>
+              <div css={classes.step(state)} onClick={() => onChange?.(step, i)}>
+                {props.size !== 'xs' && label}
+              </div>
+              {step.text && <span css={classes.stepText(state)}>{step.text}</span>}
             </div>
             {hasMore && <div css={classes.separator(state)} />}
           </React.Fragment>

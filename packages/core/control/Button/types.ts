@@ -1,3 +1,5 @@
+import React from 'react'
+
 declare namespace ButtonTypes {
   type Decoration = 'filled' | 'outline' | 'text' | 'plain'
   type Shape = 'square' | 'rounded' | 'round'
@@ -92,6 +94,15 @@ declare namespace ButtonTypes {
      * Place for items to the left of children
      */
     leftChild?: React.ReactNode
+    /**
+     * Async onClick
+     */
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => Promise<void>
+    /**
+     * Loading component shows when onClick pending promise
+     * if no component set then regular spinner will be used instead
+     */
+    loadingComponent?: React.ReactNode
   }
 
   type Classes = {
