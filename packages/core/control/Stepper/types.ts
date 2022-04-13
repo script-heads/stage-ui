@@ -1,6 +1,7 @@
 declare namespace StepperTypes {
   interface StepperData {
     label?: React.ReactNode
+    text?: React.ReactNode
   }
 
   interface Props extends Omit<Stage.AllProps<HTMLDivElement, Classes>, 'onChange'> {
@@ -25,6 +26,8 @@ declare namespace StepperTypes {
      * Root element
      */
     container: void
+    stepContainer: void
+    stepText: ClassState
     step: ClassState
     separator: ClassState
   }
