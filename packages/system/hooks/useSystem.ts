@@ -62,15 +62,15 @@ function useSystem<
             return [
               classLabel,
               selfClass(state, variant),
-              isFunction(propOverrideClass)
-                ? propOverrideClass(state, variant)
-                : propOverrideClass,
               isFunction(themeOverrideClass)
                 ? themeOverrideClass(state, variant)
                 : themeOverrideClass,
+              isFunction(propOverrideClass)
+                ? propOverrideClass(state, variant)
+                : propOverrideClass,
             ]
           }
-        : [classLabel, selfClass, propOverrideClass, themeOverrideClass]
+        : [classLabel, selfClass, themeOverrideClass, propOverrideClass]
     ) as Stage.Classes<ClassesSchema>[keyof ClassesSchema]
   })
 
