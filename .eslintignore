@@ -2,3 +2,5 @@ node_modules
 dist
 build
 public
+packages/icons/lib
+**/*.raw.ts
