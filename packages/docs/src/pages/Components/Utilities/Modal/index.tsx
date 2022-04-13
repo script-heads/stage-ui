@@ -1,12 +1,14 @@
 import basic from './basic.raw?raw'
 import fullscreen from './fullscreen.raw?raw'
 import panel from './panel.raw?raw'
+import header from './header.raw?raw'
 
-export const title = 'Dialog'
-export { ReactComponent as glyph } from './Dialog.svg'
-export const ns = 'DialogTypes'
+export const title = 'Modal'
+export { ReactComponent as glyph } from './Modal.svg'
+export const ns = 'ModalTypes'
 export const cases = [
-  { label: 'Dialog', code: basic },
+  { label: 'Modal', code: basic },
   { label: 'Fullscreen', code: fullscreen },
   { label: 'Panel', code: panel },
+  { label: 'Header', code: header },
 ]

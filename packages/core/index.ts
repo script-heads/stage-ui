@@ -48,6 +48,7 @@ export { default as Viewport } from './layout/Viewport'
  * Utils
  */
 export { default as dialog } from './utils/dialog'
+export { default as modal } from './utils/modal'
 export { default as notify } from './utils/notify'
 /**
  * Misc
