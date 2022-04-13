@@ -72,7 +72,7 @@
       }
     ],
     "consistent-return":"off",
-    "no-param-reassign":"error",
+    "no-param-reassign":"warn",
     "no-underscore-dangle":"error",
     "no-restricted-syntax":"error",
     "curly":"error",

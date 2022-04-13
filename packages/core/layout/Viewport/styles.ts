@@ -1,5 +1,4 @@
 import Types from './types'
-import resets from './resets'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
   const attachTheme = {
@@ -16,11 +15,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
   }
 
   return {
-    container: [
-      !props.wrapper && resets,
-      props.wrapper ? attachTheme : { html: attachTheme },
-      props.global,
-    ],
+    container: [props.wrapper ? attachTheme : { html: attachTheme }, props.global],
   }
 }
 

@@ -2,8 +2,6 @@ import React from 'react'
 
 import CSS from 'csstype'
 
-import { ClassesSchemaDefinition } from '../hooks/useSystem'
-
 import { BreakpointProp } from './breakpoint'
 import { ColorProp } from './color'
 import { OverridesProp } from './overrides'
@@ -14,11 +12,11 @@ import { SpaceProp } from './space'
  * @name All
  */
 export interface AllProps<
-  Container,
-  ClassSchema extends ClassesSchemaDefinition = ClassesSchemaDefinition,
-> extends CoreProps<Container, ClassSchema>,
+  Element,
+  ClassSchema extends Stage.ClassesSchemaDefinition = Stage.ClassesSchemaDefinition,
+> extends CoreProps<ClassSchema>,
     AttributeProps,
-    AllEventProps<Container>,
+    AllEventProps<Element>,
     AllStyleProps {}
 
 /**
@@ -26,8 +24,7 @@ export interface AllProps<
  * @name Core
  */
 export interface CoreProps<
-  Container,
-  ClassesSchema extends ClassesSchemaDefinition = ClassesSchemaDefinition,
+  ClassesSchema extends Stage.ClassesSchemaDefinition = Stage.ClassesSchemaDefinition,
 > {
   /**
    * Override any component style

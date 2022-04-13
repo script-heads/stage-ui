@@ -43,7 +43,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     ...fieldProps
   } = props
 
-  const { classes, styleProps, overridesPropClasses } = useSystem('Select', props, styles)
+  const { classes, styleProps, propOverridesClasses } = useSystem('Select', props, styles)
 
   /**
    * References
@@ -251,8 +251,8 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
       }}
       onKeyDown={(e) => handleKeyDown(e)}
       overrides={{
-        ...overridesPropClasses,
-        container: [overridesPropClasses.container, styleProps.container],
+        ...propOverridesClasses,
+        container: [propOverridesClasses.container, styleProps.container],
         field: [
           isOpen && [
             {
@@ -265,7 +265,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
             },
           ],
           decoration === 'none' && [{ padding: 0 }],
-          overridesPropClasses.field,
+          propOverridesClasses.field,
           styleProps.content,
         ],
       }}

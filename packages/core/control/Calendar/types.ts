@@ -1,7 +1,6 @@
 import { CSSProperties } from 'react'
 
 import { Moment } from 'moment'
-import { Classes as ClassesType } from '@stage-ui/system/hooks/useSystem'
 
 declare namespace CalendarTypes {
   /**
@@ -128,7 +127,7 @@ declare namespace CalendarTypes {
     maxValue: Moment
     onChange: (startDate: Moment, endDate?: Moment) => void
     onViewChange: (dt: Moment) => void
-    classes: ClassesType<Classes>
+    classes: Stage.Classes<Classes>
     type: GridType
     onYearRender?: (options: YearRenderOptions) => React.ReactNode
     onMonthRender?: (options: MonthRenderOptions) => React.ReactNode
@@ -146,7 +145,7 @@ declare namespace CalendarTypes {
     onClick: () => void
     style?: CSSProperties
     size?: Stage.Sizes
-    classes: ClassesType<Classes>
+    classes: Stage.Classes<Classes>
   }
 
   interface DateGridDayProps extends Omit<DateGridCalendarProps, 'onClick'> {
@@ -189,7 +188,7 @@ declare namespace CalendarTypes {
     onNext: () => void
     onPrevious: () => void
     onGridTypeChange: (type: GridType) => void
-    classes: ClassesType<Classes>
+    classes: Stage.Classes<Classes>
     size?: Stage.Sizes
   }
 

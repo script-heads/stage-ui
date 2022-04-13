@@ -13,9 +13,8 @@ import styles from './styles'
 import Types from './types'
 
 const Viewport: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
-  const { wrapper, cache } = props
-  const theme =
-    (typeof props.theme === 'string' ? themes[props.theme] : props.theme) || themes.light
+  const { wrapper, cache, children, theme: themeProp = themes.light } = props
+  const theme = typeof themeProp === 'string' ? themes[themeProp] : themeProp
 
   const viewportRef = useRef<HTMLDivElement>(null)
   useImperativeHandle(ref, () => viewportRef.current as HTMLDivElement)
@@ -39,10 +38,10 @@ const Viewport: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
     <Provider
       theme={theme}
       global={!wrapper ? [classes.container, styleProps.all] : undefined}
-      cache={EmotionCache}
+      cacheOptions={EmotionCache}
     >
       <>
-        {props.children}
+        {children}
         <MountArea />
       </>
     </Provider>

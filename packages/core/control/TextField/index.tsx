@@ -52,7 +52,7 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
     wrap,
   } = props
 
-  const { classes, styleProps, overridesPropClasses } = useSystem(
+  const { classes, styleProps, propOverridesClasses } = useSystem(
     'TextField',
     props,
     createClasses,
@@ -152,11 +152,11 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
         }
       }}
       overrides={(theme) => ({
-        ...overridesPropClasses,
-        container: [overridesPropClasses.container, styleProps.container],
+        ...propOverridesClasses,
+        container: [propOverridesClasses.container, styleProps.container],
         field: [
           multiline && { padding: 0 },
-          overridesPropClasses.field,
+          propOverridesClasses.field,
           styleProps.content,
         ],
         leftChild: [
@@ -165,10 +165,10 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
             width: `calc(${theme.assets.field[size].indent} * 2 + ${numbersOfDigitsOfCountLine} * ${lineNumberWidth[size]})`,
             borderRadius: `${theme.radius.m} 0 0 ${theme.radius.m}`,
           },
-          overridesPropClasses.leftChild,
-          overridesPropClasses.lineNumbers,
+          propOverridesClasses.leftChild,
+          propOverridesClasses.lineNumbers,
         ],
-        rightChild: [overridesPropClasses.rightChild],
+        rightChild: [propOverridesClasses.rightChild],
       })}
     >
       {jsx(props.multiline ? 'textarea' : 'input', {

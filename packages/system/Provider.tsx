@@ -1,33 +1,27 @@
 import React, { useMemo } from 'react'
 
 import createCache, { Options } from '@emotion/cache'
-import { CacheProvider, Global, Interpolation, ThemeProvider } from '@emotion/react'
+import { CacheProvider, Global, ThemeProvider } from '@emotion/react'
 
 import { cssReset } from './utils/cssReset'
 
 interface ProviderProps {
-  theme?: Stage.Theme
+  theme: Stage.Theme
   global?: Stage.CSSInterpolation
-  cache?: Options
+  cacheOptions?: Options
   children?: React.ReactNode
 }
 
 export const StageContext = React.createContext({} as Stage.Theme)
 
 const Provider = <T extends ProviderProps>(props: T) => {
-  const { theme, global, children } = props
+  const { theme, global, children, cacheOptions } = props
 
-  const cache = useMemo(() => createCache(props.cache!), [])
+  const cache = useMemo(() => createCache(cacheOptions || { key: 'stage' }), [])
 
   const Content = (
     <CacheProvider value={cache}>
-      <Global
-        styles={[
-          cssReset,
-          global,
-          theme && ({ '#focused': theme.assets.focus } as Interpolation<any>),
-        ]}
-      />
+      <Global styles={[cssReset, global, { '#focused': theme.assets.focus }]} />
       {children}
     </CacheProvider>
   )

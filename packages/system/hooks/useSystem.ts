@@ -1,14 +1,6 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import React from 'react'
-
-import propsResolvers from '../props'
-import createVariant, { Variant } from '../utils/createVariant'
+import resolveProps, { ResolvedProps } from '../props'
+import createVariant from '../utils/createVariant'
 import isFunction from '../utils/isFunction'
-import { AllEventProps, CoreProps } from '../props/types'
-import overridesProp from '../props/overrides'
-
-import isBrowser from '../utils/isBrowser'
 
 import useTheme from './useTheme'
 
@@ -18,261 +10,68 @@ export interface Options {
   theme?: Stage.Theme
 }
 
-export type ClassStateDefinition = Record<string, string | boolean | undefined> | void
-export type ClassesSchemaDefinition = Record<string, ClassStateDefinition>
-
-export type FunctionClassDefinition<
-  ClassState extends Exclude<ClassStateDefinition, void>,
-> = (state: ClassState, variant: Variant<ClassState>) => Stage.CSSInterpolation
-
-export type OverridesClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = {
-  [ClassName in keyof ClassesSchema]?: ClassesSchema[ClassName] extends void
-    ? Stage.CSSInterpolation
-    : FunctionClassDefinition<Exclude<ClassesSchema[ClassName], void>>
-}
-
-export type ThemeOverrides<Props, ClassesSchema extends ClassesSchemaDefinition> =
-  | ((
-      props: Props,
-      styleProps: ResolvedStyleProps,
-    ) => OverridesClassesDefinition<ClassesSchema>)
-  | OverridesClassesDefinition<ClassesSchema>
-
-export type ClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = {
-  [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends void
-    ? Stage.CSSInterpolation
-    : FunctionClassDefinition<Exclude<ClassesSchema[ClassName], void>>
-}
-
-export type FunctionClass<ClassSchema extends ClassStateDefinition> = (
-  state: ClassSchema,
-) => Stage.CSSInterpolation
-
-export type Classes<ClassesSchema extends ClassesSchemaDefinition> = {
-  [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends void
-    ? Stage.CSSInterpolation
-    : FunctionClass<ClassesSchema[ClassName]>
-}
-
-export type CreateClasses<ClassesSchema extends ClassesSchemaDefinition, Props> = (
-  theme: Stage.Theme,
-  props: Props,
-  styleProps: ResolvedStyleProps,
-) => ClassesDefinition<ClassesSchema>
-
-export type ResolvedStyleProps = {
-  all: Stage.CSSInterpolation[]
-  container: Stage.CSSInterpolation[]
-  content: Stage.CSSInterpolation[]
-
-  style: Stage.CSSInterpolation[]
-  margin: Stage.CSSInterpolation[]
-  padding: Stage.CSSInterpolation[]
-  color: Stage.CSSInterpolation[]
-  border: Stage.CSSInterpolation[]
-  layout: Stage.CSSInterpolation[]
-  flex: Stage.CSSInterpolation[]
-  grid: Stage.CSSInterpolation[]
-
-  shadow: Stage.CSSInterpolation[]
-}
-
 export type ComponentData<
-  Props extends SystemPropsMeta<Element, ClassesSchema>,
-  ClassesSchema extends ClassesSchemaDefinition,
+  Props,
+  ClassesSchema extends Stage.ClassesSchemaDefinition,
   Element extends HTMLElement,
-> = {
-  classes: Classes<ClassesSchema>
-  attributes: Exclude<CoreProps<Element, ClassesSchema>['attributes'], undefined>
-  events: Pick<Props, Stage.FilterStartingWith<keyof Props, 'on'>>
-  styleProps: ResolvedStyleProps
-  overridesPropClasses: OverridesClassesDefinition<ClassesSchema>
-}
-
-export type SystemPropsMeta<
-  Element,
-  ClassesSchema extends ClassesSchemaDefinition,
-> = CoreProps<Element, ClassesSchema> &
-  Pick<
-    AllEventProps<Element>,
-    'onFocus' | 'onBlur' | 'onClick' | 'onEnter' | 'onEsc' | 'onKeyDown'
-  >
-
-let IS_MOUSE_DOWN = false
-let PREV_ACTIVE_ELEMENT: Element | null = null
-
-if (isBrowser) {
-  window.addEventListener('mousedown', () => {
-    IS_MOUSE_DOWN = true
-  })
-  window.addEventListener('mouseup', () => {
-    IS_MOUSE_DOWN = false
-  })
-  window.addEventListener('focus', () => {
-    PREV_ACTIVE_ELEMENT = document.activeElement
-  })
+> = ResolvedProps<Props, ClassesSchema, Element> & {
+  classes: Stage.Classes<ClassesSchema>
 }
 
 function useSystem<
-  Props extends SystemPropsMeta<Element, ClassesSchema>,
-  ClassesSchema extends ClassesSchemaDefinition,
+  Props extends Record<string, any>,
+  ClassesSchema extends Stage.ClassesSchemaDefinition,
   Element extends HTMLElement,
 >(
   name: string,
   props: Props,
-  createClasses: Stage.CreateClasses<ClassesSchema, Props> = () =>
-    ({} as ClassesDefinition<ClassesSchema>),
+  createClasses: Stage.CreateClasses<ClassesSchema, Props>,
   options: Options = {},
 ) {
   const currentTheme = useTheme()
   const { focus = 'always', label = name, theme = currentTheme } = options
 
-  const data = {
-    classes: {},
-    attributes: {},
-    events: {},
-    styleProps: {
-      all: [],
-      container: [],
-      content: [],
+  const data = resolveProps(props, theme, focus) as ComponentData<
+    Props,
+    ClassesSchema,
+    Element
+  >
 
-      style: [],
-      margin: [],
-      flex: [],
-      grid: [],
-
-      padding: [],
-      color: [],
-      border: [],
-      layout: [],
-
-      shadow: [],
-    } as ResolvedStyleProps,
-    overridesPropClasses: {},
-  } as ComponentData<Props, ClassesSchema, Element>
-
-  Object.keys(props).forEach((key) => {
-    if (key[0] === 'o' && key[1] === 'n') {
-      // @ts-ignore
-      data.events[key] = props[key]
-    }
-    if (Object.prototype.hasOwnProperty.call(propsResolvers, key)) {
-      propsResolvers[key](props, data, theme)
-    }
-  })
-
-  // Override default focus styles
-  data.events.onFocus = (event: React.FocusEvent<Element>) => {
-    props.onFocus?.(event)
-
-    if (
-      PREV_ACTIVE_ELEMENT !== event.currentTarget &&
-      (event.currentTarget.tabIndex === 0 || event.currentTarget.tabIndex > -1) &&
-      ((focus === 'tabOnly' && !IS_MOUSE_DOWN) || focus === 'always')
-    ) {
-      event.currentTarget.id = event.currentTarget.id
-        ? `${event.currentTarget.id} focused`
-        : 'focused'
-    }
-    PREV_ACTIVE_ELEMENT = event.currentTarget
-  }
-
-  // Override default focus styles
-  data.events.onBlur = (event: React.FocusEvent<Element>) => {
-    props.onBlur?.(event)
-    PREV_ACTIVE_ELEMENT = null
-
-    const ids = event.currentTarget.id
-      .split(' ')
-      .filter((id) => id !== 'focused')
-      .join(' ')
-
-    if (!ids) {
-      event.currentTarget.removeAttribute('id')
-      return
-    }
-    event.currentTarget.id = ids
-  }
-
-  // Additional key handlers
-  data.events.onKeyDown = (event: React.KeyboardEvent<Element>) => {
-    if (event.key === 'Enter' && props.onEnter) {
-      props.onEnter?.(event)
-    }
-    if (event.key === 'Esc' && props.onEsc) {
-      props.onEsc?.(event)
-    }
-    props.onKeyDown?.(event)
-  }
-
-  // Cursor must be pointer if interactive
-  if (props.onClick) {
-    data.styleProps.container.push({
-      cursor: 'pointer',
-      userSelect: 'none',
-    })
-  }
-
-  data.styleProps.container = data.styleProps.container.concat(
-    data.styleProps.margin,
-    data.styleProps.flex,
-    data.styleProps.grid,
-    data.styleProps.style,
-    data.styleProps.shadow,
-  )
-  data.styleProps.content = data.styleProps.content.concat(
-    data.styleProps.padding,
-    data.styleProps.color,
-    data.styleProps.border,
-    data.styleProps.layout,
-  )
-  data.styleProps.all = data.styleProps.all.concat(
-    data.styleProps.container,
-    data.styleProps.content,
-  )
-  data.overridesPropClasses = overridesProp(props.overrides, theme, data.styleProps)
+  data.classes = {} as Stage.Classes<ClassesSchema>
 
   const themeOverrides = theme.overrides[
     name as keyof typeof theme.overrides
-  ] as ThemeOverrides<Props, ClassesSchema>
+  ] as Stage.ThemeComponentOverrides<Props, ClassesSchema>
 
-  const overridesThemeClasses: OverridesClassesDefinition<ClassesSchema> = isFunction(
-    themeOverrides,
-  )
+  const themeOverridesClasses = isFunction(themeOverrides)
     ? themeOverrides(props, data.styleProps)
     : themeOverrides || {}
 
-  const componentClasses: ClassesDefinition<ClassesSchema> = createClasses(
-    theme,
-    props,
-    data.styleProps,
-  )
+  const componentClasses = createClasses(theme, props, data.styleProps)
 
-  Object.keys(componentClasses).forEach((key) => {
-    const classLabel = { label: `${label}-${key}` }
+  Object.keys(componentClasses).forEach((key: keyof ClassesSchema) => {
+    const classLabel = { label: `${label}-${key as string}` }
+    const selfClass = componentClasses[key]
+    const propOverrideClass = data.propOverridesClasses[key]
+    const themeOverrideClass = themeOverridesClasses[key]
 
-    // @ts-ignore
-    data.classes[key] = isFunction(componentClasses[key])
-      ? // @ts-ignore
-        (state) => {
-          const variant = createVariant(state)
-          return [
-            classLabel,
-            (componentClasses[key] as Function)?.(state, variant),
-            isFunction(overridesThemeClasses[key])
-              ? (overridesThemeClasses[key] as Function)(state, variant)
-              : overridesThemeClasses[key],
-            isFunction(data.overridesPropClasses[key])
-              ? (data.overridesPropClasses[key] as Function)(state, variant)
-              : data.overridesPropClasses[key],
-          ] as Stage.CSSInterpolation
-        }
-      : [
-          classLabel,
-          componentClasses[key],
-          overridesThemeClasses[key],
-          data.overridesPropClasses[key],
-        ]
+    data.classes[key] = (
+      isFunction(selfClass)
+        ? (state: Exclude<ClassesSchema[keyof ClassesSchema], void>) => {
+            const variant = createVariant(state)
+            return [
+              classLabel,
+              selfClass(state, variant),
+              isFunction(propOverrideClass)
+                ? propOverrideClass(state, variant)
+                : propOverrideClass,
+              isFunction(themeOverrideClass)
+                ? themeOverrideClass(state, variant)
+                : themeOverrideClass,
+            ]
+          }
+        : [classLabel, selfClass, propOverrideClass, themeOverrideClass]
+    ) as Stage.Classes<ClassesSchema>[keyof ClassesSchema]
   })
 
   return data

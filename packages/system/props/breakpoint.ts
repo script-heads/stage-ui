@@ -1,14 +1,14 @@
 export type BreakpointProp<T> = T[] | T
 
-function breakpointProp<P = string | number | undefined>(
+function breakpointProp<P>(
   value: P | P[],
   theme: Stage.Theme,
   resolver: (currentValue: P, theme: Stage.Theme) => Stage.CSSInterpolation,
 ): Stage.CSSInterpolation {
   if (Array.isArray(value)) {
-    return value.map((currentValue: any, index: number) => {
+    return value.map((currentValue, index) => {
       if (!index) return resolver(currentValue, theme)
-      if (currentValue === '*') return false
+      if (typeof currentValue === 'string' && currentValue === '*') return false
       return {
         [`@media (max-width: ${theme.breakpoints[index]})`]: resolver(
           currentValue,

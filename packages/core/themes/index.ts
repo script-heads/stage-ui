@@ -49,48 +49,48 @@ import { lightTheme } from './light'
 declare global {
   namespace Stage {
     interface ThemeOverrides {
-      Divider?: Stage.ComponentThemeOverrides<DividerTypes.Props, DividerTypes.Classes>
-      Spinner?: Stage.ComponentThemeOverrides<SpinnerTypes.Props, SpinnerTypes.Classes>
-      Header?: Stage.ComponentThemeOverrides<HeaderTypes.Props, HeaderTypes.Classes>
-      Paragraph?: Stage.ComponentThemeOverrides<
+      Divider?: Stage.ThemeComponentOverrides<DividerTypes.Props, DividerTypes.Classes>
+      Spinner?: Stage.ThemeComponentOverrides<SpinnerTypes.Props, SpinnerTypes.Classes>
+      Header?: Stage.ThemeComponentOverrides<HeaderTypes.Props, HeaderTypes.Classes>
+      Paragraph?: Stage.ThemeComponentOverrides<
         ParagraphTypes.Props,
         ParagraphTypes.Classes
       >
-      Text?: Stage.ComponentThemeOverrides<TextTypes.Props, TextTypes.Classes>
-      Link?: Stage.ComponentThemeOverrides<LinkTypes.Props, LinkTypes.Classes>
-      Button?: Stage.ComponentThemeOverrides<ButtonTypes.Props, ButtonTypes.Classes>
-      Calendar?: Stage.ComponentThemeOverrides<Calendar.Props, Calendar.Classes>
-      Checkbox?: Stage.ComponentThemeOverrides<CheckboxTypes.Props, CheckboxTypes.Classes>
-      DatePicker?: Stage.ComponentThemeOverrides<
+      Text?: Stage.ThemeComponentOverrides<TextTypes.Props, TextTypes.Classes>
+      Link?: Stage.ThemeComponentOverrides<LinkTypes.Props, LinkTypes.Classes>
+      Button?: Stage.ThemeComponentOverrides<ButtonTypes.Props, ButtonTypes.Classes>
+      Calendar?: Stage.ThemeComponentOverrides<Calendar.Props, Calendar.Classes>
+      Checkbox?: Stage.ThemeComponentOverrides<CheckboxTypes.Props, CheckboxTypes.Classes>
+      DatePicker?: Stage.ThemeComponentOverrides<
         DatePickerTypes.Props,
         DatePickerTypes.Classes
       >
-      Menu?: Stage.ComponentThemeOverrides<MenuTypes.Props, MenuTypes.Classes>
-      Radio?: Stage.ComponentThemeOverrides<RadioTypes.Props, RadioTypes.Classes>
-      Range?: Stage.ComponentThemeOverrides<RangeTypes.Props, RangeTypes.Classes>
-      Select?: Stage.ComponentThemeOverrides<SelectTypes.Props, SelectTypes.Classes>
-      Stepper?: Stage.ComponentThemeOverrides<StepperTypes.Props, StepperTypes.Classes>
-      Switch?: Stage.ComponentThemeOverrides<SwitchTypes.Props, SwitchTypes.Classes>
-      TextField?: Stage.ComponentThemeOverrides<
+      Menu?: Stage.ThemeComponentOverrides<MenuTypes.Props, MenuTypes.Classes>
+      Radio?: Stage.ThemeComponentOverrides<RadioTypes.Props, RadioTypes.Classes>
+      Range?: Stage.ThemeComponentOverrides<RangeTypes.Props, RangeTypes.Classes>
+      Select?: Stage.ThemeComponentOverrides<SelectTypes.Props, SelectTypes.Classes>
+      Stepper?: Stage.ThemeComponentOverrides<StepperTypes.Props, StepperTypes.Classes>
+      Switch?: Stage.ThemeComponentOverrides<SwitchTypes.Props, SwitchTypes.Classes>
+      TextField?: Stage.ThemeComponentOverrides<
         TextFieldTypes.Props,
         TextFieldTypes.Classes
       >
-      Meter?: Stage.ComponentThemeOverrides<MeterTypes.Props, MeterTypes.Classes>
-      Table?: Stage.ComponentThemeOverrides<TableTypes.Props<any>, TableTypes.Classes>
-      Badge?: Stage.ComponentThemeOverrides<BadgeTypes.Props, BadgeTypes.Classes>
-      Block?: Stage.ComponentThemeOverrides<BlockTypes.Props, BlockTypes.Classes>
-      Drop?: Stage.ComponentThemeOverrides<DropTypes.Props, DropTypes.Classes>
-      Flexbox?: Stage.ComponentThemeOverrides<FlexboxTypes.Props, FlexboxTypes.Classes>
-      Grid?: Stage.ComponentThemeOverrides<GridTypes.Props, GridTypes.Classes>
-      Modal?: Stage.ComponentThemeOverrides<ModalTypes.Props, ModalTypes.Classes>
-      Notification?: Stage.ComponentThemeOverrides<
+      Meter?: Stage.ThemeComponentOverrides<MeterTypes.Props, MeterTypes.Classes>
+      Table?: Stage.ThemeComponentOverrides<TableTypes.Props<any>, TableTypes.Classes>
+      Badge?: Stage.ThemeComponentOverrides<BadgeTypes.Props, BadgeTypes.Classes>
+      Block?: Stage.ThemeComponentOverrides<BlockTypes.Props, BlockTypes.Classes>
+      Drop?: Stage.ThemeComponentOverrides<DropTypes.Props, DropTypes.Classes>
+      Flexbox?: Stage.ThemeComponentOverrides<FlexboxTypes.Props, FlexboxTypes.Classes>
+      Grid?: Stage.ThemeComponentOverrides<GridTypes.Props, GridTypes.Classes>
+      Modal?: Stage.ThemeComponentOverrides<ModalTypes.Props, ModalTypes.Classes>
+      Notification?: Stage.ThemeComponentOverrides<
         NotificationTypes.Props,
         NotificationTypes.Classes
       >
-      Popover?: Stage.ComponentThemeOverrides<PopoverTypes.Props, PopoverTypes.Classes>
-      Tree?: Stage.ComponentThemeOverrides<TreeTypes.Props, TreeTypes.Classes>
-      ScrollView?: Stage.ComponentThemeOverrides<ScrollView.Props, ScrollView.Classes>
-      Toggle?: Stage.ComponentThemeOverrides<ToggleTypes.Props, ToggleTypes.Classes>
+      Popover?: Stage.ThemeComponentOverrides<PopoverTypes.Props, PopoverTypes.Classes>
+      Tree?: Stage.ThemeComponentOverrides<TreeTypes.Props, TreeTypes.Classes>
+      ScrollView?: Stage.ThemeComponentOverrides<ScrollView.Props, ScrollView.Classes>
+      Toggle?: Stage.ThemeComponentOverrides<ToggleTypes.Props, ToggleTypes.Classes>
     }
   }
 }

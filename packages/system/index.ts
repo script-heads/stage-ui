@@ -1,15 +1,13 @@
 import { CSSInterpolation as CSSI, CSSObject as CSSO } from '@emotion/serialize'
 import { ColorProp as ColorPropType } from '@stage-ui/system/props/color'
+import { OverridesProp as OverridesPropType } from '@stage-ui/system/props/overrides'
+import { SpaceProp as SpacePropType } from '@stage-ui/system/props/space'
 import ColorType from 'color'
 import CSS from 'csstype'
 
 import { AllProps as AllPropsType } from './props/types'
-import {
-  ClassesSchemaDefinition,
-  CreateClasses as CreateClassesType,
-  ThemeOverrides as ThemeOverridesType,
-} from './hooks/useSystem'
-import { OverridesProp } from './props/overrides'
+import { ResolvedStyleProps } from './props'
+import { Variant } from './utils/createVariant'
 
 declare global {
   namespace Stage {
@@ -163,6 +161,13 @@ declare global {
 
     interface ThemeOverrides {}
 
+    type ThemeComponentOverrides<Props, ClassesSchema extends ClassesSchemaDefinition> =
+      | ((
+          props: Props,
+          styleProps: ResolvedStyleProps,
+        ) => Partial<ClassesDefinition<ClassesSchema>>)
+      | Partial<ClassesDefinition<ClassesSchema>>
+
     interface Theme extends ThemeMain {
       assets: ThemeAssets
       overrides: ThemeOverrides
@@ -170,10 +175,10 @@ declare global {
     }
 
     interface ThemeDefiniton {
-      main: Stage.ThemeMain<Stage.ColorDefinition, true>
-      assets: ((main: Stage.ThemeMain) => Stage.ThemeAssets) | Stage.ThemeAssets
+      main: ThemeMain<Stage.ColorDefinition, true>
+      assets: ((main: ThemeMain) => ThemeAssets) | ThemeAssets
       overrides?:
-        | ((main: Stage.ThemeMain, assets: Stage.ThemeAssets) => Stage.ThemeOverrides)
+        | ((main: ThemeMain, assets: ThemeAssets) => Stage.ThemeOverrides)
         | Stage.ThemeOverrides
     }
 
@@ -187,25 +192,43 @@ declare global {
         | Stage.ThemeOverrides
     }
 
+    type ClassStateDefinition = Record<string, string | boolean | undefined> | void
+    type ClassesSchemaDefinition = Record<string, ClassStateDefinition>
+
+    type CreateClasses<ClassesSchema extends ClassesSchemaDefinition, Props> = (
+      theme: Stage.Theme,
+      props: Props,
+      styleProps: ResolvedStyleProps,
+    ) => Stage.ClassesDefinition<ClassesSchema>
+
+    type ClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = {
+      [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends void
+        ? Stage.CSSInterpolation
+        : FunctionClassDefinition<Exclude<ClassesSchema[ClassName], void>>
+    }
+
+    type FunctionClassDefinition<ClassState extends Exclude<ClassStateDefinition, void>> =
+      (state: ClassState, variant: Variant<ClassState>) => Stage.CSSInterpolation
+
+    type Classes<ClassesSchema extends ClassesSchemaDefinition> = {
+      [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends void
+        ? Stage.CSSInterpolation
+        : FunctionClass<ClassesSchema[ClassName]>
+    }
+
+    type FunctionClass<ClassSchema extends ClassStateDefinition> = (
+      state: ClassSchema,
+    ) => Stage.CSSInterpolation
+
     type AllProps<
       Containter,
       ClassSchema extends ClassesSchemaDefinition = ClassesSchemaDefinition,
     > = AllPropsType<Containter, ClassSchema>
 
-    type CreateClasses<
-      ClassesSchema extends ClassesSchemaDefinition,
-      Props,
-    > = CreateClassesType<ClassesSchema, Props>
-
     type ColorProp = ColorPropType
-
-    type PropOverrides<ClassSchema extends ClassesSchemaDefinition> =
-      OverridesProp<ClassSchema>
-
-    type ComponentThemeOverrides<
-      Props,
-      ClassSchema extends ClassesSchemaDefinition,
-    > = ThemeOverridesType<Props, ClassSchema>
+    type OverridesProp<ClassesSchema extends Stage.ClassesSchemaDefinition> =
+      OverridesPropType<ClassesSchema>
+    type SpaceProp = SpacePropType
 
     type Primitive = null | undefined | string | number | boolean | symbol | bigint
 

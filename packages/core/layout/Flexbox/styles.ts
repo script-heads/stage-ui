@@ -38,14 +38,14 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
     breakpointProps(props.direction, theme, (currentValue) => ({
       flexDirection: currentValue,
     })),
-    breakpointProps(props.column, theme, (currentValue) => ({
-      flexDirection: currentValue ? 'column' : undefined,
+    breakpointProps(props.direction, theme, (currentValue) => ({
+      flexDirection: currentValue,
     })),
     breakpointProps(props.inline, theme, (currentValue) => ({
       inline: currentValue,
     })),
     breakpointProps(props.wrap, theme, (currentValue) => ({
-      wrap: currentValue,
+      flexWrap: currentValue,
     })),
     breakpointProps(props.flow, theme, (currentValue) => ({
       flow: currentValue,

@@ -1,10 +1,6 @@
 import React from 'react'
 
 import {
-  Classes as ClassesType,
-  ResolvedStyleProps,
-} from '@stage-ui/system/hooks/useSystem'
-import {
   AllEventProps,
   AttributeProps,
   BorderProps,
@@ -14,13 +10,15 @@ import {
   PaddingProps,
 } from '@stage-ui/system/props/types'
 
+import { ResolvedStyleProps } from '@stage-ui/system/props'
+
 import ScrollViewTypes from '../ScrollView/types'
 
 declare namespace ModalTypes {
   type ModalDecoration = 'modal' | 'panel' | 'fullscreen'
   type ExtentedProps = AttributeProps &
     AllEventProps<HTMLDivElement> &
-    CoreProps<HTMLDivElement, Classes> &
+    CoreProps<Classes> &
     ColorProps &
     BorderProps &
     PaddingProps &
@@ -127,7 +125,7 @@ declare namespace ModalTypes {
 
   interface ModalOverlayProps {
     getStyles: () => {
-      classes: ClassesType<Classes>
+      classes: Stage.Classes<Classes>
       state: ClassState
       styleProps: ResolvedStyleProps
     }
@@ -143,7 +141,7 @@ declare namespace ModalTypes {
     containerEvents?: any
     onClosePressed: () => void
     getStyles: () => {
-      classes: ClassesType<Classes>
+      classes: Stage.Classes<Classes>
       state: ClassState
       styleProps: ResolvedStyleProps
     }
@@ -155,7 +153,7 @@ declare namespace ModalTypes {
     hideHeader?: boolean
     onClosePressed: () => void
     getStyles: () => {
-      classes: ClassesType<Classes>
+      classes: Stage.Classes<Classes>
       state: ClassState
     }
   }

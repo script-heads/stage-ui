@@ -1,298 +1,389 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import isFunction from '../utils/isFunction'
 
-import { ClassesSchemaDefinition, ComponentData } from '../hooks/useSystem'
+import handleFocus, { FocusOptions } from '../utils/handleFocus'
 
-import resolveBreakpoints from './breakpoint'
-import resolveColor from './color'
-import resolveSpace from './space'
+import breakpointProp from './breakpoint'
+import colorProp from './color'
+import spaceProp from './space'
 
 import sizeProp from './size'
+import overridesProp from './overrides'
 
-export type Resolver = <
+export type ResolvedProps<
   Props,
-  ClassesSchema extends ClassesSchemaDefinition,
-  Element extends HTMLElement,
->(
-  props: Record<string, any>,
-  componentData: ComponentData<Props, ClassesSchema, Element>,
-  theme: Stage.Theme,
-) => void
-
-const resolvers: Record<string, Resolver> = {
-  // Core
-
-  attributes: (p, cd) => {
-    cd.attributes = Object.assign(cd.attributes, p.attributes)
-  },
-
-  style: (p, cd, t) =>
-    cd.styleProps.style.push(
-      isFunction(p.style)
-        ? resolveBreakpoints(p.style(t), t, (v) => v)
-        : resolveBreakpoints(p.style, t, (v) => v),
-    ),
-
-  // Attributes
-
-  id: (p, cd) => {
-    cd.attributes.id = p.id
-  },
-  className: (p, cd) => {
-    cd.attributes.className = p.className
-  },
-  draggable: (p, cd) => {
-    cd.attributes.draggable = p.draggable
-  },
-  inlineStyle: (p, cd) => {
-    cd.attributes.style = p.inlineStyle
-  },
-  tabIndex: (p, cd) => {
-    cd.attributes.tabIndex = p.tabIndex
-  },
-  role: (p, cd) => {
-    cd.attributes.role = p.role
-  },
-
-  // Margin
-
-  m: (p, cd, t) =>
-    cd.styleProps.margin.push(
-      resolveBreakpoints(p.m, t, (v) => ({ margin: resolveSpace(v, t) })),
-    ),
-  mx: (p, cd, t) =>
-    cd.styleProps.margin.push(
-      resolveBreakpoints(p.mx, t, (v) => ({
-        marginRight: resolveSpace(v, t),
-        marginLeft: resolveSpace(v, t),
-      })),
-    ),
-  my: (p, cd, t) =>
-    cd.styleProps.margin.push(
-      resolveBreakpoints(p.my, t, (v) => ({
-        marginTop: resolveSpace(v, t),
-        marginBottom: resolveSpace(v, t),
-      })),
-    ),
-  mt: (p, cd, t) =>
-    cd.styleProps.margin.push(
-      resolveBreakpoints(p.mt, t, (v) => ({ marginTop: resolveSpace(v, t) })),
-    ),
-  mr: (p, cd, t) =>
-    cd.styleProps.margin.push(
-      resolveBreakpoints(p.mr, t, (v) => ({ marginRight: resolveSpace(v, t) })),
-    ),
-  mb: (p, cd, t) =>
-    cd.styleProps.margin.push(
-      resolveBreakpoints(p.mb, t, (v) => ({ marginBottom: resolveSpace(v, t) })),
-    ),
-  ml: (p, cd, t) =>
-    cd.styleProps.margin.push(
-      resolveBreakpoints(p.ml, t, (v) => ({ marginLeft: resolveSpace(v, t) })),
-    ),
-
-  // Padding
-
-  p: (p, cd, t) =>
-    cd.styleProps.padding.push(
-      resolveBreakpoints(p.p, t, (v) => ({ padding: resolveSpace(v, t) })),
-    ),
-  px: (p, cd, t) =>
-    cd.styleProps.padding.push(
-      resolveBreakpoints(p.px, t, (v) => ({
-        paddingRight: resolveSpace(v, t),
-        paddingLeft: resolveSpace(v, t),
-      })),
-    ),
-  py: (p, cd, t) =>
-    cd.styleProps.padding.push(
-      resolveBreakpoints(p.py, t, (v) => ({
-        paddingTop: resolveSpace(v, t),
-        paddingBottom: resolveSpace(v, t),
-      })),
-    ),
-  pt: (p, cd, t) =>
-    cd.styleProps.padding.push(
-      resolveBreakpoints(p.pt, t, (v) => ({ paddingTop: resolveSpace(v, t) })),
-    ),
-  pr: (p, cd, t) =>
-    cd.styleProps.padding.push(
-      resolveBreakpoints(p.pr, t, (v) => ({ paddingRight: resolveSpace(v, t) })),
-    ),
-  pb: (p, cd, t) =>
-    cd.styleProps.padding.push(
-      resolveBreakpoints(p.pb, t, (v) => ({
-        paddingBottom: resolveSpace(v, t),
-      })),
-    ),
-  pl: (p, cd, t) =>
-    cd.styleProps.padding.push(
-      resolveBreakpoints(p.pl, t, (v) => ({ paddingLeft: resolveSpace(v, t) })),
-    ),
-
-  // Color
-
-  backgroundColor: (p, cd, t) =>
-    cd.styleProps.color.push(
-      resolveBreakpoints(p.backgroundColor, t, (v) => ({
-        backgroundColor: resolveColor(v, t)?.rgb().string(),
-      })),
-    ),
-  textColor: (p, cd, t) =>
-    cd.styleProps.color.push(
-      resolveBreakpoints(p.textColor, t, (v) => ({
-        color: resolveColor(v, t)?.rgb().string(),
-      })),
-    ),
-
-  // Border
-
-  borderWidth: (p, cd, t) =>
-    cd.styleProps.border.push(
-      resolveBreakpoints(p.borderWidth, t, (v) => ({ borderWidth: v })),
-    ),
-  borderStyle: (p, cd, t) =>
-    cd.styleProps.border.push(
-      resolveBreakpoints(p.borderStyle, t, (v) => ({ borderStyle: v })),
-    ),
-  borderColor: (p, cd, t) =>
-    cd.styleProps.border.push(
-      resolveBreakpoints(p.borderColor, t, (v) => ({
-        borderColor: resolveColor(v, t)?.rgb().string(),
-      })),
-    ),
-  borderRadius: (p, cd, t) =>
-    cd.styleProps.border.push(
-      resolveBreakpoints(p.borderRadius, t, (v) => ({
-        borderRadius: sizeProp(v, t.radius, (ov) => ov),
-      })),
-    ),
-
-  // Layout
-
-  display: (p, cd, t) =>
-    cd.styleProps.layout.push(resolveBreakpoints(p.display, t, (v) => ({ display: v }))),
-  position: (p, cd, t) =>
-    cd.styleProps.layout.push(
-      resolveBreakpoints(p.position, t, (v) => ({ position: v })),
-    ),
-  fontSize: (p, cd, t) =>
-    cd.styleProps.layout.push(
-      resolveBreakpoints(p.fontSize, t, (v) => ({ fontSize: v })),
-    ),
-  lineHeight: (p, cd, t) =>
-    cd.styleProps.layout.push(
-      resolveBreakpoints(p.lineHeight, t, (v) => ({ lineHeight: v })),
-    ),
-  letterSpacing: (p, cd, t) =>
-    cd.styleProps.layout.push(
-      resolveBreakpoints(p.letterSpacing, t, (v) => ({ letterSpacing: v })),
-    ),
-  textAlign: (p, cd, t) =>
-    cd.styleProps.layout.push(
-      resolveBreakpoints(p.textAlign, t, (v) => ({ textAlign: v })),
-    ),
-  visibility: (p, cd, t) =>
-    cd.styleProps.layout.push(
-      resolveBreakpoints(p.visibility, t, (v) => ({ visibility: v })),
-    ),
-  w: (p, cd, t) =>
-    cd.styleProps.layout.push(resolveBreakpoints(p.w, t, (v) => ({ width: v }))),
-  h: (p, cd, t) =>
-    cd.styleProps.layout.push(resolveBreakpoints(p.h, t, (v) => ({ height: v }))),
-
-  // Flex
-
-  flex: (p, cd, t) =>
-    cd.styleProps.flex.push(resolveBreakpoints(p.flex, t, (v) => ({ flex: v }))),
-  wrap: (p, cd, t) =>
-    cd.styleProps.flex.push(resolveBreakpoints(p.wrap, t, (v) => ({ flexWrap: v }))),
-  flow: (p, cd, t) =>
-    cd.styleProps.flex.push(resolveBreakpoints(p.flow, t, (v) => ({ flowflow: v }))),
-  direction: (p, cd, t) =>
-    cd.styleProps.flex.push(
-      resolveBreakpoints(p.direction, t, (v) => ({ flexDirection: v })),
-    ),
-  flexBasis: (p, cd, t) =>
-    cd.styleProps.flex.push(
-      resolveBreakpoints(p.flexBasis, t, (v) => ({ flexBasis: v })),
-    ),
-  flexGrow: (p, cd, t) =>
-    cd.styleProps.flex.push(resolveBreakpoints(p.flexGrow, t, (v) => ({ flexGrow: v }))),
-  flexShrink: (p, cd, t) =>
-    cd.styleProps.flex.push(
-      resolveBreakpoints(p.flexShrink, t, (v) => ({ flexShrink: v })),
-    ),
-  alignSelf: (p, cd, t) =>
-    cd.styleProps.flex.push(
-      resolveBreakpoints(p.alignSelf, t, (v) => ({ alignSelf: v })),
-    ),
-  justifySelf: (p, cd, t) =>
-    cd.styleProps.flex.push(
-      resolveBreakpoints(p.justifySelf, t, (v) => ({ justifySelf: v })),
-    ),
-  alignItems: (p, cd, t) =>
-    cd.styleProps.flex.push(
-      resolveBreakpoints(p.alignItems, t, (v) => ({ alignItems: v })),
-    ),
-  alignContent: (p, cd, t) =>
-    cd.styleProps.flex.push(
-      resolveBreakpoints(p.alignContent, t, (v) => ({ alignContent: v })),
-    ),
-  justifyContent: (p, cd, t) =>
-    cd.styleProps.flex.push(
-      resolveBreakpoints(p.justifyContent, t, (v) => ({ justifyContent: v })),
-    ),
-  justifyItems: (p, cd, t) =>
-    cd.styleProps.flex.push(
-      resolveBreakpoints(p.justifyItems, t, (v) => ({ justifyItems: v })),
-    ),
-  placeContent: (p, cd, t) =>
-    cd.styleProps.flex.push(
-      resolveBreakpoints(p.placeContent, t, (v) => ({ placeContent: v })),
-    ),
-
-  // Grid children
-
-  gridColumnStart: (p, cd, t) =>
-    cd.styleProps.grid.push(
-      resolveBreakpoints(p.gridColumnStart, t, (v) => ({ gridColumnStart: v })),
-    ),
-  gridColumnEnd: (p, cd, t) =>
-    cd.styleProps.grid.push(
-      resolveBreakpoints(p.gridColumnEnd, t, (v) => ({ gridColumnEnd: v })),
-    ),
-  gridRowStart: (p, cd, t) =>
-    cd.styleProps.grid.push(
-      resolveBreakpoints(p.gridRowStart, t, (v) => ({ gridRowStart: v })),
-    ),
-  gridRowEnd: (p, cd, t) =>
-    cd.styleProps.grid.push(
-      resolveBreakpoints(p.gridRowEnd, t, (v) => ({ gridRowEnd: v })),
-    ),
-  gridColumn: (p, cd, t) =>
-    cd.styleProps.grid.push(
-      resolveBreakpoints(p.gridColumn, t, (v) => ({ gridColumn: v })),
-    ),
-  gridRow: (p, cd, t) =>
-    cd.styleProps.grid.push(resolveBreakpoints(p.gridRow, t, (v) => ({ gridRow: v }))),
-  gridArea: (p, cd, t) =>
-    cd.styleProps.grid.push(resolveBreakpoints(p.gridArea, t, (v) => ({ gridArea: v }))),
-  placeSelf: (p, cd, t) =>
-    cd.styleProps.grid.push(
-      resolveBreakpoints(p.placeSelf, t, (v) => ({ placeSelf: v })),
-    ),
-
-  // Shadow children
-
-  shadow: (p, cd, t) =>
-    cd.styleProps.shadow.push(
-      resolveBreakpoints(p.shadow, t, (v) => ({
-        boxShadow: sizeProp(v, t.assets.shadow, (sv) => sv),
-      })),
-    ),
+  ClassesSchema extends Stage.ClassesSchemaDefinition,
+  Element,
+> = {
+  attributes: ResolvedAttributes<Element>
+  events: ResolvedEvents<Props>
+  styleProps: ResolvedStyleProps
+  propOverridesClasses: Partial<Stage.ClassesDefinition<ClassesSchema>>
 }
 
-export default resolvers
+export type ResolvedStyleProps = {
+  all: Stage.CSSInterpolation[]
+  container: Stage.CSSInterpolation[]
+  content: Stage.CSSInterpolation[]
+
+  style: Stage.CSSInterpolation[]
+  margin: Stage.CSSInterpolation[]
+  padding: Stage.CSSInterpolation[]
+  color: Stage.CSSInterpolation[]
+  border: Stage.CSSInterpolation[]
+  layout: Stage.CSSInterpolation[]
+  flex: Stage.CSSInterpolation[]
+  grid: Stage.CSSInterpolation[]
+
+  shadow: Stage.CSSInterpolation[]
+}
+
+export type ResolvedAttributes<Element> = React.HTMLAttributes<Element>
+export type ResolvedEvents<Props> = Pick<
+  Props,
+  Stage.FilterStartingWith<keyof Props, 'on'>
+>
+
+function resolveProps<
+  Props extends Partial<Stage.AllProps<Element, ClassesSchema>>,
+  Element extends HTMLElement,
+  ClassesSchema extends Stage.ClassesSchemaDefinition,
+>(
+  props: Props,
+  theme: Stage.Theme,
+  focus: FocusOptions,
+): ResolvedProps<Props, ClassesSchema, Element> {
+  const styleProps = {
+    all: [],
+    container: [],
+    content: [],
+
+    style: [],
+    margin: [],
+    flex: [],
+    grid: [],
+
+    padding: [],
+    color: [],
+    border: [],
+    layout: [],
+
+    shadow: [],
+  } as ResolvedStyleProps
+  let attributes = {} as ResolvedAttributes<Element>
+  const events = handleFocus(props, focus) as ResolvedEvents<Props>
+
+  const resolvers = {
+    // Core
+    attributes: () => {
+      attributes = Object.assign(attributes, props.attributes)
+    },
+    style: () =>
+      styleProps.style.push(
+        isFunction(props.style)
+          ? breakpointProp(props.style(theme), theme, (value) => value)
+          : breakpointProp(props.style, theme, (value) => value),
+      ),
+
+    // Attributes
+    id: () => {
+      attributes.id = props.id
+    },
+    className: () => {
+      attributes.className = props.className
+    },
+    draggable: () => {
+      attributes.draggable = props.draggable
+    },
+    inlineStyle: () => {
+      attributes.style = props.inlineStyle
+    },
+    tabIndex: () => {
+      attributes.tabIndex = props.tabIndex
+    },
+    role: () => {
+      attributes.role = props.role
+    },
+
+    // Margin
+    m: () =>
+      styleProps.margin.push(
+        breakpointProp(props.m, theme, (value) => ({ margin: spaceProp(value, theme) })),
+      ),
+    mx: () =>
+      styleProps.margin.push(
+        breakpointProp(props.mx, theme, (value) => ({
+          marginRight: spaceProp(value, theme),
+          marginLeft: spaceProp(value, theme),
+        })),
+      ),
+    my: () =>
+      styleProps.margin.push(
+        breakpointProp(props.my, theme, (value) => ({
+          marginTop: spaceProp(value, theme),
+          marginBottom: spaceProp(value, theme),
+        })),
+      ),
+    mt: () =>
+      styleProps.margin.push(
+        breakpointProp(props.mt, theme, (value) => ({
+          marginTop: spaceProp(value, theme),
+        })),
+      ),
+    mr: () =>
+      styleProps.margin.push(
+        breakpointProp(props.mr, theme, (value) => ({
+          marginRight: spaceProp(value, theme),
+        })),
+      ),
+    mb: () =>
+      styleProps.margin.push(
+        breakpointProp(props.mb, theme, (value) => ({
+          marginBottom: spaceProp(value, theme),
+        })),
+      ),
+    ml: () =>
+      styleProps.margin.push(
+        breakpointProp(props.ml, theme, (value) => ({
+          marginLeft: spaceProp(value, theme),
+        })),
+      ),
+
+    // Padding
+    p: () =>
+      styleProps.padding.push(
+        breakpointProp(props.p, theme, (value) => ({ padding: spaceProp(value, theme) })),
+      ),
+    px: () =>
+      styleProps.padding.push(
+        breakpointProp(props.px, theme, (value) => ({
+          paddingRight: spaceProp(value, theme),
+          paddingLeft: spaceProp(value, theme),
+        })),
+      ),
+    py: () =>
+      styleProps.padding.push(
+        breakpointProp(props.py, theme, (value) => ({
+          paddingTop: spaceProp(value, theme),
+          paddingBottom: spaceProp(value, theme),
+        })),
+      ),
+    pt: () =>
+      styleProps.padding.push(
+        breakpointProp(props.pt, theme, (value) => ({
+          paddingTop: spaceProp(value, theme),
+        })),
+      ),
+    pr: () =>
+      styleProps.padding.push(
+        breakpointProp(props.pr, theme, (value) => ({
+          paddingRight: spaceProp(value, theme),
+        })),
+      ),
+    pb: () =>
+      styleProps.padding.push(
+        breakpointProp(props.pb, theme, (value) => ({
+          paddingBottom: spaceProp(value, theme),
+        })),
+      ),
+    pl: () =>
+      styleProps.padding.push(
+        breakpointProp(props.pl, theme, (value) => ({
+          paddingLeft: spaceProp(value, theme),
+        })),
+      ),
+
+    // Color
+    backgroundColor: () =>
+      styleProps.color.push(
+        breakpointProp(props.backgroundColor, theme, (value) => ({
+          backgroundColor: colorProp(value, theme)?.rgb().string(),
+        })),
+      ),
+    textColor: () =>
+      styleProps.color.push(
+        breakpointProp(props.textColor, theme, (value) => ({
+          color: colorProp(value, theme)?.rgb().string(),
+        })),
+      ),
+
+    // Border
+    borderWidth: () =>
+      styleProps.border.push(
+        breakpointProp(props.borderWidth, theme, (value) => ({ borderWidth: value })),
+      ),
+    borderStyle: () =>
+      styleProps.border.push(
+        breakpointProp(props.borderStyle, theme, (value) => ({ borderStyle: value })),
+      ),
+    borderColor: () =>
+      styleProps.border.push(
+        breakpointProp(props.borderColor, theme, (value) => ({
+          borderColor: colorProp(value, theme)?.rgb().string(),
+        })),
+      ),
+    borderRadius: () =>
+      styleProps.border.push(
+        breakpointProp(props.borderRadius, theme, (value) => ({
+          borderRadius: sizeProp(value, theme.radius, (ov) => ov),
+        })),
+      ),
+
+    // Layout
+    display: () =>
+      styleProps.layout.push(
+        breakpointProp(props.display, theme, (value) => ({ display: value })),
+      ),
+    position: () =>
+      styleProps.layout.push(
+        breakpointProp(props.position, theme, (value) => ({ position: value })),
+      ),
+    fontSize: () =>
+      styleProps.layout.push(
+        breakpointProp(props.fontSize, theme, (value) => ({ fontSize: value })),
+      ),
+    lineHeight: () =>
+      styleProps.layout.push(
+        breakpointProp(props.lineHeight, theme, (value) => ({ lineHeight: value })),
+      ),
+    letterSpacing: () =>
+      styleProps.layout.push(
+        breakpointProp(props.letterSpacing, theme, (value) => ({ letterSpacing: value })),
+      ),
+    textAlign: () =>
+      styleProps.layout.push(
+        breakpointProp(props.textAlign, theme, (value) => ({ textAlign: value })),
+      ),
+    visibility: () =>
+      styleProps.layout.push(
+        breakpointProp(props.visibility, theme, (value) => ({ visibility: value })),
+      ),
+    w: () =>
+      styleProps.layout.push(
+        breakpointProp(props.w, theme, (value) => ({ width: value })),
+      ),
+    h: () =>
+      styleProps.layout.push(
+        breakpointProp(props.h, theme, (value) => ({ height: value })),
+      ),
+
+    // Flex
+    flex: () =>
+      styleProps.flex.push(
+        breakpointProp(props.flex, theme, (value) => ({ flex: value })),
+      ),
+    flexBasis: () =>
+      styleProps.flex.push(
+        breakpointProp(props.flexBasis, theme, (value) => ({ flexBasis: value })),
+      ),
+    flexGrow: () =>
+      styleProps.flex.push(
+        breakpointProp(props.flexGrow, theme, (value) => ({ flexGrow: value })),
+      ),
+    flexShrink: () =>
+      styleProps.flex.push(
+        breakpointProp(props.flexShrink, theme, (value) => ({ flexShrink: value })),
+      ),
+    alignSelf: () =>
+      styleProps.flex.push(
+        breakpointProp(props.alignSelf, theme, (value) => ({ alignSelf: value })),
+      ),
+    justifySelf: () =>
+      styleProps.flex.push(
+        breakpointProp(props.justifySelf, theme, (value) => ({ justifySelf: value })),
+      ),
+
+    // Grid children
+    gridColumnStart: () =>
+      styleProps.grid.push(
+        breakpointProp(props.gridColumnStart, theme, (value) => ({
+          gridColumnStart: value,
+        })),
+      ),
+    gridColumnEnd: () =>
+      styleProps.grid.push(
+        breakpointProp(props.gridColumnEnd, theme, (value) => ({ gridColumnEnd: value })),
+      ),
+    gridRowStart: () =>
+      styleProps.grid.push(
+        breakpointProp(props.gridRowStart, theme, (value) => ({ gridRowStart: value })),
+      ),
+    gridRowEnd: () =>
+      styleProps.grid.push(
+        breakpointProp(props.gridRowEnd, theme, (value) => ({ gridRowEnd: value })),
+      ),
+    gridColumn: () =>
+      styleProps.grid.push(
+        breakpointProp(props.gridColumn, theme, (value) => ({ gridColumn: value })),
+      ),
+    gridRow: () =>
+      styleProps.grid.push(
+        breakpointProp(props.gridRow, theme, (value) => ({ gridRow: value })),
+      ),
+    gridArea: () =>
+      styleProps.grid.push(
+        breakpointProp(props.gridArea, theme, (value) => ({ gridArea: value })),
+      ),
+    placeSelf: () =>
+      styleProps.grid.push(
+        breakpointProp(props.placeSelf, theme, (value) => ({ placeSelf: value })),
+      ),
+
+    // Shadow
+    shadow: () =>
+      styleProps.shadow.push(
+        breakpointProp(props.shadow, theme, (value) => ({
+          boxShadow: sizeProp(value, theme.assets.shadow, (sv) => sv),
+        })),
+      ),
+  }
+
+  Object.keys(props).forEach((key) => {
+    if (key[0] === 'o' && key[1] === 'n') {
+      events[key] = props[key as keyof typeof props]
+      return
+    }
+    if (Object.prototype.hasOwnProperty.call(resolvers, key)) {
+      resolvers[key as keyof typeof resolvers]()
+    }
+  })
+
+  // Cursor must be pointer if interactive
+  if (props.onClick) {
+    styleProps.container.push({
+      cursor: 'pointer',
+      userSelect: 'none',
+    })
+  }
+
+  // Additional key handlers
+  events.onKeyDown = (event: React.KeyboardEvent<Element>) => {
+    if (event.key === 'Enter' && props.onEnter) {
+      props.onEnter?.(event)
+    }
+    if (event.key === 'Esc' && props.onEsc) {
+      props.onEsc?.(event)
+    }
+    props.onKeyDown?.(event)
+  }
+
+  const propOverridesClasses = overridesProp(props.overrides, theme, styleProps)
+
+  styleProps.container = styleProps.container.concat(
+    styleProps.margin,
+    styleProps.flex,
+    styleProps.grid,
+    styleProps.style,
+    styleProps.shadow,
+  )
+  styleProps.content = styleProps.content.concat(
+    styleProps.padding,
+    styleProps.color,
+    styleProps.border,
+    styleProps.layout,
+  )
+  styleProps.all = styleProps.all.concat(styleProps.container, styleProps.content)
+
+  return { styleProps, attributes, events, propOverridesClasses }
+}
+
+export default resolveProps

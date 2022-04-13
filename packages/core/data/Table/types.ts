@@ -1,5 +1,4 @@
 import { ContainerDecorations } from '@stage-ui/core/utils/containerDecorations'
-import { Classes as ClassesType } from '@stage-ui/system/hooks/useSystem'
 
 declare namespace TableTypes {
   type Props<R extends Row = Row> = RowEvents<R> &
@@ -335,7 +334,7 @@ declare namespace TableTypes {
 
   interface HeadCellProps<R extends Row = Row> {
     column: TableColumn<R>
-    styles: ClassesType<Classes>
+    styles: Stage.Classes<Classes>
     toggleSort: (sort: TableSortObject) => Promise<unknown>
   }
 
@@ -343,7 +342,7 @@ declare namespace TableTypes {
     rowCtxItem: TableRowContext<R>
     column: TableColumn<R>
     rowIndex: number
-    styles: ClassesType<Classes>
+    styles: Stage.Classes<Classes>
     getCellContext: Methods<R>['getCellContext']
   }
 
@@ -351,7 +350,7 @@ declare namespace TableTypes {
     rowCtxItem: TableRowContext<R>
     columns: TableColumn<R>[]
     rowIndex: number
-    styles: ClassesType<Classes>
+    styles: Stage.Classes<Classes>
     getCellContext: Methods<R>['getCellContext']
     events: Record<string, React.MouseEventHandler<HTMLTableRowElement>>
     onCheckboxClick?: React.MouseEventHandler<HTMLDivElement>
@@ -371,7 +370,7 @@ declare namespace TableTypes {
     footerContent?: Props<R>['footer']
     pagination?: TablePaginationOptions
     onPageChange: (pageNumber: number) => void
-    styles: ClassesType<Classes>
+    styles: Stage.Classes<Classes>
   }
 }
 

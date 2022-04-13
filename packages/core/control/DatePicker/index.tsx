@@ -59,7 +59,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
     return value && date.isValid() ? date : undefined
   }
 
-  const { classes, events, styleProps, overridesPropClasses } = useSystem(
+  const { classes, events, styleProps, propOverridesClasses } = useSystem(
     'DatePicker',
     props,
     createClasses,
@@ -155,9 +155,9 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
       size={size}
       shape={shape}
       overrides={{
-        ...overridesPropClasses,
-        container: [overridesPropClasses.container, styleProps.container],
-        content: [overridesPropClasses.content, styleProps.content],
+        ...propOverridesClasses,
+        container: [propOverridesClasses.container, styleProps.container],
+        content: [propOverridesClasses.content, styleProps.content],
       }}
       onFocus={() => inputRef.current?.focus()}
       onClick={(e) => {
