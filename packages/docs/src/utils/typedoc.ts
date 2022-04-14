@@ -92,7 +92,7 @@ function getComponentsProps(
     const properties = nv.children?.[0].children?.find(
       (child) => child.name === 'Props',
     )?.children
-    if (!properties) throw Error(`There is no props for component ${name}`)
+    if (!properties) return pv
 
     return Object.assign(pv, {
       [name]: properties

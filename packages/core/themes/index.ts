@@ -5,6 +5,7 @@ import '@stage-ui/system'
 
 import DividerTypes from '../content/Divider/types'
 import SpinnerTypes from '../content/Spinner/types'
+import ArticleTypes from '../content/Article/types'
 import HeaderTypes from '../content/Header/types'
 import ParagraphTypes from '../content/Paragraph/types'
 import TextTypes from '../content/Text/types'
@@ -51,6 +52,7 @@ declare global {
     interface ThemeOverrides {
       Divider?: Stage.ThemeComponentOverrides<DividerTypes.Props, DividerTypes.Classes>
       Spinner?: Stage.ThemeComponentOverrides<SpinnerTypes.Props, SpinnerTypes.Classes>
+      Article?: Stage.ThemeComponentOverrides<ArticleTypes.Props, ArticleTypes.Classes>
       Header?: Stage.ThemeComponentOverrides<HeaderTypes.Props, HeaderTypes.Classes>
       Paragraph?: Stage.ThemeComponentOverrides<
         ParagraphTypes.Props,

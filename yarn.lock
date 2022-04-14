@@ -5453,9 +5453,9 @@ map-visit@^1.0.0:
     object-visit "^1.0.0"
 
 marked@^4.0.12:
-  version "4.0.12"
-  resolved "https://registry.yarnpkg.com/marked/-/marked-4.0.12.tgz#2262a4e6fd1afd2f13557726238b69a48b982f7d"
-  integrity sha512-hgibXWrEDNBWgGiK18j/4lkS6ihTe9sxtV4Q1OQppb/0zzyPSzoFANBa5MfsG/zgsWklmNnhm0XACZOH/0HBiQ==
+  version "4.0.14"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-4.0.14.tgz#7a3a5fa5c80580bac78c1ed2e3b84d7bd6fc3870"
+  integrity sha512-HL5sSPE/LP6U9qKgngIIPTthuxC0jrfxpYMZ3LdGDD3vTnLs59m2Z7r6+LNDR3ToqEQdkKd6YaaEfJhodJmijQ==
 
 md5-file@^3.2.3:
   version "3.2.3"
@@ -7613,10 +7613,10 @@ type-fest@^0.7.1:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.7.1.tgz#8dda65feaf03ed78f0a3f9678f1869147f7c5c48"
   integrity sha512-Ne2YiiGN8bmrmJJEuTWTLJR32nh/JdL1+PSicowtNb0WFpn59GK8/lfD61bVtzguz7b3PBt74nxpv/Pw5po5Rg==
 
-typedoc@^0.22.13:
-  version "0.22.13"
-  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.22.13.tgz#d061f8f0fb7c9d686e48814f245bddeea4564e66"
-  integrity sha512-NHNI7Dr6JHa/I3+c62gdRNXBIyX7P33O9TafGLd07ur3MqzcKgwTvpg18EtvCLHJyfeSthAtCLpM7WkStUmDuQ==
+typedoc@0.22.15:
+  version "0.22.15"
+  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.22.15.tgz#c6ad7ed9d017dc2c3a06c9189cb392bd8e2d8c3f"
+  integrity sha512-CMd1lrqQbFvbx6S9G6fL4HKp3GoIuhujJReWqlIvSb2T26vGai+8Os3Mde7Pn832pXYemd9BMuuYWhFpL5st0Q==
   dependencies:
     glob "^7.2.0"
     lunr "^2.3.9"

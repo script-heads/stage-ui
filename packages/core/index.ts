@@ -3,6 +3,7 @@
  */
 export { default as Divider } from './content/Divider'
 export { default as Spinner } from './content/Spinner'
+export { default as Article } from './content/Article'
 export { default as Header } from './content/Header'
 export { default as Paragraph } from './content/Paragraph'
 export { default as Text } from './content/Text'
