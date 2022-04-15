@@ -12,7 +12,7 @@ const createClsses: Stage.CreateClasses<Types.Classes, Types.Props> = (
   const hoverColor = colorProp(props.hoverColor, theme)
 
   return {
-    container: (state, variant) => [
+    container: (state) => [
       {
         width: 'min-content',
         display: 'inline-flex',
@@ -32,37 +32,31 @@ const createClsses: Stage.CreateClasses<Types.Classes, Types.Props> = (
           color: hoverColor.rgb().string(),
         },
       },
-      variant({
-        size: {
-          xs: {
-            height: theme.assets.typography.text.xs.fontSize,
-            fontSize: theme.assets.typography.text.xs.fontSize,
-          },
-          s: {
-            height: theme.assets.typography.text.s.fontSize,
-            fontSize: theme.assets.typography.text.s.fontSize,
-          },
-          l: {
-            height: theme.assets.typography.text.l.fontSize,
-            fontSize: theme.assets.typography.text.l.fontSize,
-          },
-          xl: {
-            height: theme.assets.typography.text.xl.fontSize,
-            fontSize: theme.assets.typography.text.xl.fontSize,
-          },
-        },
-        shape: {
-          circle: {
-            borderRadius: '50%',
-            border: `1px solid ${color?.rgb().string() || 'inherit'}`,
-            padding: '0.4em',
-          },
-          oval: {
-            borderRadius: '50%',
-            padding: '0.4em',
-          },
-        },
-      }),
+      state.size === 'xs' && {
+        height: theme.assets.typography.text.xs.fontSize,
+        fontSize: theme.assets.typography.text.xs.fontSize,
+      },
+      state.size === 's' && {
+        height: theme.assets.typography.text.s.fontSize,
+        fontSize: theme.assets.typography.text.s.fontSize,
+      },
+      state.size === 'l' && {
+        height: theme.assets.typography.text.l.fontSize,
+        fontSize: theme.assets.typography.text.l.fontSize,
+      },
+      state.size === 'xl' && {
+        height: theme.assets.typography.text.xl.fontSize,
+        fontSize: theme.assets.typography.text.xl.fontSize,
+      },
+      state.shape === 'circle' && {
+        borderRadius: '50%',
+        border: `1px solid ${color?.rgb().string() || 'inherit'}`,
+        padding: '0.4em',
+      },
+      state.shape === 'oval' && {
+        borderRadius: '50%',
+        padding: '0.4em',
+      },
       styleProps.all,
     ],
     icon: [

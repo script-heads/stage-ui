@@ -1,5 +1,4 @@
 import resolveProps, { ResolvedProps } from '../props'
-import createVariant from '../utils/createVariant'
 import isFunction from '../utils/isFunction'
 
 import useTheme from './useTheme'
@@ -61,19 +60,14 @@ function useSystem<
       isFunction(selfClass)
         ? (
             state: Exclude<ClassesSchema[keyof ClassesSchema], void>,
-          ): Stage.CSSInterpolation => {
-            const variant = createVariant(state)
-            return [
-              classLabel,
-              selfClass(state, variant),
-              isFunction(themeOverrideClass)
-                ? themeOverrideClass(state, variant)
-                : themeOverrideClass,
-              isFunction(propOverrideClass)
-                ? propOverrideClass(state, variant)
-                : propOverrideClass,
-            ]
-          }
+          ): Stage.CSSInterpolation => [
+            classLabel,
+            selfClass(state),
+            isFunction(themeOverrideClass)
+              ? themeOverrideClass(state)
+              : themeOverrideClass,
+            isFunction(propOverrideClass) ? propOverrideClass(state) : propOverrideClass,
+          ]
         : [classLabel, selfClass, themeOverrideClass, propOverrideClass]
     ) as Stage.Classes<ClassesSchema>[keyof ClassesSchema]
   })

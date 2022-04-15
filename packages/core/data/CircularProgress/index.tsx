@@ -1,10 +1,8 @@
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 
-import { useSystem } from '@stage-ui/system'
+import { useSystem, toPixel, toRem } from '@stage-ui/system'
 
 import { useTheme } from '@emotion/react'
-
-import { toPixel, toRem } from '@stage-ui/system/utils/size'
 
 import styles from './styles'
 import Types from './types'

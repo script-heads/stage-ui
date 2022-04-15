@@ -7,7 +7,6 @@ import CSS from 'csstype'
 
 import { AllProps as AllPropsType } from './props/types'
 import { ResolvedStyleProps } from './props'
-import { Variant } from './utils/createVariant'
 
 declare global {
   namespace Stage {
@@ -220,7 +219,7 @@ declare global {
     }
 
     type FunctionClassDefinition<ClassState extends Exclude<ClassStateDefinition, void>> =
-      (state: ClassState, variant: Variant<ClassState>) => Stage.CSSInterpolation
+      (state: ClassState) => Stage.CSSInterpolation
 
     type Classes<ClassesSchema extends ClassesSchemaDefinition> = {
       [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends void
