@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable react/no-array-index-key */
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 
 import { useSystem } from '@stage-ui/system'
@@ -14,14 +16,23 @@ const Meter: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
     value = 0,
     color,
     loading,
+    children,
   } = props
 
   const { classes, attributes, events, styleProps } = useSystem('Meter', props, styles)
 
-  let childs = props.children as React.ReactElement[]
-  if (childs && !Array.isArray(childs)) {
-    childs = [childs]
-  }
+  const thumbs =
+    children && !Array.isArray(children)
+      ? [children]
+      : (children as React.ReactElement<Types.Props>[]) || [
+          <Thumb
+            shape={shape}
+            size={size}
+            value={value}
+            color={color}
+            loading={loading}
+          />,
+        ]
 
   return (
     <div
@@ -31,22 +42,12 @@ const Meter: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
       css={[classes.container({ decoration, shape, size }), styleProps.all]}
     >
       <div css={classes.thumbWrapper}>
-        {childs ? (
-          childs.map((child, index) =>
-            React.cloneElement(child, {
-              key: index,
-              ...props,
-              ...child.props,
-            }),
-          )
-        ) : (
-          <Thumb
-            shape={shape}
-            size={size}
-            value={value}
-            color={color}
-            loading={loading}
-          />
+        {thumbs.map((child, index) =>
+          React.cloneElement(child, {
+            key: index,
+            ...props,
+            ...child.props,
+          }),
         )}
       </div>
     </div>

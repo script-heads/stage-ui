@@ -192,7 +192,10 @@ declare global {
         | Stage.ThemeOverrides
     }
 
-    type ClassStateDefinition = Record<string, string | boolean | undefined> | void
+    type ClassStateDefinition = Record<
+      string,
+      string | number | boolean | undefined | null
+    > | void
     type ClassesSchemaDefinition = Record<string, ClassStateDefinition>
 
     type CreateClasses<ClassesSchema extends ClassesSchemaDefinition, Props> = (
