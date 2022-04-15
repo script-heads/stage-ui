@@ -6,8 +6,6 @@ import { CacheProvider, Global, ThemeProvider } from '@emotion/react'
 import { light } from '../themes'
 import { StageContext } from '../hooks/useTheme'
 
-import type Stage from '../index'
-
 export interface ProviderProps {
   theme: Stage.Theme
   global?: Stage.CSSInterpolation

@@ -6,7 +6,6 @@ import type { BreakpointProp } from './breakpoint'
 import type { ColorProp } from './color'
 import type { OverridesProp } from './overrides'
 import type { SpaceProp } from './space'
-import type Stage from '../index'
 /**
  * All typical component props
  * @name All

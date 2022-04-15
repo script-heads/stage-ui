@@ -10,7 +10,6 @@ import sizeProp from './size'
 import overridesProp from './overrides'
 
 import type { AttributeProp } from './types'
-import type Stage from '../index'
 
 export type ResolvedProps<
   Props,

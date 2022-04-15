@@ -315,5 +315,3 @@ export { default as toFloat } from './utils/toFloat'
 export { default as toPixel } from './utils/toPixel'
 export { default as toPx } from './utils/toPx'
 export { default as toRem } from './utils/toRem'
-
-export default Stage

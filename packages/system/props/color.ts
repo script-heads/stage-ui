@@ -4,8 +4,6 @@ import Color from 'color'
 
 import isUndefined from '../utils/isUndefined'
 
-import type Stage from '../index'
-
 export type ColorProp =
   | ((colors: Stage.Theme['color']) => Color | Stage.ColorNames)
   | Color

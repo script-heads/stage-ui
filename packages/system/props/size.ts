@@ -1,5 +1,3 @@
-import type Stage from '../index'
-
 export const sizes = ['xs', 's', 'm', 'l', 'xl']
 
 function sizeProp<T, V>(

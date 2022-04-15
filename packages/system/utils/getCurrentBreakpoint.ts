@@ -1,7 +1,6 @@
 import isBrowser from './isBrowser'
 import toPixel from './toPixel'
 
-import type Stage from '../index'
 /**
  * Get current breakpoint index
  */

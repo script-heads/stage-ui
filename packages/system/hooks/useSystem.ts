@@ -3,8 +3,6 @@ import isFunction from '../utils/isFunction'
 
 import useTheme from './useTheme'
 
-import type Stage from '../index'
-
 export interface Options {
   focus?: 'always' | 'tabOnly' | 'never'
   label?: string

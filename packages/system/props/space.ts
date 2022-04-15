@@ -1,5 +1,3 @@
-import type Stage from '../index'
-
 export type SpaceProp = Stage.Sizes | (string & { T?: string }) | number
 
 function spaceProp(
