@@ -2,8 +2,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import Color from 'color'
 
-import isUndefined from '../utils/isUndefined'
-
 export type ColorProp =
   | ((colors: Stage.Theme['color']) => Color | Stage.ColorNames)
   | Color
@@ -13,7 +11,7 @@ type RV<V> = V extends undefined ? undefined : Color
 
 function colorProp<V extends ColorProp | undefined>(value: V, theme: Stage.Theme): RV<V> {
   try {
-    if ((value as string)?.[0] === '#' && isUndefined(value)) {
+    if ((value as string)?.[0] === '#') {
       return Color(value) as RV<V>
     }
     if (value instanceof Color) {

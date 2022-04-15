@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 
-import { CircularProgress, Flexbox, Viewport } from '@stage-ui/core'
+import { CircularProgress, Flexbox, Viewport, useTheme } from '@stage-ui/core'
 import ReactDOM from 'react-dom'
 
 const App: React.FC = () => {
   const [state, setState] = useState(50)
+  const s = useTheme()
   return (
     <>
       <Flexbox m="m">
@@ -12,7 +13,7 @@ const App: React.FC = () => {
           value={state}
           mx="s"
           showValue
-          color="green500"
+          color={s.color.red[300].hex()}
           size="3.75rem"
         />
         {/* <CircularProgress value={state} shape="square" shadow="s" mx="s" />
