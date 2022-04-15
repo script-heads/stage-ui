@@ -30,6 +30,7 @@ import ToggleTypes from '../control/Toggle/types'
  */
 import MeterTypes from '../data/Meter/types'
 import TableTypes from '../data/Table/types'
+import CircularProgressTypes from '../data/CircularProgress/types'
 /**
  * Layout
  */
@@ -75,7 +76,11 @@ declare global {
         TextFieldTypes.Classes
       >
       Meter?: Stage.ThemeComponentOverrides<MeterTypes.Props, MeterTypes.Classes>
-      Table?: Stage.ThemeComponentOverrides<TableTypes.Props<any>, TableTypes.Classes>
+      Table?: Stage.ThemeComponentOverrides<TableTypes.Props, TableTypes.Classes>
+      CircularProgress?: Stage.ThemeComponentOverrides<
+        CircularProgressTypes.Props,
+        CircularProgressTypes.Classes
+      >
       Badge?: Stage.ThemeComponentOverrides<BadgeTypes.Props, BadgeTypes.Classes>
       Block?: Stage.ThemeComponentOverrides<BlockTypes.Props, BlockTypes.Classes>
       Drop?: Stage.ThemeComponentOverrides<DropTypes.Props, DropTypes.Classes>

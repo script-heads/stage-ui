@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import { Flexbox, TextField } from '@stage-ui/core'
-import createID from '@stage-ui/system/utils/createID'
+import { createID } from '@stage-ui/system'
 
 import { Outlet } from 'react-router-dom'
 

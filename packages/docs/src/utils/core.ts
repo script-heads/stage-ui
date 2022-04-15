@@ -1,4 +1,4 @@
-import createID from '@stage-ui/system/utils/createID'
+import { createID } from '@stage-ui/system'
 
 export type PageType = {
   id: string

@@ -31,7 +31,6 @@ export { default as Toggle } from './control/Toggle'
 export { default as Meter } from './data/Meter'
 export { default as Table } from './data/Table'
 export { default as CircularProgress } from './data/CircularProgress'
-
 /**
  * Layout
  */
@@ -47,14 +46,12 @@ export { default as Tree } from './layout/Tree'
 export { default as ScrollView } from './layout/ScrollView'
 export { default as Split } from './layout/Split'
 export { default as Viewport } from './layout/Viewport'
-
 /**
  * Utils
  */
 export { default as dialog } from './utils/dialog'
 export { default as modal } from './utils/modal'
 export { default as notify } from './utils/notify'
-
 /**
  * System links
  */

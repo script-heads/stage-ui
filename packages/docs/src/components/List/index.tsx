@@ -1,7 +1,6 @@
 import React from 'react'
 
-import { useTheme } from '@stage-ui/system/'
-import createID from '@stage-ui/system/utils/createID'
+import { createID, useTheme } from '@stage-ui/system'
 import { Flexbox, Paragraph } from '@stage-ui/core'
 
 function List({ data, higlightBefore }: { data: string[]; higlightBefore?: string }) {

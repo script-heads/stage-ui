@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 
 import { Flexbox, Header, useTheme } from '@stage-ui/core'
 
-import createID from '@stage-ui/system/utils/createID'
+import { createID } from '@stage-ui/system'
 
 import ColorPreview from '@/components/ColorPreview'
 

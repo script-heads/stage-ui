@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import { Block, Button, Flexbox, Grid, Header, notify, useTheme } from '@stage-ui/core'
 import { Copy, Grid as GridIcon } from '@stage-ui/icons'
-import createID from '@stage-ui/system/utils/createID'
+import { createID } from '@stage-ui/system'
 import color from 'color'
 
 import ErrorBoundary from './ErrorBoundary'
