@@ -51,6 +51,13 @@ declare namespace ViewportTypes {
     theme: Stage.Theme
   }
 
+  type Classes = {
+    /**
+     * Root element
+     */
+    container: void
+  }
+
   type Shared = {
     addElement: (
       children: React.ReactElement,
