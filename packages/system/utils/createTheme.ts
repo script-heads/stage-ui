@@ -3,6 +3,7 @@ import mergeObjects from './mergeObjects'
 import isFunction from './isFunction'
 import convertColors from './convertColors'
 
+import type Stage from '../index'
 /**
  * autocomplete hack f or webkit
  */

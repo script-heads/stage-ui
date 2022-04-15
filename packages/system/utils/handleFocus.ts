@@ -22,10 +22,10 @@ function handleFocus<Element extends HTMLElement>(
     Record<'onFocus' | 'onBlur', (event: React.FocusEvent<Element>) => void>
   >,
   focus: FocusOptions,
-) {
+): Record<'onFocus' | 'onBlur', (event: React.FocusEvent<Element>) => void> {
   return {
     // Override default focus styles
-    onFocus: (event: React.FocusEvent<Element>) => {
+    onFocus: (event: React.FocusEvent<Element>): void => {
       props.onFocus?.(event)
 
       if (
@@ -41,7 +41,7 @@ function handleFocus<Element extends HTMLElement>(
     },
 
     // Override default focus styles
-    onBlur: (event: React.FocusEvent<Element>) => {
+    onBlur: (event: React.FocusEvent<Element>): void => {
       props.onBlur?.(event)
       PREV_ACTIVE_ELEMENT = null
 

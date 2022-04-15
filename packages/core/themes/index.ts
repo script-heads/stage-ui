@@ -44,9 +44,6 @@ import PopoverTypes from '../layout/Popover/types'
 import TreeTypes from '../layout/Tree/types'
 import ScrollView from '../layout/ScrollView/types'
 
-import { darkTheme } from './dark'
-import { lightTheme } from './light'
-
 declare global {
   namespace Stage {
     interface ThemeOverrides {
@@ -101,5 +98,5 @@ declare module '@emotion/react' {
   export interface Theme extends Stage.Theme {}
 }
 
-export const light = lightTheme
-export const dark = darkTheme
+export { darkTheme as dark } from '@stage-ui/system'
+export { lightTheme as light } from '@stage-ui/system'

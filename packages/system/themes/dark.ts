@@ -1,6 +1,6 @@
-import { lightTheme } from './light'
+import lightTheme from './light'
 
-export const darkTheme = lightTheme.replace({
+const darkTheme = lightTheme.replace({
   main: {
     name: 'Dark',
     color: {
@@ -27,3 +27,5 @@ export const darkTheme = lightTheme.replace({
     },
   },
 })
+
+export default darkTheme

@@ -284,11 +284,34 @@ declare module 'csstype' {
   }
 }
 
-export { default as Provider } from './Provider'
+export { default as Provider } from './components/Provider'
 
 export { default as useTheme } from './hooks/useTheme'
 export { default as useSystem } from './hooks/useSystem'
-export { default as useBreakpoint } from './hooks/useBreakpoint'
+export { default as useBreakpoints } from './hooks/useBreakpoints'
 
+export { default as breakpointProp } from './props/breakpoint'
+export { default as colorProp } from './props/color'
+export { default as overridesProp } from './props/overrides'
+export { default as sizeProp } from './props/size'
+export { default as spaceProp } from './props/space'
+
+export { light as lightTheme } from './themes'
+export { dark as darkTheme } from './themes'
+
+export { default as breakpoint } from './utils/getCurrentBreakpoint'
+export { default as createID } from './utils/createID'
 export { default as createTheme } from './utils/createTheme'
+export { default as getFontSize } from './utils/getFontSize'
 export { default as isBrowser } from './utils/isBrowser'
+export { default as isFunction } from './utils/isFunction'
+export { default as isObject } from './utils/isObject'
+export { default as isRem } from './utils/isRem'
+export { default as isWebKit } from './utils/isWebKit'
+export { default as mergeObjects } from './utils/mergeObjects'
+export { default as toFloat } from './utils/toFloat'
+export { default as toPixel } from './utils/toPixel'
+export { default as toPx } from './utils/toPx'
+export { default as toRem } from './utils/toRem'
+
+export default Stage

@@ -45,15 +45,19 @@ export { default as Tree } from './layout/Tree'
 export { default as ScrollView } from './layout/ScrollView'
 export { default as Split } from './layout/Split'
 export { default as Viewport } from './layout/Viewport'
+
 /**
  * Utils
  */
 export { default as dialog } from './utils/dialog'
 export { default as modal } from './utils/modal'
 export { default as notify } from './utils/notify'
+
 /**
- * Misc
+ * System links
  */
+export { dark as darkTheme } from '@stage-ui/system/themes'
+export { light as lightTheme } from '@stage-ui/system/themes'
 export { useTheme } from '@stage-ui/system'
 export { createTheme } from '@stage-ui/system'
-export { useBreakpoint as useBreakpoints } from '@stage-ui/system/'
+export { useBreakpoints } from '@stage-ui/system/'

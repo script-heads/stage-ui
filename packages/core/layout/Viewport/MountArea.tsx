@@ -1,6 +1,6 @@
 import React, { FC, Fragment, useState } from 'react'
 
-import createID from '@stage-ui/system/utils/createID'
+import { createID } from '@stage-ui/system'
 
 import ViewportTypes from './types'
 

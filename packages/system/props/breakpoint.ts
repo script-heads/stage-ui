@@ -1,3 +1,5 @@
+import type Stage from '../index'
+
 export type BreakpointProp<T> = T[] | T
 
 function breakpointProp<P>(

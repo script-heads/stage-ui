@@ -1,7 +1,7 @@
 import { Options } from '@emotion/cache'
 
 declare namespace ViewportTypes {
-  interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
+  interface Props {
     /**
      * Defines whether the viewport renders content inside the container
      * @default false
@@ -24,18 +24,6 @@ declare namespace ViewportTypes {
      * Application content
      */
     children?: React.ReactNode
-  }
-
-  type Classes = {
-    /**
-     * Root element
-     */
-    container: void
-  }
-
-  type Themes = {
-    light: Stage.Theme
-    dark: Stage.Theme
   }
 
   type MountArea = {

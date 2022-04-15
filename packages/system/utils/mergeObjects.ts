@@ -5,7 +5,7 @@ export default function mergeObjects<
   Target extends Record<string, any>,
   Source extends Record<string, any>,
   Resolver extends (value: any) => any,
->(target: Target, src: Source, resolver?: Resolver) {
+>(target: Target, src: Source, resolver?: Resolver): Target & Source {
   const result = { ...target } as Target & Source
 
   Object.keys(src).forEach((key) => {

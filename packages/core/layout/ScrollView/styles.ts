@@ -1,5 +1,5 @@
-import colorProp from '@stage-ui/system/props/color'
-import { toRem } from '@stage-ui/system/utils/size'
+import { colorProp } from '@stage-ui/system'
+import { toRem } from '@stage-ui/system'
 
 import Types from './types'
 

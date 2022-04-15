@@ -13,8 +13,7 @@ import React, {
   useState,
 } from 'react'
 
-import isWebKit from '@stage-ui/core/utils/isWebKit'
-import { isBrowser, useSystem } from '@stage-ui/system'
+import { isBrowser, useSystem, isWebKit } from '@stage-ui/system'
 
 import styles from './styles'
 import Types from './types'

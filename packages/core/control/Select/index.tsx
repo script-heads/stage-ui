@@ -12,7 +12,7 @@ import Field from '@stage-ui/core/basic/Field'
 import DropTypes from '@stage-ui/core/layout/Drop/types'
 import { ChevronDown, Close } from '@stage-ui/icons'
 import { useSystem } from '@stage-ui/system'
-import createID from '@stage-ui/system/utils/createID'
+import { createID } from '@stage-ui/system'
 
 import SharedZIndex from '../../utils/SharedZIndex'
 

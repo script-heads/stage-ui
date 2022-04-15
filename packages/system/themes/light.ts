@@ -1,6 +1,6 @@
-import { createTheme } from '@stage-ui/system'
+import createTheme from '../utils/createTheme'
 
-export const lightTheme = createTheme({
+const lightTheme = createTheme({
   main: {
     name: 'Light',
     breakpoints: ['100rem', '80rem', '64rem', '50rem', '40rem'],
@@ -406,3 +406,5 @@ export const lightTheme = createTheme({
     },
   }),
 })
+
+export default lightTheme

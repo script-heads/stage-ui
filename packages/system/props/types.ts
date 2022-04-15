@@ -2,11 +2,11 @@ import React, { CSSProperties } from 'react'
 
 import CSS from 'csstype'
 
-import { BreakpointProp } from './breakpoint'
-import { ColorProp } from './color'
-import { OverridesProp } from './overrides'
-import { SpaceProp } from './space'
-
+import type { BreakpointProp } from './breakpoint'
+import type { ColorProp } from './color'
+import type { OverridesProp } from './overrides'
+import type { SpaceProp } from './space'
+import type Stage from '../index'
 /**
  * All typical component props
  * @name All
