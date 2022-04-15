@@ -8,7 +8,7 @@ import React, {
 } from 'react'
 
 import { useSystem } from '@stage-ui/system'
-import createID from '@stage-ui/system/utils/createID'
+import { createID } from '@stage-ui/system'
 
 import Separator from './Separator'
 import styles from './styles'

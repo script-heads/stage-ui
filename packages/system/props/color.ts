@@ -1,5 +1,7 @@
 import Color from 'color'
 
+import type Stage from '../index'
+
 export type ColorProp =
   | ((colors: Stage.Theme['color']) => Color | Stage.ColorNames)
   | Color

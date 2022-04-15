@@ -103,6 +103,24 @@ declare module "content/Spinner/index" {
     const _default_1: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
     export default _default_1;
 }
+declare module "content/Article/types" {
+    import TypographyTypes from "basic/Typography/types";
+    namespace ArticleTypes {
+        type Props = Stage.AllProps<HTMLDivElement>;
+        type Classes = TypographyTypes.Classes;
+    }
+    export default ArticleTypes;
+}
+declare module "content/Article/styles" {
+    import Types from "content/Article/types";
+    const createClasses: Stage.CreateClasses<Types.Classes, Types.Props>;
+    export default createClasses;
+}
+declare module "content/Article/index" {
+    import Types from "content/Article/types";
+    const _default_2: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
+    export default _default_2;
+}
 declare module "content/Header/types" {
     import TypographyTypes from "basic/Typography/types";
     namespace HeaderTypes {
@@ -115,8 +133,8 @@ declare module "content/Header/types" {
 declare module "content/Header/index" {
     import React from 'react';
     import Types from "content/Header/types";
-    const _default_2: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
-    export default _default_2;
+    const _default_3: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
+    export default _default_3;
 }
 declare module "content/Paragraph/types" {
     import TypographyTypes from "basic/Typography/types";
@@ -130,8 +148,8 @@ declare module "content/Paragraph/types" {
 declare module "content/Paragraph/index" {
     import React from 'react';
     import Types from "content/Paragraph/types";
-    const _default_3: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLParagraphElement>>;
-    export default _default_3;
+    const _default_4: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLParagraphElement>>;
+    export default _default_4;
 }
 declare module "content/Text/types" {
     import TypographyTypes from "basic/Typography/types";
@@ -145,8 +163,8 @@ declare module "content/Text/types" {
 declare module "content/Text/index" {
     import React from 'react';
     import Types from "content/Text/types";
-    const _default_4: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
-    export default _default_4;
+    const _default_5: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLSpanElement>>;
+    export default _default_5;
 }
 declare module "content/Link/types" {
     import TypographyTypes from "basic/Typography/types";
@@ -160,8 +178,8 @@ declare module "content/Link/types" {
 declare module "content/Link/index" {
     import React from 'react';
     import Types from "content/Link/types";
-    const _default_5: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLAnchorElement>>;
-    export default _default_5;
+    const _default_6: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLAnchorElement>>;
+    export default _default_6;
 }
 declare module "content/Toast/types" {
     namespace ToastTypes {
@@ -211,11 +229,16 @@ declare module "content/Toast/styles" {
 declare module "content/Toast/index" {
     import React from 'react';
     import Types from "content/Toast/types";
-    const _default_6: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_6;
+    const _default_7: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_7;
 }
 declare module "control/Button/types" {
+    import React from 'react';
     namespace ButtonTypes {
+        type Decoration = 'filled' | 'outline' | 'text' | 'plain';
+        type Shape = 'square' | 'rounded' | 'round';
+        type Type = 'submit' | 'reset' | 'button';
+        type ChildAlign = 'left' | 'right';
         interface Props extends Stage.AllProps<HTMLButtonElement, Classes> {
             /**
              * Specifies that the button should have input focus when the page loads
@@ -258,7 +281,7 @@ declare module "control/Button/types" {
             /**
              * The default behavior of the button
              */
-            type?: 'submit' | 'reset' | 'button';
+            type?: Type;
             /**
              * Defines the value associated with the button’s name when it’s submitted with the form data
              */
@@ -274,12 +297,12 @@ declare module "control/Button/types" {
              * Defines how button look
              * @default filled
              */
-            decoration?: 'filled' | 'outline' | 'text' | 'plain';
+            decoration?: Decoration;
             /**
              * Shape of button
              * @default rounded
              */
-            shape?: 'square' | 'rounded' | 'round';
+            shape?: Shape;
             /**
              * Make button's text uppercase
              */
@@ -304,6 +327,15 @@ declare module "control/Button/types" {
              * Place for items to the left of children
              */
             leftChild?: React.ReactNode;
+            /**
+             * Async onClick
+             */
+            onClick?: (event: React.MouseEvent<HTMLButtonElement>) => Promise<void> | void;
+            /**
+             * Loading component shows when onClick pending promise
+             * if no component set then regular spinner will be used instead
+             */
+            loadingComponent?: React.ReactNode;
         }
         type Classes = {
             /**
@@ -314,7 +346,7 @@ declare module "control/Button/types" {
              * Content's wrappers
              */
             child: {
-                align: 'left' | 'right';
+                align: ChildAlign;
             };
         };
     }
@@ -328,13 +360,12 @@ declare module "control/Button/styles" {
 declare module "control/Button/index" {
     import React from 'react';
     import Types from "control/Button/types";
-    const _default_7: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLButtonElement>>;
-    export default _default_7;
+    const _default_8: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLButtonElement>>;
+    export default _default_8;
 }
 declare module "control/Calendar/types" {
-    import { Moment } from 'moment';
     import { CSSProperties } from 'react';
-    import { Classes as ClassesType } from '@stage-ui/system/hooks/useSystem';
+    import { Moment } from 'moment';
     namespace CalendarTypes {
         /**
          * Type of calendar view
@@ -457,7 +488,7 @@ declare module "control/Calendar/types" {
             maxValue: Moment;
             onChange: (startDate: Moment, endDate?: Moment) => void;
             onViewChange: (dt: Moment) => void;
-            classes: ClassesType<Classes>;
+            classes: Stage.Classes<Classes>;
             type: GridType;
             onYearRender?: (options: YearRenderOptions) => React.ReactNode;
             onMonthRender?: (options: MonthRenderOptions) => React.ReactNode;
@@ -474,7 +505,7 @@ declare module "control/Calendar/types" {
             onClick: () => void;
             style?: CSSProperties;
             size?: Stage.Sizes;
-            classes: ClassesType<Classes>;
+            classes: Stage.Classes<Classes>;
         }
         interface DateGridDayProps extends Omit<DateGridCalendarProps, 'onClick'> {
             hideNeighborMonths: boolean;
@@ -512,7 +543,7 @@ declare module "control/Calendar/types" {
             onNext: () => void;
             onPrevious: () => void;
             onGridTypeChange: (type: GridType) => void;
-            classes: ClassesType<Classes>;
+            classes: Stage.Classes<Classes>;
             size?: Stage.Sizes;
         }
         type Classes = {
@@ -598,8 +629,8 @@ declare module "control/Calendar/styles" {
 declare module "control/Calendar/index" {
     import React from 'react';
     import Types from "control/Calendar/types";
-    const _default_8: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_8;
+    const _default_9: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_9;
 }
 declare module "control/Checkbox/types" {
     namespace CheckboxTypes {
@@ -607,6 +638,7 @@ declare module "control/Checkbox/types" {
             label?: string;
             labelColor?: Stage.ColorProp;
             checked?: boolean;
+            half?: boolean;
             disabled?: boolean;
             defaultValue?: boolean;
             uppercase?: boolean;
@@ -615,6 +647,7 @@ declare module "control/Checkbox/types" {
         }
         type ClassState = {
             checked: Props['checked'];
+            half: Props['half'];
         };
         type Classes = {
             container: void;
@@ -633,18 +666,17 @@ declare module "control/Checkbox/styles" {
 declare module "control/Checkbox/index" {
     import React from 'react';
     import Types from "control/Checkbox/types";
-    const _default_9: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_9;
+    const _default_10: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_10;
 }
 declare module "basic/Field/types" {
-    import { ClassesSchemaDefinition } from '@stage-ui/system/hooks/useSystem';
     import React from 'react';
     namespace FieldTypes {
         interface PrivateProps extends Props {
             name?: string;
             children?: React.ReactNode;
         }
-        interface Props<Element = HTMLInputElement, ClassesDefinition extends ClassesSchemaDefinition = Classes> extends Stage.AllProps<Element, ClassesDefinition> {
+        interface Props<Element = HTMLInputElement, ClassesDefinition extends Stage.ClassesSchemaDefinition = Classes> extends Stage.AllProps<Element, ClassesDefinition> {
             /**
              * Label for field
              */
@@ -753,8 +785,17 @@ declare module "basic/Field/styles" {
 declare module "basic/Field/index" {
     import React from 'react';
     import Types from "basic/Field/types";
-    const _default_10: React.ForwardRefExoticComponent<Types.PrivateProps & React.RefAttributes<HTMLDivElement>>;
-    export default _default_10;
+    const _default_11: React.ForwardRefExoticComponent<Types.PrivateProps & React.RefAttributes<HTMLDivElement>>;
+    export default _default_11;
+}
+declare module "utils/SharedZIndex" {
+    /**
+     * Shared zIndex for Drops & Modals
+     */
+    export default class SharedZIndex {
+        private static index;
+        static get increment(): number;
+    }
 }
 declare module "layout/Drop/types" {
     import { AllEventProps, AttributeProps, BorderProps, ColorProps, CoreProps, LayoutProps, PaddingProps } from '@stage-ui/system/props/types';
@@ -765,7 +806,7 @@ declare module "layout/Drop/types" {
             left: number;
             right: number;
         }
-        interface Props extends AttributeProps, AllEventProps<HTMLDivElement>, CoreProps<HTMLDivElement, Classes>, ColorProps, BorderProps, PaddingProps, LayoutProps {
+        interface Props extends AttributeProps, AllEventProps<HTMLDivElement>, CoreProps<Classes>, ColorProps, BorderProps, PaddingProps, LayoutProps {
             /**
              * Ref of the target element near which the drop will be shown
              */
@@ -792,7 +833,7 @@ declare module "layout/Drop/types" {
                  * type of animation
                  * @default none
                  */
-                type: 'fade' | 'slide' | 'collapse' | 'none';
+                type: 'fade' | 'slide' | 'collapse' | 'pop' | 'none';
                 /**
                  * duration in ms
                  * @default 100
@@ -870,20 +911,11 @@ declare module "layout/Drop/styles" {
     const createClasses: Stage.CreateClasses<Types.Classes, Types.Props>;
     export default createClasses;
 }
-declare module "utils/SharedZIndex" {
-    /**
-     * Shared zIndex for Drops & Modals
-     */
-    export default class SharedZIndex {
-        private static index;
-        static get increment(): number;
-    }
-}
 declare module "layout/Drop/index" {
     import React from 'react';
     import Types from "layout/Drop/types";
-    const _default_11: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
-    export default _default_11;
+    const _default_12: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
+    export default _default_12;
 }
 declare module "layout/Popover/types" {
     import CSS from 'csstype';
@@ -937,8 +969,8 @@ declare module "layout/Popover/styles" {
 declare module "layout/Popover/index" {
     import React from 'react';
     import Types from "layout/Popover/types";
-    const _default_12: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_12;
+    const _default_13: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_13;
 }
 declare module "control/DatePicker/types" {
     import CalendarTypes from "control/Calendar/types";
@@ -1041,8 +1073,8 @@ declare module "control/DatePicker/styles" {
 declare module "control/DatePicker/index" {
     import React from 'react';
     import Types from "control/DatePicker/types";
-    const _default_13: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_13;
+    const _default_14: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_14;
 }
 declare module "control/Menu/types" {
     namespace MenuTypes {
@@ -1223,8 +1255,8 @@ declare module "control/Menu/MenuItem/styles" {
 declare module "control/Menu/MenuItem/index" {
     import React from 'react';
     import Types from "control/Menu/MenuItem/types";
-    const _default_14: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_14;
+    const _default_15: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_15;
 }
 declare module "control/Menu/MenuGroup/types" {
     namespace MenuGroupTypes {
@@ -1260,8 +1292,8 @@ declare module "control/Menu/MenuGroup/styles" {
 declare module "control/Menu/MenuGroup/index" {
     import React from 'react';
     import Types from "control/Menu/MenuGroup/types";
-    const _default_15: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_15;
+    const _default_16: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_16;
 }
 declare module "control/Menu/styles" {
     import Types from "control/Menu/types";
@@ -1322,8 +1354,8 @@ declare module "control/Menu/Submenu/styles" {
 declare module "control/Menu/Submenu/index" {
     import React from 'react';
     import Types from "control/Menu/Submenu/types";
-    const _default_16: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_16;
+    const _default_17: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_17;
 }
 declare module "control/Menu/index" {
     import React from 'react';
@@ -1342,8 +1374,8 @@ declare module "control/Menu/index" {
         Group: React.ForwardRefExoticComponent<MenuGroupTypes.Props & React.RefAttributes<HTMLDivElement>>;
         Submenu: React.ForwardRefExoticComponent<SubmenuTypes.Props & React.RefAttributes<HTMLDivElement>>;
     };
-    const _default_17: ComplexMenu;
-    export default _default_17;
+    const _default_18: ComplexMenu;
+    export default _default_18;
 }
 declare module "control/Radio/types" {
     import CheckboxTypes from "control/Checkbox/types";
@@ -1361,8 +1393,8 @@ declare module "control/Radio/styles" {
 }
 declare module "control/Radio/index" {
     import React from 'react';
-    const _default_18: React.ForwardRefExoticComponent<import("control/Checkbox/types").default.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_18;
+    const _default_19: React.ForwardRefExoticComponent<import("control/Checkbox/types").default.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_19;
 }
 declare module "control/Range/types" {
     namespace RangeTypes {
@@ -1396,8 +1428,8 @@ declare module "control/Range/styles" {
 declare module "control/Range/index" {
     import React from 'react';
     import Types from "control/Range/types";
-    const _default_19: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
-    export default _default_19;
+    const _default_20: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
+    export default _default_20;
 }
 declare module "control/Pageswitch/types" {
     namespace PageswitchTypes {
@@ -1463,8 +1495,8 @@ declare module "control/Pageswitch/styles" {
 declare module "control/Pageswitch/index" {
     import React from 'react';
     import Types from "control/Pageswitch/types";
-    const _default_20: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_20;
+    const _default_21: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_21;
 }
 declare module "control/Select/types" {
     import React from 'react';
@@ -1628,8 +1660,8 @@ declare module "control/Select/styles" {
 declare module "control/Select/index" {
     import React from 'react';
     import Types from "control/Select/types";
-    const _default_21: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
-    export default _default_21;
+    const _default_22: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
+    export default _default_22;
 }
 declare module "control/Switch/types" {
     import CheckboxTypes from "control/Checkbox/types";
@@ -1647,8 +1679,8 @@ declare module "control/Switch/styles" {
 }
 declare module "control/Switch/index" {
     import React from 'react';
-    const _default_22: React.ForwardRefExoticComponent<import("control/Checkbox/types").default.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_22;
+    const _default_23: React.ForwardRefExoticComponent<import("control/Checkbox/types").default.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_23;
 }
 declare module "control/TextField/types" {
     import { ChangeEventHandler } from 'react';
@@ -1803,13 +1835,14 @@ declare module "control/TextField/styles" {
 declare module "control/TextField/index" {
     import React from 'react';
     import Types from "control/TextField/types";
-    const _default_23: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
-    export default _default_23;
+    const _default_24: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
+    export default _default_24;
 }
 declare module "control/Stepper/types" {
     namespace StepperTypes {
         interface StepperData {
             label?: React.ReactNode;
+            text?: React.ReactNode;
         }
         interface Props extends Omit<Stage.AllProps<HTMLDivElement, Classes>, 'onChange'> {
             data: StepperData[];
@@ -1828,6 +1861,8 @@ declare module "control/Stepper/types" {
              * Root element
              */
             container: void;
+            stepContainer: void;
+            stepText: ClassState;
             step: ClassState;
             separator: ClassState;
         };
@@ -1842,8 +1877,8 @@ declare module "control/Stepper/styles" {
 declare module "control/Stepper/index" {
     import React from 'react';
     import Types from "control/Stepper/types";
-    const _default_24: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_24;
+    const _default_25: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_25;
 }
 declare module "control/Toggle/types" {
     namespace ToggleTypes {
@@ -1907,8 +1942,8 @@ declare module "control/Toggle/styles" {
 declare module "control/Toggle/index" {
     import React from 'react';
     import Types from "control/Toggle/types";
-    const _default_25: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_25;
+    const _default_26: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_26;
 }
 declare module "data/Meter/types" {
     import MeterThumbTypes from "data/Meter/MeterThumb/types";
@@ -1960,6 +1995,7 @@ declare module "data/Meter/types" {
                 size: Stage.Sizes;
                 decoration: MeterDecoration;
             };
+            thumbWrapper: void;
             /**
              * Thumb view
              */
@@ -2019,20 +2055,23 @@ declare module "data/Meter/index" {
     import React from 'react';
     import Thumb from "data/Meter/MeterThumb/index";
     import Types from "data/Meter/types";
-    const _default_26: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>> & {
+    const _default_27: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>> & {
         Thumb: typeof Thumb;
     };
-    export default _default_26;
+    export default _default_27;
 }
 declare module "data/Table/types" {
     import { ContainerDecorations } from "utils/containerDecorations";
-    import { Classes as ClassesType } from '@stage-ui/system/hooks/useSystem';
     namespace TableTypes {
         type Props<R extends Row = Row> = RowEvents<R> & RowDelegates<R> & Stage.AllProps<HTMLDivElement, Classes> & {
             /**
              * Array of any data objects can be provided
              */
             data: R[];
+            /**
+             * Array of any selected data objects
+             */
+            selected?: R[];
             /**
              * Settings of columns
              */
@@ -2083,7 +2122,10 @@ declare module "data/Table/types" {
             /**
              * Row view <tr>
              */
-            row: void;
+            row: {
+                clickable: boolean;
+                selected: boolean;
+            };
             /**
              * Row cell <td>
              */
@@ -2198,6 +2240,11 @@ declare module "data/Table/types" {
              */
             isVisible: boolean;
             /**
+             * Is current row selected
+             * @readonly
+             */
+            isSelected: boolean;
+            /**
              * Set expanded ReactNode below current row
              */
             setExpand: (el: React.ReactNode | null) => boolean;
@@ -2229,6 +2276,11 @@ declare module "data/Table/types" {
              * @default false
              */
             isVisible: boolean;
+            /**
+             * true if element selected
+             * @default false
+             */
+            isSelected: boolean;
             /**
              * keys of cells that in modify mode
              */
@@ -2273,12 +2325,24 @@ declare module "data/Table/types" {
              * support ASC | DESC
              */
             sort?: TableSortType | TableSortAsync;
+            /**
+             * Primary key for mappings
+             */
+            primary?: boolean;
         }
         interface RowEvents<R extends Row = Row> {
+            /**
+             * Calls when ever row selected
+             */
+            onCheckboxClick?: (rows: TableRowContext<R>[], event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
             /**
              * Calls when ever row clicked
              */
             onRowClick?: (rowCtxItem: TableRowContext<R>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
+            /**
+             * Calls when row double-clicked
+             */
+            onRowDoubleClick?: (rowCtxItem: TableRowContext<R>, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
             /**
              * Calls when mouse enters row
              */
@@ -2301,23 +2365,24 @@ declare module "data/Table/types" {
         }
         interface HeadCellProps<R extends Row = Row> {
             column: TableColumn<R>;
-            styles: ClassesType<Classes>;
+            styles: Stage.Classes<Classes>;
             toggleSort: (sort: TableSortObject) => Promise<unknown>;
         }
         interface CellProps<R extends Row = Row> {
             rowCtxItem: TableRowContext<R>;
             column: TableColumn<R>;
             rowIndex: number;
-            styles: ClassesType<Classes>;
+            styles: Stage.Classes<Classes>;
             getCellContext: Methods<R>['getCellContext'];
         }
         interface RowProps<R extends Row = Row> {
             rowCtxItem: TableRowContext<R>;
             columns: TableColumn<R>[];
             rowIndex: number;
-            styles: ClassesType<Classes>;
+            styles: Stage.Classes<Classes>;
             getCellContext: Methods<R>['getCellContext'];
-            events: RowEvents<R>;
+            events: Record<string, React.MouseEventHandler<HTMLTableRowElement>>;
+            onCheckboxClick?: React.MouseEventHandler<HTMLDivElement>;
             rowDidMount?: (rowCtxItem: TableRowContext<R>) => void;
             rowDidUnmount?: (rowCtxItem: TableRowContext<R>) => void;
             rowMountType?: Props<R>['rowMountType'];
@@ -2333,7 +2398,7 @@ declare module "data/Table/types" {
             footerContent?: Props<R>['footer'];
             pagination?: TablePaginationOptions;
             onPageChange: (pageNumber: number) => void;
-            styles: ClassesType<Classes>;
+            styles: Stage.Classes<Classes>;
         }
     }
     export default TableTypes;
@@ -2346,33 +2411,34 @@ declare module "data/Table/styles" {
 declare module "data/Table/TableFoot" {
     import React from 'react';
     import Types from "data/Table/types";
-    const _default_27: React.ForwardRefExoticComponent<Types.FootProps<Types.Row> & React.RefAttributes<HTMLTableCellElement>>;
-    export default _default_27;
+    const _default_28: React.ForwardRefExoticComponent<Types.FootProps<Types.Row> & React.RefAttributes<HTMLTableCellElement>>;
+    export default _default_28;
 }
 declare module "data/Table/TableHeadCell" {
     import React from 'react';
     import Types from "data/Table/types";
-    const _default_28: React.ForwardRefExoticComponent<Types.HeadCellProps<Types.Row> & React.RefAttributes<HTMLTableDataCellElement>>;
-    export default _default_28;
+    const _default_29: React.ForwardRefExoticComponent<Types.HeadCellProps<Types.Row> & React.RefAttributes<HTMLTableDataCellElement>>;
+    export default _default_29;
 }
 declare module "data/Table/TableCell" {
     import React from 'react';
     import Types from "data/Table/types";
     export const getTR: (target: HTMLElement | null) => HTMLTableRowElement | null;
-    const _default_29: React.ForwardRefExoticComponent<Types.CellProps<Types.Row> & React.RefAttributes<HTMLTableDataCellElement>>;
-    export default _default_29;
+    const _default_30: React.ForwardRefExoticComponent<Types.CellProps<Types.Row> & React.RefAttributes<HTMLTableCellElement>>;
+    export default _default_30;
 }
 declare module "data/Table/TableRow" {
     import React from 'react';
     import Types from "data/Table/types";
-    const _default_30: React.ForwardRefExoticComponent<Types.RowProps<Types.Row> & React.RefAttributes<HTMLTableRowElement>>;
-    export default _default_30;
+    const _default_31: React.ForwardRefExoticComponent<Types.RowProps<Types.Row> & React.RefAttributes<HTMLTableRowElement>>;
+    export default _default_31;
 }
 declare module "data/Table/index" {
     import React from 'react';
     import Types from "data/Table/types";
-    const _default_31: <Row extends Types.Row>(props: Types.RowEvents<Row> & Types.RowDelegates<Row> & Stage.AllProps<HTMLDivElement, Types.Classes> & {
+    const _default_32: <Row extends Types.Row>(props: Types.RowEvents<Row> & Types.RowDelegates<Row> & Stage.AllProps<HTMLDivElement, Types.Classes> & {
         data: Row[];
+        selected?: Row[] | undefined;
         columns: Types.TableColumn<Row>[];
         decoration?: import("utils/containerDecorations").ContainerDecorations | undefined;
         pagination?: Types.TablePaginationOptions | undefined;
@@ -2384,7 +2450,7 @@ declare module "data/Table/index" {
     } & {
         ref?: React.ForwardedRef<Types.Ref<Row>> | undefined;
     }) => React.ReactElement;
-    export default _default_31;
+    export default _default_32;
 }
 declare module "layout/Badge/types" {
     namespace BadgeTypes {
@@ -2437,8 +2503,8 @@ declare module "layout/Badge/styles" {
 declare module "layout/Badge/index" {
     import React from 'react';
     import Types from "layout/Badge/types";
-    const _default_32: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_32;
+    const _default_33: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_33;
 }
 declare module "layout/Block/types" {
     import { ContainerDecorations } from "utils/containerDecorations";
@@ -2480,8 +2546,8 @@ declare module "layout/Block/styles" {
 }
 declare module "layout/Block/index" {
     import Types from "layout/Block/types";
-    const _default_33: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
-    export default _default_33;
+    const _default_34: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
+    export default _default_34;
 }
 declare module "layout/Flexbox/types" {
     import { ContainerDecorations } from "utils/containerDecorations";
@@ -2605,8 +2671,8 @@ declare module "layout/Flexbox/styles" {
 }
 declare module "layout/Flexbox/index" {
     import Types from "layout/Flexbox/types";
-    const _default_34: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
-    export default _default_34;
+    const _default_35: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
+    export default _default_35;
 }
 declare module "layout/Grid/types" {
     import { ContainerDecorations } from "utils/containerDecorations";
@@ -2726,8 +2792,8 @@ declare module "layout/Grid/styles" {
 }
 declare module "layout/Grid/index" {
     import Types from "layout/Grid/types";
-    const _default_35: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
-    export default _default_35;
+    const _default_36: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
+    export default _default_36;
 }
 declare module "layout/ScrollView/types" {
     import React from 'react';
@@ -2958,17 +3024,17 @@ declare module "layout/ScrollView/styles" {
 declare module "layout/ScrollView/index" {
     import React from 'react';
     import Types from "layout/ScrollView/types";
-    const _default_36: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
-    export default _default_36;
+    const _default_37: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
+    export default _default_37;
 }
 declare module "layout/Modal/types" {
-    import { Classes as ClassesType, ResolvedStyleProps } from '@stage-ui/system/hooks/useSystem';
-    import { AllEventProps, AttributeProps, BorderProps, ColorProps, CoreProps, LayoutProps, PaddingProps } from '@stage-ui/system/props/types';
     import React from 'react';
+    import { AllEventProps, AttributeProps, BorderProps, ColorProps, CoreProps, LayoutProps, PaddingProps } from '@stage-ui/system/props/types';
+    import { ResolvedStyleProps } from '@stage-ui/system/props';
     import ScrollViewTypes from "layout/ScrollView/types";
     namespace ModalTypes {
         type ModalDecoration = 'modal' | 'panel' | 'fullscreen';
-        type ExtentedProps = AttributeProps & AllEventProps<HTMLDivElement> & CoreProps<HTMLDivElement, Classes> & ColorProps & BorderProps & PaddingProps & LayoutProps;
+        type ExtentedProps = AttributeProps & AllEventProps<HTMLDivElement> & CoreProps<Classes> & ColorProps & BorderProps & PaddingProps & LayoutProps;
         interface Ref {
             /**
              * Opens modal view with optionaly custom content
@@ -3068,7 +3134,7 @@ declare module "layout/Modal/types" {
         }
         interface ModalOverlayProps {
             getStyles: () => {
-                classes: ClassesType<Classes>;
+                classes: Stage.Classes<Classes>;
                 state: ClassState;
                 styleProps: ResolvedStyleProps;
             };
@@ -3083,7 +3149,7 @@ declare module "layout/Modal/types" {
             containerEvents?: any;
             onClosePressed: () => void;
             getStyles: () => {
-                classes: ClassesType<Classes>;
+                classes: Stage.Classes<Classes>;
                 state: ClassState;
                 styleProps: ResolvedStyleProps;
             };
@@ -3094,7 +3160,7 @@ declare module "layout/Modal/types" {
             hideHeader?: boolean;
             onClosePressed: () => void;
             getStyles: () => {
-                classes: ClassesType<Classes>;
+                classes: Stage.Classes<Classes>;
                 state: ClassState;
             };
         }
@@ -3138,15 +3204,15 @@ declare module "layout/Modal/ModalOverlay" {
     import React from 'react';
     import ScrollViewTypes from "layout/ScrollView/types";
     import Types from "layout/Modal/types";
-    const _default_37: React.ForwardRefExoticComponent<Types.ModalOverlayProps & React.RefAttributes<ScrollViewTypes.Ref>>;
-    export default _default_37;
+    const _default_38: React.ForwardRefExoticComponent<Types.ModalOverlayProps & React.RefAttributes<ScrollViewTypes.Ref>>;
+    export default _default_38;
 }
 declare module "layout/Modal/ModalPortal" {
     import React from 'react';
-    const _default_38: (props: {
+    const _default_39: (props: {
         children: React.ReactNode;
-    }) => React.ReactPortal;
-    export default _default_38;
+    }) => import("@emotion/react/jsx-runtime").JSX.Element;
+    export default _default_39;
 }
 declare module "layout/Modal/ModalHeader" {
     import Types from "layout/Modal/types";
@@ -3167,8 +3233,8 @@ declare module "layout/Modal/styles" {
 declare module "layout/Modal/index" {
     import React from 'react';
     import Types from "layout/Modal/types";
-    const _default_39: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
-    export default _default_39;
+    const _default_40: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
+    export default _default_40;
 }
 declare module "layout/Viewport/types" {
     import { Options } from '@emotion/cache';
@@ -3276,8 +3342,8 @@ declare module "layout/Notification/styles" {
 declare module "layout/Notification/index" {
     import React from 'react';
     import Types from "layout/Notification/types";
-    const _default_40: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_40;
+    const _default_41: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_41;
 }
 declare module "layout/Tree/types" {
     namespace TreeTypes {
@@ -3363,8 +3429,8 @@ declare module "layout/Tree/TreeRightChild" {
 declare module "layout/Tree/index" {
     import React from 'react';
     import Types from "layout/Tree/types";
-    const _default_41: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_41;
+    const _default_42: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_42;
 }
 declare module "layout/Split/types" {
     import React from 'react';
@@ -3423,8 +3489,8 @@ declare module "layout/Split/styles" {
 declare module "layout/Split/index" {
     import React from 'react';
     import Types from "layout/Split/types";
-    const _default_42: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_42;
+    const _default_43: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_43;
 }
 declare module "layout/Viewport/MountArea" {
     import { FC } from 'react';
@@ -3432,10 +3498,6 @@ declare module "layout/Viewport/MountArea" {
     export const ViewportShared: ViewportTypes.Shared;
     const MountArea: FC<ViewportTypes.MountArea>;
     export default MountArea;
-}
-declare module "layout/Viewport/resets" {
-    const _default_43: "\n  html, body, div, span, applet, object, iframe,\n  blockquote, pre,\n  a, abbr, acronym, address, big, cite, code,\n  del, dfn, em, img, ins, kbd, q, s, samp,\n  small, strike, strong, sub, sup, tt, var,\n  b, u, i, center,\n  dl, dt, dd, fieldset, form, label, legend,\n  table, caption, tbody, tfoot, thead, tr, th, td,\n  article, aside, canvas, details, embed, \n  figure, figcaption, footer, header, hgroup, \n  menu, nav, output, ruby, section, summary,\n  time, mark, audio, video {\n      margin: 0;\n      padding: 0;\n      border: 0;\n      font-size: 100%;\n      vertical-align: baseline;\n  }\n";
-    export default _default_43;
 }
 declare module "layout/Viewport/styles" {
     import Types from "layout/Viewport/types";
@@ -3448,15 +3510,23 @@ declare module "layout/Viewport/index" {
     const _default_44: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
     export default _default_44;
 }
-declare module "utils/dialog" {
+declare module "utils/modal" {
     import ModalTypes from "layout/Modal/types";
     const _default_45: (render: ModalTypes.DialogOptions | ModalTypes.DialogRenderFn) => void;
     export default _default_45;
 }
+declare module "utils/dialog" {
+    import ModalTypes from "layout/Modal/types";
+    const _default_46: (render: ModalTypes.DialogOptions | ModalTypes.DialogRenderFn) => void;
+    /**
+     * @deprecated use utils/modal
+     */
+    export default _default_46;
+}
 declare module "utils/notify" {
     import NotificationType from "layout/Notification/types";
-    const _default_46: (options: NotificationType.NotifyOptions) => void;
-    export default _default_46;
+    const _default_47: (options: NotificationType.NotifyOptions) => void;
+    export default _default_47;
 }
 declare module "index" {
     /**
@@ -3464,6 +3534,7 @@ declare module "index" {
      */
     export { default as Divider } from "content/Divider/index";
     export { default as Spinner } from "content/Spinner/index";
+    export { default as Article } from "content/Article/index";
     export { default as Header } from "content/Header/index";
     export { default as Paragraph } from "content/Paragraph/index";
     export { default as Text } from "content/Text/index";
@@ -3509,6 +3580,7 @@ declare module "index" {
      * Utils
      */
     export { default as dialog } from "utils/dialog";
+    export { default as modal } from "utils/modal";
     export { default as notify } from "utils/notify";
     /**
      * Misc

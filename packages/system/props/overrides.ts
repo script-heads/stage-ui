@@ -1,6 +1,7 @@
-import { ResolvedStyleProps } from './index'
-
 import isFunction from '../utils/isFunction'
+
+import type { ResolvedStyleProps } from './index'
+import type Stage from '../index'
 
 export type OverridesProp<ClassesSchema extends Stage.ClassesSchemaDefinition> =
   | ((

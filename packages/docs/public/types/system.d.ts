@@ -4,9 +4,24 @@ declare module "props/color" {
     function colorProp<V extends ColorProp | undefined>(value: V, theme: Stage.Theme): V extends undefined ? undefined : Stage.Color;
     export default colorProp;
 }
+declare module "utils/isFunction" {
+    export default function isFunction<V = Function>(a: any): a is V;
+}
+declare module "utils/isBrowser" {
+    const isBrowser: boolean;
+    export default isBrowser;
+}
+declare module "utils/handleFocus" {
+    export type FocusOptions = 'always' | 'tabOnly' | 'never';
+    function handleFocus<Element extends HTMLElement>(props: Partial<Record<'onFocus' | 'onBlur', (event: React.FocusEvent<Element>) => void>>, focus: FocusOptions): {
+        onFocus: (event: React.FocusEvent<Element>) => void;
+        onBlur: (event: React.FocusEvent<Element>) => void;
+    };
+    export default handleFocus;
+}
 declare module "props/breakpoint" {
     export type BreakpointProp<T> = T[] | T;
-    function breakpointProp<P = string | number | undefined>(value: P | P[], theme: Stage.Theme, resolver: (currentValue: P, theme: Stage.Theme) => Stage.CSSInterpolation): Stage.CSSInterpolation;
+    function breakpointProp<P>(value: P | P[], theme: Stage.Theme, resolver: (currentValue: P, theme: Stage.Theme) => Stage.CSSInterpolation): Stage.CSSInterpolation;
     export default breakpointProp;
 }
 declare module "props/space" {
@@ -16,107 +31,14 @@ declare module "props/space" {
     function spaceProp(value: string | number | undefined, theme: Stage.Theme): string | undefined;
     export default spaceProp;
 }
-declare module "utils/isFunction" {
-    export default function isFunction<V = Function>(a: any): a is V;
-}
 declare module "props/size" {
     export const sizes: string[];
     function sizeProp<T, V>(value: V, spacingResolvers: Record<Stage.Sizes, T>, otherResolver: (value: V) => T): T;
     export default sizeProp;
 }
-declare module "props/index" {
-    import { ClassesSchemaDefinition, ComponentData } from "hooks/useSystem";
-    export type Resolver = <Props, ClassesSchema extends ClassesSchemaDefinition, Element extends HTMLElement>(props: Record<string, any>, componentData: ComponentData<Props, ClassesSchema, Element>, theme: Stage.Theme) => void;
-    const resolvers: Record<string, Resolver>;
-    export default resolvers;
-}
-declare module "utils/createVariant" {
-    import { ClassStateDefinition } from "hooks/useSystem";
-    type ObjectVariant<States extends string> = Partial<Record<States, Stage.CSSInterpolation | Stage.CSSInterpolation[]>>;
-    type BooleanVariant = Stage.CSSInterpolation | Stage.CSSInterpolation[];
-    export type Variant<ClassState extends Exclude<ClassStateDefinition, void>> = (variants: {
-        [State in keyof ClassState]?: ClassState[State] extends boolean ? BooleanVariant : ObjectVariant<Exclude<ClassState[State], boolean | undefined>>;
-    }) => Stage.CSSInterpolation;
-    export default function createVariant<ClassState extends Exclude<ClassStateDefinition, void>>(state: ClassState): Variant<ClassState>;
-}
-declare module "props/overrides" {
-    import { ClassesSchemaDefinition, OverridesClassesDefinition, ResolvedStyleProps } from "hooks/useSystem";
-    export type OverridesProp<ClassesSchema extends ClassesSchemaDefinition> = ((theme: Stage.Theme, styleProps: ResolvedStyleProps) => OverridesClassesDefinition<ClassesSchema>) | OverridesClassesDefinition<ClassesSchema>;
-    function overridesProp<ClassesSchema extends ClassesSchemaDefinition>(prop: OverridesProp<ClassesSchema> | undefined, theme: Stage.Theme, styleProps: ResolvedStyleProps): OverridesClassesDefinition<ClassesSchema>;
-    export default overridesProp;
-}
-declare module "utils/cssReset" {
-    export const cssReset = "\n  html, body, div, span, applet, object, iframe,\n  h1, h2, h3, h4, h5, h6, p, blockquote, pre,\n  a, abbr, acronym, address, big, cite, code,\n  del, dfn, em, img, ins, kbd, q, s, samp,\n  small, strike, strong, sub, sup, tt, var,\n  b, u, i, center,\n  dl, dt, dd, ol, ul, li,\n  fieldset, form, label, legend,\n  table, caption, tbody, tfoot, thead, tr, th, td,\n  article, aside, canvas, details, embed, \n  figure, figcaption, footer, header, hgroup, \n  menu, nav, output, ruby, section, summary,\n  time, mark, audio, video, button {\n    margin: 0;\n    padding: 0;\n    border: 0;\n    font-size: 100%;\n    vertical-align: baseline;\n  }\n  /* HTML5 display-role reset for older browsers */\n  article, aside, details, figcaption, figure, \n  footer, header, hgroup, menu, nav, section {\n    display: block;\n  }\n  body {\n    line-height: 1;\n  }\n  blockquote, q {\n    quotes: none;\n  }\n  blockquote:before, blockquote:after,\n  q:before, q:after {\n    content: '';\n    content: none;\n  }\n  table {\n    border-collapse: collapse;\n    border-spacing: 0;\n  }\n";
-}
-declare module "Provider" {
-    import { Options } from '@emotion/cache';
-    import React from 'react';
-    interface ProviderProps {
-        theme?: Stage.Theme;
-        global?: Stage.CSSInterpolation;
-        cache?: Options;
-        children?: React.ReactNode;
-    }
-    export const StageContext: React.Context<Stage.Theme>;
-    const Provider: <T extends ProviderProps>(props: T) => import("@emotion/react/jsx-runtime").JSX.Element;
-    export default Provider;
-}
-declare module "hooks/useTheme" {
-    const _default: () => Stage.Theme;
-    export default _default;
-}
-declare module "hooks/useSystem" {
-    import { Variant } from "utils/createVariant";
-    import { AllEventProps, CoreProps } from "props/types";
-    export interface Options {
-        focus?: 'always' | 'tabOnly' | 'never';
-        label?: string;
-        theme?: Stage.Theme;
-    }
-    export type ClassStateDefinition = Record<string, string | boolean | undefined> | void;
-    export type ClassesSchemaDefinition = Record<string, ClassStateDefinition>;
-    export type FunctionClassDefinition<ClassState extends Exclude<ClassStateDefinition, void>> = (state: ClassState, variant: Variant<ClassState>) => Stage.CSSInterpolation;
-    export type OverridesClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = {
-        [ClassName in keyof ClassesSchema]?: ClassesSchema[ClassName] extends void ? Stage.CSSInterpolation : FunctionClassDefinition<Exclude<ClassesSchema[ClassName], void>>;
-    };
-    export type ThemeOverrides<Props, ClassesSchema extends ClassesSchemaDefinition> = ((props: Props, styleProps: ResolvedStyleProps) => OverridesClassesDefinition<ClassesSchema>) | OverridesClassesDefinition<ClassesSchema>;
-    export type ClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = {
-        [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends void ? Stage.CSSInterpolation : FunctionClassDefinition<Exclude<ClassesSchema[ClassName], void>>;
-    };
-    export type FunctionClass<ClassSchema extends ClassStateDefinition> = (state: ClassSchema) => Stage.CSSInterpolation;
-    export type Classes<ClassesSchema extends ClassesSchemaDefinition> = {
-        [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends void ? Stage.CSSInterpolation : FunctionClass<ClassesSchema[ClassName]>;
-    };
-    export type CreateClasses<ClassesSchema extends ClassesSchemaDefinition, Props> = (theme: Stage.Theme, props: Props, styleProps: ResolvedStyleProps) => ClassesDefinition<ClassesSchema>;
-    export type ResolvedStyleProps = {
-        all: Stage.CSSInterpolation[];
-        container: Stage.CSSInterpolation[];
-        content: Stage.CSSInterpolation[];
-        style: Stage.CSSInterpolation[];
-        margin: Stage.CSSInterpolation[];
-        padding: Stage.CSSInterpolation[];
-        color: Stage.CSSInterpolation[];
-        border: Stage.CSSInterpolation[];
-        layout: Stage.CSSInterpolation[];
-        flex: Stage.CSSInterpolation[];
-        grid: Stage.CSSInterpolation[];
-        shadow: Stage.CSSInterpolation[];
-    };
-    export type ComponentData<Props extends SystemPropsMeta<Element, ClassesSchema>, ClassesSchema extends ClassesSchemaDefinition, Element extends HTMLElement> = {
-        classes: Classes<ClassesSchema>;
-        attributes: Exclude<CoreProps<Element, ClassesSchema>['attributes'], undefined>;
-        events: Pick<Props, Stage.FilterStartingWith<keyof Props, 'on'>>;
-        styleProps: ResolvedStyleProps;
-        overridesPropClasses: OverridesClassesDefinition<ClassesSchema>;
-    };
-    export type SystemPropsMeta<Element, ClassesSchema extends ClassesSchemaDefinition> = CoreProps<Element, ClassesSchema> & Pick<AllEventProps<Element>, 'onFocus' | 'onBlur' | 'onClick' | 'onEnter' | 'onEsc' | 'onKeyDown'>;
-    function useSystem<Props extends SystemPropsMeta<Element, ClassesSchema>, ClassesSchema extends ClassesSchemaDefinition, Element extends HTMLElement>(name: string, props: Props, createClasses?: Stage.CreateClasses<ClassesSchema, Props>, options?: Options): ComponentData<Props, ClassesSchema, Element>;
-    export default useSystem;
-}
 declare module "props/types" {
+    import React, { CSSProperties } from 'react';
     import CSS from 'csstype';
-    import React from 'react';
-    import { ClassesSchemaDefinition } from "hooks/useSystem";
     import { BreakpointProp } from "props/breakpoint";
     import { ColorProp } from "props/color";
     import { OverridesProp } from "props/overrides";
@@ -125,13 +47,13 @@ declare module "props/types" {
      * All typical component props
      * @name All
      */
-    export interface AllProps<Container, ClassSchema extends ClassesSchemaDefinition = {}> extends CoreProps<Container, ClassSchema>, AttributeProps, AllEventProps<Container>, AllStyleProps {
+    export interface AllProps<Element, ClassSchema extends Stage.ClassesSchemaDefinition = Stage.ClassesSchemaDefinition> extends CoreProps<ClassSchema>, AttributeProps, AllEventProps<Element>, AllStyleProps {
     }
     /**
      * Component core props
      * @name Core
      */
-    export interface CoreProps<Container, ClassesSchema extends ClassesSchemaDefinition = {}> {
+    export interface CoreProps<ClassesSchema extends Stage.ClassesSchemaDefinition = Stage.ClassesSchemaDefinition> {
         /**
          * Override any component style
          * @display Stage.Styles
@@ -149,8 +71,9 @@ declare module "props/types" {
          * @display Stage.Styles
          * @link /props#attributes
          */
-        attributes?: React.HTMLAttributes<Container>;
+        attributes?: AttributeProp;
     }
+    export type AttributeProp = Record<string, string | number | boolean | CSSProperties | undefined>;
     /**
      * Component attribute props
      * @name Attributes
@@ -1326,6 +1249,81 @@ declare module "props/types" {
         onTransitionEndCapture?: React.TransitionEventHandler<T>;
     }
 }
+declare module "props/index" {
+    import { FocusOptions } from "utils/handleFocus";
+    import { AttributeProp } from "props/types";
+    export type ResolvedProps<Props, ClassesSchema extends Stage.ClassesSchemaDefinition, Element> = {
+        attributes: ResolvedAttributes;
+        events: ResolvedEvents<Props>;
+        styleProps: ResolvedStyleProps;
+        propOverridesClasses: Stage.OverridesClassesDefinition<ClassesSchema>;
+    };
+    export type ResolvedStyleProps = {
+        all: Stage.CSSInterpolation[];
+        container: Stage.CSSInterpolation[];
+        content: Stage.CSSInterpolation[];
+        style: Stage.CSSInterpolation[];
+        margin: Stage.CSSInterpolation[];
+        padding: Stage.CSSInterpolation[];
+        color: Stage.CSSInterpolation[];
+        border: Stage.CSSInterpolation[];
+        layout: Stage.CSSInterpolation[];
+        flex: Stage.CSSInterpolation[];
+        grid: Stage.CSSInterpolation[];
+        shadow: Stage.CSSInterpolation[];
+    };
+    export type ResolvedAttributes = AttributeProp;
+    export type ResolvedEvents<Props> = Pick<Props, Stage.FilterStartingWith<keyof Props, 'on'>>;
+    function resolveProps<Props extends Partial<Stage.AllProps<Element, ClassesSchema>>, Element extends HTMLElement, ClassesSchema extends Stage.ClassesSchemaDefinition>(props: Props, theme: Stage.Theme, focus: FocusOptions): ResolvedProps<Props, ClassesSchema, Element>;
+    export default resolveProps;
+}
+declare module "props/overrides" {
+    import { ResolvedStyleProps } from "props/index";
+    export type OverridesProp<ClassesSchema extends Stage.ClassesSchemaDefinition> = ((theme: Stage.Theme, styleProps: ResolvedStyleProps) => Stage.OverridesClassesDefinition<ClassesSchema>) | Stage.OverridesClassesDefinition<ClassesSchema>;
+    function overridesProp<ClassesSchema extends Stage.ClassesSchemaDefinition>(prop: OverridesProp<ClassesSchema> | undefined, theme: Stage.Theme, styleProps: ResolvedStyleProps): Stage.OverridesClassesDefinition<ClassesSchema>;
+    export default overridesProp;
+}
+declare module "utils/createVariant" {
+    type ObjectVariant<States extends string> = Partial<Record<States, Stage.CSSInterpolation | Stage.CSSInterpolation[]>>;
+    type BooleanVariant = Stage.CSSInterpolation | Stage.CSSInterpolation[];
+    export type Variant<ClassState extends Exclude<Stage.ClassStateDefinition, void>> = (variants: {
+        [State in keyof ClassState]?: ClassState[State] extends boolean ? BooleanVariant : ObjectVariant<Exclude<ClassState[State], boolean | undefined>>;
+    }) => Stage.CSSInterpolation;
+    export default function createVariant<ClassState extends Exclude<Stage.ClassStateDefinition, void>>(state: ClassState): Variant<ClassState>;
+}
+declare module "utils/cssReset" {
+    export const cssReset = "\n  html, body, div, span, applet, object, iframe,\n  h1, h2, h3, h4, h5, h6, p, blockquote, pre,\n  a, abbr, acronym, address, big, cite, code,\n  del, dfn, em, img, ins, kbd, q, s, samp,\n  small, strike, strong, sub, sup, tt, var,\n  b, u, i, center,\n  dl, dt, dd, ol, ul, li,\n  fieldset, form, label, legend,\n  table, caption, tbody, tfoot, thead, tr, th, td,\n  article, aside, canvas, details, embed, \n  figure, figcaption, footer, header, hgroup, \n  menu, nav, output, ruby, section, summary,\n  time, mark, audio, video, button {\n    margin: 0;\n    padding: 0;\n    border: 0;\n    font-size: 100%;\n    vertical-align: baseline;\n  }\n  /* HTML5 display-role reset for older browsers */\n  article, aside, details, figcaption, figure, \n  footer, header, hgroup, menu, nav, section {\n    display: block;\n  }\n  body {\n    line-height: 1;\n  }\n  blockquote, q {\n    quotes: none;\n  }\n  blockquote:before, blockquote:after,\n  q:before, q:after {\n    content: '';\n    content: none;\n  }\n  table {\n    border-collapse: collapse;\n    border-spacing: 0;\n  }\n";
+}
+declare module "Provider" {
+    import React from 'react';
+    import { Options } from '@emotion/cache';
+    interface ProviderProps {
+        theme: Stage.Theme;
+        global?: Stage.CSSInterpolation;
+        cacheOptions?: Options;
+        children?: React.ReactNode;
+    }
+    export const StageContext: React.Context<Stage.Theme>;
+    const Provider: <T extends ProviderProps>(props: T) => import("@emotion/react/jsx-runtime").JSX.Element;
+    export default Provider;
+}
+declare module "hooks/useTheme" {
+    const _default: () => Stage.Theme;
+    export default _default;
+}
+declare module "hooks/useSystem" {
+    import { ResolvedProps } from "props/index";
+    export interface Options {
+        focus?: 'always' | 'tabOnly' | 'never';
+        label?: string;
+        theme?: Stage.Theme;
+    }
+    export type ComponentData<Props, ClassesSchema extends Stage.ClassesSchemaDefinition, Element extends HTMLElement> = ResolvedProps<Props, ClassesSchema, Element> & {
+        classes: Stage.Classes<ClassesSchema>;
+    };
+    function useSystem<Props extends Record<string, any>, ClassesSchema extends Stage.ClassesSchemaDefinition, Element extends HTMLElement>(name: string, props: Props, createClasses: Stage.CreateClasses<ClassesSchema, Props>, options?: Options): ComponentData<Props, ClassesSchema, Element>;
+    export default useSystem;
+}
 declare module "hooks/useBreakpoint" {
     function useBreakpoint<T>(values: T[]): T;
     export default useBreakpoint;
@@ -1333,6 +1331,10 @@ declare module "hooks/useBreakpoint" {
 declare module "utils/createID" {
     const _default_1: () => string;
     export default _default_1;
+}
+declare module "utils/isObject" {
+    function isObject(value: any): boolean;
+    export default isObject;
 }
 declare module "utils/mergeObjects" {
     export default function mergeObjects<Target extends Record<string, any>, Source extends Record<string, any>, Resolver extends (value: any) => any>(target: Target, src: Source, resolver?: Resolver): Target & Source;
@@ -1349,11 +1351,13 @@ declare module "utils/createTheme" {
 declare module "index" {
     import { CSSInterpolation as CSSI, CSSObject as CSSO } from '@emotion/serialize';
     import { ColorProp as ColorPropType } from "props/color";
+    import { OverridesProp as OverridesPropType } from "props/overrides";
+    import { SpaceProp as SpacePropType } from "props/space";
     import ColorType from 'color';
     import CSS from 'csstype';
     import { AllProps as AllPropsType } from "props/types";
-    import { ClassesSchemaDefinition, CreateClasses as CreateClassesType, ThemeOverrides as ThemeOverridesType } from "hooks/useSystem";
-    import { OverridesProp } from "props/overrides";
+    import { ResolvedStyleProps } from "props/index";
+    import { Variant } from "utils/createVariant";
     global {
         namespace Stage {
             type Sizes = 'xs' | 's' | 'm' | 'l' | 'xl';
@@ -1454,42 +1458,51 @@ declare module "index" {
                     height: string | number;
                 }>;
                 typography: {
-                    header: Record<Sizes, {
-                        fontSize: string;
-                        lineHeight: string | number;
-                    }>;
-                    text: Record<Sizes, {
-                        fontSize: string;
-                        lineHeight: string | number;
-                    }>;
-                    paragraph: Record<Sizes, {
-                        fontSize: string;
-                        lineHeight: string | number;
-                    }>;
+                    header: Record<Sizes, CSSObject>;
+                    text: Record<Sizes, CSSObject>;
+                    paragraph: Record<Sizes, CSSObject>;
+                    article: {
+                        header: Record<Sizes, CSSObject>;
+                        paragraph: CSSObject;
+                    };
                 };
             }
             interface ThemeOverrides {
             }
+            type ThemeComponentOverrides<Props, ClassesSchema extends ClassesSchemaDefinition> = ((props: Props, styleProps: ResolvedStyleProps) => OverridesClassesDefinition<ClassesSchema>) | OverridesClassesDefinition<ClassesSchema>;
             interface Theme extends ThemeMain {
                 assets: ThemeAssets;
                 overrides: ThemeOverrides;
                 replace: (theme: ReplaceTheme) => Theme;
             }
             interface ThemeDefiniton {
-                main: Stage.ThemeMain<Stage.ColorDefinition, true>;
-                assets: ((main: Stage.ThemeMain) => Stage.ThemeAssets) | Stage.ThemeAssets;
-                overrides?: ((main: Stage.ThemeMain, assets: Stage.ThemeAssets) => Stage.ThemeOverrides) | Stage.ThemeOverrides;
+                main: ThemeMain<Stage.ColorDefinition, true>;
+                assets: ((main: ThemeMain) => ThemeAssets) | ThemeAssets;
+                overrides?: ((main: ThemeMain, assets: ThemeAssets) => Stage.ThemeOverrides) | Stage.ThemeOverrides;
             }
             interface ReplaceTheme {
                 main?: DeepPartial<ThemeDefiniton['main']>;
                 assets?: ((main: Stage.ThemeMain) => DeepPartial<Stage.ThemeAssets>) | DeepPartial<Stage.ThemeAssets>;
                 overrides?: ((main: Stage.ThemeMain, assets: Stage.ThemeAssets) => Stage.ThemeOverrides) | Stage.ThemeOverrides;
             }
+            type ClassStateDefinition = Record<string, string | boolean | undefined> | void;
+            type ClassesSchemaDefinition = Record<string, ClassStateDefinition>;
+            type CreateClasses<ClassesSchema extends ClassesSchemaDefinition, Props> = (theme: Stage.Theme, props: Props, styleProps: ResolvedStyleProps) => Stage.ClassesDefinition<ClassesSchema>;
+            type OverridesClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = Partial<{
+                [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends void ? Stage.CSSInterpolation : FunctionClassDefinition<Exclude<ClassesSchema[ClassName], void>> | Stage.CSSInterpolation;
+            }>;
+            type ClassesDefinition<ClassesSchema extends ClassesSchemaDefinition> = {
+                [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends void ? Stage.CSSInterpolation : FunctionClassDefinition<Exclude<ClassesSchema[ClassName], void>>;
+            };
+            type FunctionClassDefinition<ClassState extends Exclude<ClassStateDefinition, void>> = (state: ClassState, variant: Variant<ClassState>) => Stage.CSSInterpolation;
+            type Classes<ClassesSchema extends ClassesSchemaDefinition> = {
+                [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends void ? Stage.CSSInterpolation : FunctionClass<ClassesSchema[ClassName]>;
+            };
+            type FunctionClass<ClassSchema extends ClassStateDefinition> = (state: ClassSchema) => Stage.CSSInterpolation;
             type AllProps<Containter, ClassSchema extends ClassesSchemaDefinition = ClassesSchemaDefinition> = AllPropsType<Containter, ClassSchema>;
-            type CreateClasses<ClassesSchema extends ClassesSchemaDefinition, Props> = CreateClassesType<ClassesSchema, Props>;
             type ColorProp = ColorPropType;
-            type PropOverrides<ClassSchema extends ClassesSchemaDefinition> = OverridesProp<ClassSchema>;
-            type ComponentThemeOverrides<Props, ClassSchema extends ClassesSchemaDefinition> = ThemeOverridesType<Props, ClassSchema>;
+            type OverridesProp<ClassesSchema extends Stage.ClassesSchemaDefinition> = OverridesPropType<ClassesSchema>;
+            type SpaceProp = SpacePropType;
             type Primitive = null | undefined | string | number | boolean | symbol | bigint;
             type FilterStartingWith<Set, Needle extends string> = Set extends `${Needle}${string}` ? Set : never;
             type DeepPartial<T> = {
@@ -1509,4 +1522,5 @@ declare module "index" {
     export { default as useSystem } from "hooks/useSystem";
     export { default as useBreakpoint } from "hooks/useBreakpoint";
     export { default as createTheme } from "utils/createTheme";
+    export { default as isBrowser } from "utils/isBrowser";
 }

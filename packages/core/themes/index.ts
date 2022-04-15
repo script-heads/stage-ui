@@ -5,6 +5,7 @@ import '@stage-ui/system'
 
 import DividerTypes from '../content/Divider/types'
 import SpinnerTypes from '../content/Spinner/types'
+import ArticleTypes from '../content/Article/types'
 import HeaderTypes from '../content/Header/types'
 import ParagraphTypes from '../content/Paragraph/types'
 import TextTypes from '../content/Text/types'
@@ -43,14 +44,12 @@ import PopoverTypes from '../layout/Popover/types'
 import TreeTypes from '../layout/Tree/types'
 import ScrollView from '../layout/ScrollView/types'
 
-import { darkTheme } from './dark'
-import { lightTheme } from './light'
-
 declare global {
   namespace Stage {
     interface ThemeOverrides {
       Divider?: Stage.ThemeComponentOverrides<DividerTypes.Props, DividerTypes.Classes>
       Spinner?: Stage.ThemeComponentOverrides<SpinnerTypes.Props, SpinnerTypes.Classes>
+      Article?: Stage.ThemeComponentOverrides<ArticleTypes.Props, ArticleTypes.Classes>
       Header?: Stage.ThemeComponentOverrides<HeaderTypes.Props, HeaderTypes.Classes>
       Paragraph?: Stage.ThemeComponentOverrides<
         ParagraphTypes.Props,
@@ -99,5 +98,5 @@ declare module '@emotion/react' {
   export interface Theme extends Stage.Theme {}
 }
 
-export const light = lightTheme
-export const dark = darkTheme
+export { darkTheme as dark } from '@stage-ui/system'
+export { lightTheme as light } from '@stage-ui/system'

@@ -1,7 +1,9 @@
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 
-import { StageContext } from '../Provider'
+import type Stage from '../index'
 
-export default () => {
+export const StageContext = React.createContext({} as Stage.Theme)
+
+export default (): Stage.Theme => {
   return useContext(StageContext)
 }

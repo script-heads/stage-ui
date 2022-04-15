@@ -4,6 +4,8 @@ import isFunction from '../utils/isFunction'
 
 import useTheme from './useTheme'
 
+import type Stage from '../index'
+
 export interface Options {
   focus?: 'always' | 'tabOnly' | 'never'
   label?: string
@@ -27,7 +29,7 @@ function useSystem<
   props: Props,
   createClasses: Stage.CreateClasses<ClassesSchema, Props>,
   options: Options = {},
-) {
+): ComponentData<Props, ClassesSchema, Element> {
   const currentTheme = useTheme()
   const { focus = 'always', label = name, theme = currentTheme } = options
 
@@ -57,7 +59,9 @@ function useSystem<
 
     data.classes[key] = (
       isFunction(selfClass)
-        ? (state: Exclude<ClassesSchema[keyof ClassesSchema], void>) => {
+        ? (
+            state: Exclude<ClassesSchema[keyof ClassesSchema], void>,
+          ): Stage.CSSInterpolation => {
             const variant = createVariant(state)
             return [
               classLabel,

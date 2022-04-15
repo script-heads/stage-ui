@@ -1,7 +1,7 @@
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 
 import Typography from '@stage-ui/core/basic/Typography'
-import isFunction from '@stage-ui/system/utils/isFunction'
+import { isFunction } from '@stage-ui/system'
 
 import Types from './types'
 

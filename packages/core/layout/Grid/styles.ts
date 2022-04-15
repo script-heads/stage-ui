@@ -1,5 +1,5 @@
 import containerDecorations from '@stage-ui/core/utils/containerDecorations'
-import breakpointProp from '@stage-ui/system/props/breakpoint'
+import { breakpointProp } from '@stage-ui/system'
 
 import Types from './types'
 

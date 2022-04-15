@@ -1,4 +1,4 @@
-import colorProp from '@stage-ui/system/props/color'
+import { colorProp } from '@stage-ui/system'
 
 import Types from './types'
 

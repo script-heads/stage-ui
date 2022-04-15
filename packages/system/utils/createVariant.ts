@@ -12,7 +12,7 @@ export type Variant<ClassState extends Exclude<Stage.ClassStateDefinition, void>
 
 export default function createVariant<
   ClassState extends Exclude<Stage.ClassStateDefinition, void>,
->(state: ClassState) {
+>(state: ClassState): Variant<ClassState> {
   const variant: Variant<ClassState> = (variants) => {
     const styles: Stage.CSSInterpolation = []
 
