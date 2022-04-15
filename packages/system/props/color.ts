@@ -11,9 +11,6 @@ type RV<V> = V extends undefined ? undefined : Color
 
 function colorProp<V extends ColorProp | undefined>(value: V, theme: Stage.Theme): RV<V> {
   try {
-    if ((value as string)?.[0] === '#') {
-      return Color(value) as RV<V>
-    }
     if (value instanceof Color) {
       return value as RV<V>
     }
@@ -36,8 +33,11 @@ function colorProp<V extends ColorProp | undefined>(value: V, theme: Stage.Theme
         return theme.color.palette[value as string] as RV<V>
       }
     }
-    return Color(value) as RV<V>
+    throw new Error()
   } catch (error) {
+    if (value) {
+      return Color(value) as RV<V>
+    }
     return undefined as RV<V>
   }
 }

@@ -13,7 +13,7 @@ const App: React.FC = () => {
           value={state}
           mx="s"
           showValue
-          color={s.color.red[300].hex()}
+          color={s.color.black.rgb()}
           size="3.75rem"
         />
         {/* <CircularProgress value={state} shape="square" shadow="s" mx="s" />
