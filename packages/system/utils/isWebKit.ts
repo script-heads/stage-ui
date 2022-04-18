@@ -1,3 +1,3 @@
-import { isBrowser } from '@stage-ui/system'
+import isBrowser from './isBrowser'
 
 export default isBrowser && navigator.userAgent.indexOf('AppleWebKit') !== -1
