@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 
-import { CircularProgress, Flexbox, TextField, Viewport } from '@stage-ui/core'
+import { CircularProgress, Flexbox, Viewport, useTheme } from '@stage-ui/core'
 import ReactDOM from 'react-dom'
 
 const App: React.FC = () => {
   const [state, setState] = useState(50)
+  const s = useTheme()
   return (
     <>
       <Flexbox m="m">
@@ -12,20 +13,19 @@ const App: React.FC = () => {
           value={state}
           mx="s"
           showValue
-          color="red500"
-          strokeBackgroundColor="green500"
+          color={s.color.black.rgb()}
           size="3.75rem"
         />
-        <CircularProgress value={state} shape="square" shadow="s" mx="s" />
+        {/* <CircularProgress value={state} shape="square" shadow="s" mx="s" />
         <TextField
           type="number"
           value={state}
           onChange={(e) => setState(e.target.value)}
           leftChild={<CircularProgress size="xs" value={state} />}
-        />
+        /> */}
         {/* <Meter value={state} /> */}
       </Flexbox>
-      <CircularProgress
+      {/* <CircularProgress
         size="m"
         backgroundColor="transparent"
         color="green500"
@@ -39,7 +39,7 @@ const App: React.FC = () => {
       </CircularProgress>
       <CircularProgress size="m" value={state} m="s" />
       <CircularProgress size="l" value={state} m="s" />
-      <CircularProgress size="10rem" color="green500" value={state} m="s" />
+      <CircularProgress size="10rem" color="green500" value={state} m="s" /> */}
     </>
   )
 }

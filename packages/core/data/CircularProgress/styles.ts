@@ -5,6 +5,7 @@ import Types from './types'
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
   const { value = 0, shape = 'round', size = 'm', fontSize: fontSizeProp } = props
   const color = colorResolver(props.color || theme.color.primary, theme)
+
   const strokeBackground = colorResolver(
     props.strokeBackgroundColor || theme.color.gray[200],
     theme,

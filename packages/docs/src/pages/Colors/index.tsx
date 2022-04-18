@@ -30,10 +30,10 @@ function ColorPage() {
     if (!(color as Stage.Color).rgb) {
       palette.push(
         <Fragment key={colorName}>
-          <Header size="xl">
+          <Header size="l" my="l">
             {colorName.charAt(0).toUpperCase() + colorName.toLowerCase().slice(1)}
           </Header>
-          <Flexbox wrap="wrap">
+          <Flexbox wrap="wrap" mb="xl">
             {Object.keys(color).map((shade) => (
               <ColorPreview
                 key={createID()}
@@ -42,6 +42,7 @@ function ColorPage() {
                     shade as unknown as keyof Stage.ColorShades
                   ]
                 }
+                prefix={colorName}
                 name={shade}
               />
             ))}
@@ -53,15 +54,24 @@ function ColorPage() {
 
     if (!deprecatedColors.includes(colorName)) {
       general.push(
-        <ColorPreview key={createID()} value={color as Stage.Color} name={colorName} />,
+        <ColorPreview
+          circle
+          key={createID()}
+          value={color as Stage.Color}
+          name={colorName}
+        />,
       )
     }
   })
 
   return (
     <>
-      <Header size="xl">General</Header>
-      <Flexbox wrap="wrap">{general}</Flexbox>
+      <Header size="xl" mb="xl">
+        Foundation
+      </Header>
+      <Flexbox wrap="wrap" mb="xl">
+        {general}
+      </Flexbox>
       {palette}
     </>
   )

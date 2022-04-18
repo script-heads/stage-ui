@@ -1,80 +1,45 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import Color from 'color'
-
-import type Stage from '../index'
 
 export type ColorProp =
   | ((colors: Stage.Theme['color']) => Color | Stage.ColorNames)
   | Color
   | Stage.ColorNames
 
-const shadeColors = [
-  'gray',
-  'yellow',
-  'orange',
-  'red',
-  'rose',
-  'pink',
-  'green',
-  'lightGreen',
-  'lime',
-  'teal',
-  'cyan',
-  'lightBlue',
-  'blue',
-  'indigo',
-  'purple',
-]
+type RV<V> = V extends undefined ? undefined : Color
 
-function colorProp<V extends ColorProp | undefined>(
-  value: V,
-  theme: Stage.Theme,
-): V extends undefined ? undefined : Stage.Color {
-  let resolvedColor
-
-  switch (typeof value) {
-    case 'string': {
-      const [color, shade] = value.split(/(\d+)/) as [
-        keyof Stage.Colors,
-        keyof Stage.ColorShades,
-      ]
-
-      const isShadeColor =
-        shade &&
-        shadeColors.includes(color) &&
-        Object.hasOwnProperty.call(theme.color[color], shade)
-
-      if (isShadeColor) {
-        resolvedColor = (theme.color[color] as Stage.ColorShades)[shade]
-        break
+function colorProp<V extends ColorProp | undefined>(value: V, theme: Stage.Theme): RV<V> {
+  try {
+    if (value instanceof Color) {
+      return value as RV<V>
+    }
+    if (typeof value === 'function') {
+      return colorProp(value(theme.color), theme) as RV<V>
+    }
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    const [colorName, colorShade] = value?.split(/(\d+)/) as [
+      keyof Stage.Colors,
+      keyof Stage.ColorShades,
+    ]
+    if (colorName) {
+      if (colorShade) {
+        return (theme.color[colorName] as Stage.ColorShades)[colorShade] as RV<V>
       }
-
-      if (!isShadeColor && Object.hasOwnProperty.call(theme.color, value)) {
-        resolvedColor = theme.color[value as keyof Stage.Colors]
-        break
+      if (theme.color[value as keyof Stage.Colors] instanceof Color) {
+        return theme.color[value as keyof Stage.Colors] as RV<V>
       }
-
-      if (Object.hasOwnProperty.call(theme.color.palette, value)) {
-        resolvedColor = theme.color.palette[value]
-        break
+      if (theme.color.palette[value as string]) {
+        return theme.color.palette[value as string] as RV<V>
       }
-
-      resolvedColor = Color(value)
-      break
     }
-    case 'function': {
-      resolvedColor = colorProp(value(theme.color), theme)
-      break
+    throw new Error()
+  } catch (error) {
+    if (value) {
+      return Color(value) as RV<V>
     }
-    case 'undefined': {
-      resolvedColor = value
-      break
-    }
-    default: {
-      resolvedColor = Color(value)
-    }
+    return undefined as RV<V>
   }
-
-  return resolvedColor as V extends undefined ? undefined : Stage.Color
 }
 
 export default colorProp
