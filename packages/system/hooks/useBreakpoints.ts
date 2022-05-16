@@ -1,39 +1,49 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
-import useTheme from '@stage-ui/system/hooks/useTheme'
-import getCurrentBreakpoint from '@stage-ui/system/utils/getCurrentBreakpoint'
+import useTheme from './useTheme'
 
-import isBrowser from '../utils/isBrowser'
+let index = 0
 
-function useBreakpoint<Value>(values: Value[]): Value {
+const useBreakpoints = <T>(values: T[]): T => {
   const theme = useTheme()
-  const [currentBreakpoint, setCurrentBreakpoint] = useState<number>(
-    getCurrentBreakpoint(theme),
+  const breakpoints = useMemo(
+    () => theme.breakpoints.map((s) => parseFloat(s.replace(/[^0-9\\.]/g, ''))),
+    [],
   )
 
+  const calcIndex = (): number => {
+    let idx = 0
+    const w = document.body.clientWidth || document.body.offsetWidth
+    breakpoints.forEach((breakpoint, i) => {
+      if (w <= breakpoint) {
+        idx = i
+      }
+    })
+    return idx
+  }
+
+  index = calcIndex()
+
+  const [, reload] = useState<number>(index)
+
   const calcState = (): void => {
-    const nextBreakpoint = getCurrentBreakpoint(theme)
-    setCurrentBreakpoint(nextBreakpoint)
+    const idx = calcIndex()
+    if (idx !== index) {
+      reload(idx)
+      index = idx
+    }
   }
 
   useEffect(() => {
-    if (isBrowser) {
-      window.addEventListener('resize', calcState)
-      window.addEventListener('orientationchange', calcState)
-      return () => {
-        window.removeEventListener('resize', calcState)
-        window.removeEventListener('orientationchange', calcState)
-      }
+    window.addEventListener('resize', calcState)
+    window.addEventListener('orientationchange', calcState)
+    return () => {
+      window.removeEventListener('resize', calcState)
+      window.removeEventListener('orientationchange', calcState)
     }
   }, [])
 
-  if (typeof values[currentBreakpoint] !== 'undefined' && values.length > 0) {
-    return values[values.length - 1]
-  }
-
-  return typeof values[currentBreakpoint] !== 'undefined'
-    ? values[currentBreakpoint]
-    : values[values.length - 1]
+  return values[index] || values[values.length - 1]
 }
 
-export default useBreakpoint
+export default useBreakpoints
