@@ -11,7 +11,7 @@ const Radio: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
     label,
     disabled,
     defaultValue,
-    checked: checkedProp = false,
+    checked: checkedProp,
     half = false,
   } = props
 
@@ -29,20 +29,24 @@ const Radio: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
   const [checked, setChecked] = useState(checkedProp || defaultValue || false)
 
   useEffect(() => {
-    setChecked(checkedProp)
+    if (typeof checkedProp !== 'undefined') {
+      setChecked(checkedProp)
+    }
   }, [checkedProp])
 
   /**
    * Change handler
    */
-  function handleChange() {
+  function handleChange(): void {
     onChange?.(checked)
-    setChecked(!checked)
+    if (typeof checkedProp === 'undefined') {
+      setChecked(!checked)
+    }
   }
   /*
    * Keyboard control
    */
-  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>): void {
     /**
      * Enter or Space
      */
@@ -58,7 +62,7 @@ const Radio: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref
     onKeyDown?.(event)
   }
 
-  function handleClick(e: React.MouseEvent<HTMLInputElement>) {
+  function handleClick(e: React.MouseEvent<HTMLInputElement>): void {
     if (!disabled) {
       handleChange()
     }
