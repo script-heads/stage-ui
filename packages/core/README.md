@@ -25,7 +25,5 @@ export default () => {
 }
 ```
 
-`#stageui #uikit #uiframework #ui #reactui`
-
 ***
 [MIT License](https://github.com/pt-one/StageUI/blob/master/LICENSE)

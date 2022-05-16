@@ -1,7 +1,7 @@
 {
   "name": "@stage-ui/core",
   "description": "Flexible UI Framework declared by your own Design System.",
-  "version": "0.3.39",
+  "version": "0.3.40",
   "license": "MIT",
   "homepage": "https://stageui.shds.io/",
   "bugs": "https://github.com/script-heads/stage-ui/issues",
@@ -10,6 +10,16 @@
     "url": "https://github.com/script-heads/stage-ui.git",
     "directory": "packages/core"
   },
+  "keywords": [
+    "stageui",
+    "uikit",
+    "react",
+    "@stage-ui",
+    "ui",
+    "components",
+    "stage",
+    "framework"
+  ],
   "scripts": {
     "build": "node ../../scripts/make core && yarn build:types && yarn build:js",
     "build:js": "babel ./ --out-dir ../../build/core --extensions \".ts,.tsx\" --ignore \"node_modules/\"",

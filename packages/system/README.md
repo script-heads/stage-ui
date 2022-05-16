@@ -12,7 +12,5 @@ Make styles for Stage UI Components
 yarn add @stage-ui/system
 ```
 
-`#stageui #uikit #uiframework #ui #reactui`
-
 ***
 [MIT License](https://github.com/pt-one/StageUI/blob/master/LICENSE)
