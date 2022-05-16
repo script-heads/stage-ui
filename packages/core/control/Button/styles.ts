@@ -74,22 +74,20 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         filled: {
           idle: {
             background: color.rgb().string(),
-            backgroundSize: '300% 300%',
-            backgroundImage: `linear-gradient(45deg, ${primaryGradient.join(',')})`,
+            // backgroundSize: '300% 300%',
+            // backgroundImage: `linear-gradient(45deg, ${primaryGradient.join(',')})`,
             color: isDark
               ? theme.color.onPrimary.rgb().string()
               : theme.color.onSurface.rgb().string(),
           },
           hover: {
-            transition: 'all 0.15s',
-            backgroundPosition: '100% 100%',
+            background: color.whiten(0.4).hex(),
           },
           active: {
-            backgroundPosition: '80% 80%',
+            background: color.blacken(0.4).hex(),
           },
           disabled: {
             color: theme.color.gray[500].hex(),
-            backgroundImage: 'none',
             background: theme.color.gray[200].hex(),
           },
         },

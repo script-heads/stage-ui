@@ -10,5 +10,7 @@ Flexible UI Framework declared by your own Design System.
 yarn add @stage-ui/icons
 ```
 
+`#stageui #uikit #uiframework #ui #reactui`
+
 ***
 [MIT License](https://github.com/pt-one/StageUI/blob/master/LICENSE)
