@@ -1,3 +1,4 @@
+/* eslint-disable react/no-multi-comp */
 import React, { forwardRef, ForwardRefRenderFunction, useEffect, useState } from 'react'
 
 import { Flexbox, Text } from '@stage-ui/core'
@@ -34,7 +35,7 @@ const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
   ref,
 ) => {
   const { length: total, pageSize = 20, value } = props
-  const lastPage = Math.ceil(total / pageSize)
+  const pagesCount = Math.ceil(total / pageSize)
   const { classes, attributes, events, styleProps } = useSystem(
     'Pageswitch',
     props,
@@ -43,17 +44,17 @@ const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
 
   let defaultValue = value || props.defaultValue || 1
   if (defaultValue <= 0) defaultValue = 1
-  if (defaultValue > lastPage) defaultValue = lastPage
+  if (defaultValue > pagesCount) defaultValue = pagesCount
 
   const [currentPage, setCurrentPage] = useState(defaultValue)
 
   useEffect(() => {
     if (value !== undefined) {
       if (value > 0) {
-        if (value < lastPage) {
+        if (value < pagesCount) {
           setCurrentPage(value)
         } else {
-          setCurrentPage(lastPage)
+          setCurrentPage(pagesCount)
         }
       } else {
         setCurrentPage(1)
@@ -61,42 +62,41 @@ const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
     }
   }, [value])
 
-  const setPage = (pageNumber: number) => {
+  const setPage = (pageNumber: number): void => {
     props.onChange?.(pageNumber, (pageNumber - 1) * pageSize)
     if (value === undefined) {
       setCurrentPage(pageNumber)
     }
   }
 
-  const nextPage = () => {
-    if (currentPage < lastPage) {
+  const nextPage = (): void => {
+    if (currentPage < pagesCount) {
       setPage(currentPage + 1)
     }
   }
 
-  const prevPage = () => {
+  const prevPage = (): void => {
     if (currentPage > 1) {
       setPage(currentPage - 1)
     }
   }
 
   let prevPagesCount = currentPage - 1
-  let nextPagesCount = lastPage - currentPage || 0
+  let nextPagesCount = Math.max(pagesCount - currentPage, 0)
+
   let allowToFirst = false
   let allowToLast = false
 
-  if (prevPagesCount > PAGE_BUTTON_MAX) {
+  if (prevPagesCount > PAGE_BUTTON_MAX + 2) {
     prevPagesCount = PAGE_BUTTON_MAX
     allowToFirst = true
   }
-  if (nextPagesCount > PAGE_BUTTON_MAX) {
+  if (nextPagesCount > PAGE_BUTTON_MAX + 2) {
     nextPagesCount = PAGE_BUTTON_MAX
     allowToLast = true
   }
 
-  if (total <= 0) {
-    return null
-  }
+  if (total <= 0) return null
 
   return (
     <Flexbox
@@ -106,10 +106,10 @@ const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
       {...events}
     >
       <ArrowIosLeft
-        mr="0.5rem"
+        mr="s"
         size="1.25rem"
         css={classes.arrowButton({ disabled: currentPage <= 1 })}
-        onClick={() => prevPage()}
+        onClick={prevPage}
       />
       {allowToFirst && <PageButton page={1} classes={classes} onClick={setPage} />}
       {allowToFirst && <Text css={classes.separator}>...</Text>}
@@ -136,12 +136,14 @@ const Pageswitch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
           />
         ))}
       {allowToLast && <Text css={classes.separator}>...</Text>}
-      {allowToLast && <PageButton page={lastPage} classes={classes} onClick={setPage} />}
+      {allowToLast && (
+        <PageButton page={pagesCount} classes={classes} onClick={setPage} />
+      )}
       <ArrowIosRight
         ml="0.5rem"
         size="1.25rem"
-        css={classes.arrowButton({ disabled: currentPage >= lastPage })}
-        onClick={() => nextPage()}
+        css={classes.arrowButton({ disabled: currentPage >= pagesCount })}
+        onClick={nextPage}
       />
     </Flexbox>
   )

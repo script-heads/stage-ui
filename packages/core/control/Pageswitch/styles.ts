@@ -28,7 +28,12 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = ({
     },
   ],
   separator: {
+    display: 'flex',
     color: color.light.rgb().string(),
+    width: '2.25rem',
+    margin: '0 .25rem',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   pageButton: (state) => [
     {
