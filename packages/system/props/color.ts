@@ -23,7 +23,7 @@ function colorProp<V extends ColorProp | undefined>(value: V, theme: Stage.Theme
       keyof Stage.ColorShades,
     ]
     if (colorName) {
-      if (colorShade) {
+      if (theme.color[colorName] && colorShade) {
         return (theme.color[colorName] as Stage.ColorShades)[colorShade] as RV<V>
       }
       if (theme.color[value as keyof Stage.Colors] instanceof Color) {
