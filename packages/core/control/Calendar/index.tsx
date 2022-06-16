@@ -7,6 +7,10 @@ import React, {
 
 import { useSystem } from '@stage-ui/system'
 import moment, { Moment } from 'moment'
+import 'moment/locale/ru'
+import 'moment/locale/it'
+import 'moment/locale/fr'
+import 'moment/locale/de'
 
 import DateGrid from './DateGrid'
 import createClasses from './styles'
@@ -56,7 +60,7 @@ const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
     }
   }, [props.value])
 
-  function onChange(dtStart: Moment, dtEnd?: Moment) {
+  function onChange(dtStart: Moment, dtEnd?: Moment): void {
     if (dtEnd && dtEnd < dtStart) {
       setValue([dtEnd, dtStart])
       props.onChange?.(dtEnd.toDate(), dtStart.toDate())
@@ -66,7 +70,7 @@ const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
     }
   }
 
-  function onViewChange(dt: Moment) {
+  function onViewChange(dt: Moment): void {
     props.onViewChange?.(dt.toDate())
   }
   return (

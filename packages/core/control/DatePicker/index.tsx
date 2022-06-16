@@ -9,6 +9,10 @@ import React, {
 import { Calendar as CalendarIcon } from '@stage-ui/icons'
 import { useSystem } from '@stage-ui/system'
 import moment, { Moment } from 'moment'
+import 'moment/locale/ru'
+import 'moment/locale/it'
+import 'moment/locale/fr'
+import 'moment/locale/de'
 
 import Field from '../../basic/Field'
 import Drop from '../../layout/Drop'
