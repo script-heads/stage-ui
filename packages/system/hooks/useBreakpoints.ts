@@ -1,8 +1,6 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, useRef } from 'react'
 
 import useTheme from './useTheme'
-
-let index = 0
 
 const useBreakpoints = <T>(values: T[]): T => {
   const theme = useTheme()
@@ -22,15 +20,15 @@ const useBreakpoints = <T>(values: T[]): T => {
     return idx
   }
 
-  index = calcIndex()
+  const index = useRef(calcIndex())
 
-  const [, reload] = useState<number>(index)
+  const [, reload] = useState<number>()
 
   const calcState = (): void => {
     const idx = calcIndex()
-    if (idx !== index) {
+    if (idx !== index.current) {
+      index.current = idx
       reload(idx)
-      index = idx
     }
   }
 
@@ -43,7 +41,7 @@ const useBreakpoints = <T>(values: T[]): T => {
     }
   }, [])
 
-  return values[index] || values[values.length - 1]
+  return values[index.current] || values[values.length - 1]
 }
 
 export default useBreakpoints
