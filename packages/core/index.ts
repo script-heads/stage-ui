@@ -31,6 +31,7 @@ export { default as Toggle } from './control/Toggle'
 export { default as Meter } from './data/Meter'
 export { default as Table } from './data/Table'
 export { default as CircularProgress } from './data/CircularProgress'
+export { default as ArcProgress } from './data/ArcProgress'
 /**
  * Layout
  */

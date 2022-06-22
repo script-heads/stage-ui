@@ -7,22 +7,14 @@ import { useTheme } from '@emotion/react'
 import styles from './styles'
 import Types from './types'
 
-const CircularProgress: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
+const ArcProgress: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
   props,
   ref,
 ) => {
-  const {
-    shape = 'round',
-    size = 'm',
-    value = 0,
-    strokeWidth,
-    text,
-    showValue,
-    children,
-  } = props
+  const { shape = 'round', size = 'm', value = 0, strokeWidth, children } = props
 
   const { classes, attributes, events, styleProps } = useSystem(
-    'CircularProgress',
+    'ArcProgress',
     props,
     styles,
   )
@@ -41,21 +33,22 @@ const CircularProgress: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = 
 
   const radius = (sizePx - strokeWidthPx) / 2
   const circumference = radius * Math.PI * 2
-  const dash = (value / 100) * circumference
+  const dash = (value / 222) * circumference
+  const backgroundDash = (100 / 222) * circumference
 
   const styleState = {
     shape,
     size,
     sizePx,
     sizeRem,
+    sizeHalfRem,
     strokeWidthPx,
     strokeWidthRem,
     radius,
     circumference,
     dash,
+    backgroundDash,
   }
-
-  const textValue = children || text || (showValue ? value : undefined)
 
   return (
     <div
@@ -64,27 +57,25 @@ const CircularProgress: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = 
       {...events}
       css={[classes.container(styleState), styleProps.all]}
     >
-      <svg css={[classes.svg(styleState)]}>
-        <circle
-          cx={sizeHalfRem}
-          cy={sizeHalfRem}
-          r={radius}
-          css={classes.circleBackground(styleState)}
-        />
-        <circle
-          cx={sizeHalfRem}
-          cy={sizeHalfRem}
-          r={radius}
-          css={classes.circle(styleState)}
-        />
-      </svg>
-      {typeof textValue !== 'undefined' && (
-        <div css={classes.text(styleState)}>
-          <span>{textValue}</span>
-        </div>
-      )}
+      <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+        <svg css={[classes.svg(styleState)]}>
+          <circle
+            cx={sizeHalfRem}
+            cy={sizeHalfRem}
+            r={radius}
+            css={classes.arcBackground(styleState)}
+          />
+          <circle
+            cx={sizeHalfRem}
+            cy={sizeHalfRem}
+            r={radius}
+            css={classes.arc(styleState)}
+          />
+        </svg>
+        {children}
+      </div>
     </div>
   )
 }
 
-export default forwardRef(CircularProgress)
+export default forwardRef(ArcProgress)
