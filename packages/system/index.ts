@@ -2,6 +2,7 @@ import { CSSInterpolation as CSSI, CSSObject as CSSO } from '@emotion/serialize'
 import { ColorProp as ColorPropType } from '@stage-ui/system/props/color'
 import { OverridesProp as OverridesPropType } from '@stage-ui/system/props/overrides'
 import { SpaceProp as SpacePropType } from '@stage-ui/system/props/space'
+import { BreakpointProp as BreakpointPropType } from '@stage-ui/system/props/breakpoint'
 import ColorType from 'color'
 import CSS from 'csstype'
 
@@ -240,6 +241,7 @@ declare global {
     type OverridesProp<ClassesSchema extends Stage.ClassesSchemaDefinition> =
       OverridesPropType<ClassesSchema>
     type SpaceProp = SpacePropType
+    type BreakpointProp<T> = BreakpointPropType<T>
 
     type Primitive = null | undefined | string | number | boolean | symbol | bigint
 
@@ -301,7 +303,7 @@ export { default as spaceProp } from './props/space'
 export { light as lightTheme } from './themes'
 export { dark as darkTheme } from './themes'
 
-export { default as breakpoint } from './utils/getCurrentBreakpoint'
+export { default as getCurrentBreakpoint } from './utils/getCurrentBreakpoint'
 export { default as createID } from './utils/createID'
 export { default as createTheme } from './utils/createTheme'
 export { default as getFontSize } from './utils/getFontSize'
