@@ -628,6 +628,10 @@ declare module "control/Calendar/styles" {
 }
 declare module "control/Calendar/index" {
     import React from 'react';
+    import 'moment/locale/ru';
+    import 'moment/locale/it';
+    import 'moment/locale/fr';
+    import 'moment/locale/de';
     import Types from "control/Calendar/types";
     const _default_9: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
     export default _default_9;
@@ -1072,6 +1076,10 @@ declare module "control/DatePicker/styles" {
 }
 declare module "control/DatePicker/index" {
     import React from 'react';
+    import 'moment/locale/ru';
+    import 'moment/locale/it';
+    import 'moment/locale/fr';
+    import 'moment/locale/de';
     import Types from "control/DatePicker/types";
     const _default_14: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
     export default _default_14;
@@ -2454,7 +2462,6 @@ declare module "data/Table/index" {
 }
 declare module "data/CircularProgress/types" {
     namespace CircularProgressTypes {
-        type CircularProgressDecoration = 'filled' | 'outline';
         type CircularProgressShape = 'square' | 'round';
         interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
             /**
@@ -2468,11 +2475,6 @@ declare module "data/CircularProgress/types" {
              * @default m
              */
             size?: Stage.Sizes | string;
-            /**
-             * Defines how CircularProgress look
-             * @default filled
-             */
-            decoration?: CircularProgressDecoration;
             /**
              * Shape of CircularProgress
              * @default rounded
@@ -2500,7 +2502,6 @@ declare module "data/CircularProgress/types" {
         type State = {
             shape: CircularProgressShape;
             size: Stage.Sizes | string;
-            decoration: CircularProgressDecoration;
             sizeRem: string;
             sizePx: number;
             strokeWidthRem: string;
@@ -2529,6 +2530,73 @@ declare module "data/CircularProgress/index" {
     import Types from "data/CircularProgress/types";
     const _default_33: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
     export default _default_33;
+}
+declare module "data/ArcProgress/types" {
+    namespace ArcProgressTypes {
+        type ArcProgressShape = 'square' | 'round';
+        interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
+            /**
+             * Current value of ArcProgress, for controlled component
+             */
+            value?: number;
+            /**
+             * Sizes of ArcProgress
+             * @display Sizes
+             * @link /props/#size
+             * @default m
+             */
+            size?: Stage.Sizes | string;
+            /**
+             * Shape of ArcProgress
+             * @default rounded
+             */
+            shape?: ArcProgressShape;
+            /**
+             * Color of ArcProgress
+             */
+            color?: Stage.ColorProp;
+            /**
+             * Width of ArcProgress
+             */
+            strokeWidth?: string | number;
+            /**
+             * Background color for stroke of ArcProgress
+             */
+            strokeBackgroundColor?: Stage.ColorProp;
+            children?: React.ReactNode;
+        }
+        type State = {
+            shape: ArcProgressShape;
+            size: Stage.Sizes | string;
+            sizeRem: string;
+            sizeHalfRem: string;
+            sizePx: number;
+            strokeWidthRem: string;
+            strokeWidthPx: number;
+            radius: number;
+            circumference: number;
+            dash: number;
+            backgroundDash: number;
+        };
+        type Classes = {
+            container: State;
+            svg: State;
+            arc: State;
+            arcBackground: State;
+        };
+    }
+    export default ArcProgressTypes;
+}
+declare module "data/ArcProgress/styles" {
+    import Types from "data/ArcProgress/types";
+    const createClasses: Stage.CreateClasses<Types.Classes, Types.Props>;
+    export default createClasses;
+}
+declare module "data/ArcProgress/index" {
+    import React from 'react';
+    import Types from "data/ArcProgress/types";
+    const _default_34: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_34;
 }
 declare module "layout/Badge/types" {
     namespace BadgeTypes {
@@ -2581,8 +2649,8 @@ declare module "layout/Badge/styles" {
 declare module "layout/Badge/index" {
     import React from 'react';
     import Types from "layout/Badge/types";
-    const _default_34: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_34;
+    const _default_35: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_35;
 }
 declare module "layout/Block/types" {
     import { ContainerDecorations } from "utils/containerDecorations";
@@ -2624,8 +2692,8 @@ declare module "layout/Block/styles" {
 }
 declare module "layout/Block/index" {
     import Types from "layout/Block/types";
-    const _default_35: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
-    export default _default_35;
+    const _default_36: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
+    export default _default_36;
 }
 declare module "layout/Flexbox/types" {
     import { ContainerDecorations } from "utils/containerDecorations";
@@ -2749,8 +2817,8 @@ declare module "layout/Flexbox/styles" {
 }
 declare module "layout/Flexbox/index" {
     import Types from "layout/Flexbox/types";
-    const _default_36: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
-    export default _default_36;
+    const _default_37: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
+    export default _default_37;
 }
 declare module "layout/Grid/types" {
     import { ContainerDecorations } from "utils/containerDecorations";
@@ -2870,8 +2938,8 @@ declare module "layout/Grid/styles" {
 }
 declare module "layout/Grid/index" {
     import Types from "layout/Grid/types";
-    const _default_37: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
-    export default _default_37;
+    const _default_38: import("react").ForwardRefExoticComponent<Types.Props & import("react").RefAttributes<HTMLDivElement>>;
+    export default _default_38;
 }
 declare module "layout/ScrollView/types" {
     import React from 'react';
@@ -3102,8 +3170,8 @@ declare module "layout/ScrollView/styles" {
 declare module "layout/ScrollView/index" {
     import React from 'react';
     import Types from "layout/ScrollView/types";
-    const _default_38: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
-    export default _default_38;
+    const _default_39: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
+    export default _default_39;
 }
 declare module "layout/Modal/types" {
     import React from 'react';
@@ -3282,15 +3350,15 @@ declare module "layout/Modal/ModalOverlay" {
     import React from 'react';
     import ScrollViewTypes from "layout/ScrollView/types";
     import Types from "layout/Modal/types";
-    const _default_39: React.ForwardRefExoticComponent<Types.ModalOverlayProps & React.RefAttributes<ScrollViewTypes.Ref>>;
-    export default _default_39;
+    const _default_40: React.ForwardRefExoticComponent<Types.ModalOverlayProps & React.RefAttributes<ScrollViewTypes.Ref>>;
+    export default _default_40;
 }
 declare module "layout/Modal/ModalPortal" {
     import React from 'react';
-    const _default_40: (props: {
+    const _default_41: (props: {
         children: React.ReactNode;
     }) => import("@emotion/react/jsx-runtime").JSX.Element;
-    export default _default_40;
+    export default _default_41;
 }
 declare module "layout/Modal/ModalHeader" {
     import Types from "layout/Modal/types";
@@ -3311,8 +3379,8 @@ declare module "layout/Modal/styles" {
 declare module "layout/Modal/index" {
     import React from 'react';
     import Types from "layout/Modal/types";
-    const _default_41: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
-    export default _default_41;
+    const _default_42: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<Types.Ref>>;
+    export default _default_42;
 }
 declare module "layout/Viewport/types" {
     import { Options } from '@emotion/cache';
@@ -3352,6 +3420,12 @@ declare module "layout/Viewport/types" {
         };
         type Context = {
             theme: Stage.Theme;
+        };
+        type Classes = {
+            /**
+             * Root element
+             */
+            container: void;
         };
         type Shared = {
             addElement: (children: React.ReactElement, key?: string, placement?: MountAreaPlacement) => string;
@@ -3410,8 +3484,8 @@ declare module "layout/Notification/styles" {
 declare module "layout/Notification/index" {
     import React from 'react';
     import Types from "layout/Notification/types";
-    const _default_42: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_42;
+    const _default_43: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_43;
 }
 declare module "layout/Tree/types" {
     namespace TreeTypes {
@@ -3497,8 +3571,8 @@ declare module "layout/Tree/TreeRightChild" {
 declare module "layout/Tree/index" {
     import React from 'react';
     import Types from "layout/Tree/types";
-    const _default_43: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_43;
+    const _default_44: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_44;
 }
 declare module "layout/Split/types" {
     import React from 'react';
@@ -3557,8 +3631,8 @@ declare module "layout/Split/styles" {
 declare module "layout/Split/index" {
     import React from 'react';
     import Types from "layout/Split/types";
-    const _default_44: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_44;
+    const _default_45: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_45;
 }
 declare module "layout/Viewport/MountArea" {
     import { FC } from 'react';
@@ -3567,29 +3641,34 @@ declare module "layout/Viewport/MountArea" {
     const MountArea: FC<ViewportTypes.MountArea>;
     export default MountArea;
 }
+declare module "layout/Viewport/styles" {
+    import Types from "layout/Viewport/types";
+    const createClasses: Stage.CreateClasses<Types.Classes, Types.Props>;
+    export default createClasses;
+}
 declare module "layout/Viewport/index" {
     import React from 'react';
     import Types from "layout/Viewport/types";
-    const _default_45: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
-    export default _default_45;
+    const _default_46: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
+    export default _default_46;
 }
 declare module "utils/modal" {
     import ModalTypes from "layout/Modal/types";
-    const _default_46: (render: ModalTypes.DialogOptions | ModalTypes.DialogRenderFn) => void;
-    export default _default_46;
+    const _default_47: (render: ModalTypes.DialogOptions | ModalTypes.DialogRenderFn) => void;
+    export default _default_47;
 }
 declare module "utils/dialog" {
     import ModalTypes from "layout/Modal/types";
-    const _default_47: (render: ModalTypes.DialogOptions | ModalTypes.DialogRenderFn) => void;
+    const _default_48: (render: ModalTypes.DialogOptions | ModalTypes.DialogRenderFn) => void;
     /**
      * @deprecated use utils/modal
      */
-    export default _default_47;
+    export default _default_48;
 }
 declare module "utils/notify" {
     import NotificationType from "layout/Notification/types";
-    const _default_48: (options: NotificationType.NotifyOptions) => void;
-    export default _default_48;
+    const _default_49: (options: NotificationType.NotifyOptions) => void;
+    export default _default_49;
 }
 declare module "index" {
     /**
@@ -3625,6 +3704,7 @@ declare module "index" {
     export { default as Meter } from "data/Meter/index";
     export { default as Table } from "data/Table/index";
     export { default as CircularProgress } from "data/CircularProgress/index";
+    export { default as ArcProgress } from "data/ArcProgress/index";
     /**
      * Layout
      */

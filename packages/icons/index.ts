@@ -1,5 +1,5 @@
 /**
-version: 0.3.29
+version: 0.3.46
 */
 export { default as Sync } from './lib/Sync'
 export { default as Activity } from './lib/Activity'
@@ -200,6 +200,7 @@ export { default as Refresh } from './lib/Refresh'
 export { default as Repeat } from './lib/Repeat'
 export { default as RewindLeft } from './lib/RewindLeft'
 export { default as RewindRight } from './lib/RewindRight'
+export { default as Route } from './lib/Route'
 export { default as Save } from './lib/Save'
 export { default as Scissors } from './lib/Scissors'
 export { default as Search } from './lib/Search'

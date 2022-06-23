@@ -1,8 +1,8 @@
 declare module "props/color" {
     import Color from 'color';
-    import type Stage from "index";
     export type ColorProp = ((colors: Stage.Theme['color']) => Color | Stage.ColorNames) | Color | Stage.ColorNames;
-    function colorProp<V extends ColorProp | undefined>(value: V, theme: Stage.Theme): V extends undefined ? undefined : Stage.Color;
+    type RV<V> = V extends undefined ? undefined : Color;
+    function colorProp<V extends ColorProp | undefined>(value: V, theme: Stage.Theme): RV<V>;
     export default colorProp;
 }
 declare module "utils/isFunction" {
@@ -18,13 +18,11 @@ declare module "utils/handleFocus" {
     export default handleFocus;
 }
 declare module "props/breakpoint" {
-    import type Stage from "index";
     export type BreakpointProp<T> = T[] | T;
     function breakpointProp<P>(value: P | P[], theme: Stage.Theme, resolver: (currentValue: P, theme: Stage.Theme) => Stage.CSSInterpolation): Stage.CSSInterpolation;
     export default breakpointProp;
 }
 declare module "props/space" {
-    import type Stage from "index";
     export type SpaceProp = Stage.Sizes | (string & {
         T?: string;
     }) | number;
@@ -32,7 +30,6 @@ declare module "props/space" {
     export default spaceProp;
 }
 declare module "props/size" {
-    import type Stage from "index";
     export const sizes: string[];
     function sizeProp<T, V>(value: V, spacingResolvers: Record<Stage.Sizes, T>, otherResolver: (value: V) => T): T;
     export default sizeProp;
@@ -44,7 +41,6 @@ declare module "props/types" {
     import type { ColorProp } from "props/color";
     import type { OverridesProp } from "props/overrides";
     import type { SpaceProp } from "props/space";
-    import type Stage from "index";
     /**
      * All typical component props
      * @name All
@@ -1254,7 +1250,6 @@ declare module "props/types" {
 declare module "props/index" {
     import { FocusOptions } from "utils/handleFocus";
     import type { AttributeProp } from "props/types";
-    import type Stage from "index";
     export type ResolvedProps<Props, ClassesSchema extends Stage.ClassesSchemaDefinition, Element> = {
         attributes: ResolvedAttributes;
         events: ResolvedEvents<Props>;
@@ -1282,7 +1277,6 @@ declare module "props/index" {
 }
 declare module "props/overrides" {
     import type { ResolvedStyleProps } from "props/index";
-    import type Stage from "index";
     export type OverridesProp<ClassesSchema extends Stage.ClassesSchemaDefinition> = ((theme: Stage.Theme, styleProps: ResolvedStyleProps) => Stage.OverridesClassesDefinition<ClassesSchema>) | Stage.OverridesClassesDefinition<ClassesSchema>;
     function overridesProp<ClassesSchema extends Stage.ClassesSchemaDefinition>(prop: OverridesProp<ClassesSchema> | undefined, theme: Stage.Theme, styleProps: ResolvedStyleProps): Stage.OverridesClassesDefinition<ClassesSchema>;
     export default overridesProp;
@@ -1304,7 +1298,6 @@ declare module "utils/convertColors" {
     export default convertColors;
 }
 declare module "utils/createTheme" {
-    import type Stage from "index";
     const createTheme: (themeDefinition: Stage.ThemeDefiniton) => Stage.Theme;
     export default createTheme;
 }
@@ -1322,7 +1315,6 @@ declare module "themes/index" {
 }
 declare module "hooks/useTheme" {
     import React from 'react';
-    import type Stage from "index";
     export const StageContext: React.Context<Stage.Theme>;
     const _default_1: () => Stage.Theme;
     export default _default_1;
@@ -1330,7 +1322,6 @@ declare module "hooks/useTheme" {
 declare module "components/Provider" {
     import React from 'react';
     import { Options } from '@emotion/cache';
-    import type Stage from "index";
     export interface ProviderProps {
         theme: Stage.Theme;
         global?: Stage.CSSInterpolation;
@@ -1343,7 +1334,6 @@ declare module "components/Provider" {
 }
 declare module "hooks/useSystem" {
     import { ResolvedProps } from "props/index";
-    import type Stage from "index";
     export interface Options {
         focus?: 'always' | 'tabOnly' | 'never';
         label?: string;
@@ -1354,6 +1344,10 @@ declare module "hooks/useSystem" {
     };
     function useSystem<Props extends Record<string, any>, ClassesSchema extends Stage.ClassesSchemaDefinition, Element extends HTMLElement>(name: string, props: Props, createClasses: Stage.CreateClasses<ClassesSchema, Props>, options?: Options): ComponentData<Props, ClassesSchema, Element>;
     export default useSystem;
+}
+declare module "hooks/useBreakpoints" {
+    const useBreakpoints: <T>(values: T[]) => T;
+    export default useBreakpoints;
 }
 declare module "utils/toFloat" {
     /**
@@ -1384,16 +1378,11 @@ declare module "utils/toPixel" {
     export default toPixel;
 }
 declare module "utils/getCurrentBreakpoint" {
-    import type Stage from "index";
     /**
      * Get current breakpoint index
      */
     function getCurrentBreakpoint(theme: Stage.Theme): number;
     export default getCurrentBreakpoint;
-}
-declare module "hooks/useBreakpoints" {
-    function useBreakpoint<Value>(values: Value[]): Value;
-    export default useBreakpoint;
 }
 declare module "utils/isWebKit" {
     const _default_2: boolean;
@@ -1606,5 +1595,4 @@ declare module "index" {
     export { default as toPixel } from "utils/toPixel";
     export { default as toPx } from "utils/toPx";
     export { default as toRem } from "utils/toRem";
-    export default Stage;
 }
