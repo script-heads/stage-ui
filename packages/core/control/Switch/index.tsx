@@ -14,7 +14,7 @@ const Switch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
     label,
     disabled,
     defaultValue,
-    checked: checkedProp = false,
+    checked: checkedProp,
     half = false,
   } = props
 
@@ -32,7 +32,9 @@ const Switch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
   const [checked, setChecked] = useState(checkedProp || defaultValue || false)
 
   useEffect(() => {
-    setChecked(checkedProp)
+    if (checkedProp !== undefined) {
+      setChecked(checkedProp)
+    }
   }, [checkedProp])
 
   /**
@@ -40,7 +42,9 @@ const Switch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
    */
   function handleChange() {
     onChange?.(checked)
-    setChecked(!checked)
+    if (checkedProp === undefined) {
+      setChecked(!checked)
+    }
   }
   /*
    * Keyboard control
