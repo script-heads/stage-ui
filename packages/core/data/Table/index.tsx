@@ -90,10 +90,13 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
           }
           return a.row[value.key] - b.row[value.key]
         }
-        if (typeof b.row[value.key] === 'string') {
-          return (b.row[value.key] as string).localeCompare(a.row[value.key] as string)
+        if (value.sort === 'DESC') {
+          if (typeof b.row[value.key] === 'string') {
+            return (b.row[value.key] as string).localeCompare(a.row[value.key] as string)
+          }
+          return b.row[value.key] - a.row[value.key]
         }
-        return b.row[value.key] - a.row[value.key]
+        return 0
       })
     }
   }

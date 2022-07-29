@@ -131,7 +131,7 @@ declare namespace TableTypes {
     | 'onlyWhenVisible'
 
   type TableCellKey = number | string
-  type TableSortType = 'ASC' | 'DESC'
+  type TableSortType = 'ASC' | 'DESC' | 'DEFAULT'
   type TableSortAsync = (sortType: TableSortType) => Promise<void>
   type TableSortObject = {
     key: TableCellKey
