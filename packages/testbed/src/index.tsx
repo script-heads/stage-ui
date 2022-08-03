@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useRef } from 'react'
 
-import { ArcProgress, Paragraph, Viewport } from '@stage-ui/core'
+import { Block, DatePicker, Viewport } from '@stage-ui/core'
 
 import ReactDOM from 'react-dom'
 
 const App: React.FC = () => {
+  const ref = useRef(null)
   return (
-    <ArcProgress size="l" value={50} m="m">
-      <Paragraph align="center" w="100%">
-        40
-      </Paragraph>
-    </ArcProgress>
+    <Block p="xl">
+      <Block w="6rem">
+        <DatePicker />
+      </Block>
+    </Block>
   )
 }
 

@@ -2,19 +2,12 @@ import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
   drop: () => [
-    // {
-    //   transition: 'all 0.2s',
-    //   transform: 'translateY(-1rem) scale(0.9)',
-    //   opacity: 0,
-    //   visibility: 'hidden',
-    // },
-    // state.isActive && [
-    //   {
-    //     transform: 'translateY(0) scale(1)',
-    //     opacity: 1,
-    //     visibility: 'visible',
-    //   },
-    // ],
+    {
+      backgroundColor: theme.color.surface.hex(),
+      padding: theme.spacing.s,
+      boxShadow: theme.assets.shadow.m,
+      borderRadius: theme.radius.m,
+    },
   ],
   input: [
     {

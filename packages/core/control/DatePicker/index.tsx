@@ -1,6 +1,7 @@
 import React, {
   forwardRef,
   ForwardRefRenderFunction,
+  useImperativeHandle,
   useLayoutEffect,
   useRef,
   useState,
@@ -16,7 +17,6 @@ import 'moment/locale/de'
 
 import Field from '../../basic/Field'
 import Drop from '../../layout/Drop'
-import Popover from '../../layout/Popover'
 import Calendar from '../Calendar'
 
 import createClasses from './styles'
@@ -98,6 +98,9 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
   const [isActive, setActive] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
+  const innerRef = useRef<HTMLDivElement>(null)
+  useImperativeHandle(ref, () => innerRef.current as HTMLDivElement)
+
   const minValue = props.minValue
     ? moment(props.minValue).startOf('day')
     : moment().clone().add(-500, 'year')
@@ -105,7 +108,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
     ? moment(props.maxValue).startOf('day')
     : moment().clone().add(500, 'year')
 
-  function onChange(startDt?: Date, endDt?: Date) {
+  function onChange(startDt?: Date, endDt?: Date): void {
     setValue([startDt, endDt])
     if (!startDt) {
       setInputValue('')
@@ -148,10 +151,11 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
       }
     }
   }, [props.value])
+
   return (
     <Field
       {...fieldProps}
-      ref={ref}
+      ref={innerRef}
       disabled={disabled}
       tabIndex={tabIndex}
       decoration={decoration}
@@ -208,28 +212,25 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
         formTarget={formTarget}
       />
       <Drop
-        target={inputRef}
+        target={innerRef}
         visible={isActive}
-        spacing={9}
-        align="bottom"
-        justify="start"
+        spacing={8}
         onClickOutside={(event, outsideTarget) => {
           if (outsideTarget) {
             setActive(false)
           }
         }}
+        css={classes.drop({ isActive })}
       >
-        <Popover css={classes.drop({ isActive })}>
-          <Calendar
-            value={value}
-            minValue={minValue.toDate()}
-            maxValue={maxValue.toDate()}
-            onChange={onChange}
-            hideToday={props.hideToday || false}
-            type={props.type || 'day'}
-            range={props.range}
-          />
-        </Popover>
+        <Calendar
+          value={value}
+          minValue={minValue.toDate()}
+          maxValue={maxValue.toDate()}
+          onChange={onChange}
+          hideToday={props.hideToday || false}
+          type={props.type || 'day'}
+          range={props.range}
+        />
       </Drop>
     </Field>
   )

@@ -40,7 +40,13 @@ declare namespace DropTypes {
     /**
      * Side drop positioning
      */
-    justify?: 'start' | 'center' | 'end' | 'start-outside' | 'end-outside'
+    justify?:
+      | 'start'
+      | 'center'
+      | 'end'
+      | 'start-outside'
+      | 'end-outside'
+      | 'auto-horizontal'
     /**
      * Open/Close animation type
      * @default slide

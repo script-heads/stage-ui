@@ -19,18 +19,19 @@ import Types from './types'
 
 type GetCoord = (tr: ClientRect, td: ClientRect) => string
 
-function toStyle(value: number) {
+function toStyle(value: number): string {
   return `${value.toString()}px`
 }
 
 const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
   let align = props.align || 'bottom'
+  let justify = props.justify || 'center'
+
   const {
     children,
     target: targetRef,
     onClickOutside,
     spacing = 0,
-    justify,
     stretchHeight,
     stretchWidth,
     visible = false,
@@ -62,9 +63,6 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
       case 'start':
         getLeftCoord = (tr) => toStyle(tr.left)
         break
-      case 'center':
-        getLeftCoord = (tr, dr) => toStyle(tr.left + tr.width / 2 - dr.width / 2)
-        break
       case 'end':
         getLeftCoord = (tr, dr) => toStyle(tr.right - dr.width)
         break
@@ -74,6 +72,10 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
       case 'end-outside':
         getLeftCoord = (tr) => toStyle(tr.left + tr.width)
         break
+      case 'center':
+      default:
+        getLeftCoord = (tr, dr) => toStyle(tr.left + tr.width / 2 - dr.width / 2)
+        break
     }
   }
 
@@ -82,19 +84,20 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
       case 'end':
         getTopCoord = (tr) => toStyle(tr.top)
         break
-      case 'center':
-        getTopCoord = (tr, dr) => toStyle(tr.top + tr.height / 2 - dr.height / 2)
-        break
       case 'start':
         getTopCoord = (tr, dr) => toStyle(tr.bottom - dr.height)
         break
       case 'start-outside':
         getTopCoord = (tr) => toStyle(tr.top - tr.height)
         break
+      case 'center':
+      default:
+        getTopCoord = (tr, dr) => toStyle(tr.top + tr.height / 2 - dr.height / 2)
+        break
     }
   }
 
-  function updatePosition() {
+  function updatePosition(): void {
     if (dropRef?.current && targetRef?.current) {
       const tr: ClientRect = targetRef.current.getBoundingClientRect()
       const dr: ClientRect = dropRef.current.getBoundingClientRect()
@@ -109,13 +112,19 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
             align = 'bottom'
           }
         }
+
+        if (!props.justify || props.justify === 'auto-horizontal') {
+          const lockedSpace = tr.left + tr.width + spacing
+          if (dr.width > window.innerWidth - lockedSpace) {
+            justify = 'end'
+          } else {
+            justify = 'start'
+          }
+        }
+
         switch (align) {
           case 'top':
             getTopCoord = (ctr, cdr) => toStyle(ctr.top - cdr.height - spacing)
-            setHorizontalPosition()
-            break
-          case 'bottom':
-            getTopCoord = (ctr) => toStyle(ctr.bottom + spacing)
             setHorizontalPosition()
             break
           case 'left':
@@ -126,6 +135,11 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
             getLeftCoord = (ctr) => toStyle(ctr.right + spacing)
             setVerticalPosition()
             break
+          case 'bottom':
+          default:
+            getTopCoord = (ctr) => toStyle(ctr.bottom + spacing)
+            setHorizontalPosition()
+            break
         }
 
         style.top = getTopCoord(tr, dr)
@@ -134,7 +148,7 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
     }
   }
 
-  function updateStickCursor(e: MouseEvent) {
+  function updateStickCursor(e: MouseEvent): void {
     if (dropRef?.current) {
       const { style } = dropRef.current
 
@@ -147,13 +161,13 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
     }
   }
 
-  function handleClickOutside(event: MouseEvent) {
+  function handleClickOutside(event: MouseEvent): void {
     if (onClickOutside && !dropRef?.current?.contains(event.target as Node)) {
       onClickOutside(event, !targetRef?.current?.contains(event.target as Node))
     }
   }
 
-  function toggleVisible(state: boolean) {
+  function toggleVisible(state: boolean): void {
     if (state) {
       setMountState(true)
     } else if (dropRef?.current) {
@@ -168,7 +182,7 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
     }
   }
 
-  function afterMount() {
+  function afterMount(): void {
     if (dropRef?.current) {
       dropRef.current.style.visibility = ''
 
@@ -177,7 +191,7 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
     }
   }
 
-  function setVisible(state: boolean) {
+  function setVisible(state: boolean): void {
     if (visible !== undefined) {
       console.warn('Do not use setVisibe on controlled <Drop/> component')
       return
