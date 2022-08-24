@@ -19,7 +19,7 @@ declare module "utils/handleFocus" {
 }
 declare module "props/breakpoint" {
     export type BreakpointProp<T> = T[] | T;
-    function breakpointProp<P>(value: P | P[], theme: Stage.Theme, resolver: (currentValue: P, theme: Stage.Theme) => Stage.CSSInterpolation): Stage.CSSInterpolation;
+    function breakpointProp<P>(value: P | P[], theme: Stage.Theme, resolver: (currentValue: P, theme: Stage.Theme, index: number | null) => Stage.CSSInterpolation): Stage.CSSInterpolation;
     export default breakpointProp;
 }
 declare module "props/space" {
@@ -106,7 +106,7 @@ declare module "props/types" {
      * All typical component props except events
      * @name AllStyle
      */
-    export interface AllStyleProps extends ColorProps, BorderProps, PaddingProps, LayoutProps, MarginProps, FlexProps, GridProps, ShadowProps {
+    export interface AllStyleProps extends ColorProps, BorderProps, PaddingProps, LayoutProps, MarginProps, FlexProps, GridProps, PositionProps, ShadowProps {
     }
     /**
      * DOM events
@@ -252,52 +252,59 @@ declare module "props/types" {
         /**
          * Set padding style
          * @BreakpointProp
-         * @display Size
+         * @display Padding
          * @link /props#margin-padding
          */
         p?: BreakpointProp<SpaceProp>;
         /**
          * Set horizontal padding style
          * @BreakpointProp
-         * @display Size
+         * @display Padding horizontal
          * @link /props#margin-padding
          */
         px?: BreakpointProp<SpaceProp>;
         /**
          * Set vertical padding style
          * @BreakpointProp
-         * @display Size
+         * @display Padding vertical
          * @link /props#margin-padding
          */
         py?: BreakpointProp<SpaceProp>;
         /**
          * Set right padding style
          * @BreakpointProp
-         * @display Size
+         * @display Padding right
          * @link /props#margin-padding
          */
         pr?: BreakpointProp<SpaceProp>;
         /**
          * Set left padding style
          * @BreakpointProp
-         * @display Size
+         * @display Padding left
          * @link /props#margin-padding
          */
         pl?: BreakpointProp<SpaceProp>;
         /**
          * Set top padding style
          * @BreakpointProp
-         * @display Size
+         * @display Padding top
          * @link /props#margin-padding
          */
         pt?: BreakpointProp<SpaceProp>;
         /**
          * Set bottom padding style
          * @BreakpointProp
-         * @display Size
+         * @display Padding bottom
          * @link /props#margin-padding
          */
         pb?: BreakpointProp<SpaceProp>;
+        /**
+         * Set top style
+         * @BreakpointProp
+         * @display Top
+         * @link /props#margin-padding
+         */
+        top?: BreakpointProp<SpaceProp>;
     }
     /**
      * Component margin styles props
@@ -508,6 +515,40 @@ declare module "props/types" {
          * @BreakpointProp
          */
         placeSelf?: BreakpointProp<FlexSelf>;
+    }
+    /**
+     * Component position styles props
+     * @name Position
+     */
+    export interface PositionProps {
+        /**
+         * Set top style
+         * @BreakpointProp
+         * @display Top
+         * @link /props#position-padding
+         */
+        top?: BreakpointProp<SpaceProp>;
+        /**
+         * Set top style
+         * @BreakpointProp
+         * @display Top
+         * @link /props#position-padding
+         */
+        bottom?: BreakpointProp<SpaceProp>;
+        /**
+         * Set top style
+         * @BreakpointProp
+         * @display Left
+         * @link /props#position-padding
+         */
+        left?: BreakpointProp<SpaceProp>;
+        /**
+         * Set top style
+         * @BreakpointProp
+         * @display Right
+         * @link /props#position-padding
+         */
+        right?: BreakpointProp<SpaceProp>;
     }
     /**
      * Component shadow children styles props
@@ -1263,6 +1304,7 @@ declare module "props/index" {
         style: Stage.CSSInterpolation[];
         margin: Stage.CSSInterpolation[];
         padding: Stage.CSSInterpolation[];
+        position: Stage.CSSInterpolation[];
         color: Stage.CSSInterpolation[];
         border: Stage.CSSInterpolation[];
         layout: Stage.CSSInterpolation[];
@@ -1407,6 +1449,7 @@ declare module "index" {
     import { ColorProp as ColorPropType } from "props/color";
     import { OverridesProp as OverridesPropType } from "props/overrides";
     import { SpaceProp as SpacePropType } from "props/space";
+    import { BreakpointProp as BreakpointPropType } from "props/breakpoint";
     import ColorType from 'color';
     import CSS from 'csstype';
     import { AllProps as AllPropsType } from "props/types";
@@ -1556,6 +1599,7 @@ declare module "index" {
             type ColorProp = ColorPropType;
             type OverridesProp<ClassesSchema extends Stage.ClassesSchemaDefinition> = OverridesPropType<ClassesSchema>;
             type SpaceProp = SpacePropType;
+            type BreakpointProp<T> = BreakpointPropType<T>;
             type Primitive = null | undefined | string | number | boolean | symbol | bigint;
             type FilterStartingWith<Set, Needle extends string> = Set extends `${Needle}${string}` ? Set : never;
             type DeepPartial<T> = {
@@ -1581,7 +1625,7 @@ declare module "index" {
     export { default as spaceProp } from "props/space";
     export { light as lightTheme } from "themes/index";
     export { dark as darkTheme } from "themes/index";
-    export { default as breakpoint } from "utils/getCurrentBreakpoint";
+    export { default as getCurrentBreakpoint } from "utils/getCurrentBreakpoint";
     export { default as createID } from "utils/createID";
     export { default as createTheme } from "utils/createTheme";
     export { default as getFontSize } from "utils/getFontSize";

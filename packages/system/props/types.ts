@@ -96,6 +96,7 @@ export interface AllStyleProps
     MarginProps,
     FlexProps,
     GridProps,
+    PositionProps,
     ShadowProps {}
 
 /**
@@ -260,52 +261,60 @@ export interface PaddingProps {
   /**
    * Set padding style
    * @BreakpointProp
-   * @display Size
+   * @display Padding
    * @link /props#margin-padding
    */
   p?: BreakpointProp<SpaceProp>
   /**
    * Set horizontal padding style
    * @BreakpointProp
-   * @display Size
+   * @display Padding horizontal
    * @link /props#margin-padding
    */
   px?: BreakpointProp<SpaceProp>
   /**
    * Set vertical padding style
    * @BreakpointProp
-   * @display Size
+   * @display Padding vertical
    * @link /props#margin-padding
    */
   py?: BreakpointProp<SpaceProp>
   /**
    * Set right padding style
    * @BreakpointProp
-   * @display Size
+   * @display Padding right
    * @link /props#margin-padding
    */
   pr?: BreakpointProp<SpaceProp>
   /**
    * Set left padding style
    * @BreakpointProp
-   * @display Size
+   * @display Padding left
    * @link /props#margin-padding
    */
   pl?: BreakpointProp<SpaceProp>
   /**
    * Set top padding style
    * @BreakpointProp
-   * @display Size
+   * @display Padding top
    * @link /props#margin-padding
    */
   pt?: BreakpointProp<SpaceProp>
   /**
    * Set bottom padding style
    * @BreakpointProp
-   * @display Size
+   * @display Padding bottom
    * @link /props#margin-padding
    */
   pb?: BreakpointProp<SpaceProp>
+
+  /**
+   * Set top style
+   * @BreakpointProp
+   * @display Top
+   * @link /props#margin-padding
+   */
+  top?: BreakpointProp<SpaceProp>
 }
 
 /**
@@ -526,6 +535,41 @@ export interface GridProps {
    * @BreakpointProp
    */
   placeSelf?: BreakpointProp<FlexSelf>
+}
+
+/**
+ * Component position styles props
+ * @name Position
+ */
+export interface PositionProps {
+  /**
+   * Set top style
+   * @BreakpointProp
+   * @display Top
+   * @link /props#position-padding
+   */
+  top?: BreakpointProp<SpaceProp>
+  /**
+   * Set top style
+   * @BreakpointProp
+   * @display Top
+   * @link /props#position-padding
+   */
+  bottom?: BreakpointProp<SpaceProp>
+  /**
+   * Set top style
+   * @BreakpointProp
+   * @display Left
+   * @link /props#position-padding
+   */
+  left?: BreakpointProp<SpaceProp>
+  /**
+   * Set top style
+   * @BreakpointProp
+   * @display Right
+   * @link /props#position-padding
+   */
+  right?: BreakpointProp<SpaceProp>
 }
 
 /**

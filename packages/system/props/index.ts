@@ -30,6 +30,7 @@ export type ResolvedStyleProps = {
   style: Stage.CSSInterpolation[]
   margin: Stage.CSSInterpolation[]
   padding: Stage.CSSInterpolation[]
+  position: Stage.CSSInterpolation[]
   color: Stage.CSSInterpolation[]
   border: Stage.CSSInterpolation[]
   layout: Stage.CSSInterpolation[]
@@ -65,6 +66,7 @@ function resolveProps<
     grid: [],
 
     padding: [],
+    position: [],
     color: [],
     border: [],
     layout: [],
@@ -205,6 +207,36 @@ function resolveProps<
       styleProps.padding.push(
         breakpointProp(props.pl, theme, (value) => ({
           paddingLeft: spaceProp(value, theme),
+        })),
+      )
+    },
+
+    // Position
+    top: (): void => {
+      styleProps.position.push(
+        breakpointProp(props.top, theme, (value) => ({
+          top: spaceProp(value, theme),
+        })),
+      )
+    },
+    bottom: (): void => {
+      styleProps.position.push(
+        breakpointProp(props.bottom, theme, (value) => ({
+          bottom: spaceProp(value, theme),
+        })),
+      )
+    },
+    right: (): void => {
+      styleProps.position.push(
+        breakpointProp(props.top, theme, (value) => ({
+          right: spaceProp(value, theme),
+        })),
+      )
+    },
+    left: (): void => {
+      styleProps.position.push(
+        breakpointProp(props.left, theme, (value) => ({
+          left: spaceProp(value, theme),
         })),
       )
     },
@@ -419,6 +451,7 @@ function resolveProps<
 
   styleProps.container = styleProps.container.concat(
     styleProps.margin,
+    styleProps.position,
     styleProps.flex,
     styleProps.grid,
     styleProps.style,
