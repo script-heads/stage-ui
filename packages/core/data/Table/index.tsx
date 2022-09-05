@@ -39,6 +39,7 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     rowMountType,
     rowDidMount,
     rowDidUnmount,
+    dataKey,
   } = props
 
   const [primaryKey, setPrimaryKey] = useState<Types.TableCellKey>('')
@@ -302,7 +303,11 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
 
           return (
             <TableRow
-              key={rowCtxItem.row.id || rowIndex.toString()}
+              key={
+                dataKey
+                  ? rowCtxItem.row[dataKey]
+                  : rowCtxItem.row.id || rowIndex.toString()
+              }
               rowCtxItem={rowCtxItem}
               getCellContext={getCellContext}
               rowDidMount={rowDidMount}

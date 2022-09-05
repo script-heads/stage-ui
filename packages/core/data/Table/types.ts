@@ -11,6 +11,8 @@ declare namespace TableTypes {
       /**
        * Array of any selected data objects
        */
+
+      dataKey?: keyof R
       selected?: R[]
       /**
        * Settings of columns
