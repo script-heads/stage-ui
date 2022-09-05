@@ -228,7 +228,7 @@ function resolveProps<
     },
     right: (): void => {
       styleProps.position.push(
-        breakpointProp(props.top, theme, (value) => ({
+        breakpointProp(props.right, theme, (value) => ({
           right: spaceProp(value, theme),
         })),
       )
@@ -236,6 +236,34 @@ function resolveProps<
     left: (): void => {
       styleProps.position.push(
         breakpointProp(props.left, theme, (value) => ({
+          left: spaceProp(value, theme),
+        })),
+      )
+    },
+    t: (): void => {
+      styleProps.position.push(
+        breakpointProp(props.t, theme, (value) => ({
+          top: spaceProp(value, theme),
+        })),
+      )
+    },
+    b: (): void => {
+      styleProps.position.push(
+        breakpointProp(props.b, theme, (value) => ({
+          bottom: spaceProp(value, theme),
+        })),
+      )
+    },
+    r: (): void => {
+      styleProps.position.push(
+        breakpointProp(props.r, theme, (value) => ({
+          right: spaceProp(value, theme),
+        })),
+      )
+    },
+    l: (): void => {
+      styleProps.position.push(
+        breakpointProp(props.l, theme, (value) => ({
           left: spaceProp(value, theme),
         })),
       )

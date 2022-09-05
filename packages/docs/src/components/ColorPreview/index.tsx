@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react'
 
-import { Flexbox, notify, Text, useTheme } from '@stage-ui/core'
+import { Flexbox, notify, Text } from '@stage-ui/core'
 
 type ColorPreviewProps = {
   value: Stage.Color
@@ -11,7 +11,6 @@ type ColorPreviewProps = {
 }
 const ColorPreview: React.FC<ColorPreviewProps> = (props) => {
   const { name, prefix = '', value, circle } = props
-  const theme = useTheme()
 
   const copyColor = () => {
     const el = document.createElement('textarea')
@@ -30,8 +29,8 @@ const ColorPreview: React.FC<ColorPreviewProps> = (props) => {
   if (circle) {
     return (
       <Flexbox
-        w="15rem"
-        mb="l"
+        w={['15rem', '15rem', '15rem', '9rem']}
+        mb={['l', 'l', 'l', 'm']}
         alignItems="center"
         onClick={copyColor}
         css={{
@@ -47,16 +46,22 @@ const ColorPreview: React.FC<ColorPreviewProps> = (props) => {
         <Flexbox
           as="div"
           backgroundColor={value}
-          w="3rem"
-          h="3rem"
+          w={['3rem', '3rem', '3rem', '2rem']}
+          h={['3rem', '3rem', '3rem', '2rem']}
           borderRadius="100%"
+          flexShrink={0}
           shadow="xs"
         />
         <Flexbox as="span" column ml="m">
-          <Text color="onSurface" size="l" weight="bold" lineHeight={1.5}>
+          <Text
+            color="onSurface"
+            size={['l', 'l', 'l', 'm']}
+            weight="bold"
+            lineHeight={1.5}
+          >
             {name}
           </Text>
-          <Text size="s" color="light" lineHeight={1.5}>
+          <Text size={['s', 's', 's', 'xs']} color="light" lineHeight={1.5}>
             {value.hex()}
           </Text>
         </Flexbox>

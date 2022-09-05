@@ -12,7 +12,9 @@ function IconsPage() {
     <>
       <TextField
         size="xl"
+        ml={[0, 0, 0, '2rem']}
         decoration="underline"
+        leftChild={<AllIcons.Search size="1.5rem" />}
         placeholder="Find by name"
         w="100%"
         mb="l"

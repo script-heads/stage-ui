@@ -298,13 +298,6 @@ declare module "props/types" {
          * @link /props#margin-padding
          */
         pb?: BreakpointProp<SpaceProp>;
-        /**
-         * Set top style
-         * @BreakpointProp
-         * @display Top
-         * @link /props#margin-padding
-         */
-        top?: BreakpointProp<SpaceProp>;
     }
     /**
      * Component margin styles props
@@ -549,6 +542,34 @@ declare module "props/types" {
          * @link /props#position-padding
          */
         right?: BreakpointProp<SpaceProp>;
+        /**
+         * Set top style
+         * @BreakpointProp
+         * @display Top
+         * @link /props#position-padding
+         */
+        t?: BreakpointProp<SpaceProp>;
+        /**
+         * Set top style
+         * @BreakpointProp
+         * @display Top
+         * @link /props#position-padding
+         */
+        b?: BreakpointProp<SpaceProp>;
+        /**
+         * Set top style
+         * @BreakpointProp
+         * @display Left
+         * @link /props#position-padding
+         */
+        l?: BreakpointProp<SpaceProp>;
+        /**
+         * Set top style
+         * @BreakpointProp
+         * @display Right
+         * @link /props#position-padding
+         */
+        r?: BreakpointProp<SpaceProp>;
     }
     /**
      * Component shadow children styles props

@@ -5,6 +5,8 @@ import { createID } from '@stage-ui/system'
 
 import { Outlet } from 'react-router-dom'
 
+import { Search } from '@stage-ui/icons'
+
 import Preview from '@/components/Preview'
 import core, { PagesType } from '@/utils/core'
 
@@ -22,7 +24,9 @@ function Components() {
     <Flexbox column>
       <TextField
         size="xl"
+        ml={[0, 0, 0, '2rem']}
         decoration="underline"
+        leftChild={<Search size="1.5rem" />}
         placeholder="Find by name"
         w="100%"
         mb="l"

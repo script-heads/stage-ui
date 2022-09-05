@@ -76,7 +76,7 @@ function ComponentModal() {
         window: () => [
           {
             width: '100%',
-            padding: '1rem 1.75rem',
+            padding: '1.5rem 2rem',
             minHeight: '25vh',
           },
           breakpointProp(['80vw', '90vw', '100vw'], t, (maxWidth) => ({ maxWidth })),

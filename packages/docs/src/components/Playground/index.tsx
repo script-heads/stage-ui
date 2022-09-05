@@ -125,11 +125,11 @@ function Playground({
                 mr="s"
                 px="m"
                 size="s"
-                shape="round"
+                color="gray600"
                 key={createID()}
                 decoration={caseIndex === currentCase ? 'filled' : 'text'}
                 onClick={() => setCurrentCase(caseIndex)}
-                css={{ cursor: 'pointer' }}
+                css={{ fontWeight: 600 }}
               >
                 {c.label}
               </Button>

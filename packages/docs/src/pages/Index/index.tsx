@@ -8,6 +8,7 @@ import styleProp from './styleProp.raw?raw'
 import colorProps from './colorProps.raw?raw'
 import spacingProps from './spacingProps.raw?raw'
 import flexGridProps from './flexGridProps.raw?raw'
+import positionProps from './positionProps.raw?raw'
 import layoutProps from './layoutProps.raw?raw'
 import borderProps from './borderProps.raw?raw'
 import theme from './theme.raw?raw'
@@ -26,17 +27,17 @@ export const sticky = true
 export default function Index() {
   return (
     <Block>
-      <Header size="xl">Getting started</Header>
+      <Header size={['xl', 'xl', 'xl', 'l']}>Getting started</Header>
       <Syntax code="npm i @stage-ui/core" />
-      <Paragraph size="xl">
+      <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
         Use Viewport component at the top level of your application. It provide theme to
         all StageUI components, apply some Reset CSS and had another useful
         configurations.
       </Paragraph>
       <Syntax code={ViewportCode} />
 
-      <Header size="xl">Breakpoints</Header>
-      <Paragraph size="xl">
+      <Header size={['xl', 'xl', 'xl', 'l']}>Breakpoints</Header>
+      <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
         All props what apply certain style to component, like padding, margin or
         backgroundColor suport array notation where value of each index is match with
         max-width media query breakpoint. Use "*" character to repeat previous value. It
@@ -45,23 +46,23 @@ export default function Index() {
       </Paragraph>
       <Syntax code={breakpoints} />
 
-      <Header size="xl">Style</Header>
-      <Paragraph size="xl">
+      <Header size={['xl', 'xl', 'xl', 'l']}>Style</Header>
+      <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
         This prop is like corresponding attribute in HTML, but apply these styles to
         classname of components root element.
       </Paragraph>
       <Syntax code={styleProp} />
 
-      <Header size="xl">Overrides</Header>
-      <Paragraph size="xl">
+      <Header size={['xl', 'xl', 'xl', 'l']}>Overrides</Header>
+      <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
         Like style prop, but there you able to specify styles to each elements of
         component. If they are matching existing styles in current class they will be
         overrided. It just one style prop what cant be specify as array of breakpoints.
       </Paragraph>
       <Syntax code={overridesProp} />
 
-      <Header size="xl">Color</Header>
-      <Paragraph size="xl">
+      <Header size={['xl', 'xl', 'xl', 'l']}>Color</Header>
+      <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
         All colors described in StageUI theme turn into Objects with useful functions that
         can transform colors brightness, hue, get rgb or hex notation and much more useful
         parametrs. This props recive function what provide all theme colors in one
@@ -69,10 +70,10 @@ export default function Index() {
       </Paragraph>
       <Syntax code={colorProps} />
 
-      <Header size="xl" id="margin-padding">
+      <Header size={['xl', 'xl', 'xl', 'l']} id="margin-padding">
         Margin and Padding
       </Header>
-      <Paragraph size="xl">
+      <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
         Shorthand for margin and padding styles with size alias from theme spacing
       </Paragraph>
       <Syntax code={spacingProps} />
@@ -96,10 +97,12 @@ export default function Index() {
         higlightBefore=":"
       />
 
-      <Header size="xl" id="flex-grid">
+      <Header size={['xl', 'xl', 'xl', 'l']} id="flex-grid">
         Flexbox and grid
       </Header>
-      <Paragraph size="xl">Shorthand for flexbox and grid children styles</Paragraph>
+      <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
+        Shorthand for flexbox and grid children styles
+      </Paragraph>
       <Syntax code={flexGridProps} />
       <List
         data={[
@@ -121,19 +124,32 @@ export default function Index() {
         higlightBefore=":"
       />
 
-      <Header size="xl" id="layout">
+      <Header size={['xl', 'xl', 'xl', 'l']} id="margin-padding">
+        Position
+      </Header>
+      <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
+        Shorthand for position styles with size alias from theme spacing
+      </Paragraph>
+      <Syntax code={positionProps} />
+      <List data={['t: top', 'l: left', 'r: right', 'b: bottom']} higlightBefore=":" />
+
+      <Header size={['xl', 'xl', 'xl', 'l']} id="layout">
         Layout
       </Header>
-      <Paragraph size="xl">Shorthand for layout styles</Paragraph>
+      <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
+        Shorthand for layout styles
+      </Paragraph>
       <Syntax code={layoutProps} />
       <List
         data={['w: width', 'h: height', 'visibility: visibility', 'display: display']}
         higlightBefore=":"
       />
-      <Header size="xl" id="border">
+      <Header size={['xl', 'xl', 'xl', 'l']} id="border">
         Border
       </Header>
-      <Paragraph size="xl">Shorthand for border styles</Paragraph>
+      <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
+        Shorthand for border styles
+      </Paragraph>
       <Syntax code={borderProps} />
       <List
         data={[
@@ -145,10 +161,10 @@ export default function Index() {
         higlightBefore=":"
       />
 
-      <Header size="xl" id="theming">
+      <Header size={['xl', 'xl', 'xl', 'l']} id="theming">
         Theming
       </Header>
-      <Paragraph size="xl">
+      <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
         StageUI contains two themes by itself: Light and Dark. Light is default. Any theme
         passs into Viewports theme prop. For create new theme you can use replace method
         from existing theme and just override some values or make theme from scratch. If
@@ -158,11 +174,13 @@ export default function Index() {
       <Syntax code={theme} />
 
       <Header size="l">Main</Header>
-      <Paragraph size="xl">Contains general variables of theme.</Paragraph>
+      <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
+        Contains general variables of theme.
+      </Paragraph>
       <Syntax code={main} />
 
       <Header size="l">Assets</Header>
-      <Paragraph size="xl">
+      <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
         Place for all styles that uses between components. Assets must be discribed by the
         function which takes main varaibles for use eg colors. Empty objects in exaple
         below are filled by analogy.
@@ -170,7 +188,7 @@ export default function Index() {
       <Syntax code={assets} />
 
       <Header size="l">Overrides</Header>
-      <Paragraph size="xl">
+      <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
         All components have special styled system, that can be overriden from theme and
         styles prop.
       </Paragraph>

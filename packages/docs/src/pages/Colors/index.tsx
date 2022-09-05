@@ -66,7 +66,7 @@ function ColorPage() {
 
   return (
     <>
-      <Header size="xl" mb="xl">
+      <Header size={['xl', 'xl', 'xl', 'l']} mb="xl">
         Foundation
       </Header>
       <Flexbox wrap="wrap" mb="xl">

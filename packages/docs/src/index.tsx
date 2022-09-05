@@ -73,6 +73,11 @@ function Docs() {
               overscrollBehavior: 'none',
               fontFamily: 'LotaGrotesque',
               WebkitFontSmoothing: 'antialiased',
+              '::-webkit-scrollbar': {
+                display: 'none',
+                overflowStyle: 'none',
+                scrollbarWidth: 'none',
+              },
             },
             '.scroll-decoration': {
               boxShadow: 'none !important',
