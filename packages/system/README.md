@@ -1,6 +1,6 @@
 # StageUI
 
-Flexible UI Framework declared by your own Design System.
+Flexible UI components library declared by your own Design System.
 
 Make styles for Stage UI Components
 

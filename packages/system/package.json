@@ -1,7 +1,7 @@
 {
   "name": "@stage-ui/system",
-  "description": "Flexible UI Framework declared by your own Design System.",
-  "version": "0.3.56",
+  "description": "Flexible UI components library declared by your own Design System.",
+  "version": "0.3.57",
   "license": "MIT",
   "homepage": "https://stageui.shds.io/",
   "bugs": "https://github.com/script-heads/stage-ui/issues",
@@ -18,6 +18,7 @@
     "ui",
     "components",
     "stage",
+    "library",
     "framework"
   ],
   "scripts": {
