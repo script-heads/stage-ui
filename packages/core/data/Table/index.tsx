@@ -253,8 +253,9 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
             <th css={[classes.headCell({ sort: false }), { width: '0' }]}>
               <Checkbox
                 onClick={handleSelectAll}
-                checked={rowCtx.every((s) => s.isSelected)}
-                half={rowCtx.some((s) => s.isSelected)}
+                disabled={!rowCtx.length}
+                checked={rowCtx.length > 0 && rowCtx.every((s) => s.isSelected)}
+                half={rowCtx.length > 0 && rowCtx.some((s) => s.isSelected)}
               />
             </th>
           )}
