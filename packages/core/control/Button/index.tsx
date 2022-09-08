@@ -22,7 +22,7 @@ const Button: ForwardRefRenderFunction<HTMLButtonElement, Types.Props> = (props,
     },
   )
 
-  const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const onClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     if (!disabled && !pending) {
       const promise = events.onClick?.(event)
       if (promise instanceof Promise) {
@@ -36,6 +36,13 @@ const Button: ForwardRefRenderFunction<HTMLButtonElement, Types.Props> = (props,
           })
       }
     }
+  }
+
+  const onKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>): void => {
+    event.preventDefault()
+
+    if (disabled || pending) return
+    events.onKeyDown?.(event)
   }
 
   /**
@@ -56,6 +63,7 @@ const Button: ForwardRefRenderFunction<HTMLButtonElement, Types.Props> = (props,
       ref={ref}
       css={[classes.container, styleProps.all]}
       onClick={onClick}
+      onKeyDown={onKeyDown}
       disabled={disabled}
       form={props.form}
       formAction={props.formAction}
