@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 
-import { Block, DatePicker, Viewport } from '@stage-ui/core'
+import { Block, Calendar, Viewport } from '@stage-ui/core'
 
 import ReactDOM from 'react-dom'
 
@@ -8,8 +8,16 @@ const App: React.FC = () => {
   const ref = useRef(null)
   return (
     <Block p="xl">
-      <Block w="6rem">
-        <DatePicker />
+      <Block backgroundColor="gray100">
+        <Calendar
+          range
+          hideToday
+          overrides={{
+            day: {
+              height: '4rem',
+            },
+          }}
+        />
       </Block>
     </Block>
   )

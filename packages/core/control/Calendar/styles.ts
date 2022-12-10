@@ -22,14 +22,13 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
 
   monthOrYear: (state) => [
     {
-      transition: 'all 0.2s',
       fontWeight: 500,
       minWidth: '1.5rem',
       height: '1.5rem',
       cursor: 'pointer',
       padding: '0.125rem',
       opacity: 1,
-      borderRadius: theme.radius.l,
+      borderRadius: theme.radius.s,
       color: theme.color.onSurface.rgb().string(),
       userSelect: 'none',
     },
@@ -46,7 +45,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
           borderColor: theme.color.primary.rgb().string(),
           borderWidth: '2px',
           borderStyle: 'solid',
-          borderRadius: theme.radius.l,
+          borderRadius: theme.radius.m,
         },
       },
     ],
@@ -79,20 +78,16 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
    * */
   day: (state) => [
     {
-      transition: 'all 0.2s',
+      flex: 1,
       fontWeight: 500,
       minWidth: '1.5rem',
       height: '1.5rem',
-      padding: '0.125rem',
-      opacity: 0.5,
-      borderRadius: '50%',
-      color: theme.color.hardest.rgb().string(),
-      borderStyle: 'solid',
-      borderWidth: '0.125rem',
-      borderColor: theme.color.surface.hex(),
+      padding: '0.25rem',
+      borderRadius: theme.radius.m,
+      color: theme.color.onSurface.alpha(0.3).string(),
       userSelect: 'none',
       ':hover': {
-        background: theme.color.light.alpha(0.15).string(),
+        background: theme.color.onSurface.alpha(0.05).string(),
       },
     },
     state.isHidden && [
@@ -104,20 +99,13 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
     //  General styles for day type view
     state.isCurrentMonth && [
       {
-        opacity: 1,
         color: theme.color.onSurface.rgb().string(),
-        ':hover': {
-          background: theme.color.primary.alpha(0.15).string(),
-        },
       },
     ],
 
     state.isWeekend && [
       {
-        color: theme.color.error.alpha(0.75).string(),
-        ':hover': {
-          background: theme.color.error.alpha(0.15).string(),
-        },
+        color: theme.color.error.string(),
       },
     ],
 
@@ -166,21 +154,21 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
       },
       state.isRangeStart && [
         {
-          borderTopLeftRadius: '50%',
-          borderBottomLeftRadius: '50%',
+          borderTopLeftRadius: theme.radius.m,
+          borderBottomLeftRadius: theme.radius.m,
           ':after': {
-            borderTopLeftRadius: '50%',
-            borderBottomLeftRadius: '50%',
+            borderTopLeftRadius: theme.radius.m,
+            borderBottomLeftRadius: theme.radius.m,
           },
         },
       ],
       state.isRangeEnd && [
         {
-          borderTopRightRadius: '50%',
-          borderBottomRightRadius: '50%',
+          borderTopRightRadius: theme.radius.m,
+          borderBottomRightRadius: theme.radius.m,
           ':after': {
-            borderTopRightRadius: '50%',
-            borderBottomRightRadius: '50%',
+            borderTopRightRadius: theme.radius.m,
+            borderBottomRightRadius: theme.radius.m,
           },
         },
       ],
@@ -221,7 +209,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
           borderColor: theme.color.primary.rgb().string(),
           borderWidth: '2px',
           borderStyle: 'solid',
-          borderRadius: '50%',
+          borderRadius: theme.radius.m,
         },
       },
       state.isWeekend && [
@@ -257,15 +245,14 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme) => ({
       {
         overflow: 'hidden',
         borderRadius: theme.radius.xl,
-        transition: 'all 0.2s',
         cursor: 'pointer',
         ':hover': {
-          background: theme.color.lightest.alpha(0.25).rgb().string(),
+          background: theme.color.onSurface.alpha(0.25).rgb().string(),
         },
       },
       state.isActive && [
         {
-          background: theme.color.lightest.alpha(0.5).rgb().string(),
+          background: theme.color.onSurface.alpha(0.5).rgb().string(),
         },
       ],
     ],
