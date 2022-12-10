@@ -13,7 +13,7 @@ function TableHeadCell(
   const [busy, setBusy] = useState(false)
   const [up, setUp] = useState(column.sort === 'DESC')
 
-  const onToggleSort = () => {
+  const onToggleSort = (): void => {
     if (typeof column.sort === 'function') setBusy(true)
     toggleSort({
       key: column.key,
@@ -29,9 +29,14 @@ function TableHeadCell(
       <th
         ref={ref}
         onClick={onToggleSort}
-        css={styles.headCell({
-          sort: typeof column.sort !== 'undefined',
-        })}
+        css={[
+          styles.headCell({
+            sort: typeof column.sort !== 'undefined',
+          }),
+          {
+            width: column.width || 'auto',
+          },
+        ]}
       >
         <Flexbox alignItems="center">
           {column.title}
@@ -42,7 +47,15 @@ function TableHeadCell(
     )
   }
   return (
-    <th ref={ref} css={styles.headCell({ sort: false })}>
+    <th
+      ref={ref}
+      css={[
+        styles.headCell({ sort: false }),
+        {
+          width: column.width || 'auto',
+        },
+      ]}
+    >
       {column.title}
     </th>
   )

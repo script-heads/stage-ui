@@ -39,6 +39,7 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     rowMountType,
     rowDidMount,
     rowDidUnmount,
+    dataKey,
   } = props
 
   const [primaryKey, setPrimaryKey] = useState<Types.TableCellKey>('')
@@ -249,11 +250,12 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
       <thead>
         <tr>
           {onCheckboxClick && (
-            <th css={classes.headCell({ sort: false })}>
+            <th css={[classes.headCell({ sort: false }), { width: '0' }]}>
               <Checkbox
                 onClick={handleSelectAll}
-                checked={rowCtx.every((s) => s.isSelected)}
-                half={rowCtx.some((s) => s.isSelected)}
+                disabled={!rowCtx.length}
+                checked={rowCtx.length > 0 && rowCtx.every((s) => s.isSelected)}
+                half={rowCtx.length > 0 && rowCtx.some((s) => s.isSelected)}
               />
             </th>
           )}
@@ -302,7 +304,11 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
 
           return (
             <TableRow
-              key={rowCtxItem.row.id || rowIndex.toString()}
+              key={
+                dataKey
+                  ? rowCtxItem.row[dataKey]
+                  : rowCtxItem.row.id || rowIndex.toString()
+              }
               rowCtxItem={rowCtxItem}
               getCellContext={getCellContext}
               rowDidMount={rowDidMount}
