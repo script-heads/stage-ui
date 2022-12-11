@@ -1,5 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Icon/Fill/briefcase">
-<path id="Mask" fill-rule="evenodd" clip-rule="evenodd" d="M10 5.5C10 5.224 10.224 5 10.5 5H13.5C13.776 5 14 5.224 14 5.5V7H10V5.5ZM7 21H17V7H16V5.5C16 4.122 14.878 3 13.5 3H10.5C9.122 3 8 4.122 8 5.5V7H7V21ZM19 7V21C20.654 21 22 19.654 22 18V10C22 8.346 20.654 7 19 7ZM2 10C2 8.346 3.346 7 5 7V21C3.346 21 2 19.654 2 18V10Z" fill="#000000"/>
-</g>
-</svg>
+<svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="m10 5.50007c0-.276.224-.5.5-.5h3c.276 0 .5.224.5.5v1.49999h-4zm-2.99995 15.49993h9.99995v-14h-1v-1.5c0-1.378-1.122-2.5-2.5-2.5h-3c-1.37795 0-2.49995 1.122-2.49995 2.5v1.5h-1zm11.99995-14.00007v13.99997c1.654 0 3-1.346 3-3v-7.99997c0-1.654-1.346-3-3-3zm-16.99997 3c0-1.654 1.346-3 3-3v13.99997c-1.654 0-3-1.346-3-3z" fill="#6b7280" fill-rule="evenodd"/></svg>

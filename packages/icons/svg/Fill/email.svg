@@ -1,5 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Icon/Fill/email">
-<path id="Mask" fill-rule="evenodd" clip-rule="evenodd" d="M19.0063 6L12.5013 10.468C12.1943 10.643 11.8183 10.643 11.5113 10.468L5.00635 6H19.0063ZM19.0063 4H5.00635C3.35235 4 2.00635 5.346 2.00635 7V17C2.00635 18.654 3.35235 20 5.00635 20H19.0063C20.6603 20 22.0063 18.654 22.0063 17V7C22.0063 5.346 20.6603 4 19.0063 4Z" fill="#000000"/>
-</g>
-</svg>
+<svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="m19.0064 6.00007-6.505 4.46803c-.307.175-.683.175-.99 0l-6.50497-4.46803zm0-2.00007h-13.99997c-1.654 0-3 1.346-3 3v10c0 1.654 1.346 3 3 3h13.99997c1.654 0 3-1.346 3-3v-10c0-1.654-1.346-3-3-3z" fill="#6b7280" fill-rule="evenodd"/></svg>

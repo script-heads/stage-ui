@@ -36,8 +36,8 @@ function IconsPage() {
                 key={key}
                 column
                 alignItems="center"
-                p="xl m"
-                w="13rem"
+                p="m s"
+                w="10rem"
                 borderRadius="1rem"
                 onClick={() => {
                   const el = document.createElement('textarea')
@@ -72,17 +72,17 @@ function IconsPage() {
                 <Flexbox pb="m">
                   <PreviewIcon
                     type="filled"
-                    size="2.75rem"
+                    size="2rem"
                     attributes={{ 'data-id': 'filled' }}
                     css={{ display: 'none' }}
                   />
                   <PreviewIcon
                     type="outline"
-                    size="2.75rem"
+                    size="2rem"
                     attributes={{ 'data-id': 'outline' }}
                   />
                 </Flexbox>
-                <Text mt="m" weight={500} color={(c) => c.onSurface.alpha(0.6)}>
+                <Text mt="m" size="s" weight={500} color={(c) => c.onSurface.alpha(0.6)}>
                   {key}
                 </Text>
               </Flexbox>

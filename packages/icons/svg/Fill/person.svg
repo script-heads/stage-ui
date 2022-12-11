@@ -1,5 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Icon/Fill/person">
-<path id="Mask" fill-rule="evenodd" clip-rule="evenodd" d="M16 7C16 9.206 14.206 11 12 11C9.794 11 8 9.206 8 7C8 4.794 9.794 3 12 3C14.206 3 16 4.794 16 7ZM19 20C19 20.552 18.553 21 18 21H6C5.447 21 5 20.552 5 20C5 16.14 8.141 13 12 13C15.859 13 19 16.14 19 20Z" fill="#000000"/>
-</g>
-</svg>
+<svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="m16 7c0 2.206-1.794 4-4 4-2.20598 0-3.99998-1.794-3.99998-4s1.794-4 3.99998-4c2.206 0 4 1.794 4 4zm3 12.9999c0 .552-.447 1-1 1h-11.99998c-.553 0-1-.448-1-1 0-3.86 3.141-7 6.99998-7 3.859 0 7 3.14 7 7z" fill="#6b7280" fill-rule="evenodd"/></svg>

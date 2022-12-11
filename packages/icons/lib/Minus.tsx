@@ -6,7 +6,7 @@ import React from 'react'
 
 export default React.forwardRef((props: Props, ref: React.ForwardedRef<HTMLSpanElement>) => (
     createIcon(props, ref, {
-        filled: <path fillRule="evenodd" clipRule="evenodd" d="M19 13H5C4.448 13 4 12.553 4 12C4 11.447 4.448 11 5 11H19C19.553 11 20 11.447 20 12C20 12.553 19.553 13 19 13Z"/>,
-        outline: <path fillRule="evenodd" clipRule="evenodd" d="M19 13H5C4.448 13 4 12.553 4 12C4 11.447 4.448 11 5 11H19C19.553 11 20 11.447 20 12C20 12.553 19.553 13 19 13Z"/>,
+        filled: <path clipRule="evenodd" d="m19 13h-14.00003c-.552 0-1-.447-1-1s.448-1 1-1h14.00003c.553 0 1 .447 1 1s-.447 1-1 1" fillRule="evenodd"/>,
+        outline: <path clipRule="evenodd" d="m19 13h-14c-.552 0-1-.447-1-1s.448-1 1-1h14c.553 0 1 .447 1 1s-.447 1-1 1" fillRule="evenodd"/>,
     })
 ))

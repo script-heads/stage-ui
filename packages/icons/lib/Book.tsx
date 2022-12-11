@@ -6,7 +6,7 @@ import React from 'react'
 
 export default React.forwardRef((props: Props, ref: React.ForwardedRef<HTMLSpanElement>) => (
     createIcon(props, ref, {
-        filled: <path fillRule="evenodd" clipRule="evenodd" d="M7 19C6.449 19 6 18.551 6 18C6 17.449 6.449 17 7 17H18V19H7ZM19 3H7C5.346 3 4 4.346 4 6V18C4 19.654 5.346 21 7 21H18H19C19.552 21 20 20.552 20 20V19V17V4C20 3.448 19.552 3 19 3Z"/>,
-        outline: <path fillRule="evenodd" clipRule="evenodd" d="M7 19C6.449 19 6 18.551 6 18C6 17.449 6.449 17 7 17H18V19H7ZM7 5H18V15H7C6.647 15 6.314 15.072 6 15.184V6C6 5.449 6.449 5 7 5ZM19 3H7C5.346 3 4 4.346 4 6V18C4 19.654 5.346 21 7 21H18H19C19.552 21 20 20.552 20 20V19V17V4C20 3.448 19.552 3 19 3Z"/>,
+        filled: <path clipRule="evenodd" d="m6.99999 19.0001c-.551 0-1-.449-1-1s.449-1 1-1h11.00001v2zm12.00001-16.0001h-12.00003c-1.654 0-3 1.346-3 3v12c0 1.654 1.346 3 3 3h11.00003 1c.552 0 1-.448 1-1v-1-2-13c0-.552-.448-1-1-1z" fillRule="evenodd"/>,
+        outline: <path clipRule="evenodd" d="m7.00002 19.0001c-.551 0-1-.449-1-1s.449-1 1-1h10.99998v2zm0-14.00003h10.99998v10.00003h-10.99998c-.353 0-.686.072-1 .184v-9.18403c0-.551.449-1 1-1zm11.99998-2.00007h-12c-1.654 0-3 1.346-3 3v12c0 1.654 1.346 3 3 3h11 1c.552 0 1-.448 1-1v-1-2-13c0-.552-.448-1-1-1z" fillRule="evenodd"/>,
     })
 ))
