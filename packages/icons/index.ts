@@ -1,5 +1,5 @@
 /**
-version: 0.3.63
+version: 0.3.64
 */
 export { default as Sync } from './lib/Sync'
 export { default as Activity } from './lib/Activity'
@@ -205,6 +205,7 @@ export { default as Radio } from './lib/Radio'
 export { default as Recording } from './lib/Recording'
 export { default as Refresh } from './lib/Refresh'
 export { default as Repeat } from './lib/Repeat'
+export { default as Report } from './lib/Report'
 export { default as RewindLeft } from './lib/RewindLeft'
 export { default as RewindRight } from './lib/RewindRight'
 export { default as Route } from './lib/Route'
