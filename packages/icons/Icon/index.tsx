@@ -25,7 +25,7 @@ const Svg: SVG = (props) => {
       })}
     >
       <svg
-        viewBox="0 0 24 24"
+        viewBox="0 0 64 64"
         preserveAspectRatio="xMidYMid"
         fill="currentColor"
         height="1em"
