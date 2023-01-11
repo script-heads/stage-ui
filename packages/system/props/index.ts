@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import isFunction from '../utils/isFunction'
 
 import handleFocus, { FocusOptions } from '../utils/handleFocus'
@@ -446,7 +448,8 @@ function resolveProps<
 
   Object.keys(props).forEach((key) => {
     if (key.match(/data-/g)) {
-      attributes[key] = props[key] as string
+      // @ts-ignore
+      attributes[key] = props[key]
     }
     if (key[0] === 'o' && key[1] === 'n') {
       events[key as Stage.FilterStartingWith<keyof Props, 'on'>] = props[
