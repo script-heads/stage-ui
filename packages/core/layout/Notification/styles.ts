@@ -17,7 +17,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         marginRight: theme.spacing.l,
       },
       ['topRight', 'topCenter', 'topLeft'].includes(place) && {
-        ':first-child': {
+        ':first-of-type': {
           marginTop: theme.spacing.l,
         },
       },
