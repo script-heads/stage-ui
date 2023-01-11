@@ -117,10 +117,6 @@ declare namespace ScrollViewTypes {
      */
     content: void
     /**
-     * Webkit container for webkit browsers
-     */
-    webkit: void
-    /**
      * Vertical scroll bar view
      */
     yBar: {

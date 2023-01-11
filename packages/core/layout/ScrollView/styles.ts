@@ -1,5 +1,4 @@
-import { colorProp } from '@stage-ui/system'
-import { toRem } from '@stage-ui/system'
+import { colorProp, toRem } from '@stage-ui/system'
 
 import Types from './types'
 
@@ -18,10 +17,13 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
     container: [
       {
         position: 'relative',
-        overflow: 'hidden',
+        overflow: 'auto',
         height: '100%',
-        padding: '0 !important',
-        margin: '0 !important',
+        maxHeight: 'inherit',
+        scrollbarWidth: 'none',
+        '::-webkit-scrollbar': {
+          display: 'none',
+        },
       },
     ],
     content: [
@@ -39,17 +41,6 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
           margin: '0 !important',
         },
         boxSizing: 'border-box',
-      },
-    ],
-    webkit: [
-      {
-        position: 'relative',
-        overflow: 'auto',
-        height: '100%',
-        maxHeight: 'inherit',
-        '::-webkit-scrollbar': {
-          display: 'none',
-        },
       },
     ],
     yBar: (state) => [

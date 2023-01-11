@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-for-of-loops/no-for-of-loops */
@@ -13,12 +14,11 @@ import React, {
   useState,
 } from 'react'
 
-import { isBrowser, useSystem, isWebKit } from '@stage-ui/system'
+import { isBrowser, useSystem } from '@stage-ui/system'
 
 import styles from './styles'
 import Types from './types'
 
-const isLegacyScrollSupport = isWebKit
 const isTouchScreenSupport = isBrowser && Boolean('ontouchstart' in window)
 
 function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
@@ -121,19 +121,9 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
       thumb.style.transform = `translate${isX ? 'X' : 'Y'}(${-((value * ratio) / 100)}px)`
     }
 
-    if (!isLegacyScrollSupport) {
-      if (offset !== value || value === 0) {
-        memo.content.style[vDirection] = `${value}px`
-        e.preventDefault()
-        e.stopPropagation()
-        return true
-      }
-    } else {
-      e.preventDefault()
-      e.stopPropagation()
-      return true
-    }
-    return false
+    e.preventDefault()
+    e.stopPropagation()
+    return true
   }
 
   const updateScroll = useMemo(
@@ -156,7 +146,6 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
           }, 500)
         }
       }
-
       const event = {
         scrollTop: memo.container.scrollTop || memo.content.offsetTop,
         scrollLeft: memo.container.scrollLeft || memo.content.offsetLeft,
@@ -166,7 +155,7 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
 
       onScroll?.(event)
       /**
-       * Was issue with <Drop/> updateLayoyt
+       * Was issue with <Drop/> updateLayout
        * in <Select/> component
        */
       if (!preventStageEvents && isBrowser) {
@@ -225,21 +214,11 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
 
   const scrollTo = (x: number, y: number, options?: Types.ScrollToOptions) => {
     memo.preventWatchElement = options?.preventWatchElement || false
-    if (isLegacyScrollSupport) {
-      if (memo.container) {
-        if (options?.smooth) {
-          memo.container.style['scroll-behavior'] = 'smooth'
-        }
-        memo.container.scrollTo(x, y)
+    if (memo.container) {
+      if (options?.smooth) {
+        memo.container.style['scroll-behavior'] = 'smooth'
       }
-    } else {
-      updateScroll({
-        deltaX: x,
-        deltaY: y,
-        preventDefault: () => null,
-        stopPropagation: () => null,
-        ...options,
-      })
+      memo.container.scrollTo(x, y)
     }
   }
 
@@ -264,14 +243,14 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
      * @deprecated use scrollTop()
      */
     onScrollTop: () => {
-      const x = isLegacyScrollSupport ? 0 : memo.content?.offsetLeft || -1e10
-      const y = isLegacyScrollSupport ? 0 : memo.content?.offsetTop || -1e10
+      const x = 0
+      const y = 0
       scrollTo(x, y)
     },
     scrollTo,
     scrollTop: (options?: Types.ScrollToOptions) => {
-      const x = isLegacyScrollSupport ? 0 : memo.content?.offsetLeft || -1e10
-      const y = isLegacyScrollSupport ? 0 : memo.content?.offsetTop || -1e10
+      const x = 0
+      const y = 0
       scrollTo(x, y, options)
     },
     scrollBottom: (options?: Types.ScrollToOptions) => {
@@ -305,20 +284,11 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
         if (memo.y) {
           delta = e.pageY - rect.y - rect.height / 2
         }
-        if (isLegacyScrollSupport) {
-          const currentScroll = memo.container[memo.x ? 'scrollLeft' : 'scrollTop']
-          memo.container?.scrollTo(
-            memo.x ? currentScroll + delta : memo.container.scrollLeft,
-            memo.y ? currentScroll + delta : memo.container.scrollTop,
-          )
-        } else {
-          updateScroll({
-            deltaX: memo.x ? delta : 0,
-            deltaY: memo.y ? delta : 0,
-            preventDefault: () => null,
-            stopPropagation: () => null,
-          })
-        }
+        const currentScroll = memo.container[memo.x ? 'scrollLeft' : 'scrollTop']
+        memo.container?.scrollTo(
+          memo.x ? currentScroll + delta : memo.container.scrollLeft,
+          memo.y ? currentScroll + delta : memo.container.scrollTop,
+        )
       }
     },
     [],
@@ -373,16 +343,16 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
    * ScrollTop if content height
    * not fits his container
    */
-  useEffect(() => {
-    if (!isLegacyScrollSupport) {
-      const { content, container } = memo
-      if (content && container) {
-        if (container.offsetHeight - content.offsetTop > content.offsetHeight) {
-          content.style.top = ''
-        }
-      }
-    }
-  })
+  // useEffect(() => {
+  //   if (!isLegacyScrollSupport) {
+  //     const { content, container } = memo
+  //     if (content && container) {
+  //       if (container.offsetHeight - content.offsetTop > content.offsetHeight) {
+  //         content.style.top = ''
+  //       }
+  //     }
+  //   }
+  // })
 
   useEffect(() => {
     if (isBrowser) {
@@ -437,12 +407,6 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
         if (memo.xThumb) {
           memo.xThumb.addEventListener('mousedown', xMouseDown)
         }
-        if (!isLegacyScrollSupport && isBrowser) {
-          window.addEventListener('mousemove', moveScrollContentByMouse)
-          if (memo.content) {
-            memo.content.addEventListener('wheel', updateScroll)
-          }
-        }
       }
       memo.container = currentRef
     },
@@ -465,7 +429,7 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
             stopPropagation: e.stopPropagation,
           })
         }}
-        css={isLegacyScrollSupport ? classes.webkit : classes.container}
+        css={classes.container}
         ref={createRef}
       >
         <div
