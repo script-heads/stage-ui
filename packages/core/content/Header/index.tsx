@@ -1,8 +1,7 @@
 import React, { forwardRef } from 'react'
 
 import Typography from '@stage-ui/core/basic/Typography'
-import { sizeProp } from '@stage-ui/system'
-import { isFunction } from '@stage-ui/system'
+import { sizeProp, isFunction } from '@stage-ui/system'
 
 import Types from './types'
 
@@ -27,10 +26,6 @@ function Header(
       name="Header"
       overrides={(theme, styleProps) => ({
         container: [
-          {
-            fontWeight: 'bold',
-            display: 'block',
-          },
           isFunction(overrides)
             ? overrides(theme, styleProps).container
             : overrides?.container,
