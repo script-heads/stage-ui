@@ -445,6 +445,9 @@ function resolveProps<
   }
 
   Object.keys(props).forEach((key) => {
+    if (key.match(/data-/g)) {
+      attributes[key] = props[key] as string
+    }
     if (key[0] === 'o' && key[1] === 'n') {
       events[key as Stage.FilterStartingWith<keyof Props, 'on'>] = props[
         key as keyof typeof props
