@@ -7,10 +7,10 @@ import React, {
 
 import { useSystem } from '@stage-ui/system'
 import moment, { Moment } from 'moment'
-import 'moment/locale/ru'
-import 'moment/locale/it'
-import 'moment/locale/fr'
-import 'moment/locale/de'
+import 'moment/dist/locale/ru'
+import 'moment/dist/locale/it'
+import 'moment/dist/locale/fr'
+import 'moment/dist/locale/de'
 
 import DateGrid from './DateGrid'
 import createClasses from './styles'
