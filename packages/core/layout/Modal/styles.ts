@@ -52,6 +52,18 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         alignItems: 'center',
         justifyContent: 'center',
       },
+      state.decoration === 'leftPanel' && {
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+      },
+      state.decoration === 'rightPanel' && {
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+      },
     ],
     window: (state) => [
       {
@@ -89,10 +101,24 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         height: '100vh',
         minHeight: '100vh',
       },
+      state.decoration === 'leftPanel' && {
+        margin: 0,
+        height: '100vh',
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
+        transform: 'translateX(-30rem)',
+      },
+      state.decoration === 'rightPanel' && {
+        margin: 0,
+        height: '100vh',
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 0,
+        transform: 'translateX(30rem)',
+      },
       state.visible && [
         {
           opacity: 1,
-          transform: 'translateY(0)',
+          transform: 'translateY(0) translateX(0)',
         },
       ],
     ],

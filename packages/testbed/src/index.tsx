@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 
-import { Block, Calendar, Viewport } from '@stage-ui/core'
+import { Block, Button, modal, Viewport } from '@stage-ui/core'
 
 import ReactDOM from 'react-dom'
 
@@ -9,13 +9,34 @@ const App: React.FC = () => {
   return (
     <Block p="xl">
       <Block backgroundColor="gray100">
-        <Calendar
-          range
-          hideToday
-          overrides={{
-            day: {
-              height: '4rem',
-            },
+        <Button
+          label="rightPanel"
+          onClick={() => {
+            modal({
+              overrides: {
+                overlay: {
+                  backgroundColor: 'rgba(0,0,0,0.5)',
+                },
+              },
+              decoration: 'rightPanel',
+              hideHeader: true,
+              render: () => <div>Right panel</div>,
+            })
+          }}
+        />
+        <Button
+          label="leftPanel"
+          onClick={() => {
+            modal({
+              overrides: {
+                overlay: {
+                  backgroundColor: 'rgba(0,0,0,0.5)',
+                },
+              },
+              decoration: 'leftPanel',
+              hideHeader: true,
+              render: () => <div>Left panel</div>,
+            })
           }}
         />
       </Block>

@@ -15,7 +15,7 @@ import { ResolvedStyleProps } from '@stage-ui/system/props'
 import ScrollViewTypes from '../ScrollView/types'
 
 declare namespace ModalTypes {
-  type ModalDecoration = 'modal' | 'panel' | 'fullscreen'
+  type ModalDecoration = 'modal' | 'panel' | 'fullscreen' | 'rightPanel' | 'leftPanel'
   type ExtentedProps = AttributeProps &
     AllEventProps<HTMLDivElement> &
     CoreProps<Classes> &
