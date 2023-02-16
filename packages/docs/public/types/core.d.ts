@@ -628,10 +628,10 @@ declare module "control/Calendar/styles" {
 }
 declare module "control/Calendar/index" {
     import React from 'react';
-    import 'moment/locale/ru';
-    import 'moment/locale/it';
-    import 'moment/locale/fr';
-    import 'moment/locale/de';
+    import 'moment/dist/locale/ru';
+    import 'moment/dist/locale/it';
+    import 'moment/dist/locale/fr';
+    import 'moment/dist/locale/de';
     import Types from "control/Calendar/types";
     const _default_9: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
     export default _default_9;
@@ -2024,6 +2024,7 @@ declare module "data/Table/types" {
             /**
              * Array of any selected data objects
              */
+            dataKey?: keyof R;
             selected?: R[];
             /**
              * Settings of columns
@@ -2391,6 +2392,7 @@ declare module "data/Table/index" {
     import Types from "data/Table/types";
     const _default_31: <Row extends Types.Row>(props: Types.RowEvents<Row> & Types.RowDelegates<Row> & Stage.AllProps<HTMLDivElement, Types.Classes> & {
         data: Row[];
+        dataKey?: keyof Row | undefined;
         selected?: Row[] | undefined;
         columns: Types.TableColumn<Row>[];
         decoration?: import("utils/containerDecorations").ContainerDecorations | undefined;
@@ -3000,10 +3002,6 @@ declare module "layout/ScrollView/types" {
              */
             content: void;
             /**
-             * Webkit container for webkit browsers
-             */
-            webkit: void;
-            /**
              * Vertical scroll bar view
              */
             yBar: {
@@ -3124,7 +3122,7 @@ declare module "layout/Modal/types" {
     import { ResolvedStyleProps } from '@stage-ui/system/props';
     import ScrollViewTypes from "layout/ScrollView/types";
     namespace ModalTypes {
-        type ModalDecoration = 'modal' | 'panel' | 'fullscreen';
+        type ModalDecoration = 'modal' | 'panel' | 'fullscreen' | 'rightPanel' | 'leftPanel';
         type ExtentedProps = AttributeProps & AllEventProps<HTMLDivElement> & CoreProps<Classes> & ColorProps & BorderProps & PaddingProps & LayoutProps;
         interface Ref {
             /**
@@ -3634,6 +3632,47 @@ declare module "layout/Split/index" {
     const _default_45: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
     export default _default_45;
 }
+declare module "hooks/misc/dropDelegate" {
+    type DropDelegate = {
+        visible: boolean;
+        close: () => void;
+    };
+    export const dropDelegate: DropDelegate;
+}
+declare module "hooks/misc/dropRef" {
+    import React from 'react';
+    import * as Icons from '@stage-ui/icons';
+    import FlexboxTypes from "layout/Flexbox/types";
+    export type Drop = (node: React.ReactNode) => void;
+    export type UseDropOptions = {
+        containerProps?: FlexboxTypes.Props;
+        pointerEvents?: boolean;
+        screenPadding?: number;
+    };
+    type CloseFn = () => void;
+    export type DropNode = React.ReactNode | ((close: CloseFn) => React.ReactNode);
+    export type DropMenuItem = {
+        text: string;
+        icon?: keyof typeof Icons;
+        color?: string;
+        value?: string | number;
+        onClick?: () => void;
+        hidden?: boolean;
+        disabled?: boolean;
+        hotkey?: {
+            key: string;
+            alt?: boolean;
+        };
+    };
+    export type DropRef = {
+        open: (e: MouseEvent | null, dropNode: DropNode, options: UseDropOptions) => void;
+        move: (e: MouseEvent | null) => void;
+    };
+    export const dropRef: React.RefObject<DropRef>;
+}
+declare module "hooks/components/DropRenderer" {
+    export const DropRenderer: () => import("@emotion/react/jsx-runtime").JSX.Element;
+}
 declare module "layout/Viewport/MountArea" {
     import { FC } from 'react';
     import ViewportTypes from "layout/Viewport/types";
@@ -3726,6 +3765,12 @@ declare module "index" {
     export { default as dialog } from "utils/dialog";
     export { default as modal } from "utils/modal";
     export { default as notify } from "utils/notify";
+    /**
+     * Hooks
+     */
+    export { useDrop } from "hooks/useDrop";
+    export { useDropMenu } from "hooks/useDropMenu";
+    export { useDropOver } from "hooks/useDropOver";
     /**
      * System links
      */

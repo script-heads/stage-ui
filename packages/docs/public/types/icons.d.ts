@@ -477,854 +477,904 @@ declare module "lib/Cube" {
     const _default_85: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_85;
 }
-declare module "lib/Done" {
+declare module "lib/CurrencyEur" {
     import React from 'react';
     const _default_86: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_86;
 }
-declare module "lib/Download" {
+declare module "lib/CurrencyGbp" {
     import React from 'react';
     const _default_87: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_87;
 }
-declare module "lib/DropletOff" {
+declare module "lib/CurrencyRub" {
     import React from 'react';
     const _default_88: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_88;
 }
-declare module "lib/Droplet" {
+declare module "lib/CurrencyUsd" {
     import React from 'react';
     const _default_89: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_89;
 }
-declare module "lib/Edit2" {
+declare module "lib/Done" {
     import React from 'react';
     const _default_90: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_90;
 }
-declare module "lib/Edit" {
+declare module "lib/Download" {
     import React from 'react';
     const _default_91: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_91;
 }
-declare module "lib/Email" {
+declare module "lib/DropletOff" {
     import React from 'react';
     const _default_92: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_92;
 }
-declare module "lib/Expand" {
+declare module "lib/Droplet" {
     import React from 'react';
     const _default_93: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_93;
 }
-declare module "lib/ExternalLink" {
+declare module "lib/Edit2" {
     import React from 'react';
     const _default_94: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_94;
 }
-declare module "lib/EyeOff2" {
+declare module "lib/Edit" {
     import React from 'react';
     const _default_95: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_95;
 }
-declare module "lib/EyeOff" {
+declare module "lib/Email" {
     import React from 'react';
     const _default_96: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_96;
 }
-declare module "lib/Eye" {
+declare module "lib/Expand" {
     import React from 'react';
     const _default_97: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_97;
 }
-declare module "lib/Facebook" {
+declare module "lib/ExternalLink" {
     import React from 'react';
     const _default_98: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_98;
 }
-declare module "lib/FileAdd" {
+declare module "lib/EyeOff2" {
     import React from 'react';
     const _default_99: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_99;
 }
-declare module "lib/FileRemove" {
+declare module "lib/EyeOff" {
     import React from 'react';
     const _default_100: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_100;
 }
-declare module "lib/FileText" {
+declare module "lib/Eye" {
     import React from 'react';
     const _default_101: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_101;
 }
-declare module "lib/File" {
+declare module "lib/Facebook" {
     import React from 'react';
     const _default_102: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_102;
 }
-declare module "lib/Film" {
+declare module "lib/FileAdd" {
     import React from 'react';
     const _default_103: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_103;
 }
-declare module "lib/Fire" {
+declare module "lib/FileRemove" {
     import React from 'react';
     const _default_104: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_104;
 }
-declare module "lib/Flag" {
+declare module "lib/FileText" {
     import React from 'react';
     const _default_105: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_105;
 }
-declare module "lib/FlashOff" {
+declare module "lib/File" {
     import React from 'react';
     const _default_106: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_106;
 }
-declare module "lib/Flash" {
+declare module "lib/Film" {
     import React from 'react';
     const _default_107: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_107;
 }
-declare module "lib/Flip2" {
+declare module "lib/Fire" {
     import React from 'react';
     const _default_108: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_108;
 }
-declare module "lib/Flip" {
+declare module "lib/Flag" {
     import React from 'react';
     const _default_109: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_109;
 }
-declare module "lib/FolderAdd" {
+declare module "lib/FlashOff" {
     import React from 'react';
     const _default_110: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_110;
 }
-declare module "lib/FolderRemove" {
+declare module "lib/Flash" {
     import React from 'react';
     const _default_111: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_111;
 }
-declare module "lib/Folder" {
+declare module "lib/Flip2" {
     import React from 'react';
     const _default_112: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_112;
 }
-declare module "lib/Funnel" {
+declare module "lib/Flip" {
     import React from 'react';
     const _default_113: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_113;
 }
-declare module "lib/Gift" {
+declare module "lib/FolderAdd" {
     import React from 'react';
     const _default_114: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_114;
 }
-declare module "lib/Github" {
+declare module "lib/FolderRemove" {
     import React from 'react';
     const _default_115: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_115;
 }
-declare module "lib/Globe2" {
+declare module "lib/Folder" {
     import React from 'react';
     const _default_116: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_116;
 }
-declare module "lib/Globe" {
+declare module "lib/Funnel" {
     import React from 'react';
     const _default_117: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_117;
 }
-declare module "lib/Google" {
+declare module "lib/Gift" {
     import React from 'react';
     const _default_118: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_118;
 }
-declare module "lib/Grid" {
+declare module "lib/Github" {
     import React from 'react';
     const _default_119: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_119;
 }
-declare module "lib/HardDrive" {
+declare module "lib/Globe2" {
     import React from 'react';
     const _default_120: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_120;
 }
-declare module "lib/Hash" {
+declare module "lib/Globe" {
     import React from 'react';
     const _default_121: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_121;
 }
-declare module "lib/Headphones" {
+declare module "lib/Google" {
     import React from 'react';
     const _default_122: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_122;
 }
-declare module "lib/Heart" {
+declare module "lib/Grid" {
     import React from 'react';
     const _default_123: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_123;
 }
-declare module "lib/Height" {
+declare module "lib/HardDrive" {
     import React from 'react';
     const _default_124: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_124;
 }
-declare module "lib/Home" {
+declare module "lib/Hash" {
     import React from 'react';
     const _default_125: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_125;
 }
-declare module "lib/Image" {
+declare module "lib/Headphones" {
     import React from 'react';
     const _default_126: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_126;
 }
-declare module "lib/Inbox" {
+declare module "lib/Heart" {
     import React from 'react';
     const _default_127: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_127;
 }
-declare module "lib/Info" {
+declare module "lib/Height" {
     import React from 'react';
     const _default_128: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_128;
 }
-declare module "lib/Keypad" {
+declare module "lib/History" {
     import React from 'react';
     const _default_129: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_129;
 }
-declare module "lib/Layers" {
+declare module "lib/Home" {
     import React from 'react';
     const _default_130: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_130;
 }
-declare module "lib/Layout" {
+declare module "lib/Image" {
     import React from 'react';
     const _default_131: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_131;
 }
-declare module "lib/Link2" {
+declare module "lib/Inbox" {
     import React from 'react';
     const _default_132: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_132;
 }
-declare module "lib/Link" {
+declare module "lib/Info" {
     import React from 'react';
     const _default_133: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_133;
 }
-declare module "lib/Linkedin" {
+declare module "lib/Keypad" {
     import React from 'react';
     const _default_134: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_134;
 }
-declare module "lib/ListIn" {
+declare module "lib/Layers" {
     import React from 'react';
     const _default_135: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_135;
 }
-declare module "lib/ListOut" {
+declare module "lib/Layout" {
     import React from 'react';
     const _default_136: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_136;
 }
-declare module "lib/List" {
+declare module "lib/Link2" {
     import React from 'react';
     const _default_137: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_137;
 }
-declare module "lib/Loader" {
+declare module "lib/Link" {
     import React from 'react';
     const _default_138: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_138;
 }
-declare module "lib/Lock" {
+declare module "lib/Linkedin" {
     import React from 'react';
     const _default_139: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_139;
 }
-declare module "lib/LogIn" {
+declare module "lib/ListIn" {
     import React from 'react';
     const _default_140: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_140;
 }
-declare module "lib/LogOut" {
+declare module "lib/ListOut" {
     import React from 'react';
     const _default_141: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_141;
 }
-declare module "lib/Map" {
+declare module "lib/List" {
     import React from 'react';
     const _default_142: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_142;
 }
-declare module "lib/Maximize" {
+declare module "lib/Loader" {
     import React from 'react';
     const _default_143: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_143;
 }
-declare module "lib/Menu2" {
+declare module "lib/Lock" {
     import React from 'react';
     const _default_144: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_144;
 }
-declare module "lib/MenuArrow" {
+declare module "lib/LogIn" {
     import React from 'react';
     const _default_145: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_145;
 }
-declare module "lib/Menu" {
+declare module "lib/LogOut" {
     import React from 'react';
     const _default_146: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_146;
 }
-declare module "lib/MessageCircle" {
+declare module "lib/Map" {
     import React from 'react';
     const _default_147: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_147;
 }
-declare module "lib/MessageSquare" {
+declare module "lib/Maximize" {
     import React from 'react';
     const _default_148: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_148;
 }
-declare module "lib/MicOff" {
+declare module "lib/Menu2" {
     import React from 'react';
     const _default_149: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_149;
 }
-declare module "lib/Mic" {
+declare module "lib/MenuArrow" {
     import React from 'react';
     const _default_150: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_150;
 }
-declare module "lib/Minimize" {
+declare module "lib/Menu" {
     import React from 'react';
     const _default_151: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_151;
 }
-declare module "lib/MinusCircle" {
+declare module "lib/MessageCircle" {
     import React from 'react';
     const _default_152: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_152;
 }
-declare module "lib/MinusSquare" {
+declare module "lib/MessageSquare" {
     import React from 'react';
     const _default_153: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_153;
 }
-declare module "lib/Minus" {
+declare module "lib/MicOff" {
     import React from 'react';
     const _default_154: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_154;
 }
-declare module "lib/Monitor" {
+declare module "lib/Mic" {
     import React from 'react';
     const _default_155: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_155;
 }
-declare module "lib/Moon" {
+declare module "lib/Minimize" {
     import React from 'react';
     const _default_156: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_156;
 }
-declare module "lib/MoreHorizontal" {
+declare module "lib/MinusCircle" {
     import React from 'react';
     const _default_157: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_157;
 }
-declare module "lib/MoreVertical" {
+declare module "lib/MinusSquare" {
     import React from 'react';
     const _default_158: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_158;
 }
-declare module "lib/Move" {
+declare module "lib/Minus" {
     import React from 'react';
     const _default_159: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_159;
 }
-declare module "lib/Music" {
+declare module "lib/Monitor" {
     import React from 'react';
     const _default_160: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_160;
 }
-declare module "lib/Navigation2" {
+declare module "lib/Moon" {
     import React from 'react';
     const _default_161: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_161;
 }
-declare module "lib/Navigation" {
+declare module "lib/MoreHorizontal" {
     import React from 'react';
     const _default_162: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_162;
 }
-declare module "lib/Npm" {
+declare module "lib/MoreVertical" {
     import React from 'react';
     const _default_163: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_163;
 }
-declare module "lib/Options2" {
+declare module "lib/Move" {
     import React from 'react';
     const _default_164: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_164;
 }
-declare module "lib/Options" {
+declare module "lib/Music" {
     import React from 'react';
     const _default_165: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_165;
 }
-declare module "lib/Pantone" {
+declare module "lib/Navigation2" {
     import React from 'react';
     const _default_166: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_166;
 }
-declare module "lib/PaperPlane" {
+declare module "lib/Navigation" {
     import React from 'react';
     const _default_167: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_167;
 }
-declare module "lib/PauseCircle" {
+declare module "lib/Npm" {
     import React from 'react';
     const _default_168: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_168;
 }
-declare module "lib/People" {
+declare module "lib/Options2" {
     import React from 'react';
     const _default_169: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_169;
 }
-declare module "lib/Percent" {
+declare module "lib/Options" {
     import React from 'react';
     const _default_170: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_170;
 }
-declare module "lib/PersonAdd" {
+declare module "lib/Pantone" {
     import React from 'react';
     const _default_171: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_171;
 }
-declare module "lib/PersonDelete" {
+declare module "lib/PaperPlane" {
     import React from 'react';
     const _default_172: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_172;
 }
-declare module "lib/PersonDone" {
+declare module "lib/PauseCircle" {
     import React from 'react';
     const _default_173: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_173;
 }
-declare module "lib/PersonRemove" {
+declare module "lib/People" {
     import React from 'react';
     const _default_174: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_174;
 }
-declare module "lib/Person" {
+declare module "lib/Percent" {
     import React from 'react';
     const _default_175: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_175;
 }
-declare module "lib/PhoneCall" {
+declare module "lib/PersonAdd" {
     import React from 'react';
     const _default_176: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_176;
 }
-declare module "lib/PhoneMissed" {
+declare module "lib/PersonDelete" {
     import React from 'react';
     const _default_177: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_177;
 }
-declare module "lib/PhoneOff" {
+declare module "lib/PersonDone" {
     import React from 'react';
     const _default_178: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_178;
 }
-declare module "lib/Phone" {
+declare module "lib/PersonRemove" {
     import React from 'react';
     const _default_179: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_179;
 }
-declare module "lib/PieChart" {
+declare module "lib/Person" {
     import React from 'react';
     const _default_180: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_180;
 }
-declare module "lib/Pin" {
+declare module "lib/PhoneCall" {
     import React from 'react';
     const _default_181: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_181;
 }
-declare module "lib/PlayCircle" {
+declare module "lib/PhoneMissed" {
     import React from 'react';
     const _default_182: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_182;
 }
-declare module "lib/PlusCircle" {
+declare module "lib/PhoneOff" {
     import React from 'react';
     const _default_183: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_183;
 }
-declare module "lib/PlusSquare" {
+declare module "lib/PhonePeople" {
     import React from 'react';
     const _default_184: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_184;
 }
-declare module "lib/Plus" {
+declare module "lib/PhoneTruck" {
     import React from 'react';
     const _default_185: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_185;
 }
-declare module "lib/Power" {
+declare module "lib/Phone" {
     import React from 'react';
     const _default_186: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_186;
 }
-declare module "lib/Pricetag" {
+declare module "lib/PieChart" {
     import React from 'react';
     const _default_187: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_187;
 }
-declare module "lib/Printer" {
+declare module "lib/Pin" {
     import React from 'react';
     const _default_188: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_188;
 }
-declare module "lib/QuestionMarkCircle" {
+declare module "lib/PlayCircle" {
     import React from 'react';
     const _default_189: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_189;
 }
-declare module "lib/QuestionMark" {
+declare module "lib/PlusCircle" {
     import React from 'react';
     const _default_190: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_190;
 }
-declare module "lib/RadioButtonOff" {
+declare module "lib/PlusSquare" {
     import React from 'react';
     const _default_191: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_191;
 }
-declare module "lib/RadioButtonOn" {
+declare module "lib/Plus" {
     import React from 'react';
     const _default_192: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_192;
 }
-declare module "lib/Radio" {
+declare module "lib/Power" {
     import React from 'react';
     const _default_193: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_193;
 }
-declare module "lib/Recording" {
+declare module "lib/Pricetag" {
     import React from 'react';
     const _default_194: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_194;
 }
-declare module "lib/Refresh" {
+declare module "lib/Printer" {
     import React from 'react';
     const _default_195: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_195;
 }
-declare module "lib/Repeat" {
+declare module "lib/QuestionMarkCircle" {
     import React from 'react';
     const _default_196: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_196;
 }
-declare module "lib/RewindLeft" {
+declare module "lib/QuestionMark" {
     import React from 'react';
     const _default_197: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_197;
 }
-declare module "lib/RewindRight" {
+declare module "lib/RadioButtonOff" {
     import React from 'react';
     const _default_198: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_198;
 }
-declare module "lib/Route" {
+declare module "lib/RadioButtonOn" {
     import React from 'react';
     const _default_199: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_199;
 }
-declare module "lib/Save" {
+declare module "lib/Radio" {
     import React from 'react';
     const _default_200: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_200;
 }
-declare module "lib/Scissors" {
+declare module "lib/Recording" {
     import React from 'react';
     const _default_201: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_201;
 }
-declare module "lib/Search" {
+declare module "lib/Refresh" {
     import React from 'react';
     const _default_202: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_202;
 }
-declare module "lib/Settings2" {
+declare module "lib/Repeat" {
     import React from 'react';
     const _default_203: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_203;
 }
-declare module "lib/Settings" {
+declare module "lib/Report" {
     import React from 'react';
     const _default_204: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_204;
 }
-declare module "lib/Shake" {
+declare module "lib/RewindLeft" {
     import React from 'react';
     const _default_205: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_205;
 }
-declare module "lib/Share" {
+declare module "lib/RewindRight" {
     import React from 'react';
     const _default_206: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_206;
 }
-declare module "lib/ShieldOff" {
+declare module "lib/Route" {
     import React from 'react';
     const _default_207: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_207;
 }
-declare module "lib/Shield" {
+declare module "lib/Save" {
     import React from 'react';
     const _default_208: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_208;
 }
-declare module "lib/ShoppingBag" {
+declare module "lib/Scan" {
     import React from 'react';
     const _default_209: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_209;
 }
-declare module "lib/ShoppingCartPlus" {
+declare module "lib/Scissors" {
     import React from 'react';
     const _default_210: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_210;
 }
-declare module "lib/ShoppingCart" {
+declare module "lib/Search" {
     import React from 'react';
     const _default_211: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_211;
 }
-declare module "lib/Shuffle2" {
+declare module "lib/Settings2" {
     import React from 'react';
     const _default_212: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_212;
 }
-declare module "lib/Shuffle" {
+declare module "lib/Settings" {
     import React from 'react';
     const _default_213: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_213;
 }
-declare module "lib/SkipBack" {
+declare module "lib/Shake" {
     import React from 'react';
     const _default_214: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_214;
 }
-declare module "lib/SkipForward" {
+declare module "lib/Share" {
     import React from 'react';
     const _default_215: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_215;
 }
-declare module "lib/Slash" {
+declare module "lib/ShieldOff" {
     import React from 'react';
     const _default_216: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_216;
 }
-declare module "lib/Smartphone" {
+declare module "lib/Shield" {
     import React from 'react';
     const _default_217: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_217;
 }
-declare module "lib/Speaker" {
+declare module "lib/ShoppingCartPlus" {
     import React from 'react';
     const _default_218: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_218;
 }
-declare module "lib/Square" {
+declare module "lib/ShoppingCart" {
     import React from 'react';
     const _default_219: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_219;
 }
-declare module "lib/Star" {
+declare module "lib/Shuffle2" {
     import React from 'react';
     const _default_220: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_220;
 }
-declare module "lib/StopCircle" {
+declare module "lib/Shuffle" {
     import React from 'react';
     const _default_221: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_221;
 }
-declare module "lib/Sun" {
+declare module "lib/SkipBack" {
     import React from 'react';
     const _default_222: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_222;
 }
-declare module "lib/Swap" {
+declare module "lib/SkipForward" {
     import React from 'react';
     const _default_223: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_223;
 }
-declare module "lib/Text" {
+declare module "lib/Slash" {
     import React from 'react';
     const _default_224: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_224;
 }
-declare module "lib/ThermometerMinus" {
+declare module "lib/Smartphone" {
     import React from 'react';
     const _default_225: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_225;
 }
-declare module "lib/ThermometerPlus" {
+declare module "lib/Smile" {
     import React from 'react';
     const _default_226: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_226;
 }
-declare module "lib/Thermometer" {
+declare module "lib/Speaker" {
     import React from 'react';
     const _default_227: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_227;
 }
-declare module "lib/Timer" {
+declare module "lib/Square" {
     import React from 'react';
     const _default_228: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_228;
 }
-declare module "lib/ToggleLeft" {
+declare module "lib/Star" {
     import React from 'react';
     const _default_229: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_229;
 }
-declare module "lib/ToggleRight" {
+declare module "lib/StopCircle" {
     import React from 'react';
     const _default_230: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_230;
 }
-declare module "lib/Trash2" {
+declare module "lib/Sun" {
     import React from 'react';
     const _default_231: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_231;
 }
-declare module "lib/Trash3" {
+declare module "lib/Swap" {
     import React from 'react';
     const _default_232: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_232;
 }
-declare module "lib/Trash" {
+declare module "lib/Text" {
     import React from 'react';
     const _default_233: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_233;
 }
-declare module "lib/TrendingDown" {
+declare module "lib/ThermometerMinus" {
     import React from 'react';
     const _default_234: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_234;
 }
-declare module "lib/TrendingUp" {
+declare module "lib/ThermometerPlus" {
     import React from 'react';
     const _default_235: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_235;
 }
-declare module "lib/TriangleDown" {
+declare module "lib/Thermometer" {
     import React from 'react';
     const _default_236: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_236;
 }
-declare module "lib/TriangleLeft" {
+declare module "lib/Ticket" {
     import React from 'react';
     const _default_237: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_237;
 }
-declare module "lib/TriangleRight" {
+declare module "lib/Timer" {
     import React from 'react';
     const _default_238: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_238;
 }
-declare module "lib/TriangleUp" {
+declare module "lib/ToggleLeft" {
     import React from 'react';
     const _default_239: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_239;
 }
-declare module "lib/Tv" {
+declare module "lib/ToggleRight" {
     import React from 'react';
     const _default_240: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_240;
 }
-declare module "lib/Twitter" {
+declare module "lib/Trash2" {
     import React from 'react';
     const _default_241: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_241;
 }
-declare module "lib/Umbrella" {
+declare module "lib/Trash3" {
     import React from 'react';
     const _default_242: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_242;
 }
-declare module "lib/Undo" {
+declare module "lib/Trash" {
     import React from 'react';
     const _default_243: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_243;
 }
-declare module "lib/Unlock" {
+declare module "lib/TrendingDown" {
     import React from 'react';
     const _default_244: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_244;
 }
-declare module "lib/Upload" {
+declare module "lib/TrendingUp" {
     import React from 'react';
     const _default_245: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_245;
 }
-declare module "lib/VideoOff" {
+declare module "lib/TriangleDown" {
     import React from 'react';
     const _default_246: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_246;
 }
-declare module "lib/Video" {
+declare module "lib/TriangleLeft" {
     import React from 'react';
     const _default_247: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_247;
 }
-declare module "lib/VolumeDown" {
+declare module "lib/TriangleRight" {
     import React from 'react';
     const _default_248: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_248;
 }
-declare module "lib/VolumeOff" {
+declare module "lib/TriangleUp" {
     import React from 'react';
     const _default_249: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_249;
 }
-declare module "lib/VolumeUp" {
+declare module "lib/Tv" {
     import React from 'react';
     const _default_250: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_250;
 }
-declare module "lib/Volume" {
+declare module "lib/Twitter" {
     import React from 'react';
     const _default_251: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_251;
 }
-declare module "lib/Weight" {
+declare module "lib/Umbrella" {
     import React from 'react';
     const _default_252: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_252;
 }
-declare module "lib/WifiOff" {
+declare module "lib/Undo" {
     import React from 'react';
     const _default_253: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_253;
 }
-declare module "lib/Wifi" {
+declare module "lib/Unlock" {
     import React from 'react';
     const _default_254: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
     export default _default_254;
 }
+declare module "lib/Upload" {
+    import React from 'react';
+    const _default_255: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+    export default _default_255;
+}
+declare module "lib/VideoOff" {
+    import React from 'react';
+    const _default_256: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+    export default _default_256;
+}
+declare module "lib/Video" {
+    import React from 'react';
+    const _default_257: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+    export default _default_257;
+}
+declare module "lib/VolumeDown" {
+    import React from 'react';
+    const _default_258: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+    export default _default_258;
+}
+declare module "lib/VolumeOff" {
+    import React from 'react';
+    const _default_259: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+    export default _default_259;
+}
+declare module "lib/VolumeUp" {
+    import React from 'react';
+    const _default_260: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+    export default _default_260;
+}
+declare module "lib/Volume" {
+    import React from 'react';
+    const _default_261: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+    export default _default_261;
+}
+declare module "lib/Weight" {
+    import React from 'react';
+    const _default_262: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+    export default _default_262;
+}
+declare module "lib/WifiOff" {
+    import React from 'react';
+    const _default_263: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+    export default _default_263;
+}
+declare module "lib/Wifi" {
+    import React from 'react';
+    const _default_264: React.ForwardRefExoticComponent<import("Icon/types").default.IconProps & React.RefAttributes<HTMLSpanElement>>;
+    export default _default_264;
+}
 declare module "index" {
     /**
-    version: 0.3.55
+    version: 0.3.70
     */
     export { default as Sync } from "lib/Sync";
     export { default as Activity } from "lib/Activity";
@@ -1412,6 +1462,10 @@ declare module "index" {
     export { default as CreditCard } from "lib/CreditCard";
     export { default as Crop } from "lib/Crop";
     export { default as Cube } from "lib/Cube";
+    export { default as CurrencyEur } from "lib/CurrencyEur";
+    export { default as CurrencyGbp } from "lib/CurrencyGbp";
+    export { default as CurrencyRub } from "lib/CurrencyRub";
+    export { default as CurrencyUsd } from "lib/CurrencyUsd";
     export { default as Done } from "lib/Done";
     export { default as Download } from "lib/Download";
     export { default as DropletOff } from "lib/DropletOff";
@@ -1451,6 +1505,7 @@ declare module "index" {
     export { default as Headphones } from "lib/Headphones";
     export { default as Heart } from "lib/Heart";
     export { default as Height } from "lib/Height";
+    export { default as History } from "lib/History";
     export { default as Home } from "lib/Home";
     export { default as Image } from "lib/Image";
     export { default as Inbox } from "lib/Inbox";
@@ -1505,6 +1560,8 @@ declare module "index" {
     export { default as PhoneCall } from "lib/PhoneCall";
     export { default as PhoneMissed } from "lib/PhoneMissed";
     export { default as PhoneOff } from "lib/PhoneOff";
+    export { default as PhonePeople } from "lib/PhonePeople";
+    export { default as PhoneTruck } from "lib/PhoneTruck";
     export { default as Phone } from "lib/Phone";
     export { default as PieChart } from "lib/PieChart";
     export { default as Pin } from "lib/Pin";
@@ -1523,10 +1580,12 @@ declare module "index" {
     export { default as Recording } from "lib/Recording";
     export { default as Refresh } from "lib/Refresh";
     export { default as Repeat } from "lib/Repeat";
+    export { default as Report } from "lib/Report";
     export { default as RewindLeft } from "lib/RewindLeft";
     export { default as RewindRight } from "lib/RewindRight";
     export { default as Route } from "lib/Route";
     export { default as Save } from "lib/Save";
+    export { default as Scan } from "lib/Scan";
     export { default as Scissors } from "lib/Scissors";
     export { default as Search } from "lib/Search";
     export { default as Settings2 } from "lib/Settings2";
@@ -1535,7 +1594,6 @@ declare module "index" {
     export { default as Share } from "lib/Share";
     export { default as ShieldOff } from "lib/ShieldOff";
     export { default as Shield } from "lib/Shield";
-    export { default as ShoppingBag } from "lib/ShoppingBag";
     export { default as ShoppingCartPlus } from "lib/ShoppingCartPlus";
     export { default as ShoppingCart } from "lib/ShoppingCart";
     export { default as Shuffle2 } from "lib/Shuffle2";
@@ -1544,6 +1602,7 @@ declare module "index" {
     export { default as SkipForward } from "lib/SkipForward";
     export { default as Slash } from "lib/Slash";
     export { default as Smartphone } from "lib/Smartphone";
+    export { default as Smile } from "lib/Smile";
     export { default as Speaker } from "lib/Speaker";
     export { default as Square } from "lib/Square";
     export { default as Star } from "lib/Star";
@@ -1554,6 +1613,7 @@ declare module "index" {
     export { default as ThermometerMinus } from "lib/ThermometerMinus";
     export { default as ThermometerPlus } from "lib/ThermometerPlus";
     export { default as Thermometer } from "lib/Thermometer";
+    export { default as Ticket } from "lib/Ticket";
     export { default as Timer } from "lib/Timer";
     export { default as ToggleLeft } from "lib/ToggleLeft";
     export { default as ToggleRight } from "lib/ToggleRight";

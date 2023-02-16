@@ -54,6 +54,12 @@ export { default as dialog } from './utils/dialog'
 export { default as modal } from './utils/modal'
 export { default as notify } from './utils/notify'
 /**
+ * Hooks
+ */
+export { useDrop } from '@stage-ui/core/hooks/useDrop'
+export { useDropMenu } from '@stage-ui/core/hooks/useDropMenu'
+export { useDropOver } from '@stage-ui/core/hooks/useDropOver'
+/**
  * System links
  */
 export { dark as darkTheme } from '@stage-ui/system/themes'

@@ -48,6 +48,9 @@ function Preview({ theme, code, grid, jsxEmit, moduleKind, transpile }: PreviewP
   traspiledCode = traspiledCode.replace(/notify\(/g, 'StageUI.notify(')
   traspiledCode = traspiledCode.replace(/useTheme\(/g, 'StageUI.useTheme(')
   traspiledCode = traspiledCode.replace(/useBreakpoints\(/g, 'StageUI.useBreakpoints(')
+  traspiledCode = traspiledCode.replace(/useDrop\(/g, 'StageUI.useDrop(')
+  traspiledCode = traspiledCode.replace(/useDropMenu\(/g, 'StageUI.useDropMenu(')
+  traspiledCode = traspiledCode.replace(/useDropOver\(/g, 'StageUI.useDropOver(')
 
   traspiledCode.match(/var \S+/g)?.forEach((varible) => {
     const varName = varible.split('var ')[1]

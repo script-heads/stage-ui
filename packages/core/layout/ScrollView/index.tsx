@@ -161,7 +161,10 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
       if (!preventStageEvents && isBrowser) {
         document.dispatchEvent(
           new CustomEvent('onstagescroll', {
-            detail: event,
+            detail: {
+              self: memo.container,
+              event,
+            },
           }),
         )
       }
