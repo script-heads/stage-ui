@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Text } from '@stage-ui/core'
+import { Block, Text } from '@stage-ui/core'
 
 function MenuItem({
   active,
@@ -12,19 +12,26 @@ function MenuItem({
   onClick: () => void
 }) {
   return (
-    <Text
-      p="0"
-      mr={['2rem', '2rem', '2rem', '1rem']}
-      color={active ? 'primary' : 'onSurface'}
+    <Block
+      p="s m"
+      borderRadius="0.75rem"
+      mr={['0.125rem']}
       style={{
         transition: 'all 0.125s',
       }}
-      size="l"
-      weight={600}
-      onClick={onClick}
+      backgroundColor={(c) => (active ? c.onSurface.alpha(0.05) : c.onSurface.alpha(0))}
     >
-      {label}
-    </Text>
+      <Text
+        color={(c) => (active ? 'onSurface' : c.onSurface.alpha(0.5))}
+        style={{
+          transition: 'all 0.125s',
+        }}
+        weight={600}
+        onClick={onClick}
+      >
+        {label}
+      </Text>
+    </Block>
   )
 }
 

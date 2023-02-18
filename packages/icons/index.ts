@@ -1,11 +1,12 @@
 /**
-version: 0.3.70
+version: 0.4.0
 */
 export { default as Sync } from './lib/Sync'
 export { default as Activity } from './lib/Activity'
 export { default as AlertCircle } from './lib/AlertCircle'
 export { default as AlertTriangle } from './lib/AlertTriangle'
 export { default as AllDone } from './lib/AllDone'
+export { default as Appearance } from './lib/Appearance'
 export { default as Archive } from './lib/Archive'
 export { default as ArrowCircleDown } from './lib/ArrowCircleDown'
 export { default as ArrowCircleLeft } from './lib/ArrowCircleLeft'

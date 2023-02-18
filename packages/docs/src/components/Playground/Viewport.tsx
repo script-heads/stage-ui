@@ -47,6 +47,7 @@ function Preview({ theme, code, grid, jsxEmit, moduleKind, transpile }: PreviewP
   traspiledCode = traspiledCode.replace(/modal\(/g, 'StageUI.modal(')
   traspiledCode = traspiledCode.replace(/notify\(/g, 'StageUI.notify(')
   traspiledCode = traspiledCode.replace(/useTheme\(/g, 'StageUI.useTheme(')
+  traspiledCode = traspiledCode.replace(/useAppearance\(/g, 'StageUI.useAppearance(')
   traspiledCode = traspiledCode.replace(/useBreakpoints\(/g, 'StageUI.useBreakpoints(')
   traspiledCode = traspiledCode.replace(/useDrop\(/g, 'StageUI.useDrop(')
   traspiledCode = traspiledCode.replace(/useDropMenu\(/g, 'StageUI.useDropMenu(')

@@ -3340,9 +3340,9 @@ declare module "layout/Viewport/types" {
             cache?: Options;
             /**
              * Defines which theme to put in context.
-             * @default light
+             * @default auto
              */
-            theme?: 'dark' | 'light' | Stage.Theme;
+            theme?: 'auto' | 'dark' | 'light' | Stage.Theme;
             /**
              * Set global CSS
              */
@@ -3648,6 +3648,8 @@ declare module "hooks/misc/dropRef" {
         containerProps?: FlexboxTypes.Props;
         pointerEvents?: boolean;
         screenPadding?: number;
+        dropOffsetX?: number;
+        dropOffsetY?: number;
     };
     type CloseFn = () => void;
     export type DropNode = React.ReactNode | ((close: CloseFn) => React.ReactNode);
@@ -3779,4 +3781,5 @@ declare module "index" {
     export { useTheme } from '@stage-ui/system';
     export { createTheme } from '@stage-ui/system';
     export { useBreakpoints } from '@stage-ui/system/';
+    export { useAppearance } from '@stage-ui/system/';
 }

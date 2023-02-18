@@ -1412,6 +1412,11 @@ declare module "hooks/useBreakpoints" {
     const useBreakpoints: <T>(values: T[]) => T;
     export default useBreakpoints;
 }
+declare module "hooks/useAppearance" {
+    type Appearance = 'dark' | 'light';
+    const useAppearance: () => Appearance;
+    export default useAppearance;
+}
 declare module "utils/toFloat" {
     /**
      * Converts any value to Float
@@ -1639,6 +1644,7 @@ declare module "index" {
     export { default as useTheme } from "hooks/useTheme";
     export { default as useSystem } from "hooks/useSystem";
     export { default as useBreakpoints } from "hooks/useBreakpoints";
+    export { default as useAppearance } from "hooks/useAppearance";
     export { default as breakpointProp } from "props/breakpoint";
     export { default as colorProp } from "props/color";
     export { default as overridesProp } from "props/overrides";

@@ -5,7 +5,7 @@ export { ReactComponent as glyph } from './Split.svg'
 export const ns = 'SplitTypes'
 export const cases = [
   {
-    label: 'Split',
+    label: 'Basic usage',
     code: basic,
   },
 ]

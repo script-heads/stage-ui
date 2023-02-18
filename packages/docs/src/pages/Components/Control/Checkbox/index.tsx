@@ -5,7 +5,7 @@ export { ReactComponent as glyph } from './Checkbox.svg'
 export const ns = 'CheckboxTypes'
 export const cases = [
   {
-    label: 'Checkbox',
+    label: 'Basic usage',
     code: basic,
   },
 ]

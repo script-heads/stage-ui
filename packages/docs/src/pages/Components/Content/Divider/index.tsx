@@ -5,6 +5,6 @@ export const title = 'Divider'
 export { ReactComponent as glyph } from './Divider.svg'
 export const ns = 'DividerTypes'
 export const cases = [
-  { label: 'Divider', code: basic },
+  { label: 'Basic usage', code: basic },
   { label: 'Vertical', code: vertical },
 ]

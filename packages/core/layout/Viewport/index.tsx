@@ -1,7 +1,7 @@
 import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 
 import * as themes from '@stage-ui/core/themes'
-import { Provider, useSystem } from '@stage-ui/system'
+import { Provider, useAppearance, useSystem } from '@stage-ui/system'
 
 import { DropRenderer } from '../../hooks/components/DropRenderer'
 
@@ -12,7 +12,11 @@ import styles from './styles'
 
 const Viewport: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, ref) => {
   const { theme: themeProp = themes.light, wrapper, cache, children } = props
-  const theme = typeof themeProp === 'string' ? themes[themeProp] : themeProp
+  const appearance = useAppearance()
+  const theme =
+    typeof themeProp === 'string'
+      ? themes[themeProp === 'auto' ? appearance : themeProp]
+      : themeProp
   const { classes, attributes, events, styleProps } = useSystem(
     'Viewport',
     props,

@@ -27,54 +27,66 @@ export const sticky = true
 export default function Index() {
   return (
     <Block>
-      <Header size={['xl', 'xl', 'xl', 'l']}>Getting started</Header>
+      <Header mt="3rem" size={['xl', 'xl', 'xl', 'l']}>
+        Getting started
+      </Header>
       <Syntax code="npm i @stage-ui/core" />
       <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
-        Use Viewport component at the top level of your application. It provide theme to
-        all StageUI components, apply some Reset CSS and had another useful
-        configurations.
+        To use StageUI components, begin by adding the 'Viewport' component at the top
+        level of your application. This component provides a theme to all StageUI
+        components, applies a Reset CSS, and includes other useful configurations.
       </Paragraph>
       <Syntax code={ViewportCode} />
 
-      <Header size={['xl', 'xl', 'xl', 'l']}>Breakpoints</Header>
+      <Header mt="3rem" size={['xl', 'xl', 'xl', 'l']}>
+        Breakpoints
+      </Header>
       <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
-        All props what apply certain style to component, like padding, margin or
-        backgroundColor suport array notation where value of each index is match with
-        max-width media query breakpoint. Use "*" character to repeat previous value. It
-        makes resposive design much more easier and compact. Each props below except
-        overrides support this.
+        Many props that apply styles to a component, such as padding, margin, or
+        backgroundColor, support an array notation where the value of each index matches
+        with a max-width media query breakpoint. Use the '*' character to repeat the
+        previous value, which makes responsive design much easier and more compact. Each
+        prop below (except 'overrides') supports this notation.
       </Paragraph>
       <Syntax code={breakpoints} />
 
-      <Header size={['xl', 'xl', 'xl', 'l']}>Style</Header>
+      <Header mt="3rem" size={['xl', 'xl', 'xl', 'l']}>
+        Style
+      </Header>
       <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
-        This prop is like corresponding attribute in HTML, but apply these styles to
-        classname of components root element.
+        This prop is similar to the corresponding attribute in HTML, but it applies styles
+        to the classname of the component's root element.
       </Paragraph>
       <Syntax code={styleProp} />
 
-      <Header size={['xl', 'xl', 'xl', 'l']}>Overrides</Header>
+      <Header mt="3rem" size={['xl', 'xl', 'xl', 'l']}>
+        Overrides
+      </Header>
       <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
-        Like style prop, but there you able to specify styles to each elements of
-        component. If they are matching existing styles in current class they will be
-        overrided. It just one style prop what cant be specify as array of breakpoints.
+        The 'overrides' prop is similar to the 'style' prop, but it allows you to specify
+        styles for each element of the component. If they match existing styles in the
+        current class, they will be overridden. This is the only style prop that cannot be
+        specified as an array of breakpoints."
       </Paragraph>
       <Syntax code={overridesProp} />
 
-      <Header size={['xl', 'xl', 'xl', 'l']}>Color</Header>
+      <Header mt="3rem" size={['xl', 'xl', 'xl', 'l']}>
+        Color
+      </Header>
       <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
-        All colors described in StageUI theme turn into Objects with useful functions that
-        can transform colors brightness, hue, get rgb or hex notation and much more useful
-        parametrs. This props recive function what provide all theme colors in one
-        argument, a string corresponding to the color name or a simple CSS color value.
+        All colors described in the StageUI theme become objects with useful functions
+        that can transform the color's brightness, hue, retrieve RGB or HEX notation, and
+        much more. This prop receives a function that provides all theme colors in one
+        argument, a string corresponding to the color name, or a simple CSS color value.
       </Paragraph>
       <Syntax code={colorProps} />
 
-      <Header size={['xl', 'xl', 'xl', 'l']} id="margin-padding">
+      <Header mt="3rem" size={['xl', 'xl', 'xl', 'l']} id="margin-padding">
         Margin and Padding
       </Header>
       <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
-        Shorthand for margin and padding styles with size alias from theme spacing
+        This is a shorthand for margin and padding styles with size aliases from the theme
+        spacing.
       </Paragraph>
       <Syntax code={spacingProps} />
       <List
@@ -94,10 +106,10 @@ export default function Index() {
           'px: padding-left/right',
           'py: padding-top/bottom',
         ]}
-        higlightBefore=":"
+        highlightBefore=":"
       />
 
-      <Header size={['xl', 'xl', 'xl', 'l']} id="flex-grid">
+      <Header mt="3rem" size={['xl', 'xl', 'xl', 'l']} id="flex-grid">
         Flexbox and grid
       </Header>
       <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
@@ -121,19 +133,19 @@ export default function Index() {
           'gridRowEnd: grid-row-end',
           'placeSelf: place-self',
         ]}
-        higlightBefore=":"
+        highlightBefore=":"
       />
 
-      <Header size={['xl', 'xl', 'xl', 'l']} id="margin-padding">
+      <Header mt="3rem" size={['xl', 'xl', 'xl', 'l']} id="margin-padding">
         Position
       </Header>
       <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
         Shorthand for position styles with size alias from theme spacing
       </Paragraph>
       <Syntax code={positionProps} />
-      <List data={['t: top', 'l: left', 'r: right', 'b: bottom']} higlightBefore=":" />
+      <List data={['t: top', 'l: left', 'r: right', 'b: bottom']} highlightBefore=":" />
 
-      <Header size={['xl', 'xl', 'xl', 'l']} id="layout">
+      <Header mt="3rem" size={['xl', 'xl', 'xl', 'l']} id="layout">
         Layout
       </Header>
       <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
@@ -142,13 +154,13 @@ export default function Index() {
       <Syntax code={layoutProps} />
       <List
         data={['w: width', 'h: height', 'visibility: visibility', 'display: display']}
-        higlightBefore=":"
+        highlightBefore=":"
       />
-      <Header size={['xl', 'xl', 'xl', 'l']} id="border">
+      <Header mt="3rem" size={['xl', 'xl', 'xl', 'l']} id="border">
         Border
       </Header>
       <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
-        Shorthand for border styles
+        This is a shorthand for borders styles.
       </Paragraph>
       <Syntax code={borderProps} />
       <List
@@ -158,39 +170,47 @@ export default function Index() {
           'borderColor: border-color',
           'borderRadius: border-radius',
         ]}
-        higlightBefore=":"
+        highlightBefore=":"
       />
 
-      <Header size={['xl', 'xl', 'xl', 'l']} id="theming">
+      <Header mt="3rem" size={['xl', 'xl', 'xl', 'l']} id="theming">
         Theming
       </Header>
       <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
-        StageUI contains two themes by itself: Light and Dark. Light is default. Any theme
-        passs into Viewports theme prop. For create new theme you can use replace method
-        from existing theme and just override some values or make theme from scratch. If
-        you choose this way use createTheme function. Theme has three section to describe:
-        main, assets and overrides.
+        StageUI has two built-in themes: Light and Dark. By default, the theme is set to
+        'auto', which means it will be automatically selected based on the system
+        preferences. To specify a different theme, you can pass the theme name to the
+        'Viewport' theme prop. If you want to create a new theme, you can either use the
+        'replace' method to modify an existing theme, or start from scratch using the
+        'createTheme' function. A theme has three sections that you can modify: 'main',
+        'assets', and 'overrides'.
       </Paragraph>
       <Syntax code={theme} />
 
-      <Header size="l">Main</Header>
+      <Header size="l" mt="xl">
+        Main
+      </Header>
       <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
         Contains general variables of theme.
       </Paragraph>
       <Syntax code={main} />
 
-      <Header size="l">Assets</Header>
+      <Header size="l" mt="xl">
+        Assets
+      </Header>
       <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
-        Place for all styles that uses between components. Assets must be discribed by the
-        function which takes main varaibles for use eg colors. Empty objects in exaple
-        below are filled by analogy.
+        This is a place for all styles that are used between components. Assets must be
+        described by a function that takes main variables for use, such as colors. The
+        empty objects in the example below should be filled accordingly.
       </Paragraph>
       <Syntax code={assets} />
 
-      <Header size="l">Overrides</Header>
+      <Header size="l" mt="xl">
+        Overrides
+      </Header>
       <Paragraph fontSize={['1.375rem', '1.375rem', '1.375rem', '1rem']} lineHeight={1.4}>
-        All components have special styled system, that can be overriden from theme and
-        styles prop.
+        All components have a special styled system that can be overridden by the theme
+        and styles prop."
       </Paragraph>
       <Syntax code={overridesTheme} mb={0} />
     </Block>

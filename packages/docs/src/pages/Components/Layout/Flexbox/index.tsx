@@ -9,7 +9,7 @@ export { ReactComponent as glyph } from './Flexbox.svg'
 export const ns = 'FlexboxTypes'
 export const cases = [
   {
-    label: 'Flexbox',
+    label: 'Basic usage',
     code: basic,
   },
   {

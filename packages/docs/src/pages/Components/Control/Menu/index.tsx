@@ -6,7 +6,7 @@ export { ReactComponent as glyph } from './Menu.svg'
 export const ns = 'MenuTypes'
 export const cases = [
   {
-    label: 'Menu',
+    label: 'Basic usage',
     code: basic,
   },
   {

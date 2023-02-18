@@ -5,7 +5,7 @@ export { ReactComponent as glyph } from './Grid.svg'
 export const ns = 'GridTypes'
 export const cases = [
   {
-    label: 'Grid',
+    label: 'Basic usage',
     code: basic,
   },
 ]

@@ -5,7 +5,7 @@ export { ReactComponent as glyph } from './Switch.svg'
 export const ns = 'SwitchTypes'
 export const cases = [
   {
-    label: 'Switch',
+    label: 'Basic usage',
     code: basic,
   },
 ]

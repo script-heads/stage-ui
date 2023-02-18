@@ -7,7 +7,7 @@ export const subtitle =
 export const ns = 'BadgeTypes'
 export const cases = [
   {
-    label: 'Badge',
+    label: 'Basic usage',
     code: basic,
   },
 ]

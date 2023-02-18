@@ -1,6 +1,14 @@
 import React from 'react'
-import { Button } from '@stage-ui/core'
+
+import { Button, Grid } from '@stage-ui/core'
 
 export default () => {
-  return <Button label="Touch me" />
+  return (
+    <Grid gap="1rem">
+      <Button label="Default filled" />
+      <Button decoration="outline" label="Outline decoration" />
+      <Button decoration="plain" label="Plain decoration" />
+      <Button decoration="text" label="Text decoration" />
+    </Grid>
+  )
 }

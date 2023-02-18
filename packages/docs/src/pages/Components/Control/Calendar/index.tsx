@@ -6,7 +6,7 @@ export { ReactComponent as glyph } from './Calendar.svg'
 export const ns = 'CalendarTypes'
 export const cases = [
   {
-    label: 'Calendar',
+    label: 'Basic usage',
     code: basic,
   },
   {

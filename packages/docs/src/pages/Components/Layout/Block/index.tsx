@@ -7,8 +7,8 @@ export const title = 'Block'
 export { ReactComponent as glyph } from './Block.svg'
 export const ns = 'BlockTypes'
 export const cases = [
-  { label: 'Block', code: basic },
-  { label: 'Surface', code: surface },
-  { label: 'Shadow', code: shadow },
+  { label: 'Basic usage', code: basic },
+  { label: 'Surfaces', code: surface },
+  { label: 'Shadows', code: shadow },
   { label: 'Skeleton', code: skeleton },
 ]

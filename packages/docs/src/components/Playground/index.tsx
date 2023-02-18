@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import { Block, Button, Flexbox, Grid, Header, notify, useTheme } from '@stage-ui/core'
+import { Block, Button, Flexbox, Grid, notify, Paragraph, useTheme } from '@stage-ui/core'
 import { Copy, Grid as GridIcon } from '@stage-ui/icons'
 import { createID } from '@stage-ui/system'
 import color from 'color'
@@ -13,6 +13,7 @@ import { PageType } from '@/utils/core'
 interface EditorProps extends TranspileProps {
   cases: Exclude<PageType['cases'], undefined>
   title: string
+  glyph?: React.FC<React.SVGProps<SVGElement>>
   model: monaco.editor.ITextModel
 }
 
@@ -21,6 +22,7 @@ let editor: monaco.editor.IStandaloneCodeEditor | null = null
 function Playground({
   cases,
   title,
+  glyph: Glyph,
   jsxEmit,
   moduleKind,
   transpile,
@@ -104,21 +106,18 @@ function Playground({
         rowGap="1rem"
         columnGap="1rem"
         templateColumns={[
-          'max-content 1fr repeat(2, max-content)',
-          'max-content 1fr repeat(2, max-content)',
+          '1fr max-content repeat(2, max-content)',
+          '1fr max-content repeat(2, max-content)',
           '1fr repeat(2, max-content)',
         ]}
         templateAreas={[
-          `"header menu background copy"`,
-          `"header menu background copy"`,
+          `"menu header background copy"`,
+          `"menu header background copy"`,
           `"header background copy" "menu menu menu"`,
         ]}
         alignItems="center"
       >
-        <Header gridArea="header" size="l" m={0}>
-          {title}
-        </Header>
-        <Flexbox gridArea="menu" alignItems="center" justifyContent="center">
+        <Flexbox gridArea="menu" alignItems="center">
           <Flexbox wrap="wrap">
             {cases.map((c, caseIndex) => (
               <Button
@@ -136,6 +135,15 @@ function Playground({
             ))}
           </Flexbox>
         </Flexbox>
+        <Paragraph
+          size="s"
+          weight={600}
+          color={(c) => c.onSurface.alpha(0.2)}
+          gridArea="header"
+        >
+          {title}
+        </Paragraph>
+
         <GridIcon
           gridArea="background"
           size="1.5rem"
@@ -144,11 +152,10 @@ function Playground({
             localStorage.setItem('case_grid', !grid ? 'true' : 'false')
             setGrid(!grid)
           }}
-          mx="0.5rem"
+          ml="0.5rem"
         />
         <Copy
           gridArea="copy"
-          ml="0.5rem"
           size="1.5rem"
           color={(c) => c.onSurface}
           onClick={copyToClipboard}

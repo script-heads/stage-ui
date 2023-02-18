@@ -5,7 +5,7 @@ export { ReactComponent as glyph } from './CircleProgress.svg'
 export const ns = 'CircleProgressTypes'
 export const cases = [
   {
-    label: 'CircularProgress',
+    label: 'Basic usage',
     code: basic,
   },
 ]

@@ -6,7 +6,7 @@ export const title = 'Notify'
 export { ReactComponent as glyph } from './Notify.svg'
 export const ns = 'NotifyTypes'
 export const cases = [
-  { label: 'Notify', code: basic },
+  { label: 'Basic usage', code: basic },
   { label: 'Placement', code: placement },
   { label: 'Custom render', code: custom },
 ]

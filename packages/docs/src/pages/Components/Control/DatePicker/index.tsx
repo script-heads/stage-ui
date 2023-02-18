@@ -6,7 +6,7 @@ export { ReactComponent as glyph } from './DatePicker.svg'
 export const ns = 'DatePickerTypes'
 export const cases = [
   {
-    label: 'DatePicker',
+    label: 'Basic usage',
     code: basic,
   },
   {

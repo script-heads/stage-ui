@@ -8,7 +8,7 @@ export { ReactComponent as glyph } from './ScrollView.svg'
 export const ns = 'ScrollViewTypes'
 export const cases = [
   {
-    label: 'ScrollView',
+    label: 'Basic usage',
     code: basic,
   },
   {

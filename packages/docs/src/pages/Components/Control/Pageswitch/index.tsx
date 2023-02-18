@@ -5,7 +5,7 @@ export { ReactComponent as glyph } from './Pageswitch.svg'
 export const ns = 'PageswitchTypes'
 export const cases = [
   {
-    label: 'Pageswitch',
+    label: 'Basic usage',
     code: basic,
   },
 ]

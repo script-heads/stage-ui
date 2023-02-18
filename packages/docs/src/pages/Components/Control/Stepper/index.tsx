@@ -5,6 +5,6 @@ export const title = 'Stepper'
 export { ReactComponent as glyph } from './Stepper.svg'
 export const ns = 'StepperTypes'
 export const cases = [
-  { label: 'Stepper', code: basic },
+  { label: 'Basic usage', code: basic },
   { label: 'Mini', code: mini },
 ]

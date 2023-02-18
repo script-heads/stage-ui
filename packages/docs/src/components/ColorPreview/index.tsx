@@ -48,7 +48,7 @@ const ColorPreview: React.FC<ColorPreviewProps> = (props) => {
           backgroundColor={value}
           w={['3rem', '3rem', '3rem', '2rem']}
           h={['3rem', '3rem', '3rem', '2rem']}
-          borderRadius="100%"
+          borderRadius="0.75rem"
           flexShrink={0}
           shadow="xs"
         />
@@ -84,7 +84,7 @@ const ColorPreview: React.FC<ColorPreviewProps> = (props) => {
         },
       }}
     >
-      <Flexbox as="div" w="5.4rem" h="3rem" p="s" backgroundColor={value} />
+      <Flexbox as="div" w="5.4rem" h="1rem" p="s" backgroundColor={value} />
       <Text color="onSurface" size="m" weight="bold" mt="s">
         {name}
       </Text>

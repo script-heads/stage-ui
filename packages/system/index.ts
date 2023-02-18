@@ -293,6 +293,7 @@ export { default as Provider } from './components/Provider'
 export { default as useTheme } from './hooks/useTheme'
 export { default as useSystem } from './hooks/useSystem'
 export { default as useBreakpoints } from './hooks/useBreakpoints'
+export { default as useAppearance } from './hooks/useAppearance'
 
 export { default as breakpointProp } from './props/breakpoint'
 export { default as colorProp } from './props/color'

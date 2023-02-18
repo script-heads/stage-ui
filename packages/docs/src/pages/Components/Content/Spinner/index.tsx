@@ -5,6 +5,6 @@ export const title = 'Spinner'
 export { ReactComponent as glyph } from './Spinner.svg'
 export const ns = 'SpinnerTypes'
 export const cases = [
-  { label: 'Spinner', code: basic },
+  { label: 'Basic usage', code: basic },
   { label: 'Spin anything', code: another },
 ]

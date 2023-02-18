@@ -7,7 +7,7 @@ export { ReactComponent as glyph } from './Select.svg'
 export const ns = 'SelectTypes'
 export const cases = [
   {
-    label: 'Select',
+    label: 'Basic usage',
     code: basic,
   },
   {

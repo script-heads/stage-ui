@@ -8,7 +8,7 @@ export const title = 'Modal'
 export { ReactComponent as glyph } from './Modal.svg'
 export const ns = 'ModalTypes'
 export const cases = [
-  { label: 'Modal', code: basic },
+  { label: 'Basic usage', code: basic },
   { label: 'Fullscreen', code: fullscreen },
   { label: 'Panel', code: panel },
   { label: 'Panel side', code: panelSide },

@@ -13,9 +13,9 @@ declare namespace ViewportTypes {
     cache?: Options
     /**
      * Defines which theme to put in context.
-     * @default light
+     * @default auto
      */
-    theme?: 'dark' | 'light' | Stage.Theme
+    theme?: 'auto' | 'dark' | 'light' | Stage.Theme
     /**
      * Set global CSS
      */

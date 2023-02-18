@@ -15,15 +15,13 @@ function Syntax({ code, ...blockProps }: { code: string } & BlockTypes.Props) {
     fontSize: theme.assets.typography.text.m.fontSize,
     lineHeight: 1.5,
     fontWeight: 600,
-    borderLeft: '1rem solid',
-    borderColor: isDark
-      ? theme.color.gray[700].rgb().string()
-      : theme.color.gray[200].rgb().string(),
-    // borderTopWidth: '0px',
-    // borderBottomWidth: '0px',
-    background: theme.color.background,
+    borderRadius: '0.5rem',
+    border: '0.5rem solid',
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
+    borderColor: theme.color.onSurface.alpha(0.05).string(),
     minWidth: 0,
-    backgroundColor: theme.color.surface.hex(),
+    backgroundColor: theme.color.onSurface.alpha(0.02).string(),
     boxShadow: 'none',
   }
   return (

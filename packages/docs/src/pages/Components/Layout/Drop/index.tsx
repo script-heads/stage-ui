@@ -7,7 +7,7 @@ export { ReactComponent as glyph } from './Drop.svg'
 export const ns = 'DropTypes'
 export const cases = [
   {
-    label: 'Drop',
+    label: 'Basic usage',
     code: basic,
   },
   {

@@ -6,7 +6,7 @@ export { ReactComponent as glyph } from './Meter.svg'
 export const ns = 'MeterTypes'
 export const cases = [
   {
-    label: 'Meter',
+    label: 'Basic usage',
     code: basic,
   },
   {

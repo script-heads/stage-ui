@@ -5,7 +5,7 @@ export { ReactComponent as glyph } from './Popover.svg'
 export const ns = 'PopoverTypes'
 export const cases = [
   {
-    label: 'Popover',
+    label: 'Basic usage',
     code: basic,
   },
 ]

@@ -1,19 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-import { Grid, Text } from '@stage-ui/core'
-import { Moon } from '@stage-ui/icons'
+import { Grid, Text, useAppearance } from '@stage-ui/core'
 import corePackage from '@stage-ui/core/package.json'
-import { useNavigate } from 'react-router-dom'
+import { Appearance } from '@stage-ui/icons'
 
 import useThemes from '../../hooks/useThemes'
 
-import Menu from './Menu'
+import { gradientAnimation } from '../CardPreview'
+
 import { Logo } from './Logo'
+import Menu from './Menu'
 
 const Header: React.FC = () => {
-  const navigate = useNavigate()
   const { currentTheme, themes, setTheme } = useThemes()
-
+  const appearance = useAppearance()
+  useEffect(() => {
+    setTheme?.(themes[appearance])
+  }, [appearance])
   return (
     <Grid
       my={['3rem', '2rem', '1.5rem', '1rem']}
@@ -36,26 +39,28 @@ const Header: React.FC = () => {
     >
       <Logo />
       <Text
-        size="xs"
+        size="s"
         mt="xs"
-        p="0.125rem 0.5rem"
-        color="white"
-        weight={800}
+        weight={900}
         borderRadius="0.25rem"
         gridArea="version"
         style={{
-          background: 'linear-gradient(45deg, #2949EF 0%, #0DC5EE 80%, #0DEEE0 100%)',
+          background: 'linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)',
+          backgroundSize: '400% 400%',
+          backgroundClip: 'text',
+          textFillColor: 'transparent',
+          animation: `${gradientAnimation} 10s ease infinite`,
         }}
       >
         v.{corePackage.version}
       </Text>
       <Menu />
-      <Moon
+      <Appearance
         gridArea="theme"
         size="1.5rem"
         borderRadius="100%"
         type={currentTheme.name === 'Dark' ? 'outline' : 'filled'}
-        color={currentTheme.name === 'Dark' ? 'primary' : 'gray300'}
+        color={currentTheme.name === 'Dark' ? 'onSurface' : 'gray400'}
         onClick={() => {
           setTheme?.(themes[currentTheme.name === 'Dark' ? 'light' : 'dark'])
         }}

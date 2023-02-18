@@ -87,7 +87,9 @@ function ComponentModal() {
       {(!typedoc || !typescript) && (
         <Flexbox h="100%" alignItems="center" justifyContent="center" column my="16rem">
           <Spinner count={6} size="2rem" mb="xl" color={(c) => c.onSurface.alpha(0.5)} />
-          <Text color={(c) => c.onSurface.alpha(0.75)}>Loading playground</Text>
+          <Text weight={600} color={(c) => c.onSurface.alpha(0.75)}>
+            Loading playground
+          </Text>
         </Flexbox>
       )}
       {typedoc && typescript && (
@@ -96,6 +98,7 @@ function ComponentModal() {
             <Playground
               cases={data.cases}
               title={data.title}
+              glyph={data.glyph}
               model={model}
               transpile={typescript.transpile}
               jsxEmit={typescript.jsxEmit}

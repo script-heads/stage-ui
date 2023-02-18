@@ -5,7 +5,7 @@ export { ReactComponent as glyph } from './Radio.svg'
 export const ns = 'RadioTypes'
 export const cases = [
   {
-    label: 'Radio',
+    label: 'Basic usage',
     code: basic,
   },
 ]

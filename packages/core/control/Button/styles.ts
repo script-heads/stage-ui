@@ -14,13 +14,6 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
   const color = colorProp(props.color, theme) || theme.color.primary
   const isDark = color.contrast(theme.color.onPrimary) > 2.5
 
-  const primaryGradient = [
-    isDark ? color.lighten(0).hex() : color.darken(0).hex(),
-    isDark ? color.lighten(0).hex() : color.darken(0).hex(),
-    isDark ? color.lighten(0).hex() : color.darken(0).hex(),
-    isDark ? color.lighten(0.5).hex() : color.darken(0.1).hex(),
-  ]
-
   const applyDecoration = (
     decorations: Record<
       Types.Decoration,
@@ -74,8 +67,6 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         filled: {
           idle: {
             background: color.rgb().string(),
-            // backgroundSize: '300% 300%',
-            // backgroundImage: `linear-gradient(45deg, ${primaryGradient.join(',')})`,
             color: isDark
               ? theme.color.onPrimary.rgb().string()
               : theme.color.onSurface.rgb().string(),
@@ -111,7 +102,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         outline: {
           idle: {
             borderWidth: '0.0625rem',
-            borderColor: color.rgb().string(),
+            borderColor: color.alpha(0.5).rgb().string(),
             color: color.rgb().string(),
           },
           hover: {
@@ -129,13 +120,13 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         plain: {
           idle: {
             borderWidth: '0.0625rem',
-            borderColor: theme.color.gray[300].rgb().string(),
+            borderColor: theme.color.gray[500].rgb().string(),
             background: theme.color.surface.rgb().string(),
             color: theme.color.onSurface.rgb().string(),
           },
           hover: {
             transition: 'all 0.15s',
-            background: theme.color.gray[50].rgb().string(),
+            background: theme.color.surface.alpha(0.8).string(),
           },
           active: {
             background: theme.color.gray[100].rgb().string(),

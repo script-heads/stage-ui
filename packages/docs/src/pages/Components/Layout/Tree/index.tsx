@@ -7,7 +7,7 @@ export { ReactComponent as glyph } from './Tree.svg'
 export const ns = 'TreeTypes'
 export const cases = [
   {
-    label: 'Tree',
+    label: 'Basic usage',
     code: basic,
   },
   {

@@ -5,7 +5,7 @@ export { ReactComponent as glyph } from './ArcProgress.svg'
 export const ns = 'ArcProgressTypes'
 export const cases = [
   {
-    label: 'ArcProgress',
+    label: 'Basic usage',
     code: basic,
   },
 ]

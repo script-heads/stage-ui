@@ -9,7 +9,7 @@ export { ReactComponent as glyph } from './TextField.svg'
 export const ns = 'TextFieldTypes'
 export const cases = [
   {
-    label: 'TextField',
+    label: 'Basic usage',
     code: basic,
   },
   {

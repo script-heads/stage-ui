@@ -40,31 +40,7 @@ function Docs() {
   return (
     <DocsContext.Provider value={nextContext}>
       <Viewport
-        theme={currentTheme.replace({
-          assets: {
-            typography: {
-              header: {
-                xl: {
-                  fontSize: '3.5rem',
-                  lineHeight: 1.11,
-                  fontWeight: '600 !important',
-                  letterSpacing: '-1px',
-                  color: currentTheme.color.onSurface.alpha(0.85).rgb().string(),
-                  marginTop: '5rem',
-                },
-              },
-              paragraph: {
-                xl: {
-                  fontSize: '1.5rem',
-                  lineHeight: 1.5,
-                  letterSpacing: '0.0625rem',
-                  marginTop: '2rem',
-                  marginBottom: '2.5rem',
-                },
-              },
-            },
-          },
-        })}
+        theme={currentTheme}
         global={[
           {
             'html,body,#docs': {
@@ -122,7 +98,7 @@ function Docs() {
             xBarPosition="none"
           >
             <Flexbox column alignItems="center" px="xl">
-              <Block w="100%" mb="4rem" style={{ maxWidth: '64rem', width: '100%' }}>
+              <Block w="100%" style={{ maxWidth: '64rem', width: '100%' }}>
                 <Header />
                 <Routes>
                   <Route path="/" element={<Index />} />
@@ -139,9 +115,9 @@ function Docs() {
                   <Route path="/colors" element={<AsyncPage component={Colors} />} />
                   <Route path="*" element={<AsyncPage component={Page404} />} />
                 </Routes>
+                <Footer />
               </Block>
             </Flexbox>
-            <Footer />
           </ScrollView>
         </Router>
       </Viewport>

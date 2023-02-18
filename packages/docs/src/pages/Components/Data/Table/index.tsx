@@ -10,11 +10,11 @@ export const title = 'Table'
 export { ReactComponent as glyph } from './Table.svg'
 export const ns = 'TableTypes'
 export const cases = [
-  { label: 'Table', code: basic },
+  { label: 'Basic usage', code: basic },
   { label: 'Edit', code: editCell },
   { label: 'Expand', code: expandCell },
   { label: 'Sorting', code: sorting },
   { label: 'Pagination', code: pagination },
-  { label: 'Bigdata', code: bigdata },
+  { label: 'Big data', code: bigdata },
   { label: 'Selectable', code: selectable },
 ]

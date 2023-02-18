@@ -5,6 +5,6 @@ export { ReactComponent as glyph } from './useBreakpoints.svg'
 
 export const title = 'useBreakpoints'
 export const cases = [
-  { label: 'useBreakpoints', code: basic },
+  { label: 'Basic usage', code: basic },
   { label: 'Advanced', code: component },
 ]
