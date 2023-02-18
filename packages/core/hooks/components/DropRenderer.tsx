@@ -75,6 +75,11 @@ export const DropRenderer = () => {
     let [x, y] = pos
     const { innerWidth, innerHeight } = window
 
+    if (visible) {
+      x += payload.options.dropOffsetX || 0
+      y += payload.options.dropOffsetY || 0
+    }
+
     const width = document.getElementById('drop-renderer')?.offsetWidth || 0
     const height = document.getElementById('drop-renderer')?.offsetHeight || 0
     const padding = payload.options.screenPadding || SCREEN_PADDING
@@ -111,7 +116,7 @@ export const DropRenderer = () => {
       {...payload.options.containerProps}
     >
       {typeof payload.node === 'string' ? (
-        <Text p="s m" color="gray900" weight={500}>
+        <Text p="s m" color={(c) => c.onSurface.alpha(0.8).string()} weight={500}>
           {payload.node}
         </Text>
       ) : (

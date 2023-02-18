@@ -10,6 +10,8 @@ export type UseDropOptions = {
   containerProps?: FlexboxTypes.Props
   pointerEvents?: boolean
   screenPadding?: number
+  dropOffsetX?: number
+  dropOffsetY?: number
 }
 
 type CloseFn = () => void

@@ -8,7 +8,10 @@ export const useDropOver = (dropNode: DropNode, options: UseDropOptions = {}) =>
       if (dropDelegate.visible) {
         dropDelegate.close()
       } else {
-        dropRef?.current?.open(e as MouseEvent, dropNode, options)
+        dropRef?.current?.open(e as MouseEvent, dropNode, {
+          ...options,
+          pointerEvents: options.pointerEvents ?? false,
+        })
       }
     },
     onMouseLeave: () => {
