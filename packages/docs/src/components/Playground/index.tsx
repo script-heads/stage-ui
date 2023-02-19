@@ -15,6 +15,7 @@ interface EditorProps extends TranspileProps {
   title: string
   glyph?: React.FC<React.SVGProps<SVGElement>>
   model: monaco.editor.ITextModel
+  isExperimental?: boolean
 }
 
 let editor: monaco.editor.IStandaloneCodeEditor | null = null
@@ -27,6 +28,7 @@ function Playground({
   moduleKind,
   transpile,
   model,
+  isExperimental,
 }: EditorProps) {
   const [currentCase, setCurrentCase] = useState<number>(0)
   const [code, setEditorCode] = useState<string>(cases[0].code)
@@ -135,14 +137,24 @@ function Playground({
             ))}
           </Flexbox>
         </Flexbox>
-        <Paragraph
-          size="s"
-          weight={600}
-          color={(c) => c.onSurface.alpha(0.2)}
-          gridArea="header"
-        >
-          {title}
-        </Paragraph>
+        <Flexbox gridArea="header" alignItems="center">
+          <Paragraph size="s" weight={600} color={(c) => c.onSurface.alpha(0.2)}>
+            {title}
+          </Paragraph>
+          {isExperimental && (
+            <Paragraph
+              size="xs"
+              borderRadius="s"
+              ml="m"
+              weight={600}
+              p="0.125rem 0.5rem"
+              backgroundColor="orange600"
+              color="onPrimary"
+            >
+              Experimental
+            </Paragraph>
+          )}
+        </Flexbox>
 
         <GridIcon
           gridArea="background"

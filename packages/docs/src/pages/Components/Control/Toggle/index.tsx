@@ -4,6 +4,7 @@ export const title = 'Toggle'
 export { ReactComponent as glyph } from './Toggle.svg'
 
 export const ns = 'ToggleTypes'
+export const isExperimental = true
 export const cases = [
   {
     label: 'Basic usage',

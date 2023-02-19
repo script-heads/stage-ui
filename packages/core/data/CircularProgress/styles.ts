@@ -6,10 +6,11 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
   const { value = 0, shape = 'round', size = 'm', fontSize: fontSizeProp } = props
   const color = colorResolver(props.color || theme.color.primary, theme)
 
-  const strokeBackground = colorResolver(
-    props.strokeBackgroundColor || theme.color.gray[200],
-    theme,
-  )
+  const isDark = theme.color.surface.isDark()
+  const strokeColor =
+    props.strokeBackgroundColor || isDark
+      ? theme.color.surface.lighten(0.5).hex()
+      : theme.color.surface.darken(0.1).hex()
 
   const fontSize = (fontSizeProp ||
     theme.assets.typography.text[size as Stage.Sizes]?.fontSize ||
@@ -54,7 +55,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
     circleBackground: (state) => [
       {
         fill: 'none',
-        stroke: strokeBackground.hex(),
+        stroke: strokeColor,
         strokeWidth: state.strokeWidthRem,
       },
     ],

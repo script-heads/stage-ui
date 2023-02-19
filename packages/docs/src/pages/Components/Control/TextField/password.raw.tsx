@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+
 import { TextField } from '@stage-ui/core'
 import { Eye, EyeOff } from '@stage-ui/icons'
 
@@ -6,6 +7,7 @@ export default () => {
   const [type, setType] = useState<any>('password')
   return (
     <TextField
+      key="password"
       type={type}
       label="Password"
       defaultValue="123456"

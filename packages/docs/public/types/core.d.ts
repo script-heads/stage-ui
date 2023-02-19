@@ -1619,7 +1619,22 @@ declare module "control/Select/index" {
 declare module "control/Switch/types" {
     import CheckboxTypes from "control/Checkbox/types";
     namespace SwitchTypes {
-        type Props = CheckboxTypes.Props;
+        type Shape = 'square' | 'rounded' | 'round';
+        type Props = CheckboxTypes.Props & {
+            /**
+             * Shape of switch
+             * @default round
+             */
+            shape?: Shape;
+            /**
+             * Color of switch
+             */
+            color?: Stage.ColorProp;
+            /**
+             * Place icon to child
+             */
+            iconChild?: React.ReactNode;
+        };
         type ClassState = CheckboxTypes.Props;
         type Classes = CheckboxTypes.Classes;
     }
@@ -1632,7 +1647,12 @@ declare module "control/Switch/styles" {
 }
 declare module "control/Switch/index" {
     import React from 'react';
-    const _default_22: React.ForwardRefExoticComponent<import("control/Checkbox/types").default.Props & React.RefAttributes<HTMLDivElement>>;
+    import Types from "control/Switch/types";
+    const _default_22: React.ForwardRefExoticComponent<import("control/Checkbox/types").default.Props & {
+        shape?: Types.Shape | undefined;
+        color?: import("@stage-ui/system/props/color").ColorProp | undefined;
+        iconChild?: React.ReactNode;
+    } & React.RefAttributes<HTMLDivElement>>;
     export default _default_22;
 }
 declare module "control/TextField/types" {

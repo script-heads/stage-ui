@@ -4,6 +4,7 @@ import advanced from './advanced.raw?raw'
 export const title = 'Menu'
 export { ReactComponent as glyph } from './Menu.svg'
 export const ns = 'MenuTypes'
+export const isExperimental = true
 export const cases = [
   {
     label: 'Basic usage',

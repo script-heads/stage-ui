@@ -1,3 +1,5 @@
+/* eslint-disable react/no-multi-comp */
+/* eslint-disable react/no-unstable-nested-components */
 import React, {
   forwardRef,
   ForwardRefRenderFunction,
@@ -62,7 +64,7 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
   const leftCountLineRef = useRef<HTMLDivElement>(null)
   const fieldRef = useRef<HTMLDivElement>(null)
 
-  const [leftCountLineState, setleftCountLineState] = useState({
+  const [leftCountLineState, setLeftCountLineState] = useState({
     count: 0,
     top: '0px',
   })
@@ -70,7 +72,7 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
   useEffect(() => {
     if (leftChildNumber) {
       const currentValue = (defaultValue || value || '').toString()
-      setleftCountLineState({
+      setLeftCountLineState({
         count: currentValue.split('\n').length,
         top: leftCountLineState.top,
       })
@@ -112,7 +114,7 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
           css={classes.lineNumbers}
         >
           {arr.map((_, index) => (
-            <div key={index}>{render(index)}</div>
+            <pre key={index}>{render(index)}</pre>
           ))}
         </div>
         <div style={{ visibility: 'hidden' }}>{render(arr.length - 1)}</div>
@@ -177,7 +179,7 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
         tabIndex: -1,
         onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
           if (leftCountLineRef.current) {
-            setleftCountLineState({
+            setLeftCountLineState({
               count: e.target.value.split('\n').length,
               top: leftCountLineState.top,
             })
@@ -185,7 +187,7 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
         },
         onScroll: (e: React.ChangeEvent<HTMLInputElement>) => {
           if (leftCountLineRef.current) {
-            setleftCountLineState({
+            setLeftCountLineState({
               count: e.target.value.split('\n').length,
               top: `${-e.target.scrollTop}px`,
             })

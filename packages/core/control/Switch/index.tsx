@@ -13,6 +13,7 @@ const Switch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
     tabIndex = 0,
     label,
     disabled,
+    iconChild,
     defaultValue,
     checked: checkedProp,
     half = false,
@@ -90,7 +91,9 @@ const Switch: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
           css={classes.icon({ checked, half })}
           onFocus={events.onFocus}
           onBlur={events.onBlur}
-        />
+        >
+          {iconChild}
+        </div>
       </div>
       {label && label.length && <div css={classes.label}>{label}</div>}
     </div>

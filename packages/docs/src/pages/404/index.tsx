@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Header, Text, Flexbox } from '@stage-ui/core'
+import { Header, Flexbox } from '@stage-ui/core'
 
 const Page404 = () => {
   return (
@@ -8,7 +8,6 @@ const Page404 = () => {
       <Header size="40vh" color="onSurface" m={0}>
         404
       </Header>
-      <Text color="hard">Page not found</Text>
     </Flexbox>
   )
 }

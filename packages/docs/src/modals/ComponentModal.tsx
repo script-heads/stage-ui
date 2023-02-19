@@ -100,6 +100,7 @@ function ComponentModal() {
               cases={data.cases}
               title={data.title}
               glyph={data.glyph}
+              isExperimental={data.isExperimental}
               model={model}
               transpile={typescript.transpile}
               jsxEmit={typescript.jsxEmit}

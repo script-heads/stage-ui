@@ -19,5 +19,3 @@ export const cases = [
     code: keepOpen,
   },
 ]
-
-export { default as test } from './index.test'

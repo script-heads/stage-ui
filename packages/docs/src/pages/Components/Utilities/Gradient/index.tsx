@@ -9,6 +9,7 @@ import color from './color.raw?raw'
 import repeating from './repeating.raw?raw'
 
 export const title = 'createGradient'
+export const isExperimental = true
 export { ReactComponent as glyph } from './Gradient.svg'
 export const cases = [
   { label: 'Basic usage', code: basic },

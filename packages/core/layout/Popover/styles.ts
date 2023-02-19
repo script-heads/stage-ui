@@ -14,6 +14,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         width: 'fit-content',
         borderRadius: theme.radius.m,
         padding: theme.spacing.s,
+        backgroundColor: theme.color.surface.string(),
       },
       breakpointProp(props.shadow || 'm', theme, (currentValue) => {
         const shadow = theme.assets.shadow[currentValue]

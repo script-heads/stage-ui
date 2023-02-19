@@ -1,9 +1,10 @@
 import React from 'react'
+
 import { Block, Flexbox, Calendar } from '@stage-ui/core'
 
 export default () => {
   return (
-    <Block p="m" decoration="surface" w="18rem">
+    <Block p="m" decoration="surface" w="20rem">
       <Calendar
         type="day"
         onDayRender={(options) => {
@@ -17,7 +18,11 @@ export default () => {
               h="2rem"
               onClick={options.onClick}
               backgroundColor={(c) =>
-                options.isActive ? c.error : range.includes(day) ? c.primary.alpha(0.2) : c.surface
+                options.isActive
+                  ? c.error
+                  : range.includes(day)
+                  ? c.primary.alpha(0.2)
+                  : c.surface
               }
               children={day}
             />

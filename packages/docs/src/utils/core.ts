@@ -15,6 +15,7 @@ export type PageType = {
   test?: React.FC
   sticky?: boolean
   default?: React.FC
+  isExperimental?: boolean
 }
 
 export type PagesType = Record<string, PageType[]>

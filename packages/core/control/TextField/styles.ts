@@ -33,7 +33,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
     },
   ],
   lineNumbers: {
-    backgroundColor: theme.color.lightest.hex(),
+    backgroundColor: theme.color.background.hex(),
     height: 'max-content',
     minHeight: '100%',
     position: 'absolute',

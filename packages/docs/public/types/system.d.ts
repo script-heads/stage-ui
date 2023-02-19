@@ -1470,6 +1470,20 @@ declare module "utils/toRem" {
     function toRem(input: string | number): string;
     export default toRem;
 }
+declare module "utils/createGradient" {
+    type GradientOptions = {
+        type?: 'linear' | 'radial' | 'conic';
+        repeating?: boolean;
+        colors: Stage.ColorProp[];
+        positions?: (number | string)[];
+        angle?: number;
+    };
+    /**
+     * This utility creates gradient for CSS use
+     */
+    function createGradient(theme: Stage.Theme, gradientOptions: GradientOptions): string;
+    export default createGradient;
+}
 declare module "index" {
     import { CSSInterpolation as CSSI, CSSObject as CSSO } from '@emotion/serialize';
     import { ColorProp as ColorPropType } from "props/color";
@@ -1666,4 +1680,5 @@ declare module "index" {
     export { default as toPixel } from "utils/toPixel";
     export { default as toPx } from "utils/toPx";
     export { default as toRem } from "utils/toRem";
+    export { default as createGradient } from "utils/createGradient";
 }
