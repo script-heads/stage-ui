@@ -1,7 +1,7 @@
 {
   "name": "stage-ui",
   "author": "Script Heads",
-  "version": "0.2.2-beta",
+  "version": "0.4.2",
   "license": "MIT",
   "private": true,
   "workspaces": [
@@ -9,9 +9,10 @@
   ],
   "scripts": {
     "start": "yarn docs:start",
-    "build": "yarn system:build && yarn icons:build && yarn core:build",
+    "build": "yarn version:up && yarn system:build && yarn icons:build && yarn core:build",
     "pub": "yarn core:pub && yarn icons:pub && yarn system:pub",
     "gen": "yarn icons:gen && yarn docs:gen",
+    "version:up": "node scripts/make",
     "core:build": "cd ./packages/core && yarn build",
     "core:pub": "cd ./build/core && npm publish --registry=https://registry.npmjs.org",
     "icons:build": "cd ./packages/icons && yarn build",

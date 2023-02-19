@@ -22,7 +22,8 @@
     "framework"
   ],
   "scripts": {
-    "build": "node ../../scripts/make icons && yarn build:types && yarn build:js",
+    "make": "node ../../scripts/make icons",
+    "build": "yarn build:types && yarn build:js",
     "build:js": "babel ./ --out-dir ../../build/icons --extensions \".ts,.tsx\" --ignore \"node_modules/\"",
     "build:types": "tsc --emitDeclarationOnly",
     "gen": "node ./scripts/generate",
