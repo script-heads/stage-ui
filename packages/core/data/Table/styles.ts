@@ -7,8 +7,10 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
     containerDecorations({ decoration: 'surface', ...props }, theme),
     {
       width: '100%',
+      boxShadow: theme.assets.shadow.xs,
       borderCollapse: 'inherit',
       borderSpacing: 0,
+      border: 0,
     },
   ],
   row: (state) => [

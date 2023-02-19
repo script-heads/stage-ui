@@ -1361,7 +1361,7 @@ declare module "utils/convertColors" {
     export default convertColors;
 }
 declare module "utils/createTheme" {
-    const createTheme: (themeDefinition: Stage.ThemeDefiniton) => Stage.Theme;
+    const createTheme: (themeDefinition: Stage.ThemeDefinition) => Stage.Theme;
     export default createTheme;
 }
 declare module "themes/light" {
@@ -1539,7 +1539,7 @@ declare module "index" {
                 /** @deprecated this field */
                 palette: Record<string, C>;
             };
-            type ColorPallete<C = Color> = {
+            type ColorPalette<C = Color> = {
                 gray: ColorShades<C>;
                 yellow: ColorShades<C> & ColorAccentsShades<C>;
                 orange: ColorShades<C> & ColorAccentsShades<C>;
@@ -1556,8 +1556,8 @@ declare module "index" {
                 indigo: ColorShades<C>;
                 purple: ColorShades<C>;
             };
-            type ColorNames = LiteralUnion<LiteralUnion<keyof ColorMain | `gray${keyof ColorPallete['gray']}` | `yellow${keyof ColorPallete['yellow']}` | `orange${keyof ColorPallete['orange']}` | `red${keyof ColorPallete['red']}` | `rose${keyof ColorPallete['rose']}` | `pink${keyof ColorPallete['pink']}` | `green${keyof ColorPallete['green']}` | `lightGreen${keyof ColorPallete['lightGreen']}` | `lime${keyof ColorPallete['lime']}` | `teal${keyof ColorPallete['teal']}` | `cyan${keyof ColorPallete['cyan']}` | `lightBlue${keyof ColorPallete['lightBlue']}` | `blue${keyof ColorPallete['blue']}` | `indigo${keyof ColorPallete['indigo']}` | `purple${keyof ColorPallete['purple']}`, keyof ColorCustom['palette']>, string>;
-            type Colors<C = Color, Definition = false> = ColorMain<C> & ColorPallete<C> & (Definition extends true ? Partial<ColorCustom<C>> : ColorCustom<C>);
+            type ColorNames = LiteralUnion<LiteralUnion<keyof ColorMain | `gray${keyof ColorPalette['gray']}` | `yellow${keyof ColorPalette['yellow']}` | `orange${keyof ColorPalette['orange']}` | `red${keyof ColorPalette['red']}` | `rose${keyof ColorPalette['rose']}` | `pink${keyof ColorPalette['pink']}` | `green${keyof ColorPalette['green']}` | `lightGreen${keyof ColorPalette['lightGreen']}` | `lime${keyof ColorPalette['lime']}` | `teal${keyof ColorPalette['teal']}` | `cyan${keyof ColorPalette['cyan']}` | `lightBlue${keyof ColorPalette['lightBlue']}` | `blue${keyof ColorPalette['blue']}` | `indigo${keyof ColorPalette['indigo']}` | `purple${keyof ColorPalette['purple']}`, keyof ColorCustom['palette']>, string>;
+            type Colors<C = Color, Definition = false> = ColorMain<C> & ColorPalette<C> & (Definition extends true ? Partial<ColorCustom<C>> : ColorCustom<C>);
             interface ThemeMain<C = Color, Definition = false> {
                 name: string;
                 color: Colors<C, Definition>;
@@ -1597,13 +1597,13 @@ declare module "index" {
                 overrides: ThemeOverrides;
                 replace: (theme: ReplaceTheme) => Theme;
             }
-            interface ThemeDefiniton {
+            interface ThemeDefinition {
                 main: ThemeMain<Stage.ColorDefinition, true>;
                 assets: ((main: ThemeMain) => ThemeAssets) | ThemeAssets;
                 overrides?: ((main: ThemeMain, assets: ThemeAssets) => Stage.ThemeOverrides) | Stage.ThemeOverrides;
             }
             interface ReplaceTheme {
-                main?: DeepPartial<ThemeDefiniton['main']>;
+                main?: DeepPartial<ThemeDefinition['main']>;
                 assets?: ((main: Stage.ThemeMain) => DeepPartial<Stage.ThemeAssets>) | DeepPartial<Stage.ThemeAssets>;
                 overrides?: ((main: Stage.ThemeMain, assets: Stage.ThemeAssets) => Stage.ThemeOverrides) | Stage.ThemeOverrides;
             }
@@ -1621,7 +1621,7 @@ declare module "index" {
                 [ClassName in keyof ClassesSchema]: ClassesSchema[ClassName] extends void ? Stage.CSSInterpolation : FunctionClass<ClassesSchema[ClassName]>;
             };
             type FunctionClass<ClassSchema extends ClassStateDefinition> = (state: ClassSchema) => Stage.CSSInterpolation;
-            type AllProps<Containter, ClassSchema extends ClassesSchemaDefinition = ClassesSchemaDefinition> = AllPropsType<Containter, ClassSchema>;
+            type AllProps<Container, ClassSchema extends ClassesSchemaDefinition = ClassesSchemaDefinition> = AllPropsType<Container, ClassSchema>;
             type ColorProp = ColorPropType;
             type OverridesProp<ClassesSchema extends Stage.ClassesSchemaDefinition> = OverridesPropType<ClassesSchema>;
             type SpaceProp = SpacePropType;

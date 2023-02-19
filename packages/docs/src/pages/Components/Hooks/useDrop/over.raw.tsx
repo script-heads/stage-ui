@@ -7,8 +7,7 @@ export default () => {
 
   return (
     <Button
-      decoration="plain"
-      label="Show hint"
+      label="Hover to display hint"
       onMouseOver={onMouseOver}
       onMouseLeave={onMouseLeave}
       onMouseMove={onMouseMove}

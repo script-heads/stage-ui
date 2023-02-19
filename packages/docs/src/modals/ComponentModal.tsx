@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { Block, Flexbox, Modal, ScrollView, Spinner, Table, Text } from '@stage-ui/core'
+import { Block, Flexbox, Modal, Spinner, Table, Text } from '@stage-ui/core'
 import breakpointProp from '@stage-ui/system/props/breakpoint'
 import { useNavigate, useLocation } from 'react-router-dom'
 
@@ -72,11 +72,12 @@ function ComponentModal() {
       hideHeader
       opened
       decoration="panel"
+      backgroundColor="background"
       overrides={(t) => ({
         window: () => [
           {
             width: '100%',
-            padding: '1.5rem 2rem',
+            // padding: '1.5rem 2rem',
             minHeight: '25vh',
           },
           breakpointProp(['80vw', '90vw', '100vw'], t, (maxWidth) => ({ maxWidth })),
@@ -105,18 +106,21 @@ function ComponentModal() {
               moduleKind={typescript.moduleKind}
             />
           )}
-          {data.default && <data.default />}
+          {data.default && (
+            <Block mt="m">
+              <data.default />
+            </Block>
+          )}
           {typedoc[data.title] && (
-            <ScrollView mt="l" xBarPosition="none">
-              <Table
-                data={typedoc[data.title]}
-                columns={[
-                  { key: 'name', title: 'Property' },
-                  { key: 'value', title: 'Value' },
-                  { key: 'description', title: 'Description' },
-                ]}
-              />
-            </ScrollView>
+            <Table
+              mt="m"
+              data={typedoc[data.title]}
+              columns={[
+                { key: 'name', title: 'Property' },
+                { key: 'value', title: 'Value' },
+                { key: 'description', title: 'Description' },
+              ]}
+            />
           )}
         </Block>
       )}

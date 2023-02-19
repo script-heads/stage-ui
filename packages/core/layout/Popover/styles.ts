@@ -1,12 +1,8 @@
-import colorResolver from '@stage-ui/system/props/color'
 import { breakpointProp, toPixel, toRem } from '@stage-ui/system'
 
 import Types from './types'
 
 const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
-  const background = colorResolver(props.backgroundColor || theme.color.surface, theme)
-    .rgb()
-    .string()
   const arrowSize = toRem(props.arrowSize || '.75rem')
   const halfArrowSize = toRem(toPixel(arrowSize) / 2)
   const arrowOffset = toRem(props.arrowOffset || '0')
@@ -16,7 +12,6 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       {
         position: 'relative',
         width: 'fit-content',
-        background,
         borderRadius: theme.radius.m,
         padding: theme.spacing.s,
       },

@@ -22,7 +22,7 @@ const defaultGlobal = {
   'input::-webkit-internal-input-suggested': {},
 }
 
-const createTheme = (themeDefinition: Stage.ThemeDefiniton): Stage.Theme => {
+const createTheme = (themeDefinition: Stage.ThemeDefinition): Stage.Theme => {
   const { color, breakpoints = ['1199.98px', '991.98px', '767.98px', '575.98px'] } =
     themeDefinition.main
 
@@ -47,7 +47,7 @@ const createTheme = (themeDefinition: Stage.ThemeDefiniton): Stage.Theme => {
     const nextMain = mergeObjects(
       themeDefinition.main || {},
       themeReplaceDefinition.main || {},
-    ) as Stage.ThemeDefiniton['main']
+    ) as Stage.ThemeDefinition['main']
 
     const nextAssets = ((replacedMain) => {
       return mergeObjects(
@@ -58,7 +58,7 @@ const createTheme = (themeDefinition: Stage.ThemeDefiniton): Stage.Theme => {
           ? themeReplaceDefinition.assets(replacedMain)
           : themeReplaceDefinition.assets || {},
       )
-    }) as Stage.ThemeDefiniton['assets']
+    }) as Stage.ThemeDefinition['assets']
 
     const nextOverrides = ((replacedMain, replacedAssets) =>
       mergeObjects(
@@ -68,7 +68,7 @@ const createTheme = (themeDefinition: Stage.ThemeDefiniton): Stage.Theme => {
         isFunction(themeReplaceDefinition.overrides)
           ? themeReplaceDefinition.overrides(replacedMain, replacedAssets)
           : themeReplaceDefinition.overrides || {},
-      )) as Stage.ThemeDefiniton['overrides']
+      )) as Stage.ThemeDefinition['overrides']
 
     nextMain.name = nextMain.name || `${nextMain.name}-${createID()}`
 

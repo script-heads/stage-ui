@@ -7,9 +7,13 @@ export default () => {
 
   return (
     <Block decoration="surface" p="m">
-      <Paragraph weight={600}>Your system appearance is {appearance}</Paragraph>
+      <Paragraph weight={600}>
+        Your appearance is currently set to {appearance} mode.
+      </Paragraph>
       <Paragraph size="s" color="gray500">
-        Change system theme to change appearance
+        To change the appearance, you will need to change the system theme. Once you
+        change the system theme, the appearance of your system will also change
+        accordingly.
       </Paragraph>
     </Block>
   )

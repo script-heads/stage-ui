@@ -66,10 +66,10 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
       applyDecoration({
         filled: {
           idle: {
-            background: color.rgb().string(),
+            background: color.string(),
             color: isDark
-              ? theme.color.onPrimary.rgb().string()
-              : theme.color.onSurface.rgb().string(),
+              ? theme.color.onPrimary.string()
+              : theme.color.onSurface.string(),
           },
           hover: {
             background: color.whiten(0.4).hex(),
@@ -79,62 +79,61 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
           },
           disabled: {
             color: theme.color.gray[500].hex(),
-            background: theme.color.gray[200].hex(),
+            background: theme.color.onSurface.alpha(0.1).string(),
           },
         },
         text: {
           idle: {
             borderWidth: 0,
-            color: color.rgb().string(),
+            color: color.string(),
           },
           hover: {
             transition: 'all 0.15s',
-            background: color.alpha(0.05).rgb().string(),
+            background: color.alpha(0.05).string(),
           },
           active: {
-            background: color.alpha(0.1).rgb().string(),
+            background: color.alpha(0.1).string(),
           },
           disabled: {
-            color: theme.color.gray[400].hex(),
-            borderColor: theme.color.gray[300].hex(),
+            color: theme.color.onSurface.alpha(0.3).string(),
           },
         },
         outline: {
           idle: {
             borderWidth: '0.0625rem',
-            borderColor: color.alpha(0.5).rgb().string(),
-            color: color.rgb().string(),
+            borderColor: color.alpha(0.5).string(),
+            color: color.string(),
           },
           hover: {
             transition: 'all 0.15s',
-            background: color.alpha(0.05).rgb().string(),
+            background: color.alpha(0.05).string(),
           },
           active: {
-            background: color.alpha(0.05).rgb().string(),
+            background: color.alpha(0.05).string(),
           },
           disabled: {
-            color: theme.color.gray[400].hex(),
-            borderColor: theme.color.gray[300].hex(),
+            color: theme.color.onSurface.alpha(0.5).string(),
+            borderColor: theme.color.onSurface.alpha(0.2).string(),
           },
         },
         plain: {
           idle: {
             borderWidth: '0.0625rem',
-            borderColor: theme.color.gray[500].rgb().string(),
-            background: theme.color.surface.rgb().string(),
-            color: theme.color.onSurface.rgb().string(),
+            borderColor: theme.color.onSurface.alpha(0.2).string(),
+            background: theme.color.surface.string(),
+            color: theme.color.onSurface.string(),
           },
           hover: {
             transition: 'all 0.15s',
-            background: theme.color.surface.alpha(0.8).string(),
+            background: theme.color.onSurface.alpha(0.02).string(),
           },
           active: {
-            background: theme.color.gray[100].rgb().string(),
+            background: theme.color.onSurface.alpha(0.05).string(),
           },
           disabled: {
-            color: theme.color.gray[400].hex(),
-            background: theme.color.gray[100].hex(),
-            borderColor: theme.color.gray[200].hex(),
+            color: theme.color.onSurface.alpha(0.5).string(),
+            background: theme.color.onSurface.alpha(0.05).string(),
+            borderColor: theme.color.onSurface.alpha(0.1).string(),
           },
         },
       }),

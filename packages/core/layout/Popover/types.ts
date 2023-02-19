@@ -1,31 +1,19 @@
-import CSS from 'csstype'
+import FlexboxTypes from '../Flexbox/types'
 
 declare namespace PopoverTypes {
-  interface Props extends Stage.AllProps<HTMLDivElement, Classes> {
+  interface Props extends FlexboxTypes.Props {
     /**
      * Alignment of popover's arrow
      */
     align?: 'top' | 'bottom' | 'left' | 'right' | 'none'
     /**
-     * Color of popover's border
-     */
-    borderColor?: Stage.ColorProp
-    /**
-     * Color of popover's background
-     */
-    backgroundColor?: Stage.ColorProp
-    /**
-     * Popover's content
-     */
-    children?: React.ReactNode
-    /**
      * offset arrow position
      */
-    arrowOffset?: CSS.Properties['height']
+    arrowOffset?: string | number
     /**
      * Width/height of popover's arrow
      */
-    arrowSize?: CSS.Properties['width']
+    arrowSize?: string | number
   }
 
   type Classes = {

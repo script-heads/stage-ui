@@ -161,7 +161,7 @@ function Playground({
           onClick={copyToClipboard}
         />
       </Grid>
-      <Block h="28rem" shadow="xs" borderRadius="m">
+      <Block h="28rem" shadow="xs" borderRadius="m" backgroundColor="surface">
         <Flexbox h="100%" direction={['row', 'row', 'row', 'column']}>
           <Block ref={monacoRootRef} flex={1} h="100%" pl="0.5rem" />
           <ErrorBoundary code={code}>

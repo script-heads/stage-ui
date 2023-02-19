@@ -78,7 +78,7 @@ declare global {
       palette: Record<string, C>
     }
 
-    type ColorPallete<C = Color> = {
+    type ColorPalette<C = Color> = {
       gray: ColorShades<C>
       yellow: ColorShades<C> & ColorAccentsShades<C>
       orange: ColorShades<C> & ColorAccentsShades<C>
@@ -99,28 +99,28 @@ declare global {
     type ColorNames = LiteralUnion<
       LiteralUnion<
         | keyof ColorMain
-        | `gray${keyof ColorPallete['gray']}`
-        | `yellow${keyof ColorPallete['yellow']}`
-        | `orange${keyof ColorPallete['orange']}`
-        | `red${keyof ColorPallete['red']}`
-        | `rose${keyof ColorPallete['rose']}`
-        | `pink${keyof ColorPallete['pink']}`
-        | `green${keyof ColorPallete['green']}`
-        | `lightGreen${keyof ColorPallete['lightGreen']}`
-        | `lime${keyof ColorPallete['lime']}`
-        | `teal${keyof ColorPallete['teal']}`
-        | `cyan${keyof ColorPallete['cyan']}`
-        | `lightBlue${keyof ColorPallete['lightBlue']}`
-        | `blue${keyof ColorPallete['blue']}`
-        | `indigo${keyof ColorPallete['indigo']}`
-        | `purple${keyof ColorPallete['purple']}`,
+        | `gray${keyof ColorPalette['gray']}`
+        | `yellow${keyof ColorPalette['yellow']}`
+        | `orange${keyof ColorPalette['orange']}`
+        | `red${keyof ColorPalette['red']}`
+        | `rose${keyof ColorPalette['rose']}`
+        | `pink${keyof ColorPalette['pink']}`
+        | `green${keyof ColorPalette['green']}`
+        | `lightGreen${keyof ColorPalette['lightGreen']}`
+        | `lime${keyof ColorPalette['lime']}`
+        | `teal${keyof ColorPalette['teal']}`
+        | `cyan${keyof ColorPalette['cyan']}`
+        | `lightBlue${keyof ColorPalette['lightBlue']}`
+        | `blue${keyof ColorPalette['blue']}`
+        | `indigo${keyof ColorPalette['indigo']}`
+        | `purple${keyof ColorPalette['purple']}`,
         keyof ColorCustom['palette']
       >,
       string
     >
 
     type Colors<C = Color, Definition = false> = ColorMain<C> &
-      ColorPallete<C> &
+      ColorPalette<C> &
       (Definition extends true ? Partial<ColorCustom<C>> : ColorCustom<C>)
 
     interface ThemeMain<C = Color, Definition = false> {
@@ -174,7 +174,7 @@ declare global {
       replace: (theme: ReplaceTheme) => Theme
     }
 
-    interface ThemeDefiniton {
+    interface ThemeDefinition {
       main: ThemeMain<Stage.ColorDefinition, true>
       assets: ((main: ThemeMain) => ThemeAssets) | ThemeAssets
       overrides?:
@@ -183,7 +183,7 @@ declare global {
     }
 
     interface ReplaceTheme {
-      main?: DeepPartial<ThemeDefiniton['main']>
+      main?: DeepPartial<ThemeDefinition['main']>
       assets?:
         | ((main: Stage.ThemeMain) => DeepPartial<Stage.ThemeAssets>)
         | DeepPartial<Stage.ThemeAssets>
@@ -233,9 +233,9 @@ declare global {
     ) => Stage.CSSInterpolation
 
     type AllProps<
-      Containter,
+      Container,
       ClassSchema extends ClassesSchemaDefinition = ClassesSchemaDefinition,
-    > = AllPropsType<Containter, ClassSchema>
+    > = AllPropsType<Container, ClassSchema>
 
     type ColorProp = ColorPropType
     type OverridesProp<ClassesSchema extends Stage.ClassesSchemaDefinition> =

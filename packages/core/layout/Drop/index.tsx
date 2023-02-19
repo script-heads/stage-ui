@@ -193,7 +193,7 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
 
   function setVisible(state: boolean): void {
     if (visible !== undefined) {
-      console.warn('Do not use setVisibe on controlled <Drop/> component')
+      console.warn('Do not use setVisible on controlled <Drop/> component')
       return
     }
     toggleVisible(state)

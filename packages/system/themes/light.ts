@@ -24,7 +24,7 @@ const lightTheme = createTheme({
       background: 'rgb(249, 250, 251)',
       backgroundVariant: 'rgb(235, 235, 235)',
 
-      border: 'rgb(209, 213, 219)',
+      border: 'rgb(234, 236, 242)',
       text: 'rgb(16, 16, 17)',
 
       error: 'rgb(239, 68, 68)',

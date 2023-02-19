@@ -19,7 +19,7 @@ const darkTheme = lightTheme.replace({
       hard: 'rgb(209, 213, 219)',
       hardest: 'rgb(243, 244, 246)',
 
-      border: 'rgb(75, 85, 99)',
+      border: 'rgb(50, 56, 67)',
 
       error: 'rgb(188, 0, 0)',
       warning: 'rgb(255, 149, 0)',
