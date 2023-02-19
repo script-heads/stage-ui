@@ -21,6 +21,8 @@ const updateDependencies = (data, dependencies) => {
 
 const packagesToModify = process.argv[2] ? [process.argv[2].toLocaleLowerCase()] : ['system', 'core', 'icons']
 const defaultPackageName = packagesToModify[1] || packagesToModify[0]
+const isAll = packagesToModify.length > 1
+
 const packageObjectData = JSON.parse(
   fs.readFileSync(packagesDir + defaultPackageName + '/package.json'),
 )
@@ -59,22 +61,22 @@ getNextVersion.then((nextVersion) => {
   
     if (packageName === 'core') {
       updateDependencies(packageObjectData, {
-        [systemPackageDefinition.name]: systemPackageDefinition.version,
-        [iconPackageDefinition.name]: iconPackageDefinition.version,
+        [systemPackageDefinition.name]: isAll ? nextVersion : systemPackageDefinition.version,
+        [iconPackageDefinition.name]: isAll ? nextVersion : iconPackageDefinition.version,
       })
     }
   
     if (packageName === 'icons') {
       updateDependencies(packageObjectData, {
-        [systemPackageDefinition.name]: systemPackageDefinition.version,
+        [systemPackageDefinition.name]: isAll ? nextVersion : systemPackageDefinition.version,
       })
     }
   
     if (packageName === 'lab') {
       updateDependencies(packageObjectData, {
-        [corePackageDefinition.name]: corePackageDefinition.version,
-        [systemPackageDefinition.name]: systemPackageDefinition.version,
-        [iconPackageDefinition.name]: iconPackageDefinition.version,
+        [corePackageDefinition.name]: isAll ? nextVersion : corePackageDefinition.version,
+        [systemPackageDefinition.name]: isAll ? nextVersion : systemPackageDefinition.version,
+        [iconPackageDefinition.name]: isAll ? nextVersion : iconPackageDefinition.version,
       })
     }
   
