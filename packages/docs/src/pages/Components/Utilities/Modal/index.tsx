@@ -4,7 +4,7 @@ import panel from './panel.raw?raw'
 import panelSide from './panelSide.raw?raw'
 import header from './header.raw?raw'
 
-export const title = 'Modal'
+export const title = 'modal'
 export { ReactComponent as glyph } from './Modal.svg'
 export const ns = 'ModalTypes'
 export const cases = [

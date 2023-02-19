@@ -5,6 +5,7 @@ import * as CoreScope from '@stage-ui/core'
 import { Block } from '@stage-ui/core'
 import * as IconScope from '@stage-ui/icons'
 import * as LabScope from '@stage-ui/lab'
+import * as SystemScope from '@stage-ui/system'
 import ts, { JsxEmit, ModuleKind } from 'typescript/lib/typescript.d'
 
 Object.assign(window, {
@@ -13,6 +14,7 @@ Object.assign(window, {
   StageUI: {
     React,
     ...React,
+    ...SystemScope,
     ...IconScope,
     ...CoreScope,
     ...LabScope,
@@ -52,6 +54,7 @@ function Preview({ theme, code, grid, jsxEmit, moduleKind, transpile }: PreviewP
   traspiledCode = traspiledCode.replace(/useDrop\(/g, 'StageUI.useDrop(')
   traspiledCode = traspiledCode.replace(/useDropMenu\(/g, 'StageUI.useDropMenu(')
   traspiledCode = traspiledCode.replace(/useDropOver\(/g, 'StageUI.useDropOver(')
+  traspiledCode = traspiledCode.replace(/createGradient\(/g, 'StageUI.createGradient(')
 
   traspiledCode.match(/var \S+/g)?.forEach((varible) => {
     const varName = varible.split('var ')[1]

@@ -53,7 +53,7 @@ export const CardPreview = (props: Props) => {
           zIndex: 100,
           '> svg': {
             transform: 'scale(1.3)',
-            '> path': {
+            '> path, > rect': {
               fill: theme.color.white.hex(),
             },
           },
