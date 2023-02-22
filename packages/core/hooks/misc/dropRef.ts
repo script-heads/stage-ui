@@ -12,6 +12,8 @@ export type UseDropOptions = {
   screenPadding?: number
   dropOffsetX?: number
   dropOffsetY?: number
+  onOpen?: () => void
+  onClose?: () => void
 }
 
 type CloseFn = () => void
@@ -33,7 +35,12 @@ export type DropMenuItem = {
 }
 
 export type DropRef = {
-  open: (e: MouseEvent | null, dropNode: DropNode, options: UseDropOptions) => void
+  toggle: (
+    id: number,
+    e: MouseEvent | null,
+    dropNode: DropNode,
+    options: UseDropOptions,
+  ) => void
   move: (e: MouseEvent | null) => void
 }
 

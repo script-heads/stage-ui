@@ -25,6 +25,7 @@ export default defineConfig({
     outDir: path.resolve(__dirname, '../../build/docs'),
   },
   server: {
+    host: '0.0.0.0',
     port: 9050,
   },
 })

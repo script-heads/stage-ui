@@ -11,15 +11,16 @@ import ButtonTypes from '../../control/Button/types'
 import TextTypes from '../../content/Text/types'
 import { DropMenuItem } from '../misc/dropRef'
 
-export type DropMenuDecorationProps = {
+export type DropMenuOptions = {
+  clickMode?: 'toggle' | 'open'
   menuProps?: FlexboxTypes.Props
   buttonProps?: ButtonTypes.Props
-  iconProps?: IconTypes.Props
+  iconProps?: Partial<IconTypes.Props>
   textProps?: TextTypes.Props
   hotkeyProps?: FlexboxTypes.Props
 }
 
-type Props = { values: DropMenuItem[]; close: () => void } & DropMenuDecorationProps
+type Props = { values: DropMenuItem[]; close: () => void } & DropMenuOptions
 
 export const DropMenu = (props: Props) => {
   const { values, close, menuProps, buttonProps, iconProps, textProps, hotkeyProps } =

@@ -1,46 +1,44 @@
 import React, { useRef } from 'react'
 
-import { Block, Button, modal, Viewport } from '@stage-ui/core'
+import {
+  Block,
+  Button,
+  Flexbox,
+  Paragraph,
+  TextField,
+  useDropOver,
+  Viewport,
+} from '@stage-ui/core'
 
 import ReactDOM from 'react-dom'
 
 const App: React.FC = () => {
   const ref = useRef(null)
+  const drop1 = useDropOver(
+    <Block m="m">
+      <Paragraph>Drop 1</Paragraph>
+      <TextField placeholder="TextField" />
+    </Block>,
+    {
+      onOpen: () => console.log('Drop 1 open'),
+      onClose: () => console.log('Drop 1 close'),
+    },
+  )
+  const drop2 = useDropOver(
+    <Block m="m">
+      <Paragraph>Drop 2</Paragraph>
+      <TextField placeholder="TextField" />
+    </Block>,
+    {
+      onOpen: () => console.log('Drop 2 open'),
+      onClose: () => console.log('Drop 2 close'),
+    },
+  )
   return (
-    <Block p="xl">
-      <Block backgroundColor="gray100">
-        <Button
-          label="rightPanel"
-          onClick={() => {
-            modal({
-              overrides: {
-                overlay: {
-                  backgroundColor: 'rgba(0,0,0,0.5)',
-                },
-              },
-              decoration: 'rightPanel',
-              hideHeader: true,
-              render: () => <div>Right panel</div>,
-            })
-          }}
-        />
-        <Button
-          label="leftPanel"
-          onClick={() => {
-            modal({
-              overrides: {
-                overlay: {
-                  backgroundColor: 'rgba(0,0,0,0.5)',
-                },
-              },
-              decoration: 'leftPanel',
-              hideHeader: true,
-              render: () => <div>Left panel</div>,
-            })
-          }}
-        />
-      </Block>
-    </Block>
+    <Flexbox p="xl">
+      <Button label="Drop1" {...drop1} />
+      <Button label="Drop2" {...drop2} />
+    </Flexbox>
   )
 }
 

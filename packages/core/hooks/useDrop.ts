@@ -1,13 +1,8 @@
-import { dropDelegate } from './misc/dropDelegate'
-
 import { DropNode, dropRef, UseDropOptions } from './misc/dropRef'
 
 export const useDrop = (dropNode: DropNode, options: UseDropOptions = {}) => {
+  const id = Math.random()
   return (e?: unknown) => {
-    if (dropDelegate.visible) {
-      dropDelegate.close()
-    } else {
-      dropRef?.current?.open(e as MouseEvent, dropNode, options)
-    }
+    dropRef?.current?.toggle(id, e as MouseEvent, dropNode, options)
   }
 }
