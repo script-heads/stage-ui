@@ -5,19 +5,36 @@ import * as Icons from '@stage-ui/icons'
 
 import IconTypes from '@stage-ui/icons/Icon/types'
 
+import { ColorProp } from '@stage-ui/system/props/color'
+
 import { Hotkey } from '../../experimental/Hotkey'
 import FlexboxTypes from '../../layout/Flexbox/types'
 import ButtonTypes from '../../control/Button/types'
 import TextTypes from '../../content/Text/types'
-import { DropMenuItem } from '../misc/dropRef'
 
 export type DropMenuOptions = {
-  clickMode?: 'toggle' | 'open'
   menuProps?: FlexboxTypes.Props
   buttonProps?: ButtonTypes.Props
   iconProps?: Partial<IconTypes.Props>
   textProps?: TextTypes.Props
   hotkeyProps?: FlexboxTypes.Props
+}
+
+export type DropMenuItem = {
+  text: string
+  selected?: boolean
+  icon?: keyof typeof Icons
+  color?: ColorProp
+  iconColor?: ColorProp
+  value?: string | number
+  props?: ButtonTypes.Props
+  onClick?: () => void
+  hidden?: boolean
+  disabled?: boolean
+  hotkey?: {
+    key: string
+    alt?: boolean
+  }
 }
 
 type Props = { values: DropMenuItem[]; close: () => void } & DropMenuOptions
@@ -49,47 +66,58 @@ export const DropMenu = (props: Props) => {
               w="100%"
               size="s"
               decoration="text"
-              onClick={(e) => {
-                e.stopPropagation()
-                value.onClick?.()
-                close()
-              }}
+              onClick={
+                value.selected
+                  ? undefined
+                  : (e) => {
+                      e.stopPropagation()
+                      value.onClick?.()
+                      close()
+                    }
+              }
               disabled={value.disabled}
               my="0.0625rem"
               borderRadius="s"
               overrides={{
                 container: {
                   justifyContent: 'flex-start',
-                  ':hover': {
-                    backgroundColor: value.disabled
-                      ? 'transparent'
-                      : theme.color.onSurface.alpha(0.05).string(),
-                  },
+                  ':hover': value.selected
+                    ? {
+                        backgroundColor: 'transparent',
+                      }
+                    : {
+                        backgroundColor: value.disabled
+                          ? 'transparent'
+                          : theme.color.onSurface.alpha(0.05).string(),
+                      },
                 },
               }}
+              {...value.props}
               {...buttonProps}
             >
               {Icon && (
                 <Icon
                   mr="s"
-                  color={(c) =>
-                    value.disabled
-                      ? c.onSurface.alpha(0.3)
-                      : value.color || c.onSurface.alpha(0.5)
-                  }
                   {...iconProps}
+                  color={
+                    value.disabled
+                      ? (c) => c.onSurface.alpha(0.3)
+                      : value.iconColor || ((c) => c.onSurface.alpha(0.5))
+                  }
                 />
               )}
               <Text
                 flex={1}
                 size="xs"
                 align="start"
-                color={(c) =>
-                  value.disabled ? c.onSurface.alpha(0.3) : c.onSurface.alpha(0.75)
-                }
                 weight={600}
                 lineHeight="1rem"
                 {...textProps}
+                color={
+                  value.disabled
+                    ? (c) => c.onSurface.alpha(0.3)
+                    : value.color || ((c) => c.onSurface.alpha(0.75))
+                }
               >
                 {value.text}
               </Text>

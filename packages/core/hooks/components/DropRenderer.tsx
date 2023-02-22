@@ -27,6 +27,14 @@ export const DropRenderer = () => {
           payload.options.onClose?.()
         }
 
+        if (id === payload.id && visible) {
+          if (payload.options.clickMode === 'open') {
+            return
+          }
+          dropDelegate.close()
+          return
+        }
+
         dropDelegate.close = () => {
           options.onClose?.()
           setVisible(false)

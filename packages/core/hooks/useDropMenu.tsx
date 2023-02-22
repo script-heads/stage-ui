@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { DropMenu, DropMenuOptions } from './components/DropMenu'
+import { DropMenu, DropMenuItem, DropMenuOptions } from './components/DropMenu'
 import { dropDelegate } from './misc/dropDelegate'
 
-import { DropMenuItem, dropRef, UseDropOptions } from './misc/dropRef'
+import { dropRef, UseDropOptions } from './misc/dropRef'
 
 export const useDropMenu = (
   values: DropMenuItem[],

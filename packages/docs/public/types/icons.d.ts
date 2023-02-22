@@ -1379,7 +1379,7 @@ declare module "lib/Wifi" {
 }
 declare module "index" {
     /**
-    version: 0.5.0
+    version: 0.6.3
     */
     export { default as Sync } from "lib/Sync";
     export { default as Activity } from "lib/Activity";
