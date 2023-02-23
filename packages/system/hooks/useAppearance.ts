@@ -4,18 +4,22 @@ type Appearance = 'dark' | 'light'
 
 // Detects changes to the system theme and returns 'dark' or 'light'
 const useAppearance = (): Appearance => {
-  const [appearance, setAppearance] = useState<Appearance>(
-    window?.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
-  )
+  let initial: Appearance = 'dark'
+  if (typeof window !== 'undefined') {
+    initial = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  }
+  const [appearance, setAppearance] = useState(initial)
   useEffect(() => {
     const onChange = (e: { matches: boolean }) => {
       setAppearance(e.matches ? 'dark' : 'light')
     }
-    const watchMedia = window?.matchMedia('(prefers-color-scheme: dark)')
-    watchMedia.addEventListener('change', onChange)
-    setAppearance(watchMedia.matches ? 'dark' : 'light')
-    return () => {
-      watchMedia.removeEventListener('change', onChange)
+    if (typeof window !== 'undefined') {
+      const watchMedia = window?.matchMedia('(prefers-color-scheme: dark)')
+      watchMedia.addEventListener('change', onChange)
+      setAppearance(watchMedia.matches ? 'dark' : 'light')
+      return () => {
+        watchMedia.removeEventListener('change', onChange)
+      }
     }
   }, [])
 
