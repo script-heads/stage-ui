@@ -12,6 +12,9 @@ const App: React.FC = () => {
       {
         text: 'Test',
         icon: 'AlertCircle',
+        onClick: (e) => {
+          e.stopPropagation()
+        },
       },
       {
         text: 'Selected',

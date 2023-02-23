@@ -28,7 +28,7 @@ export type DropMenuItem = {
   iconColor?: ColorProp
   value?: string | number
   props?: ButtonTypes.Props
-  onClick?: () => void
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   hidden?: boolean
   disabled?: boolean
   hotkey?: {
@@ -70,9 +70,11 @@ export const DropMenu = (props: Props) => {
                 value.selected
                   ? undefined
                   : (e) => {
+                      value.onClick?.(e)
+                      if (!e.isPropagationStopped()) {
+                        close()
+                      }
                       e.stopPropagation()
-                      value.onClick?.()
-                      close()
                     }
               }
               disabled={value.disabled}
