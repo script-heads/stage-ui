@@ -18,6 +18,7 @@ export type DropMenuOptions = {
   iconProps?: Partial<IconTypes.Props>
   textProps?: TextTypes.Props
   hotkeyProps?: FlexboxTypes.Props
+  dividerSign?: string
 }
 
 export type DropMenuItem = {
@@ -40,8 +41,16 @@ export type DropMenuItem = {
 type Props = { values: DropMenuItem[]; close: () => void } & DropMenuOptions
 
 export const DropMenu = (props: Props) => {
-  const { values, close, menuProps, buttonProps, iconProps, textProps, hotkeyProps } =
-    props
+  const {
+    values,
+    close,
+    menuProps,
+    buttonProps,
+    iconProps,
+    textProps,
+    hotkeyProps,
+    dividerSign = '-',
+  } = props
 
   const theme = useTheme()
 
@@ -51,7 +60,7 @@ export const DropMenu = (props: Props) => {
         if (value.hidden) return null
         const key = value.value || value.text
         const Icon = value.icon ? Icons[value.icon] : null
-        if (value.text === '-') {
+        if (value.text === dividerSign) {
           return (
             <Divider
               key={key}
