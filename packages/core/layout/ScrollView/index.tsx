@@ -142,7 +142,7 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
             memo.timeout = undefined
           }
           memo.timeout = setTimeout(() => {
-            if (memo.mounted) setActive(false)
+            if (memo.mounted && mode !== 'always') setActive(false)
           }, 500)
         }
       }
