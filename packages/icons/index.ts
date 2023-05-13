@@ -1,5 +1,5 @@
 /**
-version: 0.6.3
+version: 0.6.7
 */
 export { default as Sync } from './lib/Sync'
 export { default as Activity } from './lib/Activity'
@@ -126,6 +126,7 @@ export { default as Globe2 } from './lib/Globe2'
 export { default as Globe } from './lib/Globe'
 export { default as Google } from './lib/Google'
 export { default as Grid } from './lib/Grid'
+export { default as Hand } from './lib/Hand'
 export { default as HardDrive } from './lib/HardDrive'
 export { default as Hash } from './lib/Hash'
 export { default as Headphones } from './lib/Headphones'
