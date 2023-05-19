@@ -35,5 +35,21 @@ export default (render: ModalTypes.DialogOptions | ModalTypes.DialogRenderFn) =>
     </Modal>,
     key,
   )
-  setTimeout(() => modal.open())
+
+  /**
+   * Don't ask, this hot fix to fix payment window in safari)
+   */
+  setTimeout(() => {
+    if (!modal) {
+      return setTimeout(() => {
+        if (!modal) {
+          return setTimeout(() => {
+            return modal.open()
+          }, 500)
+        }
+        return modal.open()
+      }, 100)
+    }
+    return modal.open()
+  })
 }
