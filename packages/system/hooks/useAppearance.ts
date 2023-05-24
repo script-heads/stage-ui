@@ -14,11 +14,11 @@ const useAppearance = (): Appearance => {
       setAppearance(e.matches ? 'dark' : 'light')
     }
     if (typeof window !== 'undefined') {
-      const watchMedia = window?.matchMedia('(prefers-color-scheme: dark)')
-      watchMedia.addEventListener('change', onChange)
-      setAppearance(watchMedia.matches ? 'dark' : 'light')
+      const watchMedia = window?.matchMedia?.('(prefers-color-scheme: dark)')
+      watchMedia?.addEventListener('change', onChange)
+      setAppearance(watchMedia?.matches ? 'dark' : 'light')
       return () => {
-        watchMedia.removeEventListener('change', onChange)
+        watchMedia?.removeEventListener('change', onChange)
       }
     }
   }, [])
