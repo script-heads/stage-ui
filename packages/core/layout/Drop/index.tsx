@@ -162,8 +162,8 @@ const Drop: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) => {
   }
 
   function handleClickOutside(event: MouseEvent): void {
-    if (onClickOutside && !dropRef?.current?.contains(event.target as Node)) {
-      onClickOutside(event, !targetRef?.current?.contains(event.target as Node))
+    if (onClickOutside && !dropRef?.current?.contains?.(event.target as Node)) {
+      onClickOutside(event, !targetRef?.current?.contains?.(event.target as Node))
     }
   }
 
