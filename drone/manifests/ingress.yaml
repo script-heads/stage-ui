@@ -2,16 +2,26 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: docs
-  namespace: _NAMESPACE
+  namespace: stageui
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    cert-manager.io/cluster-issuer: letsencrypt-nginx-production
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      # Ensure this is only set when accessed via HTTPS
+      if ($scheme = https) {
+        more_set_headers "Strict-Transport-Security: max-age=31536000; includeSubDomains; preload";
+      }
 spec:
   tls:
     - hosts:
-      - stageui.scriptheads.io
-      - stageui.shds.io
-      secretName: stageui-docs-tls
+      - shds.io
+      - scriptheads.io
+      - scriptheads.ru
+      - "*.shds.io"
+      - "*.scriptheads.io"
+      - "*.scriptheads.ru"
+      secretName: homepage-tls
   rules:
     - host: stageui.scriptheads.io
       http: &http_rules
