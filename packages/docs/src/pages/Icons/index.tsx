@@ -11,7 +11,7 @@ function IconsPage() {
   const [search, setSearch] = useState('')
   const handleCopy = (key: string) => {
     const el = document.createElement('textarea')
-    el.value = `import ${key} from '@stage-ui/icons/lib/${key}`
+    el.value = `import ${key} from '@stage-ui/icons/lib/${key}'`
     document.body.appendChild(el)
     el.select()
     document.execCommand('copy')
