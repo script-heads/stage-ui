@@ -15,13 +15,9 @@ metadata:
 spec:
   tls:
     - hosts:
-      - shds.io
-      - scriptheads.io
-      - scriptheads.ru
-      - "*.shds.io"
-      - "*.scriptheads.io"
-      - "*.scriptheads.ru"
-      secretName: homepage-tls
+      - stageui.scriptheads.io
+      - stageui.shds.io
+      secretName: stageui-docs-tls
   rules:
     - host: stageui.scriptheads.io
       http: &http_rules
