@@ -43,6 +43,7 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   const [customRender, setCustomRender] = useState<React.ReactElement | null>(null)
   const [currentTitle, setTitle] = useState(title)
   const [currentSubtitle, setSubtitle] = useState(subtitle)
+  const [isDataWrapperClick, setIsDataWrapperClick] = useState(false)
 
   useEffect(() => {
     setTitle(title)
@@ -118,9 +119,20 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
         <div
           data-wrapper
           css={classes.wrapper(otherStyleProps)}
+          onMouseDown={(e) =>
+            setIsDataWrapperClick(
+              // dataset.wrapper is already a boolean value
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              (e.target as HTMLDivElement).dataset.wrapper as boolean,
+            )
+          }
           onClick={(e) => {
-            if ((e.target as HTMLDivElement).dataset.wrapper) {
-              if (overlayClose) close()
+            // checking if a click event started from the data-wrapper
+            if (isDataWrapperClick) {
+              if ((e.target as HTMLDivElement).dataset.wrapper) {
+                if (overlayClose) close()
+              }
             }
           }}
         >
