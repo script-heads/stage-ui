@@ -4,7 +4,6 @@
 import React, { useEffect, useState } from 'react'
 
 import { Button, Divider, Flexbox, Grid, Text } from '@stage-ui/core'
-import moment, { Moment } from 'moment'
 
 import dayjs, { Dayjs } from 'dayjs'
 
@@ -168,21 +167,24 @@ const DateGrid = (props: T.DateGridProps) => {
             </>
           )}
           <Grid templateColumns="repeat(7, 1fr)" flexShrink={0} flex={1}>
-            {moment.weekdaysShort(true).map((day, i) => {
-              const isWeekend = [5, 6].indexOf(i) !== -1
-              return (
-                <Text
-                  size="s"
-                  key={day}
-                  css={props.classes.weekDay}
-                  color={(c) => (isWeekend ? c.error : c.onSurface.alpha(0.5))}
-                  capitalize
-                >
-                  {day.slice(0, 2)}
-                </Text>
-              )
-            })}
-            {grid.map((week: Moment[], i) => (
+            {Array(7)
+              .fill(null)
+              .map((_, i) => dayjs().day(i).format('ddd'))
+              .map((day, i) => {
+                const isWeekend = [5, 6].indexOf(i) !== -1
+                return (
+                  <Text
+                    size="s"
+                    key={day}
+                    css={props.classes.weekDay}
+                    color={(c) => (isWeekend ? c.error : c.onSurface.alpha(0.5))}
+                    capitalize
+                  >
+                    {day.slice(0, 2)}
+                  </Text>
+                )
+              })}
+            {grid.map((week: Dayjs[], i) => (
               <DateGridWeek
                 key={week[i].valueOf()}
                 viewDate={viewDate}
