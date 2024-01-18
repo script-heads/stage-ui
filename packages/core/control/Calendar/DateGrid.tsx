@@ -51,7 +51,7 @@ const DateGrid = (props: T.DateGridProps) => {
     grid.push(
       Array(7)
         .fill(null)
-        .map((_, index) => start.add((i + 1) * (index + 1), 'day')),
+        .map((_, index) => start.add(1 + index + 7 * i, 'day')),
     )
   }
 
