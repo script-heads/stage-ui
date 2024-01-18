@@ -13,9 +13,9 @@ const DateGridMonth = (props: CalendarTypes.DateGridMonthProps) => {
     minValue.valueOf() > self.valueOf() || maxValue.valueOf() < self.valueOf() || false
 
   const now = dayjs()
-  const monthValue = self.clone().startOf('month').valueOf()
-  const nowValue = now.clone().startOf('month').valueOf()
-  const activeValue = active?.clone().startOf('month').valueOf()
+  const monthValue = self.startOf('month').valueOf()
+  const nowValue = now.startOf('month').valueOf()
+  const activeValue = active?.startOf('month').valueOf()
 
   const isActive = activeValue === monthValue
   const isCurrent = monthValue === nowValue
