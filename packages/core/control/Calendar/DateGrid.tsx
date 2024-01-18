@@ -64,15 +64,15 @@ const DateGrid = (props: T.DateGridProps) => {
   }, [value])
 
   const onNextTitle = () => {
-    const dtClone = viewDate.clone()
+    let dtClone = viewDate.clone()
     if (gridType === 'day' || gridType === 'week') {
-      dtClone.add(1, 'month')
+      dtClone = dtClone.add(1, 'month')
     }
     if (gridType === 'month') {
-      dtClone.add(1, 'year')
+      dtClone = dtClone.add(1, 'year')
     }
     if (gridType === 'year') {
-      dtClone.add(monthOffset, 'year')
+      dtClone = dtClone.add(monthOffset, 'year')
     }
     setViewDate(dtClone)
 
@@ -80,16 +80,15 @@ const DateGrid = (props: T.DateGridProps) => {
   }
 
   const onPreviousTitle = () => {
-    const dtClone = viewDate.clone()
-
+    let dtClone = viewDate.clone()
     if (gridType === 'day' || gridType === 'week') {
-      dtClone.add(-1, 'month')
+      dtClone = dtClone.add(-1, 'month')
     }
     if (gridType === 'month') {
-      dtClone.add(-1, 'year')
+      dtClone = dtClone.add(-1, 'year')
     }
     if (gridType === 'year') {
-      dtClone.add(-monthOffset, 'year')
+      dtClone = dtClone.add(-monthOffset, 'year')
     }
     setViewDate(dtClone)
     props.onViewChange?.(dtClone)
