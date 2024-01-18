@@ -48,11 +48,11 @@ const DateGrid = (props: T.DateGridProps) => {
     setGridType(props.type)
   }, [props.type])
 
-  while (start.valueOf() < end.valueOf()) {
+  for (let i = 0; i < end.diff(start, 'week') + 1; i++) {
     grid.push(
       Array(7)
         .fill(null)
-        .map(() => start.add(1, 'day').clone()),
+        .map((_, index) => start.add((i + 1) * (index + 1), 'day')),
     )
   }
 
