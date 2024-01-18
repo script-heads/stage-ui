@@ -1,6 +1,7 @@
 import React, {
   forwardRef,
   ForwardRefRenderFunction,
+  useEffect,
   useLayoutEffect,
   useState,
 } from 'react'
@@ -9,9 +10,6 @@ import { useSystem } from '@stage-ui/system'
 import dayjs, { Dayjs } from 'dayjs'
 
 import 'dayjs/locale/ru'
-import 'dayjs/locale/it'
-import 'dayjs/locale/fr'
-import 'dayjs/locale/de'
 
 import DateGrid from './DateGrid'
 import createClasses from './styles'
@@ -39,6 +37,11 @@ const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
     undefined,
     undefined,
   ])
+  const [refresh, setRefresh] = useState(0)
+
+  useEffect(() => {
+    setRefresh((old) => old + 1)
+  }, [locale])
 
   const { classes, attributes, styleProps } = useSystem('Calendar', props, createClasses)
 
@@ -76,6 +79,7 @@ const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
   }
   return (
     <DateGrid
+      key={refresh}
       attributes={attributes}
       classes={classes}
       styleProps={styleProps}
