@@ -13,9 +13,9 @@ const DateGridYear = (props: CalendarTypes.DateGridYearProps) => {
     minValue.valueOf() > self.valueOf() || maxValue.valueOf() < self.valueOf() || false
 
   const now = dayjs()
-  const yearValue = self.clone().startOf('year').valueOf()
-  const nowValue = now.clone().startOf('year').valueOf()
-  const activeValue = active?.clone().startOf('year').valueOf()
+  const yearValue = self.startOf('year').valueOf()
+  const nowValue = now.startOf('year').valueOf()
+  const activeValue = active?.startOf('year').valueOf()
 
   const isActive = activeValue === yearValue
   const isCurrent = yearValue === nowValue
