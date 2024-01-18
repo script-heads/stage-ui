@@ -6,14 +6,16 @@ import React, { useEffect, useState } from 'react'
 import { Button, Divider, Flexbox, Grid, Text } from '@stage-ui/core'
 import moment, { Moment } from 'moment'
 
+import dayjs, { Dayjs } from 'dayjs'
+
 import DateGridMonth from './DateGridMonth'
 import DateGridTitle from './DateGridTitle'
 import DateGridWeek from './DateGridWeek'
 import DateGridYear from './DateGridYear'
 import T from './types'
 
-const getCalendarWord = (dt: Moment) => {
-  const words = dt.calendar()
+const getCalendarWord = (dt: Dayjs) => {
+  const words = dt.format('MMMM DD, YYYY h:mm A')
   if (/,/.exec(words)) {
     return words.split(',')[0].trim()
   }
@@ -22,33 +24,25 @@ const getCalendarWord = (dt: Moment) => {
 
 const DateGrid = (props: T.DateGridProps) => {
   const { value } = props
-  const now = moment()
-  const yesterday = moment().add(-1, 'day')
-  const tomorrow = moment().add(1, 'day')
+  const now = dayjs()
+  const yesterday = dayjs().add(-1, 'day')
+  const tomorrow = dayjs().add(1, 'day')
 
   const [gridType, setGridType] = useState<T.GridType>(props.type)
-  const [viewDate, setViewDate] = useState(moment())
-  const [tmpDate, setTmpDate] = useState<[Moment, Moment | undefined]>([
-    moment(),
-    undefined,
-  ])
+  const [viewDate, setViewDate] = useState(dayjs())
+  const [tmpDate, setTmpDate] = useState<[Dayjs, Dayjs | undefined]>([dayjs(), undefined])
   const [rangeSwitch, setRangeSwitch] = useState(false)
 
   const monthOffset = gridType === 'day' ? 1 : 9
 
-  const grid: Moment[][] = []
+  const grid: Dayjs[][] = []
   const start = viewDate
     .clone()
     .startOf('month')
-    .startOf('isoWeek')
+    .startOf('week')
     .startOf('day')
     .add(-1, 'day')
-  const end = viewDate
-    .clone()
-    .endOf('month')
-    .endOf('isoWeek')
-    .startOf('day')
-    .add(-1, 'day')
+  const end = viewDate.clone().endOf('month').endOf('week').startOf('day').add(-1, 'day')
 
   useEffect(() => {
     setGridType(props.type)
