@@ -10,7 +10,7 @@ declare namespace CalendarTypes {
   /**
    * Calendar locale
    */
-  type Locale = 'en' | 'ru' | 'it' | 'fr' | 'de' | ILocale
+  type Locale = 'en' | 'ru' | ILocale
 
   /**
    * Custom render options
