@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react'
 
 import { Flexbox, Text } from '@stage-ui/core'
-import moment from 'moment'
+
+import dayjs from 'dayjs'
 
 import CalendarTypes from './types'
 
@@ -11,10 +12,10 @@ const DateGridMonth = (props: CalendarTypes.DateGridMonthProps) => {
   const isDisabled =
     minValue.valueOf() > self.valueOf() || maxValue.valueOf() < self.valueOf() || false
 
-  const now = moment()
-  const monthValue = self.clone().startOf('month').valueOf()
-  const nowValue = now.clone().startOf('month').valueOf()
-  const activeValue = active?.clone().startOf('month').valueOf()
+  const now = dayjs()
+  const monthValue = self.startOf('month').valueOf()
+  const nowValue = now.startOf('month').valueOf()
+  const activeValue = active?.startOf('month').valueOf()
 
   const isActive = activeValue === monthValue
   const isCurrent = monthValue === nowValue
@@ -28,9 +29,9 @@ const DateGridMonth = (props: CalendarTypes.DateGridMonthProps) => {
     return (
       <>
         {props.onMonthRender({
-          now,
-          self,
-          active,
+          now: now.toDate(),
+          self: self.toDate(),
+          active: active?.toDate(),
           isActive,
           isCurrent,
           isDisabled,

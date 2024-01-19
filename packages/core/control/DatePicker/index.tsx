@@ -9,11 +9,9 @@ import React, {
 
 import { Calendar as CalendarIcon } from '@stage-ui/icons'
 import { useSystem } from '@stage-ui/system'
-import moment, { Moment } from 'moment'
-import 'moment/locale/ru'
-import 'moment/locale/it'
-import 'moment/locale/fr'
-import 'moment/locale/de'
+import 'dayjs/locale/ru'
+
+import dayjs, { Dayjs } from 'dayjs'
 
 import Field from '../../basic/Field'
 import Drop from '../../layout/Drop'
@@ -56,10 +54,10 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
     ...fieldProps
   } = props
 
-  moment.locale(locale)
+  dayjs.locale(locale)
 
-  function makeDate(value?: Moment | Date | string): Moment | undefined {
-    const date = moment(value, format, true)
+  function makeDate(value?: Dayjs | Date | string): Dayjs | undefined {
+    const date = dayjs(value, format, true)
     return value && date.isValid() ? date : undefined
   }
 
@@ -102,11 +100,11 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
   useImperativeHandle(ref, () => innerRef.current as HTMLDivElement)
 
   const minValue = props.minValue
-    ? moment(props.minValue).startOf('day')
-    : moment().clone().add(-500, 'year')
+    ? dayjs(props.minValue).startOf('day')
+    : dayjs().clone().add(-500, 'year')
   const maxValue = props.maxValue
-    ? moment(props.maxValue).startOf('day')
-    : moment().clone().add(500, 'year')
+    ? dayjs(props.maxValue).startOf('day')
+    : dayjs().clone().add(500, 'year')
 
   function onChange(startDt?: Date, endDt?: Date): void {
     setValue([startDt, endDt])
@@ -121,17 +119,17 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
     }
     let stringDate = ''
     if (startDt) {
-      stringDate += moment(startDt).format(format)
+      stringDate += dayjs(startDt).format(format)
     }
-    if (endDt && moment(startDt).unix() !== moment(endDt).unix()) {
+    if (endDt && dayjs(startDt).unix() !== dayjs(endDt).unix()) {
       if (stringDate) {
         stringDate += ' - '
-        stringDate += moment(endDt).format(format)
+        stringDate += dayjs(endDt).format(format)
       }
     }
 
     setInputValue(stringDate)
-    onChangeProp?.(startDt, moment(startDt).format(format))
+    onChangeProp?.(startDt, dayjs(startDt).format(format))
     if (props.range) {
       onChangeRangeProp?.([startDt, endDt])
       if (endDt) {

@@ -1,18 +1,19 @@
 import React from 'react'
 
 import { Flexbox, Text } from '@stage-ui/core'
-import moment from 'moment'
+
+import dayjs from 'dayjs'
 
 import T from './types'
 
 const DateGridDay = (props: T.DateGridDayProps) => {
   const { day, viewDate, active, minValue, maxValue, type, hideNeighborMonths } = props
 
-  const now = moment()
+  const now = dayjs()
 
   const isDisabled =
-    minValue.valueOf() > moment(day).valueOf() ||
-    maxValue.valueOf() < moment(day).valueOf() ||
+    minValue.valueOf() > dayjs(day).valueOf() ||
+    maxValue.valueOf() < dayjs(day).valueOf() ||
     false
 
   const dayValue = day.startOf('day').valueOf()
@@ -62,9 +63,9 @@ const DateGridDay = (props: T.DateGridDayProps) => {
     return (
       <>
         {props.onDayRender({
-          now,
-          self: day,
-          active: dtStart,
+          now: now.toDate(),
+          self: day.toDate(),
+          active: dtStart?.toDate(),
           isActive,
           isCurrent,
           isCurrentMonth,

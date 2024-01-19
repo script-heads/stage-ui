@@ -1,3 +1,4 @@
+/* eslint-disable react/no-multi-comp */
 import React from 'react'
 
 import { Flexbox, Text } from '@stage-ui/core'
@@ -67,8 +68,7 @@ const DateGridTitle = (props: CalendarTypes.DateGridTitleProps) => {
         )}
         {gridType === 'year' && (
           <Title
-            value={`${value.clone().add(-4, 'year').format('YYYY')} - ${value
-              .clone()
+            value={`${value.add(-4, 'year').format('YYYY')} - ${value
               .add(4, 'year')
               .format('YYYY')}`}
           />

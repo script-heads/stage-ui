@@ -1,7 +1,8 @@
 import React from 'react'
 
 import { Flexbox, Text } from '@stage-ui/core'
-import moment from 'moment'
+
+import dayjs from 'dayjs'
 
 import CalendarTypes from './types'
 
@@ -11,10 +12,10 @@ const DateGridYear = (props: CalendarTypes.DateGridYearProps) => {
   const isDisabled =
     minValue.valueOf() > self.valueOf() || maxValue.valueOf() < self.valueOf() || false
 
-  const now = moment()
-  const yearValue = self.clone().startOf('year').valueOf()
-  const nowValue = now.clone().startOf('year').valueOf()
-  const activeValue = active?.clone().startOf('year').valueOf()
+  const now = dayjs()
+  const yearValue = self.startOf('year').valueOf()
+  const nowValue = now.startOf('year').valueOf()
+  const activeValue = active?.startOf('year').valueOf()
 
   const isActive = activeValue === yearValue
   const isCurrent = yearValue === nowValue
@@ -28,9 +29,9 @@ const DateGridYear = (props: CalendarTypes.DateGridYearProps) => {
     return (
       <>
         {props.onYearRender({
-          now,
-          self,
-          active,
+          now: now.toDate(),
+          self: self.toDate(),
+          active: active?.toDate(),
           isActive,
           isCurrent,
           isDisabled,

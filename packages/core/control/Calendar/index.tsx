@@ -1,16 +1,14 @@
 import React, {
   forwardRef,
   ForwardRefRenderFunction,
+  useEffect,
   useLayoutEffect,
   useState,
 } from 'react'
 
 import { useSystem } from '@stage-ui/system'
-import moment, { Moment } from 'moment'
-import 'moment/dist/locale/ru'
-import 'moment/dist/locale/it'
-import 'moment/dist/locale/fr'
-import 'moment/dist/locale/de'
+import dayjs, { Dayjs } from 'dayjs'
+import 'dayjs/locale/ru'
 
 import DateGrid from './DateGrid'
 import createClasses from './styles'
@@ -31,36 +29,41 @@ const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
     range,
   } = props
 
-  moment.locale(locale)
+  dayjs.locale(locale)
+  const now = dayjs()
 
-  const now = moment()
-  const [value, setValue] = useState<[Moment | undefined, Moment | undefined]>([
+  const [value, setValue] = useState<[Dayjs | undefined, Dayjs | undefined]>([
     undefined,
     undefined,
   ])
+  const [refresh, setRefresh] = useState(0)
+
+  useEffect(() => {
+    setRefresh((old) => old + 1)
+  }, [locale])
 
   const { classes, attributes, styleProps } = useSystem('Calendar', props, createClasses)
 
   const minValue = props.minValue
-    ? moment(props.minValue).startOf('day')
-    : now.clone().add(-500, 'year')
+    ? dayjs(props.minValue).startOf('day')
+    : now.add(-500, 'year')
   const maxValue = props.maxValue
-    ? moment(props.maxValue).startOf('day')
-    : now.clone().add(500, 'year')
+    ? dayjs(props.maxValue).startOf('day')
+    : now.add(500, 'year')
 
   useLayoutEffect(() => {
     if (typeof props.value !== 'undefined') {
       if (Array.isArray(props.value)) {
-        const dtStart = moment(props.value[0])
-        const dtEnd = props.value[1] ? moment(props.value[1]) : undefined
+        const dtStart = dayjs(props.value[0])
+        const dtEnd = props.value[1] ? dayjs(props.value[1]) : undefined
         setValue([dtStart, dtEnd])
       } else {
-        setValue([moment(props.value), undefined])
+        setValue([dayjs(props.value), undefined])
       }
     }
   }, [props.value])
 
-  function onChange(dtStart: Moment, dtEnd?: Moment): void {
+  function onChange(dtStart: Dayjs, dtEnd?: Dayjs): void {
     if (dtEnd && dtEnd < dtStart) {
       setValue([dtEnd, dtStart])
       props.onChange?.(dtEnd.toDate(), dtStart.toDate())
@@ -70,11 +73,12 @@ const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
     }
   }
 
-  function onViewChange(dt: Moment): void {
+  function onViewChange(dt: Dayjs): void {
     props.onViewChange?.(dt.toDate())
   }
   return (
     <DateGrid
+      key={refresh}
       attributes={attributes}
       classes={classes}
       styleProps={styleProps}
