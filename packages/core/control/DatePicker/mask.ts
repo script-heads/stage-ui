@@ -1,7 +1,7 @@
 import IMask from 'imask'
-import moment, { Moment } from 'moment'
+import dayjs, { Dayjs } from 'dayjs'
 
-export default (format: string, min: Moment) =>
+export default (format: string, min: Dayjs) =>
   ({
     mask: Date,
     pattern: format,
@@ -10,11 +10,11 @@ export default (format: string, min: Moment) =>
     max: min.toDate(),
 
     format(date: Date) {
-      return moment(date).format(format)
+      return dayjs(date).format(format)
     },
 
     parse(value: string) {
-      return moment(value, format)
+      return dayjs(value, format)
     },
 
     blocks: {
