@@ -53,11 +53,11 @@ declare namespace CalendarTypes {
      */
     type?: GridType
     /**
-     * Date or Moment value for controlled component
+     * Date value for controlled component
      */
     value?: Date | [Date | undefined, Date | undefined]
     /**
-     * Date or Moment value for uncontrolled component
+     * Date value for uncontrolled component
      */
     defaultValue?: Date | [Date, Date]
     /**
@@ -70,13 +70,13 @@ declare namespace CalendarTypes {
     maxValue?: Date
     /**
      * Callback will fire on user click day
-     * moment date will be current date that
+     * date will be current date that
      * used just did set
      */
     onChange?: (startDt: Date, endDt?: Date) => void
     /**
      * Callback will fire when user change any view at calendary
-     * moment date will be temp date
+     * date will be temp date
      */
     onViewChange?: (date: Date) => void
     /**
