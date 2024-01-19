@@ -365,7 +365,7 @@ declare module "control/Button/index" {
 }
 declare module "control/Calendar/types" {
     import { CSSProperties } from 'react';
-    import { Moment } from 'moment';
+    import { Dayjs } from 'dayjs';
     namespace CalendarTypes {
         /**
          * Type of calendar view
@@ -374,14 +374,14 @@ declare module "control/Calendar/types" {
         /**
          * Calendar locale
          */
-        type Locale = 'en' | 'ru' | 'it' | 'fr' | 'de';
+        type Locale = 'en' | 'ru' | ILocale;
         /**
          * Custom render options
          */
         type RenderOptions = {
-            now: Moment;
-            self: Moment;
-            active: Moment | undefined;
+            now: Date;
+            self: Date;
+            active: Date | undefined;
             isActive: boolean;
             isCurrent: boolean;
             isDisabled: boolean;
@@ -415,11 +415,11 @@ declare module "control/Calendar/types" {
              */
             type?: GridType;
             /**
-             * Date or Moment value for controlled component
+             * Date value for controlled component
              */
             value?: Date | [Date | undefined, Date | undefined];
             /**
-             * Date or Moment value for uncontrolled component
+             * Date value for uncontrolled component
              */
             defaultValue?: Date | [Date, Date];
             /**
@@ -432,13 +432,13 @@ declare module "control/Calendar/types" {
             maxValue?: Date;
             /**
              * Callback will fire on user click day
-             * moment date will be current date that
+             * date will be current date that
              * used just did set
              */
             onChange?: (startDt: Date, endDt?: Date) => void;
             /**
              * Callback will fire when user change any view at calendary
-             * moment date will be temp date
+             * date will be temp date
              */
             onViewChange?: (date: Date) => void;
             /**
@@ -483,11 +483,11 @@ declare module "control/Calendar/types" {
             styleProps: any;
             hideToday: boolean;
             hideNeighborMonths: boolean;
-            value: [Moment | undefined, Moment | undefined];
-            minValue: Moment;
-            maxValue: Moment;
-            onChange: (startDate: Moment, endDate?: Moment) => void;
-            onViewChange: (dt: Moment) => void;
+            value: [Dayjs | undefined, Dayjs | undefined];
+            minValue: Dayjs;
+            maxValue: Dayjs;
+            onChange: (startDate: Dayjs, endDate?: Dayjs) => void;
+            onViewChange: (dt: Dayjs) => void;
             classes: Stage.Classes<Classes>;
             type: GridType;
             onYearRender?: (options: YearRenderOptions) => React.ReactNode;
@@ -500,8 +500,8 @@ declare module "control/Calendar/types" {
         }
         interface DateGridCalendarProps {
             type: GridType;
-            minValue: Moment;
-            maxValue: Moment;
+            minValue: Dayjs;
+            maxValue: Dayjs;
             onClick: () => void;
             style?: CSSProperties;
             size?: Stage.Sizes;
@@ -509,36 +509,36 @@ declare module "control/Calendar/types" {
         }
         interface DateGridDayProps extends Omit<DateGridCalendarProps, 'onClick'> {
             hideNeighborMonths: boolean;
-            day: Moment;
-            viewDate: Moment;
-            tmp: [Moment, Moment | undefined];
-            active: [Moment | undefined, Moment | undefined];
+            day: Dayjs;
+            viewDate: Dayjs;
+            tmp: [Dayjs, Dayjs | undefined];
+            active: [Dayjs | undefined, Dayjs | undefined];
             size?: Stage.Sizes;
             onDayRender?: (options: DayRenderOptions) => React.ReactNode;
-            onClick: (day: Moment) => void;
+            onClick: (day: Dayjs) => void;
         }
         interface DateGridWeekProps extends Omit<DateGridDayProps, 'day'> {
             size?: Stage.Sizes;
-            week: Moment[];
+            week: Dayjs[];
         }
         interface DateGridMonthProps extends DateGridCalendarProps {
-            value: Moment;
-            tmp: Moment;
-            active: Moment | undefined;
+            value: Dayjs;
+            tmp: Dayjs;
+            active: Dayjs | undefined;
             size?: Stage.Sizes;
             onMonthRender?: (options: MonthRenderOptions) => React.ReactNode;
         }
         interface DateGridYearProps extends DateGridCalendarProps {
-            value: Moment;
-            tmp: Moment;
-            active: Moment | undefined;
+            value: Dayjs;
+            tmp: Dayjs;
+            active: Dayjs | undefined;
             size?: Stage.Sizes;
             onYearRender?: (options: YearRenderOptions) => React.ReactNode;
         }
         interface DateGridTitleProps {
-            value: Moment;
-            minValue: Moment;
-            maxValue: Moment;
+            value: Dayjs;
+            minValue: Dayjs;
+            maxValue: Dayjs;
             gridType: GridType;
             onNext: () => void;
             onPrevious: () => void;
@@ -628,10 +628,7 @@ declare module "control/Calendar/styles" {
 }
 declare module "control/Calendar/index" {
     import React from 'react';
-    import 'moment/dist/locale/ru';
-    import 'moment/dist/locale/it';
-    import 'moment/dist/locale/fr';
-    import 'moment/dist/locale/de';
+    import 'dayjs/locale/ru';
     import Types from "control/Calendar/types";
     const _default_9: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
     export default _default_9;
@@ -1021,10 +1018,7 @@ declare module "control/DatePicker/styles" {
 }
 declare module "control/DatePicker/index" {
     import React from 'react';
-    import 'moment/locale/ru';
-    import 'moment/locale/it';
-    import 'moment/locale/fr';
-    import 'moment/locale/de';
+    import 'dayjs/locale/ru';
     import Types from "control/DatePicker/types";
     const _default_13: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
     export default _default_13;
