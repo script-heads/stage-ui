@@ -8,7 +8,6 @@ import React, {
 
 import { useSystem } from '@stage-ui/system'
 import dayjs, { Dayjs } from 'dayjs'
-
 import 'dayjs/locale/ru'
 
 import DateGrid from './DateGrid'

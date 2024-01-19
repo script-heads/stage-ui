@@ -7,6 +7,8 @@ import { Button, Divider, Flexbox, Grid, Text } from '@stage-ui/core'
 
 import dayjs, { Dayjs } from 'dayjs'
 
+import weekday from 'dayjs/plugin/weekday'
+
 import DateGridMonth from './DateGridMonth'
 import DateGridTitle from './DateGridTitle'
 import DateGridWeek from './DateGridWeek'
@@ -23,6 +25,7 @@ const getCalendarWord = (dt: Dayjs) => {
 
 const DateGrid = (props: T.DateGridProps) => {
   const { value } = props
+  dayjs.extend(weekday)
   const now = dayjs()
   const yesterday = dayjs().add(-1, 'day')
   const tomorrow = dayjs().add(1, 'day')
@@ -168,7 +171,7 @@ const DateGrid = (props: T.DateGridProps) => {
           <Grid templateColumns="repeat(7, 1fr)" flexShrink={0} flex={1}>
             {Array(7)
               .fill(null)
-              .map((_, i) => dayjs().day(i).format('ddd'))
+              .map((_, i) => dayjs().weekday(i).format('dd'))
               .map((day, i) => {
                 const isWeekend = [5, 6].indexOf(i) !== -1
                 return (

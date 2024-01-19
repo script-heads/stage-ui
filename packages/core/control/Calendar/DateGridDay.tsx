@@ -25,7 +25,7 @@ const DateGridDay = (props: T.DateGridDayProps) => {
   const isCurrent = dayValue === nowValue
   const isCurrentMonth = day.month() === viewDate.month()
   const isHidden = !isCurrentMonth && hideNeighborMonths
-  const isWeekend = [5, 6].indexOf(day.day()) !== -1
+  const isWeekend = [5, 6].indexOf(day.weekday()) !== -1
   const isRange = !!(dtStart && dtEnd && day >= dtStart && day <= dtEnd)
   const isRangeStart = !!(dtStart && dtEnd && dtStart.toString() === day.toString())
   const isRangeEnd = !!(dtStart && dtEnd && dtEnd.toString() === day.toString())
