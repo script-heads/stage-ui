@@ -1,7 +1,14 @@
 /* eslint-disable no-console */
 import React, { useRef } from 'react'
 
-import { Button, Flexbox, useDropMenu, useDropOver, Viewport } from '@stage-ui/core'
+import {
+  Button,
+  Flexbox,
+  useBreakpoints,
+  useDropMenu,
+  useDropOver,
+  Viewport,
+} from '@stage-ui/core'
 
 import ReactDOM from 'react-dom'
 
@@ -55,6 +62,8 @@ const App: React.FC = () => {
     onOpen: () => console.log('Drop 4 open'),
     onClose: () => console.log('Drop 4 close'),
   })
+
+  const size = useBreakpoints(['xl', 'l', 'm', 's', 'xs'])
 
   return (
     <Flexbox p="xl">
