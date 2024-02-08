@@ -18,6 +18,7 @@ import Calendar from '../control/Calendar/types'
 import CheckboxTypes from '../control/Checkbox/types'
 import DatePickerTypes from '../control/DatePicker/types'
 import MenuTypes from '../control/Menu/types'
+import PageswitchTypes from '../control/Pageswitch/types'
 import RadioTypes from '../control/Radio/types'
 import RangeTypes from '../control/Range/types'
 import SelectTypes from '../control/Select/types'
@@ -95,6 +96,10 @@ declare global {
       Tree?: Stage.ThemeComponentOverrides<TreeTypes.Props, TreeTypes.Classes>
       ScrollView?: Stage.ThemeComponentOverrides<ScrollView.Props, ScrollView.Classes>
       Toggle?: Stage.ThemeComponentOverrides<ToggleTypes.Props, ToggleTypes.Classes>
+      Pageswitch?: Stage.ThemeComponentOverrides<
+        PageswitchTypes.Props,
+        PageswitchTypes.Classes
+      >
     }
   }
 }
