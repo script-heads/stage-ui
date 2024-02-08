@@ -1,9 +1,18 @@
 /* eslint-disable no-console */
 import React, { useRef } from 'react'
 
-import { Button, Flexbox, useDropMenu, useDropOver, Viewport } from '@stage-ui/core'
+import {
+  Button,
+  Flexbox,
+  Pageswitch,
+  useDropMenu,
+  useDropOver,
+  Viewport,
+} from '@stage-ui/core'
 
 import ReactDOM from 'react-dom'
+
+import { light } from './theme'
 
 const App: React.FC = () => {
   const ref = useRef(null)
@@ -62,12 +71,13 @@ const App: React.FC = () => {
       <Button label="Drop2" onClick={drop2} />
       <Button label="Drop3" {...drop3} />
       <Button label="Drop4" {...drop4} />
+      <Pageswitch length={8} pageSize={4} />
     </Flexbox>
   )
 }
 
 ReactDOM.render(
-  <Viewport>
+  <Viewport theme={light}>
     <App />
   </Viewport>,
   document.getElementById('app'),
