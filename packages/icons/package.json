@@ -1,7 +1,7 @@
 {
   "name": "@stage-ui/icons",
   "description": "Flexible UI components library declared by your own Design System.",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "license": "MIT",
   "homepage": "https://stageui.shds.io/",
   "bugs": "https://github.com/script-heads/stage-ui/issues",
