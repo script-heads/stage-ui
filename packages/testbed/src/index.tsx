@@ -5,6 +5,7 @@ import {
   Button,
   Flexbox,
   Pageswitch,
+  useBreakpoints,
   useDropMenu,
   useDropOver,
   Viewport,
@@ -64,6 +65,8 @@ const App: React.FC = () => {
     onOpen: () => console.log('Drop 4 open'),
     onClose: () => console.log('Drop 4 close'),
   })
+
+  const size = useBreakpoints(['xl', 'l', 'm', 's', 'xs'])
 
   return (
     <Flexbox p="xl">

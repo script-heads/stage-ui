@@ -9,6 +9,7 @@ function toRem(input: string | number): string {
   if (isRem(input)) {
     return input.toString()
   }
+
   return `${toFloat(input) / getFontSize()}rem`
 }
 

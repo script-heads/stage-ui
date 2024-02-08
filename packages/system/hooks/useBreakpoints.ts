@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState, useRef } from 'react'
 
 import isBrowser from '../utils/isBrowser'
 
+import toRem from '../utils/toRem'
+
 import useTheme from './useTheme'
 
 const useBreakpoints = <T>(values: T[]): T => {
@@ -13,13 +15,19 @@ const useBreakpoints = <T>(values: T[]): T => {
 
   const calcIndex = (): number => {
     let idx = 0
-    if (!isBrowser) return idx
+
+    if (!isBrowser) {
+      return idx
+    }
+
     const w = document.body.clientWidth || document.body.offsetWidth
+
     breakpoints.forEach((breakpoint, i) => {
-      if (w <= breakpoint) {
+      if (+parseInt(toRem(w), 10) <= breakpoint) {
         idx = i
       }
     })
+
     return idx
   }
 
@@ -29,6 +37,7 @@ const useBreakpoints = <T>(values: T[]): T => {
 
   const calcState = (): void => {
     const idx = calcIndex()
+
     if (idx !== index.current) {
       index.current = idx
       reload(idx)
@@ -36,9 +45,13 @@ const useBreakpoints = <T>(values: T[]): T => {
   }
 
   useEffect(() => {
-    if (!isBrowser) return
+    if (!isBrowser) {
+      return
+    }
+
     window.addEventListener('resize', calcState)
     window.addEventListener('orientationchange', calcState)
+
     return () => {
       window.removeEventListener('resize', calcState)
       window.removeEventListener('orientationchange', calcState)
