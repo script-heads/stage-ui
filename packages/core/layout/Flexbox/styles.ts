@@ -13,9 +13,10 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
       position: 'relative',
       display: props.inline ? 'inline-flex' : 'flex',
     },
-    props.column && {
-      flexDirection: 'column',
-    },
+    props.column &&
+      breakpointProp(props.column, theme, (currentValue) => ({
+        flexDirection: currentValue ? 'column' : undefined,
+      })),
     breakpointProp(props.centered, theme, (currentValue) => ({
       alignItems: currentValue ? 'center' : undefined,
       justifyContent: currentValue ? 'center' : undefined,
