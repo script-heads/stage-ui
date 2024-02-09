@@ -1,16 +1,20 @@
 import * as themes from '@stage-ui/core/themes'
 
 export const light = themes.light.replace({
-  overrides: {
-    Pageswitch: {
-      pageButton: {
-        borderRadius: 0,
-      },
-    },
-    Button: {
-      container: {
-        background: 'red',
-      },
+  main: {
+    radius: {
+      xs: '0.25rem',
     },
   },
+  overrides: (main) => ({
+    TextField: {
+      container: {
+        color: main.color.blue[100].hex(),
+        backgroundColor: main.color.green[100].hex(),
+      },
+      field: {
+        borderRadius: main.radius.xs,
+      },
+    },
+  }),
 })

@@ -4,6 +4,10 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
   theme,
   { lineHeight, size = 'm', leftChildNumber },
 ) => ({
+  container: {},
+  field: {},
+  leftChild: {},
+  rightChild: {},
   input: (state) => [
     {
       fontFamily: 'inherit',
