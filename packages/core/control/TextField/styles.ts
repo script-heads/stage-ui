@@ -5,6 +5,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (
   { lineHeight, size = 'm', leftChildNumber },
 ) => ({
   container: {},
+  label: {},
   field: {},
   leftChild: {},
   rightChild: {},

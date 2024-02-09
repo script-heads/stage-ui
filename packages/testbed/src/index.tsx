@@ -76,7 +76,7 @@ const App: React.FC = () => {
       <Button label="Drop3" {...drop3} />
       <Button label="Drop4" {...drop4} />
       <Pageswitch length={8} pageSize={4} />
-      <TextField />
+      <TextField label="test" />
     </Flexbox>
   )
 }
