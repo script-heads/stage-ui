@@ -13,6 +13,11 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
   const { height } = theme.assets.field[size]
 
   return {
+    container: {},
+    label: {},
+    field: {},
+    rightChild: {},
+    leftChild: {},
     selectedArea: {
       display: 'flex',
       flexWrap: 'wrap',
