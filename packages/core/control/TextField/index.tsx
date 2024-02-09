@@ -59,7 +59,6 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
     props,
     createClasses,
   )
-
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
   const leftCountLineRef = useRef<HTMLDivElement>(null)
   const fieldRef = useRef<HTMLDivElement>(null)
@@ -155,11 +154,17 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
       }}
       overrides={(theme) => ({
         ...propOverridesClasses,
-        container: [propOverridesClasses.container, styleProps.container],
+        label: [propOverridesClasses.label, classes.label],
+        container: [
+          propOverridesClasses.container,
+          styleProps.container,
+          classes.container,
+        ],
         field: [
           multiline && { padding: 0 },
           propOverridesClasses.field,
           styleProps.content,
+          classes.field,
         ],
         leftChild: [
           multiline && {
@@ -169,8 +174,9 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
           },
           propOverridesClasses.leftChild,
           propOverridesClasses.lineNumbers,
+          classes.leftChild,
         ],
-        rightChild: [propOverridesClasses.rightChild],
+        rightChild: [propOverridesClasses.rightChild, classes.rightChild],
       })}
     >
       {jsx(props.multiline ? 'textarea' : 'input', {
