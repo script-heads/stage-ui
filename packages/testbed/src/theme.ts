@@ -10,10 +10,12 @@ export const light = themes.light.replace({
     TextField: {
       container: {
         color: main.color.blue[100].hex(),
-        backgroundColor: main.color.green[100].hex(),
       },
       field: {
         borderRadius: main.radius.xs,
+      },
+      label: {
+        color: 'red',
       },
     },
   }),
