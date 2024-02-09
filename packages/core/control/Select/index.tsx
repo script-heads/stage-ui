@@ -11,8 +11,7 @@ import { Drop, ScrollView } from '@stage-ui/core'
 import Field from '@stage-ui/core/basic/Field'
 import DropTypes from '@stage-ui/core/layout/Drop/types'
 import { ChevronDown, Close } from '@stage-ui/icons'
-import { useSystem } from '@stage-ui/system'
-import { createID } from '@stage-ui/system'
+import { useSystem, createID } from '@stage-ui/system'
 
 import SharedZIndex from '../../utils/SharedZIndex'
 
@@ -252,7 +251,14 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
       onKeyDown={(e) => handleKeyDown(e)}
       overrides={{
         ...propOverridesClasses,
-        container: [propOverridesClasses.container, styleProps.container],
+        container: [
+          propOverridesClasses.container,
+          styleProps.container,
+          classes.container,
+        ],
+        label: [propOverridesClasses.label, classes.label],
+        leftChild: [propOverridesClasses.leftChild, classes.leftChild],
+        rightChild: [propOverridesClasses.rightChild, classes.rightChild],
         field: [
           isOpen && [
             {
@@ -267,6 +273,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
           decoration === 'none' && [{ padding: 0 }],
           propOverridesClasses.field,
           styleProps.content,
+          classes.field,
         ],
       }}
       rightChild={
