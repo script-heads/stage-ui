@@ -9,7 +9,13 @@ import useTheme from './useTheme'
 const useBreakpoints = <T>(values: T[]): T => {
   const theme = useTheme()
   const breakpoints = useMemo(
-    () => theme.breakpoints.map((s) => parseFloat(s.replace(/[^0-9\\.]/g, ''))),
+    () =>
+      theme.breakpoints.map((s) => {
+        return {
+          value: parseFloat(s.replace(/[^0-9\\.]/g, '')),
+          isRem: s.endsWith('rem'),
+        }
+      }),
     [],
   )
 
@@ -23,7 +29,8 @@ const useBreakpoints = <T>(values: T[]): T => {
     const w = document.body.clientWidth || document.body.offsetWidth
 
     breakpoints.forEach((breakpoint, i) => {
-      if (+parseInt(toRem(w), 10) <= breakpoint) {
+      const value = breakpoint.isRem ? +parseInt(toRem(w), 10) : w
+      if (value <= breakpoint.value) {
         idx = i
       }
     })
