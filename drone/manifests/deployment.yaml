@@ -20,10 +20,3 @@ spec:
         image: cr.yandex/crptshuuct3ne1mn7rg1/stageui-docs:_VERSION
         ports:
         - containerPort: 80
-        resources:
-          requests:
-            cpu: 10m
-            memory: 64Mi
-          limits:
-            cpu: 100m
-            memory: 128Mi
