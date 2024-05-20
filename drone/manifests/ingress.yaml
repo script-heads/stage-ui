@@ -7,11 +7,6 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: letsencrypt-nginx-production
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      # Ensure this is only set when accessed via HTTPS
-      if ($scheme = https) {
-        more_set_headers "Strict-Transport-Security: max-age=31536000; includeSubDomains; preload";
-      }
 spec:
   tls:
     - hosts:
@@ -19,7 +14,7 @@ spec:
       - stageui.shds.io
       secretName: stageui-docs-tls
   rules:
-    - host: stageui.scriptheads.io
+    - host: stageui.shds.io
       http: &http_rules
         paths:
         - path: /
@@ -29,6 +24,6 @@ spec:
               name: docs
               port:
                 number: 80
-    - host: stageui.shds.io
+    - host: stageui.scriptheads.io
       http: *http_rules
         
