@@ -245,7 +245,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
       onClick={(e) => {
         e.preventDefault()
         if (openOnFocus && !disabled) {
-          setOpen(true)
+          setOpen(!isOpen)
         }
       }}
       onKeyDown={(e) => handleKeyDown(e)}
@@ -326,7 +326,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
             e.preventDefault()
             e.stopPropagation()
             if (openOnFocus && !disabled) {
-              setOpen(true)
+              setOpen(!isOpen)
             }
           }}
         />
