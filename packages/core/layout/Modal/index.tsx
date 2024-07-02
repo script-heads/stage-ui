@@ -14,20 +14,20 @@ import ModalWindow from './ModalWindow'
 import styles from './styles'
 import Types from './types'
 
-const modelCloseListeners: (() => void)[] = []
+let modelCloseListeners: { key: string; close: () => void }[] = []
 window?.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
     const lastCloseHandler = modelCloseListeners[modelCloseListeners.length - 1]
     if (!lastCloseHandler) return
 
-    lastCloseHandler()
-    modelCloseListeners.length -= 1
+    lastCloseHandler.close()
   }
 })
 
 function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   const {
     hideHeader,
+    modalId,
     overlayClose = true,
     opened,
     decoration = 'modal',
@@ -92,11 +92,15 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
       currentDidClose?.()
     }, 300)
 
+    modelCloseListeners = modelCloseListeners.filter((closeHandlerObj) => {
+      return closeHandlerObj.key !== modalId
+    })
+
     onClose?.()
   }
 
   useEffect(() => {
-    modelCloseListeners.push(close)
+    modelCloseListeners.push({ key: modalId, close })
   }, [])
 
   useEffect(() => {

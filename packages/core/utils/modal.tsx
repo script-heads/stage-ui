@@ -19,6 +19,7 @@ export default (render: ModalTypes.DialogOptions | ModalTypes.DialogRenderFn) =>
     <Modal
       {...options}
       ref={assignRef}
+      modalId={key}
       title={options?.title}
       subtitle={options?.subtitle}
       hideHeader={options?.hideHeader || typeof render === 'function'}
