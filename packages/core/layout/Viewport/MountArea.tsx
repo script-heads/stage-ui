@@ -17,12 +17,16 @@ const MountArea: FC<ViewportTypes.MountArea> = () => {
     key: string = createID(),
     placement: ViewportTypes.MountAreaPlacement = 'center',
   ) => {
-    setElements(elements.concat({ key, children, placement }))
+    setElements((currentElements) => {
+      return currentElements.concat({ key, children, placement })
+    })
     return key
   }
 
   ViewportShared.removeElement = (key: string) => {
-    setElements(elements.filter((el) => el.key !== key))
+    setElements((currentElements) => {
+      return currentElements.filter((el) => el.key !== key)
+    })
   }
 
   return (

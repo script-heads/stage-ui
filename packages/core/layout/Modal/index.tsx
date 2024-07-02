@@ -14,6 +14,17 @@ import ModalWindow from './ModalWindow'
 import styles from './styles'
 import Types from './types'
 
+const modelCloseListeners: (() => void)[] = []
+window?.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    const lastCloseHandler = modelCloseListeners[modelCloseListeners.length - 1]
+    if (!lastCloseHandler) return
+
+    lastCloseHandler()
+    modelCloseListeners.length -= 1
+  }
+})
+
 function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   const {
     hideHeader,
@@ -83,6 +94,10 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
 
     onClose?.()
   }
+
+  useEffect(() => {
+    modelCloseListeners.push(close)
+  }, [])
 
   useEffect(() => {
     if (opened === true) open()
