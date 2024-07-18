@@ -15,14 +15,17 @@ import styles from './styles'
 import Types from './types'
 
 let modelCloseListeners: { key: string; close: () => void }[] = []
-window?.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') {
-    const lastCloseHandler = modelCloseListeners[modelCloseListeners.length - 1]
-    if (!lastCloseHandler) return
 
-    lastCloseHandler.close()
-  }
-})
+if (isBrowser) {
+  window?.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      const lastCloseHandler = modelCloseListeners[modelCloseListeners.length - 1]
+      if (!lastCloseHandler) return
+
+      lastCloseHandler.close()
+    }
+  })
+}
 
 function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   const {
