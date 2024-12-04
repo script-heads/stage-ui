@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Button, Divider, Flexbox, Grid, Text } from '@stage-ui/core'
 
