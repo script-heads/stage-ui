@@ -60,6 +60,10 @@ declare namespace DatePickerTypes {
      * Select date range
      */
     range?: boolean
+    /**
+     * Shortcuts for calendar left panel
+     */
+    shortcuts?: CalendarTypes.ShortcutDate[]
   }
 
   interface InputProps {

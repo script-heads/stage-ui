@@ -1,4 +1,4 @@
-import React, {
+import {
   forwardRef,
   ForwardRefRenderFunction,
   useEffect,
@@ -26,6 +26,7 @@ const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
     onMonthRender,
     onDayRender,
     size,
+    shortcuts,
     range,
   } = props
 
@@ -78,6 +79,7 @@ const Calendar: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (props, 
   }
   return (
     <DateGrid
+      shortcuts={shortcuts}
       key={refresh}
       attributes={attributes}
       classes={classes}

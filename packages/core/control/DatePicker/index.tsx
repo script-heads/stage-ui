@@ -1,4 +1,4 @@
-import React, {
+import {
   forwardRef,
   ForwardRefRenderFunction,
   useImperativeHandle,
@@ -50,7 +50,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
     formMethod,
     formNoValidate,
     formTarget,
-
+    shortcuts,
     ...fieldProps
   } = props
 
@@ -221,6 +221,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
         css={classes.drop({ isActive })}
       >
         <Calendar
+          shortcuts={shortcuts}
           value={value}
           minValue={minValue.toDate()}
           maxValue={maxValue.toDate()}
