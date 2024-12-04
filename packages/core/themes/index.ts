@@ -105,7 +105,7 @@ declare global {
 }
 
 declare module '@emotion/react' {
-  export interface Theme extends Stage.Theme {}
+  export interface Theme extends Stage.Theme { }
 }
 
 export { darkTheme as dark } from '@stage-ui/system'

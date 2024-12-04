@@ -39,7 +39,19 @@ declare namespace CalendarTypes {
     isCurrentMonth: boolean
   }
 
+  interface ShortcutDate {
+    value: Date
+    label: string
+    disabled?: boolean
+    onClick?: () => void
+  }
+
   interface Props extends Omit<Stage.AllProps<HTMLDivElement, Classes>, 'onChange'> {
+    /**
+     * Shortcuts to be rendered in left panel. If not specified, the defaults will be rendered
+     * @link /props/#shortcuts
+     */
+    shortcuts?: ShortcutDate[]
     /**
      * Sizes of field
      * @default m
@@ -118,6 +130,7 @@ declare namespace CalendarTypes {
   }
 
   interface DateGridProps {
+    shortcuts?: ShortcutDate[]
     attributes: any
     styleProps: any
     hideToday: boolean

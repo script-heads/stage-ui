@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Button, Divider, Flexbox, Grid, Text } from '@stage-ui/core'
 
@@ -122,48 +122,75 @@ const DateGrid = (props: T.DateGridProps) => {
           {props.type === 'day' && !props.hideToday && (
             <>
               <Flexbox column>
-                <Button
-                  placeSelf="flex-start"
-                  size={props.size}
-                  decoration="text"
-                  onClick={() => {
-                    if (props.range) {
-                      props.onChange(yesterday, yesterday)
-                    } else {
-                      props.onChange(yesterday, undefined)
-                    }
-                  }}
-                  alignSelf="center"
-                  label={getCalendarWord(yesterday)}
-                />
-                <Button
-                  placeSelf="flex-start"
-                  size={props.size}
-                  decoration="text"
-                  onClick={() => {
-                    if (props.range) {
-                      props.onChange(now, now)
-                    } else {
-                      props.onChange(now, undefined)
-                    }
-                  }}
-                  alignSelf="center"
-                  label={getCalendarWord(now)}
-                />
-                <Button
-                  placeSelf="flex-start"
-                  size={props.size}
-                  decoration="text"
-                  onClick={() => {
-                    if (props.range) {
-                      props.onChange(tomorrow, tomorrow)
-                    } else {
-                      props.onChange(tomorrow, undefined)
-                    }
-                  }}
-                  alignSelf="center"
-                  label={getCalendarWord(tomorrow)}
-                />
+                {props.shortcuts ? (
+                  props.shortcuts.map((s) => {
+                    return (
+                      <Button
+                        placeSelf="flex-start"
+                        size={props.size}
+                        decoration="text"
+                        disabled={!!s.disabled}
+                        onClick={() => {
+                          const value = dayjs(s.value)
+                          if (props.range) {
+                            props.onChange(value, value)
+                          } else {
+                            props.onChange(value, undefined)
+                          }
+
+                          s.onClick?.()
+                        }}
+                        alignSelf="center"
+                        label={s.label}
+                      />
+                    )
+                  })
+                ) : (
+                  <>
+                    <Button
+                      placeSelf="flex-start"
+                      size={props.size}
+                      decoration="text"
+                      onClick={() => {
+                        if (props.range) {
+                          props.onChange(yesterday, yesterday)
+                        } else {
+                          props.onChange(yesterday, undefined)
+                        }
+                      }}
+                      alignSelf="center"
+                      label={getCalendarWord(yesterday)}
+                    />
+                    <Button
+                      placeSelf="flex-start"
+                      size={props.size}
+                      decoration="text"
+                      onClick={() => {
+                        if (props.range) {
+                          props.onChange(now, now)
+                        } else {
+                          props.onChange(now, undefined)
+                        }
+                      }}
+                      alignSelf="center"
+                      label={getCalendarWord(now)}
+                    />
+                    <Button
+                      placeSelf="flex-start"
+                      size={props.size}
+                      decoration="text"
+                      onClick={() => {
+                        if (props.range) {
+                          props.onChange(tomorrow, tomorrow)
+                        } else {
+                          props.onChange(tomorrow, undefined)
+                        }
+                      }}
+                      alignSelf="center"
+                      label={getCalendarWord(tomorrow)}
+                    />
+                  </>
+                )}
               </Flexbox>
               <Divider color="lightest" vertical m="s" />
             </>
