@@ -123,19 +123,20 @@ const DateGrid = (props: T.DateGridProps) => {
             <>
               <Flexbox column>
                 {props.shortcuts ? (
-                  props.shortcuts.map((s) => {
+                  props.shortcuts.map((s, ix) => {
                     return (
                       <Button
+                        key={ix}
                         placeSelf="flex-start"
                         size={props.size}
                         decoration="text"
                         disabled={!!s.disabled}
                         onClick={() => {
-                          const value = dayjs(s.value)
+                          const nextValue = dayjs(s.value)
                           if (props.range) {
-                            props.onChange(value, value)
+                            props.onChange(nextValue, nextValue)
                           } else {
-                            props.onChange(value, undefined)
+                            props.onChange(nextValue, undefined)
                           }
 
                           s.onClick?.()
