@@ -25,7 +25,7 @@ export type DropMenuItem = {
   text: string
   selected?: boolean
   icon?: keyof typeof Icons
-  customIconComponent: React.ReactNode
+  customIconComponent?: React.ReactNode
   color?: ColorProp
   iconColor?: ColorProp
   value?: string | number
