@@ -60,7 +60,7 @@ export const DropMenu = (props: Props) => {
       {values.map((value, index) => {
         if (value.hidden) return null
         const key = value.value || value.text
-        const Icon = value.icon ? Icons[value.icon] : value.customIconComponent || null
+        const Icon = value.icon ? Icons[value.icon] : null
         if (value.text === dividerSign) {
           return (
             <Divider
@@ -107,7 +107,7 @@ export const DropMenu = (props: Props) => {
               {...value.props}
               {...buttonProps}
             >
-              {Icon && (
+              {!value.customIconComponent && Icon && (
                 <Icon
                   mr="s"
                   {...iconProps}
@@ -118,6 +118,7 @@ export const DropMenu = (props: Props) => {
                   }
                 />
               )}
+              {value.customIconComponent}
               <Text
                 flex={1}
                 size="xs"
