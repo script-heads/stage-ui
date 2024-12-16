@@ -25,6 +25,7 @@ export type DropMenuItem = {
   text: string
   selected?: boolean
   icon?: keyof typeof Icons
+  customIconComponent: React.ReactNode
   color?: ColorProp
   iconColor?: ColorProp
   value?: string | number
@@ -59,7 +60,7 @@ export const DropMenu = (props: Props) => {
       {values.map((value, index) => {
         if (value.hidden) return null
         const key = value.value || value.text
-        const Icon = value.icon ? Icons[value.icon] : null
+        const Icon = value.icon ? Icons[value.icon] : value.customIconComponent || null
         if (value.text === dividerSign) {
           return (
             <Divider
