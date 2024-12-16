@@ -68,7 +68,7 @@ declare namespace ModalTypes {
   }
 
   interface Props extends ExtentedProps {
-    modalId: string
+    modalId?: string
     /**
      * Title will be displaed at top
      */
