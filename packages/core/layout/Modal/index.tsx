@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react'
 
-import { isBrowser, useSystem } from '@stage-ui/system'
+import { createID, isBrowser, useSystem } from '@stage-ui/system'
 
 import ModalOverlay from './ModalOverlay'
 import ModalPortal from './ModalPortal'
@@ -110,7 +110,7 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   }
 
   useEffect(() => {
-    modelCloseListeners.push({ key: modalId, close })
+    modelCloseListeners.push({ key: modalId || createID(), close })
   }, [])
 
   useEffect(() => {
