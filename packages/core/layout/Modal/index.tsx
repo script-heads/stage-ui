@@ -2,6 +2,7 @@ import React, {
   forwardRef,
   useEffect,
   useImperativeHandle,
+  useMemo,
   useRef,
   useState,
 } from 'react'
@@ -30,7 +31,7 @@ if (isBrowser) {
 function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   const {
     hideHeader,
-    modalId,
+    modalId: defaultModalId,
     overlayClose = true,
     opened,
     decoration = 'modal',
@@ -41,6 +42,12 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     onClose,
     children,
   } = props
+
+  const modalId = useMemo(() => {
+    if (!defaultModalId) return String(Math.floor(Math.random() * Date.now()))
+
+    return defaultModalId
+  }, [])
 
   const {
     classes,
