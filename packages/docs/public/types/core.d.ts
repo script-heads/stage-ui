@@ -401,7 +401,18 @@ declare module "control/Calendar/types" {
         type DayRenderOptions = RenderOptions & {
             isCurrentMonth: boolean;
         };
+        interface ShortcutDate {
+            value: Date;
+            label: string;
+            disabled?: boolean;
+            onClick?: () => void;
+        }
         interface Props extends Omit<Stage.AllProps<HTMLDivElement, Classes>, 'onChange'> {
+            /**
+             * Shortcuts to be rendered in left panel. If not specified, the defaults will be rendered
+             * @link /props/#shortcuts
+             */
+            shortcuts?: ShortcutDate[];
             /**
              * Sizes of field
              * @default m
@@ -479,6 +490,7 @@ declare module "control/Calendar/types" {
             range?: boolean;
         }
         interface DateGridProps {
+            shortcuts?: ShortcutDate[];
             attributes: any;
             styleProps: any;
             hideToday: boolean;
@@ -979,6 +991,10 @@ declare module "control/DatePicker/types" {
              * Select date range
              */
             range?: boolean;
+            /**
+             * Shortcuts for calendar left panel
+             */
+            shortcuts?: CalendarTypes.ShortcutDate[];
         }
         interface InputProps {
             autoComplete?: string;
@@ -3181,6 +3197,7 @@ declare module "layout/Modal/types" {
             window: HTMLDivElement;
         }
         interface Props extends ExtentedProps {
+            modalId?: string;
             /**
              * Title will be displaed at top
              */
