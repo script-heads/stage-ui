@@ -22,6 +22,7 @@ const ModalWindow = forwardRef(
           onClosePressed={props.onClosePressed}
           title={props.title}
           subtitle={props.subtitle}
+          hideClose={props.hideClose}
           hideHeader={props.hideHeader}
         />
         {props.children}

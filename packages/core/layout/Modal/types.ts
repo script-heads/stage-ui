@@ -102,6 +102,10 @@ declare namespace ModalTypes {
      */
     hideHeader?: boolean
     /**
+     * Disable default close button
+     */
+    hideClose?: boolean
+    /**
      * If true then tap on overlay will close view
      * @default false
      */
@@ -137,6 +141,7 @@ declare namespace ModalTypes {
     title?: string
     subtitle?: string
     hideHeader?: boolean
+    hideClose?: boolean
     children?: React.ReactNode
     containerAttr?: React.HTMLAttributes<Element>
     containerEvents?: any
@@ -152,6 +157,7 @@ declare namespace ModalTypes {
     title?: string
     subtitle?: string
     hideHeader?: boolean
+    hideClose?: boolean
     onClosePressed: () => void
     getStyles: () => {
       classes: Stage.Classes<Classes>

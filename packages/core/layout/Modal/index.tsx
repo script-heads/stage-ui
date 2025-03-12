@@ -41,6 +41,7 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     didClose,
     onClose,
     children,
+    hideClose,
   } = props
 
   const modalId = useMemo(() => {
@@ -174,6 +175,7 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
             onClosePressed={() => close()}
             containerAttr={attributes}
             containerEvents={events}
+            hideClose={hideClose}
           >
             {customRender !== null ? customRender : children}
           </ModalWindow>

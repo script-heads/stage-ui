@@ -23,6 +23,7 @@ export default (render: ModalTypes.DialogOptions | ModalTypes.DialogRenderFn) =>
       title={options?.title}
       subtitle={options?.subtitle}
       hideHeader={options?.hideHeader || typeof render === 'function'}
+      hideClose={options?.hideClose}
       style={options?.style}
       size={options?.size}
       decoration={options?.decoration}

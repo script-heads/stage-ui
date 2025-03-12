@@ -6,7 +6,7 @@ import { Close } from '@stage-ui/icons'
 import Types from './types'
 
 const ModalHeader = (props: Types.ModalHeaderProps) => {
-  const { title, subtitle, onClosePressed, hideHeader, getStyles } = props
+  const { title, subtitle, onClosePressed, hideHeader, getStyles, hideClose } = props
 
   if (hideHeader) {
     return null
@@ -25,12 +25,14 @@ const ModalHeader = (props: Types.ModalHeaderProps) => {
             </Paragraph>
           )}
         </Flexbox>
-        <Close
-          ml="m"
-          css={styles.classes.cross(styles.state)}
-          onClick={onClosePressed}
-          color="light"
-        />
+        {!hideClose && (
+          <Close
+            ml="m"
+            css={styles.classes.cross(styles.state)}
+            onClick={onClosePressed}
+            color="light"
+          />
+        )}
       </Flexbox>
     </div>
   )
