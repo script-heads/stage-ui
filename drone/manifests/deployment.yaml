@@ -6,15 +6,6 @@ metadata:
   labels:
     app: docs
 spec:
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: yandex.cloud/node-group-id
-            operator: In
-            values:
-            - catc7e6q6v4kviesf5cg
   replicas: 1
   selector:
     matchLabels:
@@ -24,6 +15,15 @@ spec:
       labels:
         app: docs
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: yandex.cloud/node-group-id
+                operator: In
+                values:
+                - catc7e6q6v4kviesf5cg
       containers:
       - name: docs
         image: cr.yandex/crptshuuct3ne1mn7rg1/stageui-docs:_VERSION
