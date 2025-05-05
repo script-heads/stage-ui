@@ -39,7 +39,7 @@ const Button: ForwardRefRenderFunction<HTMLButtonElement, Types.Props> = (props,
   }
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>): void => {
-    if (event.key !== 'Tab') {
+    if (!['Tab', ' ', 'Enter'].includes(event.key)) {
       event.preventDefault()
     }
 

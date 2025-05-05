@@ -17,7 +17,13 @@ const App: React.FC = () => {
         },
       }}
     >
-      <Button>123</Button>
+      <Button
+        onClick={() => {
+          console.log('event')
+        }}
+      >
+        123
+      </Button>
       <Button>2</Button>
       <Button>3</Button>
     </Flexbox>
