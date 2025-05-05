@@ -22,6 +22,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         hover: CSSInterpolation
         active: CSSInterpolation
         disabled: CSSInterpolation
+        focus: CSSInterpolation
       }
     >,
   ) => {
@@ -32,6 +33,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
     return Object.assign(style.idle, {
       '&:hover': style.hover,
       '&:active': style.active,
+      '&:focus': style.focus,
     })
   }
 
@@ -56,7 +58,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         width: 'fit-content',
         padding: `0 ${theme.assets.field[size].indent}`,
         height: theme.assets.field[size].height,
-        transition: 'all 0.25s',
+        transition: 'all 0.25s, outline 0s',
         transitionTimingFunction: 'ease',
         '&::-moz-focus-inner': {
           border: 0,
@@ -81,6 +83,9 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
             color: theme.color.gray[500].hex(),
             background: theme.color.onSurface.alpha(0.1).string(),
           },
+          focus: {
+            outline: `2px solid ${color.alpha(0.6).string()}`,
+          },
         },
         text: {
           idle: {
@@ -96,6 +101,9 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
           },
           disabled: {
             color: theme.color.onSurface.alpha(0.3).string(),
+          },
+          focus: {
+            outline: `2px solid ${color.alpha(0.6).string()}`,
           },
         },
         outline: {
@@ -114,6 +122,9 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
           disabled: {
             color: theme.color.onSurface.alpha(0.5).string(),
             borderColor: theme.color.onSurface.alpha(0.2).string(),
+          },
+          focus: {
+            outline: `2px solid ${color.alpha(0.6).string()}`,
           },
         },
         plain: {
@@ -134,6 +145,9 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
             color: theme.color.onSurface.alpha(0.5).string(),
             background: theme.color.onSurface.alpha(0.05).string(),
             borderColor: theme.color.onSurface.alpha(0.1).string(),
+          },
+          focus: {
+            outline: `2px solid ${color.alpha(0.6).string()}`,
           },
         },
       }),
