@@ -9,27 +9,14 @@ import { light } from './theme'
 
 const App: React.FC = () => {
   return (
-    <Flexbox
-      p="xl"
-      style={{
-        '& *:focus': {
-          border: '2px red solid !important',
-        },
-      }}
-    >
+    <Flexbox p="xl">
       <Button
         onClick={() => {
           modal({
             title: 'Hello',
             render: () => {
               return (
-                <Block
-                  style={{
-                    '& *:focus': {
-                      outline: '2px red solid !important',
-                    },
-                  }}
-                >
+                <Block style={{}}>
                   <button onClick={() => alert('hello')}>123</button>
                   <input />
                 </Block>
@@ -40,8 +27,9 @@ const App: React.FC = () => {
       >
         123
       </Button>
-      <Button>2</Button>
-      <Button>3</Button>
+      <Button decoration="outline">2</Button>
+      <Button decoration="plain">3</Button>
+      <Button decoration="text">tesxt</Button>
     </Flexbox>
   )
 }
