@@ -13,6 +13,7 @@ declare module "utils/isBrowser" {
     export default isBrowser;
 }
 declare module "utils/handleFocus" {
+    import React from 'react';
     export type FocusOptions = 'always' | 'tabOnly' | 'never';
     function handleFocus<Element extends HTMLElement>(props: Partial<Record<'onFocus' | 'onBlur', (event: React.FocusEvent<Element>) => void>>, focus: FocusOptions): Record<'onFocus' | 'onBlur', (event: React.FocusEvent<Element>) => void>;
     export default handleFocus;
@@ -1408,15 +1409,6 @@ declare module "hooks/useSystem" {
     function useSystem<Props extends Record<string, any>, ClassesSchema extends Stage.ClassesSchemaDefinition, Element extends HTMLElement>(name: string, props: Props, createClasses: Stage.CreateClasses<ClassesSchema, Props>, options?: Options): ComponentData<Props, ClassesSchema, Element>;
     export default useSystem;
 }
-declare module "hooks/useBreakpoints" {
-    const useBreakpoints: <T>(values: T[]) => T;
-    export default useBreakpoints;
-}
-declare module "hooks/useAppearance" {
-    type Appearance = 'dark' | 'light';
-    const useAppearance: () => Appearance;
-    export default useAppearance;
-}
 declare module "utils/toFloat" {
     /**
      * Converts any value to Float
@@ -1437,6 +1429,22 @@ declare module "utils/isRem" {
      */
     function isRem(input: string | number): boolean;
     export default isRem;
+}
+declare module "utils/toRem" {
+    /**
+     * Converts any value to rems (example response: 1rem)
+     */
+    function toRem(input: string | number): string;
+    export default toRem;
+}
+declare module "hooks/useBreakpoints" {
+    const useBreakpoints: <T>(values: T[]) => T;
+    export default useBreakpoints;
+}
+declare module "hooks/useAppearance" {
+    type Appearance = 'dark' | 'light';
+    const useAppearance: () => Appearance;
+    export default useAppearance;
 }
 declare module "utils/toPixel" {
     /**
@@ -1462,13 +1470,6 @@ declare module "utils/toPx" {
      */
     function toPx(input: string | number): string;
     export default toPx;
-}
-declare module "utils/toRem" {
-    /**
-     * Converts any value to rems (example response: 1rem)
-     */
-    function toRem(input: string | number): string;
-    export default toRem;
 }
 declare module "utils/createGradient" {
     type GradientOptions = {

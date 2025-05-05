@@ -229,6 +229,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
           hideToday={props.hideToday || false}
           type={props.type || 'day'}
           range={props.range}
+          locale={locale}
         />
       </Drop>
     </Field>

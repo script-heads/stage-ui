@@ -1,5 +1,5 @@
 /**
-version: 0.7.0
+version: 0.7.18
 */
 export { default as Sync } from './lib/Sync'
 export { default as Activity } from './lib/Activity'
@@ -224,6 +224,7 @@ export { default as Shake } from './lib/Shake'
 export { default as Share } from './lib/Share'
 export { default as ShieldOff } from './lib/ShieldOff'
 export { default as Shield } from './lib/Shield'
+export { default as ShoppingBag } from './lib/ShoppingBag'
 export { default as ShoppingCartPlus } from './lib/ShoppingCartPlus'
 export { default as ShoppingCart } from './lib/ShoppingCart'
 export { default as Shuffle2 } from './lib/Shuffle2'
