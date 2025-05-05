@@ -9,6 +9,8 @@ import React, {
 
 import { createID, isBrowser, useSystem } from '@stage-ui/system'
 
+import { FocusTrap } from 'focus-trap-react'
+
 import ModalOverlay from './ModalOverlay'
 import ModalPortal from './ModalPortal'
 import ModalWindow from './ModalWindow'
@@ -145,39 +147,41 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   return (
     <ModalPortal>
       <ModalOverlay ref={overlayRef} getStyles={getStyles}>
-        <div
-          data-wrapper
-          css={classes.wrapper(otherStyleProps)}
-          onMouseDown={(e) =>
-            setIsDataWrapperClick(
-              // dataset.wrapper is already a boolean value
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore
-              (e.target as HTMLDivElement).dataset.wrapper as boolean,
-            )
-          }
-          onClick={(e) => {
-            // checking if a click event started from the data-wrapper
-            if (isDataWrapperClick) {
-              if ((e.target as HTMLDivElement).dataset.wrapper) {
-                if (overlayClose) close()
-              }
+        <FocusTrap>
+          <div
+            data-wrapper
+            css={classes.wrapper(otherStyleProps)}
+            onMouseDown={(e) =>
+              setIsDataWrapperClick(
+                // dataset.wrapper is already a boolean value
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                (e.target as HTMLDivElement).dataset.wrapper as boolean,
+              )
             }
-          }}
-        >
-          <ModalWindow
-            getStyles={getStyles}
-            ref={windowRef}
-            title={currentTitle}
-            subtitle={currentSubtitle}
-            hideHeader={hideHeader}
-            onClosePressed={() => close()}
-            containerAttr={attributes}
-            containerEvents={events}
+            onClick={(e) => {
+              // checking if a click event started from the data-wrapper
+              if (isDataWrapperClick) {
+                if ((e.target as HTMLDivElement).dataset.wrapper) {
+                  if (overlayClose) close()
+                }
+              }
+            }}
           >
-            {customRender !== null ? customRender : children}
-          </ModalWindow>
-        </div>
+            <ModalWindow
+              getStyles={getStyles}
+              ref={windowRef}
+              title={currentTitle}
+              subtitle={currentSubtitle}
+              hideHeader={hideHeader}
+              onClosePressed={() => close()}
+              containerAttr={attributes}
+              containerEvents={events}
+            >
+              {customRender !== null ? customRender : children}
+            </ModalWindow>
+          </div>
+        </FocusTrap>
       </ModalOverlay>
     </ModalPortal>
   )

@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React from 'react'
 
-import { Button, Flexbox, Viewport } from '@stage-ui/core'
+import { Block, Button, Flexbox, modal, Viewport } from '@stage-ui/core'
 
 import ReactDOM from 'react-dom'
 
@@ -19,7 +19,23 @@ const App: React.FC = () => {
     >
       <Button
         onClick={() => {
-          console.log('event')
+          modal({
+            title: 'Hello',
+            render: () => {
+              return (
+                <Block
+                  style={{
+                    '& *:focus': {
+                      outline: '2px red solid !important',
+                    },
+                  }}
+                >
+                  <button onClick={() => alert('hello')}>123</button>
+                  <input />
+                </Block>
+              )
+            },
+          })
         }}
       >
         123
