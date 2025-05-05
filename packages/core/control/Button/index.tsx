@@ -13,14 +13,14 @@ const Button: ForwardRefRenderFunction<HTMLButtonElement, Types.Props> = (props,
   const [pending, setPending] = useState(false)
   let { leftChild, rightChild, children } = props
   const { disabled, label, loadingComponent } = props
-  const { classes, attributes, events, styleProps } = useSystem(
-    'Button',
-    props,
-    createClasses,
-    {
-      focus: 'tabOnly',
-    },
-  )
+  const {
+    classes,
+    attributes,
+    events: { onFocus, onFocusCapture, ...events },
+    styleProps,
+  } = useSystem('Button', props, createClasses, {
+    focus: 'tabOnly',
+  })
 
   const onClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     if (!disabled && !pending) {
@@ -39,7 +39,9 @@ const Button: ForwardRefRenderFunction<HTMLButtonElement, Types.Props> = (props,
   }
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>): void => {
-    event.preventDefault()
+    if (event.key !== 'Tab') {
+      event.preventDefault()
+    }
 
     if (disabled || pending) return
     events.onKeyDown?.(event)
