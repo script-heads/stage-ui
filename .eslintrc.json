@@ -1,9 +1,9 @@
 {
-  "root":true,
-  "parser":"@typescript-eslint/parser",
-  "parserOptions":{
-    "sourceType":"module",
-    "project":[
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "project": [
       "./packages/core/tsconfig.json",
       "./packages/docs/tsconfig.json",
       "./packages/icons/tsconfig.json",
@@ -13,12 +13,12 @@
       "./packages/testbed/tsconfig.json"
     ]
   },
-  "env":{
-    "node":true,
-    "es6":true,
-    "browser":true
+  "env": {
+    "node": true,
+    "es6": true,
+    "browser": true
   },
-  "extends":[
+  "extends": [
     "airbnb",
     "airbnb-typescript",
     "airbnb/hooks",
@@ -27,7 +27,7 @@
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:prettier/recommended"
   ],
-  "plugins":[
+  "plugins": [
     "@typescript-eslint",
     "react-hooks",
     "prettier",
@@ -35,67 +35,57 @@
     "no-for-of-loops",
     "unused-imports"
   ],
-  "rules":{
+  "rules": {
     "import/extensions": "off",
-    "class-methods-use-this":"off",
-    "no-plusplus":"off",
-    "max-classes-per-file":"off",
-    "prettier/prettier":[
-      "error",
-      {
-        "semi":false,
-        "singleQuote":true,
-        "endOfLine":"auto",
-        "trailingComma":"all",
-        "printWidth":90
-      }
-    ],
-    "@typescript-eslint/no-inferrable-types":"off",
-    "@typescript-eslint/explicit-module-boundary-types":"off",
-    "@typescript-eslint/no-namespace":"off",
-    "@typescript-eslint/no-unused-vars":"off",
-    "unused-imports/no-unused-imports":"error",
-    "@typescript-eslint/no-floating-promises":"off",
-    "@typescript-eslint/no-unsafe-call":"warn",
-    "@typescript-eslint/no-unsafe-member-access":"warn",
-    "@typescript-eslint/no-unsafe-assignment":"off",
+    "class-methods-use-this": "off",
+    "no-plusplus": "off",
+    "max-classes-per-file": "off",
+    "@typescript-eslint/no-inferrable-types": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/no-unsafe-call": "warn",
+    "@typescript-eslint/no-unsafe-member-access": "warn",
+    "@typescript-eslint/no-unsafe-assignment": "off",
     "@typescript-eslint/no-empty-interface": "off",
-    "import/prefer-default-export":"off",
-    "import/no-cycle":"warn",
+    "import/prefer-default-export": "off",
+    "import/no-cycle": "warn",
     "no-console": ["error", { "allow": ["warn", "error", "info"] }],
-    "import/no-extraneous-dependencies":"off",
+    "import/no-extraneous-dependencies": "off",
     "react/function-component-definition": "off",
-    "react/prop-types":"off",
-    "no-void":[
+    "react/prop-types": "off",
+    "no-void": [
       "error",
       {
-        "allowAsStatement":true
+        "allowAsStatement": true
       }
     ],
-    "consistent-return":"off",
-    "no-param-reassign":"warn",
-    "no-underscore-dangle":"error",
-    "no-restricted-syntax":"error",
-    "curly":"error",
-    "react/no-children-prop":"error",
-    "react/jsx-boolean-value":"warn",
-    "react/no-array-index-key":"warn",
-    "react/require-default-props":"off",
-    "react/no-multi-comp":"error",
-    "react/jsx-props-no-spreading":"off",
-    "react/destructuring-assignment":"off",
+    "consistent-return": "off",
+    "no-param-reassign": "warn",
+    "no-underscore-dangle": "error",
+    "no-restricted-syntax": "error",
+    "curly": "error",
+    "react/no-children-prop": "error",
+    "react/jsx-boolean-value": "warn",
+    "react/no-array-index-key": "warn",
+    "react/require-default-props": "off",
+    "react/no-multi-comp": "error",
+    "react/jsx-props-no-spreading": "off",
+    "react/destructuring-assignment": "off",
     "react/jsx-no-bind": "off",
-    "jsx-a11y/no-noninteractive-tabindex":"off",
-    "jsx-a11y/no-static-element-interactions":"off",
-    "jsx-a11y/click-events-have-key-events":"off",
+    "jsx-a11y/no-noninteractive-tabindex": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/alt-text": "off",
-    "react-hooks/exhaustive-deps":"off",
-    "no-for-of-loops/no-for-of-loops":"warn",
-    "no-function-declare-after-return/no-function-declare-after-return":"error",
-    "import/order":[
+    "react-hooks/exhaustive-deps": "off",
+    "no-for-of-loops/no-for-of-loops": "warn",
+    "no-function-declare-after-return/no-function-declare-after-return": "error",
+    "import/order": [
       "error",
       {
-        "groups":[
+        "groups": [
           "index",
           "builtin",
           "external",
@@ -105,18 +95,17 @@
           "object",
           "type"
         ],
-        "newlines-between":"always-and-inside-groups",
-        "pathGroups":[
+        "newlines-between": "always-and-inside-groups",
+        "pathGroups": [
           {
-            "pattern":"react",
-            "group":"index",
-            "position":"before"
+            "pattern": "react",
+            "group": "index",
+            "position": "before"
           }
         ],
-        "pathGroupsExcludedImportTypes":[
-          "react"
-        ]
+        "pathGroupsExcludedImportTypes": ["react"]
       }
-    ]
+    ],
+    "prettier/prettier": ["error"]
   }
 }

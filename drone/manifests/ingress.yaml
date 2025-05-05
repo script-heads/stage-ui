@@ -5,12 +5,13 @@ metadata:
   namespace: stageui
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    cert-manager.io/cluster-issuer: letsencrypt-nginx-production
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    #CLOUDFLARE PROXY
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
 spec:
   tls:
     - hosts:
-      - stageui.scriptheads.io
       - stageui.shds.io
       secretName: stageui-docs-tls
   rules:

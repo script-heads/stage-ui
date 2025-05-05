@@ -2,11 +2,12 @@ import React, {
   forwardRef,
   useEffect,
   useImperativeHandle,
+  useMemo,
   useRef,
   useState,
 } from 'react'
 
-import { isBrowser, useSystem } from '@stage-ui/system'
+import { createID, isBrowser, useSystem } from '@stage-ui/system'
 
 import ModalOverlay from './ModalOverlay'
 import ModalPortal from './ModalPortal'
@@ -30,7 +31,7 @@ if (isBrowser) {
 function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   const {
     hideHeader,
-    modalId,
+    modalId: defaultModalId,
     overlayClose = true,
     opened,
     decoration = 'modal',
@@ -41,6 +42,12 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     onClose,
     children,
   } = props
+
+  const modalId = useMemo(() => {
+    if (!defaultModalId) return String(Math.floor(Math.random() * Date.now()))
+
+    return defaultModalId
+  }, [])
 
   const {
     classes,
@@ -103,7 +110,7 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   }
 
   useEffect(() => {
-    modelCloseListeners.push({ key: modalId, close })
+    modelCloseListeners.push({ key: modalId || createID(), close })
   }, [])
 
   useEffect(() => {

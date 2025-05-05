@@ -25,6 +25,7 @@ export type DropMenuItem = {
   text: string
   selected?: boolean
   icon?: keyof typeof Icons
+  customIconComponent?: React.ReactNode
   color?: ColorProp
   iconColor?: ColorProp
   value?: string | number
@@ -106,7 +107,7 @@ export const DropMenu = (props: Props) => {
               {...value.props}
               {...buttonProps}
             >
-              {Icon && (
+              {!value.customIconComponent && Icon && (
                 <Icon
                   mr="s"
                   {...iconProps}
@@ -117,6 +118,7 @@ export const DropMenu = (props: Props) => {
                   }
                 />
               )}
+              {value.customIconComponent}
               <Text
                 flex={1}
                 size="xs"

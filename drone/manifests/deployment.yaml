@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: docs
-  namespace: _NAMESPACE
+  namespace: stageui
   labels:
     app: docs
 spec:
@@ -15,6 +15,15 @@ spec:
       labels:
         app: docs
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: yandex.cloud/node-group-id
+                operator: In
+                values:
+                - catc7e6q6v4kviesf5cg
       containers:
       - name: docs
         image: cr.yandex/crptshuuct3ne1mn7rg1/stageui-docs:_VERSION
@@ -24,3 +33,6 @@ spec:
           limits:
             cpu: 100m
             memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 64Mi
