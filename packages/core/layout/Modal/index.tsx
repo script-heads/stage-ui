@@ -9,13 +9,12 @@ import React, {
 
 import { createID, isBrowser, useSystem } from '@stage-ui/system'
 
-import { FocusTrap } from 'focus-trap-react'
-
 import ModalOverlay from './ModalOverlay'
 import ModalPortal from './ModalPortal'
 import ModalWindow from './ModalWindow'
 import styles from './styles'
 import Types from './types'
+import { FocusTrapWrapper } from './FocusTrapWrapper'
 
 let modelCloseListeners: { key: string; close: () => void }[] = []
 
@@ -43,6 +42,7 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     didClose,
     onClose,
     children,
+    trapFocus,
   } = props
 
   const modalId = useMemo(() => {
@@ -147,7 +147,7 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   return (
     <ModalPortal>
       <ModalOverlay ref={overlayRef} getStyles={getStyles}>
-        <FocusTrap>
+        <FocusTrapWrapper trapFocus={trapFocus}>
           <div
             data-wrapper
             css={classes.wrapper(otherStyleProps)}
@@ -181,7 +181,7 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
               {customRender !== null ? customRender : children}
             </ModalWindow>
           </div>
-        </FocusTrap>
+        </FocusTrapWrapper>
       </ModalOverlay>
     </ModalPortal>
   )

@@ -14,9 +14,10 @@ const App: React.FC = () => {
         onClick={() => {
           modal({
             title: 'Hello',
+            trapFocus: true,
             render: () => {
               return (
-                <Block style={{}}>
+                <Block>
                   <button onClick={() => alert('hello')}>123</button>
                   <input />
                 </Block>
