@@ -68,6 +68,10 @@ declare namespace ModalTypes {
   }
 
   interface Props extends ExtentedProps {
+    /**
+     * Whether to use focus-trap-react inside
+     */
+    trapFocus?: boolean
     modalId?: string
     /**
      * Title will be displaed at top

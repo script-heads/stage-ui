@@ -141,11 +141,11 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
       },
     ],
 
-    cross: () => [
+    cross: (t) => [
       titleSize,
       {
         cursor: 'pointer',
-        transition: 'all 0.25s',
+        transition: 'all 0.25s, outline 0s',
         transform: 'scale(1)',
         opacity: 0.7,
         ':hover': {
@@ -153,6 +153,10 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, p
         },
         ':active': {
           transform: 'scale(1)',
+        },
+        ':focus': {
+          outline: `${theme.color.orange[500].string()} 2px solid`,
+          color: `${theme.color.orange[500].string()}`,
         },
       },
     ],

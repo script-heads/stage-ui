@@ -32,6 +32,9 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
     return Object.assign(style.idle, {
       '&:hover': style.hover,
       '&:active': style.active,
+      '&:focus': {
+        boxShadow: `0px 0px 2px 2px ${theme.color.blue[500].string()}`,
+      },
     })
   }
 
@@ -56,7 +59,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         width: 'fit-content',
         padding: `0 ${theme.assets.field[size].indent}`,
         height: theme.assets.field[size].height,
-        transition: 'all 0.25s',
+        transition: 'all 0.25s, box-shadow 0s',
         transitionTimingFunction: 'ease',
         '&::-moz-focus-inner': {
           border: 0,
