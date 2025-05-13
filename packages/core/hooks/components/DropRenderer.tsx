@@ -48,7 +48,21 @@ export const DropRenderer = () => {
           node = dropNode
         }
         setPayload({ id, node, options })
-        setPos([e?.clientX || 0, e?.clientY || 0])
+
+        if (e) {
+          // is mouse click
+          if (e.detail > 0) {
+            setPos([e.clientX || 0, e.clientY || 0])
+
+            // is tab mouse click
+          } else {
+            const t = e.target as HTMLElement
+            const rect = t.getBoundingClientRect()
+
+            setPos([rect.x + rect.width - 12, rect.y + rect.height - 12])
+          }
+        }
+
         setVisible(true)
       },
       move: (e) => {
@@ -131,7 +145,7 @@ export const DropRenderer = () => {
         opacity: visible ? 1 : 0,
         pointerEvents:
           payload.options.pointerEvents !== false && visible ? 'all' : 'none',
-        transition: 'transform ease-in-out 0.15s, opacity ease-in-out 0.15s',
+        // transition: 'transform ease-in-out 0.15s, opacity ease-in-out 0.15s',
         transform: visible
           ? 'translateY(0rem) scale(1)'
           : 'translateY(-0.25rem) scale(0.99)',
@@ -141,13 +155,14 @@ export const DropRenderer = () => {
       }}
       {...payload.options.containerProps}
     >
-      {typeof payload.node === 'string' ? (
-        <Text p="s m" color={(c) => c.onSurface.alpha(0.8).string()} weight={500}>
-          {payload.node}
-        </Text>
-      ) : (
-        payload.node
-      )}
+      {visible &&
+        (typeof payload.node === 'string' ? (
+          <Text p="s m" color={(c) => c.onSurface.alpha(0.8).string()} weight={500}>
+            {payload.node}
+          </Text>
+        ) : (
+          payload.node
+        ))}
     </Block>
   )
 }

@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { HTMLAttributes } from 'react'
 
 declare namespace ScrollViewTypes {
   interface Props extends Omit<Stage.AllProps<HTMLDivElement, Classes>, 'onScroll'> {
+    /**
+     * Props for container
+     */
+    containerProps?: HTMLAttributes<HTMLDivElement>
+    /**
+     * Props for scroller
+     */
+    scrollerProps?: HTMLAttributes<HTMLDivElement>
     /**
      * Any contant of scrollview
      */
