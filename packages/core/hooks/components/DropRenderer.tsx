@@ -27,7 +27,7 @@ export const DropRenderer = () => {
           payload.options.onClose?.()
         }
 
-        if (id === payload.id && visible) {
+        if (id === payload.id && visible && !options.forceSkip) {
           if (payload.options.clickMode === 'open') {
             return
           }
@@ -50,6 +50,7 @@ export const DropRenderer = () => {
         setPayload({ id, node, options })
 
         if (e) {
+          console.log(e)
           // is mouse click
           if (e.detail > 0) {
             setPos([e.clientX || 0, e.clientY || 0])

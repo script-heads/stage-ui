@@ -13,6 +13,7 @@ export type UseDropOptions = {
   dropOffsetY?: number
   onOpen?: () => void
   onClose?: () => void
+  forceSkip?: boolean
 }
 
 type CloseFn = () => void

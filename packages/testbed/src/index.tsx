@@ -10,6 +10,7 @@ import {
   ReactFocusTrap,
   ScrollView,
   useDropMenu,
+  useDropOver,
   Viewport,
 } from '@stage-ui/core'
 
@@ -195,21 +196,7 @@ const App: React.FC = () => {
   return (
     <div style={{ padding: '70px', height: '300px' }}>
       <ScrollView>
-        <input />
-        <Block style={{ height: '20px' }} />
-        <input />
-        <Block style={{ height: '20px' }} />
-        <input />
-        <Block style={{ height: '20px' }} />
-
-        <Block style={{ height: '400px', background: 'lightblue' }} />
-
-        <input />
-        <Block style={{ height: '20px' }} />
-        <input />
-        <Block style={{ height: '20px' }} />
-        <input />
-        <Block style={{ height: '20px' }} />
+        <BackButton onClick={() => {}} />
       </ScrollView>
     </div>
   )
@@ -221,3 +208,39 @@ ReactDOM.render(
   </Viewport>,
   document.getElementById('app'),
 )
+
+interface Propse {
+  onClick?: () => void
+}
+
+function BackButton({ onClick }: Propse) {
+  const hint = useDropOver('Назад')
+
+  return (
+    <Button
+      onMouseOver={(e) => {
+        e.target = document.getElementById('btne')
+        hint.onMouseOver(e)
+      }}
+      onMouseLeave={hint.onMouseLeave}
+      onMouseMove={(e) => {
+        e.target = document.getElementById('btne')
+        hint.onMouseMove(e)
+      }}
+      id="btne"
+      decoration="plain"
+      size="l"
+      w="3rem"
+      mr="m"
+      onClick={onClick}
+    >
+      <div
+        style={{ width: '20px', height: '20px', background: 'yellow' }}
+        onMouseOver={(e) => {
+          e.target = document.getElementById('btne')
+          hint.onMouseOver(e)
+        }}
+      />
+    </Button>
+  )
+}
