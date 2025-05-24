@@ -5,6 +5,10 @@ import FieldTypes from '../../basic/Field/types'
 declare namespace DatePickerTypes {
   interface Props extends FieldTypes.Props<HTMLInputElement, Classes>, InputProps {
     /**
+     * Whether to value & inputValue on passing value=undefined
+     */
+    clearOnUndefined?: boolean
+    /**
      * Type for DatePicker
      * @default day
      */

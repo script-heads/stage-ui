@@ -1,6 +1,7 @@
 import React, {
   forwardRef,
   ForwardRefRenderFunction,
+  useEffect,
   useImperativeHandle,
   useLayoutEffect,
   useRef,
@@ -51,6 +52,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
     formNoValidate,
     formTarget,
     shortcuts,
+    clearOnUndefined,
     ...fieldProps
   } = props
 
@@ -147,6 +149,13 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
       } else {
         setValue([makeDate(props.value)?.toDate(), undefined])
       }
+
+      return
+    }
+
+    if (clearOnUndefined) {
+      setValue([undefined, undefined])
+      setInputValue('')
     }
   }, [props.value])
 
@@ -172,8 +181,9 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
           setActive(true)
         }
       }}
-      onClear={() => {
-        props.onClear?.()
+      onClear={async () => {
+        console.log('clears', props.onClear)
+        const v = props.onClear?.()
         if (!props.value) {
           onChange(undefined, undefined)
         }

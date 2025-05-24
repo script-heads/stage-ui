@@ -7,8 +7,8 @@ import ReactDOM from 'react-dom'
 import {
   Block,
   Button,
+  DatePicker,
   ReactFocusTrap,
-  ScrollView,
   useDropMenu,
   Viewport,
 } from '@stage-ui/core'
@@ -20,6 +20,8 @@ import { dropDelegate } from '@stage-ui/core/hooks/misc/dropDelegate'
 import { light } from './theme'
 
 const INPUT_SELECT = 'input-select'
+import { NuqsAdapter } from 'nuqs/adapters/react'
+import { useQueryStates, parseAsString } from 'nuqs'
 
 type Props = {
   index: number
@@ -193,6 +195,7 @@ const props = {
 
 const App: React.FC = () => {
   return (
+<<<<<<< Updated upstream
     <div style={{ padding: '70px', height: '300px' }}>
       <ScrollView>
         <input />
@@ -212,6 +215,11 @@ const App: React.FC = () => {
         <Block style={{ height: '20px' }} />
       </ScrollView>
     </div>
+=======
+    <NuqsAdapter>
+      <BackButton />
+    </NuqsAdapter>
+>>>>>>> Stashed changes
   )
 }
 
@@ -221,3 +229,45 @@ ReactDOM.render(
   </Viewport>,
   document.getElementById('app'),
 )
+<<<<<<< Updated upstream
+=======
+
+interface Propse {
+  onClick?: () => void
+}
+
+function BackButton({ onClick }: Propse) {
+  const hint = useDropOver('Назад')
+  const [dates, setDates] = useQueryStates({
+    dateFrom: parseAsString.withDefault(''),
+    dateTo: parseAsString.withDefault(''),
+  })
+  return (
+    <>
+      <DatePicker
+        range
+        hideToday
+        clearable
+        onClear={() => {
+          setDates({
+            dateFrom: null,
+            dateTo: null,
+          })
+        }}
+        onChangeRange={([dateFrom, dateTo]) => {
+          setDates({
+            dateFrom: dateFrom ? dateFrom.toISOString() : null,
+            dateTo: dateTo ? dateTo.toISOString() : null,
+          })
+        }}
+        value={
+          dates.dateFrom && dates.dateTo ? [dates.dateFrom, dates.dateTo] : undefined
+        }
+        style={{ minWidth: '18rem' }}
+        flex={0}
+        placeholder="Дата от"
+      />
+    </>
+  )
+}
+>>>>>>> Stashed changes
