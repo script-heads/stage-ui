@@ -108,17 +108,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
     ? dayjs(props.maxValue).startOf('day')
     : dayjs().clone().add(500, 'year')
 
-  function onChange(startDt?: Date, endDt?: Date): void {
-    setValue([startDt, endDt])
-    if (!startDt) {
-      setInputValue('')
-      onChangeProp?.()
-      if (props.range) {
-        onChangeRangeProp?.([undefined, undefined])
-      }
-      setActive(props.stayOpen || false)
-      return
-    }
+  function updateInputValue([startDt, endDt]: [Date | undefined, Date | undefined]) {
     let stringDate = ''
     if (startDt) {
       stringDate += dayjs(startDt).format(format)
@@ -131,6 +121,22 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
     }
 
     setInputValue(stringDate)
+  }
+
+  function onChange(startDt?: Date, endDt?: Date): void {
+    setValue([startDt, endDt])
+    if (!startDt) {
+      setInputValue('')
+      onChangeProp?.()
+      if (props.range) {
+        onChangeRangeProp?.([undefined, undefined])
+      }
+      setActive(props.stayOpen || false)
+      return
+    }
+
+    updateInputValue([startDt, endDt])
+
     onChangeProp?.(startDt, dayjs(startDt).format(format))
     if (props.range) {
       onChangeRangeProp?.([startDt, endDt])
@@ -144,11 +150,19 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
 
   useLayoutEffect(() => {
     if (typeof props.value !== 'undefined') {
+      let newValue: [Date | undefined, Date | undefined] = [undefined, undefined]
+
       if (Array.isArray(props.value)) {
-        setValue([makeDate(props.value[0])?.toDate(), makeDate(props.value[1])?.toDate()])
+        newValue = [
+          makeDate(props.value[0])?.toDate(),
+          makeDate(props.value[1])?.toDate(),
+        ]
       } else {
-        setValue([makeDate(props.value)?.toDate(), undefined])
+        newValue = [makeDate(props.value)?.toDate(), undefined]
       }
+
+      updateInputValue(newValue)
+      setValue(newValue)
 
       return
     }
