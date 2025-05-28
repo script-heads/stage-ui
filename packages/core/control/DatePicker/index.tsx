@@ -1,23 +1,18 @@
+import { Calendar as CalendarIcon } from '@stage-ui/icons'
+import { useSystem } from '@stage-ui/system'
+import dayjs, { Dayjs } from 'dayjs'
+import 'dayjs/locale/ru'
 import React, {
   forwardRef,
   ForwardRefRenderFunction,
-  useEffect,
   useImperativeHandle,
   useLayoutEffect,
   useRef,
   useState,
 } from 'react'
-
-import { Calendar as CalendarIcon } from '@stage-ui/icons'
-import { useSystem } from '@stage-ui/system'
-import 'dayjs/locale/ru'
-
-import dayjs, { Dayjs } from 'dayjs'
-
 import Field from '../../basic/Field'
 import Drop from '../../layout/Drop'
 import Calendar from '../Calendar'
-
 import createClasses from './styles'
 import Types from './types'
 
@@ -195,9 +190,8 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, Types.Props> = (
           setActive(true)
         }
       }}
-      onClear={async () => {
-        console.log('clears', props.onClear)
-        const v = props.onClear?.()
+      onClear={() => {
+        props.onClear?.()
         if (!props.value) {
           onChange(undefined, undefined)
         }
