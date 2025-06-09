@@ -88,7 +88,10 @@ export const DropRenderer = () => {
         (e as CustomEvent<{ self: Node }>)?.detail?.self || (e as React.MouseEvent).target
 
       if (visible) {
-        if (document.getElementById('drop-renderer')?.contains?.(target)) {
+        if (
+          target instanceof Node &&
+          document.getElementById('drop-renderer')?.contains?.(target)
+        ) {
           return
         }
         dropDelegate.close()
