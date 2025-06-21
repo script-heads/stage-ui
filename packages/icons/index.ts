@@ -1,5 +1,5 @@
 /**
-version: 0.7.34
+version: 0.7.36
 */
 export { default as Sync } from './lib/Sync'
 export { default as Activity } from './lib/Activity'
@@ -24,6 +24,7 @@ export { default as ArrowRightDown } from './lib/ArrowRightDown'
 export { default as ArrowRightUp } from './lib/ArrowRightUp'
 export { default as ArrowRight } from './lib/ArrowRight'
 export { default as ArrowShuffle1 } from './lib/ArrowShuffle1'
+export { default as ArrowShuffle } from './lib/ArrowShuffle'
 export { default as ArrowUp } from './lib/ArrowUp'
 export { default as ArrowheadDown } from './lib/ArrowheadDown'
 export { default as ArrowheadLeft } from './lib/ArrowheadLeft'
@@ -108,6 +109,7 @@ export { default as Edit2 } from './lib/Edit2'
 export { default as EditStar } from './lib/EditStar'
 export { default as Edit } from './lib/Edit'
 export { default as Email } from './lib/Email'
+export { default as Eraser } from './lib/Eraser'
 export { default as Expand } from './lib/Expand'
 export { default as ExternalLink } from './lib/ExternalLink'
 export { default as EyeOff2 } from './lib/EyeOff2'
