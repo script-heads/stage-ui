@@ -1,5 +1,5 @@
 /**
-version: 0.7.37
+version: 0.7.39
 */
 export { default as Sync } from './lib/Sync'
 export { default as Activity } from './lib/Activity'
@@ -36,6 +36,7 @@ export { default as ArrowheadUp } from './lib/ArrowheadUp'
 export { default as At } from './lib/At'
 export { default as Attach2 } from './lib/Attach2'
 export { default as Attach } from './lib/Attach'
+export { default as Auto } from './lib/Auto'
 export { default as Award } from './lib/Award'
 export { default as Backspace } from './lib/Backspace'
 export { default as BarChart2 } from './lib/BarChart2'
