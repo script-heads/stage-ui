@@ -18,7 +18,7 @@ function colorProp<V extends ColorProp | undefined>(value: V, theme: Stage.Theme
       return colorProp(value(theme.color), theme) as RV<V>
     }
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    const [colorName, colorShade] = value?.split(/(\d+)/) as [
+    const [colorName, colorShade] = value?.split(/(A?\d+)/) as [
       keyof Stage.Colors,
       keyof Stage.ColorShades,
     ]
