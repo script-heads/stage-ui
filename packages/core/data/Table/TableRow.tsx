@@ -4,6 +4,7 @@ import React, { forwardRef, useRef, useState } from 'react'
 import { isBrowser } from '@stage-ui/system'
 
 import Checkbox from '../../control/Checkbox'
+import { fastMemo } from '../../utils/fastMemo'
 
 import TableCell from './TableCell'
 import Types from './types'
@@ -154,4 +155,4 @@ function TableRow(props: Types.RowProps, ref: React.ForwardedRef<HTMLTableRowEle
   return <tr ref={ref} id={rowId} style={style} />
 }
 
-export default forwardRef(TableRow)
+export default fastMemo(forwardRef(TableRow))
