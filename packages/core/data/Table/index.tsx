@@ -41,13 +41,9 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   const [primaryKey, setPrimaryKey] = useState<Types.TableCellKey>('')
   const [sort, setSort] = useState<Types.TableSortObject>({ key: '', sort: 'ASC' })
 
-  const selectedSet = useMemo(
-    () =>
-      new Set<string | number>(
-        (selected || []).map((s) => s[primaryKey] as string | number),
-      ),
-    [selected, primaryKey],
-  )
+  const selectedSet = useMemo(() => {
+    return new Set((selected || []).map((s) => s[primaryKey] as string | number))
+  }, [selected, primaryKey])
 
   const baseRowCtx = useMemo(() => {
     const rows = data.slice()
