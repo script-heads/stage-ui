@@ -3,14 +3,7 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-for-of-loops/no-for-of-loops */
-import React, {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 
 import { isBrowser, useSystem } from '@stage-ui/system'
 
@@ -349,6 +342,10 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   )
 }
 
-export default forwardRef(Table) as <Row extends Types.Row>(
-  props: Types.Props<Row> & { ref?: React.ForwardedRef<Types.Ref<Row>> },
-) => React.ReactElement
+interface TableComponent {
+  <R extends Types.Row>(
+    props: Types.Props<R> & React.RefAttributes<HTMLDivElement>,
+  ): React.ReactElement
+}
+
+export default React.memo(React.forwardRef(Table)) as TableComponent
