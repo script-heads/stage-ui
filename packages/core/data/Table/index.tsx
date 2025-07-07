@@ -36,14 +36,10 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     dataKey,
   } = props
 
-  const [primaryKey, setPrimaryKey] = useState<Types.TableCellKey>('')
-
-  const [currentPage, setCurrentPage] = useState(1)
   const [reloadData, reload] = useState(false)
-  const [sort, setSort] = useState<Types.TableSortObject>({
-    key: '',
-    sort: 'ASC',
-  })
+  const [currentPage, setCurrentPage] = useState(1)
+  const [primaryKey, setPrimaryKey] = useState<Types.TableCellKey>('')
+  const [sort, setSort] = useState<Types.TableSortObject>({ key: '', sort: 'ASC' })
 
   const selectedSet = useMemo(
     () =>
@@ -53,36 +49,14 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     [selected, primaryKey],
   )
 
-  const mapRowContext = (row: Types.Row): Types.TableRowContext => {
-    const isCellModify: Types.TableRowContext['isCellModify'] = {}
-    columns.forEach((column) => {
-      isCellModify[column.key] = false
-    })
-
-    let isSelected: Types.TableCellContext['isSelected'] = false
-
-    if (Array.isArray(selected) && primaryKey) {
-      isSelected = selectedSet.has(row[primaryKey] as string | number)
-    }
-
-    return {
-      row,
-      isExpand: false,
-      isVisible: true,
-      isCellModify,
-      isSelected,
-      setModifyState: {},
-    }
-  }
-
-  const rowCtx = useMemo(() => {
-    const rows = data.slice().map(mapRowContext)
+  const baseRowCtx = useMemo(() => {
+    const rows = data.slice()
 
     if (!sort.key) return rows
 
     return rows.sort((a, b) => {
-      const aValue = a.row[sort.key] as string | number
-      const bValue = b.row[sort.key] as string | number
+      const aValue = a[sort.key] as string | number
+      const bValue = b[sort.key] as string | number
 
       if (sort.sort === 'ASC') {
         if (typeof aValue === 'string') {
@@ -100,7 +74,31 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
 
       return 0
     })
-  }, [data, selected, columns, primaryKey, sort])
+  }, [data, sort])
+
+  const rowCtx = useMemo(() => {
+    return baseRowCtx.map((row: Types.Row): Types.TableRowContext => {
+      const isCellModify: Types.TableRowContext['isCellModify'] = {}
+      columns.forEach((column) => {
+        isCellModify[column.key] = false
+      })
+
+      let isSelected: Types.TableCellContext['isSelected'] = false
+
+      if (primaryKey) {
+        isSelected = selectedSet.has(row[primaryKey] as string | number)
+      }
+
+      return {
+        row,
+        isExpand: false,
+        isVisible: true,
+        isCellModify,
+        isSelected,
+        setModifyState: {},
+      }
+    })
+  }, [baseRowCtx, selected, columns, primaryKey])
 
   /**
    * Getting current data state
