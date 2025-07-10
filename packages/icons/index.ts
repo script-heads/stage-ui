@@ -1,5 +1,5 @@
 /**
-version: 0.7.40
+version: 0.7.41
 */
 export { default as Sync } from './lib/Sync'
 export { default as Activity } from './lib/Activity'
@@ -228,6 +228,7 @@ export { default as Plus } from './lib/Plus'
 export { default as Power } from './lib/Power'
 export { default as Pricetag } from './lib/Pricetag'
 export { default as Printer } from './lib/Printer'
+export { default as Profile } from './lib/Profile'
 export { default as QuestionMarkCircle } from './lib/QuestionMarkCircle'
 export { default as QuestionMark } from './lib/QuestionMark'
 export { default as RadioButtonOff } from './lib/RadioButtonOff'
@@ -279,6 +280,7 @@ export { default as Ticket } from './lib/Ticket'
 export { default as Timer } from './lib/Timer'
 export { default as ToggleLeft } from './lib/ToggleLeft'
 export { default as ToggleRight } from './lib/ToggleRight'
+export { default as TornMenu } from './lib/TornMenu'
 export { default as Trash2 } from './lib/Trash2'
 export { default as Trash3 } from './lib/Trash3'
 export { default as Trash } from './lib/Trash'
