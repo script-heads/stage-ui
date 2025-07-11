@@ -1,5 +1,5 @@
 import { light } from './theme'
-import { DatePicker, Viewport } from '@stage-ui/core'
+import { DatePicker, Text, Viewport } from '@stage-ui/core'
 import ReactDOM from 'react-dom'
 import { useState } from 'react'
 
@@ -8,8 +8,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <input type="date" onChange={(e) => setV(e.target.value)}></input>
-      <DatePicker value={v} onChange={(d) => setV(d?.toISOString()!)} />
+      <Text color="lightGreenA700">123</Text>
     </>
   )
 }
