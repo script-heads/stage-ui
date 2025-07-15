@@ -1,5 +1,5 @@
 /**
-version: 0.7.41
+version: 0.7.46
 */
 export { default as Sync } from './lib/Sync'
 export { default as Activity } from './lib/Activity'
@@ -219,6 +219,7 @@ export { default as PhoneOff } from './lib/PhoneOff'
 export { default as PhonePeople } from './lib/PhonePeople'
 export { default as PhoneTruck } from './lib/PhoneTruck'
 export { default as Phone } from './lib/Phone'
+export { default as Piano } from './lib/Piano'
 export { default as PieChart } from './lib/PieChart'
 export { default as Pin } from './lib/Pin'
 export { default as PlayCircle } from './lib/PlayCircle'
