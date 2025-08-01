@@ -3,13 +3,7 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-for-of-loops/no-for-of-loops */
-import React, {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from 'react'
+import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 
 import { isBrowser, useSystem } from '@stage-ui/system'
 
@@ -42,37 +36,65 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     dataKey,
   } = props
 
-  const [primaryKey, setPrimaryKey] = useState<Types.TableCellKey>('')
-
-  const [currentPage, setCurrentPage] = useState(1)
   const [reloadData, reload] = useState(false)
-  const [sort, setSort] = useState<Types.TableSortObject>({
-    key: '',
-    sort: 'ASC',
-  })
+  const [currentPage, setCurrentPage] = useState(1)
+  const [primaryKey, setPrimaryKey] = useState<Types.TableCellKey>('')
+  const [sort, setSort] = useState<Types.TableSortObject>({ key: '', sort: 'ASC' })
 
-  const mapRowContext = (row: Types.Row): Types.TableRowContext => {
-    const isCellModify: Types.TableRowContext['isCellModify'] = {}
-    columns.forEach((column) => {
-      isCellModify[column.key] = false
+  const selectedSet = useMemo(() => {
+    return new Set((selected || []).map((s) => s[primaryKey] as string | number))
+  }, [selected, primaryKey])
+
+  const baseRowCtx = useMemo(() => {
+    const rows = data.slice()
+
+    if (!sort.key) return rows
+
+    return rows.sort((a, b) => {
+      const aValue = a[sort.key] as string | number
+      const bValue = b[sort.key] as string | number
+
+      if (sort.sort === 'ASC') {
+        if (typeof aValue === 'string') {
+          return aValue.localeCompare(bValue as string)
+        }
+        return aValue - (bValue as number)
+      }
+
+      if (sort.sort === 'DESC') {
+        if (typeof bValue === 'string') {
+          return bValue.localeCompare(aValue as string)
+        }
+        return bValue - (aValue as number)
+      }
+
+      return 0
     })
+  }, [data, sort])
 
-    let isSelected: Types.TableCellContext['isSelected'] = false
-    if (Array.isArray(selected) && primaryKey) {
-      isSelected = selected.findIndex((c) => c[primaryKey] === row[primaryKey]) >= 0
-    }
+  const rowCtx = useMemo(() => {
+    return baseRowCtx.map((row: Types.Row): Types.TableRowContext => {
+      const isCellModify: Types.TableRowContext['isCellModify'] = {}
+      columns.forEach((column) => {
+        isCellModify[column.key] = false
+      })
 
-    return {
-      row,
-      isExpand: false,
-      isVisible: true,
-      isCellModify,
-      isSelected,
-      setModifyState: {},
-    }
-  }
+      let isSelected: Types.TableCellContext['isSelected'] = false
 
-  let rowCtx = data.slice().map(mapRowContext)
+      if (primaryKey) {
+        isSelected = selectedSet.has(row[primaryKey] as string | number)
+      }
+
+      return {
+        row,
+        isExpand: false,
+        isVisible: true,
+        isCellModify,
+        isSelected,
+        setModifyState: {},
+      }
+    })
+  }, [baseRowCtx, selected, columns, primaryKey])
 
   /**
    * Getting current data state
@@ -82,26 +104,6 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   /**
    * Soring column by its settings
    */
-  const columnSort = (value: Types.TableSortObject) => {
-    if (value.sort) {
-      rowCtx = rowCtx.sort((a, b) => {
-        if (value.sort === 'ASC') {
-          if (typeof a.row[value.key] === 'string') {
-            return (a.row[value.key] as string).localeCompare(b.row[value.key] as string)
-          }
-          return a.row[value.key] - b.row[value.key]
-        }
-        if (value.sort === 'DESC') {
-          if (typeof b.row[value.key] === 'string') {
-            return (b.row[value.key] as string).localeCompare(a.row[value.key] as string)
-          }
-          return b.row[value.key] - a.row[value.key]
-        }
-        return 0
-      })
-    }
-  }
-
   const toggleSort = (value: Types.TableSortObject) => {
     return new Promise((resolve) => {
       const column = columns.find((currentColumn) => currentColumn.key === value.key)
@@ -168,14 +170,6 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
         reload(!reloadData)
       },
       isCellModify: false,
-    }
-  }
-
-  if (sort.key) {
-    columnSort(sort)
-  } else {
-    for (const column of columns) {
-      columnSort(column as Types.TableSortObject)
     }
   }
 
@@ -342,6 +336,10 @@ function Table(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   )
 }
 
-export default forwardRef(Table) as <Row extends Types.Row>(
-  props: Types.Props<Row> & { ref?: React.ForwardedRef<Types.Ref<Row>> },
-) => React.ReactElement
+interface TableComponent {
+  <R extends Types.Row>(
+    props: Types.Props<R> & React.RefAttributes<HTMLDivElement>,
+  ): React.ReactElement
+}
+
+export default React.memo(React.forwardRef(Table)) as TableComponent
