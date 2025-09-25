@@ -1,8 +1,13 @@
 /**
-version: 0.7.41
+version: 0.7.43
 */
 export { default as Sync } from './lib/Sync'
 export { default as Activity } from './lib/Activity'
+export { default as AlarmClock1 } from './lib/AlarmClock1'
+export { default as AlarmClock2 } from './lib/AlarmClock2'
+export { default as AlarmClock3 } from './lib/AlarmClock3'
+export { default as AlarmClock4 } from './lib/AlarmClock4'
+export { default as AlarmClock5 } from './lib/AlarmClock5'
 export { default as AlertCircle } from './lib/AlertCircle'
 export { default as AlertTriangle } from './lib/AlertTriangle'
 export { default as AllDone } from './lib/AllDone'
