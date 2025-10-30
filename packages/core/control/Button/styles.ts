@@ -12,7 +12,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
     uppercase,
   } = props
   const color = colorProp(props.color, theme) || theme.color.primary
-  const isDark = color.contrast(theme.color.onPrimary) > 2.5
+  const isDark = color.contrast(theme.color.surface) > 4
 
   const applyDecoration = (
     decorations: Record<
@@ -70,9 +70,7 @@ const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) =
         filled: {
           idle: {
             background: color.string(),
-            color: isDark
-              ? theme.color.onPrimary.string()
-              : theme.color.onSurface.string(),
+            color: isDark ? theme.color.surface.string() : theme.color.onSurface.string(),
           },
           hover: {
             background: color.whiten(0.4).hex(),
