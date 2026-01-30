@@ -16,16 +16,24 @@ import styles from './styles'
 import Types from './types'
 import { FocusTrapWrapper } from './FocusTrapWrapper'
 
-let modelCloseListeners: { key: string; close: () => void }[] = []
+let modelCloseListeners: {
+  key: string
+  close: () => void
+  preventEscapeClose?: boolean
+}[] = []
 
 if (isBrowser) {
   window?.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      const lastCloseHandler = modelCloseListeners[modelCloseListeners.length - 1]
-      if (!lastCloseHandler) return
-
-      lastCloseHandler.close()
+    if (event.key !== 'Escape') {
+      return
     }
+
+    const lastCloseHandler = modelCloseListeners[modelCloseListeners.length - 1]
+    if (!lastCloseHandler) return
+
+    if (lastCloseHandler.preventEscapeClose) return
+
+    lastCloseHandler.close()
   })
 }
 
@@ -43,6 +51,7 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     onClose,
     children,
     trapFocus,
+    preventEscapeClose,
   } = props
 
   const modalId = useMemo(() => {
@@ -112,7 +121,7 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   }
 
   useEffect(() => {
-    modelCloseListeners.push({ key: modalId || createID(), close })
+    modelCloseListeners.push({ key: modalId || createID(), close, preventEscapeClose })
   }, [])
 
   useEffect(() => {
