@@ -1,16 +1,20 @@
 import { light } from './theme'
-import { DatePicker, Text, Viewport } from '@stage-ui/core'
+import { DatePicker, Modal, modal, Viewport } from '@stage-ui/core'
 import ReactDOM from 'react-dom'
 import { useState } from 'react'
 
 const App: React.FC = () => {
-  const [v, setV] = useState(new Date().toISOString())
+  const handleOpen = () => {
+    modal({
+      preventEscapeClose: true,
+      render: () => {
+        return <>123</>
+      },
+      overlayClose: false,
+    })
+  }
 
-  return (
-    <>
-      <Text color="lightGreenA700">123</Text>
-    </>
-  )
+  return null
 }
 
 ReactDOM.render(
