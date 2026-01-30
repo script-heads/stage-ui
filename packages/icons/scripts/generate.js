@@ -62,6 +62,9 @@ for (const file of svgTsx) {
 }
 
 for (const icon of svgFill) {
+  if (icon === '.DS_Store') {
+    continue
+  }
   const fileName = toCamelCase(icon.replace('.svg', ''))
   const filled = groupSvgContent(fs.readFileSync(`${svgSourcePath}/Fill/${icon}`))
   let outline = filled
