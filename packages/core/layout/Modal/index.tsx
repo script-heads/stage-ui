@@ -60,6 +60,16 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     return defaultModalId
   }, [])
 
+  const focusTrapOptions = useMemo(() => {
+    if (!preventEscapeClose) return
+
+    return {
+      escapeDeactivates: false,
+      allowOutsideClick: false,
+      clickOutsideDeactivates: false,
+    }
+  }, [preventEscapeClose])
+
   const {
     classes,
     attributes,
@@ -152,16 +162,6 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   }
 
   const getStyles = () => ({ classes, state: otherStyleProps, styleProps })
-
-  const focusTrapOptions = useMemo(() => {
-    if (!preventEscapeClose) return
-
-    return {
-      escapeDeactivates: false,
-      allowOutsideClick: false,
-      clickOutsideDeactivates: false,
-    }
-  }, [preventEscapeClose])
 
   return (
     <ModalPortal>
