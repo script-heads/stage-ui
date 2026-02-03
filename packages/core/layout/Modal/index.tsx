@@ -153,10 +153,20 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
 
   const getStyles = () => ({ classes, state: otherStyleProps, styleProps })
 
+  const focusTrapOptions = useMemo(() => {
+    if (!preventEscapeClose) return
+
+    return {
+      escapeDeactivates: false,
+      allowOutsideClick: false,
+      clickOutsideDeactivates: false,
+    }
+  }, [preventEscapeClose])
+
   return (
     <ModalPortal>
       <ModalOverlay ref={overlayRef} getStyles={getStyles}>
-        <FocusTrapWrapper trapFocus={trapFocus}>
+        <FocusTrapWrapper trapFocus={trapFocus} focusTrapOptions={focusTrapOptions}>
           <div
             data-wrapper
             css={classes.wrapper(otherStyleProps)}

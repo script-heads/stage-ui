@@ -1,17 +1,19 @@
 import React from 'react'
 
-import { FocusTrap } from 'focus-trap-react'
+import { FocusTrap, FocusTrapProps } from 'focus-trap-react'
 
 export const FocusTrapWrapper = ({
   trapFocus,
   children,
+  focusTrapOptions,
 }: {
   children: JSX.Element
   trapFocus?: boolean
+  focusTrapOptions?: FocusTrapProps['focusTrapOptions']
 }) => {
   if (trapFocus) {
     return (
-      <FocusTrap>
+      <FocusTrap {...focusTrapOptions}>
         <div>{children}</div>
       </FocusTrap>
     )
