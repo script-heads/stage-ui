@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from 'react'
+import { ChangeEventHandler, FocusEventHandler } from 'react'
 
 import FieldTypes from '../../basic/Field/types'
 
@@ -43,6 +43,8 @@ declare namespace TextFieldTypes {
      * @default false
      */
     leftChildNumber?: ((index: number) => React.ReactNode) | boolean
+
+    preventFocusHandling?: boolean
   }
 
   interface InputProps {

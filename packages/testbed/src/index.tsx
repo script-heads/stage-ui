@@ -1,5 +1,5 @@
 import { light } from './theme'
-import { DatePicker, Modal, modal, Viewport } from '@stage-ui/core'
+import { DatePicker, Modal, modal, TextField, Viewport } from '@stage-ui/core'
 import ReactDOM from 'react-dom'
 import { useState } from 'react'
 
@@ -14,7 +14,13 @@ const App: React.FC = () => {
     })
   }
 
-  return null
+  return (
+    <>
+      <button> 1</button>
+      <TextField preventFocusHandling />
+      <button>2</button>
+    </>
+  )
 }
 
 ReactDOM.render(

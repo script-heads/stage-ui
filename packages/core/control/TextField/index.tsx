@@ -26,6 +26,7 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
     leftChildNumber,
     clearable = false,
     onFocus,
+    preventFocusHandling,
 
     defaultValue,
     value,
@@ -144,6 +145,8 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
       leftChild={leftChildNumber && multiline ? <LeftCountLine /> : props.leftChild}
       onClear={onClear}
       onFocus={(e) => {
+        if (preventFocusHandling) return
+
         inputRef.current?.focus()
         onFocus?.(e)
       }}
