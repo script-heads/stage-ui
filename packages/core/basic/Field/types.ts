@@ -4,6 +4,11 @@ declare namespace FieldTypes {
   interface PrivateProps extends Props {
     name?: string
     children?: React.ReactNode
+
+    /**
+     * Removes tabIndex=0
+     */
+    notFocusable?: boolean
   }
 
   interface Props<

@@ -105,6 +105,22 @@ declare namespace ButtonTypes {
     loadingComponent?: React.ReactNode
   }
 
+  interface PolymorphicProps
+    extends Pick<
+      Props,
+      | 'leftChild'
+      | 'rightChild'
+      | 'type'
+      | 'size'
+      | 'shape'
+      | 'disabled'
+      | 'uppercase'
+      | 'decoration'
+      | 'color'
+      | 'children'
+      | 'style'
+    > {}
+
   type Classes = {
     /**
      * Root element

@@ -3,7 +3,10 @@ import { colorProp } from '@stage-ui/system'
 
 import Types from './types'
 
-const styles: Stage.CreateClasses<Types.Classes, Types.Props> = (theme, props) => {
+const styles: Stage.CreateClasses<Types.Classes, Types.Props | Types.PolymorphicProps> = (
+  theme,
+  props,
+) => {
   const {
     size = 'm',
     decoration = 'filled',
