@@ -1,7 +1,15 @@
 import { light } from './theme'
-import { DatePicker, Modal, modal, TextField, Viewport } from '@stage-ui/core'
+import {
+  Button,
+  DatePicker,
+  Modal,
+  modal,
+  PolymorphicButton,
+  TextField,
+  Viewport,
+} from '@stage-ui/core'
 import ReactDOM from 'react-dom'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const App: React.FC = () => {
   const handleOpen = () => {
@@ -14,11 +22,25 @@ const App: React.FC = () => {
     })
   }
 
+  const ref = useRef<HTMLAnchorElement | null>(null)
+
   return (
     <>
       <button> 1</button>
-      <TextField preventFocusHandling />
+      <TextField isInputElementDirectFocusable decoration="outline" />
       <button>2</button>
+
+      <PolymorphicButton
+        as="a"
+        href="https://google.com"
+        target="_blank"
+        style={(t) => ({ textDecoration: 'none' })}
+        ref={ref}
+      >
+        we woke
+      </PolymorphicButton>
+
+      <input></input>
     </>
   )
 }

@@ -26,7 +26,7 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
     leftChildNumber,
     clearable = false,
     onFocus,
-    preventFocusHandling,
+    isInputElementDirectFocusable,
 
     defaultValue,
     value,
@@ -145,9 +145,9 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
       leftChild={leftChildNumber && multiline ? <LeftCountLine /> : props.leftChild}
       onClear={onClear}
       onFocus={(e) => {
-        if (preventFocusHandling) return
-
-        inputRef.current?.focus()
+        if (!isInputElementDirectFocusable) {
+          inputRef.current?.focus()
+        }
         onFocus?.(e)
       }}
       onEsc={() => {
@@ -181,11 +181,12 @@ const TextField: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref)
         ],
         rightChild: [propOverridesClasses.rightChild, classes.rightChild],
       })}
+      notFocusable={isInputElementDirectFocusable}
     >
       {jsx(props.multiline ? 'textarea' : 'input', {
         ref: inputRef,
         css: classes.input({ size, multiline, disabled }),
-        tabIndex: -1,
+        ...(!isInputElementDirectFocusable && { tabIndex: -1 }),
         onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
           if (leftCountLineRef.current) {
             setLeftCountLineState({
