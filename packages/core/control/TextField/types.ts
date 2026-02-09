@@ -43,6 +43,11 @@ declare namespace TextFieldTypes {
      * @default false
      */
     leftChildNumber?: ((index: number) => React.ReactNode) | boolean
+
+    /**
+     * Removes tabIndex=-1 from <input> and removes tabIndex=0 from wrapper
+     */
+    isInputElementDirectFocusable?: boolean
   }
 
   interface InputProps {

@@ -19,6 +19,7 @@ function Field(props: Types.PrivateProps, ref: React.ForwardedRef<HTMLDivElement
     labelType = 'outside',
     label,
     clearable = false,
+    notFocusable,
   } = props
 
   const {
@@ -28,7 +29,9 @@ function Field(props: Types.PrivateProps, ref: React.ForwardedRef<HTMLDivElement
     events: { onClear, onEsc, onEnter, ...events },
   } = useSystem(name || 'Field', props, createClasses)
 
-  attributes.tabIndex = attributes.tabIndex || 0
+  if (!notFocusable) {
+    attributes.tabIndex = attributes.tabIndex || 0
+  }
 
   const htmlId = React.useMemo(
     () => `${'Field'}-${Math.random().toString(16).slice(2)}`,

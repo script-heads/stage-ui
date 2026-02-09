@@ -13,6 +13,7 @@ export { default as Toast } from './content/Toast'
  * Control
  */
 export { default as Button } from './control/Button'
+export { PolymorphicButton } from './control/Button/PolymorphicButton'
 export { default as Calendar } from './control/Calendar'
 export { default as Checkbox } from './control/Checkbox'
 export { default as DatePicker } from './control/DatePicker'
