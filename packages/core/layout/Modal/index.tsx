@@ -14,17 +14,26 @@ import ModalPortal from './ModalPortal'
 import ModalWindow from './ModalWindow'
 import styles from './styles'
 import Types from './types'
+import { FocusTrapWrapper } from './FocusTrapWrapper'
 
-let modelCloseListeners: { key: string; close: () => void }[] = []
+let modelCloseListeners: {
+  key: string
+  close: () => void
+  preventEscapeClose?: boolean
+}[] = []
 
 if (isBrowser) {
   window?.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      const lastCloseHandler = modelCloseListeners[modelCloseListeners.length - 1]
-      if (!lastCloseHandler) return
-
-      lastCloseHandler.close()
+    if (event.key !== 'Escape') {
+      return
     }
+
+    const lastCloseHandler = modelCloseListeners[modelCloseListeners.length - 1]
+    if (!lastCloseHandler) return
+
+    if (lastCloseHandler.preventEscapeClose) return
+
+    lastCloseHandler.close()
   })
 }
 
@@ -41,6 +50,8 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     didClose,
     onClose,
     children,
+    trapFocus,
+    preventEscapeClose,
   } = props
 
   const modalId = useMemo(() => {
@@ -48,6 +59,16 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
 
     return defaultModalId
   }, [])
+
+  const focusTrapOptions = useMemo(() => {
+    if (!preventEscapeClose) return
+
+    return {
+      escapeDeactivates: false,
+      allowOutsideClick: false,
+      clickOutsideDeactivates: false,
+    }
+  }, [preventEscapeClose])
 
   const {
     classes,
@@ -110,7 +131,7 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   }
 
   useEffect(() => {
-    modelCloseListeners.push({ key: modalId || createID(), close })
+    modelCloseListeners.push({ key: modalId || createID(), close, preventEscapeClose })
   }, [])
 
   useEffect(() => {
@@ -145,39 +166,41 @@ function Modal(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
   return (
     <ModalPortal>
       <ModalOverlay ref={overlayRef} getStyles={getStyles}>
-        <div
-          data-wrapper
-          css={classes.wrapper(otherStyleProps)}
-          onMouseDown={(e) =>
-            setIsDataWrapperClick(
-              // dataset.wrapper is already a boolean value
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore
-              (e.target as HTMLDivElement).dataset.wrapper as boolean,
-            )
-          }
-          onClick={(e) => {
-            // checking if a click event started from the data-wrapper
-            if (isDataWrapperClick) {
-              if ((e.target as HTMLDivElement).dataset.wrapper) {
-                if (overlayClose) close()
-              }
+        <FocusTrapWrapper trapFocus={trapFocus} focusTrapOptions={focusTrapOptions}>
+          <div
+            data-wrapper
+            css={classes.wrapper(otherStyleProps)}
+            onMouseDown={(e) =>
+              setIsDataWrapperClick(
+                // dataset.wrapper is already a boolean value
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                (e.target as HTMLDivElement).dataset.wrapper as boolean,
+              )
             }
-          }}
-        >
-          <ModalWindow
-            getStyles={getStyles}
-            ref={windowRef}
-            title={currentTitle}
-            subtitle={currentSubtitle}
-            hideHeader={hideHeader}
-            onClosePressed={() => close()}
-            containerAttr={attributes}
-            containerEvents={events}
+            onClick={(e) => {
+              // checking if a click event started from the data-wrapper
+              if (isDataWrapperClick) {
+                if ((e.target as HTMLDivElement).dataset.wrapper) {
+                  if (overlayClose) close()
+                }
+              }
+            }}
           >
-            {customRender !== null ? customRender : children}
-          </ModalWindow>
-        </div>
+            <ModalWindow
+              getStyles={getStyles}
+              ref={windowRef}
+              title={currentTitle}
+              subtitle={currentSubtitle}
+              hideHeader={hideHeader}
+              onClosePressed={() => close()}
+              containerAttr={attributes}
+              containerEvents={events}
+            >
+              {customRender !== null ? customRender : children}
+            </ModalWindow>
+          </div>
+        </FocusTrapWrapper>
       </ModalOverlay>
     </ModalPortal>
   )

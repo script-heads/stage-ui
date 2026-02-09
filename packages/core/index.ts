@@ -1,6 +1,14 @@
 /**
+ * Focus trap
+ */
+import * as ReactFocusTrap from 'focus-trap-react'
+
+export { ReactFocusTrap }
+
+/**
  * Content
  */
+
 export { default as Divider } from './content/Divider'
 export { default as Spinner } from './content/Spinner'
 export { default as Article } from './content/Article'

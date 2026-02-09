@@ -34,6 +34,8 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
     barOffset,
     preventStageEvents,
     children,
+    containerProps,
+    scrollerProps,
   } = props
   const { classes, attributes, events, styleProps } = useSystem(
     'ScrollView',
@@ -421,6 +423,7 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
       {...attributes}
       css={[classes.wrapper, styleProps.container]}
       data-scroll-id={memo.id}
+      {...containerProps}
     >
       <div
         {...events}
@@ -434,6 +437,7 @@ function ScrollView(props: Types.Props, ref: React.ForwardedRef<Types.Ref>) {
         }}
         css={classes.container}
         ref={createRef}
+        {...scrollerProps}
       >
         <div
           css={[classes.content, styleProps.content]}

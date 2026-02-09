@@ -1,33 +1,20 @@
-/* eslint-disable no-console */
-import React from 'react'
-
-import { Button, Flexbox, Viewport } from '@stage-ui/core'
-
-import ReactDOM from 'react-dom'
-
 import { light } from './theme'
+import { DatePicker, Modal, modal, Viewport } from '@stage-ui/core'
+import ReactDOM from 'react-dom'
+import { useState } from 'react'
 
 const App: React.FC = () => {
-  return (
-    <Flexbox
-      p="xl"
-      style={{
-        '& *:focus': {
-          border: '2px red solid !important',
-        },
-      }}
-    >
-      <Button
-        onClick={() => {
-          console.log('event')
-        }}
-      >
-        123
-      </Button>
-      <Button>2</Button>
-      <Button>3</Button>
-    </Flexbox>
-  )
+  const handleOpen = () => {
+    modal({
+      preventEscapeClose: true,
+      render: () => {
+        return <>123</>
+      },
+      overlayClose: false,
+    })
+  }
+
+  return null
 }
 
 ReactDOM.render(

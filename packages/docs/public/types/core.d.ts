@@ -936,6 +936,10 @@ declare module "control/DatePicker/types" {
     namespace DatePickerTypes {
         interface Props extends FieldTypes.Props<HTMLInputElement, Classes>, InputProps {
             /**
+             * Whether to value & inputValue on passing value=undefined
+             */
+            clearOnUndefined?: boolean;
+            /**
              * Type for DatePicker
              * @default day
              */
@@ -1033,8 +1037,8 @@ declare module "control/DatePicker/styles" {
     export default createClasses;
 }
 declare module "control/DatePicker/index" {
-    import React from 'react';
     import 'dayjs/locale/ru';
+    import React from 'react';
     import Types from "control/DatePicker/types";
     const _default_13: React.ForwardRefExoticComponent<Types.Props & React.RefAttributes<HTMLDivElement>>;
     export default _default_13;
@@ -2919,9 +2923,17 @@ declare module "layout/Grid/index" {
     export default _default_37;
 }
 declare module "layout/ScrollView/types" {
-    import React from 'react';
+    import React, { HTMLAttributes } from 'react';
     namespace ScrollViewTypes {
         interface Props extends Omit<Stage.AllProps<HTMLDivElement, Classes>, 'onScroll'> {
+            /**
+             * Props for container
+             */
+            containerProps?: HTMLAttributes<HTMLDivElement>;
+            /**
+             * Props for scroller
+             */
+            scrollerProps?: HTMLAttributes<HTMLDivElement>;
             /**
              * Any contant of scrollview
              */
@@ -3197,6 +3209,10 @@ declare module "layout/Modal/types" {
             window: HTMLDivElement;
         }
         interface Props extends ExtentedProps {
+            /**
+             * Whether to use focus-trap-react inside
+             */
+            trapFocus?: boolean;
             modalId?: string;
             /**
              * Title will be displaed at top
@@ -3349,6 +3365,12 @@ declare module "layout/Modal/styles" {
     import Types from "layout/Modal/types";
     const createClasses: Stage.CreateClasses<Types.Classes, Types.Props>;
     export default createClasses;
+}
+declare module "layout/Modal/FocusTrapWrapper" {
+    export const FocusTrapWrapper: ({ trapFocus, children, }: {
+        children: JSX.Element;
+        trapFocus?: boolean | undefined;
+    }) => import("@emotion/react/jsx-runtime").JSX.Element;
 }
 declare module "layout/Modal/index" {
     import React from 'react';
@@ -3720,6 +3742,11 @@ declare module "utils/notify" {
     export default _default_49;
 }
 declare module "index" {
+    /**
+     * Focus trap
+     */
+    import * as ReactFocusTrap from 'focus-trap-react';
+    export { ReactFocusTrap };
     /**
      * Content
      */
