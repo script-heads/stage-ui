@@ -42,6 +42,11 @@ declare namespace ButtonTypes {
      * Place for items to the left of children
      */
     leftChild?: React.ReactNode
+
+    /**
+     * Prevents the user from interacting with the button
+     */
+    disabled?: boolean
   }
 
   interface Props extends Stage.AllProps<HTMLButtonElement, Classes>, SharedProps {
@@ -49,10 +54,7 @@ declare namespace ButtonTypes {
      * Specifies that the button should have input focus when the page loads
      */
     autoFocus?: boolean
-    /**
-     * Prevents the user from interacting with the button
-     */
-    disabled?: boolean
+
     /**
      * The <form> element to associate the button with
      */

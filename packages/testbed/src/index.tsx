@@ -28,6 +28,7 @@ const App: React.FC = () => {
       <div ref={targetRef}>123</div>
 
       <PolymorphicButton
+        disabled
         as="a"
         href={''}
         leftChild={
