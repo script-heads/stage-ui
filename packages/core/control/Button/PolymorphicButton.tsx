@@ -28,9 +28,9 @@ type PropsToOmit<E extends PossibleElementType, P> = keyof (AsProp<E> & P)
 
 type PolymorphicRef<E extends PossibleElementType> = React.ComponentPropsWithRef<E>['ref']
 
-type Props<E extends PossibleElementType> = ButtonTypes.PolymorphicProps &
+type Props<E extends PossibleElementType> = ButtonTypes.PolymorphicProps<E> &
   AsProp<E> &
-  Omit<React.ComponentPropsWithoutRef<E>, PropsToOmit<E, ButtonTypes.PolymorphicProps>>
+  Omit<React.ComponentPropsWithoutRef<E>, PropsToOmit<E, ButtonTypes.PolymorphicProps<E>>>
 
 const PolymorphicButtonComponent = <E extends PossibleElementType = 'button'>(
   props: Props<E>,
