@@ -1,5 +1,5 @@
 /* eslint-disable no-bitwise */
-import React, { forwardRef, useRef, useState } from 'react'
+import React, { forwardRef, useState } from 'react'
 
 import { isBrowser } from '@stage-ui/system'
 
@@ -82,22 +82,12 @@ function TableRow(props: Types.RowProps, ref: React.ForwardedRef<HTMLTableRowEle
     }
   }
 
-  const rowClickTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const onClick = (e: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => {
-    if (typeof onRowDoubleClick === 'function') {
-      if (rowClickTimer.current) {
-        clearTimeout(rowClickTimer.current)
-        rowClickTimer.current = null
-        onRowDoubleClick(e)
-      } else {
-        rowClickTimer.current = setTimeout(() => {
-          rowClickTimer.current = null
-          onRowClick?.(e)
-        }, 250)
-      }
-    } else {
-      onRowClick?.(e)
-    }
+    onRowClick?.(e)
+  }
+
+  const onDoubleClick = (e: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => {
+    onRowDoubleClick?.(e)
   }
 
   const handleCheckboxClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -117,6 +107,7 @@ function TableRow(props: Types.RowProps, ref: React.ForwardedRef<HTMLTableRowEle
           style={style}
           {...primaryEvents}
           onClick={onClick}
+          onDoubleClick={onDoubleClick}
           ref={ref}
           css={styles.row({
             selected: rowCtxItem.isSelected,
@@ -154,4 +145,9 @@ function TableRow(props: Types.RowProps, ref: React.ForwardedRef<HTMLTableRowEle
   return <tr ref={ref} id={rowId} style={style} />
 }
 
-export default forwardRef(TableRow)
+export default React.memo(forwardRef(TableRow), (prev, next) => {
+  return (
+    prev.rowCtxItem.row === next.rowCtxItem.row &&
+    prev.rowCtxItem.isSelected === next.rowCtxItem.isSelected
+  )
+})
