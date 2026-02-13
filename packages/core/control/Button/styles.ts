@@ -3,17 +3,14 @@ import { colorProp } from '@stage-ui/system'
 
 import Types from './types'
 
-const styles: Stage.CreateClasses<Types.Classes, Types.Props | Types.PolymorphicProps> = (
-  theme,
-  props,
-) => {
-  const {
-    size = 'm',
-    decoration = 'filled',
-    shape = 'rounded',
-    disabled,
-    uppercase,
-  } = props
+const styles: Stage.CreateClasses<
+  Types.Classes,
+  Types.Props | Types.PolymorphicProps<any>
+> = (theme, props) => {
+  const { size = 'm', decoration = 'filled', shape = 'rounded' } = props
+  const disabled = 'disabled' in props ? props.disabled : undefined
+  const uppercase = 'uppercase' in props ? props.uppercase : undefined
+
   const color = colorProp(props.color, theme) || theme.color.primary
   const isDark = color.contrast(theme.color.onPrimary) > 2.4
 

@@ -1,19 +1,60 @@
-import React from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
 
 declare namespace ButtonTypes {
   type Decoration = 'filled' | 'outline' | 'text' | 'plain'
   type Shape = 'square' | 'rounded' | 'round'
   type Type = 'submit' | 'reset' | 'button'
   type ChildAlign = 'left' | 'right'
-  interface Props extends Stage.AllProps<HTMLButtonElement, Classes> {
+
+  interface SharedProps {
     /**
-     * Specifies that the button should have input focus when the page loads
+     * Sizes of button
+     * @display Sizes
+     * @link /props/#size
+     * @default m
      */
-    autoFocus?: boolean
+    size?: Stage.Sizes
+    /**
+     * Defines how button look
+     * @default filled
+     */
+    decoration?: Decoration
+    /**
+     * Shape of button
+     * @default rounded
+     */
+    shape?: Shape
+
+    /**
+     * Color of button
+     */
+    color?: Stage.ColorProp
+
+    /**
+     * same as label
+     */
+    children?: React.ReactNode
+    /**
+     * Place for items to the right of children
+     */
+    rightChild?: React.ReactNode
+    /**
+     * Place for items to the left of children
+     */
+    leftChild?: React.ReactNode
+
     /**
      * Prevents the user from interacting with the button
      */
     disabled?: boolean
+  }
+
+  interface Props extends Stage.AllProps<HTMLButtonElement, Classes>, SharedProps {
+    /**
+     * Specifies that the button should have input focus when the page loads
+     */
+    autoFocus?: boolean
+
     /**
      * The <form> element to associate the button with
      */
@@ -54,46 +95,15 @@ declare namespace ButtonTypes {
     value?: string | string[] | number
 
     /**
-     * Sizes of button
-     * @display Sizes
-     * @link /props/#size
-     * @default m
-     */
-    size?: Stage.Sizes
-    /**
-     * Defines how button look
-     * @default filled
-     */
-    decoration?: Decoration
-    /**
-     * Shape of button
-     * @default rounded
-     */
-    shape?: Shape
-    /**
      * Make button's text uppercase
      */
     uppercase?: boolean
-    /**
-     * Color of button
-     */
-    color?: Stage.ColorProp
+
     /**
      * Button's label
      */
     label?: React.ReactNode
-    /**
-     * same as label
-     */
-    children?: React.ReactNode
-    /**
-     * Place for items to the right of children
-     */
-    rightChild?: React.ReactNode
-    /**
-     * Place for items to the left of children
-     */
-    leftChild?: React.ReactNode
+
     /**
      * Async onClick
      */
@@ -105,21 +115,9 @@ declare namespace ButtonTypes {
     loadingComponent?: React.ReactNode
   }
 
-  interface PolymorphicProps
-    extends Pick<
-      Props,
-      | 'leftChild'
-      | 'rightChild'
-      | 'type'
-      | 'size'
-      | 'shape'
-      | 'disabled'
-      | 'uppercase'
-      | 'decoration'
-      | 'color'
-      | 'children'
-      | 'style'
-    > {}
+  interface PolymorphicProps<E extends React.ElementType>
+    extends Stage.AllProps<React.ComponentPropsWithoutRef<E>, Classes>,
+      SharedProps {}
 
   type Classes = {
     /**

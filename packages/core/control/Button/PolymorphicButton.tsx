@@ -1,9 +1,12 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/destructuring-assignment */
 import React, {
+  ComponentProps,
   forwardRef,
   ForwardRefRenderFunction,
   HTMLProps,
+  MouseEvent,
+  PropsWithoutRef,
   ReactChild,
   ReactNode,
   Ref,
@@ -28,20 +31,40 @@ type PropsToOmit<E extends PossibleElementType, P> = keyof (AsProp<E> & P)
 
 type PolymorphicRef<E extends PossibleElementType> = React.ComponentPropsWithRef<E>['ref']
 
-type Props<E extends PossibleElementType> = ButtonTypes.PolymorphicProps &
+type Props<E extends PossibleElementType> = ButtonTypes.PolymorphicProps<E> &
   AsProp<E> &
-  Omit<React.ComponentPropsWithoutRef<E>, PropsToOmit<E, ButtonTypes.PolymorphicProps>>
+  Omit<React.ComponentPropsWithoutRef<E>, PropsToOmit<E, ButtonTypes.PolymorphicProps<E>>>
 
 const PolymorphicButtonComponent = <E extends PossibleElementType = 'button'>(
   props: Props<E>,
   ref: PolymorphicRef<E>,
 ) => {
-  let { leftChild, rightChild, children, as = 'button', style, ...restProps } = props
+  let {
+    leftChild,
+    rightChild,
+    children,
+    as = 'button',
+    style,
+    disabled,
+    onClick,
+    ...restProps
+  } = props
   const { classes, attributes, events, styleProps } = useSystem(
     'PolymorphicButton',
     props,
     createClasses,
   )
+
+  const handleOnClick = (e: MouseEvent<PropsWithoutRef<ComponentProps<E>>>) => {
+    if (disabled) {
+      e.preventDefault()
+      return
+    }
+    if (onClick) {
+      onClick?.(e)
+      return
+    }
+  }
 
   return jsx(as, {
     ...attributes,
@@ -56,7 +79,14 @@ const PolymorphicButtonComponent = <E extends PossibleElementType = 'button'>(
       </>
     ),
     ref,
+
+    onClick: handleOnClick,
+
     ...restProps,
+
+    ...(disabled && {
+      tabIndex: -1,
+    }),
   })
 }
 
