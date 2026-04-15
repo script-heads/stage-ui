@@ -1,5 +1,5 @@
 /**
-version: 0.7.67
+version: 0.7.68
 */
 export { default as Activity } from './lib/Activity'
 export { default as AlarmClock1 } from './lib/AlarmClock1'
@@ -317,6 +317,7 @@ export { default as Upload } from './lib/Upload'
 export { default as Version } from './lib/Version'
 export { default as VideoCut } from './lib/VideoCut'
 export { default as VideoOff } from './lib/VideoOff'
+export { default as VideoStar } from './lib/VideoStar'
 export { default as Video } from './lib/Video'
 export { default as VolumeDown } from './lib/VolumeDown'
 export { default as VolumeOff } from './lib/VolumeOff'
