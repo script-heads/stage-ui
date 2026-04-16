@@ -25,7 +25,7 @@ const Button: ForwardRefRenderFunction<HTMLButtonElement, Types.Props> = (props,
   const onClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     if (!disabled && !pending) {
       const promise = events.onClick?.(event)
-      if (promise instanceof Promise) {
+      if (typeof promise === 'object' && 'then' in promise) {
         setPending(true)
         promise
           .then(() => {
