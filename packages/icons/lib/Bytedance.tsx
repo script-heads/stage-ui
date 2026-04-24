@@ -1,0 +1,12 @@
+/**
+The MIT License (MIT)
+*/
+import{ Props, createIcon } from '../Icon'
+import React from 'react'
+
+export default React.forwardRef((props: Props, ref: React.ForwardedRef<HTMLSpanElement>) => (
+    createIcon(props, ref, {
+        filled: <path fillRule="evenodd" clipRule="evenodd" d="M56.999 12.1699V51.083L48.3447 53.2695V10L56.999 12.1699ZM29.1143 31.4424V50.0967L20.4609 52.3076V29.2305L29.1143 31.4424ZM15.6533 14.1484V49.1211L7 51.3457V11.9238L15.6533 14.1484ZM43.5371 46.5381L34.8838 44.3271V25.6729L43.5371 23.4619V46.5381Z"/>,
+        outline: <path fillRule="evenodd" clipRule="evenodd" d="M56.999 12.1699V51.083L48.3447 53.2695V10L56.999 12.1699ZM29.1143 31.4424V50.0967L20.4609 52.3076V29.2305L29.1143 31.4424ZM15.6533 14.1484V49.1211L7 51.3457V11.9238L15.6533 14.1484ZM43.5371 46.5381L34.8838 44.3271V25.6729L43.5371 23.4619V46.5381Z"/>,
+    })
+))
