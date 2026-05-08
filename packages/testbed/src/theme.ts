@@ -5,6 +5,14 @@ export const light = themes.light.replace({
     radius: {
       xs: '0.25rem',
     },
+    color: {
+      newRed: {
+        '100': '#FF0000',
+      },
+      palette: {
+        newYellowColor: 'yellow',
+      },
+    },
   },
   overrides: (main) => ({
     TextField: {

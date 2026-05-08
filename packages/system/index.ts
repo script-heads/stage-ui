@@ -73,12 +73,16 @@ declare global {
       hardest: C
     }
 
-    type ColorCustom<C = Color> = {
+    interface CustomPaletteRegistry {}
+
+    interface ColorCustom<C = Color> {
       /** @deprecated this field */
-      palette: Record<string, C>
+      palette: CustomPaletteRegistry & {
+        [key: string]: C
+      }
     }
 
-    type ColorPalette<C = Color> = {
+    interface ColorPalette<C = Color> {
       gray: ColorShades<C>
       yellow: ColorShades<C> & ColorAccentsShades<C>
       orange: ColorShades<C> & ColorAccentsShades<C>
@@ -97,27 +101,36 @@ declare global {
     }
 
     type ColorNames = LiteralUnion<
-      LiteralUnion<
-        | keyof ColorMain
-        | `gray${keyof ColorPalette['gray']}`
-        | `yellow${keyof ColorPalette['yellow']}`
-        | `orange${keyof ColorPalette['orange']}`
-        | `red${keyof ColorPalette['red']}`
-        | `rose${keyof ColorPalette['rose']}`
-        | `pink${keyof ColorPalette['pink']}`
-        | `green${keyof ColorPalette['green']}`
-        | `lightGreen${keyof ColorPalette['lightGreen']}`
-        | `lime${keyof ColorPalette['lime']}`
-        | `teal${keyof ColorPalette['teal']}`
-        | `cyan${keyof ColorPalette['cyan']}`
-        | `lightBlue${keyof ColorPalette['lightBlue']}`
-        | `blue${keyof ColorPalette['blue']}`
-        | `indigo${keyof ColorPalette['indigo']}`
-        | `purple${keyof ColorPalette['purple']}`,
-        keyof ColorCustom['palette']
-      >,
+      | keyof {
+          [K in keyof ColorPalette as `${K}${keyof ColorPalette[K] & (string | number)}`]: string
+        }
+      | keyof ColorMain
+      | keyof CustomPaletteRegistry,
       string
     >
+
+    // type ColorNames = LiteralUnion<
+    //   LiteralUnion<
+    //     | keyof ColorMain
+    //     | `gray${keyof ColorPalette['gray']}`
+    //     | `yellow${keyof ColorPalette['yellow']}`
+    //     | `orange${keyof ColorPalette['orange']}`
+    //     | `red${keyof ColorPalette['red']}`
+    //     | `rose${keyof ColorPalette['rose']}`
+    //     | `pink${keyof ColorPalette['pink']}`
+    //     | `green${keyof ColorPalette['green']}`
+    //     | `lightGreen${keyof ColorPalette['lightGreen']}`
+    //     | `lime${keyof ColorPalette['lime']}`
+    //     | `teal${keyof ColorPalette['teal']}`
+    //     | `cyan${keyof ColorPalette['cyan']}`
+    //     | `lightBlue${keyof ColorPalette['lightBlue']}`
+    //     | `blue${keyof ColorPalette['blue']}`
+    //     | `indigo${keyof ColorPalette['indigo']}`
+    //     | `purple${keyof ColorPalette['purple']}`,
+    //     keyof ColorCustom['palette']
+    //   >,
+    //   string
+    // >
 
     type Colors<C = Color, Definition = false> = ColorMain<C> &
       ColorPalette<C> &
@@ -253,8 +266,8 @@ declare global {
       [P in keyof T]?: T[P] extends Array<infer U>
         ? Array<DeepPartial<U>>
         : T[P] extends ReadonlyArray<infer U>
-        ? ReadonlyArray<DeepPartial<U>>
-        : DeepPartial<T[P]>
+          ? ReadonlyArray<DeepPartial<U>>
+          : DeepPartial<T[P]>
     }
 
     type LiteralUnion<LiteralType, BaseType extends Primitive> =
