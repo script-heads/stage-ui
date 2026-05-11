@@ -1,7 +1,7 @@
 {
   "name": "stage-ui",
   "author": "Script Heads",
-  "version": "0.7.67",
+  "version": "0.7.68",
   "license": "MIT",
   "private": true,
   "workspaces": [
