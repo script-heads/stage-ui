@@ -15,7 +15,11 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
   return {
     container: {},
     label: {},
-    field: {},
+    field: {
+      '&:focus, &#focused:focus': {
+        boxShadow: `0px 0px 2px 2px ${theme.color.blue[500].string()} !important`,
+      },
+    },
     rightChild: {},
     leftChild: {},
     selectedArea: {
@@ -42,6 +46,7 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
         '&::placeholder': {
           color: theme.color.light.rgb().string(),
         },
+        userSelect: 'none',
       },
       state.searchMode && {
         color: theme.color.hard.rgb().string(),
@@ -161,6 +166,9 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
     scrollContent: {
       maxHeight: maxScrollHeight,
       padding: `calc(${theme.assets.field[size].indent} / 2)`,
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.25rem',
     },
 
     option: (state) => [
@@ -170,11 +178,16 @@ const createClasses: Stage.CreateClasses<Types.Classes, Types.Props> = (
         cursor: 'pointer',
         userSelect: 'none',
         borderRadius: theme.radius.s,
+        backgroundColor: 'transparent',
+        width: '100%',
+        justifyContent: 'flex-start',
+        color: theme.color.primary.rgb().string(),
+
+        padding: `calc(${theme.assets.field[size].indent} / 2)`,
         ':hover': {
           color: theme.color.primary.rgb().string(),
-          backgroundColor: theme.color.primary.alpha(0.1).rgb().string(),
+          backgroundColor: `${theme.color.primary.alpha(0.1).rgb().string()}`,
         },
-        padding: `calc(${theme.assets.field[size].indent} / 2)`,
       },
       theme.assets.typography.text[size],
       state.selected && {

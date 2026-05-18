@@ -7,11 +7,13 @@ import React, {
   useState,
 } from 'react'
 
-import { Drop, ScrollView } from '@stage-ui/core'
+import { Button, Drop, ScrollView } from '@stage-ui/core'
 import Field from '@stage-ui/core/basic/Field'
 import DropTypes from '@stage-ui/core/layout/Drop/types'
 import { ChevronDown, Close } from '@stage-ui/icons'
 import { useSystem, createID } from '@stage-ui/system'
+
+import { FocusTrap } from 'focus-trap-react'
 
 import SharedZIndex from '../../utils/SharedZIndex'
 
@@ -114,24 +116,6 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
     }
   }, [isOpen, searchValue, options?.map((value) => value.value).join()])
 
-  /*
-   * Keyboard control
-   * TODO: handle keyboard control
-   */
-  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-    switch (event.key) {
-      case 'Enter':
-        break
-      case 'ArrowUp':
-        break
-      case 'ArrowDown':
-        break
-      case 'Backspace':
-        break
-    }
-    onKeyDown?.(event)
-  }
-
   /**
    * Open and close select drop
    */
@@ -141,6 +125,25 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
       return
     }
     setOpen(!isOpen)
+  }
+
+  /*
+   * Keyboard control
+   * TODO: handle keyboard control
+   */
+  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    switch (event.key) {
+      case 'Enter':
+      case ' ':
+        toggleOpen()
+        break
+      case 'ArrowUp':
+      case 'ArrowDown':
+      case 'Backspace':
+        break
+      default:
+        onKeyDown?.(event)
+    }
   }
 
   /**
@@ -196,7 +199,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
   const renderOption = (option: Types.Option) => {
     const isThisOptionSelected = values.map((item) => item.value).includes(option.value)
     return (
-      <div
+      <Button
         css={classes.option({
           selected: isThisOptionSelected,
         })}
@@ -205,11 +208,16 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
           e.stopPropagation()
           setOption(option)
         }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            setOption(option)
+          }
+        }}
       >
         {customRenderOption
           ? customRenderOption(option, isThisOptionSelected)
           : option.text}
-      </div>
+      </Button>
     )
   }
 
@@ -231,6 +239,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
 
   return (
     <Field
+      className="select__field"
       {...fieldProps}
       ref={fieldRef}
       size={size}
@@ -350,6 +359,13 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
         target={fieldRef}
       >
         <div css={classes.drop}>
+          {/* @ts-expect-error - containerElements works using querySelector reference, but throws type error */}
+          <FocusTrap
+            containerElements={['.select__field', '.select__scroll-view']}
+            focusTrapOptions={{
+              fallbackFocus: '.select__field',
+            }}
+          />
           {!!dropHeader && <div css={classes.dropHeader}>{dropHeader}</div>}
           <ScrollView
             preventStageEvents
@@ -358,6 +374,7 @@ const Select: ForwardRefRenderFunction<Types.Ref, Types.Props> = (props, ref) =>
             overrides={{
               content: classes.scrollContent,
             }}
+            className="select__scroll-view"
           >
             {options.map(renderOption)}
             {options.length === 0 && (

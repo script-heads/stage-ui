@@ -20,6 +20,7 @@ function Field(props: Types.PrivateProps, ref: React.ForwardedRef<HTMLDivElement
     label,
     clearable = false,
     notFocusable,
+    className,
   } = props
 
   const {
@@ -70,7 +71,7 @@ function Field(props: Types.PrivateProps, ref: React.ForwardedRef<HTMLDivElement
   )
 
   return (
-    <div css={classes.container}>
+    <div className={className} css={classes.container}>
       {label !== undefined && labelType === 'outside' && labelJSX}
 
       <div css={classes.field} {...attributes} {...events} ref={ref}>
