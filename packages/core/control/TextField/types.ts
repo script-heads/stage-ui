@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from 'react'
+import { ChangeEventHandler, FocusEventHandler } from 'react'
 
 import FieldTypes from '../../basic/Field/types'
 
