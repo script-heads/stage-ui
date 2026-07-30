@@ -45,6 +45,7 @@ version: ${packageJson.version}
 const groupSvgContent = (svgString) => {
   return svgString
     .toString()
+    .replace(/\r/g, '')
     .replace(/<svg[^>]*>/, '')
     .replace(/<g[^>]*>/, '')
     .replace(/<\/g[^>]*>/, '')
