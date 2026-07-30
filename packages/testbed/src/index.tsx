@@ -1,7 +1,8 @@
-import { light } from './theme'
-import { DatePicker, Modal, modal, Viewport } from '@stage-ui/core'
+import { modal, Viewport } from '@stage-ui/core'
+
 import ReactDOM from 'react-dom'
-import { useState } from 'react'
+
+import { light } from './theme'
 
 const App: React.FC = () => {
   const handleOpen = () => {
