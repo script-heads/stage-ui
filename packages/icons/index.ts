@@ -1,5 +1,5 @@
 /**
-version: 0.7.67
+version: 0.7.71
 */
 export { default as Activity } from './lib/Activity'
 export { default as AlarmClock1 } from './lib/AlarmClock1'
@@ -86,6 +86,7 @@ export { default as Clock } from './lib/Clock'
 export { default as CloseCircle1 } from './lib/CloseCircle1'
 export { default as CloseCircle } from './lib/CloseCircle'
 export { default as Close } from './lib/Close'
+export { default as ClosedCaptioning } from './lib/ClosedCaptioning'
 export { default as CloudDownload } from './lib/CloudDownload'
 export { default as CloudUpload } from './lib/CloudUpload'
 export { default as CodeDownload } from './lib/CodeDownload'
@@ -132,8 +133,10 @@ export { default as EyeOff } from './lib/EyeOff'
 export { default as Eye } from './lib/Eye'
 export { default as Facebook } from './lib/Facebook'
 export { default as FileAdd } from './lib/FileAdd'
+export { default as FilePdf } from './lib/FilePdf'
 export { default as FileRemove } from './lib/FileRemove'
 export { default as FileText } from './lib/FileText'
+export { default as FileWord } from './lib/FileWord'
 export { default as File } from './lib/File'
 export { default as Film } from './lib/Film'
 export { default as Fire } from './lib/Fire'
